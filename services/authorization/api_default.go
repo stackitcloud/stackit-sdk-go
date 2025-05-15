@@ -24,22 +24,191 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		AddMembers Add members to a resource
+		Add members to the given resource with specified roles.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceId
+		@return ApiAddMembersRequest
+	*/
+	AddMembers(ctx context.Context, resourceId string) ApiAddMembersRequest
+	/*
+		AddMembersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceId
+		@return MembersResponse
+
+	*/
+	AddMembersExecute(ctx context.Context, resourceId string) (*MembersResponse, error)
+	/*
+		ListMembers Get members to a resource
+		List members of the given resource.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return ApiListMembersRequest
+	*/
+	ListMembers(ctx context.Context, resourceType string, resourceId string) ApiListMembersRequest
+	/*
+		ListMembersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return ListMembersResponse
+
+	*/
+	ListMembersExecute(ctx context.Context, resourceType string, resourceId string) (*ListMembersResponse, error)
+	/*
+		ListPermissions Get available permissions
+		Get available permissions
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListPermissionsRequest
+	*/
+	ListPermissions(ctx context.Context) ApiListPermissionsRequest
+	/*
+		ListPermissionsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ListPermissionsResponse
+
+	*/
+	ListPermissionsExecute(ctx context.Context) (*ListPermissionsResponse, error)
+	/*
+		ListRoles Get roles and permissions of a resource
+		Get roles and permissions of a resource
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return ApiListRolesRequest
+	*/
+	ListRoles(ctx context.Context, resourceType string, resourceId string) ApiListRolesRequest
+	/*
+		ListRolesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return RolesResponse
+
+	*/
+	ListRolesExecute(ctx context.Context, resourceType string, resourceId string) (*RolesResponse, error)
+	/*
+		ListUserMemberships List memberships of a user
+		List memberships of a user. An administrative access is needed to list any user's memberships, while the user can do it on his/her own email. You can use filters to scope the request to a project/folder/organization. In this case -if caller is not the subject-, owner permissions are required. Because of hierarchical role bindings, the user might have permissions on more resources.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param email
+		@return ApiListUserMembershipsRequest
+	*/
+	ListUserMemberships(ctx context.Context, email string) ApiListUserMembershipsRequest
+	/*
+		ListUserMembershipsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param email
+		@return ListUserMembershipsResponse
+
+	*/
+	ListUserMembershipsExecute(ctx context.Context, email string) (*ListUserMembershipsResponse, error)
+	/*
+		ListUserPermissions List permissions of a user
+		List permissions of a user. An administrative access is needed to list any user's permissions, while the user can do it on his/her own email. Lists every resource of the given type where the user has any effective permissions. When requested, also lists why the permission is present.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param email
+		@return ApiListUserPermissionsRequest
+	*/
+	ListUserPermissions(ctx context.Context, email string) ApiListUserPermissionsRequest
+	/*
+		ListUserPermissionsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param email
+		@return ListUserPermissionsResponse
+
+	*/
+	ListUserPermissionsExecute(ctx context.Context, email string) (*ListUserPermissionsResponse, error)
+	/*
+		RemoveMembers Remove members from a resource
+		Remove members from the given resource with specified roles.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceId
+		@return ApiRemoveMembersRequest
+	*/
+	RemoveMembers(ctx context.Context, resourceId string) ApiRemoveMembersRequest
+	/*
+		RemoveMembersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceId
+		@return MembersResponse
+
+	*/
+	RemoveMembersExecute(ctx context.Context, resourceId string) (*MembersResponse, error)
+}
+
+type ApiAddMembersRequest interface {
+	AddMembersPayload(addMembersPayload AddMembersPayload) ApiAddMembersRequest
+	Execute() (*MembersResponse, error)
+}
+
+type ApiListMembersRequest interface {
+	Subject(subject string) ApiListMembersRequest
+	Execute() (*ListMembersResponse, error)
+}
+
+type ApiListPermissionsRequest interface {
+	ResourceType(resourceType string) ApiListPermissionsRequest
+	Execute() (*ListPermissionsResponse, error)
+}
+
+type ApiListRolesRequest interface {
+	Execute() (*RolesResponse, error)
+}
+
+type ApiListUserMembershipsRequest interface {
+	ResourceType(resourceType string) ApiListUserMembershipsRequest
+	ResourceId(resourceId string) ApiListUserMembershipsRequest
+	ParentResourceId(parentResourceId string) ApiListUserMembershipsRequest
+	Execute() (*ListUserMembershipsResponse, error)
+}
+
+type ApiListUserPermissionsRequest interface {
+	Resource(resource string) ApiListUserPermissionsRequest
+	ResourceType(resourceType string) ApiListUserPermissionsRequest
+	Permissions(permissions []string) ApiListUserPermissionsRequest
+	Execute() (*ListUserPermissionsResponse, error)
+}
+
+type ApiRemoveMembersRequest interface {
+	RemoveMembersPayload(removeMembersPayload RemoveMembersPayload) ApiRemoveMembersRequest
+	Execute() (*MembersResponse, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiAddMembersRequest struct {
+type AddMembersRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	resourceId        string
 	addMembersPayload *AddMembersPayload
 }
 
-func (r ApiAddMembersRequest) AddMembersPayload(addMembersPayload AddMembersPayload) ApiAddMembersRequest {
+func (r AddMembersRequest) AddMembersPayload(addMembersPayload AddMembersPayload) ApiAddMembersRequest {
 	r.addMembersPayload = &addMembersPayload
 	return r
 }
 
-func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
+func (r AddMembersRequest) Execute() (*MembersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -47,7 +216,11 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 		localVarReturnValue *MembersResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AddMembers")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AddMembers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -81,7 +254,7 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.addMembersPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -91,7 +264,7 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -115,7 +288,7 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -126,7 +299,7 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -137,7 +310,7 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -148,7 +321,7 @@ func (r ApiAddMembersRequest) Execute() (*MembersResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -171,7 +344,7 @@ Add members to the given resource with specified roles.
 	@return ApiAddMembersRequest
 */
 func (a *APIClient) AddMembers(ctx context.Context, resourceId string) ApiAddMembersRequest {
-	return ApiAddMembersRequest{
+	return AddMembersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		resourceId: resourceId,
@@ -179,7 +352,7 @@ func (a *APIClient) AddMembers(ctx context.Context, resourceId string) ApiAddMem
 }
 
 func (a *APIClient) AddMembersExecute(ctx context.Context, resourceId string) (*MembersResponse, error) {
-	r := ApiAddMembersRequest{
+	r := AddMembersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		resourceId: resourceId,
@@ -187,7 +360,7 @@ func (a *APIClient) AddMembersExecute(ctx context.Context, resourceId string) (*
 	return r.Execute()
 }
 
-type ApiListMembersRequest struct {
+type ListMembersRequest struct {
 	ctx          context.Context
 	apiService   *DefaultApiService
 	resourceType string
@@ -195,12 +368,12 @@ type ApiListMembersRequest struct {
 	subject      *string
 }
 
-func (r ApiListMembersRequest) Subject(subject string) ApiListMembersRequest {
+func (r ListMembersRequest) Subject(subject string) ApiListMembersRequest {
 	r.subject = &subject
 	return r
 }
 
-func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
+func (r ListMembersRequest) Execute() (*ListMembersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -208,7 +381,11 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 		localVarReturnValue *ListMembersResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListMembers")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListMembers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -241,7 +418,7 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -251,7 +428,7 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -275,7 +452,7 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -286,7 +463,7 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -297,7 +474,7 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -308,7 +485,7 @@ func (r ApiListMembersRequest) Execute() (*ListMembersResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -332,7 +509,7 @@ List members of the given resource.
 	@return ApiListMembersRequest
 */
 func (a *APIClient) ListMembers(ctx context.Context, resourceType string, resourceId string) ApiListMembersRequest {
-	return ApiListMembersRequest{
+	return ListMembersRequest{
 		apiService:   a.defaultApi,
 		ctx:          ctx,
 		resourceType: resourceType,
@@ -341,7 +518,7 @@ func (a *APIClient) ListMembers(ctx context.Context, resourceType string, resour
 }
 
 func (a *APIClient) ListMembersExecute(ctx context.Context, resourceType string, resourceId string) (*ListMembersResponse, error) {
-	r := ApiListMembersRequest{
+	r := ListMembersRequest{
 		apiService:   a.defaultApi,
 		ctx:          ctx,
 		resourceType: resourceType,
@@ -350,18 +527,18 @@ func (a *APIClient) ListMembersExecute(ctx context.Context, resourceType string,
 	return r.Execute()
 }
 
-type ApiListPermissionsRequest struct {
+type ListPermissionsRequest struct {
 	ctx          context.Context
 	apiService   *DefaultApiService
 	resourceType *string
 }
 
-func (r ApiListPermissionsRequest) ResourceType(resourceType string) ApiListPermissionsRequest {
+func (r ListPermissionsRequest) ResourceType(resourceType string) ApiListPermissionsRequest {
 	r.resourceType = &resourceType
 	return r
 }
 
-func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
+func (r ListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -369,7 +546,11 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 		localVarReturnValue *ListPermissionsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPermissions")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPermissions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -400,7 +581,7 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -410,7 +591,7 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -434,7 +615,7 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -445,7 +626,7 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -456,7 +637,7 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -467,7 +648,7 @@ func (r ApiListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -489,28 +670,28 @@ Get available permissions
 	@return ApiListPermissionsRequest
 */
 func (a *APIClient) ListPermissions(ctx context.Context) ApiListPermissionsRequest {
-	return ApiListPermissionsRequest{
+	return ListPermissionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) ListPermissionsExecute(ctx context.Context) (*ListPermissionsResponse, error) {
-	r := ApiListPermissionsRequest{
+	r := ListPermissionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiListRolesRequest struct {
+type ListRolesRequest struct {
 	ctx          context.Context
 	apiService   *DefaultApiService
 	resourceType string
 	resourceId   string
 }
 
-func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
+func (r ListRolesRequest) Execute() (*RolesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -518,7 +699,11 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 		localVarReturnValue *RolesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListRoles")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListRoles")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -548,7 +733,7 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -558,7 +743,7 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -582,7 +767,7 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -593,7 +778,7 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -604,7 +789,7 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -615,7 +800,7 @@ func (r ApiListRolesRequest) Execute() (*RolesResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -639,7 +824,7 @@ Get roles and permissions of a resource
 	@return ApiListRolesRequest
 */
 func (a *APIClient) ListRoles(ctx context.Context, resourceType string, resourceId string) ApiListRolesRequest {
-	return ApiListRolesRequest{
+	return ListRolesRequest{
 		apiService:   a.defaultApi,
 		ctx:          ctx,
 		resourceType: resourceType,
@@ -648,7 +833,7 @@ func (a *APIClient) ListRoles(ctx context.Context, resourceType string, resource
 }
 
 func (a *APIClient) ListRolesExecute(ctx context.Context, resourceType string, resourceId string) (*RolesResponse, error) {
-	r := ApiListRolesRequest{
+	r := ListRolesRequest{
 		apiService:   a.defaultApi,
 		ctx:          ctx,
 		resourceType: resourceType,
@@ -657,7 +842,7 @@ func (a *APIClient) ListRolesExecute(ctx context.Context, resourceType string, r
 	return r.Execute()
 }
 
-type ApiListUserMembershipsRequest struct {
+type ListUserMembershipsRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	email            string
@@ -666,22 +851,22 @@ type ApiListUserMembershipsRequest struct {
 	parentResourceId *string
 }
 
-func (r ApiListUserMembershipsRequest) ResourceType(resourceType string) ApiListUserMembershipsRequest {
+func (r ListUserMembershipsRequest) ResourceType(resourceType string) ApiListUserMembershipsRequest {
 	r.resourceType = &resourceType
 	return r
 }
 
-func (r ApiListUserMembershipsRequest) ResourceId(resourceId string) ApiListUserMembershipsRequest {
+func (r ListUserMembershipsRequest) ResourceId(resourceId string) ApiListUserMembershipsRequest {
 	r.resourceId = &resourceId
 	return r
 }
 
-func (r ApiListUserMembershipsRequest) ParentResourceId(parentResourceId string) ApiListUserMembershipsRequest {
+func (r ListUserMembershipsRequest) ParentResourceId(parentResourceId string) ApiListUserMembershipsRequest {
 	r.parentResourceId = &parentResourceId
 	return r
 }
 
-func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, error) {
+func (r ListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -689,7 +874,11 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 		localVarReturnValue *ListUserMembershipsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUserMemberships")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUserMemberships")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -727,7 +916,7 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -737,7 +926,7 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -761,7 +950,7 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -772,7 +961,7 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -783,7 +972,7 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -794,7 +983,7 @@ func (r ApiListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -817,7 +1006,7 @@ List memberships of a user. An administrative access is needed to list any user'
 	@return ApiListUserMembershipsRequest
 */
 func (a *APIClient) ListUserMemberships(ctx context.Context, email string) ApiListUserMembershipsRequest {
-	return ApiListUserMembershipsRequest{
+	return ListUserMembershipsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		email:      email,
@@ -825,7 +1014,7 @@ func (a *APIClient) ListUserMemberships(ctx context.Context, email string) ApiLi
 }
 
 func (a *APIClient) ListUserMembershipsExecute(ctx context.Context, email string) (*ListUserMembershipsResponse, error) {
-	r := ApiListUserMembershipsRequest{
+	r := ListUserMembershipsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		email:      email,
@@ -833,7 +1022,7 @@ func (a *APIClient) ListUserMembershipsExecute(ctx context.Context, email string
 	return r.Execute()
 }
 
-type ApiListUserPermissionsRequest struct {
+type ListUserPermissionsRequest struct {
 	ctx          context.Context
 	apiService   *DefaultApiService
 	email        string
@@ -842,22 +1031,22 @@ type ApiListUserPermissionsRequest struct {
 	permissions  *[]string
 }
 
-func (r ApiListUserPermissionsRequest) Resource(resource string) ApiListUserPermissionsRequest {
+func (r ListUserPermissionsRequest) Resource(resource string) ApiListUserPermissionsRequest {
 	r.resource = &resource
 	return r
 }
 
-func (r ApiListUserPermissionsRequest) ResourceType(resourceType string) ApiListUserPermissionsRequest {
+func (r ListUserPermissionsRequest) ResourceType(resourceType string) ApiListUserPermissionsRequest {
 	r.resourceType = &resourceType
 	return r
 }
 
-func (r ApiListUserPermissionsRequest) Permissions(permissions []string) ApiListUserPermissionsRequest {
+func (r ListUserPermissionsRequest) Permissions(permissions []string) ApiListUserPermissionsRequest {
 	r.permissions = &permissions
 	return r
 }
 
-func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, error) {
+func (r ListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -865,7 +1054,11 @@ func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, 
 		localVarReturnValue *ListUserPermissionsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUserPermissions")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUserPermissions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -911,7 +1104,7 @@ func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -921,7 +1114,7 @@ func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -945,7 +1138,7 @@ func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -956,7 +1149,7 @@ func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -967,7 +1160,7 @@ func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -978,7 +1171,7 @@ func (r ApiListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1001,7 +1194,7 @@ List permissions of a user. An administrative access is needed to list any user'
 	@return ApiListUserPermissionsRequest
 */
 func (a *APIClient) ListUserPermissions(ctx context.Context, email string) ApiListUserPermissionsRequest {
-	return ApiListUserPermissionsRequest{
+	return ListUserPermissionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		email:      email,
@@ -1009,7 +1202,7 @@ func (a *APIClient) ListUserPermissions(ctx context.Context, email string) ApiLi
 }
 
 func (a *APIClient) ListUserPermissionsExecute(ctx context.Context, email string) (*ListUserPermissionsResponse, error) {
-	r := ApiListUserPermissionsRequest{
+	r := ListUserPermissionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		email:      email,
@@ -1017,19 +1210,19 @@ func (a *APIClient) ListUserPermissionsExecute(ctx context.Context, email string
 	return r.Execute()
 }
 
-type ApiRemoveMembersRequest struct {
+type RemoveMembersRequest struct {
 	ctx                  context.Context
 	apiService           *DefaultApiService
 	resourceId           string
 	removeMembersPayload *RemoveMembersPayload
 }
 
-func (r ApiRemoveMembersRequest) RemoveMembersPayload(removeMembersPayload RemoveMembersPayload) ApiRemoveMembersRequest {
+func (r RemoveMembersRequest) RemoveMembersPayload(removeMembersPayload RemoveMembersPayload) ApiRemoveMembersRequest {
 	r.removeMembersPayload = &removeMembersPayload
 	return r
 }
 
-func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
+func (r RemoveMembersRequest) Execute() (*MembersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1037,7 +1230,11 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 		localVarReturnValue *MembersResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RemoveMembers")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RemoveMembers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1071,7 +1268,7 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.removeMembersPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1081,7 +1278,7 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1105,7 +1302,7 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1116,7 +1313,7 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1127,7 +1324,7 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1138,7 +1335,7 @@ func (r ApiRemoveMembersRequest) Execute() (*MembersResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1161,7 +1358,7 @@ Remove members from the given resource with specified roles.
 	@return ApiRemoveMembersRequest
 */
 func (a *APIClient) RemoveMembers(ctx context.Context, resourceId string) ApiRemoveMembersRequest {
-	return ApiRemoveMembersRequest{
+	return RemoveMembersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		resourceId: resourceId,
@@ -1169,7 +1366,7 @@ func (a *APIClient) RemoveMembers(ctx context.Context, resourceId string) ApiRem
 }
 
 func (a *APIClient) RemoveMembersExecute(ctx context.Context, resourceId string) (*MembersResponse, error) {
-	r := ApiRemoveMembersRequest{
+	r := RemoveMembersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		resourceId: resourceId,
