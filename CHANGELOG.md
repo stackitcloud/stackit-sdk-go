@@ -1,6 +1,9 @@
 ## Release (2025-xx-xx)
-- `alb`: [v0.3.0](services/alb/CHANGELOG.md#v030-2025-05-14)
-  - **Breaking change:** Introduce typed enum constants for status attributes
+- `alb`:
+  - [v0.3.1](services/alb/CHANGELOG.md#v031-2025-05-15)
+    - **Feature:** New field `Path` for `Rule`
+  - [v0.3.0](services/alb/CHANGELOG.md#v030-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
 - `cdn`: [v1.1.0](services/cdn/CHANGELOG.md#v110-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `dns`: [v0.14.0](services/dns/CHANGELOG.md#v0140-2025-05-14)
@@ -11,6 +14,7 @@
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `lbapplication`: [v0.4.0](services/lbapplication/CHANGELOG.md#v040-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
+  - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
 - `loadbalancer`: [v1.1.0](services/loadbalancer/CHANGELOG.md#v110-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `logme`: [v0.23.0](services/logme/CHANGELOG.md#v0230-2025-05-14)
@@ -31,6 +35,7 @@
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `resourcemanager`: [v0.14.0](services/resourcemanager/CHANGELOG.md#v0140-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
+  - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required
 - `runcommand`: [v1.1.0](services/runcommand/CHANGELOG.md#v110-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `serverbackup`: [v1.1.0](services/serverbackup/CHANGELOG.md#v110-2025-05-14)
@@ -44,7 +49,11 @@
     - **Breaking change:** Introduce typed enum constants for status attributes
   - [v0.22.4](services/ske/CHANGELOG.md#v0224-2025-05-13)
     - **Feature:** Added `ClusterError`
-- `stackitmarketplace`: 
+- `sqlserverflex`: [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110-2025-05-14)
+  - **Features**: Added new method `ListMetrics`
+- `stackitmarketplace`:
+  - [v1.2.1](services/stackitmarketplace/CHANGELOG.md#v121-2025-05-15)
+    - **Feature:** Added new method `VendorsSubscriptionsReject`
   - [v1.2.0](services/stackitmarketplace/CHANGELOG.md#v120-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
   - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)

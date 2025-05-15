@@ -1,3 +1,6 @@
+## v0.3.1 (2025-05-15)
+- **Feature:** New field `Path` for `Rule`
+
 ## v0.3.0 (2025-05-14)
 - **Breaking change:** Introduce typed enum constants for status attributes
 
