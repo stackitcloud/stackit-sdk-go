@@ -106,7 +106,7 @@ type ErrorDetailsGetFieldRetType = string
 	types and functions for key
 */
 
-//isEnum
+// isEnum
 
 // ErrorDetailsKey the model 'ErrorDetails'
 type ErrorDetailsKey string

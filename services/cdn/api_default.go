@@ -24,22 +24,409 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateDistribution Create new distribution
+		CreateDistribution will create a new CDN distribution
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@return ApiCreateDistributionRequest
+	*/
+	CreateDistribution(ctx context.Context, projectId string) ApiCreateDistributionRequest
+	/*
+		CreateDistributionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@return CreateDistributionResponse
+
+	*/
+	CreateDistributionExecute(ctx context.Context, projectId string) (*CreateDistributionResponse, error)
+	/*
+		DeleteCustomDomain Delete a custom domain
+		Removes a custom domain
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@param domain
+		@return ApiDeleteCustomDomainRequest
+	*/
+	DeleteCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiDeleteCustomDomainRequest
+	/*
+		DeleteCustomDomainExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@param domain
+		@return DeleteCustomDomainResponse
+
+	*/
+	DeleteCustomDomainExecute(ctx context.Context, projectId string, distributionId string, domain string) (*DeleteCustomDomainResponse, error)
+	/*
+		DeleteDistribution Delete distribution
+		DeleteDistribution accepts a project- and distribution-ID and will delete a distribution.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return ApiDeleteDistributionRequest
+	*/
+	DeleteDistribution(ctx context.Context, projectId string, distributionId string) ApiDeleteDistributionRequest
+	/*
+		DeleteDistributionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return DeleteDistributionResponse
+
+	*/
+	DeleteDistributionExecute(ctx context.Context, projectId string, distributionId string) (*DeleteDistributionResponse, error)
+	/*
+		FindCachePaths Return Paths that were purged
+		This returns paths that are present in the cache purging history.
+		Only substrings of the provided input are returned.
+		The response is sorted in descending order by the most recent purge.
+
+		So, assuming you have have the following purged for a distribution
+		- `/test/1` at `2025-01-01`
+		- `/test/2` at `2025-01-02`
+		- `/someOtherPath/1` at `2025-01-03`
+		- `/test/1` at `2025-01-04`
+		- `/test/3` at `2025-01-05`,
+		this would return the following paths, in the following order, assuming `/te` was the search parameter:
+		- `/test/3`
+		- `/test/1`
+		- `/test/2`
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return ApiFindCachePathsRequest
+	*/
+	FindCachePaths(ctx context.Context, projectId string, distributionId string) ApiFindCachePathsRequest
+	/*
+		FindCachePathsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return FindCachePathsResponse
+
+	*/
+	FindCachePathsExecute(ctx context.Context, projectId string, distributionId string) (*FindCachePathsResponse, error)
+	/*
+		GetCacheInfo Get Infos about the Caching State
+		Return caching info metadata, which contains the last cache purging time and a history of the most recent *full* purges.
+
+		If (and only if) you provide the path query parameter, the history will also contain granular cache purges.
+		The request will not fail if no data about a path is found.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return ApiGetCacheInfoRequest
+	*/
+	GetCacheInfo(ctx context.Context, projectId string, distributionId string) ApiGetCacheInfoRequest
+	/*
+		GetCacheInfoExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return GetCacheInfoResponse
+
+	*/
+	GetCacheInfoExecute(ctx context.Context, projectId string, distributionId string) (*GetCacheInfoResponse, error)
+	/*
+		GetCustomDomain Retrieve a specific custom domain
+		Returns a 200 and the custom domain if this custom domain was associated to this distribution, else 404
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@param domain
+		@return ApiGetCustomDomainRequest
+	*/
+	GetCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiGetCustomDomainRequest
+	/*
+		GetCustomDomainExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@param domain
+		@return GetCustomDomainResponse
+
+	*/
+	GetCustomDomainExecute(ctx context.Context, projectId string, distributionId string, domain string) (*GetCustomDomainResponse, error)
+	/*
+		GetDistribution Get distribution by ID
+		This returns a specific distribution by its ID. If no distribution with the given ID exists the endpoint returns 404. Trying to get a deleted distributions also return 404.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return ApiGetDistributionRequest
+	*/
+	GetDistribution(ctx context.Context, projectId string, distributionId string) ApiGetDistributionRequest
+	/*
+		GetDistributionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return GetDistributionResponse
+
+	*/
+	GetDistributionExecute(ctx context.Context, projectId string, distributionId string) (*GetDistributionResponse, error)
+	/*
+		GetLogs Retrieve distribution logs
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId Your CDN distribution ID
+		@return ApiGetLogsRequest
+	*/
+	GetLogs(ctx context.Context, projectId string, distributionId string) ApiGetLogsRequest
+	/*
+		GetLogsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId Your CDN distribution ID
+		@return GetLogsResponse
+
+	*/
+	GetLogsExecute(ctx context.Context, projectId string, distributionId string) (*GetLogsResponse, error)
+	/*
+		GetStatistics Retrieve the statistics of a distribution
+		Returns the statistics of the distribution in the given
+		time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval.
+		In case no statistics for a time interval exist, no record is returned.
+		The time range for which statistics should be returned can be configured using query parameters.
+
+		Timestamps are assumed to be UTC. This is especially important for the "buckets" when you, for example, return daily information. A day always starts and ends at 00:00Z.
+
+		**Important Note:** Lower bounds are inclusive, upper bounds are exclusive. If you, for example, want a daily grouped which starts on the 1st Jan and also contains the full 10th Jan day, you would define `2025-01-01T00:00:00Z` as the lower and `2025-01-11T00:00:00Z` as the upper bound.
+
+		The upper bound is optional. If you omit it, the API will use the start of the next interval as the upper bound.
+		Example: if `interval` is `hourly`, `from` would default to the start of the next hour, if it's `daily`, `from` would default to the start of the next day, etc.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return ApiGetStatisticsRequest
+	*/
+	GetStatistics(ctx context.Context, projectId string, distributionId string) ApiGetStatisticsRequest
+	/*
+		GetStatisticsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return GetStatisticsResponse
+
+	*/
+	GetStatisticsExecute(ctx context.Context, projectId string, distributionId string) (*GetStatisticsResponse, error)
+	/*
+		ListDistributions List all distributions belonging to a specific project
+		ListDistributions returns a list of all CDN distributions associated with
+		a given project, ordered by their distribution ID.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@return ApiListDistributionsRequest
+	*/
+	ListDistributions(ctx context.Context, projectId string) ApiListDistributionsRequest
+	/*
+		ListDistributionsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@return ListDistributionsResponse
+
+	*/
+	ListDistributionsExecute(ctx context.Context, projectId string) (*ListDistributionsResponse, error)
+	/*
+		PatchDistribution Update existing distribution
+		Modify a CDN distribution with a partial update. Only the fields specified in the request will be modified.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return ApiPatchDistributionRequest
+	*/
+	PatchDistribution(ctx context.Context, projectId string, distributionId string) ApiPatchDistributionRequest
+	/*
+		PatchDistributionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return PatchDistributionResponse
+
+	*/
+	PatchDistributionExecute(ctx context.Context, projectId string, distributionId string) (*PatchDistributionResponse, error)
+	/*
+		PurgeCache Clear distribution cache
+		Clear the cache for this distribution.
+		All content, regardless of its staleness, will get refetched from the host.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return ApiPurgeCacheRequest
+	*/
+	PurgeCache(ctx context.Context, projectId string, distributionId string) ApiPurgeCacheRequest
+	/*
+		PurgeCacheExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@return map[string]interface{}
+
+	*/
+	PurgeCacheExecute(ctx context.Context, projectId string, distributionId string) (map[string]interface{}, error)
+	/*
+		PutCustomDomain Create or update a custom domain
+		Creates a new custom domain. If it already exists, this will overwrite the previous custom domain's properties.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@param domain
+		@return ApiPutCustomDomainRequest
+	*/
+	PutCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiPutCustomDomainRequest
+	/*
+		PutCustomDomainExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId
+		@param domain
+		@return PutCustomDomainResponse
+
+	*/
+	PutCustomDomainExecute(ctx context.Context, projectId string, distributionId string, domain string) (*PutCustomDomainResponse, error)
+}
+
+type ApiCreateDistributionRequest interface {
+	CreateDistributionPayload(createDistributionPayload CreateDistributionPayload) ApiCreateDistributionRequest
+	Execute() (*CreateDistributionResponse, error)
+}
+
+type ApiDeleteCustomDomainRequest interface {
+	IntentId(intentId string) ApiDeleteCustomDomainRequest
+	Execute() (*DeleteCustomDomainResponse, error)
+}
+
+type ApiDeleteDistributionRequest interface {
+	// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
+	IntentId(intentId string) ApiDeleteDistributionRequest
+	Execute() (*DeleteDistributionResponse, error)
+}
+
+type ApiFindCachePathsRequest interface {
+	// A substring of the search query.
+	Path(path string) ApiFindCachePathsRequest
+	Execute() (*FindCachePathsResponse, error)
+}
+
+type ApiGetCacheInfoRequest interface {
+	PurgePath(purgePath string) ApiGetCacheInfoRequest
+	Execute() (*GetCacheInfoResponse, error)
+}
+
+type ApiGetCustomDomainRequest interface {
+	Execute() (*GetCustomDomainResponse, error)
+}
+
+type ApiGetDistributionRequest interface {
+	Execute() (*GetDistributionResponse, error)
+}
+
+type ApiGetLogsRequest interface {
+	// the start of the time range for which logs should be returned
+	From(from time.Time) ApiGetLogsRequest
+	// the end of the time range for which logs should be returned. If not specified,  \&quot;now\&quot; is used.
+	To(to time.Time) ApiGetLogsRequest
+	// Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+	PageSize(pageSize int32) ApiGetLogsRequest
+	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+	PageIdentifier(pageIdentifier string) ApiGetLogsRequest
+	// The following sort options exist. We default to &#x60;timestamp&#x60; - &#x60;timestamp&#x60; - Sort by log message time stamp.
+	SortBy(sortBy string) ApiGetLogsRequest
+	SortOrder(sortOrder string) ApiGetLogsRequest
+	Execute() (*GetLogsResponse, error)
+}
+
+type ApiGetStatisticsRequest interface {
+	// the start of the time range for which statistics should be returned
+	From(from time.Time) ApiGetStatisticsRequest
+	// the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+	To(to time.Time) ApiGetStatisticsRequest
+	// Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
+	Interval(interval string) ApiGetStatisticsRequest
+	Execute() (*GetStatisticsResponse, error)
+}
+
+type ApiListDistributionsRequest interface {
+	// Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+	PageSize(pageSize int32) ApiListDistributionsRequest
+	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+	PageIdentifier(pageIdentifier string) ApiListDistributionsRequest
+	// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison
+	SortBy(sortBy string) ApiListDistributionsRequest
+	SortOrder(sortOrder string) ApiListDistributionsRequest
+	Execute() (*ListDistributionsResponse, error)
+}
+
+type ApiPatchDistributionRequest interface {
+	PatchDistributionPayload(patchDistributionPayload PatchDistributionPayload) ApiPatchDistributionRequest
+	Execute() (*PatchDistributionResponse, error)
+}
+
+type ApiPurgeCacheRequest interface {
+	PurgeCachePayload(purgeCachePayload PurgeCachePayload) ApiPurgeCacheRequest
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiPutCustomDomainRequest interface {
+	PutCustomDomainPayload(putCustomDomainPayload PutCustomDomainPayload) ApiPutCustomDomainRequest
+	Execute() (*PutCustomDomainResponse, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateDistributionRequest struct {
+type CreateDistributionRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	projectId                 string
 	createDistributionPayload *CreateDistributionPayload
 }
 
-func (r ApiCreateDistributionRequest) CreateDistributionPayload(createDistributionPayload CreateDistributionPayload) ApiCreateDistributionRequest {
+func (r CreateDistributionRequest) CreateDistributionPayload(createDistributionPayload CreateDistributionPayload) ApiCreateDistributionRequest {
 	r.createDistributionPayload = &createDistributionPayload
 	return r
 }
 
-func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, error) {
+func (r CreateDistributionRequest) Execute() (*CreateDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -47,7 +434,11 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 		localVarReturnValue *CreateDistributionResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateDistribution")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -81,7 +472,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 	}
 	// body params
 	localVarPostBody = r.createDistributionPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -91,7 +482,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -115,7 +506,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -126,7 +517,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -137,7 +528,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -148,7 +539,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -158,7 +549,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -168,7 +559,7 @@ func (r ApiCreateDistributionRequest) Execute() (*CreateDistributionResponse, er
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -191,7 +582,7 @@ CreateDistribution will create a new CDN distribution
 	@return ApiCreateDistributionRequest
 */
 func (a *APIClient) CreateDistribution(ctx context.Context, projectId string) ApiCreateDistributionRequest {
-	return ApiCreateDistributionRequest{
+	return CreateDistributionRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -199,7 +590,7 @@ func (a *APIClient) CreateDistribution(ctx context.Context, projectId string) Ap
 }
 
 func (a *APIClient) CreateDistributionExecute(ctx context.Context, projectId string) (*CreateDistributionResponse, error) {
-	r := ApiCreateDistributionRequest{
+	r := CreateDistributionRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -207,7 +598,7 @@ func (a *APIClient) CreateDistributionExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiDeleteCustomDomainRequest struct {
+type DeleteCustomDomainRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -216,12 +607,12 @@ type ApiDeleteCustomDomainRequest struct {
 	intentId       *string
 }
 
-func (r ApiDeleteCustomDomainRequest) IntentId(intentId string) ApiDeleteCustomDomainRequest {
+func (r DeleteCustomDomainRequest) IntentId(intentId string) ApiDeleteCustomDomainRequest {
 	r.intentId = &intentId
 	return r
 }
 
-func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, error) {
+func (r DeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -229,7 +620,11 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 		localVarReturnValue *DeleteCustomDomainResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCustomDomain")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCustomDomain")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -266,7 +661,7 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -276,7 +671,7 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -300,7 +695,7 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -311,7 +706,7 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -322,7 +717,7 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -332,7 +727,7 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -342,7 +737,7 @@ func (r ApiDeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, er
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -367,7 +762,7 @@ DeleteCustomDomain: Delete a custom domain
 	@return ApiDeleteCustomDomainRequest
 */
 func (a *APIClient) DeleteCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiDeleteCustomDomainRequest {
-	return ApiDeleteCustomDomainRequest{
+	return DeleteCustomDomainRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -377,7 +772,7 @@ func (a *APIClient) DeleteCustomDomain(ctx context.Context, projectId string, di
 }
 
 func (a *APIClient) DeleteCustomDomainExecute(ctx context.Context, projectId string, distributionId string, domain string) (*DeleteCustomDomainResponse, error) {
-	r := ApiDeleteCustomDomainRequest{
+	r := DeleteCustomDomainRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -387,7 +782,7 @@ func (a *APIClient) DeleteCustomDomainExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiDeleteDistributionRequest struct {
+type DeleteDistributionRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -397,12 +792,12 @@ type ApiDeleteDistributionRequest struct {
 
 // While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
 
-func (r ApiDeleteDistributionRequest) IntentId(intentId string) ApiDeleteDistributionRequest {
+func (r DeleteDistributionRequest) IntentId(intentId string) ApiDeleteDistributionRequest {
 	r.intentId = &intentId
 	return r
 }
 
-func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, error) {
+func (r DeleteDistributionRequest) Execute() (*DeleteDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -410,7 +805,11 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 		localVarReturnValue *DeleteDistributionResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteDistribution")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -443,7 +842,7 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -453,7 +852,7 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -477,7 +876,7 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -488,7 +887,7 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -499,7 +898,7 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -509,7 +908,7 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -519,7 +918,7 @@ func (r ApiDeleteDistributionRequest) Execute() (*DeleteDistributionResponse, er
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -543,7 +942,7 @@ DeleteDistribution accepts a project- and distribution-ID and will delete a dist
 	@return ApiDeleteDistributionRequest
 */
 func (a *APIClient) DeleteDistribution(ctx context.Context, projectId string, distributionId string) ApiDeleteDistributionRequest {
-	return ApiDeleteDistributionRequest{
+	return DeleteDistributionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -552,7 +951,7 @@ func (a *APIClient) DeleteDistribution(ctx context.Context, projectId string, di
 }
 
 func (a *APIClient) DeleteDistributionExecute(ctx context.Context, projectId string, distributionId string) (*DeleteDistributionResponse, error) {
-	r := ApiDeleteDistributionRequest{
+	r := DeleteDistributionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -561,7 +960,7 @@ func (a *APIClient) DeleteDistributionExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiFindCachePathsRequest struct {
+type FindCachePathsRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -571,12 +970,12 @@ type ApiFindCachePathsRequest struct {
 
 // A substring of the search query.
 
-func (r ApiFindCachePathsRequest) Path(path string) ApiFindCachePathsRequest {
+func (r FindCachePathsRequest) Path(path string) ApiFindCachePathsRequest {
 	r.path = &path
 	return r
 }
 
-func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
+func (r FindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -584,7 +983,11 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 		localVarReturnValue *FindCachePathsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.FindCachePaths")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.FindCachePaths")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -618,7 +1021,7 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -628,7 +1031,7 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -652,7 +1055,7 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -663,7 +1066,7 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -674,7 +1077,7 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -684,7 +1087,7 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -694,7 +1097,7 @@ func (r ApiFindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -731,7 +1134,7 @@ this would return the following paths, in the following order, assuming `/te` wa
 	@return ApiFindCachePathsRequest
 */
 func (a *APIClient) FindCachePaths(ctx context.Context, projectId string, distributionId string) ApiFindCachePathsRequest {
-	return ApiFindCachePathsRequest{
+	return FindCachePathsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -740,7 +1143,7 @@ func (a *APIClient) FindCachePaths(ctx context.Context, projectId string, distri
 }
 
 func (a *APIClient) FindCachePathsExecute(ctx context.Context, projectId string, distributionId string) (*FindCachePathsResponse, error) {
-	r := ApiFindCachePathsRequest{
+	r := FindCachePathsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -749,7 +1152,7 @@ func (a *APIClient) FindCachePathsExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiGetCacheInfoRequest struct {
+type GetCacheInfoRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -757,12 +1160,12 @@ type ApiGetCacheInfoRequest struct {
 	purgePath      *string
 }
 
-func (r ApiGetCacheInfoRequest) PurgePath(purgePath string) ApiGetCacheInfoRequest {
+func (r GetCacheInfoRequest) PurgePath(purgePath string) ApiGetCacheInfoRequest {
 	r.purgePath = &purgePath
 	return r
 }
 
-func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
+func (r GetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -770,7 +1173,11 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 		localVarReturnValue *GetCacheInfoResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCacheInfo")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCacheInfo")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -803,7 +1210,7 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -813,7 +1220,7 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -837,7 +1244,7 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -848,7 +1255,7 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -859,7 +1266,7 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -869,7 +1276,7 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -879,7 +1286,7 @@ func (r ApiGetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -906,7 +1313,7 @@ The request will not fail if no data about a path is found.
 	@return ApiGetCacheInfoRequest
 */
 func (a *APIClient) GetCacheInfo(ctx context.Context, projectId string, distributionId string) ApiGetCacheInfoRequest {
-	return ApiGetCacheInfoRequest{
+	return GetCacheInfoRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -915,7 +1322,7 @@ func (a *APIClient) GetCacheInfo(ctx context.Context, projectId string, distribu
 }
 
 func (a *APIClient) GetCacheInfoExecute(ctx context.Context, projectId string, distributionId string) (*GetCacheInfoResponse, error) {
-	r := ApiGetCacheInfoRequest{
+	r := GetCacheInfoRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -924,7 +1331,7 @@ func (a *APIClient) GetCacheInfoExecute(ctx context.Context, projectId string, d
 	return r.Execute()
 }
 
-type ApiGetCustomDomainRequest struct {
+type GetCustomDomainRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -932,7 +1339,7 @@ type ApiGetCustomDomainRequest struct {
 	domain         string
 }
 
-func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
+func (r GetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -940,7 +1347,11 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 		localVarReturnValue *GetCustomDomainResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCustomDomain")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCustomDomain")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -974,7 +1385,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -984,7 +1395,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1008,7 +1419,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1019,7 +1430,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1030,7 +1441,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1041,7 +1452,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1051,7 +1462,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1061,7 +1472,7 @@ func (r ApiGetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1086,7 +1497,7 @@ GetCustomDomain: Retrieve a specific custom domain
 	@return ApiGetCustomDomainRequest
 */
 func (a *APIClient) GetCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiGetCustomDomainRequest {
-	return ApiGetCustomDomainRequest{
+	return GetCustomDomainRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1096,7 +1507,7 @@ func (a *APIClient) GetCustomDomain(ctx context.Context, projectId string, distr
 }
 
 func (a *APIClient) GetCustomDomainExecute(ctx context.Context, projectId string, distributionId string, domain string) (*GetCustomDomainResponse, error) {
-	r := ApiGetCustomDomainRequest{
+	r := GetCustomDomainRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1106,14 +1517,14 @@ func (a *APIClient) GetCustomDomainExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiGetDistributionRequest struct {
+type GetDistributionRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
 	distributionId string
 }
 
-func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
+func (r GetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1121,7 +1532,11 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 		localVarReturnValue *GetDistributionResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetDistribution")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1151,7 +1566,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1161,7 +1576,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1185,7 +1600,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1196,7 +1611,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1207,7 +1622,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1218,7 +1633,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1228,7 +1643,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1238,7 +1653,7 @@ func (r ApiGetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1262,7 +1677,7 @@ This returns a specific distribution by its ID. If no distribution with the give
 	@return ApiGetDistributionRequest
 */
 func (a *APIClient) GetDistribution(ctx context.Context, projectId string, distributionId string) ApiGetDistributionRequest {
-	return ApiGetDistributionRequest{
+	return GetDistributionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1271,7 +1686,7 @@ func (a *APIClient) GetDistribution(ctx context.Context, projectId string, distr
 }
 
 func (a *APIClient) GetDistributionExecute(ctx context.Context, projectId string, distributionId string) (*GetDistributionResponse, error) {
-	r := ApiGetDistributionRequest{
+	r := GetDistributionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1280,7 +1695,7 @@ func (a *APIClient) GetDistributionExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiGetLogsRequest struct {
+type GetLogsRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -1295,45 +1710,45 @@ type ApiGetLogsRequest struct {
 
 // the start of the time range for which logs should be returned
 
-func (r ApiGetLogsRequest) From(from time.Time) ApiGetLogsRequest {
+func (r GetLogsRequest) From(from time.Time) ApiGetLogsRequest {
 	r.from = &from
 	return r
 }
 
 // the end of the time range for which logs should be returned. If not specified,  \&quot;now\&quot; is used.
 
-func (r ApiGetLogsRequest) To(to time.Time) ApiGetLogsRequest {
+func (r GetLogsRequest) To(to time.Time) ApiGetLogsRequest {
 	r.to = &to
 	return r
 }
 
 // Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
 
-func (r ApiGetLogsRequest) PageSize(pageSize int32) ApiGetLogsRequest {
+func (r GetLogsRequest) PageSize(pageSize int32) ApiGetLogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 
-func (r ApiGetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsRequest {
+func (r GetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsRequest {
 	r.pageIdentifier = &pageIdentifier
 	return r
 }
 
 // The following sort options exist. We default to &#x60;timestamp&#x60; - &#x60;timestamp&#x60; - Sort by log message time stamp.
 
-func (r ApiGetLogsRequest) SortBy(sortBy string) ApiGetLogsRequest {
+func (r GetLogsRequest) SortBy(sortBy string) ApiGetLogsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiGetLogsRequest) SortOrder(sortOrder string) ApiGetLogsRequest {
+func (r GetLogsRequest) SortOrder(sortOrder string) ApiGetLogsRequest {
 	r.sortOrder = &sortOrder
 	return r
 }
 
-func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
+func (r GetLogsRequest) Execute() (*GetLogsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1341,7 +1756,11 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 		localVarReturnValue *GetLogsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1389,7 +1808,7 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1399,7 +1818,7 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1423,7 +1842,7 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1434,7 +1853,7 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1445,7 +1864,7 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1455,7 +1874,7 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1465,7 +1884,7 @@ func (r ApiGetLogsRequest) Execute() (*GetLogsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1487,7 +1906,7 @@ GetLogs: Retrieve distribution logs
 	@return ApiGetLogsRequest
 */
 func (a *APIClient) GetLogs(ctx context.Context, projectId string, distributionId string) ApiGetLogsRequest {
-	return ApiGetLogsRequest{
+	return GetLogsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1496,7 +1915,7 @@ func (a *APIClient) GetLogs(ctx context.Context, projectId string, distributionI
 }
 
 func (a *APIClient) GetLogsExecute(ctx context.Context, projectId string, distributionId string) (*GetLogsResponse, error) {
-	r := ApiGetLogsRequest{
+	r := GetLogsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1505,7 +1924,7 @@ func (a *APIClient) GetLogsExecute(ctx context.Context, projectId string, distri
 	return r.Execute()
 }
 
-type ApiGetStatisticsRequest struct {
+type GetStatisticsRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -1517,26 +1936,26 @@ type ApiGetStatisticsRequest struct {
 
 // the start of the time range for which statistics should be returned
 
-func (r ApiGetStatisticsRequest) From(from time.Time) ApiGetStatisticsRequest {
+func (r GetStatisticsRequest) From(from time.Time) ApiGetStatisticsRequest {
 	r.from = &from
 	return r
 }
 
 // the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
 
-func (r ApiGetStatisticsRequest) To(to time.Time) ApiGetStatisticsRequest {
+func (r GetStatisticsRequest) To(to time.Time) ApiGetStatisticsRequest {
 	r.to = &to
 	return r
 }
 
 // Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
 
-func (r ApiGetStatisticsRequest) Interval(interval string) ApiGetStatisticsRequest {
+func (r GetStatisticsRequest) Interval(interval string) ApiGetStatisticsRequest {
 	r.interval = &interval
 	return r
 }
 
-func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
+func (r GetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1544,7 +1963,11 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 		localVarReturnValue *GetStatisticsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetStatistics")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetStatistics")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1584,7 +2007,7 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1594,7 +2017,7 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1618,7 +2041,7 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1629,7 +2052,7 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1640,7 +2063,7 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1650,7 +2073,7 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1660,7 +2083,7 @@ func (r ApiGetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1694,7 +2117,7 @@ Example: if `interval` is `hourly`, `from` would default to the start of the nex
 	@return ApiGetStatisticsRequest
 */
 func (a *APIClient) GetStatistics(ctx context.Context, projectId string, distributionId string) ApiGetStatisticsRequest {
-	return ApiGetStatisticsRequest{
+	return GetStatisticsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1703,7 +2126,7 @@ func (a *APIClient) GetStatistics(ctx context.Context, projectId string, distrib
 }
 
 func (a *APIClient) GetStatisticsExecute(ctx context.Context, projectId string, distributionId string) (*GetStatisticsResponse, error) {
-	r := ApiGetStatisticsRequest{
+	r := GetStatisticsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1712,7 +2135,7 @@ func (a *APIClient) GetStatisticsExecute(ctx context.Context, projectId string, 
 	return r.Execute()
 }
 
-type ApiListDistributionsRequest struct {
+type ListDistributionsRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -1724,31 +2147,31 @@ type ApiListDistributionsRequest struct {
 
 // Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
 
-func (r ApiListDistributionsRequest) PageSize(pageSize int32) ApiListDistributionsRequest {
+func (r ListDistributionsRequest) PageSize(pageSize int32) ApiListDistributionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 
-func (r ApiListDistributionsRequest) PageIdentifier(pageIdentifier string) ApiListDistributionsRequest {
+func (r ListDistributionsRequest) PageIdentifier(pageIdentifier string) ApiListDistributionsRequest {
 	r.pageIdentifier = &pageIdentifier
 	return r
 }
 
 // The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison
 
-func (r ApiListDistributionsRequest) SortBy(sortBy string) ApiListDistributionsRequest {
+func (r ListDistributionsRequest) SortBy(sortBy string) ApiListDistributionsRequest {
 	r.sortBy = &sortBy
 	return r
 }
 
-func (r ApiListDistributionsRequest) SortOrder(sortOrder string) ApiListDistributionsRequest {
+func (r ListDistributionsRequest) SortOrder(sortOrder string) ApiListDistributionsRequest {
 	r.sortOrder = &sortOrder
 	return r
 }
 
-func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, error) {
+func (r ListDistributionsRequest) Execute() (*ListDistributionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1756,7 +2179,11 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 		localVarReturnValue *ListDistributionsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListDistributions")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListDistributions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1797,7 +2224,7 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1807,7 +2234,7 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1831,7 +2258,7 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1842,7 +2269,7 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1853,7 +2280,7 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1863,7 +2290,7 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1873,7 +2300,7 @@ func (r ApiListDistributionsRequest) Execute() (*ListDistributionsResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1897,7 +2324,7 @@ a given project, ordered by their distribution ID.
 	@return ApiListDistributionsRequest
 */
 func (a *APIClient) ListDistributions(ctx context.Context, projectId string) ApiListDistributionsRequest {
-	return ApiListDistributionsRequest{
+	return ListDistributionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1905,7 +2332,7 @@ func (a *APIClient) ListDistributions(ctx context.Context, projectId string) Api
 }
 
 func (a *APIClient) ListDistributionsExecute(ctx context.Context, projectId string) (*ListDistributionsResponse, error) {
-	r := ApiListDistributionsRequest{
+	r := ListDistributionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1913,7 +2340,7 @@ func (a *APIClient) ListDistributionsExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiPatchDistributionRequest struct {
+type PatchDistributionRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	projectId                string
@@ -1921,12 +2348,12 @@ type ApiPatchDistributionRequest struct {
 	patchDistributionPayload *PatchDistributionPayload
 }
 
-func (r ApiPatchDistributionRequest) PatchDistributionPayload(patchDistributionPayload PatchDistributionPayload) ApiPatchDistributionRequest {
+func (r PatchDistributionRequest) PatchDistributionPayload(patchDistributionPayload PatchDistributionPayload) ApiPatchDistributionRequest {
 	r.patchDistributionPayload = &patchDistributionPayload
 	return r
 }
 
-func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, error) {
+func (r PatchDistributionRequest) Execute() (*PatchDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -1934,7 +2361,11 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 		localVarReturnValue *PatchDistributionResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchDistribution")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1966,7 +2397,7 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 	}
 	// body params
 	localVarPostBody = r.patchDistributionPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1976,7 +2407,7 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2000,7 +2431,7 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2011,7 +2442,7 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2022,7 +2453,7 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2032,7 +2463,7 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -2042,7 +2473,7 @@ func (r ApiPatchDistributionRequest) Execute() (*PatchDistributionResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2066,7 +2497,7 @@ Modify a CDN distribution with a partial update. Only the fields specified in th
 	@return ApiPatchDistributionRequest
 */
 func (a *APIClient) PatchDistribution(ctx context.Context, projectId string, distributionId string) ApiPatchDistributionRequest {
-	return ApiPatchDistributionRequest{
+	return PatchDistributionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -2075,7 +2506,7 @@ func (a *APIClient) PatchDistribution(ctx context.Context, projectId string, dis
 }
 
 func (a *APIClient) PatchDistributionExecute(ctx context.Context, projectId string, distributionId string) (*PatchDistributionResponse, error) {
-	r := ApiPatchDistributionRequest{
+	r := PatchDistributionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -2084,7 +2515,7 @@ func (a *APIClient) PatchDistributionExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiPurgeCacheRequest struct {
+type PurgeCacheRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	projectId         string
@@ -2092,12 +2523,12 @@ type ApiPurgeCacheRequest struct {
 	purgeCachePayload *PurgeCachePayload
 }
 
-func (r ApiPurgeCacheRequest) PurgeCachePayload(purgeCachePayload PurgeCachePayload) ApiPurgeCacheRequest {
+func (r PurgeCacheRequest) PurgeCachePayload(purgeCachePayload PurgeCachePayload) ApiPurgeCacheRequest {
 	r.purgeCachePayload = &purgeCachePayload
 	return r
 }
 
-func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
+func (r PurgeCacheRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -2105,7 +2536,11 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PurgeCache")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PurgeCache")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2137,7 +2572,7 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 	}
 	// body params
 	localVarPostBody = r.purgeCachePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2147,7 +2582,7 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2171,7 +2606,7 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2182,7 +2617,7 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2193,7 +2628,7 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2203,7 +2638,7 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -2213,7 +2648,7 @@ func (r ApiPurgeCacheRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2238,7 +2673,7 @@ All content, regardless of its staleness, will get refetched from the host.
 	@return ApiPurgeCacheRequest
 */
 func (a *APIClient) PurgeCache(ctx context.Context, projectId string, distributionId string) ApiPurgeCacheRequest {
-	return ApiPurgeCacheRequest{
+	return PurgeCacheRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -2247,7 +2682,7 @@ func (a *APIClient) PurgeCache(ctx context.Context, projectId string, distributi
 }
 
 func (a *APIClient) PurgeCacheExecute(ctx context.Context, projectId string, distributionId string) (map[string]interface{}, error) {
-	r := ApiPurgeCacheRequest{
+	r := PurgeCacheRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -2256,7 +2691,7 @@ func (a *APIClient) PurgeCacheExecute(ctx context.Context, projectId string, dis
 	return r.Execute()
 }
 
-type ApiPutCustomDomainRequest struct {
+type PutCustomDomainRequest struct {
 	ctx                    context.Context
 	apiService             *DefaultApiService
 	projectId              string
@@ -2265,12 +2700,12 @@ type ApiPutCustomDomainRequest struct {
 	putCustomDomainPayload *PutCustomDomainPayload
 }
 
-func (r ApiPutCustomDomainRequest) PutCustomDomainPayload(putCustomDomainPayload PutCustomDomainPayload) ApiPutCustomDomainRequest {
+func (r PutCustomDomainRequest) PutCustomDomainPayload(putCustomDomainPayload PutCustomDomainPayload) ApiPutCustomDomainRequest {
 	r.putCustomDomainPayload = &putCustomDomainPayload
 	return r
 }
 
-func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
+func (r PutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -2278,7 +2713,11 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 		localVarReturnValue *PutCustomDomainResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PutCustomDomain")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PutCustomDomain")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2314,7 +2753,7 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.putCustomDomainPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2324,7 +2763,7 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2348,7 +2787,7 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2359,7 +2798,7 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2370,7 +2809,7 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJSONResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2380,7 +2819,7 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v GenericJSONResponse
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -2390,7 +2829,7 @@ func (r ApiPutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2415,7 +2854,7 @@ Creates a new custom domain. If it already exists, this will overwrite the previ
 	@return ApiPutCustomDomainRequest
 */
 func (a *APIClient) PutCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiPutCustomDomainRequest {
-	return ApiPutCustomDomainRequest{
+	return PutCustomDomainRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -2425,7 +2864,7 @@ func (a *APIClient) PutCustomDomain(ctx context.Context, projectId string, distr
 }
 
 func (a *APIClient) PutCustomDomainExecute(ctx context.Context, projectId string, distributionId string, domain string) (*PutCustomDomainResponse, error) {
-	r := ApiPutCustomDomainRequest{
+	r := PutCustomDomainRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,

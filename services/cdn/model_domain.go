@@ -83,7 +83,7 @@ func setDomainGetStatusAttributeType(arg *DomainGetStatusAttributeType, val Doma
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // DomainTypes Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
 type DomainTypes string
