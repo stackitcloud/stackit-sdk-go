@@ -22,7 +22,7 @@ var _ MappedNullable = &CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
 	types and functions for action
 */
 
-//isEnum
+// isEnum
 
 // CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
 type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction string
