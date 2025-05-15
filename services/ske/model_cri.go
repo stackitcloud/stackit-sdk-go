@@ -22,7 +22,7 @@ var _ MappedNullable = &CRI{}
 	types and functions for name
 */
 
-//isEnum
+// isEnum
 
 // CRIName the model 'CRI'
 type CRIName string
