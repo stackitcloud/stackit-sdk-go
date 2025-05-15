@@ -127,7 +127,7 @@ type ParentListInnerGetParentIdRetType = string
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // ParentListInnerTypes Parent container type.
 type ParentListInnerTypes string
