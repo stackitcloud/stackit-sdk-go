@@ -207,7 +207,7 @@ type LoadBalancerGetRegionRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // LoadBalancerStatus the model 'LoadBalancer'
 type LoadBalancerStatus string
