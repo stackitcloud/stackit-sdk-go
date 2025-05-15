@@ -106,7 +106,7 @@ type KeyRingGetIdRetType = string
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // KeyRingState The current state of the key ring.
 type KeyRingState string
