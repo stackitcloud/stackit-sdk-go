@@ -128,7 +128,7 @@ type TokenCreatedGetRegionRetType = string
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // TokenCreatedState the model 'TokenCreated'
 type TokenCreatedState string

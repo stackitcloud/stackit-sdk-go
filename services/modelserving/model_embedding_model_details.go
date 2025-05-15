@@ -22,7 +22,7 @@ var _ MappedNullable = &EmbeddingModelDetails{}
 	types and functions for category
 */
 
-//isEnum
+// isEnum
 
 // EmbeddingModelDetailsCategory the model 'EmbeddingModelDetails'
 type EmbeddingModelDetailsCategory string
