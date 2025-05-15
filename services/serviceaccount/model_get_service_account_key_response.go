@@ -104,7 +104,7 @@ type GetServiceAccountKeyResponseGetIdRetType = string
 	types and functions for keyAlgorithm
 */
 
-//isEnum
+// isEnum
 
 // GetServiceAccountKeyResponseKeyAlgorithm the model 'GetServiceAccountKeyResponse'
 type GetServiceAccountKeyResponseKeyAlgorithm string
@@ -222,7 +222,7 @@ func setGetServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *GetService
 	types and functions for keyOrigin
 */
 
-//isEnum
+// isEnum
 
 // GetServiceAccountKeyResponseKeyOrigin the model 'GetServiceAccountKeyResponse'
 type GetServiceAccountKeyResponseKeyOrigin string
@@ -342,7 +342,7 @@ func setGetServiceAccountKeyResponseGetKeyOriginAttributeType(arg *GetServiceAcc
 	types and functions for keyType
 */
 
-//isEnum
+// isEnum
 
 // GetServiceAccountKeyResponseKeyType the model 'GetServiceAccountKeyResponse'
 type GetServiceAccountKeyResponseKeyType string

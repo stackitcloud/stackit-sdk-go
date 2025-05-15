@@ -105,7 +105,7 @@ type CreateShortLivedAccessTokenResponseGetScopeRetType = string
 	types and functions for token_type
 */
 
-//isEnum
+// isEnum
 
 // CreateShortLivedAccessTokenResponseTokenType the model 'CreateShortLivedAccessTokenResponse'
 type CreateShortLivedAccessTokenResponseTokenType string
