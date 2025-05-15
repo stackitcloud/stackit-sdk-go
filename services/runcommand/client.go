@@ -51,7 +51,7 @@ type APIClient struct {
 }
 
 type service struct {
-	client *APIClient
+	client DefaultApi
 }
 
 // NewAPIClient creates a new API client.

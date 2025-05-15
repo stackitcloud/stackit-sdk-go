@@ -62,7 +62,7 @@ func setCloudServiceGetLabelsAttributeType(arg *CloudServiceGetLabelsAttributeTy
 	types and functions for scope
 */
 
-//isEnum
+// isEnum
 
 // CloudServiceScope the model 'CloudService'
 type CloudServiceScope string

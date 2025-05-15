@@ -64,7 +64,7 @@ type ParametersGeneralGetProjectNameRetType = string
 	types and functions for projectScope
 */
 
-//isEnum
+// isEnum
 
 // ParametersGeneralProjectScope the model 'ParametersGeneral'
 type ParametersGeneralProjectScope string

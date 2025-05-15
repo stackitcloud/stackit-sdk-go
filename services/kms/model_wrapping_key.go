@@ -228,7 +228,7 @@ func setWrappingKeyGetPurposeAttributeType(arg *WrappingKeyGetPurposeAttributeTy
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // WrappingKeyState The current state of the wrapping key.
 type WrappingKeyState string

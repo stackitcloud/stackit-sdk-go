@@ -22,7 +22,7 @@ var _ MappedNullable = &Model{}
 	types and functions for category
 */
 
-//isEnum
+// isEnum
 
 // ModelCategory the model 'Model'
 type ModelCategory string
@@ -289,7 +289,7 @@ func setModelGetTagsAttributeType(arg *ModelGetTagsAttributeType, val ModelGetTa
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // ModelTypes the model 'Model'
 type ModelTypes string

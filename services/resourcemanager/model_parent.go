@@ -64,7 +64,7 @@ type ParentGetIdRetType = string
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // ParentTypes Container type of parent container.
 type ParentTypes string

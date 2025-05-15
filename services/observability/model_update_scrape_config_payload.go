@@ -184,7 +184,7 @@ func setUpdateScrapeConfigPayloadGetSampleLimitAttributeType(arg *UpdateScrapeCo
 	types and functions for scheme
 */
 
-//isEnum
+// isEnum
 
 // UpdateScrapeConfigPayloadScheme Configures the protocol scheme used for requests. https or http
 type UpdateScrapeConfigPayloadScheme string
