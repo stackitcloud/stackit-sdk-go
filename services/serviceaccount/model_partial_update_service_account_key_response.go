@@ -84,7 +84,7 @@ type PartialUpdateServiceAccountKeyResponseGetIdRetType = string
 	types and functions for keyAlgorithm
 */
 
-//isEnum
+// isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyAlgorithm the model 'PartialUpdateServiceAccountKeyResponse'
 type PartialUpdateServiceAccountKeyResponseKeyAlgorithm string
@@ -202,7 +202,7 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *
 	types and functions for keyOrigin
 */
 
-//isEnum
+// isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyOrigin the model 'PartialUpdateServiceAccountKeyResponse'
 type PartialUpdateServiceAccountKeyResponseKeyOrigin string
@@ -322,7 +322,7 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *Par
 	types and functions for keyType
 */
 
-//isEnum
+// isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyType the model 'PartialUpdateServiceAccountKeyResponse'
 type PartialUpdateServiceAccountKeyResponseKeyType string
