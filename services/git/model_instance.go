@@ -85,7 +85,7 @@ type InstanceGetNameRetType = string
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // InstanceState The current state of the STACKIT Git instance.
 type InstanceState string
