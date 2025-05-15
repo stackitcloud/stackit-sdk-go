@@ -43,7 +43,7 @@ type NetworkGetNetworkIdRetType = string
 	types and functions for role
 */
 
-//isEnum
+// isEnum
 
 // NetworkRole The role defines how the load balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
 type NetworkRole string
