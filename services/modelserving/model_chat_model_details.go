@@ -22,7 +22,7 @@ var _ MappedNullable = &ChatModelDetails{}
 	types and functions for bits
 */
 
-//isEnum
+// isEnum
 
 // ChatModelDetailsBits the model 'ChatModelDetails'
 type ChatModelDetailsBits int32
@@ -148,7 +148,7 @@ func setChatModelDetailsGetBitsAttributeType(arg *ChatModelDetailsGetBitsAttribu
 	types and functions for category
 */
 
-//isEnum
+// isEnum
 
 // ChatModelDetailsCategory the model 'ChatModelDetails'
 type ChatModelDetailsCategory string
@@ -374,7 +374,7 @@ type ChatModelDetailsGetNameRetType = string
 	types and functions for quantizationMethod
 */
 
-//isEnum
+// isEnum
 
 // ChatModelDetailsQuantizationMethod the model 'ChatModelDetails'
 type ChatModelDetailsQuantizationMethod string
