@@ -23,10 +23,360 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateCredentials Create credentials for observability of the application load balancer
+		Creates and stores credentials for use with Application Load Balancer Observability.
+		 For example, when using ARGUS, credentials must first be created via the ARGUS API
+		 and then stored with this endpoint to be used by the Application Load Balancer.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiCreateCredentialsRequest
+	*/
+	CreateCredentials(ctx context.Context, projectId string, region string) ApiCreateCredentialsRequest
+	/*
+		CreateCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return CreateCredentialsResponse
+
+	*/
+	CreateCredentialsExecute(ctx context.Context, projectId string, region string) (*CreateCredentialsResponse, error)
+	/*
+		CreateLoadBalancer Create an application load balancer in a project
+		Creates an Application Load Balancer.
+		 The default load balancing algorithm is Maglev, and selecting a different algorithm is currently not supported.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiCreateLoadBalancerRequest
+	*/
+	CreateLoadBalancer(ctx context.Context, projectId string, region string) ApiCreateLoadBalancerRequest
+	/*
+		CreateLoadBalancerExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return LoadBalancer
+
+	*/
+	CreateLoadBalancerExecute(ctx context.Context, projectId string, region string) (*LoadBalancer, error)
+	/*
+		DeleteCredentials Delete a single credential in a project.
+		Deletes the stored Observability credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param credentialsRef
+		@return ApiDeleteCredentialsRequest
+	*/
+	DeleteCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiDeleteCredentialsRequest
+	/*
+		DeleteCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param credentialsRef
+		@return map[string]interface{}
+
+	*/
+	DeleteCredentialsExecute(ctx context.Context, projectId string, region string, credentialsRef string) (map[string]interface{}, error)
+	/*
+		DeleteLoadBalancer Delete a given load balancer in a project.
+		Deletes the specified Application Load Balancer.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return ApiDeleteLoadBalancerRequest
+	*/
+	DeleteLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiDeleteLoadBalancerRequest
+	/*
+		DeleteLoadBalancerExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return map[string]interface{}
+
+	*/
+	DeleteLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (map[string]interface{}, error)
+	/*
+		GetCredentials Get a single credential reference in a project.
+		Gets the stored Observability credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param credentialsRef
+		@return ApiGetCredentialsRequest
+	*/
+	GetCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiGetCredentialsRequest
+	/*
+		GetCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param credentialsRef
+		@return GetCredentialsResponse
+
+	*/
+	GetCredentialsExecute(ctx context.Context, projectId string, region string, credentialsRef string) (*GetCredentialsResponse, error)
+	/*
+		GetLoadBalancer Get a single application load balancer in a project.
+		Retrieves details of a specific Application Load Balancer in a project.
+		 Includes creation and update information, current status, and any error descriptions.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return ApiGetLoadBalancerRequest
+	*/
+	GetLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiGetLoadBalancerRequest
+	/*
+		GetLoadBalancerExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return LoadBalancer
+
+	*/
+	GetLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (*LoadBalancer, error)
+	/*
+		GetQuota Get the quota of application load balancers and target pools in a project.
+		Retrieves the configured Application Load Balancer quota for the project.
+		 The default quota is 3.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiGetQuotaRequest
+	*/
+	GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest
+	/*
+		GetQuotaExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return GetQuotaResponse
+
+	*/
+	GetQuotaExecute(ctx context.Context, projectId string, region string) (*GetQuotaResponse, error)
+	/*
+		ListCredentials List all credentials in a project.
+		Lists the stored Observability credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiListCredentialsRequest
+	*/
+	ListCredentials(ctx context.Context, projectId string, region string) ApiListCredentialsRequest
+	/*
+		ListCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ListCredentialsResponse
+
+	*/
+	ListCredentialsExecute(ctx context.Context, projectId string, region string) (*ListCredentialsResponse, error)
+	/*
+		ListLoadBalancers List load balancers in a project.
+		Lists all Application Load Balancers in a project.
+		 Includes details from creation or updates, along with their status and any error descriptions.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiListLoadBalancersRequest
+	*/
+	ListLoadBalancers(ctx context.Context, projectId string, region string) ApiListLoadBalancersRequest
+	/*
+		ListLoadBalancersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ListLoadBalancersResponse
+
+	*/
+	ListLoadBalancersExecute(ctx context.Context, projectId string, region string) (*ListLoadBalancersResponse, error)
+	/*
+		ListPlans List available service plans.
+		Lists the configured service plans for a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@return ApiListPlansRequest
+	*/
+	ListPlans(ctx context.Context, region string) ApiListPlansRequest
+	/*
+		ListPlansExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@return ListPlansResponse
+
+	*/
+	ListPlansExecute(ctx context.Context, region string) (*ListPlansResponse, error)
+	/*
+		UpdateCredentials Update credentials for observability in a project.
+		Updates the stored Observability credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param credentialsRef
+		@return ApiUpdateCredentialsRequest
+	*/
+	UpdateCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiUpdateCredentialsRequest
+	/*
+		UpdateCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param credentialsRef
+		@return UpdateCredentialsResponse
+
+	*/
+	UpdateCredentialsExecute(ctx context.Context, projectId string, region string, credentialsRef string) (*UpdateCredentialsResponse, error)
+	/*
+		UpdateLoadBalancer Update a load balancer in a project.
+		Updates an existing Application Load Balancer by modifying its listeners and target pools.
+		 Ensure the resource version is current to maintain concurrency safety.
+		 The default load balancing algorithm is Maglev, and selecting a different algorithm is currently not supported.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return ApiUpdateLoadBalancerRequest
+	*/
+	UpdateLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiUpdateLoadBalancerRequest
+	/*
+		UpdateLoadBalancerExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@return LoadBalancer
+
+	*/
+	UpdateLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (*LoadBalancer, error)
+	/*
+		UpdateTargetPool Update a single target pool of a load balancer in a project.
+		Replaces the content of a specific target pool in the Application Load Balancer (useful for adding or removing target servers).
+		 Only updates the specified target pool, leaving others unchanged.
+		 Cannot be used to create or rename target pools.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@param targetPoolName
+		@return ApiUpdateTargetPoolRequest
+	*/
+	UpdateTargetPool(ctx context.Context, projectId string, region string, name string, targetPoolName string) ApiUpdateTargetPoolRequest
+	/*
+		UpdateTargetPoolExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param name
+		@param targetPoolName
+		@return TargetPool
+
+	*/
+	UpdateTargetPoolExecute(ctx context.Context, projectId string, region string, name string, targetPoolName string) (*TargetPool, error)
+}
+
+type ApiCreateCredentialsRequest interface {
+	CreateCredentialsPayload(createCredentialsPayload CreateCredentialsPayload) ApiCreateCredentialsRequest
+	XRequestID(xRequestID string) ApiCreateCredentialsRequest
+	Execute() (*CreateCredentialsResponse, error)
+}
+
+type ApiCreateLoadBalancerRequest interface {
+	CreateLoadBalancerPayload(createLoadBalancerPayload CreateLoadBalancerPayload) ApiCreateLoadBalancerRequest
+	XRequestID(xRequestID string) ApiCreateLoadBalancerRequest
+	Execute() (*LoadBalancer, error)
+}
+
+type ApiDeleteCredentialsRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiDeleteLoadBalancerRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiGetCredentialsRequest interface {
+	Execute() (*GetCredentialsResponse, error)
+}
+
+type ApiGetLoadBalancerRequest interface {
+	Execute() (*LoadBalancer, error)
+}
+
+type ApiGetQuotaRequest interface {
+	Execute() (*GetQuotaResponse, error)
+}
+
+type ApiListCredentialsRequest interface {
+	Execute() (*ListCredentialsResponse, error)
+}
+
+type ApiListLoadBalancersRequest interface {
+	// page_size specifies how many load balancers should be returned on this page. Must be a positive number &lt;&#x3D; 1000
+	PageSize(pageSize string) ApiListLoadBalancersRequest
+	// page_id is a page identifier returned by the previous response and is used to request the next page
+	PageId(pageId string) ApiListLoadBalancersRequest
+	Execute() (*ListLoadBalancersResponse, error)
+}
+
+type ApiListPlansRequest interface {
+	Execute() (*ListPlansResponse, error)
+}
+
+type ApiUpdateCredentialsRequest interface {
+	UpdateCredentialsPayload(updateCredentialsPayload UpdateCredentialsPayload) ApiUpdateCredentialsRequest
+	Execute() (*UpdateCredentialsResponse, error)
+}
+
+type ApiUpdateLoadBalancerRequest interface {
+	UpdateLoadBalancerPayload(updateLoadBalancerPayload UpdateLoadBalancerPayload) ApiUpdateLoadBalancerRequest
+	Execute() (*LoadBalancer, error)
+}
+
+type ApiUpdateTargetPoolRequest interface {
+	UpdateTargetPoolPayload(updateTargetPoolPayload UpdateTargetPoolPayload) ApiUpdateTargetPoolRequest
+	Execute() (*TargetPool, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateCredentialsRequest struct {
+type CreateCredentialsRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	projectId                string
@@ -35,17 +385,17 @@ type ApiCreateCredentialsRequest struct {
 	xRequestID               *string
 }
 
-func (r ApiCreateCredentialsRequest) CreateCredentialsPayload(createCredentialsPayload CreateCredentialsPayload) ApiCreateCredentialsRequest {
+func (r CreateCredentialsRequest) CreateCredentialsPayload(createCredentialsPayload CreateCredentialsPayload) ApiCreateCredentialsRequest {
 	r.createCredentialsPayload = &createCredentialsPayload
 	return r
 }
 
-func (r ApiCreateCredentialsRequest) XRequestID(xRequestID string) ApiCreateCredentialsRequest {
+func (r CreateCredentialsRequest) XRequestID(xRequestID string) ApiCreateCredentialsRequest {
 	r.xRequestID = &xRequestID
 	return r
 }
 
-func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) {
+func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -53,7 +403,11 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		localVarReturnValue *CreateCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -91,7 +445,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 	}
 	// body params
 	localVarPostBody = r.createCredentialsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -101,7 +455,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -125,7 +479,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -135,7 +489,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -145,7 +499,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -172,7 +526,7 @@ Creates and stores credentials for use with Application Load Balancer Observabil
 	@return ApiCreateCredentialsRequest
 */
 func (a *APIClient) CreateCredentials(ctx context.Context, projectId string, region string) ApiCreateCredentialsRequest {
-	return ApiCreateCredentialsRequest{
+	return CreateCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -181,7 +535,7 @@ func (a *APIClient) CreateCredentials(ctx context.Context, projectId string, reg
 }
 
 func (a *APIClient) CreateCredentialsExecute(ctx context.Context, projectId string, region string) (*CreateCredentialsResponse, error) {
-	r := ApiCreateCredentialsRequest{
+	r := CreateCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -190,7 +544,7 @@ func (a *APIClient) CreateCredentialsExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiCreateLoadBalancerRequest struct {
+type CreateLoadBalancerRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	projectId                 string
@@ -199,17 +553,17 @@ type ApiCreateLoadBalancerRequest struct {
 	xRequestID                *string
 }
 
-func (r ApiCreateLoadBalancerRequest) CreateLoadBalancerPayload(createLoadBalancerPayload CreateLoadBalancerPayload) ApiCreateLoadBalancerRequest {
+func (r CreateLoadBalancerRequest) CreateLoadBalancerPayload(createLoadBalancerPayload CreateLoadBalancerPayload) ApiCreateLoadBalancerRequest {
 	r.createLoadBalancerPayload = &createLoadBalancerPayload
 	return r
 }
 
-func (r ApiCreateLoadBalancerRequest) XRequestID(xRequestID string) ApiCreateLoadBalancerRequest {
+func (r CreateLoadBalancerRequest) XRequestID(xRequestID string) ApiCreateLoadBalancerRequest {
 	r.xRequestID = &xRequestID
 	return r
 }
 
-func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
+func (r CreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -217,7 +571,11 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		localVarReturnValue *LoadBalancer
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLoadBalancer")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -255,7 +613,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	}
 	// body params
 	localVarPostBody = r.createLoadBalancerPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -265,7 +623,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -289,7 +647,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -299,7 +657,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -309,7 +667,7 @@ func (r ApiCreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -335,7 +693,7 @@ Creates an Application Load Balancer.
 	@return ApiCreateLoadBalancerRequest
 */
 func (a *APIClient) CreateLoadBalancer(ctx context.Context, projectId string, region string) ApiCreateLoadBalancerRequest {
-	return ApiCreateLoadBalancerRequest{
+	return CreateLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -344,7 +702,7 @@ func (a *APIClient) CreateLoadBalancer(ctx context.Context, projectId string, re
 }
 
 func (a *APIClient) CreateLoadBalancerExecute(ctx context.Context, projectId string, region string) (*LoadBalancer, error) {
-	r := ApiCreateLoadBalancerRequest{
+	r := CreateLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -353,7 +711,7 @@ func (a *APIClient) CreateLoadBalancerExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiDeleteCredentialsRequest struct {
+type DeleteCredentialsRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -361,7 +719,7 @@ type ApiDeleteCredentialsRequest struct {
 	credentialsRef string
 }
 
-func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
+func (r DeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -369,7 +727,11 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -400,7 +762,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -410,7 +772,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -434,7 +796,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -444,7 +806,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -454,7 +816,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -479,7 +841,7 @@ Deletes the stored Observability credentials.
 	@return ApiDeleteCredentialsRequest
 */
 func (a *APIClient) DeleteCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiDeleteCredentialsRequest {
-	return ApiDeleteCredentialsRequest{
+	return DeleteCredentialsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -489,7 +851,7 @@ func (a *APIClient) DeleteCredentials(ctx context.Context, projectId string, reg
 }
 
 func (a *APIClient) DeleteCredentialsExecute(ctx context.Context, projectId string, region string, credentialsRef string) (map[string]interface{}, error) {
-	r := ApiDeleteCredentialsRequest{
+	r := DeleteCredentialsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -499,7 +861,7 @@ func (a *APIClient) DeleteCredentialsExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiDeleteLoadBalancerRequest struct {
+type DeleteLoadBalancerRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -507,7 +869,7 @@ type ApiDeleteLoadBalancerRequest struct {
 	name       string
 }
 
-func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) {
+func (r DeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -515,7 +877,11 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLoadBalancer")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -546,7 +912,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -556,7 +922,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -580,7 +946,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -590,7 +956,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -600,7 +966,7 @@ func (r ApiDeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -625,7 +991,7 @@ Deletes the specified Application Load Balancer.
 	@return ApiDeleteLoadBalancerRequest
 */
 func (a *APIClient) DeleteLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiDeleteLoadBalancerRequest {
-	return ApiDeleteLoadBalancerRequest{
+	return DeleteLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -635,7 +1001,7 @@ func (a *APIClient) DeleteLoadBalancer(ctx context.Context, projectId string, re
 }
 
 func (a *APIClient) DeleteLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (map[string]interface{}, error) {
-	r := ApiDeleteLoadBalancerRequest{
+	r := DeleteLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -645,7 +1011,7 @@ func (a *APIClient) DeleteLoadBalancerExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiGetCredentialsRequest struct {
+type GetCredentialsRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -653,7 +1019,7 @@ type ApiGetCredentialsRequest struct {
 	credentialsRef string
 }
 
-func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
+func (r GetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -661,7 +1027,11 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		localVarReturnValue *GetCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -692,7 +1062,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -702,7 +1072,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -726,7 +1096,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -736,7 +1106,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -746,7 +1116,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -771,7 +1141,7 @@ Gets the stored Observability credentials.
 	@return ApiGetCredentialsRequest
 */
 func (a *APIClient) GetCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiGetCredentialsRequest {
-	return ApiGetCredentialsRequest{
+	return GetCredentialsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -781,7 +1151,7 @@ func (a *APIClient) GetCredentials(ctx context.Context, projectId string, region
 }
 
 func (a *APIClient) GetCredentialsExecute(ctx context.Context, projectId string, region string, credentialsRef string) (*GetCredentialsResponse, error) {
-	r := ApiGetCredentialsRequest{
+	r := GetCredentialsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -791,7 +1161,7 @@ func (a *APIClient) GetCredentialsExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiGetLoadBalancerRequest struct {
+type GetLoadBalancerRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -799,7 +1169,7 @@ type ApiGetLoadBalancerRequest struct {
 	name       string
 }
 
-func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
+func (r GetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -807,7 +1177,11 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		localVarReturnValue *LoadBalancer
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoadBalancer")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -838,7 +1212,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -848,7 +1222,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -872,7 +1246,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -882,7 +1256,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -892,7 +1266,7 @@ func (r ApiGetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -919,7 +1293,7 @@ Retrieves details of a specific Application Load Balancer in a project.
 	@return ApiGetLoadBalancerRequest
 */
 func (a *APIClient) GetLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiGetLoadBalancerRequest {
-	return ApiGetLoadBalancerRequest{
+	return GetLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -929,7 +1303,7 @@ func (a *APIClient) GetLoadBalancer(ctx context.Context, projectId string, regio
 }
 
 func (a *APIClient) GetLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (*LoadBalancer, error) {
-	r := ApiGetLoadBalancerRequest{
+	r := GetLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -939,14 +1313,14 @@ func (a *APIClient) GetLoadBalancerExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiGetQuotaRequest struct {
+type GetQuotaRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	region     string
 }
 
-func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
+func (r GetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -954,7 +1328,11 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 		localVarReturnValue *GetQuotaResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetQuota")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetQuota")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -984,7 +1362,7 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -994,7 +1372,7 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1018,7 +1396,7 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1028,7 +1406,7 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1038,7 +1416,7 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1064,7 +1442,7 @@ Retrieves the configured Application Load Balancer quota for the project.
 	@return ApiGetQuotaRequest
 */
 func (a *APIClient) GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest {
-	return ApiGetQuotaRequest{
+	return GetQuotaRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1073,7 +1451,7 @@ func (a *APIClient) GetQuota(ctx context.Context, projectId string, region strin
 }
 
 func (a *APIClient) GetQuotaExecute(ctx context.Context, projectId string, region string) (*GetQuotaResponse, error) {
-	r := ApiGetQuotaRequest{
+	r := GetQuotaRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1082,14 +1460,14 @@ func (a *APIClient) GetQuotaExecute(ctx context.Context, projectId string, regio
 	return r.Execute()
 }
 
-type ApiListCredentialsRequest struct {
+type ListCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	region     string
 }
 
-func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
+func (r ListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1097,7 +1475,11 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		localVarReturnValue *ListCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1127,7 +1509,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1137,7 +1519,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1161,7 +1543,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1171,7 +1553,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1181,7 +1563,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1205,7 +1587,7 @@ Lists the stored Observability credentials.
 	@return ApiListCredentialsRequest
 */
 func (a *APIClient) ListCredentials(ctx context.Context, projectId string, region string) ApiListCredentialsRequest {
-	return ApiListCredentialsRequest{
+	return ListCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1214,7 +1596,7 @@ func (a *APIClient) ListCredentials(ctx context.Context, projectId string, regio
 }
 
 func (a *APIClient) ListCredentialsExecute(ctx context.Context, projectId string, region string) (*ListCredentialsResponse, error) {
-	r := ApiListCredentialsRequest{
+	r := ListCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1223,7 +1605,7 @@ func (a *APIClient) ListCredentialsExecute(ctx context.Context, projectId string
 	return r.Execute()
 }
 
-type ApiListLoadBalancersRequest struct {
+type ListLoadBalancersRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1234,19 +1616,19 @@ type ApiListLoadBalancersRequest struct {
 
 // page_size specifies how many load balancers should be returned on this page. Must be a positive number &lt;&#x3D; 1000
 
-func (r ApiListLoadBalancersRequest) PageSize(pageSize string) ApiListLoadBalancersRequest {
+func (r ListLoadBalancersRequest) PageSize(pageSize string) ApiListLoadBalancersRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // page_id is a page identifier returned by the previous response and is used to request the next page
 
-func (r ApiListLoadBalancersRequest) PageId(pageId string) ApiListLoadBalancersRequest {
+func (r ListLoadBalancersRequest) PageId(pageId string) ApiListLoadBalancersRequest {
 	r.pageId = &pageId
 	return r
 }
 
-func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, error) {
+func (r ListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1254,7 +1636,11 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 		localVarReturnValue *ListLoadBalancersResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLoadBalancers")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLoadBalancers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1290,7 +1676,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1300,7 +1686,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1324,7 +1710,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1334,7 +1720,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1344,7 +1730,7 @@ func (r ApiListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1370,7 +1756,7 @@ Lists all Application Load Balancers in a project.
 	@return ApiListLoadBalancersRequest
 */
 func (a *APIClient) ListLoadBalancers(ctx context.Context, projectId string, region string) ApiListLoadBalancersRequest {
-	return ApiListLoadBalancersRequest{
+	return ListLoadBalancersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1379,7 +1765,7 @@ func (a *APIClient) ListLoadBalancers(ctx context.Context, projectId string, reg
 }
 
 func (a *APIClient) ListLoadBalancersExecute(ctx context.Context, projectId string, region string) (*ListLoadBalancersResponse, error) {
-	r := ApiListLoadBalancersRequest{
+	r := ListLoadBalancersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1388,13 +1774,13 @@ func (a *APIClient) ListLoadBalancersExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiListPlansRequest struct {
+type ListPlansRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	region     string
 }
 
-func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
+func (r ListPlansRequest) Execute() (*ListPlansResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1402,7 +1788,11 @@ func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
 		localVarReturnValue *ListPlansResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPlans")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPlans")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1431,7 +1821,7 @@ func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1441,7 +1831,7 @@ func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1465,7 +1855,7 @@ func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1475,7 +1865,7 @@ func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1485,7 +1875,7 @@ func (r ApiListPlansRequest) Execute() (*ListPlansResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1508,7 +1898,7 @@ Lists the configured service plans for a project.
 	@return ApiListPlansRequest
 */
 func (a *APIClient) ListPlans(ctx context.Context, region string) ApiListPlansRequest {
-	return ApiListPlansRequest{
+	return ListPlansRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -1516,7 +1906,7 @@ func (a *APIClient) ListPlans(ctx context.Context, region string) ApiListPlansRe
 }
 
 func (a *APIClient) ListPlansExecute(ctx context.Context, region string) (*ListPlansResponse, error) {
-	r := ApiListPlansRequest{
+	r := ListPlansRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		region:     region,
@@ -1524,7 +1914,7 @@ func (a *APIClient) ListPlansExecute(ctx context.Context, region string) (*ListP
 	return r.Execute()
 }
 
-type ApiUpdateCredentialsRequest struct {
+type UpdateCredentialsRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	projectId                string
@@ -1533,12 +1923,12 @@ type ApiUpdateCredentialsRequest struct {
 	updateCredentialsPayload *UpdateCredentialsPayload
 }
 
-func (r ApiUpdateCredentialsRequest) UpdateCredentialsPayload(updateCredentialsPayload UpdateCredentialsPayload) ApiUpdateCredentialsRequest {
+func (r UpdateCredentialsRequest) UpdateCredentialsPayload(updateCredentialsPayload UpdateCredentialsPayload) ApiUpdateCredentialsRequest {
 	r.updateCredentialsPayload = &updateCredentialsPayload
 	return r
 }
 
-func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, error) {
+func (r UpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1546,7 +1936,11 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 		localVarReturnValue *UpdateCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1582,7 +1976,7 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 	}
 	// body params
 	localVarPostBody = r.updateCredentialsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1592,7 +1986,7 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1616,7 +2010,7 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1626,7 +2020,7 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1636,7 +2030,7 @@ func (r ApiUpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1661,7 +2055,7 @@ Updates the stored Observability credentials.
 	@return ApiUpdateCredentialsRequest
 */
 func (a *APIClient) UpdateCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiUpdateCredentialsRequest {
-	return ApiUpdateCredentialsRequest{
+	return UpdateCredentialsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1671,7 +2065,7 @@ func (a *APIClient) UpdateCredentials(ctx context.Context, projectId string, reg
 }
 
 func (a *APIClient) UpdateCredentialsExecute(ctx context.Context, projectId string, region string, credentialsRef string) (*UpdateCredentialsResponse, error) {
-	r := ApiUpdateCredentialsRequest{
+	r := UpdateCredentialsRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1681,7 +2075,7 @@ func (a *APIClient) UpdateCredentialsExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiUpdateLoadBalancerRequest struct {
+type UpdateLoadBalancerRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	projectId                 string
@@ -1690,12 +2084,12 @@ type ApiUpdateLoadBalancerRequest struct {
 	updateLoadBalancerPayload *UpdateLoadBalancerPayload
 }
 
-func (r ApiUpdateLoadBalancerRequest) UpdateLoadBalancerPayload(updateLoadBalancerPayload UpdateLoadBalancerPayload) ApiUpdateLoadBalancerRequest {
+func (r UpdateLoadBalancerRequest) UpdateLoadBalancerPayload(updateLoadBalancerPayload UpdateLoadBalancerPayload) ApiUpdateLoadBalancerRequest {
 	r.updateLoadBalancerPayload = &updateLoadBalancerPayload
 	return r
 }
 
-func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
+func (r UpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1703,7 +2097,11 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		localVarReturnValue *LoadBalancer
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateLoadBalancer")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1739,7 +2137,7 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	}
 	// body params
 	localVarPostBody = r.updateLoadBalancerPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1749,7 +2147,7 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1773,7 +2171,7 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1783,7 +2181,7 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1793,7 +2191,7 @@ func (r ApiUpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1821,7 +2219,7 @@ Updates an existing Application Load Balancer by modifying its listeners and tar
 	@return ApiUpdateLoadBalancerRequest
 */
 func (a *APIClient) UpdateLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiUpdateLoadBalancerRequest {
-	return ApiUpdateLoadBalancerRequest{
+	return UpdateLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1831,7 +2229,7 @@ func (a *APIClient) UpdateLoadBalancer(ctx context.Context, projectId string, re
 }
 
 func (a *APIClient) UpdateLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (*LoadBalancer, error) {
-	r := ApiUpdateLoadBalancerRequest{
+	r := UpdateLoadBalancerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1841,7 +2239,7 @@ func (a *APIClient) UpdateLoadBalancerExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiUpdateTargetPoolRequest struct {
+type UpdateTargetPoolRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -1851,12 +2249,12 @@ type ApiUpdateTargetPoolRequest struct {
 	updateTargetPoolPayload *UpdateTargetPoolPayload
 }
 
-func (r ApiUpdateTargetPoolRequest) UpdateTargetPoolPayload(updateTargetPoolPayload UpdateTargetPoolPayload) ApiUpdateTargetPoolRequest {
+func (r UpdateTargetPoolRequest) UpdateTargetPoolPayload(updateTargetPoolPayload UpdateTargetPoolPayload) ApiUpdateTargetPoolRequest {
 	r.updateTargetPoolPayload = &updateTargetPoolPayload
 	return r
 }
 
-func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
+func (r UpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1864,7 +2262,11 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 		localVarReturnValue *TargetPool
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateTargetPool")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateTargetPool")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1901,7 +2303,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 	}
 	// body params
 	localVarPostBody = r.updateTargetPoolPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1911,7 +2313,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1935,7 +2337,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1945,7 +2347,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1955,7 +2357,7 @@ func (r ApiUpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1984,7 +2386,7 @@ Replaces the content of a specific target pool in the Application Load Balancer 
 	@return ApiUpdateTargetPoolRequest
 */
 func (a *APIClient) UpdateTargetPool(ctx context.Context, projectId string, region string, name string, targetPoolName string) ApiUpdateTargetPoolRequest {
-	return ApiUpdateTargetPoolRequest{
+	return UpdateTargetPoolRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -1995,7 +2397,7 @@ func (a *APIClient) UpdateTargetPool(ctx context.Context, projectId string, regi
 }
 
 func (a *APIClient) UpdateTargetPoolExecute(ctx context.Context, projectId string, region string, name string, targetPoolName string) (*TargetPool, error) {
-	r := ApiUpdateTargetPoolRequest{
+	r := UpdateTargetPoolRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
