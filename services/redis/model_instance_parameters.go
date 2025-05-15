@@ -103,7 +103,7 @@ type InstanceParametersGetGraphiteRetType = string
 	types and functions for lazyfree-lazy-eviction
 */
 
-//isEnum
+// isEnum
 
 // InstanceParametersLazyfreeLazyEviction the model 'InstanceParameters'
 type InstanceParametersLazyfreeLazyEviction string
@@ -223,7 +223,7 @@ func setInstanceParametersGetLazyfreeLazyEvictionAttributeType(arg *InstancePara
 	types and functions for lazyfree-lazy-expire
 */
 
-//isEnum
+// isEnum
 
 // InstanceParametersLazyfreeLazyExpire the model 'InstanceParameters'
 type InstanceParametersLazyfreeLazyExpire string
@@ -403,7 +403,7 @@ func setInstanceParametersGetMaxclientsAttributeType(arg *InstanceParametersGetM
 	types and functions for maxmemory-policy
 */
 
-//isEnum
+// isEnum
 
 // InstanceParametersMaxmemoryPolicy the model 'InstanceParameters'
 type InstanceParametersMaxmemoryPolicy string
@@ -757,7 +757,7 @@ type InstanceParametersGetTlsCiphersuitesRetType = string
 	types and functions for tls-protocols
 */
 
-//isEnum
+// isEnum
 
 // InstanceParametersTlsProtocols the model 'InstanceParameters'
 type InstanceParametersTlsProtocols string
