@@ -23,17 +23,304 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CompleteCredentialsRotation Complete cluster credentials rotation
+		Complete cluster credentials rotation. This is step 2 of a two-step process. Start the rotation using [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation).
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiCompleteCredentialsRotationRequest
+	*/
+	CompleteCredentialsRotation(ctx context.Context, projectId string, clusterName string) ApiCompleteCredentialsRotationRequest
+	/*
+		CompleteCredentialsRotationExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return map[string]interface{}
+
+	*/
+	CompleteCredentialsRotationExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error)
+	/*
+		CreateKubeconfig Create a kubeconfig
+		Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months).
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiCreateKubeconfigRequest
+	*/
+	CreateKubeconfig(ctx context.Context, projectId string, clusterName string) ApiCreateKubeconfigRequest
+	/*
+		CreateKubeconfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return Kubeconfig
+
+	*/
+	CreateKubeconfigExecute(ctx context.Context, projectId string, clusterName string) (*Kubeconfig, error)
+	/*
+		CreateOrUpdateCluster Create or update a cluster
+		Create a new cluster in your project or modify an existing one. To get valid values for certain properties please check the [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) endpoint.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiCreateOrUpdateClusterRequest
+	*/
+	CreateOrUpdateCluster(ctx context.Context, projectId string, clusterName string) ApiCreateOrUpdateClusterRequest
+	/*
+		CreateOrUpdateClusterExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return Cluster
+
+	*/
+	CreateOrUpdateClusterExecute(ctx context.Context, projectId string, clusterName string) (*Cluster, error)
+	/*
+		DeleteCluster Delete a cluster
+		Delete Kubernetes cluster specified by the identifier, belonging to the project specified by `projectId`.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiDeleteClusterRequest
+	*/
+	DeleteCluster(ctx context.Context, projectId string, clusterName string) ApiDeleteClusterRequest
+	/*
+		DeleteClusterExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return map[string]interface{}
+
+	*/
+	DeleteClusterExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error)
+	/*
+		GetCluster Get a cluster
+		Get Kubernetes cluster for the specified identifier, belonging to the project specified by `projectId`.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiGetClusterRequest
+	*/
+	GetCluster(ctx context.Context, projectId string, clusterName string) ApiGetClusterRequest
+	/*
+		GetClusterExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return Cluster
+
+	*/
+	GetClusterExecute(ctx context.Context, projectId string, clusterName string) (*Cluster, error)
+	/*
+		GetLoginKubeconfig Get a kubeconfig for use with the STACKIT CLI
+		A kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiGetLoginKubeconfigRequest
+	*/
+	GetLoginKubeconfig(ctx context.Context, projectId string, clusterName string) ApiGetLoginKubeconfigRequest
+	/*
+		GetLoginKubeconfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return LoginKubeconfig
+
+	*/
+	GetLoginKubeconfigExecute(ctx context.Context, projectId string, clusterName string) (*LoginKubeconfig, error)
+	/*
+		ListClusters List all clusters
+		Return a list of Kubernetes clusters in the project specified by `projectId`.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiListClustersRequest
+	*/
+	ListClusters(ctx context.Context, projectId string) ApiListClustersRequest
+	/*
+		ListClustersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ListClustersResponse
+
+	*/
+	ListClustersExecute(ctx context.Context, projectId string) (*ListClustersResponse, error)
+	/*
+		ListProviderOptions List provider options
+		Returns a list of supported Kubernetes versions and a list of supported machine types for the cluster nodes.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListProviderOptionsRequest
+	*/
+	ListProviderOptions(ctx context.Context) ApiListProviderOptionsRequest
+	/*
+		ListProviderOptionsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ProviderOptions
+
+	*/
+	ListProviderOptionsExecute(ctx context.Context) (*ProviderOptions, error)
+	/*
+		StartCredentialsRotation Start cluster credentials rotation
+		Start cluster credentials rotation. This is step 1 of a two-step process. Complete the rotation using [complete-credentials-rotation](#tag/Credentials/operation/SkeService_CompleteClusterCredentialsRotation).
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiStartCredentialsRotationRequest
+	*/
+	StartCredentialsRotation(ctx context.Context, projectId string, clusterName string) ApiStartCredentialsRotationRequest
+	/*
+		StartCredentialsRotationExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return map[string]interface{}
+
+	*/
+	StartCredentialsRotationExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error)
+	/*
+		TriggerHibernate Trigger cluster hibernation
+		Trigger immediate hibernation of the cluster. If the cluster is already in hibernation state, the method does nothing.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiTriggerHibernateRequest
+	*/
+	TriggerHibernate(ctx context.Context, projectId string, clusterName string) ApiTriggerHibernateRequest
+	/*
+		TriggerHibernateExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return map[string]interface{}
+
+	*/
+	TriggerHibernateExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error)
+	/*
+		TriggerMaintenance Trigger cluster maintenance
+		Trigger immediate maintenance of the cluster. The autoUpdate configuration specified in the Maintenance object of the cluster spec defines what is updated during the immediate maintenance operation.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiTriggerMaintenanceRequest
+	*/
+	TriggerMaintenance(ctx context.Context, projectId string, clusterName string) ApiTriggerMaintenanceRequest
+	/*
+		TriggerMaintenanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return map[string]interface{}
+
+	*/
+	TriggerMaintenanceExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error)
+	/*
+		TriggerReconcile Trigger cluster reconciliation
+		Trigger immediate reconciliation of the complete cluster without changing the cluster specification.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return ApiTriggerReconcileRequest
+	*/
+	TriggerReconcile(ctx context.Context, projectId string, clusterName string) ApiTriggerReconcileRequest
+	/*
+		TriggerReconcileExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param clusterName
+		@return map[string]interface{}
+
+	*/
+	TriggerReconcileExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error)
+}
+
+type ApiCompleteCredentialsRotationRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiCreateKubeconfigRequest interface {
+	CreateKubeconfigPayload(createKubeconfigPayload CreateKubeconfigPayload) ApiCreateKubeconfigRequest
+	Execute() (*Kubeconfig, error)
+}
+
+type ApiCreateOrUpdateClusterRequest interface {
+	CreateOrUpdateClusterPayload(createOrUpdateClusterPayload CreateOrUpdateClusterPayload) ApiCreateOrUpdateClusterRequest
+	Execute() (*Cluster, error)
+}
+
+type ApiDeleteClusterRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiGetClusterRequest interface {
+	Execute() (*Cluster, error)
+}
+
+type ApiGetLoginKubeconfigRequest interface {
+	Execute() (*LoginKubeconfig, error)
+}
+
+type ApiListClustersRequest interface {
+	Execute() (*ListClustersResponse, error)
+}
+
+type ApiListProviderOptionsRequest interface {
+	Execute() (*ProviderOptions, error)
+}
+
+type ApiStartCredentialsRotationRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiTriggerHibernateRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiTriggerMaintenanceRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiTriggerReconcileRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCompleteCredentialsRotationRequest struct {
+type CompleteCredentialsRotationRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}, error) {
+func (r CompleteCredentialsRotationRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -41,7 +328,11 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CompleteCredentialsRotation")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CompleteCredentialsRotation")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -71,7 +362,7 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -81,7 +372,7 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -105,7 +396,7 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -116,7 +407,7 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -126,7 +417,7 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 			return localVarReturnValue, newErr
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -136,7 +427,7 @@ func (r ApiCompleteCredentialsRotationRequest) Execute() (map[string]interface{}
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -160,7 +451,7 @@ Complete cluster credentials rotation. This is step 2 of a two-step process. Sta
 	@return ApiCompleteCredentialsRotationRequest
 */
 func (a *APIClient) CompleteCredentialsRotation(ctx context.Context, projectId string, clusterName string) ApiCompleteCredentialsRotationRequest {
-	return ApiCompleteCredentialsRotationRequest{
+	return CompleteCredentialsRotationRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -169,7 +460,7 @@ func (a *APIClient) CompleteCredentialsRotation(ctx context.Context, projectId s
 }
 
 func (a *APIClient) CompleteCredentialsRotationExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
-	r := ApiCompleteCredentialsRotationRequest{
+	r := CompleteCredentialsRotationRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -178,7 +469,7 @@ func (a *APIClient) CompleteCredentialsRotationExecute(ctx context.Context, proj
 	return r.Execute()
 }
 
-type ApiCreateKubeconfigRequest struct {
+type CreateKubeconfigRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	projectId               string
@@ -186,12 +477,12 @@ type ApiCreateKubeconfigRequest struct {
 	createKubeconfigPayload *CreateKubeconfigPayload
 }
 
-func (r ApiCreateKubeconfigRequest) CreateKubeconfigPayload(createKubeconfigPayload CreateKubeconfigPayload) ApiCreateKubeconfigRequest {
+func (r CreateKubeconfigRequest) CreateKubeconfigPayload(createKubeconfigPayload CreateKubeconfigPayload) ApiCreateKubeconfigRequest {
 	r.createKubeconfigPayload = &createKubeconfigPayload
 	return r
 }
 
-func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
+func (r CreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -199,7 +490,11 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 		localVarReturnValue *Kubeconfig
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateKubeconfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateKubeconfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -234,7 +529,7 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 	}
 	// body params
 	localVarPostBody = r.createKubeconfigPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -244,7 +539,7 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -267,7 +562,7 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -277,7 +572,7 @@ func (r ApiCreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -301,7 +596,7 @@ Create a new kubeconfig for the cluster. You can specify the expiration (in seco
 	@return ApiCreateKubeconfigRequest
 */
 func (a *APIClient) CreateKubeconfig(ctx context.Context, projectId string, clusterName string) ApiCreateKubeconfigRequest {
-	return ApiCreateKubeconfigRequest{
+	return CreateKubeconfigRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -310,7 +605,7 @@ func (a *APIClient) CreateKubeconfig(ctx context.Context, projectId string, clus
 }
 
 func (a *APIClient) CreateKubeconfigExecute(ctx context.Context, projectId string, clusterName string) (*Kubeconfig, error) {
-	r := ApiCreateKubeconfigRequest{
+	r := CreateKubeconfigRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -319,7 +614,7 @@ func (a *APIClient) CreateKubeconfigExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiCreateOrUpdateClusterRequest struct {
+type CreateOrUpdateClusterRequest struct {
 	ctx                          context.Context
 	apiService                   *DefaultApiService
 	projectId                    string
@@ -327,12 +622,12 @@ type ApiCreateOrUpdateClusterRequest struct {
 	createOrUpdateClusterPayload *CreateOrUpdateClusterPayload
 }
 
-func (r ApiCreateOrUpdateClusterRequest) CreateOrUpdateClusterPayload(createOrUpdateClusterPayload CreateOrUpdateClusterPayload) ApiCreateOrUpdateClusterRequest {
+func (r CreateOrUpdateClusterRequest) CreateOrUpdateClusterPayload(createOrUpdateClusterPayload CreateOrUpdateClusterPayload) ApiCreateOrUpdateClusterRequest {
 	r.createOrUpdateClusterPayload = &createOrUpdateClusterPayload
 	return r
 }
 
-func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
+func (r CreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -340,7 +635,11 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 		localVarReturnValue *Cluster
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateOrUpdateCluster")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateOrUpdateCluster")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -375,7 +674,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 	}
 	// body params
 	localVarPostBody = r.createOrUpdateClusterPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -385,7 +684,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -409,7 +708,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -420,7 +719,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -430,7 +729,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 			return localVarReturnValue, newErr
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -440,7 +739,7 @@ func (r ApiCreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -464,7 +763,7 @@ Create a new cluster in your project or modify an existing one. To get valid val
 	@return ApiCreateOrUpdateClusterRequest
 */
 func (a *APIClient) CreateOrUpdateCluster(ctx context.Context, projectId string, clusterName string) ApiCreateOrUpdateClusterRequest {
-	return ApiCreateOrUpdateClusterRequest{
+	return CreateOrUpdateClusterRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -473,7 +772,7 @@ func (a *APIClient) CreateOrUpdateCluster(ctx context.Context, projectId string,
 }
 
 func (a *APIClient) CreateOrUpdateClusterExecute(ctx context.Context, projectId string, clusterName string) (*Cluster, error) {
-	r := ApiCreateOrUpdateClusterRequest{
+	r := CreateOrUpdateClusterRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -482,14 +781,14 @@ func (a *APIClient) CreateOrUpdateClusterExecute(ctx context.Context, projectId 
 	return r.Execute()
 }
 
-type ApiDeleteClusterRequest struct {
+type DeleteClusterRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
+func (r DeleteClusterRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -497,7 +796,11 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCluster")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCluster")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -527,7 +830,7 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -537,7 +840,7 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -560,7 +863,7 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -570,7 +873,7 @@ func (r ApiDeleteClusterRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -594,7 +897,7 @@ Delete Kubernetes cluster specified by the identifier, belonging to the project 
 	@return ApiDeleteClusterRequest
 */
 func (a *APIClient) DeleteCluster(ctx context.Context, projectId string, clusterName string) ApiDeleteClusterRequest {
-	return ApiDeleteClusterRequest{
+	return DeleteClusterRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -603,7 +906,7 @@ func (a *APIClient) DeleteCluster(ctx context.Context, projectId string, cluster
 }
 
 func (a *APIClient) DeleteClusterExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
-	r := ApiDeleteClusterRequest{
+	r := DeleteClusterRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -612,14 +915,14 @@ func (a *APIClient) DeleteClusterExecute(ctx context.Context, projectId string, 
 	return r.Execute()
 }
 
-type ApiGetClusterRequest struct {
+type GetClusterRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
+func (r GetClusterRequest) Execute() (*Cluster, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -627,7 +930,11 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 		localVarReturnValue *Cluster
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCluster")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCluster")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -657,7 +964,7 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -667,7 +974,7 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -690,7 +997,7 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -700,7 +1007,7 @@ func (r ApiGetClusterRequest) Execute() (*Cluster, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -724,7 +1031,7 @@ Get Kubernetes cluster for the specified identifier, belonging to the project sp
 	@return ApiGetClusterRequest
 */
 func (a *APIClient) GetCluster(ctx context.Context, projectId string, clusterName string) ApiGetClusterRequest {
-	return ApiGetClusterRequest{
+	return GetClusterRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -733,7 +1040,7 @@ func (a *APIClient) GetCluster(ctx context.Context, projectId string, clusterNam
 }
 
 func (a *APIClient) GetClusterExecute(ctx context.Context, projectId string, clusterName string) (*Cluster, error) {
-	r := ApiGetClusterRequest{
+	r := GetClusterRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -742,14 +1049,14 @@ func (a *APIClient) GetClusterExecute(ctx context.Context, projectId string, clu
 	return r.Execute()
 }
 
-type ApiGetLoginKubeconfigRequest struct {
+type GetLoginKubeconfigRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
+func (r GetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -757,7 +1064,11 @@ func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 		localVarReturnValue *LoginKubeconfig
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoginKubeconfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoginKubeconfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -787,7 +1098,7 @@ func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -797,7 +1108,7 @@ func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -820,7 +1131,7 @@ func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -830,7 +1141,7 @@ func (r ApiGetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -854,7 +1165,7 @@ A kubeconfig retrieved using this endpoint does not contain any credentials and 
 	@return ApiGetLoginKubeconfigRequest
 */
 func (a *APIClient) GetLoginKubeconfig(ctx context.Context, projectId string, clusterName string) ApiGetLoginKubeconfigRequest {
-	return ApiGetLoginKubeconfigRequest{
+	return GetLoginKubeconfigRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -863,7 +1174,7 @@ func (a *APIClient) GetLoginKubeconfig(ctx context.Context, projectId string, cl
 }
 
 func (a *APIClient) GetLoginKubeconfigExecute(ctx context.Context, projectId string, clusterName string) (*LoginKubeconfig, error) {
-	r := ApiGetLoginKubeconfigRequest{
+	r := GetLoginKubeconfigRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -872,13 +1183,13 @@ func (a *APIClient) GetLoginKubeconfigExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiListClustersRequest struct {
+type ListClustersRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
+func (r ListClustersRequest) Execute() (*ListClustersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -886,7 +1197,11 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 		localVarReturnValue *ListClustersResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListClusters")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListClusters")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -915,7 +1230,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -925,7 +1240,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -949,7 +1264,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -960,7 +1275,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -970,7 +1285,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -980,7 +1295,7 @@ func (r ApiListClustersRequest) Execute() (*ListClustersResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1003,7 +1318,7 @@ Return a list of Kubernetes clusters in the project specified by `projectId`.
 	@return ApiListClustersRequest
 */
 func (a *APIClient) ListClusters(ctx context.Context, projectId string) ApiListClustersRequest {
-	return ApiListClustersRequest{
+	return ListClustersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1011,7 +1326,7 @@ func (a *APIClient) ListClusters(ctx context.Context, projectId string) ApiListC
 }
 
 func (a *APIClient) ListClustersExecute(ctx context.Context, projectId string) (*ListClustersResponse, error) {
-	r := ApiListClustersRequest{
+	r := ListClustersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1019,12 +1334,12 @@ func (a *APIClient) ListClustersExecute(ctx context.Context, projectId string) (
 	return r.Execute()
 }
 
-type ApiListProviderOptionsRequest struct {
+type ListProviderOptionsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 }
 
-func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
+func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1032,7 +1347,11 @@ func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 		localVarReturnValue *ProviderOptions
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProviderOptions")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProviderOptions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1060,7 +1379,7 @@ func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1070,7 +1389,7 @@ func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1093,7 +1412,7 @@ func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1103,7 +1422,7 @@ func (r ApiListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1125,28 +1444,28 @@ Returns a list of supported Kubernetes versions and a list of supported machine 
 	@return ApiListProviderOptionsRequest
 */
 func (a *APIClient) ListProviderOptions(ctx context.Context) ApiListProviderOptionsRequest {
-	return ApiListProviderOptionsRequest{
+	return ListProviderOptionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) ListProviderOptionsExecute(ctx context.Context) (*ProviderOptions, error) {
-	r := ApiListProviderOptionsRequest{
+	r := ListProviderOptionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiStartCredentialsRotationRequest struct {
+type StartCredentialsRotationRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, error) {
+func (r StartCredentialsRotationRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1154,7 +1473,11 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.StartCredentialsRotation")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.StartCredentialsRotation")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1184,7 +1507,7 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1194,7 +1517,7 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1218,7 +1541,7 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1229,7 +1552,7 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1239,7 +1562,7 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 			return localVarReturnValue, newErr
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1249,7 +1572,7 @@ func (r ApiStartCredentialsRotationRequest) Execute() (map[string]interface{}, e
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1273,7 +1596,7 @@ Start cluster credentials rotation. This is step 1 of a two-step process. Comple
 	@return ApiStartCredentialsRotationRequest
 */
 func (a *APIClient) StartCredentialsRotation(ctx context.Context, projectId string, clusterName string) ApiStartCredentialsRotationRequest {
-	return ApiStartCredentialsRotationRequest{
+	return StartCredentialsRotationRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -1282,7 +1605,7 @@ func (a *APIClient) StartCredentialsRotation(ctx context.Context, projectId stri
 }
 
 func (a *APIClient) StartCredentialsRotationExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
-	r := ApiStartCredentialsRotationRequest{
+	r := StartCredentialsRotationRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -1291,14 +1614,14 @@ func (a *APIClient) StartCredentialsRotationExecute(ctx context.Context, project
 	return r.Execute()
 }
 
-type ApiTriggerHibernateRequest struct {
+type TriggerHibernateRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
+func (r TriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1306,7 +1629,11 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerHibernate")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerHibernate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1336,7 +1663,7 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1346,7 +1673,7 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1370,7 +1697,7 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1380,7 +1707,7 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 			return localVarReturnValue, newErr
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1390,7 +1717,7 @@ func (r ApiTriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1414,7 +1741,7 @@ Trigger immediate hibernation of the cluster. If the cluster is already in hiber
 	@return ApiTriggerHibernateRequest
 */
 func (a *APIClient) TriggerHibernate(ctx context.Context, projectId string, clusterName string) ApiTriggerHibernateRequest {
-	return ApiTriggerHibernateRequest{
+	return TriggerHibernateRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -1423,7 +1750,7 @@ func (a *APIClient) TriggerHibernate(ctx context.Context, projectId string, clus
 }
 
 func (a *APIClient) TriggerHibernateExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
-	r := ApiTriggerHibernateRequest{
+	r := TriggerHibernateRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -1432,14 +1759,14 @@ func (a *APIClient) TriggerHibernateExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiTriggerMaintenanceRequest struct {
+type TriggerMaintenanceRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) {
+func (r TriggerMaintenanceRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1447,7 +1774,11 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerMaintenance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerMaintenance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1477,7 +1808,7 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1487,7 +1818,7 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1511,7 +1842,7 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1521,7 +1852,7 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 			return localVarReturnValue, newErr
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1531,7 +1862,7 @@ func (r ApiTriggerMaintenanceRequest) Execute() (map[string]interface{}, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1555,7 +1886,7 @@ Trigger immediate maintenance of the cluster. The autoUpdate configuration speci
 	@return ApiTriggerMaintenanceRequest
 */
 func (a *APIClient) TriggerMaintenance(ctx context.Context, projectId string, clusterName string) ApiTriggerMaintenanceRequest {
-	return ApiTriggerMaintenanceRequest{
+	return TriggerMaintenanceRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -1564,7 +1895,7 @@ func (a *APIClient) TriggerMaintenance(ctx context.Context, projectId string, cl
 }
 
 func (a *APIClient) TriggerMaintenanceExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
-	r := ApiTriggerMaintenanceRequest{
+	r := TriggerMaintenanceRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -1573,14 +1904,14 @@ func (a *APIClient) TriggerMaintenanceExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiTriggerReconcileRequest struct {
+type TriggerReconcileRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	projectId   string
 	clusterName string
 }
 
-func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
+func (r TriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1588,7 +1919,11 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerReconcile")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerReconcile")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1618,7 +1953,7 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1628,7 +1963,7 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1652,7 +1987,7 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1662,7 +1997,7 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 			return localVarReturnValue, newErr
 		}
 		var v RuntimeError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -1672,7 +2007,7 @@ func (r ApiTriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1696,7 +2031,7 @@ Trigger immediate reconciliation of the complete cluster without changing the cl
 	@return ApiTriggerReconcileRequest
 */
 func (a *APIClient) TriggerReconcile(ctx context.Context, projectId string, clusterName string) ApiTriggerReconcileRequest {
-	return ApiTriggerReconcileRequest{
+	return TriggerReconcileRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
@@ -1705,7 +2040,7 @@ func (a *APIClient) TriggerReconcile(ctx context.Context, projectId string, clus
 }
 
 func (a *APIClient) TriggerReconcileExecute(ctx context.Context, projectId string, clusterName string) (map[string]interface{}, error) {
-	r := ApiTriggerReconcileRequest{
+	r := TriggerReconcileRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
