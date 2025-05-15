@@ -105,7 +105,7 @@ func setBackupVolumeBackupsInnerGetSizeAttributeType(arg *BackupVolumeBackupsInn
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // BackupVolumeBackupsInnerStatus the model 'BackupVolumeBackupsInner'
 type BackupVolumeBackupsInnerStatus string
