@@ -12,11 +12,9 @@
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `kms`: [v0.1.0](services/kms/CHANGELOG.md#v010-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
-- `lbapplication`:
-  - [v0.4.1](services/lbapplication/CHANGELOG.md#v041-2025-05-15)
-    - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
-  - [v0.4.0](services/lbapplication/CHANGELOG.md#v040-2025-05-14)
-    - **Breaking change:** Introduce typed enum constants for status attributes
+- `lbapplication`: [v0.4.0](services/lbapplication/CHANGELOG.md#v040-2025-05-14)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+  - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
 - `loadbalancer`: [v1.1.0](services/loadbalancer/CHANGELOG.md#v110-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `logme`: [v0.23.0](services/logme/CHANGELOG.md#v0230-2025-05-14)
