@@ -266,7 +266,7 @@ func setInstanceParametersGetTlsCiphersAttributeType(arg *InstanceParametersGetT
 	types and functions for tls-protocols
 */
 
-//isEnum
+// isEnum
 
 // InstanceParametersTlsProtocols the model 'InstanceParameters'
 type InstanceParametersTlsProtocols string
