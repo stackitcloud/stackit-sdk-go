@@ -22,7 +22,7 @@ var _ MappedNullable = &Taint{}
 	types and functions for effect
 */
 
-//isEnum
+// isEnum
 
 // TaintEffect the model 'Taint'
 type TaintEffect string

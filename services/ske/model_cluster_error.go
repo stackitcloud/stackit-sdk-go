@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ClusterError type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,116 @@ var _ MappedNullable = &ClusterError{}
 	types and functions for code
 */
 
-// isEnumRef
-type ClusterErrorGetCodeAttributeType = *string
-type ClusterErrorGetCodeArgType = string
-type ClusterErrorGetCodeRetType = string
+// isEnum
+
+// ClusterErrorCode the model 'ClusterError'
+type ClusterErrorCode string
+
+// List of Code
+const (
+	CLUSTERERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND ClusterErrorCode = "SKE_OBSERVABILITY_INSTANCE_NOT_FOUND"
+	CLUSTERERRORCODE_DNS_ZONE_NOT_FOUND               ClusterErrorCode = "SKE_DNS_ZONE_NOT_FOUND"
+	CLUSTERERRORCODE_NODE_MISCONFIGURED_PDB           ClusterErrorCode = "SKE_NODE_MISCONFIGURED_PDB"
+	CLUSTERERRORCODE_NODE_NO_VALID_HOST_FOUND         ClusterErrorCode = "SKE_NODE_NO_VALID_HOST_FOUND"
+	CLUSTERERRORCODE_NODE_MACHINE_TYPE_NOT_FOUND      ClusterErrorCode = "SKE_NODE_MACHINE_TYPE_NOT_FOUND"
+)
+
+// All allowed values of ClusterError enum
+var AllowedClusterErrorCodeEnumValues = []ClusterErrorCode{
+	"SKE_OBSERVABILITY_INSTANCE_NOT_FOUND",
+	"SKE_DNS_ZONE_NOT_FOUND",
+	"SKE_NODE_MISCONFIGURED_PDB",
+	"SKE_NODE_NO_VALID_HOST_FOUND",
+	"SKE_NODE_MACHINE_TYPE_NOT_FOUND",
+}
+
+func (v *ClusterErrorCode) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ClusterErrorCode(value)
+	for _, existing := range AllowedClusterErrorCodeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ClusterError", value)
+}
+
+// NewClusterErrorCodeFromValue returns a pointer to a valid ClusterErrorCode
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewClusterErrorCodeFromValue(v string) (*ClusterErrorCode, error) {
+	ev := ClusterErrorCode(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ClusterErrorCode: valid values are %v", v, AllowedClusterErrorCodeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ClusterErrorCode) IsValid() bool {
+	for _, existing := range AllowedClusterErrorCodeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to CodeCode value
+func (v ClusterErrorCode) Ptr() *ClusterErrorCode {
+	return &v
+}
+
+type NullableClusterErrorCode struct {
+	value *ClusterErrorCode
+	isSet bool
+}
+
+func (v NullableClusterErrorCode) Get() *ClusterErrorCode {
+	return v.value
+}
+
+func (v *NullableClusterErrorCode) Set(val *ClusterErrorCode) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableClusterErrorCode) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableClusterErrorCode) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableClusterErrorCode(val *ClusterErrorCode) *NullableClusterErrorCode {
+	return &NullableClusterErrorCode{value: val, isSet: true}
+}
+
+func (v NullableClusterErrorCode) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableClusterErrorCode) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ClusterErrorGetCodeAttributeType = *ClusterErrorCode
+type ClusterErrorGetCodeArgType = ClusterErrorCode
+type ClusterErrorGetCodeRetType = ClusterErrorCode
 
 func getClusterErrorGetCodeAttributeTypeOk(arg ClusterErrorGetCodeAttributeType) (ret ClusterErrorGetCodeRetType, ok bool) {
 	if arg == nil {
