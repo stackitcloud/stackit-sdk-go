@@ -43,7 +43,7 @@ type InstanceLastOperationGetDescriptionRetType = string
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // InstanceLastOperationState the model 'InstanceLastOperation'
 type InstanceLastOperationState string
@@ -165,7 +165,7 @@ func setInstanceLastOperationGetStateAttributeType(arg *InstanceLastOperationGet
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // InstanceLastOperationTypes the model 'InstanceLastOperation'
 type InstanceLastOperationTypes string
