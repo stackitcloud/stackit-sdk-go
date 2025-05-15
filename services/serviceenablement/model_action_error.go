@@ -22,7 +22,7 @@ var _ MappedNullable = &ActionError{}
 	types and functions for action
 */
 
-//isEnum
+// isEnum
 
 // ActionErrorAction the last action which was triggered on this service
 type ActionErrorAction string

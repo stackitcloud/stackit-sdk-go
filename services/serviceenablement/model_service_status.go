@@ -42,7 +42,7 @@ func setServiceStatusGetDependenciesAttributeType(arg *ServiceStatusGetDependenc
 	types and functions for enablement
 */
 
-//isEnum
+// isEnum
 
 // ServiceStatusEnablement the model 'ServiceStatus'
 type ServiceStatusEnablement string
@@ -202,7 +202,7 @@ func setServiceStatusGetLabelsAttributeType(arg *ServiceStatusGetLabelsAttribute
 	types and functions for lifecycle
 */
 
-//isEnum
+// isEnum
 
 // ServiceStatusLifecycle the model 'ServiceStatus'
 type ServiceStatusLifecycle string
@@ -342,7 +342,7 @@ func setServiceStatusGetParametersAttributeType(arg *ServiceStatusGetParametersA
 	types and functions for scope
 */
 
-//isEnum
+// isEnum
 
 // ServiceStatusScope the model 'ServiceStatus'
 type ServiceStatusScope string
@@ -483,7 +483,7 @@ type ServiceStatusGetServiceIdRetType = string
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // ServiceStatusState the state of a service within a project
 type ServiceStatusState string
