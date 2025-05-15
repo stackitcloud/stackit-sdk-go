@@ -165,7 +165,7 @@ func setInstanceGetReplicasAttributeType(arg *InstanceGetReplicasAttributeType, 
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // InstanceStatus The current status of the instance.
 type InstanceStatus string

@@ -64,7 +64,7 @@ type InstanceListInstanceGetNameRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // InstanceListInstanceStatus The current status of the instance.
 type InstanceListInstanceStatus string
