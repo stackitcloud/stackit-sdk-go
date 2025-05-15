@@ -22,7 +22,7 @@ var _ MappedNullable = &GetServiceStatusResponse{}
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // GetServiceStatusResponseStatus status of the project
 type GetServiceStatusResponseStatus string
