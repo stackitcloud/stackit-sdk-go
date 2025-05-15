@@ -43,7 +43,7 @@ type LoadBalancerErrorGetDescriptionRetType = string
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // LoadBalancerErrorTypes The error type specifies which part of the load balancer encountered the error. I.e. the API will not check if a provided public IP is actually available in the project. Instead the load balancer with try to use the provided IP and if not available reports TYPE_FIP_NOT_CONFIGURED error or TYPE_FIP_NOT_FOUND if the IP was deleted.
 type LoadBalancerErrorTypes string
