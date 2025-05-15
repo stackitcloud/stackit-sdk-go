@@ -147,7 +147,7 @@ func setBackupGetSizeAttributeType(arg *BackupGetSizeAttributeType, val BackupGe
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // BackupStatus the model 'Backup'
 type BackupStatus string
