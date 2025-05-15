@@ -22,7 +22,7 @@ var _ MappedNullable = &PartialUpdateRecordPayload{}
 	types and functions for action
 */
 
-//isEnum
+// isEnum
 
 // PartialUpdateRecordPayloadAction the model 'PartialUpdateRecordPayload'
 type PartialUpdateRecordPayloadAction string

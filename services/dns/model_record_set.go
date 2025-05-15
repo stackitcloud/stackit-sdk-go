@@ -188,7 +188,7 @@ func setRecordSetGetRecordsAttributeType(arg *RecordSetGetRecordsAttributeType, 
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // RecordSetState record set state
 type RecordSetState string
@@ -342,7 +342,7 @@ func setRecordSetGetTtlAttributeType(arg *RecordSetGetTtlAttributeType, val Reco
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // RecordSetTypes record set type
 type RecordSetTypes string
