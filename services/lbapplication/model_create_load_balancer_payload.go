@@ -186,7 +186,7 @@ type CreateLoadBalancerPayloadGetPrivateAddressRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // CreateLoadBalancerPayloadStatus the model 'CreateLoadBalancerPayload'
 type CreateLoadBalancerPayloadStatus string
