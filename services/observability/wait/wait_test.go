@@ -14,7 +14,7 @@ import (
 
 type apiClientMocked struct {
 	getFails      bool
-	resourceState *string
+	resourceState *observability.GetInstanceResponseStatus
 	jobs          []observability.Job
 }
 
@@ -47,28 +47,28 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *observability.GetInstanceResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(CreateSuccess),
+			resourceState: utils.Ptr(observability.GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "create_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(CreateFail),
+			resourceState: utils.Ptr(observability.GETINSTANCERESPONSESTATUS_CREATE_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
-			resourceState: utils.Ptr(""),
+			resourceState: utils.Ptr(observability.GetInstanceResponseStatus("")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -82,7 +82,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(observability.GetInstanceResponseStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -120,35 +120,35 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *observability.GetInstanceResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(UpdateSuccess),
+			resourceState: utils.Ptr(observability.GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(UpdateFail),
+			resourceState: utils.Ptr(observability.GETINSTANCERESPONSESTATUS_UPDATE_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
-			resourceState: utils.Ptr(""),
+			resourceState: utils.Ptr(observability.GetInstanceResponseStatus("")),
 			wantErr:       true,
 			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(observability.GetInstanceResponseStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},
@@ -186,35 +186,35 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
-		resourceState *string
+		resourceState *observability.GetInstanceResponseStatus
 		wantErr       bool
 		wantResp      bool
 	}{
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
-			resourceState: utils.Ptr(DeleteSuccess),
+			resourceState: utils.Ptr(observability.GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED),
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "delete_failed",
 			getFails:      false,
-			resourceState: utils.Ptr(DeleteFail),
+			resourceState: utils.Ptr(observability.GETINSTANCERESPONSESTATUS_DELETE_FAILED),
 			wantErr:       true,
 			wantResp:      true,
 		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
-			resourceState: utils.Ptr(""),
+			resourceState: utils.Ptr(observability.GetInstanceResponseStatus("")),
 			wantErr:       true,
 			wantResp:      false,
 		},
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: utils.Ptr("ANOTHER STATE"),
+			resourceState: utils.Ptr(observability.GetInstanceResponseStatus("ANOTHER STATE")),
 			wantErr:       true,
 			wantResp:      false,
 		},

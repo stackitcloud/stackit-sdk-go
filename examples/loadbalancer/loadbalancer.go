@@ -45,14 +45,14 @@ func main() {
 		Networks: &[]loadbalancer.Network{
 			{
 				NetworkId: utils.Ptr("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
-				Role:      utils.Ptr("1"),
+				Role:      utils.Ptr(loadbalancer.NETWORKROLE_LISTENERS_AND_TARGETS),
 			},
 		},
 		Listeners: &[]loadbalancer.Listener{
 			{
 				DisplayName: utils.Ptr("example-listener"),
 				Port:        utils.Ptr(int64(1)),
-				Protocol:    utils.Ptr("1"),
+				Protocol:    utils.Ptr(loadbalancer.LISTENERPROTOCOL_TCP),
 				TargetPool:  utils.Ptr("example-target-pool"),
 			},
 		},

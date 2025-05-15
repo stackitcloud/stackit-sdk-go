@@ -12,6 +12,7 @@ package resourcemanager
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Parent type satisfies the MappedNullable interface at compile time
@@ -63,10 +64,110 @@ type ParentGetIdRetType = string
 	types and functions for type
 */
 
-// isEnumRef
-type ParentGetTypeAttributeType = *string
-type ParentGetTypeArgType = string
-type ParentGetTypeRetType = string
+//isEnum
+
+// ParentTypes Container type of parent container.
+type ParentTypes string
+
+// List of Type
+const (
+	PARENTTYPE_ORGANIZATION ParentTypes = "ORGANIZATION"
+	PARENTTYPE_FOLDER       ParentTypes = "FOLDER"
+)
+
+// All allowed values of Parent enum
+var AllowedParentTypesEnumValues = []ParentTypes{
+	"ORGANIZATION",
+	"FOLDER",
+}
+
+func (v *ParentTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ParentTypes(value)
+	for _, existing := range AllowedParentTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Parent", value)
+}
+
+// NewParentTypesFromValue returns a pointer to a valid ParentTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewParentTypesFromValue(v string) (*ParentTypes, error) {
+	ev := ParentTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ParentTypes: valid values are %v", v, AllowedParentTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ParentTypes) IsValid() bool {
+	for _, existing := range AllowedParentTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v ParentTypes) Ptr() *ParentTypes {
+	return &v
+}
+
+type NullableParentTypes struct {
+	value *ParentTypes
+	isSet bool
+}
+
+func (v NullableParentTypes) Get() *ParentTypes {
+	return v.value
+}
+
+func (v *NullableParentTypes) Set(val *ParentTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableParentTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableParentTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableParentTypes(val *ParentTypes) *NullableParentTypes {
+	return &NullableParentTypes{value: val, isSet: true}
+}
+
+func (v NullableParentTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableParentTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ParentGetTypeAttributeType = *ParentTypes
+type ParentGetTypeArgType = ParentTypes
+type ParentGetTypeRetType = ParentTypes
 
 func getParentGetTypeAttributeTypeOk(arg ParentGetTypeAttributeType) (ret ParentGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -98,11 +199,11 @@ type _Parent Parent
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewParent(containerId ParentGetContainerIdArgType, id ParentGetIdArgType, type_ ParentGetTypeArgType) *Parent {
+func NewParent(containerId ParentGetContainerIdArgType, id ParentGetIdArgType, types ParentGetTypeArgType) *Parent {
 	this := Parent{}
 	setParentGetContainerIdAttributeType(&this.ContainerId, containerId)
 	setParentGetIdAttributeType(&this.Id, id)
-	setParentGetTypeAttributeType(&this.Type, type_)
+	setParentGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

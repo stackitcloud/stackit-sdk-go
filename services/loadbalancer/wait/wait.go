@@ -14,10 +14,15 @@ import (
 
 // Load balancer instance status
 const (
+	// Deprecated: InstanceStatusUnspecified is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_UNSPECIFIED] instead.
 	InstanceStatusUnspecified = "STATUS_UNSPECIFIED"
-	InstanceStatusPending     = "STATUS_PENDING"
-	InstanceStatusReady       = "STATUS_READY"
-	InstanceStatusError       = "STATUS_ERROR"
+	// Deprecated: InstanceStatusPending is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_PENDING] instead.
+	InstanceStatusPending = "STATUS_PENDING"
+	// Deprecated: InstanceStatusReady is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_READY] instead.
+	InstanceStatusReady = "STATUS_READY"
+	// Deprecated: InstanceStatusError is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_ERROR] instead.
+	InstanceStatusError = "STATUS_ERROR"
+	// Deprecated: InstanceStatusTerminating is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_TERMINATING] instead.
 	InstanceStatusTerminating = "STATUS_TERMINATING"
 )
 
@@ -48,15 +53,15 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 		}
 
 		switch *s.Status {
-		case InstanceStatusReady:
+		case loadbalancer.LOADBALANCERSTATUS_READY:
 			return true, s, nil
-		case InstanceStatusUnspecified:
+		case loadbalancer.LOADBALANCERSTATUS_UNSPECIFIED:
 			return false, nil, nil
-		case InstanceStatusPending:
+		case loadbalancer.LOADBALANCERSTATUS_PENDING:
 			return false, nil, nil
-		case InstanceStatusTerminating:
+		case loadbalancer.LOADBALANCERSTATUS_TERMINATING:
 			return true, s, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusTerminating)
-		case InstanceStatusError:
+		case loadbalancer.LOADBALANCERSTATUS_ERROR:
 			return true, s, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusError)
 		default:
 			return true, s, fmt.Errorf("instance with name %s has unexpected status %s", instanceName, *s.Status)

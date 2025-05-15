@@ -12,6 +12,7 @@ package modelserving
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -127,10 +128,112 @@ type TokenCreatedGetRegionRetType = string
 	types and functions for state
 */
 
-// isEnumRef
-type TokenCreatedGetStateAttributeType = *string
-type TokenCreatedGetStateArgType = string
-type TokenCreatedGetStateRetType = string
+//isEnum
+
+// TokenCreatedState the model 'TokenCreated'
+type TokenCreatedState string
+
+// List of State
+const (
+	TOKENCREATEDSTATE_CREATING TokenCreatedState = "creating"
+	TOKENCREATEDSTATE_ACTIVE   TokenCreatedState = "active"
+	TOKENCREATEDSTATE_DELETING TokenCreatedState = "deleting"
+)
+
+// All allowed values of TokenCreated enum
+var AllowedTokenCreatedStateEnumValues = []TokenCreatedState{
+	"creating",
+	"active",
+	"deleting",
+}
+
+func (v *TokenCreatedState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := TokenCreatedState(value)
+	for _, existing := range AllowedTokenCreatedStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid TokenCreated", value)
+}
+
+// NewTokenCreatedStateFromValue returns a pointer to a valid TokenCreatedState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewTokenCreatedStateFromValue(v string) (*TokenCreatedState, error) {
+	ev := TokenCreatedState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for TokenCreatedState: valid values are %v", v, AllowedTokenCreatedStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v TokenCreatedState) IsValid() bool {
+	for _, existing := range AllowedTokenCreatedStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v TokenCreatedState) Ptr() *TokenCreatedState {
+	return &v
+}
+
+type NullableTokenCreatedState struct {
+	value *TokenCreatedState
+	isSet bool
+}
+
+func (v NullableTokenCreatedState) Get() *TokenCreatedState {
+	return v.value
+}
+
+func (v *NullableTokenCreatedState) Set(val *TokenCreatedState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTokenCreatedState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTokenCreatedState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTokenCreatedState(val *TokenCreatedState) *NullableTokenCreatedState {
+	return &NullableTokenCreatedState{value: val, isSet: true}
+}
+
+func (v NullableTokenCreatedState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableTokenCreatedState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type TokenCreatedGetStateAttributeType = *TokenCreatedState
+type TokenCreatedGetStateArgType = TokenCreatedState
+type TokenCreatedGetStateRetType = TokenCreatedState
 
 func getTokenCreatedGetStateAttributeTypeOk(arg TokenCreatedGetStateAttributeType) (ret TokenCreatedGetStateRetType, ok bool) {
 	if arg == nil {

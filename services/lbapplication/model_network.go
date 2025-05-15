@@ -1,7 +1,7 @@
 /*
 Application Load Balancer API
 
-This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
+### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
 API version: 1beta.0.0
 */
@@ -12,6 +12,7 @@ package lbapplication
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Network type satisfies the MappedNullable interface at compile time
@@ -42,10 +43,114 @@ type NetworkGetNetworkIdRetType = string
 	types and functions for role
 */
 
-// isEnumRef
-type NetworkGetRoleAttributeType = *string
-type NetworkGetRoleArgType = string
-type NetworkGetRoleRetType = string
+//isEnum
+
+// NetworkRole The role defines how the Application Load Balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
+type NetworkRole string
+
+// List of Role
+const (
+	NETWORKROLE_UNSPECIFIED           NetworkRole = "ROLE_UNSPECIFIED"
+	NETWORKROLE_LISTENERS_AND_TARGETS NetworkRole = "ROLE_LISTENERS_AND_TARGETS"
+	NETWORKROLE_LISTENERS             NetworkRole = "ROLE_LISTENERS"
+	NETWORKROLE_TARGETS               NetworkRole = "ROLE_TARGETS"
+)
+
+// All allowed values of Network enum
+var AllowedNetworkRoleEnumValues = []NetworkRole{
+	"ROLE_UNSPECIFIED",
+	"ROLE_LISTENERS_AND_TARGETS",
+	"ROLE_LISTENERS",
+	"ROLE_TARGETS",
+}
+
+func (v *NetworkRole) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := NetworkRole(value)
+	for _, existing := range AllowedNetworkRoleEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Network", value)
+}
+
+// NewNetworkRoleFromValue returns a pointer to a valid NetworkRole
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewNetworkRoleFromValue(v string) (*NetworkRole, error) {
+	ev := NetworkRole(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for NetworkRole: valid values are %v", v, AllowedNetworkRoleEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v NetworkRole) IsValid() bool {
+	for _, existing := range AllowedNetworkRoleEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to RoleRole value
+func (v NetworkRole) Ptr() *NetworkRole {
+	return &v
+}
+
+type NullableNetworkRole struct {
+	value *NetworkRole
+	isSet bool
+}
+
+func (v NullableNetworkRole) Get() *NetworkRole {
+	return v.value
+}
+
+func (v *NullableNetworkRole) Set(val *NetworkRole) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNetworkRole) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNetworkRole) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNetworkRole(val *NetworkRole) *NullableNetworkRole {
+	return &NullableNetworkRole{value: val, isSet: true}
+}
+
+func (v NullableNetworkRole) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNetworkRole) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type NetworkGetRoleAttributeType = *NetworkRole
+type NetworkGetRoleArgType = NetworkRole
+type NetworkGetRoleRetType = NetworkRole
 
 func getNetworkGetRoleAttributeTypeOk(arg NetworkGetRoleAttributeType) (ret NetworkGetRoleRetType, ok bool) {
 	if arg == nil {

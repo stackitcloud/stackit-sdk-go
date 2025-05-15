@@ -12,6 +12,7 @@ package observability
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateScrapeConfigPayload type satisfies the MappedNullable interface at compile time
@@ -244,10 +245,110 @@ func setCreateScrapeConfigPayloadGetSampleLimitAttributeType(arg *CreateScrapeCo
 	types and functions for scheme
 */
 
-// isEnumRef
-type CreateScrapeConfigPayloadGetSchemeAttributeType = *string
-type CreateScrapeConfigPayloadGetSchemeArgType = string
-type CreateScrapeConfigPayloadGetSchemeRetType = string
+//isEnum
+
+// CreateScrapeConfigPayloadScheme Configures the protocol scheme used for requests. https or http
+type CreateScrapeConfigPayloadScheme string
+
+// List of Scheme
+const (
+	CREATESCRAPECONFIGPAYLOADSCHEME_HTTP  CreateScrapeConfigPayloadScheme = "http"
+	CREATESCRAPECONFIGPAYLOADSCHEME_HTTPS CreateScrapeConfigPayloadScheme = "https"
+)
+
+// All allowed values of CreateScrapeConfigPayload enum
+var AllowedCreateScrapeConfigPayloadSchemeEnumValues = []CreateScrapeConfigPayloadScheme{
+	"http",
+	"https",
+}
+
+func (v *CreateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateScrapeConfigPayloadScheme(value)
+	for _, existing := range AllowedCreateScrapeConfigPayloadSchemeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateScrapeConfigPayload", value)
+}
+
+// NewCreateScrapeConfigPayloadSchemeFromValue returns a pointer to a valid CreateScrapeConfigPayloadScheme
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateScrapeConfigPayloadSchemeFromValue(v string) (*CreateScrapeConfigPayloadScheme, error) {
+	ev := CreateScrapeConfigPayloadScheme(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateScrapeConfigPayloadScheme: valid values are %v", v, AllowedCreateScrapeConfigPayloadSchemeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateScrapeConfigPayloadScheme) IsValid() bool {
+	for _, existing := range AllowedCreateScrapeConfigPayloadSchemeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to SchemeScheme value
+func (v CreateScrapeConfigPayloadScheme) Ptr() *CreateScrapeConfigPayloadScheme {
+	return &v
+}
+
+type NullableCreateScrapeConfigPayloadScheme struct {
+	value *CreateScrapeConfigPayloadScheme
+	isSet bool
+}
+
+func (v NullableCreateScrapeConfigPayloadScheme) Get() *CreateScrapeConfigPayloadScheme {
+	return v.value
+}
+
+func (v *NullableCreateScrapeConfigPayloadScheme) Set(val *CreateScrapeConfigPayloadScheme) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateScrapeConfigPayloadScheme) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateScrapeConfigPayloadScheme) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateScrapeConfigPayloadScheme(val *CreateScrapeConfigPayloadScheme) *NullableCreateScrapeConfigPayloadScheme {
+	return &NullableCreateScrapeConfigPayloadScheme{value: val, isSet: true}
+}
+
+func (v NullableCreateScrapeConfigPayloadScheme) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateScrapeConfigPayloadGetSchemeAttributeType = *CreateScrapeConfigPayloadScheme
+type CreateScrapeConfigPayloadGetSchemeArgType = CreateScrapeConfigPayloadScheme
+type CreateScrapeConfigPayloadGetSchemeRetType = CreateScrapeConfigPayloadScheme
 
 func getCreateScrapeConfigPayloadGetSchemeAttributeTypeOk(arg CreateScrapeConfigPayloadGetSchemeAttributeType) (ret CreateScrapeConfigPayloadGetSchemeRetType, ok bool) {
 	if arg == nil {

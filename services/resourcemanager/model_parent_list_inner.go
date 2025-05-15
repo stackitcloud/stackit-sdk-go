@@ -12,6 +12,7 @@ package resourcemanager
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ParentListInner type satisfies the MappedNullable interface at compile time
@@ -126,10 +127,110 @@ type ParentListInnerGetParentIdRetType = string
 	types and functions for type
 */
 
-// isEnumRef
-type ParentListInnerGetTypeAttributeType = *string
-type ParentListInnerGetTypeArgType = string
-type ParentListInnerGetTypeRetType = string
+//isEnum
+
+// ParentListInnerTypes Parent container type.
+type ParentListInnerTypes string
+
+// List of Type
+const (
+	PARENTLISTINNERTYPE_FOLDER       ParentListInnerTypes = "FOLDER"
+	PARENTLISTINNERTYPE_ORGANIZATION ParentListInnerTypes = "ORGANIZATION"
+)
+
+// All allowed values of ParentListInner enum
+var AllowedParentListInnerTypesEnumValues = []ParentListInnerTypes{
+	"FOLDER",
+	"ORGANIZATION",
+}
+
+func (v *ParentListInnerTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ParentListInnerTypes(value)
+	for _, existing := range AllowedParentListInnerTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ParentListInner", value)
+}
+
+// NewParentListInnerTypesFromValue returns a pointer to a valid ParentListInnerTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewParentListInnerTypesFromValue(v string) (*ParentListInnerTypes, error) {
+	ev := ParentListInnerTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ParentListInnerTypes: valid values are %v", v, AllowedParentListInnerTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ParentListInnerTypes) IsValid() bool {
+	for _, existing := range AllowedParentListInnerTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v ParentListInnerTypes) Ptr() *ParentListInnerTypes {
+	return &v
+}
+
+type NullableParentListInnerTypes struct {
+	value *ParentListInnerTypes
+	isSet bool
+}
+
+func (v NullableParentListInnerTypes) Get() *ParentListInnerTypes {
+	return v.value
+}
+
+func (v *NullableParentListInnerTypes) Set(val *ParentListInnerTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableParentListInnerTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableParentListInnerTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableParentListInnerTypes(val *ParentListInnerTypes) *NullableParentListInnerTypes {
+	return &NullableParentListInnerTypes{value: val, isSet: true}
+}
+
+func (v NullableParentListInnerTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableParentListInnerTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ParentListInnerGetTypeAttributeType = *ParentListInnerTypes
+type ParentListInnerGetTypeArgType = ParentListInnerTypes
+type ParentListInnerGetTypeRetType = ParentListInnerTypes
 
 func getParentListInnerGetTypeAttributeTypeOk(arg ParentListInnerGetTypeAttributeType) (ret ParentListInnerGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -148,8 +249,7 @@ type ParentListInner struct {
 	// REQUIRED
 	ContainerId ParentListInnerGetContainerIdAttributeType `json:"containerId"`
 	// User-friendly parent identifier of either organization or folder (will replace parentId).
-	// REQUIRED
-	ContainerParentId ParentListInnerGetContainerParentIdAttributeType `json:"containerParentId"`
+	ContainerParentId ParentListInnerGetContainerParentIdAttributeType `json:"containerParentId,omitempty"`
 	// Identifier.
 	// REQUIRED
 	Id ParentListInnerGetIdAttributeType `json:"id"`
@@ -157,8 +257,7 @@ type ParentListInner struct {
 	// REQUIRED
 	Name ParentListInnerGetNameAttributeType `json:"name"`
 	// Identifier of the parent resource container.
-	// REQUIRED
-	ParentId ParentListInnerGetParentIdAttributeType `json:"parentId"`
+	ParentId ParentListInnerGetParentIdAttributeType `json:"parentId,omitempty"`
 	// Parent container type.
 	// REQUIRED
 	Type ParentListInnerGetTypeAttributeType `json:"type"`
@@ -170,14 +269,12 @@ type _ParentListInner ParentListInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewParentListInner(containerId ParentListInnerGetContainerIdArgType, containerParentId ParentListInnerGetContainerParentIdArgType, id ParentListInnerGetIdArgType, name ParentListInnerGetNameArgType, parentId ParentListInnerGetParentIdArgType, type_ ParentListInnerGetTypeArgType) *ParentListInner {
+func NewParentListInner(containerId ParentListInnerGetContainerIdArgType, id ParentListInnerGetIdArgType, name ParentListInnerGetNameArgType, types ParentListInnerGetTypeArgType) *ParentListInner {
 	this := ParentListInner{}
 	setParentListInnerGetContainerIdAttributeType(&this.ContainerId, containerId)
-	setParentListInnerGetContainerParentIdAttributeType(&this.ContainerParentId, containerParentId)
 	setParentListInnerGetIdAttributeType(&this.Id, id)
 	setParentListInnerGetNameAttributeType(&this.Name, name)
-	setParentListInnerGetParentIdAttributeType(&this.ParentId, parentId)
-	setParentListInnerGetTypeAttributeType(&this.Type, type_)
+	setParentListInnerGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 
@@ -206,19 +303,25 @@ func (o *ParentListInner) SetContainerId(v ParentListInnerGetContainerIdRetType)
 	setParentListInnerGetContainerIdAttributeType(&o.ContainerId, v)
 }
 
-// GetContainerParentId returns the ContainerParentId field value
-func (o *ParentListInner) GetContainerParentId() (ret ParentListInnerGetContainerParentIdRetType) {
-	ret, _ = o.GetContainerParentIdOk()
-	return ret
+// GetContainerParentId returns the ContainerParentId field value if set, zero value otherwise.
+func (o *ParentListInner) GetContainerParentId() (res ParentListInnerGetContainerParentIdRetType) {
+	res, _ = o.GetContainerParentIdOk()
+	return
 }
 
-// GetContainerParentIdOk returns a tuple with the ContainerParentId field value
+// GetContainerParentIdOk returns a tuple with the ContainerParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParentListInner) GetContainerParentIdOk() (ret ParentListInnerGetContainerParentIdRetType, ok bool) {
 	return getParentListInnerGetContainerParentIdAttributeTypeOk(o.ContainerParentId)
 }
 
-// SetContainerParentId sets field value
+// HasContainerParentId returns a boolean if a field has been set.
+func (o *ParentListInner) HasContainerParentId() bool {
+	_, ok := o.GetContainerParentIdOk()
+	return ok
+}
+
+// SetContainerParentId gets a reference to the given string and assigns it to the ContainerParentId field.
 func (o *ParentListInner) SetContainerParentId(v ParentListInnerGetContainerParentIdRetType) {
 	setParentListInnerGetContainerParentIdAttributeType(&o.ContainerParentId, v)
 }
@@ -257,19 +360,25 @@ func (o *ParentListInner) SetName(v ParentListInnerGetNameRetType) {
 	setParentListInnerGetNameAttributeType(&o.Name, v)
 }
 
-// GetParentId returns the ParentId field value
-func (o *ParentListInner) GetParentId() (ret ParentListInnerGetParentIdRetType) {
-	ret, _ = o.GetParentIdOk()
-	return ret
+// GetParentId returns the ParentId field value if set, zero value otherwise.
+func (o *ParentListInner) GetParentId() (res ParentListInnerGetParentIdRetType) {
+	res, _ = o.GetParentIdOk()
+	return
 }
 
-// GetParentIdOk returns a tuple with the ParentId field value
+// GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ParentListInner) GetParentIdOk() (ret ParentListInnerGetParentIdRetType, ok bool) {
 	return getParentListInnerGetParentIdAttributeTypeOk(o.ParentId)
 }
 
-// SetParentId sets field value
+// HasParentId returns a boolean if a field has been set.
+func (o *ParentListInner) HasParentId() bool {
+	_, ok := o.GetParentIdOk()
+	return ok
+}
+
+// SetParentId gets a reference to the given string and assigns it to the ParentId field.
 func (o *ParentListInner) SetParentId(v ParentListInnerGetParentIdRetType) {
 	setParentListInnerGetParentIdAttributeType(&o.ParentId, v)
 }
