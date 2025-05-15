@@ -104,7 +104,7 @@ func setCreateRecordSetPayloadGetTtlAttributeType(arg *CreateRecordSetPayloadGet
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // CreateRecordSetPayloadTypes record set type
 type CreateRecordSetPayloadTypes string

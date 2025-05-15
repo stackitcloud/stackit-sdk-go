@@ -42,7 +42,7 @@ func setExportRecordSetsPayloadgetExportAsFQDNAttributeType(arg *ExportRecordSet
 	types and functions for format
 */
 
-//isEnum
+// isEnum
 
 // ExportRecordSetsPayloadFormat the model 'ExportRecordSetsPayload'
 type ExportRecordSetsPayloadFormat string
