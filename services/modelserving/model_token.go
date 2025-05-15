@@ -107,7 +107,7 @@ type TokenGetRegionRetType = string
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // TokenState the model 'Token'
 type TokenState string
