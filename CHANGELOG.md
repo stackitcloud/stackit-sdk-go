@@ -33,11 +33,9 @@
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `redis`: [v0.23.0](services/redis/CHANGELOG.md#v0230-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
-- `resourcemanager`: 
-  - [v0.15.0](services/resourcemanager/CHANGELOG.md#v0150-2025-05-15)
-     - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required in `ParentListInner`
-  - [v0.14.0](services/resourcemanager/CHANGELOG.md#v0140-2025-05-14)
-    - **Breaking change:** Introduce typed enum constants for status attributes
+- `resourcemanager`: [v0.14.0](services/resourcemanager/CHANGELOG.md#v0140-2025-05-14)
+  - **Breaking change:** Introduce typed enum constants for status attributes
+  - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required
 - `runcommand`: [v1.1.0](services/runcommand/CHANGELOG.md#v110-2025-05-14)
   - **Breaking change:** Introduce typed enum constants for status attributes
 - `serverbackup`: [v1.1.0](services/serverbackup/CHANGELOG.md#v110-2025-05-14)
