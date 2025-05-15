@@ -245,7 +245,7 @@ func setJobGetSampleLimitAttributeType(arg *JobGetSampleLimitAttributeType, val 
 	types and functions for scheme
 */
 
-//isEnum
+// isEnum
 
 // JobScheme the model 'Job'
 type JobScheme string

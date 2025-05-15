@@ -205,7 +205,7 @@ func setInstanceGetPlanAttributeType(arg *InstanceGetPlanAttributeType, val Inst
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // InstanceState the model 'Instance'
 type InstanceState string
