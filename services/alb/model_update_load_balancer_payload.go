@@ -207,7 +207,7 @@ type UpdateLoadBalancerPayloadGetRegionRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // UpdateLoadBalancerPayloadStatus the model 'UpdateLoadBalancerPayload'
 type UpdateLoadBalancerPayloadStatus string
