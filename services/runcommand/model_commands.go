@@ -126,7 +126,7 @@ type CommandsGetStartedAtRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // CommandsStatus the model 'Commands'
 type CommandsStatus string
