@@ -14,6 +14,7 @@
   - [v1.1.0](services/cdn/CHANGELOG.md#v110-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
 - `certificates`: [v1.1.0](services/certificates/CHANGELOG.md#v110-2025-05-15)
+  - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 - `dns`: 
   - [v0.15.0](services/dns/CHANGELOG.md#v0150-2025-05-15)
     - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
@@ -25,6 +26,7 @@
   - [v0.4.0](services/git/CHANGELOG.md#v040-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
 - `iaas`: [v0.23.0](services/iaas/CHANGELOG.md#v0230-2025-05-15)
+  - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 - `kms`: 
   - [v0.2.0](services/kms/CHANGELOG.md#v020-2025-05-15)
     - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
@@ -32,6 +34,7 @@
     - **Breaking change:** Introduce typed enum constants for status attributes
 - `lbapplication`: 
   - [v0.5.0](services/lbapplication/CHANGELOG.md#v050-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
   - [v0.4.0](services/lbapplication/CHANGELOG.md#v040-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
     - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
@@ -60,6 +63,8 @@
     - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
   - [v1.1.0](services/mongodbflex/CHANGELOG.md#v110-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
+- `objectstorage`: [v1.2.0](services/objectstorage/CHANGELOG.md#v120-2025-05-15)
+  - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 - `observability`:
   - [v0.7.0](services/observability/CHANGELOG.md#v070-2025-05-15)
     - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
