@@ -364,7 +364,7 @@ func (r CreateAccessTokenRequest) Execute() (*AccessToken, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAccessToken")
 	if err != nil {
@@ -542,7 +542,7 @@ func (r CreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccount")
 	if err != nil {
@@ -717,7 +717,7 @@ func (r CreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRespo
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccountKey")
 	if err != nil {
@@ -910,7 +910,7 @@ func (r CreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAccessTo
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateShortLivedAccessToken")
 	if err != nil {
@@ -1522,7 +1522,7 @@ func (r GetJWKSRequest) Execute() (*JWKS, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetJWKS")
 	if err != nil {
@@ -1653,7 +1653,7 @@ func (r GetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse, e
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountKey")
 	if err != nil {
@@ -1818,7 +1818,7 @@ func (r ListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAccessTokens")
 	if err != nil {
@@ -1987,7 +1987,7 @@ func (r ListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysRespons
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccountKeys")
 	if err != nil {
@@ -2144,7 +2144,7 @@ func (r ListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, err
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccounts")
 	if err != nil {
@@ -2307,7 +2307,7 @@ func (r PartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServiceA
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateServiceAccountKey")
 	if err != nil {
