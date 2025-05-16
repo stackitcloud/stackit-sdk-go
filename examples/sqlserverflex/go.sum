@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.17.1 h1:TTrVoB1lERd/qfWzpe6HpwCJSjtaGnUI7UE7ITb5IT0=
 github.com/stackitcloud/stackit-sdk-go/core v0.17.1/go.mod h1:8KIw3czdNJ9sdil9QQimxjR6vHjeINFrRv0iZ67wfn0=
-github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.0.3 h1:MF46ffu+A8eu17N7LGFG2T50PhjDw2L0f68Uu316r8U=
-github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.0.3/go.mod h1:CyYJqR0tZWs2r5bGz69j4bmvhxdsd4QLCm1Uf+LouB0=
+github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.1.0 h1:awy7JzBwAVJEKcJVt1DBZtZ0qtdT2aEuWCkgQvKky9w=
+github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.1.0/go.mod h1:CyYJqR0tZWs2r5bGz69j4bmvhxdsd4QLCm1Uf+LouB0=
