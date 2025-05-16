@@ -84,7 +84,7 @@ func setListenerGetPortAttributeType(arg *ListenerGetPortAttributeType, val List
 	types and functions for protocol
 */
 
-//isEnum
+// isEnum
 
 // ListenerProtocol Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
 type ListenerProtocol string

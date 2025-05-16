@@ -63,7 +63,7 @@ func setCredentialsRotationStateGetLastInitiationTimeAttributeType(arg *Credenti
 	types and functions for phase
 */
 
-//isEnum
+// isEnum
 
 // CredentialsRotationStatePhase Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.
 type CredentialsRotationStatePhase string

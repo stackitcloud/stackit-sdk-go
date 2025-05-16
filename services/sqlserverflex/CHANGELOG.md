@@ -1,4 +1,7 @@
-## v1.0.4 (2025-05-14)
+## v1.2.0 (2025-05-15)
+- **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+
+## v1.1.0 (2025-05-14)
 - **Features**: Added new method `ListMetrics`
 
 ## v1.0.3 (2025-05-09)

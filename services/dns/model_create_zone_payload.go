@@ -287,7 +287,7 @@ func setCreateZonePayloadGetRetryTimeAttributeType(arg *CreateZonePayloadGetRetr
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // CreateZonePayloadTypes zone type
 type CreateZonePayloadTypes string

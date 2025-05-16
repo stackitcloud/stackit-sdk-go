@@ -64,7 +64,7 @@ type StatusErrorGetEnRetType = string
 	types and functions for key
 */
 
-//isEnum
+// isEnum
 
 // StatusErrorKey An enum value that describes a Status Error.
 type StatusErrorKey string

@@ -152,7 +152,7 @@ type ProjectInstanceFullGetServiceNameRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // ProjectInstanceFullStatus the model 'ProjectInstanceFull'
 type ProjectInstanceFullStatus string

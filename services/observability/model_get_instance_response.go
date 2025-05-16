@@ -275,7 +275,7 @@ type GetInstanceResponseGetServiceNameRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // GetInstanceResponseStatus the model 'GetInstanceResponse'
 type GetInstanceResponseStatus string

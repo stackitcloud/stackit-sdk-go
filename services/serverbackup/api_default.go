@@ -13,6 +13,7 @@ package serverbackup
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -22,10 +23,386 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateBackup create backup
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiCreateBackupRequest
+	*/
+	CreateBackup(ctx context.Context, projectId string, serverId string, region string) ApiCreateBackupRequest
+	/*
+		CreateBackupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return BackupJob
+
+	*/
+	CreateBackupExecute(ctx context.Context, projectId string, serverId string, region string) (*BackupJob, error)
+	/*
+		CreateBackupSchedule create backup schedule
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiCreateBackupScheduleRequest
+	*/
+	CreateBackupSchedule(ctx context.Context, projectId string, serverId string, region string) ApiCreateBackupScheduleRequest
+	/*
+		CreateBackupScheduleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return BackupSchedule
+
+	*/
+	CreateBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string) (*BackupSchedule, error)
+	/*
+		DeleteBackup delete backup
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupId id of the backup
+		@return ApiDeleteBackupRequest
+	*/
+	DeleteBackup(ctx context.Context, projectId string, serverId string, region string, backupId string) ApiDeleteBackupRequest
+	/*
+		DeleteBackupExecute executes the request
+
+	*/
+	DeleteBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string) error
+	/*
+		DeleteBackupSchedule delete backup schedule
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupScheduleId backup schedule id
+		@return ApiDeleteBackupScheduleRequest
+	*/
+	DeleteBackupSchedule(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) ApiDeleteBackupScheduleRequest
+	/*
+		DeleteBackupScheduleExecute executes the request
+
+	*/
+	DeleteBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) error
+	/*
+		DeleteVolumeBackup delete volume backup
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupId id of the backup
+		@param volumeBackupId id of the volume backup
+		@return ApiDeleteVolumeBackupRequest
+	*/
+	DeleteVolumeBackup(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) ApiDeleteVolumeBackupRequest
+	/*
+		DeleteVolumeBackupExecute executes the request
+
+	*/
+	DeleteVolumeBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) error
+	/*
+		DisableServiceResource disable backup service
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiDisableServiceResourceRequest
+	*/
+	DisableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiDisableServiceResourceRequest
+	/*
+		DisableServiceResourceExecute executes the request
+
+	*/
+	DisableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error
+	/*
+		EnableServiceResource enable backup service
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiEnableServiceResourceRequest
+	*/
+	EnableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiEnableServiceResourceRequest
+	/*
+		EnableServiceResourceExecute executes the request
+
+	*/
+	EnableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error
+	/*
+		GetBackup get backup
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupId id of the backup
+		@return ApiGetBackupRequest
+	*/
+	GetBackup(ctx context.Context, projectId string, serverId string, region string, backupId string) ApiGetBackupRequest
+	/*
+		GetBackupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupId id of the backup
+		@return Backup
+
+	*/
+	GetBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string) (*Backup, error)
+	/*
+		GetBackupSchedule get single backup schedule details
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupScheduleId backup schedule id
+		@return ApiGetBackupScheduleRequest
+	*/
+	GetBackupSchedule(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) ApiGetBackupScheduleRequest
+	/*
+		GetBackupScheduleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupScheduleId backup schedule id
+		@return BackupSchedule
+
+	*/
+	GetBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) (*BackupSchedule, error)
+	/*
+		GetServiceResource get backup service details
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiGetServiceResourceRequest
+	*/
+	GetServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiGetServiceResourceRequest
+	/*
+		GetServiceResourceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return GetBackupServiceResponse
+
+	*/
+	GetServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) (*GetBackupServiceResponse, error)
+	/*
+		ListBackupPolicies get list of backup policies
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return ApiListBackupPoliciesRequest
+	*/
+	ListBackupPolicies(ctx context.Context, projectId string) ApiListBackupPoliciesRequest
+	/*
+		ListBackupPoliciesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return GetBackupPoliciesResponse
+
+	*/
+	ListBackupPoliciesExecute(ctx context.Context, projectId string) (*GetBackupPoliciesResponse, error)
+	/*
+		ListBackupSchedules get list of backup schedules
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiListBackupSchedulesRequest
+	*/
+	ListBackupSchedules(ctx context.Context, projectId string, serverId string, region string) ApiListBackupSchedulesRequest
+	/*
+		ListBackupSchedulesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return GetBackupSchedulesResponse
+
+	*/
+	ListBackupSchedulesExecute(ctx context.Context, projectId string, serverId string, region string) (*GetBackupSchedulesResponse, error)
+	/*
+		ListBackups get list of backups
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiListBackupsRequest
+	*/
+	ListBackups(ctx context.Context, projectId string, serverId string, region string) ApiListBackupsRequest
+	/*
+		ListBackupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return GetBackupsListResponse
+
+	*/
+	ListBackupsExecute(ctx context.Context, projectId string, serverId string, region string) (*GetBackupsListResponse, error)
+	/*
+		RestoreBackup trigger restore of the requested backup
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupId id of the backup
+		@return ApiRestoreBackupRequest
+	*/
+	RestoreBackup(ctx context.Context, projectId string, serverId string, region string, backupId string) ApiRestoreBackupRequest
+	/*
+		RestoreBackupExecute executes the request
+
+	*/
+	RestoreBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string) error
+	/*
+		RestoreVolumeBackup trigger restore of the requested volume backup
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupId id of the backup
+		@param volumeBackupId id of the volume backup
+		@return ApiRestoreVolumeBackupRequest
+	*/
+	RestoreVolumeBackup(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) ApiRestoreVolumeBackupRequest
+	/*
+		RestoreVolumeBackupExecute executes the request
+
+	*/
+	RestoreVolumeBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) error
+	/*
+		UpdateBackupSchedule update backup schedule
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupScheduleId backup schedule id
+		@return ApiUpdateBackupScheduleRequest
+	*/
+	UpdateBackupSchedule(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) ApiUpdateBackupScheduleRequest
+	/*
+		UpdateBackupScheduleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@param backupScheduleId backup schedule id
+		@return BackupSchedule
+
+	*/
+	UpdateBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) (*BackupSchedule, error)
+}
+
+type ApiCreateBackupRequest interface {
+	CreateBackupPayload(createBackupPayload CreateBackupPayload) ApiCreateBackupRequest
+	Execute() (*BackupJob, error)
+}
+
+type ApiCreateBackupScheduleRequest interface {
+	CreateBackupSchedulePayload(createBackupSchedulePayload CreateBackupSchedulePayload) ApiCreateBackupScheduleRequest
+	Execute() (*BackupSchedule, error)
+}
+
+type ApiDeleteBackupRequest interface {
+	Execute() error
+}
+
+type ApiDeleteBackupScheduleRequest interface {
+	Execute() error
+}
+
+type ApiDeleteVolumeBackupRequest interface {
+	Execute() error
+}
+
+type ApiDisableServiceResourceRequest interface {
+	Execute() error
+}
+
+type ApiEnableServiceResourceRequest interface {
+	EnableServiceResourcePayload(enableServiceResourcePayload EnableServiceResourcePayload) ApiEnableServiceResourceRequest
+	Execute() error
+}
+
+type ApiGetBackupRequest interface {
+	Execute() (*Backup, error)
+}
+
+type ApiGetBackupScheduleRequest interface {
+	Execute() (*BackupSchedule, error)
+}
+
+type ApiGetServiceResourceRequest interface {
+	Execute() (*GetBackupServiceResponse, error)
+}
+
+type ApiListBackupPoliciesRequest interface {
+	Execute() (*GetBackupPoliciesResponse, error)
+}
+
+type ApiListBackupSchedulesRequest interface {
+	Execute() (*GetBackupSchedulesResponse, error)
+}
+
+type ApiListBackupsRequest interface {
+	Execute() (*GetBackupsListResponse, error)
+}
+
+type ApiRestoreBackupRequest interface {
+	RestoreBackupPayload(restoreBackupPayload RestoreBackupPayload) ApiRestoreBackupRequest
+	Execute() error
+}
+
+type ApiRestoreVolumeBackupRequest interface {
+	RestoreVolumeBackupPayload(restoreVolumeBackupPayload RestoreVolumeBackupPayload) ApiRestoreVolumeBackupRequest
+	Execute() error
+}
+
+type ApiUpdateBackupScheduleRequest interface {
+	UpdateBackupSchedulePayload(updateBackupSchedulePayload UpdateBackupSchedulePayload) ApiUpdateBackupScheduleRequest
+	Execute() (*BackupSchedule, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateBackupRequest struct {
+type CreateBackupRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
@@ -34,12 +411,12 @@ type ApiCreateBackupRequest struct {
 	createBackupPayload *CreateBackupPayload
 }
 
-func (r ApiCreateBackupRequest) CreateBackupPayload(createBackupPayload CreateBackupPayload) ApiCreateBackupRequest {
+func (r CreateBackupRequest) CreateBackupPayload(createBackupPayload CreateBackupPayload) ApiCreateBackupRequest {
 	r.createBackupPayload = &createBackupPayload
 	return r
 }
 
-func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
+func (r CreateBackupRequest) Execute() (*BackupJob, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -47,7 +424,11 @@ func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
 		localVarReturnValue *BackupJob
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateBackup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateBackup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -80,7 +461,7 @@ func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
 	}
 	// body params
 	localVarPostBody = r.createBackupPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -90,7 +471,7 @@ func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -114,7 +495,7 @@ func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -126,7 +507,7 @@ func (r ApiCreateBackupRequest) Execute() (*BackupJob, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -149,7 +530,7 @@ CreateBackup: create backup
 	@return ApiCreateBackupRequest
 */
 func (a *APIClient) CreateBackup(ctx context.Context, projectId string, serverId string, region string) ApiCreateBackupRequest {
-	return ApiCreateBackupRequest{
+	return CreateBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -159,7 +540,7 @@ func (a *APIClient) CreateBackup(ctx context.Context, projectId string, serverId
 }
 
 func (a *APIClient) CreateBackupExecute(ctx context.Context, projectId string, serverId string, region string) (*BackupJob, error) {
-	r := ApiCreateBackupRequest{
+	r := CreateBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -169,7 +550,7 @@ func (a *APIClient) CreateBackupExecute(ctx context.Context, projectId string, s
 	return r.Execute()
 }
 
-type ApiCreateBackupScheduleRequest struct {
+type CreateBackupScheduleRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	projectId                   string
@@ -178,12 +559,12 @@ type ApiCreateBackupScheduleRequest struct {
 	createBackupSchedulePayload *CreateBackupSchedulePayload
 }
 
-func (r ApiCreateBackupScheduleRequest) CreateBackupSchedulePayload(createBackupSchedulePayload CreateBackupSchedulePayload) ApiCreateBackupScheduleRequest {
+func (r CreateBackupScheduleRequest) CreateBackupSchedulePayload(createBackupSchedulePayload CreateBackupSchedulePayload) ApiCreateBackupScheduleRequest {
 	r.createBackupSchedulePayload = &createBackupSchedulePayload
 	return r
 }
 
-func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
+func (r CreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -191,7 +572,11 @@ func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		localVarReturnValue *BackupSchedule
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateBackupSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateBackupSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -224,7 +609,7 @@ func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	}
 	// body params
 	localVarPostBody = r.createBackupSchedulePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -234,7 +619,7 @@ func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -258,7 +643,7 @@ func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -270,7 +655,7 @@ func (r ApiCreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -293,7 +678,7 @@ CreateBackupSchedule: create backup schedule
 	@return ApiCreateBackupScheduleRequest
 */
 func (a *APIClient) CreateBackupSchedule(ctx context.Context, projectId string, serverId string, region string) ApiCreateBackupScheduleRequest {
-	return ApiCreateBackupScheduleRequest{
+	return CreateBackupScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -303,7 +688,7 @@ func (a *APIClient) CreateBackupSchedule(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) CreateBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string) (*BackupSchedule, error) {
-	r := ApiCreateBackupScheduleRequest{
+	r := CreateBackupScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -313,7 +698,7 @@ func (a *APIClient) CreateBackupScheduleExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiDeleteBackupRequest struct {
+type DeleteBackupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -322,14 +707,18 @@ type ApiDeleteBackupRequest struct {
 	backupId   string
 }
 
-func (r ApiDeleteBackupRequest) Execute() error {
+func (r DeleteBackupRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteBackup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -361,7 +750,7 @@ func (r ApiDeleteBackupRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -371,7 +760,7 @@ func (r ApiDeleteBackupRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -395,7 +784,7 @@ func (r ApiDeleteBackupRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -421,7 +810,7 @@ DeleteBackup: delete backup
 	@return ApiDeleteBackupRequest
 */
 func (a *APIClient) DeleteBackup(ctx context.Context, projectId string, serverId string, region string, backupId string) ApiDeleteBackupRequest {
-	return ApiDeleteBackupRequest{
+	return DeleteBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -432,7 +821,7 @@ func (a *APIClient) DeleteBackup(ctx context.Context, projectId string, serverId
 }
 
 func (a *APIClient) DeleteBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string) error {
-	r := ApiDeleteBackupRequest{
+	r := DeleteBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -443,7 +832,7 @@ func (a *APIClient) DeleteBackupExecute(ctx context.Context, projectId string, s
 	return r.Execute()
 }
 
-type ApiDeleteBackupScheduleRequest struct {
+type DeleteBackupScheduleRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	projectId        string
@@ -452,14 +841,18 @@ type ApiDeleteBackupScheduleRequest struct {
 	backupScheduleId string
 }
 
-func (r ApiDeleteBackupScheduleRequest) Execute() error {
+func (r DeleteBackupScheduleRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteBackupSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteBackupSchedule")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -491,7 +884,7 @@ func (r ApiDeleteBackupScheduleRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -501,7 +894,7 @@ func (r ApiDeleteBackupScheduleRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -525,7 +918,7 @@ func (r ApiDeleteBackupScheduleRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -551,7 +944,7 @@ DeleteBackupSchedule: delete backup schedule
 	@return ApiDeleteBackupScheduleRequest
 */
 func (a *APIClient) DeleteBackupSchedule(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) ApiDeleteBackupScheduleRequest {
-	return ApiDeleteBackupScheduleRequest{
+	return DeleteBackupScheduleRequest{
 		apiService:       a.defaultApi,
 		ctx:              ctx,
 		projectId:        projectId,
@@ -562,7 +955,7 @@ func (a *APIClient) DeleteBackupSchedule(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) DeleteBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) error {
-	r := ApiDeleteBackupScheduleRequest{
+	r := DeleteBackupScheduleRequest{
 		apiService:       a.defaultApi,
 		ctx:              ctx,
 		projectId:        projectId,
@@ -573,7 +966,7 @@ func (a *APIClient) DeleteBackupScheduleExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiDeleteVolumeBackupRequest struct {
+type DeleteVolumeBackupRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
@@ -583,14 +976,18 @@ type ApiDeleteVolumeBackupRequest struct {
 	volumeBackupId string
 }
 
-func (r ApiDeleteVolumeBackupRequest) Execute() error {
+func (r DeleteVolumeBackupRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteVolumeBackup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteVolumeBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -623,7 +1020,7 @@ func (r ApiDeleteVolumeBackupRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -633,7 +1030,7 @@ func (r ApiDeleteVolumeBackupRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -657,7 +1054,7 @@ func (r ApiDeleteVolumeBackupRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -684,7 +1081,7 @@ DeleteVolumeBackup: delete volume backup
 	@return ApiDeleteVolumeBackupRequest
 */
 func (a *APIClient) DeleteVolumeBackup(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) ApiDeleteVolumeBackupRequest {
-	return ApiDeleteVolumeBackupRequest{
+	return DeleteVolumeBackupRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -696,7 +1093,7 @@ func (a *APIClient) DeleteVolumeBackup(ctx context.Context, projectId string, se
 }
 
 func (a *APIClient) DeleteVolumeBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) error {
-	r := ApiDeleteVolumeBackupRequest{
+	r := DeleteVolumeBackupRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -708,7 +1105,7 @@ func (a *APIClient) DeleteVolumeBackupExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiDisableServiceResourceRequest struct {
+type DisableServiceResourceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -716,14 +1113,18 @@ type ApiDisableServiceResourceRequest struct {
 	region     string
 }
 
-func (r ApiDisableServiceResourceRequest) Execute() error {
+func (r DisableServiceResourceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceResource")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -754,7 +1155,7 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -764,7 +1165,7 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -788,7 +1189,7 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -813,7 +1214,7 @@ DisableServiceResource: disable backup service
 	@return ApiDisableServiceResourceRequest
 */
 func (a *APIClient) DisableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiDisableServiceResourceRequest {
-	return ApiDisableServiceResourceRequest{
+	return DisableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -823,7 +1224,7 @@ func (a *APIClient) DisableServiceResource(ctx context.Context, projectId string
 }
 
 func (a *APIClient) DisableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error {
-	r := ApiDisableServiceResourceRequest{
+	r := DisableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -833,7 +1234,7 @@ func (a *APIClient) DisableServiceResourceExecute(ctx context.Context, projectId
 	return r.Execute()
 }
 
-type ApiEnableServiceResourceRequest struct {
+type EnableServiceResourceRequest struct {
 	ctx                          context.Context
 	apiService                   *DefaultApiService
 	projectId                    string
@@ -842,19 +1243,23 @@ type ApiEnableServiceResourceRequest struct {
 	enableServiceResourcePayload *EnableServiceResourcePayload
 }
 
-func (r ApiEnableServiceResourceRequest) EnableServiceResourcePayload(enableServiceResourcePayload EnableServiceResourcePayload) ApiEnableServiceResourceRequest {
+func (r EnableServiceResourceRequest) EnableServiceResourcePayload(enableServiceResourcePayload EnableServiceResourcePayload) ApiEnableServiceResourceRequest {
 	r.enableServiceResourcePayload = &enableServiceResourcePayload
 	return r
 }
 
-func (r ApiEnableServiceResourceRequest) Execute() error {
+func (r EnableServiceResourceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceResource")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -887,7 +1292,7 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.enableServiceResourcePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -897,7 +1302,7 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -921,7 +1326,7 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -946,7 +1351,7 @@ EnableServiceResource: enable backup service
 	@return ApiEnableServiceResourceRequest
 */
 func (a *APIClient) EnableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiEnableServiceResourceRequest {
-	return ApiEnableServiceResourceRequest{
+	return EnableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -956,7 +1361,7 @@ func (a *APIClient) EnableServiceResource(ctx context.Context, projectId string,
 }
 
 func (a *APIClient) EnableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error {
-	r := ApiEnableServiceResourceRequest{
+	r := EnableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -966,7 +1371,7 @@ func (a *APIClient) EnableServiceResourceExecute(ctx context.Context, projectId 
 	return r.Execute()
 }
 
-type ApiGetBackupRequest struct {
+type GetBackupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -975,7 +1380,7 @@ type ApiGetBackupRequest struct {
 	backupId   string
 }
 
-func (r ApiGetBackupRequest) Execute() (*Backup, error) {
+func (r GetBackupRequest) Execute() (*Backup, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -983,7 +1388,11 @@ func (r ApiGetBackupRequest) Execute() (*Backup, error) {
 		localVarReturnValue *Backup
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBackup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBackup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1015,7 +1424,7 @@ func (r ApiGetBackupRequest) Execute() (*Backup, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1025,7 +1434,7 @@ func (r ApiGetBackupRequest) Execute() (*Backup, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1049,7 +1458,7 @@ func (r ApiGetBackupRequest) Execute() (*Backup, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1061,7 +1470,7 @@ func (r ApiGetBackupRequest) Execute() (*Backup, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1085,7 +1494,7 @@ GetBackup: get backup
 	@return ApiGetBackupRequest
 */
 func (a *APIClient) GetBackup(ctx context.Context, projectId string, serverId string, region string, backupId string) ApiGetBackupRequest {
-	return ApiGetBackupRequest{
+	return GetBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1096,7 +1505,7 @@ func (a *APIClient) GetBackup(ctx context.Context, projectId string, serverId st
 }
 
 func (a *APIClient) GetBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string) (*Backup, error) {
-	r := ApiGetBackupRequest{
+	r := GetBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1107,7 +1516,7 @@ func (a *APIClient) GetBackupExecute(ctx context.Context, projectId string, serv
 	return r.Execute()
 }
 
-type ApiGetBackupScheduleRequest struct {
+type GetBackupScheduleRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	projectId        string
@@ -1116,7 +1525,7 @@ type ApiGetBackupScheduleRequest struct {
 	backupScheduleId string
 }
 
-func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
+func (r GetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1124,7 +1533,11 @@ func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		localVarReturnValue *BackupSchedule
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBackupSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBackupSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1156,7 +1569,7 @@ func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1166,7 +1579,7 @@ func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1190,7 +1603,7 @@ func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1202,7 +1615,7 @@ func (r ApiGetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1226,7 +1639,7 @@ GetBackupSchedule: get single backup schedule details
 	@return ApiGetBackupScheduleRequest
 */
 func (a *APIClient) GetBackupSchedule(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) ApiGetBackupScheduleRequest {
-	return ApiGetBackupScheduleRequest{
+	return GetBackupScheduleRequest{
 		apiService:       a.defaultApi,
 		ctx:              ctx,
 		projectId:        projectId,
@@ -1237,7 +1650,7 @@ func (a *APIClient) GetBackupSchedule(ctx context.Context, projectId string, ser
 }
 
 func (a *APIClient) GetBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) (*BackupSchedule, error) {
-	r := ApiGetBackupScheduleRequest{
+	r := GetBackupScheduleRequest{
 		apiService:       a.defaultApi,
 		ctx:              ctx,
 		projectId:        projectId,
@@ -1248,7 +1661,7 @@ func (a *APIClient) GetBackupScheduleExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiGetServiceResourceRequest struct {
+type GetServiceResourceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1256,7 +1669,7 @@ type ApiGetServiceResourceRequest struct {
 	region     string
 }
 
-func (r ApiGetServiceResourceRequest) Execute() (*GetBackupServiceResponse, error) {
+func (r GetServiceResourceRequest) Execute() (*GetBackupServiceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1264,7 +1677,11 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetBackupServiceResponse, erro
 		localVarReturnValue *GetBackupServiceResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceResource")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceResource")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1295,7 +1712,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetBackupServiceResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1305,7 +1722,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetBackupServiceResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1329,7 +1746,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetBackupServiceResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1341,7 +1758,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetBackupServiceResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1364,7 +1781,7 @@ GetServiceResource: get backup service details
 	@return ApiGetServiceResourceRequest
 */
 func (a *APIClient) GetServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiGetServiceResourceRequest {
-	return ApiGetServiceResourceRequest{
+	return GetServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1374,7 +1791,7 @@ func (a *APIClient) GetServiceResource(ctx context.Context, projectId string, se
 }
 
 func (a *APIClient) GetServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) (*GetBackupServiceResponse, error) {
-	r := ApiGetServiceResourceRequest{
+	r := GetServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1384,13 +1801,13 @@ func (a *APIClient) GetServiceResourceExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiListBackupPoliciesRequest struct {
+type ListBackupPoliciesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, error) {
+func (r ListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1398,7 +1815,11 @@ func (r ApiListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, err
 		localVarReturnValue *GetBackupPoliciesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackupPolicies")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackupPolicies")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1427,7 +1848,7 @@ func (r ApiListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1437,7 +1858,7 @@ func (r ApiListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, err
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1461,7 +1882,7 @@ func (r ApiListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, err
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1473,7 +1894,7 @@ func (r ApiListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, err
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1494,7 +1915,7 @@ ListBackupPolicies: get list of backup policies
 	@return ApiListBackupPoliciesRequest
 */
 func (a *APIClient) ListBackupPolicies(ctx context.Context, projectId string) ApiListBackupPoliciesRequest {
-	return ApiListBackupPoliciesRequest{
+	return ListBackupPoliciesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1502,7 +1923,7 @@ func (a *APIClient) ListBackupPolicies(ctx context.Context, projectId string) Ap
 }
 
 func (a *APIClient) ListBackupPoliciesExecute(ctx context.Context, projectId string) (*GetBackupPoliciesResponse, error) {
-	r := ApiListBackupPoliciesRequest{
+	r := ListBackupPoliciesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1510,7 +1931,7 @@ func (a *APIClient) ListBackupPoliciesExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiListBackupSchedulesRequest struct {
+type ListBackupSchedulesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1518,7 +1939,7 @@ type ApiListBackupSchedulesRequest struct {
 	region     string
 }
 
-func (r ApiListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, error) {
+func (r ListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1526,7 +1947,11 @@ func (r ApiListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, e
 		localVarReturnValue *GetBackupSchedulesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackupSchedules")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackupSchedules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1557,7 +1982,7 @@ func (r ApiListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, e
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1567,7 +1992,7 @@ func (r ApiListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, e
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1591,7 +2016,7 @@ func (r ApiListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, e
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1603,7 +2028,7 @@ func (r ApiListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, e
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1626,7 +2051,7 @@ ListBackupSchedules: get list of backup schedules
 	@return ApiListBackupSchedulesRequest
 */
 func (a *APIClient) ListBackupSchedules(ctx context.Context, projectId string, serverId string, region string) ApiListBackupSchedulesRequest {
-	return ApiListBackupSchedulesRequest{
+	return ListBackupSchedulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1636,7 +2061,7 @@ func (a *APIClient) ListBackupSchedules(ctx context.Context, projectId string, s
 }
 
 func (a *APIClient) ListBackupSchedulesExecute(ctx context.Context, projectId string, serverId string, region string) (*GetBackupSchedulesResponse, error) {
-	r := ApiListBackupSchedulesRequest{
+	r := ListBackupSchedulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1646,7 +2071,7 @@ func (a *APIClient) ListBackupSchedulesExecute(ctx context.Context, projectId st
 	return r.Execute()
 }
 
-type ApiListBackupsRequest struct {
+type ListBackupsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1654,7 +2079,7 @@ type ApiListBackupsRequest struct {
 	region     string
 }
 
-func (r ApiListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
+func (r ListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1662,7 +2087,11 @@ func (r ApiListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 		localVarReturnValue *GetBackupsListResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1693,7 +2122,7 @@ func (r ApiListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1703,7 +2132,7 @@ func (r ApiListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1727,7 +2156,7 @@ func (r ApiListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1739,7 +2168,7 @@ func (r ApiListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1762,7 +2191,7 @@ ListBackups: get list of backups
 	@return ApiListBackupsRequest
 */
 func (a *APIClient) ListBackups(ctx context.Context, projectId string, serverId string, region string) ApiListBackupsRequest {
-	return ApiListBackupsRequest{
+	return ListBackupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1772,7 +2201,7 @@ func (a *APIClient) ListBackups(ctx context.Context, projectId string, serverId 
 }
 
 func (a *APIClient) ListBackupsExecute(ctx context.Context, projectId string, serverId string, region string) (*GetBackupsListResponse, error) {
-	r := ApiListBackupsRequest{
+	r := ListBackupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1782,7 +2211,7 @@ func (a *APIClient) ListBackupsExecute(ctx context.Context, projectId string, se
 	return r.Execute()
 }
 
-type ApiRestoreBackupRequest struct {
+type RestoreBackupRequest struct {
 	ctx                  context.Context
 	apiService           *DefaultApiService
 	projectId            string
@@ -1792,19 +2221,23 @@ type ApiRestoreBackupRequest struct {
 	restoreBackupPayload *RestoreBackupPayload
 }
 
-func (r ApiRestoreBackupRequest) RestoreBackupPayload(restoreBackupPayload RestoreBackupPayload) ApiRestoreBackupRequest {
+func (r RestoreBackupRequest) RestoreBackupPayload(restoreBackupPayload RestoreBackupPayload) ApiRestoreBackupRequest {
 	r.restoreBackupPayload = &restoreBackupPayload
 	return r
 }
 
-func (r ApiRestoreBackupRequest) Execute() error {
+func (r RestoreBackupRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreBackup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1838,7 +2271,7 @@ func (r ApiRestoreBackupRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.restoreBackupPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -1848,7 +2281,7 @@ func (r ApiRestoreBackupRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1872,7 +2305,7 @@ func (r ApiRestoreBackupRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -1898,7 +2331,7 @@ RestoreBackup: trigger restore of the requested backup
 	@return ApiRestoreBackupRequest
 */
 func (a *APIClient) RestoreBackup(ctx context.Context, projectId string, serverId string, region string, backupId string) ApiRestoreBackupRequest {
-	return ApiRestoreBackupRequest{
+	return RestoreBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1909,7 +2342,7 @@ func (a *APIClient) RestoreBackup(ctx context.Context, projectId string, serverI
 }
 
 func (a *APIClient) RestoreBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string) error {
-	r := ApiRestoreBackupRequest{
+	r := RestoreBackupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1920,7 +2353,7 @@ func (a *APIClient) RestoreBackupExecute(ctx context.Context, projectId string, 
 	return r.Execute()
 }
 
-type ApiRestoreVolumeBackupRequest struct {
+type RestoreVolumeBackupRequest struct {
 	ctx                        context.Context
 	apiService                 *DefaultApiService
 	projectId                  string
@@ -1931,19 +2364,23 @@ type ApiRestoreVolumeBackupRequest struct {
 	restoreVolumeBackupPayload *RestoreVolumeBackupPayload
 }
 
-func (r ApiRestoreVolumeBackupRequest) RestoreVolumeBackupPayload(restoreVolumeBackupPayload RestoreVolumeBackupPayload) ApiRestoreVolumeBackupRequest {
+func (r RestoreVolumeBackupRequest) RestoreVolumeBackupPayload(restoreVolumeBackupPayload RestoreVolumeBackupPayload) ApiRestoreVolumeBackupRequest {
 	r.restoreVolumeBackupPayload = &restoreVolumeBackupPayload
 	return r
 }
 
-func (r ApiRestoreVolumeBackupRequest) Execute() error {
+func (r RestoreVolumeBackupRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreVolumeBackup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreVolumeBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1978,7 +2415,7 @@ func (r ApiRestoreVolumeBackupRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.restoreVolumeBackupPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -1988,7 +2425,7 @@ func (r ApiRestoreVolumeBackupRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2012,7 +2449,7 @@ func (r ApiRestoreVolumeBackupRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2039,7 +2476,7 @@ RestoreVolumeBackup: trigger restore of the requested volume backup
 	@return ApiRestoreVolumeBackupRequest
 */
 func (a *APIClient) RestoreVolumeBackup(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) ApiRestoreVolumeBackupRequest {
-	return ApiRestoreVolumeBackupRequest{
+	return RestoreVolumeBackupRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -2051,7 +2488,7 @@ func (a *APIClient) RestoreVolumeBackup(ctx context.Context, projectId string, s
 }
 
 func (a *APIClient) RestoreVolumeBackupExecute(ctx context.Context, projectId string, serverId string, region string, backupId string, volumeBackupId string) error {
-	r := ApiRestoreVolumeBackupRequest{
+	r := RestoreVolumeBackupRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -2063,7 +2500,7 @@ func (a *APIClient) RestoreVolumeBackupExecute(ctx context.Context, projectId st
 	return r.Execute()
 }
 
-type ApiUpdateBackupScheduleRequest struct {
+type UpdateBackupScheduleRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	projectId                   string
@@ -2073,12 +2510,12 @@ type ApiUpdateBackupScheduleRequest struct {
 	updateBackupSchedulePayload *UpdateBackupSchedulePayload
 }
 
-func (r ApiUpdateBackupScheduleRequest) UpdateBackupSchedulePayload(updateBackupSchedulePayload UpdateBackupSchedulePayload) ApiUpdateBackupScheduleRequest {
+func (r UpdateBackupScheduleRequest) UpdateBackupSchedulePayload(updateBackupSchedulePayload UpdateBackupSchedulePayload) ApiUpdateBackupScheduleRequest {
 	r.updateBackupSchedulePayload = &updateBackupSchedulePayload
 	return r
 }
 
-func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
+func (r UpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -2086,7 +2523,11 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		localVarReturnValue *BackupSchedule
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateBackupSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateBackupSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2120,7 +2561,7 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	}
 	// body params
 	localVarPostBody = r.updateBackupSchedulePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2130,7 +2571,7 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2154,7 +2595,7 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2166,7 +2607,7 @@ func (r ApiUpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2190,7 +2631,7 @@ UpdateBackupSchedule: update backup schedule
 	@return ApiUpdateBackupScheduleRequest
 */
 func (a *APIClient) UpdateBackupSchedule(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) ApiUpdateBackupScheduleRequest {
-	return ApiUpdateBackupScheduleRequest{
+	return UpdateBackupScheduleRequest{
 		apiService:       a.defaultApi,
 		ctx:              ctx,
 		projectId:        projectId,
@@ -2201,7 +2642,7 @@ func (a *APIClient) UpdateBackupSchedule(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) UpdateBackupScheduleExecute(ctx context.Context, projectId string, serverId string, region string, backupScheduleId string) (*BackupSchedule, error) {
-	r := ApiUpdateBackupScheduleRequest{
+	r := UpdateBackupScheduleRequest{
 		apiService:       a.defaultApi,
 		ctx:              ctx,
 		projectId:        projectId,

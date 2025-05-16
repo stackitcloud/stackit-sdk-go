@@ -293,7 +293,7 @@ type InstanceGetPlanNameRetType = string
 	types and functions for status
 */
 
-//isEnum
+// isEnum
 
 // InstanceStatus the model 'Instance'
 type InstanceStatus string

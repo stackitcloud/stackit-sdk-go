@@ -23,10 +23,118 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateCertificate Store a TLS certificate in a project.
+		CreateCertificate will store a TLS certificate in a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiCreateCertificateRequest
+	*/
+	CreateCertificate(ctx context.Context, projectId string, region string) ApiCreateCertificateRequest
+	/*
+		CreateCertificateExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return CreateCertificateResponse
+
+	*/
+	CreateCertificateExecute(ctx context.Context, projectId string, region string) (*CreateCertificateResponse, error)
+	/*
+		DeleteCertificate Delete a stored TLS certificate in a project.
+		DeleteCertificate will delete the stored TLS certificate.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param id
+		@return ApiDeleteCertificateRequest
+	*/
+	DeleteCertificate(ctx context.Context, projectId string, region string, id string) ApiDeleteCertificateRequest
+	/*
+		DeleteCertificateExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param id
+		@return map[string]interface{}
+
+	*/
+	DeleteCertificateExecute(ctx context.Context, projectId string, region string, id string) (map[string]interface{}, error)
+	/*
+		GetCertificate Retrieve the public parts of a stored TLS certificate.
+		GetCertificate will return the public parts of a stored TLS certificate.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param id
+		@return ApiGetCertificateRequest
+	*/
+	GetCertificate(ctx context.Context, projectId string, region string, id string) ApiGetCertificateRequest
+	/*
+		GetCertificateExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param id
+		@return GetCertificateResponse
+
+	*/
+	GetCertificateExecute(ctx context.Context, projectId string, region string, id string) (*GetCertificateResponse, error)
+	/*
+		ListCertificates Retrieve the list of TLS certificate stored in a project.
+		ListCertificates will return the list of TLS certificates in a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiListCertificatesRequest
+	*/
+	ListCertificates(ctx context.Context, projectId string, region string) ApiListCertificatesRequest
+	/*
+		ListCertificatesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ListCertificatesResponse
+
+	*/
+	ListCertificatesExecute(ctx context.Context, projectId string, region string) (*ListCertificatesResponse, error)
+}
+
+type ApiCreateCertificateRequest interface {
+	CreateCertificatePayload(createCertificatePayload CreateCertificatePayload) ApiCreateCertificateRequest
+	Execute() (*CreateCertificateResponse, error)
+}
+
+type ApiDeleteCertificateRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiGetCertificateRequest interface {
+	Execute() (*GetCertificateResponse, error)
+}
+
+type ApiListCertificatesRequest interface {
+	// page_size specifies how many certificates should be returned on this page. Must be a positive number &lt;&#x3D; 1000
+	PageSize(pageSize string) ApiListCertificatesRequest
+	// page_id is a page identifier returned by the previous response and is used to request the next page
+	PageId(pageId string) ApiListCertificatesRequest
+	Execute() (*ListCertificatesResponse, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateCertificateRequest struct {
+type CreateCertificateRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	projectId                string
@@ -34,12 +142,12 @@ type ApiCreateCertificateRequest struct {
 	createCertificatePayload *CreateCertificatePayload
 }
 
-func (r ApiCreateCertificateRequest) CreateCertificatePayload(createCertificatePayload CreateCertificatePayload) ApiCreateCertificateRequest {
+func (r CreateCertificateRequest) CreateCertificatePayload(createCertificatePayload CreateCertificatePayload) ApiCreateCertificateRequest {
 	r.createCertificatePayload = &createCertificatePayload
 	return r
 }
 
-func (r ApiCreateCertificateRequest) Execute() (*CreateCertificateResponse, error) {
+func (r CreateCertificateRequest) Execute() (*CreateCertificateResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -47,7 +155,11 @@ func (r ApiCreateCertificateRequest) Execute() (*CreateCertificateResponse, erro
 		localVarReturnValue *CreateCertificateResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCertificate")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCertificate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -82,7 +194,7 @@ func (r ApiCreateCertificateRequest) Execute() (*CreateCertificateResponse, erro
 	}
 	// body params
 	localVarPostBody = r.createCertificatePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -92,7 +204,7 @@ func (r ApiCreateCertificateRequest) Execute() (*CreateCertificateResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -116,7 +228,7 @@ func (r ApiCreateCertificateRequest) Execute() (*CreateCertificateResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -126,7 +238,7 @@ func (r ApiCreateCertificateRequest) Execute() (*CreateCertificateResponse, erro
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -136,7 +248,7 @@ func (r ApiCreateCertificateRequest) Execute() (*CreateCertificateResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -160,7 +272,7 @@ CreateCertificate will store a TLS certificate in a project.
 	@return ApiCreateCertificateRequest
 */
 func (a *APIClient) CreateCertificate(ctx context.Context, projectId string, region string) ApiCreateCertificateRequest {
-	return ApiCreateCertificateRequest{
+	return CreateCertificateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -169,7 +281,7 @@ func (a *APIClient) CreateCertificate(ctx context.Context, projectId string, reg
 }
 
 func (a *APIClient) CreateCertificateExecute(ctx context.Context, projectId string, region string) (*CreateCertificateResponse, error) {
-	r := ApiCreateCertificateRequest{
+	r := CreateCertificateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -178,7 +290,7 @@ func (a *APIClient) CreateCertificateExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiDeleteCertificateRequest struct {
+type DeleteCertificateRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -186,7 +298,7 @@ type ApiDeleteCertificateRequest struct {
 	id         string
 }
 
-func (r ApiDeleteCertificateRequest) Execute() (map[string]interface{}, error) {
+func (r DeleteCertificateRequest) Execute() (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -194,7 +306,11 @@ func (r ApiDeleteCertificateRequest) Execute() (map[string]interface{}, error) {
 		localVarReturnValue map[string]interface{}
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCertificate")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCertificate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -225,7 +341,7 @@ func (r ApiDeleteCertificateRequest) Execute() (map[string]interface{}, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -235,7 +351,7 @@ func (r ApiDeleteCertificateRequest) Execute() (map[string]interface{}, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -259,7 +375,7 @@ func (r ApiDeleteCertificateRequest) Execute() (map[string]interface{}, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -269,7 +385,7 @@ func (r ApiDeleteCertificateRequest) Execute() (map[string]interface{}, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -279,7 +395,7 @@ func (r ApiDeleteCertificateRequest) Execute() (map[string]interface{}, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -304,7 +420,7 @@ DeleteCertificate will delete the stored TLS certificate.
 	@return ApiDeleteCertificateRequest
 */
 func (a *APIClient) DeleteCertificate(ctx context.Context, projectId string, region string, id string) ApiDeleteCertificateRequest {
-	return ApiDeleteCertificateRequest{
+	return DeleteCertificateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -314,7 +430,7 @@ func (a *APIClient) DeleteCertificate(ctx context.Context, projectId string, reg
 }
 
 func (a *APIClient) DeleteCertificateExecute(ctx context.Context, projectId string, region string, id string) (map[string]interface{}, error) {
-	r := ApiDeleteCertificateRequest{
+	r := DeleteCertificateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -324,7 +440,7 @@ func (a *APIClient) DeleteCertificateExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiGetCertificateRequest struct {
+type GetCertificateRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -332,7 +448,7 @@ type ApiGetCertificateRequest struct {
 	id         string
 }
 
-func (r ApiGetCertificateRequest) Execute() (*GetCertificateResponse, error) {
+func (r GetCertificateRequest) Execute() (*GetCertificateResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -340,7 +456,11 @@ func (r ApiGetCertificateRequest) Execute() (*GetCertificateResponse, error) {
 		localVarReturnValue *GetCertificateResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCertificate")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCertificate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -371,7 +491,7 @@ func (r ApiGetCertificateRequest) Execute() (*GetCertificateResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -381,7 +501,7 @@ func (r ApiGetCertificateRequest) Execute() (*GetCertificateResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -405,7 +525,7 @@ func (r ApiGetCertificateRequest) Execute() (*GetCertificateResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -415,7 +535,7 @@ func (r ApiGetCertificateRequest) Execute() (*GetCertificateResponse, error) {
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -425,7 +545,7 @@ func (r ApiGetCertificateRequest) Execute() (*GetCertificateResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -450,7 +570,7 @@ GetCertificate will return the public parts of a stored TLS certificate.
 	@return ApiGetCertificateRequest
 */
 func (a *APIClient) GetCertificate(ctx context.Context, projectId string, region string, id string) ApiGetCertificateRequest {
-	return ApiGetCertificateRequest{
+	return GetCertificateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -460,7 +580,7 @@ func (a *APIClient) GetCertificate(ctx context.Context, projectId string, region
 }
 
 func (a *APIClient) GetCertificateExecute(ctx context.Context, projectId string, region string, id string) (*GetCertificateResponse, error) {
-	r := ApiGetCertificateRequest{
+	r := GetCertificateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -470,7 +590,7 @@ func (a *APIClient) GetCertificateExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiListCertificatesRequest struct {
+type ListCertificatesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -481,19 +601,19 @@ type ApiListCertificatesRequest struct {
 
 // page_size specifies how many certificates should be returned on this page. Must be a positive number &lt;&#x3D; 1000
 
-func (r ApiListCertificatesRequest) PageSize(pageSize string) ApiListCertificatesRequest {
+func (r ListCertificatesRequest) PageSize(pageSize string) ApiListCertificatesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // page_id is a page identifier returned by the previous response and is used to request the next page
 
-func (r ApiListCertificatesRequest) PageId(pageId string) ApiListCertificatesRequest {
+func (r ListCertificatesRequest) PageId(pageId string) ApiListCertificatesRequest {
 	r.pageId = &pageId
 	return r
 }
 
-func (r ApiListCertificatesRequest) Execute() (*ListCertificatesResponse, error) {
+func (r ListCertificatesRequest) Execute() (*ListCertificatesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -501,7 +621,11 @@ func (r ApiListCertificatesRequest) Execute() (*ListCertificatesResponse, error)
 		localVarReturnValue *ListCertificatesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCertificates")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return nil, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCertificates")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -537,7 +661,7 @@ func (r ApiListCertificatesRequest) Execute() (*ListCertificatesResponse, error)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -547,7 +671,7 @@ func (r ApiListCertificatesRequest) Execute() (*ListCertificatesResponse, error)
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -571,7 +695,7 @@ func (r ApiListCertificatesRequest) Execute() (*ListCertificatesResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Status
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -581,7 +705,7 @@ func (r ApiListCertificatesRequest) Execute() (*ListCertificatesResponse, error)
 			return localVarReturnValue, newErr
 		}
 		var v Status
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.ErrorMessage = err.Error()
 			return localVarReturnValue, newErr
@@ -591,7 +715,7 @@ func (r ApiListCertificatesRequest) Execute() (*ListCertificatesResponse, error)
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -615,7 +739,7 @@ ListCertificates will return the list of TLS certificates in a project.
 	@return ApiListCertificatesRequest
 */
 func (a *APIClient) ListCertificates(ctx context.Context, projectId string, region string) ApiListCertificatesRequest {
-	return ApiListCertificatesRequest{
+	return ListCertificatesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -624,7 +748,7 @@ func (a *APIClient) ListCertificates(ctx context.Context, projectId string, regi
 }
 
 func (a *APIClient) ListCertificatesExecute(ctx context.Context, projectId string, region string) (*ListCertificatesResponse, error) {
-	r := ApiListCertificatesRequest{
+	r := ListCertificatesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

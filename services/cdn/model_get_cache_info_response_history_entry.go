@@ -63,7 +63,7 @@ func setGetCacheInfoResponseHistoryEntryGetOccurredAtAttributeType(arg *GetCache
 	types and functions for type
 */
 
-//isEnum
+// isEnum
 
 // GetCacheInfoResponseHistoryEntryTypes the model 'GetCacheInfoResponseHistoryEntry'
 type GetCacheInfoResponseHistoryEntryTypes string

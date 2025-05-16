@@ -22,7 +22,7 @@ var _ MappedNullable = &MetricsRelabelConfig{}
 	types and functions for action
 */
 
-//isEnum
+// isEnum
 
 // MetricsRelabelConfigAction the model 'MetricsRelabelConfig'
 type MetricsRelabelConfigAction string

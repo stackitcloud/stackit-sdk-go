@@ -227,7 +227,7 @@ func setKeyGetPurposeAttributeType(arg *KeyGetPurposeAttributeType, val KeyGetPu
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // KeyState The current state of the key.
 type KeyState string

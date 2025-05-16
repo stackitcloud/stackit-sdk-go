@@ -245,7 +245,7 @@ func setCreateScrapeConfigPayloadGetSampleLimitAttributeType(arg *CreateScrapeCo
 	types and functions for scheme
 */
 
-//isEnum
+// isEnum
 
 // CreateScrapeConfigPayloadScheme Configures the protocol scheme used for requests. https or http
 type CreateScrapeConfigPayloadScheme string

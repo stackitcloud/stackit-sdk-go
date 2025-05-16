@@ -43,7 +43,7 @@ type CheckServiceGetResourceRetType = string
 	types and functions for resourceType
 */
 
-//isEnum
+// isEnum
 
 // CheckServiceResourceType the model 'CheckService'
 type CheckServiceResourceType string

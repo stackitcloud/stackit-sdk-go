@@ -166,7 +166,7 @@ type VersionGetPublicKeyRetType = string
 	types and functions for state
 */
 
-//isEnum
+// isEnum
 
 // VersionState The current state of the key.
 type VersionState string
