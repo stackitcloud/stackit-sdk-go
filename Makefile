@@ -17,7 +17,7 @@ RESET  := $(shell printf "\033[0m")
 # Targets
 ##
 .PHONY: help
-help: ## show this help.
+help: ## Show this help
 	@echo "Project: stackit-sdk-go"
 	@echo 'Usage:'
 	@echo "  ${GREEN}make${RESET} ${YELLOW}<target>${RESET}"
