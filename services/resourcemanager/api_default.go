@@ -356,7 +356,7 @@ func (r CreateFolderRequest) Execute() (*FolderResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateFolder")
 	if err != nil {
@@ -512,7 +512,7 @@ func (r CreateProjectRequest) Execute() (*Project, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateProject")
 	if err != nil {
@@ -1078,7 +1078,7 @@ func (r GetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFolderDetails")
 	if err != nil {
@@ -1223,7 +1223,7 @@ func (r GetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrganization")
 	if err != nil {
@@ -1360,7 +1360,7 @@ func (r GetProjectRequest) Execute() (*GetProjectResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProject")
 	if err != nil {
@@ -1544,7 +1544,7 @@ func (r ListOrganizationsRequest) Execute() (*ListOrganizationsResponse, error) 
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListOrganizations")
 	if err != nil {
@@ -1756,7 +1756,7 @@ func (r ListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProjects")
 	if err != nil {
@@ -1935,7 +1935,7 @@ func (r PartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateFolder")
 	if err != nil {
@@ -2099,7 +2099,7 @@ func (r PartialUpdateProjectRequest) Execute() (*Project, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateProject")
 	if err != nil {

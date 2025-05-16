@@ -679,7 +679,7 @@ func (r CreateKeyRequest) Execute() (*Key, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateKey")
 	if err != nil {
@@ -863,7 +863,7 @@ func (r CreateKeyRingRequest) Execute() (*KeyRing, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateKeyRing")
 	if err != nil {
@@ -1033,7 +1033,7 @@ func (r CreateWrappingKeyRequest) Execute() (*WrappingKey, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateWrappingKey")
 	if err != nil {
@@ -1220,7 +1220,7 @@ func (r DecryptRequest) Execute() (*DecryptedData, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.Decrypt")
 	if err != nil {
@@ -2276,7 +2276,7 @@ func (r EncryptRequest) Execute() (*EncryptedData, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.Encrypt")
 	if err != nil {
@@ -2475,7 +2475,7 @@ func (r GetKeyRequest) Execute() (*Key, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetKey")
 	if err != nil {
@@ -2653,7 +2653,7 @@ func (r GetKeyRingRequest) Execute() (*KeyRing, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetKeyRing")
 	if err != nil {
@@ -2829,7 +2829,7 @@ func (r GetVersionRequest) Execute() (*Version, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetVersion")
 	if err != nil {
@@ -3012,7 +3012,7 @@ func (r GetWrappingKeyRequest) Execute() (*WrappingKey, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetWrappingKey")
 	if err != nil {
@@ -3197,7 +3197,7 @@ func (r ImportKeyRequest) Execute() (*Key, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ImportKey")
 	if err != nil {
@@ -3390,7 +3390,7 @@ func (r ListKeyRingsRequest) Execute() (*KeyRingList, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListKeyRings")
 	if err != nil {
@@ -3549,7 +3549,7 @@ func (r ListKeysRequest) Execute() (*KeyList, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListKeys")
 	if err != nil {
@@ -3724,7 +3724,7 @@ func (r ListVersionsRequest) Execute() (*VersionList, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListVersions")
 	if err != nil {
@@ -3902,7 +3902,7 @@ func (r ListWrappingKeysRequest) Execute() (*WrappingKeyList, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListWrappingKeys")
 	if err != nil {
@@ -4418,7 +4418,7 @@ func (r RotateKeyRequest) Execute() (*Key, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RotateKey")
 	if err != nil {
@@ -4626,7 +4626,7 @@ func (r SignRequest) Execute() (*SignedData, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.Sign")
 	if err != nil {
@@ -4832,7 +4832,7 @@ func (r VerifyRequest) Execute() (*VerifiedData, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.Verify")
 	if err != nil {

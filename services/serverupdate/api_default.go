@@ -342,7 +342,7 @@ func (r CreateUpdateRequest) Execute() (*Update, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdate")
 	if err != nil {
@@ -490,7 +490,7 @@ func (r CreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdateSchedule")
 	if err != nil {
@@ -1032,7 +1032,7 @@ func (r GetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, error) 
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceResource")
 	if err != nil {
@@ -1173,7 +1173,7 @@ func (r GetUpdateRequest) Execute() (*Update, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdate")
 	if err != nil {
@@ -1318,7 +1318,7 @@ func (r GetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdateSchedule")
 	if err != nil {
@@ -1460,7 +1460,7 @@ func (r ListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, error)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdatePolicies")
 	if err != nil {
@@ -1592,7 +1592,7 @@ func (r ListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, erro
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdateSchedules")
 	if err != nil {
@@ -1732,7 +1732,7 @@ func (r ListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdates")
 	if err != nil {
@@ -1879,7 +1879,7 @@ func (r UpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateUpdateSchedule")
 	if err != nil {
