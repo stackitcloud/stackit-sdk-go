@@ -417,7 +417,7 @@ func (r GetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCatalogProduct")
 	if err != nil {
@@ -591,7 +591,7 @@ func (r GetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetVendorSubscription")
 	if err != nil {
@@ -969,7 +969,7 @@ func (r ListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, err
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCatalogProducts")
 	if err != nil {
@@ -1157,7 +1157,7 @@ func (r ListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRespo
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListVendorSubscriptions")
 	if err != nil {
@@ -1331,7 +1331,7 @@ func (r ResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ResolveCustomer")
 	if err != nil {
