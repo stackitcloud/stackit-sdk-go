@@ -422,7 +422,7 @@ func (r GetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceStatusRegional")
 	if err != nil {
@@ -580,7 +580,7 @@ func (r ListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegional2
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
 	if !ok {
-		return nil, fmt.Errorf("could not parse client to type APIClient")
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
 	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceStatusRegional")
 	if err != nil {
