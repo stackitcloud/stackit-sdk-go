@@ -15,7 +15,6 @@ exclude (
 
 	github.com/skeema/knownhosts v1.3.1
 	golang.org/x/crypto v0.35.0
-	golang.org/x/crypto v0.35.0
 	golang.org/x/crypto v0.36.0
 
 	golang.org/x/crypto v0.37.0
@@ -39,9 +38,7 @@ exclude (
 	golang.org/x/sys v0.31.0
 
 	golang.org/x/sys v0.32.0
-	golang.org/x/term v0.30.0
-
-	golang.org/x/term v0.31.0
+	golang.org/x/term v0.32.0
 )
 
 require (
