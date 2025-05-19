@@ -235,10 +235,11 @@ type WrappingKeyState string
 
 // List of State
 const (
-	WRAPPINGKEYSTATE_ACTIVE                 WrappingKeyState = "active"
-	WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY WrappingKeyState = "key_material_not_ready"
-	WRAPPINGKEYSTATE_EXPIRED                WrappingKeyState = "expired"
-	WRAPPINGKEYSTATE_DELETING               WrappingKeyState = "deleting"
+	WRAPPINGKEYSTATE_ACTIVE                   WrappingKeyState = "active"
+	WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY   WrappingKeyState = "key_material_not_ready"
+	WRAPPINGKEYSTATE_EXPIRED                  WrappingKeyState = "expired"
+	WRAPPINGKEYSTATE_DELETED                  WrappingKeyState = "deleted"
+	WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE WrappingKeyState = "key_material_unavailable"
 )
 
 // All allowed values of WrappingKey enum
@@ -246,7 +247,8 @@ var AllowedWrappingKeyStateEnumValues = []WrappingKeyState{
 	"active",
 	"key_material_not_ready",
 	"expired",
-	"deleting",
+	"deleted",
+	"key_material_unavailable",
 }
 
 func (v *WrappingKeyState) UnmarshalJSON(src []byte) error {

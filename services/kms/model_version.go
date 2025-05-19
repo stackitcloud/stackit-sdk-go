@@ -173,11 +173,12 @@ type VersionState string
 
 // List of State
 const (
-	VERSIONSTATE_ACTIVE                 VersionState = "active"
-	VERSIONSTATE_KEY_MATERIAL_NOT_READY VersionState = "key_material_not_ready"
-	VERSIONSTATE_KEY_MATERIAL_INVALID   VersionState = "key_material_invalid"
-	VERSIONSTATE_DISABLED               VersionState = "disabled"
-	VERSIONSTATE_DESTROYED              VersionState = "destroyed"
+	VERSIONSTATE_ACTIVE                   VersionState = "active"
+	VERSIONSTATE_KEY_MATERIAL_NOT_READY   VersionState = "key_material_not_ready"
+	VERSIONSTATE_KEY_MATERIAL_INVALID     VersionState = "key_material_invalid"
+	VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE VersionState = "key_material_unavailable"
+	VERSIONSTATE_DISABLED                 VersionState = "disabled"
+	VERSIONSTATE_DESTROYED                VersionState = "destroyed"
 )
 
 // All allowed values of Version enum
@@ -185,6 +186,7 @@ var AllowedVersionStateEnumValues = []VersionState{
 	"active",
 	"key_material_not_ready",
 	"key_material_invalid",
+	"key_material_unavailable",
 	"disabled",
 	"destroyed",
 }

@@ -370,6 +370,61 @@ func Test_kms_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService DeleteWrappingKey", func(t *testing.T) {
+		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/wrappingkeys/{wrappingKeyId}"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionIdValue := "regionId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
+		keyRingIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(keyRingIdValue, "keyRingId")), -1)
+		wrappingKeyIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"wrappingKeyId"+"}", url.PathEscape(ParameterValueToString(wrappingKeyIdValue, "wrappingKeyId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for kms_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		regionId := regionIdValue
+		keyRingId := keyRingIdValue
+		wrappingKeyId := wrappingKeyIdValue
+
+		reqErr := apiClient.DeleteWrappingKey(context.Background(), projectId, regionId, keyRingId, wrappingKeyId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
 	t.Run("Test DefaultApiService DestroyVersion", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/keys/{keyId}/versions/{versionNumber}/destroy"
 		projectIdValue := uuid.NewString()

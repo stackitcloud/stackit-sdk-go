@@ -148,6 +148,23 @@ type DefaultApi interface {
 	*/
 	DeleteKeyRingExecute(ctx context.Context, projectId string, regionId string, keyRingId string) error
 	/*
+		DeleteWrappingKey Delete wrapping key
+		Deletes the given wrapping key
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the key ring is part of.
+		@param regionId The STACKIT region name the key ring is located in.
+		@param keyRingId The key ring UUID.
+		@param wrappingKeyId The wrapping key UUID.
+		@return ApiDeleteWrappingKeyRequest
+	*/
+	DeleteWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest
+	/*
+		DeleteWrappingKeyExecute executes the request
+
+	*/
+	DeleteWrappingKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) error
+	/*
 		DestroyVersion Destroy version
 		Removes the key material of a version permanently.
 
@@ -573,6 +590,10 @@ type ApiDeleteKeyRequest interface {
 }
 
 type ApiDeleteKeyRingRequest interface {
+	Execute() error
+}
+
+type ApiDeleteWrappingKeyRequest interface {
 	Execute() error
 }
 
@@ -1727,6 +1748,174 @@ func (a *APIClient) DeleteKeyRingExecute(ctx context.Context, projectId string, 
 		projectId:  projectId,
 		regionId:   regionId,
 		keyRingId:  keyRingId,
+	}
+	return r.Execute()
+}
+
+type DeleteWrappingKeyRequest struct {
+	ctx           context.Context
+	apiService    *DefaultApiService
+	projectId     string
+	regionId      string
+	keyRingId     string
+	wrappingKeyId string
+}
+
+func (r DeleteWrappingKeyRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteWrappingKey")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/regions/{regionId}/keyrings/{keyRingId}/wrappingkeys/{wrappingKeyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(r.regionId, "regionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"keyRingId"+"}", url.PathEscape(ParameterValueToString(r.keyRingId, "keyRingId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"wrappingKeyId"+"}", url.PathEscape(ParameterValueToString(r.wrappingKeyId, "wrappingKeyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+DeleteWrappingKey: Delete wrapping key
+
+Deletes the given wrapping key
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the key ring is part of.
+	@param regionId The STACKIT region name the key ring is located in.
+	@param keyRingId The key ring UUID.
+	@param wrappingKeyId The wrapping key UUID.
+	@return ApiDeleteWrappingKeyRequest
+*/
+func (a *APIClient) DeleteWrappingKey(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) ApiDeleteWrappingKeyRequest {
+	return DeleteWrappingKeyRequest{
+		apiService:    a.defaultApi,
+		ctx:           ctx,
+		projectId:     projectId,
+		regionId:      regionId,
+		keyRingId:     keyRingId,
+		wrappingKeyId: wrappingKeyId,
+	}
+}
+
+func (a *APIClient) DeleteWrappingKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) error {
+	r := DeleteWrappingKeyRequest{
+		apiService:    a.defaultApi,
+		ctx:           ctx,
+		projectId:     projectId,
+		regionId:      regionId,
+		keyRingId:     keyRingId,
+		wrappingKeyId: wrappingKeyId,
 	}
 	return r.Execute()
 }

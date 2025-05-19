@@ -234,16 +234,20 @@ type KeyState string
 
 // List of State
 const (
-	KEYSTATE_ACTIVE            KeyState = "active"
-	KEYSTATE_VERSION_NOT_READY KeyState = "version_not_ready"
-	KEYSTATE_DELETED           KeyState = "deleted"
+	KEYSTATE_ACTIVE        KeyState = "active"
+	KEYSTATE_DELETED       KeyState = "deleted"
+	KEYSTATE_NOT_AVAILABLE KeyState = "not_available"
+	KEYSTATE_ERRORS_EXIST  KeyState = "errors_exist"
+	KEYSTATE_NO_VERSION    KeyState = "no_version"
 )
 
 // All allowed values of Key enum
 var AllowedKeyStateEnumValues = []KeyState{
 	"active",
-	"version_not_ready",
 	"deleted",
+	"not_available",
+	"errors_exist",
+	"no_version",
 }
 
 func (v *KeyState) UnmarshalJSON(src []byte) error {
