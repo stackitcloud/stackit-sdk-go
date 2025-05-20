@@ -5,16 +5,12 @@ go 1.21
 exclude (
 	github.com/ProtonMail/go-crypto v1.2.0
 	github.com/cloudflare/circl v1.6.1
-	github.com/cloudflare/circl v1.6.1
-
-	github.com/cloudflare/circl v1.6.1
 	// exclude versions not compatible with go 1.21
 	github.com/go-git/go-git/v5 v5.14.0
 	github.com/go-git/go-git/v5 v5.15.0
 	github.com/go-git/go-git/v5 v5.16.0
 
 	github.com/skeema/knownhosts v1.3.1
-	golang.org/x/crypto v0.35.0
 	golang.org/x/crypto v0.35.0
 	golang.org/x/crypto v0.36.0
 
@@ -40,9 +36,7 @@ exclude (
 	golang.org/x/sys v0.31.0
 
 	golang.org/x/sys v0.32.0
-	golang.org/x/term v0.30.0
-
-	golang.org/x/term v0.31.0
+	golang.org/x/term v0.32.0
 )
 
 require (
