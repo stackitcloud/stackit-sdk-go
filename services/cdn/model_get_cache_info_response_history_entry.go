@@ -12,6 +12,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -62,10 +63,110 @@ func setGetCacheInfoResponseHistoryEntryGetOccurredAtAttributeType(arg *GetCache
 	types and functions for type
 */
 
-// isEnumRef
-type GetCacheInfoResponseHistoryEntryGetTypeAttributeType = *string
-type GetCacheInfoResponseHistoryEntryGetTypeArgType = string
-type GetCacheInfoResponseHistoryEntryGetTypeRetType = string
+// isEnum
+
+// GetCacheInfoResponseHistoryEntryTypes the model 'GetCacheInfoResponseHistoryEntry'
+type GetCacheInfoResponseHistoryEntryTypes string
+
+// List of Type
+const (
+	GETCACHEINFORESPONSEHISTORYENTRYTYPE_FULL     GetCacheInfoResponseHistoryEntryTypes = "full"
+	GETCACHEINFORESPONSEHISTORYENTRYTYPE_GRANULAR GetCacheInfoResponseHistoryEntryTypes = "granular"
+)
+
+// All allowed values of GetCacheInfoResponseHistoryEntry enum
+var AllowedGetCacheInfoResponseHistoryEntryTypesEnumValues = []GetCacheInfoResponseHistoryEntryTypes{
+	"full",
+	"granular",
+}
+
+func (v *GetCacheInfoResponseHistoryEntryTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := GetCacheInfoResponseHistoryEntryTypes(value)
+	for _, existing := range AllowedGetCacheInfoResponseHistoryEntryTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid GetCacheInfoResponseHistoryEntry", value)
+}
+
+// NewGetCacheInfoResponseHistoryEntryTypesFromValue returns a pointer to a valid GetCacheInfoResponseHistoryEntryTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewGetCacheInfoResponseHistoryEntryTypesFromValue(v string) (*GetCacheInfoResponseHistoryEntryTypes, error) {
+	ev := GetCacheInfoResponseHistoryEntryTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for GetCacheInfoResponseHistoryEntryTypes: valid values are %v", v, AllowedGetCacheInfoResponseHistoryEntryTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v GetCacheInfoResponseHistoryEntryTypes) IsValid() bool {
+	for _, existing := range AllowedGetCacheInfoResponseHistoryEntryTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v GetCacheInfoResponseHistoryEntryTypes) Ptr() *GetCacheInfoResponseHistoryEntryTypes {
+	return &v
+}
+
+type NullableGetCacheInfoResponseHistoryEntryTypes struct {
+	value *GetCacheInfoResponseHistoryEntryTypes
+	isSet bool
+}
+
+func (v NullableGetCacheInfoResponseHistoryEntryTypes) Get() *GetCacheInfoResponseHistoryEntryTypes {
+	return v.value
+}
+
+func (v *NullableGetCacheInfoResponseHistoryEntryTypes) Set(val *GetCacheInfoResponseHistoryEntryTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetCacheInfoResponseHistoryEntryTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetCacheInfoResponseHistoryEntryTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetCacheInfoResponseHistoryEntryTypes(val *GetCacheInfoResponseHistoryEntryTypes) *NullableGetCacheInfoResponseHistoryEntryTypes {
+	return &NullableGetCacheInfoResponseHistoryEntryTypes{value: val, isSet: true}
+}
+
+func (v NullableGetCacheInfoResponseHistoryEntryTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetCacheInfoResponseHistoryEntryTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type GetCacheInfoResponseHistoryEntryGetTypeAttributeType = *GetCacheInfoResponseHistoryEntryTypes
+type GetCacheInfoResponseHistoryEntryGetTypeArgType = GetCacheInfoResponseHistoryEntryTypes
+type GetCacheInfoResponseHistoryEntryGetTypeRetType = GetCacheInfoResponseHistoryEntryTypes
 
 func getGetCacheInfoResponseHistoryEntryGetTypeAttributeTypeOk(arg GetCacheInfoResponseHistoryEntryGetTypeAttributeType) (ret GetCacheInfoResponseHistoryEntryGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -95,11 +196,11 @@ type _GetCacheInfoResponseHistoryEntry GetCacheInfoResponseHistoryEntry
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCacheInfoResponseHistoryEntry(occuredAt GetCacheInfoResponseHistoryEntryGetOccuredAtArgType, occurredAt GetCacheInfoResponseHistoryEntryGetOccurredAtArgType, type_ GetCacheInfoResponseHistoryEntryGetTypeArgType) *GetCacheInfoResponseHistoryEntry {
+func NewGetCacheInfoResponseHistoryEntry(occuredAt GetCacheInfoResponseHistoryEntryGetOccuredAtArgType, occurredAt GetCacheInfoResponseHistoryEntryGetOccurredAtArgType, types GetCacheInfoResponseHistoryEntryGetTypeArgType) *GetCacheInfoResponseHistoryEntry {
 	this := GetCacheInfoResponseHistoryEntry{}
 	setGetCacheInfoResponseHistoryEntryGetOccuredAtAttributeType(&this.OccuredAt, occuredAt)
 	setGetCacheInfoResponseHistoryEntryGetOccurredAtAttributeType(&this.OccurredAt, occurredAt)
-	setGetCacheInfoResponseHistoryEntryGetTypeAttributeType(&this.Type, type_)
+	setGetCacheInfoResponseHistoryEntryGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

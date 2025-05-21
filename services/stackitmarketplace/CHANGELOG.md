@@ -1,3 +1,15 @@
+## v1.3.0 (2025-05-15)
+- **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+
+## v1.2.1 (2025-05-15)
+- **Feature:** Add new method `VendorsSubscriptionsReject`
+
+## v1.2.0 (2025-05-14)
+- **Breaking change:** Introduce typed enum constants for status attributes
+
+## v1.1.0 (2025-05-13)
+- **Breaking Change:** Added organization id to `VendorSubscription`
+
 ## v1.0.1 (2025-05-09)
 - **Feature:** Update user-agent header
 

@@ -23,10 +23,1352 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateAlertConfigReceiver Method for CreateAlertConfigReceiver
+		Create alert config receiver.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiCreateAlertConfigReceiverRequest
+	*/
+	CreateAlertConfigReceiver(ctx context.Context, instanceId string, projectId string) ApiCreateAlertConfigReceiverRequest
+	/*
+		CreateAlertConfigReceiverExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertConfigReceiversResponse
+
+	*/
+	CreateAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigReceiversResponse, error)
+	/*
+		CreateAlertConfigRoute Method for CreateAlertConfigRoute
+		Create alert config route in routes of route.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiCreateAlertConfigRouteRequest
+	*/
+	CreateAlertConfigRoute(ctx context.Context, instanceId string, projectId string) ApiCreateAlertConfigRouteRequest
+	/*
+		CreateAlertConfigRouteExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertConfigRouteResponse
+
+	*/
+	CreateAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error)
+	/*
+		CreateAlertgroups Method for CreateAlertgroups
+		Create alert group.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiCreateAlertgroupsRequest
+	*/
+	CreateAlertgroups(ctx context.Context, instanceId string, projectId string) ApiCreateAlertgroupsRequest
+	/*
+		CreateAlertgroupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	CreateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		CreateAlertrules Method for CreateAlertrules
+		Create alert rule.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiCreateAlertrulesRequest
+	*/
+	CreateAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiCreateAlertrulesRequest
+	/*
+		CreateAlertrulesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRulesResponse
+
+	*/
+	CreateAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error)
+	/*
+		CreateCredentials Method for CreateCredentials
+		Create technical user credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiCreateCredentialsRequest
+	*/
+	CreateCredentials(ctx context.Context, instanceId string, projectId string) ApiCreateCredentialsRequest
+	/*
+		CreateCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return CreateCredentialsResponse
+
+	*/
+	CreateCredentialsExecute(ctx context.Context, instanceId string, projectId string) (*CreateCredentialsResponse, error)
+	/*
+		CreateInstance Method for CreateInstance
+		Create new instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiCreateInstanceRequest
+	*/
+	CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest
+	/*
+		CreateInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return CreateInstanceResponse
+
+	*/
+	CreateInstanceExecute(ctx context.Context, projectId string) (*CreateInstanceResponse, error)
+	/*
+		CreateLogsAlertgroups Method for CreateLogsAlertgroups
+		Create logs alert group config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiCreateLogsAlertgroupsRequest
+	*/
+	CreateLogsAlertgroups(ctx context.Context, instanceId string, projectId string) ApiCreateLogsAlertgroupsRequest
+	/*
+		CreateLogsAlertgroupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	CreateLogsAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		CreateScrapeConfig Method for CreateScrapeConfig
+		Create scrape config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiCreateScrapeConfigRequest
+	*/
+	CreateScrapeConfig(ctx context.Context, instanceId string, projectId string) ApiCreateScrapeConfigRequest
+	/*
+		CreateScrapeConfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ScrapeConfigsResponse
+
+	*/
+	CreateScrapeConfigExecute(ctx context.Context, instanceId string, projectId string) (*ScrapeConfigsResponse, error)
+	/*
+		DeleteAlertConfigReceiver Method for DeleteAlertConfigReceiver
+		Delete alert config receiver.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return ApiDeleteAlertConfigReceiverRequest
+	*/
+	DeleteAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteAlertConfigReceiverRequest
+	/*
+		DeleteAlertConfigReceiverExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return AlertConfigReceiversResponse
+
+	*/
+	DeleteAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigReceiversResponse, error)
+	/*
+		DeleteAlertConfigRoute Method for DeleteAlertConfigRoute
+		Delete alert receiver for route.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return ApiDeleteAlertConfigRouteRequest
+	*/
+	DeleteAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteAlertConfigRouteRequest
+	/*
+		DeleteAlertConfigRouteExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return AlertConfigRouteResponse
+
+	*/
+	DeleteAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error)
+	/*
+		DeleteAlertgroup Method for DeleteAlertgroup
+		Delete alert group config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiDeleteAlertgroupRequest
+	*/
+	DeleteAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertgroupRequest
+	/*
+		DeleteAlertgroupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	DeleteAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		DeleteAlertgroups Method for DeleteAlertgroups
+		Delete alert groups.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiDeleteAlertgroupsRequest
+	*/
+	DeleteAlertgroups(ctx context.Context, instanceId string, projectId string) ApiDeleteAlertgroupsRequest
+	/*
+		DeleteAlertgroupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	DeleteAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		DeleteAlertrules Method for DeleteAlertrules
+		Delete alert rules.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiDeleteAlertrulesRequest
+	*/
+	DeleteAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertrulesRequest
+	/*
+		DeleteAlertrulesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRulesResponse
+
+	*/
+	DeleteAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error)
+	/*
+		DeleteCredentials Method for DeleteCredentials
+		Delete technical credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return ApiDeleteCredentialsRequest
+	*/
+	DeleteCredentials(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialsRequest
+	/*
+		DeleteCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return Message
+
+	*/
+	DeleteCredentialsExecute(ctx context.Context, instanceId string, projectId string, username string) (*Message, error)
+	/*
+		DeleteCredentialsRemoteWriteConfig Method for DeleteCredentialsRemoteWriteConfig
+		Delete remote write config for credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return ApiDeleteCredentialsRemoteWriteConfigRequest
+	*/
+	DeleteCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialsRemoteWriteConfigRequest
+	/*
+		DeleteCredentialsRemoteWriteConfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return CredentialsRemoteWriteDeleteResponse
+
+	*/
+	DeleteCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteDeleteResponse, error)
+	/*
+		DeleteInstance Method for DeleteInstance
+		Delete instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiDeleteInstanceRequest
+	*/
+	DeleteInstance(ctx context.Context, instanceId string, projectId string) ApiDeleteInstanceRequest
+	/*
+		DeleteInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return InstanceResponse
+
+	*/
+	DeleteInstanceExecute(ctx context.Context, instanceId string, projectId string) (*InstanceResponse, error)
+	/*
+		DeleteLogsAlertgroup Method for DeleteLogsAlertgroup
+		Delete logs alert group config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiDeleteLogsAlertgroupRequest
+	*/
+	DeleteLogsAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteLogsAlertgroupRequest
+	/*
+		DeleteLogsAlertgroupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	DeleteLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		DeleteScrapeConfig Method for DeleteScrapeConfig
+		Delete scrape config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param jobName
+		@param projectId
+		@return ApiDeleteScrapeConfigRequest
+	*/
+	DeleteScrapeConfig(ctx context.Context, instanceId string, jobName string, projectId string) ApiDeleteScrapeConfigRequest
+	/*
+		DeleteScrapeConfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param jobName
+		@param projectId
+		@return DeleteScrapeConfigResponse
+
+	*/
+	DeleteScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*DeleteScrapeConfigResponse, error)
+	/*
+		GetAlertConfigReceiver Method for GetAlertConfigReceiver
+		Get alert config receivers.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return ApiGetAlertConfigReceiverRequest
+	*/
+	GetAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetAlertConfigReceiverRequest
+	/*
+		GetAlertConfigReceiverExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return Receiver
+
+	*/
+	GetAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*Receiver, error)
+	/*
+		GetAlertConfigRoute Method for GetAlertConfigRoute
+		Get alert receiver for route.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return ApiGetAlertConfigRouteRequest
+	*/
+	GetAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetAlertConfigRouteRequest
+	/*
+		GetAlertConfigRouteExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return AlertConfigRouteResponse
+
+	*/
+	GetAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error)
+	/*
+		GetAlertConfigs Method for GetAlertConfigs
+		Get alert config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiGetAlertConfigsRequest
+	*/
+	GetAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiGetAlertConfigsRequest
+	/*
+		GetAlertConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return GetAlertConfigsResponse
+
+	*/
+	GetAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GetAlertConfigsResponse, error)
+	/*
+		GetAlertgroup Method for GetAlertgroup
+		Get alert group.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiGetAlertgroupRequest
+	*/
+	GetAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiGetAlertgroupRequest
+	/*
+		GetAlertgroupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertGroupResponse
+
+	*/
+	GetAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupResponse, error)
+	/*
+		GetCredentials Method for GetCredentials
+		Get single technical credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return ApiGetCredentialsRequest
+	*/
+	GetCredentials(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialsRequest
+	/*
+		GetCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return GetCredentialsResponse
+
+	*/
+	GetCredentialsExecute(ctx context.Context, instanceId string, projectId string, username string) (*GetCredentialsResponse, error)
+	/*
+		GetCredentialsRemoteWriteConfig Method for GetCredentialsRemoteWriteConfig
+		Get remote write config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return ApiGetCredentialsRemoteWriteConfigRequest
+	*/
+	GetCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialsRemoteWriteConfigRequest
+	/*
+		GetCredentialsRemoteWriteConfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return CredentialsRemoteWriteConfig
+
+	*/
+	GetCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteConfig, error)
+	/*
+		GetGrafanaConfigs Method for GetGrafanaConfigs
+		Get grafana config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiGetGrafanaConfigsRequest
+	*/
+	GetGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiGetGrafanaConfigsRequest
+	/*
+		GetGrafanaConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return GrafanaConfigs
+
+	*/
+	GetGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GrafanaConfigs, error)
+	/*
+		GetInstance Method for GetInstance
+		Get instance information.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiGetInstanceRequest
+	*/
+	GetInstance(ctx context.Context, instanceId string, projectId string) ApiGetInstanceRequest
+	/*
+		GetInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return GetInstanceResponse
+
+	*/
+	GetInstanceExecute(ctx context.Context, instanceId string, projectId string) (*GetInstanceResponse, error)
+	/*
+		GetLogsAlertgroup Method for GetLogsAlertgroup
+		Get logs alert group config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiGetLogsAlertgroupRequest
+	*/
+	GetLogsAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiGetLogsAlertgroupRequest
+	/*
+		GetLogsAlertgroupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertGroupResponse
+
+	*/
+	GetLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupResponse, error)
+	/*
+		GetMetricsStorageRetention Method for GetMetricsStorageRetention
+		Get metric storage retention time.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiGetMetricsStorageRetentionRequest
+	*/
+	GetMetricsStorageRetention(ctx context.Context, instanceId string, projectId string) ApiGetMetricsStorageRetentionRequest
+	/*
+		GetMetricsStorageRetentionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return GetMetricsStorageRetentionResponse
+
+	*/
+	GetMetricsStorageRetentionExecute(ctx context.Context, instanceId string, projectId string) (*GetMetricsStorageRetentionResponse, error)
+	/*
+		GetScrapeConfig Method for GetScrapeConfig
+		Get scrape config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param jobName
+		@param projectId
+		@return ApiGetScrapeConfigRequest
+	*/
+	GetScrapeConfig(ctx context.Context, instanceId string, jobName string, projectId string) ApiGetScrapeConfigRequest
+	/*
+		GetScrapeConfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param jobName
+		@param projectId
+		@return GetScrapeConfigResponse
+
+	*/
+	GetScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*GetScrapeConfigResponse, error)
+	/*
+		ListACL Method for ListACL
+		Get acl for instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiListACLRequest
+	*/
+	ListACL(ctx context.Context, instanceId string, projectId string) ApiListACLRequest
+	/*
+		ListACLExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ListACLResponse
+
+	*/
+	ListACLExecute(ctx context.Context, instanceId string, projectId string) (*ListACLResponse, error)
+	/*
+		ListAlertConfigReceivers Method for ListAlertConfigReceivers
+		Get alert config receivers.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiListAlertConfigReceiversRequest
+	*/
+	ListAlertConfigReceivers(ctx context.Context, instanceId string, projectId string) ApiListAlertConfigReceiversRequest
+	/*
+		ListAlertConfigReceiversExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertConfigReceiversResponse
+
+	*/
+	ListAlertConfigReceiversExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigReceiversResponse, error)
+	/*
+		ListAlertConfigRoutes Method for ListAlertConfigRoutes
+		Get alert config route.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiListAlertConfigRoutesRequest
+	*/
+	ListAlertConfigRoutes(ctx context.Context, instanceId string, projectId string) ApiListAlertConfigRoutesRequest
+	/*
+		ListAlertConfigRoutesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertConfigRouteResponse
+
+	*/
+	ListAlertConfigRoutesExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error)
+	/*
+		ListAlertgroups Method for ListAlertgroups
+		Get alert groups.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiListAlertgroupsRequest
+	*/
+	ListAlertgroups(ctx context.Context, instanceId string, projectId string) ApiListAlertgroupsRequest
+	/*
+		ListAlertgroupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	ListAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		ListAlertrules Method for ListAlertrules
+		Get alert rules.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiListAlertrulesRequest
+	*/
+	ListAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiListAlertrulesRequest
+	/*
+		ListAlertrulesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRulesResponse
+
+	*/
+	ListAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error)
+	/*
+		ListCredentials Method for ListCredentials
+		Get all technical user credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiListCredentialsRequest
+	*/
+	ListCredentials(ctx context.Context, instanceId string, projectId string) ApiListCredentialsRequest
+	/*
+		ListCredentialsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ListCredentialsResponse
+
+	*/
+	ListCredentialsExecute(ctx context.Context, instanceId string, projectId string) (*ListCredentialsResponse, error)
+	/*
+		ListInstances Method for ListInstances
+		Get all instances for a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiListInstancesRequest
+	*/
+	ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest
+	/*
+		ListInstancesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ListInstancesResponse
+
+	*/
+	ListInstancesExecute(ctx context.Context, projectId string) (*ListInstancesResponse, error)
+	/*
+		ListLogsAlertgroups Method for ListLogsAlertgroups
+		Get logs alert groups config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiListLogsAlertgroupsRequest
+	*/
+	ListLogsAlertgroups(ctx context.Context, instanceId string, projectId string) ApiListLogsAlertgroupsRequest
+	/*
+		ListLogsAlertgroupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	ListLogsAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		ListPlans Method for ListPlans
+		Get all plans.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiListPlansRequest
+	*/
+	ListPlans(ctx context.Context, projectId string) ApiListPlansRequest
+	/*
+		ListPlansExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return PlansResponse
+
+	*/
+	ListPlansExecute(ctx context.Context, projectId string) (*PlansResponse, error)
+	/*
+		ListScrapeConfigs Method for ListScrapeConfigs
+		Get scrape configs.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiListScrapeConfigsRequest
+	*/
+	ListScrapeConfigs(ctx context.Context, instanceId string, projectId string) ApiListScrapeConfigsRequest
+	/*
+		ListScrapeConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ListScrapeConfigsResponse
+
+	*/
+	ListScrapeConfigsExecute(ctx context.Context, instanceId string, projectId string) (*ListScrapeConfigsResponse, error)
+	/*
+		PartialUpdateAlertgroups Method for PartialUpdateAlertgroups
+		Patch alert groups.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiPartialUpdateAlertgroupsRequest
+	*/
+	PartialUpdateAlertgroups(ctx context.Context, instanceId string, projectId string) ApiPartialUpdateAlertgroupsRequest
+	/*
+		PartialUpdateAlertgroupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	PartialUpdateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		PartialUpdateAlertrules Method for PartialUpdateAlertrules
+		Patch alert rules.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiPartialUpdateAlertrulesRequest
+	*/
+	PartialUpdateAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiPartialUpdateAlertrulesRequest
+	/*
+		PartialUpdateAlertrulesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRulesResponse
+
+	*/
+	PartialUpdateAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error)
+	/*
+		UpdateACL Method for UpdateACL
+		Update acl config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateACLRequest
+	*/
+	UpdateACL(ctx context.Context, instanceId string, projectId string) ApiUpdateACLRequest
+	/*
+		UpdateACLExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return Message
+
+	*/
+	UpdateACLExecute(ctx context.Context, instanceId string, projectId string) (*Message, error)
+	/*
+		UpdateAlertConfigReceiver Method for UpdateAlertConfigReceiver
+		Update alert config receiver.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return ApiUpdateAlertConfigReceiverRequest
+	*/
+	UpdateAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateAlertConfigReceiverRequest
+	/*
+		UpdateAlertConfigReceiverExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return AlertConfigReceiversResponse
+
+	*/
+	UpdateAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigReceiversResponse, error)
+	/*
+		UpdateAlertConfigRoute Method for UpdateAlertConfigRoute
+		Update alert receiver for route.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return ApiUpdateAlertConfigRouteRequest
+	*/
+	UpdateAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateAlertConfigRouteRequest
+	/*
+		UpdateAlertConfigRouteExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param receiver
+		@return AlertConfigRouteResponse
+
+	*/
+	UpdateAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error)
+	/*
+		UpdateAlertConfigs Method for UpdateAlertConfigs
+		Update alert config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateAlertConfigsRequest
+	*/
+	UpdateAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateAlertConfigsRequest
+	/*
+		UpdateAlertConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return UpdateAlertConfigsResponse
+
+	*/
+	UpdateAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*UpdateAlertConfigsResponse, error)
+	/*
+		UpdateAlertgroup Method for UpdateAlertgroup
+		Update alert group config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiUpdateAlertgroupRequest
+	*/
+	UpdateAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiUpdateAlertgroupRequest
+	/*
+		UpdateAlertgroupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	UpdateAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		UpdateAlertgroups Method for UpdateAlertgroups
+		Update alert groups.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateAlertgroupsRequest
+	*/
+	UpdateAlertgroups(ctx context.Context, instanceId string, projectId string) ApiUpdateAlertgroupsRequest
+	/*
+		UpdateAlertgroupsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	UpdateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		UpdateCredentialsRemoteWriteConfig Method for UpdateCredentialsRemoteWriteConfig
+		Update remote write config for credentials.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return ApiUpdateCredentialsRemoteWriteConfigRequest
+	*/
+	UpdateCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiUpdateCredentialsRemoteWriteConfigRequest
+	/*
+		UpdateCredentialsRemoteWriteConfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@param username
+		@return CredentialsRemoteWriteConfig
+
+	*/
+	UpdateCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteConfig, error)
+	/*
+		UpdateGrafanaConfigs Method for UpdateGrafanaConfigs
+		Update grafana config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateGrafanaConfigsRequest
+	*/
+	UpdateGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateGrafanaConfigsRequest
+	/*
+		UpdateGrafanaConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return Message
+
+	*/
+	UpdateGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error)
+	/*
+		UpdateInstance Method for UpdateInstance
+		Update instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateInstanceRequest
+	*/
+	UpdateInstance(ctx context.Context, instanceId string, projectId string) ApiUpdateInstanceRequest
+	/*
+		UpdateInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return InstanceResponse
+
+	*/
+	UpdateInstanceExecute(ctx context.Context, instanceId string, projectId string) (*InstanceResponse, error)
+	/*
+		UpdateLogsAlertgroup Method for UpdateLogsAlertgroup
+		Update logs alert group config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiUpdateLogsAlertgroupRequest
+	*/
+	UpdateLogsAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiUpdateLogsAlertgroupRequest
+	/*
+		UpdateLogsAlertgroupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertGroupsResponse
+
+	*/
+	UpdateLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error)
+	/*
+		UpdateMetricsStorageRetention Method for UpdateMetricsStorageRetention
+		Update metric update retention time.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateMetricsStorageRetentionRequest
+	*/
+	UpdateMetricsStorageRetention(ctx context.Context, instanceId string, projectId string) ApiUpdateMetricsStorageRetentionRequest
+	/*
+		UpdateMetricsStorageRetentionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return Message
+
+	*/
+	UpdateMetricsStorageRetentionExecute(ctx context.Context, instanceId string, projectId string) (*Message, error)
+	/*
+		UpdateScrapeConfig Method for UpdateScrapeConfig
+		Update scrape config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param jobName
+		@param projectId
+		@return ApiUpdateScrapeConfigRequest
+	*/
+	UpdateScrapeConfig(ctx context.Context, instanceId string, jobName string, projectId string) ApiUpdateScrapeConfigRequest
+	/*
+		UpdateScrapeConfigExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param jobName
+		@param projectId
+		@return ScrapeConfigsResponse
+
+	*/
+	UpdateScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*ScrapeConfigsResponse, error)
+}
+
+type ApiCreateAlertConfigReceiverRequest interface {
+	CreateAlertConfigReceiverPayload(createAlertConfigReceiverPayload CreateAlertConfigReceiverPayload) ApiCreateAlertConfigReceiverRequest
+	Execute() (*AlertConfigReceiversResponse, error)
+}
+
+type ApiCreateAlertConfigRouteRequest interface {
+	CreateAlertConfigRoutePayload(createAlertConfigRoutePayload CreateAlertConfigRoutePayload) ApiCreateAlertConfigRouteRequest
+	Execute() (*AlertConfigRouteResponse, error)
+}
+
+type ApiCreateAlertgroupsRequest interface {
+	CreateAlertgroupsPayload(createAlertgroupsPayload CreateAlertgroupsPayload) ApiCreateAlertgroupsRequest
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiCreateAlertrulesRequest interface {
+	CreateAlertrulesPayload(createAlertrulesPayload CreateAlertrulesPayload) ApiCreateAlertrulesRequest
+	Execute() (*AlertRulesResponse, error)
+}
+
+type ApiCreateCredentialsRequest interface {
+	Execute() (*CreateCredentialsResponse, error)
+}
+
+type ApiCreateInstanceRequest interface {
+	CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest
+	Execute() (*CreateInstanceResponse, error)
+}
+
+type ApiCreateLogsAlertgroupsRequest interface {
+	CreateLogsAlertgroupsPayload(createLogsAlertgroupsPayload CreateLogsAlertgroupsPayload) ApiCreateLogsAlertgroupsRequest
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiCreateScrapeConfigRequest interface {
+	CreateScrapeConfigPayload(createScrapeConfigPayload CreateScrapeConfigPayload) ApiCreateScrapeConfigRequest
+	Execute() (*ScrapeConfigsResponse, error)
+}
+
+type ApiDeleteAlertConfigReceiverRequest interface {
+	Execute() (*AlertConfigReceiversResponse, error)
+}
+
+type ApiDeleteAlertConfigRouteRequest interface {
+	Execute() (*AlertConfigRouteResponse, error)
+}
+
+type ApiDeleteAlertgroupRequest interface {
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiDeleteAlertgroupsRequest interface {
+	// Name of the groups that should be deleted
+	GroupName(groupName []string) ApiDeleteAlertgroupsRequest
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiDeleteAlertrulesRequest interface {
+	// Name of the alert rules that should be deleted
+	AlertName(alertName []string) ApiDeleteAlertrulesRequest
+	Execute() (*AlertRulesResponse, error)
+}
+
+type ApiDeleteCredentialsRequest interface {
+	Execute() (*Message, error)
+}
+
+type ApiDeleteCredentialsRemoteWriteConfigRequest interface {
+	Execute() (*CredentialsRemoteWriteDeleteResponse, error)
+}
+
+type ApiDeleteInstanceRequest interface {
+	Execute() (*InstanceResponse, error)
+}
+
+type ApiDeleteLogsAlertgroupRequest interface {
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiDeleteScrapeConfigRequest interface {
+	Execute() (*DeleteScrapeConfigResponse, error)
+}
+
+type ApiGetAlertConfigReceiverRequest interface {
+	Execute() (*Receiver, error)
+}
+
+type ApiGetAlertConfigRouteRequest interface {
+	Execute() (*AlertConfigRouteResponse, error)
+}
+
+type ApiGetAlertConfigsRequest interface {
+	Execute() (*GetAlertConfigsResponse, error)
+}
+
+type ApiGetAlertgroupRequest interface {
+	Execute() (*AlertGroupResponse, error)
+}
+
+type ApiGetCredentialsRequest interface {
+	Execute() (*GetCredentialsResponse, error)
+}
+
+type ApiGetCredentialsRemoteWriteConfigRequest interface {
+	Execute() (*CredentialsRemoteWriteConfig, error)
+}
+
+type ApiGetGrafanaConfigsRequest interface {
+	Execute() (*GrafanaConfigs, error)
+}
+
+type ApiGetInstanceRequest interface {
+	Execute() (*GetInstanceResponse, error)
+}
+
+type ApiGetLogsAlertgroupRequest interface {
+	Execute() (*AlertGroupResponse, error)
+}
+
+type ApiGetMetricsStorageRetentionRequest interface {
+	Execute() (*GetMetricsStorageRetentionResponse, error)
+}
+
+type ApiGetScrapeConfigRequest interface {
+	Execute() (*GetScrapeConfigResponse, error)
+}
+
+type ApiListACLRequest interface {
+	Execute() (*ListACLResponse, error)
+}
+
+type ApiListAlertConfigReceiversRequest interface {
+	Execute() (*AlertConfigReceiversResponse, error)
+}
+
+type ApiListAlertConfigRoutesRequest interface {
+	Execute() (*AlertConfigRouteResponse, error)
+}
+
+type ApiListAlertgroupsRequest interface {
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiListAlertrulesRequest interface {
+	Execute() (*AlertRulesResponse, error)
+}
+
+type ApiListCredentialsRequest interface {
+	Execute() (*ListCredentialsResponse, error)
+}
+
+type ApiListInstancesRequest interface {
+	Execute() (*ListInstancesResponse, error)
+}
+
+type ApiListLogsAlertgroupsRequest interface {
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiListPlansRequest interface {
+	Execute() (*PlansResponse, error)
+}
+
+type ApiListScrapeConfigsRequest interface {
+	Execute() (*ListScrapeConfigsResponse, error)
+}
+
+type ApiPartialUpdateAlertgroupsRequest interface {
+	UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiPartialUpdateAlertgroupsRequest
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiPartialUpdateAlertrulesRequest interface {
+	UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner []UpdateAlertgroupsRequestInnerRulesInner) ApiPartialUpdateAlertrulesRequest
+	Execute() (*AlertRulesResponse, error)
+}
+
+type ApiUpdateACLRequest interface {
+	UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest
+	Execute() (*Message, error)
+}
+
+type ApiUpdateAlertConfigReceiverRequest interface {
+	UpdateAlertConfigReceiverPayload(updateAlertConfigReceiverPayload UpdateAlertConfigReceiverPayload) ApiUpdateAlertConfigReceiverRequest
+	Execute() (*AlertConfigReceiversResponse, error)
+}
+
+type ApiUpdateAlertConfigRouteRequest interface {
+	UpdateAlertConfigRoutePayload(updateAlertConfigRoutePayload UpdateAlertConfigRoutePayload) ApiUpdateAlertConfigRouteRequest
+	Execute() (*AlertConfigRouteResponse, error)
+}
+
+type ApiUpdateAlertConfigsRequest interface {
+	UpdateAlertConfigsPayload(updateAlertConfigsPayload UpdateAlertConfigsPayload) ApiUpdateAlertConfigsRequest
+	Execute() (*UpdateAlertConfigsResponse, error)
+}
+
+type ApiUpdateAlertgroupRequest interface {
+	UpdateAlertgroupPayload(updateAlertgroupPayload UpdateAlertgroupPayload) ApiUpdateAlertgroupRequest
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiUpdateAlertgroupsRequest interface {
+	UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiUpdateAlertgroupsRequest
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiUpdateCredentialsRemoteWriteConfigRequest interface {
+	UpdateCredentialsRemoteWriteConfigPayload(updateCredentialsRemoteWriteConfigPayload UpdateCredentialsRemoteWriteConfigPayload) ApiUpdateCredentialsRemoteWriteConfigRequest
+	Execute() (*CredentialsRemoteWriteConfig, error)
+}
+
+type ApiUpdateGrafanaConfigsRequest interface {
+	UpdateGrafanaConfigsPayload(updateGrafanaConfigsPayload UpdateGrafanaConfigsPayload) ApiUpdateGrafanaConfigsRequest
+	Execute() (*Message, error)
+}
+
+type ApiUpdateInstanceRequest interface {
+	UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest
+	Execute() (*InstanceResponse, error)
+}
+
+type ApiUpdateLogsAlertgroupRequest interface {
+	UpdateLogsAlertgroupPayload(updateLogsAlertgroupPayload UpdateLogsAlertgroupPayload) ApiUpdateLogsAlertgroupRequest
+	Execute() (*AlertGroupsResponse, error)
+}
+
+type ApiUpdateMetricsStorageRetentionRequest interface {
+	UpdateMetricsStorageRetentionPayload(updateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload) ApiUpdateMetricsStorageRetentionRequest
+	Execute() (*Message, error)
+}
+
+type ApiUpdateScrapeConfigRequest interface {
+	UpdateScrapeConfigPayload(updateScrapeConfigPayload UpdateScrapeConfigPayload) ApiUpdateScrapeConfigRequest
+	Execute() (*ScrapeConfigsResponse, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateAlertConfigReceiverRequest struct {
+type CreateAlertConfigReceiverRequest struct {
 	ctx                              context.Context
 	apiService                       *DefaultApiService
 	instanceId                       string
@@ -34,12 +1376,12 @@ type ApiCreateAlertConfigReceiverRequest struct {
 	createAlertConfigReceiverPayload *CreateAlertConfigReceiverPayload
 }
 
-func (r ApiCreateAlertConfigReceiverRequest) CreateAlertConfigReceiverPayload(createAlertConfigReceiverPayload CreateAlertConfigReceiverPayload) ApiCreateAlertConfigReceiverRequest {
+func (r CreateAlertConfigReceiverRequest) CreateAlertConfigReceiverPayload(createAlertConfigReceiverPayload CreateAlertConfigReceiverPayload) ApiCreateAlertConfigReceiverRequest {
 	r.createAlertConfigReceiverPayload = &createAlertConfigReceiverPayload
 	return r
 }
 
-func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
+func (r CreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -47,7 +1389,11 @@ func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		localVarReturnValue *AlertConfigReceiversResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertConfigReceiver")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertConfigReceiver")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -82,7 +1428,7 @@ func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 	}
 	// body params
 	localVarPostBody = r.createAlertConfigReceiverPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -92,7 +1438,7 @@ func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -116,7 +1462,7 @@ func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -127,7 +1473,7 @@ func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -138,7 +1484,7 @@ func (r ApiCreateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -162,7 +1508,7 @@ Create alert config receiver.
 	@return ApiCreateAlertConfigReceiverRequest
 */
 func (a *APIClient) CreateAlertConfigReceiver(ctx context.Context, instanceId string, projectId string) ApiCreateAlertConfigReceiverRequest {
-	return ApiCreateAlertConfigReceiverRequest{
+	return CreateAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -171,7 +1517,7 @@ func (a *APIClient) CreateAlertConfigReceiver(ctx context.Context, instanceId st
 }
 
 func (a *APIClient) CreateAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigReceiversResponse, error) {
-	r := ApiCreateAlertConfigReceiverRequest{
+	r := CreateAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -180,7 +1526,7 @@ func (a *APIClient) CreateAlertConfigReceiverExecute(ctx context.Context, instan
 	return r.Execute()
 }
 
-type ApiCreateAlertConfigRouteRequest struct {
+type CreateAlertConfigRouteRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
 	instanceId                    string
@@ -188,12 +1534,12 @@ type ApiCreateAlertConfigRouteRequest struct {
 	createAlertConfigRoutePayload *CreateAlertConfigRoutePayload
 }
 
-func (r ApiCreateAlertConfigRouteRequest) CreateAlertConfigRoutePayload(createAlertConfigRoutePayload CreateAlertConfigRoutePayload) ApiCreateAlertConfigRouteRequest {
+func (r CreateAlertConfigRouteRequest) CreateAlertConfigRoutePayload(createAlertConfigRoutePayload CreateAlertConfigRoutePayload) ApiCreateAlertConfigRouteRequest {
 	r.createAlertConfigRoutePayload = &createAlertConfigRoutePayload
 	return r
 }
 
-func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+func (r CreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -201,7 +1547,11 @@ func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		localVarReturnValue *AlertConfigRouteResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertConfigRoute")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertConfigRoute")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -236,7 +1586,7 @@ func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 	}
 	// body params
 	localVarPostBody = r.createAlertConfigRoutePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -246,7 +1596,7 @@ func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -270,7 +1620,7 @@ func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -281,7 +1631,7 @@ func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -292,7 +1642,7 @@ func (r ApiCreateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -316,7 +1666,7 @@ Create alert config route in routes of route.
 	@return ApiCreateAlertConfigRouteRequest
 */
 func (a *APIClient) CreateAlertConfigRoute(ctx context.Context, instanceId string, projectId string) ApiCreateAlertConfigRouteRequest {
-	return ApiCreateAlertConfigRouteRequest{
+	return CreateAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -325,7 +1675,7 @@ func (a *APIClient) CreateAlertConfigRoute(ctx context.Context, instanceId strin
 }
 
 func (a *APIClient) CreateAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error) {
-	r := ApiCreateAlertConfigRouteRequest{
+	r := CreateAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -334,7 +1684,7 @@ func (a *APIClient) CreateAlertConfigRouteExecute(ctx context.Context, instanceI
 	return r.Execute()
 }
 
-type ApiCreateAlertgroupsRequest struct {
+type CreateAlertgroupsRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	instanceId               string
@@ -342,12 +1692,12 @@ type ApiCreateAlertgroupsRequest struct {
 	createAlertgroupsPayload *CreateAlertgroupsPayload
 }
 
-func (r ApiCreateAlertgroupsRequest) CreateAlertgroupsPayload(createAlertgroupsPayload CreateAlertgroupsPayload) ApiCreateAlertgroupsRequest {
+func (r CreateAlertgroupsRequest) CreateAlertgroupsPayload(createAlertgroupsPayload CreateAlertgroupsPayload) ApiCreateAlertgroupsRequest {
 	r.createAlertgroupsPayload = &createAlertgroupsPayload
 	return r
 }
 
-func (r ApiCreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
+func (r CreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -355,7 +1705,11 @@ func (r ApiCreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertgroups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertgroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -390,7 +1744,7 @@ func (r ApiCreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createAlertgroupsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -400,7 +1754,7 @@ func (r ApiCreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -424,7 +1778,7 @@ func (r ApiCreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -435,7 +1789,7 @@ func (r ApiCreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -446,7 +1800,7 @@ func (r ApiCreateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -470,7 +1824,7 @@ Create alert group.
 	@return ApiCreateAlertgroupsRequest
 */
 func (a *APIClient) CreateAlertgroups(ctx context.Context, instanceId string, projectId string) ApiCreateAlertgroupsRequest {
-	return ApiCreateAlertgroupsRequest{
+	return CreateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -479,7 +1833,7 @@ func (a *APIClient) CreateAlertgroups(ctx context.Context, instanceId string, pr
 }
 
 func (a *APIClient) CreateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiCreateAlertgroupsRequest{
+	r := CreateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -488,7 +1842,7 @@ func (a *APIClient) CreateAlertgroupsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
-type ApiCreateAlertrulesRequest struct {
+type CreateAlertrulesRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	groupName               string
@@ -497,12 +1851,12 @@ type ApiCreateAlertrulesRequest struct {
 	createAlertrulesPayload *CreateAlertrulesPayload
 }
 
-func (r ApiCreateAlertrulesRequest) CreateAlertrulesPayload(createAlertrulesPayload CreateAlertrulesPayload) ApiCreateAlertrulesRequest {
+func (r CreateAlertrulesRequest) CreateAlertrulesPayload(createAlertrulesPayload CreateAlertrulesPayload) ApiCreateAlertrulesRequest {
 	r.createAlertrulesPayload = &createAlertrulesPayload
 	return r
 }
 
-func (r ApiCreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
+func (r CreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -510,7 +1864,11 @@ func (r ApiCreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		localVarReturnValue *AlertRulesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertrules")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertrules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -546,7 +1904,7 @@ func (r ApiCreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createAlertrulesPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -556,7 +1914,7 @@ func (r ApiCreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -580,7 +1938,7 @@ func (r ApiCreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -591,7 +1949,7 @@ func (r ApiCreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -602,7 +1960,7 @@ func (r ApiCreateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -627,7 +1985,7 @@ Create alert rule.
 	@return ApiCreateAlertrulesRequest
 */
 func (a *APIClient) CreateAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiCreateAlertrulesRequest {
-	return ApiCreateAlertrulesRequest{
+	return CreateAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -637,7 +1995,7 @@ func (a *APIClient) CreateAlertrules(ctx context.Context, groupName string, inst
 }
 
 func (a *APIClient) CreateAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error) {
-	r := ApiCreateAlertrulesRequest{
+	r := CreateAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -647,14 +2005,14 @@ func (a *APIClient) CreateAlertrulesExecute(ctx context.Context, groupName strin
 	return r.Execute()
 }
 
-type ApiCreateCredentialsRequest struct {
+type CreateCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) {
+func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -662,7 +2020,11 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		localVarReturnValue *CreateCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -692,7 +2054,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -702,7 +2064,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -726,7 +2088,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -737,7 +2099,7 @@ func (r ApiCreateCredentialsRequest) Execute() (*CreateCredentialsResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -761,7 +2123,7 @@ Create technical user credentials.
 	@return ApiCreateCredentialsRequest
 */
 func (a *APIClient) CreateCredentials(ctx context.Context, instanceId string, projectId string) ApiCreateCredentialsRequest {
-	return ApiCreateCredentialsRequest{
+	return CreateCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -770,7 +2132,7 @@ func (a *APIClient) CreateCredentials(ctx context.Context, instanceId string, pr
 }
 
 func (a *APIClient) CreateCredentialsExecute(ctx context.Context, instanceId string, projectId string) (*CreateCredentialsResponse, error) {
-	r := ApiCreateCredentialsRequest{
+	r := CreateCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -779,19 +2141,19 @@ func (a *APIClient) CreateCredentialsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
-type ApiCreateInstanceRequest struct {
+type CreateInstanceRequest struct {
 	ctx                   context.Context
 	apiService            *DefaultApiService
 	projectId             string
 	createInstancePayload *CreateInstancePayload
 }
 
-func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
+func (r CreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
 }
 
-func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
+func (r CreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -799,7 +2161,11 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 		localVarReturnValue *CreateInstanceResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -833,7 +2199,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createInstancePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -843,7 +2209,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -867,7 +2233,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -878,7 +2244,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -889,7 +2255,7 @@ func (r ApiCreateInstanceRequest) Execute() (*CreateInstanceResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -912,7 +2278,7 @@ Create new instance.
 	@return ApiCreateInstanceRequest
 */
 func (a *APIClient) CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest {
-	return ApiCreateInstanceRequest{
+	return CreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -920,7 +2286,7 @@ func (a *APIClient) CreateInstance(ctx context.Context, projectId string) ApiCre
 }
 
 func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string) (*CreateInstanceResponse, error) {
-	r := ApiCreateInstanceRequest{
+	r := CreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -928,7 +2294,7 @@ func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string)
 	return r.Execute()
 }
 
-type ApiCreateLogsAlertgroupsRequest struct {
+type CreateLogsAlertgroupsRequest struct {
 	ctx                          context.Context
 	apiService                   *DefaultApiService
 	instanceId                   string
@@ -936,12 +2302,12 @@ type ApiCreateLogsAlertgroupsRequest struct {
 	createLogsAlertgroupsPayload *CreateLogsAlertgroupsPayload
 }
 
-func (r ApiCreateLogsAlertgroupsRequest) CreateLogsAlertgroupsPayload(createLogsAlertgroupsPayload CreateLogsAlertgroupsPayload) ApiCreateLogsAlertgroupsRequest {
+func (r CreateLogsAlertgroupsRequest) CreateLogsAlertgroupsPayload(createLogsAlertgroupsPayload CreateLogsAlertgroupsPayload) ApiCreateLogsAlertgroupsRequest {
 	r.createLogsAlertgroupsPayload = &createLogsAlertgroupsPayload
 	return r
 }
 
-func (r ApiCreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
+func (r CreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -949,7 +2315,11 @@ func (r ApiCreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error)
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLogsAlertgroups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLogsAlertgroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -984,7 +2354,7 @@ func (r ApiCreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error)
 	}
 	// body params
 	localVarPostBody = r.createLogsAlertgroupsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -994,7 +2364,7 @@ func (r ApiCreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error)
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1018,7 +2388,7 @@ func (r ApiCreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1029,7 +2399,7 @@ func (r ApiCreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1040,7 +2410,7 @@ func (r ApiCreateLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error)
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1064,7 +2434,7 @@ Create logs alert group config.
 	@return ApiCreateLogsAlertgroupsRequest
 */
 func (a *APIClient) CreateLogsAlertgroups(ctx context.Context, instanceId string, projectId string) ApiCreateLogsAlertgroupsRequest {
-	return ApiCreateLogsAlertgroupsRequest{
+	return CreateLogsAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1073,7 +2443,7 @@ func (a *APIClient) CreateLogsAlertgroups(ctx context.Context, instanceId string
 }
 
 func (a *APIClient) CreateLogsAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiCreateLogsAlertgroupsRequest{
+	r := CreateLogsAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1082,7 +2452,7 @@ func (a *APIClient) CreateLogsAlertgroupsExecute(ctx context.Context, instanceId
 	return r.Execute()
 }
 
-type ApiCreateScrapeConfigRequest struct {
+type CreateScrapeConfigRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	instanceId                string
@@ -1090,12 +2460,12 @@ type ApiCreateScrapeConfigRequest struct {
 	createScrapeConfigPayload *CreateScrapeConfigPayload
 }
 
-func (r ApiCreateScrapeConfigRequest) CreateScrapeConfigPayload(createScrapeConfigPayload CreateScrapeConfigPayload) ApiCreateScrapeConfigRequest {
+func (r CreateScrapeConfigRequest) CreateScrapeConfigPayload(createScrapeConfigPayload CreateScrapeConfigPayload) ApiCreateScrapeConfigRequest {
 	r.createScrapeConfigPayload = &createScrapeConfigPayload
 	return r
 }
 
-func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) {
+func (r CreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1103,7 +2473,11 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		localVarReturnValue *ScrapeConfigsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateScrapeConfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateScrapeConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1138,7 +2512,7 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	}
 	// body params
 	localVarPostBody = r.createScrapeConfigPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1148,7 +2522,7 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1172,7 +2546,7 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1183,7 +2557,7 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1194,7 +2568,7 @@ func (r ApiCreateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1218,7 +2592,7 @@ Create scrape config.
 	@return ApiCreateScrapeConfigRequest
 */
 func (a *APIClient) CreateScrapeConfig(ctx context.Context, instanceId string, projectId string) ApiCreateScrapeConfigRequest {
-	return ApiCreateScrapeConfigRequest{
+	return CreateScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1227,7 +2601,7 @@ func (a *APIClient) CreateScrapeConfig(ctx context.Context, instanceId string, p
 }
 
 func (a *APIClient) CreateScrapeConfigExecute(ctx context.Context, instanceId string, projectId string) (*ScrapeConfigsResponse, error) {
-	r := ApiCreateScrapeConfigRequest{
+	r := CreateScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1236,7 +2610,7 @@ func (a *APIClient) CreateScrapeConfigExecute(ctx context.Context, instanceId st
 	return r.Execute()
 }
 
-type ApiDeleteAlertConfigReceiverRequest struct {
+type DeleteAlertConfigReceiverRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -1244,7 +2618,7 @@ type ApiDeleteAlertConfigReceiverRequest struct {
 	receiver   string
 }
 
-func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
+func (r DeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1252,7 +2626,11 @@ func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		localVarReturnValue *AlertConfigReceiversResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertConfigReceiver")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertConfigReceiver")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1283,7 +2661,7 @@ func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1293,7 +2671,7 @@ func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1317,7 +2695,7 @@ func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1328,7 +2706,7 @@ func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1339,7 +2717,7 @@ func (r ApiDeleteAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1364,7 +2742,7 @@ Delete alert config receiver.
 	@return ApiDeleteAlertConfigReceiverRequest
 */
 func (a *APIClient) DeleteAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteAlertConfigReceiverRequest {
-	return ApiDeleteAlertConfigReceiverRequest{
+	return DeleteAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1374,7 +2752,7 @@ func (a *APIClient) DeleteAlertConfigReceiver(ctx context.Context, instanceId st
 }
 
 func (a *APIClient) DeleteAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigReceiversResponse, error) {
-	r := ApiDeleteAlertConfigReceiverRequest{
+	r := DeleteAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1384,7 +2762,7 @@ func (a *APIClient) DeleteAlertConfigReceiverExecute(ctx context.Context, instan
 	return r.Execute()
 }
 
-type ApiDeleteAlertConfigRouteRequest struct {
+type DeleteAlertConfigRouteRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -1392,7 +2770,7 @@ type ApiDeleteAlertConfigRouteRequest struct {
 	receiver   string
 }
 
-func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+func (r DeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1400,7 +2778,11 @@ func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		localVarReturnValue *AlertConfigRouteResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertConfigRoute")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertConfigRoute")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1431,7 +2813,7 @@ func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1441,7 +2823,7 @@ func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1465,7 +2847,7 @@ func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1476,7 +2858,7 @@ func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1487,7 +2869,7 @@ func (r ApiDeleteAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1512,7 +2894,7 @@ Delete alert receiver for route.
 	@return ApiDeleteAlertConfigRouteRequest
 */
 func (a *APIClient) DeleteAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiDeleteAlertConfigRouteRequest {
-	return ApiDeleteAlertConfigRouteRequest{
+	return DeleteAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1522,7 +2904,7 @@ func (a *APIClient) DeleteAlertConfigRoute(ctx context.Context, instanceId strin
 }
 
 func (a *APIClient) DeleteAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error) {
-	r := ApiDeleteAlertConfigRouteRequest{
+	r := DeleteAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1532,7 +2914,7 @@ func (a *APIClient) DeleteAlertConfigRouteExecute(ctx context.Context, instanceI
 	return r.Execute()
 }
 
-type ApiDeleteAlertgroupRequest struct {
+type DeleteAlertgroupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	groupName  string
@@ -1540,7 +2922,7 @@ type ApiDeleteAlertgroupRequest struct {
 	projectId  string
 }
 
-func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
+func (r DeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1548,7 +2930,11 @@ func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertgroup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertgroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1579,7 +2965,7 @@ func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1589,7 +2975,7 @@ func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1613,7 +2999,7 @@ func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1624,7 +3010,7 @@ func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1635,7 +3021,7 @@ func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1646,7 +3032,7 @@ func (r ApiDeleteAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1671,7 +3057,7 @@ Delete alert group config.
 	@return ApiDeleteAlertgroupRequest
 */
 func (a *APIClient) DeleteAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertgroupRequest {
-	return ApiDeleteAlertgroupRequest{
+	return DeleteAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -1681,7 +3067,7 @@ func (a *APIClient) DeleteAlertgroup(ctx context.Context, groupName string, inst
 }
 
 func (a *APIClient) DeleteAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiDeleteAlertgroupRequest{
+	r := DeleteAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -1691,7 +3077,7 @@ func (a *APIClient) DeleteAlertgroupExecute(ctx context.Context, groupName strin
 	return r.Execute()
 }
 
-type ApiDeleteAlertgroupsRequest struct {
+type DeleteAlertgroupsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -1701,12 +3087,12 @@ type ApiDeleteAlertgroupsRequest struct {
 
 // Name of the groups that should be deleted
 
-func (r ApiDeleteAlertgroupsRequest) GroupName(groupName []string) ApiDeleteAlertgroupsRequest {
+func (r DeleteAlertgroupsRequest) GroupName(groupName []string) ApiDeleteAlertgroupsRequest {
 	r.groupName = &groupName
 	return r
 }
 
-func (r ApiDeleteAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
+func (r DeleteAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1714,7 +3100,11 @@ func (r ApiDeleteAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertgroups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertgroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1748,7 +3138,7 @@ func (r ApiDeleteAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1758,7 +3148,7 @@ func (r ApiDeleteAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1782,7 +3172,7 @@ func (r ApiDeleteAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1793,7 +3183,7 @@ func (r ApiDeleteAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1817,7 +3207,7 @@ Delete alert groups.
 	@return ApiDeleteAlertgroupsRequest
 */
 func (a *APIClient) DeleteAlertgroups(ctx context.Context, instanceId string, projectId string) ApiDeleteAlertgroupsRequest {
-	return ApiDeleteAlertgroupsRequest{
+	return DeleteAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1826,7 +3216,7 @@ func (a *APIClient) DeleteAlertgroups(ctx context.Context, instanceId string, pr
 }
 
 func (a *APIClient) DeleteAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiDeleteAlertgroupsRequest{
+	r := DeleteAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -1835,7 +3225,7 @@ func (a *APIClient) DeleteAlertgroupsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
-type ApiDeleteAlertrulesRequest struct {
+type DeleteAlertrulesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	groupName  string
@@ -1846,12 +3236,12 @@ type ApiDeleteAlertrulesRequest struct {
 
 // Name of the alert rules that should be deleted
 
-func (r ApiDeleteAlertrulesRequest) AlertName(alertName []string) ApiDeleteAlertrulesRequest {
+func (r DeleteAlertrulesRequest) AlertName(alertName []string) ApiDeleteAlertrulesRequest {
 	r.alertName = &alertName
 	return r
 }
 
-func (r ApiDeleteAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
+func (r DeleteAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -1859,7 +3249,11 @@ func (r ApiDeleteAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		localVarReturnValue *AlertRulesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertrules")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertrules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1894,7 +3288,7 @@ func (r ApiDeleteAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1904,7 +3298,7 @@ func (r ApiDeleteAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1928,7 +3322,7 @@ func (r ApiDeleteAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1939,7 +3333,7 @@ func (r ApiDeleteAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1964,7 +3358,7 @@ Delete alert rules.
 	@return ApiDeleteAlertrulesRequest
 */
 func (a *APIClient) DeleteAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertrulesRequest {
-	return ApiDeleteAlertrulesRequest{
+	return DeleteAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -1974,7 +3368,7 @@ func (a *APIClient) DeleteAlertrules(ctx context.Context, groupName string, inst
 }
 
 func (a *APIClient) DeleteAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error) {
-	r := ApiDeleteAlertrulesRequest{
+	r := DeleteAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -1984,7 +3378,7 @@ func (a *APIClient) DeleteAlertrulesExecute(ctx context.Context, groupName strin
 	return r.Execute()
 }
 
-type ApiDeleteCredentialsRequest struct {
+type DeleteCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -1992,7 +3386,7 @@ type ApiDeleteCredentialsRequest struct {
 	username   string
 }
 
-func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
+func (r DeleteCredentialsRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -2000,7 +3394,11 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2031,7 +3429,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2041,7 +3439,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2065,7 +3463,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2076,7 +3474,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2087,7 +3485,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2098,7 +3496,7 @@ func (r ApiDeleteCredentialsRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2123,7 +3521,7 @@ Delete technical credentials.
 	@return ApiDeleteCredentialsRequest
 */
 func (a *APIClient) DeleteCredentials(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialsRequest {
-	return ApiDeleteCredentialsRequest{
+	return DeleteCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2133,7 +3531,7 @@ func (a *APIClient) DeleteCredentials(ctx context.Context, instanceId string, pr
 }
 
 func (a *APIClient) DeleteCredentialsExecute(ctx context.Context, instanceId string, projectId string, username string) (*Message, error) {
-	r := ApiDeleteCredentialsRequest{
+	r := DeleteCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2143,7 +3541,7 @@ func (a *APIClient) DeleteCredentialsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
-type ApiDeleteCredentialsRemoteWriteConfigRequest struct {
+type DeleteCredentialsRemoteWriteConfigRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -2151,7 +3549,7 @@ type ApiDeleteCredentialsRemoteWriteConfigRequest struct {
 	username   string
 }
 
-func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteDeleteResponse, error) {
+func (r DeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteDeleteResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -2159,7 +3557,11 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		localVarReturnValue *CredentialsRemoteWriteDeleteResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentialsRemoteWriteConfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentialsRemoteWriteConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2190,7 +3592,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2200,7 +3602,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2224,7 +3626,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2235,7 +3637,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2246,7 +3648,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2257,7 +3659,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2268,7 +3670,7 @@ func (r ApiDeleteCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2293,7 +3695,7 @@ Delete remote write config for credentials.
 	@return ApiDeleteCredentialsRemoteWriteConfigRequest
 */
 func (a *APIClient) DeleteCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiDeleteCredentialsRemoteWriteConfigRequest {
-	return ApiDeleteCredentialsRemoteWriteConfigRequest{
+	return DeleteCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2303,7 +3705,7 @@ func (a *APIClient) DeleteCredentialsRemoteWriteConfig(ctx context.Context, inst
 }
 
 func (a *APIClient) DeleteCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteDeleteResponse, error) {
-	r := ApiDeleteCredentialsRemoteWriteConfigRequest{
+	r := DeleteCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2313,14 +3715,14 @@ func (a *APIClient) DeleteCredentialsRemoteWriteConfigExecute(ctx context.Contex
 	return r.Execute()
 }
 
-type ApiDeleteInstanceRequest struct {
+type DeleteInstanceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
+func (r DeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -2328,7 +3730,11 @@ func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 		localVarReturnValue *InstanceResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2358,7 +3764,7 @@ func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2368,7 +3774,7 @@ func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2392,7 +3798,7 @@ func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2403,7 +3809,7 @@ func (r ApiDeleteInstanceRequest) Execute() (*InstanceResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2427,7 +3833,7 @@ Delete instance.
 	@return ApiDeleteInstanceRequest
 */
 func (a *APIClient) DeleteInstance(ctx context.Context, instanceId string, projectId string) ApiDeleteInstanceRequest {
-	return ApiDeleteInstanceRequest{
+	return DeleteInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2436,7 +3842,7 @@ func (a *APIClient) DeleteInstance(ctx context.Context, instanceId string, proje
 }
 
 func (a *APIClient) DeleteInstanceExecute(ctx context.Context, instanceId string, projectId string) (*InstanceResponse, error) {
-	r := ApiDeleteInstanceRequest{
+	r := DeleteInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2445,7 +3851,7 @@ func (a *APIClient) DeleteInstanceExecute(ctx context.Context, instanceId string
 	return r.Execute()
 }
 
-type ApiDeleteLogsAlertgroupRequest struct {
+type DeleteLogsAlertgroupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	groupName  string
@@ -2453,7 +3859,7 @@ type ApiDeleteLogsAlertgroupRequest struct {
 	projectId  string
 }
 
-func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
+func (r DeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -2461,7 +3867,11 @@ func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLogsAlertgroup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLogsAlertgroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2492,7 +3902,7 @@ func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2502,7 +3912,7 @@ func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2526,7 +3936,7 @@ func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2537,7 +3947,7 @@ func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2548,7 +3958,7 @@ func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2559,7 +3969,7 @@ func (r ApiDeleteLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2584,7 +3994,7 @@ Delete logs alert group config.
 	@return ApiDeleteLogsAlertgroupRequest
 */
 func (a *APIClient) DeleteLogsAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteLogsAlertgroupRequest {
-	return ApiDeleteLogsAlertgroupRequest{
+	return DeleteLogsAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -2594,7 +4004,7 @@ func (a *APIClient) DeleteLogsAlertgroup(ctx context.Context, groupName string, 
 }
 
 func (a *APIClient) DeleteLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiDeleteLogsAlertgroupRequest{
+	r := DeleteLogsAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -2604,7 +4014,7 @@ func (a *APIClient) DeleteLogsAlertgroupExecute(ctx context.Context, groupName s
 	return r.Execute()
 }
 
-type ApiDeleteScrapeConfigRequest struct {
+type DeleteScrapeConfigRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -2612,7 +4022,7 @@ type ApiDeleteScrapeConfigRequest struct {
 	projectId  string
 }
 
-func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, error) {
+func (r DeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
 		localVarPostBody    interface{}
@@ -2620,7 +4030,11 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, er
 		localVarReturnValue *DeleteScrapeConfigResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteScrapeConfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteScrapeConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2651,7 +4065,7 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, er
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2661,7 +4075,7 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, er
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2685,7 +4099,7 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2696,7 +4110,7 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2707,7 +4121,7 @@ func (r ApiDeleteScrapeConfigRequest) Execute() (*DeleteScrapeConfigResponse, er
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2732,7 +4146,7 @@ Delete scrape config.
 	@return ApiDeleteScrapeConfigRequest
 */
 func (a *APIClient) DeleteScrapeConfig(ctx context.Context, instanceId string, jobName string, projectId string) ApiDeleteScrapeConfigRequest {
-	return ApiDeleteScrapeConfigRequest{
+	return DeleteScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2742,7 +4156,7 @@ func (a *APIClient) DeleteScrapeConfig(ctx context.Context, instanceId string, j
 }
 
 func (a *APIClient) DeleteScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*DeleteScrapeConfigResponse, error) {
-	r := ApiDeleteScrapeConfigRequest{
+	r := DeleteScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2752,7 +4166,7 @@ func (a *APIClient) DeleteScrapeConfigExecute(ctx context.Context, instanceId st
 	return r.Execute()
 }
 
-type ApiGetAlertConfigReceiverRequest struct {
+type GetAlertConfigReceiverRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -2760,7 +4174,7 @@ type ApiGetAlertConfigReceiverRequest struct {
 	receiver   string
 }
 
-func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
+func (r GetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -2768,7 +4182,11 @@ func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 		localVarReturnValue *Receiver
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigReceiver")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigReceiver")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2799,7 +4217,7 @@ func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2809,7 +4227,7 @@ func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2833,7 +4251,7 @@ func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2844,7 +4262,7 @@ func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2855,7 +4273,7 @@ func (r ApiGetAlertConfigReceiverRequest) Execute() (*Receiver, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2880,7 +4298,7 @@ Get alert config receivers.
 	@return ApiGetAlertConfigReceiverRequest
 */
 func (a *APIClient) GetAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetAlertConfigReceiverRequest {
-	return ApiGetAlertConfigReceiverRequest{
+	return GetAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2890,7 +4308,7 @@ func (a *APIClient) GetAlertConfigReceiver(ctx context.Context, instanceId strin
 }
 
 func (a *APIClient) GetAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*Receiver, error) {
-	r := ApiGetAlertConfigReceiverRequest{
+	r := GetAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -2900,7 +4318,7 @@ func (a *APIClient) GetAlertConfigReceiverExecute(ctx context.Context, instanceI
 	return r.Execute()
 }
 
-type ApiGetAlertConfigRouteRequest struct {
+type GetAlertConfigRouteRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -2908,7 +4326,7 @@ type ApiGetAlertConfigRouteRequest struct {
 	receiver   string
 }
 
-func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+func (r GetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -2916,7 +4334,11 @@ func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, err
 		localVarReturnValue *AlertConfigRouteResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigRoute")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigRoute")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2947,7 +4369,7 @@ func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -2957,7 +4379,7 @@ func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, err
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2981,7 +4403,7 @@ func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, err
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2992,7 +4414,7 @@ func (r ApiGetAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, err
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3017,7 +4439,7 @@ Get alert receiver for route.
 	@return ApiGetAlertConfigRouteRequest
 */
 func (a *APIClient) GetAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiGetAlertConfigRouteRequest {
-	return ApiGetAlertConfigRouteRequest{
+	return GetAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3027,7 +4449,7 @@ func (a *APIClient) GetAlertConfigRoute(ctx context.Context, instanceId string, 
 }
 
 func (a *APIClient) GetAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error) {
-	r := ApiGetAlertConfigRouteRequest{
+	r := GetAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3037,14 +4459,14 @@ func (a *APIClient) GetAlertConfigRouteExecute(ctx context.Context, instanceId s
 	return r.Execute()
 }
 
-type ApiGetAlertConfigsRequest struct {
+type GetAlertConfigsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
+func (r GetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3052,7 +4474,11 @@ func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
 		localVarReturnValue *GetAlertConfigsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertConfigs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3082,7 +4508,7 @@ func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3092,7 +4518,7 @@ func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3116,7 +4542,7 @@ func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3127,7 +4553,7 @@ func (r ApiGetAlertConfigsRequest) Execute() (*GetAlertConfigsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3151,7 +4577,7 @@ Get alert config.
 	@return ApiGetAlertConfigsRequest
 */
 func (a *APIClient) GetAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiGetAlertConfigsRequest {
-	return ApiGetAlertConfigsRequest{
+	return GetAlertConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3160,7 +4586,7 @@ func (a *APIClient) GetAlertConfigs(ctx context.Context, instanceId string, proj
 }
 
 func (a *APIClient) GetAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GetAlertConfigsResponse, error) {
-	r := ApiGetAlertConfigsRequest{
+	r := GetAlertConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3169,7 +4595,7 @@ func (a *APIClient) GetAlertConfigsExecute(ctx context.Context, instanceId strin
 	return r.Execute()
 }
 
-type ApiGetAlertgroupRequest struct {
+type GetAlertgroupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	groupName  string
@@ -3177,7 +4603,7 @@ type ApiGetAlertgroupRequest struct {
 	projectId  string
 }
 
-func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
+func (r GetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3185,7 +4611,11 @@ func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		localVarReturnValue *AlertGroupResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertgroup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertgroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3216,7 +4646,7 @@ func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3226,7 +4656,7 @@ func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3250,7 +4680,7 @@ func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3261,7 +4691,7 @@ func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3272,7 +4702,7 @@ func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3283,7 +4713,7 @@ func (r ApiGetAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3308,7 +4738,7 @@ Get alert group.
 	@return ApiGetAlertgroupRequest
 */
 func (a *APIClient) GetAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiGetAlertgroupRequest {
-	return ApiGetAlertgroupRequest{
+	return GetAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -3318,7 +4748,7 @@ func (a *APIClient) GetAlertgroup(ctx context.Context, groupName string, instanc
 }
 
 func (a *APIClient) GetAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupResponse, error) {
-	r := ApiGetAlertgroupRequest{
+	r := GetAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -3328,7 +4758,7 @@ func (a *APIClient) GetAlertgroupExecute(ctx context.Context, groupName string, 
 	return r.Execute()
 }
 
-type ApiGetCredentialsRequest struct {
+type GetCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -3336,7 +4766,7 @@ type ApiGetCredentialsRequest struct {
 	username   string
 }
 
-func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
+func (r GetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3344,7 +4774,11 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		localVarReturnValue *GetCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3375,7 +4809,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3385,7 +4819,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3409,7 +4843,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3420,7 +4854,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3431,7 +4865,7 @@ func (r ApiGetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3456,7 +4890,7 @@ Get single technical credentials.
 	@return ApiGetCredentialsRequest
 */
 func (a *APIClient) GetCredentials(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialsRequest {
-	return ApiGetCredentialsRequest{
+	return GetCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3466,7 +4900,7 @@ func (a *APIClient) GetCredentials(ctx context.Context, instanceId string, proje
 }
 
 func (a *APIClient) GetCredentialsExecute(ctx context.Context, instanceId string, projectId string, username string) (*GetCredentialsResponse, error) {
-	r := ApiGetCredentialsRequest{
+	r := GetCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3476,7 +4910,7 @@ func (a *APIClient) GetCredentialsExecute(ctx context.Context, instanceId string
 	return r.Execute()
 }
 
-type ApiGetCredentialsRemoteWriteConfigRequest struct {
+type GetCredentialsRemoteWriteConfigRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -3484,7 +4918,7 @@ type ApiGetCredentialsRemoteWriteConfigRequest struct {
 	username   string
 }
 
-func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteConfig, error) {
+func (r GetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteConfig, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3492,7 +4926,11 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 		localVarReturnValue *CredentialsRemoteWriteConfig
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentialsRemoteWriteConfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentialsRemoteWriteConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3523,7 +4961,7 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3533,7 +4971,7 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3557,7 +4995,7 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3568,7 +5006,7 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3579,7 +5017,7 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3590,7 +5028,7 @@ func (r ApiGetCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemote
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3615,7 +5053,7 @@ Get remote write config.
 	@return ApiGetCredentialsRemoteWriteConfigRequest
 */
 func (a *APIClient) GetCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiGetCredentialsRemoteWriteConfigRequest {
-	return ApiGetCredentialsRemoteWriteConfigRequest{
+	return GetCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3625,7 +5063,7 @@ func (a *APIClient) GetCredentialsRemoteWriteConfig(ctx context.Context, instanc
 }
 
 func (a *APIClient) GetCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteConfig, error) {
-	r := ApiGetCredentialsRemoteWriteConfigRequest{
+	r := GetCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3635,14 +5073,14 @@ func (a *APIClient) GetCredentialsRemoteWriteConfigExecute(ctx context.Context, 
 	return r.Execute()
 }
 
-type ApiGetGrafanaConfigsRequest struct {
+type GetGrafanaConfigsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
+func (r GetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3650,7 +5088,11 @@ func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 		localVarReturnValue *GrafanaConfigs
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetGrafanaConfigs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetGrafanaConfigs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3680,7 +5122,7 @@ func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3690,7 +5132,7 @@ func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3714,7 +5156,7 @@ func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3725,7 +5167,7 @@ func (r ApiGetGrafanaConfigsRequest) Execute() (*GrafanaConfigs, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3749,7 +5191,7 @@ Get grafana config.
 	@return ApiGetGrafanaConfigsRequest
 */
 func (a *APIClient) GetGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiGetGrafanaConfigsRequest {
-	return ApiGetGrafanaConfigsRequest{
+	return GetGrafanaConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3758,7 +5200,7 @@ func (a *APIClient) GetGrafanaConfigs(ctx context.Context, instanceId string, pr
 }
 
 func (a *APIClient) GetGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GrafanaConfigs, error) {
-	r := ApiGetGrafanaConfigsRequest{
+	r := GetGrafanaConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3767,14 +5209,14 @@ func (a *APIClient) GetGrafanaConfigsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
-type ApiGetInstanceRequest struct {
+type GetInstanceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
+func (r GetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3782,7 +5224,11 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 		localVarReturnValue *GetInstanceResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3812,7 +5258,7 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3822,7 +5268,7 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3846,7 +5292,7 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3857,7 +5303,7 @@ func (r ApiGetInstanceRequest) Execute() (*GetInstanceResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -3881,7 +5327,7 @@ Get instance information.
 	@return ApiGetInstanceRequest
 */
 func (a *APIClient) GetInstance(ctx context.Context, instanceId string, projectId string) ApiGetInstanceRequest {
-	return ApiGetInstanceRequest{
+	return GetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3890,7 +5336,7 @@ func (a *APIClient) GetInstance(ctx context.Context, instanceId string, projectI
 }
 
 func (a *APIClient) GetInstanceExecute(ctx context.Context, instanceId string, projectId string) (*GetInstanceResponse, error) {
-	r := ApiGetInstanceRequest{
+	r := GetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -3899,7 +5345,7 @@ func (a *APIClient) GetInstanceExecute(ctx context.Context, instanceId string, p
 	return r.Execute()
 }
 
-type ApiGetLogsAlertgroupRequest struct {
+type GetLogsAlertgroupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	groupName  string
@@ -3907,7 +5353,7 @@ type ApiGetLogsAlertgroupRequest struct {
 	projectId  string
 }
 
-func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
+func (r GetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -3915,7 +5361,11 @@ func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		localVarReturnValue *AlertGroupResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogsAlertgroup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogsAlertgroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3946,7 +5396,7 @@ func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -3956,7 +5406,7 @@ func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -3980,7 +5430,7 @@ func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -3991,7 +5441,7 @@ func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4002,7 +5452,7 @@ func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4013,7 +5463,7 @@ func (r ApiGetLogsAlertgroupRequest) Execute() (*AlertGroupResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4038,7 +5488,7 @@ Get logs alert group config.
 	@return ApiGetLogsAlertgroupRequest
 */
 func (a *APIClient) GetLogsAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiGetLogsAlertgroupRequest {
-	return ApiGetLogsAlertgroupRequest{
+	return GetLogsAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -4048,7 +5498,7 @@ func (a *APIClient) GetLogsAlertgroup(ctx context.Context, groupName string, ins
 }
 
 func (a *APIClient) GetLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupResponse, error) {
-	r := ApiGetLogsAlertgroupRequest{
+	r := GetLogsAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -4058,14 +5508,14 @@ func (a *APIClient) GetLogsAlertgroupExecute(ctx context.Context, groupName stri
 	return r.Execute()
 }
 
-type ApiGetMetricsStorageRetentionRequest struct {
+type GetMetricsStorageRetentionRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiGetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageRetentionResponse, error) {
+func (r GetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageRetentionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -4073,7 +5523,11 @@ func (r ApiGetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageReten
 		localVarReturnValue *GetMetricsStorageRetentionResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetMetricsStorageRetention")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetMetricsStorageRetention")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4103,7 +5557,7 @@ func (r ApiGetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageReten
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4113,7 +5567,7 @@ func (r ApiGetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageReten
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4137,7 +5591,7 @@ func (r ApiGetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageReten
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4148,7 +5602,7 @@ func (r ApiGetMetricsStorageRetentionRequest) Execute() (*GetMetricsStorageReten
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4172,7 +5626,7 @@ Get metric storage retention time.
 	@return ApiGetMetricsStorageRetentionRequest
 */
 func (a *APIClient) GetMetricsStorageRetention(ctx context.Context, instanceId string, projectId string) ApiGetMetricsStorageRetentionRequest {
-	return ApiGetMetricsStorageRetentionRequest{
+	return GetMetricsStorageRetentionRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4181,7 +5635,7 @@ func (a *APIClient) GetMetricsStorageRetention(ctx context.Context, instanceId s
 }
 
 func (a *APIClient) GetMetricsStorageRetentionExecute(ctx context.Context, instanceId string, projectId string) (*GetMetricsStorageRetentionResponse, error) {
-	r := ApiGetMetricsStorageRetentionRequest{
+	r := GetMetricsStorageRetentionRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4190,7 +5644,7 @@ func (a *APIClient) GetMetricsStorageRetentionExecute(ctx context.Context, insta
 	return r.Execute()
 }
 
-type ApiGetScrapeConfigRequest struct {
+type GetScrapeConfigRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
@@ -4198,7 +5652,7 @@ type ApiGetScrapeConfigRequest struct {
 	projectId  string
 }
 
-func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
+func (r GetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -4206,7 +5660,11 @@ func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 		localVarReturnValue *GetScrapeConfigResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetScrapeConfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetScrapeConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4237,7 +5695,7 @@ func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4247,7 +5705,7 @@ func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4271,7 +5729,7 @@ func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4282,7 +5740,7 @@ func (r ApiGetScrapeConfigRequest) Execute() (*GetScrapeConfigResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4307,7 +5765,7 @@ Get scrape config.
 	@return ApiGetScrapeConfigRequest
 */
 func (a *APIClient) GetScrapeConfig(ctx context.Context, instanceId string, jobName string, projectId string) ApiGetScrapeConfigRequest {
-	return ApiGetScrapeConfigRequest{
+	return GetScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4317,7 +5775,7 @@ func (a *APIClient) GetScrapeConfig(ctx context.Context, instanceId string, jobN
 }
 
 func (a *APIClient) GetScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*GetScrapeConfigResponse, error) {
-	r := ApiGetScrapeConfigRequest{
+	r := GetScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4327,14 +5785,14 @@ func (a *APIClient) GetScrapeConfigExecute(ctx context.Context, instanceId strin
 	return r.Execute()
 }
 
-type ApiListACLRequest struct {
+type ListACLRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
+func (r ListACLRequest) Execute() (*ListACLResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -4342,7 +5800,11 @@ func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
 		localVarReturnValue *ListACLResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACL")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4372,7 +5834,7 @@ func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4382,7 +5844,7 @@ func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4406,7 +5868,7 @@ func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4417,7 +5879,7 @@ func (r ApiListACLRequest) Execute() (*ListACLResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4441,7 +5903,7 @@ Get acl for instance.
 	@return ApiListACLRequest
 */
 func (a *APIClient) ListACL(ctx context.Context, instanceId string, projectId string) ApiListACLRequest {
-	return ApiListACLRequest{
+	return ListACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4450,7 +5912,7 @@ func (a *APIClient) ListACL(ctx context.Context, instanceId string, projectId st
 }
 
 func (a *APIClient) ListACLExecute(ctx context.Context, instanceId string, projectId string) (*ListACLResponse, error) {
-	r := ApiListACLRequest{
+	r := ListACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4459,14 +5921,14 @@ func (a *APIClient) ListACLExecute(ctx context.Context, instanceId string, proje
 	return r.Execute()
 }
 
-type ApiListAlertConfigReceiversRequest struct {
+type ListAlertConfigReceiversRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResponse, error) {
+func (r ListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -4474,7 +5936,11 @@ func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResp
 		localVarReturnValue *AlertConfigReceiversResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertConfigReceivers")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertConfigReceivers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4504,7 +5970,7 @@ func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4514,7 +5980,7 @@ func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResp
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4538,7 +6004,7 @@ func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResp
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4549,7 +6015,7 @@ func (r ApiListAlertConfigReceiversRequest) Execute() (*AlertConfigReceiversResp
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4573,7 +6039,7 @@ Get alert config receivers.
 	@return ApiListAlertConfigReceiversRequest
 */
 func (a *APIClient) ListAlertConfigReceivers(ctx context.Context, instanceId string, projectId string) ApiListAlertConfigReceiversRequest {
-	return ApiListAlertConfigReceiversRequest{
+	return ListAlertConfigReceiversRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4582,7 +6048,7 @@ func (a *APIClient) ListAlertConfigReceivers(ctx context.Context, instanceId str
 }
 
 func (a *APIClient) ListAlertConfigReceiversExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigReceiversResponse, error) {
-	r := ApiListAlertConfigReceiversRequest{
+	r := ListAlertConfigReceiversRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4591,14 +6057,14 @@ func (a *APIClient) ListAlertConfigReceiversExecute(ctx context.Context, instanc
 	return r.Execute()
 }
 
-type ApiListAlertConfigRoutesRequest struct {
+type ListAlertConfigRoutesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, error) {
+func (r ListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -4606,7 +6072,11 @@ func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, e
 		localVarReturnValue *AlertConfigRouteResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertConfigRoutes")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertConfigRoutes")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4636,7 +6106,7 @@ func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, e
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4646,7 +6116,7 @@ func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, e
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4670,7 +6140,7 @@ func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, e
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4681,7 +6151,7 @@ func (r ApiListAlertConfigRoutesRequest) Execute() (*AlertConfigRouteResponse, e
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4705,7 +6175,7 @@ Get alert config route.
 	@return ApiListAlertConfigRoutesRequest
 */
 func (a *APIClient) ListAlertConfigRoutes(ctx context.Context, instanceId string, projectId string) ApiListAlertConfigRoutesRequest {
-	return ApiListAlertConfigRoutesRequest{
+	return ListAlertConfigRoutesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4714,7 +6184,7 @@ func (a *APIClient) ListAlertConfigRoutes(ctx context.Context, instanceId string
 }
 
 func (a *APIClient) ListAlertConfigRoutesExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error) {
-	r := ApiListAlertConfigRoutesRequest{
+	r := ListAlertConfigRoutesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4723,14 +6193,14 @@ func (a *APIClient) ListAlertConfigRoutesExecute(ctx context.Context, instanceId
 	return r.Execute()
 }
 
-type ApiListAlertgroupsRequest struct {
+type ListAlertgroupsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
+func (r ListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -4738,7 +6208,11 @@ func (r ApiListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertgroups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertgroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4768,7 +6242,7 @@ func (r ApiListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4778,7 +6252,7 @@ func (r ApiListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4802,7 +6276,7 @@ func (r ApiListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4813,7 +6287,7 @@ func (r ApiListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4824,7 +6298,7 @@ func (r ApiListAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4848,7 +6322,7 @@ Get alert groups.
 	@return ApiListAlertgroupsRequest
 */
 func (a *APIClient) ListAlertgroups(ctx context.Context, instanceId string, projectId string) ApiListAlertgroupsRequest {
-	return ApiListAlertgroupsRequest{
+	return ListAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4857,7 +6331,7 @@ func (a *APIClient) ListAlertgroups(ctx context.Context, instanceId string, proj
 }
 
 func (a *APIClient) ListAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiListAlertgroupsRequest{
+	r := ListAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -4866,7 +6340,7 @@ func (a *APIClient) ListAlertgroupsExecute(ctx context.Context, instanceId strin
 	return r.Execute()
 }
 
-type ApiListAlertrulesRequest struct {
+type ListAlertrulesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	groupName  string
@@ -4874,7 +6348,7 @@ type ApiListAlertrulesRequest struct {
 	projectId  string
 }
 
-func (r ApiListAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
+func (r ListAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -4882,7 +6356,11 @@ func (r ApiListAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		localVarReturnValue *AlertRulesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertrules")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertrules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4913,7 +6391,7 @@ func (r ApiListAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -4923,7 +6401,7 @@ func (r ApiListAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -4947,7 +6425,7 @@ func (r ApiListAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -4958,7 +6436,7 @@ func (r ApiListAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -4983,7 +6461,7 @@ Get alert rules.
 	@return ApiListAlertrulesRequest
 */
 func (a *APIClient) ListAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiListAlertrulesRequest {
-	return ApiListAlertrulesRequest{
+	return ListAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -4993,7 +6471,7 @@ func (a *APIClient) ListAlertrules(ctx context.Context, groupName string, instan
 }
 
 func (a *APIClient) ListAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error) {
-	r := ApiListAlertrulesRequest{
+	r := ListAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -5003,14 +6481,14 @@ func (a *APIClient) ListAlertrulesExecute(ctx context.Context, groupName string,
 	return r.Execute()
 }
 
-type ApiListCredentialsRequest struct {
+type ListCredentialsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
+func (r ListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -5018,7 +6496,11 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		localVarReturnValue *ListCredentialsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentials")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5048,7 +6530,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -5058,7 +6540,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -5082,7 +6564,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5093,7 +6575,7 @@ func (r ApiListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -5117,7 +6599,7 @@ Get all technical user credentials.
 	@return ApiListCredentialsRequest
 */
 func (a *APIClient) ListCredentials(ctx context.Context, instanceId string, projectId string) ApiListCredentialsRequest {
-	return ApiListCredentialsRequest{
+	return ListCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5126,7 +6608,7 @@ func (a *APIClient) ListCredentials(ctx context.Context, instanceId string, proj
 }
 
 func (a *APIClient) ListCredentialsExecute(ctx context.Context, instanceId string, projectId string) (*ListCredentialsResponse, error) {
-	r := ApiListCredentialsRequest{
+	r := ListCredentialsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5135,13 +6617,13 @@ func (a *APIClient) ListCredentialsExecute(ctx context.Context, instanceId strin
 	return r.Execute()
 }
 
-type ApiListInstancesRequest struct {
+type ListInstancesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
+func (r ListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -5149,7 +6631,11 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		localVarReturnValue *ListInstancesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5178,7 +6664,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -5188,7 +6674,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -5212,7 +6698,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5223,7 +6709,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -5246,7 +6732,7 @@ Get all instances for a project.
 	@return ApiListInstancesRequest
 */
 func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
-	return ApiListInstancesRequest{
+	return ListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -5254,7 +6740,7 @@ func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiList
 }
 
 func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*ListInstancesResponse, error) {
-	r := ApiListInstancesRequest{
+	r := ListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -5262,14 +6748,14 @@ func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) 
 	return r.Execute()
 }
 
-type ApiListLogsAlertgroupsRequest struct {
+type ListLogsAlertgroupsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
+func (r ListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -5277,7 +6763,11 @@ func (r ApiListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLogsAlertgroups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLogsAlertgroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5307,7 +6797,7 @@ func (r ApiListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -5317,7 +6807,7 @@ func (r ApiListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -5341,7 +6831,7 @@ func (r ApiListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5352,7 +6842,7 @@ func (r ApiListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5363,7 +6853,7 @@ func (r ApiListLogsAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -5387,7 +6877,7 @@ Get logs alert groups config.
 	@return ApiListLogsAlertgroupsRequest
 */
 func (a *APIClient) ListLogsAlertgroups(ctx context.Context, instanceId string, projectId string) ApiListLogsAlertgroupsRequest {
-	return ApiListLogsAlertgroupsRequest{
+	return ListLogsAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5396,7 +6886,7 @@ func (a *APIClient) ListLogsAlertgroups(ctx context.Context, instanceId string, 
 }
 
 func (a *APIClient) ListLogsAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiListLogsAlertgroupsRequest{
+	r := ListLogsAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5405,13 +6895,13 @@ func (a *APIClient) ListLogsAlertgroupsExecute(ctx context.Context, instanceId s
 	return r.Execute()
 }
 
-type ApiListPlansRequest struct {
+type ListPlansRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
+func (r ListPlansRequest) Execute() (*PlansResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -5419,7 +6909,11 @@ func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
 		localVarReturnValue *PlansResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPlans")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPlans")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5448,7 +6942,7 @@ func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -5458,7 +6952,7 @@ func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -5482,7 +6976,7 @@ func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5493,7 +6987,7 @@ func (r ApiListPlansRequest) Execute() (*PlansResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -5516,7 +7010,7 @@ Get all plans.
 	@return ApiListPlansRequest
 */
 func (a *APIClient) ListPlans(ctx context.Context, projectId string) ApiListPlansRequest {
-	return ApiListPlansRequest{
+	return ListPlansRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -5524,7 +7018,7 @@ func (a *APIClient) ListPlans(ctx context.Context, projectId string) ApiListPlan
 }
 
 func (a *APIClient) ListPlansExecute(ctx context.Context, projectId string) (*PlansResponse, error) {
-	r := ApiListPlansRequest{
+	r := ListPlansRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -5532,14 +7026,14 @@ func (a *APIClient) ListPlansExecute(ctx context.Context, projectId string) (*Pl
 	return r.Execute()
 }
 
-type ApiListScrapeConfigsRequest struct {
+type ListScrapeConfigsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	instanceId string
 	projectId  string
 }
 
-func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, error) {
+func (r ListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -5547,7 +7041,11 @@ func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, erro
 		localVarReturnValue *ListScrapeConfigsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListScrapeConfigs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListScrapeConfigs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5577,7 +7075,7 @@ func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -5587,7 +7085,7 @@ func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -5611,7 +7109,7 @@ func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5622,7 +7120,7 @@ func (r ApiListScrapeConfigsRequest) Execute() (*ListScrapeConfigsResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -5646,7 +7144,7 @@ Get scrape configs.
 	@return ApiListScrapeConfigsRequest
 */
 func (a *APIClient) ListScrapeConfigs(ctx context.Context, instanceId string, projectId string) ApiListScrapeConfigsRequest {
-	return ApiListScrapeConfigsRequest{
+	return ListScrapeConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5655,7 +7153,7 @@ func (a *APIClient) ListScrapeConfigs(ctx context.Context, instanceId string, pr
 }
 
 func (a *APIClient) ListScrapeConfigsExecute(ctx context.Context, instanceId string, projectId string) (*ListScrapeConfigsResponse, error) {
-	r := ApiListScrapeConfigsRequest{
+	r := ListScrapeConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5664,7 +7162,7 @@ func (a *APIClient) ListScrapeConfigsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
-type ApiPartialUpdateAlertgroupsRequest struct {
+type PartialUpdateAlertgroupsRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
 	instanceId                    string
@@ -5672,12 +7170,12 @@ type ApiPartialUpdateAlertgroupsRequest struct {
 	updateAlertgroupsRequestInner *[]UpdateAlertgroupsRequestInner
 }
 
-func (r ApiPartialUpdateAlertgroupsRequest) UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiPartialUpdateAlertgroupsRequest {
+func (r PartialUpdateAlertgroupsRequest) UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiPartialUpdateAlertgroupsRequest {
 	r.updateAlertgroupsRequestInner = &updateAlertgroupsRequestInner
 	return r
 }
 
-func (r ApiPartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
+func (r PartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -5685,7 +7183,11 @@ func (r ApiPartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, err
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateAlertgroups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateAlertgroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5720,7 +7222,7 @@ func (r ApiPartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, err
 	}
 	// body params
 	localVarPostBody = r.updateAlertgroupsRequestInner
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -5730,7 +7232,7 @@ func (r ApiPartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, err
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -5754,7 +7256,7 @@ func (r ApiPartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, err
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5765,7 +7267,7 @@ func (r ApiPartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, err
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5776,7 +7278,7 @@ func (r ApiPartialUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, err
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -5800,7 +7302,7 @@ Patch alert groups.
 	@return ApiPartialUpdateAlertgroupsRequest
 */
 func (a *APIClient) PartialUpdateAlertgroups(ctx context.Context, instanceId string, projectId string) ApiPartialUpdateAlertgroupsRequest {
-	return ApiPartialUpdateAlertgroupsRequest{
+	return PartialUpdateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5809,7 +7311,7 @@ func (a *APIClient) PartialUpdateAlertgroups(ctx context.Context, instanceId str
 }
 
 func (a *APIClient) PartialUpdateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiPartialUpdateAlertgroupsRequest{
+	r := PartialUpdateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -5818,7 +7320,7 @@ func (a *APIClient) PartialUpdateAlertgroupsExecute(ctx context.Context, instanc
 	return r.Execute()
 }
 
-type ApiPartialUpdateAlertrulesRequest struct {
+type PartialUpdateAlertrulesRequest struct {
 	ctx                                     context.Context
 	apiService                              *DefaultApiService
 	groupName                               string
@@ -5827,12 +7329,12 @@ type ApiPartialUpdateAlertrulesRequest struct {
 	updateAlertgroupsRequestInnerRulesInner *[]UpdateAlertgroupsRequestInnerRulesInner
 }
 
-func (r ApiPartialUpdateAlertrulesRequest) UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner []UpdateAlertgroupsRequestInnerRulesInner) ApiPartialUpdateAlertrulesRequest {
+func (r PartialUpdateAlertrulesRequest) UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner []UpdateAlertgroupsRequestInnerRulesInner) ApiPartialUpdateAlertrulesRequest {
 	r.updateAlertgroupsRequestInnerRulesInner = &updateAlertgroupsRequestInnerRulesInner
 	return r
 }
 
-func (r ApiPartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
+func (r PartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -5840,7 +7342,11 @@ func (r ApiPartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error
 		localVarReturnValue *AlertRulesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateAlertrules")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateAlertrules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5876,7 +7382,7 @@ func (r ApiPartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error
 	}
 	// body params
 	localVarPostBody = r.updateAlertgroupsRequestInnerRulesInner
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -5886,7 +7392,7 @@ func (r ApiPartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -5910,7 +7416,7 @@ func (r ApiPartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5921,7 +7427,7 @@ func (r ApiPartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -5932,7 +7438,7 @@ func (r ApiPartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -5957,7 +7463,7 @@ Patch alert rules.
 	@return ApiPartialUpdateAlertrulesRequest
 */
 func (a *APIClient) PartialUpdateAlertrules(ctx context.Context, groupName string, instanceId string, projectId string) ApiPartialUpdateAlertrulesRequest {
-	return ApiPartialUpdateAlertrulesRequest{
+	return PartialUpdateAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -5967,7 +7473,7 @@ func (a *APIClient) PartialUpdateAlertrules(ctx context.Context, groupName strin
 }
 
 func (a *APIClient) PartialUpdateAlertrulesExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRulesResponse, error) {
-	r := ApiPartialUpdateAlertrulesRequest{
+	r := PartialUpdateAlertrulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -5977,7 +7483,7 @@ func (a *APIClient) PartialUpdateAlertrulesExecute(ctx context.Context, groupNam
 	return r.Execute()
 }
 
-type ApiUpdateACLRequest struct {
+type UpdateACLRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	instanceId       string
@@ -5985,12 +7491,12 @@ type ApiUpdateACLRequest struct {
 	updateACLPayload *UpdateACLPayload
 }
 
-func (r ApiUpdateACLRequest) UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest {
+func (r UpdateACLRequest) UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest {
 	r.updateACLPayload = &updateACLPayload
 	return r
 }
 
-func (r ApiUpdateACLRequest) Execute() (*Message, error) {
+func (r UpdateACLRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -5998,7 +7504,11 @@ func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACL")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6030,7 +7540,7 @@ func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 	}
 	// body params
 	localVarPostBody = r.updateACLPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -6040,7 +7550,7 @@ func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -6064,7 +7574,7 @@ func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6075,7 +7585,7 @@ func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6086,7 +7596,7 @@ func (r ApiUpdateACLRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -6110,7 +7620,7 @@ Update acl config.
 	@return ApiUpdateACLRequest
 */
 func (a *APIClient) UpdateACL(ctx context.Context, instanceId string, projectId string) ApiUpdateACLRequest {
-	return ApiUpdateACLRequest{
+	return UpdateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6119,7 +7629,7 @@ func (a *APIClient) UpdateACL(ctx context.Context, instanceId string, projectId 
 }
 
 func (a *APIClient) UpdateACLExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
-	r := ApiUpdateACLRequest{
+	r := UpdateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6128,7 +7638,7 @@ func (a *APIClient) UpdateACLExecute(ctx context.Context, instanceId string, pro
 	return r.Execute()
 }
 
-type ApiUpdateAlertConfigReceiverRequest struct {
+type UpdateAlertConfigReceiverRequest struct {
 	ctx                              context.Context
 	apiService                       *DefaultApiService
 	instanceId                       string
@@ -6137,12 +7647,12 @@ type ApiUpdateAlertConfigReceiverRequest struct {
 	updateAlertConfigReceiverPayload *UpdateAlertConfigReceiverPayload
 }
 
-func (r ApiUpdateAlertConfigReceiverRequest) UpdateAlertConfigReceiverPayload(updateAlertConfigReceiverPayload UpdateAlertConfigReceiverPayload) ApiUpdateAlertConfigReceiverRequest {
+func (r UpdateAlertConfigReceiverRequest) UpdateAlertConfigReceiverPayload(updateAlertConfigReceiverPayload UpdateAlertConfigReceiverPayload) ApiUpdateAlertConfigReceiverRequest {
 	r.updateAlertConfigReceiverPayload = &updateAlertConfigReceiverPayload
 	return r
 }
 
-func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
+func (r UpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -6150,7 +7660,11 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		localVarReturnValue *AlertConfigReceiversResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigReceiver")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigReceiver")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6186,7 +7700,7 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 	}
 	// body params
 	localVarPostBody = r.updateAlertConfigReceiverPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -6196,7 +7710,7 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -6220,7 +7734,7 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6231,7 +7745,7 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6242,7 +7756,7 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6253,7 +7767,7 @@ func (r ApiUpdateAlertConfigReceiverRequest) Execute() (*AlertConfigReceiversRes
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -6278,7 +7792,7 @@ Update alert config receiver.
 	@return ApiUpdateAlertConfigReceiverRequest
 */
 func (a *APIClient) UpdateAlertConfigReceiver(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateAlertConfigReceiverRequest {
-	return ApiUpdateAlertConfigReceiverRequest{
+	return UpdateAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6288,7 +7802,7 @@ func (a *APIClient) UpdateAlertConfigReceiver(ctx context.Context, instanceId st
 }
 
 func (a *APIClient) UpdateAlertConfigReceiverExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigReceiversResponse, error) {
-	r := ApiUpdateAlertConfigReceiverRequest{
+	r := UpdateAlertConfigReceiverRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6298,7 +7812,7 @@ func (a *APIClient) UpdateAlertConfigReceiverExecute(ctx context.Context, instan
 	return r.Execute()
 }
 
-type ApiUpdateAlertConfigRouteRequest struct {
+type UpdateAlertConfigRouteRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
 	instanceId                    string
@@ -6307,12 +7821,12 @@ type ApiUpdateAlertConfigRouteRequest struct {
 	updateAlertConfigRoutePayload *UpdateAlertConfigRoutePayload
 }
 
-func (r ApiUpdateAlertConfigRouteRequest) UpdateAlertConfigRoutePayload(updateAlertConfigRoutePayload UpdateAlertConfigRoutePayload) ApiUpdateAlertConfigRouteRequest {
+func (r UpdateAlertConfigRouteRequest) UpdateAlertConfigRoutePayload(updateAlertConfigRoutePayload UpdateAlertConfigRoutePayload) ApiUpdateAlertConfigRouteRequest {
 	r.updateAlertConfigRoutePayload = &updateAlertConfigRoutePayload
 	return r
 }
 
-func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
+func (r UpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -6320,7 +7834,11 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		localVarReturnValue *AlertConfigRouteResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigRoute")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigRoute")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6356,7 +7874,7 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 	}
 	// body params
 	localVarPostBody = r.updateAlertConfigRoutePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -6366,7 +7884,7 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -6390,7 +7908,7 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6401,7 +7919,7 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6412,7 +7930,7 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6423,7 +7941,7 @@ func (r ApiUpdateAlertConfigRouteRequest) Execute() (*AlertConfigRouteResponse, 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -6448,7 +7966,7 @@ Update alert receiver for route.
 	@return ApiUpdateAlertConfigRouteRequest
 */
 func (a *APIClient) UpdateAlertConfigRoute(ctx context.Context, instanceId string, projectId string, receiver string) ApiUpdateAlertConfigRouteRequest {
-	return ApiUpdateAlertConfigRouteRequest{
+	return UpdateAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6458,7 +7976,7 @@ func (a *APIClient) UpdateAlertConfigRoute(ctx context.Context, instanceId strin
 }
 
 func (a *APIClient) UpdateAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error) {
-	r := ApiUpdateAlertConfigRouteRequest{
+	r := UpdateAlertConfigRouteRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6468,7 +7986,7 @@ func (a *APIClient) UpdateAlertConfigRouteExecute(ctx context.Context, instanceI
 	return r.Execute()
 }
 
-type ApiUpdateAlertConfigsRequest struct {
+type UpdateAlertConfigsRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	instanceId                string
@@ -6476,12 +7994,12 @@ type ApiUpdateAlertConfigsRequest struct {
 	updateAlertConfigsPayload *UpdateAlertConfigsPayload
 }
 
-func (r ApiUpdateAlertConfigsRequest) UpdateAlertConfigsPayload(updateAlertConfigsPayload UpdateAlertConfigsPayload) ApiUpdateAlertConfigsRequest {
+func (r UpdateAlertConfigsRequest) UpdateAlertConfigsPayload(updateAlertConfigsPayload UpdateAlertConfigsPayload) ApiUpdateAlertConfigsRequest {
 	r.updateAlertConfigsPayload = &updateAlertConfigsPayload
 	return r
 }
 
-func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, error) {
+func (r UpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -6489,7 +8007,11 @@ func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, er
 		localVarReturnValue *UpdateAlertConfigsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertConfigs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6524,7 +8046,7 @@ func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, er
 	}
 	// body params
 	localVarPostBody = r.updateAlertConfigsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -6534,7 +8056,7 @@ func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, er
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -6558,7 +8080,7 @@ func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6569,7 +8091,7 @@ func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, er
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6580,7 +8102,7 @@ func (r ApiUpdateAlertConfigsRequest) Execute() (*UpdateAlertConfigsResponse, er
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -6604,7 +8126,7 @@ Update alert config.
 	@return ApiUpdateAlertConfigsRequest
 */
 func (a *APIClient) UpdateAlertConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateAlertConfigsRequest {
-	return ApiUpdateAlertConfigsRequest{
+	return UpdateAlertConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6613,7 +8135,7 @@ func (a *APIClient) UpdateAlertConfigs(ctx context.Context, instanceId string, p
 }
 
 func (a *APIClient) UpdateAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*UpdateAlertConfigsResponse, error) {
-	r := ApiUpdateAlertConfigsRequest{
+	r := UpdateAlertConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6622,7 +8144,7 @@ func (a *APIClient) UpdateAlertConfigsExecute(ctx context.Context, instanceId st
 	return r.Execute()
 }
 
-type ApiUpdateAlertgroupRequest struct {
+type UpdateAlertgroupRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
 	groupName               string
@@ -6631,12 +8153,12 @@ type ApiUpdateAlertgroupRequest struct {
 	updateAlertgroupPayload *UpdateAlertgroupPayload
 }
 
-func (r ApiUpdateAlertgroupRequest) UpdateAlertgroupPayload(updateAlertgroupPayload UpdateAlertgroupPayload) ApiUpdateAlertgroupRequest {
+func (r UpdateAlertgroupRequest) UpdateAlertgroupPayload(updateAlertgroupPayload UpdateAlertgroupPayload) ApiUpdateAlertgroupRequest {
 	r.updateAlertgroupPayload = &updateAlertgroupPayload
 	return r
 }
 
-func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
+func (r UpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -6644,7 +8166,11 @@ func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertgroup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertgroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6680,7 +8206,7 @@ func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.updateAlertgroupPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -6690,7 +8216,7 @@ func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -6714,7 +8240,7 @@ func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6725,7 +8251,7 @@ func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6736,7 +8262,7 @@ func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6747,7 +8273,7 @@ func (r ApiUpdateAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -6772,7 +8298,7 @@ Update alert group config.
 	@return ApiUpdateAlertgroupRequest
 */
 func (a *APIClient) UpdateAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiUpdateAlertgroupRequest {
-	return ApiUpdateAlertgroupRequest{
+	return UpdateAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -6782,7 +8308,7 @@ func (a *APIClient) UpdateAlertgroup(ctx context.Context, groupName string, inst
 }
 
 func (a *APIClient) UpdateAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiUpdateAlertgroupRequest{
+	r := UpdateAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -6792,7 +8318,7 @@ func (a *APIClient) UpdateAlertgroupExecute(ctx context.Context, groupName strin
 	return r.Execute()
 }
 
-type ApiUpdateAlertgroupsRequest struct {
+type UpdateAlertgroupsRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
 	instanceId                    string
@@ -6800,12 +8326,12 @@ type ApiUpdateAlertgroupsRequest struct {
 	updateAlertgroupsRequestInner *[]UpdateAlertgroupsRequestInner
 }
 
-func (r ApiUpdateAlertgroupsRequest) UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiUpdateAlertgroupsRequest {
+func (r UpdateAlertgroupsRequest) UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiUpdateAlertgroupsRequest {
 	r.updateAlertgroupsRequestInner = &updateAlertgroupsRequestInner
 	return r
 }
 
-func (r ApiUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
+func (r UpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -6813,7 +8339,11 @@ func (r ApiUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertgroups")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertgroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6848,7 +8378,7 @@ func (r ApiUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.updateAlertgroupsRequestInner
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -6858,7 +8388,7 @@ func (r ApiUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -6882,7 +8412,7 @@ func (r ApiUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6893,7 +8423,7 @@ func (r ApiUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -6904,7 +8434,7 @@ func (r ApiUpdateAlertgroupsRequest) Execute() (*AlertGroupsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -6928,7 +8458,7 @@ Update alert groups.
 	@return ApiUpdateAlertgroupsRequest
 */
 func (a *APIClient) UpdateAlertgroups(ctx context.Context, instanceId string, projectId string) ApiUpdateAlertgroupsRequest {
-	return ApiUpdateAlertgroupsRequest{
+	return UpdateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6937,7 +8467,7 @@ func (a *APIClient) UpdateAlertgroups(ctx context.Context, instanceId string, pr
 }
 
 func (a *APIClient) UpdateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiUpdateAlertgroupsRequest{
+	r := UpdateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -6946,7 +8476,7 @@ func (a *APIClient) UpdateAlertgroupsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
-type ApiUpdateCredentialsRemoteWriteConfigRequest struct {
+type UpdateCredentialsRemoteWriteConfigRequest struct {
 	ctx                                       context.Context
 	apiService                                *DefaultApiService
 	instanceId                                string
@@ -6955,12 +8485,12 @@ type ApiUpdateCredentialsRemoteWriteConfigRequest struct {
 	updateCredentialsRemoteWriteConfigPayload *UpdateCredentialsRemoteWriteConfigPayload
 }
 
-func (r ApiUpdateCredentialsRemoteWriteConfigRequest) UpdateCredentialsRemoteWriteConfigPayload(updateCredentialsRemoteWriteConfigPayload UpdateCredentialsRemoteWriteConfigPayload) ApiUpdateCredentialsRemoteWriteConfigRequest {
+func (r UpdateCredentialsRemoteWriteConfigRequest) UpdateCredentialsRemoteWriteConfigPayload(updateCredentialsRemoteWriteConfigPayload UpdateCredentialsRemoteWriteConfigPayload) ApiUpdateCredentialsRemoteWriteConfigRequest {
 	r.updateCredentialsRemoteWriteConfigPayload = &updateCredentialsRemoteWriteConfigPayload
 	return r
 }
 
-func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteConfig, error) {
+func (r UpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRemoteWriteConfig, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -6968,7 +8498,11 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		localVarReturnValue *CredentialsRemoteWriteConfig
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentialsRemoteWriteConfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentialsRemoteWriteConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -7004,7 +8538,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 	}
 	// body params
 	localVarPostBody = r.updateCredentialsRemoteWriteConfigPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -7014,7 +8548,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -7038,7 +8572,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7049,7 +8583,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7060,7 +8594,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7071,7 +8605,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7082,7 +8616,7 @@ func (r ApiUpdateCredentialsRemoteWriteConfigRequest) Execute() (*CredentialsRem
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -7107,7 +8641,7 @@ Update remote write config for credentials.
 	@return ApiUpdateCredentialsRemoteWriteConfigRequest
 */
 func (a *APIClient) UpdateCredentialsRemoteWriteConfig(ctx context.Context, instanceId string, projectId string, username string) ApiUpdateCredentialsRemoteWriteConfigRequest {
-	return ApiUpdateCredentialsRemoteWriteConfigRequest{
+	return UpdateCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7117,7 +8651,7 @@ func (a *APIClient) UpdateCredentialsRemoteWriteConfig(ctx context.Context, inst
 }
 
 func (a *APIClient) UpdateCredentialsRemoteWriteConfigExecute(ctx context.Context, instanceId string, projectId string, username string) (*CredentialsRemoteWriteConfig, error) {
-	r := ApiUpdateCredentialsRemoteWriteConfigRequest{
+	r := UpdateCredentialsRemoteWriteConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7127,7 +8661,7 @@ func (a *APIClient) UpdateCredentialsRemoteWriteConfigExecute(ctx context.Contex
 	return r.Execute()
 }
 
-type ApiUpdateGrafanaConfigsRequest struct {
+type UpdateGrafanaConfigsRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	instanceId                  string
@@ -7135,12 +8669,12 @@ type ApiUpdateGrafanaConfigsRequest struct {
 	updateGrafanaConfigsPayload *UpdateGrafanaConfigsPayload
 }
 
-func (r ApiUpdateGrafanaConfigsRequest) UpdateGrafanaConfigsPayload(updateGrafanaConfigsPayload UpdateGrafanaConfigsPayload) ApiUpdateGrafanaConfigsRequest {
+func (r UpdateGrafanaConfigsRequest) UpdateGrafanaConfigsPayload(updateGrafanaConfigsPayload UpdateGrafanaConfigsPayload) ApiUpdateGrafanaConfigsRequest {
 	r.updateGrafanaConfigsPayload = &updateGrafanaConfigsPayload
 	return r
 }
 
-func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
+func (r UpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -7148,7 +8682,11 @@ func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateGrafanaConfigs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateGrafanaConfigs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -7183,7 +8721,7 @@ func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 	}
 	// body params
 	localVarPostBody = r.updateGrafanaConfigsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -7193,7 +8731,7 @@ func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -7217,7 +8755,7 @@ func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7228,7 +8766,7 @@ func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7239,7 +8777,7 @@ func (r ApiUpdateGrafanaConfigsRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -7263,7 +8801,7 @@ Update grafana config.
 	@return ApiUpdateGrafanaConfigsRequest
 */
 func (a *APIClient) UpdateGrafanaConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateGrafanaConfigsRequest {
-	return ApiUpdateGrafanaConfigsRequest{
+	return UpdateGrafanaConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7272,7 +8810,7 @@ func (a *APIClient) UpdateGrafanaConfigs(ctx context.Context, instanceId string,
 }
 
 func (a *APIClient) UpdateGrafanaConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
-	r := ApiUpdateGrafanaConfigsRequest{
+	r := UpdateGrafanaConfigsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7281,7 +8819,7 @@ func (a *APIClient) UpdateGrafanaConfigsExecute(ctx context.Context, instanceId 
 	return r.Execute()
 }
 
-type ApiUpdateInstanceRequest struct {
+type UpdateInstanceRequest struct {
 	ctx                   context.Context
 	apiService            *DefaultApiService
 	instanceId            string
@@ -7289,12 +8827,12 @@ type ApiUpdateInstanceRequest struct {
 	updateInstancePayload *UpdateInstancePayload
 }
 
-func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
+func (r UpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 	r.updateInstancePayload = &updateInstancePayload
 	return r
 }
 
-func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
+func (r UpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -7302,7 +8840,11 @@ func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 		localVarReturnValue *InstanceResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -7337,7 +8879,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.updateInstancePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -7347,7 +8889,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -7371,7 +8913,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7382,7 +8924,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7393,7 +8935,7 @@ func (r ApiUpdateInstanceRequest) Execute() (*InstanceResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -7417,7 +8959,7 @@ Update instance.
 	@return ApiUpdateInstanceRequest
 */
 func (a *APIClient) UpdateInstance(ctx context.Context, instanceId string, projectId string) ApiUpdateInstanceRequest {
-	return ApiUpdateInstanceRequest{
+	return UpdateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7426,7 +8968,7 @@ func (a *APIClient) UpdateInstance(ctx context.Context, instanceId string, proje
 }
 
 func (a *APIClient) UpdateInstanceExecute(ctx context.Context, instanceId string, projectId string) (*InstanceResponse, error) {
-	r := ApiUpdateInstanceRequest{
+	r := UpdateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7435,7 +8977,7 @@ func (a *APIClient) UpdateInstanceExecute(ctx context.Context, instanceId string
 	return r.Execute()
 }
 
-type ApiUpdateLogsAlertgroupRequest struct {
+type UpdateLogsAlertgroupRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	groupName                   string
@@ -7444,12 +8986,12 @@ type ApiUpdateLogsAlertgroupRequest struct {
 	updateLogsAlertgroupPayload *UpdateLogsAlertgroupPayload
 }
 
-func (r ApiUpdateLogsAlertgroupRequest) UpdateLogsAlertgroupPayload(updateLogsAlertgroupPayload UpdateLogsAlertgroupPayload) ApiUpdateLogsAlertgroupRequest {
+func (r UpdateLogsAlertgroupRequest) UpdateLogsAlertgroupPayload(updateLogsAlertgroupPayload UpdateLogsAlertgroupPayload) ApiUpdateLogsAlertgroupRequest {
 	r.updateLogsAlertgroupPayload = &updateLogsAlertgroupPayload
 	return r
 }
 
-func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
+func (r UpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -7457,7 +8999,11 @@ func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		localVarReturnValue *AlertGroupsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateLogsAlertgroup")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateLogsAlertgroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -7493,7 +9039,7 @@ func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 	}
 	// body params
 	localVarPostBody = r.updateLogsAlertgroupPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -7503,7 +9049,7 @@ func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -7527,7 +9073,7 @@ func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7538,7 +9084,7 @@ func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7549,7 +9095,7 @@ func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7560,7 +9106,7 @@ func (r ApiUpdateLogsAlertgroupRequest) Execute() (*AlertGroupsResponse, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -7585,7 +9131,7 @@ Update logs alert group config.
 	@return ApiUpdateLogsAlertgroupRequest
 */
 func (a *APIClient) UpdateLogsAlertgroup(ctx context.Context, groupName string, instanceId string, projectId string) ApiUpdateLogsAlertgroupRequest {
-	return ApiUpdateLogsAlertgroupRequest{
+	return UpdateLogsAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -7595,7 +9141,7 @@ func (a *APIClient) UpdateLogsAlertgroup(ctx context.Context, groupName string, 
 }
 
 func (a *APIClient) UpdateLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error) {
-	r := ApiUpdateLogsAlertgroupRequest{
+	r := UpdateLogsAlertgroupRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		groupName:  groupName,
@@ -7605,7 +9151,7 @@ func (a *APIClient) UpdateLogsAlertgroupExecute(ctx context.Context, groupName s
 	return r.Execute()
 }
 
-type ApiUpdateMetricsStorageRetentionRequest struct {
+type UpdateMetricsStorageRetentionRequest struct {
 	ctx                                  context.Context
 	apiService                           *DefaultApiService
 	instanceId                           string
@@ -7613,12 +9159,12 @@ type ApiUpdateMetricsStorageRetentionRequest struct {
 	updateMetricsStorageRetentionPayload *UpdateMetricsStorageRetentionPayload
 }
 
-func (r ApiUpdateMetricsStorageRetentionRequest) UpdateMetricsStorageRetentionPayload(updateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload) ApiUpdateMetricsStorageRetentionRequest {
+func (r UpdateMetricsStorageRetentionRequest) UpdateMetricsStorageRetentionPayload(updateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload) ApiUpdateMetricsStorageRetentionRequest {
 	r.updateMetricsStorageRetentionPayload = &updateMetricsStorageRetentionPayload
 	return r
 }
 
-func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
+func (r UpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -7626,7 +9172,11 @@ func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 		localVarReturnValue *Message
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateMetricsStorageRetention")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateMetricsStorageRetention")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -7661,7 +9211,7 @@ func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 	}
 	// body params
 	localVarPostBody = r.updateMetricsStorageRetentionPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -7671,7 +9221,7 @@ func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -7695,7 +9245,7 @@ func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7706,7 +9256,7 @@ func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7717,7 +9267,7 @@ func (r ApiUpdateMetricsStorageRetentionRequest) Execute() (*Message, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -7741,7 +9291,7 @@ Update metric update retention time.
 	@return ApiUpdateMetricsStorageRetentionRequest
 */
 func (a *APIClient) UpdateMetricsStorageRetention(ctx context.Context, instanceId string, projectId string) ApiUpdateMetricsStorageRetentionRequest {
-	return ApiUpdateMetricsStorageRetentionRequest{
+	return UpdateMetricsStorageRetentionRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7750,7 +9300,7 @@ func (a *APIClient) UpdateMetricsStorageRetention(ctx context.Context, instanceI
 }
 
 func (a *APIClient) UpdateMetricsStorageRetentionExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
-	r := ApiUpdateMetricsStorageRetentionRequest{
+	r := UpdateMetricsStorageRetentionRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7759,7 +9309,7 @@ func (a *APIClient) UpdateMetricsStorageRetentionExecute(ctx context.Context, in
 	return r.Execute()
 }
 
-type ApiUpdateScrapeConfigRequest struct {
+type UpdateScrapeConfigRequest struct {
 	ctx                       context.Context
 	apiService                *DefaultApiService
 	instanceId                string
@@ -7768,12 +9318,12 @@ type ApiUpdateScrapeConfigRequest struct {
 	updateScrapeConfigPayload *UpdateScrapeConfigPayload
 }
 
-func (r ApiUpdateScrapeConfigRequest) UpdateScrapeConfigPayload(updateScrapeConfigPayload UpdateScrapeConfigPayload) ApiUpdateScrapeConfigRequest {
+func (r UpdateScrapeConfigRequest) UpdateScrapeConfigPayload(updateScrapeConfigPayload UpdateScrapeConfigPayload) ApiUpdateScrapeConfigRequest {
 	r.updateScrapeConfigPayload = &updateScrapeConfigPayload
 	return r
 }
 
-func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) {
+func (r UpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -7781,7 +9331,11 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		localVarReturnValue *ScrapeConfigsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateScrapeConfig")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateScrapeConfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -7817,7 +9371,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 	}
 	// body params
 	localVarPostBody = r.updateScrapeConfigPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -7827,7 +9381,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -7851,7 +9405,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7862,7 +9416,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7873,7 +9427,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -7884,7 +9438,7 @@ func (r ApiUpdateScrapeConfigRequest) Execute() (*ScrapeConfigsResponse, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -7909,7 +9463,7 @@ Update scrape config.
 	@return ApiUpdateScrapeConfigRequest
 */
 func (a *APIClient) UpdateScrapeConfig(ctx context.Context, instanceId string, jobName string, projectId string) ApiUpdateScrapeConfigRequest {
-	return ApiUpdateScrapeConfigRequest{
+	return UpdateScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,
@@ -7919,7 +9473,7 @@ func (a *APIClient) UpdateScrapeConfig(ctx context.Context, instanceId string, j
 }
 
 func (a *APIClient) UpdateScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*ScrapeConfigsResponse, error) {
-	r := ApiUpdateScrapeConfigRequest{
+	r := UpdateScrapeConfigRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		instanceId: instanceId,

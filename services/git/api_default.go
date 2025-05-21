@@ -23,10 +23,113 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateInstance Creates a new STACKIT Git instance within the project.
+		Users with write-access to a project may create a new STACKIT Git instance by posting
+		the instance creation request to this endpoint, which will schedule the creation of a
+		new STACKIT Git instance within that project.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@return ApiCreateInstanceRequest
+	*/
+	CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest
+	/*
+		CreateInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@return Instance
+
+	*/
+	CreateInstanceExecute(ctx context.Context, projectId string) (*Instance, error)
+	/*
+		DeleteInstance Deletes the given STACKIT Git instance.
+		Allows a user with write-access to a project to schedule the deletion of a STACKIT Git
+		instance, which will soon eliminate all repositories & user metadata associated with
+		that instance. This is a destructive operation.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@param instanceId The STACKIT Git instance UUID.
+		@return ApiDeleteInstanceRequest
+	*/
+	DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest
+	/*
+		DeleteInstanceExecute executes the request
+
+	*/
+	DeleteInstanceExecute(ctx context.Context, projectId string, instanceId string) error
+	/*
+		GetInstance Returns the details for the given STACKIT Git instance.
+		Provides detailed information about the state of an instance within the specified
+		project including information about how to access the instance for further use.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@param instanceId The STACKIT Git instance UUID.
+		@return ApiGetInstanceRequest
+	*/
+	GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest
+	/*
+		GetInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@param instanceId The STACKIT Git instance UUID.
+		@return Instance
+
+	*/
+	GetInstanceExecute(ctx context.Context, projectId string, instanceId string) (*Instance, error)
+	/*
+		ListInstances Returns a list of all STACKIT Git instances within the project.
+		STACKIT Git instances exist within a project, and a project may have zero or more instances.
+		This endpoint allows a user with read-access to a project to list all instances that exist
+		within the specified project.
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@return ApiListInstancesRequest
+	*/
+	ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest
+	/*
+		ListInstancesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@return ListInstances
+
+	*/
+	ListInstancesExecute(ctx context.Context, projectId string) (*ListInstances, error)
+}
+
+type ApiCreateInstanceRequest interface {
+	// Provides the options to use when creating the instance.
+	CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest
+	Execute() (*Instance, error)
+}
+
+type ApiDeleteInstanceRequest interface {
+	Execute() error
+}
+
+type ApiGetInstanceRequest interface {
+	Execute() (*Instance, error)
+}
+
+type ApiListInstancesRequest interface {
+	Execute() (*ListInstances, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateInstanceRequest struct {
+type CreateInstanceRequest struct {
 	ctx                   context.Context
 	apiService            *DefaultApiService
 	projectId             string
@@ -35,12 +138,12 @@ type ApiCreateInstanceRequest struct {
 
 // Provides the options to use when creating the instance.
 
-func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
+func (r CreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
 }
 
-func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
+func (r CreateInstanceRequest) Execute() (*Instance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -48,7 +151,11 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		localVarReturnValue *Instance
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -85,7 +192,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 	}
 	// body params
 	localVarPostBody = r.createInstancePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -95,7 +202,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -119,7 +226,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -130,7 +237,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -141,7 +248,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -166,7 +273,7 @@ new STACKIT Git instance within that project.
 	@return ApiCreateInstanceRequest
 */
 func (a *APIClient) CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest {
-	return ApiCreateInstanceRequest{
+	return CreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -174,7 +281,7 @@ func (a *APIClient) CreateInstance(ctx context.Context, projectId string) ApiCre
 }
 
 func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string) (*Instance, error) {
-	r := ApiCreateInstanceRequest{
+	r := CreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -182,21 +289,25 @@ func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string)
 	return r.Execute()
 }
 
-type ApiDeleteInstanceRequest struct {
+type DeleteInstanceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	instanceId string
 }
 
-func (r ApiDeleteInstanceRequest) Execute() error {
+func (r DeleteInstanceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -232,7 +343,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -242,7 +353,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -266,7 +377,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -277,7 +388,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -304,7 +415,7 @@ that instance. This is a destructive operation.
 	@return ApiDeleteInstanceRequest
 */
 func (a *APIClient) DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest {
-	return ApiDeleteInstanceRequest{
+	return DeleteInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -313,7 +424,7 @@ func (a *APIClient) DeleteInstance(ctx context.Context, projectId string, instan
 }
 
 func (a *APIClient) DeleteInstanceExecute(ctx context.Context, projectId string, instanceId string) error {
-	r := ApiDeleteInstanceRequest{
+	r := DeleteInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -322,14 +433,14 @@ func (a *APIClient) DeleteInstanceExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiGetInstanceRequest struct {
+type GetInstanceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	instanceId string
 }
 
-func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
+func (r GetInstanceRequest) Execute() (*Instance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -337,7 +448,11 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		localVarReturnValue *Instance
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -373,7 +488,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -383,7 +498,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -407,7 +522,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -418,7 +533,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -429,7 +544,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -454,7 +569,7 @@ project including information about how to access the instance for further use.
 	@return ApiGetInstanceRequest
 */
 func (a *APIClient) GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest {
-	return ApiGetInstanceRequest{
+	return GetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -463,7 +578,7 @@ func (a *APIClient) GetInstance(ctx context.Context, projectId string, instanceI
 }
 
 func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, instanceId string) (*Instance, error) {
-	r := ApiGetInstanceRequest{
+	r := GetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -472,13 +587,13 @@ func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, in
 	return r.Execute()
 }
 
-type ApiListInstancesRequest struct {
+type ListInstancesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
+func (r ListInstancesRequest) Execute() (*ListInstances, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -486,7 +601,11 @@ func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
 		localVarReturnValue *ListInstances
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -518,7 +637,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -528,7 +647,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -552,7 +671,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -563,7 +682,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -574,7 +693,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstances, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -599,7 +718,7 @@ within the specified project.
 	@return ApiListInstancesRequest
 */
 func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
-	return ApiListInstancesRequest{
+	return ListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -607,7 +726,7 @@ func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiList
 }
 
 func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*ListInstances, error) {
-	r := ApiListInstancesRequest{
+	r := ListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

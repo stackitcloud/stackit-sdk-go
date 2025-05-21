@@ -1,3 +1,6 @@
+## v0.12.0 (2025-05-15)
+- **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+
 ## v0.11.4 (2025-05-09)
 - **Feature:** Update user-agent header
 

@@ -13,6 +13,7 @@ package serverupdate
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -22,10 +23,302 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateUpdate create update
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiCreateUpdateRequest
+	*/
+	CreateUpdate(ctx context.Context, projectId string, serverId string, region string) ApiCreateUpdateRequest
+	/*
+		CreateUpdateExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return Update
+
+	*/
+	CreateUpdateExecute(ctx context.Context, projectId string, serverId string, region string) (*Update, error)
+	/*
+		CreateUpdateSchedule create update schedule
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiCreateUpdateScheduleRequest
+	*/
+	CreateUpdateSchedule(ctx context.Context, projectId string, serverId string, region string) ApiCreateUpdateScheduleRequest
+	/*
+		CreateUpdateScheduleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return UpdateSchedule
+
+	*/
+	CreateUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, region string) (*UpdateSchedule, error)
+	/*
+		DeleteUpdateSchedule delete update schedule
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param scheduleId update schedule id
+		@param region region
+		@return ApiDeleteUpdateScheduleRequest
+	*/
+	DeleteUpdateSchedule(ctx context.Context, projectId string, serverId string, scheduleId string, region string) ApiDeleteUpdateScheduleRequest
+	/*
+		DeleteUpdateScheduleExecute executes the request
+
+	*/
+	DeleteUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, scheduleId string, region string) error
+	/*
+		DisableServiceResource disable update service
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiDisableServiceResourceRequest
+	*/
+	DisableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiDisableServiceResourceRequest
+	/*
+		DisableServiceResourceExecute executes the request
+
+	*/
+	DisableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error
+	/*
+		EnableServiceResource enable update service
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiEnableServiceResourceRequest
+	*/
+	EnableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiEnableServiceResourceRequest
+	/*
+		EnableServiceResourceExecute executes the request
+
+	*/
+	EnableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error
+	/*
+		GetServiceResource get update service details
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiGetServiceResourceRequest
+	*/
+	GetServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiGetServiceResourceRequest
+	/*
+		GetServiceResourceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return GetUpdateServiceResponse
+
+	*/
+	GetServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) (*GetUpdateServiceResponse, error)
+	/*
+		GetUpdate get update
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param updateId id of the update
+		@param region region
+		@return ApiGetUpdateRequest
+	*/
+	GetUpdate(ctx context.Context, projectId string, serverId string, updateId string, region string) ApiGetUpdateRequest
+	/*
+		GetUpdateExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param updateId id of the update
+		@param region region
+		@return Update
+
+	*/
+	GetUpdateExecute(ctx context.Context, projectId string, serverId string, updateId string, region string) (*Update, error)
+	/*
+		GetUpdateSchedule get single update schedule details
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param scheduleId update schedule id
+		@param region region
+		@return ApiGetUpdateScheduleRequest
+	*/
+	GetUpdateSchedule(ctx context.Context, projectId string, serverId string, scheduleId string, region string) ApiGetUpdateScheduleRequest
+	/*
+		GetUpdateScheduleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param scheduleId update schedule id
+		@param region region
+		@return UpdateSchedule
+
+	*/
+	GetUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, scheduleId string, region string) (*UpdateSchedule, error)
+	/*
+		ListUpdatePolicies get list of update policies
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return ApiListUpdatePoliciesRequest
+	*/
+	ListUpdatePolicies(ctx context.Context, projectId string) ApiListUpdatePoliciesRequest
+	/*
+		ListUpdatePoliciesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@return GetUpdatePoliciesResponse
+
+	*/
+	ListUpdatePoliciesExecute(ctx context.Context, projectId string) (*GetUpdatePoliciesResponse, error)
+	/*
+		ListUpdateSchedules get list of update schedules
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiListUpdateSchedulesRequest
+	*/
+	ListUpdateSchedules(ctx context.Context, projectId string, serverId string, region string) ApiListUpdateSchedulesRequest
+	/*
+		ListUpdateSchedulesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return GetUpdateSchedulesResponse
+
+	*/
+	ListUpdateSchedulesExecute(ctx context.Context, projectId string, serverId string, region string) (*GetUpdateSchedulesResponse, error)
+	/*
+		ListUpdates get list of updates
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return ApiListUpdatesRequest
+	*/
+	ListUpdates(ctx context.Context, projectId string, serverId string, region string) ApiListUpdatesRequest
+	/*
+		ListUpdatesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param region region
+		@return GetUpdatesListResponse
+
+	*/
+	ListUpdatesExecute(ctx context.Context, projectId string, serverId string, region string) (*GetUpdatesListResponse, error)
+	/*
+		UpdateUpdateSchedule update update schedule
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param scheduleId update schedule id
+		@param region region
+		@return ApiUpdateUpdateScheduleRequest
+	*/
+	UpdateUpdateSchedule(ctx context.Context, projectId string, serverId string, scheduleId string, region string) ApiUpdateUpdateScheduleRequest
+	/*
+		UpdateUpdateScheduleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId project id
+		@param serverId server id
+		@param scheduleId update schedule id
+		@param region region
+		@return UpdateSchedule
+
+	*/
+	UpdateUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, scheduleId string, region string) (*UpdateSchedule, error)
+}
+
+type ApiCreateUpdateRequest interface {
+	CreateUpdatePayload(createUpdatePayload CreateUpdatePayload) ApiCreateUpdateRequest
+	Execute() (*Update, error)
+}
+
+type ApiCreateUpdateScheduleRequest interface {
+	CreateUpdateSchedulePayload(createUpdateSchedulePayload CreateUpdateSchedulePayload) ApiCreateUpdateScheduleRequest
+	Execute() (*UpdateSchedule, error)
+}
+
+type ApiDeleteUpdateScheduleRequest interface {
+	Execute() error
+}
+
+type ApiDisableServiceResourceRequest interface {
+	Execute() error
+}
+
+type ApiEnableServiceResourceRequest interface {
+	EnableServiceResourcePayload(enableServiceResourcePayload EnableServiceResourcePayload) ApiEnableServiceResourceRequest
+	Execute() error
+}
+
+type ApiGetServiceResourceRequest interface {
+	Execute() (*GetUpdateServiceResponse, error)
+}
+
+type ApiGetUpdateRequest interface {
+	Execute() (*Update, error)
+}
+
+type ApiGetUpdateScheduleRequest interface {
+	Execute() (*UpdateSchedule, error)
+}
+
+type ApiListUpdatePoliciesRequest interface {
+	Execute() (*GetUpdatePoliciesResponse, error)
+}
+
+type ApiListUpdateSchedulesRequest interface {
+	Execute() (*GetUpdateSchedulesResponse, error)
+}
+
+type ApiListUpdatesRequest interface {
+	Execute() (*GetUpdatesListResponse, error)
+}
+
+type ApiUpdateUpdateScheduleRequest interface {
+	UpdateUpdateSchedulePayload(updateUpdateSchedulePayload UpdateUpdateSchedulePayload) ApiUpdateUpdateScheduleRequest
+	Execute() (*UpdateSchedule, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateUpdateRequest struct {
+type CreateUpdateRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
@@ -34,12 +327,12 @@ type ApiCreateUpdateRequest struct {
 	createUpdatePayload *CreateUpdatePayload
 }
 
-func (r ApiCreateUpdateRequest) CreateUpdatePayload(createUpdatePayload CreateUpdatePayload) ApiCreateUpdateRequest {
+func (r CreateUpdateRequest) CreateUpdatePayload(createUpdatePayload CreateUpdatePayload) ApiCreateUpdateRequest {
 	r.createUpdatePayload = &createUpdatePayload
 	return r
 }
 
-func (r ApiCreateUpdateRequest) Execute() (*Update, error) {
+func (r CreateUpdateRequest) Execute() (*Update, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -47,7 +340,11 @@ func (r ApiCreateUpdateRequest) Execute() (*Update, error) {
 		localVarReturnValue *Update
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdate")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -80,7 +377,7 @@ func (r ApiCreateUpdateRequest) Execute() (*Update, error) {
 	}
 	// body params
 	localVarPostBody = r.createUpdatePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -90,7 +387,7 @@ func (r ApiCreateUpdateRequest) Execute() (*Update, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -114,7 +411,7 @@ func (r ApiCreateUpdateRequest) Execute() (*Update, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -126,7 +423,7 @@ func (r ApiCreateUpdateRequest) Execute() (*Update, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -149,7 +446,7 @@ CreateUpdate: create update
 	@return ApiCreateUpdateRequest
 */
 func (a *APIClient) CreateUpdate(ctx context.Context, projectId string, serverId string, region string) ApiCreateUpdateRequest {
-	return ApiCreateUpdateRequest{
+	return CreateUpdateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -159,7 +456,7 @@ func (a *APIClient) CreateUpdate(ctx context.Context, projectId string, serverId
 }
 
 func (a *APIClient) CreateUpdateExecute(ctx context.Context, projectId string, serverId string, region string) (*Update, error) {
-	r := ApiCreateUpdateRequest{
+	r := CreateUpdateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -169,7 +466,7 @@ func (a *APIClient) CreateUpdateExecute(ctx context.Context, projectId string, s
 	return r.Execute()
 }
 
-type ApiCreateUpdateScheduleRequest struct {
+type CreateUpdateScheduleRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	projectId                   string
@@ -178,12 +475,12 @@ type ApiCreateUpdateScheduleRequest struct {
 	createUpdateSchedulePayload *CreateUpdateSchedulePayload
 }
 
-func (r ApiCreateUpdateScheduleRequest) CreateUpdateSchedulePayload(createUpdateSchedulePayload CreateUpdateSchedulePayload) ApiCreateUpdateScheduleRequest {
+func (r CreateUpdateScheduleRequest) CreateUpdateSchedulePayload(createUpdateSchedulePayload CreateUpdateSchedulePayload) ApiCreateUpdateScheduleRequest {
 	r.createUpdateSchedulePayload = &createUpdateSchedulePayload
 	return r
 }
 
-func (r ApiCreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
+func (r CreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -191,7 +488,11 @@ func (r ApiCreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		localVarReturnValue *UpdateSchedule
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdateSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdateSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -224,7 +525,7 @@ func (r ApiCreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	}
 	// body params
 	localVarPostBody = r.createUpdateSchedulePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -234,7 +535,7 @@ func (r ApiCreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -258,7 +559,7 @@ func (r ApiCreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -270,7 +571,7 @@ func (r ApiCreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -293,7 +594,7 @@ CreateUpdateSchedule: create update schedule
 	@return ApiCreateUpdateScheduleRequest
 */
 func (a *APIClient) CreateUpdateSchedule(ctx context.Context, projectId string, serverId string, region string) ApiCreateUpdateScheduleRequest {
-	return ApiCreateUpdateScheduleRequest{
+	return CreateUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -303,7 +604,7 @@ func (a *APIClient) CreateUpdateSchedule(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) CreateUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, region string) (*UpdateSchedule, error) {
-	r := ApiCreateUpdateScheduleRequest{
+	r := CreateUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -313,7 +614,7 @@ func (a *APIClient) CreateUpdateScheduleExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiDeleteUpdateScheduleRequest struct {
+type DeleteUpdateScheduleRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -322,14 +623,18 @@ type ApiDeleteUpdateScheduleRequest struct {
 	region     string
 }
 
-func (r ApiDeleteUpdateScheduleRequest) Execute() error {
+func (r DeleteUpdateScheduleRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteUpdateSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteUpdateSchedule")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -361,7 +666,7 @@ func (r ApiDeleteUpdateScheduleRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -371,7 +676,7 @@ func (r ApiDeleteUpdateScheduleRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -395,7 +700,7 @@ func (r ApiDeleteUpdateScheduleRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -421,7 +726,7 @@ DeleteUpdateSchedule: delete update schedule
 	@return ApiDeleteUpdateScheduleRequest
 */
 func (a *APIClient) DeleteUpdateSchedule(ctx context.Context, projectId string, serverId string, scheduleId string, region string) ApiDeleteUpdateScheduleRequest {
-	return ApiDeleteUpdateScheduleRequest{
+	return DeleteUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -432,7 +737,7 @@ func (a *APIClient) DeleteUpdateSchedule(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) DeleteUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, scheduleId string, region string) error {
-	r := ApiDeleteUpdateScheduleRequest{
+	r := DeleteUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -443,7 +748,7 @@ func (a *APIClient) DeleteUpdateScheduleExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiDisableServiceResourceRequest struct {
+type DisableServiceResourceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -451,14 +756,18 @@ type ApiDisableServiceResourceRequest struct {
 	region     string
 }
 
-func (r ApiDisableServiceResourceRequest) Execute() error {
+func (r DisableServiceResourceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceResource")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -489,7 +798,7 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -499,7 +808,7 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -523,7 +832,7 @@ func (r ApiDisableServiceResourceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -548,7 +857,7 @@ DisableServiceResource: disable update service
 	@return ApiDisableServiceResourceRequest
 */
 func (a *APIClient) DisableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiDisableServiceResourceRequest {
-	return ApiDisableServiceResourceRequest{
+	return DisableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -558,7 +867,7 @@ func (a *APIClient) DisableServiceResource(ctx context.Context, projectId string
 }
 
 func (a *APIClient) DisableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error {
-	r := ApiDisableServiceResourceRequest{
+	r := DisableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -568,7 +877,7 @@ func (a *APIClient) DisableServiceResourceExecute(ctx context.Context, projectId
 	return r.Execute()
 }
 
-type ApiEnableServiceResourceRequest struct {
+type EnableServiceResourceRequest struct {
 	ctx                          context.Context
 	apiService                   *DefaultApiService
 	projectId                    string
@@ -577,19 +886,23 @@ type ApiEnableServiceResourceRequest struct {
 	enableServiceResourcePayload *EnableServiceResourcePayload
 }
 
-func (r ApiEnableServiceResourceRequest) EnableServiceResourcePayload(enableServiceResourcePayload EnableServiceResourcePayload) ApiEnableServiceResourceRequest {
+func (r EnableServiceResourceRequest) EnableServiceResourcePayload(enableServiceResourcePayload EnableServiceResourcePayload) ApiEnableServiceResourceRequest {
 	r.enableServiceResourcePayload = &enableServiceResourcePayload
 	return r
 }
 
-func (r ApiEnableServiceResourceRequest) Execute() error {
+func (r EnableServiceResourceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceResource")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -622,7 +935,7 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.enableServiceResourcePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -632,7 +945,7 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -656,7 +969,7 @@ func (r ApiEnableServiceResourceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -681,7 +994,7 @@ EnableServiceResource: enable update service
 	@return ApiEnableServiceResourceRequest
 */
 func (a *APIClient) EnableServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiEnableServiceResourceRequest {
-	return ApiEnableServiceResourceRequest{
+	return EnableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -691,7 +1004,7 @@ func (a *APIClient) EnableServiceResource(ctx context.Context, projectId string,
 }
 
 func (a *APIClient) EnableServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) error {
-	r := ApiEnableServiceResourceRequest{
+	r := EnableServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -701,7 +1014,7 @@ func (a *APIClient) EnableServiceResourceExecute(ctx context.Context, projectId 
 	return r.Execute()
 }
 
-type ApiGetServiceResourceRequest struct {
+type GetServiceResourceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -709,7 +1022,7 @@ type ApiGetServiceResourceRequest struct {
 	region     string
 }
 
-func (r ApiGetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, error) {
+func (r GetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -717,7 +1030,11 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, erro
 		localVarReturnValue *GetUpdateServiceResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceResource")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceResource")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -748,7 +1065,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -758,7 +1075,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -782,7 +1099,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -794,7 +1111,7 @@ func (r ApiGetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -817,7 +1134,7 @@ GetServiceResource: get update service details
 	@return ApiGetServiceResourceRequest
 */
 func (a *APIClient) GetServiceResource(ctx context.Context, projectId string, serverId string, region string) ApiGetServiceResourceRequest {
-	return ApiGetServiceResourceRequest{
+	return GetServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -827,7 +1144,7 @@ func (a *APIClient) GetServiceResource(ctx context.Context, projectId string, se
 }
 
 func (a *APIClient) GetServiceResourceExecute(ctx context.Context, projectId string, serverId string, region string) (*GetUpdateServiceResponse, error) {
-	r := ApiGetServiceResourceRequest{
+	r := GetServiceResourceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -837,7 +1154,7 @@ func (a *APIClient) GetServiceResourceExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiGetUpdateRequest struct {
+type GetUpdateRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -846,7 +1163,7 @@ type ApiGetUpdateRequest struct {
 	region     string
 }
 
-func (r ApiGetUpdateRequest) Execute() (*Update, error) {
+func (r GetUpdateRequest) Execute() (*Update, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -854,7 +1171,11 @@ func (r ApiGetUpdateRequest) Execute() (*Update, error) {
 		localVarReturnValue *Update
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdate")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -886,7 +1207,7 @@ func (r ApiGetUpdateRequest) Execute() (*Update, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -896,7 +1217,7 @@ func (r ApiGetUpdateRequest) Execute() (*Update, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -920,7 +1241,7 @@ func (r ApiGetUpdateRequest) Execute() (*Update, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -932,7 +1253,7 @@ func (r ApiGetUpdateRequest) Execute() (*Update, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -956,7 +1277,7 @@ GetUpdate: get update
 	@return ApiGetUpdateRequest
 */
 func (a *APIClient) GetUpdate(ctx context.Context, projectId string, serverId string, updateId string, region string) ApiGetUpdateRequest {
-	return ApiGetUpdateRequest{
+	return GetUpdateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -967,7 +1288,7 @@ func (a *APIClient) GetUpdate(ctx context.Context, projectId string, serverId st
 }
 
 func (a *APIClient) GetUpdateExecute(ctx context.Context, projectId string, serverId string, updateId string, region string) (*Update, error) {
-	r := ApiGetUpdateRequest{
+	r := GetUpdateRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -978,7 +1299,7 @@ func (a *APIClient) GetUpdateExecute(ctx context.Context, projectId string, serv
 	return r.Execute()
 }
 
-type ApiGetUpdateScheduleRequest struct {
+type GetUpdateScheduleRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -987,7 +1308,7 @@ type ApiGetUpdateScheduleRequest struct {
 	region     string
 }
 
-func (r ApiGetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
+func (r GetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -995,7 +1316,11 @@ func (r ApiGetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		localVarReturnValue *UpdateSchedule
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdateSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdateSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1027,7 +1352,7 @@ func (r ApiGetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1037,7 +1362,7 @@ func (r ApiGetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1061,7 +1386,7 @@ func (r ApiGetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1073,7 +1398,7 @@ func (r ApiGetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1097,7 +1422,7 @@ GetUpdateSchedule: get single update schedule details
 	@return ApiGetUpdateScheduleRequest
 */
 func (a *APIClient) GetUpdateSchedule(ctx context.Context, projectId string, serverId string, scheduleId string, region string) ApiGetUpdateScheduleRequest {
-	return ApiGetUpdateScheduleRequest{
+	return GetUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1108,7 +1433,7 @@ func (a *APIClient) GetUpdateSchedule(ctx context.Context, projectId string, ser
 }
 
 func (a *APIClient) GetUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, scheduleId string, region string) (*UpdateSchedule, error) {
-	r := ApiGetUpdateScheduleRequest{
+	r := GetUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1119,13 +1444,13 @@ func (a *APIClient) GetUpdateScheduleExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiListUpdatePoliciesRequest struct {
+type ListUpdatePoliciesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, error) {
+func (r ListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1133,7 +1458,11 @@ func (r ApiListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, err
 		localVarReturnValue *GetUpdatePoliciesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdatePolicies")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdatePolicies")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1162,7 +1491,7 @@ func (r ApiListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1172,7 +1501,7 @@ func (r ApiListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, err
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1196,7 +1525,7 @@ func (r ApiListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, err
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1208,7 +1537,7 @@ func (r ApiListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, err
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1229,7 +1558,7 @@ ListUpdatePolicies: get list of update policies
 	@return ApiListUpdatePoliciesRequest
 */
 func (a *APIClient) ListUpdatePolicies(ctx context.Context, projectId string) ApiListUpdatePoliciesRequest {
-	return ApiListUpdatePoliciesRequest{
+	return ListUpdatePoliciesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1237,7 +1566,7 @@ func (a *APIClient) ListUpdatePolicies(ctx context.Context, projectId string) Ap
 }
 
 func (a *APIClient) ListUpdatePoliciesExecute(ctx context.Context, projectId string) (*GetUpdatePoliciesResponse, error) {
-	r := ApiListUpdatePoliciesRequest{
+	r := ListUpdatePoliciesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1245,7 +1574,7 @@ func (a *APIClient) ListUpdatePoliciesExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiListUpdateSchedulesRequest struct {
+type ListUpdateSchedulesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1253,7 +1582,7 @@ type ApiListUpdateSchedulesRequest struct {
 	region     string
 }
 
-func (r ApiListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, error) {
+func (r ListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1261,7 +1590,11 @@ func (r ApiListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, e
 		localVarReturnValue *GetUpdateSchedulesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdateSchedules")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdateSchedules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1292,7 +1625,7 @@ func (r ApiListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, e
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1302,7 +1635,7 @@ func (r ApiListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, e
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1326,7 +1659,7 @@ func (r ApiListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, e
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1338,7 +1671,7 @@ func (r ApiListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, e
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1361,7 +1694,7 @@ ListUpdateSchedules: get list of update schedules
 	@return ApiListUpdateSchedulesRequest
 */
 func (a *APIClient) ListUpdateSchedules(ctx context.Context, projectId string, serverId string, region string) ApiListUpdateSchedulesRequest {
-	return ApiListUpdateSchedulesRequest{
+	return ListUpdateSchedulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1371,7 +1704,7 @@ func (a *APIClient) ListUpdateSchedules(ctx context.Context, projectId string, s
 }
 
 func (a *APIClient) ListUpdateSchedulesExecute(ctx context.Context, projectId string, serverId string, region string) (*GetUpdateSchedulesResponse, error) {
-	r := ApiListUpdateSchedulesRequest{
+	r := ListUpdateSchedulesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1381,7 +1714,7 @@ func (a *APIClient) ListUpdateSchedulesExecute(ctx context.Context, projectId st
 	return r.Execute()
 }
 
-type ApiListUpdatesRequest struct {
+type ListUpdatesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1389,7 +1722,7 @@ type ApiListUpdatesRequest struct {
 	region     string
 }
 
-func (r ApiListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
+func (r ListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1397,7 +1730,11 @@ func (r ApiListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 		localVarReturnValue *GetUpdatesListResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdates")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdates")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1428,7 +1765,7 @@ func (r ApiListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1438,7 +1775,7 @@ func (r ApiListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1462,7 +1799,7 @@ func (r ApiListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1474,7 +1811,7 @@ func (r ApiListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1497,7 +1834,7 @@ ListUpdates: get list of updates
 	@return ApiListUpdatesRequest
 */
 func (a *APIClient) ListUpdates(ctx context.Context, projectId string, serverId string, region string) ApiListUpdatesRequest {
-	return ApiListUpdatesRequest{
+	return ListUpdatesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1507,7 +1844,7 @@ func (a *APIClient) ListUpdates(ctx context.Context, projectId string, serverId 
 }
 
 func (a *APIClient) ListUpdatesExecute(ctx context.Context, projectId string, serverId string, region string) (*GetUpdatesListResponse, error) {
-	r := ApiListUpdatesRequest{
+	r := ListUpdatesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1517,7 +1854,7 @@ func (a *APIClient) ListUpdatesExecute(ctx context.Context, projectId string, se
 	return r.Execute()
 }
 
-type ApiUpdateUpdateScheduleRequest struct {
+type UpdateUpdateScheduleRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	projectId                   string
@@ -1527,12 +1864,12 @@ type ApiUpdateUpdateScheduleRequest struct {
 	updateUpdateSchedulePayload *UpdateUpdateSchedulePayload
 }
 
-func (r ApiUpdateUpdateScheduleRequest) UpdateUpdateSchedulePayload(updateUpdateSchedulePayload UpdateUpdateSchedulePayload) ApiUpdateUpdateScheduleRequest {
+func (r UpdateUpdateScheduleRequest) UpdateUpdateSchedulePayload(updateUpdateSchedulePayload UpdateUpdateSchedulePayload) ApiUpdateUpdateScheduleRequest {
 	r.updateUpdateSchedulePayload = &updateUpdateSchedulePayload
 	return r
 }
 
-func (r ApiUpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
+func (r UpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
@@ -1540,7 +1877,11 @@ func (r ApiUpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		localVarReturnValue *UpdateSchedule
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateUpdateSchedule")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateUpdateSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1574,7 +1915,7 @@ func (r ApiUpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	}
 	// body params
 	localVarPostBody = r.updateUpdateSchedulePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1584,7 +1925,7 @@ func (r ApiUpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1608,7 +1949,7 @@ func (r ApiUpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1620,7 +1961,7 @@ func (r ApiUpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1644,7 +1985,7 @@ UpdateUpdateSchedule: update update schedule
 	@return ApiUpdateUpdateScheduleRequest
 */
 func (a *APIClient) UpdateUpdateSchedule(ctx context.Context, projectId string, serverId string, scheduleId string, region string) ApiUpdateUpdateScheduleRequest {
-	return ApiUpdateUpdateScheduleRequest{
+	return UpdateUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1655,7 +1996,7 @@ func (a *APIClient) UpdateUpdateSchedule(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) UpdateUpdateScheduleExecute(ctx context.Context, projectId string, serverId string, scheduleId string, region string) (*UpdateSchedule, error) {
-	r := ApiUpdateUpdateScheduleRequest{
+	r := UpdateUpdateScheduleRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

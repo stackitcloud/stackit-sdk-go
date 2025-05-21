@@ -12,6 +12,7 @@ package kms
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -227,10 +228,114 @@ func setWrappingKeyGetPurposeAttributeType(arg *WrappingKeyGetPurposeAttributeTy
 	types and functions for state
 */
 
-// isEnumRef
-type WrappingKeyGetStateAttributeType = *string
-type WrappingKeyGetStateArgType = string
-type WrappingKeyGetStateRetType = string
+// isEnum
+
+// WrappingKeyState The current state of the wrapping key.
+type WrappingKeyState string
+
+// List of State
+const (
+	WRAPPINGKEYSTATE_ACTIVE                 WrappingKeyState = "active"
+	WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY WrappingKeyState = "key_material_not_ready"
+	WRAPPINGKEYSTATE_EXPIRED                WrappingKeyState = "expired"
+	WRAPPINGKEYSTATE_DELETING               WrappingKeyState = "deleting"
+)
+
+// All allowed values of WrappingKey enum
+var AllowedWrappingKeyStateEnumValues = []WrappingKeyState{
+	"active",
+	"key_material_not_ready",
+	"expired",
+	"deleting",
+}
+
+func (v *WrappingKeyState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := WrappingKeyState(value)
+	for _, existing := range AllowedWrappingKeyStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid WrappingKey", value)
+}
+
+// NewWrappingKeyStateFromValue returns a pointer to a valid WrappingKeyState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewWrappingKeyStateFromValue(v string) (*WrappingKeyState, error) {
+	ev := WrappingKeyState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for WrappingKeyState: valid values are %v", v, AllowedWrappingKeyStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v WrappingKeyState) IsValid() bool {
+	for _, existing := range AllowedWrappingKeyStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v WrappingKeyState) Ptr() *WrappingKeyState {
+	return &v
+}
+
+type NullableWrappingKeyState struct {
+	value *WrappingKeyState
+	isSet bool
+}
+
+func (v NullableWrappingKeyState) Get() *WrappingKeyState {
+	return v.value
+}
+
+func (v *NullableWrappingKeyState) Set(val *WrappingKeyState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWrappingKeyState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWrappingKeyState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableWrappingKeyState(val *WrappingKeyState) *NullableWrappingKeyState {
+	return &NullableWrappingKeyState{value: val, isSet: true}
+}
+
+func (v NullableWrappingKeyState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableWrappingKeyState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type WrappingKeyGetStateAttributeType = *WrappingKeyState
+type WrappingKeyGetStateArgType = WrappingKeyState
+type WrappingKeyGetStateRetType = WrappingKeyState
 
 func getWrappingKeyGetStateAttributeTypeOk(arg WrappingKeyGetStateAttributeType) (ret WrappingKeyGetStateRetType, ok bool) {
 	if arg == nil {

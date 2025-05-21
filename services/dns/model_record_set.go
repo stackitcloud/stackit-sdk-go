@@ -12,6 +12,7 @@ package dns
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RecordSet type satisfies the MappedNullable interface at compile time
@@ -187,10 +188,124 @@ func setRecordSetGetRecordsAttributeType(arg *RecordSetGetRecordsAttributeType, 
 	types and functions for state
 */
 
-// isEnumRef
-type RecordSetGetStateAttributeType = *string
-type RecordSetGetStateArgType = string
-type RecordSetGetStateRetType = string
+// isEnum
+
+// RecordSetState record set state
+type RecordSetState string
+
+// List of State
+const (
+	RECORDSETSTATE_CREATING         RecordSetState = "CREATING"
+	RECORDSETSTATE_CREATE_SUCCEEDED RecordSetState = "CREATE_SUCCEEDED"
+	RECORDSETSTATE_CREATE_FAILED    RecordSetState = "CREATE_FAILED"
+	RECORDSETSTATE_DELETING         RecordSetState = "DELETING"
+	RECORDSETSTATE_DELETE_SUCCEEDED RecordSetState = "DELETE_SUCCEEDED"
+	RECORDSETSTATE_DELETE_FAILED    RecordSetState = "DELETE_FAILED"
+	RECORDSETSTATE_UPDATING         RecordSetState = "UPDATING"
+	RECORDSETSTATE_UPDATE_SUCCEEDED RecordSetState = "UPDATE_SUCCEEDED"
+	RECORDSETSTATE_UPDATE_FAILED    RecordSetState = "UPDATE_FAILED"
+)
+
+// All allowed values of RecordSet enum
+var AllowedRecordSetStateEnumValues = []RecordSetState{
+	"CREATING",
+	"CREATE_SUCCEEDED",
+	"CREATE_FAILED",
+	"DELETING",
+	"DELETE_SUCCEEDED",
+	"DELETE_FAILED",
+	"UPDATING",
+	"UPDATE_SUCCEEDED",
+	"UPDATE_FAILED",
+}
+
+func (v *RecordSetState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := RecordSetState(value)
+	for _, existing := range AllowedRecordSetStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid RecordSet", value)
+}
+
+// NewRecordSetStateFromValue returns a pointer to a valid RecordSetState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewRecordSetStateFromValue(v string) (*RecordSetState, error) {
+	ev := RecordSetState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for RecordSetState: valid values are %v", v, AllowedRecordSetStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v RecordSetState) IsValid() bool {
+	for _, existing := range AllowedRecordSetStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v RecordSetState) Ptr() *RecordSetState {
+	return &v
+}
+
+type NullableRecordSetState struct {
+	value *RecordSetState
+	isSet bool
+}
+
+func (v NullableRecordSetState) Get() *RecordSetState {
+	return v.value
+}
+
+func (v *NullableRecordSetState) Set(val *RecordSetState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRecordSetState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRecordSetState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRecordSetState(val *RecordSetState) *NullableRecordSetState {
+	return &NullableRecordSetState{value: val, isSet: true}
+}
+
+func (v NullableRecordSetState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRecordSetState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type RecordSetGetStateAttributeType = *RecordSetState
+type RecordSetGetStateArgType = RecordSetState
+type RecordSetGetStateRetType = RecordSetState
 
 func getRecordSetGetStateAttributeTypeOk(arg RecordSetGetStateAttributeType) (ret RecordSetGetStateRetType, ok bool) {
 	if arg == nil {
@@ -227,10 +342,130 @@ func setRecordSetGetTtlAttributeType(arg *RecordSetGetTtlAttributeType, val Reco
 	types and functions for type
 */
 
-// isEnumRef
-type RecordSetGetTypeAttributeType = *string
-type RecordSetGetTypeArgType = string
-type RecordSetGetTypeRetType = string
+// isEnum
+
+// RecordSetTypes record set type
+type RecordSetTypes string
+
+// List of Type
+const (
+	RECORDSETTYPE_A     RecordSetTypes = "A"
+	RECORDSETTYPE_AAAA  RecordSetTypes = "AAAA"
+	RECORDSETTYPE_SOA   RecordSetTypes = "SOA"
+	RECORDSETTYPE_CNAME RecordSetTypes = "CNAME"
+	RECORDSETTYPE_NS    RecordSetTypes = "NS"
+	RECORDSETTYPE_MX    RecordSetTypes = "MX"
+	RECORDSETTYPE_TXT   RecordSetTypes = "TXT"
+	RECORDSETTYPE_SRV   RecordSetTypes = "SRV"
+	RECORDSETTYPE_PTR   RecordSetTypes = "PTR"
+	RECORDSETTYPE_ALIAS RecordSetTypes = "ALIAS"
+	RECORDSETTYPE_DNAME RecordSetTypes = "DNAME"
+	RECORDSETTYPE_CAA   RecordSetTypes = "CAA"
+)
+
+// All allowed values of RecordSet enum
+var AllowedRecordSetTypesEnumValues = []RecordSetTypes{
+	"A",
+	"AAAA",
+	"SOA",
+	"CNAME",
+	"NS",
+	"MX",
+	"TXT",
+	"SRV",
+	"PTR",
+	"ALIAS",
+	"DNAME",
+	"CAA",
+}
+
+func (v *RecordSetTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := RecordSetTypes(value)
+	for _, existing := range AllowedRecordSetTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid RecordSet", value)
+}
+
+// NewRecordSetTypesFromValue returns a pointer to a valid RecordSetTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewRecordSetTypesFromValue(v string) (*RecordSetTypes, error) {
+	ev := RecordSetTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for RecordSetTypes: valid values are %v", v, AllowedRecordSetTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v RecordSetTypes) IsValid() bool {
+	for _, existing := range AllowedRecordSetTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v RecordSetTypes) Ptr() *RecordSetTypes {
+	return &v
+}
+
+type NullableRecordSetTypes struct {
+	value *RecordSetTypes
+	isSet bool
+}
+
+func (v NullableRecordSetTypes) Get() *RecordSetTypes {
+	return v.value
+}
+
+func (v *NullableRecordSetTypes) Set(val *RecordSetTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRecordSetTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRecordSetTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRecordSetTypes(val *RecordSetTypes) *NullableRecordSetTypes {
+	return &NullableRecordSetTypes{value: val, isSet: true}
+}
+
+func (v NullableRecordSetTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableRecordSetTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type RecordSetGetTypeAttributeType = *RecordSetTypes
+type RecordSetGetTypeArgType = RecordSetTypes
+type RecordSetGetTypeRetType = RecordSetTypes
 
 func getRecordSetGetTypeAttributeTypeOk(arg RecordSetGetTypeAttributeType) (ret RecordSetGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -332,7 +567,7 @@ type _RecordSet RecordSet
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecordSet(creationFinished RecordSetGetCreationFinishedArgType, creationStarted RecordSetGetCreationStartedArgType, id RecordSetGetIdArgType, name RecordSetGetNameArgType, records RecordSetGetRecordsArgType, state RecordSetGetStateArgType, ttl RecordSetGetTtlArgType, type_ RecordSetGetTypeArgType, updateFinished RecordSetGetUpdateFinishedArgType, updateStarted RecordSetGetUpdateStartedArgType) *RecordSet {
+func NewRecordSet(creationFinished RecordSetGetCreationFinishedArgType, creationStarted RecordSetGetCreationStartedArgType, id RecordSetGetIdArgType, name RecordSetGetNameArgType, records RecordSetGetRecordsArgType, state RecordSetGetStateArgType, ttl RecordSetGetTtlArgType, types RecordSetGetTypeArgType, updateFinished RecordSetGetUpdateFinishedArgType, updateStarted RecordSetGetUpdateStartedArgType) *RecordSet {
 	this := RecordSet{}
 	setRecordSetGetCreationFinishedAttributeType(&this.CreationFinished, creationFinished)
 	setRecordSetGetCreationStartedAttributeType(&this.CreationStarted, creationStarted)
@@ -341,7 +576,7 @@ func NewRecordSet(creationFinished RecordSetGetCreationFinishedArgType, creation
 	setRecordSetGetRecordsAttributeType(&this.Records, records)
 	setRecordSetGetStateAttributeType(&this.State, state)
 	setRecordSetGetTtlAttributeType(&this.Ttl, ttl)
-	setRecordSetGetTypeAttributeType(&this.Type, type_)
+	setRecordSetGetTypeAttributeType(&this.Type, types)
 	setRecordSetGetUpdateFinishedAttributeType(&this.UpdateFinished, updateFinished)
 	setRecordSetGetUpdateStartedAttributeType(&this.UpdateStarted, updateStarted)
 	return &this

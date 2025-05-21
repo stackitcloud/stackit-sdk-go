@@ -296,7 +296,7 @@ type CreateNicPayload struct {
 	Id CreateNicPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents an IP address.
 	Ipv4 CreateNicPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
-	// Object that represents an IPv6 address.
+	// String that represents an IPv6 address.
 	Ipv6 CreateNicPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels CreateNicPayloadGetLabelsAttributeType `json:"labels,omitempty"`

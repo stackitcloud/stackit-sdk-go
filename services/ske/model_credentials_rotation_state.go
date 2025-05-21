@@ -12,6 +12,7 @@ package ske
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -62,10 +63,116 @@ func setCredentialsRotationStateGetLastInitiationTimeAttributeType(arg *Credenti
 	types and functions for phase
 */
 
-// isEnumRef
-type CredentialsRotationStateGetPhaseAttributeType = *string
-type CredentialsRotationStateGetPhaseArgType = string
-type CredentialsRotationStateGetPhaseRetType = string
+// isEnum
+
+// CredentialsRotationStatePhase Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.
+type CredentialsRotationStatePhase string
+
+// List of Phase
+const (
+	CREDENTIALSROTATIONSTATEPHASE_NEVER      CredentialsRotationStatePhase = "NEVER"
+	CREDENTIALSROTATIONSTATEPHASE_PREPARING  CredentialsRotationStatePhase = "PREPARING"
+	CREDENTIALSROTATIONSTATEPHASE_PREPARED   CredentialsRotationStatePhase = "PREPARED"
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETING CredentialsRotationStatePhase = "COMPLETING"
+	CREDENTIALSROTATIONSTATEPHASE_COMPLETED  CredentialsRotationStatePhase = "COMPLETED"
+)
+
+// All allowed values of CredentialsRotationState enum
+var AllowedCredentialsRotationStatePhaseEnumValues = []CredentialsRotationStatePhase{
+	"NEVER",
+	"PREPARING",
+	"PREPARED",
+	"COMPLETING",
+	"COMPLETED",
+}
+
+func (v *CredentialsRotationStatePhase) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CredentialsRotationStatePhase(value)
+	for _, existing := range AllowedCredentialsRotationStatePhaseEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CredentialsRotationState", value)
+}
+
+// NewCredentialsRotationStatePhaseFromValue returns a pointer to a valid CredentialsRotationStatePhase
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCredentialsRotationStatePhaseFromValue(v string) (*CredentialsRotationStatePhase, error) {
+	ev := CredentialsRotationStatePhase(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CredentialsRotationStatePhase: valid values are %v", v, AllowedCredentialsRotationStatePhaseEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CredentialsRotationStatePhase) IsValid() bool {
+	for _, existing := range AllowedCredentialsRotationStatePhaseEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to PhasePhase value
+func (v CredentialsRotationStatePhase) Ptr() *CredentialsRotationStatePhase {
+	return &v
+}
+
+type NullableCredentialsRotationStatePhase struct {
+	value *CredentialsRotationStatePhase
+	isSet bool
+}
+
+func (v NullableCredentialsRotationStatePhase) Get() *CredentialsRotationStatePhase {
+	return v.value
+}
+
+func (v *NullableCredentialsRotationStatePhase) Set(val *CredentialsRotationStatePhase) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCredentialsRotationStatePhase) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCredentialsRotationStatePhase) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCredentialsRotationStatePhase(val *CredentialsRotationStatePhase) *NullableCredentialsRotationStatePhase {
+	return &NullableCredentialsRotationStatePhase{value: val, isSet: true}
+}
+
+func (v NullableCredentialsRotationStatePhase) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCredentialsRotationStatePhase) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CredentialsRotationStateGetPhaseAttributeType = *CredentialsRotationStatePhase
+type CredentialsRotationStateGetPhaseArgType = CredentialsRotationStatePhase
+type CredentialsRotationStateGetPhaseRetType = CredentialsRotationStatePhase
 
 func getCredentialsRotationStateGetPhaseAttributeTypeOk(arg CredentialsRotationStateGetPhaseAttributeType) (ret CredentialsRotationStateGetPhaseRetType, ok bool) {
 	if arg == nil {

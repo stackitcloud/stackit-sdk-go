@@ -73,10 +73,10 @@ type _Machine Machine
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMachine(image MachineGetImageArgType, type_ MachineGetTypeArgType) *Machine {
+func NewMachine(image MachineGetImageArgType, types MachineGetTypeArgType) *Machine {
 	this := Machine{}
 	setMachineGetImageAttributeType(&this.Image, image)
-	setMachineGetTypeAttributeType(&this.Type, type_)
+	setMachineGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

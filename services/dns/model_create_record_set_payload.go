@@ -12,6 +12,7 @@ package dns
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateRecordSetPayload type satisfies the MappedNullable interface at compile time
@@ -103,10 +104,148 @@ func setCreateRecordSetPayloadGetTtlAttributeType(arg *CreateRecordSetPayloadGet
 	types and functions for type
 */
 
-// isEnumRef
-type CreateRecordSetPayloadGetTypeAttributeType = *string
-type CreateRecordSetPayloadGetTypeArgType = string
-type CreateRecordSetPayloadGetTypeRetType = string
+// isEnum
+
+// CreateRecordSetPayloadTypes record set type
+type CreateRecordSetPayloadTypes string
+
+// List of Type
+const (
+	CREATERECORDSETPAYLOADTYPE_A      CreateRecordSetPayloadTypes = "A"
+	CREATERECORDSETPAYLOADTYPE_AAAA   CreateRecordSetPayloadTypes = "AAAA"
+	CREATERECORDSETPAYLOADTYPE_SOA    CreateRecordSetPayloadTypes = "SOA"
+	CREATERECORDSETPAYLOADTYPE_CNAME  CreateRecordSetPayloadTypes = "CNAME"
+	CREATERECORDSETPAYLOADTYPE_NS     CreateRecordSetPayloadTypes = "NS"
+	CREATERECORDSETPAYLOADTYPE_MX     CreateRecordSetPayloadTypes = "MX"
+	CREATERECORDSETPAYLOADTYPE_TXT    CreateRecordSetPayloadTypes = "TXT"
+	CREATERECORDSETPAYLOADTYPE_SRV    CreateRecordSetPayloadTypes = "SRV"
+	CREATERECORDSETPAYLOADTYPE_PTR    CreateRecordSetPayloadTypes = "PTR"
+	CREATERECORDSETPAYLOADTYPE_ALIAS  CreateRecordSetPayloadTypes = "ALIAS"
+	CREATERECORDSETPAYLOADTYPE_DNAME  CreateRecordSetPayloadTypes = "DNAME"
+	CREATERECORDSETPAYLOADTYPE_CAA    CreateRecordSetPayloadTypes = "CAA"
+	CREATERECORDSETPAYLOADTYPE_DNSKEY CreateRecordSetPayloadTypes = "DNSKEY"
+	CREATERECORDSETPAYLOADTYPE_DS     CreateRecordSetPayloadTypes = "DS"
+	CREATERECORDSETPAYLOADTYPE_LOC    CreateRecordSetPayloadTypes = "LOC"
+	CREATERECORDSETPAYLOADTYPE_NAPTR  CreateRecordSetPayloadTypes = "NAPTR"
+	CREATERECORDSETPAYLOADTYPE_SSHFP  CreateRecordSetPayloadTypes = "SSHFP"
+	CREATERECORDSETPAYLOADTYPE_TLSA   CreateRecordSetPayloadTypes = "TLSA"
+	CREATERECORDSETPAYLOADTYPE_URI    CreateRecordSetPayloadTypes = "URI"
+	CREATERECORDSETPAYLOADTYPE_CERT   CreateRecordSetPayloadTypes = "CERT"
+	CREATERECORDSETPAYLOADTYPE_SVCB   CreateRecordSetPayloadTypes = "SVCB"
+)
+
+// All allowed values of CreateRecordSetPayload enum
+var AllowedCreateRecordSetPayloadTypesEnumValues = []CreateRecordSetPayloadTypes{
+	"A",
+	"AAAA",
+	"SOA",
+	"CNAME",
+	"NS",
+	"MX",
+	"TXT",
+	"SRV",
+	"PTR",
+	"ALIAS",
+	"DNAME",
+	"CAA",
+	"DNSKEY",
+	"DS",
+	"LOC",
+	"NAPTR",
+	"SSHFP",
+	"TLSA",
+	"URI",
+	"CERT",
+	"SVCB",
+}
+
+func (v *CreateRecordSetPayloadTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateRecordSetPayloadTypes(value)
+	for _, existing := range AllowedCreateRecordSetPayloadTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateRecordSetPayload", value)
+}
+
+// NewCreateRecordSetPayloadTypesFromValue returns a pointer to a valid CreateRecordSetPayloadTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateRecordSetPayloadTypesFromValue(v string) (*CreateRecordSetPayloadTypes, error) {
+	ev := CreateRecordSetPayloadTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateRecordSetPayloadTypes: valid values are %v", v, AllowedCreateRecordSetPayloadTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateRecordSetPayloadTypes) IsValid() bool {
+	for _, existing := range AllowedCreateRecordSetPayloadTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v CreateRecordSetPayloadTypes) Ptr() *CreateRecordSetPayloadTypes {
+	return &v
+}
+
+type NullableCreateRecordSetPayloadTypes struct {
+	value *CreateRecordSetPayloadTypes
+	isSet bool
+}
+
+func (v NullableCreateRecordSetPayloadTypes) Get() *CreateRecordSetPayloadTypes {
+	return v.value
+}
+
+func (v *NullableCreateRecordSetPayloadTypes) Set(val *CreateRecordSetPayloadTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateRecordSetPayloadTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateRecordSetPayloadTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateRecordSetPayloadTypes(val *CreateRecordSetPayloadTypes) *NullableCreateRecordSetPayloadTypes {
+	return &NullableCreateRecordSetPayloadTypes{value: val, isSet: true}
+}
+
+func (v NullableCreateRecordSetPayloadTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateRecordSetPayloadTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateRecordSetPayloadGetTypeAttributeType = *CreateRecordSetPayloadTypes
+type CreateRecordSetPayloadGetTypeArgType = CreateRecordSetPayloadTypes
+type CreateRecordSetPayloadGetTypeRetType = CreateRecordSetPayloadTypes
 
 func getCreateRecordSetPayloadGetTypeAttributeTypeOk(arg CreateRecordSetPayloadGetTypeAttributeType) (ret CreateRecordSetPayloadGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -143,11 +282,11 @@ type _CreateRecordSetPayload CreateRecordSetPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateRecordSetPayload(name CreateRecordSetPayloadGetNameArgType, records CreateRecordSetPayloadGetRecordsArgType, type_ CreateRecordSetPayloadGetTypeArgType) *CreateRecordSetPayload {
+func NewCreateRecordSetPayload(name CreateRecordSetPayloadGetNameArgType, records CreateRecordSetPayloadGetRecordsArgType, types CreateRecordSetPayloadGetTypeArgType) *CreateRecordSetPayload {
 	this := CreateRecordSetPayload{}
 	setCreateRecordSetPayloadGetNameAttributeType(&this.Name, name)
 	setCreateRecordSetPayloadGetRecordsAttributeType(&this.Records, records)
-	setCreateRecordSetPayloadGetTypeAttributeType(&this.Type, type_)
+	setCreateRecordSetPayloadGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

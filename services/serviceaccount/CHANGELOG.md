@@ -1,3 +1,9 @@
+## v0.8.0 (2025-05-15)
+- **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+
+## v0.7.0 (2025-05-14)
+- **Breaking change:** Introduce typed enum constants for status attributes
+
 ## v0.6.3 (2025-05-09)
 - **Feature:** Update user-agent header
 

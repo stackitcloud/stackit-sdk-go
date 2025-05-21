@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.1
-	github.com/stackitcloud/stackit-sdk-go/services/redis v0.22.1
+	github.com/stackitcloud/stackit-sdk-go/services/redis v0.24.0
 )
 
 require (

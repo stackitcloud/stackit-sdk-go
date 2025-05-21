@@ -13,9 +13,12 @@ import (
 )
 
 const (
-	InstanceStateReady    = "Ready"
+	// Deprecated: InstanceStateReady is deprecated and will be removed after 14th November 2025. Use [git.INSTANCESTATE_READY] instead.
+	InstanceStateReady = "Ready"
+	// Deprecated: InstanceStateCreating is deprecated and will be removed after 14th November 2025. Use [git.INSTANCESTATE_CREATING] instead.
 	InstanceStateCreating = "Creating"
-	InstanceStateError    = "Error"
+	// Deprecated: InstanceStateError is deprecated and will be removed after 14th November 2025. Use [git.INSTANCESTATE_ERROR] instead.
+	InstanceStateError = "Error"
 )
 
 // APIClientInterface Interfaces needed for tests
@@ -32,10 +35,10 @@ func CreateGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, pro
 		if instance.Id == nil || instance.State == nil {
 			return false, nil, fmt.Errorf("could not get Instance id or State from response for project %s and instanceId %s", projectId, instanceId)
 		}
-		if *instance.Id == instanceId && *instance.State == InstanceStateReady {
+		if *instance.Id == instanceId && *instance.State == git.INSTANCESTATE_READY {
 			return true, instance, nil
 		}
-		if *instance.Id == instanceId && *instance.State == InstanceStateError {
+		if *instance.Id == instanceId && *instance.State == git.INSTANCESTATE_ERROR {
 			return true, instance, fmt.Errorf("create failed for Instance with id %s", instanceId)
 		}
 		return false, nil, nil

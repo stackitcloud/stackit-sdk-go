@@ -12,6 +12,7 @@ package serviceaccount
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -103,10 +104,108 @@ type GetServiceAccountKeyResponseGetIdRetType = string
 	types and functions for keyAlgorithm
 */
 
-// isEnumRef
-type GetServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *string
-type GetServiceAccountKeyResponseGetKeyAlgorithmArgType = string
-type GetServiceAccountKeyResponseGetKeyAlgorithmRetType = string
+// isEnum
+
+// GetServiceAccountKeyResponseKeyAlgorithm the model 'GetServiceAccountKeyResponse'
+type GetServiceAccountKeyResponseKeyAlgorithm string
+
+// List of KeyAlgorithm
+const (
+	GETSERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM_RSA_2048 GetServiceAccountKeyResponseKeyAlgorithm = "RSA_2048"
+)
+
+// All allowed values of GetServiceAccountKeyResponse enum
+var AllowedGetServiceAccountKeyResponseKeyAlgorithmEnumValues = []GetServiceAccountKeyResponseKeyAlgorithm{
+	"RSA_2048",
+}
+
+func (v *GetServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := GetServiceAccountKeyResponseKeyAlgorithm(value)
+	for _, existing := range AllowedGetServiceAccountKeyResponseKeyAlgorithmEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid GetServiceAccountKeyResponse", value)
+}
+
+// NewGetServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid GetServiceAccountKeyResponseKeyAlgorithm
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewGetServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*GetServiceAccountKeyResponseKeyAlgorithm, error) {
+	ev := GetServiceAccountKeyResponseKeyAlgorithm(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for GetServiceAccountKeyResponseKeyAlgorithm: valid values are %v", v, AllowedGetServiceAccountKeyResponseKeyAlgorithmEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v GetServiceAccountKeyResponseKeyAlgorithm) IsValid() bool {
+	for _, existing := range AllowedGetServiceAccountKeyResponseKeyAlgorithmEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyAlgorithmKeyAlgorithm value
+func (v GetServiceAccountKeyResponseKeyAlgorithm) Ptr() *GetServiceAccountKeyResponseKeyAlgorithm {
+	return &v
+}
+
+type NullableGetServiceAccountKeyResponseKeyAlgorithm struct {
+	value *GetServiceAccountKeyResponseKeyAlgorithm
+	isSet bool
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyAlgorithm) Get() *GetServiceAccountKeyResponseKeyAlgorithm {
+	return v.value
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyAlgorithm) Set(val *GetServiceAccountKeyResponseKeyAlgorithm) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyAlgorithm) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyAlgorithm) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetServiceAccountKeyResponseKeyAlgorithm(val *GetServiceAccountKeyResponseKeyAlgorithm) *NullableGetServiceAccountKeyResponseKeyAlgorithm {
+	return &NullableGetServiceAccountKeyResponseKeyAlgorithm{value: val, isSet: true}
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyAlgorithm) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type GetServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *GetServiceAccountKeyResponseKeyAlgorithm
+type GetServiceAccountKeyResponseGetKeyAlgorithmArgType = GetServiceAccountKeyResponseKeyAlgorithm
+type GetServiceAccountKeyResponseGetKeyAlgorithmRetType = GetServiceAccountKeyResponseKeyAlgorithm
 
 func getGetServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(arg GetServiceAccountKeyResponseGetKeyAlgorithmAttributeType) (ret GetServiceAccountKeyResponseGetKeyAlgorithmRetType, ok bool) {
 	if arg == nil {
@@ -123,10 +222,110 @@ func setGetServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *GetService
 	types and functions for keyOrigin
 */
 
-// isEnumRef
-type GetServiceAccountKeyResponseGetKeyOriginAttributeType = *string
-type GetServiceAccountKeyResponseGetKeyOriginArgType = string
-type GetServiceAccountKeyResponseGetKeyOriginRetType = string
+// isEnum
+
+// GetServiceAccountKeyResponseKeyOrigin the model 'GetServiceAccountKeyResponse'
+type GetServiceAccountKeyResponseKeyOrigin string
+
+// List of KeyOrigin
+const (
+	GETSERVICEACCOUNTKEYRESPONSEKEY_ORIGIN_USER_PROVIDED GetServiceAccountKeyResponseKeyOrigin = "USER_PROVIDED"
+	GETSERVICEACCOUNTKEYRESPONSEKEY_ORIGIN_GENERATED     GetServiceAccountKeyResponseKeyOrigin = "GENERATED"
+)
+
+// All allowed values of GetServiceAccountKeyResponse enum
+var AllowedGetServiceAccountKeyResponseKeyOriginEnumValues = []GetServiceAccountKeyResponseKeyOrigin{
+	"USER_PROVIDED",
+	"GENERATED",
+}
+
+func (v *GetServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := GetServiceAccountKeyResponseKeyOrigin(value)
+	for _, existing := range AllowedGetServiceAccountKeyResponseKeyOriginEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid GetServiceAccountKeyResponse", value)
+}
+
+// NewGetServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid GetServiceAccountKeyResponseKeyOrigin
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewGetServiceAccountKeyResponseKeyOriginFromValue(v string) (*GetServiceAccountKeyResponseKeyOrigin, error) {
+	ev := GetServiceAccountKeyResponseKeyOrigin(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for GetServiceAccountKeyResponseKeyOrigin: valid values are %v", v, AllowedGetServiceAccountKeyResponseKeyOriginEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v GetServiceAccountKeyResponseKeyOrigin) IsValid() bool {
+	for _, existing := range AllowedGetServiceAccountKeyResponseKeyOriginEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyOriginKeyOrigin value
+func (v GetServiceAccountKeyResponseKeyOrigin) Ptr() *GetServiceAccountKeyResponseKeyOrigin {
+	return &v
+}
+
+type NullableGetServiceAccountKeyResponseKeyOrigin struct {
+	value *GetServiceAccountKeyResponseKeyOrigin
+	isSet bool
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyOrigin) Get() *GetServiceAccountKeyResponseKeyOrigin {
+	return v.value
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyOrigin) Set(val *GetServiceAccountKeyResponseKeyOrigin) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyOrigin) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyOrigin) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetServiceAccountKeyResponseKeyOrigin(val *GetServiceAccountKeyResponseKeyOrigin) *NullableGetServiceAccountKeyResponseKeyOrigin {
+	return &NullableGetServiceAccountKeyResponseKeyOrigin{value: val, isSet: true}
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyOrigin) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type GetServiceAccountKeyResponseGetKeyOriginAttributeType = *GetServiceAccountKeyResponseKeyOrigin
+type GetServiceAccountKeyResponseGetKeyOriginArgType = GetServiceAccountKeyResponseKeyOrigin
+type GetServiceAccountKeyResponseGetKeyOriginRetType = GetServiceAccountKeyResponseKeyOrigin
 
 func getGetServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(arg GetServiceAccountKeyResponseGetKeyOriginAttributeType) (ret GetServiceAccountKeyResponseGetKeyOriginRetType, ok bool) {
 	if arg == nil {
@@ -143,10 +342,110 @@ func setGetServiceAccountKeyResponseGetKeyOriginAttributeType(arg *GetServiceAcc
 	types and functions for keyType
 */
 
-// isEnumRef
-type GetServiceAccountKeyResponseGetKeyTypeAttributeType = *string
-type GetServiceAccountKeyResponseGetKeyTypeArgType = string
-type GetServiceAccountKeyResponseGetKeyTypeRetType = string
+// isEnum
+
+// GetServiceAccountKeyResponseKeyType the model 'GetServiceAccountKeyResponse'
+type GetServiceAccountKeyResponseKeyType string
+
+// List of KeyType
+const (
+	GETSERVICEACCOUNTKEYRESPONSEKEY_TYPE_USER_MANAGED   GetServiceAccountKeyResponseKeyType = "USER_MANAGED"
+	GETSERVICEACCOUNTKEYRESPONSEKEY_TYPE_SYSTEM_MANAGED GetServiceAccountKeyResponseKeyType = "SYSTEM_MANAGED"
+)
+
+// All allowed values of GetServiceAccountKeyResponse enum
+var AllowedGetServiceAccountKeyResponseKeyTypeEnumValues = []GetServiceAccountKeyResponseKeyType{
+	"USER_MANAGED",
+	"SYSTEM_MANAGED",
+}
+
+func (v *GetServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := GetServiceAccountKeyResponseKeyType(value)
+	for _, existing := range AllowedGetServiceAccountKeyResponseKeyTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid GetServiceAccountKeyResponse", value)
+}
+
+// NewGetServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid GetServiceAccountKeyResponseKeyType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewGetServiceAccountKeyResponseKeyTypeFromValue(v string) (*GetServiceAccountKeyResponseKeyType, error) {
+	ev := GetServiceAccountKeyResponseKeyType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for GetServiceAccountKeyResponseKeyType: valid values are %v", v, AllowedGetServiceAccountKeyResponseKeyTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v GetServiceAccountKeyResponseKeyType) IsValid() bool {
+	for _, existing := range AllowedGetServiceAccountKeyResponseKeyTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyTypeKeyType value
+func (v GetServiceAccountKeyResponseKeyType) Ptr() *GetServiceAccountKeyResponseKeyType {
+	return &v
+}
+
+type NullableGetServiceAccountKeyResponseKeyType struct {
+	value *GetServiceAccountKeyResponseKeyType
+	isSet bool
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyType) Get() *GetServiceAccountKeyResponseKeyType {
+	return v.value
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyType) Set(val *GetServiceAccountKeyResponseKeyType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetServiceAccountKeyResponseKeyType(val *GetServiceAccountKeyResponseKeyType) *NullableGetServiceAccountKeyResponseKeyType {
+	return &NullableGetServiceAccountKeyResponseKeyType{value: val, isSet: true}
+}
+
+func (v NullableGetServiceAccountKeyResponseKeyType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type GetServiceAccountKeyResponseGetKeyTypeAttributeType = *GetServiceAccountKeyResponseKeyType
+type GetServiceAccountKeyResponseGetKeyTypeArgType = GetServiceAccountKeyResponseKeyType
+type GetServiceAccountKeyResponseGetKeyTypeRetType = GetServiceAccountKeyResponseKeyType
 
 func getGetServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(arg GetServiceAccountKeyResponseGetKeyTypeAttributeType) (ret GetServiceAccountKeyResponseGetKeyTypeRetType, ok bool) {
 	if arg == nil {

@@ -23,10 +23,373 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateACL Method for CreateACL
+		Creates a new Secrets Manager acl within the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiCreateACLRequest
+	*/
+	CreateACL(ctx context.Context, projectId string, instanceId string) ApiCreateACLRequest
+	/*
+		CreateACLExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ACL
+
+	*/
+	CreateACLExecute(ctx context.Context, projectId string, instanceId string) (*ACL, error)
+	/*
+		CreateInstance Method for CreateInstance
+		Creates a new Secrets Manager instance within the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@return ApiCreateInstanceRequest
+	*/
+	CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest
+	/*
+		CreateInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@return Instance
+
+	*/
+	CreateInstanceExecute(ctx context.Context, projectId string) (*Instance, error)
+	/*
+		CreateUser Method for CreateUser
+		Creates a new user for the given Secrets Manager instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiCreateUserRequest
+	*/
+	CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest
+	/*
+		CreateUserExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return User
+
+	*/
+	CreateUserExecute(ctx context.Context, projectId string, instanceId string) (*User, error)
+	/*
+		DeleteACL Method for DeleteACL
+		Deletes the given acl.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param aclId The acl UUID of the Secrets Manager instance.
+		@return ApiDeleteACLRequest
+	*/
+	DeleteACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiDeleteACLRequest
+	/*
+		DeleteACLExecute executes the request
+
+	*/
+	DeleteACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) error
+	/*
+		DeleteInstance Method for DeleteInstance
+		Deletes the given Secrets Manager instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiDeleteInstanceRequest
+	*/
+	DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest
+	/*
+		DeleteInstanceExecute executes the request
+
+	*/
+	DeleteInstanceExecute(ctx context.Context, projectId string, instanceId string) error
+	/*
+		DeleteUser Method for DeleteUser
+		Deletes the given user.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param userId The user UUID with permissions on the Secrets Manager instance.
+		@return ApiDeleteUserRequest
+	*/
+	DeleteUser(ctx context.Context, projectId string, instanceId string, userId string) ApiDeleteUserRequest
+	/*
+		DeleteUserExecute executes the request
+
+	*/
+	DeleteUserExecute(ctx context.Context, projectId string, instanceId string, userId string) error
+	/*
+		GetACL Method for GetACL
+		Returns the details for the given acl.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param aclId The acl UUID of the Secrets Manager instance.
+		@return ApiGetACLRequest
+	*/
+	GetACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiGetACLRequest
+	/*
+		GetACLExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param aclId The acl UUID of the Secrets Manager instance.
+		@return ACL
+
+	*/
+	GetACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) (*ACL, error)
+	/*
+		GetInstance Method for GetInstance
+		Returns the details for the given Secrets Manager instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiGetInstanceRequest
+	*/
+	GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest
+	/*
+		GetInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return Instance
+
+	*/
+	GetInstanceExecute(ctx context.Context, projectId string, instanceId string) (*Instance, error)
+	/*
+		GetUser Method for GetUser
+		Returns the details for the given user.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param userId The user UUID with permissions on the Secrets Manager instance.
+		@return ApiGetUserRequest
+	*/
+	GetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiGetUserRequest
+	/*
+		GetUserExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param userId The user UUID with permissions on the Secrets Manager instance.
+		@return User
+
+	*/
+	GetUserExecute(ctx context.Context, projectId string, instanceId string, userId string) (*User, error)
+	/*
+		ListACLs Method for ListACLs
+		Returns the acls for the given Secrets Manager instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiListACLsRequest
+	*/
+	ListACLs(ctx context.Context, projectId string, instanceId string) ApiListACLsRequest
+	/*
+		ListACLsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ListACLsResponse
+
+	*/
+	ListACLsExecute(ctx context.Context, projectId string, instanceId string) (*ListACLsResponse, error)
+	/*
+		ListInstances Method for ListInstances
+		Returns a list of all Secrets Manager instances within the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@return ApiListInstancesRequest
+	*/
+	ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest
+	/*
+		ListInstancesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@return ListInstancesResponse
+
+	*/
+	ListInstancesExecute(ctx context.Context, projectId string) (*ListInstancesResponse, error)
+	/*
+		ListUsers Method for ListUsers
+		Returns the users for the given Secrets Manager instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiListUsersRequest
+	*/
+	ListUsers(ctx context.Context, projectId string, instanceId string) ApiListUsersRequest
+	/*
+		ListUsersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ListUsersResponse
+
+	*/
+	ListUsersExecute(ctx context.Context, projectId string, instanceId string) (*ListUsersResponse, error)
+	/*
+		UpdateACL Method for UpdateACL
+		Updates the ip ranges for the acl.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param aclId The acl UUID of the Secrets Manager instance.
+		@return ApiUpdateACLRequest
+	*/
+	UpdateACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiUpdateACLRequest
+	/*
+		UpdateACLExecute executes the request
+
+	*/
+	UpdateACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) error
+	/*
+		UpdateACLs Method for UpdateACLs
+		Changes a list of ACLs within the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiUpdateACLsRequest
+	*/
+	UpdateACLs(ctx context.Context, projectId string, instanceId string) ApiUpdateACLsRequest
+	/*
+		UpdateACLsExecute executes the request
+
+	*/
+	UpdateACLsExecute(ctx context.Context, projectId string, instanceId string) error
+	/*
+		UpdateInstance Method for UpdateInstance
+		Updates the given Secrets Manager instance.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@return ApiUpdateInstanceRequest
+	*/
+	UpdateInstance(ctx context.Context, projectId string, instanceId string) ApiUpdateInstanceRequest
+	/*
+		UpdateInstanceExecute executes the request
+
+	*/
+	UpdateInstanceExecute(ctx context.Context, projectId string, instanceId string) error
+	/*
+		UpdateUser Method for UpdateUser
+		Updates the details for the given user.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the Secrets Manager instance is part of.
+		@param instanceId The Secrets Manager instance UUID.
+		@param userId The user UUID with permissions on the Secrets Manager instance.
+		@return ApiUpdateUserRequest
+	*/
+	UpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiUpdateUserRequest
+	/*
+		UpdateUserExecute executes the request
+
+	*/
+	UpdateUserExecute(ctx context.Context, projectId string, instanceId string, userId string) error
+}
+
+type ApiCreateACLRequest interface {
+	CreateACLPayload(createACLPayload CreateACLPayload) ApiCreateACLRequest
+	Execute() (*ACL, error)
+}
+
+type ApiCreateInstanceRequest interface {
+	CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest
+	Execute() (*Instance, error)
+}
+
+type ApiCreateUserRequest interface {
+	CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest
+	Execute() (*User, error)
+}
+
+type ApiDeleteACLRequest interface {
+	Execute() error
+}
+
+type ApiDeleteInstanceRequest interface {
+	Execute() error
+}
+
+type ApiDeleteUserRequest interface {
+	Execute() error
+}
+
+type ApiGetACLRequest interface {
+	Execute() (*ACL, error)
+}
+
+type ApiGetInstanceRequest interface {
+	Execute() (*Instance, error)
+}
+
+type ApiGetUserRequest interface {
+	Execute() (*User, error)
+}
+
+type ApiListACLsRequest interface {
+	Execute() (*ListACLsResponse, error)
+}
+
+type ApiListInstancesRequest interface {
+	Execute() (*ListInstancesResponse, error)
+}
+
+type ApiListUsersRequest interface {
+	Execute() (*ListUsersResponse, error)
+}
+
+type ApiUpdateACLRequest interface {
+	UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest
+	Execute() error
+}
+
+type ApiUpdateACLsRequest interface {
+	UpdateACLsPayload(updateACLsPayload UpdateACLsPayload) ApiUpdateACLsRequest
+	Execute() error
+}
+
+type ApiUpdateInstanceRequest interface {
+	UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest
+	Execute() error
+}
+
+type ApiUpdateUserRequest interface {
+	UpdateUserPayload(updateUserPayload UpdateUserPayload) ApiUpdateUserRequest
+	Execute() error
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateACLRequest struct {
+type CreateACLRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	projectId        string
@@ -34,12 +397,12 @@ type ApiCreateACLRequest struct {
 	createACLPayload *CreateACLPayload
 }
 
-func (r ApiCreateACLRequest) CreateACLPayload(createACLPayload CreateACLPayload) ApiCreateACLRequest {
+func (r CreateACLRequest) CreateACLPayload(createACLPayload CreateACLPayload) ApiCreateACLRequest {
 	r.createACLPayload = &createACLPayload
 	return r
 }
 
-func (r ApiCreateACLRequest) Execute() (*ACL, error) {
+func (r CreateACLRequest) Execute() (*ACL, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -47,7 +410,11 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 		localVarReturnValue *ACL
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateACL")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -82,7 +449,7 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 	}
 	// body params
 	localVarPostBody = r.createACLPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -92,7 +459,7 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -116,7 +483,7 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -127,7 +494,7 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -138,7 +505,7 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -150,7 +517,7 @@ func (r ApiCreateACLRequest) Execute() (*ACL, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -174,7 +541,7 @@ Creates a new Secrets Manager acl within the project.
 	@return ApiCreateACLRequest
 */
 func (a *APIClient) CreateACL(ctx context.Context, projectId string, instanceId string) ApiCreateACLRequest {
-	return ApiCreateACLRequest{
+	return CreateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -183,7 +550,7 @@ func (a *APIClient) CreateACL(ctx context.Context, projectId string, instanceId 
 }
 
 func (a *APIClient) CreateACLExecute(ctx context.Context, projectId string, instanceId string) (*ACL, error) {
-	r := ApiCreateACLRequest{
+	r := CreateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -192,19 +559,19 @@ func (a *APIClient) CreateACLExecute(ctx context.Context, projectId string, inst
 	return r.Execute()
 }
 
-type ApiCreateInstanceRequest struct {
+type CreateInstanceRequest struct {
 	ctx                   context.Context
 	apiService            *DefaultApiService
 	projectId             string
 	createInstancePayload *CreateInstancePayload
 }
 
-func (r ApiCreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
+func (r CreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
 	r.createInstancePayload = &createInstancePayload
 	return r
 }
 
-func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
+func (r CreateInstanceRequest) Execute() (*Instance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -212,7 +579,11 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		localVarReturnValue *Instance
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -246,7 +617,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 	}
 	// body params
 	localVarPostBody = r.createInstancePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -256,7 +627,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -280,7 +651,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -291,7 +662,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -303,7 +674,7 @@ func (r ApiCreateInstanceRequest) Execute() (*Instance, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -326,7 +697,7 @@ Creates a new Secrets Manager instance within the project.
 	@return ApiCreateInstanceRequest
 */
 func (a *APIClient) CreateInstance(ctx context.Context, projectId string) ApiCreateInstanceRequest {
-	return ApiCreateInstanceRequest{
+	return CreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -334,7 +705,7 @@ func (a *APIClient) CreateInstance(ctx context.Context, projectId string) ApiCre
 }
 
 func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string) (*Instance, error) {
-	r := ApiCreateInstanceRequest{
+	r := CreateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -342,7 +713,7 @@ func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string)
 	return r.Execute()
 }
 
-type ApiCreateUserRequest struct {
+type CreateUserRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	projectId         string
@@ -350,12 +721,12 @@ type ApiCreateUserRequest struct {
 	createUserPayload *CreateUserPayload
 }
 
-func (r ApiCreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
+func (r CreateUserRequest) CreateUserPayload(createUserPayload CreateUserPayload) ApiCreateUserRequest {
 	r.createUserPayload = &createUserPayload
 	return r
 }
 
-func (r ApiCreateUserRequest) Execute() (*User, error) {
+func (r CreateUserRequest) Execute() (*User, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -363,7 +734,11 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		localVarReturnValue *User
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUser")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUser")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -398,7 +773,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 	}
 	// body params
 	localVarPostBody = r.createUserPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -408,7 +783,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -432,7 +807,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -443,7 +818,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -454,7 +829,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -465,7 +840,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Conflict
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -477,7 +852,7 @@ func (r ApiCreateUserRequest) Execute() (*User, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -501,7 +876,7 @@ Creates a new user for the given Secrets Manager instance.
 	@return ApiCreateUserRequest
 */
 func (a *APIClient) CreateUser(ctx context.Context, projectId string, instanceId string) ApiCreateUserRequest {
-	return ApiCreateUserRequest{
+	return CreateUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -510,7 +885,7 @@ func (a *APIClient) CreateUser(ctx context.Context, projectId string, instanceId
 }
 
 func (a *APIClient) CreateUserExecute(ctx context.Context, projectId string, instanceId string) (*User, error) {
-	r := ApiCreateUserRequest{
+	r := CreateUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -519,7 +894,7 @@ func (a *APIClient) CreateUserExecute(ctx context.Context, projectId string, ins
 	return r.Execute()
 }
 
-type ApiDeleteACLRequest struct {
+type DeleteACLRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -527,14 +902,18 @@ type ApiDeleteACLRequest struct {
 	aclId      string
 }
 
-func (r ApiDeleteACLRequest) Execute() error {
+func (r DeleteACLRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteACL")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteACL")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -565,7 +944,7 @@ func (r ApiDeleteACLRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -575,7 +954,7 @@ func (r ApiDeleteACLRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -599,7 +978,7 @@ func (r ApiDeleteACLRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -610,7 +989,7 @@ func (r ApiDeleteACLRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -621,7 +1000,7 @@ func (r ApiDeleteACLRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -648,7 +1027,7 @@ Deletes the given acl.
 	@return ApiDeleteACLRequest
 */
 func (a *APIClient) DeleteACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiDeleteACLRequest {
-	return ApiDeleteACLRequest{
+	return DeleteACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -658,7 +1037,7 @@ func (a *APIClient) DeleteACL(ctx context.Context, projectId string, instanceId 
 }
 
 func (a *APIClient) DeleteACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) error {
-	r := ApiDeleteACLRequest{
+	r := DeleteACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -668,21 +1047,25 @@ func (a *APIClient) DeleteACLExecute(ctx context.Context, projectId string, inst
 	return r.Execute()
 }
 
-type ApiDeleteInstanceRequest struct {
+type DeleteInstanceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	instanceId string
 }
 
-func (r ApiDeleteInstanceRequest) Execute() error {
+func (r DeleteInstanceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -712,7 +1095,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -722,7 +1105,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -746,7 +1129,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -757,7 +1140,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -768,7 +1151,7 @@ func (r ApiDeleteInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -794,7 +1177,7 @@ Deletes the given Secrets Manager instance.
 	@return ApiDeleteInstanceRequest
 */
 func (a *APIClient) DeleteInstance(ctx context.Context, projectId string, instanceId string) ApiDeleteInstanceRequest {
-	return ApiDeleteInstanceRequest{
+	return DeleteInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -803,7 +1186,7 @@ func (a *APIClient) DeleteInstance(ctx context.Context, projectId string, instan
 }
 
 func (a *APIClient) DeleteInstanceExecute(ctx context.Context, projectId string, instanceId string) error {
-	r := ApiDeleteInstanceRequest{
+	r := DeleteInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -812,7 +1195,7 @@ func (a *APIClient) DeleteInstanceExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiDeleteUserRequest struct {
+type DeleteUserRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -820,14 +1203,18 @@ type ApiDeleteUserRequest struct {
 	userId     string
 }
 
-func (r ApiDeleteUserRequest) Execute() error {
+func (r DeleteUserRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteUser")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteUser")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -858,7 +1245,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -868,7 +1255,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -892,7 +1279,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -903,7 +1290,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -914,7 +1301,7 @@ func (r ApiDeleteUserRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -941,7 +1328,7 @@ Deletes the given user.
 	@return ApiDeleteUserRequest
 */
 func (a *APIClient) DeleteUser(ctx context.Context, projectId string, instanceId string, userId string) ApiDeleteUserRequest {
-	return ApiDeleteUserRequest{
+	return DeleteUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -951,7 +1338,7 @@ func (a *APIClient) DeleteUser(ctx context.Context, projectId string, instanceId
 }
 
 func (a *APIClient) DeleteUserExecute(ctx context.Context, projectId string, instanceId string, userId string) error {
-	r := ApiDeleteUserRequest{
+	r := DeleteUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -961,7 +1348,7 @@ func (a *APIClient) DeleteUserExecute(ctx context.Context, projectId string, ins
 	return r.Execute()
 }
 
-type ApiGetACLRequest struct {
+type GetACLRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -969,7 +1356,7 @@ type ApiGetACLRequest struct {
 	aclId      string
 }
 
-func (r ApiGetACLRequest) Execute() (*ACL, error) {
+func (r GetACLRequest) Execute() (*ACL, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -977,7 +1364,11 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 		localVarReturnValue *ACL
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetACL")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1008,7 +1399,7 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1018,7 +1409,7 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1042,7 +1433,7 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1053,7 +1444,7 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1064,7 +1455,7 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1076,7 +1467,7 @@ func (r ApiGetACLRequest) Execute() (*ACL, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1101,7 +1492,7 @@ Returns the details for the given acl.
 	@return ApiGetACLRequest
 */
 func (a *APIClient) GetACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiGetACLRequest {
-	return ApiGetACLRequest{
+	return GetACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1111,7 +1502,7 @@ func (a *APIClient) GetACL(ctx context.Context, projectId string, instanceId str
 }
 
 func (a *APIClient) GetACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) (*ACL, error) {
-	r := ApiGetACLRequest{
+	r := GetACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1121,14 +1512,14 @@ func (a *APIClient) GetACLExecute(ctx context.Context, projectId string, instanc
 	return r.Execute()
 }
 
-type ApiGetInstanceRequest struct {
+type GetInstanceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	instanceId string
 }
 
-func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
+func (r GetInstanceRequest) Execute() (*Instance, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1136,7 +1527,11 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		localVarReturnValue *Instance
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1166,7 +1561,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1176,7 +1571,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1200,7 +1595,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1211,7 +1606,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1222,7 +1617,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1234,7 +1629,7 @@ func (r ApiGetInstanceRequest) Execute() (*Instance, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1258,7 +1653,7 @@ Returns the details for the given Secrets Manager instance.
 	@return ApiGetInstanceRequest
 */
 func (a *APIClient) GetInstance(ctx context.Context, projectId string, instanceId string) ApiGetInstanceRequest {
-	return ApiGetInstanceRequest{
+	return GetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1267,7 +1662,7 @@ func (a *APIClient) GetInstance(ctx context.Context, projectId string, instanceI
 }
 
 func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, instanceId string) (*Instance, error) {
-	r := ApiGetInstanceRequest{
+	r := GetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1276,7 +1671,7 @@ func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, in
 	return r.Execute()
 }
 
-type ApiGetUserRequest struct {
+type GetUserRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -1284,7 +1679,7 @@ type ApiGetUserRequest struct {
 	userId     string
 }
 
-func (r ApiGetUserRequest) Execute() (*User, error) {
+func (r GetUserRequest) Execute() (*User, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1292,7 +1687,11 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 		localVarReturnValue *User
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUser")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUser")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1323,7 +1722,7 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1333,7 +1732,7 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1357,7 +1756,7 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1368,7 +1767,7 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1379,7 +1778,7 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1391,7 +1790,7 @@ func (r ApiGetUserRequest) Execute() (*User, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1416,7 +1815,7 @@ Returns the details for the given user.
 	@return ApiGetUserRequest
 */
 func (a *APIClient) GetUser(ctx context.Context, projectId string, instanceId string, userId string) ApiGetUserRequest {
-	return ApiGetUserRequest{
+	return GetUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1426,7 +1825,7 @@ func (a *APIClient) GetUser(ctx context.Context, projectId string, instanceId st
 }
 
 func (a *APIClient) GetUserExecute(ctx context.Context, projectId string, instanceId string, userId string) (*User, error) {
-	r := ApiGetUserRequest{
+	r := GetUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1436,14 +1835,14 @@ func (a *APIClient) GetUserExecute(ctx context.Context, projectId string, instan
 	return r.Execute()
 }
 
-type ApiListACLsRequest struct {
+type ListACLsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	instanceId string
 }
 
-func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
+func (r ListACLsRequest) Execute() (*ListACLsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1451,7 +1850,11 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 		localVarReturnValue *ListACLsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACLs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACLs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1481,7 +1884,7 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1491,7 +1894,7 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1515,7 +1918,7 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1526,7 +1929,7 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1537,7 +1940,7 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1549,7 +1952,7 @@ func (r ApiListACLsRequest) Execute() (*ListACLsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1573,7 +1976,7 @@ Returns the acls for the given Secrets Manager instance.
 	@return ApiListACLsRequest
 */
 func (a *APIClient) ListACLs(ctx context.Context, projectId string, instanceId string) ApiListACLsRequest {
-	return ApiListACLsRequest{
+	return ListACLsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1582,7 +1985,7 @@ func (a *APIClient) ListACLs(ctx context.Context, projectId string, instanceId s
 }
 
 func (a *APIClient) ListACLsExecute(ctx context.Context, projectId string, instanceId string) (*ListACLsResponse, error) {
-	r := ApiListACLsRequest{
+	r := ListACLsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1591,13 +1994,13 @@ func (a *APIClient) ListACLsExecute(ctx context.Context, projectId string, insta
 	return r.Execute()
 }
 
-type ApiListInstancesRequest struct {
+type ListInstancesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
+func (r ListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1605,7 +2008,11 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		localVarReturnValue *ListInstancesResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1634,7 +2041,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1644,7 +2051,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1668,7 +2075,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1679,7 +2086,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1691,7 +2098,7 @@ func (r ApiListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1714,7 +2121,7 @@ Returns a list of all Secrets Manager instances within the project.
 	@return ApiListInstancesRequest
 */
 func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiListInstancesRequest {
-	return ApiListInstancesRequest{
+	return ListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1722,7 +2129,7 @@ func (a *APIClient) ListInstances(ctx context.Context, projectId string) ApiList
 }
 
 func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) (*ListInstancesResponse, error) {
-	r := ApiListInstancesRequest{
+	r := ListInstancesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1730,14 +2137,14 @@ func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) 
 	return r.Execute()
 }
 
-type ApiListUsersRequest struct {
+type ListUsersRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 	instanceId string
 }
 
-func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
+func (r ListUsersRequest) Execute() (*ListUsersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1745,7 +2152,11 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 		localVarReturnValue *ListUsersResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUsers")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUsers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1775,7 +2186,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1785,7 +2196,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1809,7 +2220,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1820,7 +2231,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1831,7 +2242,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1843,7 +2254,7 @@ func (r ApiListUsersRequest) Execute() (*ListUsersResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1867,7 +2278,7 @@ Returns the users for the given Secrets Manager instance.
 	@return ApiListUsersRequest
 */
 func (a *APIClient) ListUsers(ctx context.Context, projectId string, instanceId string) ApiListUsersRequest {
-	return ApiListUsersRequest{
+	return ListUsersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1876,7 +2287,7 @@ func (a *APIClient) ListUsers(ctx context.Context, projectId string, instanceId 
 }
 
 func (a *APIClient) ListUsersExecute(ctx context.Context, projectId string, instanceId string) (*ListUsersResponse, error) {
-	r := ApiListUsersRequest{
+	r := ListUsersRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1885,7 +2296,7 @@ func (a *APIClient) ListUsersExecute(ctx context.Context, projectId string, inst
 	return r.Execute()
 }
 
-type ApiUpdateACLRequest struct {
+type UpdateACLRequest struct {
 	ctx              context.Context
 	apiService       *DefaultApiService
 	projectId        string
@@ -1894,19 +2305,23 @@ type ApiUpdateACLRequest struct {
 	updateACLPayload *UpdateACLPayload
 }
 
-func (r ApiUpdateACLRequest) UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest {
+func (r UpdateACLRequest) UpdateACLPayload(updateACLPayload UpdateACLPayload) ApiUpdateACLRequest {
 	r.updateACLPayload = &updateACLPayload
 	return r
 }
 
-func (r ApiUpdateACLRequest) Execute() error {
+func (r UpdateACLRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACL")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACL")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1942,7 +2357,7 @@ func (r ApiUpdateACLRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.updateACLPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -1952,7 +2367,7 @@ func (r ApiUpdateACLRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1976,7 +2391,7 @@ func (r ApiUpdateACLRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -1987,7 +2402,7 @@ func (r ApiUpdateACLRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -1998,7 +2413,7 @@ func (r ApiUpdateACLRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2025,7 +2440,7 @@ Updates the ip ranges for the acl.
 	@return ApiUpdateACLRequest
 */
 func (a *APIClient) UpdateACL(ctx context.Context, projectId string, instanceId string, aclId string) ApiUpdateACLRequest {
-	return ApiUpdateACLRequest{
+	return UpdateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2035,7 +2450,7 @@ func (a *APIClient) UpdateACL(ctx context.Context, projectId string, instanceId 
 }
 
 func (a *APIClient) UpdateACLExecute(ctx context.Context, projectId string, instanceId string, aclId string) error {
-	r := ApiUpdateACLRequest{
+	r := UpdateACLRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2045,7 +2460,7 @@ func (a *APIClient) UpdateACLExecute(ctx context.Context, projectId string, inst
 	return r.Execute()
 }
 
-type ApiUpdateACLsRequest struct {
+type UpdateACLsRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	projectId         string
@@ -2053,19 +2468,23 @@ type ApiUpdateACLsRequest struct {
 	updateACLsPayload *UpdateACLsPayload
 }
 
-func (r ApiUpdateACLsRequest) UpdateACLsPayload(updateACLsPayload UpdateACLsPayload) ApiUpdateACLsRequest {
+func (r UpdateACLsRequest) UpdateACLsPayload(updateACLsPayload UpdateACLsPayload) ApiUpdateACLsRequest {
 	r.updateACLsPayload = &updateACLsPayload
 	return r
 }
 
-func (r ApiUpdateACLsRequest) Execute() error {
+func (r UpdateACLsRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACLs")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACLs")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2100,7 +2519,7 @@ func (r ApiUpdateACLsRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.updateACLsPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -2110,7 +2529,7 @@ func (r ApiUpdateACLsRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2134,7 +2553,7 @@ func (r ApiUpdateACLsRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2145,7 +2564,7 @@ func (r ApiUpdateACLsRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2156,7 +2575,7 @@ func (r ApiUpdateACLsRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2182,7 +2601,7 @@ Changes a list of ACLs within the project.
 	@return ApiUpdateACLsRequest
 */
 func (a *APIClient) UpdateACLs(ctx context.Context, projectId string, instanceId string) ApiUpdateACLsRequest {
-	return ApiUpdateACLsRequest{
+	return UpdateACLsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2191,7 +2610,7 @@ func (a *APIClient) UpdateACLs(ctx context.Context, projectId string, instanceId
 }
 
 func (a *APIClient) UpdateACLsExecute(ctx context.Context, projectId string, instanceId string) error {
-	r := ApiUpdateACLsRequest{
+	r := UpdateACLsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2200,7 +2619,7 @@ func (a *APIClient) UpdateACLsExecute(ctx context.Context, projectId string, ins
 	return r.Execute()
 }
 
-type ApiUpdateInstanceRequest struct {
+type UpdateInstanceRequest struct {
 	ctx                   context.Context
 	apiService            *DefaultApiService
 	projectId             string
@@ -2208,19 +2627,23 @@ type ApiUpdateInstanceRequest struct {
 	updateInstancePayload *UpdateInstancePayload
 }
 
-func (r ApiUpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
+func (r UpdateInstanceRequest) UpdateInstancePayload(updateInstancePayload UpdateInstancePayload) ApiUpdateInstanceRequest {
 	r.updateInstancePayload = &updateInstancePayload
 	return r
 }
 
-func (r ApiUpdateInstanceRequest) Execute() error {
+func (r UpdateInstanceRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2255,7 +2678,7 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.updateInstancePayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -2265,7 +2688,7 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2289,7 +2712,7 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2300,7 +2723,7 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2311,7 +2734,7 @@ func (r ApiUpdateInstanceRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2337,7 +2760,7 @@ Updates the given Secrets Manager instance.
 	@return ApiUpdateInstanceRequest
 */
 func (a *APIClient) UpdateInstance(ctx context.Context, projectId string, instanceId string) ApiUpdateInstanceRequest {
-	return ApiUpdateInstanceRequest{
+	return UpdateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2346,7 +2769,7 @@ func (a *APIClient) UpdateInstance(ctx context.Context, projectId string, instan
 }
 
 func (a *APIClient) UpdateInstanceExecute(ctx context.Context, projectId string, instanceId string) error {
-	r := ApiUpdateInstanceRequest{
+	r := UpdateInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2355,7 +2778,7 @@ func (a *APIClient) UpdateInstanceExecute(ctx context.Context, projectId string,
 	return r.Execute()
 }
 
-type ApiUpdateUserRequest struct {
+type UpdateUserRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	projectId         string
@@ -2364,19 +2787,23 @@ type ApiUpdateUserRequest struct {
 	updateUserPayload *UpdateUserPayload
 }
 
-func (r ApiUpdateUserRequest) UpdateUserPayload(updateUserPayload UpdateUserPayload) ApiUpdateUserRequest {
+func (r UpdateUserRequest) UpdateUserPayload(updateUserPayload UpdateUserPayload) ApiUpdateUserRequest {
 	r.updateUserPayload = &updateUserPayload
 	return r
 }
 
-func (r ApiUpdateUserRequest) Execute() error {
+func (r UpdateUserRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateUser")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateUser")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2412,7 +2839,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.updateUserPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -2422,7 +2849,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2446,7 +2873,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v BadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2457,7 +2884,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2468,7 +2895,7 @@ func (r ApiUpdateUserRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -2495,7 +2922,7 @@ Updates the details for the given user.
 	@return ApiUpdateUserRequest
 */
 func (a *APIClient) UpdateUser(ctx context.Context, projectId string, instanceId string, userId string) ApiUpdateUserRequest {
-	return ApiUpdateUserRequest{
+	return UpdateUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2505,7 +2932,7 @@ func (a *APIClient) UpdateUser(ctx context.Context, projectId string, instanceId
 }
 
 func (a *APIClient) UpdateUserExecute(ctx context.Context, projectId string, instanceId string, userId string) error {
-	r := ApiUpdateUserRequest{
+	r := UpdateUserRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

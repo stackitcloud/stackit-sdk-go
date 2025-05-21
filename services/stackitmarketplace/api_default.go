@@ -23,10 +23,199 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		ApproveSubscription Approve a subscription
+		Approve a pending subscription.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@param subscriptionId The subscription ID.
+		@return ApiApproveSubscriptionRequest
+	*/
+	ApproveSubscription(ctx context.Context, projectId string, subscriptionId string) ApiApproveSubscriptionRequest
+	/*
+		ApproveSubscriptionExecute executes the request
+
+	*/
+	ApproveSubscriptionExecute(ctx context.Context, projectId string, subscriptionId string) error
+	/*
+		GetCatalogProduct Get a product
+		Get a product.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param productId The product ID.
+		@return ApiGetCatalogProductRequest
+	*/
+	GetCatalogProduct(ctx context.Context, productId string) ApiGetCatalogProductRequest
+	/*
+		GetCatalogProductExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param productId The product ID.
+		@return CatalogProductDetail
+
+	*/
+	GetCatalogProductExecute(ctx context.Context, productId string) (*CatalogProductDetail, error)
+	/*
+		GetVendorSubscription Get a subscription
+		Get a subscription.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@param subscriptionId The subscription ID.
+		@return ApiGetVendorSubscriptionRequest
+	*/
+	GetVendorSubscription(ctx context.Context, projectId string, subscriptionId string) ApiGetVendorSubscriptionRequest
+	/*
+		GetVendorSubscriptionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@param subscriptionId The subscription ID.
+		@return VendorSubscription
+
+	*/
+	GetVendorSubscriptionExecute(ctx context.Context, projectId string, subscriptionId string) (*VendorSubscription, error)
+	/*
+		InquiriesCreateInquiry Create inquiry
+		Create an inquiry to contact sales, become a vendor, or suggest a product. Requests are limited to 10 per 5 minutes.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiInquiriesCreateInquiryRequest
+	*/
+	InquiriesCreateInquiry(ctx context.Context) ApiInquiriesCreateInquiryRequest
+	/*
+		InquiriesCreateInquiryExecute executes the request
+
+	*/
+	InquiriesCreateInquiryExecute(ctx context.Context) error
+	/*
+		ListCatalogProducts List all products
+		List all products.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListCatalogProductsRequest
+	*/
+	ListCatalogProducts(ctx context.Context) ApiListCatalogProductsRequest
+	/*
+		ListCatalogProductsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ListCatalogProductsResponse
+
+	*/
+	ListCatalogProductsExecute(ctx context.Context) (*ListCatalogProductsResponse, error)
+	/*
+		ListVendorSubscriptions List all subscriptions of a project.
+		List all subscriptions of a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@return ApiListVendorSubscriptionsRequest
+	*/
+	ListVendorSubscriptions(ctx context.Context, projectId string) ApiListVendorSubscriptionsRequest
+	/*
+		ListVendorSubscriptionsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@return ListVendorSubscriptionsResponse
+
+	*/
+	ListVendorSubscriptionsExecute(ctx context.Context, projectId string) (*ListVendorSubscriptionsResponse, error)
+	/*
+		ResolveCustomer Resolve customer
+		Get details about the requested subscription.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@return ApiResolveCustomerRequest
+	*/
+	ResolveCustomer(ctx context.Context, projectId string) ApiResolveCustomerRequest
+	/*
+		ResolveCustomerExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@return VendorSubscription
+
+	*/
+	ResolveCustomerExecute(ctx context.Context, projectId string) (*VendorSubscription, error)
+	/*
+		VendorsSubscriptionsReject Reject a subscription
+		Reject a subscription (in any lifecycle state). Only available for subscriptions to products with lifecycle state `PRODUCT_PREVIEW`.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The project ID.
+		@param subscriptionId The subscription ID.
+		@return ApiVendorsSubscriptionsRejectRequest
+	*/
+	VendorsSubscriptionsReject(ctx context.Context, projectId string, subscriptionId string) ApiVendorsSubscriptionsRejectRequest
+	/*
+		VendorsSubscriptionsRejectExecute executes the request
+
+	*/
+	VendorsSubscriptionsRejectExecute(ctx context.Context, projectId string, subscriptionId string) error
+}
+
+type ApiApproveSubscriptionRequest interface {
+	ApproveSubscriptionPayload(approveSubscriptionPayload ApproveSubscriptionPayload) ApiApproveSubscriptionRequest
+	Execute() error
+}
+
+type ApiGetCatalogProductRequest interface {
+	// The language of the response.
+	Locale(locale string) ApiGetCatalogProductRequest
+	Execute() (*CatalogProductDetail, error)
+}
+
+type ApiGetVendorSubscriptionRequest interface {
+	Execute() (*VendorSubscription, error)
+}
+
+type ApiInquiriesCreateInquiryRequest interface {
+	InquiriesCreateInquiryPayload(inquiriesCreateInquiryPayload InquiriesCreateInquiryPayload) ApiInquiriesCreateInquiryRequest
+	Execute() error
+}
+
+type ApiListCatalogProductsRequest interface {
+	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
+	Cursor(cursor string) ApiListCatalogProductsRequest
+	// The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
+	Limit(limit float32) ApiListCatalogProductsRequest
+	// The language of the response.
+	Locale(locale string) ApiListCatalogProductsRequest
+	// Filter the products based on attributes, e.g., &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported operators are: - &#x60;PR&#x60; (present; &#x60;name pr&#x60;) - &#x60;EQ&#x60; (equal) - &#x60;NE&#x60; (not equal) - &#x60;CO&#x60; (contains; &#x60;text co \&quot;searching\&quot;&#x60;) - &#x60;SW&#x60; (starts with) - &#x60;EW&#x60; (ends with) - &#x60;GT&#x60; (greater than) - &#x60;LT&#x60; (less than) - &#x60;GE&#x60; (greater than or equal) - &#x60;LE&#x60; (less than or equal).   These expressions can be logically linked with &#x60;AND&#x60; and &#x60;OR&#x60;. All attributes (and the special &#x60;text&#x60; attribute) can be used as filters, if the attribute type allows the operator.
+	Filter(filter string) ApiListCatalogProductsRequest
+	// Sort the products based on attributes and order e.g. &#x60;name:asc&#x60;. Attributes with scalar types (&#x60;createdAt&#x60;, &#x60;isProductListing&#x60;) or keywords (&#x60;name&#x60;, &#x60;deliveryMethod&#x60;, &#x60;lifecycleState&#x60;, &#x60;vendor.name&#x60;) can be used as sort criteria. To set the sort order, append &#x60;asc&#x60; (ascending) or &#x60;desc&#x60; (descending) to the attribute, e.g. &#x60;name:asc&#x60;. To sort by multiple attributes, separate them with a comma. E.g &#x60;name:asc,price:desc&#x60;.
+	Sort(sort string) ApiListCatalogProductsRequest
+	Execute() (*ListCatalogProductsResponse, error)
+}
+
+type ApiListVendorSubscriptionsRequest interface {
+	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
+	Cursor(cursor string) ApiListVendorSubscriptionsRequest
+	// The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
+	Limit(limit float32) ApiListVendorSubscriptionsRequest
+	// The product ID.
+	ProductId(productId string) ApiListVendorSubscriptionsRequest
+	Execute() (*ListVendorSubscriptionsResponse, error)
+}
+
+type ApiResolveCustomerRequest interface {
+	ResolveCustomerPayload(resolveCustomerPayload ResolveCustomerPayload) ApiResolveCustomerRequest
+	Execute() (*VendorSubscription, error)
+}
+
+type ApiVendorsSubscriptionsRejectRequest interface {
+	Execute() error
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiApproveSubscriptionRequest struct {
+type ApproveSubscriptionRequest struct {
 	ctx                        context.Context
 	apiService                 *DefaultApiService
 	projectId                  string
@@ -34,19 +223,23 @@ type ApiApproveSubscriptionRequest struct {
 	approveSubscriptionPayload *ApproveSubscriptionPayload
 }
 
-func (r ApiApproveSubscriptionRequest) ApproveSubscriptionPayload(approveSubscriptionPayload ApproveSubscriptionPayload) ApiApproveSubscriptionRequest {
+func (r ApproveSubscriptionRequest) ApproveSubscriptionPayload(approveSubscriptionPayload ApproveSubscriptionPayload) ApiApproveSubscriptionRequest {
 	r.approveSubscriptionPayload = &approveSubscriptionPayload
 	return r
 }
 
-func (r ApiApproveSubscriptionRequest) Execute() error {
+func (r ApproveSubscriptionRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApproveSubscription")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApproveSubscription")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -90,7 +283,7 @@ func (r ApiApproveSubscriptionRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.approveSubscriptionPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -100,7 +293,7 @@ func (r ApiApproveSubscriptionRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -124,7 +317,7 @@ func (r ApiApproveSubscriptionRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -135,7 +328,7 @@ func (r ApiApproveSubscriptionRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -146,7 +339,7 @@ func (r ApiApproveSubscriptionRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -157,7 +350,7 @@ func (r ApiApproveSubscriptionRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -182,7 +375,7 @@ Approve a pending subscription.
 	@return ApiApproveSubscriptionRequest
 */
 func (a *APIClient) ApproveSubscription(ctx context.Context, projectId string, subscriptionId string) ApiApproveSubscriptionRequest {
-	return ApiApproveSubscriptionRequest{
+	return ApproveSubscriptionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -191,7 +384,7 @@ func (a *APIClient) ApproveSubscription(ctx context.Context, projectId string, s
 }
 
 func (a *APIClient) ApproveSubscriptionExecute(ctx context.Context, projectId string, subscriptionId string) error {
-	r := ApiApproveSubscriptionRequest{
+	r := ApproveSubscriptionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -200,7 +393,7 @@ func (a *APIClient) ApproveSubscriptionExecute(ctx context.Context, projectId st
 	return r.Execute()
 }
 
-type ApiGetCatalogProductRequest struct {
+type GetCatalogProductRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	productId  string
@@ -209,12 +402,12 @@ type ApiGetCatalogProductRequest struct {
 
 // The language of the response.
 
-func (r ApiGetCatalogProductRequest) Locale(locale string) ApiGetCatalogProductRequest {
+func (r GetCatalogProductRequest) Locale(locale string) ApiGetCatalogProductRequest {
 	r.locale = &locale
 	return r
 }
 
-func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
+func (r GetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -222,7 +415,11 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 		localVarReturnValue *CatalogProductDetail
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCatalogProduct")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCatalogProduct")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -260,7 +457,7 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -270,7 +467,7 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -294,7 +491,7 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -305,7 +502,7 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -316,7 +513,7 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -327,7 +524,7 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -338,7 +535,7 @@ func (r ApiGetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -361,7 +558,7 @@ Get a product.
 	@return ApiGetCatalogProductRequest
 */
 func (a *APIClient) GetCatalogProduct(ctx context.Context, productId string) ApiGetCatalogProductRequest {
-	return ApiGetCatalogProductRequest{
+	return GetCatalogProductRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		productId:  productId,
@@ -369,7 +566,7 @@ func (a *APIClient) GetCatalogProduct(ctx context.Context, productId string) Api
 }
 
 func (a *APIClient) GetCatalogProductExecute(ctx context.Context, productId string) (*CatalogProductDetail, error) {
-	r := ApiGetCatalogProductRequest{
+	r := GetCatalogProductRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		productId:  productId,
@@ -377,14 +574,14 @@ func (a *APIClient) GetCatalogProductExecute(ctx context.Context, productId stri
 	return r.Execute()
 }
 
-type ApiGetVendorSubscriptionRequest struct {
+type GetVendorSubscriptionRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	projectId      string
 	subscriptionId string
 }
 
-func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) {
+func (r GetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -392,7 +589,11 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 		localVarReturnValue *VendorSubscription
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetVendorSubscription")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetVendorSubscription")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -434,7 +635,7 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -444,7 +645,7 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -468,7 +669,7 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -479,7 +680,7 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -490,7 +691,7 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -501,7 +702,7 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -512,7 +713,7 @@ func (r ApiGetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -536,7 +737,7 @@ Get a subscription.
 	@return ApiGetVendorSubscriptionRequest
 */
 func (a *APIClient) GetVendorSubscription(ctx context.Context, projectId string, subscriptionId string) ApiGetVendorSubscriptionRequest {
-	return ApiGetVendorSubscriptionRequest{
+	return GetVendorSubscriptionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -545,7 +746,7 @@ func (a *APIClient) GetVendorSubscription(ctx context.Context, projectId string,
 }
 
 func (a *APIClient) GetVendorSubscriptionExecute(ctx context.Context, projectId string, subscriptionId string) (*VendorSubscription, error) {
-	r := ApiGetVendorSubscriptionRequest{
+	r := GetVendorSubscriptionRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,
@@ -554,25 +755,29 @@ func (a *APIClient) GetVendorSubscriptionExecute(ctx context.Context, projectId 
 	return r.Execute()
 }
 
-type ApiInquiriesCreateInquiryRequest struct {
+type InquiriesCreateInquiryRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
 	inquiriesCreateInquiryPayload *InquiriesCreateInquiryPayload
 }
 
-func (r ApiInquiriesCreateInquiryRequest) InquiriesCreateInquiryPayload(inquiriesCreateInquiryPayload InquiriesCreateInquiryPayload) ApiInquiriesCreateInquiryRequest {
+func (r InquiriesCreateInquiryRequest) InquiriesCreateInquiryPayload(inquiriesCreateInquiryPayload InquiriesCreateInquiryPayload) ApiInquiriesCreateInquiryRequest {
 	r.inquiriesCreateInquiryPayload = &inquiriesCreateInquiryPayload
 	return r
 }
 
-func (r ApiInquiriesCreateInquiryRequest) Execute() error {
+func (r InquiriesCreateInquiryRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InquiriesCreateInquiry")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InquiriesCreateInquiry")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -605,7 +810,7 @@ func (r ApiInquiriesCreateInquiryRequest) Execute() error {
 	}
 	// body params
 	localVarPostBody = r.inquiriesCreateInquiryPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -615,7 +820,7 @@ func (r ApiInquiriesCreateInquiryRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -639,7 +844,7 @@ func (r ApiInquiriesCreateInquiryRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -650,7 +855,7 @@ func (r ApiInquiriesCreateInquiryRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -661,7 +866,7 @@ func (r ApiInquiriesCreateInquiryRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -672,7 +877,7 @@ func (r ApiInquiriesCreateInquiryRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -695,21 +900,21 @@ Create an inquiry to contact sales, become a vendor, or suggest a product. Reque
 	@return ApiInquiriesCreateInquiryRequest
 */
 func (a *APIClient) InquiriesCreateInquiry(ctx context.Context) ApiInquiriesCreateInquiryRequest {
-	return ApiInquiriesCreateInquiryRequest{
+	return InquiriesCreateInquiryRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) InquiriesCreateInquiryExecute(ctx context.Context) error {
-	r := ApiInquiriesCreateInquiryRequest{
+	r := InquiriesCreateInquiryRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiListCatalogProductsRequest struct {
+type ListCatalogProductsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	cursor     *string
@@ -721,40 +926,40 @@ type ApiListCatalogProductsRequest struct {
 
 // A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 
-func (r ApiListCatalogProductsRequest) Cursor(cursor string) ApiListCatalogProductsRequest {
+func (r ListCatalogProductsRequest) Cursor(cursor string) ApiListCatalogProductsRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
 
-func (r ApiListCatalogProductsRequest) Limit(limit float32) ApiListCatalogProductsRequest {
+func (r ListCatalogProductsRequest) Limit(limit float32) ApiListCatalogProductsRequest {
 	r.limit = &limit
 	return r
 }
 
 // The language of the response.
 
-func (r ApiListCatalogProductsRequest) Locale(locale string) ApiListCatalogProductsRequest {
+func (r ListCatalogProductsRequest) Locale(locale string) ApiListCatalogProductsRequest {
 	r.locale = &locale
 	return r
 }
 
-// Filter the products based on attributes. E.g &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported attributes are &#x60;deliveryMethod&#x60;, &#x60;priceType&#x60;, &#x60;category&#x60;, &#x60;vendorId&#x60;, &#x60;vendorName&#x60;, and &#x60;name&#x60;. The supported operators are &#x60;eq&#x60;. Filters can be joined with &#x60;and&#x60; or &#x60;or&#x60;.
+// Filter the products based on attributes, e.g., &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported operators are: - &#x60;PR&#x60; (present; &#x60;name pr&#x60;) - &#x60;EQ&#x60; (equal) - &#x60;NE&#x60; (not equal) - &#x60;CO&#x60; (contains; &#x60;text co \&quot;searching\&quot;&#x60;) - &#x60;SW&#x60; (starts with) - &#x60;EW&#x60; (ends with) - &#x60;GT&#x60; (greater than) - &#x60;LT&#x60; (less than) - &#x60;GE&#x60; (greater than or equal) - &#x60;LE&#x60; (less than or equal).   These expressions can be logically linked with &#x60;AND&#x60; and &#x60;OR&#x60;. All attributes (and the special &#x60;text&#x60; attribute) can be used as filters, if the attribute type allows the operator.
 
-func (r ApiListCatalogProductsRequest) Filter(filter string) ApiListCatalogProductsRequest {
+func (r ListCatalogProductsRequest) Filter(filter string) ApiListCatalogProductsRequest {
 	r.filter = &filter
 	return r
 }
 
 // Sort the products based on attributes and order e.g. &#x60;name:asc&#x60;. Attributes with scalar types (&#x60;createdAt&#x60;, &#x60;isProductListing&#x60;) or keywords (&#x60;name&#x60;, &#x60;deliveryMethod&#x60;, &#x60;lifecycleState&#x60;, &#x60;vendor.name&#x60;) can be used as sort criteria. To set the sort order, append &#x60;asc&#x60; (ascending) or &#x60;desc&#x60; (descending) to the attribute, e.g. &#x60;name:asc&#x60;. To sort by multiple attributes, separate them with a comma. E.g &#x60;name:asc,price:desc&#x60;.
 
-func (r ApiListCatalogProductsRequest) Sort(sort string) ApiListCatalogProductsRequest {
+func (r ListCatalogProductsRequest) Sort(sort string) ApiListCatalogProductsRequest {
 	r.sort = &sort
 	return r
 }
 
-func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, error) {
+func (r ListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -762,7 +967,11 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 		localVarReturnValue *ListCatalogProductsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCatalogProducts")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCatalogProducts")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -805,7 +1014,7 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -815,7 +1024,7 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -839,7 +1048,7 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -850,7 +1059,7 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -861,7 +1070,7 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -872,7 +1081,7 @@ func (r ApiListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -894,21 +1103,21 @@ List all products.
 	@return ApiListCatalogProductsRequest
 */
 func (a *APIClient) ListCatalogProducts(ctx context.Context) ApiListCatalogProductsRequest {
-	return ApiListCatalogProductsRequest{
+	return ListCatalogProductsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) ListCatalogProductsExecute(ctx context.Context) (*ListCatalogProductsResponse, error) {
-	r := ApiListCatalogProductsRequest{
+	r := ListCatalogProductsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiListVendorSubscriptionsRequest struct {
+type ListVendorSubscriptionsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -919,26 +1128,26 @@ type ApiListVendorSubscriptionsRequest struct {
 
 // A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 
-func (r ApiListVendorSubscriptionsRequest) Cursor(cursor string) ApiListVendorSubscriptionsRequest {
+func (r ListVendorSubscriptionsRequest) Cursor(cursor string) ApiListVendorSubscriptionsRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // The maximum number of items to return in the response. If maximum is exceeded, maximum is used.
 
-func (r ApiListVendorSubscriptionsRequest) Limit(limit float32) ApiListVendorSubscriptionsRequest {
+func (r ListVendorSubscriptionsRequest) Limit(limit float32) ApiListVendorSubscriptionsRequest {
 	r.limit = &limit
 	return r
 }
 
 // The product ID.
 
-func (r ApiListVendorSubscriptionsRequest) ProductId(productId string) ApiListVendorSubscriptionsRequest {
+func (r ListVendorSubscriptionsRequest) ProductId(productId string) ApiListVendorSubscriptionsRequest {
 	r.productId = &productId
 	return r
 }
 
-func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsResponse, error) {
+func (r ListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -946,7 +1155,11 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 		localVarReturnValue *ListVendorSubscriptionsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListVendorSubscriptions")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListVendorSubscriptions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -990,7 +1203,7 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1000,7 +1213,7 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1024,7 +1237,7 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1035,7 +1248,7 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1046,7 +1259,7 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1057,7 +1270,7 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1071,16 +1284,16 @@ func (r ApiListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRe
 }
 
 /*
-ListVendorSubscriptions: List all subscriptions
+ListVendorSubscriptions: List all subscriptions of a project.
 
-List all subscriptions.
+List all subscriptions of a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The project ID.
 	@return ApiListVendorSubscriptionsRequest
 */
 func (a *APIClient) ListVendorSubscriptions(ctx context.Context, projectId string) ApiListVendorSubscriptionsRequest {
-	return ApiListVendorSubscriptionsRequest{
+	return ListVendorSubscriptionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1088,7 +1301,7 @@ func (a *APIClient) ListVendorSubscriptions(ctx context.Context, projectId strin
 }
 
 func (a *APIClient) ListVendorSubscriptionsExecute(ctx context.Context, projectId string) (*ListVendorSubscriptionsResponse, error) {
-	r := ApiListVendorSubscriptionsRequest{
+	r := ListVendorSubscriptionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1096,19 +1309,19 @@ func (a *APIClient) ListVendorSubscriptionsExecute(ctx context.Context, projectI
 	return r.Execute()
 }
 
-type ApiResolveCustomerRequest struct {
+type ResolveCustomerRequest struct {
 	ctx                    context.Context
 	apiService             *DefaultApiService
 	projectId              string
 	resolveCustomerPayload *ResolveCustomerPayload
 }
 
-func (r ApiResolveCustomerRequest) ResolveCustomerPayload(resolveCustomerPayload ResolveCustomerPayload) ApiResolveCustomerRequest {
+func (r ResolveCustomerRequest) ResolveCustomerPayload(resolveCustomerPayload ResolveCustomerPayload) ApiResolveCustomerRequest {
 	r.resolveCustomerPayload = &resolveCustomerPayload
 	return r
 }
 
-func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
+func (r ResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1116,7 +1329,11 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 		localVarReturnValue *VendorSubscription
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ResolveCustomer")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ResolveCustomer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1156,7 +1373,7 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 	}
 	// body params
 	localVarPostBody = r.resolveCustomerPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1166,7 +1383,7 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1190,7 +1407,7 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1201,7 +1418,7 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1212,7 +1429,7 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1223,7 +1440,7 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1234,7 +1451,7 @@ func (r ApiResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1257,7 +1474,7 @@ Get details about the requested subscription.
 	@return ApiResolveCustomerRequest
 */
 func (a *APIClient) ResolveCustomer(ctx context.Context, projectId string) ApiResolveCustomerRequest {
-	return ApiResolveCustomerRequest{
+	return ResolveCustomerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1265,10 +1482,180 @@ func (a *APIClient) ResolveCustomer(ctx context.Context, projectId string) ApiRe
 }
 
 func (a *APIClient) ResolveCustomerExecute(ctx context.Context, projectId string) (*VendorSubscription, error) {
-	r := ApiResolveCustomerRequest{
+	r := ResolveCustomerRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type VendorsSubscriptionsRejectRequest struct {
+	ctx            context.Context
+	apiService     *DefaultApiService
+	projectId      string
+	subscriptionId string
+}
+
+func (r VendorsSubscriptionsRejectRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.VendorsSubscriptionsReject")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}/reject"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.subscriptionId) < 36 {
+		return fmt.Errorf("subscriptionId must have at least 36 elements")
+	}
+	if strlen(r.subscriptionId) > 36 {
+		return fmt.Errorf("subscriptionId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+VendorsSubscriptionsReject: Reject a subscription
+
+Reject a subscription (in any lifecycle state). Only available for subscriptions to products with lifecycle state `PRODUCT_PREVIEW`.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The project ID.
+	@param subscriptionId The subscription ID.
+	@return ApiVendorsSubscriptionsRejectRequest
+*/
+func (a *APIClient) VendorsSubscriptionsReject(ctx context.Context, projectId string, subscriptionId string) ApiVendorsSubscriptionsRejectRequest {
+	return VendorsSubscriptionsRejectRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		subscriptionId: subscriptionId,
+	}
+}
+
+func (a *APIClient) VendorsSubscriptionsRejectExecute(ctx context.Context, projectId string, subscriptionId string) error {
+	r := VendorsSubscriptionsRejectRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		subscriptionId: subscriptionId,
 	}
 	return r.Execute()
 }

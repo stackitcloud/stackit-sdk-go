@@ -12,6 +12,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the StatusError type satisfies the MappedNullable interface at compile time
@@ -63,10 +64,114 @@ type StatusErrorGetEnRetType = string
 	types and functions for key
 */
 
-// isEnumRef
-type StatusErrorGetKeyAttributeType = *string
-type StatusErrorGetKeyArgType = string
-type StatusErrorGetKeyRetType = string
+// isEnum
+
+// StatusErrorKey An enum value that describes a Status Error.
+type StatusErrorKey string
+
+// List of Key
+const (
+	STATUSERRORKEY_UNKNOWN                      StatusErrorKey = "UNKNOWN"
+	STATUSERRORKEY_CUSTOM_DOMAIN_CNAME_MISSING  StatusErrorKey = "CUSTOM_DOMAIN_CNAME_MISSING"
+	STATUSERRORKEY_CUSTOM_DOMAIN_ALREADY_IN_USE StatusErrorKey = "CUSTOM_DOMAIN_ALREADY_IN_USE"
+	STATUSERRORKEY_PUBLIC_BETA_QUOTA_REACHED    StatusErrorKey = "PUBLIC_BETA_QUOTA_REACHED"
+)
+
+// All allowed values of StatusError enum
+var AllowedStatusErrorKeyEnumValues = []StatusErrorKey{
+	"UNKNOWN",
+	"CUSTOM_DOMAIN_CNAME_MISSING",
+	"CUSTOM_DOMAIN_ALREADY_IN_USE",
+	"PUBLIC_BETA_QUOTA_REACHED",
+}
+
+func (v *StatusErrorKey) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := StatusErrorKey(value)
+	for _, existing := range AllowedStatusErrorKeyEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid StatusError", value)
+}
+
+// NewStatusErrorKeyFromValue returns a pointer to a valid StatusErrorKey
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewStatusErrorKeyFromValue(v string) (*StatusErrorKey, error) {
+	ev := StatusErrorKey(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for StatusErrorKey: valid values are %v", v, AllowedStatusErrorKeyEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v StatusErrorKey) IsValid() bool {
+	for _, existing := range AllowedStatusErrorKeyEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyKey value
+func (v StatusErrorKey) Ptr() *StatusErrorKey {
+	return &v
+}
+
+type NullableStatusErrorKey struct {
+	value *StatusErrorKey
+	isSet bool
+}
+
+func (v NullableStatusErrorKey) Get() *StatusErrorKey {
+	return v.value
+}
+
+func (v *NullableStatusErrorKey) Set(val *StatusErrorKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStatusErrorKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStatusErrorKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableStatusErrorKey(val *StatusErrorKey) *NullableStatusErrorKey {
+	return &NullableStatusErrorKey{value: val, isSet: true}
+}
+
+func (v NullableStatusErrorKey) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableStatusErrorKey) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type StatusErrorGetKeyAttributeType = *StatusErrorKey
+type StatusErrorGetKeyArgType = StatusErrorKey
+type StatusErrorGetKeyRetType = StatusErrorKey
 
 func getStatusErrorGetKeyAttributeTypeOk(arg StatusErrorGetKeyAttributeType) (ret StatusErrorGetKeyRetType, ok bool) {
 	if arg == nil {

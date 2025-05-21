@@ -10,12 +10,18 @@ import (
 )
 
 const (
+	// Deprecated: CreateSuccess is deprecated and will be removed after 14th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED] instead.
 	CreateSuccess = "CREATE_SUCCEEDED"
-	CreateFail    = "CREATE_FAILED"
+	// Deprecated: CreateFail is deprecated and will be removed after 14th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_CREATE_FAILED] instead.
+	CreateFail = "CREATE_FAILED"
+	// Deprecated: UpdateSuccess is deprecated and will be removed after 14th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED] instead.
 	UpdateSuccess = "UPDATE_SUCCEEDED"
-	UpdateFail    = "UPDATE_FAILED"
+	// Deprecated: UpdateFail is deprecated and will be removed after 14th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_UPDATE_FAILED] instead.
+	UpdateFail = "UPDATE_FAILED"
+	// Deprecated: DeleteSuccess is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED] instead.
 	DeleteSuccess = "DELETE_SUCCEEDED"
-	DeleteFail    = "DELETE_FAILED"
+	// Deprecated: DeleteFail is deprecated and will be removed after 12th November 2025. Use [observability.GETINSTANCERESPONSESTATUS_DELETE_FAILED] instead.
+	DeleteFail = "DELETE_FAILED"
 )
 
 // APIClientInterface Interfaces needed for tests
@@ -34,10 +40,10 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		if s.Id == nil || s.Status == nil {
 			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
-		if *s.Id == instanceId && *s.Status == CreateSuccess {
+		if *s.Id == instanceId && *s.Status == observability.GETINSTANCERESPONSESTATUS_CREATE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Id == instanceId && *s.Status == CreateFail {
+		if *s.Id == instanceId && *s.Status == observability.GETINSTANCERESPONSESTATUS_CREATE_FAILED {
 			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
 		}
 		return false, nil, nil
@@ -57,10 +63,10 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
 		// The observability instance API currently replies with create success in case the update was successful.
-		if *s.Id == instanceId && (*s.Status == UpdateSuccess || *s.Status == CreateSuccess) {
+		if *s.Id == instanceId && (*s.Status == observability.GETINSTANCERESPONSESTATUS_UPDATE_SUCCEEDED || *s.Status == observability.GETINSTANCERESPONSESTATUS_CREATE_FAILED) {
 			return true, s, nil
 		}
-		if *s.Id == instanceId && (*s.Status == UpdateFail || *s.Status == CreateFail) {
+		if *s.Id == instanceId && (*s.Status == observability.GETINSTANCERESPONSESTATUS_UPDATE_FAILED || *s.Status == observability.GETINSTANCERESPONSESTATUS_CREATE_FAILED) {
 			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
 		}
 		return false, nil, nil
@@ -79,10 +85,10 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		if s.Id == nil || s.Status == nil {
 			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
-		if *s.Id == instanceId && *s.Status == DeleteSuccess {
+		if *s.Id == instanceId && *s.Status == observability.GETINSTANCERESPONSESTATUS_DELETE_SUCCEEDED {
 			return true, s, nil
 		}
-		if *s.Id == instanceId && *s.Status == DeleteFail {
+		if *s.Id == instanceId && *s.Status == observability.GETINSTANCERESPONSESTATUS_DELETE_FAILED {
 			return true, s, fmt.Errorf("delete failed for instance with id %s", instanceId)
 		}
 		return false, nil, nil

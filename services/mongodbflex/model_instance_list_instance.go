@@ -12,6 +12,7 @@ package mongodbflex
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InstanceListInstance type satisfies the MappedNullable interface at compile time
@@ -63,10 +64,116 @@ type InstanceListInstanceGetNameRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type InstanceListInstanceGetStatusAttributeType = *string
-type InstanceListInstanceGetStatusArgType = string
-type InstanceListInstanceGetStatusRetType = string
+// isEnum
+
+// InstanceListInstanceStatus The current status of the instance.
+type InstanceListInstanceStatus string
+
+// List of Status
+const (
+	INSTANCELISTINSTANCESTATUS_READY      InstanceListInstanceStatus = "READY"
+	INSTANCELISTINSTANCESTATUS_PENDING    InstanceListInstanceStatus = "PENDING"
+	INSTANCELISTINSTANCESTATUS_PROCESSING InstanceListInstanceStatus = "PROCESSING"
+	INSTANCELISTINSTANCESTATUS_FAILED     InstanceListInstanceStatus = "FAILED"
+	INSTANCELISTINSTANCESTATUS_UNKNOWN    InstanceListInstanceStatus = "UNKNOWN"
+)
+
+// All allowed values of InstanceListInstance enum
+var AllowedInstanceListInstanceStatusEnumValues = []InstanceListInstanceStatus{
+	"READY",
+	"PENDING",
+	"PROCESSING",
+	"FAILED",
+	"UNKNOWN",
+}
+
+func (v *InstanceListInstanceStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceListInstanceStatus(value)
+	for _, existing := range AllowedInstanceListInstanceStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceListInstance", value)
+}
+
+// NewInstanceListInstanceStatusFromValue returns a pointer to a valid InstanceListInstanceStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceListInstanceStatusFromValue(v string) (*InstanceListInstanceStatus, error) {
+	ev := InstanceListInstanceStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceListInstanceStatus: valid values are %v", v, AllowedInstanceListInstanceStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceListInstanceStatus) IsValid() bool {
+	for _, existing := range AllowedInstanceListInstanceStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v InstanceListInstanceStatus) Ptr() *InstanceListInstanceStatus {
+	return &v
+}
+
+type NullableInstanceListInstanceStatus struct {
+	value *InstanceListInstanceStatus
+	isSet bool
+}
+
+func (v NullableInstanceListInstanceStatus) Get() *InstanceListInstanceStatus {
+	return v.value
+}
+
+func (v *NullableInstanceListInstanceStatus) Set(val *InstanceListInstanceStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceListInstanceStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceListInstanceStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceListInstanceStatus(val *InstanceListInstanceStatus) *NullableInstanceListInstanceStatus {
+	return &NullableInstanceListInstanceStatus{value: val, isSet: true}
+}
+
+func (v NullableInstanceListInstanceStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceListInstanceStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceListInstanceGetStatusAttributeType = *InstanceListInstanceStatus
+type InstanceListInstanceGetStatusArgType = InstanceListInstanceStatus
+type InstanceListInstanceGetStatusRetType = InstanceListInstanceStatus
 
 func getInstanceListInstanceGetStatusAttributeTypeOk(arg InstanceListInstanceGetStatusAttributeType) (ret InstanceListInstanceGetStatusRetType, ok bool) {
 	if arg == nil {

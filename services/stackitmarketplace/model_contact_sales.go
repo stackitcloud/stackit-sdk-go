@@ -71,10 +71,10 @@ type _ContactSales ContactSales
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewContactSales(contactSales ContactSalesGetContactSalesArgType, type_ ContactSalesGetTypeArgType) *ContactSales {
+func NewContactSales(contactSales ContactSalesGetContactSalesArgType, types ContactSalesGetTypeArgType) *ContactSales {
 	this := ContactSales{}
 	setContactSalesGetContactSalesAttributeType(&this.ContactSales, contactSales)
-	setContactSalesGetTypeAttributeType(&this.Type, type_)
+	setContactSalesGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

@@ -12,6 +12,7 @@ package opensearch
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InstanceParameters type satisfies the MappedNullable interface at compile time
@@ -62,10 +63,114 @@ type InstanceParametersGetGraphiteRetType = string
 	types and functions for java_garbage_collector
 */
 
-// isEnumRef
-type InstanceParametersGetJavaGarbageCollectorAttributeType = *string
-type InstanceParametersGetJavaGarbageCollectorArgType = string
-type InstanceParametersGetJavaGarbageCollectorRetType = string
+// isEnum
+
+// InstanceParametersJavaGarbageCollector the model 'InstanceParameters'
+type InstanceParametersJavaGarbageCollector string
+
+// List of JavaGarbageCollector
+const (
+	INSTANCEPARAMETERSJAVA_GARBAGE_COLLECTOR_USE_SERIAL_GC       InstanceParametersJavaGarbageCollector = "UseSerialGC"
+	INSTANCEPARAMETERSJAVA_GARBAGE_COLLECTOR_USE_PARALLEL_GC     InstanceParametersJavaGarbageCollector = "UseParallelGC"
+	INSTANCEPARAMETERSJAVA_GARBAGE_COLLECTOR_USE_PARALLEL_OLD_GC InstanceParametersJavaGarbageCollector = "UseParallelOldGC"
+	INSTANCEPARAMETERSJAVA_GARBAGE_COLLECTOR_USE_G1_GC           InstanceParametersJavaGarbageCollector = "UseG1GC"
+)
+
+// All allowed values of InstanceParameters enum
+var AllowedInstanceParametersJavaGarbageCollectorEnumValues = []InstanceParametersJavaGarbageCollector{
+	"UseSerialGC",
+	"UseParallelGC",
+	"UseParallelOldGC",
+	"UseG1GC",
+}
+
+func (v *InstanceParametersJavaGarbageCollector) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceParametersJavaGarbageCollector(value)
+	for _, existing := range AllowedInstanceParametersJavaGarbageCollectorEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceParameters", value)
+}
+
+// NewInstanceParametersJavaGarbageCollectorFromValue returns a pointer to a valid InstanceParametersJavaGarbageCollector
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceParametersJavaGarbageCollectorFromValue(v string) (*InstanceParametersJavaGarbageCollector, error) {
+	ev := InstanceParametersJavaGarbageCollector(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceParametersJavaGarbageCollector: valid values are %v", v, AllowedInstanceParametersJavaGarbageCollectorEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceParametersJavaGarbageCollector) IsValid() bool {
+	for _, existing := range AllowedInstanceParametersJavaGarbageCollectorEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to JavaGarbageCollectorJavaGarbageCollector value
+func (v InstanceParametersJavaGarbageCollector) Ptr() *InstanceParametersJavaGarbageCollector {
+	return &v
+}
+
+type NullableInstanceParametersJavaGarbageCollector struct {
+	value *InstanceParametersJavaGarbageCollector
+	isSet bool
+}
+
+func (v NullableInstanceParametersJavaGarbageCollector) Get() *InstanceParametersJavaGarbageCollector {
+	return v.value
+}
+
+func (v *NullableInstanceParametersJavaGarbageCollector) Set(val *InstanceParametersJavaGarbageCollector) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceParametersJavaGarbageCollector) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceParametersJavaGarbageCollector) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceParametersJavaGarbageCollector(val *InstanceParametersJavaGarbageCollector) *NullableInstanceParametersJavaGarbageCollector {
+	return &NullableInstanceParametersJavaGarbageCollector{value: val, isSet: true}
+}
+
+func (v NullableInstanceParametersJavaGarbageCollector) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceParametersJavaGarbageCollector) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceParametersGetJavaGarbageCollectorAttributeType = *InstanceParametersJavaGarbageCollector
+type InstanceParametersGetJavaGarbageCollectorArgType = InstanceParametersJavaGarbageCollector
+type InstanceParametersGetJavaGarbageCollectorRetType = InstanceParametersJavaGarbageCollector
 
 func getInstanceParametersGetJavaGarbageCollectorAttributeTypeOk(arg InstanceParametersGetJavaGarbageCollectorAttributeType) (ret InstanceParametersGetJavaGarbageCollectorRetType, ok bool) {
 	if arg == nil {
@@ -285,10 +390,110 @@ func setInstanceParametersGetTlsCiphersAttributeType(arg *InstanceParametersGetT
 	types and functions for tls-protocols
 */
 
-// isEnumRef
-type InstanceParametersGetTlsProtocolsAttributeType = *string
-type InstanceParametersGetTlsProtocolsArgType = string
-type InstanceParametersGetTlsProtocolsRetType = string
+// isEnum
+
+// InstanceParametersTlsProtocols the model 'InstanceParameters'
+type InstanceParametersTlsProtocols string
+
+// List of TlsProtocols
+const (
+	INSTANCEPARAMETERSTLS_PROTOCOLS__2 InstanceParametersTlsProtocols = "TLSv1.2"
+	INSTANCEPARAMETERSTLS_PROTOCOLS__3 InstanceParametersTlsProtocols = "TLSv1.3"
+)
+
+// All allowed values of InstanceParameters enum
+var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsProtocols{
+	"TLSv1.2",
+	"TLSv1.3",
+}
+
+func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceParametersTlsProtocols(value)
+	for _, existing := range AllowedInstanceParametersTlsProtocolsEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceParameters", value)
+}
+
+// NewInstanceParametersTlsProtocolsFromValue returns a pointer to a valid InstanceParametersTlsProtocols
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceParametersTlsProtocolsFromValue(v string) (*InstanceParametersTlsProtocols, error) {
+	ev := InstanceParametersTlsProtocols(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceParametersTlsProtocols: valid values are %v", v, AllowedInstanceParametersTlsProtocolsEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceParametersTlsProtocols) IsValid() bool {
+	for _, existing := range AllowedInstanceParametersTlsProtocolsEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TlsProtocolsTlsProtocols value
+func (v InstanceParametersTlsProtocols) Ptr() *InstanceParametersTlsProtocols {
+	return &v
+}
+
+type NullableInstanceParametersTlsProtocols struct {
+	value *InstanceParametersTlsProtocols
+	isSet bool
+}
+
+func (v NullableInstanceParametersTlsProtocols) Get() *InstanceParametersTlsProtocols {
+	return v.value
+}
+
+func (v *NullableInstanceParametersTlsProtocols) Set(val *InstanceParametersTlsProtocols) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceParametersTlsProtocols) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceParametersTlsProtocols) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceParametersTlsProtocols(val *InstanceParametersTlsProtocols) *NullableInstanceParametersTlsProtocols {
+	return &NullableInstanceParametersTlsProtocols{value: val, isSet: true}
+}
+
+func (v NullableInstanceParametersTlsProtocols) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceParametersGetTlsProtocolsAttributeType = *InstanceParametersTlsProtocols
+type InstanceParametersGetTlsProtocolsArgType = InstanceParametersTlsProtocols
+type InstanceParametersGetTlsProtocolsRetType = InstanceParametersTlsProtocols
 
 func getInstanceParametersGetTlsProtocolsAttributeTypeOk(arg InstanceParametersGetTlsProtocolsAttributeType) (ret InstanceParametersGetTlsProtocolsRetType, ok bool) {
 	if arg == nil {
@@ -348,7 +553,7 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 	this := InstanceParameters{}
 	var enableMonitoring bool = false
 	this.EnableMonitoring = &enableMonitoring
-	var javaGarbageCollector string = "UseG1GC"
+	var javaGarbageCollector InstanceParametersJavaGarbageCollector = "UseG1GC"
 	this.JavaGarbageCollector = &javaGarbageCollector
 	var javaMaxmetaspace int64 = 512
 	this.JavaMaxmetaspace = &javaMaxmetaspace

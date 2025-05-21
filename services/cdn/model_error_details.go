@@ -12,6 +12,7 @@ package cdn
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ErrorDetails type satisfies the MappedNullable interface at compile time
@@ -105,10 +106,112 @@ type ErrorDetailsGetFieldRetType = string
 	types and functions for key
 */
 
-// isEnumRef
-type ErrorDetailsGetKeyAttributeType = *string
-type ErrorDetailsGetKeyArgType = string
-type ErrorDetailsGetKeyRetType = string
+// isEnum
+
+// ErrorDetailsKey the model 'ErrorDetails'
+type ErrorDetailsKey string
+
+// List of Key
+const (
+	ERRORDETAILSKEY_UNKNOWN                     ErrorDetailsKey = "UNKNOWN"
+	ERRORDETAILSKEY_CUSTOM_DOMAIN_CNAME_MISSING ErrorDetailsKey = "CUSTOM_DOMAIN_CNAME_MISSING"
+	ERRORDETAILSKEY_INVALID_ARGUMENT            ErrorDetailsKey = "INVALID_ARGUMENT"
+)
+
+// All allowed values of ErrorDetails enum
+var AllowedErrorDetailsKeyEnumValues = []ErrorDetailsKey{
+	"UNKNOWN",
+	"CUSTOM_DOMAIN_CNAME_MISSING",
+	"INVALID_ARGUMENT",
+}
+
+func (v *ErrorDetailsKey) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ErrorDetailsKey(value)
+	for _, existing := range AllowedErrorDetailsKeyEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ErrorDetails", value)
+}
+
+// NewErrorDetailsKeyFromValue returns a pointer to a valid ErrorDetailsKey
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewErrorDetailsKeyFromValue(v string) (*ErrorDetailsKey, error) {
+	ev := ErrorDetailsKey(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ErrorDetailsKey: valid values are %v", v, AllowedErrorDetailsKeyEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ErrorDetailsKey) IsValid() bool {
+	for _, existing := range AllowedErrorDetailsKeyEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyKey value
+func (v ErrorDetailsKey) Ptr() *ErrorDetailsKey {
+	return &v
+}
+
+type NullableErrorDetailsKey struct {
+	value *ErrorDetailsKey
+	isSet bool
+}
+
+func (v NullableErrorDetailsKey) Get() *ErrorDetailsKey {
+	return v.value
+}
+
+func (v *NullableErrorDetailsKey) Set(val *ErrorDetailsKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableErrorDetailsKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableErrorDetailsKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableErrorDetailsKey(val *ErrorDetailsKey) *NullableErrorDetailsKey {
+	return &NullableErrorDetailsKey{value: val, isSet: true}
+}
+
+func (v NullableErrorDetailsKey) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableErrorDetailsKey) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ErrorDetailsGetKeyAttributeType = *ErrorDetailsKey
+type ErrorDetailsGetKeyArgType = ErrorDetailsKey
+type ErrorDetailsGetKeyRetType = ErrorDetailsKey
 
 func getErrorDetailsGetKeyAttributeTypeOk(arg ErrorDetailsGetKeyAttributeType) (ret ErrorDetailsGetKeyRetType, ok bool) {
 	if arg == nil {

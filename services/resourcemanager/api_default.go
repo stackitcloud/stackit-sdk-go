@@ -13,6 +13,7 @@ package resourcemanager
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -24,21 +25,328 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateFolder Create Folder
+		Create a new folder.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiCreateFolderRequest
+	*/
+	CreateFolder(ctx context.Context) ApiCreateFolderRequest
+	/*
+		CreateFolderExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return FolderResponse
+
+	*/
+	CreateFolderExecute(ctx context.Context) (*FolderResponse, error)
+	/*
+		CreateProject Create Project
+		Create a new project.
+		- The request is synchronous, but the workflow-based creation is asynchronous.
+		- Lifecycle state remains in CREATING, until workflow completes
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiCreateProjectRequest
+	*/
+	CreateProject(ctx context.Context) ApiCreateProjectRequest
+	/*
+		CreateProjectExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return Project
+
+	*/
+	CreateProjectExecute(ctx context.Context) (*Project, error)
+	/*
+		DeleteFolder Delete Folder
+		Delete a folder and its metadata.
+		- Folder must not be parent of any other container
+		- A force flag may be set, deleting all underlying folders recursively - if no project is attached!
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param containerId Folder identifier - containerId as well as UUID identifier is supported.
+		@return ApiDeleteFolderRequest
+	*/
+	DeleteFolder(ctx context.Context, containerId string) ApiDeleteFolderRequest
+	/*
+		DeleteFolderExecute executes the request
+
+	*/
+	DeleteFolderExecute(ctx context.Context, containerId string) error
+	/*
+		DeleteFolderLabels Delete Folder Labels
+		Deletes all folder labels by given keys.
+		- Specific labels may be deleted by key(s)
+		- If no key is specified, all labels will be deleted!
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param containerId Folder identifier - containerId as well as UUID identifier is supported.
+		@return ApiDeleteFolderLabelsRequest
+	*/
+	DeleteFolderLabels(ctx context.Context, containerId string) ApiDeleteFolderLabelsRequest
+	/*
+		DeleteFolderLabelsExecute executes the request
+
+	*/
+	DeleteFolderLabelsExecute(ctx context.Context, containerId string) error
+	/*
+		DeleteProject Delete Project
+		Triggers the deletion of a project.
+		- The request is synchronous, but the workflow-based deletion is asynchronous
+		- Lifecycle state remains in DELETING, until workflow completes
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Project identifier - containerId as well as UUID identifier is supported.
+		@return ApiDeleteProjectRequest
+	*/
+	DeleteProject(ctx context.Context, id string) ApiDeleteProjectRequest
+	/*
+		DeleteProjectExecute executes the request
+
+	*/
+	DeleteProjectExecute(ctx context.Context, id string) error
+	/*
+		GetFolderDetails Get Folder Details
+		Returns all metadata for a specific folder.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param containerId Folder identifier - containerId as well as UUID identifier is supported.
+		@return ApiGetFolderDetailsRequest
+	*/
+	GetFolderDetails(ctx context.Context, containerId string) ApiGetFolderDetailsRequest
+	/*
+		GetFolderDetailsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param containerId Folder identifier - containerId as well as UUID identifier is supported.
+		@return GetFolderDetailsResponse
+
+	*/
+	GetFolderDetailsExecute(ctx context.Context, containerId string) (*GetFolderDetailsResponse, error)
+	/*
+		GetOrganization Get Organization Details
+		Returns the organization and its metadata.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Organization identifier - containerId as well as UUID identifier is supported.
+		@return ApiGetOrganizationRequest
+	*/
+	GetOrganization(ctx context.Context, id string) ApiGetOrganizationRequest
+	/*
+		GetOrganizationExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Organization identifier - containerId as well as UUID identifier is supported.
+		@return OrganizationResponse
+
+	*/
+	GetOrganizationExecute(ctx context.Context, id string) (*OrganizationResponse, error)
+	/*
+		GetProject Get Project Details
+		Returns the project and its metadata.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Project identifier - containerId as well as UUID identifier is supported.
+		@return ApiGetProjectRequest
+	*/
+	GetProject(ctx context.Context, id string) ApiGetProjectRequest
+	/*
+		GetProjectExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Project identifier - containerId as well as UUID identifier is supported.
+		@return GetProjectResponse
+
+	*/
+	GetProjectExecute(ctx context.Context, id string) (*GetProjectResponse, error)
+	/*
+		ListOrganizations Get All Organizations
+		Returns all organizations and their metadata.
+		- If no containerIds are specified, all organizations are returned, if permitted
+		- ContainerIds may be set to filter
+		- Member may be set to filter
+		- If member and containerIds are given, both are used for filtering
+
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListOrganizationsRequest
+	*/
+	ListOrganizations(ctx context.Context) ApiListOrganizationsRequest
+	/*
+		ListOrganizationsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ListOrganizationsResponse
+
+	*/
+	ListOrganizationsExecute(ctx context.Context) (*ListOrganizationsResponse, error)
+	/*
+		ListProjects Get All Projects
+		Returns all projects and their metadata that:
+		- Are children of the specific containerParentId
+		- Match the given containerIds
+		- User is member of
+
+		Filter:
+		- Either containerParentId OR containerIds OR member must be passed
+		- If containerId and containerParentId are given, both are used for filtering - containers must point to the same parent
+		- If member and containerParentId are given, both are used for filtering
+		- If member is given, containers must not point to the same container parent
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListProjectsRequest
+	*/
+	ListProjects(ctx context.Context) ApiListProjectsRequest
+	/*
+		ListProjectsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ListProjectsResponse
+
+	*/
+	ListProjectsExecute(ctx context.Context) (*ListProjectsResponse, error)
+	/*
+		PartialUpdateFolder Update Folder
+		Update the folder and its metadata.
+		- Update folder name
+		- Update folder labels
+		- Update folder parent (folder or organization)
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param containerId Folder identifier - containerId as well as UUID identifier is supported.
+		@return ApiPartialUpdateFolderRequest
+	*/
+	PartialUpdateFolder(ctx context.Context, containerId string) ApiPartialUpdateFolderRequest
+	/*
+		PartialUpdateFolderExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param containerId Folder identifier - containerId as well as UUID identifier is supported.
+		@return FolderResponse
+
+	*/
+	PartialUpdateFolderExecute(ctx context.Context, containerId string) (*FolderResponse, error)
+	/*
+		PartialUpdateProject Update Project
+		Update the project and its metadata.
+		- Update project name
+		- Update project labels
+		- Update project parent (folder or organization)
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Project identifier - containerId as well as UUID identifier is supported.
+		@return ApiPartialUpdateProjectRequest
+	*/
+	PartialUpdateProject(ctx context.Context, id string) ApiPartialUpdateProjectRequest
+	/*
+		PartialUpdateProjectExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param id Project identifier - containerId as well as UUID identifier is supported.
+		@return Project
+
+	*/
+	PartialUpdateProjectExecute(ctx context.Context, id string) (*Project, error)
+}
+
+type ApiCreateFolderRequest interface {
+	CreateFolderPayload(createFolderPayload CreateFolderPayload) ApiCreateFolderRequest
+	Execute() (*FolderResponse, error)
+}
+
+type ApiCreateProjectRequest interface {
+	CreateProjectPayload(createProjectPayload CreateProjectPayload) ApiCreateProjectRequest
+	Execute() (*Project, error)
+}
+
+type ApiDeleteFolderRequest interface {
+	// If true, all nested, empty folders are deleted recursively - if no project is attached!
+	Force(force bool) ApiDeleteFolderRequest
+	Execute() error
+}
+
+type ApiDeleteFolderLabelsRequest interface {
+	// Label name.
+	Keys(keys []string) ApiDeleteFolderLabelsRequest
+	Execute() error
+}
+
+type ApiDeleteProjectRequest interface {
+	Execute() error
+}
+
+type ApiGetFolderDetailsRequest interface {
+	IncludeParents(includeParents bool) ApiGetFolderDetailsRequest
+	Execute() (*GetFolderDetailsResponse, error)
+}
+
+type ApiGetOrganizationRequest interface {
+	Execute() (*OrganizationResponse, error)
+}
+
+type ApiGetProjectRequest interface {
+	IncludeParents(includeParents bool) ApiGetProjectRequest
+	Execute() (*GetProjectResponse, error)
+}
+
+type ApiListOrganizationsRequest interface {
+	// Organization identifiers - containerId as well as UUID identifier is supported. A combination of both is not allowed.
+	ContainerIds(containerIds []string) ApiListOrganizationsRequest
+	// E-Mail address of the user for whom the visible resource containers should be filtered.
+	Member(member string) ApiListOrganizationsRequest
+	// The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
+	Limit(limit float32) ApiListOrganizationsRequest
+	// The offset of the first item in the collection to return.
+	Offset(offset float32) ApiListOrganizationsRequest
+	// A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
+	CreationTimeStart(creationTimeStart time.Time) ApiListOrganizationsRequest
+	Execute() (*ListOrganizationsResponse, error)
+}
+
+type ApiListProjectsRequest interface {
+	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
+	ContainerParentId(containerParentId string) ApiListProjectsRequest
+	// List of container identifiers - containerId as well as UUID identifier is supported.
+	ContainerIds(containerIds []string) ApiListProjectsRequest
+	// E-Mail address of the user for whom the visible resource containers should be filtered.
+	Member(member string) ApiListProjectsRequest
+	// The offset of the first item in the collection to return.
+	Offset(offset float32) ApiListProjectsRequest
+	// The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
+	Limit(limit float32) ApiListProjectsRequest
+	// A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
+	CreationTimeStart(creationTimeStart time.Time) ApiListProjectsRequest
+	Execute() (*ListProjectsResponse, error)
+}
+
+type ApiPartialUpdateFolderRequest interface {
+	PartialUpdateFolderPayload(partialUpdateFolderPayload PartialUpdateFolderPayload) ApiPartialUpdateFolderRequest
+	Execute() (*FolderResponse, error)
+}
+
+type ApiPartialUpdateProjectRequest interface {
+	PartialUpdateProjectPayload(partialUpdateProjectPayload PartialUpdateProjectPayload) ApiPartialUpdateProjectRequest
+	Execute() (*Project, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateFolderRequest struct {
+type CreateFolderRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	createFolderPayload *CreateFolderPayload
 }
 
-func (r ApiCreateFolderRequest) CreateFolderPayload(createFolderPayload CreateFolderPayload) ApiCreateFolderRequest {
+func (r CreateFolderRequest) CreateFolderPayload(createFolderPayload CreateFolderPayload) ApiCreateFolderRequest {
 	r.createFolderPayload = &createFolderPayload
 	return r
 }
 
-func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
+func (r CreateFolderRequest) Execute() (*FolderResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -46,7 +354,11 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 		localVarReturnValue *FolderResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateFolder")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateFolder")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -76,7 +388,7 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createFolderPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -86,7 +398,7 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -110,7 +422,7 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -121,7 +433,7 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -132,7 +444,7 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -143,7 +455,7 @@ func (r ApiCreateFolderRequest) Execute() (*FolderResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -165,32 +477,32 @@ Create a new folder.
 	@return ApiCreateFolderRequest
 */
 func (a *APIClient) CreateFolder(ctx context.Context) ApiCreateFolderRequest {
-	return ApiCreateFolderRequest{
+	return CreateFolderRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) CreateFolderExecute(ctx context.Context) (*FolderResponse, error) {
-	r := ApiCreateFolderRequest{
+	r := CreateFolderRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiCreateProjectRequest struct {
+type CreateProjectRequest struct {
 	ctx                  context.Context
 	apiService           *DefaultApiService
 	createProjectPayload *CreateProjectPayload
 }
 
-func (r ApiCreateProjectRequest) CreateProjectPayload(createProjectPayload CreateProjectPayload) ApiCreateProjectRequest {
+func (r CreateProjectRequest) CreateProjectPayload(createProjectPayload CreateProjectPayload) ApiCreateProjectRequest {
 	r.createProjectPayload = &createProjectPayload
 	return r
 }
 
-func (r ApiCreateProjectRequest) Execute() (*Project, error) {
+func (r CreateProjectRequest) Execute() (*Project, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -198,7 +510,11 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 		localVarReturnValue *Project
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateProject")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateProject")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -228,7 +544,7 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 	}
 	// body params
 	localVarPostBody = r.createProjectPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -238,7 +554,7 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -262,7 +578,7 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -273,7 +589,7 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -284,7 +600,7 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -295,7 +611,7 @@ func (r ApiCreateProjectRequest) Execute() (*Project, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -319,21 +635,21 @@ Create a new project.
 	@return ApiCreateProjectRequest
 */
 func (a *APIClient) CreateProject(ctx context.Context) ApiCreateProjectRequest {
-	return ApiCreateProjectRequest{
+	return CreateProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) CreateProjectExecute(ctx context.Context) (*Project, error) {
-	r := ApiCreateProjectRequest{
+	r := CreateProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiDeleteFolderRequest struct {
+type DeleteFolderRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	containerId string
@@ -342,19 +658,23 @@ type ApiDeleteFolderRequest struct {
 
 // If true, all nested, empty folders are deleted recursively - if no project is attached!
 
-func (r ApiDeleteFolderRequest) Force(force bool) ApiDeleteFolderRequest {
+func (r DeleteFolderRequest) Force(force bool) ApiDeleteFolderRequest {
 	r.force = &force
 	return r
 }
 
-func (r ApiDeleteFolderRequest) Execute() error {
+func (r DeleteFolderRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteFolder")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteFolder")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -386,7 +706,7 @@ func (r ApiDeleteFolderRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -396,7 +716,7 @@ func (r ApiDeleteFolderRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -420,7 +740,7 @@ func (r ApiDeleteFolderRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -431,7 +751,7 @@ func (r ApiDeleteFolderRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -457,7 +777,7 @@ Delete a folder and its metadata.
 	@return ApiDeleteFolderRequest
 */
 func (a *APIClient) DeleteFolder(ctx context.Context, containerId string) ApiDeleteFolderRequest {
-	return ApiDeleteFolderRequest{
+	return DeleteFolderRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -465,7 +785,7 @@ func (a *APIClient) DeleteFolder(ctx context.Context, containerId string) ApiDel
 }
 
 func (a *APIClient) DeleteFolderExecute(ctx context.Context, containerId string) error {
-	r := ApiDeleteFolderRequest{
+	r := DeleteFolderRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -473,7 +793,7 @@ func (a *APIClient) DeleteFolderExecute(ctx context.Context, containerId string)
 	return r.Execute()
 }
 
-type ApiDeleteFolderLabelsRequest struct {
+type DeleteFolderLabelsRequest struct {
 	ctx         context.Context
 	apiService  *DefaultApiService
 	containerId string
@@ -482,19 +802,23 @@ type ApiDeleteFolderLabelsRequest struct {
 
 // Label name.
 
-func (r ApiDeleteFolderLabelsRequest) Keys(keys []string) ApiDeleteFolderLabelsRequest {
+func (r DeleteFolderLabelsRequest) Keys(keys []string) ApiDeleteFolderLabelsRequest {
 	r.keys = &keys
 	return r
 }
 
-func (r ApiDeleteFolderLabelsRequest) Execute() error {
+func (r DeleteFolderLabelsRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteFolderLabels")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteFolderLabels")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -534,7 +858,7 @@ func (r ApiDeleteFolderLabelsRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -544,7 +868,7 @@ func (r ApiDeleteFolderLabelsRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -568,7 +892,7 @@ func (r ApiDeleteFolderLabelsRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -594,7 +918,7 @@ Deletes all folder labels by given keys.
 	@return ApiDeleteFolderLabelsRequest
 */
 func (a *APIClient) DeleteFolderLabels(ctx context.Context, containerId string) ApiDeleteFolderLabelsRequest {
-	return ApiDeleteFolderLabelsRequest{
+	return DeleteFolderLabelsRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -602,7 +926,7 @@ func (a *APIClient) DeleteFolderLabels(ctx context.Context, containerId string) 
 }
 
 func (a *APIClient) DeleteFolderLabelsExecute(ctx context.Context, containerId string) error {
-	r := ApiDeleteFolderLabelsRequest{
+	r := DeleteFolderLabelsRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -610,20 +934,24 @@ func (a *APIClient) DeleteFolderLabelsExecute(ctx context.Context, containerId s
 	return r.Execute()
 }
 
-type ApiDeleteProjectRequest struct {
+type DeleteProjectRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	id         string
 }
 
-func (r ApiDeleteProjectRequest) Execute() error {
+func (r DeleteProjectRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteProject")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteProject")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -652,7 +980,7 @@ func (r ApiDeleteProjectRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -662,7 +990,7 @@ func (r ApiDeleteProjectRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -686,7 +1014,7 @@ func (r ApiDeleteProjectRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -712,7 +1040,7 @@ Triggers the deletion of a project.
 	@return ApiDeleteProjectRequest
 */
 func (a *APIClient) DeleteProject(ctx context.Context, id string) ApiDeleteProjectRequest {
-	return ApiDeleteProjectRequest{
+	return DeleteProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,
@@ -720,7 +1048,7 @@ func (a *APIClient) DeleteProject(ctx context.Context, id string) ApiDeleteProje
 }
 
 func (a *APIClient) DeleteProjectExecute(ctx context.Context, id string) error {
-	r := ApiDeleteProjectRequest{
+	r := DeleteProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,
@@ -728,19 +1056,19 @@ func (a *APIClient) DeleteProjectExecute(ctx context.Context, id string) error {
 	return r.Execute()
 }
 
-type ApiGetFolderDetailsRequest struct {
+type GetFolderDetailsRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	containerId    string
 	includeParents *bool
 }
 
-func (r ApiGetFolderDetailsRequest) IncludeParents(includeParents bool) ApiGetFolderDetailsRequest {
+func (r GetFolderDetailsRequest) IncludeParents(includeParents bool) ApiGetFolderDetailsRequest {
 	r.includeParents = &includeParents
 	return r
 }
 
-func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error) {
+func (r GetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -748,7 +1076,11 @@ func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error)
 		localVarReturnValue *GetFolderDetailsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFolderDetails")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFolderDetails")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -780,7 +1112,7 @@ func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -790,7 +1122,7 @@ func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error)
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -814,7 +1146,7 @@ func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -825,7 +1157,7 @@ func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -836,7 +1168,7 @@ func (r ApiGetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error)
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -859,7 +1191,7 @@ Returns all metadata for a specific folder.
 	@return ApiGetFolderDetailsRequest
 */
 func (a *APIClient) GetFolderDetails(ctx context.Context, containerId string) ApiGetFolderDetailsRequest {
-	return ApiGetFolderDetailsRequest{
+	return GetFolderDetailsRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -867,7 +1199,7 @@ func (a *APIClient) GetFolderDetails(ctx context.Context, containerId string) Ap
 }
 
 func (a *APIClient) GetFolderDetailsExecute(ctx context.Context, containerId string) (*GetFolderDetailsResponse, error) {
-	r := ApiGetFolderDetailsRequest{
+	r := GetFolderDetailsRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -875,13 +1207,13 @@ func (a *APIClient) GetFolderDetailsExecute(ctx context.Context, containerId str
 	return r.Execute()
 }
 
-type ApiGetOrganizationRequest struct {
+type GetOrganizationRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	id         string
 }
 
-func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
+func (r GetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -889,7 +1221,11 @@ func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 		localVarReturnValue *OrganizationResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrganization")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrganization")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -918,7 +1254,7 @@ func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -928,7 +1264,7 @@ func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -952,7 +1288,7 @@ func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -963,7 +1299,7 @@ func (r ApiGetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -986,7 +1322,7 @@ Returns the organization and its metadata.
 	@return ApiGetOrganizationRequest
 */
 func (a *APIClient) GetOrganization(ctx context.Context, id string) ApiGetOrganizationRequest {
-	return ApiGetOrganizationRequest{
+	return GetOrganizationRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,
@@ -994,7 +1330,7 @@ func (a *APIClient) GetOrganization(ctx context.Context, id string) ApiGetOrgani
 }
 
 func (a *APIClient) GetOrganizationExecute(ctx context.Context, id string) (*OrganizationResponse, error) {
-	r := ApiGetOrganizationRequest{
+	r := GetOrganizationRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,
@@ -1002,19 +1338,19 @@ func (a *APIClient) GetOrganizationExecute(ctx context.Context, id string) (*Org
 	return r.Execute()
 }
 
-type ApiGetProjectRequest struct {
+type GetProjectRequest struct {
 	ctx            context.Context
 	apiService     *DefaultApiService
 	id             string
 	includeParents *bool
 }
 
-func (r ApiGetProjectRequest) IncludeParents(includeParents bool) ApiGetProjectRequest {
+func (r GetProjectRequest) IncludeParents(includeParents bool) ApiGetProjectRequest {
 	r.includeParents = &includeParents
 	return r
 }
 
-func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
+func (r GetProjectRequest) Execute() (*GetProjectResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1022,7 +1358,11 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 		localVarReturnValue *GetProjectResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProject")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProject")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1054,7 +1394,7 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1064,7 +1404,7 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1088,7 +1428,7 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1099,7 +1439,7 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1110,7 +1450,7 @@ func (r ApiGetProjectRequest) Execute() (*GetProjectResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1133,7 +1473,7 @@ Returns the project and its metadata.
 	@return ApiGetProjectRequest
 */
 func (a *APIClient) GetProject(ctx context.Context, id string) ApiGetProjectRequest {
-	return ApiGetProjectRequest{
+	return GetProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,
@@ -1141,7 +1481,7 @@ func (a *APIClient) GetProject(ctx context.Context, id string) ApiGetProjectRequ
 }
 
 func (a *APIClient) GetProjectExecute(ctx context.Context, id string) (*GetProjectResponse, error) {
-	r := ApiGetProjectRequest{
+	r := GetProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,
@@ -1149,7 +1489,7 @@ func (a *APIClient) GetProjectExecute(ctx context.Context, id string) (*GetProje
 	return r.Execute()
 }
 
-type ApiListOrganizationsRequest struct {
+type ListOrganizationsRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	containerIds      *[]string
@@ -1161,40 +1501,40 @@ type ApiListOrganizationsRequest struct {
 
 // Organization identifiers - containerId as well as UUID identifier is supported. A combination of both is not allowed.
 
-func (r ApiListOrganizationsRequest) ContainerIds(containerIds []string) ApiListOrganizationsRequest {
+func (r ListOrganizationsRequest) ContainerIds(containerIds []string) ApiListOrganizationsRequest {
 	r.containerIds = &containerIds
 	return r
 }
 
 // E-Mail address of the user for whom the visible resource containers should be filtered.
 
-func (r ApiListOrganizationsRequest) Member(member string) ApiListOrganizationsRequest {
+func (r ListOrganizationsRequest) Member(member string) ApiListOrganizationsRequest {
 	r.member = &member
 	return r
 }
 
 // The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
 
-func (r ApiListOrganizationsRequest) Limit(limit float32) ApiListOrganizationsRequest {
+func (r ListOrganizationsRequest) Limit(limit float32) ApiListOrganizationsRequest {
 	r.limit = &limit
 	return r
 }
 
 // The offset of the first item in the collection to return.
 
-func (r ApiListOrganizationsRequest) Offset(offset float32) ApiListOrganizationsRequest {
+func (r ListOrganizationsRequest) Offset(offset float32) ApiListOrganizationsRequest {
 	r.offset = &offset
 	return r
 }
 
 // A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
 
-func (r ApiListOrganizationsRequest) CreationTimeStart(creationTimeStart time.Time) ApiListOrganizationsRequest {
+func (r ListOrganizationsRequest) CreationTimeStart(creationTimeStart time.Time) ApiListOrganizationsRequest {
 	r.creationTimeStart = &creationTimeStart
 	return r
 }
 
-func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, error) {
+func (r ListOrganizationsRequest) Execute() (*ListOrganizationsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1202,7 +1542,11 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 		localVarReturnValue *ListOrganizationsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListOrganizations")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListOrganizations")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1253,7 +1597,7 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1263,7 +1607,7 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1287,7 +1631,7 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1298,7 +1642,7 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1309,7 +1653,7 @@ func (r ApiListOrganizationsRequest) Execute() (*ListOrganizationsResponse, erro
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1335,21 +1679,21 @@ Returns all organizations and their metadata.
 	@return ApiListOrganizationsRequest
 */
 func (a *APIClient) ListOrganizations(ctx context.Context) ApiListOrganizationsRequest {
-	return ApiListOrganizationsRequest{
+	return ListOrganizationsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) ListOrganizationsExecute(ctx context.Context) (*ListOrganizationsResponse, error) {
-	r := ApiListOrganizationsRequest{
+	r := ListOrganizationsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiListProjectsRequest struct {
+type ListProjectsRequest struct {
 	ctx               context.Context
 	apiService        *DefaultApiService
 	containerParentId *string
@@ -1362,47 +1706,47 @@ type ApiListProjectsRequest struct {
 
 // Identifier of the parent resource container - containerId as well as UUID identifier is supported.
 
-func (r ApiListProjectsRequest) ContainerParentId(containerParentId string) ApiListProjectsRequest {
+func (r ListProjectsRequest) ContainerParentId(containerParentId string) ApiListProjectsRequest {
 	r.containerParentId = &containerParentId
 	return r
 }
 
 // List of container identifiers - containerId as well as UUID identifier is supported.
 
-func (r ApiListProjectsRequest) ContainerIds(containerIds []string) ApiListProjectsRequest {
+func (r ListProjectsRequest) ContainerIds(containerIds []string) ApiListProjectsRequest {
 	r.containerIds = &containerIds
 	return r
 }
 
 // E-Mail address of the user for whom the visible resource containers should be filtered.
 
-func (r ApiListProjectsRequest) Member(member string) ApiListProjectsRequest {
+func (r ListProjectsRequest) Member(member string) ApiListProjectsRequest {
 	r.member = &member
 	return r
 }
 
 // The offset of the first item in the collection to return.
 
-func (r ApiListProjectsRequest) Offset(offset float32) ApiListProjectsRequest {
+func (r ListProjectsRequest) Offset(offset float32) ApiListProjectsRequest {
 	r.offset = &offset
 	return r
 }
 
 // The maximum number of projects to return in the response. If not present, an appropriate default will be used. If maximum is exceeded, maximum is used.
 
-func (r ApiListProjectsRequest) Limit(limit float32) ApiListProjectsRequest {
+func (r ListProjectsRequest) Limit(limit float32) ApiListProjectsRequest {
 	r.limit = &limit
 	return r
 }
 
 // A timestamp to specify the beginning of the creationTime from which entries should be returned. If not given, defaults to the beginning of time.
 
-func (r ApiListProjectsRequest) CreationTimeStart(creationTimeStart time.Time) ApiListProjectsRequest {
+func (r ListProjectsRequest) CreationTimeStart(creationTimeStart time.Time) ApiListProjectsRequest {
 	r.creationTimeStart = &creationTimeStart
 	return r
 }
 
-func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
+func (r ListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1410,7 +1754,11 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 		localVarReturnValue *ListProjectsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProjects")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProjects")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1464,7 +1812,7 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1474,7 +1822,7 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1498,7 +1846,7 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1509,7 +1857,7 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1520,7 +1868,7 @@ func (r ApiListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1551,33 +1899,33 @@ Filter:
 	@return ApiListProjectsRequest
 */
 func (a *APIClient) ListProjects(ctx context.Context) ApiListProjectsRequest {
-	return ApiListProjectsRequest{
+	return ListProjectsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) ListProjectsExecute(ctx context.Context) (*ListProjectsResponse, error) {
-	r := ApiListProjectsRequest{
+	r := ListProjectsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiPartialUpdateFolderRequest struct {
+type PartialUpdateFolderRequest struct {
 	ctx                        context.Context
 	apiService                 *DefaultApiService
 	containerId                string
 	partialUpdateFolderPayload *PartialUpdateFolderPayload
 }
 
-func (r ApiPartialUpdateFolderRequest) PartialUpdateFolderPayload(partialUpdateFolderPayload PartialUpdateFolderPayload) ApiPartialUpdateFolderRequest {
+func (r PartialUpdateFolderRequest) PartialUpdateFolderPayload(partialUpdateFolderPayload PartialUpdateFolderPayload) ApiPartialUpdateFolderRequest {
 	r.partialUpdateFolderPayload = &partialUpdateFolderPayload
 	return r
 }
 
-func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
+func (r PartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -1585,7 +1933,11 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 		localVarReturnValue *FolderResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateFolder")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateFolder")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1616,7 +1968,7 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.partialUpdateFolderPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1626,7 +1978,7 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1650,7 +2002,7 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1661,7 +2013,7 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1672,7 +2024,7 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1683,7 +2035,7 @@ func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1709,7 +2061,7 @@ Update the folder and its metadata.
 	@return ApiPartialUpdateFolderRequest
 */
 func (a *APIClient) PartialUpdateFolder(ctx context.Context, containerId string) ApiPartialUpdateFolderRequest {
-	return ApiPartialUpdateFolderRequest{
+	return PartialUpdateFolderRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -1717,7 +2069,7 @@ func (a *APIClient) PartialUpdateFolder(ctx context.Context, containerId string)
 }
 
 func (a *APIClient) PartialUpdateFolderExecute(ctx context.Context, containerId string) (*FolderResponse, error) {
-	r := ApiPartialUpdateFolderRequest{
+	r := PartialUpdateFolderRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		containerId: containerId,
@@ -1725,19 +2077,19 @@ func (a *APIClient) PartialUpdateFolderExecute(ctx context.Context, containerId 
 	return r.Execute()
 }
 
-type ApiPartialUpdateProjectRequest struct {
+type PartialUpdateProjectRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	id                          string
 	partialUpdateProjectPayload *PartialUpdateProjectPayload
 }
 
-func (r ApiPartialUpdateProjectRequest) PartialUpdateProjectPayload(partialUpdateProjectPayload PartialUpdateProjectPayload) ApiPartialUpdateProjectRequest {
+func (r PartialUpdateProjectRequest) PartialUpdateProjectPayload(partialUpdateProjectPayload PartialUpdateProjectPayload) ApiPartialUpdateProjectRequest {
 	r.partialUpdateProjectPayload = &partialUpdateProjectPayload
 	return r
 }
 
-func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
+func (r PartialUpdateProjectRequest) Execute() (*Project, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -1745,7 +2097,11 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 		localVarReturnValue *Project
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateProject")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateProject")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1776,7 +2132,7 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 	}
 	// body params
 	localVarPostBody = r.partialUpdateProjectPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1786,7 +2142,7 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1810,7 +2166,7 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1821,7 +2177,7 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1832,7 +2188,7 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1843,7 +2199,7 @@ func (r ApiPartialUpdateProjectRequest) Execute() (*Project, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1869,7 +2225,7 @@ Update the project and its metadata.
 	@return ApiPartialUpdateProjectRequest
 */
 func (a *APIClient) PartialUpdateProject(ctx context.Context, id string) ApiPartialUpdateProjectRequest {
-	return ApiPartialUpdateProjectRequest{
+	return PartialUpdateProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,
@@ -1877,7 +2233,7 @@ func (a *APIClient) PartialUpdateProject(ctx context.Context, id string) ApiPart
 }
 
 func (a *APIClient) PartialUpdateProjectExecute(ctx context.Context, id string) (*Project, error) {
-	r := ApiPartialUpdateProjectRequest{
+	r := PartialUpdateProjectRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		id:         id,

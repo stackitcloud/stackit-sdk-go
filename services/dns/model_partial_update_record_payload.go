@@ -12,6 +12,7 @@ package dns
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PartialUpdateRecordPayload type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,110 @@ var _ MappedNullable = &PartialUpdateRecordPayload{}
 	types and functions for action
 */
 
-// isEnumRef
-type PartialUpdateRecordPayloadGetActionAttributeType = *string
-type PartialUpdateRecordPayloadGetActionArgType = string
-type PartialUpdateRecordPayloadGetActionRetType = string
+// isEnum
+
+// PartialUpdateRecordPayloadAction the model 'PartialUpdateRecordPayload'
+type PartialUpdateRecordPayloadAction string
+
+// List of Action
+const (
+	PARTIALUPDATERECORDPAYLOADACTION_ADD    PartialUpdateRecordPayloadAction = "add"
+	PARTIALUPDATERECORDPAYLOADACTION_DELETE PartialUpdateRecordPayloadAction = "delete"
+)
+
+// All allowed values of PartialUpdateRecordPayload enum
+var AllowedPartialUpdateRecordPayloadActionEnumValues = []PartialUpdateRecordPayloadAction{
+	"add",
+	"delete",
+}
+
+func (v *PartialUpdateRecordPayloadAction) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := PartialUpdateRecordPayloadAction(value)
+	for _, existing := range AllowedPartialUpdateRecordPayloadActionEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PartialUpdateRecordPayload", value)
+}
+
+// NewPartialUpdateRecordPayloadActionFromValue returns a pointer to a valid PartialUpdateRecordPayloadAction
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPartialUpdateRecordPayloadActionFromValue(v string) (*PartialUpdateRecordPayloadAction, error) {
+	ev := PartialUpdateRecordPayloadAction(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PartialUpdateRecordPayloadAction: valid values are %v", v, AllowedPartialUpdateRecordPayloadActionEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PartialUpdateRecordPayloadAction) IsValid() bool {
+	for _, existing := range AllowedPartialUpdateRecordPayloadActionEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ActionAction value
+func (v PartialUpdateRecordPayloadAction) Ptr() *PartialUpdateRecordPayloadAction {
+	return &v
+}
+
+type NullablePartialUpdateRecordPayloadAction struct {
+	value *PartialUpdateRecordPayloadAction
+	isSet bool
+}
+
+func (v NullablePartialUpdateRecordPayloadAction) Get() *PartialUpdateRecordPayloadAction {
+	return v.value
+}
+
+func (v *NullablePartialUpdateRecordPayloadAction) Set(val *PartialUpdateRecordPayloadAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateRecordPayloadAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateRecordPayloadAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateRecordPayloadAction(val *PartialUpdateRecordPayloadAction) *NullablePartialUpdateRecordPayloadAction {
+	return &NullablePartialUpdateRecordPayloadAction{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateRecordPayloadAction) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateRecordPayloadAction) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type PartialUpdateRecordPayloadGetActionAttributeType = *PartialUpdateRecordPayloadAction
+type PartialUpdateRecordPayloadGetActionArgType = PartialUpdateRecordPayloadAction
+type PartialUpdateRecordPayloadGetActionRetType = PartialUpdateRecordPayloadAction
 
 func getPartialUpdateRecordPayloadGetActionAttributeTypeOk(arg PartialUpdateRecordPayloadGetActionAttributeType) (ret PartialUpdateRecordPayloadGetActionRetType, ok bool) {
 	if arg == nil {

@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.1
-	github.com/stackitcloud/stackit-sdk-go/services/serviceaccount v0.6.2
+	github.com/stackitcloud/stackit-sdk-go/services/serviceaccount v0.8.0
 )
 
 require (

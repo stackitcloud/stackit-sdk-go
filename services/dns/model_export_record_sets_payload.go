@@ -12,6 +12,7 @@ package dns
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ExportRecordSetsPayload type satisfies the MappedNullable interface at compile time
@@ -41,10 +42,112 @@ func setExportRecordSetsPayloadgetExportAsFQDNAttributeType(arg *ExportRecordSet
 	types and functions for format
 */
 
-// isEnumRef
-type ExportRecordSetsPayloadGetFormatAttributeType = *string
-type ExportRecordSetsPayloadGetFormatArgType = string
-type ExportRecordSetsPayloadGetFormatRetType = string
+// isEnum
+
+// ExportRecordSetsPayloadFormat the model 'ExportRecordSetsPayload'
+type ExportRecordSetsPayloadFormat string
+
+// List of Format
+const (
+	EXPORTRECORDSETSPAYLOADFORMAT_CSV  ExportRecordSetsPayloadFormat = "csv"
+	EXPORTRECORDSETSPAYLOADFORMAT_JSON ExportRecordSetsPayloadFormat = "json"
+	EXPORTRECORDSETSPAYLOADFORMAT_BIND ExportRecordSetsPayloadFormat = "bind"
+)
+
+// All allowed values of ExportRecordSetsPayload enum
+var AllowedExportRecordSetsPayloadFormatEnumValues = []ExportRecordSetsPayloadFormat{
+	"csv",
+	"json",
+	"bind",
+}
+
+func (v *ExportRecordSetsPayloadFormat) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ExportRecordSetsPayloadFormat(value)
+	for _, existing := range AllowedExportRecordSetsPayloadFormatEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ExportRecordSetsPayload", value)
+}
+
+// NewExportRecordSetsPayloadFormatFromValue returns a pointer to a valid ExportRecordSetsPayloadFormat
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewExportRecordSetsPayloadFormatFromValue(v string) (*ExportRecordSetsPayloadFormat, error) {
+	ev := ExportRecordSetsPayloadFormat(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ExportRecordSetsPayloadFormat: valid values are %v", v, AllowedExportRecordSetsPayloadFormatEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ExportRecordSetsPayloadFormat) IsValid() bool {
+	for _, existing := range AllowedExportRecordSetsPayloadFormatEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to FormatFormat value
+func (v ExportRecordSetsPayloadFormat) Ptr() *ExportRecordSetsPayloadFormat {
+	return &v
+}
+
+type NullableExportRecordSetsPayloadFormat struct {
+	value *ExportRecordSetsPayloadFormat
+	isSet bool
+}
+
+func (v NullableExportRecordSetsPayloadFormat) Get() *ExportRecordSetsPayloadFormat {
+	return v.value
+}
+
+func (v *NullableExportRecordSetsPayloadFormat) Set(val *ExportRecordSetsPayloadFormat) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExportRecordSetsPayloadFormat) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExportRecordSetsPayloadFormat) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableExportRecordSetsPayloadFormat(val *ExportRecordSetsPayloadFormat) *NullableExportRecordSetsPayloadFormat {
+	return &NullableExportRecordSetsPayloadFormat{value: val, isSet: true}
+}
+
+func (v NullableExportRecordSetsPayloadFormat) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableExportRecordSetsPayloadFormat) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ExportRecordSetsPayloadGetFormatAttributeType = *ExportRecordSetsPayloadFormat
+type ExportRecordSetsPayloadGetFormatArgType = ExportRecordSetsPayloadFormat
+type ExportRecordSetsPayloadGetFormatRetType = ExportRecordSetsPayloadFormat
 
 func getExportRecordSetsPayloadGetFormatAttributeTypeOk(arg ExportRecordSetsPayloadGetFormatAttributeType) (ret ExportRecordSetsPayloadGetFormatRetType, ok bool) {
 	if arg == nil {
@@ -79,7 +182,7 @@ func NewExportRecordSetsPayloadWithDefaults() *ExportRecordSetsPayload {
 	this := ExportRecordSetsPayload{}
 	var exportAsFQDN bool = true
 	this.ExportAsFQDN = &exportAsFQDN
-	var format string = "csv"
+	var format ExportRecordSetsPayloadFormat = "csv"
 	this.Format = &format
 	return &this
 }
