@@ -4,8 +4,8 @@ go 1.21
 
 exclude (
 	github.com/ProtonMail/go-crypto v1.2.0
-	github.com/cloudflare/circl v1.5.0
-	github.com/cloudflare/circl v1.6.0
+	github.com/cloudflare/circl v1.6.1
+	github.com/cloudflare/circl v1.6.1
 
 	github.com/cloudflare/circl v1.6.1
 	// exclude versions not compatible with go 1.21
@@ -19,6 +19,7 @@ exclude (
 	golang.org/x/crypto v0.36.0
 
 	golang.org/x/crypto v0.37.0
+	golang.org/x/crypto v0.38.0
 	golang.org/x/mod v0.21.0
 	golang.org/x/mod v0.22.0
 

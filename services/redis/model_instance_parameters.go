@@ -12,6 +12,7 @@ package redis
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InstanceParameters type satisfies the MappedNullable interface at compile time
@@ -102,10 +103,110 @@ type InstanceParametersGetGraphiteRetType = string
 	types and functions for lazyfree-lazy-eviction
 */
 
-// isEnumRef
-type InstanceParametersGetLazyfreeLazyEvictionAttributeType = *string
-type InstanceParametersGetLazyfreeLazyEvictionArgType = string
-type InstanceParametersGetLazyfreeLazyEvictionRetType = string
+// isEnum
+
+// InstanceParametersLazyfreeLazyEviction the model 'InstanceParameters'
+type InstanceParametersLazyfreeLazyEviction string
+
+// List of LazyfreeLazyEviction
+const (
+	INSTANCEPARAMETERSLAZYFREE_LAZY_EVICTION_YES InstanceParametersLazyfreeLazyEviction = "yes"
+	INSTANCEPARAMETERSLAZYFREE_LAZY_EVICTION_NO  InstanceParametersLazyfreeLazyEviction = "no"
+)
+
+// All allowed values of InstanceParameters enum
+var AllowedInstanceParametersLazyfreeLazyEvictionEnumValues = []InstanceParametersLazyfreeLazyEviction{
+	"yes",
+	"no",
+}
+
+func (v *InstanceParametersLazyfreeLazyEviction) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceParametersLazyfreeLazyEviction(value)
+	for _, existing := range AllowedInstanceParametersLazyfreeLazyEvictionEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceParameters", value)
+}
+
+// NewInstanceParametersLazyfreeLazyEvictionFromValue returns a pointer to a valid InstanceParametersLazyfreeLazyEviction
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceParametersLazyfreeLazyEvictionFromValue(v string) (*InstanceParametersLazyfreeLazyEviction, error) {
+	ev := InstanceParametersLazyfreeLazyEviction(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceParametersLazyfreeLazyEviction: valid values are %v", v, AllowedInstanceParametersLazyfreeLazyEvictionEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceParametersLazyfreeLazyEviction) IsValid() bool {
+	for _, existing := range AllowedInstanceParametersLazyfreeLazyEvictionEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to LazyfreeLazyEvictionLazyfreeLazyEviction value
+func (v InstanceParametersLazyfreeLazyEviction) Ptr() *InstanceParametersLazyfreeLazyEviction {
+	return &v
+}
+
+type NullableInstanceParametersLazyfreeLazyEviction struct {
+	value *InstanceParametersLazyfreeLazyEviction
+	isSet bool
+}
+
+func (v NullableInstanceParametersLazyfreeLazyEviction) Get() *InstanceParametersLazyfreeLazyEviction {
+	return v.value
+}
+
+func (v *NullableInstanceParametersLazyfreeLazyEviction) Set(val *InstanceParametersLazyfreeLazyEviction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceParametersLazyfreeLazyEviction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceParametersLazyfreeLazyEviction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceParametersLazyfreeLazyEviction(val *InstanceParametersLazyfreeLazyEviction) *NullableInstanceParametersLazyfreeLazyEviction {
+	return &NullableInstanceParametersLazyfreeLazyEviction{value: val, isSet: true}
+}
+
+func (v NullableInstanceParametersLazyfreeLazyEviction) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceParametersLazyfreeLazyEviction) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceParametersGetLazyfreeLazyEvictionAttributeType = *InstanceParametersLazyfreeLazyEviction
+type InstanceParametersGetLazyfreeLazyEvictionArgType = InstanceParametersLazyfreeLazyEviction
+type InstanceParametersGetLazyfreeLazyEvictionRetType = InstanceParametersLazyfreeLazyEviction
 
 func getInstanceParametersGetLazyfreeLazyEvictionAttributeTypeOk(arg InstanceParametersGetLazyfreeLazyEvictionAttributeType) (ret InstanceParametersGetLazyfreeLazyEvictionRetType, ok bool) {
 	if arg == nil {
@@ -122,10 +223,110 @@ func setInstanceParametersGetLazyfreeLazyEvictionAttributeType(arg *InstancePara
 	types and functions for lazyfree-lazy-expire
 */
 
-// isEnumRef
-type InstanceParametersGetLazyfreeLazyExpireAttributeType = *string
-type InstanceParametersGetLazyfreeLazyExpireArgType = string
-type InstanceParametersGetLazyfreeLazyExpireRetType = string
+// isEnum
+
+// InstanceParametersLazyfreeLazyExpire the model 'InstanceParameters'
+type InstanceParametersLazyfreeLazyExpire string
+
+// List of LazyfreeLazyExpire
+const (
+	INSTANCEPARAMETERSLAZYFREE_LAZY_EXPIRE_YES InstanceParametersLazyfreeLazyExpire = "yes"
+	INSTANCEPARAMETERSLAZYFREE_LAZY_EXPIRE_NO  InstanceParametersLazyfreeLazyExpire = "no"
+)
+
+// All allowed values of InstanceParameters enum
+var AllowedInstanceParametersLazyfreeLazyExpireEnumValues = []InstanceParametersLazyfreeLazyExpire{
+	"yes",
+	"no",
+}
+
+func (v *InstanceParametersLazyfreeLazyExpire) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceParametersLazyfreeLazyExpire(value)
+	for _, existing := range AllowedInstanceParametersLazyfreeLazyExpireEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceParameters", value)
+}
+
+// NewInstanceParametersLazyfreeLazyExpireFromValue returns a pointer to a valid InstanceParametersLazyfreeLazyExpire
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceParametersLazyfreeLazyExpireFromValue(v string) (*InstanceParametersLazyfreeLazyExpire, error) {
+	ev := InstanceParametersLazyfreeLazyExpire(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceParametersLazyfreeLazyExpire: valid values are %v", v, AllowedInstanceParametersLazyfreeLazyExpireEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceParametersLazyfreeLazyExpire) IsValid() bool {
+	for _, existing := range AllowedInstanceParametersLazyfreeLazyExpireEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to LazyfreeLazyExpireLazyfreeLazyExpire value
+func (v InstanceParametersLazyfreeLazyExpire) Ptr() *InstanceParametersLazyfreeLazyExpire {
+	return &v
+}
+
+type NullableInstanceParametersLazyfreeLazyExpire struct {
+	value *InstanceParametersLazyfreeLazyExpire
+	isSet bool
+}
+
+func (v NullableInstanceParametersLazyfreeLazyExpire) Get() *InstanceParametersLazyfreeLazyExpire {
+	return v.value
+}
+
+func (v *NullableInstanceParametersLazyfreeLazyExpire) Set(val *InstanceParametersLazyfreeLazyExpire) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceParametersLazyfreeLazyExpire) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceParametersLazyfreeLazyExpire) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceParametersLazyfreeLazyExpire(val *InstanceParametersLazyfreeLazyExpire) *NullableInstanceParametersLazyfreeLazyExpire {
+	return &NullableInstanceParametersLazyfreeLazyExpire{value: val, isSet: true}
+}
+
+func (v NullableInstanceParametersLazyfreeLazyExpire) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceParametersLazyfreeLazyExpire) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceParametersGetLazyfreeLazyExpireAttributeType = *InstanceParametersLazyfreeLazyExpire
+type InstanceParametersGetLazyfreeLazyExpireArgType = InstanceParametersLazyfreeLazyExpire
+type InstanceParametersGetLazyfreeLazyExpireRetType = InstanceParametersLazyfreeLazyExpire
 
 func getInstanceParametersGetLazyfreeLazyExpireAttributeTypeOk(arg InstanceParametersGetLazyfreeLazyExpireAttributeType) (ret InstanceParametersGetLazyfreeLazyExpireRetType, ok bool) {
 	if arg == nil {
@@ -202,10 +403,118 @@ func setInstanceParametersGetMaxclientsAttributeType(arg *InstanceParametersGetM
 	types and functions for maxmemory-policy
 */
 
-// isEnumRef
-type InstanceParametersGetMaxmemoryPolicyAttributeType = *string
-type InstanceParametersGetMaxmemoryPolicyArgType = string
-type InstanceParametersGetMaxmemoryPolicyRetType = string
+// isEnum
+
+// InstanceParametersMaxmemoryPolicy the model 'InstanceParameters'
+type InstanceParametersMaxmemoryPolicy string
+
+// List of MaxmemoryPolicy
+const (
+	INSTANCEPARAMETERSMAXMEMORY_POLICY_VOLATILE_LRU    InstanceParametersMaxmemoryPolicy = "volatile-lru"
+	INSTANCEPARAMETERSMAXMEMORY_POLICY_ALLKEYS_LRU     InstanceParametersMaxmemoryPolicy = "allkeys-lru"
+	INSTANCEPARAMETERSMAXMEMORY_POLICY_VOLATILE_RANDOM InstanceParametersMaxmemoryPolicy = "volatile-random"
+	INSTANCEPARAMETERSMAXMEMORY_POLICY_ALLKEYS_RANDOM  InstanceParametersMaxmemoryPolicy = "allkeys-random"
+	INSTANCEPARAMETERSMAXMEMORY_POLICY_VOLATILE_TTL    InstanceParametersMaxmemoryPolicy = "volatile-ttl"
+	INSTANCEPARAMETERSMAXMEMORY_POLICY_NOEVICTION      InstanceParametersMaxmemoryPolicy = "noeviction"
+)
+
+// All allowed values of InstanceParameters enum
+var AllowedInstanceParametersMaxmemoryPolicyEnumValues = []InstanceParametersMaxmemoryPolicy{
+	"volatile-lru",
+	"allkeys-lru",
+	"volatile-random",
+	"allkeys-random",
+	"volatile-ttl",
+	"noeviction",
+}
+
+func (v *InstanceParametersMaxmemoryPolicy) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceParametersMaxmemoryPolicy(value)
+	for _, existing := range AllowedInstanceParametersMaxmemoryPolicyEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceParameters", value)
+}
+
+// NewInstanceParametersMaxmemoryPolicyFromValue returns a pointer to a valid InstanceParametersMaxmemoryPolicy
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceParametersMaxmemoryPolicyFromValue(v string) (*InstanceParametersMaxmemoryPolicy, error) {
+	ev := InstanceParametersMaxmemoryPolicy(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceParametersMaxmemoryPolicy: valid values are %v", v, AllowedInstanceParametersMaxmemoryPolicyEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceParametersMaxmemoryPolicy) IsValid() bool {
+	for _, existing := range AllowedInstanceParametersMaxmemoryPolicyEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to MaxmemoryPolicyMaxmemoryPolicy value
+func (v InstanceParametersMaxmemoryPolicy) Ptr() *InstanceParametersMaxmemoryPolicy {
+	return &v
+}
+
+type NullableInstanceParametersMaxmemoryPolicy struct {
+	value *InstanceParametersMaxmemoryPolicy
+	isSet bool
+}
+
+func (v NullableInstanceParametersMaxmemoryPolicy) Get() *InstanceParametersMaxmemoryPolicy {
+	return v.value
+}
+
+func (v *NullableInstanceParametersMaxmemoryPolicy) Set(val *InstanceParametersMaxmemoryPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceParametersMaxmemoryPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceParametersMaxmemoryPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceParametersMaxmemoryPolicy(val *InstanceParametersMaxmemoryPolicy) *NullableInstanceParametersMaxmemoryPolicy {
+	return &NullableInstanceParametersMaxmemoryPolicy{value: val, isSet: true}
+}
+
+func (v NullableInstanceParametersMaxmemoryPolicy) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceParametersMaxmemoryPolicy) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceParametersGetMaxmemoryPolicyAttributeType = *InstanceParametersMaxmemoryPolicy
+type InstanceParametersGetMaxmemoryPolicyArgType = InstanceParametersMaxmemoryPolicy
+type InstanceParametersGetMaxmemoryPolicyRetType = InstanceParametersMaxmemoryPolicy
 
 func getInstanceParametersGetMaxmemoryPolicyAttributeTypeOk(arg InstanceParametersGetMaxmemoryPolicyAttributeType) (ret InstanceParametersGetMaxmemoryPolicyRetType, ok bool) {
 	if arg == nil {
@@ -448,10 +757,110 @@ type InstanceParametersGetTlsCiphersuitesRetType = string
 	types and functions for tls-protocols
 */
 
-// isEnumRef
-type InstanceParametersGetTlsProtocolsAttributeType = *string
-type InstanceParametersGetTlsProtocolsArgType = string
-type InstanceParametersGetTlsProtocolsRetType = string
+// isEnum
+
+// InstanceParametersTlsProtocols the model 'InstanceParameters'
+type InstanceParametersTlsProtocols string
+
+// List of TlsProtocols
+const (
+	INSTANCEPARAMETERSTLS_PROTOCOLS__2 InstanceParametersTlsProtocols = "TLSv1.2"
+	INSTANCEPARAMETERSTLS_PROTOCOLS__3 InstanceParametersTlsProtocols = "TLSv1.3"
+)
+
+// All allowed values of InstanceParameters enum
+var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsProtocols{
+	"TLSv1.2",
+	"TLSv1.3",
+}
+
+func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceParametersTlsProtocols(value)
+	for _, existing := range AllowedInstanceParametersTlsProtocolsEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceParameters", value)
+}
+
+// NewInstanceParametersTlsProtocolsFromValue returns a pointer to a valid InstanceParametersTlsProtocols
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceParametersTlsProtocolsFromValue(v string) (*InstanceParametersTlsProtocols, error) {
+	ev := InstanceParametersTlsProtocols(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceParametersTlsProtocols: valid values are %v", v, AllowedInstanceParametersTlsProtocolsEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceParametersTlsProtocols) IsValid() bool {
+	for _, existing := range AllowedInstanceParametersTlsProtocolsEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TlsProtocolsTlsProtocols value
+func (v InstanceParametersTlsProtocols) Ptr() *InstanceParametersTlsProtocols {
+	return &v
+}
+
+type NullableInstanceParametersTlsProtocols struct {
+	value *InstanceParametersTlsProtocols
+	isSet bool
+}
+
+func (v NullableInstanceParametersTlsProtocols) Get() *InstanceParametersTlsProtocols {
+	return v.value
+}
+
+func (v *NullableInstanceParametersTlsProtocols) Set(val *InstanceParametersTlsProtocols) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceParametersTlsProtocols) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceParametersTlsProtocols) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceParametersTlsProtocols(val *InstanceParametersTlsProtocols) *NullableInstanceParametersTlsProtocols {
+	return &NullableInstanceParametersTlsProtocols{value: val, isSet: true}
+}
+
+func (v NullableInstanceParametersTlsProtocols) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceParametersGetTlsProtocolsAttributeType = *InstanceParametersTlsProtocols
+type InstanceParametersGetTlsProtocolsArgType = InstanceParametersTlsProtocols
+type InstanceParametersGetTlsProtocolsRetType = InstanceParametersTlsProtocols
 
 func getInstanceParametersGetTlsProtocolsAttributeTypeOk(arg InstanceParametersGetTlsProtocolsAttributeType) (ret InstanceParametersGetTlsProtocolsRetType, ok bool) {
 	if arg == nil {
@@ -528,9 +937,9 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 	this.EnableMonitoring = &enableMonitoring
 	var failoverTimeout int64 = 30000
 	this.FailoverTimeout = &failoverTimeout
-	var lazyfreeLazyEviction string = "no"
+	var lazyfreeLazyEviction InstanceParametersLazyfreeLazyEviction = "no"
 	this.LazyfreeLazyEviction = &lazyfreeLazyEviction
-	var lazyfreeLazyExpire string = "no"
+	var lazyfreeLazyExpire InstanceParametersLazyfreeLazyExpire = "no"
 	this.LazyfreeLazyExpire = &lazyfreeLazyExpire
 	var luaTimeLimit int64 = 5000
 	this.LuaTimeLimit = &luaTimeLimit
@@ -538,7 +947,7 @@ func NewInstanceParametersWithDefaults() *InstanceParameters {
 	this.MaxDiskThreshold = &maxDiskThreshold
 	var maxclients int64 = 10000
 	this.Maxclients = &maxclients
-	var maxmemoryPolicy string = "volatile-lru"
+	var maxmemoryPolicy InstanceParametersMaxmemoryPolicy = "volatile-lru"
 	this.MaxmemoryPolicy = &maxmemoryPolicy
 	var maxmemorySamples int64 = 5
 	this.MaxmemorySamples = &maxmemorySamples

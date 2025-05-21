@@ -99,11 +99,11 @@ type _RequestResource RequestResource
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRequestResource(id RequestResourceGetIdArgType, status RequestResourceGetStatusArgType, type_ RequestResourceGetTypeArgType) *RequestResource {
+func NewRequestResource(id RequestResourceGetIdArgType, status RequestResourceGetStatusArgType, types RequestResourceGetTypeArgType) *RequestResource {
 	this := RequestResource{}
 	setRequestResourceGetIdAttributeType(&this.Id, id)
 	setRequestResourceGetStatusAttributeType(&this.Status, status)
-	setRequestResourceGetTypeAttributeType(&this.Type, type_)
+	setRequestResourceGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

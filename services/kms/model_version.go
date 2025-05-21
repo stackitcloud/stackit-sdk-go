@@ -12,6 +12,7 @@ package kms
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -165,10 +166,116 @@ type VersionGetPublicKeyRetType = string
 	types and functions for state
 */
 
-// isEnumRef
-type VersionGetStateAttributeType = *string
-type VersionGetStateArgType = string
-type VersionGetStateRetType = string
+// isEnum
+
+// VersionState The current state of the key.
+type VersionState string
+
+// List of State
+const (
+	VERSIONSTATE_ACTIVE                 VersionState = "active"
+	VERSIONSTATE_KEY_MATERIAL_NOT_READY VersionState = "key_material_not_ready"
+	VERSIONSTATE_KEY_MATERIAL_INVALID   VersionState = "key_material_invalid"
+	VERSIONSTATE_DISABLED               VersionState = "disabled"
+	VERSIONSTATE_DESTROYED              VersionState = "destroyed"
+)
+
+// All allowed values of Version enum
+var AllowedVersionStateEnumValues = []VersionState{
+	"active",
+	"key_material_not_ready",
+	"key_material_invalid",
+	"disabled",
+	"destroyed",
+}
+
+func (v *VersionState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := VersionState(value)
+	for _, existing := range AllowedVersionStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Version", value)
+}
+
+// NewVersionStateFromValue returns a pointer to a valid VersionState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewVersionStateFromValue(v string) (*VersionState, error) {
+	ev := VersionState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for VersionState: valid values are %v", v, AllowedVersionStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v VersionState) IsValid() bool {
+	for _, existing := range AllowedVersionStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v VersionState) Ptr() *VersionState {
+	return &v
+}
+
+type NullableVersionState struct {
+	value *VersionState
+	isSet bool
+}
+
+func (v NullableVersionState) Get() *VersionState {
+	return v.value
+}
+
+func (v *NullableVersionState) Set(val *VersionState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableVersionState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableVersionState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableVersionState(val *VersionState) *NullableVersionState {
+	return &NullableVersionState{value: val, isSet: true}
+}
+
+func (v NullableVersionState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableVersionState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type VersionGetStateAttributeType = *VersionState
+type VersionGetStateArgType = VersionState
+type VersionGetStateRetType = VersionState
 
 func getVersionGetStateAttributeTypeOk(arg VersionGetStateAttributeType) (ret VersionGetStateRetType, ok bool) {
 	if arg == nil {

@@ -12,6 +12,7 @@ package alb
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateLoadBalancerPayload type satisfies the MappedNullable interface at compile time
@@ -206,10 +207,116 @@ type UpdateLoadBalancerPayloadGetRegionRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type UpdateLoadBalancerPayloadGetStatusAttributeType = *string
-type UpdateLoadBalancerPayloadGetStatusArgType = string
-type UpdateLoadBalancerPayloadGetStatusRetType = string
+// isEnum
+
+// UpdateLoadBalancerPayloadStatus the model 'UpdateLoadBalancerPayload'
+type UpdateLoadBalancerPayloadStatus string
+
+// List of Status
+const (
+	UPDATELOADBALANCERPAYLOADSTATUS_UNSPECIFIED UpdateLoadBalancerPayloadStatus = "STATUS_UNSPECIFIED"
+	UPDATELOADBALANCERPAYLOADSTATUS_PENDING     UpdateLoadBalancerPayloadStatus = "STATUS_PENDING"
+	UPDATELOADBALANCERPAYLOADSTATUS_READY       UpdateLoadBalancerPayloadStatus = "STATUS_READY"
+	UPDATELOADBALANCERPAYLOADSTATUS_ERROR       UpdateLoadBalancerPayloadStatus = "STATUS_ERROR"
+	UPDATELOADBALANCERPAYLOADSTATUS_TERMINATING UpdateLoadBalancerPayloadStatus = "STATUS_TERMINATING"
+)
+
+// All allowed values of UpdateLoadBalancerPayload enum
+var AllowedUpdateLoadBalancerPayloadStatusEnumValues = []UpdateLoadBalancerPayloadStatus{
+	"STATUS_UNSPECIFIED",
+	"STATUS_PENDING",
+	"STATUS_READY",
+	"STATUS_ERROR",
+	"STATUS_TERMINATING",
+}
+
+func (v *UpdateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := UpdateLoadBalancerPayloadStatus(value)
+	for _, existing := range AllowedUpdateLoadBalancerPayloadStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid UpdateLoadBalancerPayload", value)
+}
+
+// NewUpdateLoadBalancerPayloadStatusFromValue returns a pointer to a valid UpdateLoadBalancerPayloadStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewUpdateLoadBalancerPayloadStatusFromValue(v string) (*UpdateLoadBalancerPayloadStatus, error) {
+	ev := UpdateLoadBalancerPayloadStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for UpdateLoadBalancerPayloadStatus: valid values are %v", v, AllowedUpdateLoadBalancerPayloadStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v UpdateLoadBalancerPayloadStatus) IsValid() bool {
+	for _, existing := range AllowedUpdateLoadBalancerPayloadStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v UpdateLoadBalancerPayloadStatus) Ptr() *UpdateLoadBalancerPayloadStatus {
+	return &v
+}
+
+type NullableUpdateLoadBalancerPayloadStatus struct {
+	value *UpdateLoadBalancerPayloadStatus
+	isSet bool
+}
+
+func (v NullableUpdateLoadBalancerPayloadStatus) Get() *UpdateLoadBalancerPayloadStatus {
+	return v.value
+}
+
+func (v *NullableUpdateLoadBalancerPayloadStatus) Set(val *UpdateLoadBalancerPayloadStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateLoadBalancerPayloadStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateLoadBalancerPayloadStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateLoadBalancerPayloadStatus(val *UpdateLoadBalancerPayloadStatus) *NullableUpdateLoadBalancerPayloadStatus {
+	return &NullableUpdateLoadBalancerPayloadStatus{value: val, isSet: true}
+}
+
+func (v NullableUpdateLoadBalancerPayloadStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type UpdateLoadBalancerPayloadGetStatusAttributeType = *UpdateLoadBalancerPayloadStatus
+type UpdateLoadBalancerPayloadGetStatusArgType = UpdateLoadBalancerPayloadStatus
+type UpdateLoadBalancerPayloadGetStatusRetType = UpdateLoadBalancerPayloadStatus
 
 func getUpdateLoadBalancerPayloadGetStatusAttributeTypeOk(arg UpdateLoadBalancerPayloadGetStatusAttributeType) (ret UpdateLoadBalancerPayloadGetStatusRetType, ok bool) {
 	if arg == nil {

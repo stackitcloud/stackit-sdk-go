@@ -12,6 +12,7 @@ package kms
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -226,10 +227,112 @@ func setKeyGetPurposeAttributeType(arg *KeyGetPurposeAttributeType, val KeyGetPu
 	types and functions for state
 */
 
-// isEnumRef
-type KeyGetStateAttributeType = *string
-type KeyGetStateArgType = string
-type KeyGetStateRetType = string
+// isEnum
+
+// KeyState The current state of the key.
+type KeyState string
+
+// List of State
+const (
+	KEYSTATE_ACTIVE            KeyState = "active"
+	KEYSTATE_VERSION_NOT_READY KeyState = "version_not_ready"
+	KEYSTATE_DELETED           KeyState = "deleted"
+)
+
+// All allowed values of Key enum
+var AllowedKeyStateEnumValues = []KeyState{
+	"active",
+	"version_not_ready",
+	"deleted",
+}
+
+func (v *KeyState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := KeyState(value)
+	for _, existing := range AllowedKeyStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Key", value)
+}
+
+// NewKeyStateFromValue returns a pointer to a valid KeyState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewKeyStateFromValue(v string) (*KeyState, error) {
+	ev := KeyState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for KeyState: valid values are %v", v, AllowedKeyStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v KeyState) IsValid() bool {
+	for _, existing := range AllowedKeyStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v KeyState) Ptr() *KeyState {
+	return &v
+}
+
+type NullableKeyState struct {
+	value *KeyState
+	isSet bool
+}
+
+func (v NullableKeyState) Get() *KeyState {
+	return v.value
+}
+
+func (v *NullableKeyState) Set(val *KeyState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableKeyState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableKeyState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableKeyState(val *KeyState) *NullableKeyState {
+	return &NullableKeyState{value: val, isSet: true}
+}
+
+func (v NullableKeyState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableKeyState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type KeyGetStateAttributeType = *KeyState
+type KeyGetStateArgType = KeyState
+type KeyGetStateRetType = KeyState
 
 func getKeyGetStateAttributeTypeOk(arg KeyGetStateAttributeType) (ret KeyGetStateRetType, ok bool) {
 	if arg == nil {

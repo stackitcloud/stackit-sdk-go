@@ -12,6 +12,7 @@ package dns
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateZonePayload type satisfies the MappedNullable interface at compile time
@@ -286,10 +287,110 @@ func setCreateZonePayloadGetRetryTimeAttributeType(arg *CreateZonePayloadGetRetr
 	types and functions for type
 */
 
-// isEnumRef
-type CreateZonePayloadGetTypeAttributeType = *string
-type CreateZonePayloadGetTypeArgType = string
-type CreateZonePayloadGetTypeRetType = string
+// isEnum
+
+// CreateZonePayloadTypes zone type
+type CreateZonePayloadTypes string
+
+// List of Type
+const (
+	CREATEZONEPAYLOADTYPE_PRIMARY   CreateZonePayloadTypes = "primary"
+	CREATEZONEPAYLOADTYPE_SECONDARY CreateZonePayloadTypes = "secondary"
+)
+
+// All allowed values of CreateZonePayload enum
+var AllowedCreateZonePayloadTypesEnumValues = []CreateZonePayloadTypes{
+	"primary",
+	"secondary",
+}
+
+func (v *CreateZonePayloadTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateZonePayloadTypes(value)
+	for _, existing := range AllowedCreateZonePayloadTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateZonePayload", value)
+}
+
+// NewCreateZonePayloadTypesFromValue returns a pointer to a valid CreateZonePayloadTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateZonePayloadTypesFromValue(v string) (*CreateZonePayloadTypes, error) {
+	ev := CreateZonePayloadTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateZonePayloadTypes: valid values are %v", v, AllowedCreateZonePayloadTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateZonePayloadTypes) IsValid() bool {
+	for _, existing := range AllowedCreateZonePayloadTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v CreateZonePayloadTypes) Ptr() *CreateZonePayloadTypes {
+	return &v
+}
+
+type NullableCreateZonePayloadTypes struct {
+	value *CreateZonePayloadTypes
+	isSet bool
+}
+
+func (v NullableCreateZonePayloadTypes) Get() *CreateZonePayloadTypes {
+	return v.value
+}
+
+func (v *NullableCreateZonePayloadTypes) Set(val *CreateZonePayloadTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateZonePayloadTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateZonePayloadTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateZonePayloadTypes(val *CreateZonePayloadTypes) *NullableCreateZonePayloadTypes {
+	return &NullableCreateZonePayloadTypes{value: val, isSet: true}
+}
+
+func (v NullableCreateZonePayloadTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateZonePayloadTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateZonePayloadGetTypeAttributeType = *CreateZonePayloadTypes
+type CreateZonePayloadGetTypeArgType = CreateZonePayloadTypes
+type CreateZonePayloadGetTypeRetType = CreateZonePayloadTypes
 
 func getCreateZonePayloadGetTypeAttributeTypeOk(arg CreateZonePayloadGetTypeAttributeType) (ret CreateZonePayloadGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -372,8 +473,8 @@ func NewCreateZonePayloadWithDefaults() *CreateZonePayload {
 	this.RefreshTime = &refreshTime
 	var retryTime int64 = 600
 	this.RetryTime = &retryTime
-	var type_ string = "primary"
-	this.Type = &type_
+	var types CreateZonePayloadTypes = "primary"
+	this.Type = &types
 	return &this
 }
 

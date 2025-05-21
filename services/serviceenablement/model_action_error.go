@@ -12,6 +12,7 @@ package serviceenablement
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ActionError type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,110 @@ var _ MappedNullable = &ActionError{}
 	types and functions for action
 */
 
-// isEnumRef
-type ActionErrorGetActionAttributeType = *string
-type ActionErrorGetActionArgType = string
-type ActionErrorGetActionRetType = string
+// isEnum
+
+// ActionErrorAction the last action which was triggered on this service
+type ActionErrorAction string
+
+// List of Action
+const (
+	ACTIONERRORACTION_DISABLE ActionErrorAction = "DISABLE"
+	ACTIONERRORACTION_ENABLE  ActionErrorAction = "ENABLE"
+)
+
+// All allowed values of ActionError enum
+var AllowedActionErrorActionEnumValues = []ActionErrorAction{
+	"DISABLE",
+	"ENABLE",
+}
+
+func (v *ActionErrorAction) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ActionErrorAction(value)
+	for _, existing := range AllowedActionErrorActionEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ActionError", value)
+}
+
+// NewActionErrorActionFromValue returns a pointer to a valid ActionErrorAction
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewActionErrorActionFromValue(v string) (*ActionErrorAction, error) {
+	ev := ActionErrorAction(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ActionErrorAction: valid values are %v", v, AllowedActionErrorActionEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ActionErrorAction) IsValid() bool {
+	for _, existing := range AllowedActionErrorActionEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ActionAction value
+func (v ActionErrorAction) Ptr() *ActionErrorAction {
+	return &v
+}
+
+type NullableActionErrorAction struct {
+	value *ActionErrorAction
+	isSet bool
+}
+
+func (v NullableActionErrorAction) Get() *ActionErrorAction {
+	return v.value
+}
+
+func (v *NullableActionErrorAction) Set(val *ActionErrorAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableActionErrorAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableActionErrorAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableActionErrorAction(val *ActionErrorAction) *NullableActionErrorAction {
+	return &NullableActionErrorAction{value: val, isSet: true}
+}
+
+func (v NullableActionErrorAction) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableActionErrorAction) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ActionErrorGetActionAttributeType = *ActionErrorAction
+type ActionErrorGetActionArgType = ActionErrorAction
+type ActionErrorGetActionRetType = ActionErrorAction
 
 func getActionErrorGetActionAttributeTypeOk(arg ActionErrorGetActionAttributeType) (ret ActionErrorGetActionRetType, ok bool) {
 	if arg == nil {

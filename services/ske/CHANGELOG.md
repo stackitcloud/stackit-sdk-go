@@ -1,3 +1,12 @@
+## v0.24.0 (2025-05-15)
+- **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+
+## v0.23.0 (2025-05-14)
+- **Breaking change:** Introduce typed enum constants for status attributes
+
+## v0.22.4 (2025-05-13)
+- **Feature:** Added `ClusterError`
+
 ## v0.22.3 (2025-05-09)
 - **Feature:** Update user-agent header
 

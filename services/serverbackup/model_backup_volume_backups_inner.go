@@ -12,6 +12,7 @@ package serverbackup
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the BackupVolumeBackupsInner type satisfies the MappedNullable interface at compile time
@@ -104,10 +105,120 @@ func setBackupVolumeBackupsInnerGetSizeAttributeType(arg *BackupVolumeBackupsInn
 	types and functions for status
 */
 
-// isEnumRef
-type BackupVolumeBackupsInnerGetStatusAttributeType = *string
-type BackupVolumeBackupsInnerGetStatusArgType = string
-type BackupVolumeBackupsInnerGetStatusRetType = string
+// isEnum
+
+// BackupVolumeBackupsInnerStatus the model 'BackupVolumeBackupsInner'
+type BackupVolumeBackupsInnerStatus string
+
+// List of Status
+const (
+	BACKUPVOLUMEBACKUPSINNERSTATUS_CREATING       BackupVolumeBackupsInnerStatus = "creating"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_AVAILABLE      BackupVolumeBackupsInnerStatus = "available"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_DELETING       BackupVolumeBackupsInnerStatus = "deleting"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR          BackupVolumeBackupsInnerStatus = "error"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_RESTORING      BackupVolumeBackupsInnerStatus = "restoring"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_DELETING BackupVolumeBackupsInnerStatus = "error_deleting"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_CREATING BackupVolumeBackupsInnerStatus = "error-creating"
+)
+
+// All allowed values of BackupVolumeBackupsInner enum
+var AllowedBackupVolumeBackupsInnerStatusEnumValues = []BackupVolumeBackupsInnerStatus{
+	"creating",
+	"available",
+	"deleting",
+	"error",
+	"restoring",
+	"error_deleting",
+	"error-creating",
+}
+
+func (v *BackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := BackupVolumeBackupsInnerStatus(value)
+	for _, existing := range AllowedBackupVolumeBackupsInnerStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid BackupVolumeBackupsInner", value)
+}
+
+// NewBackupVolumeBackupsInnerStatusFromValue returns a pointer to a valid BackupVolumeBackupsInnerStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewBackupVolumeBackupsInnerStatusFromValue(v string) (*BackupVolumeBackupsInnerStatus, error) {
+	ev := BackupVolumeBackupsInnerStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for BackupVolumeBackupsInnerStatus: valid values are %v", v, AllowedBackupVolumeBackupsInnerStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v BackupVolumeBackupsInnerStatus) IsValid() bool {
+	for _, existing := range AllowedBackupVolumeBackupsInnerStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v BackupVolumeBackupsInnerStatus) Ptr() *BackupVolumeBackupsInnerStatus {
+	return &v
+}
+
+type NullableBackupVolumeBackupsInnerStatus struct {
+	value *BackupVolumeBackupsInnerStatus
+	isSet bool
+}
+
+func (v NullableBackupVolumeBackupsInnerStatus) Get() *BackupVolumeBackupsInnerStatus {
+	return v.value
+}
+
+func (v *NullableBackupVolumeBackupsInnerStatus) Set(val *BackupVolumeBackupsInnerStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBackupVolumeBackupsInnerStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBackupVolumeBackupsInnerStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBackupVolumeBackupsInnerStatus(val *BackupVolumeBackupsInnerStatus) *NullableBackupVolumeBackupsInnerStatus {
+	return &NullableBackupVolumeBackupsInnerStatus{value: val, isSet: true}
+}
+
+func (v NullableBackupVolumeBackupsInnerStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableBackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type BackupVolumeBackupsInnerGetStatusAttributeType = *BackupVolumeBackupsInnerStatus
+type BackupVolumeBackupsInnerGetStatusArgType = BackupVolumeBackupsInnerStatus
+type BackupVolumeBackupsInnerGetStatusRetType = BackupVolumeBackupsInnerStatus
 
 func getBackupVolumeBackupsInnerGetStatusAttributeTypeOk(arg BackupVolumeBackupsInnerGetStatusAttributeType) (ret BackupVolumeBackupsInnerGetStatusRetType, ok bool) {
 	if arg == nil {

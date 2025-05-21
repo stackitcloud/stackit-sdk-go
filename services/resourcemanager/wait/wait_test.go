@@ -48,14 +48,14 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 		{
 			desc:         "create_succeeded",
 			getFails:     false,
-			projectState: ActiveState,
+			projectState: resourcemanager.LIFECYCLESTATE_ACTIVE,
 			wantErr:      false,
 			wantResp:     true,
 		},
 		{
 			desc:         "creating",
 			getFails:     false,
-			projectState: CreatingState,
+			projectState: resourcemanager.LIFECYCLESTATE_CREATING,
 			wantErr:      true,
 			wantResp:     false,
 		},

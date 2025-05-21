@@ -1,7 +1,7 @@
 /*
 Application Load Balancer API
 
-This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
+### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
 API version: 1beta.0.0
 */
@@ -51,7 +51,7 @@ type APIClient struct {
 }
 
 type service struct {
-	client *APIClient
+	client DefaultApi
 }
 
 // NewAPIClient creates a new API client.
@@ -308,7 +308,7 @@ func (c *APIClient) prepareRequest(
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
-	if postBody != nil {
+	if !IsNil(postBody) {
 		contentType := headerParams["Content-Type"]
 		if contentType == "" {
 			contentType = detectContentType(postBody)

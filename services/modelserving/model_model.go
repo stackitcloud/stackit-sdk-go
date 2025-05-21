@@ -12,6 +12,7 @@ package modelserving
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Model type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,112 @@ var _ MappedNullable = &Model{}
 	types and functions for category
 */
 
-// isEnumRef
-type ModelGetCategoryAttributeType = *string
-type ModelGetCategoryArgType = string
-type ModelGetCategoryRetType = string
+// isEnum
+
+// ModelCategory the model 'Model'
+type ModelCategory string
+
+// List of Category
+const (
+	MODELCATEGORY_STANDARD ModelCategory = "standard"
+	MODELCATEGORY_PLUS     ModelCategory = "plus"
+	MODELCATEGORY_PREMIUM  ModelCategory = "premium"
+)
+
+// All allowed values of Model enum
+var AllowedModelCategoryEnumValues = []ModelCategory{
+	"standard",
+	"plus",
+	"premium",
+}
+
+func (v *ModelCategory) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ModelCategory(value)
+	for _, existing := range AllowedModelCategoryEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Model", value)
+}
+
+// NewModelCategoryFromValue returns a pointer to a valid ModelCategory
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewModelCategoryFromValue(v string) (*ModelCategory, error) {
+	ev := ModelCategory(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ModelCategory: valid values are %v", v, AllowedModelCategoryEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ModelCategory) IsValid() bool {
+	for _, existing := range AllowedModelCategoryEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to CategoryCategory value
+func (v ModelCategory) Ptr() *ModelCategory {
+	return &v
+}
+
+type NullableModelCategory struct {
+	value *ModelCategory
+	isSet bool
+}
+
+func (v NullableModelCategory) Get() *ModelCategory {
+	return v.value
+}
+
+func (v *NullableModelCategory) Set(val *ModelCategory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableModelCategory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableModelCategory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableModelCategory(val *ModelCategory) *NullableModelCategory {
+	return &NullableModelCategory{value: val, isSet: true}
+}
+
+func (v NullableModelCategory) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableModelCategory) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ModelGetCategoryAttributeType = *ModelCategory
+type ModelGetCategoryArgType = ModelCategory
+type ModelGetCategoryRetType = ModelCategory
 
 func getModelGetCategoryAttributeTypeOk(arg ModelGetCategoryAttributeType) (ret ModelGetCategoryRetType, ok bool) {
 	if arg == nil {
@@ -186,10 +289,110 @@ func setModelGetTagsAttributeType(arg *ModelGetTagsAttributeType, val ModelGetTa
 	types and functions for type
 */
 
-// isEnumRef
-type ModelGetTypeAttributeType = *string
-type ModelGetTypeArgType = string
-type ModelGetTypeRetType = string
+// isEnum
+
+// ModelTypes the model 'Model'
+type ModelTypes string
+
+// List of Type
+const (
+	MODELTYPE_CHAT      ModelTypes = "chat"
+	MODELTYPE_EMBEDDING ModelTypes = "embedding"
+)
+
+// All allowed values of Model enum
+var AllowedModelTypesEnumValues = []ModelTypes{
+	"chat",
+	"embedding",
+}
+
+func (v *ModelTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ModelTypes(value)
+	for _, existing := range AllowedModelTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Model", value)
+}
+
+// NewModelTypesFromValue returns a pointer to a valid ModelTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewModelTypesFromValue(v string) (*ModelTypes, error) {
+	ev := ModelTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ModelTypes: valid values are %v", v, AllowedModelTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ModelTypes) IsValid() bool {
+	for _, existing := range AllowedModelTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v ModelTypes) Ptr() *ModelTypes {
+	return &v
+}
+
+type NullableModelTypes struct {
+	value *ModelTypes
+	isSet bool
+}
+
+func (v NullableModelTypes) Get() *ModelTypes {
+	return v.value
+}
+
+func (v *NullableModelTypes) Set(val *ModelTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableModelTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableModelTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableModelTypes(val *ModelTypes) *NullableModelTypes {
+	return &NullableModelTypes{value: val, isSet: true}
+}
+
+func (v NullableModelTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableModelTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ModelGetTypeAttributeType = *ModelTypes
+type ModelGetTypeArgType = ModelTypes
+type ModelGetTypeRetType = ModelTypes
 
 func getModelGetTypeAttributeTypeOk(arg ModelGetTypeAttributeType) (ret ModelGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -255,7 +458,7 @@ type _Model Model
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewModel(category ModelGetCategoryArgType, description ModelGetDescriptionArgType, displayedName ModelGetDisplayedNameArgType, id ModelGetIdArgType, name ModelGetNameArgType, region ModelGetRegionArgType, skus ModelGetSkusArgType, type_ ModelGetTypeArgType, url ModelGetUrlArgType) *Model {
+func NewModel(category ModelGetCategoryArgType, description ModelGetDescriptionArgType, displayedName ModelGetDisplayedNameArgType, id ModelGetIdArgType, name ModelGetNameArgType, region ModelGetRegionArgType, skus ModelGetSkusArgType, types ModelGetTypeArgType, url ModelGetUrlArgType) *Model {
 	this := Model{}
 	setModelGetCategoryAttributeType(&this.Category, category)
 	setModelGetDescriptionAttributeType(&this.Description, description)
@@ -264,7 +467,7 @@ func NewModel(category ModelGetCategoryArgType, description ModelGetDescriptionA
 	setModelGetNameAttributeType(&this.Name, name)
 	setModelGetRegionAttributeType(&this.Region, region)
 	setModelGetSkusAttributeType(&this.Skus, skus)
-	setModelGetTypeAttributeType(&this.Type, type_)
+	setModelGetTypeAttributeType(&this.Type, types)
 	setModelGetUrlAttributeType(&this.Url, url)
 	return &this
 }

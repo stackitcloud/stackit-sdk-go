@@ -230,7 +230,7 @@ type ServerNetwork struct {
 	AllowedAddresses ServerNetworkGetAllowedAddressesAttributeType `json:"allowedAddresses,omitempty"`
 	// Object that represents an IP address.
 	Ipv4 ServerNetworkGetIpv4AttributeType `json:"ipv4,omitempty"`
-	// Object that represents an IPv6 address.
+	// String that represents an IPv6 address.
 	Ipv6 ServerNetworkGetIpv6AttributeType `json:"ipv6,omitempty"`
 	// Object that represents an MAC address.
 	// REQUIRED

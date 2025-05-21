@@ -12,6 +12,7 @@ package kms
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -105,10 +106,110 @@ type KeyRingGetIdRetType = string
 	types and functions for state
 */
 
-// isEnumRef
-type KeyRingGetStateAttributeType = *string
-type KeyRingGetStateArgType = string
-type KeyRingGetStateRetType = string
+// isEnum
+
+// KeyRingState The current state of the key ring.
+type KeyRingState string
+
+// List of State
+const (
+	KEYRINGSTATE_ACTIVE  KeyRingState = "active"
+	KEYRINGSTATE_DELETED KeyRingState = "deleted"
+)
+
+// All allowed values of KeyRing enum
+var AllowedKeyRingStateEnumValues = []KeyRingState{
+	"active",
+	"deleted",
+}
+
+func (v *KeyRingState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := KeyRingState(value)
+	for _, existing := range AllowedKeyRingStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid KeyRing", value)
+}
+
+// NewKeyRingStateFromValue returns a pointer to a valid KeyRingState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewKeyRingStateFromValue(v string) (*KeyRingState, error) {
+	ev := KeyRingState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for KeyRingState: valid values are %v", v, AllowedKeyRingStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v KeyRingState) IsValid() bool {
+	for _, existing := range AllowedKeyRingStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v KeyRingState) Ptr() *KeyRingState {
+	return &v
+}
+
+type NullableKeyRingState struct {
+	value *KeyRingState
+	isSet bool
+}
+
+func (v NullableKeyRingState) Get() *KeyRingState {
+	return v.value
+}
+
+func (v *NullableKeyRingState) Set(val *KeyRingState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableKeyRingState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableKeyRingState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableKeyRingState(val *KeyRingState) *NullableKeyRingState {
+	return &NullableKeyRingState{value: val, isSet: true}
+}
+
+func (v NullableKeyRingState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableKeyRingState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type KeyRingGetStateAttributeType = *KeyRingState
+type KeyRingGetStateArgType = KeyRingState
+type KeyRingGetStateRetType = KeyRingState
 
 func getKeyRingGetStateAttributeTypeOk(arg KeyRingGetStateAttributeType) (ret KeyRingGetStateRetType, ok bool) {
 	if arg == nil {

@@ -12,6 +12,7 @@ package alb
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the LoadBalancer type satisfies the MappedNullable interface at compile time
@@ -206,10 +207,116 @@ type LoadBalancerGetRegionRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type LoadBalancerGetStatusAttributeType = *string
-type LoadBalancerGetStatusArgType = string
-type LoadBalancerGetStatusRetType = string
+// isEnum
+
+// LoadBalancerStatus the model 'LoadBalancer'
+type LoadBalancerStatus string
+
+// List of Status
+const (
+	LOADBALANCERSTATUS_UNSPECIFIED LoadBalancerStatus = "STATUS_UNSPECIFIED"
+	LOADBALANCERSTATUS_PENDING     LoadBalancerStatus = "STATUS_PENDING"
+	LOADBALANCERSTATUS_READY       LoadBalancerStatus = "STATUS_READY"
+	LOADBALANCERSTATUS_ERROR       LoadBalancerStatus = "STATUS_ERROR"
+	LOADBALANCERSTATUS_TERMINATING LoadBalancerStatus = "STATUS_TERMINATING"
+)
+
+// All allowed values of LoadBalancer enum
+var AllowedLoadBalancerStatusEnumValues = []LoadBalancerStatus{
+	"STATUS_UNSPECIFIED",
+	"STATUS_PENDING",
+	"STATUS_READY",
+	"STATUS_ERROR",
+	"STATUS_TERMINATING",
+}
+
+func (v *LoadBalancerStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := LoadBalancerStatus(value)
+	for _, existing := range AllowedLoadBalancerStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid LoadBalancer", value)
+}
+
+// NewLoadBalancerStatusFromValue returns a pointer to a valid LoadBalancerStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewLoadBalancerStatusFromValue(v string) (*LoadBalancerStatus, error) {
+	ev := LoadBalancerStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for LoadBalancerStatus: valid values are %v", v, AllowedLoadBalancerStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v LoadBalancerStatus) IsValid() bool {
+	for _, existing := range AllowedLoadBalancerStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v LoadBalancerStatus) Ptr() *LoadBalancerStatus {
+	return &v
+}
+
+type NullableLoadBalancerStatus struct {
+	value *LoadBalancerStatus
+	isSet bool
+}
+
+func (v NullableLoadBalancerStatus) Get() *LoadBalancerStatus {
+	return v.value
+}
+
+func (v *NullableLoadBalancerStatus) Set(val *LoadBalancerStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoadBalancerStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoadBalancerStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoadBalancerStatus(val *LoadBalancerStatus) *NullableLoadBalancerStatus {
+	return &NullableLoadBalancerStatus{value: val, isSet: true}
+}
+
+func (v NullableLoadBalancerStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableLoadBalancerStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type LoadBalancerGetStatusAttributeType = *LoadBalancerStatus
+type LoadBalancerGetStatusArgType = LoadBalancerStatus
+type LoadBalancerGetStatusRetType = LoadBalancerStatus
 
 func getLoadBalancerGetStatusAttributeTypeOk(arg LoadBalancerGetStatusAttributeType) (ret LoadBalancerGetStatusRetType, ok bool) {
 	if arg == nil {

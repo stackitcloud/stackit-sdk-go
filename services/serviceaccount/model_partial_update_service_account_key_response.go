@@ -12,6 +12,7 @@ package serviceaccount
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -83,10 +84,108 @@ type PartialUpdateServiceAccountKeyResponseGetIdRetType = string
 	types and functions for keyAlgorithm
 */
 
-// isEnumRef
-type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *string
-type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmArgType = string
-type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType = string
+// isEnum
+
+// PartialUpdateServiceAccountKeyResponseKeyAlgorithm the model 'PartialUpdateServiceAccountKeyResponse'
+type PartialUpdateServiceAccountKeyResponseKeyAlgorithm string
+
+// List of KeyAlgorithm
+const (
+	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM_RSA_2048 PartialUpdateServiceAccountKeyResponseKeyAlgorithm = "RSA_2048"
+)
+
+// All allowed values of PartialUpdateServiceAccountKeyResponse enum
+var AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues = []PartialUpdateServiceAccountKeyResponseKeyAlgorithm{
+	"RSA_2048",
+}
+
+func (v *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := PartialUpdateServiceAccountKeyResponseKeyAlgorithm(value)
+	for _, existing := range AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PartialUpdateServiceAccountKeyResponse", value)
+}
+
+// NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyAlgorithm, error) {
+	ev := PartialUpdateServiceAccountKeyResponseKeyAlgorithm(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PartialUpdateServiceAccountKeyResponseKeyAlgorithm: valid values are %v", v, AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PartialUpdateServiceAccountKeyResponseKeyAlgorithm) IsValid() bool {
+	for _, existing := range AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyAlgorithmKeyAlgorithm value
+func (v PartialUpdateServiceAccountKeyResponseKeyAlgorithm) Ptr() *PartialUpdateServiceAccountKeyResponseKeyAlgorithm {
+	return &v
+}
+
+type NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm struct {
+	value *PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+	isSet bool
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm) Get() *PartialUpdateServiceAccountKeyResponseKeyAlgorithm {
+	return v.value
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm) Set(val *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm(val *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) *NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm {
+	return &NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType = *PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmArgType = PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+type PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType = PartialUpdateServiceAccountKeyResponseKeyAlgorithm
 
 func getPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmRetType, ok bool) {
 	if arg == nil {
@@ -103,10 +202,110 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *
 	types and functions for keyOrigin
 */
 
-// isEnumRef
-type PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType = *string
-type PartialUpdateServiceAccountKeyResponseGetKeyOriginArgType = string
-type PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType = string
+// isEnum
+
+// PartialUpdateServiceAccountKeyResponseKeyOrigin the model 'PartialUpdateServiceAccountKeyResponse'
+type PartialUpdateServiceAccountKeyResponseKeyOrigin string
+
+// List of KeyOrigin
+const (
+	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_ORIGIN_USER_PROVIDED PartialUpdateServiceAccountKeyResponseKeyOrigin = "USER_PROVIDED"
+	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_ORIGIN_GENERATED     PartialUpdateServiceAccountKeyResponseKeyOrigin = "GENERATED"
+)
+
+// All allowed values of PartialUpdateServiceAccountKeyResponse enum
+var AllowedPartialUpdateServiceAccountKeyResponseKeyOriginEnumValues = []PartialUpdateServiceAccountKeyResponseKeyOrigin{
+	"USER_PROVIDED",
+	"GENERATED",
+}
+
+func (v *PartialUpdateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := PartialUpdateServiceAccountKeyResponseKeyOrigin(value)
+	for _, existing := range AllowedPartialUpdateServiceAccountKeyResponseKeyOriginEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PartialUpdateServiceAccountKeyResponse", value)
+}
+
+// NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyOrigin
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyOrigin, error) {
+	ev := PartialUpdateServiceAccountKeyResponseKeyOrigin(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PartialUpdateServiceAccountKeyResponseKeyOrigin: valid values are %v", v, AllowedPartialUpdateServiceAccountKeyResponseKeyOriginEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PartialUpdateServiceAccountKeyResponseKeyOrigin) IsValid() bool {
+	for _, existing := range AllowedPartialUpdateServiceAccountKeyResponseKeyOriginEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyOriginKeyOrigin value
+func (v PartialUpdateServiceAccountKeyResponseKeyOrigin) Ptr() *PartialUpdateServiceAccountKeyResponseKeyOrigin {
+	return &v
+}
+
+type NullablePartialUpdateServiceAccountKeyResponseKeyOrigin struct {
+	value *PartialUpdateServiceAccountKeyResponseKeyOrigin
+	isSet bool
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyOrigin) Get() *PartialUpdateServiceAccountKeyResponseKeyOrigin {
+	return v.value
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyOrigin) Set(val *PartialUpdateServiceAccountKeyResponseKeyOrigin) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyOrigin) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyOrigin) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateServiceAccountKeyResponseKeyOrigin(val *PartialUpdateServiceAccountKeyResponseKeyOrigin) *NullablePartialUpdateServiceAccountKeyResponseKeyOrigin {
+	return &NullablePartialUpdateServiceAccountKeyResponseKeyOrigin{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyOrigin) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType = *PartialUpdateServiceAccountKeyResponseKeyOrigin
+type PartialUpdateServiceAccountKeyResponseGetKeyOriginArgType = PartialUpdateServiceAccountKeyResponseKeyOrigin
+type PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType = PartialUpdateServiceAccountKeyResponseKeyOrigin
 
 func getPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetKeyOriginRetType, ok bool) {
 	if arg == nil {
@@ -123,10 +322,110 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *Par
 	types and functions for keyType
 */
 
-// isEnumRef
-type PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType = *string
-type PartialUpdateServiceAccountKeyResponseGetKeyTypeArgType = string
-type PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType = string
+// isEnum
+
+// PartialUpdateServiceAccountKeyResponseKeyType the model 'PartialUpdateServiceAccountKeyResponse'
+type PartialUpdateServiceAccountKeyResponseKeyType string
+
+// List of KeyType
+const (
+	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_TYPE_USER_MANAGED   PartialUpdateServiceAccountKeyResponseKeyType = "USER_MANAGED"
+	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_TYPE_SYSTEM_MANAGED PartialUpdateServiceAccountKeyResponseKeyType = "SYSTEM_MANAGED"
+)
+
+// All allowed values of PartialUpdateServiceAccountKeyResponse enum
+var AllowedPartialUpdateServiceAccountKeyResponseKeyTypeEnumValues = []PartialUpdateServiceAccountKeyResponseKeyType{
+	"USER_MANAGED",
+	"SYSTEM_MANAGED",
+}
+
+func (v *PartialUpdateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := PartialUpdateServiceAccountKeyResponseKeyType(value)
+	for _, existing := range AllowedPartialUpdateServiceAccountKeyResponseKeyTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid PartialUpdateServiceAccountKeyResponse", value)
+}
+
+// NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyType, error) {
+	ev := PartialUpdateServiceAccountKeyResponseKeyType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for PartialUpdateServiceAccountKeyResponseKeyType: valid values are %v", v, AllowedPartialUpdateServiceAccountKeyResponseKeyTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v PartialUpdateServiceAccountKeyResponseKeyType) IsValid() bool {
+	for _, existing := range AllowedPartialUpdateServiceAccountKeyResponseKeyTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to KeyTypeKeyType value
+func (v PartialUpdateServiceAccountKeyResponseKeyType) Ptr() *PartialUpdateServiceAccountKeyResponseKeyType {
+	return &v
+}
+
+type NullablePartialUpdateServiceAccountKeyResponseKeyType struct {
+	value *PartialUpdateServiceAccountKeyResponseKeyType
+	isSet bool
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyType) Get() *PartialUpdateServiceAccountKeyResponseKeyType {
+	return v.value
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyType) Set(val *PartialUpdateServiceAccountKeyResponseKeyType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePartialUpdateServiceAccountKeyResponseKeyType(val *PartialUpdateServiceAccountKeyResponseKeyType) *NullablePartialUpdateServiceAccountKeyResponseKeyType {
+	return &NullablePartialUpdateServiceAccountKeyResponseKeyType{value: val, isSet: true}
+}
+
+func (v NullablePartialUpdateServiceAccountKeyResponseKeyType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullablePartialUpdateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType = *PartialUpdateServiceAccountKeyResponseKeyType
+type PartialUpdateServiceAccountKeyResponseGetKeyTypeArgType = PartialUpdateServiceAccountKeyResponseKeyType
+type PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType = PartialUpdateServiceAccountKeyResponseKeyType
 
 func getPartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeTypeOk(arg PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType) (ret PartialUpdateServiceAccountKeyResponseGetKeyTypeRetType, ok bool) {
 	if arg == nil {

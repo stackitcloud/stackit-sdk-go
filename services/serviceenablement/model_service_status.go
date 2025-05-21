@@ -12,6 +12,7 @@ package serviceenablement
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ServiceStatus type satisfies the MappedNullable interface at compile time
@@ -41,10 +42,110 @@ func setServiceStatusGetDependenciesAttributeType(arg *ServiceStatusGetDependenc
 	types and functions for enablement
 */
 
-// isEnumRef
-type ServiceStatusGetEnablementAttributeType = *string
-type ServiceStatusGetEnablementArgType = string
-type ServiceStatusGetEnablementRetType = string
+// isEnum
+
+// ServiceStatusEnablement the model 'ServiceStatus'
+type ServiceStatusEnablement string
+
+// List of Enablement
+const (
+	SERVICESTATUSENABLEMENT_REQUEST ServiceStatusEnablement = "REQUEST"
+	SERVICESTATUSENABLEMENT_AUTO    ServiceStatusEnablement = "AUTO"
+)
+
+// All allowed values of ServiceStatus enum
+var AllowedServiceStatusEnablementEnumValues = []ServiceStatusEnablement{
+	"REQUEST",
+	"AUTO",
+}
+
+func (v *ServiceStatusEnablement) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ServiceStatusEnablement(value)
+	for _, existing := range AllowedServiceStatusEnablementEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ServiceStatus", value)
+}
+
+// NewServiceStatusEnablementFromValue returns a pointer to a valid ServiceStatusEnablement
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewServiceStatusEnablementFromValue(v string) (*ServiceStatusEnablement, error) {
+	ev := ServiceStatusEnablement(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ServiceStatusEnablement: valid values are %v", v, AllowedServiceStatusEnablementEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ServiceStatusEnablement) IsValid() bool {
+	for _, existing := range AllowedServiceStatusEnablementEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to EnablementEnablement value
+func (v ServiceStatusEnablement) Ptr() *ServiceStatusEnablement {
+	return &v
+}
+
+type NullableServiceStatusEnablement struct {
+	value *ServiceStatusEnablement
+	isSet bool
+}
+
+func (v NullableServiceStatusEnablement) Get() *ServiceStatusEnablement {
+	return v.value
+}
+
+func (v *NullableServiceStatusEnablement) Set(val *ServiceStatusEnablement) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceStatusEnablement) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableServiceStatusEnablement) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceStatusEnablement(val *ServiceStatusEnablement) *NullableServiceStatusEnablement {
+	return &NullableServiceStatusEnablement{value: val, isSet: true}
+}
+
+func (v NullableServiceStatusEnablement) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableServiceStatusEnablement) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ServiceStatusGetEnablementAttributeType = *ServiceStatusEnablement
+type ServiceStatusGetEnablementArgType = ServiceStatusEnablement
+type ServiceStatusGetEnablementRetType = ServiceStatusEnablement
 
 func getServiceStatusGetEnablementAttributeTypeOk(arg ServiceStatusGetEnablementAttributeType) (ret ServiceStatusGetEnablementRetType, ok bool) {
 	if arg == nil {
@@ -101,10 +202,110 @@ func setServiceStatusGetLabelsAttributeType(arg *ServiceStatusGetLabelsAttribute
 	types and functions for lifecycle
 */
 
-// isEnumRef
-type ServiceStatusGetLifecycleAttributeType = *string
-type ServiceStatusGetLifecycleArgType = string
-type ServiceStatusGetLifecycleRetType = string
+// isEnum
+
+// ServiceStatusLifecycle the model 'ServiceStatus'
+type ServiceStatusLifecycle string
+
+// List of Lifecycle
+const (
+	SERVICESTATUSLIFECYCLE_FLEX    ServiceStatusLifecycle = "FLEX"
+	SERVICESTATUSLIFECYCLE_PROJECT ServiceStatusLifecycle = "PROJECT"
+)
+
+// All allowed values of ServiceStatus enum
+var AllowedServiceStatusLifecycleEnumValues = []ServiceStatusLifecycle{
+	"FLEX",
+	"PROJECT",
+}
+
+func (v *ServiceStatusLifecycle) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ServiceStatusLifecycle(value)
+	for _, existing := range AllowedServiceStatusLifecycleEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ServiceStatus", value)
+}
+
+// NewServiceStatusLifecycleFromValue returns a pointer to a valid ServiceStatusLifecycle
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewServiceStatusLifecycleFromValue(v string) (*ServiceStatusLifecycle, error) {
+	ev := ServiceStatusLifecycle(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ServiceStatusLifecycle: valid values are %v", v, AllowedServiceStatusLifecycleEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ServiceStatusLifecycle) IsValid() bool {
+	for _, existing := range AllowedServiceStatusLifecycleEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to LifecycleLifecycle value
+func (v ServiceStatusLifecycle) Ptr() *ServiceStatusLifecycle {
+	return &v
+}
+
+type NullableServiceStatusLifecycle struct {
+	value *ServiceStatusLifecycle
+	isSet bool
+}
+
+func (v NullableServiceStatusLifecycle) Get() *ServiceStatusLifecycle {
+	return v.value
+}
+
+func (v *NullableServiceStatusLifecycle) Set(val *ServiceStatusLifecycle) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceStatusLifecycle) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableServiceStatusLifecycle) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceStatusLifecycle(val *ServiceStatusLifecycle) *NullableServiceStatusLifecycle {
+	return &NullableServiceStatusLifecycle{value: val, isSet: true}
+}
+
+func (v NullableServiceStatusLifecycle) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableServiceStatusLifecycle) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ServiceStatusGetLifecycleAttributeType = *ServiceStatusLifecycle
+type ServiceStatusGetLifecycleArgType = ServiceStatusLifecycle
+type ServiceStatusGetLifecycleRetType = ServiceStatusLifecycle
 
 func getServiceStatusGetLifecycleAttributeTypeOk(arg ServiceStatusGetLifecycleAttributeType) (ret ServiceStatusGetLifecycleRetType, ok bool) {
 	if arg == nil {
@@ -141,10 +342,110 @@ func setServiceStatusGetParametersAttributeType(arg *ServiceStatusGetParametersA
 	types and functions for scope
 */
 
-// isEnumRef
-type ServiceStatusGetScopeAttributeType = *string
-type ServiceStatusGetScopeArgType = string
-type ServiceStatusGetScopeRetType = string
+// isEnum
+
+// ServiceStatusScope the model 'ServiceStatus'
+type ServiceStatusScope string
+
+// List of Scope
+const (
+	SERVICESTATUSSCOPE_PRIVATE ServiceStatusScope = "PRIVATE"
+	SERVICESTATUSSCOPE_PUBLIC  ServiceStatusScope = "PUBLIC"
+)
+
+// All allowed values of ServiceStatus enum
+var AllowedServiceStatusScopeEnumValues = []ServiceStatusScope{
+	"PRIVATE",
+	"PUBLIC",
+}
+
+func (v *ServiceStatusScope) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ServiceStatusScope(value)
+	for _, existing := range AllowedServiceStatusScopeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ServiceStatus", value)
+}
+
+// NewServiceStatusScopeFromValue returns a pointer to a valid ServiceStatusScope
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewServiceStatusScopeFromValue(v string) (*ServiceStatusScope, error) {
+	ev := ServiceStatusScope(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ServiceStatusScope: valid values are %v", v, AllowedServiceStatusScopeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ServiceStatusScope) IsValid() bool {
+	for _, existing := range AllowedServiceStatusScopeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ScopeScope value
+func (v ServiceStatusScope) Ptr() *ServiceStatusScope {
+	return &v
+}
+
+type NullableServiceStatusScope struct {
+	value *ServiceStatusScope
+	isSet bool
+}
+
+func (v NullableServiceStatusScope) Get() *ServiceStatusScope {
+	return v.value
+}
+
+func (v *NullableServiceStatusScope) Set(val *ServiceStatusScope) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceStatusScope) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableServiceStatusScope) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceStatusScope(val *ServiceStatusScope) *NullableServiceStatusScope {
+	return &NullableServiceStatusScope{value: val, isSet: true}
+}
+
+func (v NullableServiceStatusScope) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableServiceStatusScope) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ServiceStatusGetScopeAttributeType = *ServiceStatusScope
+type ServiceStatusGetScopeArgType = ServiceStatusScope
+type ServiceStatusGetScopeRetType = ServiceStatusScope
 
 func getServiceStatusGetScopeAttributeTypeOk(arg ServiceStatusGetScopeAttributeType) (ret ServiceStatusGetScopeRetType, ok bool) {
 	if arg == nil {
@@ -182,10 +483,114 @@ type ServiceStatusGetServiceIdRetType = string
 	types and functions for state
 */
 
-// isEnumRef
-type ServiceStatusGetStateAttributeType = *string
-type ServiceStatusGetStateArgType = string
-type ServiceStatusGetStateRetType = string
+// isEnum
+
+// ServiceStatusState the state of a service within a project
+type ServiceStatusState string
+
+// List of State
+const (
+	SERVICESTATUSSTATE_ENABLED   ServiceStatusState = "ENABLED"
+	SERVICESTATUSSTATE_ENABLING  ServiceStatusState = "ENABLING"
+	SERVICESTATUSSTATE_DISABLED  ServiceStatusState = "DISABLED"
+	SERVICESTATUSSTATE_DISABLING ServiceStatusState = "DISABLING"
+)
+
+// All allowed values of ServiceStatus enum
+var AllowedServiceStatusStateEnumValues = []ServiceStatusState{
+	"ENABLED",
+	"ENABLING",
+	"DISABLED",
+	"DISABLING",
+}
+
+func (v *ServiceStatusState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ServiceStatusState(value)
+	for _, existing := range AllowedServiceStatusStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid ServiceStatus", value)
+}
+
+// NewServiceStatusStateFromValue returns a pointer to a valid ServiceStatusState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewServiceStatusStateFromValue(v string) (*ServiceStatusState, error) {
+	ev := ServiceStatusState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ServiceStatusState: valid values are %v", v, AllowedServiceStatusStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ServiceStatusState) IsValid() bool {
+	for _, existing := range AllowedServiceStatusStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v ServiceStatusState) Ptr() *ServiceStatusState {
+	return &v
+}
+
+type NullableServiceStatusState struct {
+	value *ServiceStatusState
+	isSet bool
+}
+
+func (v NullableServiceStatusState) Get() *ServiceStatusState {
+	return v.value
+}
+
+func (v *NullableServiceStatusState) Set(val *ServiceStatusState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableServiceStatusState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableServiceStatusState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableServiceStatusState(val *ServiceStatusState) *NullableServiceStatusState {
+	return &NullableServiceStatusState{value: val, isSet: true}
+}
+
+func (v NullableServiceStatusState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableServiceStatusState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ServiceStatusGetStateAttributeType = *ServiceStatusState
+type ServiceStatusGetStateArgType = ServiceStatusState
+type ServiceStatusGetStateRetType = ServiceStatusState
 
 func getServiceStatusGetStateAttributeTypeOk(arg ServiceStatusGetStateAttributeType) (ret ServiceStatusGetStateRetType, ok bool) {
 	if arg == nil {
@@ -227,13 +632,13 @@ func NewServiceStatus() *ServiceStatus {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceStatusWithDefaults() *ServiceStatus {
 	this := ServiceStatus{}
-	var enablement string = "REQUEST"
+	var enablement ServiceStatusEnablement = "REQUEST"
 	this.Enablement = &enablement
-	var lifecycle string = "FLEX"
+	var lifecycle ServiceStatusLifecycle = "FLEX"
 	this.Lifecycle = &lifecycle
-	var scope string = "PUBLIC"
+	var scope ServiceStatusScope = "PUBLIC"
 	this.Scope = &scope
-	var state string = "ENABLED"
+	var state ServiceStatusState = "ENABLED"
 	this.State = &state
 	return &this
 }

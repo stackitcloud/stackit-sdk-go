@@ -13,6 +13,7 @@ package runcommand
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -22,10 +23,145 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateCommand Method for CreateCommand
+		Creates a new command for execution
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param serverId Server ID of the machine
+		@param region region
+		@return ApiCreateCommandRequest
+	*/
+	CreateCommand(ctx context.Context, projectId string, serverId string, region string) ApiCreateCommandRequest
+	/*
+		CreateCommandExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param serverId Server ID of the machine
+		@param region region
+		@return NewCommandResponse
+
+	*/
+	CreateCommandExecute(ctx context.Context, projectId string, serverId string, region string) (*NewCommandResponse, error)
+	/*
+		GetCommand Method for GetCommand
+		Returns details about a command
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param region region
+		@param serverId Server ID of the machine
+		@param commandId ID of the command
+		@return ApiGetCommandRequest
+	*/
+	GetCommand(ctx context.Context, projectId string, region string, serverId string, commandId string) ApiGetCommandRequest
+	/*
+		GetCommandExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param region region
+		@param serverId Server ID of the machine
+		@param commandId ID of the command
+		@return CommandDetails
+
+	*/
+	GetCommandExecute(ctx context.Context, projectId string, region string, serverId string, commandId string) (*CommandDetails, error)
+	/*
+		GetCommandTemplate Method for GetCommandTemplate
+		Returns details about a command template
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param serverId Server ID of the machine
+		@param commandTemplateName Name of the template
+		@param region region
+		@return ApiGetCommandTemplateRequest
+	*/
+	GetCommandTemplate(ctx context.Context, projectId string, serverId string, commandTemplateName string, region string) ApiGetCommandTemplateRequest
+	/*
+		GetCommandTemplateExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param serverId Server ID of the machine
+		@param commandTemplateName Name of the template
+		@param region region
+		@return CommandTemplateSchema
+
+	*/
+	GetCommandTemplateExecute(ctx context.Context, projectId string, serverId string, commandTemplateName string, region string) (*CommandTemplateSchema, error)
+	/*
+		ListCommandTemplates Method for ListCommandTemplates
+		Returns a list of command templates
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListCommandTemplatesRequest
+	*/
+	ListCommandTemplates(ctx context.Context) ApiListCommandTemplatesRequest
+	/*
+		ListCommandTemplatesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return CommandTemplateResponse
+
+	*/
+	ListCommandTemplatesExecute(ctx context.Context) (*CommandTemplateResponse, error)
+	/*
+		ListCommands Method for ListCommands
+		Returns a list of commands
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param serverId Server ID of the machine
+		@param region region
+		@return ApiListCommandsRequest
+	*/
+	ListCommands(ctx context.Context, projectId string, serverId string, region string) ApiListCommandsRequest
+	/*
+		ListCommandsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId ID of the project
+		@param serverId Server ID of the machine
+		@param region region
+		@return GetCommandsResponse
+
+	*/
+	ListCommandsExecute(ctx context.Context, projectId string, serverId string, region string) (*GetCommandsResponse, error)
+}
+
+type ApiCreateCommandRequest interface {
+	// Command to post
+	CreateCommandPayload(createCommandPayload CreateCommandPayload) ApiCreateCommandRequest
+	Execute() (*NewCommandResponse, error)
+}
+
+type ApiGetCommandRequest interface {
+	Execute() (*CommandDetails, error)
+}
+
+type ApiGetCommandTemplateRequest interface {
+	Execute() (*CommandTemplateSchema, error)
+}
+
+type ApiListCommandTemplatesRequest interface {
+	// The type of the Operating System (windows or linux). If not provided will return data for all OS types.
+	OsType(osType string) ApiListCommandTemplatesRequest
+	Execute() (*CommandTemplateResponse, error)
+}
+
+type ApiListCommandsRequest interface {
+	Execute() (*GetCommandsResponse, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateCommandRequest struct {
+type CreateCommandRequest struct {
 	ctx                  context.Context
 	apiService           *DefaultApiService
 	projectId            string
@@ -36,12 +172,12 @@ type ApiCreateCommandRequest struct {
 
 // Command to post
 
-func (r ApiCreateCommandRequest) CreateCommandPayload(createCommandPayload CreateCommandPayload) ApiCreateCommandRequest {
+func (r CreateCommandRequest) CreateCommandPayload(createCommandPayload CreateCommandPayload) ApiCreateCommandRequest {
 	r.createCommandPayload = &createCommandPayload
 	return r
 }
 
-func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
+func (r CreateCommandRequest) Execute() (*NewCommandResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -49,7 +185,11 @@ func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
 		localVarReturnValue *NewCommandResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCommand")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCommand")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -82,7 +222,7 @@ func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
 	}
 	// body params
 	localVarPostBody = r.createCommandPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -92,7 +232,7 @@ func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -116,7 +256,7 @@ func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -127,7 +267,7 @@ func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -138,7 +278,7 @@ func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -149,7 +289,7 @@ func (r ApiCreateCommandRequest) Execute() (*NewCommandResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -174,7 +314,7 @@ Creates a new command for execution
 	@return ApiCreateCommandRequest
 */
 func (a *APIClient) CreateCommand(ctx context.Context, projectId string, serverId string, region string) ApiCreateCommandRequest {
-	return ApiCreateCommandRequest{
+	return CreateCommandRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -184,7 +324,7 @@ func (a *APIClient) CreateCommand(ctx context.Context, projectId string, serverI
 }
 
 func (a *APIClient) CreateCommandExecute(ctx context.Context, projectId string, serverId string, region string) (*NewCommandResponse, error) {
-	r := ApiCreateCommandRequest{
+	r := CreateCommandRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -194,7 +334,7 @@ func (a *APIClient) CreateCommandExecute(ctx context.Context, projectId string, 
 	return r.Execute()
 }
 
-type ApiGetCommandRequest struct {
+type GetCommandRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -203,7 +343,7 @@ type ApiGetCommandRequest struct {
 	commandId  string
 }
 
-func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
+func (r GetCommandRequest) Execute() (*CommandDetails, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -211,7 +351,11 @@ func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
 		localVarReturnValue *CommandDetails
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCommand")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCommand")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -243,7 +387,7 @@ func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -253,7 +397,7 @@ func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -277,7 +421,7 @@ func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -288,7 +432,7 @@ func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -299,7 +443,7 @@ func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -310,7 +454,7 @@ func (r ApiGetCommandRequest) Execute() (*CommandDetails, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -336,7 +480,7 @@ Returns details about a command
 	@return ApiGetCommandRequest
 */
 func (a *APIClient) GetCommand(ctx context.Context, projectId string, region string, serverId string, commandId string) ApiGetCommandRequest {
-	return ApiGetCommandRequest{
+	return GetCommandRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -347,7 +491,7 @@ func (a *APIClient) GetCommand(ctx context.Context, projectId string, region str
 }
 
 func (a *APIClient) GetCommandExecute(ctx context.Context, projectId string, region string, serverId string, commandId string) (*CommandDetails, error) {
-	r := ApiGetCommandRequest{
+	r := GetCommandRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -358,7 +502,7 @@ func (a *APIClient) GetCommandExecute(ctx context.Context, projectId string, reg
 	return r.Execute()
 }
 
-type ApiGetCommandTemplateRequest struct {
+type GetCommandTemplateRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
@@ -367,7 +511,7 @@ type ApiGetCommandTemplateRequest struct {
 	region              string
 }
 
-func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) {
+func (r GetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -375,7 +519,11 @@ func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) 
 		localVarReturnValue *CommandTemplateSchema
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCommandTemplate")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCommandTemplate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -407,7 +555,7 @@ func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -417,7 +565,7 @@ func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -441,7 +589,7 @@ func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -452,7 +600,7 @@ func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -463,7 +611,7 @@ func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) 
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -474,7 +622,7 @@ func (r ApiGetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -500,7 +648,7 @@ Returns details about a command template
 	@return ApiGetCommandTemplateRequest
 */
 func (a *APIClient) GetCommandTemplate(ctx context.Context, projectId string, serverId string, commandTemplateName string, region string) ApiGetCommandTemplateRequest {
-	return ApiGetCommandTemplateRequest{
+	return GetCommandTemplateRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -511,7 +659,7 @@ func (a *APIClient) GetCommandTemplate(ctx context.Context, projectId string, se
 }
 
 func (a *APIClient) GetCommandTemplateExecute(ctx context.Context, projectId string, serverId string, commandTemplateName string, region string) (*CommandTemplateSchema, error) {
-	r := ApiGetCommandTemplateRequest{
+	r := GetCommandTemplateRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -522,7 +670,7 @@ func (a *APIClient) GetCommandTemplateExecute(ctx context.Context, projectId str
 	return r.Execute()
 }
 
-type ApiListCommandTemplatesRequest struct {
+type ListCommandTemplatesRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	osType     *string
@@ -530,12 +678,12 @@ type ApiListCommandTemplatesRequest struct {
 
 // The type of the Operating System (windows or linux). If not provided will return data for all OS types.
 
-func (r ApiListCommandTemplatesRequest) OsType(osType string) ApiListCommandTemplatesRequest {
+func (r ListCommandTemplatesRequest) OsType(osType string) ApiListCommandTemplatesRequest {
 	r.osType = &osType
 	return r
 }
 
-func (r ApiListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, error) {
+func (r ListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -543,7 +691,11 @@ func (r ApiListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, err
 		localVarReturnValue *CommandTemplateResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCommandTemplates")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCommandTemplates")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -574,7 +726,7 @@ func (r ApiListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, err
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -584,7 +736,7 @@ func (r ApiListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, err
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -608,7 +760,7 @@ func (r ApiListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, err
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -619,7 +771,7 @@ func (r ApiListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, err
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -630,7 +782,7 @@ func (r ApiListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, err
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -652,21 +804,21 @@ Returns a list of command templates
 	@return ApiListCommandTemplatesRequest
 */
 func (a *APIClient) ListCommandTemplates(ctx context.Context) ApiListCommandTemplatesRequest {
-	return ApiListCommandTemplatesRequest{
+	return ListCommandTemplatesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) ListCommandTemplatesExecute(ctx context.Context) (*CommandTemplateResponse, error) {
-	r := ApiListCommandTemplatesRequest{
+	r := ListCommandTemplatesRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiListCommandsRequest struct {
+type ListCommandsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
@@ -674,7 +826,7 @@ type ApiListCommandsRequest struct {
 	region     string
 }
 
-func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
+func (r ListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -682,7 +834,11 @@ func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 		localVarReturnValue *GetCommandsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCommands")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCommands")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -713,7 +869,7 @@ func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -723,7 +879,7 @@ func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -747,7 +903,7 @@ func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -758,7 +914,7 @@ func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -769,7 +925,7 @@ func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -780,7 +936,7 @@ func (r ApiListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -805,7 +961,7 @@ Returns a list of commands
 	@return ApiListCommandsRequest
 */
 func (a *APIClient) ListCommands(ctx context.Context, projectId string, serverId string, region string) ApiListCommandsRequest {
-	return ApiListCommandsRequest{
+	return ListCommandsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -815,7 +971,7 @@ func (a *APIClient) ListCommands(ctx context.Context, projectId string, serverId
 }
 
 func (a *APIClient) ListCommandsExecute(ctx context.Context, projectId string, serverId string, region string) (*GetCommandsResponse, error) {
-	r := ApiListCommandsRequest{
+	r := ListCommandsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,

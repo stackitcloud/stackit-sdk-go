@@ -1,7 +1,7 @@
 /*
 Application Load Balancer API
 
-This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
+### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
 API version: 1beta.0.0
 */
@@ -12,6 +12,7 @@ package lbapplication
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GetServiceStatusResponse type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,120 @@ var _ MappedNullable = &GetServiceStatusResponse{}
 	types and functions for status
 */
 
-// isEnumRef
-type GetServiceStatusResponseGetStatusAttributeType = *string
-type GetServiceStatusResponseGetStatusArgType = string
-type GetServiceStatusResponseGetStatusRetType = string
+// isEnum
+
+// GetServiceStatusResponseStatus status of the project
+type GetServiceStatusResponseStatus string
+
+// List of Status
+const (
+	GETSERVICESTATUSRESPONSESTATUS_UNSPECIFIED     GetServiceStatusResponseStatus = "STATUS_UNSPECIFIED"
+	GETSERVICESTATUSRESPONSESTATUS_READY           GetServiceStatusResponseStatus = "STATUS_READY"
+	GETSERVICESTATUSRESPONSESTATUS_FAILED          GetServiceStatusResponseStatus = "STATUS_FAILED"
+	GETSERVICESTATUSRESPONSESTATUS_UPDATING        GetServiceStatusResponseStatus = "STATUS_UPDATING"
+	GETSERVICESTATUSRESPONSESTATUS_DELETING        GetServiceStatusResponseStatus = "STATUS_DELETING"
+	GETSERVICESTATUSRESPONSESTATUS_DISABLED        GetServiceStatusResponseStatus = "STATUS_DISABLED"
+	GETSERVICESTATUSRESPONSESTATUS_PROJECT_UNKNOWN GetServiceStatusResponseStatus = "STATUS_PROJECT_UNKNOWN"
+)
+
+// All allowed values of GetServiceStatusResponse enum
+var AllowedGetServiceStatusResponseStatusEnumValues = []GetServiceStatusResponseStatus{
+	"STATUS_UNSPECIFIED",
+	"STATUS_READY",
+	"STATUS_FAILED",
+	"STATUS_UPDATING",
+	"STATUS_DELETING",
+	"STATUS_DISABLED",
+	"STATUS_PROJECT_UNKNOWN",
+}
+
+func (v *GetServiceStatusResponseStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := GetServiceStatusResponseStatus(value)
+	for _, existing := range AllowedGetServiceStatusResponseStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid GetServiceStatusResponse", value)
+}
+
+// NewGetServiceStatusResponseStatusFromValue returns a pointer to a valid GetServiceStatusResponseStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewGetServiceStatusResponseStatusFromValue(v string) (*GetServiceStatusResponseStatus, error) {
+	ev := GetServiceStatusResponseStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for GetServiceStatusResponseStatus: valid values are %v", v, AllowedGetServiceStatusResponseStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v GetServiceStatusResponseStatus) IsValid() bool {
+	for _, existing := range AllowedGetServiceStatusResponseStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v GetServiceStatusResponseStatus) Ptr() *GetServiceStatusResponseStatus {
+	return &v
+}
+
+type NullableGetServiceStatusResponseStatus struct {
+	value *GetServiceStatusResponseStatus
+	isSet bool
+}
+
+func (v NullableGetServiceStatusResponseStatus) Get() *GetServiceStatusResponseStatus {
+	return v.value
+}
+
+func (v *NullableGetServiceStatusResponseStatus) Set(val *GetServiceStatusResponseStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetServiceStatusResponseStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetServiceStatusResponseStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetServiceStatusResponseStatus(val *GetServiceStatusResponseStatus) *NullableGetServiceStatusResponseStatus {
+	return &NullableGetServiceStatusResponseStatus{value: val, isSet: true}
+}
+
+func (v NullableGetServiceStatusResponseStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableGetServiceStatusResponseStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type GetServiceStatusResponseGetStatusAttributeType = *GetServiceStatusResponseStatus
+type GetServiceStatusResponseGetStatusArgType = GetServiceStatusResponseStatus
+type GetServiceStatusResponseGetStatusRetType = GetServiceStatusResponseStatus
 
 func getGetServiceStatusResponseGetStatusAttributeTypeOk(arg GetServiceStatusResponseGetStatusAttributeType) (ret GetServiceStatusResponseGetStatusRetType, ok bool) {
 	if arg == nil {

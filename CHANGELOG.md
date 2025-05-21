@@ -1,3 +1,144 @@
+## Release (2025-05-15)
+- `alb`:
+  - [v0.4.0](services/alb/CHANGELOG.md#v040-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.3.1](services/alb/CHANGELOG.md#v031-2025-05-15)
+    - **Feature:** New field `Path` for `Rule`
+  - [v0.3.0](services/alb/CHANGELOG.md#v030-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `authorization`: [v0.7.0](services/authorization/CHANGELOG.md#v070-2025-05-15)
+  - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+- `cdn`: 
+  - [v1.2.0](services/cdn/CHANGELOG.md#v120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.1.0](services/cdn/CHANGELOG.md#v110-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `certificates`: [v1.1.0](services/certificates/CHANGELOG.md#v110-2025-05-15)
+  - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+- `dns`: 
+  - [v0.15.0](services/dns/CHANGELOG.md#v0150-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.14.0](services/dns/CHANGELOG.md#v0140-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `git`: 
+  - [v0.5.0](services/git/CHANGELOG.md#v050-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.4.0](services/git/CHANGELOG.md#v040-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `iaas`: [v0.23.0](services/iaas/CHANGELOG.md#v0230-2025-05-15)
+  - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+- `kms`: 
+  - [v0.2.0](services/kms/CHANGELOG.md#v020-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.1.0](services/kms/CHANGELOG.md#v010-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `lbapplication`: 
+  - [v0.5.0](services/lbapplication/CHANGELOG.md#v050-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.4.0](services/lbapplication/CHANGELOG.md#v040-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+    - **Deprecated:** `lbapplication` service is deprecated and no longer maintained. Use the `alb` service instead
+- `loadbalancer`: 
+  - [v1.2.0](services/loadbalancer/CHANGELOG.md#v120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.1.0](services/loadbalancer/CHANGELOG.md#v110-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `logme`: 
+  - [v0.24.0](services/logme/CHANGELOG.md#v0240-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.23.0](services/logme/CHANGELOG.md#v0230-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `mariadb`: 
+  - [v0.24.0](services/mariadb/CHANGELOG.md#v0240-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.23.0](services/mariadb/CHANGELOG.md#v0230-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `modelserving`: 
+  - [v0.4.0](services/modelserving/CHANGELOG.md#v040-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.3.0](services/modelserving/CHANGELOG.md#v030-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `mongodbflex`: 
+  - [v1.2.0](services/mongodbflex/CHANGELOG.md#v120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.1.0](services/mongodbflex/CHANGELOG.md#v110-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `objectstorage`: [v1.2.0](services/objectstorage/CHANGELOG.md#v120-2025-05-15)
+  - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+- `observability`:
+  - [v0.7.0](services/observability/CHANGELOG.md#v070-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.6.0](services/observability/CHANGELOG.md#v060-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `opensearch`: 
+  - [v0.23.0](services/opensearch/CHANGELOG.md#v0230-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.22.0](services/opensearch/CHANGELOG.md#v0220-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `postgresflex`: [v1.1.0](services/postgresflex/CHANGELOG.md#v110-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+- `rabbitmq`: 
+  - [v0.24.0](services/rabbitmq/CHANGELOG.md#v0240-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.23.0](services/rabbitmq/CHANGELOG.md#v0230-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `redis`: 
+  - [v0.24.0](services/redis/CHANGELOG.md#v0240-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.23.0](services/redis/CHANGELOG.md#v0230-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `resourcemanager`: 
+  - [v0.15.0](services/resourcemanager/CHANGELOG.md#v0150-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.14.0](services/resourcemanager/CHANGELOG.md#v0140-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+    - **Breaking change:** Fields `ContainerParentId` and `ParentId` are no longer required
+- `runcommand`: 
+  - [v1.2.0](services/runcommand/CHANGELOG.md#v120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.1.0](services/runcommand/CHANGELOG.md#v110-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `secretsmanager`: [v0.12.0](services/secretsmanager/CHANGELOG.md#v0120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+- `serverbackup`: 
+  - [v1.2.0](services/serverbackup/CHANGELOG.md#v120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.1.0](services/serverbackup/CHANGELOG.md#v110-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `serverupdate`: [v1.1.0](services/serverupdate/CHANGELOG.md#v110-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+- `serviceaccount`: 
+  - [v0.8.0](services/serviceaccount/CHANGELOG.md#v080-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.7.0](services/serviceaccount/CHANGELOG.md#v070-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `serviceenablement`: 
+  - [v1.2.0](services/serviceenablement/CHANGELOG.md#v120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.1.0](services/serviceenablement/CHANGELOG.md#v110-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+- `ske`: 
+  - [v0.24.0](services/ske/CHANGELOG.md#v0240-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v0.23.0](services/ske/CHANGELOG.md#v0230-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+  - [v0.22.4](services/ske/CHANGELOG.md#v0224-2025-05-13)
+    - **Feature:** Added `ClusterError`
+- `sqlserverflex`: 
+  - [v1.2.0](services/sqlserverflex/CHANGELOG.md#v120-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.1.0](services/sqlserverflex/CHANGELOG.md#v110-2025-05-14)
+    - **Features**: Added new method `ListMetrics`
+- `stackitmarketplace`:
+  - [v1.3.0](services/stackitmarketplace/CHANGELOG.md#v130-2025-05-15)
+    - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
+  - [v1.2.1](services/stackitmarketplace/CHANGELOG.md#v121-2025-05-15)
+    - **Feature:** Added new method `VendorsSubscriptionsReject`
+  - [v1.2.0](services/stackitmarketplace/CHANGELOG.md#v120-2025-05-14)
+    - **Breaking change:** Introduce typed enum constants for status attributes
+  - [v1.1.0](services/stackitmarketplace/CHANGELOG.md#v110-2025-05-13)
+    - **Breaking Change:** Added organization id to `VendorSubscription`
+
 ## Release (2025-05-09)
 - `resourcemanager`:
   - [v0.13.3](services/resourcemanager/CHANGELOG.md#v0133-2025-05-09)

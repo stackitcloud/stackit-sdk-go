@@ -23,10 +23,323 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
+type DefaultApi interface {
+	/*
+		CreateAccessToken Create a new Access Token
+		Create an Access Token for a Service Account. The service token can be then used for API calls. Save the response token, as it is not recoverable later. Token metadata can be requested until the token is not expired. A token cannot be created using another token from the same service account. Consider using service account keys instead as a more secure and automation friendly solution.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the Service Account.
+		@return ApiCreateAccessTokenRequest
+	*/
+	CreateAccessToken(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateAccessTokenRequest
+	/*
+		CreateAccessTokenExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the Service Account.
+		@return AccessToken
+
+	*/
+	CreateAccessTokenExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*AccessToken, error)
+	/*
+		CreateServiceAccount Create a new Service Account
+		Create a new Service Account in a project. The service account only resides in the project, and initially has no roles or permissions on any resources. After creation, the service account can be assigned to this project, other projects in the parent organization or to the parent organization.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@return ApiCreateServiceAccountRequest
+	*/
+	CreateServiceAccount(ctx context.Context, projectId string) ApiCreateServiceAccountRequest
+	/*
+		CreateServiceAccountExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@return ServiceAccount
+
+	*/
+	CreateServiceAccountExecute(ctx context.Context, projectId string) (*ServiceAccount, error)
+	/*
+		CreateServiceAccountKey Create a new Service Account key
+		Create a new key to the service account. You can generate an RSA keypair, and post the PUBLIC part of the keypair, or leave empty, then the service will generate a pair. Maximum of 10 key can be added. A new key cannot be created using the same service account (authenticated using the short lived token of another key of the same service account).
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return ApiCreateServiceAccountKeyRequest
+	*/
+	CreateServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateServiceAccountKeyRequest
+	/*
+		CreateServiceAccountKeyExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return CreateServiceAccountKeyResponse
+
+	*/
+	CreateServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*CreateServiceAccountKeyResponse, error)
+	/*
+		CreateShortLivedAccessToken Request short lived API access token (OAUTH2).
+		Request a short lived API access token with OAUTH2. Compatible with [Using JWTs as Authorization Grants](https://www.rfc-editor.org/rfc/rfc7523.html#section-2.1)
+		You can request a token with a self signed token, or with a refresh token.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiCreateShortLivedAccessTokenRequest
+	*/
+	CreateShortLivedAccessToken(ctx context.Context) ApiCreateShortLivedAccessTokenRequest
+	/*
+		CreateShortLivedAccessTokenExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return CreateShortLivedAccessTokenResponse
+
+	*/
+	CreateShortLivedAccessTokenExecute(ctx context.Context) (*CreateShortLivedAccessTokenResponse, error)
+	/*
+		DeleteAccessToken Revoke Access Token
+		Revoke an Access Token. The access token is instantly revoked, any following calls with the token will be unauthorized. The token metadata is still stored until the expiration time.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The ID of the Service Account.
+		@param accessTokenId The ID of the Access Token.
+		@return ApiDeleteAccessTokenRequest
+	*/
+	DeleteAccessToken(ctx context.Context, projectId string, serviceAccountEmail string, accessTokenId string) ApiDeleteAccessTokenRequest
+	/*
+		DeleteAccessTokenExecute executes the request
+
+	*/
+	DeleteAccessTokenExecute(ctx context.Context, projectId string, serviceAccountEmail string, accessTokenId string) error
+	/*
+		DeleteServiceAccount Delete Service Account
+		Delete a Service Account.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the Service Account.
+		@return ApiDeleteServiceAccountRequest
+	*/
+	DeleteServiceAccount(ctx context.Context, projectId string, serviceAccountEmail string) ApiDeleteServiceAccountRequest
+	/*
+		DeleteServiceAccountExecute executes the request
+
+	*/
+	DeleteServiceAccountExecute(ctx context.Context, projectId string, serviceAccountEmail string) error
+	/*
+		DeleteServiceAccountKey Delete a service account key
+		Delete a key
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param keyId ID of the key.
+		@return ApiDeleteServiceAccountKeyRequest
+	*/
+	DeleteServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiDeleteServiceAccountKeyRequest
+	/*
+		DeleteServiceAccountKeyExecute executes the request
+
+	*/
+	DeleteServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) error
+	/*
+		GetJWKS Get JSON Web Key set of the service account
+		Get JSON Web Key set of the service account
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceAccountEmail The email of the service account.
+		@return ApiGetJWKSRequest
+	*/
+	GetJWKS(ctx context.Context, serviceAccountEmail string) ApiGetJWKSRequest
+	/*
+		GetJWKSExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param serviceAccountEmail The email of the service account.
+		@return JWKS
+
+	*/
+	GetJWKSExecute(ctx context.Context, serviceAccountEmail string) (*JWKS, error)
+	/*
+		GetServiceAccountKey Get service account key details
+		Get key details
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param keyId ID of the key.
+		@return ApiGetServiceAccountKeyRequest
+	*/
+	GetServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiGetServiceAccountKeyRequest
+	/*
+		GetServiceAccountKeyExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param keyId ID of the key.
+		@return GetServiceAccountKeyResponse
+
+	*/
+	GetServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) (*GetServiceAccountKeyResponse, error)
+	/*
+		ListAccessTokens List Access Tokens of Service Account
+		Get all Access Tokens of a Service Account. The token itself is not returned, only the metadata about the access tokens. Access tokens are listed until they are expired. Revoked tokens are returned until expired.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the Service Account.
+		@return ApiListAccessTokensRequest
+	*/
+	ListAccessTokens(ctx context.Context, projectId string, serviceAccountEmail string) ApiListAccessTokensRequest
+	/*
+		ListAccessTokensExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the Service Account.
+		@return ListAccessTokensResponse
+
+	*/
+	ListAccessTokensExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*ListAccessTokensResponse, error)
+	/*
+		ListServiceAccountKeys List all keys that belong to the service account
+		List all keys that belong to the service account
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return ApiListServiceAccountKeysRequest
+	*/
+	ListServiceAccountKeys(ctx context.Context, projectId string, serviceAccountEmail string) ApiListServiceAccountKeysRequest
+	/*
+		ListServiceAccountKeysExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return ListServiceAccountKeysResponse
+
+	*/
+	ListServiceAccountKeysExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*ListServiceAccountKeysResponse, error)
+	/*
+		ListServiceAccounts List all Service Accounts
+		List all Service Account resources in a project. Returns the service account resources, not the service accounts that has access to the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@return ApiListServiceAccountsRequest
+	*/
+	ListServiceAccounts(ctx context.Context, projectId string) ApiListServiceAccountsRequest
+	/*
+		ListServiceAccountsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@return ListServiceAccountsResponse
+
+	*/
+	ListServiceAccountsExecute(ctx context.Context, projectId string) (*ListServiceAccountsResponse, error)
+	/*
+		PartialUpdateServiceAccountKey Update Service Account key
+		Update a key. You can activate or deactivate a key, or set/delete validUntil. The key cannot be updated using the same service account (authenticated using the short lived token of the key).
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param keyId ID of the key.
+		@return ApiPartialUpdateServiceAccountKeyRequest
+	*/
+	PartialUpdateServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiPartialUpdateServiceAccountKeyRequest
+	/*
+		PartialUpdateServiceAccountKeyExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param keyId ID of the key.
+		@return PartialUpdateServiceAccountKeyResponse
+
+	*/
+	PartialUpdateServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) (*PartialUpdateServiceAccountKeyResponse, error)
+}
+
+type ApiCreateAccessTokenRequest interface {
+	// Token request. Optional. If not specified the access token will be valid for 90days.
+	CreateAccessTokenPayload(createAccessTokenPayload CreateAccessTokenPayload) ApiCreateAccessTokenRequest
+	Execute() (*AccessToken, error)
+}
+
+type ApiCreateServiceAccountRequest interface {
+	// Service account request
+	CreateServiceAccountPayload(createServiceAccountPayload CreateServiceAccountPayload) ApiCreateServiceAccountRequest
+	Execute() (*ServiceAccount, error)
+}
+
+type ApiCreateServiceAccountKeyRequest interface {
+	// Service account request
+	CreateServiceAccountKeyPayload(createServiceAccountKeyPayload CreateServiceAccountKeyPayload) ApiCreateServiceAccountKeyRequest
+	Execute() (*CreateServiceAccountKeyResponse, error)
+}
+
+type ApiCreateShortLivedAccessTokenRequest interface {
+	// Always use URL encoded values. E.g. urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
+	GrantType(grantType string) ApiCreateShortLivedAccessTokenRequest
+	// The self signed JWT. Must be given when grant_type is urn:ietf:params:oauth:grant-type:jwt-bearer
+	Assertion(assertion string) ApiCreateShortLivedAccessTokenRequest
+	// Refresh token provided by a previous call with a self signed token. Must be given when grant_type is refresh_token
+	RefreshToken(refreshToken string) ApiCreateShortLivedAccessTokenRequest
+	Execute() (*CreateShortLivedAccessTokenResponse, error)
+}
+
+type ApiDeleteAccessTokenRequest interface {
+	Execute() error
+}
+
+type ApiDeleteServiceAccountRequest interface {
+	Execute() error
+}
+
+type ApiDeleteServiceAccountKeyRequest interface {
+	Execute() error
+}
+
+type ApiGetJWKSRequest interface {
+	Execute() (*JWKS, error)
+}
+
+type ApiGetServiceAccountKeyRequest interface {
+	// Requested format for the public key
+	Format(format string) ApiGetServiceAccountKeyRequest
+	Execute() (*GetServiceAccountKeyResponse, error)
+}
+
+type ApiListAccessTokensRequest interface {
+	Execute() (*ListAccessTokensResponse, error)
+}
+
+type ApiListServiceAccountKeysRequest interface {
+	Execute() (*ListServiceAccountKeysResponse, error)
+}
+
+type ApiListServiceAccountsRequest interface {
+	Execute() (*ListServiceAccountsResponse, error)
+}
+
+type ApiPartialUpdateServiceAccountKeyRequest interface {
+	// Service account request
+	PartialUpdateServiceAccountKeyPayload(partialUpdateServiceAccountKeyPayload PartialUpdateServiceAccountKeyPayload) ApiPartialUpdateServiceAccountKeyRequest
+	Execute() (*PartialUpdateServiceAccountKeyResponse, error)
+}
+
 // DefaultApiService DefaultApi service
 type DefaultApiService service
 
-type ApiCreateAccessTokenRequest struct {
+type CreateAccessTokenRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
 	projectId                string
@@ -36,12 +349,12 @@ type ApiCreateAccessTokenRequest struct {
 
 // Token request. Optional. If not specified the access token will be valid for 90days.
 
-func (r ApiCreateAccessTokenRequest) CreateAccessTokenPayload(createAccessTokenPayload CreateAccessTokenPayload) ApiCreateAccessTokenRequest {
+func (r CreateAccessTokenRequest) CreateAccessTokenPayload(createAccessTokenPayload CreateAccessTokenPayload) ApiCreateAccessTokenRequest {
 	r.createAccessTokenPayload = &createAccessTokenPayload
 	return r
 }
 
-func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
+func (r CreateAccessTokenRequest) Execute() (*AccessToken, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -49,7 +362,11 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 		localVarReturnValue *AccessToken
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAccessToken")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAccessToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -81,7 +398,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 	}
 	// body params
 	localVarPostBody = r.createAccessTokenPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -91,7 +408,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -115,7 +432,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -126,7 +443,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -137,7 +454,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -148,7 +465,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -159,7 +476,7 @@ func (r ApiCreateAccessTokenRequest) Execute() (*AccessToken, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -183,7 +500,7 @@ Create an Access Token for a Service Account. The service token can be then used
 	@return ApiCreateAccessTokenRequest
 */
 func (a *APIClient) CreateAccessToken(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateAccessTokenRequest {
-	return ApiCreateAccessTokenRequest{
+	return CreateAccessTokenRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -192,7 +509,7 @@ func (a *APIClient) CreateAccessToken(ctx context.Context, projectId string, ser
 }
 
 func (a *APIClient) CreateAccessTokenExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*AccessToken, error) {
-	r := ApiCreateAccessTokenRequest{
+	r := CreateAccessTokenRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -201,7 +518,7 @@ func (a *APIClient) CreateAccessTokenExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiCreateServiceAccountRequest struct {
+type CreateServiceAccountRequest struct {
 	ctx                         context.Context
 	apiService                  *DefaultApiService
 	projectId                   string
@@ -210,12 +527,12 @@ type ApiCreateServiceAccountRequest struct {
 
 // Service account request
 
-func (r ApiCreateServiceAccountRequest) CreateServiceAccountPayload(createServiceAccountPayload CreateServiceAccountPayload) ApiCreateServiceAccountRequest {
+func (r CreateServiceAccountRequest) CreateServiceAccountPayload(createServiceAccountPayload CreateServiceAccountPayload) ApiCreateServiceAccountRequest {
 	r.createServiceAccountPayload = &createServiceAccountPayload
 	return r
 }
 
-func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
+func (r CreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -223,7 +540,11 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 		localVarReturnValue *ServiceAccount
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccount")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccount")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -254,7 +575,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 	}
 	// body params
 	localVarPostBody = r.createServiceAccountPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -264,7 +585,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -288,7 +609,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -299,7 +620,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -310,7 +631,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -321,7 +642,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -332,7 +653,7 @@ func (r ApiCreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -355,7 +676,7 @@ Create a new Service Account in a project. The service account only resides in t
 	@return ApiCreateServiceAccountRequest
 */
 func (a *APIClient) CreateServiceAccount(ctx context.Context, projectId string) ApiCreateServiceAccountRequest {
-	return ApiCreateServiceAccountRequest{
+	return CreateServiceAccountRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -363,7 +684,7 @@ func (a *APIClient) CreateServiceAccount(ctx context.Context, projectId string) 
 }
 
 func (a *APIClient) CreateServiceAccountExecute(ctx context.Context, projectId string) (*ServiceAccount, error) {
-	r := ApiCreateServiceAccountRequest{
+	r := CreateServiceAccountRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -371,7 +692,7 @@ func (a *APIClient) CreateServiceAccountExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiCreateServiceAccountKeyRequest struct {
+type CreateServiceAccountKeyRequest struct {
 	ctx                            context.Context
 	apiService                     *DefaultApiService
 	projectId                      string
@@ -381,12 +702,12 @@ type ApiCreateServiceAccountKeyRequest struct {
 
 // Service account request
 
-func (r ApiCreateServiceAccountKeyRequest) CreateServiceAccountKeyPayload(createServiceAccountKeyPayload CreateServiceAccountKeyPayload) ApiCreateServiceAccountKeyRequest {
+func (r CreateServiceAccountKeyRequest) CreateServiceAccountKeyPayload(createServiceAccountKeyPayload CreateServiceAccountKeyPayload) ApiCreateServiceAccountKeyRequest {
 	r.createServiceAccountKeyPayload = &createServiceAccountKeyPayload
 	return r
 }
 
-func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyResponse, error) {
+func (r CreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -394,7 +715,11 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 		localVarReturnValue *CreateServiceAccountKeyResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccountKey")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccountKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -426,7 +751,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 	}
 	// body params
 	localVarPostBody = r.createServiceAccountKeyPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -436,7 +761,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -460,7 +785,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -471,7 +796,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -482,7 +807,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -493,7 +818,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -504,7 +829,7 @@ func (r ApiCreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRe
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -528,7 +853,7 @@ Create a new key to the service account. You can generate an RSA keypair, and po
 	@return ApiCreateServiceAccountKeyRequest
 */
 func (a *APIClient) CreateServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateServiceAccountKeyRequest {
-	return ApiCreateServiceAccountKeyRequest{
+	return CreateServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -537,7 +862,7 @@ func (a *APIClient) CreateServiceAccountKey(ctx context.Context, projectId strin
 }
 
 func (a *APIClient) CreateServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*CreateServiceAccountKeyResponse, error) {
-	r := ApiCreateServiceAccountKeyRequest{
+	r := CreateServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -546,7 +871,7 @@ func (a *APIClient) CreateServiceAccountKeyExecute(ctx context.Context, projectI
 	return r.Execute()
 }
 
-type ApiCreateShortLivedAccessTokenRequest struct {
+type CreateShortLivedAccessTokenRequest struct {
 	ctx          context.Context
 	apiService   *DefaultApiService
 	grantType    *string
@@ -556,26 +881,26 @@ type ApiCreateShortLivedAccessTokenRequest struct {
 
 // Always use URL encoded values. E.g. urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 
-func (r ApiCreateShortLivedAccessTokenRequest) GrantType(grantType string) ApiCreateShortLivedAccessTokenRequest {
+func (r CreateShortLivedAccessTokenRequest) GrantType(grantType string) ApiCreateShortLivedAccessTokenRequest {
 	r.grantType = &grantType
 	return r
 }
 
 // The self signed JWT. Must be given when grant_type is urn:ietf:params:oauth:grant-type:jwt-bearer
 
-func (r ApiCreateShortLivedAccessTokenRequest) Assertion(assertion string) ApiCreateShortLivedAccessTokenRequest {
+func (r CreateShortLivedAccessTokenRequest) Assertion(assertion string) ApiCreateShortLivedAccessTokenRequest {
 	r.assertion = &assertion
 	return r
 }
 
 // Refresh token provided by a previous call with a self signed token. Must be given when grant_type is refresh_token
 
-func (r ApiCreateShortLivedAccessTokenRequest) RefreshToken(refreshToken string) ApiCreateShortLivedAccessTokenRequest {
+func (r CreateShortLivedAccessTokenRequest) RefreshToken(refreshToken string) ApiCreateShortLivedAccessTokenRequest {
 	r.refreshToken = &refreshToken
 	return r
 }
 
-func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAccessTokenResponse, error) {
+func (r CreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAccessTokenResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -583,7 +908,11 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 		localVarReturnValue *CreateShortLivedAccessTokenResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateShortLivedAccessToken")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateShortLivedAccessToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -621,7 +950,7 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 	if r.refreshToken != nil {
 		parameterAddToHeaderOrQuery(localVarFormParams, "refresh_token", r.refreshToken, "")
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -631,7 +960,7 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -656,7 +985,7 @@ func (r ApiCreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAcces
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -679,21 +1008,21 @@ You can request a token with a self signed token, or with a refresh token.
 	@return ApiCreateShortLivedAccessTokenRequest
 */
 func (a *APIClient) CreateShortLivedAccessToken(ctx context.Context) ApiCreateShortLivedAccessTokenRequest {
-	return ApiCreateShortLivedAccessTokenRequest{
+	return CreateShortLivedAccessTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 }
 
 func (a *APIClient) CreateShortLivedAccessTokenExecute(ctx context.Context) (*CreateShortLivedAccessTokenResponse, error) {
-	r := ApiCreateShortLivedAccessTokenRequest{
+	r := CreateShortLivedAccessTokenRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 	}
 	return r.Execute()
 }
 
-type ApiDeleteAccessTokenRequest struct {
+type DeleteAccessTokenRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
@@ -701,14 +1030,18 @@ type ApiDeleteAccessTokenRequest struct {
 	accessTokenId       string
 }
 
-func (r ApiDeleteAccessTokenRequest) Execute() error {
+func (r DeleteAccessTokenRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAccessToken")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAccessToken")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -739,7 +1072,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -749,7 +1082,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -773,7 +1106,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -784,7 +1117,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -795,7 +1128,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -806,7 +1139,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -817,7 +1150,7 @@ func (r ApiDeleteAccessTokenRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -843,7 +1176,7 @@ Revoke an Access Token. The access token is instantly revoked, any following cal
 	@return ApiDeleteAccessTokenRequest
 */
 func (a *APIClient) DeleteAccessToken(ctx context.Context, projectId string, serviceAccountEmail string, accessTokenId string) ApiDeleteAccessTokenRequest {
-	return ApiDeleteAccessTokenRequest{
+	return DeleteAccessTokenRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -853,7 +1186,7 @@ func (a *APIClient) DeleteAccessToken(ctx context.Context, projectId string, ser
 }
 
 func (a *APIClient) DeleteAccessTokenExecute(ctx context.Context, projectId string, serviceAccountEmail string, accessTokenId string) error {
-	r := ApiDeleteAccessTokenRequest{
+	r := DeleteAccessTokenRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -863,21 +1196,25 @@ func (a *APIClient) DeleteAccessTokenExecute(ctx context.Context, projectId stri
 	return r.Execute()
 }
 
-type ApiDeleteServiceAccountRequest struct {
+type DeleteServiceAccountRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
 	serviceAccountEmail string
 }
 
-func (r ApiDeleteServiceAccountRequest) Execute() error {
+func (r DeleteServiceAccountRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccount")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccount")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -907,7 +1244,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -917,7 +1254,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -941,7 +1278,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -952,7 +1289,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -963,7 +1300,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -974,7 +1311,7 @@ func (r ApiDeleteServiceAccountRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -999,7 +1336,7 @@ Delete a Service Account.
 	@return ApiDeleteServiceAccountRequest
 */
 func (a *APIClient) DeleteServiceAccount(ctx context.Context, projectId string, serviceAccountEmail string) ApiDeleteServiceAccountRequest {
-	return ApiDeleteServiceAccountRequest{
+	return DeleteServiceAccountRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1008,7 +1345,7 @@ func (a *APIClient) DeleteServiceAccount(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) DeleteServiceAccountExecute(ctx context.Context, projectId string, serviceAccountEmail string) error {
-	r := ApiDeleteServiceAccountRequest{
+	r := DeleteServiceAccountRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1017,7 +1354,7 @@ func (a *APIClient) DeleteServiceAccountExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiDeleteServiceAccountKeyRequest struct {
+type DeleteServiceAccountKeyRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
@@ -1025,14 +1362,18 @@ type ApiDeleteServiceAccountKeyRequest struct {
 	keyId               string
 }
 
-func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
+func (r DeleteServiceAccountKeyRequest) Execute() error {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccountKey")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccountKey")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1063,7 +1404,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return err
 	}
@@ -1073,7 +1414,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1097,7 +1438,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -1108,7 +1449,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -1119,7 +1460,7 @@ func (r ApiDeleteServiceAccountKeyRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return newErr
@@ -1145,7 +1486,7 @@ Delete a key
 	@return ApiDeleteServiceAccountKeyRequest
 */
 func (a *APIClient) DeleteServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiDeleteServiceAccountKeyRequest {
-	return ApiDeleteServiceAccountKeyRequest{
+	return DeleteServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1155,7 +1496,7 @@ func (a *APIClient) DeleteServiceAccountKey(ctx context.Context, projectId strin
 }
 
 func (a *APIClient) DeleteServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) error {
-	r := ApiDeleteServiceAccountKeyRequest{
+	r := DeleteServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1165,13 +1506,13 @@ func (a *APIClient) DeleteServiceAccountKeyExecute(ctx context.Context, projectI
 	return r.Execute()
 }
 
-type ApiGetJWKSRequest struct {
+type GetJWKSRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	serviceAccountEmail string
 }
 
-func (r ApiGetJWKSRequest) Execute() (*JWKS, error) {
+func (r GetJWKSRequest) Execute() (*JWKS, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1179,7 +1520,11 @@ func (r ApiGetJWKSRequest) Execute() (*JWKS, error) {
 		localVarReturnValue *JWKS
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetJWKS")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetJWKS")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1208,7 +1553,7 @@ func (r ApiGetJWKSRequest) Execute() (*JWKS, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1218,7 +1563,7 @@ func (r ApiGetJWKSRequest) Execute() (*JWKS, error) {
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1243,7 +1588,7 @@ func (r ApiGetJWKSRequest) Execute() (*JWKS, error) {
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1266,7 +1611,7 @@ Get JSON Web Key set of the service account
 	@return ApiGetJWKSRequest
 */
 func (a *APIClient) GetJWKS(ctx context.Context, serviceAccountEmail string) ApiGetJWKSRequest {
-	return ApiGetJWKSRequest{
+	return GetJWKSRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		serviceAccountEmail: serviceAccountEmail,
@@ -1274,7 +1619,7 @@ func (a *APIClient) GetJWKS(ctx context.Context, serviceAccountEmail string) Api
 }
 
 func (a *APIClient) GetJWKSExecute(ctx context.Context, serviceAccountEmail string) (*JWKS, error) {
-	r := ApiGetJWKSRequest{
+	r := GetJWKSRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		serviceAccountEmail: serviceAccountEmail,
@@ -1282,7 +1627,7 @@ func (a *APIClient) GetJWKSExecute(ctx context.Context, serviceAccountEmail stri
 	return r.Execute()
 }
 
-type ApiGetServiceAccountKeyRequest struct {
+type GetServiceAccountKeyRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
@@ -1293,12 +1638,12 @@ type ApiGetServiceAccountKeyRequest struct {
 
 // Requested format for the public key
 
-func (r ApiGetServiceAccountKeyRequest) Format(format string) ApiGetServiceAccountKeyRequest {
+func (r GetServiceAccountKeyRequest) Format(format string) ApiGetServiceAccountKeyRequest {
 	r.format = &format
 	return r
 }
 
-func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse, error) {
+func (r GetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1306,7 +1651,11 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 		localVarReturnValue *GetServiceAccountKeyResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountKey")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1340,7 +1689,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1350,7 +1699,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1374,7 +1723,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1385,7 +1734,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1396,7 +1745,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1407,7 +1756,7 @@ func (r ApiGetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1432,7 +1781,7 @@ Get key details
 	@return ApiGetServiceAccountKeyRequest
 */
 func (a *APIClient) GetServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiGetServiceAccountKeyRequest {
-	return ApiGetServiceAccountKeyRequest{
+	return GetServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1442,7 +1791,7 @@ func (a *APIClient) GetServiceAccountKey(ctx context.Context, projectId string, 
 }
 
 func (a *APIClient) GetServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) (*GetServiceAccountKeyResponse, error) {
-	r := ApiGetServiceAccountKeyRequest{
+	r := GetServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1452,14 +1801,14 @@ func (a *APIClient) GetServiceAccountKeyExecute(ctx context.Context, projectId s
 	return r.Execute()
 }
 
-type ApiListAccessTokensRequest struct {
+type ListAccessTokensRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
 	serviceAccountEmail string
 }
 
-func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error) {
+func (r ListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1467,7 +1816,11 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 		localVarReturnValue *ListAccessTokensResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAccessTokens")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAccessTokens")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1497,7 +1850,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1507,7 +1860,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1531,7 +1884,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1542,7 +1895,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1553,7 +1906,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1564,7 +1917,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1575,7 +1928,7 @@ func (r ApiListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error)
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1599,7 +1952,7 @@ Get all Access Tokens of a Service Account. The token itself is not returned, on
 	@return ApiListAccessTokensRequest
 */
 func (a *APIClient) ListAccessTokens(ctx context.Context, projectId string, serviceAccountEmail string) ApiListAccessTokensRequest {
-	return ApiListAccessTokensRequest{
+	return ListAccessTokensRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1608,7 +1961,7 @@ func (a *APIClient) ListAccessTokens(ctx context.Context, projectId string, serv
 }
 
 func (a *APIClient) ListAccessTokensExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*ListAccessTokensResponse, error) {
-	r := ApiListAccessTokensRequest{
+	r := ListAccessTokensRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1617,14 +1970,14 @@ func (a *APIClient) ListAccessTokensExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
-type ApiListServiceAccountKeysRequest struct {
+type ListServiceAccountKeysRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
 	projectId           string
 	serviceAccountEmail string
 }
 
-func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResponse, error) {
+func (r ListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1632,7 +1985,11 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 		localVarReturnValue *ListServiceAccountKeysResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccountKeys")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccountKeys")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1662,7 +2019,7 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1672,7 +2029,7 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1696,7 +2053,7 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1707,7 +2064,7 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1718,7 +2075,7 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1729,7 +2086,7 @@ func (r ApiListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysResp
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1753,7 +2110,7 @@ List all keys that belong to the service account
 	@return ApiListServiceAccountKeysRequest
 */
 func (a *APIClient) ListServiceAccountKeys(ctx context.Context, projectId string, serviceAccountEmail string) ApiListServiceAccountKeysRequest {
-	return ApiListServiceAccountKeysRequest{
+	return ListServiceAccountKeysRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1762,7 +2119,7 @@ func (a *APIClient) ListServiceAccountKeys(ctx context.Context, projectId string
 }
 
 func (a *APIClient) ListServiceAccountKeysExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*ListServiceAccountKeysResponse, error) {
-	r := ApiListServiceAccountKeysRequest{
+	r := ListServiceAccountKeysRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1771,13 +2128,13 @@ func (a *APIClient) ListServiceAccountKeysExecute(ctx context.Context, projectId
 	return r.Execute()
 }
 
-type ApiListServiceAccountsRequest struct {
+type ListServiceAccountsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
 	projectId  string
 }
 
-func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, error) {
+func (r ListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1785,7 +2142,11 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 		localVarReturnValue *ListServiceAccountsResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccounts")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccounts")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1814,7 +2175,7 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1824,7 +2185,7 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -1848,7 +2209,7 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1859,7 +2220,7 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1870,7 +2231,7 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -1881,7 +2242,7 @@ func (r ApiListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, 
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -1904,7 +2265,7 @@ List all Service Account resources in a project. Returns the service account res
 	@return ApiListServiceAccountsRequest
 */
 func (a *APIClient) ListServiceAccounts(ctx context.Context, projectId string) ApiListServiceAccountsRequest {
-	return ApiListServiceAccountsRequest{
+	return ListServiceAccountsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1912,7 +2273,7 @@ func (a *APIClient) ListServiceAccounts(ctx context.Context, projectId string) A
 }
 
 func (a *APIClient) ListServiceAccountsExecute(ctx context.Context, projectId string) (*ListServiceAccountsResponse, error) {
-	r := ApiListServiceAccountsRequest{
+	r := ListServiceAccountsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1920,7 +2281,7 @@ func (a *APIClient) ListServiceAccountsExecute(ctx context.Context, projectId st
 	return r.Execute()
 }
 
-type ApiPartialUpdateServiceAccountKeyRequest struct {
+type PartialUpdateServiceAccountKeyRequest struct {
 	ctx                                   context.Context
 	apiService                            *DefaultApiService
 	projectId                             string
@@ -1931,12 +2292,12 @@ type ApiPartialUpdateServiceAccountKeyRequest struct {
 
 // Service account request
 
-func (r ApiPartialUpdateServiceAccountKeyRequest) PartialUpdateServiceAccountKeyPayload(partialUpdateServiceAccountKeyPayload PartialUpdateServiceAccountKeyPayload) ApiPartialUpdateServiceAccountKeyRequest {
+func (r PartialUpdateServiceAccountKeyRequest) PartialUpdateServiceAccountKeyPayload(partialUpdateServiceAccountKeyPayload PartialUpdateServiceAccountKeyPayload) ApiPartialUpdateServiceAccountKeyRequest {
 	r.partialUpdateServiceAccountKeyPayload = &partialUpdateServiceAccountKeyPayload
 	return r
 }
 
-func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServiceAccountKeyResponse, error) {
+func (r PartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServiceAccountKeyResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
@@ -1944,7 +2305,11 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 		localVarReturnValue *PartialUpdateServiceAccountKeyResponse
 	)
 	a := r.apiService
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateServiceAccountKey")
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateServiceAccountKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1977,7 +2342,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 	}
 	// body params
 	localVarPostBody = r.partialUpdateServiceAccountKeyPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
 	}
@@ -1987,7 +2352,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 		*contextHTTPRequest = req
 	}
 
-	localVarHTTPResponse, err := a.client.callAPI(req)
+	localVarHTTPResponse, err := client.callAPI(req)
 	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
 	if ok {
 		*contextHTTPResponse = localVarHTTPResponse
@@ -2011,7 +2376,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2022,7 +2387,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2033,7 +2398,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2044,7 +2409,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
 				return localVarReturnValue, newErr
@@ -2055,7 +2420,7 @@ func (r ApiPartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServi
 		return localVarReturnValue, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := &oapierror.GenericOpenAPIError{
 			StatusCode:   localVarHTTPResponse.StatusCode,
@@ -2080,7 +2445,7 @@ Update a key. You can activate or deactivate a key, or set/delete validUntil. Th
 	@return ApiPartialUpdateServiceAccountKeyRequest
 */
 func (a *APIClient) PartialUpdateServiceAccountKey(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) ApiPartialUpdateServiceAccountKeyRequest {
-	return ApiPartialUpdateServiceAccountKeyRequest{
+	return PartialUpdateServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -2090,7 +2455,7 @@ func (a *APIClient) PartialUpdateServiceAccountKey(ctx context.Context, projectI
 }
 
 func (a *APIClient) PartialUpdateServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) (*PartialUpdateServiceAccountKeyResponse, error) {
-	r := ApiPartialUpdateServiceAccountKeyRequest{
+	r := PartialUpdateServiceAccountKeyRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,

@@ -12,6 +12,7 @@ package serviceenablement
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CheckService type satisfies the MappedNullable interface at compile time
@@ -42,10 +43,108 @@ type CheckServiceGetResourceRetType = string
 	types and functions for resourceType
 */
 
-// isEnumRef
-type CheckServiceGetResourceTypeAttributeType = *string
-type CheckServiceGetResourceTypeArgType = string
-type CheckServiceGetResourceTypeRetType = string
+// isEnum
+
+// CheckServiceResourceType the model 'CheckService'
+type CheckServiceResourceType string
+
+// List of ResourceType
+const (
+	CHECKSERVICERESOURCE_TYPE_PROJECT CheckServiceResourceType = "project"
+)
+
+// All allowed values of CheckService enum
+var AllowedCheckServiceResourceTypeEnumValues = []CheckServiceResourceType{
+	"project",
+}
+
+func (v *CheckServiceResourceType) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CheckServiceResourceType(value)
+	for _, existing := range AllowedCheckServiceResourceTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CheckService", value)
+}
+
+// NewCheckServiceResourceTypeFromValue returns a pointer to a valid CheckServiceResourceType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCheckServiceResourceTypeFromValue(v string) (*CheckServiceResourceType, error) {
+	ev := CheckServiceResourceType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CheckServiceResourceType: valid values are %v", v, AllowedCheckServiceResourceTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CheckServiceResourceType) IsValid() bool {
+	for _, existing := range AllowedCheckServiceResourceTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ResourceTypeResourceType value
+func (v CheckServiceResourceType) Ptr() *CheckServiceResourceType {
+	return &v
+}
+
+type NullableCheckServiceResourceType struct {
+	value *CheckServiceResourceType
+	isSet bool
+}
+
+func (v NullableCheckServiceResourceType) Get() *CheckServiceResourceType {
+	return v.value
+}
+
+func (v *NullableCheckServiceResourceType) Set(val *CheckServiceResourceType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCheckServiceResourceType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCheckServiceResourceType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCheckServiceResourceType(val *CheckServiceResourceType) *NullableCheckServiceResourceType {
+	return &NullableCheckServiceResourceType{value: val, isSet: true}
+}
+
+func (v NullableCheckServiceResourceType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCheckServiceResourceType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CheckServiceGetResourceTypeAttributeType = *CheckServiceResourceType
+type CheckServiceGetResourceTypeArgType = CheckServiceResourceType
+type CheckServiceGetResourceTypeRetType = CheckServiceResourceType
 
 func getCheckServiceGetResourceTypeAttributeTypeOk(arg CheckServiceGetResourceTypeAttributeType) (ret CheckServiceGetResourceTypeRetType, ok bool) {
 	if arg == nil {
@@ -102,7 +201,7 @@ func NewCheckService() *CheckService {
 // but it doesn't guarantee that properties required by API are set
 func NewCheckServiceWithDefaults() *CheckService {
 	this := CheckService{}
-	var resourceType string = "project"
+	var resourceType CheckServiceResourceType = "project"
 	this.ResourceType = &resourceType
 	return &this
 }

@@ -12,6 +12,7 @@ package observability
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateScrapeConfigPayloadMetricsRelabelConfigsInner type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,120 @@ var _ MappedNullable = &CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
 	types and functions for action
 */
 
-// isEnumRef
-type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionAttributeType = *string
-type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionArgType = string
-type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionRetType = string
+// isEnum
+
+// CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
+type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction string
+
+// List of Action
+const (
+	CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_REPLACE   CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "replace"
+	CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_KEEP      CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "keep"
+	CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_DROP      CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "drop"
+	CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_HASHMOD   CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "hashmod"
+	CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_LABELMAP  CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "labelmap"
+	CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_LABELDROP CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "labeldrop"
+	CREATESCRAPECONFIGPAYLOADMETRICSRELABELCONFIGSINNERACTION_LABELKEEP CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "labelkeep"
+)
+
+// All allowed values of CreateScrapeConfigPayloadMetricsRelabelConfigsInner enum
+var AllowedCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionEnumValues = []CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction{
+	"replace",
+	"keep",
+	"drop",
+	"hashmod",
+	"labelmap",
+	"labeldrop",
+	"labelkeep",
+}
+
+func (v *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction(value)
+	for _, existing := range AllowedCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateScrapeConfigPayloadMetricsRelabelConfigsInner", value)
+}
+
+// NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue returns a pointer to a valid CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue(v string) (*CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction, error) {
+	ev := CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction: valid values are %v", v, AllowedCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) IsValid() bool {
+	for _, existing := range AllowedCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ActionAction value
+func (v CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) Ptr() *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction {
+	return &v
+}
+
+type NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction struct {
+	value *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
+	isSet bool
+}
+
+func (v NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) Get() *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction {
+	return v.value
+}
+
+func (v *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) Set(val *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction(val *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction {
+	return &NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction{value: val, isSet: true}
+}
+
+func (v NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionAttributeType = *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
+type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionArgType = CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
+type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionRetType = CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
 
 func getCreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionAttributeTypeOk(arg CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionAttributeType) (ret CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetActionRetType, ok bool) {
 	if arg == nil {
@@ -193,7 +304,7 @@ func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInner() *CreateScrapeConfi
 // but it doesn't guarantee that properties required by API are set
 func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerWithDefaults() *CreateScrapeConfigPayloadMetricsRelabelConfigsInner {
 	this := CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
-	var action string = "replace"
+	var action CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction = "replace"
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex

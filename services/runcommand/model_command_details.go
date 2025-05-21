@@ -12,6 +12,7 @@ package runcommand
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CommandDetails type satisfies the MappedNullable interface at compile time
@@ -187,10 +188,114 @@ type CommandDetailsGetStartedAtRetType = string
 	types and functions for status
 */
 
-// isEnumRef
-type CommandDetailsGetStatusAttributeType = *string
-type CommandDetailsGetStatusArgType = string
-type CommandDetailsGetStatusRetType = string
+// isEnum
+
+// CommandDetailsStatus the model 'CommandDetails'
+type CommandDetailsStatus string
+
+// List of Status
+const (
+	COMMANDDETAILSSTATUS_PENDING   CommandDetailsStatus = "pending"
+	COMMANDDETAILSSTATUS_RUNNING   CommandDetailsStatus = "running"
+	COMMANDDETAILSSTATUS_COMPLETED CommandDetailsStatus = "completed"
+	COMMANDDETAILSSTATUS_FAILED    CommandDetailsStatus = "failed"
+)
+
+// All allowed values of CommandDetails enum
+var AllowedCommandDetailsStatusEnumValues = []CommandDetailsStatus{
+	"pending",
+	"running",
+	"completed",
+	"failed",
+}
+
+func (v *CommandDetailsStatus) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CommandDetailsStatus(value)
+	for _, existing := range AllowedCommandDetailsStatusEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CommandDetails", value)
+}
+
+// NewCommandDetailsStatusFromValue returns a pointer to a valid CommandDetailsStatus
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCommandDetailsStatusFromValue(v string) (*CommandDetailsStatus, error) {
+	ev := CommandDetailsStatus(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CommandDetailsStatus: valid values are %v", v, AllowedCommandDetailsStatusEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CommandDetailsStatus) IsValid() bool {
+	for _, existing := range AllowedCommandDetailsStatusEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StatusStatus value
+func (v CommandDetailsStatus) Ptr() *CommandDetailsStatus {
+	return &v
+}
+
+type NullableCommandDetailsStatus struct {
+	value *CommandDetailsStatus
+	isSet bool
+}
+
+func (v NullableCommandDetailsStatus) Get() *CommandDetailsStatus {
+	return v.value
+}
+
+func (v *NullableCommandDetailsStatus) Set(val *CommandDetailsStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCommandDetailsStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCommandDetailsStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCommandDetailsStatus(val *CommandDetailsStatus) *NullableCommandDetailsStatus {
+	return &NullableCommandDetailsStatus{value: val, isSet: true}
+}
+
+func (v NullableCommandDetailsStatus) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCommandDetailsStatus) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CommandDetailsGetStatusAttributeType = *CommandDetailsStatus
+type CommandDetailsGetStatusArgType = CommandDetailsStatus
+type CommandDetailsGetStatusRetType = CommandDetailsStatus
 
 func getCommandDetailsGetStatusAttributeTypeOk(arg CommandDetailsGetStatusAttributeType) (ret CommandDetailsGetStatusRetType, ok bool) {
 	if arg == nil {

@@ -65,11 +65,11 @@ func (m *mockApiClient) GetCustomDomainExecute(_ context.Context, projectId, dis
 func TestCreateDistributionWaitHandler(t *testing.T) {
 	projectId := "test-project-id"
 	distributionId := "test-distribution-id"
-	statusActive := DistributionStatusActive
-	statusUpdating := DistributionStatusUpdating
-	statusCreating := DistributionStatusCreating
-	statusError := DistributionStatusError
-	statusDeleting := DistributionStatusDeleting
+	statusActive := cdn.DISTRIBUTIONSTATUS_ACTIVE
+	statusUpdating := cdn.DISTRIBUTIONSTATUS_UPDATING
+	statusCreating := cdn.DISTRIBUTIONSTATUS_CREATING
+	statusError := cdn.DISTRIBUTIONSTATUS_ERROR
+	statusDeleting := cdn.DISTRIBUTIONSTATUS_DELETING
 
 	mockClientFixture := func(patches ...func(tc *mockApiClient)) *mockApiClient {
 		client := &mockApiClient{
@@ -180,11 +180,11 @@ func TestCreateDistributionWaitHandler(t *testing.T) {
 func TestDeleteDistributionWaitHandler(t *testing.T) {
 	projectId := "test-project-id"
 	distributionId := "test-distribution-id"
-	statusActive := DistributionStatusActive
-	statusUpdating := DistributionStatusUpdating
-	statusCreating := DistributionStatusCreating
-	statusError := DistributionStatusError
-	statusDeleting := DistributionStatusDeleting
+	statusActive := cdn.DISTRIBUTIONSTATUS_ACTIVE
+	statusUpdating := cdn.DISTRIBUTIONSTATUS_UPDATING
+	statusCreating := cdn.DISTRIBUTIONSTATUS_CREATING
+	statusError := cdn.DISTRIBUTIONSTATUS_ERROR
+	statusDeleting := cdn.DISTRIBUTIONSTATUS_DELETING
 
 	mockClientFixture := func(patches ...func(tc *mockApiClient)) *mockApiClient {
 		client := &mockApiClient{
@@ -310,11 +310,11 @@ func TestDeleteDistributionWaitHandler(t *testing.T) {
 func TestUpdateDistributionWaitHandler(t *testing.T) {
 	projectId := "test-project-id"
 	distributionId := "test-distribution-id"
-	statusActive := DistributionStatusActive
-	statusUpdating := DistributionStatusUpdating
-	statusCreating := DistributionStatusCreating
-	statusError := DistributionStatusError
-	statusDeleting := DistributionStatusDeleting
+	statusActive := cdn.DISTRIBUTIONSTATUS_ACTIVE
+	statusUpdating := cdn.DISTRIBUTIONSTATUS_UPDATING
+	statusCreating := cdn.DISTRIBUTIONSTATUS_CREATING
+	statusError := cdn.DISTRIBUTIONSTATUS_ERROR
+	statusDeleting := cdn.DISTRIBUTIONSTATUS_DELETING
 
 	mockClientFixture := func(patches ...func(tc *mockApiClient)) *mockApiClient {
 		client := &mockApiClient{

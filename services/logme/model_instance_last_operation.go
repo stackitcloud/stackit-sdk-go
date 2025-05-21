@@ -12,6 +12,7 @@ package logme
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InstanceLastOperation type satisfies the MappedNullable interface at compile time
@@ -42,10 +43,112 @@ type InstanceLastOperationGetDescriptionRetType = string
 	types and functions for state
 */
 
-// isEnumRef
-type InstanceLastOperationGetStateAttributeType = *string
-type InstanceLastOperationGetStateArgType = string
-type InstanceLastOperationGetStateRetType = string
+// isEnum
+
+// InstanceLastOperationState the model 'InstanceLastOperation'
+type InstanceLastOperationState string
+
+// List of State
+const (
+	INSTANCELASTOPERATIONSTATE_IN_PROGRESS InstanceLastOperationState = "in progress"
+	INSTANCELASTOPERATIONSTATE_SUCCEEDED   InstanceLastOperationState = "succeeded"
+	INSTANCELASTOPERATIONSTATE_FAILED      InstanceLastOperationState = "failed"
+)
+
+// All allowed values of InstanceLastOperation enum
+var AllowedInstanceLastOperationStateEnumValues = []InstanceLastOperationState{
+	"in progress",
+	"succeeded",
+	"failed",
+}
+
+func (v *InstanceLastOperationState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceLastOperationState(value)
+	for _, existing := range AllowedInstanceLastOperationStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceLastOperation", value)
+}
+
+// NewInstanceLastOperationStateFromValue returns a pointer to a valid InstanceLastOperationState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceLastOperationStateFromValue(v string) (*InstanceLastOperationState, error) {
+	ev := InstanceLastOperationState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceLastOperationState: valid values are %v", v, AllowedInstanceLastOperationStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceLastOperationState) IsValid() bool {
+	for _, existing := range AllowedInstanceLastOperationStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v InstanceLastOperationState) Ptr() *InstanceLastOperationState {
+	return &v
+}
+
+type NullableInstanceLastOperationState struct {
+	value *InstanceLastOperationState
+	isSet bool
+}
+
+func (v NullableInstanceLastOperationState) Get() *InstanceLastOperationState {
+	return v.value
+}
+
+func (v *NullableInstanceLastOperationState) Set(val *InstanceLastOperationState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceLastOperationState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceLastOperationState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceLastOperationState(val *InstanceLastOperationState) *NullableInstanceLastOperationState {
+	return &NullableInstanceLastOperationState{value: val, isSet: true}
+}
+
+func (v NullableInstanceLastOperationState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceLastOperationState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceLastOperationGetStateAttributeType = *InstanceLastOperationState
+type InstanceLastOperationGetStateArgType = InstanceLastOperationState
+type InstanceLastOperationGetStateRetType = InstanceLastOperationState
 
 func getInstanceLastOperationGetStateAttributeTypeOk(arg InstanceLastOperationGetStateAttributeType) (ret InstanceLastOperationGetStateRetType, ok bool) {
 	if arg == nil {
@@ -62,10 +165,112 @@ func setInstanceLastOperationGetStateAttributeType(arg *InstanceLastOperationGet
 	types and functions for type
 */
 
-// isEnumRef
-type InstanceLastOperationGetTypeAttributeType = *string
-type InstanceLastOperationGetTypeArgType = string
-type InstanceLastOperationGetTypeRetType = string
+// isEnum
+
+// InstanceLastOperationTypes the model 'InstanceLastOperation'
+type InstanceLastOperationTypes string
+
+// List of Type
+const (
+	INSTANCELASTOPERATIONTYPE_CREATE InstanceLastOperationTypes = "create"
+	INSTANCELASTOPERATIONTYPE_UPDATE InstanceLastOperationTypes = "update"
+	INSTANCELASTOPERATIONTYPE_DELETE InstanceLastOperationTypes = "delete"
+)
+
+// All allowed values of InstanceLastOperation enum
+var AllowedInstanceLastOperationTypesEnumValues = []InstanceLastOperationTypes{
+	"create",
+	"update",
+	"delete",
+}
+
+func (v *InstanceLastOperationTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := InstanceLastOperationTypes(value)
+	for _, existing := range AllowedInstanceLastOperationTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid InstanceLastOperation", value)
+}
+
+// NewInstanceLastOperationTypesFromValue returns a pointer to a valid InstanceLastOperationTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewInstanceLastOperationTypesFromValue(v string) (*InstanceLastOperationTypes, error) {
+	ev := InstanceLastOperationTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for InstanceLastOperationTypes: valid values are %v", v, AllowedInstanceLastOperationTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v InstanceLastOperationTypes) IsValid() bool {
+	for _, existing := range AllowedInstanceLastOperationTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v InstanceLastOperationTypes) Ptr() *InstanceLastOperationTypes {
+	return &v
+}
+
+type NullableInstanceLastOperationTypes struct {
+	value *InstanceLastOperationTypes
+	isSet bool
+}
+
+func (v NullableInstanceLastOperationTypes) Get() *InstanceLastOperationTypes {
+	return v.value
+}
+
+func (v *NullableInstanceLastOperationTypes) Set(val *InstanceLastOperationTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInstanceLastOperationTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInstanceLastOperationTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInstanceLastOperationTypes(val *InstanceLastOperationTypes) *NullableInstanceLastOperationTypes {
+	return &NullableInstanceLastOperationTypes{value: val, isSet: true}
+}
+
+func (v NullableInstanceLastOperationTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableInstanceLastOperationTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type InstanceLastOperationGetTypeAttributeType = *InstanceLastOperationTypes
+type InstanceLastOperationGetTypeArgType = InstanceLastOperationTypes
+type InstanceLastOperationGetTypeRetType = InstanceLastOperationTypes
 
 func getInstanceLastOperationGetTypeAttributeTypeOk(arg InstanceLastOperationGetTypeAttributeType) (ret InstanceLastOperationGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -94,11 +299,11 @@ type _InstanceLastOperation InstanceLastOperation
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceLastOperation(description InstanceLastOperationGetDescriptionArgType, state InstanceLastOperationGetStateArgType, type_ InstanceLastOperationGetTypeArgType) *InstanceLastOperation {
+func NewInstanceLastOperation(description InstanceLastOperationGetDescriptionArgType, state InstanceLastOperationGetStateArgType, types InstanceLastOperationGetTypeArgType) *InstanceLastOperation {
 	this := InstanceLastOperation{}
 	setInstanceLastOperationGetDescriptionAttributeType(&this.Description, description)
 	setInstanceLastOperationGetStateAttributeType(&this.State, state)
-	setInstanceLastOperationGetTypeAttributeType(&this.Type, type_)
+	setInstanceLastOperationGetTypeAttributeType(&this.Type, types)
 	return &this
 }
 

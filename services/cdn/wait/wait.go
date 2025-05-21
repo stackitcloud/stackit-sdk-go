@@ -13,11 +13,16 @@ import (
 )
 
 const (
+	// Deprecated: DistributionStatusCreating is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_CREATING] instead.
 	DistributionStatusCreating = "CREATING"
-	DistributionStatusActive   = "ACTIVE"
+	// Deprecated: DistributionStatusActive is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ACTIVE] instead.
+	DistributionStatusActive = "ACTIVE"
+	// Deprecated: DistributionStatusUpdating is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_UPDATING] instead.
 	DistributionStatusUpdating = "UPDATING"
+	// Deprecated: DistributionStatusDeleting is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_DELETING] instead.
 	DistributionStatusDeleting = "DELETING"
-	DistributionStatusError    = "ERROR"
+	// Deprecated: DistributionStatusError is deprecated and will be removed after 14th November 2025. Use [cdn.DISTRIBUTIONSTATUS_ERROR] instead.
+	DistributionStatusError = "ERROR"
 )
 
 // Interfaces needed for tests
@@ -40,13 +45,13 @@ func CreateDistributionPoolWaitHandler(ctx context.Context, api APIClientInterfa
 		}
 		if *distribution.Distribution.Id == distributionId {
 			switch *distribution.Distribution.Status {
-			case DistributionStatusActive:
+			case cdn.DISTRIBUTIONSTATUS_ACTIVE:
 				return true, distribution, nil
-			case DistributionStatusCreating, DistributionStatusUpdating:
+			case cdn.DISTRIBUTIONSTATUS_CREATING, cdn.DISTRIBUTIONSTATUS_UPDATING:
 				return false, nil, nil
-			case DistributionStatusDeleting:
+			case cdn.DISTRIBUTIONSTATUS_DELETING:
 				return true, nil, fmt.Errorf("creating CDN distribution failed")
-			case DistributionStatusError:
+			case cdn.DISTRIBUTIONSTATUS_ERROR:
 				return true, nil, fmt.Errorf("creating CDN distribution failed")
 			default:
 				return true, nil, fmt.Errorf("CDNDistributionWaitHandler: unexpected status %s", *distribution.Distribution.Status)
@@ -72,13 +77,13 @@ func UpdateDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 		}
 		if *distribution.Distribution.Id == distributionId {
 			switch *distribution.Distribution.Status {
-			case DistributionStatusActive:
+			case cdn.DISTRIBUTIONSTATUS_ACTIVE:
 				return true, distribution, err
-			case DistributionStatusUpdating:
+			case cdn.DISTRIBUTIONSTATUS_UPDATING:
 				return false, nil, nil
-			case DistributionStatusDeleting:
+			case cdn.DISTRIBUTIONSTATUS_DELETING:
 				return true, nil, fmt.Errorf("updating CDN distribution failed")
-			case DistributionStatusError:
+			case cdn.DISTRIBUTIONSTATUS_ERROR:
 				return true, nil, fmt.Errorf("updating CDN distribution failed")
 			default:
 				return true, nil, fmt.Errorf("UpdateDistributionWaitHandler: unexpected status %s", *distribution.Distribution.Status)

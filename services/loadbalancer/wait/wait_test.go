@@ -14,7 +14,7 @@ import (
 // Used for testing instance operations
 type apiClientMocked struct {
 	instanceName      string
-	instanceStatus    string
+	instanceStatus    loadbalancer.LoadBalancerStatus
 	instanceIsDeleted bool
 	instanceGetFails  bool
 }
@@ -44,28 +44,28 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		instanceGetFails bool
-		instanceStatus   string
+		instanceStatus   loadbalancer.LoadBalancerStatus
 		wantErr          bool
 		wantResp         bool
 	}{
 		{
 			desc:             "create_succeeded",
 			instanceGetFails: false,
-			instanceStatus:   InstanceStatusReady,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_READY,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed",
 			instanceGetFails: false,
-			instanceStatus:   InstanceStatusError,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_ERROR,
 			wantErr:          true,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed_2",
 			instanceGetFails: false,
-			instanceStatus:   InstanceStatusTerminating,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_TERMINATING,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -78,7 +78,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceStatus:   InstanceStatusPending,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_PENDING,
 			wantErr:          true,
 			wantResp:         false,
 		},

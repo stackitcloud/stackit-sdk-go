@@ -12,6 +12,7 @@ package dns
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Zone type satisfies the MappedNullable interface at compile time
@@ -471,10 +472,124 @@ func setZoneGetSerialNumberAttributeType(arg *ZoneGetSerialNumberAttributeType, 
 	types and functions for state
 */
 
-// isEnumRef
-type ZoneGetStateAttributeType = *string
-type ZoneGetStateArgType = string
-type ZoneGetStateRetType = string
+// isEnum
+
+// ZoneState zone state
+type ZoneState string
+
+// List of State
+const (
+	ZONESTATE_CREATING         ZoneState = "CREATING"
+	ZONESTATE_CREATE_SUCCEEDED ZoneState = "CREATE_SUCCEEDED"
+	ZONESTATE_CREATE_FAILED    ZoneState = "CREATE_FAILED"
+	ZONESTATE_DELETING         ZoneState = "DELETING"
+	ZONESTATE_DELETE_SUCCEEDED ZoneState = "DELETE_SUCCEEDED"
+	ZONESTATE_DELETE_FAILED    ZoneState = "DELETE_FAILED"
+	ZONESTATE_UPDATING         ZoneState = "UPDATING"
+	ZONESTATE_UPDATE_SUCCEEDED ZoneState = "UPDATE_SUCCEEDED"
+	ZONESTATE_UPDATE_FAILED    ZoneState = "UPDATE_FAILED"
+)
+
+// All allowed values of Zone enum
+var AllowedZoneStateEnumValues = []ZoneState{
+	"CREATING",
+	"CREATE_SUCCEEDED",
+	"CREATE_FAILED",
+	"DELETING",
+	"DELETE_SUCCEEDED",
+	"DELETE_FAILED",
+	"UPDATING",
+	"UPDATE_SUCCEEDED",
+	"UPDATE_FAILED",
+}
+
+func (v *ZoneState) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ZoneState(value)
+	for _, existing := range AllowedZoneStateEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Zone", value)
+}
+
+// NewZoneStateFromValue returns a pointer to a valid ZoneState
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewZoneStateFromValue(v string) (*ZoneState, error) {
+	ev := ZoneState(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ZoneState: valid values are %v", v, AllowedZoneStateEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ZoneState) IsValid() bool {
+	for _, existing := range AllowedZoneStateEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to StateState value
+func (v ZoneState) Ptr() *ZoneState {
+	return &v
+}
+
+type NullableZoneState struct {
+	value *ZoneState
+	isSet bool
+}
+
+func (v NullableZoneState) Get() *ZoneState {
+	return v.value
+}
+
+func (v *NullableZoneState) Set(val *ZoneState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableZoneState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableZoneState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableZoneState(val *ZoneState) *NullableZoneState {
+	return &NullableZoneState{value: val, isSet: true}
+}
+
+func (v NullableZoneState) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableZoneState) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ZoneGetStateAttributeType = *ZoneState
+type ZoneGetStateArgType = ZoneState
+type ZoneGetStateRetType = ZoneState
 
 func getZoneGetStateAttributeTypeOk(arg ZoneGetStateAttributeType) (ret ZoneGetStateRetType, ok bool) {
 	if arg == nil {
@@ -491,10 +606,110 @@ func setZoneGetStateAttributeType(arg *ZoneGetStateAttributeType, val ZoneGetSta
 	types and functions for type
 */
 
-// isEnumRef
-type ZoneGetTypeAttributeType = *string
-type ZoneGetTypeArgType = string
-type ZoneGetTypeRetType = string
+// isEnum
+
+// ZoneTypes zone type
+type ZoneTypes string
+
+// List of Type
+const (
+	ZONETYPE_PRIMARY   ZoneTypes = "primary"
+	ZONETYPE_SECONDARY ZoneTypes = "secondary"
+)
+
+// All allowed values of Zone enum
+var AllowedZoneTypesEnumValues = []ZoneTypes{
+	"primary",
+	"secondary",
+}
+
+func (v *ZoneTypes) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ZoneTypes(value)
+	for _, existing := range AllowedZoneTypesEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Zone", value)
+}
+
+// NewZoneTypesFromValue returns a pointer to a valid ZoneTypes
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewZoneTypesFromValue(v string) (*ZoneTypes, error) {
+	ev := ZoneTypes(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ZoneTypes: valid values are %v", v, AllowedZoneTypesEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ZoneTypes) IsValid() bool {
+	for _, existing := range AllowedZoneTypesEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to TypeTypes value
+func (v ZoneTypes) Ptr() *ZoneTypes {
+	return &v
+}
+
+type NullableZoneTypes struct {
+	value *ZoneTypes
+	isSet bool
+}
+
+func (v NullableZoneTypes) Get() *ZoneTypes {
+	return v.value
+}
+
+func (v *NullableZoneTypes) Set(val *ZoneTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableZoneTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableZoneTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableZoneTypes(val *ZoneTypes) *NullableZoneTypes {
+	return &NullableZoneTypes{value: val, isSet: true}
+}
+
+func (v NullableZoneTypes) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableZoneTypes) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ZoneGetTypeAttributeType = *ZoneTypes
+type ZoneGetTypeArgType = ZoneTypes
+type ZoneGetTypeRetType = ZoneTypes
 
 func getZoneGetTypeAttributeTypeOk(arg ZoneGetTypeAttributeType) (ret ZoneGetTypeRetType, ok bool) {
 	if arg == nil {
@@ -553,10 +768,108 @@ type ZoneGetUpdateStartedRetType = string
 	types and functions for visibility
 */
 
-// isEnumRef
-type ZoneGetVisibilityAttributeType = *string
-type ZoneGetVisibilityArgType = string
-type ZoneGetVisibilityRetType = string
+// isEnum
+
+// ZoneVisibility visibility of the zone
+type ZoneVisibility string
+
+// List of Visibility
+const (
+	ZONEVISIBILITY_PUBLIC ZoneVisibility = "public"
+)
+
+// All allowed values of Zone enum
+var AllowedZoneVisibilityEnumValues = []ZoneVisibility{
+	"public",
+}
+
+func (v *ZoneVisibility) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := ZoneVisibility(value)
+	for _, existing := range AllowedZoneVisibilityEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Zone", value)
+}
+
+// NewZoneVisibilityFromValue returns a pointer to a valid ZoneVisibility
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewZoneVisibilityFromValue(v string) (*ZoneVisibility, error) {
+	ev := ZoneVisibility(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for ZoneVisibility: valid values are %v", v, AllowedZoneVisibilityEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v ZoneVisibility) IsValid() bool {
+	for _, existing := range AllowedZoneVisibilityEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to VisibilityVisibility value
+func (v ZoneVisibility) Ptr() *ZoneVisibility {
+	return &v
+}
+
+type NullableZoneVisibility struct {
+	value *ZoneVisibility
+	isSet bool
+}
+
+func (v NullableZoneVisibility) Get() *ZoneVisibility {
+	return v.value
+}
+
+func (v *NullableZoneVisibility) Set(val *ZoneVisibility) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableZoneVisibility) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableZoneVisibility) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableZoneVisibility(val *ZoneVisibility) *NullableZoneVisibility {
+	return &NullableZoneVisibility{value: val, isSet: true}
+}
+
+func (v NullableZoneVisibility) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableZoneVisibility) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type ZoneGetVisibilityAttributeType = *ZoneVisibility
+type ZoneGetVisibilityArgType = ZoneVisibility
+type ZoneGetVisibilityRetType = ZoneVisibility
 
 func getZoneGetVisibilityAttributeTypeOk(arg ZoneGetVisibilityAttributeType) (ret ZoneGetVisibilityRetType, ok bool) {
 	if arg == nil {
@@ -655,7 +968,7 @@ type _Zone Zone
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZone(acl ZoneGetAclArgType, creationFinished ZoneGetCreationFinishedArgType, creationStarted ZoneGetCreationStartedArgType, defaultTTL ZoneGetDefaultTTLArgType, dnsName ZoneGetDnsNameArgType, expireTime ZoneGetExpireTimeArgType, id ZoneGetIdArgType, name ZoneGetNameArgType, negativeCache ZoneGetNegativeCacheArgType, primaryNameServer ZoneGetPrimaryNameServerArgType, refreshTime ZoneGetRefreshTimeArgType, retryTime ZoneGetRetryTimeArgType, serialNumber ZoneGetSerialNumberArgType, state ZoneGetStateArgType, type_ ZoneGetTypeArgType, updateFinished ZoneGetUpdateFinishedArgType, updateStarted ZoneGetUpdateStartedArgType, visibility ZoneGetVisibilityArgType) *Zone {
+func NewZone(acl ZoneGetAclArgType, creationFinished ZoneGetCreationFinishedArgType, creationStarted ZoneGetCreationStartedArgType, defaultTTL ZoneGetDefaultTTLArgType, dnsName ZoneGetDnsNameArgType, expireTime ZoneGetExpireTimeArgType, id ZoneGetIdArgType, name ZoneGetNameArgType, negativeCache ZoneGetNegativeCacheArgType, primaryNameServer ZoneGetPrimaryNameServerArgType, refreshTime ZoneGetRefreshTimeArgType, retryTime ZoneGetRetryTimeArgType, serialNumber ZoneGetSerialNumberArgType, state ZoneGetStateArgType, types ZoneGetTypeArgType, updateFinished ZoneGetUpdateFinishedArgType, updateStarted ZoneGetUpdateStartedArgType, visibility ZoneGetVisibilityArgType) *Zone {
 	this := Zone{}
 	setZoneGetAclAttributeType(&this.Acl, acl)
 	setZoneGetCreationFinishedAttributeType(&this.CreationFinished, creationFinished)
@@ -671,7 +984,7 @@ func NewZone(acl ZoneGetAclArgType, creationFinished ZoneGetCreationFinishedArgT
 	setZoneGetRetryTimeAttributeType(&this.RetryTime, retryTime)
 	setZoneGetSerialNumberAttributeType(&this.SerialNumber, serialNumber)
 	setZoneGetStateAttributeType(&this.State, state)
-	setZoneGetTypeAttributeType(&this.Type, type_)
+	setZoneGetTypeAttributeType(&this.Type, types)
 	setZoneGetUpdateFinishedAttributeType(&this.UpdateFinished, updateFinished)
 	setZoneGetUpdateStartedAttributeType(&this.UpdateStarted, updateStarted)
 	setZoneGetVisibilityAttributeType(&this.Visibility, visibility)

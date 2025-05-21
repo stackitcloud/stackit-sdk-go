@@ -12,6 +12,7 @@ package observability
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the MetricsRelabelConfig type satisfies the MappedNullable interface at compile time
@@ -21,10 +22,120 @@ var _ MappedNullable = &MetricsRelabelConfig{}
 	types and functions for action
 */
 
-// isEnumRef
-type MetricsRelabelConfigGetActionAttributeType = *string
-type MetricsRelabelConfigGetActionArgType = string
-type MetricsRelabelConfigGetActionRetType = string
+// isEnum
+
+// MetricsRelabelConfigAction the model 'MetricsRelabelConfig'
+type MetricsRelabelConfigAction string
+
+// List of Action
+const (
+	METRICSRELABELCONFIGACTION_REPLACE   MetricsRelabelConfigAction = "replace"
+	METRICSRELABELCONFIGACTION_KEEP      MetricsRelabelConfigAction = "keep"
+	METRICSRELABELCONFIGACTION_DROP      MetricsRelabelConfigAction = "drop"
+	METRICSRELABELCONFIGACTION_HASHMOD   MetricsRelabelConfigAction = "hashmod"
+	METRICSRELABELCONFIGACTION_LABELMAP  MetricsRelabelConfigAction = "labelmap"
+	METRICSRELABELCONFIGACTION_LABELDROP MetricsRelabelConfigAction = "labeldrop"
+	METRICSRELABELCONFIGACTION_LABELKEEP MetricsRelabelConfigAction = "labelkeep"
+)
+
+// All allowed values of MetricsRelabelConfig enum
+var AllowedMetricsRelabelConfigActionEnumValues = []MetricsRelabelConfigAction{
+	"replace",
+	"keep",
+	"drop",
+	"hashmod",
+	"labelmap",
+	"labeldrop",
+	"labelkeep",
+}
+
+func (v *MetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
+	var value string
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue string
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := MetricsRelabelConfigAction(value)
+	for _, existing := range AllowedMetricsRelabelConfigActionEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid MetricsRelabelConfig", value)
+}
+
+// NewMetricsRelabelConfigActionFromValue returns a pointer to a valid MetricsRelabelConfigAction
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewMetricsRelabelConfigActionFromValue(v string) (*MetricsRelabelConfigAction, error) {
+	ev := MetricsRelabelConfigAction(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for MetricsRelabelConfigAction: valid values are %v", v, AllowedMetricsRelabelConfigActionEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v MetricsRelabelConfigAction) IsValid() bool {
+	for _, existing := range AllowedMetricsRelabelConfigActionEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to ActionAction value
+func (v MetricsRelabelConfigAction) Ptr() *MetricsRelabelConfigAction {
+	return &v
+}
+
+type NullableMetricsRelabelConfigAction struct {
+	value *MetricsRelabelConfigAction
+	isSet bool
+}
+
+func (v NullableMetricsRelabelConfigAction) Get() *MetricsRelabelConfigAction {
+	return v.value
+}
+
+func (v *NullableMetricsRelabelConfigAction) Set(val *MetricsRelabelConfigAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMetricsRelabelConfigAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMetricsRelabelConfigAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMetricsRelabelConfigAction(val *MetricsRelabelConfigAction) *NullableMetricsRelabelConfigAction {
+	return &NullableMetricsRelabelConfigAction{value: val, isSet: true}
+}
+
+func (v NullableMetricsRelabelConfigAction) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableMetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type MetricsRelabelConfigGetActionAttributeType = *MetricsRelabelConfigAction
+type MetricsRelabelConfigGetActionArgType = MetricsRelabelConfigAction
+type MetricsRelabelConfigGetActionRetType = MetricsRelabelConfigAction
 
 func getMetricsRelabelConfigGetActionAttributeTypeOk(arg MetricsRelabelConfigGetActionAttributeType) (ret MetricsRelabelConfigGetActionRetType, ok bool) {
 	if arg == nil {
@@ -190,7 +301,7 @@ func NewMetricsRelabelConfig(sourceLabels MetricsRelabelConfigGetSourceLabelsArg
 // but it doesn't guarantee that properties required by API are set
 func NewMetricsRelabelConfigWithDefaults() *MetricsRelabelConfig {
 	this := MetricsRelabelConfig{}
-	var action string = "replace"
+	var action MetricsRelabelConfigAction = "replace"
 	this.Action = &action
 	var regex string = ".*"
 	this.Regex = &regex
