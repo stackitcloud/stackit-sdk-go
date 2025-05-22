@@ -90,7 +90,7 @@ type Configuration struct {
 	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
 	TokenCustomUrl        string            `json:"tokenCustomUrl,omitempty"`
 	Region                string            `json:"region,omitempty"`
-	DisableCLIAuthFlow    bool              `json:"disableCLIAuthFlow,omitempty"` // Should be set to true, if called by STACKIT CLI to avoid infinite loops.
+	CLIAuthFlow           bool              `json:"cliAuthFlow,omitempty"`
 	CustomAuth            http.RoundTripper
 	Servers               ServerConfigurations
 	OperationServers      map[string]ServerConfigurations

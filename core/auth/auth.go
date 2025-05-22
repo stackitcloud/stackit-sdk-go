@@ -93,7 +93,7 @@ func DefaultAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		rt, err = TokenAuth(cfg)
 		if err != nil {
 			tokenFlowErr := err
-			if cfg.DisableCLIAuthFlow {
+			if !cfg.CLIAuthFlow {
 				err = errors.New("CLI flow disabled")
 			} else {
 				// Stackit CLI flow

@@ -195,8 +195,10 @@ func TestSetupAuth(t *testing.T) {
 			isValid:                     true,
 		},
 		{
-			desc:                        "cli auth",
-			config:                      nil,
+			desc: "cli auth",
+			config: &config.Configuration{
+				CLIAuthFlow: true,
+			},
 			setCredentialsFilePathToken: false,
 			setCLIToken:                 true,
 			isValid:                     true,
