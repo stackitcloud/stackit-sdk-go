@@ -90,6 +90,7 @@ type Configuration struct {
 	CredentialsFilePath   string            `json:"credentialsFilePath,omitempty"`
 	TokenCustomUrl        string            `json:"tokenCustomUrl,omitempty"`
 	Region                string            `json:"region,omitempty"`
+	CLIAuthFlow           bool              `json:"cliAuthFlow,omitempty"`
 	CustomAuth            http.RoundTripper
 	Servers               ServerConfigurations
 	OperationServers      map[string]ServerConfigurations

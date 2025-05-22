@@ -1,3 +1,7 @@
+## Release (2025-05-21)
+- `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-05-21)
+  - **New:** Add STACKIT CLI auth flow.
+
 ## Release (2025-05-15)
 - `alb`:
   - [v0.4.0](services/alb/CHANGELOG.md#v040-2025-05-15)

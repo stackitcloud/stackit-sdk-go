@@ -1,3 +1,6 @@
+## v0.17.2 (2025-05-21)
+- **New:** Add STACKIT CLI auth flow.
+
 ## v0.17.1 (2025-04-09)
 - **Improvement:** Improve error message for key flow authentication
 
