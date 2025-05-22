@@ -1,3 +1,8 @@
+## Release (2025-YY-XX)
+- core:
+  - v0.17.2
+    - Bugfix: Access tokens generated via key flow authentication are refreshed 5 seconds before expiration to prevent timing issues with upstream systems which could lead to unexpected 401 error responses
+
 ## Release (2025-05-15)
 - `alb`:
   - [v0.4.0](services/alb/CHANGELOG.md#v040-2025-05-15)
