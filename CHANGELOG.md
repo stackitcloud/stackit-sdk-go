@@ -1,5 +1,5 @@
 ## Release (2025-YY-XX)
-  - v0.17.2
+- `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-05-22)
     - Bugfix: Access tokens generated via key flow authentication are refreshed 5 seconds before expiration to prevent timing issues with upstream systems which could lead to unexpected 401 error responses
 
 ## Release (2025-05-15)
