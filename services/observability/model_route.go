@@ -140,6 +140,26 @@ func setRouteGetMatchReAttributeType(arg *RouteGetMatchReAttributeType, val Rout
 }
 
 /*
+	types and functions for matchers
+*/
+
+// isArray
+type RouteGetMatchersAttributeType = *[]string
+type RouteGetMatchersArgType = []string
+type RouteGetMatchersRetType = []string
+
+func getRouteGetMatchersAttributeTypeOk(arg RouteGetMatchersAttributeType) (ret RouteGetMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetMatchersAttributeType(arg *RouteGetMatchersAttributeType, val RouteGetMatchersRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for receiver
 */
 
@@ -209,6 +229,7 @@ type Route struct {
 	GroupWait     RouteGetGroupWaitAttributeType     `json:"groupWait,omitempty"`
 	Match         RouteGetMatchAttributeType         `json:"match,omitempty"`
 	MatchRe       RouteGetMatchReAttributeType       `json:"matchRe,omitempty"`
+	Matchers      RouteGetMatchersAttributeType      `json:"matchers,omitempty"`
 	// REQUIRED
 	Receiver       RouteGetReceiverAttributeType       `json:"receiver"`
 	RepeatInterval RouteGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
@@ -381,6 +402,29 @@ func (o *Route) SetMatchRe(v RouteGetMatchReRetType) {
 	setRouteGetMatchReAttributeType(&o.MatchRe, v)
 }
 
+// GetMatchers returns the Matchers field value if set, zero value otherwise.
+func (o *Route) GetMatchers() (res RouteGetMatchersRetType) {
+	res, _ = o.GetMatchersOk()
+	return
+}
+
+// GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Route) GetMatchersOk() (ret RouteGetMatchersRetType, ok bool) {
+	return getRouteGetMatchersAttributeTypeOk(o.Matchers)
+}
+
+// HasMatchers returns a boolean if a field has been set.
+func (o *Route) HasMatchers() bool {
+	_, ok := o.GetMatchersOk()
+	return ok
+}
+
+// SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
+func (o *Route) SetMatchers(v RouteGetMatchersRetType) {
+	setRouteGetMatchersAttributeType(&o.Matchers, v)
+}
+
 // GetReceiver returns the Receiver field value
 func (o *Route) GetReceiver() (ret RouteGetReceiverRetType) {
 	ret, _ = o.GetReceiverOk()
@@ -463,6 +507,9 @@ func (o Route) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getRouteGetMatchReAttributeTypeOk(o.MatchRe); ok {
 		toSerialize["MatchRe"] = val
+	}
+	if val, ok := getRouteGetMatchersAttributeTypeOk(o.Matchers); ok {
+		toSerialize["Matchers"] = val
 	}
 	if val, ok := getRouteGetReceiverAttributeTypeOk(o.Receiver); ok {
 		toSerialize["Receiver"] = val
