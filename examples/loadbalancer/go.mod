@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/loadbalancer
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.17.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.17.2
 	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.2.0
 )
 
