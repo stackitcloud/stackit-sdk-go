@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/scripts
 go 1.21
 
 exclude (
-	github.com/ProtonMail/go-crypto v1.2.0
+	github.com/ProtonMail/go-crypto v1.3.0
 	github.com/cloudflare/circl v1.6.1
 	github.com/cloudflare/circl v1.6.1
 
