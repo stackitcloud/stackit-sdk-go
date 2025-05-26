@@ -172,6 +172,14 @@ func (o *InstanceHostMetric) SetUnits(v InstanceHostMetricGetUnitsRetType) {
 	setInstanceHostMetricGetUnitsAttributeType(&o.Units, v)
 }
 
+func (o InstanceHostMetric) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceHostMetric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceHostMetricGetDatapointsAttributeTypeOk(o.Datapoints); ok {

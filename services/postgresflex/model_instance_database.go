@@ -173,6 +173,14 @@ func (o *InstanceDatabase) SetOptions(v InstanceDatabaseGetOptionsRetType) {
 	setInstanceDatabaseGetOptionsAttributeType(&o.Options, v)
 }
 
+func (o InstanceDatabase) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceDatabase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceDatabaseGetIdAttributeTypeOk(o.Id); ok {

@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InquiryBecomeVendor type satisfies the MappedNullable interface at compile time
@@ -66,7 +68,7 @@ type InquiryBecomeVendor struct {
 	ContactEmail InquiryBecomeVendorGetContactEmailAttributeType `json:"contactEmail"`
 	// A custom message.
 	// REQUIRED
-	Message InquiryBecomeVendorGetMessageAttributeType `json:"message"`
+	Message InquiryBecomeVendorGetMessageAttributeType `json:"message" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 }
 
 type _InquiryBecomeVendor InquiryBecomeVendor
@@ -124,6 +126,14 @@ func (o *InquiryBecomeVendor) SetMessage(v InquiryBecomeVendorGetMessageRetType)
 	setInquiryBecomeVendorGetMessageAttributeType(&o.Message, v)
 }
 
+func (o InquiryBecomeVendor) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InquiryBecomeVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquiryBecomeVendorGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
@@ -133,6 +143,44 @@ func (o InquiryBecomeVendor) ToMap() (map[string]interface{}, error) {
 		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *InquiryBecomeVendor) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"contactEmail",
+		"message",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInquiryBecomeVendor := _InquiryBecomeVendor{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInquiryBecomeVendor)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InquiryBecomeVendor(varInquiryBecomeVendor)
+
+	return err
 }
 
 type NullableInquiryBecomeVendor struct {

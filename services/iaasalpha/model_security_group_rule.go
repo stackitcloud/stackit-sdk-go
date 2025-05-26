@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the SecurityGroupRule type satisfies the MappedNullable interface at compile time
@@ -235,14 +237,14 @@ type SecurityGroupRule struct {
 	Ethertype      SecurityGroupRuleGetEthertypeAttributeType      `json:"ethertype,omitempty"`
 	IcmpParameters SecurityGroupRuleGetIcmpParametersAttributeType `json:"icmpParameters,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id SecurityGroupRuleGetIdAttributeType `json:"id,omitempty"`
-	// Classless Inter-Domain Routing (CIDR).
-	IpRange   SecurityGroupRuleGetIpRangeAttributeType   `json:"ipRange,omitempty"`
+	Id SecurityGroupRuleGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	// The remote IP range which the rule should match.
+	IpRange   SecurityGroupRuleGetIpRangeAttributeType   `json:"ipRange,omitempty" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\\/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$"`
 	PortRange SecurityGroupRuleGetPortRangeAttributeType `json:"portRange,omitempty"`
+	// The remote security group which the rule should match.
+	RemoteSecurityGroupId SecurityGroupRuleGetRemoteSecurityGroupIdAttributeType `json:"remoteSecurityGroupId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Universally Unique Identifier (UUID).
-	RemoteSecurityGroupId SecurityGroupRuleGetRemoteSecurityGroupIdAttributeType `json:"remoteSecurityGroupId,omitempty"`
-	// Universally Unique Identifier (UUID).
-	SecurityGroupId SecurityGroupRuleGetSecurityGroupIdAttributeType `json:"securityGroupId,omitempty"`
+	SecurityGroupId SecurityGroupRuleGetSecurityGroupIdAttributeType `json:"securityGroupId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	Protocol        SecurityGroupRuleGetProtocolAttributeType        `json:"protocol,omitempty"`
 }
 
@@ -492,6 +494,14 @@ func (o *SecurityGroupRule) SetProtocol(v SecurityGroupRuleGetProtocolRetType) {
 	setSecurityGroupRuleGetProtocolAttributeType(&o.Protocol, v)
 }
 
+func (o SecurityGroupRule) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o SecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSecurityGroupRuleGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -525,6 +535,43 @@ func (o SecurityGroupRule) ToMap() (map[string]interface{}, error) {
 		toSerialize["Protocol"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *SecurityGroupRule) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"direction",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSecurityGroupRule := _SecurityGroupRule{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSecurityGroupRule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SecurityGroupRule(varSecurityGroupRule)
+
+	return err
 }
 
 type NullableSecurityGroupRule struct {

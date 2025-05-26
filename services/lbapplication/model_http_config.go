@@ -82,6 +82,14 @@ func (o *HTTPConfig) SetMatcher(v HTTPConfigGetMatcherRetType) {
 	setHTTPConfigGetMatcherAttributeType(&o.Matcher, v)
 }
 
+func (o HTTPConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o HTTPConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHTTPConfigGetMatcherAttributeTypeOk(o.Matcher); ok {

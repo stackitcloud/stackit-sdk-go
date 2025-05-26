@@ -128,6 +128,14 @@ func (o *Kubeconfig) SetKubeconfig(v KubeconfigGetKubeconfigRetType) {
 	setKubeconfigGetKubeconfigAttributeType(&o.Kubeconfig, v)
 }
 
+func (o Kubeconfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Kubeconfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getKubeconfigGetExpirationTimestampAttributeTypeOk(o.ExpirationTimestamp); ok {

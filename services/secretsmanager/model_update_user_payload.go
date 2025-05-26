@@ -129,6 +129,14 @@ func (o *UpdateUserPayload) SetWrite(v UpdateUserPayloadgetWriteRetType) {
 	setUpdateUserPayloadgetWriteAttributeType(&o.Write, v)
 }
 
+func (o UpdateUserPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateUserPayloadGetDescriptionAttributeTypeOk(o.Description); ok {

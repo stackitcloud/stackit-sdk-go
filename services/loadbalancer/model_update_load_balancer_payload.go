@@ -210,18 +210,20 @@ type UpdateLoadBalancerPayloadGetRegionRetType = string
 // isEnum
 
 // UpdateLoadBalancerPayloadStatus the model 'UpdateLoadBalancerPayload'
+// value type for enums
 type UpdateLoadBalancerPayloadStatus string
 
 // List of Status
 const (
-	UPDATELOADBALANCERPAYLOADSTATUS_UNSPECIFIED UpdateLoadBalancerPayloadStatus = "STATUS_UNSPECIFIED"
-	UPDATELOADBALANCERPAYLOADSTATUS_PENDING     UpdateLoadBalancerPayloadStatus = "STATUS_PENDING"
-	UPDATELOADBALANCERPAYLOADSTATUS_READY       UpdateLoadBalancerPayloadStatus = "STATUS_READY"
-	UPDATELOADBALANCERPAYLOADSTATUS_ERROR       UpdateLoadBalancerPayloadStatus = "STATUS_ERROR"
-	UPDATELOADBALANCERPAYLOADSTATUS_TERMINATING UpdateLoadBalancerPayloadStatus = "STATUS_TERMINATING"
+	UPDATELOADBALANCERPAYLOADSTATUS_STATUS_UNSPECIFIED UpdateLoadBalancerPayloadStatus = "STATUS_UNSPECIFIED"
+	UPDATELOADBALANCERPAYLOADSTATUS_STATUS_PENDING     UpdateLoadBalancerPayloadStatus = "STATUS_PENDING"
+	UPDATELOADBALANCERPAYLOADSTATUS_STATUS_READY       UpdateLoadBalancerPayloadStatus = "STATUS_READY"
+	UPDATELOADBALANCERPAYLOADSTATUS_STATUS_ERROR       UpdateLoadBalancerPayloadStatus = "STATUS_ERROR"
+	UPDATELOADBALANCERPAYLOADSTATUS_STATUS_TERMINATING UpdateLoadBalancerPayloadStatus = "STATUS_TERMINATING"
 )
 
 // All allowed values of UpdateLoadBalancerPayload enum
+
 var AllowedUpdateLoadBalancerPayloadStatusEnumValues = []UpdateLoadBalancerPayloadStatus{
 	"STATUS_UNSPECIFIED",
 	"STATUS_PENDING",
@@ -231,13 +233,13 @@ var AllowedUpdateLoadBalancerPayloadStatusEnumValues = []UpdateLoadBalancerPaylo
 }
 
 func (v *UpdateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value UpdateLoadBalancerPayloadStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue UpdateLoadBalancerPayloadStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -254,7 +256,7 @@ func (v *UpdateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
 
 // NewUpdateLoadBalancerPayloadStatusFromValue returns a pointer to a valid UpdateLoadBalancerPayloadStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewUpdateLoadBalancerPayloadStatusFromValue(v string) (*UpdateLoadBalancerPayloadStatus, error) {
+func NewUpdateLoadBalancerPayloadStatusFromValue(v UpdateLoadBalancerPayloadStatus) (*UpdateLoadBalancerPayloadStatus, error) {
 	ev := UpdateLoadBalancerPayloadStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -379,7 +381,7 @@ type UpdateLoadBalancerPayload struct {
 	// There is a maximum listener count of 20.  Port and protocol limitations:  - UDP listeners cannot have the same port. - TCP-derived listeners cannot have the same port. A TCP-derived listener is any listener that listens on a TCP port. As of now those are: TCP, TCP_PROXY, and PROTOCOL_TLS_PASSTHROUGH. The only exception is, if all listeners for the same port are PROTOCOL_TLS_PASSTHROUGH. - PROTOCOL_TLS_PASSTHROUGH listeners cannot have the same port and at least one common domain name. - PROTOCOL_TLS_PASSTHROUGH listeners can have the same domain name and different ports though (e.g. ports 443 and 8443 for domain example.com). - PROTOCOL_TLS_PASSTHROUGH listeners without a domain name serve as a default listener and you can have only one default listener.
 	Listeners UpdateLoadBalancerPayloadGetListenersAttributeType `json:"listeners,omitempty"`
 	// Load balancer name. Not changeable after creation.
-	Name UpdateLoadBalancerPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name UpdateLoadBalancerPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// List of networks that listeners and targets reside in. Currently limited to one. Not changeable after creation.
 	Networks UpdateLoadBalancerPayloadGetNetworksAttributeType `json:"networks,omitempty"`
 	Options  UpdateLoadBalancerPayloadGetOptionsAttributeType  `json:"options,omitempty"`
@@ -687,6 +689,14 @@ func (o *UpdateLoadBalancerPayload) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *UpdateLoadBalancerPayload) SetVersion(v UpdateLoadBalancerPayloadGetVersionRetType) {
 	setUpdateLoadBalancerPayloadGetVersionAttributeType(&o.Version, v)
+}
+
+func (o UpdateLoadBalancerPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {

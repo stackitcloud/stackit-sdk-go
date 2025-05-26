@@ -83,6 +83,14 @@ func (o *InternalServerErrorResponse) SetError(v InternalServerErrorResponseGetE
 	setInternalServerErrorResponseGetErrorAttributeType(&o.Error, v)
 }
 
+func (o InternalServerErrorResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InternalServerErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInternalServerErrorResponseGetErrorAttributeTypeOk(o.Error); ok {

@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -65,9 +67,9 @@ type ServerGetAvailabilityZoneRetType = string
 */
 
 // isModel
-type ServerGetBootVolumeAttributeType = *CreateServerPayloadBootVolume
-type ServerGetBootVolumeArgType = CreateServerPayloadBootVolume
-type ServerGetBootVolumeRetType = CreateServerPayloadBootVolume
+type ServerGetBootVolumeAttributeType = *BootVolume
+type ServerGetBootVolumeArgType = BootVolume
+type ServerGetBootVolumeRetType = BootVolume
 
 func getServerGetBootVolumeAttributeTypeOk(arg ServerGetBootVolumeAttributeType) (ret ServerGetBootVolumeRetType, ok bool) {
 	if arg == nil {
@@ -470,9 +472,9 @@ func setServerGetVolumesAttributeType(arg *ServerGetVolumesAttributeType, val Se
 
 // Server Representation of a single server object.
 type Server struct {
-	// Universally Unique Identifier (UUID).
-	AffinityGroup ServerGetAffinityGroupAttributeType `json:"affinityGroup,omitempty"`
-	// Object that represents an availability zone.
+	// The affinity group the server is assigned to.
+	AffinityGroup ServerGetAffinityGroupAttributeType `json:"affinityGroup,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	// This is the availability zone requested during server creation. If none is provided during the creation request and an existing volume will be used as boot volume it will be set to the same availability zone as the volume. For requests with no volumes involved it will be set to the metro availability zone.
 	AvailabilityZone ServerGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	BootVolume       ServerGetBootVolumeAttributeType       `json:"bootVolume,omitempty"`
 	// Date-time when resource was created.
@@ -480,38 +482,38 @@ type Server struct {
 	// An error message.
 	ErrorMessage ServerGetErrorMessageAttributeType `json:"errorMessage,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id ServerGetIdAttributeType `json:"id,omitempty"`
+	Id ServerGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Universally Unique Identifier (UUID).
-	ImageId ServerGetImageIdAttributeType `json:"imageId,omitempty"`
-	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
-	KeypairName ServerGetKeypairNameAttributeType `json:"keypairName,omitempty"`
+	ImageId ServerGetImageIdAttributeType `json:"imageId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	// The SSH keypair used during the server creation.
+	KeypairName ServerGetKeypairNameAttributeType `json:"keypairName,omitempty" validate:"regexp=^[A-Za-z0-9@._-]*$"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels ServerGetLabelsAttributeType `json:"labels,omitempty"`
 	// Date-time when resource was launched.
 	LaunchedAt ServerGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
-	// The name for a General Object. Matches Names and also UUIDs.
+	// Name of the machine type the server shall belong to.
 	// REQUIRED
-	MachineType       ServerGetMachineTypeAttributeType       `json:"machineType"`
+	MachineType       ServerGetMachineTypeAttributeType       `json:"machineType" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	MaintenanceWindow ServerGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
 	// The name for a Server.
 	// REQUIRED
-	Name       ServerGetNameAttributeType       `json:"name"`
+	Name       ServerGetNameAttributeType       `json:"name" validate:"regexp=^[A-Za-z0-9]+((-|\\\\.)[A-Za-z0-9]+)*$"`
 	Networking ServerGetNetworkingAttributeType `json:"networking,omitempty"`
-	// A list of networks attached to a server.
+	// The list of network interfaces (NICs) attached to the server. Only shown when detailed information is requested.
 	Nics ServerGetNicsAttributeType `json:"nics,omitempty"`
 	// The power status of a server. Possible values: `CRASHED`, `ERROR`, `RUNNING`, `STOPPED`.
 	PowerStatus ServerGetPowerStatusAttributeType `json:"powerStatus,omitempty"`
-	// A list of General Objects.
+	// The initial security groups for the server creation.
 	SecurityGroups ServerGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
-	// A list of service account mails.
+	// A list of service account mails. Only shown when detailed information is requested.
 	ServiceAccountMails ServerGetServiceAccountMailsAttributeType `json:"serviceAccountMails,omitempty"`
 	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
 	Status ServerGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt ServerGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
-	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server.
+	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server. Only shown when detailed information is requested.
 	UserData ServerGetUserDataAttributeType `json:"userData,omitempty"`
-	// A list of UUIDs.
+	// The list of volumes attached to the server.
 	Volumes ServerGetVolumesAttributeType `json:"volumes,omitempty"`
 }
 
@@ -600,7 +602,7 @@ func (o *Server) HasBootVolume() bool {
 	return ok
 }
 
-// SetBootVolume gets a reference to the given CreateServerPayloadBootVolume and assigns it to the BootVolume field.
+// SetBootVolume gets a reference to the given BootVolume and assigns it to the BootVolume field.
 func (o *Server) SetBootVolume(v ServerGetBootVolumeRetType) {
 	setServerGetBootVolumeAttributeType(&o.BootVolume, v)
 }
@@ -1030,6 +1032,14 @@ func (o *Server) SetVolumes(v ServerGetVolumesRetType) {
 	setServerGetVolumesAttributeType(&o.Volumes, v)
 }
 
+func (o Server) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Server) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getServerGetAffinityGroupAttributeTypeOk(o.AffinityGroup); ok {
@@ -1099,6 +1109,44 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 		toSerialize["Volumes"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Server) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"machineType",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varServer := _Server{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varServer)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Server(varServer)
+
+	return err
 }
 
 type NullableServer struct {

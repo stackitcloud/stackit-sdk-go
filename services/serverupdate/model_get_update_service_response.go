@@ -82,6 +82,14 @@ func (o *GetUpdateServiceResponse) SetEnabled(v GetUpdateServiceResponsegetEnabl
 	setGetUpdateServiceResponsegetEnabledAttributeType(&o.Enabled, v)
 }
 
+func (o GetUpdateServiceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetUpdateServiceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetUpdateServiceResponsegetEnabledAttributeTypeOk(o.Enabled); ok {

@@ -11,7 +11,9 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the FindCachePathsResponseEntry type satisfies the MappedNullable interface at compile time
@@ -82,12 +84,57 @@ func (o *FindCachePathsResponseEntry) SetPath(v FindCachePathsResponseEntryGetPa
 	setFindCachePathsResponseEntryGetPathAttributeType(&o.Path, v)
 }
 
+func (o FindCachePathsResponseEntry) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o FindCachePathsResponseEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getFindCachePathsResponseEntryGetPathAttributeTypeOk(o.Path); ok {
 		toSerialize["Path"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *FindCachePathsResponseEntry) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"path",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFindCachePathsResponseEntry := _FindCachePathsResponseEntry{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFindCachePathsResponseEntry)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FindCachePathsResponseEntry(varFindCachePathsResponseEntry)
+
+	return err
 }
 
 type NullableFindCachePathsResponseEntry struct {

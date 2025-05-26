@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Route type satisfies the MappedNullable interface at compile time
@@ -140,6 +142,26 @@ func setRouteGetMatchReAttributeType(arg *RouteGetMatchReAttributeType, val Rout
 }
 
 /*
+	types and functions for matchers
+*/
+
+// isArray
+type RouteGetMatchersAttributeType = *[]string
+type RouteGetMatchersArgType = []string
+type RouteGetMatchersRetType = []string
+
+func getRouteGetMatchersAttributeTypeOk(arg RouteGetMatchersAttributeType) (ret RouteGetMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRouteGetMatchersAttributeType(arg *RouteGetMatchersAttributeType, val RouteGetMatchersRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for receiver
 */
 
@@ -209,6 +231,7 @@ type Route struct {
 	GroupWait     RouteGetGroupWaitAttributeType     `json:"groupWait,omitempty"`
 	Match         RouteGetMatchAttributeType         `json:"match,omitempty"`
 	MatchRe       RouteGetMatchReAttributeType       `json:"matchRe,omitempty"`
+	Matchers      RouteGetMatchersAttributeType      `json:"matchers,omitempty"`
 	// REQUIRED
 	Receiver       RouteGetReceiverAttributeType       `json:"receiver"`
 	RepeatInterval RouteGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
@@ -381,6 +404,29 @@ func (o *Route) SetMatchRe(v RouteGetMatchReRetType) {
 	setRouteGetMatchReAttributeType(&o.MatchRe, v)
 }
 
+// GetMatchers returns the Matchers field value if set, zero value otherwise.
+func (o *Route) GetMatchers() (res RouteGetMatchersRetType) {
+	res, _ = o.GetMatchersOk()
+	return
+}
+
+// GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Route) GetMatchersOk() (ret RouteGetMatchersRetType, ok bool) {
+	return getRouteGetMatchersAttributeTypeOk(o.Matchers)
+}
+
+// HasMatchers returns a boolean if a field has been set.
+func (o *Route) HasMatchers() bool {
+	_, ok := o.GetMatchersOk()
+	return ok
+}
+
+// SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
+func (o *Route) SetMatchers(v RouteGetMatchersRetType) {
+	setRouteGetMatchersAttributeType(&o.Matchers, v)
+}
+
 // GetReceiver returns the Receiver field value
 func (o *Route) GetReceiver() (ret RouteGetReceiverRetType) {
 	ret, _ = o.GetReceiverOk()
@@ -444,6 +490,14 @@ func (o *Route) SetRoutes(v RouteGetRoutesRetType) {
 	setRouteGetRoutesAttributeType(&o.Routes, v)
 }
 
+func (o Route) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Route) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRoutegetContinueAttributeTypeOk(o.Continue); ok {
@@ -464,6 +518,9 @@ func (o Route) ToMap() (map[string]interface{}, error) {
 	if val, ok := getRouteGetMatchReAttributeTypeOk(o.MatchRe); ok {
 		toSerialize["MatchRe"] = val
 	}
+	if val, ok := getRouteGetMatchersAttributeTypeOk(o.Matchers); ok {
+		toSerialize["Matchers"] = val
+	}
 	if val, ok := getRouteGetReceiverAttributeTypeOk(o.Receiver); ok {
 		toSerialize["Receiver"] = val
 	}
@@ -474,6 +531,43 @@ func (o Route) ToMap() (map[string]interface{}, error) {
 		toSerialize["Routes"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Route) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"receiver",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRoute := _Route{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRoute)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Route(varRoute)
+
+	return err
 }
 
 type NullableRoute struct {

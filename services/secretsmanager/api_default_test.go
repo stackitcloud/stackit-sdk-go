@@ -1,7 +1,7 @@
 /*
 STACKIT Secrets Manager API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -22,22 +22,22 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_secretsmanager_DefaultApiService(t *testing.T) {
+func Test_secretsmanager_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CreateACL", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateACL", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acls"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ACL{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -48,7 +48,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -80,18 +80,18 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Instance{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -102,7 +102,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -133,20 +133,20 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := User{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -157,7 +157,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -189,7 +189,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteACL", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteACL", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acls/{aclId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -198,10 +198,10 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		aclIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"aclId"+"}", url.PathEscape(ParameterValueToString(aclIdValue, "aclId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -212,7 +212,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -241,17 +241,17 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -262,7 +262,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -290,7 +290,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -299,10 +299,10 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		userIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -313,7 +313,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -342,7 +342,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetACL", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetACL", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acls/{aclId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -351,13 +351,13 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		aclIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"aclId"+"}", url.PathEscape(ParameterValueToString(aclIdValue, "aclId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ACL{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -368,7 +368,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -400,20 +400,20 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Instance{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -424,7 +424,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -455,7 +455,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -464,13 +464,13 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		userIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := User{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -481,7 +481,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -513,20 +513,20 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListACLs", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListACLs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acls"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListACLsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -537,7 +537,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -568,18 +568,18 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListInstances", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListInstancesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -590,7 +590,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -620,20 +620,20 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListUsers", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListUsersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -644,7 +644,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -675,7 +675,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateACL", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateACL", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acls/{aclId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -684,10 +684,10 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		aclIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"aclId"+"}", url.PathEscape(ParameterValueToString(aclIdValue, "aclId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -698,7 +698,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -728,17 +728,17 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateACLs", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateACLs", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/acls"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -749,7 +749,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -778,17 +778,17 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -799,7 +799,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -828,7 +828,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateUser", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -837,10 +837,10 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 		userIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -851,7 +851,7 @@ func Test_secretsmanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for secretsmanager_DefaultApi",
+					Description: "Localhost for secretsmanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

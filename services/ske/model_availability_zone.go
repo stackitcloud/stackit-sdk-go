@@ -83,6 +83,14 @@ func (o *AvailabilityZone) SetName(v AvailabilityZoneGetNameRetType) {
 	setAvailabilityZoneGetNameAttributeType(&o.Name, v)
 }
 
+func (o AvailabilityZone) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o AvailabilityZone) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getAvailabilityZoneGetNameAttributeTypeOk(o.Name); ok {

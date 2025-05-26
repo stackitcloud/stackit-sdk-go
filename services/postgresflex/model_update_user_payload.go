@@ -127,6 +127,14 @@ func (o *UpdateUserPayload) SetRoles(v UpdateUserPayloadGetRolesRetType) {
 	setUpdateUserPayloadGetRolesAttributeType(&o.Roles, v)
 }
 
+func (o UpdateUserPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateUserPayloadGetDatabaseAttributeTypeOk(o.Database); ok {

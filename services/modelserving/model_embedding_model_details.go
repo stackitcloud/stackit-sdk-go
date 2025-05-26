@@ -11,6 +11,7 @@ API version: 1.0.0
 package modelserving
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,6 +26,7 @@ var _ MappedNullable = &EmbeddingModelDetails{}
 // isEnum
 
 // EmbeddingModelDetailsCategory the model 'EmbeddingModelDetails'
+// value type for enums
 type EmbeddingModelDetailsCategory string
 
 // List of Category
@@ -35,6 +37,7 @@ const (
 )
 
 // All allowed values of EmbeddingModelDetails enum
+
 var AllowedEmbeddingModelDetailsCategoryEnumValues = []EmbeddingModelDetailsCategory{
 	"standard",
 	"plus",
@@ -42,13 +45,13 @@ var AllowedEmbeddingModelDetailsCategoryEnumValues = []EmbeddingModelDetailsCate
 }
 
 func (v *EmbeddingModelDetailsCategory) UnmarshalJSON(src []byte) error {
-	var value string
+	var value EmbeddingModelDetailsCategory
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue EmbeddingModelDetailsCategory
 	if value == zeroValue {
 		return nil
 	}
@@ -65,7 +68,7 @@ func (v *EmbeddingModelDetailsCategory) UnmarshalJSON(src []byte) error {
 
 // NewEmbeddingModelDetailsCategoryFromValue returns a pointer to a valid EmbeddingModelDetailsCategory
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewEmbeddingModelDetailsCategoryFromValue(v string) (*EmbeddingModelDetailsCategory, error) {
+func NewEmbeddingModelDetailsCategoryFromValue(v EmbeddingModelDetailsCategory) (*EmbeddingModelDetailsCategory, error) {
 	ev := EmbeddingModelDetailsCategory(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -331,15 +334,15 @@ type EmbeddingModelDetails struct {
 	// REQUIRED
 	Category EmbeddingModelDetailsGetCategoryAttributeType `json:"category"`
 	// REQUIRED
-	Description EmbeddingModelDetailsGetDescriptionAttributeType `json:"description"`
+	Description EmbeddingModelDetailsGetDescriptionAttributeType `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	// REQUIRED
-	DisplayedName EmbeddingModelDetailsGetDisplayedNameAttributeType `json:"displayedName"`
+	DisplayedName EmbeddingModelDetailsGetDisplayedNameAttributeType `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// generated uuid to identify a model
 	// REQUIRED
 	Id EmbeddingModelDetailsGetIdAttributeType `json:"id"`
 	// huggingface name
 	// REQUIRED
-	Name EmbeddingModelDetailsGetNameAttributeType `json:"name"`
+	Name EmbeddingModelDetailsGetNameAttributeType `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	// REQUIRED
 	OutputDimension EmbeddingModelDetailsGetOutputDimensionAttributeType `json:"outputDimension"`
 	// REQUIRED
@@ -349,7 +352,7 @@ type EmbeddingModelDetails struct {
 	Tags EmbeddingModelDetailsGetTagsAttributeType `json:"tags,omitempty"`
 	// url of the model
 	// REQUIRED
-	Url EmbeddingModelDetailsGetUrlAttributeType `json:"url"`
+	Url EmbeddingModelDetailsGetUrlAttributeType `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 }
 
 type _EmbeddingModelDetails EmbeddingModelDetails
@@ -556,6 +559,14 @@ func (o *EmbeddingModelDetails) SetUrl(v EmbeddingModelDetailsGetUrlRetType) {
 	setEmbeddingModelDetailsGetUrlAttributeType(&o.Url, v)
 }
 
+func (o EmbeddingModelDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o EmbeddingModelDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getEmbeddingModelDetailsGetCategoryAttributeTypeOk(o.Category); ok {
@@ -589,6 +600,51 @@ func (o EmbeddingModelDetails) ToMap() (map[string]interface{}, error) {
 		toSerialize["Url"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *EmbeddingModelDetails) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"category",
+		"description",
+		"displayedName",
+		"id",
+		"name",
+		"outputDimension",
+		"region",
+		"skus",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEmbeddingModelDetails := _EmbeddingModelDetails{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEmbeddingModelDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EmbeddingModelDetails(varEmbeddingModelDetails)
+
+	return err
 }
 
 type NullableEmbeddingModelDetails struct {

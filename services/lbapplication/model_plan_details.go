@@ -267,6 +267,14 @@ func (o *PlanDetails) SetPlanId(v PlanDetailsGetPlanIdRetType) {
 	setPlanDetailsGetPlanIdAttributeType(&o.PlanId, v)
 }
 
+func (o PlanDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPlanDetailsGetDescriptionAttributeTypeOk(o.Description); ok {

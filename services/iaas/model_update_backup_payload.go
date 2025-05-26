@@ -231,21 +231,21 @@ type UpdateBackupPayload struct {
 	// Date-time when resource was created.
 	CreatedAt UpdateBackupPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id UpdateBackupPayloadGetIdAttributeType `json:"id,omitempty"`
+	Id UpdateBackupPayloadGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels UpdateBackupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name UpdateBackupPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name UpdateBackupPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// Size in Gigabyte.
 	Size UpdateBackupPayloadGetSizeAttributeType `json:"size,omitempty"`
 	// Universally Unique Identifier (UUID).
-	SnapshotId UpdateBackupPayloadGetSnapshotIdAttributeType `json:"snapshotId,omitempty"`
+	SnapshotId UpdateBackupPayloadGetSnapshotIdAttributeType `json:"snapshotId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// The status of a backup object. Possible values: `AVAILABLE`, `CREATING`, `DELETED`, `DELETING`, `ERROR`, `RESTORING`.
 	Status UpdateBackupPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt UpdateBackupPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	VolumeId UpdateBackupPayloadGetVolumeIdAttributeType `json:"volumeId,omitempty"`
+	VolumeId UpdateBackupPayloadGetVolumeIdAttributeType `json:"volumeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 }
 
 // NewUpdateBackupPayload instantiates a new UpdateBackupPayload object
@@ -493,6 +493,14 @@ func (o *UpdateBackupPayload) HasVolumeId() bool {
 // SetVolumeId gets a reference to the given string and assigns it to the VolumeId field.
 func (o *UpdateBackupPayload) SetVolumeId(v UpdateBackupPayloadGetVolumeIdRetType) {
 	setUpdateBackupPayloadGetVolumeIdAttributeType(&o.VolumeId, v)
+}
+
+func (o UpdateBackupPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateBackupPayload) ToMap() (map[string]interface{}, error) {

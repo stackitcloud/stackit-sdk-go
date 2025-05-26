@@ -215,6 +215,14 @@ func (o *LoadBalancerOptions) SetPrivateNetworkOnly(v LoadBalancerOptionsgetPriv
 	setLoadBalancerOptionsgetPrivateNetworkOnlyAttributeType(&o.PrivateNetworkOnly, v)
 }
 
+func (o LoadBalancerOptions) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o LoadBalancerOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getLoadBalancerOptionsGetAccessControlAttributeTypeOk(o.AccessControl); ok {

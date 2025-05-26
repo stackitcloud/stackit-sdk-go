@@ -11,7 +11,9 @@ API version: 2.0
 package authorization
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RemoveMembersPayload type satisfies the MappedNullable interface at compile time
@@ -84,7 +86,7 @@ type RemoveMembersPayload struct {
 	// REQUIRED
 	Members RemoveMembersPayloadGetMembersAttributeType `json:"members"`
 	// REQUIRED
-	ResourceType RemoveMembersPayloadGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType RemoveMembersPayloadGetResourceTypeAttributeType `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
 }
 
 type _RemoveMembersPayload RemoveMembersPayload
@@ -165,6 +167,14 @@ func (o *RemoveMembersPayload) SetResourceType(v RemoveMembersPayloadGetResource
 	setRemoveMembersPayloadGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
+func (o RemoveMembersPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o RemoveMembersPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRemoveMembersPayloadgetForceRemoveAttributeTypeOk(o.ForceRemove); ok {
@@ -177,6 +187,44 @@ func (o RemoveMembersPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["ResourceType"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *RemoveMembersPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"members",
+		"resourceType",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRemoveMembersPayload := _RemoveMembersPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRemoveMembersPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RemoveMembersPayload(varRemoveMembersPayload)
+
+	return err
 }
 
 type NullableRemoveMembersPayload struct {

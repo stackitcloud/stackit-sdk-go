@@ -82,6 +82,14 @@ func (o *ListCollationsResponse) SetCollations(v ListCollationsResponseGetCollat
 	setListCollationsResponseGetCollationsAttributeType(&o.Collations, v)
 }
 
+func (o ListCollationsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListCollationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListCollationsResponseGetCollationsAttributeTypeOk(o.Collations); ok {

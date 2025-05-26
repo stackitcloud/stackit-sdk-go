@@ -1,7 +1,7 @@
 /*
 STACKIT Object Storage API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -21,22 +21,22 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_objectstorage_DefaultApiService(t *testing.T) {
+func Test_objectstorage_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CreateAccessKey", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateAccessKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/access-key"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateAccessKeyResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -47,7 +47,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -79,7 +79,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateBucket", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateBucket", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -88,13 +88,13 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		bucketNameValue := "bucketName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateBucketResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -105,7 +105,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -137,20 +137,20 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateCredentialsGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateCredentialsGroup", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/credentials-group"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateCredentialsGroupResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -161,7 +161,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -193,7 +193,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteAccessKey", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteAccessKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/access-key/{keyId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -202,13 +202,13 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		keyIdValue := "keyId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := DeleteAccessKeyResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -219,7 +219,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -251,7 +251,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteBucket", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteBucket", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -260,13 +260,13 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		bucketNameValue := "bucketName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := DeleteBucketResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -277,7 +277,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -309,7 +309,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteCredentialsGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteCredentialsGroup", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/credentials-group/{groupId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -318,13 +318,13 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		groupIdValue := "groupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"groupId"+"}", url.PathEscape(ParameterValueToString(groupIdValue, "groupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := DeleteCredentialsGroupResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -335,7 +335,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -367,20 +367,20 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DisableService", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DisableService", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ProjectStatus{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -391,7 +391,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -422,20 +422,20 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService EnableService", func(t *testing.T) {
+	t.Run("Test DefaultAPIService EnableService", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ProjectStatus{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -446,7 +446,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -477,7 +477,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetBucket", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetBucket", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -486,13 +486,13 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		bucketNameValue := "bucketName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetBucketResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -503,7 +503,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -535,20 +535,20 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServiceStatus", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetServiceStatus", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ProjectStatus{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -559,7 +559,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -590,20 +590,20 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListAccessKeys", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListAccessKeys", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/access-keys"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListAccessKeysResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -614,7 +614,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -645,20 +645,20 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListBuckets", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListBuckets", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/buckets"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListBucketsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -669,7 +669,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -700,20 +700,20 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListCredentialsGroups", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListCredentialsGroups", func(t *testing.T) {
 		_apiUrlPath := "/v2/project/{projectId}/regions/{region}/credentials-groups"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCredentialsGroupsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -724,7 +724,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for objectstorage_DefaultApi",
+					Description: "Localhost for objectstorage_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

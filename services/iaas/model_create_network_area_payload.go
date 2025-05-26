@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateNetworkAreaPayload type satisfies the MappedNullable interface at compile time
@@ -86,7 +88,7 @@ type CreateNetworkAreaPayload struct {
 	Labels CreateNetworkAreaPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name CreateNetworkAreaPayloadGetNameAttributeType `json:"name"`
+	Name CreateNetworkAreaPayloadGetNameAttributeType `json:"name" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 }
 
 type _CreateNetworkAreaPayload CreateNetworkAreaPayload
@@ -167,6 +169,14 @@ func (o *CreateNetworkAreaPayload) SetName(v CreateNetworkAreaPayloadGetNameRetT
 	setCreateNetworkAreaPayloadGetNameAttributeType(&o.Name, v)
 }
 
+func (o CreateNetworkAreaPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateNetworkAreaPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateNetworkAreaPayloadGetAddressFamilyAttributeTypeOk(o.AddressFamily); ok {
@@ -179,6 +189,44 @@ func (o CreateNetworkAreaPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateNetworkAreaPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"addressFamily",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateNetworkAreaPayload := _CreateNetworkAreaPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateNetworkAreaPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateNetworkAreaPayload(varCreateNetworkAreaPayload)
+
+	return err
 }
 
 type NullableCreateNetworkAreaPayload struct {

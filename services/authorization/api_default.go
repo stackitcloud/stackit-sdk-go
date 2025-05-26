@@ -24,7 +24,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		AddMembers Add members to a resource
 		Add members to the given resource with specified roles.
@@ -193,12 +193,12 @@ type ApiRemoveMembersRequest interface {
 	Execute() (*MembersResponse, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type AddMembersRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	resourceId        string
 	addMembersPayload *AddMembersPayload
 }
@@ -220,7 +220,7 @@ func (r AddMembersRequest) Execute() (*MembersResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AddMembers")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.AddMembers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -362,7 +362,7 @@ func (a *APIClient) AddMembersExecute(ctx context.Context, resourceId string) (*
 
 type ListMembersRequest struct {
 	ctx          context.Context
-	apiService   *DefaultApiService
+	apiService   *DefaultAPIService
 	resourceType string
 	resourceId   string
 	subject      *string
@@ -385,7 +385,7 @@ func (r ListMembersRequest) Execute() (*ListMembersResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListMembers")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListMembers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -529,7 +529,7 @@ func (a *APIClient) ListMembersExecute(ctx context.Context, resourceType string,
 
 type ListPermissionsRequest struct {
 	ctx          context.Context
-	apiService   *DefaultApiService
+	apiService   *DefaultAPIService
 	resourceType *string
 }
 
@@ -550,7 +550,7 @@ func (r ListPermissionsRequest) Execute() (*ListPermissionsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPermissions")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListPermissions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -686,7 +686,7 @@ func (a *APIClient) ListPermissionsExecute(ctx context.Context) (*ListPermission
 
 type ListRolesRequest struct {
 	ctx          context.Context
-	apiService   *DefaultApiService
+	apiService   *DefaultAPIService
 	resourceType string
 	resourceId   string
 }
@@ -703,7 +703,7 @@ func (r ListRolesRequest) Execute() (*RolesResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListRoles")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListRoles")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -844,7 +844,7 @@ func (a *APIClient) ListRolesExecute(ctx context.Context, resourceType string, r
 
 type ListUserMembershipsRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	email            string
 	resourceType     *string
 	resourceId       *string
@@ -878,7 +878,7 @@ func (r ListUserMembershipsRequest) Execute() (*ListUserMembershipsResponse, err
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUserMemberships")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUserMemberships")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1024,7 +1024,7 @@ func (a *APIClient) ListUserMembershipsExecute(ctx context.Context, email string
 
 type ListUserPermissionsRequest struct {
 	ctx          context.Context
-	apiService   *DefaultApiService
+	apiService   *DefaultAPIService
 	email        string
 	resource     *string
 	resourceType *string
@@ -1058,7 +1058,7 @@ func (r ListUserPermissionsRequest) Execute() (*ListUserPermissionsResponse, err
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUserPermissions")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUserPermissions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1212,7 +1212,7 @@ func (a *APIClient) ListUserPermissionsExecute(ctx context.Context, email string
 
 type RemoveMembersRequest struct {
 	ctx                  context.Context
-	apiService           *DefaultApiService
+	apiService           *DefaultAPIService
 	resourceId           string
 	removeMembersPayload *RemoveMembersPayload
 }
@@ -1234,7 +1234,7 @@ func (r RemoveMembersRequest) Execute() (*MembersResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RemoveMembers")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.RemoveMembers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

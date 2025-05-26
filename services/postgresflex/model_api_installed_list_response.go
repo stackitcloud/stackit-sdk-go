@@ -82,6 +82,14 @@ func (o *ApiInstalledListResponse) SetInstalled(v ApiInstalledListResponseGetIns
 	setApiInstalledListResponseGetInstalledAttributeType(&o.Installed, v)
 }
 
+func (o ApiInstalledListResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ApiInstalledListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiInstalledListResponseGetInstalledAttributeTypeOk(o.Installed); ok {

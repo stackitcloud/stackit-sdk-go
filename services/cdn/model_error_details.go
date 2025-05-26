@@ -11,6 +11,7 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -109,6 +110,7 @@ type ErrorDetailsGetFieldRetType = string
 // isEnum
 
 // ErrorDetailsKey the model 'ErrorDetails'
+// value type for enums
 type ErrorDetailsKey string
 
 // List of Key
@@ -119,6 +121,7 @@ const (
 )
 
 // All allowed values of ErrorDetails enum
+
 var AllowedErrorDetailsKeyEnumValues = []ErrorDetailsKey{
 	"UNKNOWN",
 	"CUSTOM_DOMAIN_CNAME_MISSING",
@@ -126,13 +129,13 @@ var AllowedErrorDetailsKeyEnumValues = []ErrorDetailsKey{
 }
 
 func (v *ErrorDetailsKey) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ErrorDetailsKey
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ErrorDetailsKey
 	if value == zeroValue {
 		return nil
 	}
@@ -149,7 +152,7 @@ func (v *ErrorDetailsKey) UnmarshalJSON(src []byte) error {
 
 // NewErrorDetailsKeyFromValue returns a pointer to a valid ErrorDetailsKey
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewErrorDetailsKeyFromValue(v string) (*ErrorDetailsKey, error) {
+func NewErrorDetailsKeyFromValue(v ErrorDetailsKey) (*ErrorDetailsKey, error) {
 	ev := ErrorDetailsKey(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -362,6 +365,14 @@ func (o *ErrorDetails) SetKey(v ErrorDetailsGetKeyRetType) {
 	setErrorDetailsGetKeyAttributeType(&o.Key, v)
 }
 
+func (o ErrorDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ErrorDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getErrorDetailsGetDeAttributeTypeOk(o.De); ok {
@@ -380,6 +391,45 @@ func (o ErrorDetails) ToMap() (map[string]interface{}, error) {
 		toSerialize["Key"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ErrorDetails) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"en",
+		"key",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varErrorDetails := _ErrorDetails{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varErrorDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ErrorDetails(varErrorDetails)
+
+	return err
 }
 
 type NullableErrorDetails struct {

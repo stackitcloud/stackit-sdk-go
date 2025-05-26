@@ -83,6 +83,14 @@ func (o *SessionPersistence) SetUseSourceIpAddress(v SessionPersistencegetUseSou
 	setSessionPersistencegetUseSourceIpAddressAttributeType(&o.UseSourceIpAddress, v)
 }
 
+func (o SessionPersistence) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o SessionPersistence) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSessionPersistencegetUseSourceIpAddressAttributeTypeOk(o.UseSourceIpAddress); ok {

@@ -127,6 +127,14 @@ func (o *MachineImage) SetVersions(v MachineImageGetVersionsRetType) {
 	setMachineImageGetVersionsAttributeType(&o.Versions, v)
 }
 
+func (o MachineImage) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MachineImage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMachineImageGetNameAttributeTypeOk(o.Name); ok {

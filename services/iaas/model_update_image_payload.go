@@ -171,7 +171,7 @@ type UpdateImagePayload struct {
 	// Size in Megabyte.
 	MinRam UpdateImagePayloadGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name      UpdateImagePayloadGetNameAttributeType      `json:"name,omitempty"`
+	Name      UpdateImagePayloadGetNameAttributeType      `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	Protected UpdateImagePayloadgetProtectedAttributeType `json:"protected,omitempty"`
 }
 
@@ -351,6 +351,14 @@ func (o *UpdateImagePayload) HasProtected() bool {
 // SetProtected gets a reference to the given bool and assigns it to the Protected field.
 func (o *UpdateImagePayload) SetProtected(v UpdateImagePayloadgetProtectedRetType) {
 	setUpdateImagePayloadgetProtectedAttributeType(&o.Protected, v)
+}
+
+func (o UpdateImagePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateImagePayload) ToMap() (map[string]interface{}, error) {

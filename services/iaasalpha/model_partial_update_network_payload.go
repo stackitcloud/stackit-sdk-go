@@ -104,7 +104,7 @@ type PartialUpdateNetworkPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels PartialUpdateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name PartialUpdateNetworkPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name PartialUpdateNetworkPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// Shows if the network is routed and therefore accessible from other networks.
 	Routed PartialUpdateNetworkPayloadgetRoutedAttributeType `json:"routed,omitempty"`
 }
@@ -216,6 +216,14 @@ func (o *PartialUpdateNetworkPayload) HasRouted() bool {
 // SetRouted gets a reference to the given bool and assigns it to the Routed field.
 func (o *PartialUpdateNetworkPayload) SetRouted(v PartialUpdateNetworkPayloadgetRoutedRetType) {
 	setPartialUpdateNetworkPayloadgetRoutedAttributeType(&o.Routed, v)
+}
+
+func (o PartialUpdateNetworkPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o PartialUpdateNetworkPayload) ToMap() (map[string]interface{}, error) {

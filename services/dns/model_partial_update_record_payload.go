@@ -11,6 +11,7 @@ API version: 1.0
 package dns
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,6 +26,7 @@ var _ MappedNullable = &PartialUpdateRecordPayload{}
 // isEnum
 
 // PartialUpdateRecordPayloadAction the model 'PartialUpdateRecordPayload'
+// value type for enums
 type PartialUpdateRecordPayloadAction string
 
 // List of Action
@@ -34,19 +36,20 @@ const (
 )
 
 // All allowed values of PartialUpdateRecordPayload enum
+
 var AllowedPartialUpdateRecordPayloadActionEnumValues = []PartialUpdateRecordPayloadAction{
 	"add",
 	"delete",
 }
 
 func (v *PartialUpdateRecordPayloadAction) UnmarshalJSON(src []byte) error {
-	var value string
+	var value PartialUpdateRecordPayloadAction
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue PartialUpdateRecordPayloadAction
 	if value == zeroValue {
 		return nil
 	}
@@ -63,7 +66,7 @@ func (v *PartialUpdateRecordPayloadAction) UnmarshalJSON(src []byte) error {
 
 // NewPartialUpdateRecordPayloadActionFromValue returns a pointer to a valid PartialUpdateRecordPayloadAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateRecordPayloadActionFromValue(v string) (*PartialUpdateRecordPayloadAction, error) {
+func NewPartialUpdateRecordPayloadActionFromValue(v PartialUpdateRecordPayloadAction) (*PartialUpdateRecordPayloadAction, error) {
 	ev := PartialUpdateRecordPayloadAction(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -222,6 +225,14 @@ func (o *PartialUpdateRecordPayload) SetRecords(v PartialUpdateRecordPayloadGetR
 	setPartialUpdateRecordPayloadGetRecordsAttributeType(&o.Records, v)
 }
 
+func (o PartialUpdateRecordPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PartialUpdateRecordPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateRecordPayloadGetActionAttributeTypeOk(o.Action); ok {
@@ -231,6 +242,44 @@ func (o PartialUpdateRecordPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Records"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateRecordPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"action",
+		"records",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPartialUpdateRecordPayload := _PartialUpdateRecordPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPartialUpdateRecordPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateRecordPayload(varPartialUpdateRecordPayload)
+
+	return err
 }
 
 type NullablePartialUpdateRecordPayload struct {

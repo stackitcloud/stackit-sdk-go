@@ -67,6 +67,7 @@ type ParametersGeneralGetProjectNameRetType = string
 // isEnum
 
 // ParametersGeneralProjectScope the model 'ParametersGeneral'
+// value type for enums
 type ParametersGeneralProjectScope string
 
 // List of ProjectScope
@@ -76,19 +77,20 @@ const (
 )
 
 // All allowed values of ParametersGeneral enum
+
 var AllowedParametersGeneralProjectScopeEnumValues = []ParametersGeneralProjectScope{
 	"SCHWARZ",
 	"PUBLIC",
 }
 
 func (v *ParametersGeneralProjectScope) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ParametersGeneralProjectScope
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ParametersGeneralProjectScope
 	if value == zeroValue {
 		return nil
 	}
@@ -105,7 +107,7 @@ func (v *ParametersGeneralProjectScope) UnmarshalJSON(src []byte) error {
 
 // NewParametersGeneralProjectScopeFromValue returns a pointer to a valid ParametersGeneralProjectScope
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewParametersGeneralProjectScopeFromValue(v string) (*ParametersGeneralProjectScope, error) {
+func NewParametersGeneralProjectScopeFromValue(v ParametersGeneralProjectScope) (*ParametersGeneralProjectScope, error) {
 	ev := ParametersGeneralProjectScope(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -273,6 +275,14 @@ func (o *ParametersGeneral) HasProjectScope() bool {
 // SetProjectScope gets a reference to the given string and assigns it to the ProjectScope field.
 func (o *ParametersGeneral) SetProjectScope(v ParametersGeneralGetProjectScopeRetType) {
 	setParametersGeneralGetProjectScopeAttributeType(&o.ProjectScope, v)
+}
+
+func (o ParametersGeneral) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ParametersGeneral) ToMap() (map[string]interface{}, error) {

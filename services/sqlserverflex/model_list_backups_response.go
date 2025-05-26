@@ -82,6 +82,14 @@ func (o *ListBackupsResponse) SetDatabases(v ListBackupsResponseGetDatabasesRetT
 	setListBackupsResponseGetDatabasesAttributeType(&o.Databases, v)
 }
 
+func (o ListBackupsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListBackupsResponseGetDatabasesAttributeTypeOk(o.Databases); ok {

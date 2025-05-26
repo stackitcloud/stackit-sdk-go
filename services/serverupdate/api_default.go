@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateUpdate create update
 
@@ -315,12 +315,12 @@ type ApiUpdateUpdateScheduleRequest interface {
 	Execute() (*UpdateSchedule, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateUpdateRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serverId            string
 	region              string
@@ -344,7 +344,7 @@ func (r CreateUpdateRequest) Execute() (*Update, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdate")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateUpdate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -468,7 +468,7 @@ func (a *APIClient) CreateUpdateExecute(ctx context.Context, projectId string, s
 
 type CreateUpdateScheduleRequest struct {
 	ctx                         context.Context
-	apiService                  *DefaultApiService
+	apiService                  *DefaultAPIService
 	projectId                   string
 	serverId                    string
 	region                      string
@@ -492,7 +492,7 @@ func (r CreateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUpdateSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateUpdateSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -616,7 +616,7 @@ func (a *APIClient) CreateUpdateScheduleExecute(ctx context.Context, projectId s
 
 type DeleteUpdateScheduleRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	scheduleId string
@@ -634,7 +634,7 @@ func (r DeleteUpdateScheduleRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteUpdateSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteUpdateSchedule")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -750,7 +750,7 @@ func (a *APIClient) DeleteUpdateScheduleExecute(ctx context.Context, projectId s
 
 type DisableServiceResourceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -767,7 +767,7 @@ func (r DisableServiceResourceRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceResource")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -879,7 +879,7 @@ func (a *APIClient) DisableServiceResourceExecute(ctx context.Context, projectId
 
 type EnableServiceResourceRequest struct {
 	ctx                          context.Context
-	apiService                   *DefaultApiService
+	apiService                   *DefaultAPIService
 	projectId                    string
 	serverId                     string
 	region                       string
@@ -902,7 +902,7 @@ func (r EnableServiceResourceRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceResource")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1016,7 +1016,7 @@ func (a *APIClient) EnableServiceResourceExecute(ctx context.Context, projectId 
 
 type GetServiceResourceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -1034,7 +1034,7 @@ func (r GetServiceResourceRequest) Execute() (*GetUpdateServiceResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceResource")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetServiceResource")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1156,7 +1156,7 @@ func (a *APIClient) GetServiceResourceExecute(ctx context.Context, projectId str
 
 type GetUpdateRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	updateId   string
@@ -1175,7 +1175,7 @@ func (r GetUpdateRequest) Execute() (*Update, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdate")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetUpdate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1301,7 +1301,7 @@ func (a *APIClient) GetUpdateExecute(ctx context.Context, projectId string, serv
 
 type GetUpdateScheduleRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	scheduleId string
@@ -1320,7 +1320,7 @@ func (r GetUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUpdateSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetUpdateSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1446,7 +1446,7 @@ func (a *APIClient) GetUpdateScheduleExecute(ctx context.Context, projectId stri
 
 type ListUpdatePoliciesRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -1462,7 +1462,7 @@ func (r ListUpdatePoliciesRequest) Execute() (*GetUpdatePoliciesResponse, error)
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdatePolicies")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUpdatePolicies")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1576,7 +1576,7 @@ func (a *APIClient) ListUpdatePoliciesExecute(ctx context.Context, projectId str
 
 type ListUpdateSchedulesRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -1594,7 +1594,7 @@ func (r ListUpdateSchedulesRequest) Execute() (*GetUpdateSchedulesResponse, erro
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdateSchedules")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUpdateSchedules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1716,7 +1716,7 @@ func (a *APIClient) ListUpdateSchedulesExecute(ctx context.Context, projectId st
 
 type ListUpdatesRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -1734,7 +1734,7 @@ func (r ListUpdatesRequest) Execute() (*GetUpdatesListResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUpdates")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUpdates")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1856,7 +1856,7 @@ func (a *APIClient) ListUpdatesExecute(ctx context.Context, projectId string, se
 
 type UpdateUpdateScheduleRequest struct {
 	ctx                         context.Context
-	apiService                  *DefaultApiService
+	apiService                  *DefaultAPIService
 	projectId                   string
 	serverId                    string
 	scheduleId                  string
@@ -1881,7 +1881,7 @@ func (r UpdateUpdateScheduleRequest) Execute() (*UpdateSchedule, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateUpdateSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateUpdateSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

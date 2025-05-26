@@ -37,11 +37,11 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client APIClient
 		}
 		if response.HasStatus() {
 			switch *response.Status {
-			case alb.LOADBALANCERSTATUS_PENDING:
+			case alb.LOADBALANCERSTATUS_STATUS_PENDING:
 				return false, nil, nil
-			case alb.LOADBALANCERSTATUS_UNSPECIFIED:
+			case alb.LOADBALANCERSTATUS_STATUS_UNSPECIFIED:
 				return false, nil, nil
-			case alb.LOADBALANCERSTATUS_ERROR:
+			case alb.LOADBALANCERSTATUS_STATUS_ERROR:
 				return true, response, fmt.Errorf("loadbalancer in error: %s", *response.Status)
 			default:
 				return true, response, nil

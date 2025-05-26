@@ -46,22 +46,24 @@ type LoadBalancerErrorGetDescriptionRetType = string
 // isEnum
 
 // LoadBalancerErrorTypes The error type specifies which part of the application load balancer encountered the error. I.e. the API will not check if a provided public IP is actually available in the project. Instead the application load balancer with try to use the provided IP and if not available reports TYPE_FIP_NOT_CONFIGURED error.
+// value type for enums
 type LoadBalancerErrorTypes string
 
 // List of Type
 const (
-	LOADBALANCERERRORTYPE_UNSPECIFIED                 LoadBalancerErrorTypes = "TYPE_UNSPECIFIED"
-	LOADBALANCERERRORTYPE_INTERNAL                    LoadBalancerErrorTypes = "TYPE_INTERNAL"
-	LOADBALANCERERRORTYPE_QUOTA_SECGROUP_EXCEEDED     LoadBalancerErrorTypes = "TYPE_QUOTA_SECGROUP_EXCEEDED"
-	LOADBALANCERERRORTYPE_QUOTA_SECGROUPRULE_EXCEEDED LoadBalancerErrorTypes = "TYPE_QUOTA_SECGROUPRULE_EXCEEDED"
-	LOADBALANCERERRORTYPE_PORT_NOT_CONFIGURED         LoadBalancerErrorTypes = "TYPE_PORT_NOT_CONFIGURED"
-	LOADBALANCERERRORTYPE_FIP_NOT_CONFIGURED          LoadBalancerErrorTypes = "TYPE_FIP_NOT_CONFIGURED"
-	LOADBALANCERERRORTYPE_TARGET_NOT_ACTIVE           LoadBalancerErrorTypes = "TYPE_TARGET_NOT_ACTIVE"
-	LOADBALANCERERRORTYPE_METRICS_MISCONFIGURED       LoadBalancerErrorTypes = "TYPE_METRICS_MISCONFIGURED"
-	LOADBALANCERERRORTYPE_LOGS_MISCONFIGURED          LoadBalancerErrorTypes = "TYPE_LOGS_MISCONFIGURED"
+	LOADBALANCERERRORTYPE_TYPE_UNSPECIFIED                 LoadBalancerErrorTypes = "TYPE_UNSPECIFIED"
+	LOADBALANCERERRORTYPE_TYPE_INTERNAL                    LoadBalancerErrorTypes = "TYPE_INTERNAL"
+	LOADBALANCERERRORTYPE_TYPE_QUOTA_SECGROUP_EXCEEDED     LoadBalancerErrorTypes = "TYPE_QUOTA_SECGROUP_EXCEEDED"
+	LOADBALANCERERRORTYPE_TYPE_QUOTA_SECGROUPRULE_EXCEEDED LoadBalancerErrorTypes = "TYPE_QUOTA_SECGROUPRULE_EXCEEDED"
+	LOADBALANCERERRORTYPE_TYPE_PORT_NOT_CONFIGURED         LoadBalancerErrorTypes = "TYPE_PORT_NOT_CONFIGURED"
+	LOADBALANCERERRORTYPE_TYPE_FIP_NOT_CONFIGURED          LoadBalancerErrorTypes = "TYPE_FIP_NOT_CONFIGURED"
+	LOADBALANCERERRORTYPE_TYPE_TARGET_NOT_ACTIVE           LoadBalancerErrorTypes = "TYPE_TARGET_NOT_ACTIVE"
+	LOADBALANCERERRORTYPE_TYPE_METRICS_MISCONFIGURED       LoadBalancerErrorTypes = "TYPE_METRICS_MISCONFIGURED"
+	LOADBALANCERERRORTYPE_TYPE_LOGS_MISCONFIGURED          LoadBalancerErrorTypes = "TYPE_LOGS_MISCONFIGURED"
 )
 
 // All allowed values of LoadBalancerError enum
+
 var AllowedLoadBalancerErrorTypesEnumValues = []LoadBalancerErrorTypes{
 	"TYPE_UNSPECIFIED",
 	"TYPE_INTERNAL",
@@ -75,13 +77,13 @@ var AllowedLoadBalancerErrorTypesEnumValues = []LoadBalancerErrorTypes{
 }
 
 func (v *LoadBalancerErrorTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value LoadBalancerErrorTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue LoadBalancerErrorTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -98,7 +100,7 @@ func (v *LoadBalancerErrorTypes) UnmarshalJSON(src []byte) error {
 
 // NewLoadBalancerErrorTypesFromValue returns a pointer to a valid LoadBalancerErrorTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewLoadBalancerErrorTypesFromValue(v string) (*LoadBalancerErrorTypes, error) {
+func NewLoadBalancerErrorTypesFromValue(v LoadBalancerErrorTypes) (*LoadBalancerErrorTypes, error) {
 	ev := LoadBalancerErrorTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -242,6 +244,14 @@ func (o *LoadBalancerError) HasType() bool {
 // SetType gets a reference to the given string and assigns it to the Type field.
 func (o *LoadBalancerError) SetType(v LoadBalancerErrorGetTypeRetType) {
 	setLoadBalancerErrorGetTypeAttributeType(&o.Type, v)
+}
+
+func (o LoadBalancerError) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o LoadBalancerError) ToMap() (map[string]interface{}, error) {

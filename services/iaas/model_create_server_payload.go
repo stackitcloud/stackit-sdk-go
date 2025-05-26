@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -65,9 +67,9 @@ type CreateServerPayloadGetAvailabilityZoneRetType = string
 */
 
 // isModel
-type CreateServerPayloadGetBootVolumeAttributeType = *CreateServerPayloadBootVolume
-type CreateServerPayloadGetBootVolumeArgType = CreateServerPayloadBootVolume
-type CreateServerPayloadGetBootVolumeRetType = CreateServerPayloadBootVolume
+type CreateServerPayloadGetBootVolumeAttributeType = *BootVolume
+type CreateServerPayloadGetBootVolumeArgType = BootVolume
+type CreateServerPayloadGetBootVolumeRetType = BootVolume
 
 func getCreateServerPayloadGetBootVolumeAttributeTypeOk(arg CreateServerPayloadGetBootVolumeAttributeType) (ret CreateServerPayloadGetBootVolumeRetType, ok bool) {
 	if arg == nil {
@@ -470,9 +472,9 @@ func setCreateServerPayloadGetVolumesAttributeType(arg *CreateServerPayloadGetVo
 
 // CreateServerPayload Representation of a single server object.
 type CreateServerPayload struct {
-	// Universally Unique Identifier (UUID).
-	AffinityGroup CreateServerPayloadGetAffinityGroupAttributeType `json:"affinityGroup,omitempty"`
-	// Object that represents an availability zone.
+	// The affinity group the server is assigned to.
+	AffinityGroup CreateServerPayloadGetAffinityGroupAttributeType `json:"affinityGroup,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	// This is the availability zone requested during server creation. If none is provided during the creation request and an existing volume will be used as boot volume it will be set to the same availability zone as the volume. For requests with no volumes involved it will be set to the metro availability zone.
 	AvailabilityZone CreateServerPayloadGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	BootVolume       CreateServerPayloadGetBootVolumeAttributeType       `json:"bootVolume,omitempty"`
 	// Date-time when resource was created.
@@ -480,38 +482,38 @@ type CreateServerPayload struct {
 	// An error message.
 	ErrorMessage CreateServerPayloadGetErrorMessageAttributeType `json:"errorMessage,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id CreateServerPayloadGetIdAttributeType `json:"id,omitempty"`
+	Id CreateServerPayloadGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Universally Unique Identifier (UUID).
-	ImageId CreateServerPayloadGetImageIdAttributeType `json:"imageId,omitempty"`
-	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
-	KeypairName CreateServerPayloadGetKeypairNameAttributeType `json:"keypairName,omitempty"`
+	ImageId CreateServerPayloadGetImageIdAttributeType `json:"imageId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	// The SSH keypair used during the server creation.
+	KeypairName CreateServerPayloadGetKeypairNameAttributeType `json:"keypairName,omitempty" validate:"regexp=^[A-Za-z0-9@._-]*$"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels CreateServerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Date-time when resource was launched.
 	LaunchedAt CreateServerPayloadGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
-	// The name for a General Object. Matches Names and also UUIDs.
+	// Name of the machine type the server shall belong to.
 	// REQUIRED
-	MachineType       CreateServerPayloadGetMachineTypeAttributeType       `json:"machineType"`
+	MachineType       CreateServerPayloadGetMachineTypeAttributeType       `json:"machineType" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	MaintenanceWindow CreateServerPayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
 	// The name for a Server.
 	// REQUIRED
-	Name       CreateServerPayloadGetNameAttributeType       `json:"name"`
+	Name       CreateServerPayloadGetNameAttributeType       `json:"name" validate:"regexp=^[A-Za-z0-9]+((-|\\\\.)[A-Za-z0-9]+)*$"`
 	Networking CreateServerPayloadGetNetworkingAttributeType `json:"networking,omitempty"`
-	// A list of networks attached to a server.
+	// The list of network interfaces (NICs) attached to the server. Only shown when detailed information is requested.
 	Nics CreateServerPayloadGetNicsAttributeType `json:"nics,omitempty"`
 	// The power status of a server. Possible values: `CRASHED`, `ERROR`, `RUNNING`, `STOPPED`.
 	PowerStatus CreateServerPayloadGetPowerStatusAttributeType `json:"powerStatus,omitempty"`
-	// A list of General Objects.
+	// The initial security groups for the server creation.
 	SecurityGroups CreateServerPayloadGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
-	// A list of service account mails.
+	// A list of service account mails. Only shown when detailed information is requested.
 	ServiceAccountMails CreateServerPayloadGetServiceAccountMailsAttributeType `json:"serviceAccountMails,omitempty"`
 	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
 	Status CreateServerPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt CreateServerPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
-	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server.
+	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server. Only shown when detailed information is requested.
 	UserData CreateServerPayloadGetUserDataAttributeType `json:"userData,omitempty"`
-	// A list of UUIDs.
+	// The list of volumes attached to the server.
 	Volumes CreateServerPayloadGetVolumesAttributeType `json:"volumes,omitempty"`
 }
 
@@ -600,7 +602,7 @@ func (o *CreateServerPayload) HasBootVolume() bool {
 	return ok
 }
 
-// SetBootVolume gets a reference to the given CreateServerPayloadBootVolume and assigns it to the BootVolume field.
+// SetBootVolume gets a reference to the given BootVolume and assigns it to the BootVolume field.
 func (o *CreateServerPayload) SetBootVolume(v CreateServerPayloadGetBootVolumeRetType) {
 	setCreateServerPayloadGetBootVolumeAttributeType(&o.BootVolume, v)
 }
@@ -1030,6 +1032,14 @@ func (o *CreateServerPayload) SetVolumes(v CreateServerPayloadGetVolumesRetType)
 	setCreateServerPayloadGetVolumesAttributeType(&o.Volumes, v)
 }
 
+func (o CreateServerPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateServerPayloadGetAffinityGroupAttributeTypeOk(o.AffinityGroup); ok {
@@ -1099,6 +1109,44 @@ func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Volumes"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateServerPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"machineType",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateServerPayload := _CreateServerPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateServerPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateServerPayload(varCreateServerPayload)
+
+	return err
 }
 
 type NullableCreateServerPayload struct {

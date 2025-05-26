@@ -128,6 +128,14 @@ func (o *MssqlDatabaseCollation) SetDescription(v MssqlDatabaseCollationGetDescr
 	setMssqlDatabaseCollationGetDescriptionAttributeType(&o.Description, v)
 }
 
+func (o MssqlDatabaseCollation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MssqlDatabaseCollation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMssqlDatabaseCollationGetCollationNameAttributeTypeOk(o.CollationName); ok {

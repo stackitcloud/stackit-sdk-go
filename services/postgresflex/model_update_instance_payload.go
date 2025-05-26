@@ -440,6 +440,14 @@ func (o *UpdateInstancePayload) SetVersion(v UpdateInstancePayloadGetVersionRetT
 	setUpdateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
+func (o UpdateInstancePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {

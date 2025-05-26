@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateBackupPayload type satisfies the MappedNullable interface at compile time
@@ -83,7 +85,7 @@ type CreateBackupPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels CreateBackupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name CreateBackupPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name CreateBackupPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// REQUIRED
 	Source CreateBackupPayloadGetSourceAttributeType `json:"source"`
 }
@@ -171,6 +173,14 @@ func (o *CreateBackupPayload) SetSource(v CreateBackupPayloadGetSourceRetType) {
 	setCreateBackupPayloadGetSourceAttributeType(&o.Source, v)
 }
 
+func (o CreateBackupPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateBackupPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
@@ -183,6 +193,43 @@ func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Source"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateBackupPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"source",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateBackupPayload := _CreateBackupPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateBackupPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateBackupPayload(varCreateBackupPayload)
+
+	return err
 }
 
 type NullableCreateBackupPayload struct {

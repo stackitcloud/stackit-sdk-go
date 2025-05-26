@@ -82,6 +82,14 @@ func (o *GetUpdatesListResponse) SetItems(v GetUpdatesListResponseGetItemsRetTyp
 	setGetUpdatesListResponseGetItemsAttributeType(&o.Items, v)
 }
 
+func (o GetUpdatesListResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetUpdatesListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetUpdatesListResponseGetItemsAttributeTypeOk(o.Items); ok {

@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateScrapeConfigPayloadHttpSdConfigsInner type satisfies the MappedNullable interface at compile time
@@ -262,6 +264,14 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) SetUrl(v CreateScrapeConfi
 	setCreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType(&o.Url, v)
 }
 
+func (o CreateScrapeConfigPayloadHttpSdConfigsInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateScrapeConfigPayloadHttpSdConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerGetBasicAuthAttributeTypeOk(o.BasicAuth); ok {
@@ -280,6 +290,43 @@ func (o CreateScrapeConfigPayloadHttpSdConfigsInner) ToMap() (map[string]interfa
 		toSerialize["Url"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateScrapeConfigPayloadHttpSdConfigsInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateScrapeConfigPayloadHttpSdConfigsInner := _CreateScrapeConfigPayloadHttpSdConfigsInner{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateScrapeConfigPayloadHttpSdConfigsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateScrapeConfigPayloadHttpSdConfigsInner(varCreateScrapeConfigPayloadHttpSdConfigsInner)
+
+	return err
 }
 
 type NullableCreateScrapeConfigPayloadHttpSdConfigsInner struct {

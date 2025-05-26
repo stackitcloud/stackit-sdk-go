@@ -83,6 +83,14 @@ func (o *Network) SetId(v NetworkGetIdRetType) {
 	setNetworkGetIdAttributeType(&o.Id, v)
 }
 
+func (o Network) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getNetworkGetIdAttributeTypeOk(o.Id); ok {

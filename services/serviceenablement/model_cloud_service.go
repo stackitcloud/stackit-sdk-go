@@ -65,6 +65,7 @@ func setCloudServiceGetLabelsAttributeType(arg *CloudServiceGetLabelsAttributeTy
 // isEnum
 
 // CloudServiceScope the model 'CloudService'
+// value type for enums
 type CloudServiceScope string
 
 // List of Scope
@@ -74,19 +75,20 @@ const (
 )
 
 // All allowed values of CloudService enum
+
 var AllowedCloudServiceScopeEnumValues = []CloudServiceScope{
 	"PRIVATE",
 	"PUBLIC",
 }
 
 func (v *CloudServiceScope) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CloudServiceScope
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CloudServiceScope
 	if value == zeroValue {
 		return nil
 	}
@@ -103,7 +105,7 @@ func (v *CloudServiceScope) UnmarshalJSON(src []byte) error {
 
 // NewCloudServiceScopeFromValue returns a pointer to a valid CloudServiceScope
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCloudServiceScopeFromValue(v string) (*CloudServiceScope, error) {
+func NewCloudServiceScopeFromValue(v CloudServiceScope) (*CloudServiceScope, error) {
 	ev := CloudServiceScope(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -205,7 +207,7 @@ type CloudService struct {
 	Labels       CloudServiceGetLabelsAttributeType       `json:"labels,omitempty"`
 	Scope        CloudServiceGetScopeAttributeType        `json:"scope,omitempty"`
 	// the id of the service
-	ServiceId CloudServiceGetServiceIdAttributeType `json:"serviceId,omitempty"`
+	ServiceId CloudServiceGetServiceIdAttributeType `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
 }
 
 // NewCloudService instantiates a new CloudService object
@@ -317,6 +319,14 @@ func (o *CloudService) HasServiceId() bool {
 // SetServiceId gets a reference to the given string and assigns it to the ServiceId field.
 func (o *CloudService) SetServiceId(v CloudServiceGetServiceIdRetType) {
 	setCloudServiceGetServiceIdAttributeType(&o.ServiceId, v)
+}
+
+func (o CloudService) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CloudService) ToMap() (map[string]interface{}, error) {

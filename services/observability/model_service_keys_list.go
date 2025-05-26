@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ServiceKeysList type satisfies the MappedNullable interface at compile time
@@ -166,6 +168,14 @@ func (o *ServiceKeysList) SetName(v ServiceKeysListGetNameRetType) {
 	setServiceKeysListGetNameAttributeType(&o.Name, v)
 }
 
+func (o ServiceKeysList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ServiceKeysList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getServiceKeysListGetCredentialsInfoAttributeTypeOk(o.CredentialsInfo); ok {
@@ -178,6 +188,44 @@ func (o ServiceKeysList) ToMap() (map[string]interface{}, error) {
 		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ServiceKeysList) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varServiceKeysList := _ServiceKeysList{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varServiceKeysList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ServiceKeysList(varServiceKeysList)
+
+	return err
 }
 
 type NullableServiceKeysList struct {

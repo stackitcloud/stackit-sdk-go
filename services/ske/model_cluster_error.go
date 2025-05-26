@@ -25,18 +25,20 @@ var _ MappedNullable = &ClusterError{}
 // isEnum
 
 // ClusterErrorCode the model 'ClusterError'
+// value type for enums
 type ClusterErrorCode string
 
 // List of Code
 const (
-	CLUSTERERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND ClusterErrorCode = "SKE_OBSERVABILITY_INSTANCE_NOT_FOUND"
-	CLUSTERERRORCODE_DNS_ZONE_NOT_FOUND               ClusterErrorCode = "SKE_DNS_ZONE_NOT_FOUND"
-	CLUSTERERRORCODE_NODE_MISCONFIGURED_PDB           ClusterErrorCode = "SKE_NODE_MISCONFIGURED_PDB"
-	CLUSTERERRORCODE_NODE_NO_VALID_HOST_FOUND         ClusterErrorCode = "SKE_NODE_NO_VALID_HOST_FOUND"
-	CLUSTERERRORCODE_NODE_MACHINE_TYPE_NOT_FOUND      ClusterErrorCode = "SKE_NODE_MACHINE_TYPE_NOT_FOUND"
+	CLUSTERERRORCODE_SKE_OBSERVABILITY_INSTANCE_NOT_FOUND ClusterErrorCode = "SKE_OBSERVABILITY_INSTANCE_NOT_FOUND"
+	CLUSTERERRORCODE_SKE_DNS_ZONE_NOT_FOUND               ClusterErrorCode = "SKE_DNS_ZONE_NOT_FOUND"
+	CLUSTERERRORCODE_SKE_NODE_MISCONFIGURED_PDB           ClusterErrorCode = "SKE_NODE_MISCONFIGURED_PDB"
+	CLUSTERERRORCODE_SKE_NODE_NO_VALID_HOST_FOUND         ClusterErrorCode = "SKE_NODE_NO_VALID_HOST_FOUND"
+	CLUSTERERRORCODE_SKE_NODE_MACHINE_TYPE_NOT_FOUND      ClusterErrorCode = "SKE_NODE_MACHINE_TYPE_NOT_FOUND"
 )
 
 // All allowed values of ClusterError enum
+
 var AllowedClusterErrorCodeEnumValues = []ClusterErrorCode{
 	"SKE_OBSERVABILITY_INSTANCE_NOT_FOUND",
 	"SKE_DNS_ZONE_NOT_FOUND",
@@ -46,13 +48,13 @@ var AllowedClusterErrorCodeEnumValues = []ClusterErrorCode{
 }
 
 func (v *ClusterErrorCode) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ClusterErrorCode
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ClusterErrorCode
 	if value == zeroValue {
 		return nil
 	}
@@ -69,7 +71,7 @@ func (v *ClusterErrorCode) UnmarshalJSON(src []byte) error {
 
 // NewClusterErrorCodeFromValue returns a pointer to a valid ClusterErrorCode
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewClusterErrorCodeFromValue(v string) (*ClusterErrorCode, error) {
+func NewClusterErrorCodeFromValue(v ClusterErrorCode) (*ClusterErrorCode, error) {
 	ev := ClusterErrorCode(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -232,6 +234,14 @@ func (o *ClusterError) HasMessage() bool {
 // SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *ClusterError) SetMessage(v ClusterErrorGetMessageRetType) {
 	setClusterErrorGetMessageAttributeType(&o.Message, v)
+}
+
+func (o ClusterError) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ClusterError) ToMap() (map[string]interface{}, error) {

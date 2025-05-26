@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		DisableServiceRegional Method for DisableServiceRegional
 		disables the service in a project.
@@ -117,12 +117,12 @@ type ApiListServiceStatusRegionalRequest interface {
 	Execute() (*ListServiceStatusRegional200Response, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type DisableServiceRegionalRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	region     string
 	projectId  string
 	serviceId  string
@@ -139,7 +139,7 @@ func (r DisableServiceRegionalRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceRegional")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableServiceRegional")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -264,7 +264,7 @@ func (a *APIClient) DisableServiceRegionalExecute(ctx context.Context, region st
 
 type EnableServiceRegionalRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	region     string
 	projectId  string
 	serviceId  string
@@ -281,7 +281,7 @@ func (r EnableServiceRegionalRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceRegional")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableServiceRegional")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -406,7 +406,7 @@ func (a *APIClient) EnableServiceRegionalExecute(ctx context.Context, region str
 
 type GetServiceStatusRegionalRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	region     string
 	projectId  string
 	serviceId  string
@@ -424,7 +424,7 @@ func (r GetServiceStatusRegionalRequest) Execute() (*ServiceStatus, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceStatusRegional")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetServiceStatusRegional")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -559,7 +559,7 @@ func (a *APIClient) GetServiceStatusRegionalExecute(ctx context.Context, region 
 
 type ListServiceStatusRegionalRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	region     string
 	projectId  string
 	cursor     *string
@@ -582,7 +582,7 @@ func (r ListServiceStatusRegionalRequest) Execute() (*ListServiceStatusRegional2
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceStatusRegional")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListServiceStatusRegional")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

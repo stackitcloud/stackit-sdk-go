@@ -128,6 +128,14 @@ func (o *ListUser) SetUsername(v ListUserGetUsernameRetType) {
 	setListUserGetUsernameAttributeType(&o.Username, v)
 }
 
+func (o ListUser) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListUserGetIdAttributeTypeOk(o.Id); ok {

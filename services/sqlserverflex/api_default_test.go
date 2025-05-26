@@ -1,7 +1,7 @@
 /*
 STACKIT MSSQL Service API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -21,9 +21,9 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_sqlserverflex_DefaultApiService(t *testing.T) {
+func Test_sqlserverflex_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CreateDatabase", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateDatabase", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -32,13 +32,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateDatabaseResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -49,7 +49,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -82,20 +82,20 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -106,7 +106,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -138,7 +138,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -147,13 +147,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateUserResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -164,7 +164,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -197,7 +197,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteDatabase", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteDatabase", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases/{databaseName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -208,10 +208,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -222,7 +222,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -252,7 +252,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -261,10 +261,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -275,7 +275,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -304,7 +304,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -315,10 +315,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -329,7 +329,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -359,7 +359,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/{backupId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -370,13 +370,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetBackupResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -387,7 +387,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -420,7 +420,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetDatabase", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetDatabase", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases/{databaseName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -431,13 +431,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetDatabaseResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -448,7 +448,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -481,7 +481,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -490,13 +490,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -507,7 +507,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -539,7 +539,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -550,13 +550,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetUserResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -567,7 +567,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -600,7 +600,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListBackups", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -609,13 +609,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListBackupsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -626,7 +626,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -658,7 +658,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListCollations", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListCollations", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/collation"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -667,13 +667,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCollationsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -684,7 +684,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -716,7 +716,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListCompatibility", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListCompatibility", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/compatibility"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -725,13 +725,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCompatibilityResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -742,7 +742,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -774,7 +774,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListDatabases", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListDatabases", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/databases"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -783,13 +783,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListDatabasesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -800,7 +800,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -832,20 +832,20 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListFlavors", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListFlavors", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/flavors"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListFlavorsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -856,7 +856,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -887,20 +887,20 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListInstances", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListInstancesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -911,7 +911,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -942,7 +942,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListMetrics", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListMetrics", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -951,13 +951,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		metricValue := "metric-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(metricValue, "metric")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListMetricsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -968,7 +968,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1001,7 +1001,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListRestoreJobs", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListRestoreJobs", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/restores"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1010,13 +1010,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListRestoreJobsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1027,7 +1027,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1059,7 +1059,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListRoles", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListRoles", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/roles"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1068,13 +1068,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListRolesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1085,7 +1085,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1117,7 +1117,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListStorages", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListStorages", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/storages/{flavorId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1126,13 +1126,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListStoragesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1143,7 +1143,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1175,7 +1175,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListUsers", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1184,13 +1184,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListUsersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1201,7 +1201,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1233,20 +1233,20 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListVersions", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListVersions", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/versions"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListVersionsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1257,7 +1257,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1288,7 +1288,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1297,13 +1297,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := UpdateInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1314,7 +1314,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1347,7 +1347,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ResetUser", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ResetUser", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}/reset"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1358,13 +1358,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ResetUserResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1375,7 +1375,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1408,17 +1408,17 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService TerminateProject", func(t *testing.T) {
+	t.Run("Test DefaultAPIService TerminateProject", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1429,7 +1429,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1457,7 +1457,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService TriggerDatabaseBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService TriggerDatabaseBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/databases/{databaseName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1468,10 +1468,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1482,7 +1482,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1512,7 +1512,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService TriggerDatabaseRestore", func(t *testing.T) {
+	t.Run("Test DefaultAPIService TriggerDatabaseRestore", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/databases/{databaseName}/restores"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1523,10 +1523,10 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1537,7 +1537,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1568,7 +1568,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1577,13 +1577,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := UpdateInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1594,7 +1594,7 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for sqlserverflex_DefaultApi",
+					Description: "Localhost for sqlserverflex_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

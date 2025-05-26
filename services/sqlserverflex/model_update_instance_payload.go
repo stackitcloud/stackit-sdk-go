@@ -11,7 +11,9 @@ API version: 2.0.0
 package sqlserverflex
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateInstancePayload type satisfies the MappedNullable interface at compile time
@@ -22,9 +24,9 @@ var _ MappedNullable = &UpdateInstancePayload{}
 */
 
 // isModel
-type UpdateInstancePayloadGetAclAttributeType = *CreateInstancePayloadAcl
-type UpdateInstancePayloadGetAclArgType = CreateInstancePayloadAcl
-type UpdateInstancePayloadGetAclRetType = CreateInstancePayloadAcl
+type UpdateInstancePayloadGetAclAttributeType = *InstanceDocumentationACL
+type UpdateInstancePayloadGetAclArgType = InstanceDocumentationACL
+type UpdateInstancePayloadGetAclRetType = InstanceDocumentationACL
 
 func getUpdateInstancePayloadGetAclAttributeTypeOk(arg UpdateInstancePayloadGetAclAttributeType) (ret UpdateInstancePayloadGetAclRetType, ok bool) {
 	if arg == nil {
@@ -143,6 +145,7 @@ type UpdateInstancePayloadGetVersionRetType = string
 
 // UpdateInstancePayload struct for UpdateInstancePayload
 type UpdateInstancePayload struct {
+	// ACL is the Access Control List defining the IP ranges allowed to connect to the database
 	// REQUIRED
 	Acl UpdateInstancePayloadGetAclAttributeType `json:"acl"`
 	// Cronjob for the daily full backup if not provided a job will generated between 00:00 and 04:59
@@ -151,6 +154,7 @@ type UpdateInstancePayload struct {
 	// Id of the selected flavor
 	// REQUIRED
 	FlavorId UpdateInstancePayloadGetFlavorIdAttributeType `json:"flavorId"`
+	// Labels for the instance
 	// REQUIRED
 	Labels UpdateInstancePayloadGetLabelsAttributeType `json:"labels"`
 	// Name of the instance
@@ -290,6 +294,14 @@ func (o *UpdateInstancePayload) SetVersion(v UpdateInstancePayloadGetVersionRetT
 	setUpdateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
+func (o UpdateInstancePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
@@ -311,6 +323,48 @@ func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *UpdateInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"acl",
+		"backupSchedule",
+		"flavorId",
+		"labels",
+		"name",
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateInstancePayload := _UpdateInstancePayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateInstancePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateInstancePayload(varUpdateInstancePayload)
+
+	return err
 }
 
 type NullableUpdateInstancePayload struct {

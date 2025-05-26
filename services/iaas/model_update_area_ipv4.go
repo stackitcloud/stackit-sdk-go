@@ -217,6 +217,14 @@ func (o *UpdateAreaIPv4) SetMinPrefixLen(v UpdateAreaIPv4GetMinPrefixLenRetType)
 	setUpdateAreaIPv4GetMinPrefixLenAttributeType(&o.MinPrefixLen, v)
 }
 
+func (o UpdateAreaIPv4) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateAreaIPv4) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateAreaIPv4GetDefaultNameserversAttributeTypeOk(o.DefaultNameservers); ok {

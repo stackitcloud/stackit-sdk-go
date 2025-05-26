@@ -11,7 +11,9 @@ API version: 1.1.0
 package rabbitmq
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateBackupResponseItem type satisfies the MappedNullable interface at compile time
@@ -121,6 +123,14 @@ func (o *CreateBackupResponseItem) SetMessage(v CreateBackupResponseItemGetMessa
 	setCreateBackupResponseItemGetMessageAttributeType(&o.Message, v)
 }
 
+func (o CreateBackupResponseItem) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateBackupResponseItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateBackupResponseItemGetIdAttributeTypeOk(o.Id); ok {
@@ -130,6 +140,44 @@ func (o CreateBackupResponseItem) ToMap() (map[string]interface{}, error) {
 		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateBackupResponseItem) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"message",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateBackupResponseItem := _CreateBackupResponseItem{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateBackupResponseItem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateBackupResponseItem(varCreateBackupResponseItem)
+
+	return err
 }
 
 type NullableCreateBackupResponseItem struct {

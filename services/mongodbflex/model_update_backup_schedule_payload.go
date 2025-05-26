@@ -303,6 +303,14 @@ func (o *UpdateBackupSchedulePayload) SetWeeklySnapshotRetentionWeeks(v UpdateBa
 	setUpdateBackupSchedulePayloadGetWeeklySnapshotRetentionWeeksAttributeType(&o.WeeklySnapshotRetentionWeeks, v)
 }
 
+func (o UpdateBackupSchedulePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateBackupSchedulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateBackupSchedulePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule); ok {

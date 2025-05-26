@@ -83,6 +83,14 @@ func (o *CreateKubeconfigPayload) SetExpirationSeconds(v CreateKubeconfigPayload
 	setCreateKubeconfigPayloadGetExpirationSecondsAttributeType(&o.ExpirationSeconds, v)
 }
 
+func (o CreateKubeconfigPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateKubeconfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateKubeconfigPayloadGetExpirationSecondsAttributeTypeOk(o.ExpirationSeconds); ok {

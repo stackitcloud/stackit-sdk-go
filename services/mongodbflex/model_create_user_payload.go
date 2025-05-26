@@ -11,7 +11,9 @@ API version: 1.0.0
 package mongodbflex
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateUserPayload type satisfies the MappedNullable interface at compile time
@@ -166,6 +168,14 @@ func (o *CreateUserPayload) SetUsername(v CreateUserPayloadGetUsernameRetType) {
 	setCreateUserPayloadGetUsernameAttributeType(&o.Username, v)
 }
 
+func (o CreateUserPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateUserPayloadGetDatabaseAttributeTypeOk(o.Database); ok {
@@ -178,6 +188,44 @@ func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Username"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateUserPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"database",
+		"roles",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateUserPayload := _CreateUserPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateUserPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateUserPayload(varCreateUserPayload)
+
+	return err
 }
 
 type NullableCreateUserPayload struct {

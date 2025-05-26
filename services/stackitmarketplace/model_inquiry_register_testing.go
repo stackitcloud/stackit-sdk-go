@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InquiryRegisterTesting type satisfies the MappedNullable interface at compile time
@@ -87,10 +89,10 @@ type InquiryRegisterTesting struct {
 	ContactEmail InquiryRegisterTestingGetContactEmailAttributeType `json:"contactEmail"`
 	// The full name of the contact person.
 	// REQUIRED
-	FullName InquiryRegisterTestingGetFullNameAttributeType `json:"fullName"`
+	FullName InquiryRegisterTestingGetFullNameAttributeType `json:"fullName" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// A custom message.
 	// REQUIRED
-	Message InquiryRegisterTestingGetMessageAttributeType `json:"message"`
+	Message InquiryRegisterTestingGetMessageAttributeType `json:"message" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 }
 
 type _InquiryRegisterTesting InquiryRegisterTesting
@@ -166,6 +168,14 @@ func (o *InquiryRegisterTesting) SetMessage(v InquiryRegisterTestingGetMessageRe
 	setInquiryRegisterTestingGetMessageAttributeType(&o.Message, v)
 }
 
+func (o InquiryRegisterTesting) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InquiryRegisterTesting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquiryRegisterTestingGetContactEmailAttributeTypeOk(o.ContactEmail); ok {
@@ -178,6 +188,45 @@ func (o InquiryRegisterTesting) ToMap() (map[string]interface{}, error) {
 		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *InquiryRegisterTesting) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"contactEmail",
+		"fullName",
+		"message",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInquiryRegisterTesting := _InquiryRegisterTesting{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInquiryRegisterTesting)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InquiryRegisterTesting(varInquiryRegisterTesting)
+
+	return err
 }
 
 type NullableInquiryRegisterTesting struct {

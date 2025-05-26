@@ -128,6 +128,14 @@ func (o *BackupPolicyBackupProperties) SetRetentionPeriod(v BackupPolicyBackupPr
 	setBackupPolicyBackupPropertiesGetRetentionPeriodAttributeType(&o.RetentionPeriod, v)
 }
 
+func (o BackupPolicyBackupProperties) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o BackupPolicyBackupProperties) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBackupPolicyBackupPropertiesGetNameAttributeTypeOk(o.Name); ok {

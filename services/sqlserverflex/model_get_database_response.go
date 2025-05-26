@@ -82,6 +82,14 @@ func (o *GetDatabaseResponse) SetDatabase(v GetDatabaseResponseGetDatabaseRetTyp
 	setGetDatabaseResponseGetDatabaseAttributeType(&o.Database, v)
 }
 
+func (o GetDatabaseResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetDatabaseResponseGetDatabaseAttributeTypeOk(o.Database); ok {

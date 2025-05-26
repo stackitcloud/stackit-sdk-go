@@ -11,6 +11,7 @@ API version: 1beta.0.3
 package git
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -88,6 +89,7 @@ type InstanceGetNameRetType = string
 // isEnum
 
 // InstanceState The current state of the STACKIT Git instance.
+// value type for enums
 type InstanceState string
 
 // List of State
@@ -101,6 +103,7 @@ const (
 )
 
 // All allowed values of Instance enum
+
 var AllowedInstanceStateEnumValues = []InstanceState{
 	"Creating",
 	"WaitingForResources",
@@ -111,13 +114,13 @@ var AllowedInstanceStateEnumValues = []InstanceState{
 }
 
 func (v *InstanceState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceState
 	if value == zeroValue {
 		return nil
 	}
@@ -134,7 +137,7 @@ func (v *InstanceState) UnmarshalJSON(src []byte) error {
 
 // NewInstanceStateFromValue returns a pointer to a valid InstanceState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceStateFromValue(v string) (*InstanceState, error) {
+func NewInstanceStateFromValue(v InstanceState) (*InstanceState, error) {
 	ev := InstanceState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -400,6 +403,14 @@ func (o *Instance) SetVersion(v InstanceGetVersionRetType) {
 	setInstanceGetVersionAttributeType(&o.Version, v)
 }
 
+func (o Instance) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceGetCreatedAttributeTypeOk(o.Created); ok {
@@ -421,6 +432,48 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Instance) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"created",
+		"id",
+		"name",
+		"state",
+		"url",
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInstance := _Instance{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInstance)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Instance(varInstance)
+
+	return err
 }
 
 type NullableInstance struct {

@@ -84,6 +84,14 @@ func (o *CatalogPricingOptionHighlight) SetHighlightContent(v CatalogPricingOpti
 	setCatalogPricingOptionHighlightGetHighlightContentAttributeType(&o.HighlightContent, v)
 }
 
+func (o CatalogPricingOptionHighlight) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CatalogPricingOptionHighlight) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogPricingOptionHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent); ok {

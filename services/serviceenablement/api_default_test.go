@@ -1,7 +1,7 @@
 /*
 STACKIT Service Enablement API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -21,9 +21,9 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_serviceenablement_DefaultApiService(t *testing.T) {
+func Test_serviceenablement_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService DisableServiceRegional", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DisableServiceRegional", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
@@ -32,10 +32,10 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 		serviceIdValue := "serviceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -46,7 +46,7 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceenablement_DefaultApi",
+					Description: "Localhost for serviceenablement_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -75,7 +75,7 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService EnableServiceRegional", func(t *testing.T) {
+	t.Run("Test DefaultAPIService EnableServiceRegional", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
@@ -84,10 +84,10 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 		serviceIdValue := "serviceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -98,7 +98,7 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceenablement_DefaultApi",
+					Description: "Localhost for serviceenablement_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -127,7 +127,7 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServiceStatusRegional", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetServiceStatusRegional", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services/{serviceId}"
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
@@ -136,13 +136,13 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 		serviceIdValue := "serviceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceId"+"}", url.PathEscape(ParameterValueToString(serviceIdValue, "serviceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceStatus{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -153,7 +153,7 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceenablement_DefaultApi",
+					Description: "Localhost for serviceenablement_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -185,20 +185,20 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListServiceStatusRegional", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListServiceStatusRegional", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/services"
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListServiceStatusRegional200Response{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -209,7 +209,7 @@ func Test_serviceenablement_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceenablement_DefaultApi",
+					Description: "Localhost for serviceenablement_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

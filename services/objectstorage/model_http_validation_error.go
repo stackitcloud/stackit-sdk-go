@@ -82,6 +82,14 @@ func (o *HTTPValidationError) SetDetail(v HTTPValidationErrorGetDetailRetType) {
 	setHTTPValidationErrorGetDetailAttributeType(&o.Detail, v)
 }
 
+func (o HTTPValidationError) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o HTTPValidationError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHTTPValidationErrorGetDetailAttributeTypeOk(o.Detail); ok {

@@ -1095,6 +1095,14 @@ func (o *InstanceParameters) SetSyslog(v InstanceParametersGetSyslogRetType) {
 	setInstanceParametersGetSyslogAttributeType(&o.Syslog, v)
 }
 
+func (o InstanceParameters) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceParametersgetEnableMonitoringAttributeTypeOk(o.EnableMonitoring); ok {

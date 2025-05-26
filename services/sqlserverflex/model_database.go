@@ -173,6 +173,14 @@ func (o *Database) SetOptions(v DatabaseGetOptionsRetType) {
 	setDatabaseGetOptionsAttributeType(&o.Options, v)
 }
 
+func (o Database) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Database) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDatabaseGetIdAttributeTypeOk(o.Id); ok {

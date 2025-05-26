@@ -128,6 +128,14 @@ func (o *CreateDatabasePayload) SetOptions(v CreateDatabasePayloadGetOptionsRetT
 	setCreateDatabasePayloadGetOptionsAttributeType(&o.Options, v)
 }
 
+func (o CreateDatabasePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateDatabasePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateDatabasePayloadGetNameAttributeTypeOk(o.Name); ok {

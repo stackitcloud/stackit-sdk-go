@@ -1,7 +1,7 @@
 /*
 STACKIT Marketplace API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -22,19 +22,19 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
+func Test_stackitmarketplace_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService ApproveSubscription", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ApproveSubscription", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}/approve"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		subscriptionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -45,7 +45,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -73,18 +73,18 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetCatalogProduct", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetCatalogProduct", func(t *testing.T) {
 		_apiUrlPath := "/v1/catalog/products/{productId}"
 		productIdValue := "productId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"productId"+"}", url.PathEscape(ParameterValueToString(productIdValue, "productId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CatalogProductDetail{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -95,7 +95,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -125,20 +125,20 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetVendorSubscription", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetVendorSubscription", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		subscriptionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VendorSubscription{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -149,7 +149,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -180,13 +180,13 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService InquiriesCreateInquiry", func(t *testing.T) {
+	t.Run("Test DefaultAPIService InquiriesCreateInquiry", func(t *testing.T) {
 		_apiUrlPath := "/v1/inquiries"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -197,7 +197,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -224,16 +224,16 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListCatalogProducts", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListCatalogProducts", func(t *testing.T) {
 		_apiUrlPath := "/v1/catalog/products"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListCatalogProductsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -244,7 +244,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -272,18 +272,18 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListVendorSubscriptions", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListVendorSubscriptions", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListVendorSubscriptionsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -294,7 +294,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -324,18 +324,18 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ResolveCustomer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ResolveCustomer", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/resolve-customer"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VendorSubscription{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -346,7 +346,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -377,17 +377,17 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService VendorsSubscriptionsReject", func(t *testing.T) {
+	t.Run("Test DefaultAPIService VendorsSubscriptionsReject", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}/reject"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		subscriptionIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -398,7 +398,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for stackitmarketplace_DefaultApi",
+					Description: "Localhost for stackitmarketplace_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

@@ -11,7 +11,9 @@ API version: 2.0
 package serverbackup
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateBackupPayload type satisfies the MappedNullable interface at compile time
@@ -168,6 +170,14 @@ func (o *CreateBackupPayload) SetVolumeIds(v CreateBackupPayloadGetVolumeIdsRetT
 	setCreateBackupPayloadGetVolumeIdsAttributeType(&o.VolumeIds, v)
 }
 
+func (o CreateBackupPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateBackupPayloadGetNameAttributeTypeOk(o.Name); ok {
@@ -180,6 +190,44 @@ func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["VolumeIds"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateBackupPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"retentionPeriod",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateBackupPayload := _CreateBackupPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateBackupPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateBackupPayload(varCreateBackupPayload)
+
+	return err
 }
 
 type NullableCreateBackupPayload struct {

@@ -258,6 +258,14 @@ func (o *ProviderOptions) SetVolumeTypes(v ProviderOptionsGetVolumeTypesRetType)
 	setProviderOptionsGetVolumeTypesAttributeType(&o.VolumeTypes, v)
 }
 
+func (o ProviderOptions) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ProviderOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getProviderOptionsGetAvailabilityZonesAttributeTypeOk(o.AvailabilityZones); ok {

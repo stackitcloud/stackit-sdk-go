@@ -83,6 +83,14 @@ func (o *VolumeType) SetName(v VolumeTypeGetNameRetType) {
 	setVolumeTypeGetNameAttributeType(&o.Name, v)
 }
 
+func (o VolumeType) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o VolumeType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getVolumeTypeGetNameAttributeTypeOk(o.Name); ok {

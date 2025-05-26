@@ -125,9 +125,9 @@ func setPartialUpdateZonePayloadGetExpireTimeAttributeType(arg *PartialUpdateZon
 */
 
 // isModel
-type PartialUpdateZonePayloadGetExtensionsAttributeType = *CreateZonePayloadExtensions
-type PartialUpdateZonePayloadGetExtensionsArgType = CreateZonePayloadExtensions
-type PartialUpdateZonePayloadGetExtensionsRetType = CreateZonePayloadExtensions
+type PartialUpdateZonePayloadGetExtensionsAttributeType = *ZoneExtensions
+type PartialUpdateZonePayloadGetExtensionsArgType = ZoneExtensions
+type PartialUpdateZonePayloadGetExtensionsRetType = ZoneExtensions
 
 func getPartialUpdateZonePayloadGetExtensionsAttributeTypeOk(arg PartialUpdateZonePayloadGetExtensionsAttributeType) (ret PartialUpdateZonePayloadGetExtensionsRetType, ok bool) {
 	if arg == nil {
@@ -255,6 +255,7 @@ type PartialUpdateZonePayload struct {
 	// expire time
 	// Can be cast to int32 without loss of precision.
 	ExpireTime PartialUpdateZonePayloadGetExpireTimeAttributeType `json:"expireTime,omitempty"`
+	// optional extensions
 	Extensions PartialUpdateZonePayloadGetExtensionsAttributeType `json:"extensions,omitempty"`
 	// user given name
 	Name PartialUpdateZonePayloadGetNameAttributeType `json:"name,omitempty"`
@@ -433,7 +434,7 @@ func (o *PartialUpdateZonePayload) HasExtensions() bool {
 	return ok
 }
 
-// SetExtensions gets a reference to the given CreateZonePayloadExtensions and assigns it to the Extensions field.
+// SetExtensions gets a reference to the given ZoneExtensions and assigns it to the Extensions field.
 func (o *PartialUpdateZonePayload) SetExtensions(v PartialUpdateZonePayloadGetExtensionsRetType) {
 	setPartialUpdateZonePayloadGetExtensionsAttributeType(&o.Extensions, v)
 }
@@ -551,6 +552,14 @@ func (o *PartialUpdateZonePayload) HasRetryTime() bool {
 // SetRetryTime gets a reference to the given int64 and assigns it to the RetryTime field.
 func (o *PartialUpdateZonePayload) SetRetryTime(v PartialUpdateZonePayloadGetRetryTimeRetType) {
 	setPartialUpdateZonePayloadGetRetryTimeAttributeType(&o.RetryTime, v)
+}
+
+func (o PartialUpdateZonePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o PartialUpdateZonePayload) ToMap() (map[string]interface{}, error) {

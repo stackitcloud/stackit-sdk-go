@@ -103,11 +103,11 @@ func setImageShareConsumerGetUpdatedAtAttributeType(arg *ImageShareConsumerGetUp
 // ImageShareConsumer The details of an Image share consumer.
 type ImageShareConsumer struct {
 	// Universally Unique Identifier (UUID).
-	ConsumerProjectId ImageShareConsumerGetConsumerProjectIdAttributeType `json:"consumerProjectId,omitempty"`
+	ConsumerProjectId ImageShareConsumerGetConsumerProjectIdAttributeType `json:"consumerProjectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Date-time when resource was created.
 	CreatedAt ImageShareConsumerGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	ImageId ImageShareConsumerGetImageIdAttributeType `json:"imageId,omitempty"`
+	ImageId ImageShareConsumerGetImageIdAttributeType `json:"imageId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Date-time when resource was last updated.
 	UpdatedAt ImageShareConsumerGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
@@ -219,6 +219,14 @@ func (o *ImageShareConsumer) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
 func (o *ImageShareConsumer) SetUpdatedAt(v ImageShareConsumerGetUpdatedAtRetType) {
 	setImageShareConsumerGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+}
+
+func (o ImageShareConsumer) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ImageShareConsumer) ToMap() (map[string]interface{}, error) {

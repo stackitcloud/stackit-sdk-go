@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InquiryContactSales type satisfies the MappedNullable interface at compile time
@@ -124,21 +126,21 @@ type InquiryContactSalesGetProductIdRetType = string
 
 // InquiryContactSales Contact sales.
 type InquiryContactSales struct {
-	// The product's vendor name.
+	// The company name.
 	// REQUIRED
-	CompanyName InquiryContactSalesGetCompanyNameAttributeType `json:"companyName"`
+	CompanyName InquiryContactSalesGetCompanyNameAttributeType `json:"companyName" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// A e-mail address.
 	// REQUIRED
 	ContactEmail InquiryContactSalesGetContactEmailAttributeType `json:"contactEmail"`
 	// The full name of the contact person.
 	// REQUIRED
-	FullName InquiryContactSalesGetFullNameAttributeType `json:"fullName"`
+	FullName InquiryContactSalesGetFullNameAttributeType `json:"fullName" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// A custom message.
 	// REQUIRED
-	Message InquiryContactSalesGetMessageAttributeType `json:"message"`
+	Message InquiryContactSalesGetMessageAttributeType `json:"message" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId InquiryContactSalesGetProductIdAttributeType `json:"productId"`
+	ProductId InquiryContactSalesGetProductIdAttributeType `json:"productId" validate:"regexp=^[a-z0-9-]{1,20}-[0-9a-f]{8}$"`
 }
 
 type _InquiryContactSales InquiryContactSales
@@ -250,6 +252,14 @@ func (o *InquiryContactSales) SetProductId(v InquiryContactSalesGetProductIdRetT
 	setInquiryContactSalesGetProductIdAttributeType(&o.ProductId, v)
 }
 
+func (o InquiryContactSales) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InquiryContactSales) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquiryContactSalesGetCompanyNameAttributeTypeOk(o.CompanyName); ok {
@@ -268,6 +278,47 @@ func (o InquiryContactSales) ToMap() (map[string]interface{}, error) {
 		toSerialize["ProductId"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *InquiryContactSales) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"companyName",
+		"contactEmail",
+		"fullName",
+		"message",
+		"productId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInquiryContactSales := _InquiryContactSales{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInquiryContactSales)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InquiryContactSales(varInquiryContactSales)
+
+	return err
 }
 
 type NullableInquiryContactSales struct {

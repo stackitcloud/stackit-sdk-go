@@ -174,6 +174,14 @@ func (o *TargetPoolTlsConfig) SetSkipCertificateValidation(v TargetPoolTlsConfig
 	setTargetPoolTlsConfiggetSkipCertificateValidationAttributeType(&o.SkipCertificateValidation, v)
 }
 
+func (o TargetPoolTlsConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o TargetPoolTlsConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getTargetPoolTlsConfigGetCustomCaAttributeTypeOk(o.CustomCa); ok {

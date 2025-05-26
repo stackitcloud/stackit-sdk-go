@@ -22,9 +22,9 @@ var _ MappedNullable = &PartialUpdateInstancePayload{}
 */
 
 // isModel
-type PartialUpdateInstancePayloadGetAclAttributeType = *CreateInstancePayloadAcl
-type PartialUpdateInstancePayloadGetAclArgType = CreateInstancePayloadAcl
-type PartialUpdateInstancePayloadGetAclRetType = CreateInstancePayloadAcl
+type PartialUpdateInstancePayloadGetAclAttributeType = *InstanceDocumentationACL
+type PartialUpdateInstancePayloadGetAclArgType = InstanceDocumentationACL
+type PartialUpdateInstancePayloadGetAclRetType = InstanceDocumentationACL
 
 func getPartialUpdateInstancePayloadGetAclAttributeTypeOk(arg PartialUpdateInstancePayloadGetAclAttributeType) (ret PartialUpdateInstancePayloadGetAclRetType, ok bool) {
 	if arg == nil {
@@ -143,12 +143,14 @@ type PartialUpdateInstancePayloadGetVersionRetType = string
 
 // PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
 type PartialUpdateInstancePayload struct {
+	// ACL is the Access Control List defining the IP ranges allowed to connect to the database
 	Acl PartialUpdateInstancePayloadGetAclAttributeType `json:"acl,omitempty"`
 	// Cronjob for the daily full backup if not provided a job will generated between 00:00 and 04:59
 	BackupSchedule PartialUpdateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule,omitempty"`
 	// Id of the selected flavor
 	FlavorId PartialUpdateInstancePayloadGetFlavorIdAttributeType `json:"flavorId,omitempty"`
-	Labels   PartialUpdateInstancePayloadGetLabelsAttributeType   `json:"labels,omitempty"`
+	// Labels for the instance
+	Labels PartialUpdateInstancePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Name of the instance
 	Name PartialUpdateInstancePayloadGetNameAttributeType `json:"name,omitempty"`
 	// Version of the MSSQL Server
@@ -192,7 +194,7 @@ func (o *PartialUpdateInstancePayload) HasAcl() bool {
 	return ok
 }
 
-// SetAcl gets a reference to the given CreateInstancePayloadAcl and assigns it to the Acl field.
+// SetAcl gets a reference to the given InstanceDocumentationACL and assigns it to the Acl field.
 func (o *PartialUpdateInstancePayload) SetAcl(v PartialUpdateInstancePayloadGetAclRetType) {
 	setPartialUpdateInstancePayloadGetAclAttributeType(&o.Acl, v)
 }
@@ -310,6 +312,14 @@ func (o *PartialUpdateInstancePayload) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *PartialUpdateInstancePayload) SetVersion(v PartialUpdateInstancePayloadGetVersionRetType) {
 	setPartialUpdateInstancePayloadGetVersionAttributeType(&o.Version, v)
+}
+
+func (o PartialUpdateInstancePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {

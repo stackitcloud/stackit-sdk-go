@@ -11,7 +11,9 @@ API version: 1.0
 package dns
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CloneZonePayload type satisfies the MappedNullable interface at compile time
@@ -219,6 +221,14 @@ func (o *CloneZonePayload) SetName(v CloneZonePayloadGetNameRetType) {
 	setCloneZonePayloadGetNameAttributeType(&o.Name, v)
 }
 
+func (o CloneZonePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CloneZonePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCloneZonePayloadgetAdjustRecordsAttributeTypeOk(o.AdjustRecords); ok {
@@ -234,6 +244,43 @@ func (o CloneZonePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Name"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CloneZonePayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"dnsName",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCloneZonePayload := _CloneZonePayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCloneZonePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CloneZonePayload(varCloneZonePayload)
+
+	return err
 }
 
 type NullableCloneZonePayload struct {

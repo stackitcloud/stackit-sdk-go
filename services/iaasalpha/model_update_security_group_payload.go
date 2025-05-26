@@ -86,7 +86,7 @@ type UpdateSecurityGroupPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels UpdateSecurityGroupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name UpdateSecurityGroupPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name UpdateSecurityGroupPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 }
 
 // NewUpdateSecurityGroupPayload instantiates a new UpdateSecurityGroupPayload object
@@ -173,6 +173,14 @@ func (o *UpdateSecurityGroupPayload) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UpdateSecurityGroupPayload) SetName(v UpdateSecurityGroupPayloadGetNameRetType) {
 	setUpdateSecurityGroupPayloadGetNameAttributeType(&o.Name, v)
+}
+
+func (o UpdateSecurityGroupPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateSecurityGroupPayload) ToMap() (map[string]interface{}, error) {

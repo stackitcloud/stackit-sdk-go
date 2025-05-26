@@ -25,6 +25,7 @@ var _ MappedNullable = &CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
 // isEnum
 
 // CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
+// value type for enums
 type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction string
 
 // List of Action
@@ -39,6 +40,7 @@ const (
 )
 
 // All allowed values of CreateScrapeConfigPayloadMetricsRelabelConfigsInner enum
+
 var AllowedCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionEnumValues = []CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction{
 	"replace",
 	"keep",
@@ -50,13 +52,13 @@ var AllowedCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionEnumValues =
 }
 
 func (v *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
 	if value == zeroValue {
 		return nil
 	}
@@ -73,7 +75,7 @@ func (v *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) UnmarshalJSO
 
 // NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue returns a pointer to a valid CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue(v string) (*CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction, error) {
+func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue(v CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) (*CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction, error) {
 	ev := CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -474,6 +476,14 @@ func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) HasTargetLabel() b
 // SetTargetLabel gets a reference to the given string and assigns it to the TargetLabel field.
 func (o *CreateScrapeConfigPayloadMetricsRelabelConfigsInner) SetTargetLabel(v CreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetTargetLabelRetType) {
 	setCreateScrapeConfigPayloadMetricsRelabelConfigsInnerGetTargetLabelAttributeType(&o.TargetLabel, v)
+}
+
+func (o CreateScrapeConfigPayloadMetricsRelabelConfigsInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CreateScrapeConfigPayloadMetricsRelabelConfigsInner) ToMap() (map[string]interface{}, error) {

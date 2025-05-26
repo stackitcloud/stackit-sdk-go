@@ -185,7 +185,7 @@ func NewClusterStatus() *ClusterStatus {
 // but it doesn't guarantee that properties required by API are set
 func NewClusterStatusWithDefaults() *ClusterStatus {
 	this := ClusterStatus{}
-	var aggregated ClusterStatusState = CLUSTERSTATUSSTATE_UNSPECIFIED
+	var aggregated ClusterStatusState = CLUSTERSTATUSSTATE_STATE_UNSPECIFIED
 	this.Aggregated = &aggregated
 	return &this
 }
@@ -349,6 +349,14 @@ func (o *ClusterStatus) HasHibernated() bool {
 // SetHibernated gets a reference to the given bool and assigns it to the Hibernated field.
 func (o *ClusterStatus) SetHibernated(v ClusterStatusgetHibernatedRetType) {
 	setClusterStatusgetHibernatedAttributeType(&o.Hibernated, v)
+}
+
+func (o ClusterStatus) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ClusterStatus) ToMap() (map[string]interface{}, error) {

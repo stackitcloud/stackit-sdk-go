@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateAccessKey Create Access Key
 		Create an access key for the given project.
@@ -353,12 +353,12 @@ type ApiListCredentialsGroupsRequest interface {
 	Execute() (*ListCredentialsGroupsResponse, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateAccessKeyRequest struct {
 	ctx                    context.Context
-	apiService             *DefaultApiService
+	apiService             *DefaultAPIService
 	projectId              string
 	region                 string
 	createAccessKeyPayload *CreateAccessKeyPayload
@@ -387,7 +387,7 @@ func (r CreateAccessKeyRequest) Execute() (*CreateAccessKeyResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAccessKey")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAccessKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -558,7 +558,7 @@ func (a *APIClient) CreateAccessKeyExecute(ctx context.Context, projectId string
 
 type CreateBucketRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 	bucketName string
@@ -576,7 +576,7 @@ func (r CreateBucketRequest) Execute() (*CreateBucketResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateBucket")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateBucket")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -749,7 +749,7 @@ func (a *APIClient) CreateBucketExecute(ctx context.Context, projectId string, r
 
 type CreateCredentialsGroupRequest struct {
 	ctx                           context.Context
-	apiService                    *DefaultApiService
+	apiService                    *DefaultAPIService
 	projectId                     string
 	region                        string
 	createCredentialsGroupPayload *CreateCredentialsGroupPayload
@@ -772,7 +772,7 @@ func (r CreateCredentialsGroupRequest) Execute() (*CreateCredentialsGroupRespons
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredentialsGroup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateCredentialsGroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -949,7 +949,7 @@ func (a *APIClient) CreateCredentialsGroupExecute(ctx context.Context, projectId
 
 type DeleteAccessKeyRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	projectId        string
 	region           string
 	keyId            string
@@ -973,7 +973,7 @@ func (r DeleteAccessKeyRequest) Execute() (*DeleteAccessKeyResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAccessKey")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAccessKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1154,7 +1154,7 @@ func (a *APIClient) DeleteAccessKeyExecute(ctx context.Context, projectId string
 
 type DeleteBucketRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 	bucketName string
@@ -1172,7 +1172,7 @@ func (r DeleteBucketRequest) Execute() (*DeleteBucketResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteBucket")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteBucket")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1334,7 +1334,7 @@ func (a *APIClient) DeleteBucketExecute(ctx context.Context, projectId string, r
 
 type DeleteCredentialsGroupRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 	groupId    string
@@ -1352,7 +1352,7 @@ func (r DeleteCredentialsGroupRequest) Execute() (*DeleteCredentialsGroupRespons
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentialsGroup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteCredentialsGroup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1508,7 +1508,7 @@ func (a *APIClient) DeleteCredentialsGroupExecute(ctx context.Context, projectId
 
 type DisableServiceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 }
@@ -1525,7 +1525,7 @@ func (r DisableServiceRequest) Execute() (*ProjectStatus, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableService")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableService")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1699,7 +1699,7 @@ func (a *APIClient) DisableServiceExecute(ctx context.Context, projectId string,
 
 type EnableServiceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 }
@@ -1716,7 +1716,7 @@ func (r EnableServiceRequest) Execute() (*ProjectStatus, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableService")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableService")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1880,7 +1880,7 @@ func (a *APIClient) EnableServiceExecute(ctx context.Context, projectId string, 
 
 type GetBucketRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 	bucketName string
@@ -1898,7 +1898,7 @@ func (r GetBucketRequest) Execute() (*GetBucketResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBucket")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetBucket")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2071,7 +2071,7 @@ func (a *APIClient) GetBucketExecute(ctx context.Context, projectId string, regi
 
 type GetServiceStatusRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 }
@@ -2088,7 +2088,7 @@ func (r GetServiceStatusRequest) Execute() (*ProjectStatus, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceStatus")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetServiceStatus")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2251,7 +2251,7 @@ func (a *APIClient) GetServiceStatusExecute(ctx context.Context, projectId strin
 
 type ListAccessKeysRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	projectId        string
 	region           string
 	credentialsGroup *string
@@ -2274,7 +2274,7 @@ func (r ListAccessKeysRequest) Execute() (*ListAccessKeysResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAccessKeys")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListAccessKeys")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2440,7 +2440,7 @@ func (a *APIClient) ListAccessKeysExecute(ctx context.Context, projectId string,
 
 type ListBucketsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 }
@@ -2457,7 +2457,7 @@ func (r ListBucketsRequest) Execute() (*ListBucketsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBuckets")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBuckets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2620,7 +2620,7 @@ func (a *APIClient) ListBucketsExecute(ctx context.Context, projectId string, re
 
 type ListCredentialsGroupsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 }
@@ -2637,7 +2637,7 @@ func (r ListCredentialsGroupsRequest) Execute() (*ListCredentialsGroupsResponse,
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentialsGroups")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListCredentialsGroups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

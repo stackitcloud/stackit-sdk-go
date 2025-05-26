@@ -127,6 +127,14 @@ func (o *CreateLabelResponse) SetMessage(v CreateLabelResponseGetMessageRetType)
 	setCreateLabelResponseGetMessageAttributeType(&o.Message, v)
 }
 
+func (o CreateLabelResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateLabelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateLabelResponseGetLabelAttributeTypeOk(o.Label); ok {

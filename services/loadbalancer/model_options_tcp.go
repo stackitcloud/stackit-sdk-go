@@ -41,7 +41,7 @@ type OptionsTCPGetIdleTimeoutRetType = string
 // OptionsTCP struct for OptionsTCP
 type OptionsTCP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 5 minutes, and the maximum value is one hour.
-	IdleTimeout OptionsTCPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty"`
+	IdleTimeout OptionsTCPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
 }
 
 // NewOptionsTCP instantiates a new OptionsTCP object
@@ -82,6 +82,14 @@ func (o *OptionsTCP) HasIdleTimeout() bool {
 // SetIdleTimeout gets a reference to the given string and assigns it to the IdleTimeout field.
 func (o *OptionsTCP) SetIdleTimeout(v OptionsTCPGetIdleTimeoutRetType) {
 	setOptionsTCPGetIdleTimeoutAttributeType(&o.IdleTimeout, v)
+}
+
+func (o OptionsTCP) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o OptionsTCP) ToMap() (map[string]interface{}, error) {

@@ -309,6 +309,14 @@ func (o *Matcher) SetWebSocket(v MatchergetWebSocketRetType) {
 	setMatchergetWebSocketAttributeType(&o.WebSocket, v)
 }
 
+func (o Matcher) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Matcher) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMatcherGetCookiePersistenceAttributeTypeOk(o.CookiePersistence); ok {

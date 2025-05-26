@@ -1,7 +1,7 @@
 /*
 Resource Manager API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -21,18 +21,18 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_resourcemanager_DefaultApiService(t *testing.T) {
+func Test_resourcemanager_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CreateFolder", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateFolder", func(t *testing.T) {
 		_apiUrlPath := "/v2/folders"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := FolderResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -43,7 +43,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -71,16 +71,16 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateProject", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateProject", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Project{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -91,7 +91,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -119,15 +119,15 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteFolder", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteFolder", func(t *testing.T) {
 		_apiUrlPath := "/v2/folders/{containerId}"
 		containerIdValue := "containerId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -138,7 +138,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -165,15 +165,15 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteFolderLabels", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteFolderLabels", func(t *testing.T) {
 		_apiUrlPath := "/v2/folders/{containerId}/labels"
 		containerIdValue := "containerId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -184,7 +184,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -211,15 +211,15 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteProject", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteProject", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{id}"
 		idValue := "id-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -230,7 +230,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -257,18 +257,18 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetFolderDetails", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetFolderDetails", func(t *testing.T) {
 		_apiUrlPath := "/v2/folders/{containerId}"
 		containerIdValue := "containerId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetFolderDetailsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -279,7 +279,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -309,18 +309,18 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetOrganization", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetOrganization", func(t *testing.T) {
 		_apiUrlPath := "/v2/organizations/{id}"
 		idValue := "id-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := OrganizationResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -331,7 +331,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -361,18 +361,18 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetProject", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetProject", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{id}"
 		idValue := "id-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetProjectResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -383,7 +383,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -413,16 +413,16 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListOrganizations", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListOrganizations", func(t *testing.T) {
 		_apiUrlPath := "/v2/organizations"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListOrganizationsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -433,7 +433,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -461,16 +461,16 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListProjects", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListProjects", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListProjectsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -481,7 +481,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -509,18 +509,18 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateFolder", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateFolder", func(t *testing.T) {
 		_apiUrlPath := "/v2/folders/{containerId}"
 		containerIdValue := "containerId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"containerId"+"}", url.PathEscape(ParameterValueToString(containerIdValue, "containerId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := FolderResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -531,7 +531,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -561,18 +561,18 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateProject", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateProject", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{id}"
 		idValue := "id-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"id"+"}", url.PathEscape(ParameterValueToString(idValue, "id")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Project{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -583,7 +583,7 @@ func Test_resourcemanager_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for resourcemanager_DefaultApi",
+					Description: "Localhost for resourcemanager_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

@@ -11,7 +11,9 @@ API version: 2.0
 package authorization
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UserMembership type satisfies the MappedNullable interface at compile time
@@ -104,11 +106,11 @@ type UserMembershipGetSubjectRetType = string
 // UserMembership struct for UserMembership
 type UserMembership struct {
 	// REQUIRED
-	ResourceId UserMembershipGetResourceIdAttributeType `json:"resourceId"`
+	ResourceId UserMembershipGetResourceIdAttributeType `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
 	// REQUIRED
-	ResourceType UserMembershipGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType UserMembershipGetResourceTypeAttributeType `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
 	// REQUIRED
-	Role UserMembershipGetRoleAttributeType `json:"role"`
+	Role UserMembershipGetRoleAttributeType `json:"role" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
 	// REQUIRED
 	Subject UserMembershipGetSubjectAttributeType `json:"subject"`
 }
@@ -204,6 +206,14 @@ func (o *UserMembership) SetSubject(v UserMembershipGetSubjectRetType) {
 	setUserMembershipGetSubjectAttributeType(&o.Subject, v)
 }
 
+func (o UserMembership) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UserMembership) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUserMembershipGetResourceIdAttributeTypeOk(o.ResourceId); ok {
@@ -219,6 +229,46 @@ func (o UserMembership) ToMap() (map[string]interface{}, error) {
 		toSerialize["Subject"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *UserMembership) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"resourceId",
+		"resourceType",
+		"role",
+		"subject",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUserMembership := _UserMembership{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUserMembership)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UserMembership(varUserMembership)
+
+	return err
 }
 
 type NullableUserMembership struct {

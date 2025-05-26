@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CredentialsRemoteWriteDeleteResponse type satisfies the MappedNullable interface at compile time
@@ -121,6 +123,14 @@ func (o *CredentialsRemoteWriteDeleteResponse) SetMessage(v CredentialsRemoteWri
 	setCredentialsRemoteWriteDeleteResponseGetMessageAttributeType(&o.Message, v)
 }
 
+func (o CredentialsRemoteWriteDeleteResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CredentialsRemoteWriteDeleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeTypeOk(o.MaxLimit); ok {
@@ -130,6 +140,44 @@ func (o CredentialsRemoteWriteDeleteResponse) ToMap() (map[string]interface{}, e
 		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CredentialsRemoteWriteDeleteResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"maxLimit",
+		"message",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCredentialsRemoteWriteDeleteResponse := _CredentialsRemoteWriteDeleteResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCredentialsRemoteWriteDeleteResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CredentialsRemoteWriteDeleteResponse(varCredentialsRemoteWriteDeleteResponse)
+
+	return err
 }
 
 type NullableCredentialsRemoteWriteDeleteResponse struct {

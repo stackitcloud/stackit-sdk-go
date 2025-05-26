@@ -395,6 +395,14 @@ func (o *Backup) SetStartTime(v BackupGetStartTimeRetType) {
 	setBackupGetStartTimeAttributeType(&o.StartTime, v)
 }
 
+func (o Backup) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Backup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBackupGetEndTimeAttributeTypeOk(o.EndTime); ok {

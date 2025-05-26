@@ -128,6 +128,14 @@ func (o *SetImageSharePayload) SetProjects(v SetImageSharePayloadGetProjectsRetT
 	setSetImageSharePayloadGetProjectsAttributeType(&o.Projects, v)
 }
 
+func (o SetImageSharePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o SetImageSharePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSetImageSharePayloadgetParentOrganizationAttributeTypeOk(o.ParentOrganization); ok {

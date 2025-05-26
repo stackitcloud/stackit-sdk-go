@@ -84,6 +84,14 @@ func (o *ServerNameIndicator) SetName(v ServerNameIndicatorGetNameRetType) {
 	setServerNameIndicatorGetNameAttributeType(&o.Name, v)
 }
 
+func (o ServerNameIndicator) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ServerNameIndicator) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getServerNameIndicatorGetNameAttributeTypeOk(o.Name); ok {

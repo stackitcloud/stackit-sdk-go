@@ -11,7 +11,9 @@ API version: 1.1.0
 package opensearch
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Restore type satisfies the MappedNullable interface at compile time
@@ -247,6 +249,14 @@ func (o *Restore) SetTriggeredAt(v RestoreGetTriggeredAtRetType) {
 	setRestoreGetTriggeredAtAttributeType(&o.TriggeredAt, v)
 }
 
+func (o Restore) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Restore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRestoreGetBackupIdAttributeTypeOk(o.BackupId); ok {
@@ -265,6 +275,46 @@ func (o Restore) ToMap() (map[string]interface{}, error) {
 		toSerialize["TriggeredAt"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Restore) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"backupId",
+		"finishedAt",
+		"id",
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRestore := _Restore{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRestore)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Restore(varRestore)
+
+	return err
 }
 
 type NullableRestore struct {

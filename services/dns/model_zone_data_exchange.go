@@ -82,6 +82,14 @@ func (o *ZoneDataExchange) SetRrSets(v ZoneDataExchangeGetRrSetsRetType) {
 	setZoneDataExchangeGetRrSetsAttributeType(&o.RrSets, v)
 }
 
+func (o ZoneDataExchange) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ZoneDataExchange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getZoneDataExchangeGetRrSetsAttributeTypeOk(o.RrSets); ok {

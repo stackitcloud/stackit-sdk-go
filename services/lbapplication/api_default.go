@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateCredentials Create credentials for observability of the application load balancer
 		Deprecated: Creates and stores credentials for use with Application Load Balancer Observability.
@@ -448,12 +448,12 @@ type ApiUpdateTargetPoolRequest interface {
 	Execute() (*TargetPool, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateCredentialsRequest struct {
 	ctx                      context.Context
-	apiService               *DefaultApiService
+	apiService               *DefaultAPIService
 	projectId                string
 	createCredentialsPayload *CreateCredentialsPayload
 	xRequestID               *string
@@ -481,7 +481,7 @@ func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCredentials")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -622,7 +622,7 @@ func (a *APIClient) CreateCredentialsExecute(ctx context.Context, projectId stri
 
 type CreateLoadBalancerRequest struct {
 	ctx                       context.Context
-	apiService                *DefaultApiService
+	apiService                *DefaultAPIService
 	projectId                 string
 	createLoadBalancerPayload *CreateLoadBalancerPayload
 	xRequestID                *string
@@ -650,7 +650,7 @@ func (r CreateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLoadBalancer")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -789,7 +789,7 @@ func (a *APIClient) CreateLoadBalancerExecute(ctx context.Context, projectId str
 
 type DeleteCredentialsRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	credentialsRef string
 }
@@ -806,7 +806,7 @@ func (r DeleteCredentialsRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCredentials")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -937,7 +937,7 @@ func (a *APIClient) DeleteCredentialsExecute(ctx context.Context, projectId stri
 
 type DeleteLoadBalancerRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	name       string
 }
@@ -954,7 +954,7 @@ func (r DeleteLoadBalancerRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLoadBalancer")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1085,7 +1085,7 @@ func (a *APIClient) DeleteLoadBalancerExecute(ctx context.Context, projectId str
 
 type DisableServiceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -1101,7 +1101,7 @@ func (r DisableServiceRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableService")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableService")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1234,7 +1234,7 @@ func (a *APIClient) DisableServiceExecute(ctx context.Context, projectId string)
 
 type EnableServiceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	xRequestID *string
 }
@@ -1256,7 +1256,7 @@ func (r EnableServiceRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableService")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableService")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1390,7 +1390,7 @@ func (a *APIClient) EnableServiceExecute(ctx context.Context, projectId string) 
 
 type GetCredentialsRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	credentialsRef string
 }
@@ -1407,7 +1407,7 @@ func (r GetCredentialsRequest) Execute() (*GetCredentialsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentials")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1538,7 +1538,7 @@ func (a *APIClient) GetCredentialsExecute(ctx context.Context, projectId string,
 
 type GetLoadBalancerRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	name       string
 }
@@ -1555,7 +1555,7 @@ func (r GetLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoadBalancer")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1690,7 +1690,7 @@ func (a *APIClient) GetLoadBalancerExecute(ctx context.Context, projectId string
 
 type GetQuotaRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -1706,7 +1706,7 @@ func (r GetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetQuota")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetQuota")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1837,7 +1837,7 @@ func (a *APIClient) GetQuotaExecute(ctx context.Context, projectId string) (*Get
 
 type GetServiceStatusRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -1853,7 +1853,7 @@ func (r GetServiceStatusRequest) Execute() (*GetServiceStatusResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceStatus")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetServiceStatus")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1984,7 +1984,7 @@ func (a *APIClient) GetServiceStatusExecute(ctx context.Context, projectId strin
 
 type ListCredentialsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -2000,7 +2000,7 @@ func (r ListCredentialsRequest) Execute() (*ListCredentialsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCredentials")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2127,7 +2127,7 @@ func (a *APIClient) ListCredentialsExecute(ctx context.Context, projectId string
 
 type ListLoadBalancersRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	pageSize   *string
 	pageId     *string
@@ -2159,7 +2159,7 @@ func (r ListLoadBalancersRequest) Execute() (*ListLoadBalancersResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLoadBalancers")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListLoadBalancers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2296,7 +2296,7 @@ func (a *APIClient) ListLoadBalancersExecute(ctx context.Context, projectId stri
 
 type ListPlansRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 }
 
 func (r ListPlansRequest) Execute() (*ListPlansResponse, error) {
@@ -2311,7 +2311,7 @@ func (r ListPlansRequest) Execute() (*ListPlansResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPlans")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListPlans")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2434,7 +2434,7 @@ func (a *APIClient) ListPlansExecute(ctx context.Context) (*ListPlansResponse, e
 
 type UpdateCredentialsRequest struct {
 	ctx                      context.Context
-	apiService               *DefaultApiService
+	apiService               *DefaultAPIService
 	projectId                string
 	credentialsRef           string
 	updateCredentialsPayload *UpdateCredentialsPayload
@@ -2457,7 +2457,7 @@ func (r UpdateCredentialsRequest) Execute() (*UpdateCredentialsResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateCredentials")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateCredentials")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2593,7 +2593,7 @@ func (a *APIClient) UpdateCredentialsExecute(ctx context.Context, projectId stri
 
 type UpdateLoadBalancerRequest struct {
 	ctx                       context.Context
-	apiService                *DefaultApiService
+	apiService                *DefaultAPIService
 	projectId                 string
 	name                      string
 	updateLoadBalancerPayload *UpdateLoadBalancerPayload
@@ -2616,7 +2616,7 @@ func (r UpdateLoadBalancerRequest) Execute() (*LoadBalancer, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateLoadBalancer")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateLoadBalancer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2758,7 +2758,7 @@ func (a *APIClient) UpdateLoadBalancerExecute(ctx context.Context, projectId str
 
 type UpdateTargetPoolRequest struct {
 	ctx                     context.Context
-	apiService              *DefaultApiService
+	apiService              *DefaultAPIService
 	projectId               string
 	name                    string
 	targetPoolName          string
@@ -2782,7 +2782,7 @@ func (r UpdateTargetPoolRequest) Execute() (*TargetPool, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateTargetPool")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateTargetPool")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

@@ -46,17 +46,19 @@ type NetworkGetNetworkIdRetType = string
 // isEnum
 
 // NetworkRole The role defines how the Application Load Balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
+// value type for enums
 type NetworkRole string
 
 // List of Role
 const (
-	NETWORKROLE_UNSPECIFIED           NetworkRole = "ROLE_UNSPECIFIED"
-	NETWORKROLE_LISTENERS_AND_TARGETS NetworkRole = "ROLE_LISTENERS_AND_TARGETS"
-	NETWORKROLE_LISTENERS             NetworkRole = "ROLE_LISTENERS"
-	NETWORKROLE_TARGETS               NetworkRole = "ROLE_TARGETS"
+	NETWORKROLE_ROLE_UNSPECIFIED           NetworkRole = "ROLE_UNSPECIFIED"
+	NETWORKROLE_ROLE_LISTENERS_AND_TARGETS NetworkRole = "ROLE_LISTENERS_AND_TARGETS"
+	NETWORKROLE_ROLE_LISTENERS             NetworkRole = "ROLE_LISTENERS"
+	NETWORKROLE_ROLE_TARGETS               NetworkRole = "ROLE_TARGETS"
 )
 
 // All allowed values of Network enum
+
 var AllowedNetworkRoleEnumValues = []NetworkRole{
 	"ROLE_UNSPECIFIED",
 	"ROLE_LISTENERS_AND_TARGETS",
@@ -65,13 +67,13 @@ var AllowedNetworkRoleEnumValues = []NetworkRole{
 }
 
 func (v *NetworkRole) UnmarshalJSON(src []byte) error {
-	var value string
+	var value NetworkRole
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue NetworkRole
 	if value == zeroValue {
 		return nil
 	}
@@ -88,7 +90,7 @@ func (v *NetworkRole) UnmarshalJSON(src []byte) error {
 
 // NewNetworkRoleFromValue returns a pointer to a valid NetworkRole
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewNetworkRoleFromValue(v string) (*NetworkRole, error) {
+func NewNetworkRoleFromValue(v NetworkRole) (*NetworkRole, error) {
 	ev := NetworkRole(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -166,7 +168,7 @@ func setNetworkGetRoleAttributeType(arg *NetworkGetRoleAttributeType, val Networ
 // Network struct for Network
 type Network struct {
 	// Openstack network ID
-	NetworkId NetworkGetNetworkIdAttributeType `json:"networkId,omitempty"`
+	NetworkId NetworkGetNetworkIdAttributeType `json:"networkId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// The role defines how the Application Load Balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
 	Role NetworkGetRoleAttributeType `json:"role,omitempty"`
 }
@@ -232,6 +234,14 @@ func (o *Network) HasRole() bool {
 // SetRole gets a reference to the given string and assigns it to the Role field.
 func (o *Network) SetRole(v NetworkGetRoleRetType) {
 	setNetworkGetRoleAttributeType(&o.Role, v)
+}
+
+func (o Network) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o Network) ToMap() (map[string]interface{}, error) {

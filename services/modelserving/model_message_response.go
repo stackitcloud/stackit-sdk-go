@@ -83,6 +83,14 @@ func (o *MessageResponse) SetMessage(v MessageResponseGetMessageRetType) {
 	setMessageResponseGetMessageAttributeType(&o.Message, v)
 }
 
+func (o MessageResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MessageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMessageResponseGetMessageAttributeTypeOk(o.Message); ok {

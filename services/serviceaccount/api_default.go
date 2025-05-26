@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateAccessToken Create a new Access Token
 		Create an Access Token for a Service Account. The service token can be then used for API calls. Save the response token, as it is not recoverable later. Token metadata can be requested until the token is not expired. A token cannot be created using another token from the same service account. Consider using service account keys instead as a more secure and automation friendly solution.
@@ -336,12 +336,12 @@ type ApiPartialUpdateServiceAccountKeyRequest interface {
 	Execute() (*PartialUpdateServiceAccountKeyResponse, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateAccessTokenRequest struct {
 	ctx                      context.Context
-	apiService               *DefaultApiService
+	apiService               *DefaultAPIService
 	projectId                string
 	serviceAccountEmail      string
 	createAccessTokenPayload *CreateAccessTokenPayload
@@ -366,7 +366,7 @@ func (r CreateAccessTokenRequest) Execute() (*AccessToken, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAccessToken")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateAccessToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -520,7 +520,7 @@ func (a *APIClient) CreateAccessTokenExecute(ctx context.Context, projectId stri
 
 type CreateServiceAccountRequest struct {
 	ctx                         context.Context
-	apiService                  *DefaultApiService
+	apiService                  *DefaultAPIService
 	projectId                   string
 	createServiceAccountPayload *CreateServiceAccountPayload
 }
@@ -544,7 +544,7 @@ func (r CreateServiceAccountRequest) Execute() (*ServiceAccount, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccount")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateServiceAccount")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -694,7 +694,7 @@ func (a *APIClient) CreateServiceAccountExecute(ctx context.Context, projectId s
 
 type CreateServiceAccountKeyRequest struct {
 	ctx                            context.Context
-	apiService                     *DefaultApiService
+	apiService                     *DefaultAPIService
 	projectId                      string
 	serviceAccountEmail            string
 	createServiceAccountKeyPayload *CreateServiceAccountKeyPayload
@@ -719,7 +719,7 @@ func (r CreateServiceAccountKeyRequest) Execute() (*CreateServiceAccountKeyRespo
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateServiceAccountKey")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateServiceAccountKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -873,7 +873,7 @@ func (a *APIClient) CreateServiceAccountKeyExecute(ctx context.Context, projectI
 
 type CreateShortLivedAccessTokenRequest struct {
 	ctx          context.Context
-	apiService   *DefaultApiService
+	apiService   *DefaultAPIService
 	grantType    *string
 	assertion    *string
 	refreshToken *string
@@ -912,7 +912,7 @@ func (r CreateShortLivedAccessTokenRequest) Execute() (*CreateShortLivedAccessTo
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateShortLivedAccessToken")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateShortLivedAccessToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1024,7 +1024,7 @@ func (a *APIClient) CreateShortLivedAccessTokenExecute(ctx context.Context) (*Cr
 
 type DeleteAccessTokenRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serviceAccountEmail string
 	accessTokenId       string
@@ -1041,7 +1041,7 @@ func (r DeleteAccessTokenRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAccessToken")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteAccessToken")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1198,7 +1198,7 @@ func (a *APIClient) DeleteAccessTokenExecute(ctx context.Context, projectId stri
 
 type DeleteServiceAccountRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serviceAccountEmail string
 }
@@ -1214,7 +1214,7 @@ func (r DeleteServiceAccountRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccount")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteServiceAccount")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1356,7 +1356,7 @@ func (a *APIClient) DeleteServiceAccountExecute(ctx context.Context, projectId s
 
 type DeleteServiceAccountKeyRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serviceAccountEmail string
 	keyId               string
@@ -1373,7 +1373,7 @@ func (r DeleteServiceAccountKeyRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceAccountKey")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteServiceAccountKey")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1508,7 +1508,7 @@ func (a *APIClient) DeleteServiceAccountKeyExecute(ctx context.Context, projectI
 
 type GetJWKSRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	serviceAccountEmail string
 }
 
@@ -1524,7 +1524,7 @@ func (r GetJWKSRequest) Execute() (*JWKS, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetJWKS")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetJWKS")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1629,7 +1629,7 @@ func (a *APIClient) GetJWKSExecute(ctx context.Context, serviceAccountEmail stri
 
 type GetServiceAccountKeyRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serviceAccountEmail string
 	keyId               string
@@ -1655,7 +1655,7 @@ func (r GetServiceAccountKeyRequest) Execute() (*GetServiceAccountKeyResponse, e
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceAccountKey")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetServiceAccountKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1803,7 +1803,7 @@ func (a *APIClient) GetServiceAccountKeyExecute(ctx context.Context, projectId s
 
 type ListAccessTokensRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serviceAccountEmail string
 }
@@ -1820,7 +1820,7 @@ func (r ListAccessTokensRequest) Execute() (*ListAccessTokensResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAccessTokens")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListAccessTokens")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1972,7 +1972,7 @@ func (a *APIClient) ListAccessTokensExecute(ctx context.Context, projectId strin
 
 type ListServiceAccountKeysRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serviceAccountEmail string
 }
@@ -1989,7 +1989,7 @@ func (r ListServiceAccountKeysRequest) Execute() (*ListServiceAccountKeysRespons
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccountKeys")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListServiceAccountKeys")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2130,7 +2130,7 @@ func (a *APIClient) ListServiceAccountKeysExecute(ctx context.Context, projectId
 
 type ListServiceAccountsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -2146,7 +2146,7 @@ func (r ListServiceAccountsRequest) Execute() (*ListServiceAccountsResponse, err
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListServiceAccounts")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListServiceAccounts")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2283,7 +2283,7 @@ func (a *APIClient) ListServiceAccountsExecute(ctx context.Context, projectId st
 
 type PartialUpdateServiceAccountKeyRequest struct {
 	ctx                                   context.Context
-	apiService                            *DefaultApiService
+	apiService                            *DefaultAPIService
 	projectId                             string
 	serviceAccountEmail                   string
 	keyId                                 string
@@ -2309,7 +2309,7 @@ func (r PartialUpdateServiceAccountKeyRequest) Execute() (*PartialUpdateServiceA
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateServiceAccountKey")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateServiceAccountKey")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

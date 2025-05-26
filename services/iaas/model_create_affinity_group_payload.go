@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateAffinityGroupPayload type satisfies the MappedNullable interface at compile time
@@ -103,12 +105,12 @@ type CreateAffinityGroupPayloadGetPolicyRetType = string
 // CreateAffinityGroupPayload Definition of an affinity group.
 type CreateAffinityGroupPayload struct {
 	// Universally Unique Identifier (UUID).
-	Id CreateAffinityGroupPayloadGetIdAttributeType `json:"id,omitempty"`
+	Id CreateAffinityGroupPayloadGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// The servers that are part of the affinity group.
 	Members CreateAffinityGroupPayloadGetMembersAttributeType `json:"members,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name CreateAffinityGroupPayloadGetNameAttributeType `json:"name"`
+	Name CreateAffinityGroupPayloadGetNameAttributeType `json:"name" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// The affinity group policy. `hard-affinity`: All servers in this group will be hosted on the same compute node. `soft-affinity`: All servers in this group will be hosted on as few compute nodes as possible. `hard-anti-affinity`: All servers in this group will be hosted on different compute nodes. `soft-anti-affinity`: All servers in this group will be hosted on as many compute nodes as possible. Possible values: `hard-anti-affinity`, `hard-affinity`, `soft-anti-affinity`, `soft-affinity`.
 	// REQUIRED
 	Policy CreateAffinityGroupPayloadGetPolicyAttributeType `json:"policy"`
@@ -215,6 +217,14 @@ func (o *CreateAffinityGroupPayload) SetPolicy(v CreateAffinityGroupPayloadGetPo
 	setCreateAffinityGroupPayloadGetPolicyAttributeType(&o.Policy, v)
 }
 
+func (o CreateAffinityGroupPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateAffinityGroupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateAffinityGroupPayloadGetIdAttributeTypeOk(o.Id); ok {
@@ -230,6 +240,44 @@ func (o CreateAffinityGroupPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Policy"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateAffinityGroupPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"policy",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateAffinityGroupPayload := _CreateAffinityGroupPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateAffinityGroupPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateAffinityGroupPayload(varCreateAffinityGroupPayload)
+
+	return err
 }
 
 type NullableCreateAffinityGroupPayload struct {

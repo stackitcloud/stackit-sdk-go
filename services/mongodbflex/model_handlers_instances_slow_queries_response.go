@@ -83,6 +83,14 @@ func (o *HandlersInstancesSlowQueriesResponse) SetSlowQueries(v HandlersInstance
 	setHandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeType(&o.SlowQueries, v)
 }
 
+func (o HandlersInstancesSlowQueriesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o HandlersInstancesSlowQueriesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHandlersInstancesSlowQueriesResponseGetSlowQueriesAttributeTypeOk(o.SlowQueries); ok {

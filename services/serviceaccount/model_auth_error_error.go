@@ -11,7 +11,9 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AuthErrorError type satisfies the MappedNullable interface at compile time
@@ -162,6 +164,14 @@ func (o *AuthErrorError) SetStatus(v AuthErrorErrorGetStatusRetType) {
 	setAuthErrorErrorGetStatusAttributeType(&o.Status, v)
 }
 
+func (o AuthErrorError) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o AuthErrorError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getAuthErrorErrorGetCodeAttributeTypeOk(o.Code); ok {
@@ -174,6 +184,45 @@ func (o AuthErrorError) ToMap() (map[string]interface{}, error) {
 		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *AuthErrorError) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"code",
+		"message",
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAuthErrorError := _AuthErrorError{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAuthErrorError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AuthErrorError(varAuthErrorError)
+
+	return err
 }
 
 type NullableAuthErrorError struct {

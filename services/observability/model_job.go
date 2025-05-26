@@ -11,6 +11,7 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -248,6 +249,7 @@ func setJobGetSampleLimitAttributeType(arg *JobGetSampleLimitAttributeType, val 
 // isEnum
 
 // JobScheme the model 'Job'
+// value type for enums
 type JobScheme string
 
 // List of Scheme
@@ -257,19 +259,20 @@ const (
 )
 
 // All allowed values of Job enum
+
 var AllowedJobSchemeEnumValues = []JobScheme{
 	"http",
 	"https",
 }
 
 func (v *JobScheme) UnmarshalJSON(src []byte) error {
-	var value string
+	var value JobScheme
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue JobScheme
 	if value == zeroValue {
 		return nil
 	}
@@ -286,7 +289,7 @@ func (v *JobScheme) UnmarshalJSON(src []byte) error {
 
 // NewJobSchemeFromValue returns a pointer to a valid JobScheme
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewJobSchemeFromValue(v string) (*JobScheme, error) {
+func NewJobSchemeFromValue(v JobScheme) (*JobScheme, error) {
 	ev := JobScheme(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -842,6 +845,14 @@ func (o *Job) SetTlsConfig(v JobGetTlsConfigRetType) {
 	setJobGetTlsConfigAttributeType(&o.TlsConfig, v)
 }
 
+func (o Job) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Job) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getJobGetBasicAuthAttributeTypeOk(o.BasicAuth); ok {
@@ -893,6 +904,46 @@ func (o Job) ToMap() (map[string]interface{}, error) {
 		toSerialize["TlsConfig"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Job) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"jobName",
+		"scrapeInterval",
+		"scrapeTimeout",
+		"staticConfigs",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varJob := _Job{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varJob)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Job(varJob)
+
+	return err
 }
 
 type NullableJob struct {

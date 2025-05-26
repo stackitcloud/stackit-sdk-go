@@ -11,6 +11,7 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -86,6 +87,7 @@ func setDomainGetStatusAttributeType(arg *DomainGetStatusAttributeType, val Doma
 // isEnum
 
 // DomainTypes Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
+// value type for enums
 type DomainTypes string
 
 // List of Type
@@ -95,19 +97,20 @@ const (
 )
 
 // All allowed values of Domain enum
+
 var AllowedDomainTypesEnumValues = []DomainTypes{
 	"managed",
 	"custom",
 }
 
 func (v *DomainTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value DomainTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue DomainTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -124,7 +127,7 @@ func (v *DomainTypes) UnmarshalJSON(src []byte) error {
 
 // NewDomainTypesFromValue returns a pointer to a valid DomainTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDomainTypesFromValue(v string) (*DomainTypes, error) {
+func NewDomainTypesFromValue(v DomainTypes) (*DomainTypes, error) {
 	ev := DomainTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -309,6 +312,14 @@ func (o *Domain) SetType(v DomainGetTypeRetType) {
 	setDomainGetTypeAttributeType(&o.Type, v)
 }
 
+func (o Domain) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Domain) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDomainGetErrorsAttributeTypeOk(o.Errors); ok {
@@ -324,6 +335,45 @@ func (o Domain) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Domain) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"status",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDomain := _Domain{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDomain)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Domain(varDomain)
+
+	return err
 }
 
 type NullableDomain struct {

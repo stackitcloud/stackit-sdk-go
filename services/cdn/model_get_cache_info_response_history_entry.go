@@ -11,6 +11,7 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -66,6 +67,7 @@ func setGetCacheInfoResponseHistoryEntryGetOccurredAtAttributeType(arg *GetCache
 // isEnum
 
 // GetCacheInfoResponseHistoryEntryTypes the model 'GetCacheInfoResponseHistoryEntry'
+// value type for enums
 type GetCacheInfoResponseHistoryEntryTypes string
 
 // List of Type
@@ -75,19 +77,20 @@ const (
 )
 
 // All allowed values of GetCacheInfoResponseHistoryEntry enum
+
 var AllowedGetCacheInfoResponseHistoryEntryTypesEnumValues = []GetCacheInfoResponseHistoryEntryTypes{
 	"full",
 	"granular",
 }
 
 func (v *GetCacheInfoResponseHistoryEntryTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value GetCacheInfoResponseHistoryEntryTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue GetCacheInfoResponseHistoryEntryTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -104,7 +107,7 @@ func (v *GetCacheInfoResponseHistoryEntryTypes) UnmarshalJSON(src []byte) error 
 
 // NewGetCacheInfoResponseHistoryEntryTypesFromValue returns a pointer to a valid GetCacheInfoResponseHistoryEntryTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewGetCacheInfoResponseHistoryEntryTypesFromValue(v string) (*GetCacheInfoResponseHistoryEntryTypes, error) {
+func NewGetCacheInfoResponseHistoryEntryTypesFromValue(v GetCacheInfoResponseHistoryEntryTypes) (*GetCacheInfoResponseHistoryEntryTypes, error) {
 	ev := GetCacheInfoResponseHistoryEntryTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -266,6 +269,14 @@ func (o *GetCacheInfoResponseHistoryEntry) SetType(v GetCacheInfoResponseHistory
 	setGetCacheInfoResponseHistoryEntryGetTypeAttributeType(&o.Type, v)
 }
 
+func (o GetCacheInfoResponseHistoryEntry) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetCacheInfoResponseHistoryEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetCacheInfoResponseHistoryEntryGetOccuredAtAttributeTypeOk(o.OccuredAt); ok {
@@ -278,6 +289,45 @@ func (o GetCacheInfoResponseHistoryEntry) ToMap() (map[string]interface{}, error
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *GetCacheInfoResponseHistoryEntry) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"occuredAt",
+		"occurredAt",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGetCacheInfoResponseHistoryEntry := _GetCacheInfoResponseHistoryEntry{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGetCacheInfoResponseHistoryEntry)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetCacheInfoResponseHistoryEntry(varGetCacheInfoResponseHistoryEntry)
+
+	return err
 }
 
 type NullableGetCacheInfoResponseHistoryEntry struct {

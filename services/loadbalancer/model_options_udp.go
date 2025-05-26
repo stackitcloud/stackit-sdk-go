@@ -41,7 +41,7 @@ type OptionsUDPGetIdleTimeoutRetType = string
 // OptionsUDP struct for OptionsUDP
 type OptionsUDP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 1 minute, and the maximum value is 2 minutes.
-	IdleTimeout OptionsUDPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty"`
+	IdleTimeout OptionsUDPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
 }
 
 // NewOptionsUDP instantiates a new OptionsUDP object
@@ -82,6 +82,14 @@ func (o *OptionsUDP) HasIdleTimeout() bool {
 // SetIdleTimeout gets a reference to the given string and assigns it to the IdleTimeout field.
 func (o *OptionsUDP) SetIdleTimeout(v OptionsUDPGetIdleTimeoutRetType) {
 	setOptionsUDPGetIdleTimeoutAttributeType(&o.IdleTimeout, v)
+}
+
+func (o OptionsUDP) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o OptionsUDP) ToMap() (map[string]interface{}, error) {

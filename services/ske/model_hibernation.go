@@ -11,7 +11,9 @@ API version: 1.1
 package ske
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Hibernation type satisfies the MappedNullable interface at compile time
@@ -80,12 +82,57 @@ func (o *Hibernation) SetSchedules(v HibernationGetSchedulesRetType) {
 	setHibernationGetSchedulesAttributeType(&o.Schedules, v)
 }
 
+func (o Hibernation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Hibernation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHibernationGetSchedulesAttributeTypeOk(o.Schedules); ok {
 		toSerialize["Schedules"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Hibernation) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"schedules",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varHibernation := _Hibernation{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varHibernation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Hibernation(varHibernation)
+
+	return err
 }
 
 type NullableHibernation struct {

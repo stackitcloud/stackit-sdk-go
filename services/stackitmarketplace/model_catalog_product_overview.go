@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CatalogProductOverview type satisfies the MappedNullable interface at compile time
@@ -170,13 +172,13 @@ type CatalogProductOverview struct {
 	Logo CatalogProductOverviewGetLogoAttributeType `json:"logo,omitempty"`
 	// The name of the product.
 	// REQUIRED
-	Name CatalogProductOverviewGetNameAttributeType `json:"name"`
+	Name CatalogProductOverviewGetNameAttributeType `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId CatalogProductOverviewGetProductIdAttributeType `json:"productId"`
-	// A custom message.
+	ProductId CatalogProductOverviewGetProductIdAttributeType `json:"productId" validate:"regexp=^[a-z0-9-]{1,20}-[0-9a-f]{8}$"`
+	// The short summary of the product.
 	// REQUIRED
-	Summary CatalogProductOverviewGetSummaryAttributeType `json:"summary"`
+	Summary CatalogProductOverviewGetSummaryAttributeType `json:"summary" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// REQUIRED
 	Vendor CatalogProductOverviewGetVendorAttributeType `json:"vendor"`
 }
@@ -331,6 +333,14 @@ func (o *CatalogProductOverview) SetVendor(v CatalogProductOverviewGetVendorRetT
 	setCatalogProductOverviewGetVendorAttributeType(&o.Vendor, v)
 }
 
+func (o CatalogProductOverview) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CatalogProductOverview) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductOverviewGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod); ok {
@@ -355,6 +365,48 @@ func (o CatalogProductOverview) ToMap() (map[string]interface{}, error) {
 		toSerialize["Vendor"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CatalogProductOverview) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"deliveryMethod",
+		"lifecycleState",
+		"name",
+		"productId",
+		"summary",
+		"vendor",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCatalogProductOverview := _CatalogProductOverview{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCatalogProductOverview)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CatalogProductOverview(varCatalogProductOverview)
+
+	return err
 }
 
 type NullableCatalogProductOverview struct {

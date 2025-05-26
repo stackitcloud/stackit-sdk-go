@@ -60,6 +60,47 @@ type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlArgType = stri
 type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlRetType = string
 
 /*
+	types and functions for priority
+*/
+
+// isNotNullableString
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeType = *string
+
+func getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeTypeOk(arg CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeType) (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeType(arg *CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeType, val CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityRetType) {
+	*arg = &val
+}
+
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityArgType = string
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityRetType = string
+
+/*
+	types and functions for sendResolved
+*/
+
+// isBoolean
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeType = *bool
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedArgType = bool
+type CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedRetType = bool
+
+func getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeTypeOk(arg CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeType) (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeType(arg *CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeType, val CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for tags
 */
 
@@ -86,6 +127,10 @@ type CreateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {
 	ApiKey CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeType `json:"apiKey,omitempty"`
 	// The host to send OpsGenie API requests to. `Additional Validators:` * must be a syntactically valid url address
 	ApiUrl CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType `json:"apiUrl,omitempty"`
+	// Priority level of alert. Possible values are P1, P2, P3, P4, and P5.
+	Priority CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeType `json:"priority,omitempty"`
+	// Whether to notify about resolved alerts.
+	SendResolved CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeType `json:"sendResolved,omitempty"`
 	// Comma separated list of tags attached to the notifications.
 	Tags CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType `json:"tags,omitempty"`
 }
@@ -104,6 +149,8 @@ func NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInner() *CreateAlertConfi
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerWithDefaults() *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner {
 	this := CreateAlertConfigReceiverPayloadOpsgenieConfigsInner{}
+	var sendResolved bool = true
+	this.SendResolved = &sendResolved
 	return &this
 }
 
@@ -153,6 +200,52 @@ func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetApiUrl(v Creat
 	setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeType(&o.ApiUrl, v)
 }
 
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetPriority() (res CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityRetType) {
+	res, _ = o.GetPriorityOk()
+	return
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetPriorityOk() (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeTypeOk(o.Priority)
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasPriority() bool {
+	_, ok := o.GetPriorityOk()
+	return ok
+}
+
+// SetPriority gets a reference to the given string and assigns it to the Priority field.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetPriority(v CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityRetType) {
+	setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeType(&o.Priority, v)
+}
+
+// GetSendResolved returns the SendResolved field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetSendResolved() (res CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedRetType) {
+	res, _ = o.GetSendResolvedOk()
+	return
+}
+
+// GetSendResolvedOk returns a tuple with the SendResolved field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetSendResolvedOk() (ret CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeTypeOk(o.SendResolved)
+}
+
+// HasSendResolved returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) HasSendResolved() bool {
+	_, ok := o.GetSendResolvedOk()
+	return ok
+}
+
+// SetSendResolved gets a reference to the given bool and assigns it to the SendResolved field.
+func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetSendResolved(v CreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedRetType) {
+	setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeType(&o.SendResolved, v)
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) GetTags() (res CreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsRetType) {
 	res, _ = o.GetTagsOk()
@@ -176,6 +269,14 @@ func (o *CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) SetTags(v CreateA
 	setCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeType(&o.Tags, v)
 }
 
+func (o CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiKeyAttributeTypeOk(o.ApiKey); ok {
@@ -183,6 +284,12 @@ func (o CreateAlertConfigReceiverPayloadOpsgenieConfigsInner) ToMap() (map[strin
 	}
 	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetApiUrlAttributeTypeOk(o.ApiUrl); ok {
 		toSerialize["ApiUrl"] = val
+	}
+	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetPriorityAttributeTypeOk(o.Priority); ok {
+		toSerialize["Priority"] = val
+	}
+	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnergetSendResolvedAttributeTypeOk(o.SendResolved); ok {
+		toSerialize["SendResolved"] = val
 	}
 	if val, ok := getCreateAlertConfigReceiverPayloadOpsgenieConfigsInnerGetTagsAttributeTypeOk(o.Tags); ok {
 		toSerialize["Tags"] = val

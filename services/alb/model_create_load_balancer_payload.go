@@ -210,18 +210,20 @@ type CreateLoadBalancerPayloadGetRegionRetType = string
 // isEnum
 
 // CreateLoadBalancerPayloadStatus the model 'CreateLoadBalancerPayload'
+// value type for enums
 type CreateLoadBalancerPayloadStatus string
 
 // List of Status
 const (
-	CREATELOADBALANCERPAYLOADSTATUS_UNSPECIFIED CreateLoadBalancerPayloadStatus = "STATUS_UNSPECIFIED"
-	CREATELOADBALANCERPAYLOADSTATUS_PENDING     CreateLoadBalancerPayloadStatus = "STATUS_PENDING"
-	CREATELOADBALANCERPAYLOADSTATUS_READY       CreateLoadBalancerPayloadStatus = "STATUS_READY"
-	CREATELOADBALANCERPAYLOADSTATUS_ERROR       CreateLoadBalancerPayloadStatus = "STATUS_ERROR"
-	CREATELOADBALANCERPAYLOADSTATUS_TERMINATING CreateLoadBalancerPayloadStatus = "STATUS_TERMINATING"
+	CREATELOADBALANCERPAYLOADSTATUS_STATUS_UNSPECIFIED CreateLoadBalancerPayloadStatus = "STATUS_UNSPECIFIED"
+	CREATELOADBALANCERPAYLOADSTATUS_STATUS_PENDING     CreateLoadBalancerPayloadStatus = "STATUS_PENDING"
+	CREATELOADBALANCERPAYLOADSTATUS_STATUS_READY       CreateLoadBalancerPayloadStatus = "STATUS_READY"
+	CREATELOADBALANCERPAYLOADSTATUS_STATUS_ERROR       CreateLoadBalancerPayloadStatus = "STATUS_ERROR"
+	CREATELOADBALANCERPAYLOADSTATUS_STATUS_TERMINATING CreateLoadBalancerPayloadStatus = "STATUS_TERMINATING"
 )
 
 // All allowed values of CreateLoadBalancerPayload enum
+
 var AllowedCreateLoadBalancerPayloadStatusEnumValues = []CreateLoadBalancerPayloadStatus{
 	"STATUS_UNSPECIFIED",
 	"STATUS_PENDING",
@@ -231,13 +233,13 @@ var AllowedCreateLoadBalancerPayloadStatusEnumValues = []CreateLoadBalancerPaylo
 }
 
 func (v *CreateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateLoadBalancerPayloadStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateLoadBalancerPayloadStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -254,7 +256,7 @@ func (v *CreateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
 
 // NewCreateLoadBalancerPayloadStatusFromValue returns a pointer to a valid CreateLoadBalancerPayloadStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateLoadBalancerPayloadStatusFromValue(v string) (*CreateLoadBalancerPayloadStatus, error) {
+func NewCreateLoadBalancerPayloadStatusFromValue(v CreateLoadBalancerPayloadStatus) (*CreateLoadBalancerPayloadStatus, error) {
 	ev := CreateLoadBalancerPayloadStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -379,7 +381,7 @@ type CreateLoadBalancerPayload struct {
 	// There is a maximum listener count of 20.
 	Listeners CreateLoadBalancerPayloadGetListenersAttributeType `json:"listeners,omitempty"`
 	// Application Load Balancer name. Not changeable after creation.
-	Name CreateLoadBalancerPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name CreateLoadBalancerPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// List of networks that listeners and targets reside in. Currently limited to one. Not changeable after creation.
 	Networks CreateLoadBalancerPayloadGetNetworksAttributeType `json:"networks,omitempty"`
 	Options  CreateLoadBalancerPayloadGetOptionsAttributeType  `json:"options,omitempty"`
@@ -687,6 +689,14 @@ func (o *CreateLoadBalancerPayload) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *CreateLoadBalancerPayload) SetVersion(v CreateLoadBalancerPayloadGetVersionRetType) {
 	setCreateLoadBalancerPayloadGetVersionAttributeType(&o.Version, v)
+}
+
+func (o CreateLoadBalancerPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CreateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {

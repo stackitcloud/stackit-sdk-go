@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the VendorSubscription type satisfies the MappedNullable interface at compile time
@@ -42,9 +44,9 @@ func setVendorSubscriptionGetLifecycleStateAttributeType(arg *VendorSubscription
 */
 
 // isModel
-type VendorSubscriptionGetOrganizationIdAttributeType = *OrganizationId
-type VendorSubscriptionGetOrganizationIdArgType = OrganizationId
-type VendorSubscriptionGetOrganizationIdRetType = OrganizationId
+type VendorSubscriptionGetOrganizationIdAttributeType = *interface{}
+type VendorSubscriptionGetOrganizationIdArgType = interface{}
+type VendorSubscriptionGetOrganizationIdRetType = interface{}
 
 func getVendorSubscriptionGetOrganizationIdAttributeTypeOk(arg VendorSubscriptionGetOrganizationIdAttributeType) (ret VendorSubscriptionGetOrganizationIdRetType, ok bool) {
 	if arg == nil {
@@ -82,9 +84,9 @@ func setVendorSubscriptionGetProductAttributeType(arg *VendorSubscriptionGetProd
 */
 
 // isModel
-type VendorSubscriptionGetProjectIdAttributeType = *ProjectId
-type VendorSubscriptionGetProjectIdArgType = ProjectId
-type VendorSubscriptionGetProjectIdRetType = ProjectId
+type VendorSubscriptionGetProjectIdAttributeType = *interface{}
+type VendorSubscriptionGetProjectIdArgType = interface{}
+type VendorSubscriptionGetProjectIdRetType = interface{}
 
 func getVendorSubscriptionGetProjectIdAttributeTypeOk(arg VendorSubscriptionGetProjectIdAttributeType) (ret VendorSubscriptionGetProjectIdRetType, ok bool) {
 	if arg == nil {
@@ -102,9 +104,9 @@ func setVendorSubscriptionGetProjectIdAttributeType(arg *VendorSubscriptionGetPr
 */
 
 // isModel
-type VendorSubscriptionGetSubscriptionIdAttributeType = *SubscriptionId
-type VendorSubscriptionGetSubscriptionIdArgType = SubscriptionId
-type VendorSubscriptionGetSubscriptionIdRetType = SubscriptionId
+type VendorSubscriptionGetSubscriptionIdAttributeType = *interface{}
+type VendorSubscriptionGetSubscriptionIdArgType = interface{}
+type VendorSubscriptionGetSubscriptionIdRetType = interface{}
 
 func getVendorSubscriptionGetSubscriptionIdAttributeTypeOk(arg VendorSubscriptionGetSubscriptionIdAttributeType) (ret VendorSubscriptionGetSubscriptionIdRetType, ok bool) {
 	if arg == nil {
@@ -240,6 +242,14 @@ func (o *VendorSubscription) SetSubscriptionId(v VendorSubscriptionGetSubscripti
 	setVendorSubscriptionGetSubscriptionIdAttributeType(&o.SubscriptionId, v)
 }
 
+func (o VendorSubscription) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o VendorSubscription) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getVendorSubscriptionGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
@@ -258,6 +268,47 @@ func (o VendorSubscription) ToMap() (map[string]interface{}, error) {
 		toSerialize["SubscriptionId"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *VendorSubscription) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"lifecycleState",
+		"organizationId",
+		"product",
+		"projectId",
+		"subscriptionId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVendorSubscription := _VendorSubscription{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVendorSubscription)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VendorSubscription(varVendorSubscription)
+
+	return err
 }
 
 type NullableVendorSubscription struct {

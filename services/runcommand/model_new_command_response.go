@@ -83,6 +83,14 @@ func (o *NewCommandResponse) SetId(v NewCommandResponseGetIdRetType) {
 	setNewCommandResponseGetIdAttributeType(&o.Id, v)
 }
 
+func (o NewCommandResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o NewCommandResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getNewCommandResponseGetIdAttributeTypeOk(o.Id); ok {

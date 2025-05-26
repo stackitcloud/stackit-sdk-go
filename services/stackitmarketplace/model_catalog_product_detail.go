@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CatalogProductDetail type satisfies the MappedNullable interface at compile time
@@ -415,15 +417,15 @@ type CatalogProductDetail struct {
 	// The product description.
 	// REQUIRED
 	Description CatalogProductDetailGetDescriptionAttributeType `json:"description"`
-	// Uniform Resource Locator.
+	// The documentation URL.
 	// REQUIRED
-	DocumentationUrl CatalogProductDetailGetDocumentationUrlAttributeType `json:"documentationUrl"`
+	DocumentationUrl CatalogProductDetailGetDocumentationUrlAttributeType `json:"documentationUrl" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 	// A e-mail address.
 	Email CatalogProductDetailGetEmailAttributeType `json:"email,omitempty"`
 	// The list of highlights.
 	// REQUIRED
 	Highlights CatalogProductDetailGetHighlightsAttributeType `json:"highlights"`
-	// Boolean data type.
+	// If true, the product is not fully integrated but only listed. Product listings may not have prices and support information.
 	// REQUIRED
 	IsProductListing CatalogProductDetailgetIsProductListingAttributeType `json:"isProductListing"`
 	// REQUIRED
@@ -433,18 +435,18 @@ type CatalogProductDetail struct {
 	Logo CatalogProductDetailGetLogoAttributeType `json:"logo"`
 	// The name of the product.
 	// REQUIRED
-	Name CatalogProductDetailGetNameAttributeType `json:"name"`
+	Name CatalogProductDetailGetNameAttributeType `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// The list of pricing options.
 	// REQUIRED
 	PricingOptions CatalogProductDetailGetPricingOptionsAttributeType `json:"pricingOptions"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId CatalogProductDetailGetProductIdAttributeType `json:"productId"`
+	ProductId CatalogProductDetailGetProductIdAttributeType `json:"productId" validate:"regexp=^[a-z0-9-]{1,20}-[0-9a-f]{8}$"`
 	// The short summary of the product.
 	// REQUIRED
 	Summary CatalogProductDetailGetSummaryAttributeType `json:"summary"`
-	// Uniform Resource Locator.
-	SupportFaq CatalogProductDetailGetSupportFaqAttributeType `json:"supportFaq,omitempty"`
+	// The support FAQ URL.
+	SupportFaq CatalogProductDetailGetSupportFaqAttributeType `json:"supportFaq,omitempty" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 	// The phone number for support inquiries.
 	SupportPhone CatalogProductDetailGetSupportPhoneAttributeType `json:"supportPhone,omitempty"`
 	// The list of support resources.
@@ -453,9 +455,9 @@ type CatalogProductDetail struct {
 	Vendor CatalogProductDetailGetVendorAttributeType `json:"vendor"`
 	// The list of terms of use.
 	VendorTerms CatalogProductDetailGetVendorTermsAttributeType `json:"vendorTerms,omitempty"`
-	// Uniform Resource Locator.
+	// The video URL.
 	// REQUIRED
-	VideoUrl CatalogProductDetailGetVideoUrlAttributeType `json:"videoUrl"`
+	VideoUrl CatalogProductDetailGetVideoUrlAttributeType `json:"videoUrl" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 }
 
 type _CatalogProductDetail CatalogProductDetail
@@ -849,6 +851,14 @@ func (o *CatalogProductDetail) SetVideoUrl(v CatalogProductDetailGetVideoUrlRetT
 	setCatalogProductDetailGetVideoUrlAttributeType(&o.VideoUrl, v)
 }
 
+func (o CatalogProductDetail) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductDetailGetCategoriesAttributeTypeOk(o.Categories); ok {
@@ -909,6 +919,55 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 		toSerialize["VideoUrl"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CatalogProductDetail) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"deliveryMethod",
+		"description",
+		"documentationUrl",
+		"highlights",
+		"isProductListing",
+		"lifecycleState",
+		"logo",
+		"name",
+		"pricingOptions",
+		"productId",
+		"summary",
+		"vendor",
+		"videoUrl",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCatalogProductDetail := _CatalogProductDetail{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCatalogProductDetail)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CatalogProductDetail(varCatalogProductDetail)
+
+	return err
 }
 
 type NullableCatalogProductDetail struct {

@@ -85,6 +85,14 @@ func (o *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) SetInsecure
 	setCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeType(&o.InsecureSkipVerify, v)
 }
 
+func (o CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfiggetInsecureSkipVerifyAttributeTypeOk(o.InsecureSkipVerify); ok {

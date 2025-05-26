@@ -11,7 +11,9 @@ API version: 1.1
 package ske
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Kubernetes type satisfies the MappedNullable interface at compile time
@@ -63,7 +65,7 @@ type Kubernetes struct {
 	// DEPRECATED as of Kubernetes 1.25+ Flag to specify if privileged mode for containers is enabled or not. This should be used with care since it also disables a couple of other features like the use of some volume type (e.g. PVCs). By default this is set to true.
 	AllowPrivilegedContainers KubernetesgetAllowPrivilegedContainersAttributeType `json:"allowPrivilegedContainers,omitempty"`
 	// REQUIRED
-	Version KubernetesGetVersionAttributeType `json:"version"`
+	Version KubernetesGetVersionAttributeType `json:"version" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
 }
 
 type _Kubernetes Kubernetes
@@ -126,6 +128,14 @@ func (o *Kubernetes) SetVersion(v KubernetesGetVersionRetType) {
 	setKubernetesGetVersionAttributeType(&o.Version, v)
 }
 
+func (o Kubernetes) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Kubernetes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getKubernetesgetAllowPrivilegedContainersAttributeTypeOk(o.AllowPrivilegedContainers); ok {
@@ -135,6 +145,43 @@ func (o Kubernetes) ToMap() (map[string]interface{}, error) {
 		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Kubernetes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varKubernetes := _Kubernetes{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varKubernetes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Kubernetes(varKubernetes)
+
+	return err
 }
 
 type NullableKubernetes struct {

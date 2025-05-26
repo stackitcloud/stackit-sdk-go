@@ -11,7 +11,9 @@ API version: 2.0.1
 package objectstorage
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Bucket type satisfies the MappedNullable interface at compile time
@@ -206,6 +208,14 @@ func (o *Bucket) SetUrlVirtualHostedStyle(v BucketGetUrlVirtualHostedStyleRetTyp
 	setBucketGetUrlVirtualHostedStyleAttributeType(&o.UrlVirtualHostedStyle, v)
 }
 
+func (o Bucket) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Bucket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBucketGetNameAttributeTypeOk(o.Name); ok {
@@ -221,6 +231,46 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 		toSerialize["UrlVirtualHostedStyle"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"region",
+		"urlPathStyle",
+		"urlVirtualHostedStyle",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBucket := _Bucket{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBucket)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Bucket(varBucket)
+
+	return err
 }
 
 type NullableBucket struct {

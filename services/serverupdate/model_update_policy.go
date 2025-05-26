@@ -351,6 +351,14 @@ func (o *UpdatePolicy) SetRrule(v UpdatePolicyGetRruleRetType) {
 	setUpdatePolicyGetRruleAttributeType(&o.Rrule, v)
 }
 
+func (o UpdatePolicy) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdatePolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdatePolicygetDefaultAttributeTypeOk(o.Default); ok {

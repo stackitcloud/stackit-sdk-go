@@ -11,7 +11,9 @@ API version: 1.1.0
 package redis
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Plan type satisfies the MappedNullable interface at compile time
@@ -244,6 +246,14 @@ func (o *Plan) SetSkuName(v PlanGetSkuNameRetType) {
 	setPlanGetSkuNameAttributeType(&o.SkuName, v)
 }
 
+func (o Plan) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPlanGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -262,6 +272,47 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 		toSerialize["SkuName"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Plan) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"free",
+		"id",
+		"name",
+		"skuName",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPlan := _Plan{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPlan)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Plan(varPlan)
+
+	return err
 }
 
 type NullablePlan struct {

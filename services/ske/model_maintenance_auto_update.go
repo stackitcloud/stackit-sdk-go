@@ -126,6 +126,14 @@ func (o *MaintenanceAutoUpdate) SetMachineImageVersion(v MaintenanceAutoUpdatege
 	setMaintenanceAutoUpdategetMachineImageVersionAttributeType(&o.MachineImageVersion, v)
 }
 
+func (o MaintenanceAutoUpdate) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MaintenanceAutoUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMaintenanceAutoUpdategetKubernetesVersionAttributeTypeOk(o.KubernetesVersion); ok {

@@ -210,18 +210,20 @@ type LoadBalancerGetRegionRetType = string
 // isEnum
 
 // LoadBalancerStatus the model 'LoadBalancer'
+// value type for enums
 type LoadBalancerStatus string
 
 // List of Status
 const (
-	LOADBALANCERSTATUS_UNSPECIFIED LoadBalancerStatus = "STATUS_UNSPECIFIED"
-	LOADBALANCERSTATUS_PENDING     LoadBalancerStatus = "STATUS_PENDING"
-	LOADBALANCERSTATUS_READY       LoadBalancerStatus = "STATUS_READY"
-	LOADBALANCERSTATUS_ERROR       LoadBalancerStatus = "STATUS_ERROR"
-	LOADBALANCERSTATUS_TERMINATING LoadBalancerStatus = "STATUS_TERMINATING"
+	LOADBALANCERSTATUS_STATUS_UNSPECIFIED LoadBalancerStatus = "STATUS_UNSPECIFIED"
+	LOADBALANCERSTATUS_STATUS_PENDING     LoadBalancerStatus = "STATUS_PENDING"
+	LOADBALANCERSTATUS_STATUS_READY       LoadBalancerStatus = "STATUS_READY"
+	LOADBALANCERSTATUS_STATUS_ERROR       LoadBalancerStatus = "STATUS_ERROR"
+	LOADBALANCERSTATUS_STATUS_TERMINATING LoadBalancerStatus = "STATUS_TERMINATING"
 )
 
 // All allowed values of LoadBalancer enum
+
 var AllowedLoadBalancerStatusEnumValues = []LoadBalancerStatus{
 	"STATUS_UNSPECIFIED",
 	"STATUS_PENDING",
@@ -231,13 +233,13 @@ var AllowedLoadBalancerStatusEnumValues = []LoadBalancerStatus{
 }
 
 func (v *LoadBalancerStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value LoadBalancerStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue LoadBalancerStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -254,7 +256,7 @@ func (v *LoadBalancerStatus) UnmarshalJSON(src []byte) error {
 
 // NewLoadBalancerStatusFromValue returns a pointer to a valid LoadBalancerStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewLoadBalancerStatusFromValue(v string) (*LoadBalancerStatus, error) {
+func NewLoadBalancerStatusFromValue(v LoadBalancerStatus) (*LoadBalancerStatus, error) {
 	ev := LoadBalancerStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -379,7 +381,7 @@ type LoadBalancer struct {
 	// There is a maximum listener count of 20.
 	Listeners LoadBalancerGetListenersAttributeType `json:"listeners,omitempty"`
 	// Application Load Balancer name. Not changeable after creation.
-	Name LoadBalancerGetNameAttributeType `json:"name,omitempty"`
+	Name LoadBalancerGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// List of networks that listeners and targets reside in. Currently limited to one. Not changeable after creation.
 	Networks LoadBalancerGetNetworksAttributeType `json:"networks,omitempty"`
 	Options  LoadBalancerGetOptionsAttributeType  `json:"options,omitempty"`
@@ -687,6 +689,14 @@ func (o *LoadBalancer) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *LoadBalancer) SetVersion(v LoadBalancerGetVersionRetType) {
 	setLoadBalancerGetVersionAttributeType(&o.Version, v)
+}
+
+func (o LoadBalancer) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o LoadBalancer) ToMap() (map[string]interface{}, error) {

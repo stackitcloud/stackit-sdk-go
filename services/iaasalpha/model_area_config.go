@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AreaConfig type satisfies the MappedNullable interface at compile time
@@ -108,7 +110,7 @@ type AreaConfig struct {
 	Routes AreaConfigGetRoutesAttributeType `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	TransferNetwork AreaConfigGetTransferNetworkAttributeType `json:"transferNetwork"`
+	TransferNetwork AreaConfigGetTransferNetworkAttributeType `json:"transferNetwork" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\\/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$"`
 }
 
 type _AreaConfig AreaConfig
@@ -212,6 +214,14 @@ func (o *AreaConfig) SetTransferNetwork(v AreaConfigGetTransferNetworkRetType) {
 	setAreaConfigGetTransferNetworkAttributeType(&o.TransferNetwork, v)
 }
 
+func (o AreaConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o AreaConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getAreaConfigGetDefaultNameserversAttributeTypeOk(o.DefaultNameservers); ok {
@@ -227,6 +237,44 @@ func (o AreaConfig) ToMap() (map[string]interface{}, error) {
 		toSerialize["TransferNetwork"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *AreaConfig) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"networkRanges",
+		"transferNetwork",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAreaConfig := _AreaConfig{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAreaConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AreaConfig(varAreaConfig)
+
+	return err
 }
 
 type NullableAreaConfig struct {

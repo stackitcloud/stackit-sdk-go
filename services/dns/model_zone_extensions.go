@@ -82,6 +82,14 @@ func (o *ZoneExtensions) SetObservabilityExtension(v ZoneExtensionsGetObservabil
 	setZoneExtensionsGetObservabilityExtensionAttributeType(&o.ObservabilityExtension, v)
 }
 
+func (o ZoneExtensions) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ZoneExtensions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getZoneExtensionsGetObservabilityExtensionAttributeTypeOk(o.ObservabilityExtension); ok {

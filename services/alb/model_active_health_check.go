@@ -147,11 +147,11 @@ type ActiveHealthCheck struct {
 	HealthyThreshold ActiveHealthCheckGetHealthyThresholdAttributeType `json:"healthyThreshold,omitempty"`
 	HttpHealthChecks ActiveHealthCheckGetHttpHealthChecksAttributeType `json:"httpHealthChecks,omitempty"`
 	// Interval duration of health checking in seconds
-	Interval ActiveHealthCheckGetIntervalAttributeType `json:"interval,omitempty"`
+	Interval ActiveHealthCheckGetIntervalAttributeType `json:"interval,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
 	// Interval duration threshold of the health checking in seconds
-	IntervalJitter ActiveHealthCheckGetIntervalJitterAttributeType `json:"intervalJitter,omitempty"`
+	IntervalJitter ActiveHealthCheckGetIntervalJitterAttributeType `json:"intervalJitter,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
 	// Active health checking timeout duration in seconds
-	Timeout ActiveHealthCheckGetTimeoutAttributeType `json:"timeout,omitempty"`
+	Timeout ActiveHealthCheckGetTimeoutAttributeType `json:"timeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
 	// Unhealthy threshold of the health checking
 	// Can be cast to int32 without loss of precision.
 	UnhealthyThreshold ActiveHealthCheckGetUnhealthyThresholdAttributeType `json:"unhealthyThreshold,omitempty"`
@@ -310,6 +310,14 @@ func (o *ActiveHealthCheck) HasUnhealthyThreshold() bool {
 // SetUnhealthyThreshold gets a reference to the given int64 and assigns it to the UnhealthyThreshold field.
 func (o *ActiveHealthCheck) SetUnhealthyThreshold(v ActiveHealthCheckGetUnhealthyThresholdRetType) {
 	setActiveHealthCheckGetUnhealthyThresholdAttributeType(&o.UnhealthyThreshold, v)
+}
+
+func (o ActiveHealthCheck) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ActiveHealthCheck) ToMap() (map[string]interface{}, error) {

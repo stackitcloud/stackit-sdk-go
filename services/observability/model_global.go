@@ -400,6 +400,14 @@ func (o *Global) SetSmtpSmarthost(v GlobalGetSmtpSmarthostRetType) {
 	setGlobalGetSmtpSmarthostAttributeType(&o.SmtpSmarthost, v)
 }
 
+func (o Global) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Global) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGlobalGetOpsgenieApiKeyAttributeTypeOk(o.OpsgenieApiKey); ok {

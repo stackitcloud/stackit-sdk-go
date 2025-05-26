@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ResizeServerPayload type satisfies the MappedNullable interface at compile time
@@ -42,7 +44,7 @@ type ResizeServerPayloadGetMachineTypeRetType = string
 type ResizeServerPayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	MachineType ResizeServerPayloadGetMachineTypeAttributeType `json:"machineType"`
+	MachineType ResizeServerPayloadGetMachineTypeAttributeType `json:"machineType" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 }
 
 type _ResizeServerPayload ResizeServerPayload
@@ -82,12 +84,57 @@ func (o *ResizeServerPayload) SetMachineType(v ResizeServerPayloadGetMachineType
 	setResizeServerPayloadGetMachineTypeAttributeType(&o.MachineType, v)
 }
 
+func (o ResizeServerPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ResizeServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getResizeServerPayloadGetMachineTypeAttributeTypeOk(o.MachineType); ok {
 		toSerialize["MachineType"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ResizeServerPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"machineType",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varResizeServerPayload := _ResizeServerPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varResizeServerPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResizeServerPayload(varResizeServerPayload)
+
+	return err
 }
 
 type NullableResizeServerPayload struct {

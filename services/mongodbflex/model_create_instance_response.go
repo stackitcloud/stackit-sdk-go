@@ -83,6 +83,14 @@ func (o *CreateInstanceResponse) SetId(v CreateInstanceResponseGetIdRetType) {
 	setCreateInstanceResponseGetIdAttributeType(&o.Id, v)
 }
 
+func (o CreateInstanceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateInstanceResponseGetIdAttributeTypeOk(o.Id); ok {

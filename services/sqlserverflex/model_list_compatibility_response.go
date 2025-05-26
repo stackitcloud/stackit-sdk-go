@@ -82,6 +82,14 @@ func (o *ListCompatibilityResponse) SetCompatibilities(v ListCompatibilityRespon
 	setListCompatibilityResponseGetCompatibilitiesAttributeType(&o.Compatibilities, v)
 }
 
+func (o ListCompatibilityResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListCompatibilityResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListCompatibilityResponseGetCompatibilitiesAttributeTypeOk(o.Compatibilities); ok {

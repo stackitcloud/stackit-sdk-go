@@ -11,11 +11,33 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateAlertConfigsPayloadRoute type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateAlertConfigsPayloadRoute{}
+
+/*
+	types and functions for continue
+*/
+
+// isBoolean
+type UpdateAlertConfigsPayloadRoutegetContinueAttributeType = *bool
+type UpdateAlertConfigsPayloadRoutegetContinueArgType = bool
+type UpdateAlertConfigsPayloadRoutegetContinueRetType = bool
+
+func getUpdateAlertConfigsPayloadRoutegetContinueAttributeTypeOk(arg UpdateAlertConfigsPayloadRoutegetContinueAttributeType) (ret UpdateAlertConfigsPayloadRoutegetContinueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertConfigsPayloadRoutegetContinueAttributeType(arg *UpdateAlertConfigsPayloadRoutegetContinueAttributeType, val UpdateAlertConfigsPayloadRoutegetContinueRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for groupBy
@@ -203,15 +225,17 @@ func setUpdateAlertConfigsPayloadRouteGetRoutesAttributeType(arg *UpdateAlertCon
 
 // UpdateAlertConfigsPayloadRoute The root node of the routing tree.
 type UpdateAlertConfigsPayloadRoute struct {
+	// Whether an alert should continue matching subsequent sibling nodes.
+	Continue UpdateAlertConfigsPayloadRoutegetContinueAttributeType `json:"continue,omitempty"`
 	// The labels by which incoming alerts are grouped together. For example, multiple alerts coming in for cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels use the special value '...' as the sole label name, for example: group_by: ['...']. This effectively disables aggregation entirely, passing through all alerts as-is. This is unlikely to be what you want, unless you have a very low alert volume or your upstream notification system performs its own grouping.
 	GroupBy UpdateAlertConfigsPayloadRouteGetGroupByAttributeType `json:"groupBy,omitempty"`
 	// How long to wait before sending a notification about new alerts that are added to a group of alerts for which an initial notification has already been sent. (Usually ~5m or more.) `Additional Validators:` * must be a valid time format
 	GroupInterval UpdateAlertConfigsPayloadRouteGetGroupIntervalAttributeType `json:"groupInterval,omitempty"`
 	// How long to initially wait to send a notification for a group of alerts. Allows to wait for an inhibiting alert to arrive or collect more initial alerts for the same group. (Usually ~0s to few minutes.) `Additional Validators:` * must be a valid time format
 	GroupWait UpdateAlertConfigsPayloadRouteGetGroupWaitAttributeType `json:"groupWait,omitempty"`
-	// map of key:value. A set of equality matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters * key and values should only include the characters: a-zA-Z0-9_./@&?:-
+	//  Deprecated: map of key:value. A set of equality matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters * key and values should only include the characters: a-zA-Z0-9_./@&?:-
 	Match UpdateAlertConfigsPayloadRouteGetMatchAttributeType `json:"match,omitempty"`
-	// map of key:value. A set of regex-matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
+	//  Deprecated: map of key:value. A set of regex-matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
 	MatchRe UpdateAlertConfigsPayloadRouteGetMatchReAttributeType `json:"matchRe,omitempty"`
 	// A list of matchers that an alert has to fulfill to match the node. A matcher is a string with a syntax inspired by PromQL and OpenMetrics. The syntax of a matcher consists of three tokens: * A valid Prometheus label name. * One of =, !=, =~, or !~. = means equals, != means that the strings are not equal, =~ is used for equality of regex expressions and !~ is used for un-equality of regex expressions. They have the same meaning as known from PromQL selectors. * A UTF-8 string, which may be enclosed in double quotes. Before or after each token, there may be any amount of whitespace. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
 	Matchers UpdateAlertConfigsPayloadRouteGetMatchersAttributeType `json:"matchers,omitempty"`
@@ -241,6 +265,8 @@ func NewUpdateAlertConfigsPayloadRoute(receiver UpdateAlertConfigsPayloadRouteGe
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateAlertConfigsPayloadRouteWithDefaults() *UpdateAlertConfigsPayloadRoute {
 	this := UpdateAlertConfigsPayloadRoute{}
+	var continue_ bool = false
+	this.Continue = &continue_
 	var groupInterval string = "5m"
 	this.GroupInterval = &groupInterval
 	var groupWait string = "30s"
@@ -248,6 +274,29 @@ func NewUpdateAlertConfigsPayloadRouteWithDefaults() *UpdateAlertConfigsPayloadR
 	var repeatInterval string = "4h"
 	this.RepeatInterval = &repeatInterval
 	return &this
+}
+
+// GetContinue returns the Continue field value if set, zero value otherwise.
+func (o *UpdateAlertConfigsPayloadRoute) GetContinue() (res UpdateAlertConfigsPayloadRoutegetContinueRetType) {
+	res, _ = o.GetContinueOk()
+	return
+}
+
+// GetContinueOk returns a tuple with the Continue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAlertConfigsPayloadRoute) GetContinueOk() (ret UpdateAlertConfigsPayloadRoutegetContinueRetType, ok bool) {
+	return getUpdateAlertConfigsPayloadRoutegetContinueAttributeTypeOk(o.Continue)
+}
+
+// HasContinue returns a boolean if a field has been set.
+func (o *UpdateAlertConfigsPayloadRoute) HasContinue() bool {
+	_, ok := o.GetContinueOk()
+	return ok
+}
+
+// SetContinue gets a reference to the given bool and assigns it to the Continue field.
+func (o *UpdateAlertConfigsPayloadRoute) SetContinue(v UpdateAlertConfigsPayloadRoutegetContinueRetType) {
+	setUpdateAlertConfigsPayloadRoutegetContinueAttributeType(&o.Continue, v)
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
@@ -320,6 +369,7 @@ func (o *UpdateAlertConfigsPayloadRoute) SetGroupWait(v UpdateAlertConfigsPayloa
 }
 
 // GetMatch returns the Match field value if set, zero value otherwise.
+// Deprecated
 func (o *UpdateAlertConfigsPayloadRoute) GetMatch() (res UpdateAlertConfigsPayloadRouteGetMatchRetType) {
 	res, _ = o.GetMatchOk()
 	return
@@ -327,6 +377,7 @@ func (o *UpdateAlertConfigsPayloadRoute) GetMatch() (res UpdateAlertConfigsPaylo
 
 // GetMatchOk returns a tuple with the Match field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UpdateAlertConfigsPayloadRoute) GetMatchOk() (ret UpdateAlertConfigsPayloadRouteGetMatchRetType, ok bool) {
 	return getUpdateAlertConfigsPayloadRouteGetMatchAttributeTypeOk(o.Match)
 }
@@ -338,11 +389,13 @@ func (o *UpdateAlertConfigsPayloadRoute) HasMatch() bool {
 }
 
 // SetMatch gets a reference to the given map[string]interface{} and assigns it to the Match field.
+// Deprecated
 func (o *UpdateAlertConfigsPayloadRoute) SetMatch(v UpdateAlertConfigsPayloadRouteGetMatchRetType) {
 	setUpdateAlertConfigsPayloadRouteGetMatchAttributeType(&o.Match, v)
 }
 
 // GetMatchRe returns the MatchRe field value if set, zero value otherwise.
+// Deprecated
 func (o *UpdateAlertConfigsPayloadRoute) GetMatchRe() (res UpdateAlertConfigsPayloadRouteGetMatchReRetType) {
 	res, _ = o.GetMatchReOk()
 	return
@@ -350,6 +403,7 @@ func (o *UpdateAlertConfigsPayloadRoute) GetMatchRe() (res UpdateAlertConfigsPay
 
 // GetMatchReOk returns a tuple with the MatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UpdateAlertConfigsPayloadRoute) GetMatchReOk() (ret UpdateAlertConfigsPayloadRouteGetMatchReRetType, ok bool) {
 	return getUpdateAlertConfigsPayloadRouteGetMatchReAttributeTypeOk(o.MatchRe)
 }
@@ -361,6 +415,7 @@ func (o *UpdateAlertConfigsPayloadRoute) HasMatchRe() bool {
 }
 
 // SetMatchRe gets a reference to the given map[string]interface{} and assigns it to the MatchRe field.
+// Deprecated
 func (o *UpdateAlertConfigsPayloadRoute) SetMatchRe(v UpdateAlertConfigsPayloadRouteGetMatchReRetType) {
 	setUpdateAlertConfigsPayloadRouteGetMatchReAttributeType(&o.MatchRe, v)
 }
@@ -451,8 +506,19 @@ func (o *UpdateAlertConfigsPayloadRoute) SetRoutes(v UpdateAlertConfigsPayloadRo
 	setUpdateAlertConfigsPayloadRouteGetRoutesAttributeType(&o.Routes, v)
 }
 
+func (o UpdateAlertConfigsPayloadRoute) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateAlertConfigsPayloadRoute) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getUpdateAlertConfigsPayloadRoutegetContinueAttributeTypeOk(o.Continue); ok {
+		toSerialize["Continue"] = val
+	}
 	if val, ok := getUpdateAlertConfigsPayloadRouteGetGroupByAttributeTypeOk(o.GroupBy); ok {
 		toSerialize["GroupBy"] = val
 	}
@@ -481,6 +547,43 @@ func (o UpdateAlertConfigsPayloadRoute) ToMap() (map[string]interface{}, error) 
 		toSerialize["Routes"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigsPayloadRoute) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"receiver",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateAlertConfigsPayloadRoute := _UpdateAlertConfigsPayloadRoute{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateAlertConfigsPayloadRoute)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigsPayloadRoute(varUpdateAlertConfigsPayloadRoute)
+
+	return err
 }
 
 type NullableUpdateAlertConfigsPayloadRoute struct {

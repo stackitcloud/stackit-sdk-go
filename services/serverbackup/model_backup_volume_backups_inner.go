@@ -108,6 +108,7 @@ func setBackupVolumeBackupsInnerGetSizeAttributeType(arg *BackupVolumeBackupsInn
 // isEnum
 
 // BackupVolumeBackupsInnerStatus the model 'BackupVolumeBackupsInner'
+// value type for enums
 type BackupVolumeBackupsInnerStatus string
 
 // List of Status
@@ -122,6 +123,7 @@ const (
 )
 
 // All allowed values of BackupVolumeBackupsInner enum
+
 var AllowedBackupVolumeBackupsInnerStatusEnumValues = []BackupVolumeBackupsInnerStatus{
 	"creating",
 	"available",
@@ -133,13 +135,13 @@ var AllowedBackupVolumeBackupsInnerStatusEnumValues = []BackupVolumeBackupsInner
 }
 
 func (v *BackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value BackupVolumeBackupsInnerStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue BackupVolumeBackupsInnerStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -156,7 +158,7 @@ func (v *BackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {
 
 // NewBackupVolumeBackupsInnerStatusFromValue returns a pointer to a valid BackupVolumeBackupsInnerStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewBackupVolumeBackupsInnerStatusFromValue(v string) (*BackupVolumeBackupsInnerStatus, error) {
+func NewBackupVolumeBackupsInnerStatusFromValue(v BackupVolumeBackupsInnerStatus) (*BackupVolumeBackupsInnerStatus, error) {
 	ev := BackupVolumeBackupsInnerStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -416,6 +418,14 @@ func (o *BackupVolumeBackupsInner) HasVolumeId() bool {
 // SetVolumeId gets a reference to the given string and assigns it to the VolumeId field.
 func (o *BackupVolumeBackupsInner) SetVolumeId(v BackupVolumeBackupsInnerGetVolumeIdRetType) {
 	setBackupVolumeBackupsInnerGetVolumeIdAttributeType(&o.VolumeId, v)
+}
+
+func (o BackupVolumeBackupsInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o BackupVolumeBackupsInner) ToMap() (map[string]interface{}, error) {

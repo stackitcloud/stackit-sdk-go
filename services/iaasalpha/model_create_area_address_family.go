@@ -82,6 +82,14 @@ func (o *CreateAreaAddressFamily) SetIpv4(v CreateAreaAddressFamilyGetIpv4RetTyp
 	setCreateAreaAddressFamilyGetIpv4AttributeType(&o.Ipv4, v)
 }
 
+func (o CreateAreaAddressFamily) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateAreaAddressFamily) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateAreaAddressFamilyGetIpv4AttributeTypeOk(o.Ipv4); ok {

@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InquirySuggestProduct type satisfies the MappedNullable interface at compile time
@@ -103,17 +105,17 @@ type InquirySuggestProductGetUrlRetType = string
 
 // InquirySuggestProduct Suggest a product.
 type InquirySuggestProduct struct {
-	// The product's vendor name.
+	// The suggested product's company name.
 	// REQUIRED
-	CompanyName InquirySuggestProductGetCompanyNameAttributeType `json:"companyName"`
+	CompanyName InquirySuggestProductGetCompanyNameAttributeType `json:"companyName" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// A custom message.
-	Message InquirySuggestProductGetMessageAttributeType `json:"message,omitempty"`
-	// The name of the product.
+	Message InquirySuggestProductGetMessageAttributeType `json:"message,omitempty" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
+	// The suggested product name.
 	// REQUIRED
-	Name InquirySuggestProductGetNameAttributeType `json:"name"`
-	// Uniform Resource Locator.
+	Name InquirySuggestProductGetNameAttributeType `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
+	// The suggested product's website URL.
 	// REQUIRED
-	Url InquirySuggestProductGetUrlAttributeType `json:"url"`
+	Url InquirySuggestProductGetUrlAttributeType `json:"url" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 }
 
 type _InquirySuggestProduct InquirySuggestProduct
@@ -212,6 +214,14 @@ func (o *InquirySuggestProduct) SetUrl(v InquirySuggestProductGetUrlRetType) {
 	setInquirySuggestProductGetUrlAttributeType(&o.Url, v)
 }
 
+func (o InquirySuggestProduct) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InquirySuggestProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInquirySuggestProductGetCompanyNameAttributeTypeOk(o.CompanyName); ok {
@@ -227,6 +237,45 @@ func (o InquirySuggestProduct) ToMap() (map[string]interface{}, error) {
 		toSerialize["Url"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *InquirySuggestProduct) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"companyName",
+		"name",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInquirySuggestProduct := _InquirySuggestProduct{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInquirySuggestProduct)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InquirySuggestProduct(varInquirySuggestProduct)
+
+	return err
 }
 
 type NullableInquirySuggestProduct struct {

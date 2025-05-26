@@ -24,7 +24,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateDistribution Create new distribution
 		CreateDistribution will create a new CDN distribution
@@ -411,12 +411,12 @@ type ApiPutCustomDomainRequest interface {
 	Execute() (*PutCustomDomainResponse, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateDistributionRequest struct {
 	ctx                       context.Context
-	apiService                *DefaultApiService
+	apiService                *DefaultAPIService
 	projectId                 string
 	createDistributionPayload *CreateDistributionPayload
 }
@@ -438,7 +438,7 @@ func (r CreateDistributionRequest) Execute() (*CreateDistributionResponse, error
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateDistribution")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -600,7 +600,7 @@ func (a *APIClient) CreateDistributionExecute(ctx context.Context, projectId str
 
 type DeleteCustomDomainRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 	domain         string
@@ -624,7 +624,7 @@ func (r DeleteCustomDomainRequest) Execute() (*DeleteCustomDomainResponse, error
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCustomDomain")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteCustomDomain")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -784,7 +784,7 @@ func (a *APIClient) DeleteCustomDomainExecute(ctx context.Context, projectId str
 
 type DeleteDistributionRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 	intentId       *string
@@ -809,7 +809,7 @@ func (r DeleteDistributionRequest) Execute() (*DeleteDistributionResponse, error
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteDistribution")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -962,7 +962,7 @@ func (a *APIClient) DeleteDistributionExecute(ctx context.Context, projectId str
 
 type FindCachePathsRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 	path           *string
@@ -987,7 +987,7 @@ func (r FindCachePathsRequest) Execute() (*FindCachePathsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.FindCachePaths")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.FindCachePaths")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1154,7 +1154,7 @@ func (a *APIClient) FindCachePathsExecute(ctx context.Context, projectId string,
 
 type GetCacheInfoRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 	purgePath      *string
@@ -1177,7 +1177,7 @@ func (r GetCacheInfoRequest) Execute() (*GetCacheInfoResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCacheInfo")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCacheInfo")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1333,7 +1333,7 @@ func (a *APIClient) GetCacheInfoExecute(ctx context.Context, projectId string, d
 
 type GetCustomDomainRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 	domain         string
@@ -1351,7 +1351,7 @@ func (r GetCustomDomainRequest) Execute() (*GetCustomDomainResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCustomDomain")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCustomDomain")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1519,7 +1519,7 @@ func (a *APIClient) GetCustomDomainExecute(ctx context.Context, projectId string
 
 type GetDistributionRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 }
@@ -1536,7 +1536,7 @@ func (r GetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetDistribution")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1697,7 +1697,7 @@ func (a *APIClient) GetDistributionExecute(ctx context.Context, projectId string
 
 type GetLogsRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 	from           *time.Time
@@ -1760,7 +1760,7 @@ func (r GetLogsRequest) Execute() (*GetLogsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogs")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetLogs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1926,7 +1926,7 @@ func (a *APIClient) GetLogsExecute(ctx context.Context, projectId string, distri
 
 type GetStatisticsRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	distributionId string
 	from           *time.Time
@@ -1967,7 +1967,7 @@ func (r GetStatisticsRequest) Execute() (*GetStatisticsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetStatistics")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetStatistics")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2137,7 +2137,7 @@ func (a *APIClient) GetStatisticsExecute(ctx context.Context, projectId string, 
 
 type ListDistributionsRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	pageSize       *int32
 	pageIdentifier *string
@@ -2183,7 +2183,7 @@ func (r ListDistributionsRequest) Execute() (*ListDistributionsResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListDistributions")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListDistributions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2342,7 +2342,7 @@ func (a *APIClient) ListDistributionsExecute(ctx context.Context, projectId stri
 
 type PatchDistributionRequest struct {
 	ctx                      context.Context
-	apiService               *DefaultApiService
+	apiService               *DefaultAPIService
 	projectId                string
 	distributionId           string
 	patchDistributionPayload *PatchDistributionPayload
@@ -2365,7 +2365,7 @@ func (r PatchDistributionRequest) Execute() (*PatchDistributionResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PatchDistribution")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PatchDistribution")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2517,7 +2517,7 @@ func (a *APIClient) PatchDistributionExecute(ctx context.Context, projectId stri
 
 type PurgeCacheRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	projectId         string
 	distributionId    string
 	purgeCachePayload *PurgeCachePayload
@@ -2540,7 +2540,7 @@ func (r PurgeCacheRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PurgeCache")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PurgeCache")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2693,7 +2693,7 @@ func (a *APIClient) PurgeCacheExecute(ctx context.Context, projectId string, dis
 
 type PutCustomDomainRequest struct {
 	ctx                    context.Context
-	apiService             *DefaultApiService
+	apiService             *DefaultAPIService
 	projectId              string
 	distributionId         string
 	domain                 string
@@ -2717,7 +2717,7 @@ func (r PutCustomDomainRequest) Execute() (*PutCustomDomainResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PutCustomDomain")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PutCustomDomain")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

@@ -63,9 +63,9 @@ type MongodbatlasOperationGetRawRetType = string
 */
 
 // isModel
-type MongodbatlasOperationGetStatsAttributeType = *MongodbatlasOperationStats
-type MongodbatlasOperationGetStatsArgType = MongodbatlasOperationStats
-type MongodbatlasOperationGetStatsRetType = MongodbatlasOperationStats
+type MongodbatlasOperationGetStatsAttributeType = *MongodbatlasStats
+type MongodbatlasOperationGetStatsArgType = MongodbatlasStats
+type MongodbatlasOperationGetStatsRetType = MongodbatlasStats
 
 func getMongodbatlasOperationGetStatsAttributeTypeOk(arg MongodbatlasOperationGetStatsAttributeType) (ret MongodbatlasOperationGetStatsRetType, ok bool) {
 	if arg == nil {
@@ -83,7 +83,8 @@ type MongodbatlasOperation struct {
 	// Documents containing the search criteria used by the query.
 	Predicates MongodbatlasOperationGetPredicatesAttributeType `json:"predicates,omitempty"`
 	// Raw log line produced by the query.
-	Raw   MongodbatlasOperationGetRawAttributeType   `json:"raw,omitempty"`
+	Raw MongodbatlasOperationGetRawAttributeType `json:"raw,omitempty"`
+	// Query statistics.
 	Stats MongodbatlasOperationGetStatsAttributeType `json:"stats,omitempty"`
 }
 
@@ -168,9 +169,17 @@ func (o *MongodbatlasOperation) HasStats() bool {
 	return ok
 }
 
-// SetStats gets a reference to the given MongodbatlasOperationStats and assigns it to the Stats field.
+// SetStats gets a reference to the given MongodbatlasStats and assigns it to the Stats field.
 func (o *MongodbatlasOperation) SetStats(v MongodbatlasOperationGetStatsRetType) {
 	setMongodbatlasOperationGetStatsAttributeType(&o.Stats, v)
+}
+
+func (o MongodbatlasOperation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o MongodbatlasOperation) ToMap() (map[string]interface{}, error) {

@@ -83,6 +83,14 @@ func (o *UnauthorizedResponse) SetError(v UnauthorizedResponseGetErrorRetType) {
 	setUnauthorizedResponseGetErrorAttributeType(&o.Error, v)
 }
 
+func (o UnauthorizedResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UnauthorizedResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUnauthorizedResponseGetErrorAttributeTypeOk(o.Error); ok {

@@ -484,6 +484,14 @@ func (o *Instance) SetVersion(v InstanceGetVersionRetType) {
 	setInstanceGetVersionAttributeType(&o.Version, v)
 }
 
+func (o Instance) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceGetAclAttributeTypeOk(o.Acl); ok {

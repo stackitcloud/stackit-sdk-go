@@ -11,7 +11,9 @@ API version: 1.0
 package dns
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListZonesResponse type satisfies the MappedNullable interface at compile time
@@ -248,6 +250,14 @@ func (o *ListZonesResponse) SetZones(v ListZonesResponseGetZonesRetType) {
 	setListZonesResponseGetZonesAttributeType(&o.Zones, v)
 }
 
+func (o ListZonesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListZonesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListZonesResponseGetItemsPerPageAttributeTypeOk(o.ItemsPerPage); ok {
@@ -266,6 +276,46 @@ func (o ListZonesResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["Zones"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListZonesResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"itemsPerPage",
+		"totalItems",
+		"totalPages",
+		"zones",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListZonesResponse := _ListZonesResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListZonesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListZonesResponse(varListZonesResponse)
+
+	return err
 }
 
 type NullableListZonesResponse struct {

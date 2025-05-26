@@ -11,6 +11,7 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -108,6 +109,7 @@ type CreateShortLivedAccessTokenResponseGetScopeRetType = string
 // isEnum
 
 // CreateShortLivedAccessTokenResponseTokenType the model 'CreateShortLivedAccessTokenResponse'
+// value type for enums
 type CreateShortLivedAccessTokenResponseTokenType string
 
 // List of TokenType
@@ -116,18 +118,19 @@ const (
 )
 
 // All allowed values of CreateShortLivedAccessTokenResponse enum
+
 var AllowedCreateShortLivedAccessTokenResponseTokenTypeEnumValues = []CreateShortLivedAccessTokenResponseTokenType{
 	"Bearer",
 }
 
 func (v *CreateShortLivedAccessTokenResponseTokenType) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateShortLivedAccessTokenResponseTokenType
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateShortLivedAccessTokenResponseTokenType
 	if value == zeroValue {
 		return nil
 	}
@@ -144,7 +147,7 @@ func (v *CreateShortLivedAccessTokenResponseTokenType) UnmarshalJSON(src []byte)
 
 // NewCreateShortLivedAccessTokenResponseTokenTypeFromValue returns a pointer to a valid CreateShortLivedAccessTokenResponseTokenType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateShortLivedAccessTokenResponseTokenTypeFromValue(v string) (*CreateShortLivedAccessTokenResponseTokenType, error) {
+func NewCreateShortLivedAccessTokenResponseTokenTypeFromValue(v CreateShortLivedAccessTokenResponseTokenType) (*CreateShortLivedAccessTokenResponseTokenType, error) {
 	ev := CreateShortLivedAccessTokenResponseTokenType(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -345,6 +348,14 @@ func (o *CreateShortLivedAccessTokenResponse) SetTokenType(v CreateShortLivedAcc
 	setCreateShortLivedAccessTokenResponseGetTokenTypeAttributeType(&o.TokenType, v)
 }
 
+func (o CreateShortLivedAccessTokenResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateShortLivedAccessTokenResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateShortLivedAccessTokenResponseGetAccessTokenAttributeTypeOk(o.AccessToken); ok {
@@ -363,6 +374,47 @@ func (o CreateShortLivedAccessTokenResponse) ToMap() (map[string]interface{}, er
 		toSerialize["TokenType"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateShortLivedAccessTokenResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"accessToken",
+		"expiresIn",
+		"refreshToken",
+		"scope",
+		"tokenType",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateShortLivedAccessTokenResponse := _CreateShortLivedAccessTokenResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateShortLivedAccessTokenResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateShortLivedAccessTokenResponse(varCreateShortLivedAccessTokenResponse)
+
+	return err
 }
 
 type NullableCreateShortLivedAccessTokenResponse struct {

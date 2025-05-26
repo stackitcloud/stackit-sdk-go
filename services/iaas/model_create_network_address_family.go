@@ -126,6 +126,14 @@ func (o *CreateNetworkAddressFamily) SetIpv6(v CreateNetworkAddressFamilyGetIpv6
 	setCreateNetworkAddressFamilyGetIpv6AttributeType(&o.Ipv6, v)
 }
 
+func (o CreateNetworkAddressFamily) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateNetworkAddressFamily) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateNetworkAddressFamilyGetIpv4AttributeTypeOk(o.Ipv4); ok {

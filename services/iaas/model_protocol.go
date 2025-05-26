@@ -129,6 +129,14 @@ func (o *Protocol) SetNumber(v ProtocolGetNumberRetType) {
 	setProtocolGetNumberAttributeType(&o.Number, v)
 }
 
+func (o Protocol) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Protocol) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getProtocolGetNameAttributeTypeOk(o.Name); ok {

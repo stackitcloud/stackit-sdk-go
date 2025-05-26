@@ -130,6 +130,14 @@ func (o *SlowQuery) SetNamespace(v SlowQueryGetNamespaceRetType) {
 	setSlowQueryGetNamespaceAttributeType(&o.Namespace, v)
 }
 
+func (o SlowQuery) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o SlowQuery) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSlowQueryGetLineAttributeTypeOk(o.Line); ok {

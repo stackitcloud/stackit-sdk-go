@@ -11,6 +11,7 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -208,26 +209,28 @@ func setInstanceGetPlanAttributeType(arg *InstanceGetPlanAttributeType, val Inst
 // isEnum
 
 // InstanceState the model 'Instance'
+// value type for enums
 type InstanceState string
 
 // List of State
 const (
-	INSTANCESTATE_CREATION_STARTED                                                   InstanceState = "Component creation started"
-	INSTANCESTATE_CREATION_FAILED                                                    InstanceState = "Component creation failed"
-	INSTANCESTATE_CREATION_SUCCEEDED__NOW_NEED_TO_CHECK_READINESS                    InstanceState = "Component creation succeeded. Now need to check readiness"
-	INSTANCESTATE_CREATION_SUCCEEDED                                                 InstanceState = "Component creation succeeded"
-	INSTANCESTATE_DELETION_STARTED                                                   InstanceState = "Component deletion started"
-	INSTANCESTATE_DELETION_FAILED                                                    InstanceState = "Component deletion failed"
-	INSTANCESTATE_DELETION_SUCCEEDED                                                 InstanceState = "Component deletion succeeded"
-	INSTANCESTATE_DELETION_OF_ROUTINE_SUCCEEDED__NOW_NEED_TO_CHECK_IF_RESOURCES_GONE InstanceState = "Component deletion of routine succeeded. Now need to check if resources gone"
-	INSTANCESTATE_DELETION_BUCKETS_SUCCEEDED                                         InstanceState = "Component deletion buckets succeeded"
-	INSTANCESTATE_UPDATE_FAILED                                                      InstanceState = "Component update failed"
-	INSTANCESTATE_UPDATE_STARTED                                                     InstanceState = "Component update started"
-	INSTANCESTATE_UPDATE_CREATION_SUCCEEDED                                          InstanceState = "Component update creation succeeded"
-	INSTANCESTATE_UPDATE_DOWNGRADE_DELETION_RESOURCES_SUCCEEDED                      InstanceState = "Component update downgrade deletion resources succeeded"
+	INSTANCESTATE_COMPONENT_CREATION_STARTED                                                   InstanceState = "Component creation started"
+	INSTANCESTATE_COMPONENT_CREATION_FAILED                                                    InstanceState = "Component creation failed"
+	INSTANCESTATE_COMPONENT_CREATION_SUCCEEDED__NOW_NEED_TO_CHECK_READINESS                    InstanceState = "Component creation succeeded. Now need to check readiness"
+	INSTANCESTATE_COMPONENT_CREATION_SUCCEEDED                                                 InstanceState = "Component creation succeeded"
+	INSTANCESTATE_COMPONENT_DELETION_STARTED                                                   InstanceState = "Component deletion started"
+	INSTANCESTATE_COMPONENT_DELETION_FAILED                                                    InstanceState = "Component deletion failed"
+	INSTANCESTATE_COMPONENT_DELETION_SUCCEEDED                                                 InstanceState = "Component deletion succeeded"
+	INSTANCESTATE_COMPONENT_DELETION_OF_ROUTINE_SUCCEEDED__NOW_NEED_TO_CHECK_IF_RESOURCES_GONE InstanceState = "Component deletion of routine succeeded. Now need to check if resources gone"
+	INSTANCESTATE_COMPONENT_DELETION_BUCKETS_SUCCEEDED                                         InstanceState = "Component deletion buckets succeeded"
+	INSTANCESTATE_COMPONENT_UPDATE_FAILED                                                      InstanceState = "Component update failed"
+	INSTANCESTATE_COMPONENT_UPDATE_STARTED                                                     InstanceState = "Component update started"
+	INSTANCESTATE_COMPONENT_UPDATE_CREATION_SUCCEEDED                                          InstanceState = "Component update creation succeeded"
+	INSTANCESTATE_COMPONENT_UPDATE_DOWNGRADE_DELETION_RESOURCES_SUCCEEDED                      InstanceState = "Component update downgrade deletion resources succeeded"
 )
 
 // All allowed values of Instance enum
+
 var AllowedInstanceStateEnumValues = []InstanceState{
 	"Component creation started",
 	"Component creation failed",
@@ -245,13 +248,13 @@ var AllowedInstanceStateEnumValues = []InstanceState{
 }
 
 func (v *InstanceState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceState
 	if value == zeroValue {
 		return nil
 	}
@@ -268,7 +271,7 @@ func (v *InstanceState) UnmarshalJSON(src []byte) error {
 
 // NewInstanceStateFromValue returns a pointer to a valid InstanceState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceStateFromValue(v string) (*InstanceState, error) {
+func NewInstanceStateFromValue(v InstanceState) (*InstanceState, error) {
 	ev := InstanceState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -574,6 +577,14 @@ func (o *Instance) SetState(v InstanceGetStateRetType) {
 	setInstanceGetStateAttributeType(&o.State, v)
 }
 
+func (o Instance) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceGetClusterAttributeTypeOk(o.Cluster); ok {
@@ -607,6 +618,50 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 		toSerialize["State"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Instance) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"cluster",
+		"grafanaPublicReadAccess",
+		"grafanaUseStackitSso",
+		"instance",
+		"metricsRetentionTime1h",
+		"metricsRetentionTime5m",
+		"metricsRetentionTimeRaw",
+		"plan",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInstance := _Instance{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInstance)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Instance(varInstance)
+
+	return err
 }
 
 type NullableInstance struct {

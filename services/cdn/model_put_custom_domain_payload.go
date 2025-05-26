@@ -84,6 +84,14 @@ func (o *PutCustomDomainPayload) SetIntentId(v PutCustomDomainPayloadGetIntentId
 	setPutCustomDomainPayloadGetIntentIdAttributeType(&o.IntentId, v)
 }
 
+func (o PutCustomDomainPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PutCustomDomainPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPutCustomDomainPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {

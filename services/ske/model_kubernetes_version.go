@@ -105,7 +105,7 @@ type KubernetesVersion struct {
 	ExpirationDate KubernetesVersionGetExpirationDateAttributeType `json:"expirationDate,omitempty"`
 	FeatureGates   KubernetesVersionGetFeatureGatesAttributeType   `json:"featureGates,omitempty"`
 	State          KubernetesVersionGetStateAttributeType          `json:"state,omitempty"`
-	Version        KubernetesVersionGetVersionAttributeType        `json:"version,omitempty"`
+	Version        KubernetesVersionGetVersionAttributeType        `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
 }
 
 // NewKubernetesVersion instantiates a new KubernetesVersion object
@@ -215,6 +215,14 @@ func (o *KubernetesVersion) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *KubernetesVersion) SetVersion(v KubernetesVersionGetVersionRetType) {
 	setKubernetesVersionGetVersionAttributeType(&o.Version, v)
+}
+
+func (o KubernetesVersion) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o KubernetesVersion) ToMap() (map[string]interface{}, error) {

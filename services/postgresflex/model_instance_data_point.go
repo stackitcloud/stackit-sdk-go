@@ -127,6 +127,14 @@ func (o *InstanceDataPoint) SetValue(v InstanceDataPointGetValueRetType) {
 	setInstanceDataPointGetValueAttributeType(&o.Value, v)
 }
 
+func (o InstanceDataPoint) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceDataPoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceDataPointGetTimestampAttributeTypeOk(o.Timestamp); ok {

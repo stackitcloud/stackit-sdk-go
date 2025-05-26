@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the SubscriptionProduct type satisfies the MappedNullable interface at compile time
@@ -237,20 +239,20 @@ type SubscriptionProduct struct {
 	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId"`
+	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId" validate:"regexp=^[a-z0-9-]{1,20}-[0-9a-f]{8}$"`
 	// The name of the product.
 	// REQUIRED
-	ProductName SubscriptionProductGetProductNameAttributeType `json:"productName"`
+	ProductName SubscriptionProductGetProductNameAttributeType `json:"productName" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// The product's vendor name.
 	// REQUIRED
-	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName"`
+	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// The vendor provided plan ID.
-	VendorPlanId SubscriptionProductGetVendorPlanIdAttributeType `json:"vendorPlanId,omitempty"`
+	VendorPlanId SubscriptionProductGetVendorPlanIdAttributeType `json:"vendorPlanId,omitempty" validate:"regexp=^[a-zA-Z0-9](?:[a-zA-Z0-9_+&-]){0,39}$"`
 	// The vendor provided product ID.
-	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty"`
-	// Uniform Resource Locator.
+	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty" validate:"regexp=^[a-zA-Z0-9](?:[a-zA-Z0-9_+&-]){0,39}$"`
+	// The vendor's website.
 	// REQUIRED
-	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl"`
+	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 }
 
 type _SubscriptionProduct SubscriptionProduct
@@ -462,6 +464,14 @@ func (o *SubscriptionProduct) SetVendorWebsiteUrl(v SubscriptionProductGetVendor
 	setSubscriptionProductGetVendorWebsiteUrlAttributeType(&o.VendorWebsiteUrl, v)
 }
 
+func (o SubscriptionProduct) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o SubscriptionProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSubscriptionProductGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod); ok {
@@ -495,6 +505,50 @@ func (o SubscriptionProduct) ToMap() (map[string]interface{}, error) {
 		toSerialize["VendorWebsiteUrl"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *SubscriptionProduct) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"deliveryMethod",
+		"lifecycleState",
+		"priceType",
+		"pricingPlan",
+		"productId",
+		"productName",
+		"vendorName",
+		"vendorWebsiteUrl",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSubscriptionProduct := _SubscriptionProduct{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSubscriptionProduct)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SubscriptionProduct(varSubscriptionProduct)
+
+	return err
 }
 
 type NullableSubscriptionProduct struct {

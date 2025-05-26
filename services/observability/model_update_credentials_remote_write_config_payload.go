@@ -83,6 +83,14 @@ func (o *UpdateCredentialsRemoteWriteConfigPayload) SetMaxLimit(v UpdateCredenti
 	setUpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeType(&o.MaxLimit, v)
 }
 
+func (o UpdateCredentialsRemoteWriteConfigPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateCredentialsRemoteWriteConfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateCredentialsRemoteWriteConfigPayloadGetMaxLimitAttributeTypeOk(o.MaxLimit); ok {

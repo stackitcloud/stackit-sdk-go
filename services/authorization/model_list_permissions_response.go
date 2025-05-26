@@ -11,7 +11,9 @@ API version: 2.0
 package authorization
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListPermissionsResponse type satisfies the MappedNullable interface at compile time
@@ -80,12 +82,57 @@ func (o *ListPermissionsResponse) SetPermissions(v ListPermissionsResponseGetPer
 	setListPermissionsResponseGetPermissionsAttributeType(&o.Permissions, v)
 }
 
+func (o ListPermissionsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListPermissionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListPermissionsResponseGetPermissionsAttributeTypeOk(o.Permissions); ok {
 		toSerialize["Permissions"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListPermissionsResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"permissions",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListPermissionsResponse := _ListPermissionsResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListPermissionsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListPermissionsResponse(varListPermissionsResponse)
+
+	return err
 }
 
 type NullableListPermissionsResponse struct {

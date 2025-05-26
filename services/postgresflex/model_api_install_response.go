@@ -82,6 +82,14 @@ func (o *ApiInstallResponse) SetExtension(v ApiInstallResponseGetExtensionRetTyp
 	setApiInstallResponseGetExtensionAttributeType(&o.Extension, v)
 }
 
+func (o ApiInstallResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ApiInstallResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiInstallResponseGetExtensionAttributeTypeOk(o.Extension); ok {

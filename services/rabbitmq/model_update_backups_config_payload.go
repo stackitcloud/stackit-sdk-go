@@ -83,6 +83,14 @@ func (o *UpdateBackupsConfigPayload) SetEncryptionKey(v UpdateBackupsConfigPaylo
 	setUpdateBackupsConfigPayloadGetEncryptionKeyAttributeType(&o.EncryptionKey, v)
 }
 
+func (o UpdateBackupsConfigPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateBackupsConfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateBackupsConfigPayloadGetEncryptionKeyAttributeTypeOk(o.EncryptionKey); ok {

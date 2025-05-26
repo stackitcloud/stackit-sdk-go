@@ -11,6 +11,7 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -187,6 +188,7 @@ func setUpdateScrapeConfigPayloadGetSampleLimitAttributeType(arg *UpdateScrapeCo
 // isEnum
 
 // UpdateScrapeConfigPayloadScheme Configures the protocol scheme used for requests. https or http
+// value type for enums
 type UpdateScrapeConfigPayloadScheme string
 
 // List of Scheme
@@ -196,19 +198,20 @@ const (
 )
 
 // All allowed values of UpdateScrapeConfigPayload enum
+
 var AllowedUpdateScrapeConfigPayloadSchemeEnumValues = []UpdateScrapeConfigPayloadScheme{
 	"http",
 	"https",
 }
 
 func (v *UpdateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
-	var value string
+	var value UpdateScrapeConfigPayloadScheme
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue UpdateScrapeConfigPayloadScheme
 	if value == zeroValue {
 		return nil
 	}
@@ -225,7 +228,7 @@ func (v *UpdateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
 
 // NewUpdateScrapeConfigPayloadSchemeFromValue returns a pointer to a valid UpdateScrapeConfigPayloadScheme
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewUpdateScrapeConfigPayloadSchemeFromValue(v string) (*UpdateScrapeConfigPayloadScheme, error) {
+func NewUpdateScrapeConfigPayloadSchemeFromValue(v UpdateScrapeConfigPayloadScheme) (*UpdateScrapeConfigPayloadScheme, error) {
 	ev := UpdateScrapeConfigPayloadScheme(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -714,6 +717,14 @@ func (o *UpdateScrapeConfigPayload) SetTlsConfig(v UpdateScrapeConfigPayloadGetT
 	setUpdateScrapeConfigPayloadGetTlsConfigAttributeType(&o.TlsConfig, v)
 }
 
+func (o UpdateScrapeConfigPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateScrapeConfigPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateScrapeConfigPayloadGetBasicAuthAttributeTypeOk(o.BasicAuth); ok {
@@ -756,6 +767,47 @@ func (o UpdateScrapeConfigPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["TlsConfig"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *UpdateScrapeConfigPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"metricsPath",
+		"scheme",
+		"scrapeInterval",
+		"scrapeTimeout",
+		"staticConfigs",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateScrapeConfigPayload := _UpdateScrapeConfigPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateScrapeConfigPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateScrapeConfigPayload(varUpdateScrapeConfigPayload)
+
+	return err
 }
 
 type NullableUpdateScrapeConfigPayload struct {

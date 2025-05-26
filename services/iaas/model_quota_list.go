@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the QuotaList type satisfies the MappedNullable interface at compile time
@@ -22,9 +24,9 @@ var _ MappedNullable = &QuotaList{}
 */
 
 // isModel
-type QuotaListGetBackupGigabytesAttributeType = *QuotaListBackupGigabytes
-type QuotaListGetBackupGigabytesArgType = QuotaListBackupGigabytes
-type QuotaListGetBackupGigabytesRetType = QuotaListBackupGigabytes
+type QuotaListGetBackupGigabytesAttributeType = *Quota
+type QuotaListGetBackupGigabytesArgType = Quota
+type QuotaListGetBackupGigabytesRetType = Quota
 
 func getQuotaListGetBackupGigabytesAttributeTypeOk(arg QuotaListGetBackupGigabytesAttributeType) (ret QuotaListGetBackupGigabytesRetType, ok bool) {
 	if arg == nil {
@@ -42,9 +44,9 @@ func setQuotaListGetBackupGigabytesAttributeType(arg *QuotaListGetBackupGigabyte
 */
 
 // isModel
-type QuotaListGetBackupsAttributeType = *QuotaListBackups
-type QuotaListGetBackupsArgType = QuotaListBackups
-type QuotaListGetBackupsRetType = QuotaListBackups
+type QuotaListGetBackupsAttributeType = *Quota
+type QuotaListGetBackupsArgType = Quota
+type QuotaListGetBackupsRetType = Quota
 
 func getQuotaListGetBackupsAttributeTypeOk(arg QuotaListGetBackupsAttributeType) (ret QuotaListGetBackupsRetType, ok bool) {
 	if arg == nil {
@@ -62,9 +64,9 @@ func setQuotaListGetBackupsAttributeType(arg *QuotaListGetBackupsAttributeType, 
 */
 
 // isModel
-type QuotaListGetGigabytesAttributeType = *QuotaListGigabytes
-type QuotaListGetGigabytesArgType = QuotaListGigabytes
-type QuotaListGetGigabytesRetType = QuotaListGigabytes
+type QuotaListGetGigabytesAttributeType = *Quota
+type QuotaListGetGigabytesArgType = Quota
+type QuotaListGetGigabytesRetType = Quota
 
 func getQuotaListGetGigabytesAttributeTypeOk(arg QuotaListGetGigabytesAttributeType) (ret QuotaListGetGigabytesRetType, ok bool) {
 	if arg == nil {
@@ -82,9 +84,9 @@ func setQuotaListGetGigabytesAttributeType(arg *QuotaListGetGigabytesAttributeTy
 */
 
 // isModel
-type QuotaListGetNetworksAttributeType = *QuotaListNetworks
-type QuotaListGetNetworksArgType = QuotaListNetworks
-type QuotaListGetNetworksRetType = QuotaListNetworks
+type QuotaListGetNetworksAttributeType = *Quota
+type QuotaListGetNetworksArgType = Quota
+type QuotaListGetNetworksRetType = Quota
 
 func getQuotaListGetNetworksAttributeTypeOk(arg QuotaListGetNetworksAttributeType) (ret QuotaListGetNetworksRetType, ok bool) {
 	if arg == nil {
@@ -102,9 +104,9 @@ func setQuotaListGetNetworksAttributeType(arg *QuotaListGetNetworksAttributeType
 */
 
 // isModel
-type QuotaListGetNicsAttributeType = *QuotaListNics
-type QuotaListGetNicsArgType = QuotaListNics
-type QuotaListGetNicsRetType = QuotaListNics
+type QuotaListGetNicsAttributeType = *Quota
+type QuotaListGetNicsArgType = Quota
+type QuotaListGetNicsRetType = Quota
 
 func getQuotaListGetNicsAttributeTypeOk(arg QuotaListGetNicsAttributeType) (ret QuotaListGetNicsRetType, ok bool) {
 	if arg == nil {
@@ -122,9 +124,9 @@ func setQuotaListGetNicsAttributeType(arg *QuotaListGetNicsAttributeType, val Qu
 */
 
 // isModel
-type QuotaListGetPublicIpsAttributeType = *QuotaListPublicIps
-type QuotaListGetPublicIpsArgType = QuotaListPublicIps
-type QuotaListGetPublicIpsRetType = QuotaListPublicIps
+type QuotaListGetPublicIpsAttributeType = *Quota
+type QuotaListGetPublicIpsArgType = Quota
+type QuotaListGetPublicIpsRetType = Quota
 
 func getQuotaListGetPublicIpsAttributeTypeOk(arg QuotaListGetPublicIpsAttributeType) (ret QuotaListGetPublicIpsRetType, ok bool) {
 	if arg == nil {
@@ -142,9 +144,9 @@ func setQuotaListGetPublicIpsAttributeType(arg *QuotaListGetPublicIpsAttributeTy
 */
 
 // isModel
-type QuotaListGetRamAttributeType = *QuotaListRam
-type QuotaListGetRamArgType = QuotaListRam
-type QuotaListGetRamRetType = QuotaListRam
+type QuotaListGetRamAttributeType = *Quota
+type QuotaListGetRamArgType = Quota
+type QuotaListGetRamRetType = Quota
 
 func getQuotaListGetRamAttributeTypeOk(arg QuotaListGetRamAttributeType) (ret QuotaListGetRamRetType, ok bool) {
 	if arg == nil {
@@ -162,9 +164,9 @@ func setQuotaListGetRamAttributeType(arg *QuotaListGetRamAttributeType, val Quot
 */
 
 // isModel
-type QuotaListGetSecurityGroupRulesAttributeType = *QuotaListSecurityGroupRules
-type QuotaListGetSecurityGroupRulesArgType = QuotaListSecurityGroupRules
-type QuotaListGetSecurityGroupRulesRetType = QuotaListSecurityGroupRules
+type QuotaListGetSecurityGroupRulesAttributeType = *Quota
+type QuotaListGetSecurityGroupRulesArgType = Quota
+type QuotaListGetSecurityGroupRulesRetType = Quota
 
 func getQuotaListGetSecurityGroupRulesAttributeTypeOk(arg QuotaListGetSecurityGroupRulesAttributeType) (ret QuotaListGetSecurityGroupRulesRetType, ok bool) {
 	if arg == nil {
@@ -182,9 +184,9 @@ func setQuotaListGetSecurityGroupRulesAttributeType(arg *QuotaListGetSecurityGro
 */
 
 // isModel
-type QuotaListGetSecurityGroupsAttributeType = *QuotaListSecurityGroups
-type QuotaListGetSecurityGroupsArgType = QuotaListSecurityGroups
-type QuotaListGetSecurityGroupsRetType = QuotaListSecurityGroups
+type QuotaListGetSecurityGroupsAttributeType = *Quota
+type QuotaListGetSecurityGroupsArgType = Quota
+type QuotaListGetSecurityGroupsRetType = Quota
 
 func getQuotaListGetSecurityGroupsAttributeTypeOk(arg QuotaListGetSecurityGroupsAttributeType) (ret QuotaListGetSecurityGroupsRetType, ok bool) {
 	if arg == nil {
@@ -202,9 +204,9 @@ func setQuotaListGetSecurityGroupsAttributeType(arg *QuotaListGetSecurityGroupsA
 */
 
 // isModel
-type QuotaListGetSnapshotsAttributeType = *QuotaListSnapshots
-type QuotaListGetSnapshotsArgType = QuotaListSnapshots
-type QuotaListGetSnapshotsRetType = QuotaListSnapshots
+type QuotaListGetSnapshotsAttributeType = *Quota
+type QuotaListGetSnapshotsArgType = Quota
+type QuotaListGetSnapshotsRetType = Quota
 
 func getQuotaListGetSnapshotsAttributeTypeOk(arg QuotaListGetSnapshotsAttributeType) (ret QuotaListGetSnapshotsRetType, ok bool) {
 	if arg == nil {
@@ -222,9 +224,9 @@ func setQuotaListGetSnapshotsAttributeType(arg *QuotaListGetSnapshotsAttributeTy
 */
 
 // isModel
-type QuotaListGetVcpuAttributeType = *QuotaListVcpu
-type QuotaListGetVcpuArgType = QuotaListVcpu
-type QuotaListGetVcpuRetType = QuotaListVcpu
+type QuotaListGetVcpuAttributeType = *Quota
+type QuotaListGetVcpuArgType = Quota
+type QuotaListGetVcpuRetType = Quota
 
 func getQuotaListGetVcpuAttributeTypeOk(arg QuotaListGetVcpuAttributeType) (ret QuotaListGetVcpuRetType, ok bool) {
 	if arg == nil {
@@ -242,9 +244,9 @@ func setQuotaListGetVcpuAttributeType(arg *QuotaListGetVcpuAttributeType, val Qu
 */
 
 // isModel
-type QuotaListGetVolumesAttributeType = *QuotaListVolumes
-type QuotaListGetVolumesArgType = QuotaListVolumes
-type QuotaListGetVolumesRetType = QuotaListVolumes
+type QuotaListGetVolumesAttributeType = *Quota
+type QuotaListGetVolumesArgType = Quota
+type QuotaListGetVolumesRetType = Quota
 
 func getQuotaListGetVolumesAttributeTypeOk(arg QuotaListGetVolumesAttributeType) (ret QuotaListGetVolumesRetType, ok bool) {
 	if arg == nil {
@@ -259,28 +261,40 @@ func setQuotaListGetVolumesAttributeType(arg *QuotaListGetVolumesAttributeType, 
 
 // QuotaList Object that represents the quotas for a project.
 type QuotaList struct {
+	// Total size in GiB of backups.
 	// REQUIRED
 	BackupGigabytes QuotaListGetBackupGigabytesAttributeType `json:"backupGigabytes"`
+	// Number of backups.
 	// REQUIRED
 	Backups QuotaListGetBackupsAttributeType `json:"backups"`
+	// Total size in GiB of volumes and snapshots.
 	// REQUIRED
 	Gigabytes QuotaListGetGigabytesAttributeType `json:"gigabytes"`
+	// Number of networks.
 	// REQUIRED
 	Networks QuotaListGetNetworksAttributeType `json:"networks"`
+	// Number of network interfaces.
 	// REQUIRED
 	Nics QuotaListGetNicsAttributeType `json:"nics"`
+	// Number of public IP addresses.
 	// REQUIRED
 	PublicIps QuotaListGetPublicIpsAttributeType `json:"publicIps"`
+	// Amount of server RAM in MiB.
 	// REQUIRED
 	Ram QuotaListGetRamAttributeType `json:"ram"`
+	// Number of security group rules.
 	// REQUIRED
 	SecurityGroupRules QuotaListGetSecurityGroupRulesAttributeType `json:"securityGroupRules"`
+	// Number of security groups.
 	// REQUIRED
 	SecurityGroups QuotaListGetSecurityGroupsAttributeType `json:"securityGroups"`
+	// Number of snapshots.
 	// REQUIRED
 	Snapshots QuotaListGetSnapshotsAttributeType `json:"snapshots"`
+	// Number of server cores.
 	// REQUIRED
 	Vcpu QuotaListGetVcpuAttributeType `json:"vcpu"`
+	// Number of volumes.
 	// REQUIRED
 	Volumes QuotaListGetVolumesAttributeType `json:"volumes"`
 }
@@ -520,6 +534,14 @@ func (o *QuotaList) SetVolumes(v QuotaListGetVolumesRetType) {
 	setQuotaListGetVolumesAttributeType(&o.Volumes, v)
 }
 
+func (o QuotaList) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o QuotaList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getQuotaListGetBackupGigabytesAttributeTypeOk(o.BackupGigabytes); ok {
@@ -559,6 +581,54 @@ func (o QuotaList) ToMap() (map[string]interface{}, error) {
 		toSerialize["Volumes"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *QuotaList) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"backupGigabytes",
+		"backups",
+		"gigabytes",
+		"networks",
+		"nics",
+		"publicIps",
+		"ram",
+		"securityGroupRules",
+		"securityGroups",
+		"snapshots",
+		"vcpu",
+		"volumes",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varQuotaList := _QuotaList{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varQuotaList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = QuotaList(varQuotaList)
+
+	return err
 }
 
 type NullableQuotaList struct {

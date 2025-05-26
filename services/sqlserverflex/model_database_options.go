@@ -175,6 +175,14 @@ func (o *DatabaseOptions) SetOwner(v DatabaseOptionsGetOwnerRetType) {
 	setDatabaseOptionsGetOwnerAttributeType(&o.Owner, v)
 }
 
+func (o DatabaseOptions) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o DatabaseOptions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDatabaseOptionsGetCollationNameAttributeTypeOk(o.CollationName); ok {

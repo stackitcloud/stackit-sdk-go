@@ -11,7 +11,9 @@ API version: 1.1.0
 package rabbitmq
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Offering type satisfies the MappedNullable interface at compile time
@@ -454,6 +456,14 @@ func (o *Offering) SetVersion(v OfferingGetVersionRetType) {
 	setOfferingGetVersionAttributeType(&o.Version, v)
 }
 
+func (o Offering) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Offering) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getOfferingGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -487,6 +497,50 @@ func (o Offering) ToMap() (map[string]interface{}, error) {
 		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Offering) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"documentationUrl",
+		"imageUrl",
+		"latest",
+		"name",
+		"plans",
+		"quotaCount",
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varOffering := _Offering{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varOffering)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Offering(varOffering)
+
+	return err
 }
 
 type NullableOffering struct {

@@ -102,7 +102,7 @@ func setTargetPoolGetTargetsAttributeType(arg *TargetPoolGetTargetsAttributeType
 type TargetPool struct {
 	ActiveHealthCheck TargetPoolGetActiveHealthCheckAttributeType `json:"activeHealthCheck,omitempty"`
 	// Target pool name
-	Name TargetPoolGetNameAttributeType `json:"name,omitempty"`
+	Name TargetPoolGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,18}[0-9a-z])?$"`
 	// The number identifying the port where each target listens for traffic.
 	TargetPort TargetPoolGetTargetPortAttributeType `json:"targetPort,omitempty"`
 	// List of all targets which will be used in the pool. Limited to 250.
@@ -216,6 +216,14 @@ func (o *TargetPool) HasTargets() bool {
 // SetTargets gets a reference to the given []Target and assigns it to the Targets field.
 func (o *TargetPool) SetTargets(v TargetPoolGetTargetsRetType) {
 	setTargetPoolGetTargetsAttributeType(&o.Targets, v)
+}
+
+func (o TargetPool) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o TargetPool) ToMap() (map[string]interface{}, error) {

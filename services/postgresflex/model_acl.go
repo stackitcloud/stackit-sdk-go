@@ -82,6 +82,14 @@ func (o *ACL) SetItems(v ACLGetItemsRetType) {
 	setACLGetItemsAttributeType(&o.Items, v)
 }
 
+func (o ACL) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getACLGetItemsAttributeTypeOk(o.Items); ok {

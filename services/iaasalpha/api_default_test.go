@@ -1,7 +1,7 @@
 /*
 IaaS-API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -22,9 +22,9 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_iaasalpha_DefaultApiService(t *testing.T) {
+func Test_iaasalpha_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService AddMemberToVirtualIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddMemberToVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}/add-member"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -33,13 +33,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		virtualIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VirtualIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -50,7 +50,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -83,7 +83,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService AddNetworkToServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddNetworkToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -92,10 +92,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -106,7 +106,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -135,7 +135,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService AddNicToServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddNicToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -144,10 +144,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		nicIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -158,7 +158,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -187,7 +187,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService AddPublicIpToServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddPublicIpToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -196,10 +196,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		publicIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -210,7 +210,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -239,7 +239,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService AddSecurityGroupToServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddSecurityGroupToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -248,10 +248,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		securityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -262,7 +262,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -291,7 +291,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService AddServiceAccountToServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddServiceAccountToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -300,13 +300,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		serviceAccountMailValue := "serviceAccountMail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceAccountMailListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -317,7 +317,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -349,7 +349,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService AddVolumeToServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddVolumeToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -358,13 +358,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachment{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -375,7 +375,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -407,18 +407,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateAffinityGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateAffinityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AffinityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -429,7 +429,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -460,18 +460,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Backup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -482,7 +482,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -513,18 +513,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateImage", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageCreateResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -535,7 +535,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -566,16 +566,16 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateKeyPair", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Keypair{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -586,7 +586,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -616,18 +616,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateNetwork", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Network{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -638,7 +638,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -669,18 +669,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateNetworkArea", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -691,7 +691,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -722,20 +722,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateNetworkAreaRange", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateNetworkAreaRange", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkRangeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -746,7 +746,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -778,20 +778,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateNetworkAreaRoute", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateNetworkAreaRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RouteListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -802,7 +802,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -834,20 +834,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateNic", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -858,7 +858,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -890,18 +890,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreatePublicIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreatePublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -912,7 +912,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -943,18 +943,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateSecurityGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -965,7 +965,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -996,20 +996,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateSecurityGroupRule", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateSecurityGroupRule", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupRule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1020,7 +1020,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1052,18 +1052,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Server{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1074,7 +1074,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1105,18 +1105,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateSnapshot", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Snapshot{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1127,7 +1127,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1158,20 +1158,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateVirtualIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VirtualIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1182,7 +1182,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1214,18 +1214,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateVolume", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Volume{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1236,7 +1236,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1267,17 +1267,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeallocateServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeallocateServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/deallocate"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1288,7 +1288,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1316,17 +1316,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteAffinityGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteAffinityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups/{affinityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		affinityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1337,7 +1337,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1365,17 +1365,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1386,7 +1386,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1414,17 +1414,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteImage", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1435,7 +1435,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1463,17 +1463,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteImageShare", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1484,7 +1484,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1512,7 +1512,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteImageShareConsumer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteImageShareConsumer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1521,10 +1521,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		consumerProjectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1535,7 +1535,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1564,15 +1564,15 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1583,7 +1583,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1610,17 +1610,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteNetwork", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1631,7 +1631,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1659,17 +1659,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteNetworkArea", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1680,7 +1680,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1708,7 +1708,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteNetworkAreaRange", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteNetworkAreaRange", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
@@ -1717,10 +1717,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		networkRangeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1731,7 +1731,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1760,7 +1760,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteNetworkAreaRoute", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteNetworkAreaRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
@@ -1769,10 +1769,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		routeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1783,7 +1783,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1812,7 +1812,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteNic", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1821,10 +1821,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		nicIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1835,7 +1835,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1864,17 +1864,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeletePublicIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeletePublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		publicIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1885,7 +1885,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1913,17 +1913,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteSecurityGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1934,7 +1934,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1962,7 +1962,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteSecurityGroupRule", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteSecurityGroupRule", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1971,10 +1971,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		securityGroupRuleIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1985,7 +1985,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2014,17 +2014,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2035,7 +2035,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2063,17 +2063,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteSnapshot", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots/{snapshotId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		snapshotIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2084,7 +2084,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2112,7 +2112,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteVirtualIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -2121,10 +2121,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		virtualIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2135,7 +2135,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2164,17 +2164,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteVolume", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2185,7 +2185,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2213,20 +2213,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetAffinityGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetAffinityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups/{affinityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		affinityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AffinityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2237,7 +2237,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2268,7 +2268,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetAttachedVolume", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetAttachedVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -2277,13 +2277,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachment{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2294,7 +2294,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2326,20 +2326,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Backup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2350,7 +2350,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2381,20 +2381,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetImage", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2405,7 +2405,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2436,20 +2436,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetImageShare", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShare{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2460,7 +2460,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2491,7 +2491,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetImageShareConsumer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetImageShareConsumer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -2500,13 +2500,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		consumerProjectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShareConsumer{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2517,7 +2517,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2549,18 +2549,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetKeyPair", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Keypair{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2571,7 +2571,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2601,20 +2601,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetMachineType", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetMachineType", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/machine-types/{machineType}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		machineTypeValue := "machineType-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(machineTypeValue, "machineType")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MachineType{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2625,7 +2625,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2656,20 +2656,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetNetwork", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Network{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2680,7 +2680,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2711,20 +2711,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetNetworkArea", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2735,7 +2735,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2766,7 +2766,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetNetworkAreaRange", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetNetworkAreaRange", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
@@ -2775,13 +2775,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		networkRangeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkRange{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2792,7 +2792,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2824,7 +2824,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetNetworkAreaRoute", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetNetworkAreaRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
@@ -2833,13 +2833,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		routeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Route{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2850,7 +2850,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2882,7 +2882,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetNic", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -2891,13 +2891,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		nicIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2908,7 +2908,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2940,20 +2940,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetOrganizationRequest", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetOrganizationRequest", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/requests/{requestId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		requestIdValue := "requestId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Request{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -2964,7 +2964,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -2995,18 +2995,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetProjectDetails", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetProjectDetails", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Project{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3017,7 +3017,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3047,20 +3047,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetProjectNIC", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetProjectNIC", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		nicIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3071,7 +3071,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3102,20 +3102,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetProjectRequest", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetProjectRequest", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/requests/{requestId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		requestIdValue := "requestId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Request{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3126,7 +3126,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3157,20 +3157,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetPublicIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetPublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		publicIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3181,7 +3181,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3212,20 +3212,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetSecurityGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3236,7 +3236,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3267,7 +3267,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetSecurityGroupRule", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetSecurityGroupRule", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -3276,13 +3276,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		securityGroupRuleIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupRule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3293,7 +3293,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3325,20 +3325,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Server{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3349,7 +3349,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3380,20 +3380,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServerConsole", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetServerConsole", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/console"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServerConsoleUrl{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3404,7 +3404,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3435,20 +3435,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServerLog", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetServerLog", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/log"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetServerLog200Response{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3459,7 +3459,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3490,20 +3490,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetSnapshot", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots/{snapshotId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		snapshotIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Snapshot{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3514,7 +3514,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3545,7 +3545,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetVirtualIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -3554,13 +3554,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		virtualIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VirtualIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3571,7 +3571,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3603,20 +3603,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetVolume", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Volume{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3627,7 +3627,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3658,20 +3658,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetVolumePerformanceClass", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetVolumePerformanceClass", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumePerformanceClassValue := "volumePerformanceClass-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(volumePerformanceClassValue, "volumePerformanceClass")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumePerformanceClass{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3682,7 +3682,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3713,18 +3713,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListAffinityGroups", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListAffinityGroups", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AffinityGroupListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3735,7 +3735,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3765,20 +3765,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListAttachedVolumes", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListAttachedVolumes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachmentListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3789,7 +3789,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3820,16 +3820,16 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListAvailabilityZones", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListAvailabilityZones", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/availability-zones"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AvailabilityZoneListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3840,7 +3840,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3868,18 +3868,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListBackups", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := BackupListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3890,7 +3890,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3920,18 +3920,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListImages", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListImages", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3942,7 +3942,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -3972,16 +3972,16 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListKeyPairs", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListKeyPairs", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := KeyPairListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -3992,7 +3992,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4020,18 +4020,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListMachineTypes", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListMachineTypes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/machine-types"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MachineTypeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4042,7 +4042,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4072,20 +4072,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListNetworkAreaProjects", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListNetworkAreaProjects", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/projects"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ProjectListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4096,7 +4096,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4127,20 +4127,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListNetworkAreaRanges", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListNetworkAreaRanges", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkRangeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4151,7 +4151,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4182,20 +4182,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListNetworkAreaRoutes", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListNetworkAreaRoutes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RouteListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4206,7 +4206,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4237,18 +4237,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListNetworkAreas", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListNetworkAreas", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkAreaListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4259,7 +4259,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4289,18 +4289,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListNetworks", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListNetworks", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4311,7 +4311,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4341,20 +4341,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListNics", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListNics", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NICListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4365,7 +4365,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4396,18 +4396,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListProjectNICs", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListProjectNICs", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NICListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4418,7 +4418,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4448,18 +4448,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListPublicIPs", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListPublicIPs", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIpListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4470,7 +4470,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4500,16 +4500,16 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListPublicIpRanges", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListPublicIpRanges", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/networks/public-ip-ranges"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicNetworkListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4520,7 +4520,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4548,18 +4548,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListQuotas", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListQuotas", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/quotas"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := QuotaListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4570,7 +4570,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4600,20 +4600,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListSecurityGroupRules", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListSecurityGroupRules", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupRuleListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4624,7 +4624,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4655,18 +4655,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListSecurityGroups", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListSecurityGroups", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroupListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4677,7 +4677,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4707,20 +4707,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListServerNics", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListServerNics", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/nics"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NICListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4731,7 +4731,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4762,20 +4762,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListServerServiceAccounts", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListServerServiceAccounts", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/service-accounts"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceAccountMailListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4786,7 +4786,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4817,18 +4817,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListServers", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListServers", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServerListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4839,7 +4839,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4869,18 +4869,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListSnapshots", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListSnapshots", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SnapshotListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4891,7 +4891,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4921,20 +4921,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListVirtualIPs", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListVirtualIPs", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VirtualIpListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4945,7 +4945,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -4976,18 +4976,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListVolumePerformanceClasses", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListVolumePerformanceClasses", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volume-performance-classes"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumePerformanceClassListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -4998,7 +4998,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5028,18 +5028,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListVolumes", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListVolumes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5050,7 +5050,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5080,17 +5080,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateNetwork", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5101,7 +5101,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5130,20 +5130,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateNetworkArea", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NetworkArea{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5154,7 +5154,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5186,17 +5186,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RebootServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RebootServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/reboot"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5207,7 +5207,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5235,7 +5235,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemoveMemberFromVirtualIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemoveMemberFromVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}/remove-member"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -5244,13 +5244,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		virtualIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VirtualIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5261,7 +5261,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5294,7 +5294,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemoveNetworkFromServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemoveNetworkFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -5303,10 +5303,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		networkIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5317,7 +5317,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5346,7 +5346,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemoveNicFromServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemoveNicFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -5355,10 +5355,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		nicIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5369,7 +5369,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5398,7 +5398,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemovePublicIpFromServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemovePublicIpFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -5407,10 +5407,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		publicIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5421,7 +5421,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5450,7 +5450,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemoveSecurityGroupFromServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemoveSecurityGroupFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -5459,10 +5459,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		securityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5473,7 +5473,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5502,7 +5502,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemoveServiceAccountFromServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemoveServiceAccountFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -5511,13 +5511,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		serviceAccountMailValue := "serviceAccountMail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceAccountMailListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5528,7 +5528,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5560,7 +5560,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemoveVolumeFromServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemoveVolumeFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -5569,10 +5569,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5583,7 +5583,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5612,17 +5612,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RescueServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RescueServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/rescue"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5633,7 +5633,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5662,17 +5662,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ResizeServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ResizeServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/resize"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5683,7 +5683,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5712,17 +5712,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ResizeVolume", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ResizeVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}/resize"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5733,7 +5733,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5761,17 +5761,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RestoreBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RestoreBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}/restore"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5782,7 +5782,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5810,20 +5810,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService SetImageShare", func(t *testing.T) {
+	t.Run("Test DefaultAPIService SetImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShare{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5834,7 +5834,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5866,17 +5866,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService StartServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService StartServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/start"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5887,7 +5887,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5915,17 +5915,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService StopServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService StopServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/stop"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5936,7 +5936,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -5964,17 +5964,17 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UnrescueServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UnrescueServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/unrescue"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -5985,7 +5985,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6013,7 +6013,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateAttachedVolume", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateAttachedVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -6022,13 +6022,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := VolumeAttachment{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6039,7 +6039,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6072,20 +6072,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		backupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Backup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6096,7 +6096,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6128,20 +6128,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateImage", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6152,7 +6152,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6184,20 +6184,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateImageScopeLocal", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateImageScopeLocal", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/publish"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6208,7 +6208,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6239,20 +6239,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateImageScopePublic", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateImageScopePublic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/publish"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Image{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6263,7 +6263,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6294,20 +6294,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateImageShare", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		imageIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImageShare{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6318,7 +6318,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6350,18 +6350,18 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateKeyPair", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs/{keypairName}"
 		keypairNameValue := "keypairName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Keypair{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6372,7 +6372,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6403,7 +6403,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateNic", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -6412,13 +6412,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		nicIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := NIC{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6429,7 +6429,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6462,20 +6462,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdatePublicIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdatePublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips/{publicIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		publicIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PublicIp{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6486,7 +6486,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6518,20 +6518,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateSecurityGroup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		securityGroupIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := SecurityGroup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6542,7 +6542,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6574,20 +6574,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateServer", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serverIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Server{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6598,7 +6598,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6630,20 +6630,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateSnapshot", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots/{snapshotId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		snapshotIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Snapshot{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6654,7 +6654,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6686,7 +6686,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateVirtualIP", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -6695,10 +6695,10 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		virtualIpIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6709,7 +6709,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6739,20 +6739,20 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateVolume", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		volumeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Volume{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6763,7 +6763,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -6795,7 +6795,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService V1alpha1UpdateRouteOfArea", func(t *testing.T) {
+	t.Run("Test DefaultAPIService V1alpha1UpdateRouteOfArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
 		organizationIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
@@ -6804,13 +6804,13 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		routeIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Route{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -6821,7 +6821,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for iaasalpha_DefaultApi",
+					Description: "Localhost for iaasalpha_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

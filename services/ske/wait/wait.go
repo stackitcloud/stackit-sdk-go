@@ -10,18 +10,18 @@ import (
 )
 
 const (
-	// Deprecated: StateHealthy is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_HEALTHY] instead.
+	// Deprecated: StateHealthy is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_STATE_HEALTHY] instead.
 	StateHealthy = "STATE_HEALTHY"
-	// Deprecated: StateHibernated is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_HIBERNATED] instead.
+	// Deprecated: StateHibernated is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_STATE_HIBERNATED] instead.
 	StateHibernated = "STATE_HIBERNATED"
 	StateFailed     = "STATE_FAILED"
-	// Deprecated: StateDeleting is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_DELETING] instead.
+	// Deprecated: StateDeleting is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_STATE_DELETING] instead.
 	StateDeleting = "STATE_DELETING"
 	// Deprecated: StateCreated is deprecated and will be removed after 14th November 2025.
 	StateCreated = "STATE_CREATED"
-	// Deprecated: StateUnhealthy is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_UNHEALTHY] instead.
+	// Deprecated: StateUnhealthy is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY] instead.
 	StateUnhealthy = "STATE_UNHEALTHY"
-	// Deprecated: StateReconciling is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_RECONCILING] instead.
+	// Deprecated: StateReconciling is deprecated and will be removed after 14th November 2025. Use [ske.CLUSTERSTATUSSTATE_STATE_RECONCILING] instead.
 	StateReconciling = "STATE_RECONCILING"
 	// Deprecated: CredentialsRotationStatePreparing is deprecated and will be removed after 14th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_PREPARING] instead.
 	CredentialsRotationStatePreparing = "PREPARING"
@@ -52,11 +52,11 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
 		// -- alignment meeting with SKE team on 4.8.23
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
-		if state == ske.CLUSTERSTATUSSTATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND {
+		if state == ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_SKE_ARGUS_INSTANCE_NOT_FOUND {
 			return true, s, nil
 		}
 
-		if state == ske.CLUSTERSTATUSSTATE_HEALTHY || state == ske.CLUSTERSTATUSSTATE_HIBERNATED {
+		if state == ske.CLUSTERSTATUSSTATE_STATE_HEALTHY || state == ske.CLUSTERSTATUSSTATE_STATE_HIBERNATED {
 			return true, s, nil
 		}
 
@@ -99,11 +99,11 @@ func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterfa
 		}
 		state := *s.Status.Aggregated
 
-		if state == ske.CLUSTERSTATUSSTATE_HEALTHY || state == ske.CLUSTERSTATUSSTATE_HIBERNATED {
+		if state == ske.CLUSTERSTATUSSTATE_STATE_HEALTHY || state == ske.CLUSTERSTATUSSTATE_STATE_HIBERNATED {
 			return true, s, nil
 		}
 
-		if state == ske.CLUSTERSTATUSSTATE_RECONCILING {
+		if state == ske.CLUSTERSTATUSSTATE_STATE_RECONCILING {
 			return false, nil, nil
 		}
 

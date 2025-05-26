@@ -11,6 +11,7 @@ API version: 2.0
 package resourcemanager
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -130,6 +131,7 @@ type ParentListInnerGetParentIdRetType = string
 // isEnum
 
 // ParentListInnerTypes Parent container type.
+// value type for enums
 type ParentListInnerTypes string
 
 // List of Type
@@ -139,19 +141,20 @@ const (
 )
 
 // All allowed values of ParentListInner enum
+
 var AllowedParentListInnerTypesEnumValues = []ParentListInnerTypes{
 	"FOLDER",
 	"ORGANIZATION",
 }
 
 func (v *ParentListInnerTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ParentListInnerTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ParentListInnerTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -168,7 +171,7 @@ func (v *ParentListInnerTypes) UnmarshalJSON(src []byte) error {
 
 // NewParentListInnerTypesFromValue returns a pointer to a valid ParentListInnerTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewParentListInnerTypesFromValue(v string) (*ParentListInnerTypes, error) {
+func NewParentListInnerTypesFromValue(v ParentListInnerTypes) (*ParentListInnerTypes, error) {
 	ev := ParentListInnerTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -400,6 +403,14 @@ func (o *ParentListInner) SetType(v ParentListInnerGetTypeRetType) {
 	setParentListInnerGetTypeAttributeType(&o.Type, v)
 }
 
+func (o ParentListInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ParentListInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getParentListInnerGetContainerIdAttributeTypeOk(o.ContainerId); ok {
@@ -421,6 +432,46 @@ func (o ParentListInner) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ParentListInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"containerId",
+		"id",
+		"name",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varParentListInner := _ParentListInner{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varParentListInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ParentListInner(varParentListInner)
+
+	return err
 }
 
 type NullableParentListInner struct {

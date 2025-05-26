@@ -308,6 +308,14 @@ func (o *ImportSummary) SetUpdatedRecords(v ImportSummaryGetUpdatedRecordsRetTyp
 	setImportSummaryGetUpdatedRecordsAttributeType(&o.UpdatedRecords, v)
 }
 
+func (o ImportSummary) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ImportSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getImportSummaryGetCreatedRRSetsAttributeTypeOk(o.CreatedRRSets); ok {

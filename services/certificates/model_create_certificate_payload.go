@@ -125,15 +125,15 @@ type CreateCertificatePayloadGetRegionRetType = string
 // CreateCertificatePayload Uploads a PEM encoded X509 public/private key pair
 type CreateCertificatePayload struct {
 	// TLS certificate name
-	Name CreateCertificatePayloadGetNameAttributeType `json:"name,omitempty"`
+	Name CreateCertificatePayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// The PEM encoded private key part
 	PrivateKey CreateCertificatePayloadGetPrivateKeyAttributeType `json:"privateKey,omitempty"`
 	// Project identifier
-	ProjectId CreateCertificatePayloadGetProjectIdAttributeType `json:"projectId,omitempty"`
+	ProjectId CreateCertificatePayloadGetProjectIdAttributeType `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// The PEM encoded public key part
 	PublicKey CreateCertificatePayloadGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// Region
-	Region CreateCertificatePayloadGetRegionAttributeType `json:"region,omitempty"`
+	Region CreateCertificatePayloadGetRegionAttributeType `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
 }
 
 // NewCreateCertificatePayload instantiates a new CreateCertificatePayload object
@@ -266,6 +266,14 @@ func (o *CreateCertificatePayload) HasRegion() bool {
 // SetRegion gets a reference to the given string and assigns it to the Region field.
 func (o *CreateCertificatePayload) SetRegion(v CreateCertificatePayloadGetRegionRetType) {
 	setCreateCertificatePayloadGetRegionAttributeType(&o.Region, v)
+}
+
+func (o CreateCertificatePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CreateCertificatePayload) ToMap() (map[string]interface{}, error) {

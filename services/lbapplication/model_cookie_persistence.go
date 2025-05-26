@@ -64,7 +64,7 @@ type CookiePersistence struct {
 	// Cookie is the name of the cookie to use.
 	Name CookiePersistenceGetNameAttributeType `json:"name,omitempty"`
 	// TTL specifies the time-to-live for the cookie. The default value is 0s, and it acts as a session cookie, expiring when the client session ends.
-	Ttl CookiePersistenceGetTtlAttributeType `json:"ttl,omitempty"`
+	Ttl CookiePersistenceGetTtlAttributeType `json:"ttl,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
 }
 
 // NewCookiePersistence instantiates a new CookiePersistence object
@@ -128,6 +128,14 @@ func (o *CookiePersistence) HasTtl() bool {
 // SetTtl gets a reference to the given string and assigns it to the Ttl field.
 func (o *CookiePersistence) SetTtl(v CookiePersistenceGetTtlRetType) {
 	setCookiePersistenceGetTtlAttributeType(&o.Ttl, v)
+}
+
+func (o CookiePersistence) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CookiePersistence) ToMap() (map[string]interface{}, error) {

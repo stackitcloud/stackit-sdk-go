@@ -1,7 +1,7 @@
 /*
 STACKIT DNS API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -21,22 +21,22 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_dns_DefaultApiService(t *testing.T) {
+func Test_dns_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CloneZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CloneZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/clone"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -47,7 +47,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -79,20 +79,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateLabel", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateLabel", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/labels"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateLabelResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -103,7 +103,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -135,20 +135,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateMoveCode", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateMoveCode", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/move-code"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MoveCodeResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -159,7 +159,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -190,20 +190,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateRecordSet", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateRecordSet", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RecordSetResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -214,7 +214,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -246,18 +246,18 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -268,7 +268,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -299,7 +299,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteLabel", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteLabel", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/labels/{key}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -308,13 +308,13 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		keyValue := "key-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"key"+"}", url.PathEscape(ParameterValueToString(keyValue, "key")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := DeleteLabelResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -325,7 +325,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -357,20 +357,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteMoveCode", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteMoveCode", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/move-code"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -381,7 +381,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -412,7 +412,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteRecordSet", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteRecordSet", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -421,13 +421,13 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		rrSetIdValue := "rrSetId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -438,7 +438,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -470,20 +470,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -494,7 +494,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -525,20 +525,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ExportRecordSets", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ExportRecordSets", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/export"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneDataExchange{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -549,7 +549,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -581,7 +581,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetRecordSet", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetRecordSet", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -590,13 +590,13 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		rrSetIdValue := "rrSetId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RecordSetResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -607,7 +607,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -639,20 +639,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -663,7 +663,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -694,20 +694,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ImportRecordSets", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ImportRecordSets", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/import"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ImportRecordSetsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -718,7 +718,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -750,20 +750,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListLabels", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListLabels", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/labels"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListLabelsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -774,7 +774,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -805,20 +805,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListRecordSets", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListRecordSets", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListRecordSetsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -829,7 +829,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -860,18 +860,18 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListZones", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListZones", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListZonesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -882,7 +882,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -912,18 +912,18 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService MoveZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService MoveZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/move-zone"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -934,7 +934,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -965,7 +965,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateRecord", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateRecord", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}/records"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -974,13 +974,13 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		rrSetIdValue := "rrSetId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -991,7 +991,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1024,7 +1024,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateRecordSet", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateRecordSet", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1033,13 +1033,13 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		rrSetIdValue := "rrSetId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1050,7 +1050,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1083,20 +1083,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ZoneResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1107,7 +1107,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1139,7 +1139,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RestoreRecordSet", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RestoreRecordSet", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/rrsets/{rrSetId}/restores"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -1148,13 +1148,13 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		rrSetIdValue := "rrSetId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"rrSetId"+"}", url.PathEscape(ParameterValueToString(rrSetIdValue, "rrSetId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1165,7 +1165,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1197,20 +1197,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RestoreZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RestoreZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/restores"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1221,7 +1221,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1252,20 +1252,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RetrieveZone", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RetrieveZone", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/retrieve"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1276,7 +1276,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -1307,20 +1307,20 @@ func Test_dns_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ValidateMoveCode", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ValidateMoveCode", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/zones/{zoneId}/move-code-validation"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		zoneIdValue := "zoneId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"zoneId"+"}", url.PathEscape(ParameterValueToString(zoneIdValue, "zoneId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Message{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -1331,7 +1331,7 @@ func Test_dns_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for dns_DefaultApi",
+					Description: "Localhost for dns_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

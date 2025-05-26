@@ -83,6 +83,14 @@ func (o *V1alpha1UpdateRouteOfAreaPayload) SetLabels(v V1alpha1UpdateRouteOfArea
 	setV1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
+func (o V1alpha1UpdateRouteOfAreaPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o V1alpha1UpdateRouteOfAreaPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getV1alpha1UpdateRouteOfAreaPayloadGetLabelsAttributeTypeOk(o.Labels); ok {

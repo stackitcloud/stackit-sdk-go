@@ -102,6 +102,26 @@ type CreateAlertConfigReceiverPayloadEmailConfigsInnerGetFromArgType = string
 type CreateAlertConfigReceiverPayloadEmailConfigsInnerGetFromRetType = string
 
 /*
+	types and functions for sendResolved
+*/
+
+// isBoolean
+type CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeType = *bool
+type CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedArgType = bool
+type CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedRetType = bool
+
+func getCreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeTypeOk(arg CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeType) (ret CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeType(arg *CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeType, val CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for smarthost
 */
 
@@ -153,6 +173,8 @@ type CreateAlertConfigReceiverPayloadEmailConfigsInner struct {
 	AuthUsername CreateAlertConfigReceiverPayloadEmailConfigsInnerGetAuthUsernameAttributeType `json:"authUsername,omitempty"`
 	// The sender address. `Additional Validators:` * must be a syntactically valid email address
 	From CreateAlertConfigReceiverPayloadEmailConfigsInnerGetFromAttributeType `json:"from,omitempty"`
+	// Whether to notify about resolved alerts.
+	SendResolved CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeType `json:"sendResolved,omitempty"`
 	// The SMTP host through which emails are sent. `Additional Validators:` * should only include the characters: a-zA-Z0-9_./@&?:-
 	Smarthost CreateAlertConfigReceiverPayloadEmailConfigsInnerGetSmarthostAttributeType `json:"smarthost,omitempty"`
 	// The email address to send notifications to. `Additional Validators:` * must be a syntactically valid email address
@@ -173,6 +195,8 @@ func NewCreateAlertConfigReceiverPayloadEmailConfigsInner() *CreateAlertConfigRe
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAlertConfigReceiverPayloadEmailConfigsInnerWithDefaults() *CreateAlertConfigReceiverPayloadEmailConfigsInner {
 	this := CreateAlertConfigReceiverPayloadEmailConfigsInner{}
+	var sendResolved bool = false
+	this.SendResolved = &sendResolved
 	return &this
 }
 
@@ -268,6 +292,29 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) SetFrom(v CreateAler
 	setCreateAlertConfigReceiverPayloadEmailConfigsInnerGetFromAttributeType(&o.From, v)
 }
 
+// GetSendResolved returns the SendResolved field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetSendResolved() (res CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedRetType) {
+	res, _ = o.GetSendResolvedOk()
+	return
+}
+
+// GetSendResolvedOk returns a tuple with the SendResolved field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetSendResolvedOk() (ret CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeTypeOk(o.SendResolved)
+}
+
+// HasSendResolved returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) HasSendResolved() bool {
+	_, ok := o.GetSendResolvedOk()
+	return ok
+}
+
+// SetSendResolved gets a reference to the given bool and assigns it to the SendResolved field.
+func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) SetSendResolved(v CreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedRetType) {
+	setCreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeType(&o.SendResolved, v)
+}
+
 // GetSmarthost returns the Smarthost field value if set, zero value otherwise.
 func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) GetSmarthost() (res CreateAlertConfigReceiverPayloadEmailConfigsInnerGetSmarthostRetType) {
 	res, _ = o.GetSmarthostOk()
@@ -314,6 +361,14 @@ func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) SetTo(v CreateAlertC
 	setCreateAlertConfigReceiverPayloadEmailConfigsInnerGetToAttributeType(&o.To, v)
 }
 
+func (o CreateAlertConfigReceiverPayloadEmailConfigsInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateAlertConfigReceiverPayloadEmailConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateAlertConfigReceiverPayloadEmailConfigsInnerGetAuthIdentityAttributeTypeOk(o.AuthIdentity); ok {
@@ -327,6 +382,9 @@ func (o CreateAlertConfigReceiverPayloadEmailConfigsInner) ToMap() (map[string]i
 	}
 	if val, ok := getCreateAlertConfigReceiverPayloadEmailConfigsInnerGetFromAttributeTypeOk(o.From); ok {
 		toSerialize["From"] = val
+	}
+	if val, ok := getCreateAlertConfigReceiverPayloadEmailConfigsInnergetSendResolvedAttributeTypeOk(o.SendResolved); ok {
+		toSerialize["SendResolved"] = val
 	}
 	if val, ok := getCreateAlertConfigReceiverPayloadEmailConfigsInnerGetSmarthostAttributeTypeOk(o.Smarthost); ok {
 		toSerialize["Smarthost"] = val

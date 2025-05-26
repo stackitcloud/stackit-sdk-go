@@ -11,6 +11,7 @@ API version: 1.0.0
 package modelserving
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +26,8 @@ var _ MappedNullable = &ChatModelDetails{}
 // isEnum
 
 // ChatModelDetailsBits the model 'ChatModelDetails'
-type ChatModelDetailsBits int32
+// value type for enums
+type ChatModelDetailsBits int
 
 // List of Bits
 const (
@@ -37,6 +39,7 @@ const (
 )
 
 // All allowed values of ChatModelDetails enum
+
 var AllowedChatModelDetailsBitsEnumValues = []ChatModelDetailsBits{
 	1,
 	2,
@@ -46,13 +49,13 @@ var AllowedChatModelDetailsBitsEnumValues = []ChatModelDetailsBits{
 }
 
 func (v *ChatModelDetailsBits) UnmarshalJSON(src []byte) error {
-	var value int32
+	var value ChatModelDetailsBits
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue int32
+	var zeroValue ChatModelDetailsBits
 	if value == zeroValue {
 		return nil
 	}
@@ -69,7 +72,7 @@ func (v *ChatModelDetailsBits) UnmarshalJSON(src []byte) error {
 
 // NewChatModelDetailsBitsFromValue returns a pointer to a valid ChatModelDetailsBits
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewChatModelDetailsBitsFromValue(v int32) (*ChatModelDetailsBits, error) {
+func NewChatModelDetailsBitsFromValue(v ChatModelDetailsBits) (*ChatModelDetailsBits, error) {
 	ev := ChatModelDetailsBits(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -151,6 +154,7 @@ func setChatModelDetailsGetBitsAttributeType(arg *ChatModelDetailsGetBitsAttribu
 // isEnum
 
 // ChatModelDetailsCategory the model 'ChatModelDetails'
+// value type for enums
 type ChatModelDetailsCategory string
 
 // List of Category
@@ -161,6 +165,7 @@ const (
 )
 
 // All allowed values of ChatModelDetails enum
+
 var AllowedChatModelDetailsCategoryEnumValues = []ChatModelDetailsCategory{
 	"standard",
 	"plus",
@@ -168,13 +173,13 @@ var AllowedChatModelDetailsCategoryEnumValues = []ChatModelDetailsCategory{
 }
 
 func (v *ChatModelDetailsCategory) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ChatModelDetailsCategory
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ChatModelDetailsCategory
 	if value == zeroValue {
 		return nil
 	}
@@ -191,7 +196,7 @@ func (v *ChatModelDetailsCategory) UnmarshalJSON(src []byte) error {
 
 // NewChatModelDetailsCategoryFromValue returns a pointer to a valid ChatModelDetailsCategory
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewChatModelDetailsCategoryFromValue(v string) (*ChatModelDetailsCategory, error) {
+func NewChatModelDetailsCategoryFromValue(v ChatModelDetailsCategory) (*ChatModelDetailsCategory, error) {
 	ev := ChatModelDetailsCategory(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -377,6 +382,7 @@ type ChatModelDetailsGetNameRetType = string
 // isEnum
 
 // ChatModelDetailsQuantizationMethod the model 'ChatModelDetails'
+// value type for enums
 type ChatModelDetailsQuantizationMethod string
 
 // List of QuantizationMethod
@@ -386,19 +392,20 @@ const (
 )
 
 // All allowed values of ChatModelDetails enum
+
 var AllowedChatModelDetailsQuantizationMethodEnumValues = []ChatModelDetailsQuantizationMethod{
 	"PTQ",
 	"QAT",
 }
 
 func (v *ChatModelDetailsQuantizationMethod) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ChatModelDetailsQuantizationMethod
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ChatModelDetailsQuantizationMethod
 	if value == zeroValue {
 		return nil
 	}
@@ -415,7 +422,7 @@ func (v *ChatModelDetailsQuantizationMethod) UnmarshalJSON(src []byte) error {
 
 // NewChatModelDetailsQuantizationMethodFromValue returns a pointer to a valid ChatModelDetailsQuantizationMethod
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewChatModelDetailsQuantizationMethodFromValue(v string) (*ChatModelDetailsQuantizationMethod, error) {
+func NewChatModelDetailsQuantizationMethodFromValue(v ChatModelDetailsQuantizationMethod) (*ChatModelDetailsQuantizationMethod, error) {
 	ev := ChatModelDetailsQuantizationMethod(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -601,15 +608,15 @@ type ChatModelDetails struct {
 	// REQUIRED
 	ContextLength ChatModelDetailsGetContextLengthAttributeType `json:"contextLength"`
 	// REQUIRED
-	Description ChatModelDetailsGetDescriptionAttributeType `json:"description"`
+	Description ChatModelDetailsGetDescriptionAttributeType `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	// REQUIRED
-	DisplayedName ChatModelDetailsGetDisplayedNameAttributeType `json:"displayedName"`
+	DisplayedName ChatModelDetailsGetDisplayedNameAttributeType `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// generated uuid to identify a model
 	// REQUIRED
 	Id ChatModelDetailsGetIdAttributeType `json:"id"`
 	// huggingface name
 	// REQUIRED
-	Name               ChatModelDetailsGetNameAttributeType               `json:"name"`
+	Name               ChatModelDetailsGetNameAttributeType               `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	QuantizationMethod ChatModelDetailsGetQuantizationMethodAttributeType `json:"quantizationMethod,omitempty"`
 	// REQUIRED
 	Region ChatModelDetailsGetRegionAttributeType `json:"region"`
@@ -622,7 +629,7 @@ type ChatModelDetails struct {
 	Tags ChatModelDetailsGetTagsAttributeType `json:"tags"`
 	// url of the model
 	// REQUIRED
-	Url ChatModelDetailsGetUrlAttributeType `json:"url"`
+	Url ChatModelDetailsGetUrlAttributeType `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 }
 
 type _ChatModelDetails ChatModelDetails
@@ -888,6 +895,14 @@ func (o *ChatModelDetails) SetUrl(v ChatModelDetailsGetUrlRetType) {
 	setChatModelDetailsGetUrlAttributeType(&o.Url, v)
 }
 
+func (o ChatModelDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ChatModelDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getChatModelDetailsGetBitsAttributeTypeOk(o.Bits); ok {
@@ -930,6 +945,53 @@ func (o ChatModelDetails) ToMap() (map[string]interface{}, error) {
 		toSerialize["Url"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ChatModelDetails) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"category",
+		"contextLength",
+		"description",
+		"displayedName",
+		"id",
+		"name",
+		"region",
+		"size",
+		"skus",
+		"tags",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varChatModelDetails := _ChatModelDetails{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varChatModelDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ChatModelDetails(varChatModelDetails)
+
+	return err
 }
 
 type NullableChatModelDetails struct {

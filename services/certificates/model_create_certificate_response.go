@@ -62,9 +62,9 @@ type CreateCertificateResponseGetRegionRetType = string
 // CreateCertificateResponse CreateCertificateResponse returns unique resource id
 type CreateCertificateResponse struct {
 	// The certificates resource id
-	Id CreateCertificateResponseGetIdAttributeType `json:"id,omitempty"`
+	Id CreateCertificateResponseGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// Region
-	Region CreateCertificateResponseGetRegionAttributeType `json:"region,omitempty"`
+	Region CreateCertificateResponseGetRegionAttributeType `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
 }
 
 // NewCreateCertificateResponse instantiates a new CreateCertificateResponse object
@@ -128,6 +128,14 @@ func (o *CreateCertificateResponse) HasRegion() bool {
 // SetRegion gets a reference to the given string and assigns it to the Region field.
 func (o *CreateCertificateResponse) SetRegion(v CreateCertificateResponseGetRegionRetType) {
 	setCreateCertificateResponseGetRegionAttributeType(&o.Region, v)
+}
+
+func (o CreateCertificateResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CreateCertificateResponse) ToMap() (map[string]interface{}, error) {

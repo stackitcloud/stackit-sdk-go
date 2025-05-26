@@ -83,7 +83,7 @@ type CreateCredentialsPayloadGetUsernameRetType = string
 // CreateCredentialsPayload struct for CreateCredentialsPayload
 type CreateCredentialsPayload struct {
 	// Credential name
-	DisplayName CreateCredentialsPayloadGetDisplayNameAttributeType `json:"displayName,omitempty"`
+	DisplayName CreateCredentialsPayloadGetDisplayNameAttributeType `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// A valid password used for an existing ARGUS instance, which is used during basic auth.
 	Password CreateCredentialsPayloadGetPasswordAttributeType `json:"password,omitempty"`
 	// A valid username used for an existing ARGUS instance, which is used during basic auth.
@@ -174,6 +174,14 @@ func (o *CreateCredentialsPayload) HasUsername() bool {
 // SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *CreateCredentialsPayload) SetUsername(v CreateCredentialsPayloadGetUsernameRetType) {
 	setCreateCredentialsPayloadGetUsernameAttributeType(&o.Username, v)
+}
+
+func (o CreateCredentialsPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CreateCredentialsPayload) ToMap() (map[string]interface{}, error) {

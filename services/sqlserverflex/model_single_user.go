@@ -396,6 +396,14 @@ func (o *SingleUser) SetUsername(v SingleUserGetUsernameRetType) {
 	setSingleUserGetUsernameAttributeType(&o.Username, v)
 }
 
+func (o SingleUser) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o SingleUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSingleUserGetDefaultDatabaseAttributeTypeOk(o.DefaultDatabase); ok {

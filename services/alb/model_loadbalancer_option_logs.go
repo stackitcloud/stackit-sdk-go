@@ -130,6 +130,14 @@ func (o *LoadbalancerOptionLogs) SetPushUrl(v LoadbalancerOptionLogsGetPushUrlRe
 	setLoadbalancerOptionLogsGetPushUrlAttributeType(&o.PushUrl, v)
 }
 
+func (o LoadbalancerOptionLogs) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o LoadbalancerOptionLogs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getLoadbalancerOptionLogsGetCredentialsRefAttributeTypeOk(o.CredentialsRef); ok {

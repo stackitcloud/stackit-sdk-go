@@ -176,6 +176,14 @@ func (o *CatalogProductHighlight) SetHighlightTitle(v CatalogProductHighlightGet
 	setCatalogProductHighlightGetHighlightTitleAttributeType(&o.HighlightTitle, v)
 }
 
+func (o CatalogProductHighlight) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CatalogProductHighlight) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductHighlightGetHighlightContentAttributeTypeOk(o.HighlightContent); ok {

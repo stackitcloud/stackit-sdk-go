@@ -264,6 +264,14 @@ func (o *OpsgenieConfig) SetTags(v OpsgenieConfigGetTagsRetType) {
 	setOpsgenieConfigGetTagsAttributeType(&o.Tags, v)
 }
 
+func (o OpsgenieConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o OpsgenieConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getOpsgenieConfigGetApiKeyAttributeTypeOk(o.ApiKey); ok {

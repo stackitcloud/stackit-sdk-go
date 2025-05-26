@@ -126,6 +126,14 @@ func (o *StorageRange) SetMin(v StorageRangeGetMinRetType) {
 	setStorageRangeGetMinAttributeType(&o.Min, v)
 }
 
+func (o StorageRange) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o StorageRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getStorageRangeGetMaxAttributeTypeOk(o.Max); ok {

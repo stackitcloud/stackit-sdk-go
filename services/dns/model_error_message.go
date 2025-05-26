@@ -128,6 +128,14 @@ func (o *ErrorMessage) SetMessage(v ErrorMessageGetMessageRetType) {
 	setErrorMessageGetMessageAttributeType(&o.Message, v)
 }
 
+func (o ErrorMessage) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ErrorMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getErrorMessageGetErrorAttributeTypeOk(o.Error); ok {

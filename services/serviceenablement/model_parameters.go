@@ -39,8 +39,11 @@ func setParametersGetGeneralAttributeType(arg *ParametersGetGeneralAttributeType
 
 // Parameters service parameters
 type Parameters struct {
-	General ParametersGetGeneralAttributeType `json:"general,omitempty"`
+	General              ParametersGetGeneralAttributeType `json:"general,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Parameters Parameters
 
 // NewParameters instantiates a new Parameters object
 // This constructor will assign default values to properties that have it defined,
@@ -82,12 +85,46 @@ func (o *Parameters) SetGeneral(v ParametersGetGeneralRetType) {
 	setParametersGetGeneralAttributeType(&o.General, v)
 }
 
+func (o Parameters) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Parameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getParametersGetGeneralAttributeTypeOk(o.General); ok {
 		toSerialize["General"] = val
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Parameters) UnmarshalJSON(data []byte) (err error) {
+	varParameters := _Parameters{}
+
+	err = json.Unmarshal(data, &varParameters)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Parameters(varParameters)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "general")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableParameters struct {

@@ -127,6 +127,14 @@ func (o *InstanceHost) SetId(v InstanceHostGetIdRetType) {
 	setInstanceHostGetIdAttributeType(&o.Id, v)
 }
 
+func (o InstanceHost) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceHost) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceHostGetHostMetricsAttributeTypeOk(o.HostMetrics); ok {

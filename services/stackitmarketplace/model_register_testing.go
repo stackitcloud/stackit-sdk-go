@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RegisterTesting type satisfies the MappedNullable interface at compile time
@@ -120,6 +122,14 @@ func (o *RegisterTesting) SetType(v RegisterTestingGetTypeRetType) {
 	setRegisterTestingGetTypeAttributeType(&o.Type, v)
 }
 
+func (o RegisterTesting) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o RegisterTesting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRegisterTestingGetRegisterTestingAttributeTypeOk(o.RegisterTesting); ok {
@@ -129,6 +139,44 @@ func (o RegisterTesting) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *RegisterTesting) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"registerTesting",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRegisterTesting := _RegisterTesting{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRegisterTesting)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RegisterTesting(varRegisterTesting)
+
+	return err
 }
 
 type NullableRegisterTesting struct {

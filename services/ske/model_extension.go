@@ -170,6 +170,14 @@ func (o *Extension) SetDns(v ExtensionGetDnsRetType) {
 	setExtensionGetDnsAttributeType(&o.Dns, v)
 }
 
+func (o Extension) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Extension) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getExtensionGetAclAttributeTypeOk(o.Acl); ok {

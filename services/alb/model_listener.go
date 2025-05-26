@@ -106,16 +106,18 @@ func setListenerGetPortAttributeType(arg *ListenerGetPortAttributeType, val List
 // isEnum
 
 // ListenerProtocol Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
+// value type for enums
 type ListenerProtocol string
 
 // List of Protocol
 const (
-	LISTENERPROTOCOL_UNSPECIFIED ListenerProtocol = "PROTOCOL_UNSPECIFIED"
-	LISTENERPROTOCOL_HTTP        ListenerProtocol = "PROTOCOL_HTTP"
-	LISTENERPROTOCOL_HTTPS       ListenerProtocol = "PROTOCOL_HTTPS"
+	LISTENERPROTOCOL_PROTOCOL_UNSPECIFIED ListenerProtocol = "PROTOCOL_UNSPECIFIED"
+	LISTENERPROTOCOL_PROTOCOL_HTTP        ListenerProtocol = "PROTOCOL_HTTP"
+	LISTENERPROTOCOL_PROTOCOL_HTTPS       ListenerProtocol = "PROTOCOL_HTTPS"
 )
 
 // All allowed values of Listener enum
+
 var AllowedListenerProtocolEnumValues = []ListenerProtocol{
 	"PROTOCOL_UNSPECIFIED",
 	"PROTOCOL_HTTP",
@@ -123,13 +125,13 @@ var AllowedListenerProtocolEnumValues = []ListenerProtocol{
 }
 
 func (v *ListenerProtocol) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ListenerProtocol
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ListenerProtocol
 	if value == zeroValue {
 		return nil
 	}
@@ -146,7 +148,7 @@ func (v *ListenerProtocol) UnmarshalJSON(src []byte) error {
 
 // NewListenerProtocolFromValue returns a pointer to a valid ListenerProtocol
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewListenerProtocolFromValue(v string) (*ListenerProtocol, error) {
+func NewListenerProtocolFromValue(v ListenerProtocol) (*ListenerProtocol, error) {
 	ev := ListenerProtocol(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -364,6 +366,14 @@ func (o *Listener) HasProtocol() bool {
 // SetProtocol gets a reference to the given string and assigns it to the Protocol field.
 func (o *Listener) SetProtocol(v ListenerGetProtocolRetType) {
 	setListenerGetProtocolAttributeType(&o.Protocol, v)
+}
+
+func (o Listener) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o Listener) ToMap() (map[string]interface{}, error) {

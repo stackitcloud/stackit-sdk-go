@@ -82,6 +82,14 @@ func (o *RestoreInstanceResponse) SetItem(v RestoreInstanceResponseGetItemRetTyp
 	setRestoreInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
+func (o RestoreInstanceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o RestoreInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRestoreInstanceResponseGetItemAttributeTypeOk(o.Item); ok {

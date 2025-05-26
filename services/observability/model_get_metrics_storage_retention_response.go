@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GetMetricsStorageRetentionResponse type satisfies the MappedNullable interface at compile time
@@ -204,6 +206,14 @@ func (o *GetMetricsStorageRetentionResponse) SetMetricsRetentionTimeRaw(v GetMet
 	setGetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType(&o.MetricsRetentionTimeRaw, v)
 }
 
+func (o GetMetricsStorageRetentionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetMetricsStorageRetentionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetMetricsStorageRetentionResponseGetMessageAttributeTypeOk(o.Message); ok {
@@ -219,6 +229,46 @@ func (o GetMetricsStorageRetentionResponse) ToMap() (map[string]interface{}, err
 		toSerialize["MetricsRetentionTimeRaw"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *GetMetricsStorageRetentionResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"message",
+		"metricsRetentionTime1h",
+		"metricsRetentionTime5m",
+		"metricsRetentionTimeRaw",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGetMetricsStorageRetentionResponse := _GetMetricsStorageRetentionResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGetMetricsStorageRetentionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetMetricsStorageRetentionResponse(varGetMetricsStorageRetentionResponse)
+
+	return err
 }
 
 type NullableGetMetricsStorageRetentionResponse struct {

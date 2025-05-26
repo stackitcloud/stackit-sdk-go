@@ -82,6 +82,14 @@ func (o *ParametersSchema) SetProperties(v ParametersSchemaGetPropertiesRetType)
 	setParametersSchemaGetPropertiesAttributeType(&o.Properties, v)
 }
 
+func (o ParametersSchema) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ParametersSchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getParametersSchemaGetPropertiesAttributeTypeOk(o.Properties); ok {

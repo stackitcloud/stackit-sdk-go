@@ -175,6 +175,14 @@ func (o *Status) SetMessage(v StatusGetMessageRetType) {
 	setStatusGetMessageAttributeType(&o.Message, v)
 }
 
+func (o Status) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Status) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getStatusGetCodeAttributeTypeOk(o.Code); ok {

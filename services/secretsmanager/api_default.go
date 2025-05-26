@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateACL Method for CreateACL
 		Creates a new Secrets Manager acl within the project.
@@ -386,12 +386,12 @@ type ApiUpdateUserRequest interface {
 	Execute() error
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateACLRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	projectId        string
 	instanceId       string
 	createACLPayload *CreateACLPayload
@@ -414,7 +414,7 @@ func (r CreateACLRequest) Execute() (*ACL, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateACL")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -561,7 +561,7 @@ func (a *APIClient) CreateACLExecute(ctx context.Context, projectId string, inst
 
 type CreateInstanceRequest struct {
 	ctx                   context.Context
-	apiService            *DefaultApiService
+	apiService            *DefaultAPIService
 	projectId             string
 	createInstancePayload *CreateInstancePayload
 }
@@ -583,7 +583,7 @@ func (r CreateInstanceRequest) Execute() (*Instance, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -715,7 +715,7 @@ func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string)
 
 type CreateUserRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	projectId         string
 	instanceId        string
 	createUserPayload *CreateUserPayload
@@ -738,7 +738,7 @@ func (r CreateUserRequest) Execute() (*User, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateUser")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateUser")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -896,7 +896,7 @@ func (a *APIClient) CreateUserExecute(ctx context.Context, projectId string, ins
 
 type DeleteACLRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 	aclId      string
@@ -913,7 +913,7 @@ func (r DeleteACLRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteACL")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteACL")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1049,7 +1049,7 @@ func (a *APIClient) DeleteACLExecute(ctx context.Context, projectId string, inst
 
 type DeleteInstanceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 }
@@ -1065,7 +1065,7 @@ func (r DeleteInstanceRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteInstance")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteInstance")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1197,7 +1197,7 @@ func (a *APIClient) DeleteInstanceExecute(ctx context.Context, projectId string,
 
 type DeleteUserRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 	userId     string
@@ -1214,7 +1214,7 @@ func (r DeleteUserRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteUser")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteUser")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1350,7 +1350,7 @@ func (a *APIClient) DeleteUserExecute(ctx context.Context, projectId string, ins
 
 type GetACLRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 	aclId      string
@@ -1368,7 +1368,7 @@ func (r GetACLRequest) Execute() (*ACL, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetACL")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetACL")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1514,7 +1514,7 @@ func (a *APIClient) GetACLExecute(ctx context.Context, projectId string, instanc
 
 type GetInstanceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 }
@@ -1531,7 +1531,7 @@ func (r GetInstanceRequest) Execute() (*Instance, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstance")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1673,7 +1673,7 @@ func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, in
 
 type GetUserRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 	userId     string
@@ -1691,7 +1691,7 @@ func (r GetUserRequest) Execute() (*User, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetUser")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetUser")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1837,7 +1837,7 @@ func (a *APIClient) GetUserExecute(ctx context.Context, projectId string, instan
 
 type ListACLsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 }
@@ -1854,7 +1854,7 @@ func (r ListACLsRequest) Execute() (*ListACLsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListACLs")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListACLs")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1996,7 +1996,7 @@ func (a *APIClient) ListACLsExecute(ctx context.Context, projectId string, insta
 
 type ListInstancesRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -2012,7 +2012,7 @@ func (r ListInstancesRequest) Execute() (*ListInstancesResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListInstances")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2139,7 +2139,7 @@ func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string) 
 
 type ListUsersRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	instanceId string
 }
@@ -2156,7 +2156,7 @@ func (r ListUsersRequest) Execute() (*ListUsersResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListUsers")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListUsers")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2298,7 +2298,7 @@ func (a *APIClient) ListUsersExecute(ctx context.Context, projectId string, inst
 
 type UpdateACLRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	projectId        string
 	instanceId       string
 	aclId            string
@@ -2321,7 +2321,7 @@ func (r UpdateACLRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACL")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateACL")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2462,7 +2462,7 @@ func (a *APIClient) UpdateACLExecute(ctx context.Context, projectId string, inst
 
 type UpdateACLsRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	projectId         string
 	instanceId        string
 	updateACLsPayload *UpdateACLsPayload
@@ -2484,7 +2484,7 @@ func (r UpdateACLsRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateACLs")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateACLs")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2621,7 +2621,7 @@ func (a *APIClient) UpdateACLsExecute(ctx context.Context, projectId string, ins
 
 type UpdateInstanceRequest struct {
 	ctx                   context.Context
-	apiService            *DefaultApiService
+	apiService            *DefaultAPIService
 	projectId             string
 	instanceId            string
 	updateInstancePayload *UpdateInstancePayload
@@ -2643,7 +2643,7 @@ func (r UpdateInstanceRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateInstance")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateInstance")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2780,7 +2780,7 @@ func (a *APIClient) UpdateInstanceExecute(ctx context.Context, projectId string,
 
 type UpdateUserRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	projectId         string
 	instanceId        string
 	userId            string
@@ -2803,7 +2803,7 @@ func (r UpdateUserRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateUser")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateUser")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

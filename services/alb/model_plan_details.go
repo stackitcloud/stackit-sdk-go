@@ -314,6 +314,14 @@ func (o *PlanDetails) SetRegion(v PlanDetailsGetRegionRetType) {
 	setPlanDetailsGetRegionAttributeType(&o.Region, v)
 }
 
+func (o PlanDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPlanDetailsGetDescriptionAttributeTypeOk(o.Description); ok {

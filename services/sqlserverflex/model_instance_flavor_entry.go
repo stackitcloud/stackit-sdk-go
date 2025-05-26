@@ -263,6 +263,14 @@ func (o *InstanceFlavorEntry) SetMemory(v InstanceFlavorEntryGetMemoryRetType) {
 	setInstanceFlavorEntryGetMemoryAttributeType(&o.Memory, v)
 }
 
+func (o InstanceFlavorEntry) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceFlavorEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceFlavorEntryGetCategoriesAttributeTypeOk(o.Categories); ok {

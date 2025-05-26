@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -146,14 +148,14 @@ type Keypair struct {
 	// Date-time when resource was created.
 	CreatedAt KeypairGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents an SSH keypair MD5 fingerprint.
-	Fingerprint KeypairGetFingerprintAttributeType `json:"fingerprint,omitempty"`
+	Fingerprint KeypairGetFingerprintAttributeType `json:"fingerprint,omitempty" validate:"regexp=^([0-9A-Fa-f]{2}[:-]){15}([0-9A-Fa-f]{2})$"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels KeypairGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
-	Name KeypairGetNameAttributeType `json:"name,omitempty"`
+	Name KeypairGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9@._-]*$"`
 	// Object that represents a public SSH key.
 	// REQUIRED
-	PublicKey KeypairGetPublicKeyAttributeType `json:"publicKey"`
+	PublicKey KeypairGetPublicKeyAttributeType `json:"publicKey" validate:"regexp=^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp(256|384|521))\\\\s+[A-Za-z0-9+\\/]+[=]{0,3}(\\\\s+.+)?\\\\s*$"`
 	// Date-time when resource was last updated.
 	UpdatedAt KeypairGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }
@@ -310,6 +312,14 @@ func (o *Keypair) SetUpdatedAt(v KeypairGetUpdatedAtRetType) {
 	setKeypairGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+func (o Keypair) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Keypair) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getKeypairGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
@@ -331,6 +341,43 @@ func (o Keypair) ToMap() (map[string]interface{}, error) {
 		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Keypair) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"publicKey",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varKeypair := _Keypair{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varKeypair)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Keypair(varKeypair)
+
+	return err
 }
 
 type NullableKeypair struct {

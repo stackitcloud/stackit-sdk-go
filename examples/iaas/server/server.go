@@ -37,7 +37,7 @@ func main() {
 		Name:             utils.Ptr("example-server"),
 		AvailabilityZone: utils.Ptr("eu01-1"),
 		MachineType:      utils.Ptr("g1.1"),
-		BootVolume: &iaas.CreateServerPayloadBootVolume{
+		BootVolume: &iaas.BootVolume{
 			Size: utils.Ptr(int64(64)),
 			Source: &iaas.BootVolumeSource{
 				Id:   utils.Ptr("IMAGE_ID"),

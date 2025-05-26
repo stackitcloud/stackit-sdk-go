@@ -84,6 +84,14 @@ func (o *TLSConfig) SetInsecureSkipVerify(v TLSConfiggetInsecureSkipVerifyRetTyp
 	setTLSConfiggetInsecureSkipVerifyAttributeType(&o.InsecureSkipVerify, v)
 }
 
+func (o TLSConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o TLSConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getTLSConfiggetInsecureSkipVerifyAttributeTypeOk(o.InsecureSkipVerify); ok {

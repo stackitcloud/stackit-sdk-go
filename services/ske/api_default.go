@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CompleteCredentialsRotation Complete cluster credentials rotation
 		Complete cluster credentials rotation. This is step 2 of a two-step process. Start the rotation using [start-credentials-rotation](#tag/Credentials/operation/SkeService_StartClusterCredentialsRotation).
@@ -310,12 +310,12 @@ type ApiTriggerReconcileRequest interface {
 	Execute() (map[string]interface{}, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CompleteCredentialsRotationRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -332,7 +332,7 @@ func (r CompleteCredentialsRotationRequest) Execute() (map[string]interface{}, e
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CompleteCredentialsRotation")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CompleteCredentialsRotation")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -471,7 +471,7 @@ func (a *APIClient) CompleteCredentialsRotationExecute(ctx context.Context, proj
 
 type CreateKubeconfigRequest struct {
 	ctx                     context.Context
-	apiService              *DefaultApiService
+	apiService              *DefaultAPIService
 	projectId               string
 	clusterName             string
 	createKubeconfigPayload *CreateKubeconfigPayload
@@ -494,7 +494,7 @@ func (r CreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateKubeconfig")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateKubeconfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -616,7 +616,7 @@ func (a *APIClient) CreateKubeconfigExecute(ctx context.Context, projectId strin
 
 type CreateOrUpdateClusterRequest struct {
 	ctx                          context.Context
-	apiService                   *DefaultApiService
+	apiService                   *DefaultAPIService
 	projectId                    string
 	clusterName                  string
 	createOrUpdateClusterPayload *CreateOrUpdateClusterPayload
@@ -639,7 +639,7 @@ func (r CreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateOrUpdateCluster")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateOrUpdateCluster")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -783,7 +783,7 @@ func (a *APIClient) CreateOrUpdateClusterExecute(ctx context.Context, projectId 
 
 type DeleteClusterRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -800,7 +800,7 @@ func (r DeleteClusterRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteCluster")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteCluster")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -917,7 +917,7 @@ func (a *APIClient) DeleteClusterExecute(ctx context.Context, projectId string, 
 
 type GetClusterRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -934,7 +934,7 @@ func (r GetClusterRequest) Execute() (*Cluster, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCluster")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCluster")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1051,7 +1051,7 @@ func (a *APIClient) GetClusterExecute(ctx context.Context, projectId string, clu
 
 type GetLoginKubeconfigRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -1068,7 +1068,7 @@ func (r GetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLoginKubeconfig")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetLoginKubeconfig")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1185,7 +1185,7 @@ func (a *APIClient) GetLoginKubeconfigExecute(ctx context.Context, projectId str
 
 type ListClustersRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -1201,7 +1201,7 @@ func (r ListClustersRequest) Execute() (*ListClustersResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListClusters")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListClusters")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1336,7 +1336,7 @@ func (a *APIClient) ListClustersExecute(ctx context.Context, projectId string) (
 
 type ListProviderOptionsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 }
 
 func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
@@ -1351,7 +1351,7 @@ func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProviderOptions")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListProviderOptions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1460,7 +1460,7 @@ func (a *APIClient) ListProviderOptionsExecute(ctx context.Context) (*ProviderOp
 
 type StartCredentialsRotationRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -1477,7 +1477,7 @@ func (r StartCredentialsRotationRequest) Execute() (map[string]interface{}, erro
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.StartCredentialsRotation")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.StartCredentialsRotation")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1616,7 +1616,7 @@ func (a *APIClient) StartCredentialsRotationExecute(ctx context.Context, project
 
 type TriggerHibernateRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -1633,7 +1633,7 @@ func (r TriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerHibernate")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.TriggerHibernate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1761,7 +1761,7 @@ func (a *APIClient) TriggerHibernateExecute(ctx context.Context, projectId strin
 
 type TriggerMaintenanceRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -1778,7 +1778,7 @@ func (r TriggerMaintenanceRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerMaintenance")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.TriggerMaintenance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1906,7 +1906,7 @@ func (a *APIClient) TriggerMaintenanceExecute(ctx context.Context, projectId str
 
 type TriggerReconcileRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	projectId   string
 	clusterName string
 }
@@ -1923,7 +1923,7 @@ func (r TriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerReconcile")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.TriggerReconcile")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

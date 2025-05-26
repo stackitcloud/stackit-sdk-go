@@ -86,7 +86,7 @@ type PartialUpdateProjectPayload struct {
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels PartialUpdateProjectPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name PartialUpdateProjectPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name PartialUpdateProjectPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`
 }
 
 // NewPartialUpdateProjectPayload instantiates a new PartialUpdateProjectPayload object
@@ -173,6 +173,14 @@ func (o *PartialUpdateProjectPayload) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *PartialUpdateProjectPayload) SetName(v PartialUpdateProjectPayloadGetNameRetType) {
 	setPartialUpdateProjectPayloadGetNameAttributeType(&o.Name, v)
+}
+
+func (o PartialUpdateProjectPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o PartialUpdateProjectPayload) ToMap() (map[string]interface{}, error) {

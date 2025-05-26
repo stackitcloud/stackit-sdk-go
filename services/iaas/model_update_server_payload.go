@@ -63,7 +63,7 @@ type UpdateServerPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels UpdateServerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a Server.
-	Name UpdateServerPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name UpdateServerPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|\\\\.)[A-Za-z0-9]+)*$"`
 }
 
 // NewUpdateServerPayload instantiates a new UpdateServerPayload object
@@ -127,6 +127,14 @@ func (o *UpdateServerPayload) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UpdateServerPayload) SetName(v UpdateServerPayloadGetNameRetType) {
 	setUpdateServerPayloadGetNameAttributeType(&o.Name, v)
+}
+
+func (o UpdateServerPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateServerPayload) ToMap() (map[string]interface{}, error) {

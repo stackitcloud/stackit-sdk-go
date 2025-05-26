@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Request type satisfies the MappedNullable interface at compile time
@@ -150,7 +152,7 @@ type Request struct {
 	RequestAction RequestGetRequestActionAttributeType `json:"requestAction"`
 	// Identifier (ID) representing a single API request.
 	// REQUIRED
-	RequestId RequestGetRequestIdAttributeType `json:"requestId"`
+	RequestId RequestGetRequestIdAttributeType `json:"requestId" validate:"regexp=^req-[0-9a-f]{32}$"`
 	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
 	// REQUIRED
 	RequestType RequestGetRequestTypeAttributeType `json:"requestType"`
@@ -293,6 +295,14 @@ func (o *Request) SetStatus(v RequestGetStatusRetType) {
 	setRequestGetStatusAttributeType(&o.Status, v)
 }
 
+func (o Request) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Request) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRequestGetDetailsAttributeTypeOk(o.Details); ok {
@@ -314,6 +324,47 @@ func (o Request) ToMap() (map[string]interface{}, error) {
 		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Request) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"requestAction",
+		"requestId",
+		"requestType",
+		"resources",
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRequest := _Request{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Request(varRequest)
+
+	return err
 }
 
 type NullableRequest struct {

@@ -82,6 +82,14 @@ func (o *PartialUpdateInstanceResponse) SetItem(v PartialUpdateInstanceResponseG
 	setPartialUpdateInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
+func (o PartialUpdateInstanceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PartialUpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateInstanceResponseGetItemAttributeTypeOk(o.Item); ok {

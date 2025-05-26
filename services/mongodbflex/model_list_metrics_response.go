@@ -82,6 +82,14 @@ func (o *ListMetricsResponse) SetHosts(v ListMetricsResponseGetHostsRetType) {
 	setListMetricsResponseGetHostsAttributeType(&o.Hosts, v)
 }
 
+func (o ListMetricsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListMetricsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListMetricsResponseGetHostsAttributeTypeOk(o.Hosts); ok {

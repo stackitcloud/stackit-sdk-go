@@ -62,7 +62,7 @@ type ListLoadBalancersResponseGetNextPageIdRetType = string
 type ListLoadBalancersResponse struct {
 	LoadBalancers ListLoadBalancersResponseGetLoadBalancersAttributeType `json:"loadBalancers,omitempty"`
 	// Continue token from the ListLoadBalancerResponse with Limit option
-	NextPageId ListLoadBalancersResponseGetNextPageIdAttributeType `json:"nextPageId,omitempty"`
+	NextPageId ListLoadBalancersResponseGetNextPageIdAttributeType `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 }
 
 // NewListLoadBalancersResponse instantiates a new ListLoadBalancersResponse object
@@ -126,6 +126,14 @@ func (o *ListLoadBalancersResponse) HasNextPageId() bool {
 // SetNextPageId gets a reference to the given string and assigns it to the NextPageId field.
 func (o *ListLoadBalancersResponse) SetNextPageId(v ListLoadBalancersResponseGetNextPageIdRetType) {
 	setListLoadBalancersResponseGetNextPageIdAttributeType(&o.NextPageId, v)
+}
+
+func (o ListLoadBalancersResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ListLoadBalancersResponse) ToMap() (map[string]interface{}, error) {

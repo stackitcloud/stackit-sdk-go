@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the AlertConfigReceiversResponse type satisfies the MappedNullable interface at compile time
@@ -121,6 +123,14 @@ func (o *AlertConfigReceiversResponse) SetMessage(v AlertConfigReceiversResponse
 	setAlertConfigReceiversResponseGetMessageAttributeType(&o.Message, v)
 }
 
+func (o AlertConfigReceiversResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o AlertConfigReceiversResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getAlertConfigReceiversResponseGetDataAttributeTypeOk(o.Data); ok {
@@ -130,6 +140,44 @@ func (o AlertConfigReceiversResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *AlertConfigReceiversResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"data",
+		"message",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAlertConfigReceiversResponse := _AlertConfigReceiversResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAlertConfigReceiversResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AlertConfigReceiversResponse(varAlertConfigReceiversResponse)
+
+	return err
 }
 
 type NullableAlertConfigReceiversResponse struct {

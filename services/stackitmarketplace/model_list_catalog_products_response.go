@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListCatalogProductsResponse type satisfies the MappedNullable interface at compile time
@@ -165,6 +167,14 @@ func (o *ListCatalogProductsResponse) SetLimit(v ListCatalogProductsResponseGetL
 	setListCatalogProductsResponseGetLimitAttributeType(&o.Limit, v)
 }
 
+func (o ListCatalogProductsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListCatalogProductsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListCatalogProductsResponseGetCursorAttributeTypeOk(o.Cursor); ok {
@@ -177,6 +187,45 @@ func (o ListCatalogProductsResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["Limit"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListCatalogProductsResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"cursor",
+		"items",
+		"limit",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListCatalogProductsResponse := _ListCatalogProductsResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListCatalogProductsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListCatalogProductsResponse(varListCatalogProductsResponse)
+
+	return err
 }
 
 type NullableListCatalogProductsResponse struct {

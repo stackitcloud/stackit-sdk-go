@@ -11,6 +11,7 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -148,6 +149,7 @@ type DistributionGetProjectIdRetType = string
 // isEnum
 
 // DistributionStatus - `CREATING`: The distribution was just created.    All the relevant resources are created in the background. Once fully reconciled,   this switches to `ACTIVE`. If there are any issues, the status changes to    `ERROR`. You can look at the `errors` array to get more infos. - `ACTIVE`: The usual state. The desired configuration is synced, there are no errors - `UPDATING`: The state when there is a discrepancy between the desired and    actual configuration state. This occurs right after an update. Will switch to    `ACTIVE` or `ERROR`, depending on if synchronizing succeeds or not. - `DELETING`: The state right after a delete request was received. The distribution will stay in this status   until all resources have been successfully removed, or until we encounter an `ERROR` state.    **NOTE:** You can keep fetching the distribution while it is deleting.    After successful deletion, trying to get a distribution will return a 404 Not Found response - `ERROR`: The error state. Look at the `errors` array for more info.
+// value type for enums
 type DistributionStatus string
 
 // List of Status
@@ -160,6 +162,7 @@ const (
 )
 
 // All allowed values of Distribution enum
+
 var AllowedDistributionStatusEnumValues = []DistributionStatus{
 	"CREATING",
 	"ACTIVE",
@@ -169,13 +172,13 @@ var AllowedDistributionStatusEnumValues = []DistributionStatus{
 }
 
 func (v *DistributionStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value DistributionStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue DistributionStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -192,7 +195,7 @@ func (v *DistributionStatus) UnmarshalJSON(src []byte) error {
 
 // NewDistributionStatusFromValue returns a pointer to a valid DistributionStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDistributionStatusFromValue(v string) (*DistributionStatus, error) {
+func NewDistributionStatusFromValue(v DistributionStatus) (*DistributionStatus, error) {
 	ev := DistributionStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -478,6 +481,14 @@ func (o *Distribution) SetUpdatedAt(v DistributionGetUpdatedAtRetType) {
 	setDistributionGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+func (o Distribution) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Distribution) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDistributionGetConfigAttributeTypeOk(o.Config); ok {
@@ -505,6 +516,49 @@ func (o Distribution) ToMap() (map[string]interface{}, error) {
 		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Distribution) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"config",
+		"createdAt",
+		"domains",
+		"id",
+		"projectId",
+		"status",
+		"updatedAt",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDistribution := _Distribution{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDistribution)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Distribution(varDistribution)
+
+	return err
 }
 
 type NullableDistribution struct {

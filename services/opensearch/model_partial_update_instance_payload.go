@@ -172,6 +172,14 @@ func (o *PartialUpdateInstancePayload) SetPlanId(v PartialUpdateInstancePayloadG
 	setPartialUpdateInstancePayloadGetPlanIdAttributeType(&o.PlanId, v)
 }
 
+func (o PartialUpdateInstancePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateInstancePayloadGetInstanceNameAttributeTypeOk(o.InstanceName); ok {

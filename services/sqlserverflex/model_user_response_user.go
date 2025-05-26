@@ -306,6 +306,14 @@ func (o *UserResponseUser) SetUsername(v UserResponseUserGetUsernameRetType) {
 	setUserResponseUserGetUsernameAttributeType(&o.Username, v)
 }
 
+func (o UserResponseUser) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UserResponseUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUserResponseUserGetDefaultDatabaseAttributeTypeOk(o.DefaultDatabase); ok {

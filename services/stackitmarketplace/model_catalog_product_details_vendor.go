@@ -11,7 +11,9 @@ API version: 1
 package stackitmarketplace
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CatalogProductDetailsVendor type satisfies the MappedNullable interface at compile time
@@ -84,9 +86,9 @@ type CatalogProductDetailsVendorGetNameRetType = string
 */
 
 // isModel
-type CatalogProductDetailsVendorGetVendorIdAttributeType = *VendorId
-type CatalogProductDetailsVendorGetVendorIdArgType = VendorId
-type CatalogProductDetailsVendorGetVendorIdRetType = VendorId
+type CatalogProductDetailsVendorGetVendorIdAttributeType = *interface{}
+type CatalogProductDetailsVendorGetVendorIdArgType = interface{}
+type CatalogProductDetailsVendorGetVendorIdRetType = interface{}
 
 func getCatalogProductDetailsVendorGetVendorIdAttributeTypeOk(arg CatalogProductDetailsVendorGetVendorIdAttributeType) (ret CatalogProductDetailsVendorGetVendorIdRetType, ok bool) {
 	if arg == nil {
@@ -151,15 +153,15 @@ type CatalogProductDetailsVendor struct {
 	Logo CatalogProductDetailsVendorGetLogoAttributeType `json:"logo"`
 	// The product's vendor name.
 	// REQUIRED
-	Name CatalogProductDetailsVendorGetNameAttributeType `json:"name"`
+	Name CatalogProductDetailsVendorGetNameAttributeType `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9,.!?()@\\/:=\\\\n\\\\t -]+$"`
 	// REQUIRED
 	VendorId CatalogProductDetailsVendorGetVendorIdAttributeType `json:"vendorId"`
-	// Uniform Resource Locator.
+	// The vendor video URL.
 	// REQUIRED
-	VideoUrl CatalogProductDetailsVendorGetVideoUrlAttributeType `json:"videoUrl"`
-	// Uniform Resource Locator.
+	VideoUrl CatalogProductDetailsVendorGetVideoUrlAttributeType `json:"videoUrl" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
+	// The vendor website URL.
 	// REQUIRED
-	WebsiteUrl CatalogProductDetailsVendorGetWebsiteUrlAttributeType `json:"websiteUrl"`
+	WebsiteUrl CatalogProductDetailsVendorGetWebsiteUrlAttributeType `json:"websiteUrl" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 }
 
 type _CatalogProductDetailsVendor CatalogProductDetailsVendor
@@ -289,6 +291,14 @@ func (o *CatalogProductDetailsVendor) SetWebsiteUrl(v CatalogProductDetailsVendo
 	setCatalogProductDetailsVendorGetWebsiteUrlAttributeType(&o.WebsiteUrl, v)
 }
 
+func (o CatalogProductDetailsVendor) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CatalogProductDetailsVendor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductDetailsVendorGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -310,6 +320,48 @@ func (o CatalogProductDetailsVendor) ToMap() (map[string]interface{}, error) {
 		toSerialize["WebsiteUrl"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CatalogProductDetailsVendor) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"logo",
+		"name",
+		"vendorId",
+		"videoUrl",
+		"websiteUrl",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCatalogProductDetailsVendor := _CatalogProductDetailsVendor{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCatalogProductDetailsVendor)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CatalogProductDetailsVendor(varCatalogProductDetailsVendor)
+
+	return err
 }
 
 type NullableCatalogProductDetailsVendor struct {

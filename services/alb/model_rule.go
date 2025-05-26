@@ -353,6 +353,14 @@ func (o *Rule) SetWebSocket(v RulegetWebSocketRetType) {
 	setRulegetWebSocketAttributeType(&o.WebSocket, v)
 }
 
+func (o Rule) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Rule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRuleGetCookiePersistenceAttributeTypeOk(o.CookiePersistence); ok {

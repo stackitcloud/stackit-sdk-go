@@ -67,6 +67,7 @@ type InstanceListInstanceGetNameRetType = string
 // isEnum
 
 // InstanceListInstanceStatus The current status of the instance.
+// value type for enums
 type InstanceListInstanceStatus string
 
 // List of Status
@@ -79,6 +80,7 @@ const (
 )
 
 // All allowed values of InstanceListInstance enum
+
 var AllowedInstanceListInstanceStatusEnumValues = []InstanceListInstanceStatus{
 	"READY",
 	"PENDING",
@@ -88,13 +90,13 @@ var AllowedInstanceListInstanceStatusEnumValues = []InstanceListInstanceStatus{
 }
 
 func (v *InstanceListInstanceStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceListInstanceStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceListInstanceStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -111,7 +113,7 @@ func (v *InstanceListInstanceStatus) UnmarshalJSON(src []byte) error {
 
 // NewInstanceListInstanceStatusFromValue returns a pointer to a valid InstanceListInstanceStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceListInstanceStatusFromValue(v string) (*InstanceListInstanceStatus, error) {
+func NewInstanceListInstanceStatusFromValue(v InstanceListInstanceStatus) (*InstanceListInstanceStatus, error) {
 	ev := InstanceListInstanceStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -278,6 +280,14 @@ func (o *InstanceListInstance) HasStatus() bool {
 // SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *InstanceListInstance) SetStatus(v InstanceListInstanceGetStatusRetType) {
 	setInstanceListInstanceGetStatusAttributeType(&o.Status, v)
+}
+
+func (o InstanceListInstance) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o InstanceListInstance) ToMap() (map[string]interface{}, error) {

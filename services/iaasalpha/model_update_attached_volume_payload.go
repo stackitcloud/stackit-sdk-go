@@ -84,9 +84,9 @@ type UpdateAttachedVolumePayload struct {
 	// Delete the volume during the termination of the server. Defaults to false.
 	DeleteOnTermination UpdateAttachedVolumePayloadgetDeleteOnTerminationAttributeType `json:"deleteOnTermination,omitempty"`
 	// Universally Unique Identifier (UUID).
-	ServerId UpdateAttachedVolumePayloadGetServerIdAttributeType `json:"serverId,omitempty"`
+	ServerId UpdateAttachedVolumePayloadGetServerIdAttributeType `json:"serverId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Universally Unique Identifier (UUID).
-	VolumeId UpdateAttachedVolumePayloadGetVolumeIdAttributeType `json:"volumeId,omitempty"`
+	VolumeId UpdateAttachedVolumePayloadGetVolumeIdAttributeType `json:"volumeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 }
 
 // NewUpdateAttachedVolumePayload instantiates a new UpdateAttachedVolumePayload object
@@ -173,6 +173,14 @@ func (o *UpdateAttachedVolumePayload) HasVolumeId() bool {
 // SetVolumeId gets a reference to the given string and assigns it to the VolumeId field.
 func (o *UpdateAttachedVolumePayload) SetVolumeId(v UpdateAttachedVolumePayloadGetVolumeIdRetType) {
 	setUpdateAttachedVolumePayloadGetVolumeIdAttributeType(&o.VolumeId, v)
+}
+
+func (o UpdateAttachedVolumePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateAttachedVolumePayload) ToMap() (map[string]interface{}, error) {

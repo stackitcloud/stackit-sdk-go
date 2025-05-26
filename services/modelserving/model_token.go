@@ -11,6 +11,7 @@ API version: 1.0.0
 package modelserving
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -110,6 +111,7 @@ type TokenGetRegionRetType = string
 // isEnum
 
 // TokenState the model 'Token'
+// value type for enums
 type TokenState string
 
 // List of State
@@ -121,6 +123,7 @@ const (
 )
 
 // All allowed values of Token enum
+
 var AllowedTokenStateEnumValues = []TokenState{
 	"creating",
 	"active",
@@ -129,13 +132,13 @@ var AllowedTokenStateEnumValues = []TokenState{
 }
 
 func (v *TokenState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value TokenState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TokenState
 	if value == zeroValue {
 		return nil
 	}
@@ -152,7 +155,7 @@ func (v *TokenState) UnmarshalJSON(src []byte) error {
 
 // NewTokenStateFromValue returns a pointer to a valid TokenState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewTokenStateFromValue(v string) (*TokenState, error) {
+func NewTokenStateFromValue(v TokenState) (*TokenState, error) {
 	ev := TokenState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -249,11 +252,11 @@ func setTokenGetValidUntilAttributeType(arg *TokenGetValidUntilAttributeType, va
 
 // Token struct for Token
 type Token struct {
-	Description TokenGetDescriptionAttributeType `json:"description,omitempty"`
+	Description TokenGetDescriptionAttributeType `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	// REQUIRED
 	Id TokenGetIdAttributeType `json:"id"`
 	// REQUIRED
-	Name TokenGetNameAttributeType `json:"name"`
+	Name TokenGetNameAttributeType `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// REQUIRED
 	Region TokenGetRegionAttributeType `json:"region"`
 	// REQUIRED
@@ -394,6 +397,14 @@ func (o *Token) SetValidUntil(v TokenGetValidUntilRetType) {
 	setTokenGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
+func (o Token) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Token) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getTokenGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -415,6 +426,47 @@ func (o Token) ToMap() (map[string]interface{}, error) {
 		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Token) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"region",
+		"state",
+		"validUntil",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varToken := _Token{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varToken)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Token(varToken)
+
+	return err
 }
 
 type NullableToken struct {

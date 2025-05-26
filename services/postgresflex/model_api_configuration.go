@@ -128,6 +128,14 @@ func (o *ApiConfiguration) SetSetting(v ApiConfigurationGetSettingRetType) {
 	setApiConfigurationGetSettingAttributeType(&o.Setting, v)
 }
 
+func (o ApiConfiguration) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ApiConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiConfigurationGetNameAttributeTypeOk(o.Name); ok {

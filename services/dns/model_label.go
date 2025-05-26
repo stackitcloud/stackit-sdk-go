@@ -11,7 +11,9 @@ API version: 1.0
 package dns
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Label type satisfies the MappedNullable interface at compile time
@@ -122,6 +124,14 @@ func (o *Label) SetValue(v LabelGetValueRetType) {
 	setLabelGetValueAttributeType(&o.Value, v)
 }
 
+func (o Label) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Label) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getLabelGetKeyAttributeTypeOk(o.Key); ok {
@@ -131,6 +141,44 @@ func (o Label) ToMap() (map[string]interface{}, error) {
 		toSerialize["Value"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Label) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"key",
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varLabel := _Label{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varLabel)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Label(varLabel)
+
+	return err
 }
 
 type NullableLabel struct {

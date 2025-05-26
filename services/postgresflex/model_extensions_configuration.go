@@ -128,6 +128,14 @@ func (o *ExtensionsConfiguration) SetSetting(v ExtensionsConfigurationGetSetting
 	setExtensionsConfigurationGetSettingAttributeType(&o.Setting, v)
 }
 
+func (o ExtensionsConfiguration) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ExtensionsConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getExtensionsConfigurationGetNameAttributeTypeOk(o.Name); ok {

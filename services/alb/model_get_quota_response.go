@@ -85,9 +85,9 @@ type GetQuotaResponse struct {
 	// Can be cast to int32 without loss of precision.
 	MaxLoadBalancers GetQuotaResponseGetMaxLoadBalancersAttributeType `json:"maxLoadBalancers,omitempty"`
 	// Project identifier
-	ProjectId GetQuotaResponseGetProjectIdAttributeType `json:"projectId,omitempty"`
+	ProjectId GetQuotaResponseGetProjectIdAttributeType `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
-	Region GetQuotaResponseGetRegionAttributeType `json:"region,omitempty"`
+	Region GetQuotaResponseGetRegionAttributeType `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
 }
 
 // NewGetQuotaResponse instantiates a new GetQuotaResponse object
@@ -174,6 +174,14 @@ func (o *GetQuotaResponse) HasRegion() bool {
 // SetRegion gets a reference to the given string and assigns it to the Region field.
 func (o *GetQuotaResponse) SetRegion(v GetQuotaResponseGetRegionRetType) {
 	setGetQuotaResponseGetRegionAttributeType(&o.Region, v)
+}
+
+func (o GetQuotaResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o GetQuotaResponse) ToMap() (map[string]interface{}, error) {

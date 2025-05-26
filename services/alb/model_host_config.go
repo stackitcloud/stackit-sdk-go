@@ -129,6 +129,14 @@ func (o *HostConfig) SetRules(v HostConfigGetRulesRetType) {
 	setHostConfigGetRulesAttributeType(&o.Rules, v)
 }
 
+func (o HostConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o HostConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHostConfigGetHostAttributeTypeOk(o.Host); ok {

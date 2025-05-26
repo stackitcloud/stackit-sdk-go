@@ -130,6 +130,14 @@ func (o *Path) SetPrefix(v PathGetPrefixRetType) {
 	setPathGetPrefixAttributeType(&o.Prefix, v)
 }
 
+func (o Path) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Path) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPathGetExactAttributeTypeOk(o.Exact); ok {

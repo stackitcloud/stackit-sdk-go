@@ -83,6 +83,14 @@ func (o *CloneInstanceResponse) SetInstanceId(v CloneInstanceResponseGetInstance
 	setCloneInstanceResponseGetInstanceIdAttributeType(&o.InstanceId, v)
 }
 
+func (o CloneInstanceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CloneInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCloneInstanceResponseGetInstanceIdAttributeTypeOk(o.InstanceId); ok {

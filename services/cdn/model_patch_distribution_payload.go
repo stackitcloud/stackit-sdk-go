@@ -128,6 +128,14 @@ func (o *PatchDistributionPayload) SetIntentId(v PatchDistributionPayloadGetInte
 	setPatchDistributionPayloadGetIntentIdAttributeType(&o.IntentId, v)
 }
 
+func (o PatchDistributionPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PatchDistributionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPatchDistributionPayloadGetConfigAttributeTypeOk(o.Config); ok {

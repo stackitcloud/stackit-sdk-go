@@ -346,6 +346,14 @@ func (o *InhibitRules) SetTargetMatchers(v InhibitRulesGetTargetMatchersRetType)
 	setInhibitRulesGetTargetMatchersAttributeType(&o.TargetMatchers, v)
 }
 
+func (o InhibitRules) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InhibitRules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInhibitRulesGetEqualAttributeTypeOk(o.Equal); ok {

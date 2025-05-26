@@ -82,6 +82,14 @@ func (o *UpdateACLsPayload) SetCidrs(v UpdateACLsPayloadGetCidrsRetType) {
 	setUpdateACLsPayloadGetCidrsAttributeType(&o.Cidrs, v)
 }
 
+func (o UpdateACLsPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateACLsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateACLsPayloadGetCidrsAttributeTypeOk(o.Cidrs); ok {

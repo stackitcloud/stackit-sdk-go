@@ -130,6 +130,14 @@ func (o *Header) SetName(v HeaderGetNameRetType) {
 	setHeaderGetNameAttributeType(&o.Name, v)
 }
 
+func (o Header) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Header) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHeaderGetExactMatchAttributeTypeOk(o.ExactMatch); ok {

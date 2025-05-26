@@ -87,6 +87,14 @@ func (o *GoogleProtobufAny) SetType(v GoogleProtobufAnyGetTypeRetType) {
 	setGoogleProtobufAnyGetTypeAttributeType(&o.Type, v)
 }
 
+func (o GoogleProtobufAny) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GoogleProtobufAny) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGoogleProtobufAnyGetTypeAttributeTypeOk(o.Type); ok {
@@ -98,6 +106,27 @@ func (o GoogleProtobufAny) ToMap() (map[string]interface{}, error) {
 	}
 
 	return toSerialize, nil
+}
+
+func (o *GoogleProtobufAny) UnmarshalJSON(data []byte) (err error) {
+	varGoogleProtobufAny := _GoogleProtobufAny{}
+
+	err = json.Unmarshal(data, &varGoogleProtobufAny)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GoogleProtobufAny(varGoogleProtobufAny)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "@type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGoogleProtobufAny struct {

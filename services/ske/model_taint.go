@@ -11,6 +11,7 @@ API version: 1.1
 package ske
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,6 +26,7 @@ var _ MappedNullable = &Taint{}
 // isEnum
 
 // TaintEffect the model 'Taint'
+// value type for enums
 type TaintEffect string
 
 // List of Effect
@@ -35,6 +37,7 @@ const (
 )
 
 // All allowed values of Taint enum
+
 var AllowedTaintEffectEnumValues = []TaintEffect{
 	"NoSchedule",
 	"PreferNoSchedule",
@@ -42,13 +45,13 @@ var AllowedTaintEffectEnumValues = []TaintEffect{
 }
 
 func (v *TaintEffect) UnmarshalJSON(src []byte) error {
-	var value string
+	var value TaintEffect
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TaintEffect
 	if value == zeroValue {
 		return nil
 	}
@@ -65,7 +68,7 @@ func (v *TaintEffect) UnmarshalJSON(src []byte) error {
 
 // NewTaintEffectFromValue returns a pointer to a valid TaintEffect
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewTaintEffectFromValue(v string) (*TaintEffect, error) {
+func NewTaintEffectFromValue(v TaintEffect) (*TaintEffect, error) {
 	ev := TaintEffect(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -269,6 +272,14 @@ func (o *Taint) SetValue(v TaintGetValueRetType) {
 	setTaintGetValueAttributeType(&o.Value, v)
 }
 
+func (o Taint) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Taint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getTaintGetEffectAttributeTypeOk(o.Effect); ok {
@@ -281,6 +292,44 @@ func (o Taint) ToMap() (map[string]interface{}, error) {
 		toSerialize["Value"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Taint) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"effect",
+		"key",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTaint := _Taint{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTaint)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Taint(varTaint)
+
+	return err
 }
 
 type NullableTaint struct {

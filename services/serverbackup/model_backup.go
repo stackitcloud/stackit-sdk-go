@@ -11,6 +11,7 @@ API version: 2.0
 package serverbackup
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -150,6 +151,7 @@ func setBackupGetSizeAttributeType(arg *BackupGetSizeAttributeType, val BackupGe
 // isEnum
 
 // BackupStatus the model 'Backup'
+// value type for enums
 type BackupStatus string
 
 // List of Status
@@ -166,6 +168,7 @@ const (
 )
 
 // All allowed values of Backup enum
+
 var AllowedBackupStatusEnumValues = []BackupStatus{
 	"creating",
 	"available",
@@ -179,13 +182,13 @@ var AllowedBackupStatusEnumValues = []BackupStatus{
 }
 
 func (v *BackupStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value BackupStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue BackupStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -202,7 +205,7 @@ func (v *BackupStatus) UnmarshalJSON(src []byte) error {
 
 // NewBackupStatusFromValue returns a pointer to a valid BackupStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewBackupStatusFromValue(v string) (*BackupStatus, error) {
+func NewBackupStatusFromValue(v BackupStatus) (*BackupStatus, error) {
 	ev := BackupStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -493,6 +496,14 @@ func (o *Backup) SetVolumeBackups(v BackupGetVolumeBackupsRetType) {
 	setBackupGetVolumeBackupsAttributeType(&o.VolumeBackups, v)
 }
 
+func (o Backup) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Backup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBackupGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
@@ -520,6 +531,47 @@ func (o Backup) ToMap() (map[string]interface{}, error) {
 		toSerialize["VolumeBackups"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Backup) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"createdAt",
+		"expireAt",
+		"id",
+		"name",
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varBackup := _Backup{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBackup)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Backup(varBackup)
+
+	return err
 }
 
 type NullableBackup struct {

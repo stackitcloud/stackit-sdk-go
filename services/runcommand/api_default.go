@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateCommand Method for CreateCommand
 		Creates a new command for execution
@@ -158,12 +158,12 @@ type ApiListCommandsRequest interface {
 	Execute() (*GetCommandsResponse, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateCommandRequest struct {
 	ctx                  context.Context
-	apiService           *DefaultApiService
+	apiService           *DefaultAPIService
 	projectId            string
 	serverId             string
 	region               string
@@ -189,7 +189,7 @@ func (r CreateCommandRequest) Execute() (*NewCommandResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateCommand")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateCommand")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -336,7 +336,7 @@ func (a *APIClient) CreateCommandExecute(ctx context.Context, projectId string, 
 
 type GetCommandRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	region     string
 	serverId   string
@@ -355,7 +355,7 @@ func (r GetCommandRequest) Execute() (*CommandDetails, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCommand")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCommand")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -504,7 +504,7 @@ func (a *APIClient) GetCommandExecute(ctx context.Context, projectId string, reg
 
 type GetCommandTemplateRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serverId            string
 	commandTemplateName string
@@ -523,7 +523,7 @@ func (r GetCommandTemplateRequest) Execute() (*CommandTemplateSchema, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCommandTemplate")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCommandTemplate")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -672,7 +672,7 @@ func (a *APIClient) GetCommandTemplateExecute(ctx context.Context, projectId str
 
 type ListCommandTemplatesRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	osType     *string
 }
 
@@ -695,7 +695,7 @@ func (r ListCommandTemplatesRequest) Execute() (*CommandTemplateResponse, error)
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCommandTemplates")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListCommandTemplates")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -820,7 +820,7 @@ func (a *APIClient) ListCommandTemplatesExecute(ctx context.Context) (*CommandTe
 
 type ListCommandsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -838,7 +838,7 @@ func (r ListCommandsRequest) Execute() (*GetCommandsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCommands")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListCommands")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

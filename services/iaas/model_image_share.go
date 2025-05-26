@@ -128,6 +128,14 @@ func (o *ImageShare) SetProjects(v ImageShareGetProjectsRetType) {
 	setImageShareGetProjectsAttributeType(&o.Projects, v)
 }
 
+func (o ImageShare) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ImageShare) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getImageSharegetParentOrganizationAttributeTypeOk(o.ParentOrganization); ok {

@@ -11,6 +11,7 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -87,6 +88,7 @@ type PartialUpdateServiceAccountKeyResponseGetIdRetType = string
 // isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyAlgorithm the model 'PartialUpdateServiceAccountKeyResponse'
+// value type for enums
 type PartialUpdateServiceAccountKeyResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
@@ -95,18 +97,19 @@ const (
 )
 
 // All allowed values of PartialUpdateServiceAccountKeyResponse enum
+
 var AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues = []PartialUpdateServiceAccountKeyResponseKeyAlgorithm{
 	"RSA_2048",
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value string
+	var value PartialUpdateServiceAccountKeyResponseKeyAlgorithm
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue PartialUpdateServiceAccountKeyResponseKeyAlgorithm
 	if value == zeroValue {
 		return nil
 	}
@@ -123,7 +126,7 @@ func (v *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src [
 
 // NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyAlgorithm
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyAlgorithm, error) {
+func NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue(v PartialUpdateServiceAccountKeyResponseKeyAlgorithm) (*PartialUpdateServiceAccountKeyResponseKeyAlgorithm, error) {
 	ev := PartialUpdateServiceAccountKeyResponseKeyAlgorithm(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -205,6 +208,7 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *
 // isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyOrigin the model 'PartialUpdateServiceAccountKeyResponse'
+// value type for enums
 type PartialUpdateServiceAccountKeyResponseKeyOrigin string
 
 // List of KeyOrigin
@@ -214,19 +218,20 @@ const (
 )
 
 // All allowed values of PartialUpdateServiceAccountKeyResponse enum
+
 var AllowedPartialUpdateServiceAccountKeyResponseKeyOriginEnumValues = []PartialUpdateServiceAccountKeyResponseKeyOrigin{
 	"USER_PROVIDED",
 	"GENERATED",
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value string
+	var value PartialUpdateServiceAccountKeyResponseKeyOrigin
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue PartialUpdateServiceAccountKeyResponseKeyOrigin
 	if value == zeroValue {
 		return nil
 	}
@@ -243,7 +248,7 @@ func (v *PartialUpdateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []by
 
 // NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyOrigin
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyOrigin, error) {
+func NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue(v PartialUpdateServiceAccountKeyResponseKeyOrigin) (*PartialUpdateServiceAccountKeyResponseKeyOrigin, error) {
 	ev := PartialUpdateServiceAccountKeyResponseKeyOrigin(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -325,6 +330,7 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *Par
 // isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyType the model 'PartialUpdateServiceAccountKeyResponse'
+// value type for enums
 type PartialUpdateServiceAccountKeyResponseKeyType string
 
 // List of KeyType
@@ -334,19 +340,20 @@ const (
 )
 
 // All allowed values of PartialUpdateServiceAccountKeyResponse enum
+
 var AllowedPartialUpdateServiceAccountKeyResponseKeyTypeEnumValues = []PartialUpdateServiceAccountKeyResponseKeyType{
 	"USER_MANAGED",
 	"SYSTEM_MANAGED",
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value string
+	var value PartialUpdateServiceAccountKeyResponseKeyType
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue PartialUpdateServiceAccountKeyResponseKeyType
 	if value == zeroValue {
 		return nil
 	}
@@ -363,7 +370,7 @@ func (v *PartialUpdateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte
 
 // NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyType, error) {
+func NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue(v PartialUpdateServiceAccountKeyResponseKeyType) (*PartialUpdateServiceAccountKeyResponseKeyType, error) {
 	ev := PartialUpdateServiceAccountKeyResponseKeyType(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -628,6 +635,14 @@ func (o *PartialUpdateServiceAccountKeyResponse) SetValidUntil(v PartialUpdateSe
 	setPartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
+func (o PartialUpdateServiceAccountKeyResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PartialUpdateServiceAccountKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateServiceAccountKeyResponsegetActiveAttributeTypeOk(o.Active); ok {
@@ -652,6 +667,48 @@ func (o PartialUpdateServiceAccountKeyResponse) ToMap() (map[string]interface{},
 		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateServiceAccountKeyResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"active",
+		"createdAt",
+		"id",
+		"keyAlgorithm",
+		"keyOrigin",
+		"keyType",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPartialUpdateServiceAccountKeyResponse := _PartialUpdateServiceAccountKeyResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPartialUpdateServiceAccountKeyResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateServiceAccountKeyResponse(varPartialUpdateServiceAccountKeyResponse)
+
+	return err
 }
 
 type NullablePartialUpdateServiceAccountKeyResponse struct {

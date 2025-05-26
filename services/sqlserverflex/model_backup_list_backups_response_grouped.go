@@ -127,6 +127,14 @@ func (o *BackupListBackupsResponseGrouped) SetName(v BackupListBackupsResponseGr
 	setBackupListBackupsResponseGroupedGetNameAttributeType(&o.Name, v)
 }
 
+func (o BackupListBackupsResponseGrouped) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o BackupListBackupsResponseGrouped) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBackupListBackupsResponseGroupedGetBackupsAttributeTypeOk(o.Backups); ok {

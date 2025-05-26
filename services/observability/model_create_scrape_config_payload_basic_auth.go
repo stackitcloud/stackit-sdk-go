@@ -130,6 +130,14 @@ func (o *CreateScrapeConfigPayloadBasicAuth) SetUsername(v CreateScrapeConfigPay
 	setCreateScrapeConfigPayloadBasicAuthGetUsernameAttributeType(&o.Username, v)
 }
 
+func (o CreateScrapeConfigPayloadBasicAuth) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateScrapeConfigPayloadBasicAuth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateScrapeConfigPayloadBasicAuthGetPasswordAttributeTypeOk(o.Password); ok {

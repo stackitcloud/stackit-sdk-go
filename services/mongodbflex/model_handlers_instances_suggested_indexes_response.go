@@ -128,6 +128,14 @@ func (o *HandlersInstancesSuggestedIndexesResponse) SetSuggestedIndexes(v Handle
 	setHandlersInstancesSuggestedIndexesResponseGetSuggestedIndexesAttributeType(&o.SuggestedIndexes, v)
 }
 
+func (o HandlersInstancesSuggestedIndexesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o HandlersInstancesSuggestedIndexesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHandlersInstancesSuggestedIndexesResponseGetShapesAttributeTypeOk(o.Shapes); ok {

@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateBackup create backup
 
@@ -399,12 +399,12 @@ type ApiUpdateBackupScheduleRequest interface {
 	Execute() (*BackupSchedule, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateBackupRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	projectId           string
 	serverId            string
 	region              string
@@ -428,7 +428,7 @@ func (r CreateBackupRequest) Execute() (*BackupJob, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateBackup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateBackup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -552,7 +552,7 @@ func (a *APIClient) CreateBackupExecute(ctx context.Context, projectId string, s
 
 type CreateBackupScheduleRequest struct {
 	ctx                         context.Context
-	apiService                  *DefaultApiService
+	apiService                  *DefaultAPIService
 	projectId                   string
 	serverId                    string
 	region                      string
@@ -576,7 +576,7 @@ func (r CreateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateBackupSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateBackupSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -700,7 +700,7 @@ func (a *APIClient) CreateBackupScheduleExecute(ctx context.Context, projectId s
 
 type DeleteBackupRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -718,7 +718,7 @@ func (r DeleteBackupRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteBackup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -834,7 +834,7 @@ func (a *APIClient) DeleteBackupExecute(ctx context.Context, projectId string, s
 
 type DeleteBackupScheduleRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	projectId        string
 	serverId         string
 	region           string
@@ -852,7 +852,7 @@ func (r DeleteBackupScheduleRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteBackupSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteBackupSchedule")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -968,7 +968,7 @@ func (a *APIClient) DeleteBackupScheduleExecute(ctx context.Context, projectId s
 
 type DeleteVolumeBackupRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	serverId       string
 	region         string
@@ -987,7 +987,7 @@ func (r DeleteVolumeBackupRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteVolumeBackup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteVolumeBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1107,7 +1107,7 @@ func (a *APIClient) DeleteVolumeBackupExecute(ctx context.Context, projectId str
 
 type DisableServiceResourceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -1124,7 +1124,7 @@ func (r DisableServiceResourceRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DisableServiceResource")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1236,7 +1236,7 @@ func (a *APIClient) DisableServiceResourceExecute(ctx context.Context, projectId
 
 type EnableServiceResourceRequest struct {
 	ctx                          context.Context
-	apiService                   *DefaultApiService
+	apiService                   *DefaultAPIService
 	projectId                    string
 	serverId                     string
 	region                       string
@@ -1259,7 +1259,7 @@ func (r EnableServiceResourceRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.EnableServiceResource")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableServiceResource")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1373,7 +1373,7 @@ func (a *APIClient) EnableServiceResourceExecute(ctx context.Context, projectId 
 
 type GetBackupRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -1392,7 +1392,7 @@ func (r GetBackupRequest) Execute() (*Backup, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBackup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetBackup")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1518,7 +1518,7 @@ func (a *APIClient) GetBackupExecute(ctx context.Context, projectId string, serv
 
 type GetBackupScheduleRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	projectId        string
 	serverId         string
 	region           string
@@ -1537,7 +1537,7 @@ func (r GetBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetBackupSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetBackupSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1663,7 +1663,7 @@ func (a *APIClient) GetBackupScheduleExecute(ctx context.Context, projectId stri
 
 type GetServiceResourceRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -1681,7 +1681,7 @@ func (r GetServiceResourceRequest) Execute() (*GetBackupServiceResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetServiceResource")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetServiceResource")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1803,7 +1803,7 @@ func (a *APIClient) GetServiceResourceExecute(ctx context.Context, projectId str
 
 type ListBackupPoliciesRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 }
 
@@ -1819,7 +1819,7 @@ func (r ListBackupPoliciesRequest) Execute() (*GetBackupPoliciesResponse, error)
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackupPolicies")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackupPolicies")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1933,7 +1933,7 @@ func (a *APIClient) ListBackupPoliciesExecute(ctx context.Context, projectId str
 
 type ListBackupSchedulesRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -1951,7 +1951,7 @@ func (r ListBackupSchedulesRequest) Execute() (*GetBackupSchedulesResponse, erro
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackupSchedules")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackupSchedules")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2073,7 +2073,7 @@ func (a *APIClient) ListBackupSchedulesExecute(ctx context.Context, projectId st
 
 type ListBackupsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	serverId   string
 	region     string
@@ -2091,7 +2091,7 @@ func (r ListBackupsRequest) Execute() (*GetBackupsListResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListBackups")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListBackups")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2213,7 +2213,7 @@ func (a *APIClient) ListBackupsExecute(ctx context.Context, projectId string, se
 
 type RestoreBackupRequest struct {
 	ctx                  context.Context
-	apiService           *DefaultApiService
+	apiService           *DefaultAPIService
 	projectId            string
 	serverId             string
 	region               string
@@ -2237,7 +2237,7 @@ func (r RestoreBackupRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreBackup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.RestoreBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2355,7 +2355,7 @@ func (a *APIClient) RestoreBackupExecute(ctx context.Context, projectId string, 
 
 type RestoreVolumeBackupRequest struct {
 	ctx                        context.Context
-	apiService                 *DefaultApiService
+	apiService                 *DefaultAPIService
 	projectId                  string
 	serverId                   string
 	region                     string
@@ -2380,7 +2380,7 @@ func (r RestoreVolumeBackupRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreVolumeBackup")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.RestoreVolumeBackup")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2502,7 +2502,7 @@ func (a *APIClient) RestoreVolumeBackupExecute(ctx context.Context, projectId st
 
 type UpdateBackupScheduleRequest struct {
 	ctx                         context.Context
-	apiService                  *DefaultApiService
+	apiService                  *DefaultAPIService
 	projectId                   string
 	serverId                    string
 	region                      string
@@ -2527,7 +2527,7 @@ func (r UpdateBackupScheduleRequest) Execute() (*BackupSchedule, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateBackupSchedule")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateBackupSchedule")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

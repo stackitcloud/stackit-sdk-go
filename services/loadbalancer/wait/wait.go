@@ -14,15 +14,15 @@ import (
 
 // Load balancer instance status
 const (
-	// Deprecated: InstanceStatusUnspecified is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_UNSPECIFIED] instead.
+	// Deprecated: InstanceStatusUnspecified is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_STATUS_UNSPECIFIED] instead.
 	InstanceStatusUnspecified = "STATUS_UNSPECIFIED"
-	// Deprecated: InstanceStatusPending is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_PENDING] instead.
+	// Deprecated: InstanceStatusPending is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_STATUS_PENDING] instead.
 	InstanceStatusPending = "STATUS_PENDING"
-	// Deprecated: InstanceStatusReady is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_READY] instead.
+	// Deprecated: InstanceStatusReady is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_STATUS_READY] instead.
 	InstanceStatusReady = "STATUS_READY"
-	// Deprecated: InstanceStatusError is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_ERROR] instead.
+	// Deprecated: InstanceStatusError is deprecated and will be removed after 14th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_STATUS_ERROR] instead.
 	InstanceStatusError = "STATUS_ERROR"
-	// Deprecated: InstanceStatusTerminating is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_TERMINATING] instead.
+	// Deprecated: InstanceStatusTerminating is deprecated and will be removed after 12th November 2025. Use [loadbalancer.LOADBALANCERSTATUS_STATUS_TERMINATING] instead.
 	InstanceStatusTerminating = "STATUS_TERMINATING"
 )
 
@@ -53,15 +53,15 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 		}
 
 		switch *s.Status {
-		case loadbalancer.LOADBALANCERSTATUS_READY:
+		case loadbalancer.LOADBALANCERSTATUS_STATUS_READY:
 			return true, s, nil
-		case loadbalancer.LOADBALANCERSTATUS_UNSPECIFIED:
+		case loadbalancer.LOADBALANCERSTATUS_STATUS_UNSPECIFIED:
 			return false, nil, nil
-		case loadbalancer.LOADBALANCERSTATUS_PENDING:
+		case loadbalancer.LOADBALANCERSTATUS_STATUS_PENDING:
 			return false, nil, nil
-		case loadbalancer.LOADBALANCERSTATUS_TERMINATING:
+		case loadbalancer.LOADBALANCERSTATUS_STATUS_TERMINATING:
 			return true, s, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusTerminating)
-		case loadbalancer.LOADBALANCERSTATUS_ERROR:
+		case loadbalancer.LOADBALANCERSTATUS_STATUS_ERROR:
 			return true, s, fmt.Errorf("create failed for instance with name %s, got status %s", instanceName, InstanceStatusError)
 		default:
 			return true, s, fmt.Errorf("instance with name %s has unexpected status %s", instanceName, *s.Status)

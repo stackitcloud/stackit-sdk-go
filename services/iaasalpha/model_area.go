@@ -107,7 +107,7 @@ type Area struct {
 	// A list of routes.
 	Routes AreaGetRoutesAttributeType `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
-	TransferNetwork AreaGetTransferNetworkAttributeType `json:"transferNetwork,omitempty"`
+	TransferNetwork AreaGetTransferNetworkAttributeType `json:"transferNetwork,omitempty" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\\/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$"`
 }
 
 // NewArea instantiates a new Area object
@@ -217,6 +217,14 @@ func (o *Area) HasTransferNetwork() bool {
 // SetTransferNetwork gets a reference to the given string and assigns it to the TransferNetwork field.
 func (o *Area) SetTransferNetwork(v AreaGetTransferNetworkRetType) {
 	setAreaGetTransferNetworkAttributeType(&o.TransferNetwork, v)
+}
+
+func (o Area) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o Area) ToMap() (map[string]interface{}, error) {

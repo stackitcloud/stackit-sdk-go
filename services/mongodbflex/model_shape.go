@@ -310,6 +310,14 @@ func (o *Shape) SetOperations(v ShapeGetOperationsRetType) {
 	setShapeGetOperationsAttributeType(&o.Operations, v)
 }
 
+func (o Shape) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Shape) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getShapeGetAvgMsAttributeTypeOk(o.AvgMs); ok {

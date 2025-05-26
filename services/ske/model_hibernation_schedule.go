@@ -11,7 +11,9 @@ API version: 1.1
 package ske
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the HibernationSchedule type satisfies the MappedNullable interface at compile time
@@ -83,9 +85,9 @@ type HibernationScheduleGetTimezoneRetType = string
 // HibernationSchedule struct for HibernationSchedule
 type HibernationSchedule struct {
 	// REQUIRED
-	End HibernationScheduleGetEndAttributeType `json:"end"`
+	End HibernationScheduleGetEndAttributeType `json:"end" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
 	// REQUIRED
-	Start    HibernationScheduleGetStartAttributeType    `json:"start"`
+	Start    HibernationScheduleGetStartAttributeType    `json:"start" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
 	Timezone HibernationScheduleGetTimezoneAttributeType `json:"timezone,omitempty"`
 }
 
@@ -167,6 +169,14 @@ func (o *HibernationSchedule) SetTimezone(v HibernationScheduleGetTimezoneRetTyp
 	setHibernationScheduleGetTimezoneAttributeType(&o.Timezone, v)
 }
 
+func (o HibernationSchedule) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o HibernationSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHibernationScheduleGetEndAttributeTypeOk(o.End); ok {
@@ -179,6 +189,44 @@ func (o HibernationSchedule) ToMap() (map[string]interface{}, error) {
 		toSerialize["Timezone"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *HibernationSchedule) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"end",
+		"start",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varHibernationSchedule := _HibernationSchedule{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varHibernationSchedule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HibernationSchedule(varHibernationSchedule)
+
+	return err
 }
 
 type NullableHibernationSchedule struct {

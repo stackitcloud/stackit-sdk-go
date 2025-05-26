@@ -588,6 +588,14 @@ func (o *PostgresDatabaseParameter) SetValue(v PostgresDatabaseParameterGetValue
 	setPostgresDatabaseParameterGetValueAttributeType(&o.Value, v)
 }
 
+func (o PostgresDatabaseParameter) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PostgresDatabaseParameter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPostgresDatabaseParameterGetContextAttributeTypeOk(o.Context); ok {

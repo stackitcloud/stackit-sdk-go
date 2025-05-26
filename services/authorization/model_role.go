@@ -11,7 +11,9 @@ API version: 2.0
 package authorization
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Role type satisfies the MappedNullable interface at compile time
@@ -104,9 +106,9 @@ func setRoleGetPermissionsAttributeType(arg *RoleGetPermissionsAttributeType, va
 type Role struct {
 	// REQUIRED
 	Description RoleGetDescriptionAttributeType `json:"description"`
-	Id          RoleGetIdAttributeType          `json:"id,omitempty"`
+	Id          RoleGetIdAttributeType          `json:"id,omitempty" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+]{1,})$"`
 	// REQUIRED
-	Name RoleGetNameAttributeType `json:"name"`
+	Name RoleGetNameAttributeType `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
 	// REQUIRED
 	Permissions RoleGetPermissionsAttributeType `json:"permissions"`
 }
@@ -207,6 +209,14 @@ func (o *Role) SetPermissions(v RoleGetPermissionsRetType) {
 	setRoleGetPermissionsAttributeType(&o.Permissions, v)
 }
 
+func (o Role) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Role) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRoleGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -222,6 +232,45 @@ func (o Role) ToMap() (map[string]interface{}, error) {
 		toSerialize["Permissions"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Role) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"name",
+		"permissions",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRole := _Role{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRole)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Role(varRole)
+
+	return err
 }
 
 type NullableRole struct {

@@ -61,8 +61,8 @@ type CatalogProductSupportResourceGetSupportLinkTitleRetType = string
 
 // CatalogProductSupportResource struct for CatalogProductSupportResource
 type CatalogProductSupportResource struct {
-	// Uniform Resource Locator.
-	SupportLink CatalogProductSupportResourceGetSupportLinkAttributeType `json:"supportLink,omitempty"`
+	// The support resource link.
+	SupportLink CatalogProductSupportResourceGetSupportLinkAttributeType `json:"supportLink,omitempty" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 	// The support resource link title.
 	SupportLinkTitle CatalogProductSupportResourceGetSupportLinkTitleAttributeType `json:"supportLinkTitle,omitempty"`
 }
@@ -128,6 +128,14 @@ func (o *CatalogProductSupportResource) HasSupportLinkTitle() bool {
 // SetSupportLinkTitle gets a reference to the given string and assigns it to the SupportLinkTitle field.
 func (o *CatalogProductSupportResource) SetSupportLinkTitle(v CatalogProductSupportResourceGetSupportLinkTitleRetType) {
 	setCatalogProductSupportResourceGetSupportLinkTitleAttributeType(&o.SupportLinkTitle, v)
+}
+
+func (o CatalogProductSupportResource) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CatalogProductSupportResource) ToMap() (map[string]interface{}, error) {

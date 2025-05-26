@@ -82,6 +82,14 @@ func (o *ListRolesResponse) SetRoles(v ListRolesResponseGetRolesRetType) {
 	setListRolesResponseGetRolesAttributeType(&o.Roles, v)
 }
 
+func (o ListRolesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListRolesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListRolesResponseGetRolesAttributeTypeOk(o.Roles); ok {

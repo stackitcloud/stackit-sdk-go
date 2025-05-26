@@ -62,7 +62,7 @@ type ListCertificatesResponseGetNextPageIdRetType = string
 type ListCertificatesResponse struct {
 	Items ListCertificatesResponseGetItemsAttributeType `json:"items,omitempty"`
 	// Continue token from the ListCertificatesResponse with Limit option
-	NextPageId ListCertificatesResponseGetNextPageIdAttributeType `json:"nextPageId,omitempty"`
+	NextPageId ListCertificatesResponseGetNextPageIdAttributeType `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 }
 
 // NewListCertificatesResponse instantiates a new ListCertificatesResponse object
@@ -126,6 +126,14 @@ func (o *ListCertificatesResponse) HasNextPageId() bool {
 // SetNextPageId gets a reference to the given string and assigns it to the NextPageId field.
 func (o *ListCertificatesResponse) SetNextPageId(v ListCertificatesResponseGetNextPageIdRetType) {
 	setListCertificatesResponseGetNextPageIdAttributeType(&o.NextPageId, v)
+}
+
+func (o ListCertificatesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ListCertificatesResponse) ToMap() (map[string]interface{}, error) {

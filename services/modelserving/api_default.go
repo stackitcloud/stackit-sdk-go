@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateToken create auth token for shared model use
 		create auth token for shared model use
@@ -224,12 +224,12 @@ type ApiPartialUpdateTokenRequest interface {
 	Execute() (*UpdateTokenResponse, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateTokenRequest struct {
 	ctx                context.Context
-	apiService         *DefaultApiService
+	apiService         *DefaultAPIService
 	regionId           string
 	projectId          string
 	createTokenPayload *CreateTokenPayload
@@ -252,7 +252,7 @@ func (r CreateTokenRequest) Execute() (*CreateTokenResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateToken")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -406,7 +406,7 @@ func (a *APIClient) CreateTokenExecute(ctx context.Context, regionId string, pro
 
 type DeleteTokenRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	regionId   string
 	projectId  string
 	tId        string
@@ -424,7 +424,7 @@ func (r DeleteTokenRequest) Execute() (*MessageResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteToken")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -580,7 +580,7 @@ func (a *APIClient) DeleteTokenExecute(ctx context.Context, regionId string, pro
 
 type GetChatModelRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	regionId   string
 	modelId    string
 }
@@ -597,7 +597,7 @@ func (r GetChatModelRequest) Execute() (*GetChatModelResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetChatModel")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetChatModel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -738,7 +738,7 @@ func (a *APIClient) GetChatModelExecute(ctx context.Context, regionId string, mo
 
 type GetEmbeddingModelRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	regionId   string
 	modelId    string
 }
@@ -755,7 +755,7 @@ func (r GetEmbeddingModelRequest) Execute() (*GetEmbeddingsModelResp, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetEmbeddingModel")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetEmbeddingModel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -896,7 +896,7 @@ func (a *APIClient) GetEmbeddingModelExecute(ctx context.Context, regionId strin
 
 type GetTokenRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	regionId   string
 	projectId  string
 	tId        string
@@ -914,7 +914,7 @@ func (r GetTokenRequest) Execute() (*GetTokenResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetToken")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1070,7 +1070,7 @@ func (a *APIClient) GetTokenExecute(ctx context.Context, regionId string, projec
 
 type ListModelsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	regionId   string
 }
 
@@ -1086,7 +1086,7 @@ func (r ListModelsRequest) Execute() (*ListModelsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListModels")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListModels")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1223,7 +1223,7 @@ func (a *APIClient) ListModelsExecute(ctx context.Context, regionId string) (*Li
 
 type ListTokensRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	regionId   string
 	projectId  string
 }
@@ -1240,7 +1240,7 @@ func (r ListTokensRequest) Execute() (*ListTokenResp, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListTokens")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListTokens")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1381,7 +1381,7 @@ func (a *APIClient) ListTokensExecute(ctx context.Context, regionId string, proj
 
 type PartialUpdateTokenRequest struct {
 	ctx                       context.Context
-	apiService                *DefaultApiService
+	apiService                *DefaultAPIService
 	regionId                  string
 	projectId                 string
 	tId                       string
@@ -1405,7 +1405,7 @@ func (r PartialUpdateTokenRequest) Execute() (*UpdateTokenResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateToken")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateToken")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

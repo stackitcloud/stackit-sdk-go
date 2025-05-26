@@ -64,9 +64,9 @@ type SingleDatabaseGetNameRetType = string
 */
 
 // isModel
-type SingleDatabaseGetOptionsAttributeType = *SingleDatabaseOptions
-type SingleDatabaseGetOptionsArgType = SingleDatabaseOptions
-type SingleDatabaseGetOptionsRetType = SingleDatabaseOptions
+type SingleDatabaseGetOptionsAttributeType = *DatabaseOptions
+type SingleDatabaseGetOptionsArgType = DatabaseOptions
+type SingleDatabaseGetOptionsRetType = DatabaseOptions
 
 func getSingleDatabaseGetOptionsAttributeTypeOk(arg SingleDatabaseGetOptionsAttributeType) (ret SingleDatabaseGetOptionsRetType, ok bool) {
 	if arg == nil {
@@ -84,7 +84,8 @@ type SingleDatabase struct {
 	// Database id
 	Id SingleDatabaseGetIdAttributeType `json:"id,omitempty"`
 	// Database name
-	Name    SingleDatabaseGetNameAttributeType    `json:"name,omitempty"`
+	Name SingleDatabaseGetNameAttributeType `json:"name,omitempty"`
+	// Database specific options
 	Options SingleDatabaseGetOptionsAttributeType `json:"options,omitempty"`
 }
 
@@ -169,9 +170,17 @@ func (o *SingleDatabase) HasOptions() bool {
 	return ok
 }
 
-// SetOptions gets a reference to the given SingleDatabaseOptions and assigns it to the Options field.
+// SetOptions gets a reference to the given DatabaseOptions and assigns it to the Options field.
 func (o *SingleDatabase) SetOptions(v SingleDatabaseGetOptionsRetType) {
 	setSingleDatabaseGetOptionsAttributeType(&o.Options, v)
+}
+
+func (o SingleDatabase) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o SingleDatabase) ToMap() (map[string]interface{}, error) {

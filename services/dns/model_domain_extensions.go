@@ -82,6 +82,14 @@ func (o *DomainExtensions) SetObservabilityExtension(v DomainExtensionsGetObserv
 	setDomainExtensionsGetObservabilityExtensionAttributeType(&o.ObservabilityExtension, v)
 }
 
+func (o DomainExtensions) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o DomainExtensions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDomainExtensionsGetObservabilityExtensionAttributeTypeOk(o.ObservabilityExtension); ok {

@@ -125,7 +125,7 @@ type UpdateNicPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels UpdateNicPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name UpdateNicPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name UpdateNicPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// If this is set to false, then no security groups will apply to this network interface.
 	NicSecurity UpdateNicPayloadgetNicSecurityAttributeType `json:"nicSecurity,omitempty"`
 	// A list of UUIDs.
@@ -262,6 +262,14 @@ func (o *UpdateNicPayload) HasSecurityGroups() bool {
 // SetSecurityGroups gets a reference to the given []string and assigns it to the SecurityGroups field.
 func (o *UpdateNicPayload) SetSecurityGroups(v UpdateNicPayloadGetSecurityGroupsRetType) {
 	setUpdateNicPayloadGetSecurityGroupsAttributeType(&o.SecurityGroups, v)
+}
+
+func (o UpdateNicPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateNicPayload) ToMap() (map[string]interface{}, error) {

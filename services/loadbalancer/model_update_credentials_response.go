@@ -82,6 +82,14 @@ func (o *UpdateCredentialsResponse) SetCredential(v UpdateCredentialsResponseGet
 	setUpdateCredentialsResponseGetCredentialAttributeType(&o.Credential, v)
 }
 
+func (o UpdateCredentialsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateCredentialsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateCredentialsResponseGetCredentialAttributeTypeOk(o.Credential); ok {

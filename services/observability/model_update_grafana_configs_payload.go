@@ -172,6 +172,14 @@ func (o *UpdateGrafanaConfigsPayload) SetUseStackitSso(v UpdateGrafanaConfigsPay
 	setUpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType(&o.UseStackitSso, v)
 }
 
+func (o UpdateGrafanaConfigsPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateGrafanaConfigsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateGrafanaConfigsPayloadGetGenericOauthAttributeTypeOk(o.GenericOauth); ok {

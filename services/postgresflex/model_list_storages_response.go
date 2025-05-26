@@ -126,6 +126,14 @@ func (o *ListStoragesResponse) SetStorageRange(v ListStoragesResponseGetStorageR
 	setListStoragesResponseGetStorageRangeAttributeType(&o.StorageRange, v)
 }
 
+func (o ListStoragesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListStoragesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListStoragesResponseGetStorageClassesAttributeTypeOk(o.StorageClasses); ok {

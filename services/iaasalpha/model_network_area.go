@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -185,7 +187,7 @@ func setNetworkAreaGetUpdatedAtAttributeType(arg *NetworkAreaGetUpdatedAtAttribu
 type NetworkArea struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	AreaId NetworkAreaGetAreaIdAttributeType `json:"areaId"`
+	AreaId NetworkAreaGetAreaIdAttributeType `json:"areaId" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Date-time when resource was created.
 	CreatedAt NetworkAreaGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	Ipv4      NetworkAreaGetIpv4AttributeType      `json:"ipv4,omitempty"`
@@ -386,6 +388,14 @@ func (o *NetworkArea) SetUpdatedAt(v NetworkAreaGetUpdatedAtRetType) {
 	setNetworkAreaGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+func (o NetworkArea) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o NetworkArea) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getNetworkAreaGetAreaIdAttributeTypeOk(o.AreaId); ok {
@@ -413,6 +423,46 @@ func (o NetworkArea) ToMap() (map[string]interface{}, error) {
 		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *NetworkArea) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"areaId",
+		"name",
+		"projectCount",
+		"state",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varNetworkArea := _NetworkArea{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varNetworkArea)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NetworkArea(varNetworkArea)
+
+	return err
 }
 
 type NullableNetworkArea struct {

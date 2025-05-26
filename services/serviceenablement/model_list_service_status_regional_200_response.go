@@ -127,6 +127,14 @@ func (o *ListServiceStatusRegional200Response) SetNextCursor(v ListServiceStatus
 	setListServiceStatusRegional200ResponseGetNextCursorAttributeType(&o.NextCursor, v)
 }
 
+func (o ListServiceStatusRegional200Response) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListServiceStatusRegional200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListServiceStatusRegional200ResponseGetItemsAttributeTypeOk(o.Items); ok {

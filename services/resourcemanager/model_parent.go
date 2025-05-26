@@ -11,6 +11,7 @@ API version: 2.0
 package resourcemanager
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -67,6 +68,7 @@ type ParentGetIdRetType = string
 // isEnum
 
 // ParentTypes Container type of parent container.
+// value type for enums
 type ParentTypes string
 
 // List of Type
@@ -76,19 +78,20 @@ const (
 )
 
 // All allowed values of Parent enum
+
 var AllowedParentTypesEnumValues = []ParentTypes{
 	"ORGANIZATION",
 	"FOLDER",
 }
 
 func (v *ParentTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ParentTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ParentTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -105,7 +108,7 @@ func (v *ParentTypes) UnmarshalJSON(src []byte) error {
 
 // NewParentTypesFromValue returns a pointer to a valid ParentTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewParentTypesFromValue(v string) (*ParentTypes, error) {
+func NewParentTypesFromValue(v ParentTypes) (*ParentTypes, error) {
 	ev := ParentTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -266,6 +269,14 @@ func (o *Parent) SetType(v ParentGetTypeRetType) {
 	setParentGetTypeAttributeType(&o.Type, v)
 }
 
+func (o Parent) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Parent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getParentGetContainerIdAttributeTypeOk(o.ContainerId); ok {
@@ -278,6 +289,45 @@ func (o Parent) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Parent) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"containerId",
+		"id",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varParent := _Parent{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varParent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Parent(varParent)
+
+	return err
 }
 
 type NullableParent struct {

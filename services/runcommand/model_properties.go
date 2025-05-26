@@ -303,6 +303,14 @@ func (o *Properties) SetType(v PropertiesGetTypeRetType) {
 	setPropertiesGetTypeAttributeType(&o.Type, v)
 }
 
+func (o Properties) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Properties) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPropertiesGetConfirmPasswordAttributeTypeOk(o.ConfirmPassword); ok {

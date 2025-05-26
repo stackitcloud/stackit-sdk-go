@@ -63,7 +63,7 @@ type GetQuotaResponse struct {
 	// The maximum number of load balancing servers in this project. Unlimited if set to -1.
 	MaxLoadBalancers GetQuotaResponseGetMaxLoadBalancersAttributeType `json:"maxLoadBalancers,omitempty"`
 	// Project identifier
-	ProjectId GetQuotaResponseGetProjectIdAttributeType `json:"projectId,omitempty"`
+	ProjectId GetQuotaResponseGetProjectIdAttributeType `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 }
 
 // NewGetQuotaResponse instantiates a new GetQuotaResponse object
@@ -127,6 +127,14 @@ func (o *GetQuotaResponse) HasProjectId() bool {
 // SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
 func (o *GetQuotaResponse) SetProjectId(v GetQuotaResponseGetProjectIdRetType) {
 	setGetQuotaResponseGetProjectIdAttributeType(&o.ProjectId, v)
+}
+
+func (o GetQuotaResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o GetQuotaResponse) ToMap() (map[string]interface{}, error) {

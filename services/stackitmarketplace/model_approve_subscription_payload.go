@@ -40,8 +40,8 @@ type ApproveSubscriptionPayloadGetInstanceTargetRetType = string
 
 // ApproveSubscriptionPayload struct for ApproveSubscriptionPayload
 type ApproveSubscriptionPayload struct {
-	// Uniform Resource Locator.
-	InstanceTarget ApproveSubscriptionPayloadGetInstanceTargetAttributeType `json:"instanceTarget,omitempty"`
+	// The target URL of the user instance, used to redirect the user to the instance after the subscription is active.
+	InstanceTarget ApproveSubscriptionPayloadGetInstanceTargetAttributeType `json:"instanceTarget,omitempty" validate:"regexp=^(https?:\\/\\/)?([\\\\da-z\\\\.-]+)\\\\.([a-z\\\\.]{2,6})([\\/\\\\w \\\\.-]*)*_\\/?$"`
 }
 
 // NewApproveSubscriptionPayload instantiates a new ApproveSubscriptionPayload object
@@ -82,6 +82,14 @@ func (o *ApproveSubscriptionPayload) HasInstanceTarget() bool {
 // SetInstanceTarget gets a reference to the given string and assigns it to the InstanceTarget field.
 func (o *ApproveSubscriptionPayload) SetInstanceTarget(v ApproveSubscriptionPayloadGetInstanceTargetRetType) {
 	setApproveSubscriptionPayloadGetInstanceTargetAttributeType(&o.InstanceTarget, v)
+}
+
+func (o ApproveSubscriptionPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ApproveSubscriptionPayload) ToMap() (map[string]interface{}, error) {

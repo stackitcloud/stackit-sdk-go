@@ -128,6 +128,14 @@ func (o *Rule) SetHttp(v RuleGetHttpRetType) {
 	setRuleGetHttpAttributeType(&o.Http, v)
 }
 
+func (o Rule) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Rule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRuleGetHostAttributeTypeOk(o.Host); ok {

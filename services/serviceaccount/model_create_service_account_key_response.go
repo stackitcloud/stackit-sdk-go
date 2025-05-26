@@ -11,6 +11,7 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -107,6 +108,7 @@ type CreateServiceAccountKeyResponseGetIdRetType = string
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyAlgorithm the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
@@ -115,18 +117,19 @@ const (
 )
 
 // All allowed values of CreateServiceAccountKeyResponse enum
+
 var AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues = []CreateServiceAccountKeyResponseKeyAlgorithm{
 	"RSA_2048",
 }
 
 func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateServiceAccountKeyResponseKeyAlgorithm
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateServiceAccountKeyResponseKeyAlgorithm
 	if value == zeroValue {
 		return nil
 	}
@@ -143,7 +146,7 @@ func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) 
 
 // NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyAlgorithm
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*CreateServiceAccountKeyResponseKeyAlgorithm, error) {
+func NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue(v CreateServiceAccountKeyResponseKeyAlgorithm) (*CreateServiceAccountKeyResponseKeyAlgorithm, error) {
 	ev := CreateServiceAccountKeyResponseKeyAlgorithm(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -225,6 +228,7 @@ func setCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *CreateS
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyOrigin the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyOrigin string
 
 // List of KeyOrigin
@@ -234,19 +238,20 @@ const (
 )
 
 // All allowed values of CreateServiceAccountKeyResponse enum
+
 var AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues = []CreateServiceAccountKeyResponseKeyOrigin{
 	"USER_PROVIDED",
 	"GENERATED",
 }
 
 func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateServiceAccountKeyResponseKeyOrigin
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateServiceAccountKeyResponseKeyOrigin
 	if value == zeroValue {
 		return nil
 	}
@@ -263,7 +268,7 @@ func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) err
 
 // NewCreateServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyOrigin
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyOriginFromValue(v string) (*CreateServiceAccountKeyResponseKeyOrigin, error) {
+func NewCreateServiceAccountKeyResponseKeyOriginFromValue(v CreateServiceAccountKeyResponseKeyOrigin) (*CreateServiceAccountKeyResponseKeyOrigin, error) {
 	ev := CreateServiceAccountKeyResponseKeyOrigin(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -345,6 +350,7 @@ func setCreateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *CreateServ
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyType the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyType string
 
 // List of KeyType
@@ -354,19 +360,20 @@ const (
 )
 
 // All allowed values of CreateServiceAccountKeyResponse enum
+
 var AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues = []CreateServiceAccountKeyResponseKeyType{
 	"USER_MANAGED",
 	"SYSTEM_MANAGED",
 }
 
 func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateServiceAccountKeyResponseKeyType
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateServiceAccountKeyResponseKeyType
 	if value == zeroValue {
 		return nil
 	}
@@ -383,7 +390,7 @@ func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error
 
 // NewCreateServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyTypeFromValue(v string) (*CreateServiceAccountKeyResponseKeyType, error) {
+func NewCreateServiceAccountKeyResponseKeyTypeFromValue(v CreateServiceAccountKeyResponseKeyType) (*CreateServiceAccountKeyResponseKeyType, error) {
 	ev := CreateServiceAccountKeyResponseKeyType(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -710,6 +717,14 @@ func (o *CreateServiceAccountKeyResponse) SetValidUntil(v CreateServiceAccountKe
 	setCreateServiceAccountKeyResponseGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
+func (o CreateServiceAccountKeyResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateServiceAccountKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateServiceAccountKeyResponsegetActiveAttributeTypeOk(o.Active); ok {
@@ -740,6 +755,50 @@ func (o CreateServiceAccountKeyResponse) ToMap() (map[string]interface{}, error)
 		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateServiceAccountKeyResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"active",
+		"createdAt",
+		"credentials",
+		"id",
+		"keyAlgorithm",
+		"keyOrigin",
+		"keyType",
+		"publicKey",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateServiceAccountKeyResponse := _CreateServiceAccountKeyResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateServiceAccountKeyResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateServiceAccountKeyResponse(varCreateServiceAccountKeyResponse)
+
+	return err
 }
 
 type NullableCreateServiceAccountKeyResponse struct {

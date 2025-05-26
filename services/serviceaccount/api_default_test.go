@@ -1,7 +1,7 @@
 /*
 Service Account API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -22,22 +22,22 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_serviceaccount_DefaultApiService(t *testing.T) {
+func Test_serviceaccount_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CreateAccessToken", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateAccessToken", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := AccessToken{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -48,7 +48,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -79,18 +79,18 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateServiceAccount", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateServiceAccount", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ServiceAccount{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -101,7 +101,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -131,20 +131,20 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateServiceAccountKey", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateServiceAccountKeyResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -155,7 +155,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -186,16 +186,16 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateShortLivedAccessToken", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateShortLivedAccessToken", func(t *testing.T) {
 		_apiUrlPath := "/token"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := CreateShortLivedAccessTokenResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -206,7 +206,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -236,7 +236,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteAccessToken", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteAccessToken", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens/{accessTokenId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -245,10 +245,10 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		accessTokenIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"accessTokenId"+"}", url.PathEscape(ParameterValueToString(accessTokenIdValue, "accessTokenId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -259,7 +259,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -288,17 +288,17 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteServiceAccount", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteServiceAccount", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -309,7 +309,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -337,7 +337,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteServiceAccountKey", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -346,10 +346,10 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		keyIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -360,7 +360,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -389,18 +389,18 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetJWKS", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetJWKS", func(t *testing.T) {
 		_apiUrlPath := "/v2/service-accounts/public/jwk/{serviceAccountEmail}"
 		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := JWKS{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -411,7 +411,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -441,7 +441,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServiceAccountKey", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -450,13 +450,13 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		keyIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetServiceAccountKeyResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -467,7 +467,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -499,20 +499,20 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListAccessTokens", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListAccessTokens", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/access-tokens"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListAccessTokensResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -523,7 +523,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -554,20 +554,20 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListServiceAccountKeys", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListServiceAccountKeys", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		serviceAccountEmailValue := "serviceAccountEmail-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(serviceAccountEmailValue, "serviceAccountEmail")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListServiceAccountKeysResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -578,7 +578,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -609,18 +609,18 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListServiceAccounts", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListServiceAccounts", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListServiceAccountsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -631,7 +631,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -661,7 +661,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService PartialUpdateServiceAccountKey", func(t *testing.T) {
+	t.Run("Test DefaultAPIService PartialUpdateServiceAccountKey", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/keys/{keyId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -670,13 +670,13 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 		keyIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keyId"+"}", url.PathEscape(ParameterValueToString(keyIdValue, "keyId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := PartialUpdateServiceAccountKeyResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -687,7 +687,7 @@ func Test_serviceaccount_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serviceaccount_DefaultApi",
+					Description: "Localhost for serviceaccount_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

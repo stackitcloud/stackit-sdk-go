@@ -61,8 +61,8 @@ type PartialUpdateTokenPayloadGetNameRetType = string
 
 // PartialUpdateTokenPayload struct for PartialUpdateTokenPayload
 type PartialUpdateTokenPayload struct {
-	Description PartialUpdateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty"`
-	Name        PartialUpdateTokenPayloadGetNameAttributeType        `json:"name,omitempty"`
+	Description PartialUpdateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Name        PartialUpdateTokenPayloadGetNameAttributeType        `json:"name,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 }
 
 // NewPartialUpdateTokenPayload instantiates a new PartialUpdateTokenPayload object
@@ -126,6 +126,14 @@ func (o *PartialUpdateTokenPayload) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *PartialUpdateTokenPayload) SetName(v PartialUpdateTokenPayloadGetNameRetType) {
 	setPartialUpdateTokenPayloadGetNameAttributeType(&o.Name, v)
+}
+
+func (o PartialUpdateTokenPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o PartialUpdateTokenPayload) ToMap() (map[string]interface{}, error) {

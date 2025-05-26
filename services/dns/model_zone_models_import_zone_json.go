@@ -82,6 +82,14 @@ func (o *ZoneModelsImportZoneJson) SetRrSets(v ZoneModelsImportZoneJsonGetRrSets
 	setZoneModelsImportZoneJsonGetRrSetsAttributeType(&o.RrSets, v)
 }
 
+func (o ZoneModelsImportZoneJson) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ZoneModelsImportZoneJson) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getZoneModelsImportZoneJsonGetRrSetsAttributeTypeOk(o.RrSets); ok {

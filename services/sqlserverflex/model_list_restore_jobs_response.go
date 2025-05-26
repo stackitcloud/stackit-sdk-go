@@ -82,6 +82,14 @@ func (o *ListRestoreJobsResponse) SetRunningRestores(v ListRestoreJobsResponseGe
 	setListRestoreJobsResponseGetRunningRestoresAttributeType(&o.RunningRestores, v)
 }
 
+func (o ListRestoreJobsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListRestoreJobsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListRestoreJobsResponseGetRunningRestoresAttributeTypeOk(o.RunningRestores); ok {

@@ -82,6 +82,14 @@ func (o *GetUserResponse) SetItem(v GetUserResponseGetItemRetType) {
 	setGetUserResponseGetItemAttributeType(&o.Item, v)
 }
 
+func (o GetUserResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetUserResponseGetItemAttributeTypeOk(o.Item); ok {

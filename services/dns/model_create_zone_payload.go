@@ -11,6 +11,7 @@ API version: 1.0
 package dns
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -147,9 +148,9 @@ func setCreateZonePayloadGetExpireTimeAttributeType(arg *CreateZonePayloadGetExp
 */
 
 // isModel
-type CreateZonePayloadGetExtensionsAttributeType = *CreateZonePayloadExtensions
-type CreateZonePayloadGetExtensionsArgType = CreateZonePayloadExtensions
-type CreateZonePayloadGetExtensionsRetType = CreateZonePayloadExtensions
+type CreateZonePayloadGetExtensionsAttributeType = *ZoneExtensions
+type CreateZonePayloadGetExtensionsArgType = ZoneExtensions
+type CreateZonePayloadGetExtensionsRetType = ZoneExtensions
 
 func getCreateZonePayloadGetExtensionsAttributeTypeOk(arg CreateZonePayloadGetExtensionsAttributeType) (ret CreateZonePayloadGetExtensionsRetType, ok bool) {
 	if arg == nil {
@@ -290,6 +291,7 @@ func setCreateZonePayloadGetRetryTimeAttributeType(arg *CreateZonePayloadGetRetr
 // isEnum
 
 // CreateZonePayloadTypes zone type
+// value type for enums
 type CreateZonePayloadTypes string
 
 // List of Type
@@ -299,19 +301,20 @@ const (
 )
 
 // All allowed values of CreateZonePayload enum
+
 var AllowedCreateZonePayloadTypesEnumValues = []CreateZonePayloadTypes{
 	"primary",
 	"secondary",
 }
 
 func (v *CreateZonePayloadTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateZonePayloadTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateZonePayloadTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -328,7 +331,7 @@ func (v *CreateZonePayloadTypes) UnmarshalJSON(src []byte) error {
 
 // NewCreateZonePayloadTypesFromValue returns a pointer to a valid CreateZonePayloadTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateZonePayloadTypesFromValue(v string) (*CreateZonePayloadTypes, error) {
+func NewCreateZonePayloadTypesFromValue(v CreateZonePayloadTypes) (*CreateZonePayloadTypes, error) {
 	ev := CreateZonePayloadTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -420,6 +423,7 @@ type CreateZonePayload struct {
 	// expire time
 	// Can be cast to int32 without loss of precision.
 	ExpireTime CreateZonePayloadGetExpireTimeAttributeType `json:"expireTime,omitempty"`
+	// optional extensions
 	Extensions CreateZonePayloadGetExtensionsAttributeType `json:"extensions,omitempty"`
 	// if the zone is a reverse zone or not
 	IsReverseZone CreateZonePayloadgetIsReverseZoneAttributeType `json:"isReverseZone,omitempty"`
@@ -628,7 +632,7 @@ func (o *CreateZonePayload) HasExtensions() bool {
 	return ok
 }
 
-// SetExtensions gets a reference to the given CreateZonePayloadExtensions and assigns it to the Extensions field.
+// SetExtensions gets a reference to the given ZoneExtensions and assigns it to the Extensions field.
 func (o *CreateZonePayload) SetExtensions(v CreateZonePayloadGetExtensionsRetType) {
 	setCreateZonePayloadGetExtensionsAttributeType(&o.Extensions, v)
 }
@@ -788,6 +792,14 @@ func (o *CreateZonePayload) SetType(v CreateZonePayloadGetTypeRetType) {
 	setCreateZonePayloadGetTypeAttributeType(&o.Type, v)
 }
 
+func (o CreateZonePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateZonePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateZonePayloadGetAclAttributeTypeOk(o.Acl); ok {
@@ -833,6 +845,44 @@ func (o CreateZonePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateZonePayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"dnsName",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateZonePayload := _CreateZonePayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateZonePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateZonePayload(varCreateZonePayload)
+
+	return err
 }
 
 type NullableCreateZonePayload struct {

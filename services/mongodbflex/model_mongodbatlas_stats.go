@@ -218,6 +218,14 @@ func (o *MongodbatlasStats) SetTs(v MongodbatlasStatsGetTsRetType) {
 	setMongodbatlasStatsGetTsAttributeType(&o.Ts, v)
 }
 
+func (o MongodbatlasStats) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MongodbatlasStats) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMongodbatlasStatsGetMsAttributeTypeOk(o.Ms); ok {

@@ -11,7 +11,9 @@ API version: 2.0
 package authorization
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListMembersResponse type satisfies the MappedNullable interface at compile time
@@ -84,9 +86,9 @@ type ListMembersResponse struct {
 	// REQUIRED
 	Members ListMembersResponseGetMembersAttributeType `json:"members"`
 	// REQUIRED
-	ResourceId ListMembersResponseGetResourceIdAttributeType `json:"resourceId"`
+	ResourceId ListMembersResponseGetResourceIdAttributeType `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
 	// REQUIRED
-	ResourceType ListMembersResponseGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType ListMembersResponseGetResourceTypeAttributeType `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
 }
 
 type _ListMembersResponse ListMembersResponse
@@ -162,6 +164,14 @@ func (o *ListMembersResponse) SetResourceType(v ListMembersResponseGetResourceTy
 	setListMembersResponseGetResourceTypeAttributeType(&o.ResourceType, v)
 }
 
+func (o ListMembersResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListMembersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListMembersResponseGetMembersAttributeTypeOk(o.Members); ok {
@@ -174,6 +184,45 @@ func (o ListMembersResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["ResourceType"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListMembersResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"members",
+		"resourceId",
+		"resourceType",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListMembersResponse := _ListMembersResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListMembersResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListMembersResponse(varListMembersResponse)
+
+	return err
 }
 
 type NullableListMembersResponse struct {

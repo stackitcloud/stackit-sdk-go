@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CloneZone Clone an existing zone with all record sets to a new zone with a different name
 		Clone an existing zone with all record sets to a new zone with a different name
@@ -786,12 +786,12 @@ type ApiValidateMoveCodeRequest interface {
 	Execute() (*Message, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CloneZoneRequest struct {
 	ctx              context.Context
-	apiService       *DefaultApiService
+	apiService       *DefaultAPIService
 	projectId        string
 	zoneId           string
 	cloneZonePayload *CloneZonePayload
@@ -816,7 +816,7 @@ func (r CloneZoneRequest) Execute() (*ZoneResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CloneZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CloneZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -984,7 +984,7 @@ func (a *APIClient) CloneZoneExecute(ctx context.Context, projectId string, zone
 
 type CreateLabelRequest struct {
 	ctx                context.Context
-	apiService         *DefaultApiService
+	apiService         *DefaultAPIService
 	projectId          string
 	zoneId             string
 	createLabelPayload *CreateLabelPayload
@@ -1009,7 +1009,7 @@ func (r CreateLabelRequest) Execute() (*CreateLabelResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateLabel")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateLabel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1166,7 +1166,7 @@ func (a *APIClient) CreateLabelExecute(ctx context.Context, projectId string, zo
 
 type CreateMoveCodeRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 }
@@ -1183,7 +1183,7 @@ func (r CreateMoveCodeRequest) Execute() (*MoveCodeResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateMoveCode")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateMoveCode")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1335,7 +1335,7 @@ func (a *APIClient) CreateMoveCodeExecute(ctx context.Context, projectId string,
 
 type CreateRecordSetRequest struct {
 	ctx                    context.Context
-	apiService             *DefaultApiService
+	apiService             *DefaultAPIService
 	projectId              string
 	zoneId                 string
 	createRecordSetPayload *CreateRecordSetPayload
@@ -1360,7 +1360,7 @@ func (r CreateRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateRecordSet")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1528,7 +1528,7 @@ func (a *APIClient) CreateRecordSetExecute(ctx context.Context, projectId string
 
 type CreateZoneRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	projectId         string
 	createZonePayload *CreateZonePayload
 }
@@ -1552,7 +1552,7 @@ func (r CreateZoneRequest) Execute() (*ZoneResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1716,7 +1716,7 @@ func (a *APIClient) CreateZoneExecute(ctx context.Context, projectId string) (*Z
 
 type DeleteLabelRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 	key        string
@@ -1734,7 +1734,7 @@ func (r DeleteLabelRequest) Execute() (*DeleteLabelResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteLabel")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteLabel")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1901,7 +1901,7 @@ func (a *APIClient) DeleteLabelExecute(ctx context.Context, projectId string, zo
 
 type DeleteMoveCodeRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 }
@@ -1918,7 +1918,7 @@ func (r DeleteMoveCodeRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteMoveCode")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteMoveCode")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2070,7 +2070,7 @@ func (a *APIClient) DeleteMoveCodeExecute(ctx context.Context, projectId string,
 
 type DeleteRecordSetRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 	rrSetId    string
@@ -2088,7 +2088,7 @@ func (r DeleteRecordSetRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteRecordSet")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2244,7 +2244,7 @@ func (a *APIClient) DeleteRecordSetExecute(ctx context.Context, projectId string
 
 type DeleteZoneRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 }
@@ -2261,7 +2261,7 @@ func (r DeleteZoneRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2413,7 +2413,7 @@ func (a *APIClient) DeleteZoneExecute(ctx context.Context, projectId string, zon
 
 type ExportRecordSetsRequest struct {
 	ctx                     context.Context
-	apiService              *DefaultApiService
+	apiService              *DefaultAPIService
 	projectId               string
 	zoneId                  string
 	exportRecordSetsPayload *ExportRecordSetsPayload
@@ -2438,7 +2438,7 @@ func (r ExportRecordSetsRequest) Execute() (*ZoneDataExchange, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ExportRecordSets")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ExportRecordSets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2584,7 +2584,7 @@ func (a *APIClient) ExportRecordSetsExecute(ctx context.Context, projectId strin
 
 type GetRecordSetRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 	rrSetId    string
@@ -2602,7 +2602,7 @@ func (r GetRecordSetRequest) Execute() (*RecordSetResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetRecordSet")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2758,7 +2758,7 @@ func (a *APIClient) GetRecordSetExecute(ctx context.Context, projectId string, z
 
 type GetZoneRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 }
@@ -2775,7 +2775,7 @@ func (r GetZoneRequest) Execute() (*ZoneResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2927,7 +2927,7 @@ func (a *APIClient) GetZoneExecute(ctx context.Context, projectId string, zoneId
 
 type ImportRecordSetsRequest struct {
 	ctx                     context.Context
-	apiService              *DefaultApiService
+	apiService              *DefaultAPIService
 	projectId               string
 	zoneId                  string
 	importRecordSetsPayload *ImportRecordSetsPayload
@@ -2968,7 +2968,7 @@ func (r ImportRecordSetsRequest) Execute() (*ImportRecordSetsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ImportRecordSets")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ImportRecordSets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3131,7 +3131,7 @@ func (a *APIClient) ImportRecordSetsExecute(ctx context.Context, projectId strin
 
 type ListLabelsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 }
@@ -3148,7 +3148,7 @@ func (r ListLabelsRequest) Execute() (*ListLabelsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListLabels")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListLabels")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3311,7 +3311,7 @@ func (a *APIClient) ListLabelsExecute(ctx context.Context, projectId string, zon
 
 type ListRecordSetsRequest struct {
 	ctx                     context.Context
-	apiService              *DefaultApiService
+	apiService              *DefaultAPIService
 	projectId               string
 	zoneId                  string
 	page                    *int32
@@ -3584,7 +3584,7 @@ func (r ListRecordSetsRequest) Execute() (*ListRecordSetsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListRecordSets")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListRecordSets")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3832,7 +3832,7 @@ func (a *APIClient) ListRecordSetsExecute(ctx context.Context, projectId string,
 
 type ListZonesRequest struct {
 	ctx                     context.Context
-	apiService              *DefaultApiService
+	apiService              *DefaultAPIService
 	projectId               string
 	page                    *int32
 	pageSize                *int32
@@ -4200,7 +4200,7 @@ func (r ListZonesRequest) Execute() (*ListZonesResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListZones")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListZones")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4480,7 +4480,7 @@ func (a *APIClient) ListZonesExecute(ctx context.Context, projectId string) (*Li
 
 type MoveZoneRequest struct {
 	ctx             context.Context
-	apiService      *DefaultApiService
+	apiService      *DefaultAPIService
 	projectId       string
 	moveZonePayload *MoveZonePayload
 }
@@ -4504,7 +4504,7 @@ func (r MoveZoneRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.MoveZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.MoveZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4657,7 +4657,7 @@ func (a *APIClient) MoveZoneExecute(ctx context.Context, projectId string) (*Mes
 
 type PartialUpdateRecordRequest struct {
 	ctx                        context.Context
-	apiService                 *DefaultApiService
+	apiService                 *DefaultAPIService
 	projectId                  string
 	zoneId                     string
 	rrSetId                    string
@@ -4683,7 +4683,7 @@ func (r PartialUpdateRecordRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecord")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateRecord")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4844,7 +4844,7 @@ func (a *APIClient) PartialUpdateRecordExecute(ctx context.Context, projectId st
 
 type PartialUpdateRecordSetRequest struct {
 	ctx                           context.Context
-	apiService                    *DefaultApiService
+	apiService                    *DefaultAPIService
 	projectId                     string
 	zoneId                        string
 	rrSetId                       string
@@ -4870,7 +4870,7 @@ func (r PartialUpdateRecordSetRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateRecordSet")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5031,7 +5031,7 @@ func (a *APIClient) PartialUpdateRecordSetExecute(ctx context.Context, projectId
 
 type PartialUpdateZoneRequest struct {
 	ctx                      context.Context
-	apiService               *DefaultApiService
+	apiService               *DefaultAPIService
 	projectId                string
 	zoneId                   string
 	partialUpdateZonePayload *PartialUpdateZonePayload
@@ -5056,7 +5056,7 @@ func (r PartialUpdateZoneRequest) Execute() (*ZoneResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5213,7 +5213,7 @@ func (a *APIClient) PartialUpdateZoneExecute(ctx context.Context, projectId stri
 
 type RestoreRecordSetRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 	rrSetId    string
@@ -5231,7 +5231,7 @@ func (r RestoreRecordSetRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreRecordSet")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.RestoreRecordSet")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5387,7 +5387,7 @@ func (a *APIClient) RestoreRecordSetExecute(ctx context.Context, projectId strin
 
 type RestoreZoneRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 }
@@ -5404,7 +5404,7 @@ func (r RestoreZoneRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RestoreZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.RestoreZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5545,7 +5545,7 @@ func (a *APIClient) RestoreZoneExecute(ctx context.Context, projectId string, zo
 
 type RetrieveZoneRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	zoneId     string
 }
@@ -5562,7 +5562,7 @@ func (r RetrieveZoneRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.RetrieveZone")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.RetrieveZone")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5703,7 +5703,7 @@ func (a *APIClient) RetrieveZoneExecute(ctx context.Context, projectId string, z
 
 type ValidateMoveCodeRequest struct {
 	ctx                     context.Context
-	apiService              *DefaultApiService
+	apiService              *DefaultAPIService
 	projectId               string
 	zoneId                  string
 	validateMoveCodePayload *ValidateMoveCodePayload
@@ -5728,7 +5728,7 @@ func (r ValidateMoveCodeRequest) Execute() (*Message, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ValidateMoveCode")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ValidateMoveCode")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

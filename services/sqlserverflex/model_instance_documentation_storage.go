@@ -131,6 +131,14 @@ func (o *InstanceDocumentationStorage) SetSize(v InstanceDocumentationStorageGet
 	setInstanceDocumentationStorageGetSizeAttributeType(&o.Size, v)
 }
 
+func (o InstanceDocumentationStorage) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceDocumentationStorage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceDocumentationStorageGetClassAttributeTypeOk(o.Class); ok {

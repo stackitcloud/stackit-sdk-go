@@ -106,6 +106,7 @@ type InstanceParametersGetGraphiteRetType = string
 // isEnum
 
 // InstanceParametersLazyfreeLazyEviction the model 'InstanceParameters'
+// value type for enums
 type InstanceParametersLazyfreeLazyEviction string
 
 // List of LazyfreeLazyEviction
@@ -115,19 +116,20 @@ const (
 )
 
 // All allowed values of InstanceParameters enum
+
 var AllowedInstanceParametersLazyfreeLazyEvictionEnumValues = []InstanceParametersLazyfreeLazyEviction{
 	"yes",
 	"no",
 }
 
 func (v *InstanceParametersLazyfreeLazyEviction) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceParametersLazyfreeLazyEviction
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceParametersLazyfreeLazyEviction
 	if value == zeroValue {
 		return nil
 	}
@@ -144,7 +146,7 @@ func (v *InstanceParametersLazyfreeLazyEviction) UnmarshalJSON(src []byte) error
 
 // NewInstanceParametersLazyfreeLazyEvictionFromValue returns a pointer to a valid InstanceParametersLazyfreeLazyEviction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersLazyfreeLazyEvictionFromValue(v string) (*InstanceParametersLazyfreeLazyEviction, error) {
+func NewInstanceParametersLazyfreeLazyEvictionFromValue(v InstanceParametersLazyfreeLazyEviction) (*InstanceParametersLazyfreeLazyEviction, error) {
 	ev := InstanceParametersLazyfreeLazyEviction(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -226,6 +228,7 @@ func setInstanceParametersGetLazyfreeLazyEvictionAttributeType(arg *InstancePara
 // isEnum
 
 // InstanceParametersLazyfreeLazyExpire the model 'InstanceParameters'
+// value type for enums
 type InstanceParametersLazyfreeLazyExpire string
 
 // List of LazyfreeLazyExpire
@@ -235,19 +238,20 @@ const (
 )
 
 // All allowed values of InstanceParameters enum
+
 var AllowedInstanceParametersLazyfreeLazyExpireEnumValues = []InstanceParametersLazyfreeLazyExpire{
 	"yes",
 	"no",
 }
 
 func (v *InstanceParametersLazyfreeLazyExpire) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceParametersLazyfreeLazyExpire
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceParametersLazyfreeLazyExpire
 	if value == zeroValue {
 		return nil
 	}
@@ -264,7 +268,7 @@ func (v *InstanceParametersLazyfreeLazyExpire) UnmarshalJSON(src []byte) error {
 
 // NewInstanceParametersLazyfreeLazyExpireFromValue returns a pointer to a valid InstanceParametersLazyfreeLazyExpire
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersLazyfreeLazyExpireFromValue(v string) (*InstanceParametersLazyfreeLazyExpire, error) {
+func NewInstanceParametersLazyfreeLazyExpireFromValue(v InstanceParametersLazyfreeLazyExpire) (*InstanceParametersLazyfreeLazyExpire, error) {
 	ev := InstanceParametersLazyfreeLazyExpire(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -406,6 +410,7 @@ func setInstanceParametersGetMaxclientsAttributeType(arg *InstanceParametersGetM
 // isEnum
 
 // InstanceParametersMaxmemoryPolicy the model 'InstanceParameters'
+// value type for enums
 type InstanceParametersMaxmemoryPolicy string
 
 // List of MaxmemoryPolicy
@@ -419,6 +424,7 @@ const (
 )
 
 // All allowed values of InstanceParameters enum
+
 var AllowedInstanceParametersMaxmemoryPolicyEnumValues = []InstanceParametersMaxmemoryPolicy{
 	"volatile-lru",
 	"allkeys-lru",
@@ -429,13 +435,13 @@ var AllowedInstanceParametersMaxmemoryPolicyEnumValues = []InstanceParametersMax
 }
 
 func (v *InstanceParametersMaxmemoryPolicy) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceParametersMaxmemoryPolicy
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceParametersMaxmemoryPolicy
 	if value == zeroValue {
 		return nil
 	}
@@ -452,7 +458,7 @@ func (v *InstanceParametersMaxmemoryPolicy) UnmarshalJSON(src []byte) error {
 
 // NewInstanceParametersMaxmemoryPolicyFromValue returns a pointer to a valid InstanceParametersMaxmemoryPolicy
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersMaxmemoryPolicyFromValue(v string) (*InstanceParametersMaxmemoryPolicy, error) {
+func NewInstanceParametersMaxmemoryPolicyFromValue(v InstanceParametersMaxmemoryPolicy) (*InstanceParametersMaxmemoryPolicy, error) {
 	ev := InstanceParametersMaxmemoryPolicy(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -760,28 +766,30 @@ type InstanceParametersGetTlsCiphersuitesRetType = string
 // isEnum
 
 // InstanceParametersTlsProtocols the model 'InstanceParameters'
+// value type for enums
 type InstanceParametersTlsProtocols string
 
 // List of TlsProtocols
 const (
-	INSTANCEPARAMETERSTLS_PROTOCOLS__2 InstanceParametersTlsProtocols = "TLSv1.2"
-	INSTANCEPARAMETERSTLS_PROTOCOLS__3 InstanceParametersTlsProtocols = "TLSv1.3"
+	INSTANCEPARAMETERSTLS_PROTOCOLS_TLSV1_2 InstanceParametersTlsProtocols = "TLSv1.2"
+	INSTANCEPARAMETERSTLS_PROTOCOLS_TLSV1_3 InstanceParametersTlsProtocols = "TLSv1.3"
 )
 
 // All allowed values of InstanceParameters enum
+
 var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsProtocols{
 	"TLSv1.2",
 	"TLSv1.3",
 }
 
 func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceParametersTlsProtocols
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceParametersTlsProtocols
 	if value == zeroValue {
 		return nil
 	}
@@ -798,7 +806,7 @@ func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
 
 // NewInstanceParametersTlsProtocolsFromValue returns a pointer to a valid InstanceParametersTlsProtocols
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersTlsProtocolsFromValue(v string) (*InstanceParametersTlsProtocols, error) {
+func NewInstanceParametersTlsProtocolsFromValue(v InstanceParametersTlsProtocols) (*InstanceParametersTlsProtocols, error) {
 	ev := InstanceParametersTlsProtocols(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -1464,6 +1472,14 @@ func (o *InstanceParameters) HasTlsProtocols() bool {
 // SetTlsProtocols gets a reference to the given string and assigns it to the TlsProtocols field.
 func (o *InstanceParameters) SetTlsProtocols(v InstanceParametersGetTlsProtocolsRetType) {
 	setInstanceParametersGetTlsProtocolsAttributeType(&o.TlsProtocols, v)
+}
+
+func (o InstanceParameters) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o InstanceParameters) ToMap() (map[string]interface{}, error) {

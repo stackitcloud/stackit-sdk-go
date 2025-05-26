@@ -11,6 +11,7 @@ API version: 1.0
 package dns
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -475,6 +476,7 @@ func setZoneGetSerialNumberAttributeType(arg *ZoneGetSerialNumberAttributeType, 
 // isEnum
 
 // ZoneState zone state
+// value type for enums
 type ZoneState string
 
 // List of State
@@ -491,6 +493,7 @@ const (
 )
 
 // All allowed values of Zone enum
+
 var AllowedZoneStateEnumValues = []ZoneState{
 	"CREATING",
 	"CREATE_SUCCEEDED",
@@ -504,13 +507,13 @@ var AllowedZoneStateEnumValues = []ZoneState{
 }
 
 func (v *ZoneState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ZoneState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ZoneState
 	if value == zeroValue {
 		return nil
 	}
@@ -527,7 +530,7 @@ func (v *ZoneState) UnmarshalJSON(src []byte) error {
 
 // NewZoneStateFromValue returns a pointer to a valid ZoneState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewZoneStateFromValue(v string) (*ZoneState, error) {
+func NewZoneStateFromValue(v ZoneState) (*ZoneState, error) {
 	ev := ZoneState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -609,6 +612,7 @@ func setZoneGetStateAttributeType(arg *ZoneGetStateAttributeType, val ZoneGetSta
 // isEnum
 
 // ZoneTypes zone type
+// value type for enums
 type ZoneTypes string
 
 // List of Type
@@ -618,19 +622,20 @@ const (
 )
 
 // All allowed values of Zone enum
+
 var AllowedZoneTypesEnumValues = []ZoneTypes{
 	"primary",
 	"secondary",
 }
 
 func (v *ZoneTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ZoneTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ZoneTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -647,7 +652,7 @@ func (v *ZoneTypes) UnmarshalJSON(src []byte) error {
 
 // NewZoneTypesFromValue returns a pointer to a valid ZoneTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewZoneTypesFromValue(v string) (*ZoneTypes, error) {
+func NewZoneTypesFromValue(v ZoneTypes) (*ZoneTypes, error) {
 	ev := ZoneTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -771,6 +776,7 @@ type ZoneGetUpdateStartedRetType = string
 // isEnum
 
 // ZoneVisibility visibility of the zone
+// value type for enums
 type ZoneVisibility string
 
 // List of Visibility
@@ -779,18 +785,19 @@ const (
 )
 
 // All allowed values of Zone enum
+
 var AllowedZoneVisibilityEnumValues = []ZoneVisibility{
 	"public",
 }
 
 func (v *ZoneVisibility) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ZoneVisibility
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ZoneVisibility
 	if value == zeroValue {
 		return nil
 	}
@@ -807,7 +814,7 @@ func (v *ZoneVisibility) UnmarshalJSON(src []byte) error {
 
 // NewZoneVisibilityFromValue returns a pointer to a valid ZoneVisibility
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewZoneVisibilityFromValue(v string) (*ZoneVisibility, error) {
+func NewZoneVisibilityFromValue(v ZoneVisibility) (*ZoneVisibility, error) {
 	ev := ZoneVisibility(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -1512,6 +1519,14 @@ func (o *Zone) SetVisibility(v ZoneGetVisibilityRetType) {
 	setZoneGetVisibilityAttributeType(&o.Visibility, v)
 }
 
+func (o Zone) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Zone) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getZoneGetAclAttributeTypeOk(o.Acl); ok {
@@ -1596,6 +1611,60 @@ func (o Zone) ToMap() (map[string]interface{}, error) {
 		toSerialize["Visibility"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Zone) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"acl",
+		"creationFinished",
+		"creationStarted",
+		"defaultTTL",
+		"dnsName",
+		"expireTime",
+		"id",
+		"name",
+		"negativeCache",
+		"primaryNameServer",
+		"refreshTime",
+		"retryTime",
+		"serialNumber",
+		"state",
+		"types",
+		"updateFinished",
+		"updateStarted",
+		"visibility",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varZone := _Zone{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varZone)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Zone(varZone)
+
+	return err
 }
 
 type NullableZone struct {

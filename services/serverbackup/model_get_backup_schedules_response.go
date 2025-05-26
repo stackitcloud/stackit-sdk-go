@@ -82,6 +82,14 @@ func (o *GetBackupSchedulesResponse) SetItems(v GetBackupSchedulesResponseGetIte
 	setGetBackupSchedulesResponseGetItemsAttributeType(&o.Items, v)
 }
 
+func (o GetBackupSchedulesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetBackupSchedulesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetBackupSchedulesResponseGetItemsAttributeTypeOk(o.Items); ok {

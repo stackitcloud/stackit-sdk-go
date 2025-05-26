@@ -25,20 +25,22 @@ var _ MappedNullable = &GetServiceStatusResponse{}
 // isEnum
 
 // GetServiceStatusResponseStatus status of the project
+// value type for enums
 type GetServiceStatusResponseStatus string
 
 // List of Status
 const (
-	GETSERVICESTATUSRESPONSESTATUS_UNSPECIFIED     GetServiceStatusResponseStatus = "STATUS_UNSPECIFIED"
-	GETSERVICESTATUSRESPONSESTATUS_READY           GetServiceStatusResponseStatus = "STATUS_READY"
-	GETSERVICESTATUSRESPONSESTATUS_FAILED          GetServiceStatusResponseStatus = "STATUS_FAILED"
-	GETSERVICESTATUSRESPONSESTATUS_UPDATING        GetServiceStatusResponseStatus = "STATUS_UPDATING"
-	GETSERVICESTATUSRESPONSESTATUS_DELETING        GetServiceStatusResponseStatus = "STATUS_DELETING"
-	GETSERVICESTATUSRESPONSESTATUS_DISABLED        GetServiceStatusResponseStatus = "STATUS_DISABLED"
-	GETSERVICESTATUSRESPONSESTATUS_PROJECT_UNKNOWN GetServiceStatusResponseStatus = "STATUS_PROJECT_UNKNOWN"
+	GETSERVICESTATUSRESPONSESTATUS_STATUS_UNSPECIFIED     GetServiceStatusResponseStatus = "STATUS_UNSPECIFIED"
+	GETSERVICESTATUSRESPONSESTATUS_STATUS_READY           GetServiceStatusResponseStatus = "STATUS_READY"
+	GETSERVICESTATUSRESPONSESTATUS_STATUS_FAILED          GetServiceStatusResponseStatus = "STATUS_FAILED"
+	GETSERVICESTATUSRESPONSESTATUS_STATUS_UPDATING        GetServiceStatusResponseStatus = "STATUS_UPDATING"
+	GETSERVICESTATUSRESPONSESTATUS_STATUS_DELETING        GetServiceStatusResponseStatus = "STATUS_DELETING"
+	GETSERVICESTATUSRESPONSESTATUS_STATUS_DISABLED        GetServiceStatusResponseStatus = "STATUS_DISABLED"
+	GETSERVICESTATUSRESPONSESTATUS_STATUS_PROJECT_UNKNOWN GetServiceStatusResponseStatus = "STATUS_PROJECT_UNKNOWN"
 )
 
 // All allowed values of GetServiceStatusResponse enum
+
 var AllowedGetServiceStatusResponseStatusEnumValues = []GetServiceStatusResponseStatus{
 	"STATUS_UNSPECIFIED",
 	"STATUS_READY",
@@ -50,13 +52,13 @@ var AllowedGetServiceStatusResponseStatusEnumValues = []GetServiceStatusResponse
 }
 
 func (v *GetServiceStatusResponseStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value GetServiceStatusResponseStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue GetServiceStatusResponseStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -73,7 +75,7 @@ func (v *GetServiceStatusResponseStatus) UnmarshalJSON(src []byte) error {
 
 // NewGetServiceStatusResponseStatusFromValue returns a pointer to a valid GetServiceStatusResponseStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewGetServiceStatusResponseStatusFromValue(v string) (*GetServiceStatusResponseStatus, error) {
+func NewGetServiceStatusResponseStatusFromValue(v GetServiceStatusResponseStatus) (*GetServiceStatusResponseStatus, error) {
 	ev := GetServiceStatusResponseStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -192,6 +194,14 @@ func (o *GetServiceStatusResponse) HasStatus() bool {
 // SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *GetServiceStatusResponse) SetStatus(v GetServiceStatusResponseGetStatusRetType) {
 	setGetServiceStatusResponseGetStatusAttributeType(&o.Status, v)
+}
+
+func (o GetServiceStatusResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o GetServiceStatusResponse) ToMap() (map[string]interface{}, error) {

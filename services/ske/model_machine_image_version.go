@@ -105,7 +105,7 @@ type MachineImageVersion struct {
 	Cri            MachineImageVersionGetCriAttributeType            `json:"cri,omitempty"`
 	ExpirationDate MachineImageVersionGetExpirationDateAttributeType `json:"expirationDate,omitempty"`
 	State          MachineImageVersionGetStateAttributeType          `json:"state,omitempty"`
-	Version        MachineImageVersionGetVersionAttributeType        `json:"version,omitempty"`
+	Version        MachineImageVersionGetVersionAttributeType        `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
 }
 
 // NewMachineImageVersion instantiates a new MachineImageVersion object
@@ -215,6 +215,14 @@ func (o *MachineImageVersion) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *MachineImageVersion) SetVersion(v MachineImageVersionGetVersionRetType) {
 	setMachineImageVersionGetVersionAttributeType(&o.Version, v)
+}
+
+func (o MachineImageVersion) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o MachineImageVersion) ToMap() (map[string]interface{}, error) {

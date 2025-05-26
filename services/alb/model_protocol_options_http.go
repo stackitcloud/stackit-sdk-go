@@ -83,6 +83,14 @@ func (o *ProtocolOptionsHTTP) SetHosts(v ProtocolOptionsHTTPGetHostsRetType) {
 	setProtocolOptionsHTTPGetHostsAttributeType(&o.Hosts, v)
 }
 
+func (o ProtocolOptionsHTTP) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ProtocolOptionsHTTP) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getProtocolOptionsHTTPGetHostsAttributeTypeOk(o.Hosts); ok {

@@ -83,6 +83,14 @@ func (o *GetServerLog200Response) SetOutput(v GetServerLog200ResponseGetOutputRe
 	setGetServerLog200ResponseGetOutputAttributeType(&o.Output, v)
 }
 
+func (o GetServerLog200Response) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetServerLog200Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetServerLog200ResponseGetOutputAttributeTypeOk(o.Output); ok {

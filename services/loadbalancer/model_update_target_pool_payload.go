@@ -122,7 +122,7 @@ func setUpdateTargetPoolPayloadGetTargetsAttributeType(arg *UpdateTargetPoolPayl
 type UpdateTargetPoolPayload struct {
 	ActiveHealthCheck UpdateTargetPoolPayloadGetActiveHealthCheckAttributeType `json:"activeHealthCheck,omitempty"`
 	// Target pool name
-	Name               UpdateTargetPoolPayloadGetNameAttributeType               `json:"name,omitempty"`
+	Name               UpdateTargetPoolPayloadGetNameAttributeType               `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,18}[0-9a-z])?$"`
 	SessionPersistence UpdateTargetPoolPayloadGetSessionPersistenceAttributeType `json:"sessionPersistence,omitempty"`
 	// The number identifying the port where each target listens for traffic.
 	// Can be cast to int32 without loss of precision.
@@ -261,6 +261,14 @@ func (o *UpdateTargetPoolPayload) HasTargets() bool {
 // SetTargets gets a reference to the given []Target and assigns it to the Targets field.
 func (o *UpdateTargetPoolPayload) SetTargets(v UpdateTargetPoolPayloadGetTargetsRetType) {
 	setUpdateTargetPoolPayloadGetTargetsAttributeType(&o.Targets, v)
+}
+
+func (o UpdateTargetPoolPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateTargetPoolPayload) ToMap() (map[string]interface{}, error) {

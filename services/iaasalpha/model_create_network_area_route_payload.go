@@ -83,6 +83,14 @@ func (o *CreateNetworkAreaRoutePayload) SetIpv4(v CreateNetworkAreaRoutePayloadG
 	setCreateNetworkAreaRoutePayloadGetIpv4AttributeType(&o.Ipv4, v)
 }
 
+func (o CreateNetworkAreaRoutePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateNetworkAreaRoutePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateNetworkAreaRoutePayloadGetIpv4AttributeTypeOk(o.Ipv4); ok {

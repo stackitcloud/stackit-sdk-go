@@ -191,6 +191,7 @@ type CommandDetailsGetStartedAtRetType = string
 // isEnum
 
 // CommandDetailsStatus the model 'CommandDetails'
+// value type for enums
 type CommandDetailsStatus string
 
 // List of Status
@@ -202,6 +203,7 @@ const (
 )
 
 // All allowed values of CommandDetails enum
+
 var AllowedCommandDetailsStatusEnumValues = []CommandDetailsStatus{
 	"pending",
 	"running",
@@ -210,13 +212,13 @@ var AllowedCommandDetailsStatusEnumValues = []CommandDetailsStatus{
 }
 
 func (v *CommandDetailsStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CommandDetailsStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CommandDetailsStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -233,7 +235,7 @@ func (v *CommandDetailsStatus) UnmarshalJSON(src []byte) error {
 
 // NewCommandDetailsStatusFromValue returns a pointer to a valid CommandDetailsStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCommandDetailsStatusFromValue(v string) (*CommandDetailsStatus, error) {
+func NewCommandDetailsStatusFromValue(v CommandDetailsStatus) (*CommandDetailsStatus, error) {
 	ev := CommandDetailsStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -545,6 +547,14 @@ func (o *CommandDetails) HasStatus() bool {
 // SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *CommandDetails) SetStatus(v CommandDetailsGetStatusRetType) {
 	setCommandDetailsGetStatusAttributeType(&o.Status, v)
+}
+
+func (o CommandDetails) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CommandDetails) ToMap() (map[string]interface{}, error) {

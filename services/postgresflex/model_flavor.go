@@ -216,6 +216,14 @@ func (o *Flavor) SetMemory(v FlavorGetMemoryRetType) {
 	setFlavorGetMemoryAttributeType(&o.Memory, v)
 }
 
+func (o Flavor) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Flavor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getFlavorGetCpuAttributeTypeOk(o.Cpu); ok {

@@ -11,6 +11,7 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,6 +26,7 @@ var _ MappedNullable = &MetricsRelabelConfig{}
 // isEnum
 
 // MetricsRelabelConfigAction the model 'MetricsRelabelConfig'
+// value type for enums
 type MetricsRelabelConfigAction string
 
 // List of Action
@@ -39,6 +41,7 @@ const (
 )
 
 // All allowed values of MetricsRelabelConfig enum
+
 var AllowedMetricsRelabelConfigActionEnumValues = []MetricsRelabelConfigAction{
 	"replace",
 	"keep",
@@ -50,13 +53,13 @@ var AllowedMetricsRelabelConfigActionEnumValues = []MetricsRelabelConfigAction{
 }
 
 func (v *MetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
-	var value string
+	var value MetricsRelabelConfigAction
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue MetricsRelabelConfigAction
 	if value == zeroValue {
 		return nil
 	}
@@ -73,7 +76,7 @@ func (v *MetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
 
 // NewMetricsRelabelConfigActionFromValue returns a pointer to a valid MetricsRelabelConfigAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewMetricsRelabelConfigActionFromValue(v string) (*MetricsRelabelConfigAction, error) {
+func NewMetricsRelabelConfigActionFromValue(v MetricsRelabelConfigAction) (*MetricsRelabelConfigAction, error) {
 	ev := MetricsRelabelConfigAction(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -467,6 +470,14 @@ func (o *MetricsRelabelConfig) SetTargetLabel(v MetricsRelabelConfigGetTargetLab
 	setMetricsRelabelConfigGetTargetLabelAttributeType(&o.TargetLabel, v)
 }
 
+func (o MetricsRelabelConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MetricsRelabelConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMetricsRelabelConfigGetActionAttributeTypeOk(o.Action); ok {
@@ -491,6 +502,43 @@ func (o MetricsRelabelConfig) ToMap() (map[string]interface{}, error) {
 		toSerialize["TargetLabel"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *MetricsRelabelConfig) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"sourceLabels",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMetricsRelabelConfig := _MetricsRelabelConfig{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMetricsRelabelConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MetricsRelabelConfig(varMetricsRelabelConfig)
+
+	return err
 }
 
 type NullableMetricsRelabelConfig struct {

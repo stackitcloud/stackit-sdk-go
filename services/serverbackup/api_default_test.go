@@ -1,7 +1,7 @@
 /*
 STACKIT Server Backup Management API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -21,9 +21,9 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_serverbackup_DefaultApiService(t *testing.T) {
+func Test_serverbackup_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backups"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -32,13 +32,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := BackupJob{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -49,7 +49,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -81,7 +81,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateBackupSchedule", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CreateBackupSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backup-schedules"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -90,13 +90,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := BackupSchedule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -107,7 +107,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -139,7 +139,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backups/{backupId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -150,10 +150,10 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		backupIdValue := "backupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -164,7 +164,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -194,7 +194,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteBackupSchedule", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteBackupSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backup-schedules/{backupScheduleId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -205,10 +205,10 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		backupScheduleIdValue := "backupScheduleId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupScheduleId"+"}", url.PathEscape(ParameterValueToString(backupScheduleIdValue, "backupScheduleId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -219,7 +219,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -249,7 +249,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteVolumeBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DeleteVolumeBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backups/{backupId}/volume-backups/{volumeBackupId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -262,10 +262,10 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		volumeBackupIdValue := "volumeBackupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeBackupId"+"}", url.PathEscape(ParameterValueToString(volumeBackupIdValue, "volumeBackupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -276,7 +276,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -307,7 +307,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DisableServiceResource", func(t *testing.T) {
+	t.Run("Test DefaultAPIService DisableServiceResource", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -316,10 +316,10 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -330,7 +330,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -359,7 +359,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService EnableServiceResource", func(t *testing.T) {
+	t.Run("Test DefaultAPIService EnableServiceResource", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -368,10 +368,10 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -382,7 +382,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -411,7 +411,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backups/{backupId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -422,13 +422,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		backupIdValue := "backupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := Backup{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -439,7 +439,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -472,7 +472,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetBackupSchedule", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetBackupSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backup-schedules/{backupScheduleId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -483,13 +483,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		backupScheduleIdValue := "backupScheduleId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupScheduleId"+"}", url.PathEscape(ParameterValueToString(backupScheduleIdValue, "backupScheduleId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := BackupSchedule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -500,7 +500,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -533,7 +533,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService GetServiceResource", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetServiceResource", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -542,13 +542,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetBackupServiceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -559,7 +559,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -591,18 +591,18 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListBackupPolicies", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListBackupPolicies", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/backup-policies"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetBackupPoliciesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -613,7 +613,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -643,7 +643,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListBackupSchedules", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListBackupSchedules", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backup-schedules"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -652,13 +652,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetBackupSchedulesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -669,7 +669,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -701,7 +701,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListBackups", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backups"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -710,13 +710,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := GetBackupsListResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -727,7 +727,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -759,7 +759,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RestoreBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RestoreBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backups/{backupId}/restore"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -770,10 +770,10 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		backupIdValue := "backupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -784,7 +784,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -814,7 +814,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RestoreVolumeBackup", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RestoreVolumeBackup", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backups/{backupId}/volume-backups/{volumeBackupId}/restore"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -827,10 +827,10 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		volumeBackupIdValue := "volumeBackupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeBackupId"+"}", url.PathEscape(ParameterValueToString(volumeBackupIdValue, "volumeBackupId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -841,7 +841,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -872,7 +872,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateBackupSchedule", func(t *testing.T) {
+	t.Run("Test DefaultAPIService UpdateBackupSchedule", func(t *testing.T) {
 		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/backup-schedules/{backupScheduleId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
@@ -883,13 +883,13 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 		backupScheduleIdValue := "backupScheduleId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupScheduleId"+"}", url.PathEscape(ParameterValueToString(backupScheduleIdValue, "backupScheduleId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := BackupSchedule{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -900,7 +900,7 @@ func Test_serverbackup_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for serverbackup_DefaultApi",
+					Description: "Localhost for serverbackup_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

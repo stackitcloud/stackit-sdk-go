@@ -11,7 +11,9 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -206,6 +208,14 @@ func (o *AccessTokenMetadata) SetValidUntil(v AccessTokenMetadataGetValidUntilRe
 	setAccessTokenMetadataGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
+func (o AccessTokenMetadata) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o AccessTokenMetadata) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getAccessTokenMetadatagetActiveAttributeTypeOk(o.Active); ok {
@@ -221,6 +231,46 @@ func (o AccessTokenMetadata) ToMap() (map[string]interface{}, error) {
 		toSerialize["ValidUntil"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *AccessTokenMetadata) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"active",
+		"createdAt",
+		"id",
+		"validUntil",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAccessTokenMetadata := _AccessTokenMetadata{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAccessTokenMetadata)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AccessTokenMetadata(varAccessTokenMetadata)
+
+	return err
 }
 
 type NullableAccessTokenMetadata struct {

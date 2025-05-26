@@ -41,7 +41,7 @@ type CreateServerNetworkingGetNetworkIdRetType = string
 // CreateServerNetworking The initial networking setup for the server creation with a network.
 type CreateServerNetworking struct {
 	// Universally Unique Identifier (UUID).
-	NetworkId CreateServerNetworkingGetNetworkIdAttributeType `json:"networkId,omitempty"`
+	NetworkId CreateServerNetworkingGetNetworkIdAttributeType `json:"networkId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 }
 
 // NewCreateServerNetworking instantiates a new CreateServerNetworking object
@@ -82,6 +82,14 @@ func (o *CreateServerNetworking) HasNetworkId() bool {
 // SetNetworkId gets a reference to the given string and assigns it to the NetworkId field.
 func (o *CreateServerNetworking) SetNetworkId(v CreateServerNetworkingGetNetworkIdRetType) {
 	setCreateServerNetworkingGetNetworkIdAttributeType(&o.NetworkId, v)
+}
+
+func (o CreateServerNetworking) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CreateServerNetworking) ToMap() (map[string]interface{}, error) {

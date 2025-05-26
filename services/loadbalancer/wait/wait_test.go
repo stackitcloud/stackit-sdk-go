@@ -51,21 +51,21 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "create_succeeded",
 			instanceGetFails: false,
-			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_READY,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_READY,
 			wantErr:          false,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed",
 			instanceGetFails: false,
-			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_ERROR,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_ERROR,
 			wantErr:          true,
 			wantResp:         true,
 		},
 		{
 			desc:             "create_failed_2",
 			instanceGetFails: false,
-			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_TERMINATING,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_TERMINATING,
 			wantErr:          true,
 			wantResp:         true,
 		},
@@ -78,7 +78,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 		{
 			desc:             "timeout",
 			instanceGetFails: false,
-			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_PENDING,
+			instanceStatus:   loadbalancer.LOADBALANCERSTATUS_STATUS_PENDING,
 			wantErr:          true,
 			wantResp:         false,
 		},

@@ -62,7 +62,7 @@ type TargetGetIpRetType = string
 // Target struct for Target
 type Target struct {
 	// Target name
-	DisplayName TargetGetDisplayNameAttributeType `json:"displayName,omitempty"`
+	DisplayName TargetGetDisplayNameAttributeType `json:"displayName,omitempty" validate:"regexp=^[0-9a-zA-Z](?:(?:[0-9a-zA-Z]|-){0,61}[0-9a-zA-Z])?$"`
 	// Target IP. Must by unique within a target pool.
 	Ip TargetGetIpAttributeType `json:"ip,omitempty"`
 }
@@ -128,6 +128,14 @@ func (o *Target) HasIp() bool {
 // SetIp gets a reference to the given string and assigns it to the Ip field.
 func (o *Target) SetIp(v TargetGetIpRetType) {
 	setTargetGetIpAttributeType(&o.Ip, v)
+}
+
+func (o Target) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o Target) ToMap() (map[string]interface{}, error) {

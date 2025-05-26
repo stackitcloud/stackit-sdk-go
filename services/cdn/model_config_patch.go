@@ -22,9 +22,9 @@ var _ MappedNullable = &ConfigPatch{}
 */
 
 // isModel
-type ConfigPatchGetBackendAttributeType = *ConfigPatchBackend
-type ConfigPatchGetBackendArgType = ConfigPatchBackend
-type ConfigPatchGetBackendRetType = ConfigPatchBackend
+type ConfigPatchGetBackendAttributeType = *HttpBackendPatch
+type ConfigPatchGetBackendArgType = HttpBackendPatch
+type ConfigPatchGetBackendRetType = HttpBackendPatch
 
 func getConfigPatchGetBackendAttributeTypeOk(arg ConfigPatchGetBackendAttributeType) (ret ConfigPatchGetBackendRetType, ok bool) {
 	if arg == nil {
@@ -164,7 +164,7 @@ func (o *ConfigPatch) HasBackend() bool {
 	return ok
 }
 
-// SetBackend gets a reference to the given ConfigPatchBackend and assigns it to the Backend field.
+// SetBackend gets a reference to the given HttpBackendPatch and assigns it to the Backend field.
 func (o *ConfigPatch) SetBackend(v ConfigPatchGetBackendRetType) {
 	setConfigPatchGetBackendAttributeType(&o.Backend, v)
 }
@@ -270,6 +270,14 @@ func (o *ConfigPatch) HasRegions() bool {
 // SetRegions gets a reference to the given []Region and assigns it to the Regions field.
 func (o *ConfigPatch) SetRegions(v ConfigPatchGetRegionsRetType) {
 	setConfigPatchGetRegionsAttributeType(&o.Regions, v)
+}
+
+func (o ConfigPatch) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ConfigPatch) ToMap() (map[string]interface{}, error) {

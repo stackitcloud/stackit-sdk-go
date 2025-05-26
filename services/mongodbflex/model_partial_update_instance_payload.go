@@ -439,6 +439,14 @@ func (o *PartialUpdateInstancePayload) SetVersion(v PartialUpdateInstancePayload
 	setPartialUpdateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
+func (o PartialUpdateInstancePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {

@@ -262,6 +262,14 @@ func (o *RecordDataExchange) SetType(v RecordDataExchangeGetTypeRetType) {
 	setRecordDataExchangeGetTypeAttributeType(&o.Type, v)
 }
 
+func (o RecordDataExchange) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o RecordDataExchange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRecordDataExchangeGetCommentAttributeTypeOk(o.Comment); ok {

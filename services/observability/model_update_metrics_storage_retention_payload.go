@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateMetricsStorageRetentionPayload type satisfies the MappedNullable interface at compile time
@@ -166,6 +168,14 @@ func (o *UpdateMetricsStorageRetentionPayload) SetMetricsRetentionTimeRaw(v Upda
 	setUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType(&o.MetricsRetentionTimeRaw, v)
 }
 
+func (o UpdateMetricsStorageRetentionPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateMetricsStorageRetentionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h); ok {
@@ -178,6 +188,45 @@ func (o UpdateMetricsStorageRetentionPayload) ToMap() (map[string]interface{}, e
 		toSerialize["MetricsRetentionTimeRaw"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *UpdateMetricsStorageRetentionPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"metricsRetentionTime1h",
+		"metricsRetentionTime5m",
+		"metricsRetentionTimeRaw",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateMetricsStorageRetentionPayload := _UpdateMetricsStorageRetentionPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateMetricsStorageRetentionPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateMetricsStorageRetentionPayload(varUpdateMetricsStorageRetentionPayload)
+
+	return err
 }
 
 type NullableUpdateMetricsStorageRetentionPayload struct {

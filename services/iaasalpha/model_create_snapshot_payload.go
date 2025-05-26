@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -187,11 +189,11 @@ type CreateSnapshotPayload struct {
 	// Date-time when resource was created.
 	CreatedAt CreateSnapshotPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id CreateSnapshotPayloadGetIdAttributeType `json:"id,omitempty"`
+	Id CreateSnapshotPayloadGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels CreateSnapshotPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name CreateSnapshotPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name CreateSnapshotPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// Size in Gigabyte.
 	Size CreateSnapshotPayloadGetSizeAttributeType `json:"size,omitempty"`
 	// The status of a snapshot object. Possible values: `AVAILABLE`, `BACKING-UP`, `CREATING`, `DELETED`, `DELETING`, `ERROR`, `RESTORING`, `UNMANAGING`, `UPDATING`.
@@ -200,7 +202,7 @@ type CreateSnapshotPayload struct {
 	UpdatedAt CreateSnapshotPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	VolumeId CreateSnapshotPayloadGetVolumeIdAttributeType `json:"volumeId"`
+	VolumeId CreateSnapshotPayloadGetVolumeIdAttributeType `json:"volumeId" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 }
 
 type _CreateSnapshotPayload CreateSnapshotPayload
@@ -401,6 +403,14 @@ func (o *CreateSnapshotPayload) SetVolumeId(v CreateSnapshotPayloadGetVolumeIdRe
 	setCreateSnapshotPayloadGetVolumeIdAttributeType(&o.VolumeId, v)
 }
 
+func (o CreateSnapshotPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateSnapshotPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
@@ -428,6 +438,43 @@ func (o CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["VolumeId"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateSnapshotPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"volumeId",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateSnapshotPayload := _CreateSnapshotPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateSnapshotPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateSnapshotPayload(varCreateSnapshotPayload)
+
+	return err
 }
 
 type NullableCreateSnapshotPayload struct {

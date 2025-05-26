@@ -85,7 +85,7 @@ type UpdateVirtualIPPayload struct {
 	// A list of UUIDs.
 	Members UpdateVirtualIPPayloadGetMembersAttributeType `json:"members,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name UpdateVirtualIPPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name UpdateVirtualIPPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 }
 
 // NewUpdateVirtualIPPayload instantiates a new UpdateVirtualIPPayload object
@@ -173,6 +173,14 @@ func (o *UpdateVirtualIPPayload) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *UpdateVirtualIPPayload) SetName(v UpdateVirtualIPPayloadGetNameRetType) {
 	setUpdateVirtualIPPayloadGetNameAttributeType(&o.Name, v)
+}
+
+func (o UpdateVirtualIPPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o UpdateVirtualIPPayload) ToMap() (map[string]interface{}, error) {

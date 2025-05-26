@@ -11,7 +11,9 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -286,6 +288,14 @@ func (o *DistributionStatisticsRecord) SetStart(v DistributionStatisticsRecordGe
 	setDistributionStatisticsRecordGetStartAttributeType(&o.Start, v)
 }
 
+func (o DistributionStatisticsRecord) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o DistributionStatisticsRecord) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDistributionStatisticsRecordGetCachedRequestsAttributeTypeOk(o.CachedRequests); ok {
@@ -307,6 +317,48 @@ func (o DistributionStatisticsRecord) ToMap() (map[string]interface{}, error) {
 		toSerialize["Start"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *DistributionStatisticsRecord) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"cachedRequests",
+		"totalRequests",
+		"totalTrafficBytes",
+		"end",
+		"regions",
+		"start",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDistributionStatisticsRecord := _DistributionStatisticsRecord{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDistributionStatisticsRecord)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DistributionStatisticsRecord(varDistributionStatisticsRecord)
+
+	return err
 }
 
 type NullableDistributionStatisticsRecord struct {

@@ -127,6 +127,14 @@ func (o *MssqlDatabaseCompatibility) SetDescription(v MssqlDatabaseCompatibility
 	setMssqlDatabaseCompatibilityGetDescriptionAttributeType(&o.Description, v)
 }
 
+func (o MssqlDatabaseCompatibility) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MssqlDatabaseCompatibility) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMssqlDatabaseCompatibilityGetCompatibilityLevelAttributeTypeOk(o.CompatibilityLevel); ok {

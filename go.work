@@ -32,7 +32,6 @@ use (
 	./examples/waiter
 	./scripts
 	./services/alb
-	./services/archiving
 	./services/authorization
 	./services/cdn
 	./services/certificates
@@ -40,7 +39,6 @@ use (
 	./services/git
 	./services/iaas
 	./services/iaasalpha
-	./services/kms
 	./services/lbapplication
 	./services/loadbalancer
 	./services/logme

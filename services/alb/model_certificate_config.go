@@ -83,6 +83,14 @@ func (o *CertificateConfig) SetCertificateIds(v CertificateConfigGetCertificateI
 	setCertificateConfigGetCertificateIdsAttributeType(&o.CertificateIds, v)
 }
 
+func (o CertificateConfig) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CertificateConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCertificateConfigGetCertificateIdsAttributeTypeOk(o.CertificateIds); ok {

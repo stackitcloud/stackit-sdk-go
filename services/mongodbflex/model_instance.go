@@ -168,6 +168,7 @@ func setInstanceGetReplicasAttributeType(arg *InstanceGetReplicasAttributeType, 
 // isEnum
 
 // InstanceStatus The current status of the instance.
+// value type for enums
 type InstanceStatus string
 
 // List of Status
@@ -180,6 +181,7 @@ const (
 )
 
 // All allowed values of Instance enum
+
 var AllowedInstanceStatusEnumValues = []InstanceStatus{
 	"READY",
 	"PENDING",
@@ -189,13 +191,13 @@ var AllowedInstanceStatusEnumValues = []InstanceStatus{
 }
 
 func (v *InstanceStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -212,7 +214,7 @@ func (v *InstanceStatus) UnmarshalJSON(src []byte) error {
 
 // NewInstanceStatusFromValue returns a pointer to a valid InstanceStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceStatusFromValue(v string) (*InstanceStatus, error) {
+func NewInstanceStatusFromValue(v InstanceStatus) (*InstanceStatus, error) {
 	ev := InstanceStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -588,6 +590,14 @@ func (o *Instance) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *Instance) SetVersion(v InstanceGetVersionRetType) {
 	setInstanceGetVersionAttributeType(&o.Version, v)
+}
+
+func (o Instance) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o Instance) ToMap() (map[string]interface{}, error) {

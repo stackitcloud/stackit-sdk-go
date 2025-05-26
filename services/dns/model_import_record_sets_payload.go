@@ -82,6 +82,14 @@ func (o *ImportRecordSetsPayload) SetRrSets(v ImportRecordSetsPayloadGetRrSetsRe
 	setImportRecordSetsPayloadGetRrSetsAttributeType(&o.RrSets, v)
 }
 
+func (o ImportRecordSetsPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ImportRecordSetsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getImportRecordSetsPayloadGetRrSetsAttributeTypeOk(o.RrSets); ok {

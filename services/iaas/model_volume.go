@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -317,16 +319,16 @@ type Volume struct {
 	// Description Object. Allows string up to 127 Characters.
 	Description VolumeGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id          VolumeGetIdAttributeType          `json:"id,omitempty"`
+	Id          VolumeGetIdAttributeType          `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	ImageConfig VolumeGetImageConfigAttributeType `json:"imageConfig,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels VolumeGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name VolumeGetNameAttributeType `json:"name,omitempty"`
+	Name VolumeGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	PerformanceClass VolumeGetPerformanceClassAttributeType `json:"performanceClass,omitempty"`
+	PerformanceClass VolumeGetPerformanceClassAttributeType `json:"performanceClass,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// Universally Unique Identifier (UUID).
-	ServerId VolumeGetServerIdAttributeType `json:"serverId,omitempty"`
+	ServerId VolumeGetServerIdAttributeType `json:"serverId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Size in Gigabyte.
 	Size   VolumeGetSizeAttributeType   `json:"size,omitempty"`
 	Source VolumeGetSourceAttributeType `json:"source,omitempty"`
@@ -672,6 +674,14 @@ func (o *Volume) SetUpdatedAt(v VolumeGetUpdatedAtRetType) {
 	setVolumeGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+func (o Volume) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Volume) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getVolumeGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
@@ -717,6 +727,43 @@ func (o Volume) ToMap() (map[string]interface{}, error) {
 		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Volume) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"availabilityZone",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varVolume := _Volume{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varVolume)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Volume(varVolume)
+
+	return err
 }
 
 type NullableVolume struct {

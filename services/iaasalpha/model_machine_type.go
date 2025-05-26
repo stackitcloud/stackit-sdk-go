@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the MachineType type satisfies the MappedNullable interface at compile time
@@ -150,7 +152,7 @@ type MachineType struct {
 	ExtraSpecs MachineTypeGetExtraSpecsAttributeType `json:"extraSpecs,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name MachineTypeGetNameAttributeType `json:"name"`
+	Name MachineTypeGetNameAttributeType `json:"name" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// Size in Megabyte.
 	// REQUIRED
 	Ram MachineTypeGetRamAttributeType `json:"ram"`
@@ -296,6 +298,14 @@ func (o *MachineType) SetVcpus(v MachineTypeGetVcpusRetType) {
 	setMachineTypeGetVcpusAttributeType(&o.Vcpus, v)
 }
 
+func (o MachineType) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MachineType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMachineTypeGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -317,6 +327,46 @@ func (o MachineType) ToMap() (map[string]interface{}, error) {
 		toSerialize["Vcpus"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *MachineType) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"disk",
+		"name",
+		"ram",
+		"vcpus",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMachineType := _MachineType{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMachineType)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MachineType(varMachineType)
+
+	return err
 }
 
 type NullableMachineType struct {

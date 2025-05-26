@@ -82,6 +82,14 @@ func (o *DeleteDistributionResponse) SetDistribution(v DeleteDistributionRespons
 	setDeleteDistributionResponseGetDistributionAttributeType(&o.Distribution, v)
 }
 
+func (o DeleteDistributionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o DeleteDistributionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDeleteDistributionResponseGetDistributionAttributeTypeOk(o.Distribution); ok {

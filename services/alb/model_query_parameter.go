@@ -130,6 +130,14 @@ func (o *QueryParameter) SetName(v QueryParameterGetNameRetType) {
 	setQueryParameterGetNameAttributeType(&o.Name, v)
 }
 
+func (o QueryParameter) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o QueryParameter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getQueryParameterGetExactMatchAttributeTypeOk(o.ExactMatch); ok {

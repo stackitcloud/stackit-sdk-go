@@ -106,7 +106,7 @@ type CredentialsResponse struct {
 	// The credentials reference can be used for observability of the Load Balancer.
 	CredentialsRef CredentialsResponseGetCredentialsRefAttributeType `json:"credentialsRef,omitempty"`
 	// Credential name
-	DisplayName CredentialsResponseGetDisplayNameAttributeType `json:"displayName,omitempty"`
+	DisplayName CredentialsResponseGetDisplayNameAttributeType `json:"displayName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Region of the Credential
 	Region CredentialsResponseGetRegionAttributeType `json:"region,omitempty"`
 	// The username used for the ARGUS instance
@@ -220,6 +220,14 @@ func (o *CredentialsResponse) HasUsername() bool {
 // SetUsername gets a reference to the given string and assigns it to the Username field.
 func (o *CredentialsResponse) SetUsername(v CredentialsResponseGetUsernameRetType) {
 	setCredentialsResponseGetUsernameAttributeType(&o.Username, v)
+}
+
+func (o CredentialsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CredentialsResponse) ToMap() (map[string]interface{}, error) {

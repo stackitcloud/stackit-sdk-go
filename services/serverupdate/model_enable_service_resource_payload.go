@@ -83,6 +83,14 @@ func (o *EnableServiceResourcePayload) SetUpdatePolicyId(v EnableServiceResource
 	setEnableServiceResourcePayloadGetUpdatePolicyIdAttributeType(&o.UpdatePolicyId, v)
 }
 
+func (o EnableServiceResourcePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o EnableServiceResourcePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getEnableServiceResourcePayloadGetUpdatePolicyIdAttributeTypeOk(o.UpdatePolicyId); ok {

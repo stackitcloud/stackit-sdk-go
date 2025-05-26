@@ -83,6 +83,14 @@ func (o *CreateDatabaseResponse) SetId(v CreateDatabaseResponseGetIdRetType) {
 	setCreateDatabaseResponseGetIdAttributeType(&o.Id, v)
 }
 
+func (o CreateDatabaseResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateDatabaseResponseGetIdAttributeTypeOk(o.Id); ok {

@@ -127,6 +127,14 @@ func (o *CreateUserPayload) SetUsername(v CreateUserPayloadGetUsernameRetType) {
 	setCreateUserPayloadGetUsernameAttributeType(&o.Username, v)
 }
 
+func (o CreateUserPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateUserPayloadGetRolesAttributeTypeOk(o.Roles); ok {

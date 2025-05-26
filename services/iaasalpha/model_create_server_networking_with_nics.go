@@ -83,6 +83,14 @@ func (o *CreateServerNetworkingWithNics) SetNicIds(v CreateServerNetworkingWithN
 	setCreateServerNetworkingWithNicsGetNicIdsAttributeType(&o.NicIds, v)
 }
 
+func (o CreateServerNetworkingWithNics) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateServerNetworkingWithNics) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateServerNetworkingWithNicsGetNicIdsAttributeTypeOk(o.NicIds); ok {

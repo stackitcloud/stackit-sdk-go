@@ -11,6 +11,7 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -155,6 +156,7 @@ type ProjectInstanceFullGetServiceNameRetType = string
 // isEnum
 
 // ProjectInstanceFullStatus the model 'ProjectInstanceFull'
+// value type for enums
 type ProjectInstanceFullStatus string
 
 // List of Status
@@ -171,6 +173,7 @@ const (
 )
 
 // All allowed values of ProjectInstanceFull enum
+
 var AllowedProjectInstanceFullStatusEnumValues = []ProjectInstanceFullStatus{
 	"CREATING",
 	"CREATE_SUCCEEDED",
@@ -184,13 +187,13 @@ var AllowedProjectInstanceFullStatusEnumValues = []ProjectInstanceFullStatus{
 }
 
 func (v *ProjectInstanceFullStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ProjectInstanceFullStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ProjectInstanceFullStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -207,7 +210,7 @@ func (v *ProjectInstanceFullStatus) UnmarshalJSON(src []byte) error {
 
 // NewProjectInstanceFullStatusFromValue returns a pointer to a valid ProjectInstanceFullStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewProjectInstanceFullStatusFromValue(v string) (*ProjectInstanceFullStatus, error) {
+func NewProjectInstanceFullStatusFromValue(v ProjectInstanceFullStatus) (*ProjectInstanceFullStatus, error) {
 	ev := ProjectInstanceFullStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -464,6 +467,14 @@ func (o *ProjectInstanceFull) SetStatus(v ProjectInstanceFullGetStatusRetType) {
 	setProjectInstanceFullGetStatusAttributeType(&o.Status, v)
 }
 
+func (o ProjectInstanceFull) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ProjectInstanceFull) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getProjectInstanceFullGetErrorAttributeTypeOk(o.Error); ok {
@@ -488,6 +499,47 @@ func (o ProjectInstanceFull) ToMap() (map[string]interface{}, error) {
 		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ProjectInstanceFull) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"instance",
+		"planName",
+		"serviceName",
+		"status",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varProjectInstanceFull := _ProjectInstanceFull{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varProjectInstanceFull)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProjectInstanceFull(varProjectInstanceFull)
+
+	return err
 }
 
 type NullableProjectInstanceFull struct {

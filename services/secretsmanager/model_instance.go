@@ -11,7 +11,9 @@ API version: 1.4.1
 package secretsmanager
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Instance type satisfies the MappedNullable interface at compile time
@@ -469,6 +471,14 @@ func (o *Instance) SetUpdateStartDate(v InstanceGetUpdateStartDateRetType) {
 	setInstanceGetUpdateStartDateAttributeType(&o.UpdateStartDate, v)
 }
 
+func (o Instance) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceGetApiUrlAttributeTypeOk(o.ApiUrl); ok {
@@ -502,6 +512,49 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 		toSerialize["UpdateStartDate"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Instance) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"apiUrl",
+		"creationStartDate",
+		"id",
+		"name",
+		"secretCount",
+		"secretsEngine",
+		"state",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInstance := _Instance{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInstance)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Instance(varInstance)
+
+	return err
 }
 
 type NullableInstance struct {

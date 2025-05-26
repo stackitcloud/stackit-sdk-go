@@ -87,18 +87,20 @@ func setListenerGetPortAttributeType(arg *ListenerGetPortAttributeType, val List
 // isEnum
 
 // ListenerProtocol Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
+// value type for enums
 type ListenerProtocol string
 
 // List of Protocol
 const (
-	LISTENERPROTOCOL_UNSPECIFIED     ListenerProtocol = "PROTOCOL_UNSPECIFIED"
-	LISTENERPROTOCOL_TCP             ListenerProtocol = "PROTOCOL_TCP"
-	LISTENERPROTOCOL_UDP             ListenerProtocol = "PROTOCOL_UDP"
-	LISTENERPROTOCOL_TCP_PROXY       ListenerProtocol = "PROTOCOL_TCP_PROXY"
-	LISTENERPROTOCOL_TLS_PASSTHROUGH ListenerProtocol = "PROTOCOL_TLS_PASSTHROUGH"
+	LISTENERPROTOCOL_PROTOCOL_UNSPECIFIED     ListenerProtocol = "PROTOCOL_UNSPECIFIED"
+	LISTENERPROTOCOL_PROTOCOL_TCP             ListenerProtocol = "PROTOCOL_TCP"
+	LISTENERPROTOCOL_PROTOCOL_UDP             ListenerProtocol = "PROTOCOL_UDP"
+	LISTENERPROTOCOL_PROTOCOL_TCP_PROXY       ListenerProtocol = "PROTOCOL_TCP_PROXY"
+	LISTENERPROTOCOL_PROTOCOL_TLS_PASSTHROUGH ListenerProtocol = "PROTOCOL_TLS_PASSTHROUGH"
 )
 
 // All allowed values of Listener enum
+
 var AllowedListenerProtocolEnumValues = []ListenerProtocol{
 	"PROTOCOL_UNSPECIFIED",
 	"PROTOCOL_TCP",
@@ -108,13 +110,13 @@ var AllowedListenerProtocolEnumValues = []ListenerProtocol{
 }
 
 func (v *ListenerProtocol) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ListenerProtocol
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ListenerProtocol
 	if value == zeroValue {
 		return nil
 	}
@@ -131,7 +133,7 @@ func (v *ListenerProtocol) UnmarshalJSON(src []byte) error {
 
 // NewListenerProtocolFromValue returns a pointer to a valid ListenerProtocol
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewListenerProtocolFromValue(v string) (*ListenerProtocol, error) {
+func NewListenerProtocolFromValue(v ListenerProtocol) (*ListenerProtocol, error) {
 	ev := ListenerProtocol(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -504,6 +506,14 @@ func (o *Listener) HasUdp() bool {
 // SetUdp gets a reference to the given OptionsUDP and assigns it to the Udp field.
 func (o *Listener) SetUdp(v ListenerGetUdpRetType) {
 	setListenerGetUdpAttributeType(&o.Udp, v)
+}
+
+func (o Listener) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o Listener) ToMap() (map[string]interface{}, error) {

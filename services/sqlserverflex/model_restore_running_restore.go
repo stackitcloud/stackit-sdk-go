@@ -263,6 +263,14 @@ func (o *RestoreRunningRestore) SetStartTime(v RestoreRunningRestoreGetStartTime
 	setRestoreRunningRestoreGetStartTimeAttributeType(&o.StartTime, v)
 }
 
+func (o RestoreRunningRestore) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o RestoreRunningRestore) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRestoreRunningRestoreGetCommandAttributeTypeOk(o.Command); ok {

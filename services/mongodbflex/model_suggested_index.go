@@ -265,6 +265,14 @@ func (o *SuggestedIndex) SetWeight(v SuggestedIndexGetWeightRetType) {
 	setSuggestedIndexGetWeightAttributeType(&o.Weight, v)
 }
 
+func (o SuggestedIndex) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o SuggestedIndex) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSuggestedIndexGetIdAttributeTypeOk(o.Id); ok {

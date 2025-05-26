@@ -127,6 +127,14 @@ func (o *DeleteLabelResponse) SetMessage(v DeleteLabelResponseGetMessageRetType)
 	setDeleteLabelResponseGetMessageAttributeType(&o.Message, v)
 }
 
+func (o DeleteLabelResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o DeleteLabelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDeleteLabelResponseGetLabelAttributeTypeOk(o.Label); ok {

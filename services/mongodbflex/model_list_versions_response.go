@@ -82,6 +82,14 @@ func (o *ListVersionsResponse) SetVersions(v ListVersionsResponseGetVersionsRetT
 	setListVersionsResponseGetVersionsAttributeType(&o.Versions, v)
 }
 
+func (o ListVersionsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListVersionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListVersionsResponseGetVersionsAttributeTypeOk(o.Versions); ok {

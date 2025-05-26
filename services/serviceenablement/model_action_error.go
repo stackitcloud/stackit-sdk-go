@@ -25,6 +25,7 @@ var _ MappedNullable = &ActionError{}
 // isEnum
 
 // ActionErrorAction the last action which was triggered on this service
+// value type for enums
 type ActionErrorAction string
 
 // List of Action
@@ -34,19 +35,20 @@ const (
 )
 
 // All allowed values of ActionError enum
+
 var AllowedActionErrorActionEnumValues = []ActionErrorAction{
 	"DISABLE",
 	"ENABLE",
 }
 
 func (v *ActionErrorAction) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ActionErrorAction
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ActionErrorAction
 	if value == zeroValue {
 		return nil
 	}
@@ -63,7 +65,7 @@ func (v *ActionErrorAction) UnmarshalJSON(src []byte) error {
 
 // NewActionErrorActionFromValue returns a pointer to a valid ActionErrorAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewActionErrorActionFromValue(v string) (*ActionErrorAction, error) {
+func NewActionErrorActionFromValue(v ActionErrorAction) (*ActionErrorAction, error) {
 	ev := ActionErrorAction(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -274,6 +276,14 @@ func (o *ActionError) HasReason() bool {
 // SetReason gets a reference to the given string and assigns it to the Reason field.
 func (o *ActionError) SetReason(v ActionErrorGetReasonRetType) {
 	setActionErrorGetReasonAttributeType(&o.Reason, v)
+}
+
+func (o ActionError) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o ActionError) ToMap() (map[string]interface{}, error) {

@@ -124,9 +124,9 @@ type BootVolume struct {
 	// Delete the volume during the termination of the server. Defaults to false.
 	DeleteOnTermination BootVolumegetDeleteOnTerminationAttributeType `json:"deleteOnTermination,omitempty"`
 	// Universally Unique Identifier (UUID).
-	Id BootVolumeGetIdAttributeType `json:"id,omitempty"`
+	Id BootVolumeGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	PerformanceClass BootVolumeGetPerformanceClassAttributeType `json:"performanceClass,omitempty"`
+	PerformanceClass BootVolumeGetPerformanceClassAttributeType `json:"performanceClass,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// Size in Gigabyte.
 	Size   BootVolumeGetSizeAttributeType   `json:"size,omitempty"`
 	Source BootVolumeGetSourceAttributeType `json:"source,omitempty"`
@@ -262,6 +262,14 @@ func (o *BootVolume) HasSource() bool {
 // SetSource gets a reference to the given BootVolumeSource and assigns it to the Source field.
 func (o *BootVolume) SetSource(v BootVolumeGetSourceRetType) {
 	setBootVolumeGetSourceAttributeType(&o.Source, v)
+}
+
+func (o BootVolume) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o BootVolume) ToMap() (map[string]interface{}, error) {

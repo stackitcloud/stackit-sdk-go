@@ -11,7 +11,9 @@ API version: 2.0
 package resourcemanager
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -334,6 +336,14 @@ func (o *ListOrganizationsResponseItemsInner) SetUpdateTime(v ListOrganizationsR
 	setListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType(&o.UpdateTime, v)
 }
 
+func (o ListOrganizationsResponseItemsInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListOrganizationsResponseItemsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListOrganizationsResponseItemsInnerGetContainerIdAttributeTypeOk(o.ContainerId); ok {
@@ -358,6 +368,48 @@ func (o ListOrganizationsResponseItemsInner) ToMap() (map[string]interface{}, er
 		toSerialize["UpdateTime"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListOrganizationsResponseItemsInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"containerId",
+		"creationTime",
+		"lifecycleState",
+		"name",
+		"organizationId",
+		"updateTime",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListOrganizationsResponseItemsInner := _ListOrganizationsResponseItemsInner{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListOrganizationsResponseItemsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListOrganizationsResponseItemsInner(varListOrganizationsResponseItemsInner)
+
+	return err
 }
 
 type NullableListOrganizationsResponseItemsInner struct {

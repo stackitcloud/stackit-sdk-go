@@ -11,7 +11,9 @@ API version: 1.1
 package ske
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the Cluster type satisfies the MappedNullable interface at compile time
@@ -385,6 +387,14 @@ func (o *Cluster) SetStatus(v ClusterGetStatusRetType) {
 	setClusterGetStatusAttributeType(&o.Status, v)
 }
 
+func (o Cluster) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Cluster) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getClusterGetExtensionsAttributeTypeOk(o.Extensions); ok {
@@ -412,6 +422,44 @@ func (o Cluster) ToMap() (map[string]interface{}, error) {
 		toSerialize["Status"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Cluster) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"kubernetes",
+		"nodepools",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCluster := _Cluster{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCluster)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Cluster(varCluster)
+
+	return err
 }
 
 type NullableCluster struct {

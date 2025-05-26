@@ -11,6 +11,7 @@ API version: 1.1.0
 package opensearch
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -46,6 +47,7 @@ type InstanceLastOperationGetDescriptionRetType = string
 // isEnum
 
 // InstanceLastOperationState the model 'InstanceLastOperation'
+// value type for enums
 type InstanceLastOperationState string
 
 // List of State
@@ -56,6 +58,7 @@ const (
 )
 
 // All allowed values of InstanceLastOperation enum
+
 var AllowedInstanceLastOperationStateEnumValues = []InstanceLastOperationState{
 	"in progress",
 	"succeeded",
@@ -63,13 +66,13 @@ var AllowedInstanceLastOperationStateEnumValues = []InstanceLastOperationState{
 }
 
 func (v *InstanceLastOperationState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceLastOperationState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceLastOperationState
 	if value == zeroValue {
 		return nil
 	}
@@ -86,7 +89,7 @@ func (v *InstanceLastOperationState) UnmarshalJSON(src []byte) error {
 
 // NewInstanceLastOperationStateFromValue returns a pointer to a valid InstanceLastOperationState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceLastOperationStateFromValue(v string) (*InstanceLastOperationState, error) {
+func NewInstanceLastOperationStateFromValue(v InstanceLastOperationState) (*InstanceLastOperationState, error) {
 	ev := InstanceLastOperationState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -168,6 +171,7 @@ func setInstanceLastOperationGetStateAttributeType(arg *InstanceLastOperationGet
 // isEnum
 
 // InstanceLastOperationTypes the model 'InstanceLastOperation'
+// value type for enums
 type InstanceLastOperationTypes string
 
 // List of Type
@@ -178,6 +182,7 @@ const (
 )
 
 // All allowed values of InstanceLastOperation enum
+
 var AllowedInstanceLastOperationTypesEnumValues = []InstanceLastOperationTypes{
 	"create",
 	"update",
@@ -185,13 +190,13 @@ var AllowedInstanceLastOperationTypesEnumValues = []InstanceLastOperationTypes{
 }
 
 func (v *InstanceLastOperationTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceLastOperationTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceLastOperationTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -208,7 +213,7 @@ func (v *InstanceLastOperationTypes) UnmarshalJSON(src []byte) error {
 
 // NewInstanceLastOperationTypesFromValue returns a pointer to a valid InstanceLastOperationTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceLastOperationTypesFromValue(v string) (*InstanceLastOperationTypes, error) {
+func NewInstanceLastOperationTypesFromValue(v InstanceLastOperationTypes) (*InstanceLastOperationTypes, error) {
 	ev := InstanceLastOperationTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -366,6 +371,14 @@ func (o *InstanceLastOperation) SetType(v InstanceLastOperationGetTypeRetType) {
 	setInstanceLastOperationGetTypeAttributeType(&o.Type, v)
 }
 
+func (o InstanceLastOperation) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceLastOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceLastOperationGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -378,6 +391,45 @@ func (o InstanceLastOperation) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *InstanceLastOperation) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"description",
+		"state",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInstanceLastOperation := _InstanceLastOperation{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInstanceLastOperation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceLastOperation(varInstanceLastOperation)
+
+	return err
 }
 
 type NullableInstanceLastOperation struct {

@@ -20,8 +20,8 @@ type ProductLifecycleState string
 
 // List of productLifecycleState
 const (
-	PRODUCTLIFECYCLESTATE_LIVE    ProductLifecycleState = "PRODUCT_LIVE"
-	PRODUCTLIFECYCLESTATE_PREVIEW ProductLifecycleState = "PRODUCT_PREVIEW"
+	PRODUCTLIFECYCLESTATE_PRODUCT_LIVE    ProductLifecycleState = "PRODUCT_LIVE"
+	PRODUCTLIFECYCLESTATE_PRODUCT_PREVIEW ProductLifecycleState = "PRODUCT_PREVIEW"
 )
 
 // All allowed values of ProductLifecycleState enum

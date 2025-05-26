@@ -11,6 +11,7 @@ API version: 1.0.0
 package modelserving
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,6 +26,7 @@ var _ MappedNullable = &Model{}
 // isEnum
 
 // ModelCategory the model 'Model'
+// value type for enums
 type ModelCategory string
 
 // List of Category
@@ -35,6 +37,7 @@ const (
 )
 
 // All allowed values of Model enum
+
 var AllowedModelCategoryEnumValues = []ModelCategory{
 	"standard",
 	"plus",
@@ -42,13 +45,13 @@ var AllowedModelCategoryEnumValues = []ModelCategory{
 }
 
 func (v *ModelCategory) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ModelCategory
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ModelCategory
 	if value == zeroValue {
 		return nil
 	}
@@ -65,7 +68,7 @@ func (v *ModelCategory) UnmarshalJSON(src []byte) error {
 
 // NewModelCategoryFromValue returns a pointer to a valid ModelCategory
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewModelCategoryFromValue(v string) (*ModelCategory, error) {
+func NewModelCategoryFromValue(v ModelCategory) (*ModelCategory, error) {
 	ev := ModelCategory(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -292,6 +295,7 @@ func setModelGetTagsAttributeType(arg *ModelGetTagsAttributeType, val ModelGetTa
 // isEnum
 
 // ModelTypes the model 'Model'
+// value type for enums
 type ModelTypes string
 
 // List of Type
@@ -301,19 +305,20 @@ const (
 )
 
 // All allowed values of Model enum
+
 var AllowedModelTypesEnumValues = []ModelTypes{
 	"chat",
 	"embedding",
 }
 
 func (v *ModelTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ModelTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ModelTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -330,7 +335,7 @@ func (v *ModelTypes) UnmarshalJSON(src []byte) error {
 
 // NewModelTypesFromValue returns a pointer to a valid ModelTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewModelTypesFromValue(v string) (*ModelTypes, error) {
+func NewModelTypesFromValue(v ModelTypes) (*ModelTypes, error) {
 	ev := ModelTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -431,9 +436,9 @@ type Model struct {
 	// REQUIRED
 	Category ModelGetCategoryAttributeType `json:"category"`
 	// REQUIRED
-	Description ModelGetDescriptionAttributeType `json:"description"`
+	Description ModelGetDescriptionAttributeType `json:"description" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	// REQUIRED
-	DisplayedName ModelGetDisplayedNameAttributeType `json:"displayedName"`
+	DisplayedName ModelGetDisplayedNameAttributeType `json:"displayedName" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// generated uuid to identify a model
 	// REQUIRED
 	Id ModelGetIdAttributeType `json:"id"`
@@ -656,6 +661,14 @@ func (o *Model) SetUrl(v ModelGetUrlRetType) {
 	setModelGetUrlAttributeType(&o.Url, v)
 }
 
+func (o Model) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Model) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getModelGetCategoryAttributeTypeOk(o.Category); ok {
@@ -689,6 +702,51 @@ func (o Model) ToMap() (map[string]interface{}, error) {
 		toSerialize["Url"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *Model) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"category",
+		"description",
+		"displayedName",
+		"id",
+		"name",
+		"region",
+		"skus",
+		"types",
+		"url",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varModel := _Model{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varModel)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Model(varModel)
+
+	return err
 }
 
 type NullableModel struct {

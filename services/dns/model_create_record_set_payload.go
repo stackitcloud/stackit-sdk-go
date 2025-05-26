@@ -11,6 +11,7 @@ API version: 1.0
 package dns
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -107,6 +108,7 @@ func setCreateRecordSetPayloadGetTtlAttributeType(arg *CreateRecordSetPayloadGet
 // isEnum
 
 // CreateRecordSetPayloadTypes record set type
+// value type for enums
 type CreateRecordSetPayloadTypes string
 
 // List of Type
@@ -135,6 +137,7 @@ const (
 )
 
 // All allowed values of CreateRecordSetPayload enum
+
 var AllowedCreateRecordSetPayloadTypesEnumValues = []CreateRecordSetPayloadTypes{
 	"A",
 	"AAAA",
@@ -160,13 +163,13 @@ var AllowedCreateRecordSetPayloadTypesEnumValues = []CreateRecordSetPayloadTypes
 }
 
 func (v *CreateRecordSetPayloadTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateRecordSetPayloadTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateRecordSetPayloadTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -183,7 +186,7 @@ func (v *CreateRecordSetPayloadTypes) UnmarshalJSON(src []byte) error {
 
 // NewCreateRecordSetPayloadTypesFromValue returns a pointer to a valid CreateRecordSetPayloadTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateRecordSetPayloadTypesFromValue(v string) (*CreateRecordSetPayloadTypes, error) {
+func NewCreateRecordSetPayloadTypesFromValue(v CreateRecordSetPayloadTypes) (*CreateRecordSetPayloadTypes, error) {
 	ev := CreateRecordSetPayloadTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -395,6 +398,14 @@ func (o *CreateRecordSetPayload) SetType(v CreateRecordSetPayloadGetTypeRetType)
 	setCreateRecordSetPayloadGetTypeAttributeType(&o.Type, v)
 }
 
+func (o CreateRecordSetPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateRecordSetPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateRecordSetPayloadGetCommentAttributeTypeOk(o.Comment); ok {
@@ -413,6 +424,45 @@ func (o CreateRecordSetPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateRecordSetPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"records",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateRecordSetPayload := _CreateRecordSetPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateRecordSetPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateRecordSetPayload(varCreateRecordSetPayload)
+
+	return err
 }
 
 type NullableCreateRecordSetPayload struct {

@@ -82,6 +82,14 @@ func (o *ProtocolOptionsHTTPS) SetCertificateConfig(v ProtocolOptionsHTTPSGetCer
 	setProtocolOptionsHTTPSGetCertificateConfigAttributeType(&o.CertificateConfig, v)
 }
 
+func (o ProtocolOptionsHTTPS) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ProtocolOptionsHTTPS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getProtocolOptionsHTTPSGetCertificateConfigAttributeTypeOk(o.CertificateConfig); ok {

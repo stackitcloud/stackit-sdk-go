@@ -350,6 +350,14 @@ func (o *BackupPolicy) SetRrule(v BackupPolicyGetRruleRetType) {
 	setBackupPolicyGetRruleAttributeType(&o.Rrule, v)
 }
 
+func (o BackupPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o BackupPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBackupPolicyGetBackupPropertiesAttributeTypeOk(o.BackupProperties); ok {

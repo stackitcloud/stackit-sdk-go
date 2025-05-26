@@ -23,7 +23,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		ApproveSubscription Approve a subscription
 		Approve a pending subscription.
@@ -212,12 +212,12 @@ type ApiVendorsSubscriptionsRejectRequest interface {
 	Execute() error
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type ApproveSubscriptionRequest struct {
 	ctx                        context.Context
-	apiService                 *DefaultApiService
+	apiService                 *DefaultAPIService
 	projectId                  string
 	subscriptionId             string
 	approveSubscriptionPayload *ApproveSubscriptionPayload
@@ -239,7 +239,7 @@ func (r ApproveSubscriptionRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ApproveSubscription")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ApproveSubscription")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -395,7 +395,7 @@ func (a *APIClient) ApproveSubscriptionExecute(ctx context.Context, projectId st
 
 type GetCatalogProductRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	productId  string
 	locale     *string
 }
@@ -419,7 +419,7 @@ func (r GetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCatalogProduct")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCatalogProduct")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -576,7 +576,7 @@ func (a *APIClient) GetCatalogProductExecute(ctx context.Context, productId stri
 
 type GetVendorSubscriptionRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	subscriptionId string
 }
@@ -593,7 +593,7 @@ func (r GetVendorSubscriptionRequest) Execute() (*VendorSubscription, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetVendorSubscription")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetVendorSubscription")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -757,7 +757,7 @@ func (a *APIClient) GetVendorSubscriptionExecute(ctx context.Context, projectId 
 
 type InquiriesCreateInquiryRequest struct {
 	ctx                           context.Context
-	apiService                    *DefaultApiService
+	apiService                    *DefaultAPIService
 	inquiriesCreateInquiryPayload *InquiriesCreateInquiryPayload
 }
 
@@ -777,7 +777,7 @@ func (r InquiriesCreateInquiryRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InquiriesCreateInquiry")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.InquiriesCreateInquiry")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -916,7 +916,7 @@ func (a *APIClient) InquiriesCreateInquiryExecute(ctx context.Context) error {
 
 type ListCatalogProductsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	cursor     *string
 	limit      *float32
 	locale     *string
@@ -971,7 +971,7 @@ func (r ListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, err
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCatalogProducts")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListCatalogProducts")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1119,7 +1119,7 @@ func (a *APIClient) ListCatalogProductsExecute(ctx context.Context) (*ListCatalo
 
 type ListVendorSubscriptionsRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	projectId  string
 	cursor     *string
 	limit      *float32
@@ -1159,7 +1159,7 @@ func (r ListVendorSubscriptionsRequest) Execute() (*ListVendorSubscriptionsRespo
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListVendorSubscriptions")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListVendorSubscriptions")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1311,7 +1311,7 @@ func (a *APIClient) ListVendorSubscriptionsExecute(ctx context.Context, projectI
 
 type ResolveCustomerRequest struct {
 	ctx                    context.Context
-	apiService             *DefaultApiService
+	apiService             *DefaultAPIService
 	projectId              string
 	resolveCustomerPayload *ResolveCustomerPayload
 }
@@ -1333,7 +1333,7 @@ func (r ResolveCustomerRequest) Execute() (*VendorSubscription, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ResolveCustomer")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ResolveCustomer")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1492,7 +1492,7 @@ func (a *APIClient) ResolveCustomerExecute(ctx context.Context, projectId string
 
 type VendorsSubscriptionsRejectRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	projectId      string
 	subscriptionId string
 }
@@ -1508,7 +1508,7 @@ func (r VendorsSubscriptionsRejectRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.VendorsSubscriptionsReject")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.VendorsSubscriptionsReject")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

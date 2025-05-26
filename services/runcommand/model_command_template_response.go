@@ -82,6 +82,14 @@ func (o *CommandTemplateResponse) SetItems(v CommandTemplateResponseGetItemsRetT
 	setCommandTemplateResponseGetItemsAttributeType(&o.Items, v)
 }
 
+func (o CommandTemplateResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CommandTemplateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCommandTemplateResponseGetItemsAttributeTypeOk(o.Items); ok {

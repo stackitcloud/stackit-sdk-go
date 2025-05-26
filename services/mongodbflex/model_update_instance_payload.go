@@ -11,7 +11,9 @@ API version: 1.0.0
 package mongodbflex
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the UpdateInstancePayload type satisfies the MappedNullable interface at compile time
@@ -409,6 +411,14 @@ func (o *UpdateInstancePayload) SetVersion(v UpdateInstancePayloadGetVersionRetT
 	setUpdateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
+func (o UpdateInstancePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
@@ -439,6 +449,50 @@ func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Version"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *UpdateInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"acl",
+		"backupSchedule",
+		"flavorId",
+		"name",
+		"options",
+		"replicas",
+		"storage",
+		"version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUpdateInstancePayload := _UpdateInstancePayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUpdateInstancePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateInstancePayload(varUpdateInstancePayload)
+
+	return err
 }
 
 type NullableUpdateInstancePayload struct {

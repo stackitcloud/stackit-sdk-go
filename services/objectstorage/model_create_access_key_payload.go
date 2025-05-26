@@ -84,6 +84,14 @@ func (o *CreateAccessKeyPayload) SetExpires(v CreateAccessKeyPayloadGetExpiresRe
 	setCreateAccessKeyPayloadGetExpiresAttributeType(&o.Expires, v)
 }
 
+func (o CreateAccessKeyPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateAccessKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateAccessKeyPayloadGetExpiresAttributeTypeOk(o.Expires); ok {

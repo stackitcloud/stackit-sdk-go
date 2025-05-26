@@ -34,7 +34,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 			Status: &ske.ClusterStatus{
 				Aggregated: &rs,
 				Error: &ske.RuntimeError{
-					Code:    utils.Ptr(ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND),
+					Code:    utils.Ptr(ske.RUNTIMEERRORCODE_SKE_ARGUS_INSTANCE_NOT_FOUND),
 					Message: utils.Ptr("invalid argus instance"),
 				},
 			},
@@ -79,21 +79,21 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
+			resourceState: ske.CLUSTERSTATUSSTATE_STATE_HEALTHY,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: ske.CLUSTERSTATUSSTATE_HIBERNATED,
+			resourceState: ske.CLUSTERSTATUSSTATE_STATE_HIBERNATED,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:                 "unhealthy_cluster",
 			getFails:             false,
-			resourceState:        ske.CLUSTERSTATUSSTATE_UNHEALTHY,
+			resourceState:        ske.CLUSTERSTATUSSTATE_STATE_UNHEALTHY,
 			invalidArgusInstance: true,
 			wantErr:              false,
 			wantResp:             true,
@@ -141,7 +141,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 
 				if tt.invalidArgusInstance {
 					wantRes.Status.Error = &ske.RuntimeError{
-						Code:    utils.Ptr(ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND),
+						Code:    utils.Ptr(ske.RUNTIMEERRORCODE_SKE_ARGUS_INSTANCE_NOT_FOUND),
 						Message: utils.Ptr("invalid argus instance"),
 					}
 				}
@@ -172,14 +172,14 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 		{
 			desc:          "reconciliation_succeeded_1",
 			getFails:      false,
-			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
+			resourceState: ske.CLUSTERSTATUSSTATE_STATE_HEALTHY,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "reconciliation_succeeded_2",
 			getFails:      false,
-			resourceState: ske.CLUSTERSTATUSSTATE_HIBERNATED,
+			resourceState: ske.CLUSTERSTATUSSTATE_STATE_HIBERNATED,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -199,7 +199,7 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			resourceState: ske.CLUSTERSTATUSSTATE_RECONCILING,
+			resourceState: ske.CLUSTERSTATUSSTATE_STATE_RECONCILING,
 			wantErr:       true,
 			wantResp:      false,
 		},

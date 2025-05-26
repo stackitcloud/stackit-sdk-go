@@ -25,6 +25,7 @@ var _ MappedNullable = &CRI{}
 // isEnum
 
 // CRIName the model 'CRI'
+// value type for enums
 type CRIName string
 
 // List of Name
@@ -34,19 +35,20 @@ const (
 )
 
 // All allowed values of CRI enum
+
 var AllowedCRINameEnumValues = []CRIName{
 	"docker",
 	"containerd",
 }
 
 func (v *CRIName) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CRIName
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CRIName
 	if value == zeroValue {
 		return nil
 	}
@@ -63,7 +65,7 @@ func (v *CRIName) UnmarshalJSON(src []byte) error {
 
 // NewCRINameFromValue returns a pointer to a valid CRIName
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCRINameFromValue(v string) (*CRIName, error) {
+func NewCRINameFromValue(v CRIName) (*CRIName, error) {
 	ev := CRIName(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -181,6 +183,14 @@ func (o *CRI) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *CRI) SetName(v CRIGetNameRetType) {
 	setCRIGetNameAttributeType(&o.Name, v)
+}
+
+func (o CRI) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CRI) ToMap() (map[string]interface{}, error) {

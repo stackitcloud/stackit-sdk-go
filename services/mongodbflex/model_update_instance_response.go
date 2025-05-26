@@ -82,6 +82,14 @@ func (o *UpdateInstanceResponse) SetItem(v UpdateInstanceResponseGetItemRetType)
 	setUpdateInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
+func (o UpdateInstanceResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateInstanceResponseGetItemAttributeTypeOk(o.Item); ok {

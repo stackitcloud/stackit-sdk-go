@@ -83,6 +83,14 @@ func (o *ApiExtensionConfigureResponse) SetConfiguration(v ApiExtensionConfigure
 	setApiExtensionConfigureResponseGetConfigurationAttributeType(&o.Configuration, v)
 }
 
+func (o ApiExtensionConfigureResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ApiExtensionConfigureResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiExtensionConfigureResponseGetConfigurationAttributeTypeOk(o.Configuration); ok {

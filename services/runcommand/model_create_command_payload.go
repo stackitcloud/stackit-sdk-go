@@ -11,7 +11,9 @@ API version: 2.0
 package runcommand
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateCommandPayload type satisfies the MappedNullable interface at compile time
@@ -125,6 +127,14 @@ func (o *CreateCommandPayload) SetParameters(v CreateCommandPayloadGetParameters
 	setCreateCommandPayloadGetParametersAttributeType(&o.Parameters, v)
 }
 
+func (o CreateCommandPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateCommandPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateCommandPayloadGetCommandTemplateNameAttributeTypeOk(o.CommandTemplateName); ok {
@@ -134,6 +144,43 @@ func (o CreateCommandPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["Parameters"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateCommandPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"commandTemplateName",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateCommandPayload := _CreateCommandPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateCommandPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateCommandPayload(varCreateCommandPayload)
+
+	return err
 }
 
 type NullableCreateCommandPayload struct {

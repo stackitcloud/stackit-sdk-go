@@ -82,6 +82,14 @@ func (o *ListPlansResponse) SetValidPlans(v ListPlansResponseGetValidPlansRetTyp
 	setListPlansResponseGetValidPlansAttributeType(&o.ValidPlans, v)
 }
 
+func (o ListPlansResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListPlansResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListPlansResponseGetValidPlansAttributeTypeOk(o.ValidPlans); ok {

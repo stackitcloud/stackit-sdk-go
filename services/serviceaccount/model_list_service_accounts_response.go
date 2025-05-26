@@ -11,7 +11,9 @@ API version: 2.0
 package serviceaccount
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListServiceAccountsResponse type satisfies the MappedNullable interface at compile time
@@ -80,12 +82,57 @@ func (o *ListServiceAccountsResponse) SetItems(v ListServiceAccountsResponseGetI
 	setListServiceAccountsResponseGetItemsAttributeType(&o.Items, v)
 }
 
+func (o ListServiceAccountsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListServiceAccountsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListServiceAccountsResponseGetItemsAttributeTypeOk(o.Items); ok {
 		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListServiceAccountsResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"items",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListServiceAccountsResponse := _ListServiceAccountsResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListServiceAccountsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListServiceAccountsResponse(varListServiceAccountsResponse)
+
+	return err
 }
 
 type NullableListServiceAccountsResponse struct {

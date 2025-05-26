@@ -263,6 +263,14 @@ func (o *RestoreInstanceStatus) SetStatus(v RestoreInstanceStatusGetStatusRetTyp
 	setRestoreInstanceStatusGetStatusAttributeType(&o.Status, v)
 }
 
+func (o RestoreInstanceStatus) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o RestoreInstanceStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRestoreInstanceStatusGetBackupIDAttributeTypeOk(o.BackupID); ok {

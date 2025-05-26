@@ -82,6 +82,14 @@ func (o *DeleteCustomDomainResponse) SetCustomDomain(v DeleteCustomDomainRespons
 	setDeleteCustomDomainResponseGetCustomDomainAttributeType(&o.CustomDomain, v)
 }
 
+func (o DeleteCustomDomainResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o DeleteCustomDomainResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDeleteCustomDomainResponseGetCustomDomainAttributeTypeOk(o.CustomDomain); ok {

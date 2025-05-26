@@ -11,7 +11,9 @@ API version: 1alpha1
 package iaasalpha
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -334,7 +336,7 @@ type CreateImagePayload struct {
 	// REQUIRED
 	DiskFormat CreateImagePayloadGetDiskFormatAttributeType `json:"diskFormat"`
 	// Universally Unique Identifier (UUID).
-	Id CreateImagePayloadGetIdAttributeType `json:"id,omitempty"`
+	Id CreateImagePayloadGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels CreateImagePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
@@ -343,9 +345,9 @@ type CreateImagePayload struct {
 	MinRam CreateImagePayloadGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name CreateImagePayloadGetNameAttributeType `json:"name"`
+	Name CreateImagePayloadGetNameAttributeType `json:"name" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 	// Universally Unique Identifier (UUID).
-	Owner     CreateImagePayloadGetOwnerAttributeType     `json:"owner,omitempty"`
+	Owner     CreateImagePayloadGetOwnerAttributeType     `json:"owner,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	Protected CreateImagePayloadgetProtectedAttributeType `json:"protected,omitempty"`
 	// Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`.
 	Scope CreateImagePayloadGetScopeAttributeType `json:"scope,omitempty"`
@@ -711,6 +713,14 @@ func (o *CreateImagePayload) SetUpdatedAt(v CreateImagePayloadGetUpdatedAtRetTyp
 	setCreateImagePayloadGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+func (o CreateImagePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateImagePayloadGetChecksumAttributeTypeOk(o.Checksum); ok {
@@ -759,6 +769,44 @@ func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateImagePayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"diskFormat",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateImagePayload := _CreateImagePayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateImagePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateImagePayload(varCreateImagePayload)
+
+	return err
 }
 
 type NullableCreateImagePayload struct {

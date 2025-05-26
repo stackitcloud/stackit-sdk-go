@@ -11,7 +11,9 @@ API version: 1.0.0
 package modelserving
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the CreateTokenPayload type satisfies the MappedNullable interface at compile time
@@ -82,9 +84,9 @@ type CreateTokenPayloadGetTtlDurationRetType = string
 
 // CreateTokenPayload struct for CreateTokenPayload
 type CreateTokenPayload struct {
-	Description CreateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty"`
+	Description CreateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	// REQUIRED
-	Name CreateTokenPayloadGetNameAttributeType `json:"name"`
+	Name CreateTokenPayloadGetNameAttributeType `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// time to live duration. Must be valid duration string. If not set the token will never expire.
 	TtlDuration CreateTokenPayloadGetTtlDurationAttributeType `json:"ttlDuration,omitempty"`
 }
@@ -172,6 +174,14 @@ func (o *CreateTokenPayload) SetTtlDuration(v CreateTokenPayloadGetTtlDurationRe
 	setCreateTokenPayloadGetTtlDurationAttributeType(&o.TtlDuration, v)
 }
 
+func (o CreateTokenPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CreateTokenPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateTokenPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -184,6 +194,43 @@ func (o CreateTokenPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["TtlDuration"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *CreateTokenPayload) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCreateTokenPayload := _CreateTokenPayload{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCreateTokenPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateTokenPayload(varCreateTokenPayload)
+
+	return err
 }
 
 type NullableCreateTokenPayload struct {

@@ -11,7 +11,9 @@ API version: 1.1.0
 package redis
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InstanceSchema type satisfies the MappedNullable interface at compile time
@@ -120,6 +122,14 @@ func (o *InstanceSchema) SetUpdate(v InstanceSchemaGetUpdateRetType) {
 	setInstanceSchemaGetUpdateAttributeType(&o.Update, v)
 }
 
+func (o InstanceSchema) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceSchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceSchemaGetCreateAttributeTypeOk(o.Create); ok {
@@ -129,6 +139,44 @@ func (o InstanceSchema) ToMap() (map[string]interface{}, error) {
 		toSerialize["Update"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *InstanceSchema) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"create",
+		"update",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInstanceSchema := _InstanceSchema{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInstanceSchema)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceSchema(varInstanceSchema)
+
+	return err
 }
 
 type NullableInstanceSchema struct {

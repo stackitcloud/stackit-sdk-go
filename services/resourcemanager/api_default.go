@@ -25,7 +25,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
-type DefaultApi interface {
+type DefaultAPI interface {
 	/*
 		CreateFolder Create Folder
 		Create a new folder.
@@ -332,12 +332,12 @@ type ApiPartialUpdateProjectRequest interface {
 	Execute() (*Project, error)
 }
 
-// DefaultApiService DefaultApi service
-type DefaultApiService service
+// DefaultAPIService DefaultAPI service
+type DefaultAPIService service
 
 type CreateFolderRequest struct {
 	ctx                 context.Context
-	apiService          *DefaultApiService
+	apiService          *DefaultAPIService
 	createFolderPayload *CreateFolderPayload
 }
 
@@ -358,7 +358,7 @@ func (r CreateFolderRequest) Execute() (*FolderResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateFolder")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateFolder")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -493,7 +493,7 @@ func (a *APIClient) CreateFolderExecute(ctx context.Context) (*FolderResponse, e
 
 type CreateProjectRequest struct {
 	ctx                  context.Context
-	apiService           *DefaultApiService
+	apiService           *DefaultAPIService
 	createProjectPayload *CreateProjectPayload
 }
 
@@ -514,7 +514,7 @@ func (r CreateProjectRequest) Execute() (*Project, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateProject")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateProject")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -651,7 +651,7 @@ func (a *APIClient) CreateProjectExecute(ctx context.Context) (*Project, error) 
 
 type DeleteFolderRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	containerId string
 	force       *bool
 }
@@ -674,7 +674,7 @@ func (r DeleteFolderRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteFolder")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteFolder")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -795,7 +795,7 @@ func (a *APIClient) DeleteFolderExecute(ctx context.Context, containerId string)
 
 type DeleteFolderLabelsRequest struct {
 	ctx         context.Context
-	apiService  *DefaultApiService
+	apiService  *DefaultAPIService
 	containerId string
 	keys        *[]string
 }
@@ -818,7 +818,7 @@ func (r DeleteFolderLabelsRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteFolderLabels")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteFolderLabels")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -936,7 +936,7 @@ func (a *APIClient) DeleteFolderLabelsExecute(ctx context.Context, containerId s
 
 type DeleteProjectRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	id         string
 }
 
@@ -951,7 +951,7 @@ func (r DeleteProjectRequest) Execute() error {
 	if !ok {
 		return fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteProject")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteProject")
 	if err != nil {
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1058,7 +1058,7 @@ func (a *APIClient) DeleteProjectExecute(ctx context.Context, id string) error {
 
 type GetFolderDetailsRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	containerId    string
 	includeParents *bool
 }
@@ -1080,7 +1080,7 @@ func (r GetFolderDetailsRequest) Execute() (*GetFolderDetailsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFolderDetails")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFolderDetails")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1209,7 +1209,7 @@ func (a *APIClient) GetFolderDetailsExecute(ctx context.Context, containerId str
 
 type GetOrganizationRequest struct {
 	ctx        context.Context
-	apiService *DefaultApiService
+	apiService *DefaultAPIService
 	id         string
 }
 
@@ -1225,7 +1225,7 @@ func (r GetOrganizationRequest) Execute() (*OrganizationResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetOrganization")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetOrganization")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1340,7 +1340,7 @@ func (a *APIClient) GetOrganizationExecute(ctx context.Context, id string) (*Org
 
 type GetProjectRequest struct {
 	ctx            context.Context
-	apiService     *DefaultApiService
+	apiService     *DefaultAPIService
 	id             string
 	includeParents *bool
 }
@@ -1362,7 +1362,7 @@ func (r GetProjectRequest) Execute() (*GetProjectResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProject")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetProject")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1491,7 +1491,7 @@ func (a *APIClient) GetProjectExecute(ctx context.Context, id string) (*GetProje
 
 type ListOrganizationsRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	containerIds      *[]string
 	member            *string
 	limit             *float32
@@ -1546,7 +1546,7 @@ func (r ListOrganizationsRequest) Execute() (*ListOrganizationsResponse, error) 
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListOrganizations")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListOrganizations")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1695,7 +1695,7 @@ func (a *APIClient) ListOrganizationsExecute(ctx context.Context) (*ListOrganiza
 
 type ListProjectsRequest struct {
 	ctx               context.Context
-	apiService        *DefaultApiService
+	apiService        *DefaultAPIService
 	containerParentId *string
 	containerIds      *[]string
 	member            *string
@@ -1758,7 +1758,7 @@ func (r ListProjectsRequest) Execute() (*ListProjectsResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListProjects")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListProjects")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1915,7 +1915,7 @@ func (a *APIClient) ListProjectsExecute(ctx context.Context) (*ListProjectsRespo
 
 type PartialUpdateFolderRequest struct {
 	ctx                        context.Context
-	apiService                 *DefaultApiService
+	apiService                 *DefaultAPIService
 	containerId                string
 	partialUpdateFolderPayload *PartialUpdateFolderPayload
 }
@@ -1937,7 +1937,7 @@ func (r PartialUpdateFolderRequest) Execute() (*FolderResponse, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateFolder")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateFolder")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2079,7 +2079,7 @@ func (a *APIClient) PartialUpdateFolderExecute(ctx context.Context, containerId 
 
 type PartialUpdateProjectRequest struct {
 	ctx                         context.Context
-	apiService                  *DefaultApiService
+	apiService                  *DefaultAPIService
 	id                          string
 	partialUpdateProjectPayload *PartialUpdateProjectPayload
 }
@@ -2101,7 +2101,7 @@ func (r PartialUpdateProjectRequest) Execute() (*Project, error) {
 	if !ok {
 		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
 	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateProject")
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateProject")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

@@ -11,6 +11,7 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -67,6 +68,7 @@ type StatusErrorGetEnRetType = string
 // isEnum
 
 // StatusErrorKey An enum value that describes a Status Error.
+// value type for enums
 type StatusErrorKey string
 
 // List of Key
@@ -78,6 +80,7 @@ const (
 )
 
 // All allowed values of StatusError enum
+
 var AllowedStatusErrorKeyEnumValues = []StatusErrorKey{
 	"UNKNOWN",
 	"CUSTOM_DOMAIN_CNAME_MISSING",
@@ -86,13 +89,13 @@ var AllowedStatusErrorKeyEnumValues = []StatusErrorKey{
 }
 
 func (v *StatusErrorKey) UnmarshalJSON(src []byte) error {
-	var value string
+	var value StatusErrorKey
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue StatusErrorKey
 	if value == zeroValue {
 		return nil
 	}
@@ -109,7 +112,7 @@ func (v *StatusErrorKey) UnmarshalJSON(src []byte) error {
 
 // NewStatusErrorKeyFromValue returns a pointer to a valid StatusErrorKey
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewStatusErrorKeyFromValue(v string) (*StatusErrorKey, error) {
+func NewStatusErrorKeyFromValue(v StatusErrorKey) (*StatusErrorKey, error) {
 	ev := StatusErrorKey(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -274,6 +277,14 @@ func (o *StatusError) SetKey(v StatusErrorGetKeyRetType) {
 	setStatusErrorGetKeyAttributeType(&o.Key, v)
 }
 
+func (o StatusError) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o StatusError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getStatusErrorGetDeAttributeTypeOk(o.De); ok {
@@ -286,6 +297,44 @@ func (o StatusError) ToMap() (map[string]interface{}, error) {
 		toSerialize["Key"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *StatusError) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"en",
+		"key",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varStatusError := _StatusError{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varStatusError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = StatusError(varStatusError)
+
+	return err
 }
 
 type NullableStatusError struct {

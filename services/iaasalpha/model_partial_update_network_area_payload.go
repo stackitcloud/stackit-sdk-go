@@ -84,7 +84,7 @@ type PartialUpdateNetworkAreaPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels PartialUpdateNetworkAreaPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name PartialUpdateNetworkAreaPayloadGetNameAttributeType `json:"name,omitempty"`
+	Name PartialUpdateNetworkAreaPayloadGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+((-|_|\\\\s|\\\\.)[A-Za-z0-9]+)*$"`
 }
 
 // NewPartialUpdateNetworkAreaPayload instantiates a new PartialUpdateNetworkAreaPayload object
@@ -171,6 +171,14 @@ func (o *PartialUpdateNetworkAreaPayload) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *PartialUpdateNetworkAreaPayload) SetName(v PartialUpdateNetworkAreaPayloadGetNameRetType) {
 	setPartialUpdateNetworkAreaPayloadGetNameAttributeType(&o.Name, v)
+}
+
+func (o PartialUpdateNetworkAreaPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o PartialUpdateNetworkAreaPayload) ToMap() (map[string]interface{}, error) {

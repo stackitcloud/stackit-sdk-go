@@ -167,7 +167,7 @@ type NetworkAreaIPv4 struct {
 	// A list of routes.
 	Routes NetworkAreaIPv4GetRoutesAttributeType `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
-	TransferNetwork NetworkAreaIPv4GetTransferNetworkAttributeType `json:"transferNetwork,omitempty"`
+	TransferNetwork NetworkAreaIPv4GetTransferNetworkAttributeType `json:"transferNetwork,omitempty" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\\/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$"`
 	// The default prefix length for networks in the network area.
 	DefaultPrefixLen NetworkAreaIPv4GetDefaultPrefixLenAttributeType `json:"defaultPrefixLen,omitempty"`
 	// The maximal prefix length for networks in the network area.
@@ -358,6 +358,14 @@ func (o *NetworkAreaIPv4) HasMinPrefixLen() bool {
 // SetMinPrefixLen gets a reference to the given int64 and assigns it to the MinPrefixLen field.
 func (o *NetworkAreaIPv4) SetMinPrefixLen(v NetworkAreaIPv4GetMinPrefixLenRetType) {
 	setNetworkAreaIPv4GetMinPrefixLenAttributeType(&o.MinPrefixLen, v)
+}
+
+func (o NetworkAreaIPv4) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o NetworkAreaIPv4) ToMap() (map[string]interface{}, error) {

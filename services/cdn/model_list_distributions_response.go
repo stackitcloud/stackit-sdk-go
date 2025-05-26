@@ -11,7 +11,9 @@ API version: 1beta.0.0
 package cdn
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListDistributionsResponse type satisfies the MappedNullable interface at compile time
@@ -125,6 +127,14 @@ func (o *ListDistributionsResponse) SetNextPageIdentifier(v ListDistributionsRes
 	setListDistributionsResponseGetNextPageIdentifierAttributeType(&o.NextPageIdentifier, v)
 }
 
+func (o ListDistributionsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListDistributionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListDistributionsResponseGetDistributionsAttributeTypeOk(o.Distributions); ok {
@@ -134,6 +144,43 @@ func (o ListDistributionsResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["NextPageIdentifier"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListDistributionsResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"distributions",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListDistributionsResponse := _ListDistributionsResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListDistributionsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListDistributionsResponse(varListDistributionsResponse)
+
+	return err
 }
 
 type NullableListDistributionsResponse struct {

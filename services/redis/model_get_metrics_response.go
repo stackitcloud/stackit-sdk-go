@@ -11,7 +11,9 @@ API version: 1.1.0
 package redis
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GetMetricsResponse type satisfies the MappedNullable interface at compile time
@@ -972,6 +974,14 @@ func (o *GetMetricsResponse) SetParachuteDiskPersistentUsedThreshold(v GetMetric
 	setGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType(&o.ParachuteDiskPersistentUsedThreshold, v)
 }
 
+func (o GetMetricsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetMetricsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetMetricsResponseGetCpuIdleTimeAttributeTypeOk(o.CpuIdleTime); ok {
@@ -1044,6 +1054,62 @@ func (o GetMetricsResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["ParachuteDiskPersistentUsedThreshold"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *GetMetricsResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"cpuLoadPercent",
+		"diskEphemeralTotal",
+		"diskEphemeralUsed",
+		"diskPersistentTotal",
+		"diskPersistentUsed",
+		"load1",
+		"load15",
+		"load5",
+		"memoryTotal",
+		"memoryUsed",
+		"parachuteDiskEphemeralActivated",
+		"parachuteDiskEphemeralTotal",
+		"parachuteDiskEphemeralUsed",
+		"parachuteDiskEphemeralUsedPercent",
+		"parachuteDiskEphemeralUsedThreshold",
+		"parachuteDiskPersistentActivated",
+		"parachuteDiskPersistentTotal",
+		"parachuteDiskPersistentUsed",
+		"parachuteDiskPersistentUsedPercent",
+		"parachuteDiskPersistentUsedThreshold",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGetMetricsResponse := _GetMetricsResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGetMetricsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetMetricsResponse(varGetMetricsResponse)
+
+	return err
 }
 
 type NullableGetMetricsResponse struct {

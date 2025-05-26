@@ -46,6 +46,7 @@ type CheckServiceGetResourceRetType = string
 // isEnum
 
 // CheckServiceResourceType the model 'CheckService'
+// value type for enums
 type CheckServiceResourceType string
 
 // List of ResourceType
@@ -54,18 +55,19 @@ const (
 )
 
 // All allowed values of CheckService enum
+
 var AllowedCheckServiceResourceTypeEnumValues = []CheckServiceResourceType{
 	"project",
 }
 
 func (v *CheckServiceResourceType) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CheckServiceResourceType
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CheckServiceResourceType
 	if value == zeroValue {
 		return nil
 	}
@@ -82,7 +84,7 @@ func (v *CheckServiceResourceType) UnmarshalJSON(src []byte) error {
 
 // NewCheckServiceResourceTypeFromValue returns a pointer to a valid CheckServiceResourceType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCheckServiceResourceTypeFromValue(v string) (*CheckServiceResourceType, error) {
+func NewCheckServiceResourceTypeFromValue(v CheckServiceResourceType) (*CheckServiceResourceType, error) {
 	ev := CheckServiceResourceType(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -184,7 +186,7 @@ type CheckService struct {
 	Resource     CheckServiceGetResourceAttributeType     `json:"resource,omitempty"`
 	ResourceType CheckServiceGetResourceTypeAttributeType `json:"resourceType,omitempty"`
 	// the id of the service
-	ServiceId CheckServiceGetServiceIdAttributeType `json:"serviceId,omitempty"`
+	ServiceId CheckServiceGetServiceIdAttributeType `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
 }
 
 // NewCheckService instantiates a new CheckService object
@@ -273,6 +275,14 @@ func (o *CheckService) HasServiceId() bool {
 // SetServiceId gets a reference to the given string and assigns it to the ServiceId field.
 func (o *CheckService) SetServiceId(v CheckServiceGetServiceIdRetType) {
 	setCheckServiceGetServiceIdAttributeType(&o.ServiceId, v)
+}
+
+func (o CheckService) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o CheckService) ToMap() (map[string]interface{}, error) {

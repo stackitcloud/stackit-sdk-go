@@ -11,7 +11,9 @@ API version: 1.0.0
 package modelserving
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GetChatModelResponse type satisfies the MappedNullable interface at compile time
@@ -125,6 +127,14 @@ func (o *GetChatModelResponse) SetModel(v GetChatModelResponseGetModelRetType) {
 	setGetChatModelResponseGetModelAttributeType(&o.Model, v)
 }
 
+func (o GetChatModelResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o GetChatModelResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetChatModelResponseGetMessageAttributeTypeOk(o.Message); ok {
@@ -134,6 +144,43 @@ func (o GetChatModelResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["Model"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *GetChatModelResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"model",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGetChatModelResponse := _GetChatModelResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGetChatModelResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetChatModelResponse(varGetChatModelResponse)
+
+	return err
 }
 
 type NullableGetChatModelResponse struct {

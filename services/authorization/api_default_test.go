@@ -1,7 +1,7 @@
 /*
 STACKIT Membership API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -21,20 +21,20 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
-func Test_authorization_DefaultApiService(t *testing.T) {
+func Test_authorization_DefaultAPIService(t *testing.T) {
 
-	t.Run("Test DefaultApiService AddMembers", func(t *testing.T) {
+	t.Run("Test DefaultAPIService AddMembers", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceId}/members"
 		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MembersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -45,7 +45,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for authorization_DefaultApi",
+					Description: "Localhost for authorization_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -76,20 +76,20 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListMembers", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListMembers", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceType}/{resourceId}/members"
 		resourceTypeValue := "resourceType-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(resourceTypeValue, "resourceType")), -1)
 		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListMembersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -100,7 +100,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for authorization_DefaultApi",
+					Description: "Localhost for authorization_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -131,16 +131,16 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListPermissions", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListPermissions", func(t *testing.T) {
 		_apiUrlPath := "/v2/permissions"
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListPermissionsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -151,7 +151,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for authorization_DefaultApi",
+					Description: "Localhost for authorization_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -179,20 +179,20 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListRoles", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListRoles", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceType}/{resourceId}/roles"
 		resourceTypeValue := "resourceType-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(resourceTypeValue, "resourceType")), -1)
 		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := RolesResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -203,7 +203,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for authorization_DefaultApi",
+					Description: "Localhost for authorization_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -234,18 +234,18 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListUserMemberships", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListUserMemberships", func(t *testing.T) {
 		_apiUrlPath := "/v2/users/{email}/memberships"
 		emailValue := "email-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"email"+"}", url.PathEscape(ParameterValueToString(emailValue, "email")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListUserMembershipsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -256,7 +256,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for authorization_DefaultApi",
+					Description: "Localhost for authorization_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -286,18 +286,18 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListUserPermissions", func(t *testing.T) {
+	t.Run("Test DefaultAPIService ListUserPermissions", func(t *testing.T) {
 		_apiUrlPath := "/v2/users/{email}/permissions"
 		emailValue := "email-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"email"+"}", url.PathEscape(ParameterValueToString(emailValue, "email")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := ListUserPermissionsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -308,7 +308,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for authorization_DefaultApi",
+					Description: "Localhost for authorization_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",
@@ -338,18 +338,18 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService RemoveMembers", func(t *testing.T) {
+	t.Run("Test DefaultAPIService RemoveMembers", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceId}/members/remove"
 		resourceIdValue := "resourceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
 
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		testDefaultAPIServeMux := http.NewServeMux()
+		testDefaultAPIServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
 			data := MembersResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
+		testServer := httptest.NewServer(testDefaultAPIServeMux)
 		defer testServer.Close()
 
 		configuration := &config.Configuration{
@@ -360,7 +360,7 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 			Servers: config.ServerConfigurations{
 				{
 					URL:         testServer.URL,
-					Description: "Localhost for authorization_DefaultApi",
+					Description: "Localhost for authorization_DefaultAPI",
 					Variables: map[string]config.ServerVariable{
 						"region": {
 							DefaultValue: "test_region.",

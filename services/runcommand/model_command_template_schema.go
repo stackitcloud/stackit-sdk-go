@@ -261,6 +261,14 @@ func (o *CommandTemplateSchema) SetTitle(v CommandTemplateSchemaGetTitleRetType)
 	setCommandTemplateSchemaGetTitleAttributeType(&o.Title, v)
 }
 
+func (o CommandTemplateSchema) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CommandTemplateSchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCommandTemplateSchemaGetDescriptionAttributeTypeOk(o.Description); ok {

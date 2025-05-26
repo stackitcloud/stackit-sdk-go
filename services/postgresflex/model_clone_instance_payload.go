@@ -173,6 +173,14 @@ func (o *CloneInstancePayload) SetTimestamp(v CloneInstancePayloadGetTimestampRe
 	setCloneInstancePayloadGetTimestampAttributeType(&o.Timestamp, v)
 }
 
+func (o CloneInstancePayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCloneInstancePayloadGetClassAttributeTypeOk(o.Class); ok {

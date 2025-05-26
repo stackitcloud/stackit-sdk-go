@@ -263,6 +263,14 @@ func (o *MachineType) SetName(v MachineTypeGetNameRetType) {
 	setMachineTypeGetNameAttributeType(&o.Name, v)
 }
 
+func (o MachineType) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o MachineType) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getMachineTypeGetArchitectureAttributeTypeOk(o.Architecture); ok {

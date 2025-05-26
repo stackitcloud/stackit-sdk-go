@@ -11,7 +11,9 @@ API version: 1.1.1
 package observability
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the InstanceSensitiveData type satisfies the MappedNullable interface at compile time
@@ -983,6 +985,14 @@ func (o *InstanceSensitiveData) SetZipkinSpansUrl(v InstanceSensitiveDataGetZipk
 	setInstanceSensitiveDataGetZipkinSpansUrlAttributeType(&o.ZipkinSpansUrl, v)
 }
 
+func (o InstanceSensitiveData) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceSensitiveDataGetAlertingUrlAttributeTypeOk(o.AlertingUrl); ok {
@@ -1055,6 +1065,64 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 		toSerialize["ZipkinSpansUrl"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *InstanceSensitiveData) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"alertingUrl",
+		"cluster",
+		"dashboardUrl",
+		"grafanaAdminPassword",
+		"grafanaAdminUser",
+		"grafanaPublicReadAccess",
+		"grafanaUrl",
+		"grafanaUseStackitSso",
+		"instance",
+		"jaegerTracesUrl",
+		"jaegerUiUrl",
+		"logsPushUrl",
+		"logsUrl",
+		"metricsRetentionTime1h",
+		"metricsRetentionTime5m",
+		"metricsRetentionTimeRaw",
+		"metricsUrl",
+		"otlpTracesUrl",
+		"plan",
+		"pushMetricsUrl",
+		"targetsUrl",
+		"zipkinSpansUrl",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varInstanceSensitiveData := _InstanceSensitiveData{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInstanceSensitiveData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceSensitiveData(varInstanceSensitiveData)
+
+	return err
 }
 
 type NullableInstanceSensitiveData struct {

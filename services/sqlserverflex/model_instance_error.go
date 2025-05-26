@@ -216,6 +216,14 @@ func (o *InstanceError) SetType(v InstanceErrorGetTypeRetType) {
 	setInstanceErrorGetTypeAttributeType(&o.Type, v)
 }
 
+func (o InstanceError) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceErrorGetCodeAttributeTypeOk(o.Code); ok {

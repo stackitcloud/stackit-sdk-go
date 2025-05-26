@@ -127,6 +127,14 @@ func (o *Storage) SetSize(v StorageGetSizeRetType) {
 	setStorageGetSizeAttributeType(&o.Size, v)
 }
 
+func (o Storage) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getStorageGetClassAttributeTypeOk(o.Class); ok {

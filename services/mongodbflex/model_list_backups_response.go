@@ -126,6 +126,14 @@ func (o *ListBackupsResponse) SetItems(v ListBackupsResponseGetItemsRetType) {
 	setListBackupsResponseGetItemsAttributeType(&o.Items, v)
 }
 
+func (o ListBackupsResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListBackupsResponseGetCountAttributeTypeOk(o.Count); ok {

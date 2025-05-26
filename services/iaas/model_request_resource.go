@@ -11,7 +11,9 @@ API version: 1
 package iaas
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the RequestResource type satisfies the MappedNullable interface at compile time
@@ -84,7 +86,7 @@ type RequestResourceGetTypeRetType = string
 type RequestResource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id RequestResourceGetIdAttributeType `json:"id"`
+	Id RequestResourceGetIdAttributeType `json:"id" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
 	Status RequestResourceGetStatusAttributeType `json:"status"`
@@ -166,6 +168,14 @@ func (o *RequestResource) SetType(v RequestResourceGetTypeRetType) {
 	setRequestResourceGetTypeAttributeType(&o.Type, v)
 }
 
+func (o RequestResource) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o RequestResource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRequestResourceGetIdAttributeTypeOk(o.Id); ok {
@@ -178,6 +188,45 @@ func (o RequestResource) ToMap() (map[string]interface{}, error) {
 		toSerialize["Type"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *RequestResource) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"status",
+		"types",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRequestResource := _RequestResource{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRequestResource)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RequestResource(varRequestResource)
+
+	return err
 }
 
 type NullableRequestResource struct {

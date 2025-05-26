@@ -104,9 +104,9 @@ type GetCertificateResponseGetRegionRetType = string
 // GetCertificateResponse GetCertificateResponse returns name, id and public key
 type GetCertificateResponse struct {
 	// The certificates resource id
-	Id GetCertificateResponseGetIdAttributeType `json:"id,omitempty"`
+	Id GetCertificateResponseGetIdAttributeType `json:"id,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// TLS certificate name
-	Name GetCertificateResponseGetNameAttributeType `json:"name,omitempty"`
+	Name GetCertificateResponseGetNameAttributeType `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// The PEM encoded public key part
 	PublicKey GetCertificateResponseGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// Region of the LoadBalancer
@@ -220,6 +220,14 @@ func (o *GetCertificateResponse) HasRegion() bool {
 // SetRegion gets a reference to the given string and assigns it to the Region field.
 func (o *GetCertificateResponse) SetRegion(v GetCertificateResponseGetRegionRetType) {
 	setGetCertificateResponseGetRegionAttributeType(&o.Region, v)
+}
+
+func (o GetCertificateResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
 }
 
 func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {

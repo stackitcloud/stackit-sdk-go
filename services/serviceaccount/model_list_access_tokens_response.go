@@ -82,6 +82,14 @@ func (o *ListAccessTokensResponse) SetItems(v ListAccessTokensResponseGetItemsRe
 	setListAccessTokensResponseGetItemsAttributeType(&o.Items, v)
 }
 
+func (o ListAccessTokensResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListAccessTokensResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListAccessTokensResponseGetItemsAttributeTypeOk(o.Items); ok {

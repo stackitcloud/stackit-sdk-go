@@ -82,6 +82,14 @@ func (o *ListClustersResponse) SetItems(v ListClustersResponseGetItemsRetType) {
 	setListClustersResponseGetItemsAttributeType(&o.Items, v)
 }
 
+func (o ListClustersResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListClustersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListClustersResponseGetItemsAttributeTypeOk(o.Items); ok {

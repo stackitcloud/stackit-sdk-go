@@ -263,6 +263,14 @@ func (o *UpdateAlertConfigsPayloadInhibitRules) SetTargetMatchRe(v UpdateAlertCo
 	setUpdateAlertConfigsPayloadInhibitRulesGetTargetMatchReAttributeType(&o.TargetMatchRe, v)
 }
 
+func (o UpdateAlertConfigsPayloadInhibitRules) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o UpdateAlertConfigsPayloadInhibitRules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateAlertConfigsPayloadInhibitRulesGetEqualAttributeTypeOk(o.Equal); ok {

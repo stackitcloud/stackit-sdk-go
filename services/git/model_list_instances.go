@@ -11,7 +11,9 @@ API version: 1beta.0.3
 package git
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the ListInstances type satisfies the MappedNullable interface at compile time
@@ -80,12 +82,57 @@ func (o *ListInstances) SetInstances(v ListInstancesGetInstancesRetType) {
 	setListInstancesGetInstancesAttributeType(&o.Instances, v)
 }
 
+func (o ListInstances) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ListInstances) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListInstancesGetInstancesAttributeTypeOk(o.Instances); ok {
 		toSerialize["Instances"] = val
 	}
 	return toSerialize, nil
+}
+
+func (o *ListInstances) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"instances",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varListInstances := _ListInstances{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varListInstances)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListInstances(varListInstances)
+
+	return err
 }
 
 type NullableListInstances struct {

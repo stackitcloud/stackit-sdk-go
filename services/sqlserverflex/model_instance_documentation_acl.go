@@ -83,6 +83,14 @@ func (o *InstanceDocumentationACL) SetItems(v InstanceDocumentationACLGetItemsRe
 	setInstanceDocumentationACLGetItemsAttributeType(&o.Items, v)
 }
 
+func (o InstanceDocumentationACL) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o InstanceDocumentationACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceDocumentationACLGetItemsAttributeTypeOk(o.Items); ok {

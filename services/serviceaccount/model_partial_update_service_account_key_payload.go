@@ -129,6 +129,14 @@ func (o *PartialUpdateServiceAccountKeyPayload) SetValidUntil(v PartialUpdateSer
 	setPartialUpdateServiceAccountKeyPayloadGetValidUntilAttributeType(&o.ValidUntil, v)
 }
 
+func (o PartialUpdateServiceAccountKeyPayload) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o PartialUpdateServiceAccountKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateServiceAccountKeyPayloadgetActiveAttributeTypeOk(o.Active); ok {

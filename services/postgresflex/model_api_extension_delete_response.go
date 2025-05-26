@@ -82,6 +82,14 @@ func (o *ApiExtensionDeleteResponse) SetIsSucceded(v ApiExtensionDeleteResponseg
 	setApiExtensionDeleteResponsegetIsSuccededAttributeType(&o.IsSucceded, v)
 }
 
+func (o ApiExtensionDeleteResponse) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
 func (o ApiExtensionDeleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiExtensionDeleteResponsegetIsSuccededAttributeTypeOk(o.IsSucceded); ok {
