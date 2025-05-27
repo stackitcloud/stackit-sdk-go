@@ -25,6 +25,7 @@ var _ MappedNullable = &PartialUpdateRecordPayload{}
 // isEnum
 
 // PartialUpdateRecordPayloadAction the model 'PartialUpdateRecordPayload'
+// value type for enums
 type PartialUpdateRecordPayloadAction string
 
 // List of Action
@@ -40,13 +41,13 @@ var AllowedPartialUpdateRecordPayloadActionEnumValues = []PartialUpdateRecordPay
 }
 
 func (v *PartialUpdateRecordPayloadAction) UnmarshalJSON(src []byte) error {
-	var value string
+	var value PartialUpdateRecordPayloadAction
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue PartialUpdateRecordPayloadAction
 	if value == zeroValue {
 		return nil
 	}
@@ -63,7 +64,7 @@ func (v *PartialUpdateRecordPayloadAction) UnmarshalJSON(src []byte) error {
 
 // NewPartialUpdateRecordPayloadActionFromValue returns a pointer to a valid PartialUpdateRecordPayloadAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateRecordPayloadActionFromValue(v string) (*PartialUpdateRecordPayloadAction, error) {
+func NewPartialUpdateRecordPayloadActionFromValue(v PartialUpdateRecordPayloadAction) (*PartialUpdateRecordPayloadAction, error) {
 	ev := PartialUpdateRecordPayloadAction(v)
 	if ev.IsValid() {
 		return &ev, nil
