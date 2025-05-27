@@ -25,6 +25,7 @@ var _ MappedNullable = &Taint{}
 // isEnum
 
 // TaintEffect the model 'Taint'
+// value type for enums
 type TaintEffect string
 
 // List of Effect
@@ -42,13 +43,13 @@ var AllowedTaintEffectEnumValues = []TaintEffect{
 }
 
 func (v *TaintEffect) UnmarshalJSON(src []byte) error {
-	var value string
+	var value TaintEffect
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TaintEffect
 	if value == zeroValue {
 		return nil
 	}
@@ -65,7 +66,7 @@ func (v *TaintEffect) UnmarshalJSON(src []byte) error {
 
 // NewTaintEffectFromValue returns a pointer to a valid TaintEffect
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewTaintEffectFromValue(v string) (*TaintEffect, error) {
+func NewTaintEffectFromValue(v TaintEffect) (*TaintEffect, error) {
 	ev := TaintEffect(v)
 	if ev.IsValid() {
 		return &ev, nil
