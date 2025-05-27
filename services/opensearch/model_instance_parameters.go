@@ -66,6 +66,7 @@ type InstanceParametersGetGraphiteRetType = string
 // isEnum
 
 // InstanceParametersJavaGarbageCollector the model 'InstanceParameters'
+// value type for enums
 type InstanceParametersJavaGarbageCollector string
 
 // List of JavaGarbageCollector
@@ -85,13 +86,13 @@ var AllowedInstanceParametersJavaGarbageCollectorEnumValues = []InstanceParamete
 }
 
 func (v *InstanceParametersJavaGarbageCollector) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceParametersJavaGarbageCollector
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceParametersJavaGarbageCollector
 	if value == zeroValue {
 		return nil
 	}
@@ -108,7 +109,7 @@ func (v *InstanceParametersJavaGarbageCollector) UnmarshalJSON(src []byte) error
 
 // NewInstanceParametersJavaGarbageCollectorFromValue returns a pointer to a valid InstanceParametersJavaGarbageCollector
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersJavaGarbageCollectorFromValue(v string) (*InstanceParametersJavaGarbageCollector, error) {
+func NewInstanceParametersJavaGarbageCollectorFromValue(v InstanceParametersJavaGarbageCollector) (*InstanceParametersJavaGarbageCollector, error) {
 	ev := InstanceParametersJavaGarbageCollector(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -393,6 +394,7 @@ func setInstanceParametersGetTlsCiphersAttributeType(arg *InstanceParametersGetT
 // isEnum
 
 // InstanceParametersTlsProtocols the model 'InstanceParameters'
+// value type for enums
 type InstanceParametersTlsProtocols string
 
 // List of TlsProtocols
@@ -408,13 +410,13 @@ var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsPro
 }
 
 func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceParametersTlsProtocols
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceParametersTlsProtocols
 	if value == zeroValue {
 		return nil
 	}
@@ -431,7 +433,7 @@ func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
 
 // NewInstanceParametersTlsProtocolsFromValue returns a pointer to a valid InstanceParametersTlsProtocols
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersTlsProtocolsFromValue(v string) (*InstanceParametersTlsProtocols, error) {
+func NewInstanceParametersTlsProtocolsFromValue(v InstanceParametersTlsProtocols) (*InstanceParametersTlsProtocols, error) {
 	ev := InstanceParametersTlsProtocols(v)
 	if ev.IsValid() {
 		return &ev, nil
