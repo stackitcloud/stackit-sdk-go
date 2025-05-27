@@ -36,7 +36,6 @@ const (
 
 	XRequestIDHeader = "X-Request-Id"
 
-	// Backup status constants
 	BackupAvailableStatus = "AVAILABLE"
 	BackupRestoringStatus = "RESTORING"
 	BackupDeletingStatus  = "DELETING"
@@ -611,7 +610,7 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
 		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
 		if err != nil {
-			return true, backup, err // TODO: true/false Testcase
+			return true, backup, err // TODO: include in Testcase?
 		}
 		if backup.Id == nil || backup.Status == nil {
 			return true, backup, fmt.Errorf("create failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
@@ -620,7 +619,7 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 			return true, backup, nil
 		}
 		if *backup.Id == backupId && *backup.Status == ErrorStatus {
-			return true, backup, fmt.Errorf("create failed for backup with id %s", backupId, *backup.Status)
+			return true, backup, fmt.Errorf("create failed for backup with id %s", backupId)
 		}
 		return false, backup, nil
 	})
@@ -671,7 +670,7 @@ func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, project
 		}
 		if *backup.Id == backupId && *backup.Status == ErrorStatus {
 			if backup.Status != nil {
-				return true, backup, fmt.Errorf("restore failed for backup with id %s: %s", backupId, *backup.Status)
+				return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
 			}
 			return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
 		}

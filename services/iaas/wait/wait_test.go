@@ -21,6 +21,7 @@ type apiClientMocked struct {
 	getServerFails         bool
 	getAttachedVolumeFails bool
 	getImageFails          bool
+	getBackupFails         bool
 	isAttached             bool
 	requestAction          string
 	returnResizing         bool
@@ -158,6 +159,25 @@ func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaas
 
 	return &iaas.Image{
 		Id:     utils.Ptr("iid"),
+		Status: &a.resourceState,
+	}, nil
+}
+
+func (a *apiClientMocked) GetBackupExecute(_ context.Context, _, _ string) (*iaas.Backup, error) {
+	if a.isDeleted {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 404,
+		}
+	}
+
+	if a.getBackupFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	return &iaas.Backup{
+		Id:     utils.Ptr("bid"),
 		Status: &a.resourceState,
 	}, nil
 }
@@ -1500,6 +1520,188 @@ func TestDeleteImageWaitHandler(t *testing.T) {
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestCreateBackupWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "create_succeeded",
+			getFails:      false,
+			resourceState: BackupAvailableStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER_STATUS",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getBackupFails: tt.getFails,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaas.Backup
+			if tt.wantResp {
+				wantRes = &iaas.Backup{
+					Id:     utils.Ptr("bid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := CreateBackupWaitHandler(context.Background(), apiClient, "pid", "bid")
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestDeleteBackupWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		isDeleted     bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:      "delete_succeeded",
+			getFails:  false,
+			isDeleted: true,
+			wantErr:   false,
+			wantResp:  false,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER_STATUS",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getBackupFails: tt.getFails,
+				isDeleted:      tt.isDeleted,
+				resourceState:  tt.resourceState,
+			}
+
+			handler := DeleteBackupWaitHandler(context.Background(), apiClient, "pid", "bid")
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if gotRes != nil {
+				t.Fatalf("handler gotRes = %v, want nil", gotRes)
+			}
+		})
+	}
+}
+
+func TestRestoreBackupWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "restore_succeeded",
+			getFails:      false,
+			resourceState: BackupAvailableStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER_STATUS",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getBackupFails: tt.getFails,
+				resourceState:  tt.resourceState,
+			}
+
+			var wantRes *iaas.Backup
+			if tt.wantResp {
+				wantRes = &iaas.Backup{
+					Id:     utils.Ptr("bid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := RestoreBackupWaitHandler(context.Background(), apiClient, "pid", "bid")
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
 	}

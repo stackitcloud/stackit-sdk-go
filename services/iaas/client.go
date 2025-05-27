@@ -524,9 +524,7 @@ func newStrictDecoder(data []byte) *json.Decoder {
 
 // Set request body from an interface{}
 func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
-	if bodyBuf == nil {
-		bodyBuf = &bytes.Buffer{}
-	}
+	bodyBuf = &bytes.Buffer{}
 
 	if reader, ok := body.(io.Reader); ok {
 		_, err = bodyBuf.ReadFrom(reader)
