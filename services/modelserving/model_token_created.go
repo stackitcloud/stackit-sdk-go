@@ -131,6 +131,7 @@ type TokenCreatedGetRegionRetType = string
 // isEnum
 
 // TokenCreatedState the model 'TokenCreated'
+// value type for enums
 type TokenCreatedState string
 
 // List of State
@@ -148,13 +149,13 @@ var AllowedTokenCreatedStateEnumValues = []TokenCreatedState{
 }
 
 func (v *TokenCreatedState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value TokenCreatedState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TokenCreatedState
 	if value == zeroValue {
 		return nil
 	}
@@ -171,7 +172,7 @@ func (v *TokenCreatedState) UnmarshalJSON(src []byte) error {
 
 // NewTokenCreatedStateFromValue returns a pointer to a valid TokenCreatedState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewTokenCreatedStateFromValue(v string) (*TokenCreatedState, error) {
+func NewTokenCreatedStateFromValue(v TokenCreatedState) (*TokenCreatedState, error) {
 	ev := TokenCreatedState(v)
 	if ev.IsValid() {
 		return &ev, nil
