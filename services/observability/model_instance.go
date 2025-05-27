@@ -208,6 +208,7 @@ func setInstanceGetPlanAttributeType(arg *InstanceGetPlanAttributeType, val Inst
 // isEnum
 
 // InstanceState the model 'Instance'
+// value type for enums
 type InstanceState string
 
 // List of State
@@ -245,13 +246,13 @@ var AllowedInstanceStateEnumValues = []InstanceState{
 }
 
 func (v *InstanceState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceState
 	if value == zeroValue {
 		return nil
 	}
@@ -268,7 +269,7 @@ func (v *InstanceState) UnmarshalJSON(src []byte) error {
 
 // NewInstanceStateFromValue returns a pointer to a valid InstanceState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceStateFromValue(v string) (*InstanceState, error) {
+func NewInstanceStateFromValue(v InstanceState) (*InstanceState, error) {
 	ev := InstanceState(v)
 	if ev.IsValid() {
 		return &ev, nil
