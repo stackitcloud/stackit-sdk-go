@@ -290,6 +290,7 @@ func setCreateZonePayloadGetRetryTimeAttributeType(arg *CreateZonePayloadGetRetr
 // isEnum
 
 // CreateZonePayloadTypes zone type
+// value type for enums
 type CreateZonePayloadTypes string
 
 // List of Type
@@ -305,13 +306,13 @@ var AllowedCreateZonePayloadTypesEnumValues = []CreateZonePayloadTypes{
 }
 
 func (v *CreateZonePayloadTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateZonePayloadTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateZonePayloadTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -328,7 +329,7 @@ func (v *CreateZonePayloadTypes) UnmarshalJSON(src []byte) error {
 
 // NewCreateZonePayloadTypesFromValue returns a pointer to a valid CreateZonePayloadTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateZonePayloadTypesFromValue(v string) (*CreateZonePayloadTypes, error) {
+func NewCreateZonePayloadTypesFromValue(v CreateZonePayloadTypes) (*CreateZonePayloadTypes, error) {
 	ev := CreateZonePayloadTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
