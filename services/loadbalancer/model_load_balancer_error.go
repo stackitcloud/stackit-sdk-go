@@ -46,6 +46,7 @@ type LoadBalancerErrorGetDescriptionRetType = string
 // isEnum
 
 // LoadBalancerErrorTypes The error type specifies which part of the load balancer encountered the error. I.e. the API will not check if a provided public IP is actually available in the project. Instead the load balancer with try to use the provided IP and if not available reports TYPE_FIP_NOT_CONFIGURED error or TYPE_FIP_NOT_FOUND if the IP was deleted.
+// value type for enums
 type LoadBalancerErrorTypes string
 
 // List of Type
@@ -77,13 +78,13 @@ var AllowedLoadBalancerErrorTypesEnumValues = []LoadBalancerErrorTypes{
 }
 
 func (v *LoadBalancerErrorTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value LoadBalancerErrorTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue LoadBalancerErrorTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -100,7 +101,7 @@ func (v *LoadBalancerErrorTypes) UnmarshalJSON(src []byte) error {
 
 // NewLoadBalancerErrorTypesFromValue returns a pointer to a valid LoadBalancerErrorTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewLoadBalancerErrorTypesFromValue(v string) (*LoadBalancerErrorTypes, error) {
+func NewLoadBalancerErrorTypesFromValue(v LoadBalancerErrorTypes) (*LoadBalancerErrorTypes, error) {
 	ev := LoadBalancerErrorTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
