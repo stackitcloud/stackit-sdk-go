@@ -99,6 +99,26 @@ func setCreateDistributionPayloadGetMonthlyLimitBytesAttributeType(arg *CreateDi
 }
 
 /*
+	types and functions for optimizer
+*/
+
+// isModel
+type CreateDistributionPayloadGetOptimizerAttributeType = *Optimizer
+type CreateDistributionPayloadGetOptimizerArgType = Optimizer
+type CreateDistributionPayloadGetOptimizerRetType = Optimizer
+
+func getCreateDistributionPayloadGetOptimizerAttributeTypeOk(arg CreateDistributionPayloadGetOptimizerAttributeType) (ret CreateDistributionPayloadGetOptimizerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetOptimizerAttributeType(arg *CreateDistributionPayloadGetOptimizerAttributeType, val CreateDistributionPayloadGetOptimizerRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for originRequestHeaders
 */
 
@@ -169,6 +189,7 @@ type CreateDistributionPayload struct {
 	IntentId CreateDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes CreateDistributionPayloadGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
+	Optimizer         CreateDistributionPayloadGetOptimizerAttributeType         `json:"optimizer,omitempty"`
 	// Headers that will be sent with every request to the configured origin. WARNING: Do not store sensitive values in the headers. The data is stores as plain text.
 	OriginRequestHeaders CreateDistributionPayloadGetOriginRequestHeadersAttributeType `json:"originRequestHeaders,omitempty"`
 	// The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
@@ -292,6 +313,29 @@ func (o *CreateDistributionPayload) SetMonthlyLimitBytes(v CreateDistributionPay
 	setCreateDistributionPayloadGetMonthlyLimitBytesAttributeType(&o.MonthlyLimitBytes, v)
 }
 
+// GetOptimizer returns the Optimizer field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetOptimizer() (res CreateDistributionPayloadGetOptimizerRetType) {
+	res, _ = o.GetOptimizerOk()
+	return
+}
+
+// GetOptimizerOk returns a tuple with the Optimizer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetOptimizerOk() (ret CreateDistributionPayloadGetOptimizerRetType, ok bool) {
+	return getCreateDistributionPayloadGetOptimizerAttributeTypeOk(o.Optimizer)
+}
+
+// HasOptimizer returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasOptimizer() bool {
+	_, ok := o.GetOptimizerOk()
+	return ok
+}
+
+// SetOptimizer gets a reference to the given Optimizer and assigns it to the Optimizer field.
+func (o *CreateDistributionPayload) SetOptimizer(v CreateDistributionPayloadGetOptimizerRetType) {
+	setCreateDistributionPayloadGetOptimizerAttributeType(&o.Optimizer, v)
+}
+
 // GetOriginRequestHeaders returns the OriginRequestHeaders field value if set, zero value otherwise.
 func (o *CreateDistributionPayload) GetOriginRequestHeaders() (res CreateDistributionPayloadGetOriginRequestHeadersRetType) {
 	res, _ = o.GetOriginRequestHeadersOk()
@@ -362,6 +406,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
 		toSerialize["MonthlyLimitBytes"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetOptimizerAttributeTypeOk(o.Optimizer); ok {
+		toSerialize["Optimizer"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetOriginRequestHeadersAttributeTypeOk(o.OriginRequestHeaders); ok {
 		toSerialize["OriginRequestHeaders"] = val

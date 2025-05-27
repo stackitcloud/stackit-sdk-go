@@ -109,6 +109,7 @@ type ErrorDetailsGetFieldRetType = string
 // isEnum
 
 // ErrorDetailsKey the model 'ErrorDetails'
+// value type for enums
 type ErrorDetailsKey string
 
 // List of Key
@@ -126,13 +127,13 @@ var AllowedErrorDetailsKeyEnumValues = []ErrorDetailsKey{
 }
 
 func (v *ErrorDetailsKey) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ErrorDetailsKey
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ErrorDetailsKey
 	if value == zeroValue {
 		return nil
 	}
@@ -149,7 +150,7 @@ func (v *ErrorDetailsKey) UnmarshalJSON(src []byte) error {
 
 // NewErrorDetailsKeyFromValue returns a pointer to a valid ErrorDetailsKey
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewErrorDetailsKeyFromValue(v string) (*ErrorDetailsKey, error) {
+func NewErrorDetailsKeyFromValue(v ErrorDetailsKey) (*ErrorDetailsKey, error) {
 	ev := ErrorDetailsKey(v)
 	if ev.IsValid() {
 		return &ev, nil
