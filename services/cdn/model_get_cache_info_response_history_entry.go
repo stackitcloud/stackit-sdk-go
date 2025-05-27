@@ -66,6 +66,7 @@ func setGetCacheInfoResponseHistoryEntryGetOccurredAtAttributeType(arg *GetCache
 // isEnum
 
 // GetCacheInfoResponseHistoryEntryTypes the model 'GetCacheInfoResponseHistoryEntry'
+// value type for enums
 type GetCacheInfoResponseHistoryEntryTypes string
 
 // List of Type
@@ -81,13 +82,13 @@ var AllowedGetCacheInfoResponseHistoryEntryTypesEnumValues = []GetCacheInfoRespo
 }
 
 func (v *GetCacheInfoResponseHistoryEntryTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value GetCacheInfoResponseHistoryEntryTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue GetCacheInfoResponseHistoryEntryTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -104,7 +105,7 @@ func (v *GetCacheInfoResponseHistoryEntryTypes) UnmarshalJSON(src []byte) error 
 
 // NewGetCacheInfoResponseHistoryEntryTypesFromValue returns a pointer to a valid GetCacheInfoResponseHistoryEntryTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewGetCacheInfoResponseHistoryEntryTypesFromValue(v string) (*GetCacheInfoResponseHistoryEntryTypes, error) {
+func NewGetCacheInfoResponseHistoryEntryTypesFromValue(v GetCacheInfoResponseHistoryEntryTypes) (*GetCacheInfoResponseHistoryEntryTypes, error) {
 	ev := GetCacheInfoResponseHistoryEntryTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
