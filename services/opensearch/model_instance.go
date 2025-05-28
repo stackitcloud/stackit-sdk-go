@@ -296,6 +296,7 @@ type InstanceGetPlanNameRetType = string
 // isEnum
 
 // InstanceStatus the model 'Instance'
+// value type for enums
 type InstanceStatus string
 
 // List of Status
@@ -319,13 +320,13 @@ var AllowedInstanceStatusEnumValues = []InstanceStatus{
 }
 
 func (v *InstanceStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value InstanceStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue InstanceStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -342,7 +343,7 @@ func (v *InstanceStatus) UnmarshalJSON(src []byte) error {
 
 // NewInstanceStatusFromValue returns a pointer to a valid InstanceStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceStatusFromValue(v string) (*InstanceStatus, error) {
+func NewInstanceStatusFromValue(v InstanceStatus) (*InstanceStatus, error) {
 	ev := InstanceStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
