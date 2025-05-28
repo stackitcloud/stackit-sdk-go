@@ -248,6 +248,7 @@ func setJobGetSampleLimitAttributeType(arg *JobGetSampleLimitAttributeType, val 
 // isEnum
 
 // JobScheme the model 'Job'
+// value type for enums
 type JobScheme string
 
 // List of Scheme
@@ -263,13 +264,13 @@ var AllowedJobSchemeEnumValues = []JobScheme{
 }
 
 func (v *JobScheme) UnmarshalJSON(src []byte) error {
-	var value string
+	var value JobScheme
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue JobScheme
 	if value == zeroValue {
 		return nil
 	}
@@ -286,7 +287,7 @@ func (v *JobScheme) UnmarshalJSON(src []byte) error {
 
 // NewJobSchemeFromValue returns a pointer to a valid JobScheme
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewJobSchemeFromValue(v string) (*JobScheme, error) {
+func NewJobSchemeFromValue(v JobScheme) (*JobScheme, error) {
 	ev := JobScheme(v)
 	if ev.IsValid() {
 		return &ev, nil
