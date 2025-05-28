@@ -87,6 +87,7 @@ type ServiceAccountKeyListResponseGetIdRetType = string
 // isEnum
 
 // ServiceAccountKeyListResponseKeyAlgorithm the model 'ServiceAccountKeyListResponse'
+// value type for enums
 type ServiceAccountKeyListResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
@@ -100,13 +101,13 @@ var AllowedServiceAccountKeyListResponseKeyAlgorithmEnumValues = []ServiceAccoun
 }
 
 func (v *ServiceAccountKeyListResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ServiceAccountKeyListResponseKeyAlgorithm
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ServiceAccountKeyListResponseKeyAlgorithm
 	if value == zeroValue {
 		return nil
 	}
@@ -123,7 +124,7 @@ func (v *ServiceAccountKeyListResponseKeyAlgorithm) UnmarshalJSON(src []byte) er
 
 // NewServiceAccountKeyListResponseKeyAlgorithmFromValue returns a pointer to a valid ServiceAccountKeyListResponseKeyAlgorithm
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewServiceAccountKeyListResponseKeyAlgorithmFromValue(v string) (*ServiceAccountKeyListResponseKeyAlgorithm, error) {
+func NewServiceAccountKeyListResponseKeyAlgorithmFromValue(v ServiceAccountKeyListResponseKeyAlgorithm) (*ServiceAccountKeyListResponseKeyAlgorithm, error) {
 	ev := ServiceAccountKeyListResponseKeyAlgorithm(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -205,6 +206,7 @@ func setServiceAccountKeyListResponseGetKeyAlgorithmAttributeType(arg *ServiceAc
 // isEnum
 
 // ServiceAccountKeyListResponseKeyOrigin the model 'ServiceAccountKeyListResponse'
+// value type for enums
 type ServiceAccountKeyListResponseKeyOrigin string
 
 // List of KeyOrigin
@@ -220,13 +222,13 @@ var AllowedServiceAccountKeyListResponseKeyOriginEnumValues = []ServiceAccountKe
 }
 
 func (v *ServiceAccountKeyListResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ServiceAccountKeyListResponseKeyOrigin
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ServiceAccountKeyListResponseKeyOrigin
 	if value == zeroValue {
 		return nil
 	}
@@ -243,7 +245,7 @@ func (v *ServiceAccountKeyListResponseKeyOrigin) UnmarshalJSON(src []byte) error
 
 // NewServiceAccountKeyListResponseKeyOriginFromValue returns a pointer to a valid ServiceAccountKeyListResponseKeyOrigin
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewServiceAccountKeyListResponseKeyOriginFromValue(v string) (*ServiceAccountKeyListResponseKeyOrigin, error) {
+func NewServiceAccountKeyListResponseKeyOriginFromValue(v ServiceAccountKeyListResponseKeyOrigin) (*ServiceAccountKeyListResponseKeyOrigin, error) {
 	ev := ServiceAccountKeyListResponseKeyOrigin(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -325,6 +327,7 @@ func setServiceAccountKeyListResponseGetKeyOriginAttributeType(arg *ServiceAccou
 // isEnum
 
 // ServiceAccountKeyListResponseKeyType the model 'ServiceAccountKeyListResponse'
+// value type for enums
 type ServiceAccountKeyListResponseKeyType string
 
 // List of KeyType
@@ -340,13 +343,13 @@ var AllowedServiceAccountKeyListResponseKeyTypeEnumValues = []ServiceAccountKeyL
 }
 
 func (v *ServiceAccountKeyListResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ServiceAccountKeyListResponseKeyType
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ServiceAccountKeyListResponseKeyType
 	if value == zeroValue {
 		return nil
 	}
@@ -363,7 +366,7 @@ func (v *ServiceAccountKeyListResponseKeyType) UnmarshalJSON(src []byte) error {
 
 // NewServiceAccountKeyListResponseKeyTypeFromValue returns a pointer to a valid ServiceAccountKeyListResponseKeyType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewServiceAccountKeyListResponseKeyTypeFromValue(v string) (*ServiceAccountKeyListResponseKeyType, error) {
+func NewServiceAccountKeyListResponseKeyTypeFromValue(v ServiceAccountKeyListResponseKeyType) (*ServiceAccountKeyListResponseKeyType, error) {
 	ev := ServiceAccountKeyListResponseKeyType(v)
 	if ev.IsValid() {
 		return &ev, nil

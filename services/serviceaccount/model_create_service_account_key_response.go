@@ -107,6 +107,7 @@ type CreateServiceAccountKeyResponseGetIdRetType = string
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyAlgorithm the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
@@ -120,13 +121,13 @@ var AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues = []CreateServi
 }
 
 func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateServiceAccountKeyResponseKeyAlgorithm
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateServiceAccountKeyResponseKeyAlgorithm
 	if value == zeroValue {
 		return nil
 	}
@@ -143,7 +144,7 @@ func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) 
 
 // NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyAlgorithm
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*CreateServiceAccountKeyResponseKeyAlgorithm, error) {
+func NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue(v CreateServiceAccountKeyResponseKeyAlgorithm) (*CreateServiceAccountKeyResponseKeyAlgorithm, error) {
 	ev := CreateServiceAccountKeyResponseKeyAlgorithm(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -225,6 +226,7 @@ func setCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *CreateS
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyOrigin the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyOrigin string
 
 // List of KeyOrigin
@@ -240,13 +242,13 @@ var AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues = []CreateServiceA
 }
 
 func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateServiceAccountKeyResponseKeyOrigin
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateServiceAccountKeyResponseKeyOrigin
 	if value == zeroValue {
 		return nil
 	}
@@ -263,7 +265,7 @@ func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) err
 
 // NewCreateServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyOrigin
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyOriginFromValue(v string) (*CreateServiceAccountKeyResponseKeyOrigin, error) {
+func NewCreateServiceAccountKeyResponseKeyOriginFromValue(v CreateServiceAccountKeyResponseKeyOrigin) (*CreateServiceAccountKeyResponseKeyOrigin, error) {
 	ev := CreateServiceAccountKeyResponseKeyOrigin(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -345,6 +347,7 @@ func setCreateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *CreateServ
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyType the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyType string
 
 // List of KeyType
@@ -360,13 +363,13 @@ var AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues = []CreateServiceAcc
 }
 
 func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateServiceAccountKeyResponseKeyType
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateServiceAccountKeyResponseKeyType
 	if value == zeroValue {
 		return nil
 	}
@@ -383,7 +386,7 @@ func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error
 
 // NewCreateServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyTypeFromValue(v string) (*CreateServiceAccountKeyResponseKeyType, error) {
+func NewCreateServiceAccountKeyResponseKeyTypeFromValue(v CreateServiceAccountKeyResponseKeyType) (*CreateServiceAccountKeyResponseKeyType, error) {
 	ev := CreateServiceAccountKeyResponseKeyType(v)
 	if ev.IsValid() {
 		return &ev, nil
