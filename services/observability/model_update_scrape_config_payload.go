@@ -187,6 +187,7 @@ func setUpdateScrapeConfigPayloadGetSampleLimitAttributeType(arg *UpdateScrapeCo
 // isEnum
 
 // UpdateScrapeConfigPayloadScheme Configures the protocol scheme used for requests. https or http
+// value type for enums
 type UpdateScrapeConfigPayloadScheme string
 
 // List of Scheme
@@ -202,13 +203,13 @@ var AllowedUpdateScrapeConfigPayloadSchemeEnumValues = []UpdateScrapeConfigPaylo
 }
 
 func (v *UpdateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
-	var value string
+	var value UpdateScrapeConfigPayloadScheme
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue UpdateScrapeConfigPayloadScheme
 	if value == zeroValue {
 		return nil
 	}
@@ -225,7 +226,7 @@ func (v *UpdateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
 
 // NewUpdateScrapeConfigPayloadSchemeFromValue returns a pointer to a valid UpdateScrapeConfigPayloadScheme
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewUpdateScrapeConfigPayloadSchemeFromValue(v string) (*UpdateScrapeConfigPayloadScheme, error) {
+func NewUpdateScrapeConfigPayloadSchemeFromValue(v UpdateScrapeConfigPayloadScheme) (*UpdateScrapeConfigPayloadScheme, error) {
 	ev := UpdateScrapeConfigPayloadScheme(v)
 	if ev.IsValid() {
 		return &ev, nil

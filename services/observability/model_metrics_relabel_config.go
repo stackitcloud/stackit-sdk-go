@@ -25,6 +25,7 @@ var _ MappedNullable = &MetricsRelabelConfig{}
 // isEnum
 
 // MetricsRelabelConfigAction the model 'MetricsRelabelConfig'
+// value type for enums
 type MetricsRelabelConfigAction string
 
 // List of Action
@@ -50,13 +51,13 @@ var AllowedMetricsRelabelConfigActionEnumValues = []MetricsRelabelConfigAction{
 }
 
 func (v *MetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
-	var value string
+	var value MetricsRelabelConfigAction
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue MetricsRelabelConfigAction
 	if value == zeroValue {
 		return nil
 	}
@@ -73,7 +74,7 @@ func (v *MetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
 
 // NewMetricsRelabelConfigActionFromValue returns a pointer to a valid MetricsRelabelConfigAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewMetricsRelabelConfigActionFromValue(v string) (*MetricsRelabelConfigAction, error) {
+func NewMetricsRelabelConfigActionFromValue(v MetricsRelabelConfigAction) (*MetricsRelabelConfigAction, error) {
 	ev := MetricsRelabelConfigAction(v)
 	if ev.IsValid() {
 		return &ev, nil
