@@ -210,6 +210,7 @@ type UpdateLoadBalancerPayloadGetRegionRetType = string
 // isEnum
 
 // UpdateLoadBalancerPayloadStatus the model 'UpdateLoadBalancerPayload'
+// value type for enums
 type UpdateLoadBalancerPayloadStatus string
 
 // List of Status
@@ -231,13 +232,13 @@ var AllowedUpdateLoadBalancerPayloadStatusEnumValues = []UpdateLoadBalancerPaylo
 }
 
 func (v *UpdateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value UpdateLoadBalancerPayloadStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue UpdateLoadBalancerPayloadStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -254,7 +255,7 @@ func (v *UpdateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
 
 // NewUpdateLoadBalancerPayloadStatusFromValue returns a pointer to a valid UpdateLoadBalancerPayloadStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewUpdateLoadBalancerPayloadStatusFromValue(v string) (*UpdateLoadBalancerPayloadStatus, error) {
+func NewUpdateLoadBalancerPayloadStatusFromValue(v UpdateLoadBalancerPayloadStatus) (*UpdateLoadBalancerPayloadStatus, error) {
 	ev := UpdateLoadBalancerPayloadStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
