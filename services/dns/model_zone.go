@@ -475,6 +475,7 @@ func setZoneGetSerialNumberAttributeType(arg *ZoneGetSerialNumberAttributeType, 
 // isEnum
 
 // ZoneState zone state
+// value type for enums
 type ZoneState string
 
 // List of State
@@ -504,13 +505,13 @@ var AllowedZoneStateEnumValues = []ZoneState{
 }
 
 func (v *ZoneState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ZoneState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ZoneState
 	if value == zeroValue {
 		return nil
 	}
@@ -527,7 +528,7 @@ func (v *ZoneState) UnmarshalJSON(src []byte) error {
 
 // NewZoneStateFromValue returns a pointer to a valid ZoneState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewZoneStateFromValue(v string) (*ZoneState, error) {
+func NewZoneStateFromValue(v ZoneState) (*ZoneState, error) {
 	ev := ZoneState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -609,6 +610,7 @@ func setZoneGetStateAttributeType(arg *ZoneGetStateAttributeType, val ZoneGetSta
 // isEnum
 
 // ZoneTypes zone type
+// value type for enums
 type ZoneTypes string
 
 // List of Type
@@ -624,13 +626,13 @@ var AllowedZoneTypesEnumValues = []ZoneTypes{
 }
 
 func (v *ZoneTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ZoneTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ZoneTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -647,7 +649,7 @@ func (v *ZoneTypes) UnmarshalJSON(src []byte) error {
 
 // NewZoneTypesFromValue returns a pointer to a valid ZoneTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewZoneTypesFromValue(v string) (*ZoneTypes, error) {
+func NewZoneTypesFromValue(v ZoneTypes) (*ZoneTypes, error) {
 	ev := ZoneTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -771,6 +773,7 @@ type ZoneGetUpdateStartedRetType = string
 // isEnum
 
 // ZoneVisibility visibility of the zone
+// value type for enums
 type ZoneVisibility string
 
 // List of Visibility
@@ -784,13 +787,13 @@ var AllowedZoneVisibilityEnumValues = []ZoneVisibility{
 }
 
 func (v *ZoneVisibility) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ZoneVisibility
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ZoneVisibility
 	if value == zeroValue {
 		return nil
 	}
@@ -807,7 +810,7 @@ func (v *ZoneVisibility) UnmarshalJSON(src []byte) error {
 
 // NewZoneVisibilityFromValue returns a pointer to a valid ZoneVisibility
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewZoneVisibilityFromValue(v string) (*ZoneVisibility, error) {
+func NewZoneVisibilityFromValue(v ZoneVisibility) (*ZoneVisibility, error) {
 	ev := ZoneVisibility(v)
 	if ev.IsValid() {
 		return &ev, nil

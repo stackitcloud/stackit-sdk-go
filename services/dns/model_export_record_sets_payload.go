@@ -45,6 +45,7 @@ func setExportRecordSetsPayloadgetExportAsFQDNAttributeType(arg *ExportRecordSet
 // isEnum
 
 // ExportRecordSetsPayloadFormat the model 'ExportRecordSetsPayload'
+// value type for enums
 type ExportRecordSetsPayloadFormat string
 
 // List of Format
@@ -62,13 +63,13 @@ var AllowedExportRecordSetsPayloadFormatEnumValues = []ExportRecordSetsPayloadFo
 }
 
 func (v *ExportRecordSetsPayloadFormat) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ExportRecordSetsPayloadFormat
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ExportRecordSetsPayloadFormat
 	if value == zeroValue {
 		return nil
 	}
@@ -85,7 +86,7 @@ func (v *ExportRecordSetsPayloadFormat) UnmarshalJSON(src []byte) error {
 
 // NewExportRecordSetsPayloadFormatFromValue returns a pointer to a valid ExportRecordSetsPayloadFormat
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewExportRecordSetsPayloadFormatFromValue(v string) (*ExportRecordSetsPayloadFormat, error) {
+func NewExportRecordSetsPayloadFormatFromValue(v ExportRecordSetsPayloadFormat) (*ExportRecordSetsPayloadFormat, error) {
 	ev := ExportRecordSetsPayloadFormat(v)
 	if ev.IsValid() {
 		return &ev, nil
