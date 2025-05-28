@@ -46,6 +46,7 @@ type NetworkGetNetworkIdRetType = string
 // isEnum
 
 // NetworkRole The role defines how the Application Load Balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
+// value type for enums
 type NetworkRole string
 
 // List of Role
@@ -65,13 +66,13 @@ var AllowedNetworkRoleEnumValues = []NetworkRole{
 }
 
 func (v *NetworkRole) UnmarshalJSON(src []byte) error {
-	var value string
+	var value NetworkRole
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue NetworkRole
 	if value == zeroValue {
 		return nil
 	}
@@ -88,7 +89,7 @@ func (v *NetworkRole) UnmarshalJSON(src []byte) error {
 
 // NewNetworkRoleFromValue returns a pointer to a valid NetworkRole
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewNetworkRoleFromValue(v string) (*NetworkRole, error) {
+func NewNetworkRoleFromValue(v NetworkRole) (*NetworkRole, error) {
 	ev := NetworkRole(v)
 	if ev.IsValid() {
 		return &ev, nil
