@@ -107,6 +107,7 @@ func setCreateRecordSetPayloadGetTtlAttributeType(arg *CreateRecordSetPayloadGet
 // isEnum
 
 // CreateRecordSetPayloadTypes record set type
+// value type for enums
 type CreateRecordSetPayloadTypes string
 
 // List of Type
@@ -160,13 +161,13 @@ var AllowedCreateRecordSetPayloadTypesEnumValues = []CreateRecordSetPayloadTypes
 }
 
 func (v *CreateRecordSetPayloadTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CreateRecordSetPayloadTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CreateRecordSetPayloadTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -183,7 +184,7 @@ func (v *CreateRecordSetPayloadTypes) UnmarshalJSON(src []byte) error {
 
 // NewCreateRecordSetPayloadTypesFromValue returns a pointer to a valid CreateRecordSetPayloadTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateRecordSetPayloadTypesFromValue(v string) (*CreateRecordSetPayloadTypes, error) {
+func NewCreateRecordSetPayloadTypesFromValue(v CreateRecordSetPayloadTypes) (*CreateRecordSetPayloadTypes, error) {
 	ev := CreateRecordSetPayloadTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
