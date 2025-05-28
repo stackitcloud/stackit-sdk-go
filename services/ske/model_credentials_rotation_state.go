@@ -66,6 +66,7 @@ func setCredentialsRotationStateGetLastInitiationTimeAttributeType(arg *Credenti
 // isEnum
 
 // CredentialsRotationStatePhase Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.
+// value type for enums
 type CredentialsRotationStatePhase string
 
 // List of Phase
@@ -87,13 +88,13 @@ var AllowedCredentialsRotationStatePhaseEnumValues = []CredentialsRotationStateP
 }
 
 func (v *CredentialsRotationStatePhase) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CredentialsRotationStatePhase
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CredentialsRotationStatePhase
 	if value == zeroValue {
 		return nil
 	}
@@ -110,7 +111,7 @@ func (v *CredentialsRotationStatePhase) UnmarshalJSON(src []byte) error {
 
 // NewCredentialsRotationStatePhaseFromValue returns a pointer to a valid CredentialsRotationStatePhase
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCredentialsRotationStatePhaseFromValue(v string) (*CredentialsRotationStatePhase, error) {
+func NewCredentialsRotationStatePhaseFromValue(v CredentialsRotationStatePhase) (*CredentialsRotationStatePhase, error) {
 	ev := CredentialsRotationStatePhase(v)
 	if ev.IsValid() {
 		return &ev, nil

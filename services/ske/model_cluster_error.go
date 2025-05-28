@@ -25,6 +25,7 @@ var _ MappedNullable = &ClusterError{}
 // isEnum
 
 // ClusterErrorCode the model 'ClusterError'
+// value type for enums
 type ClusterErrorCode string
 
 // List of Code
@@ -46,13 +47,13 @@ var AllowedClusterErrorCodeEnumValues = []ClusterErrorCode{
 }
 
 func (v *ClusterErrorCode) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ClusterErrorCode
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ClusterErrorCode
 	if value == zeroValue {
 		return nil
 	}
@@ -69,7 +70,7 @@ func (v *ClusterErrorCode) UnmarshalJSON(src []byte) error {
 
 // NewClusterErrorCodeFromValue returns a pointer to a valid ClusterErrorCode
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewClusterErrorCodeFromValue(v string) (*ClusterErrorCode, error) {
+func NewClusterErrorCodeFromValue(v ClusterErrorCode) (*ClusterErrorCode, error) {
 	ev := ClusterErrorCode(v)
 	if ev.IsValid() {
 		return &ev, nil
