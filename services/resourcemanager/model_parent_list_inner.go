@@ -130,6 +130,7 @@ type ParentListInnerGetParentIdRetType = string
 // isEnum
 
 // ParentListInnerTypes Parent container type.
+// value type for enums
 type ParentListInnerTypes string
 
 // List of Type
@@ -145,13 +146,13 @@ var AllowedParentListInnerTypesEnumValues = []ParentListInnerTypes{
 }
 
 func (v *ParentListInnerTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ParentListInnerTypes
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ParentListInnerTypes
 	if value == zeroValue {
 		return nil
 	}
@@ -168,7 +169,7 @@ func (v *ParentListInnerTypes) UnmarshalJSON(src []byte) error {
 
 // NewParentListInnerTypesFromValue returns a pointer to a valid ParentListInnerTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewParentListInnerTypesFromValue(v string) (*ParentListInnerTypes, error) {
+func NewParentListInnerTypesFromValue(v ParentListInnerTypes) (*ParentListInnerTypes, error) {
 	ev := ParentListInnerTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
