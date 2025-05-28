@@ -1,3 +1,6 @@
+## v0.6.0 (2025-05-28)
+- **Breaking change:** Added missing typed enum constants
+
 ## v0.5.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 

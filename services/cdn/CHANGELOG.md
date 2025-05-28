@@ -1,3 +1,7 @@
+## v1.3.0 (2025-05-28)
+- **Breaking change:** Added missing typed enum constants
+- **Feature:** Added `Optimizer` attribute
+
 ## v1.2.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 
