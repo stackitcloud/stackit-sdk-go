@@ -108,6 +108,7 @@ func setBackupVolumeBackupsInnerGetSizeAttributeType(arg *BackupVolumeBackupsInn
 // isEnum
 
 // BackupVolumeBackupsInnerStatus the model 'BackupVolumeBackupsInner'
+// value type for enums
 type BackupVolumeBackupsInnerStatus string
 
 // List of Status
@@ -133,13 +134,13 @@ var AllowedBackupVolumeBackupsInnerStatusEnumValues = []BackupVolumeBackupsInner
 }
 
 func (v *BackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	var value BackupVolumeBackupsInnerStatus
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue BackupVolumeBackupsInnerStatus
 	if value == zeroValue {
 		return nil
 	}
@@ -156,7 +157,7 @@ func (v *BackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {
 
 // NewBackupVolumeBackupsInnerStatusFromValue returns a pointer to a valid BackupVolumeBackupsInnerStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewBackupVolumeBackupsInnerStatusFromValue(v string) (*BackupVolumeBackupsInnerStatus, error) {
+func NewBackupVolumeBackupsInnerStatusFromValue(v BackupVolumeBackupsInnerStatus) (*BackupVolumeBackupsInnerStatus, error) {
 	ev := BackupVolumeBackupsInnerStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
