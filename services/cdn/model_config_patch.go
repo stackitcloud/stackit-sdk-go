@@ -98,6 +98,26 @@ func setConfigPatchGetMonthlyLimitBytesAttributeType(arg *ConfigPatchGetMonthlyL
 }
 
 /*
+	types and functions for optimizer
+*/
+
+// isModel
+type ConfigPatchGetOptimizerAttributeType = *OptimizerPatch
+type ConfigPatchGetOptimizerArgType = OptimizerPatch
+type ConfigPatchGetOptimizerRetType = OptimizerPatch
+
+func getConfigPatchGetOptimizerAttributeTypeOk(arg ConfigPatchGetOptimizerAttributeType) (ret ConfigPatchGetOptimizerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigPatchGetOptimizerAttributeType(arg *ConfigPatchGetOptimizerAttributeType, val ConfigPatchGetOptimizerRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for regions
 */
 
@@ -126,6 +146,7 @@ type ConfigPatch struct {
 	BlockedIPs ConfigPatchGetBlockedIPsAttributeType `json:"blockedIPs,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigPatchGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
+	Optimizer         ConfigPatchGetOptimizerAttributeType         `json:"optimizer,omitempty"`
 	Regions           ConfigPatchGetRegionsAttributeType           `json:"regions,omitempty"`
 }
 
@@ -249,6 +270,29 @@ func (o *ConfigPatch) UnsetMonthlyLimitBytes() {
 	o.MonthlyLimitBytes = nil
 }
 
+// GetOptimizer returns the Optimizer field value if set, zero value otherwise.
+func (o *ConfigPatch) GetOptimizer() (res ConfigPatchGetOptimizerRetType) {
+	res, _ = o.GetOptimizerOk()
+	return
+}
+
+// GetOptimizerOk returns a tuple with the Optimizer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetOptimizerOk() (ret ConfigPatchGetOptimizerRetType, ok bool) {
+	return getConfigPatchGetOptimizerAttributeTypeOk(o.Optimizer)
+}
+
+// HasOptimizer returns a boolean if a field has been set.
+func (o *ConfigPatch) HasOptimizer() bool {
+	_, ok := o.GetOptimizerOk()
+	return ok
+}
+
+// SetOptimizer gets a reference to the given OptimizerPatch and assigns it to the Optimizer field.
+func (o *ConfigPatch) SetOptimizer(v ConfigPatchGetOptimizerRetType) {
+	setConfigPatchGetOptimizerAttributeType(&o.Optimizer, v)
+}
+
 // GetRegions returns the Regions field value if set, zero value otherwise.
 func (o *ConfigPatch) GetRegions() (res ConfigPatchGetRegionsRetType) {
 	res, _ = o.GetRegionsOk()
@@ -285,6 +329,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigPatchGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
 		toSerialize["MonthlyLimitBytes"] = val
+	}
+	if val, ok := getConfigPatchGetOptimizerAttributeTypeOk(o.Optimizer); ok {
+		toSerialize["Optimizer"] = val
 	}
 	if val, ok := getConfigPatchGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val

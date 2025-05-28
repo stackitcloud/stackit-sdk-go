@@ -67,6 +67,7 @@ type StatusErrorGetEnRetType = string
 // isEnum
 
 // StatusErrorKey An enum value that describes a Status Error.
+// value type for enums
 type StatusErrorKey string
 
 // List of Key
@@ -86,13 +87,13 @@ var AllowedStatusErrorKeyEnumValues = []StatusErrorKey{
 }
 
 func (v *StatusErrorKey) UnmarshalJSON(src []byte) error {
-	var value string
+	var value StatusErrorKey
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue StatusErrorKey
 	if value == zeroValue {
 		return nil
 	}
@@ -109,7 +110,7 @@ func (v *StatusErrorKey) UnmarshalJSON(src []byte) error {
 
 // NewStatusErrorKeyFromValue returns a pointer to a valid StatusErrorKey
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewStatusErrorKeyFromValue(v string) (*StatusErrorKey, error) {
+func NewStatusErrorKeyFromValue(v StatusErrorKey) (*StatusErrorKey, error) {
 	ev := StatusErrorKey(v)
 	if ev.IsValid() {
 		return &ev, nil

@@ -1,3 +1,8 @@
+## v0.8.0 (2025-05-28)
+- **Breaking change:** Added missing typed enum constants
+- **Feature:** Added `Priority` and `SendResolved` attributes
+- **Deprecation:** `Match` and `MatchRe` attributes are deprecated.
+
 ## v0.7.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 

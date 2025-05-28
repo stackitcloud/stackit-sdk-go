@@ -45,6 +45,7 @@ func setServiceStatusGetDependenciesAttributeType(arg *ServiceStatusGetDependenc
 // isEnum
 
 // ServiceStatusEnablement the model 'ServiceStatus'
+// value type for enums
 type ServiceStatusEnablement string
 
 // List of Enablement
@@ -60,13 +61,13 @@ var AllowedServiceStatusEnablementEnumValues = []ServiceStatusEnablement{
 }
 
 func (v *ServiceStatusEnablement) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ServiceStatusEnablement
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ServiceStatusEnablement
 	if value == zeroValue {
 		return nil
 	}
@@ -83,7 +84,7 @@ func (v *ServiceStatusEnablement) UnmarshalJSON(src []byte) error {
 
 // NewServiceStatusEnablementFromValue returns a pointer to a valid ServiceStatusEnablement
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewServiceStatusEnablementFromValue(v string) (*ServiceStatusEnablement, error) {
+func NewServiceStatusEnablementFromValue(v ServiceStatusEnablement) (*ServiceStatusEnablement, error) {
 	ev := ServiceStatusEnablement(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -205,6 +206,7 @@ func setServiceStatusGetLabelsAttributeType(arg *ServiceStatusGetLabelsAttribute
 // isEnum
 
 // ServiceStatusLifecycle the model 'ServiceStatus'
+// value type for enums
 type ServiceStatusLifecycle string
 
 // List of Lifecycle
@@ -220,13 +222,13 @@ var AllowedServiceStatusLifecycleEnumValues = []ServiceStatusLifecycle{
 }
 
 func (v *ServiceStatusLifecycle) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ServiceStatusLifecycle
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ServiceStatusLifecycle
 	if value == zeroValue {
 		return nil
 	}
@@ -243,7 +245,7 @@ func (v *ServiceStatusLifecycle) UnmarshalJSON(src []byte) error {
 
 // NewServiceStatusLifecycleFromValue returns a pointer to a valid ServiceStatusLifecycle
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewServiceStatusLifecycleFromValue(v string) (*ServiceStatusLifecycle, error) {
+func NewServiceStatusLifecycleFromValue(v ServiceStatusLifecycle) (*ServiceStatusLifecycle, error) {
 	ev := ServiceStatusLifecycle(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -345,6 +347,7 @@ func setServiceStatusGetParametersAttributeType(arg *ServiceStatusGetParametersA
 // isEnum
 
 // ServiceStatusScope the model 'ServiceStatus'
+// value type for enums
 type ServiceStatusScope string
 
 // List of Scope
@@ -360,13 +363,13 @@ var AllowedServiceStatusScopeEnumValues = []ServiceStatusScope{
 }
 
 func (v *ServiceStatusScope) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ServiceStatusScope
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ServiceStatusScope
 	if value == zeroValue {
 		return nil
 	}
@@ -383,7 +386,7 @@ func (v *ServiceStatusScope) UnmarshalJSON(src []byte) error {
 
 // NewServiceStatusScopeFromValue returns a pointer to a valid ServiceStatusScope
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewServiceStatusScopeFromValue(v string) (*ServiceStatusScope, error) {
+func NewServiceStatusScopeFromValue(v ServiceStatusScope) (*ServiceStatusScope, error) {
 	ev := ServiceStatusScope(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -486,6 +489,7 @@ type ServiceStatusGetServiceIdRetType = string
 // isEnum
 
 // ServiceStatusState the state of a service within a project
+// value type for enums
 type ServiceStatusState string
 
 // List of State
@@ -505,13 +509,13 @@ var AllowedServiceStatusStateEnumValues = []ServiceStatusState{
 }
 
 func (v *ServiceStatusState) UnmarshalJSON(src []byte) error {
-	var value string
+	var value ServiceStatusState
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue ServiceStatusState
 	if value == zeroValue {
 		return nil
 	}
@@ -528,7 +532,7 @@ func (v *ServiceStatusState) UnmarshalJSON(src []byte) error {
 
 // NewServiceStatusStateFromValue returns a pointer to a valid ServiceStatusState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewServiceStatusStateFromValue(v string) (*ServiceStatusState, error) {
+func NewServiceStatusStateFromValue(v ServiceStatusState) (*ServiceStatusState, error) {
 	ev := ServiceStatusState(v)
 	if ev.IsValid() {
 		return &ev, nil

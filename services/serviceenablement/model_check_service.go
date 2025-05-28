@@ -46,6 +46,7 @@ type CheckServiceGetResourceRetType = string
 // isEnum
 
 // CheckServiceResourceType the model 'CheckService'
+// value type for enums
 type CheckServiceResourceType string
 
 // List of ResourceType
@@ -59,13 +60,13 @@ var AllowedCheckServiceResourceTypeEnumValues = []CheckServiceResourceType{
 }
 
 func (v *CheckServiceResourceType) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CheckServiceResourceType
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CheckServiceResourceType
 	if value == zeroValue {
 		return nil
 	}
@@ -82,7 +83,7 @@ func (v *CheckServiceResourceType) UnmarshalJSON(src []byte) error {
 
 // NewCheckServiceResourceTypeFromValue returns a pointer to a valid CheckServiceResourceType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCheckServiceResourceTypeFromValue(v string) (*CheckServiceResourceType, error) {
+func NewCheckServiceResourceTypeFromValue(v CheckServiceResourceType) (*CheckServiceResourceType, error) {
 	ev := CheckServiceResourceType(v)
 	if ev.IsValid() {
 		return &ev, nil

@@ -65,6 +65,7 @@ func setCloudServiceGetLabelsAttributeType(arg *CloudServiceGetLabelsAttributeTy
 // isEnum
 
 // CloudServiceScope the model 'CloudService'
+// value type for enums
 type CloudServiceScope string
 
 // List of Scope
@@ -80,13 +81,13 @@ var AllowedCloudServiceScopeEnumValues = []CloudServiceScope{
 }
 
 func (v *CloudServiceScope) UnmarshalJSON(src []byte) error {
-	var value string
+	var value CloudServiceScope
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue CloudServiceScope
 	if value == zeroValue {
 		return nil
 	}
@@ -103,7 +104,7 @@ func (v *CloudServiceScope) UnmarshalJSON(src []byte) error {
 
 // NewCloudServiceScopeFromValue returns a pointer to a valid CloudServiceScope
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCloudServiceScopeFromValue(v string) (*CloudServiceScope, error) {
+func NewCloudServiceScopeFromValue(v CloudServiceScope) (*CloudServiceScope, error) {
 	ev := CloudServiceScope(v)
 	if ev.IsValid() {
 		return &ev, nil
