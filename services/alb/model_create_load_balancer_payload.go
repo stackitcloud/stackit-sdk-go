@@ -210,6 +210,7 @@ type CreateLoadBalancerPayloadGetRegionRetType = string
 // isEnum
 
 // CreateLoadBalancerPayloadStatus the model 'CreateLoadBalancerPayload'
+// value type for enums
 type CreateLoadBalancerPayloadStatus string
 
 // List of Status
@@ -231,13 +232,16 @@ var AllowedCreateLoadBalancerPayloadStatusEnumValues = []CreateLoadBalancerPaylo
 }
 
 func (v *CreateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateLoadBalancerPayloadStatus
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -254,7 +258,7 @@ func (v *CreateLoadBalancerPayloadStatus) UnmarshalJSON(src []byte) error {
 
 // NewCreateLoadBalancerPayloadStatusFromValue returns a pointer to a valid CreateLoadBalancerPayloadStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateLoadBalancerPayloadStatusFromValue(v string) (*CreateLoadBalancerPayloadStatus, error) {
+func NewCreateLoadBalancerPayloadStatusFromValue(v CreateLoadBalancerPayloadStatus) (*CreateLoadBalancerPayloadStatus, error) {
 	ev := CreateLoadBalancerPayloadStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
