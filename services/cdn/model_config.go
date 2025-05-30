@@ -98,6 +98,26 @@ func setConfigGetMonthlyLimitBytesAttributeType(arg *ConfigGetMonthlyLimitBytesA
 }
 
 /*
+	types and functions for optimizer
+*/
+
+// isModel
+type ConfigGetOptimizerAttributeType = *Optimizer
+type ConfigGetOptimizerArgType = Optimizer
+type ConfigGetOptimizerRetType = Optimizer
+
+func getConfigGetOptimizerAttributeTypeOk(arg ConfigGetOptimizerAttributeType) (ret ConfigGetOptimizerRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigGetOptimizerAttributeType(arg *ConfigGetOptimizerAttributeType, val ConfigGetOptimizerRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for regions
 */
 
@@ -129,6 +149,7 @@ type Config struct {
 	BlockedIPs ConfigGetBlockedIPsAttributeType `json:"blockedIPs"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
+	Optimizer         ConfigGetOptimizerAttributeType         `json:"optimizer,omitempty"`
 	// REQUIRED
 	Regions ConfigGetRegionsAttributeType `json:"regions"`
 }
@@ -241,6 +262,29 @@ func (o *Config) UnsetMonthlyLimitBytes() {
 	o.MonthlyLimitBytes = nil
 }
 
+// GetOptimizer returns the Optimizer field value if set, zero value otherwise.
+func (o *Config) GetOptimizer() (res ConfigGetOptimizerRetType) {
+	res, _ = o.GetOptimizerOk()
+	return
+}
+
+// GetOptimizerOk returns a tuple with the Optimizer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Config) GetOptimizerOk() (ret ConfigGetOptimizerRetType, ok bool) {
+	return getConfigGetOptimizerAttributeTypeOk(o.Optimizer)
+}
+
+// HasOptimizer returns a boolean if a field has been set.
+func (o *Config) HasOptimizer() bool {
+	_, ok := o.GetOptimizerOk()
+	return ok
+}
+
+// SetOptimizer gets a reference to the given Optimizer and assigns it to the Optimizer field.
+func (o *Config) SetOptimizer(v ConfigGetOptimizerRetType) {
+	setConfigGetOptimizerAttributeType(&o.Optimizer, v)
+}
+
 // GetRegions returns the Regions field value
 func (o *Config) GetRegions() (ret ConfigGetRegionsRetType) {
 	ret, _ = o.GetRegionsOk()
@@ -271,6 +315,9 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
 		toSerialize["MonthlyLimitBytes"] = val
+	}
+	if val, ok := getConfigGetOptimizerAttributeTypeOk(o.Optimizer); ok {
+		toSerialize["Optimizer"] = val
 	}
 	if val, ok := getConfigGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val
