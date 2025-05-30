@@ -25,7 +25,8 @@ var _ MappedNullable = &ChatModelDetails{}
 // isEnum
 
 // ChatModelDetailsBits the model 'ChatModelDetails'
-type ChatModelDetailsBits int32
+// value type for enums
+type ChatModelDetailsBits int
 
 // List of Bits
 const (
@@ -46,13 +47,16 @@ var AllowedChatModelDetailsBitsEnumValues = []ChatModelDetailsBits{
 }
 
 func (v *ChatModelDetailsBits) UnmarshalJSON(src []byte) error {
-	var value int32
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ChatModelDetailsBits
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue int32
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -69,7 +73,7 @@ func (v *ChatModelDetailsBits) UnmarshalJSON(src []byte) error {
 
 // NewChatModelDetailsBitsFromValue returns a pointer to a valid ChatModelDetailsBits
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewChatModelDetailsBitsFromValue(v int32) (*ChatModelDetailsBits, error) {
+func NewChatModelDetailsBitsFromValue(v ChatModelDetailsBits) (*ChatModelDetailsBits, error) {
 	ev := ChatModelDetailsBits(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -151,6 +155,7 @@ func setChatModelDetailsGetBitsAttributeType(arg *ChatModelDetailsGetBitsAttribu
 // isEnum
 
 // ChatModelDetailsCategory the model 'ChatModelDetails'
+// value type for enums
 type ChatModelDetailsCategory string
 
 // List of Category
@@ -168,13 +173,16 @@ var AllowedChatModelDetailsCategoryEnumValues = []ChatModelDetailsCategory{
 }
 
 func (v *ChatModelDetailsCategory) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ChatModelDetailsCategory
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -191,7 +199,7 @@ func (v *ChatModelDetailsCategory) UnmarshalJSON(src []byte) error {
 
 // NewChatModelDetailsCategoryFromValue returns a pointer to a valid ChatModelDetailsCategory
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewChatModelDetailsCategoryFromValue(v string) (*ChatModelDetailsCategory, error) {
+func NewChatModelDetailsCategoryFromValue(v ChatModelDetailsCategory) (*ChatModelDetailsCategory, error) {
 	ev := ChatModelDetailsCategory(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -377,6 +385,7 @@ type ChatModelDetailsGetNameRetType = string
 // isEnum
 
 // ChatModelDetailsQuantizationMethod the model 'ChatModelDetails'
+// value type for enums
 type ChatModelDetailsQuantizationMethod string
 
 // List of QuantizationMethod
@@ -392,13 +401,16 @@ var AllowedChatModelDetailsQuantizationMethodEnumValues = []ChatModelDetailsQuan
 }
 
 func (v *ChatModelDetailsQuantizationMethod) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ChatModelDetailsQuantizationMethod
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -415,7 +427,7 @@ func (v *ChatModelDetailsQuantizationMethod) UnmarshalJSON(src []byte) error {
 
 // NewChatModelDetailsQuantizationMethodFromValue returns a pointer to a valid ChatModelDetailsQuantizationMethod
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewChatModelDetailsQuantizationMethodFromValue(v string) (*ChatModelDetailsQuantizationMethod, error) {
+func NewChatModelDetailsQuantizationMethodFromValue(v ChatModelDetailsQuantizationMethod) (*ChatModelDetailsQuantizationMethod, error) {
 	ev := ChatModelDetailsQuantizationMethod(v)
 	if ev.IsValid() {
 		return &ev, nil
