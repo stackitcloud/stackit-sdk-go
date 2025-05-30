@@ -127,6 +127,7 @@ func setListenerGetPortAttributeType(arg *ListenerGetPortAttributeType, val List
 // isEnum
 
 // ListenerProtocol Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
+// value type for enums
 type ListenerProtocol string
 
 // List of Protocol
@@ -144,13 +145,16 @@ var AllowedListenerProtocolEnumValues = []ListenerProtocol{
 }
 
 func (v *ListenerProtocol) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ListenerProtocol
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -167,7 +171,7 @@ func (v *ListenerProtocol) UnmarshalJSON(src []byte) error {
 
 // NewListenerProtocolFromValue returns a pointer to a valid ListenerProtocol
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewListenerProtocolFromValue(v string) (*ListenerProtocol, error) {
+func NewListenerProtocolFromValue(v ListenerProtocol) (*ListenerProtocol, error) {
 	ev := ListenerProtocol(v)
 	if ev.IsValid() {
 		return &ev, nil
