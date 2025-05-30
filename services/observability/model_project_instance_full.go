@@ -155,6 +155,7 @@ type ProjectInstanceFullGetServiceNameRetType = string
 // isEnum
 
 // ProjectInstanceFullStatus the model 'ProjectInstanceFull'
+// value type for enums
 type ProjectInstanceFullStatus string
 
 // List of Status
@@ -184,13 +185,16 @@ var AllowedProjectInstanceFullStatusEnumValues = []ProjectInstanceFullStatus{
 }
 
 func (v *ProjectInstanceFullStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ProjectInstanceFullStatus
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -207,7 +211,7 @@ func (v *ProjectInstanceFullStatus) UnmarshalJSON(src []byte) error {
 
 // NewProjectInstanceFullStatusFromValue returns a pointer to a valid ProjectInstanceFullStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewProjectInstanceFullStatusFromValue(v string) (*ProjectInstanceFullStatus, error) {
+func NewProjectInstanceFullStatusFromValue(v ProjectInstanceFullStatus) (*ProjectInstanceFullStatus, error) {
 	ev := ProjectInstanceFullStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
