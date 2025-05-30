@@ -25,6 +25,7 @@ var _ MappedNullable = &GetServiceStatusResponse{}
 // isEnum
 
 // GetServiceStatusResponseStatus status of the project
+// value type for enums
 type GetServiceStatusResponseStatus string
 
 // List of Status
@@ -50,13 +51,16 @@ var AllowedGetServiceStatusResponseStatusEnumValues = []GetServiceStatusResponse
 }
 
 func (v *GetServiceStatusResponseStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson GetServiceStatusResponseStatus
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -73,7 +77,7 @@ func (v *GetServiceStatusResponseStatus) UnmarshalJSON(src []byte) error {
 
 // NewGetServiceStatusResponseStatusFromValue returns a pointer to a valid GetServiceStatusResponseStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewGetServiceStatusResponseStatusFromValue(v string) (*GetServiceStatusResponseStatus, error) {
+func NewGetServiceStatusResponseStatusFromValue(v GetServiceStatusResponseStatus) (*GetServiceStatusResponseStatus, error) {
 	ev := GetServiceStatusResponseStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
