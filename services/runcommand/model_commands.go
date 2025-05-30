@@ -129,6 +129,7 @@ type CommandsGetStartedAtRetType = string
 // isEnum
 
 // CommandsStatus the model 'Commands'
+// value type for enums
 type CommandsStatus string
 
 // List of Status
@@ -148,13 +149,16 @@ var AllowedCommandsStatusEnumValues = []CommandsStatus{
 }
 
 func (v *CommandsStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CommandsStatus
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -171,7 +175,7 @@ func (v *CommandsStatus) UnmarshalJSON(src []byte) error {
 
 // NewCommandsStatusFromValue returns a pointer to a valid CommandsStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCommandsStatusFromValue(v string) (*CommandsStatus, error) {
+func NewCommandsStatusFromValue(v CommandsStatus) (*CommandsStatus, error) {
 	ev := CommandsStatus(v)
 	if ev.IsValid() {
 		return &ev, nil
