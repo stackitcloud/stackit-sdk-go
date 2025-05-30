@@ -157,9 +157,9 @@ type DefaultApi interface {
 	*/
 	GetLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (*LoadBalancer, error)
 	/*
-		GetQuota Get the quota of application load balancers and target pools in a project.
-		Retrieves the configured Application Load Balancer quota for the project.
-		 The default quota is 3.
+		GetQuota Get the quota of Application Load Balancers in a project.
+		Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
+		 There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -1430,11 +1430,11 @@ func (r GetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 }
 
 /*
-GetQuota: Get the quota of application load balancers and target pools in a project.
+GetQuota: Get the quota of Application Load Balancers in a project.
 
-Retrieves the configured Application Load Balancer quota for the project.
+Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
 
-	The default quota is 3.
+	There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
