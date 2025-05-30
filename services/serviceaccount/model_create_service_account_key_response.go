@@ -107,6 +107,7 @@ type CreateServiceAccountKeyResponseGetIdRetType = string
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyAlgorithm the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
@@ -120,13 +121,16 @@ var AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues = []CreateServi
 }
 
 func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateServiceAccountKeyResponseKeyAlgorithm
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -143,7 +147,7 @@ func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) 
 
 // NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyAlgorithm
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*CreateServiceAccountKeyResponseKeyAlgorithm, error) {
+func NewCreateServiceAccountKeyResponseKeyAlgorithmFromValue(v CreateServiceAccountKeyResponseKeyAlgorithm) (*CreateServiceAccountKeyResponseKeyAlgorithm, error) {
 	ev := CreateServiceAccountKeyResponseKeyAlgorithm(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -225,6 +229,7 @@ func setCreateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *CreateS
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyOrigin the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyOrigin string
 
 // List of KeyOrigin
@@ -240,13 +245,16 @@ var AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues = []CreateServiceA
 }
 
 func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateServiceAccountKeyResponseKeyOrigin
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -263,7 +271,7 @@ func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) err
 
 // NewCreateServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyOrigin
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyOriginFromValue(v string) (*CreateServiceAccountKeyResponseKeyOrigin, error) {
+func NewCreateServiceAccountKeyResponseKeyOriginFromValue(v CreateServiceAccountKeyResponseKeyOrigin) (*CreateServiceAccountKeyResponseKeyOrigin, error) {
 	ev := CreateServiceAccountKeyResponseKeyOrigin(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -345,6 +353,7 @@ func setCreateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *CreateServ
 // isEnum
 
 // CreateServiceAccountKeyResponseKeyType the model 'CreateServiceAccountKeyResponse'
+// value type for enums
 type CreateServiceAccountKeyResponseKeyType string
 
 // List of KeyType
@@ -360,13 +369,16 @@ var AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues = []CreateServiceAcc
 }
 
 func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateServiceAccountKeyResponseKeyType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -383,7 +395,7 @@ func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error
 
 // NewCreateServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid CreateServiceAccountKeyResponseKeyType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateServiceAccountKeyResponseKeyTypeFromValue(v string) (*CreateServiceAccountKeyResponseKeyType, error) {
+func NewCreateServiceAccountKeyResponseKeyTypeFromValue(v CreateServiceAccountKeyResponseKeyType) (*CreateServiceAccountKeyResponseKeyType, error) {
 	ev := CreateServiceAccountKeyResponseKeyType(v)
 	if ev.IsValid() {
 		return &ev, nil
