@@ -38,6 +38,26 @@ func setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeTy
 }
 
 /*
+	types and functions for sendResolved
+*/
+
+// isBoolean
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeType = *bool
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedArgType = bool
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedRetType = bool
+
+func getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeTypeOk(arg CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeType) (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeType(arg *CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeType, val CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for url
 */
 
@@ -62,6 +82,8 @@ type CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType = string
 type CreateAlertConfigReceiverPayloadWebHookConfigsInner struct {
 	// Microsoft Teams webhooks require special handling. If you set this property to true, it is treated as such
 	MsTeams CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType `json:"msTeams,omitempty"`
+	// Whether to notify about resolved alerts.
+	SendResolved CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeType `json:"sendResolved,omitempty"`
 	// The endpoint to send HTTP POST requests to. `Additional Validators:` * must be a syntactically valid url address
 	Url CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeType `json:"url,omitempty"`
 }
@@ -82,6 +104,8 @@ func NewCreateAlertConfigReceiverPayloadWebHookConfigsInnerWithDefaults() *Creat
 	this := CreateAlertConfigReceiverPayloadWebHookConfigsInner{}
 	var msTeams bool = false
 	this.MsTeams = &msTeams
+	var sendResolved bool = true
+	this.SendResolved = &sendResolved
 	return &this
 }
 
@@ -106,6 +130,29 @@ func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) HasMsTeams() bool 
 // SetMsTeams gets a reference to the given bool and assigns it to the MsTeams field.
 func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetMsTeams(v CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsRetType) {
 	setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType(&o.MsTeams, v)
+}
+
+// GetSendResolved returns the SendResolved field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetSendResolved() (res CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedRetType) {
+	res, _ = o.GetSendResolvedOk()
+	return
+}
+
+// GetSendResolvedOk returns a tuple with the SendResolved field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetSendResolvedOk() (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeTypeOk(o.SendResolved)
+}
+
+// HasSendResolved returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) HasSendResolved() bool {
+	_, ok := o.GetSendResolvedOk()
+	return ok
+}
+
+// SetSendResolved gets a reference to the given bool and assigns it to the SendResolved field.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetSendResolved(v CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedRetType) {
+	setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeType(&o.SendResolved, v)
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.
@@ -135,6 +182,9 @@ func (o CreateAlertConfigReceiverPayloadWebHookConfigsInner) ToMap() (map[string
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeTypeOk(o.MsTeams); ok {
 		toSerialize["MsTeams"] = val
+	}
+	if val, ok := getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeTypeOk(o.SendResolved); ok {
+		toSerialize["SendResolved"] = val
 	}
 	if val, ok := getCreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlAttributeTypeOk(o.Url); ok {
 		toSerialize["Url"] = val

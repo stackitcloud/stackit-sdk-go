@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CreateAlertConfigRoutePayloadRoutesInner{}
 
 /*
+	types and functions for continue
+*/
+
+// isBoolean
+type CreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeType = *bool
+type CreateAlertConfigRoutePayloadRoutesInnergetContinueArgType = bool
+type CreateAlertConfigRoutePayloadRoutesInnergetContinueRetType = bool
+
+func getCreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeTypeOk(arg CreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeType) (ret CreateAlertConfigRoutePayloadRoutesInnergetContinueRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeType(arg *CreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeType, val CreateAlertConfigRoutePayloadRoutesInnergetContinueRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for groupBy
 */
 
@@ -120,6 +140,26 @@ func setCreateAlertConfigRoutePayloadRoutesInnerGetMatchReAttributeType(arg *Cre
 }
 
 /*
+	types and functions for matchers
+*/
+
+// isArray
+type CreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeType = *[]string
+type CreateAlertConfigRoutePayloadRoutesInnerGetMatchersArgType = []string
+type CreateAlertConfigRoutePayloadRoutesInnerGetMatchersRetType = []string
+
+func getCreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeTypeOk(arg CreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeType) (ret CreateAlertConfigRoutePayloadRoutesInnerGetMatchersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeType(arg *CreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeType, val CreateAlertConfigRoutePayloadRoutesInnerGetMatchersRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for receiver
 */
 
@@ -183,15 +223,19 @@ func setCreateAlertConfigRoutePayloadRoutesInnerGetRoutesAttributeType(arg *Crea
 
 // CreateAlertConfigRoutePayloadRoutesInner As in one level above
 type CreateAlertConfigRoutePayloadRoutesInner struct {
-	GroupBy CreateAlertConfigRoutePayloadRoutesInnerGetGroupByAttributeType `json:"groupBy,omitempty"`
+	// As in one level above
+	Continue CreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeType `json:"continue,omitempty"`
+	GroupBy  CreateAlertConfigRoutePayloadRoutesInnerGetGroupByAttributeType  `json:"groupBy,omitempty"`
 	// As in one level above
 	GroupInterval CreateAlertConfigRoutePayloadRoutesInnerGetGroupIntervalAttributeType `json:"groupInterval,omitempty"`
 	// As in one level above
 	GroupWait CreateAlertConfigRoutePayloadRoutesInnerGetGroupWaitAttributeType `json:"groupWait,omitempty"`
-	// As in one level above
+	//  Deprecated: As in one level above
 	Match CreateAlertConfigRoutePayloadRoutesInnerGetMatchAttributeType `json:"match,omitempty"`
-	// As in one level above
+	//  Deprecated: As in one level above
 	MatchRe CreateAlertConfigRoutePayloadRoutesInnerGetMatchReAttributeType `json:"matchRe,omitempty"`
+	// As in one level above
+	Matchers CreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeType `json:"matchers,omitempty"`
 	// As in one level above
 	Receiver CreateAlertConfigRoutePayloadRoutesInnerGetReceiverAttributeType `json:"receiver,omitempty"`
 	// As in one level above
@@ -214,7 +258,32 @@ func NewCreateAlertConfigRoutePayloadRoutesInner() *CreateAlertConfigRoutePayloa
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAlertConfigRoutePayloadRoutesInnerWithDefaults() *CreateAlertConfigRoutePayloadRoutesInner {
 	this := CreateAlertConfigRoutePayloadRoutesInner{}
+	var continue_ bool = false
+	this.Continue = &continue_
 	return &this
+}
+
+// GetContinue returns the Continue field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) GetContinue() (res CreateAlertConfigRoutePayloadRoutesInnergetContinueRetType) {
+	res, _ = o.GetContinueOk()
+	return
+}
+
+// GetContinueOk returns a tuple with the Continue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) GetContinueOk() (ret CreateAlertConfigRoutePayloadRoutesInnergetContinueRetType, ok bool) {
+	return getCreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeTypeOk(o.Continue)
+}
+
+// HasContinue returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) HasContinue() bool {
+	_, ok := o.GetContinueOk()
+	return ok
+}
+
+// SetContinue gets a reference to the given bool and assigns it to the Continue field.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) SetContinue(v CreateAlertConfigRoutePayloadRoutesInnergetContinueRetType) {
+	setCreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeType(&o.Continue, v)
 }
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
@@ -287,6 +356,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) SetGroupWait(v CreateAlertCon
 }
 
 // GetMatch returns the Match field value if set, zero value otherwise.
+// Deprecated
 func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatch() (res CreateAlertConfigRoutePayloadRoutesInnerGetMatchRetType) {
 	res, _ = o.GetMatchOk()
 	return
@@ -294,6 +364,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatch() (res CreateAlertCo
 
 // GetMatchOk returns a tuple with the Match field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchOk() (ret CreateAlertConfigRoutePayloadRoutesInnerGetMatchRetType, ok bool) {
 	return getCreateAlertConfigRoutePayloadRoutesInnerGetMatchAttributeTypeOk(o.Match)
 }
@@ -305,11 +376,13 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) HasMatch() bool {
 }
 
 // SetMatch gets a reference to the given map[string]interface{} and assigns it to the Match field.
+// Deprecated
 func (o *CreateAlertConfigRoutePayloadRoutesInner) SetMatch(v CreateAlertConfigRoutePayloadRoutesInnerGetMatchRetType) {
 	setCreateAlertConfigRoutePayloadRoutesInnerGetMatchAttributeType(&o.Match, v)
 }
 
 // GetMatchRe returns the MatchRe field value if set, zero value otherwise.
+// Deprecated
 func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchRe() (res CreateAlertConfigRoutePayloadRoutesInnerGetMatchReRetType) {
 	res, _ = o.GetMatchReOk()
 	return
@@ -317,6 +390,7 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchRe() (res CreateAlert
 
 // GetMatchReOk returns a tuple with the MatchRe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchReOk() (ret CreateAlertConfigRoutePayloadRoutesInnerGetMatchReRetType, ok bool) {
 	return getCreateAlertConfigRoutePayloadRoutesInnerGetMatchReAttributeTypeOk(o.MatchRe)
 }
@@ -328,8 +402,32 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) HasMatchRe() bool {
 }
 
 // SetMatchRe gets a reference to the given map[string]interface{} and assigns it to the MatchRe field.
+// Deprecated
 func (o *CreateAlertConfigRoutePayloadRoutesInner) SetMatchRe(v CreateAlertConfigRoutePayloadRoutesInnerGetMatchReRetType) {
 	setCreateAlertConfigRoutePayloadRoutesInnerGetMatchReAttributeType(&o.MatchRe, v)
+}
+
+// GetMatchers returns the Matchers field value if set, zero value otherwise.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchers() (res CreateAlertConfigRoutePayloadRoutesInnerGetMatchersRetType) {
+	res, _ = o.GetMatchersOk()
+	return
+}
+
+// GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) GetMatchersOk() (ret CreateAlertConfigRoutePayloadRoutesInnerGetMatchersRetType, ok bool) {
+	return getCreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeTypeOk(o.Matchers)
+}
+
+// HasMatchers returns a boolean if a field has been set.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) HasMatchers() bool {
+	_, ok := o.GetMatchersOk()
+	return ok
+}
+
+// SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
+func (o *CreateAlertConfigRoutePayloadRoutesInner) SetMatchers(v CreateAlertConfigRoutePayloadRoutesInnerGetMatchersRetType) {
+	setCreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeType(&o.Matchers, v)
 }
 
 // GetReceiver returns the Receiver field value if set, zero value otherwise.
@@ -403,6 +501,9 @@ func (o *CreateAlertConfigRoutePayloadRoutesInner) SetRoutes(v CreateAlertConfig
 
 func (o CreateAlertConfigRoutePayloadRoutesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeTypeOk(o.Continue); ok {
+		toSerialize["Continue"] = val
+	}
 	if val, ok := getCreateAlertConfigRoutePayloadRoutesInnerGetGroupByAttributeTypeOk(o.GroupBy); ok {
 		toSerialize["GroupBy"] = val
 	}
@@ -417,6 +518,9 @@ func (o CreateAlertConfigRoutePayloadRoutesInner) ToMap() (map[string]interface{
 	}
 	if val, ok := getCreateAlertConfigRoutePayloadRoutesInnerGetMatchReAttributeTypeOk(o.MatchRe); ok {
 		toSerialize["MatchRe"] = val
+	}
+	if val, ok := getCreateAlertConfigRoutePayloadRoutesInnerGetMatchersAttributeTypeOk(o.Matchers); ok {
+		toSerialize["Matchers"] = val
 	}
 	if val, ok := getCreateAlertConfigRoutePayloadRoutesInnerGetReceiverAttributeTypeOk(o.Receiver); ok {
 		toSerialize["Receiver"] = val
