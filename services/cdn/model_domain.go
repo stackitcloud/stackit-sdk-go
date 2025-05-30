@@ -86,6 +86,7 @@ func setDomainGetStatusAttributeType(arg *DomainGetStatusAttributeType, val Doma
 // isEnum
 
 // DomainTypes Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
+// value type for enums
 type DomainTypes string
 
 // List of Type
@@ -101,13 +102,16 @@ var AllowedDomainTypesEnumValues = []DomainTypes{
 }
 
 func (v *DomainTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson DomainTypes
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -124,7 +128,7 @@ func (v *DomainTypes) UnmarshalJSON(src []byte) error {
 
 // NewDomainTypesFromValue returns a pointer to a valid DomainTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewDomainTypesFromValue(v string) (*DomainTypes, error) {
+func NewDomainTypesFromValue(v DomainTypes) (*DomainTypes, error) {
 	ev := DomainTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
