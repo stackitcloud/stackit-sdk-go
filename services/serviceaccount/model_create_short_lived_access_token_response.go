@@ -108,6 +108,7 @@ type CreateShortLivedAccessTokenResponseGetScopeRetType = string
 // isEnum
 
 // CreateShortLivedAccessTokenResponseTokenType the model 'CreateShortLivedAccessTokenResponse'
+// value type for enums
 type CreateShortLivedAccessTokenResponseTokenType string
 
 // List of TokenType
@@ -121,13 +122,16 @@ var AllowedCreateShortLivedAccessTokenResponseTokenTypeEnumValues = []CreateShor
 }
 
 func (v *CreateShortLivedAccessTokenResponseTokenType) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateShortLivedAccessTokenResponseTokenType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -144,7 +148,7 @@ func (v *CreateShortLivedAccessTokenResponseTokenType) UnmarshalJSON(src []byte)
 
 // NewCreateShortLivedAccessTokenResponseTokenTypeFromValue returns a pointer to a valid CreateShortLivedAccessTokenResponseTokenType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateShortLivedAccessTokenResponseTokenTypeFromValue(v string) (*CreateShortLivedAccessTokenResponseTokenType, error) {
+func NewCreateShortLivedAccessTokenResponseTokenTypeFromValue(v CreateShortLivedAccessTokenResponseTokenType) (*CreateShortLivedAccessTokenResponseTokenType, error) {
 	ev := CreateShortLivedAccessTokenResponseTokenType(v)
 	if ev.IsValid() {
 		return &ev, nil
