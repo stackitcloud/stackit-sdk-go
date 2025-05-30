@@ -141,6 +141,26 @@ func setCatalogProductDetailGetHighlightsAttributeType(arg *CatalogProductDetail
 }
 
 /*
+	types and functions for industries
+*/
+
+// isArray
+type CatalogProductDetailGetIndustriesAttributeType = *[]string
+type CatalogProductDetailGetIndustriesArgType = []string
+type CatalogProductDetailGetIndustriesRetType = []string
+
+func getCatalogProductDetailGetIndustriesAttributeTypeOk(arg CatalogProductDetailGetIndustriesAttributeType) (ret CatalogProductDetailGetIndustriesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductDetailGetIndustriesAttributeType(arg *CatalogProductDetailGetIndustriesAttributeType, val CatalogProductDetailGetIndustriesRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for isProductListing
 */
 
@@ -423,6 +443,8 @@ type CatalogProductDetail struct {
 	// The list of highlights.
 	// REQUIRED
 	Highlights CatalogProductDetailGetHighlightsAttributeType `json:"highlights"`
+	// The list of industries associated to the product.
+	Industries CatalogProductDetailGetIndustriesAttributeType `json:"industries,omitempty"`
 	// Boolean data type.
 	// REQUIRED
 	IsProductListing CatalogProductDetailgetIsProductListingAttributeType `json:"isProductListing"`
@@ -602,6 +624,29 @@ func (o *CatalogProductDetail) GetHighlightsOk() (ret CatalogProductDetailGetHig
 // SetHighlights sets field value
 func (o *CatalogProductDetail) SetHighlights(v CatalogProductDetailGetHighlightsRetType) {
 	setCatalogProductDetailGetHighlightsAttributeType(&o.Highlights, v)
+}
+
+// GetIndustries returns the Industries field value if set, zero value otherwise.
+func (o *CatalogProductDetail) GetIndustries() (res CatalogProductDetailGetIndustriesRetType) {
+	res, _ = o.GetIndustriesOk()
+	return
+}
+
+// GetIndustriesOk returns a tuple with the Industries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogProductDetail) GetIndustriesOk() (ret CatalogProductDetailGetIndustriesRetType, ok bool) {
+	return getCatalogProductDetailGetIndustriesAttributeTypeOk(o.Industries)
+}
+
+// HasIndustries returns a boolean if a field has been set.
+func (o *CatalogProductDetail) HasIndustries() bool {
+	_, ok := o.GetIndustriesOk()
+	return ok
+}
+
+// SetIndustries gets a reference to the given []string and assigns it to the Industries field.
+func (o *CatalogProductDetail) SetIndustries(v CatalogProductDetailGetIndustriesRetType) {
+	setCatalogProductDetailGetIndustriesAttributeType(&o.Industries, v)
 }
 
 // GetIsProductListing returns the IsProductListing field value
@@ -868,6 +913,9 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductDetailGetHighlightsAttributeTypeOk(o.Highlights); ok {
 		toSerialize["Highlights"] = val
+	}
+	if val, ok := getCatalogProductDetailGetIndustriesAttributeTypeOk(o.Industries); ok {
+		toSerialize["Industries"] = val
 	}
 	if val, ok := getCatalogProductDetailgetIsProductListingAttributeTypeOk(o.IsProductListing); ok {
 		toSerialize["IsProductListing"] = val
