@@ -248,6 +248,7 @@ func setJobGetSampleLimitAttributeType(arg *JobGetSampleLimitAttributeType, val 
 // isEnum
 
 // JobScheme the model 'Job'
+// value type for enums
 type JobScheme string
 
 // List of Scheme
@@ -263,13 +264,16 @@ var AllowedJobSchemeEnumValues = []JobScheme{
 }
 
 func (v *JobScheme) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson JobScheme
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -286,7 +290,7 @@ func (v *JobScheme) UnmarshalJSON(src []byte) error {
 
 // NewJobSchemeFromValue returns a pointer to a valid JobScheme
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewJobSchemeFromValue(v string) (*JobScheme, error) {
+func NewJobSchemeFromValue(v JobScheme) (*JobScheme, error) {
 	ev := JobScheme(v)
 	if ev.IsValid() {
 		return &ev, nil
