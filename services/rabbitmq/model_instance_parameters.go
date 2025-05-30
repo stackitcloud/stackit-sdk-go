@@ -269,6 +269,7 @@ func setInstanceParametersGetTlsCiphersAttributeType(arg *InstanceParametersGetT
 // isEnum
 
 // InstanceParametersTlsProtocols the model 'InstanceParameters'
+// value type for enums
 type InstanceParametersTlsProtocols string
 
 // List of TlsProtocols
@@ -284,13 +285,16 @@ var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsPro
 }
 
 func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceParametersTlsProtocols
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -307,7 +311,7 @@ func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
 
 // NewInstanceParametersTlsProtocolsFromValue returns a pointer to a valid InstanceParametersTlsProtocols
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersTlsProtocolsFromValue(v string) (*InstanceParametersTlsProtocols, error) {
+func NewInstanceParametersTlsProtocolsFromValue(v InstanceParametersTlsProtocols) (*InstanceParametersTlsProtocols, error) {
 	ev := InstanceParametersTlsProtocols(v)
 	if ev.IsValid() {
 		return &ev, nil
