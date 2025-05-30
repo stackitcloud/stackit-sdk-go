@@ -46,6 +46,7 @@ type InstanceLastOperationGetDescriptionRetType = string
 // isEnum
 
 // InstanceLastOperationState the model 'InstanceLastOperation'
+// value type for enums
 type InstanceLastOperationState string
 
 // List of State
@@ -63,13 +64,16 @@ var AllowedInstanceLastOperationStateEnumValues = []InstanceLastOperationState{
 }
 
 func (v *InstanceLastOperationState) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceLastOperationState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -86,7 +90,7 @@ func (v *InstanceLastOperationState) UnmarshalJSON(src []byte) error {
 
 // NewInstanceLastOperationStateFromValue returns a pointer to a valid InstanceLastOperationState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceLastOperationStateFromValue(v string) (*InstanceLastOperationState, error) {
+func NewInstanceLastOperationStateFromValue(v InstanceLastOperationState) (*InstanceLastOperationState, error) {
 	ev := InstanceLastOperationState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -168,6 +172,7 @@ func setInstanceLastOperationGetStateAttributeType(arg *InstanceLastOperationGet
 // isEnum
 
 // InstanceLastOperationTypes the model 'InstanceLastOperation'
+// value type for enums
 type InstanceLastOperationTypes string
 
 // List of Type
@@ -185,13 +190,16 @@ var AllowedInstanceLastOperationTypesEnumValues = []InstanceLastOperationTypes{
 }
 
 func (v *InstanceLastOperationTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceLastOperationTypes
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -208,7 +216,7 @@ func (v *InstanceLastOperationTypes) UnmarshalJSON(src []byte) error {
 
 // NewInstanceLastOperationTypesFromValue returns a pointer to a valid InstanceLastOperationTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceLastOperationTypesFromValue(v string) (*InstanceLastOperationTypes, error) {
+func NewInstanceLastOperationTypesFromValue(v InstanceLastOperationTypes) (*InstanceLastOperationTypes, error) {
 	ev := InstanceLastOperationTypes(v)
 	if ev.IsValid() {
 		return &ev, nil
