@@ -25,6 +25,7 @@ var _ MappedNullable = &Model{}
 // isEnum
 
 // ModelCategory the model 'Model'
+// value type for enums
 type ModelCategory string
 
 // List of Category
@@ -42,13 +43,16 @@ var AllowedModelCategoryEnumValues = []ModelCategory{
 }
 
 func (v *ModelCategory) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ModelCategory
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -65,7 +69,7 @@ func (v *ModelCategory) UnmarshalJSON(src []byte) error {
 
 // NewModelCategoryFromValue returns a pointer to a valid ModelCategory
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewModelCategoryFromValue(v string) (*ModelCategory, error) {
+func NewModelCategoryFromValue(v ModelCategory) (*ModelCategory, error) {
 	ev := ModelCategory(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -292,6 +296,7 @@ func setModelGetTagsAttributeType(arg *ModelGetTagsAttributeType, val ModelGetTa
 // isEnum
 
 // ModelTypes the model 'Model'
+// value type for enums
 type ModelTypes string
 
 // List of Type
@@ -307,13 +312,16 @@ var AllowedModelTypesEnumValues = []ModelTypes{
 }
 
 func (v *ModelTypes) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ModelTypes
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -330,7 +338,7 @@ func (v *ModelTypes) UnmarshalJSON(src []byte) error {
 
 // NewModelTypesFromValue returns a pointer to a valid ModelTypes
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewModelTypesFromValue(v string) (*ModelTypes, error) {
+func NewModelTypesFromValue(v ModelTypes) (*ModelTypes, error) {
 	ev := ModelTypes(v)
 	if ev.IsValid() {
 		return &ev, nil

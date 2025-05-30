@@ -25,6 +25,7 @@ var _ MappedNullable = &CreateScrapeConfigPayloadMetricsRelabelConfigsInner{}
 // isEnum
 
 // CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction Action to perform based on regex matching. `Additional Validators:` * if action is replace, targetLabel needs to be in body
+// value type for enums
 type CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction string
 
 // List of Action
@@ -50,13 +51,16 @@ var AllowedCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionEnumValues =
 }
 
 func (v *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -73,7 +77,7 @@ func (v *CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) UnmarshalJSO
 
 // NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue returns a pointer to a valid CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue(v string) (*CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction, error) {
+func NewCreateScrapeConfigPayloadMetricsRelabelConfigsInnerActionFromValue(v CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction) (*CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction, error) {
 	ev := CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction(v)
 	if ev.IsValid() {
 		return &ev, nil

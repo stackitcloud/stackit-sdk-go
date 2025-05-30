@@ -87,6 +87,7 @@ type PartialUpdateServiceAccountKeyResponseGetIdRetType = string
 // isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyAlgorithm the model 'PartialUpdateServiceAccountKeyResponse'
+// value type for enums
 type PartialUpdateServiceAccountKeyResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
@@ -100,13 +101,16 @@ var AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues = []Part
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -123,7 +127,7 @@ func (v *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src [
 
 // NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyAlgorithm
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyAlgorithm, error) {
+func NewPartialUpdateServiceAccountKeyResponseKeyAlgorithmFromValue(v PartialUpdateServiceAccountKeyResponseKeyAlgorithm) (*PartialUpdateServiceAccountKeyResponseKeyAlgorithm, error) {
 	ev := PartialUpdateServiceAccountKeyResponseKeyAlgorithm(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -205,6 +209,7 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType(arg *
 // isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyOrigin the model 'PartialUpdateServiceAccountKeyResponse'
+// value type for enums
 type PartialUpdateServiceAccountKeyResponseKeyOrigin string
 
 // List of KeyOrigin
@@ -220,13 +225,16 @@ var AllowedPartialUpdateServiceAccountKeyResponseKeyOriginEnumValues = []Partial
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson PartialUpdateServiceAccountKeyResponseKeyOrigin
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -243,7 +251,7 @@ func (v *PartialUpdateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []by
 
 // NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyOrigin
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyOrigin, error) {
+func NewPartialUpdateServiceAccountKeyResponseKeyOriginFromValue(v PartialUpdateServiceAccountKeyResponseKeyOrigin) (*PartialUpdateServiceAccountKeyResponseKeyOrigin, error) {
 	ev := PartialUpdateServiceAccountKeyResponseKeyOrigin(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -325,6 +333,7 @@ func setPartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType(arg *Par
 // isEnum
 
 // PartialUpdateServiceAccountKeyResponseKeyType the model 'PartialUpdateServiceAccountKeyResponse'
+// value type for enums
 type PartialUpdateServiceAccountKeyResponseKeyType string
 
 // List of KeyType
@@ -340,13 +349,16 @@ var AllowedPartialUpdateServiceAccountKeyResponseKeyTypeEnumValues = []PartialUp
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson PartialUpdateServiceAccountKeyResponseKeyType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -363,7 +375,7 @@ func (v *PartialUpdateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte
 
 // NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue returns a pointer to a valid PartialUpdateServiceAccountKeyResponseKeyType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue(v string) (*PartialUpdateServiceAccountKeyResponseKeyType, error) {
+func NewPartialUpdateServiceAccountKeyResponseKeyTypeFromValue(v PartialUpdateServiceAccountKeyResponseKeyType) (*PartialUpdateServiceAccountKeyResponseKeyType, error) {
 	ev := PartialUpdateServiceAccountKeyResponseKeyType(v)
 	if ev.IsValid() {
 		return &ev, nil
