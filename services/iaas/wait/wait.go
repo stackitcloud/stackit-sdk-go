@@ -39,6 +39,14 @@ const (
 	BackupAvailableStatus = "AVAILABLE"
 	BackupRestoringStatus = "RESTORING"
 	BackupDeletingStatus  = "DELETING"
+
+	// Backup status constants
+	BackupCreateSuccess  = "AVAILABLE"
+	BackupCreateFail     = "ERROR"
+	BackupDeleteSuccess  = "DELETED"
+	BackupDeleteFail     = "ERROR"
+	BackupRestoreSuccess = "AVAILABLE"
+	BackupRestoreFail    = "ERROR"
 )
 
 // Interfaces needed for tests
@@ -610,20 +618,20 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
 		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
 		if err != nil {
-			return true, backup, err // TODO: include in Testcase?
+			return false, nil, err
 		}
 		if backup.Id == nil || backup.Status == nil {
-			return true, backup, fmt.Errorf("create failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+			return false, nil, fmt.Errorf("could not get backup id or status from response for project %s and backup %s", projectId, backupId)
 		}
-		if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
+		if *backup.Id == backupId && *backup.Status == BackupCreateSuccess {
 			return true, backup, nil
 		}
-		if *backup.Id == backupId && *backup.Status == ErrorStatus {
+		if *backup.Id == backupId && *backup.Status == BackupCreateFail {
 			return true, backup, fmt.Errorf("create failed for backup with id %s", backupId)
 		}
-		return false, backup, nil
+		return false, nil, nil
 	})
-	handler.SetTimeout(30 * time.Minute)
+	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
@@ -631,27 +639,21 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
 		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
-		if err == nil {
-			if backup != nil {
-				if backup.Id == nil || backup.Status == nil {
-					return false, backup, fmt.Errorf("delete failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
-				}
-				if *backup.Id == backupId && *backup.Status == DeleteSuccess {
-					return true, backup, nil
-				}
-			}
-			return false, nil, nil
+		if err != nil {
+			return false, nil, err
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, backup, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		if backup.Id == nil || backup.Status == nil {
+			return false, nil, fmt.Errorf("could not get backup id or status from response for project %s and backup %s", projectId, backupId)
 		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, backup, err
+		if *backup.Id == backupId && *backup.Status == BackupDeleteSuccess {
+			return true, backup, nil
 		}
-		return true, nil, nil
+		if *backup.Id == backupId && *backup.Status == BackupDeleteFail {
+			return true, backup, fmt.Errorf("delete failed for backup with id %s", backupId)
+		}
+		return false, nil, nil
 	})
-	handler.SetTimeout(30 * time.Minute)
+	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
@@ -660,21 +662,18 @@ func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, project
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
 		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
 		if err != nil {
-			return false, backup, err
+			return false, nil, err
 		}
 		if backup.Id == nil || backup.Status == nil {
-			return false, backup, fmt.Errorf("restore failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+			return false, nil, fmt.Errorf("could not get backup id or status from response for project %s and backup %s", projectId, backupId)
 		}
-		if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
+		if *backup.Id == backupId && *backup.Status == BackupRestoreSuccess {
 			return true, backup, nil
 		}
-		if *backup.Id == backupId && *backup.Status == ErrorStatus {
-			if backup.Status != nil {
-				return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
-			}
+		if *backup.Id == backupId && *backup.Status == BackupRestoreFail {
 			return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
 		}
-		return false, backup, nil
+		return false, nil, nil
 	})
 	handler.SetTimeout(45 * time.Minute)
 	return handler
