@@ -122,13 +122,16 @@ var AllowedInstanceParametersLazyfreeLazyEvictionEnumValues = []InstanceParamete
 }
 
 func (v *InstanceParametersLazyfreeLazyEviction) UnmarshalJSON(src []byte) error {
-	var value InstanceParametersLazyfreeLazyEviction
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceParametersLazyfreeLazyEviction
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceParametersLazyfreeLazyEviction
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -243,13 +246,16 @@ var AllowedInstanceParametersLazyfreeLazyExpireEnumValues = []InstanceParameters
 }
 
 func (v *InstanceParametersLazyfreeLazyExpire) UnmarshalJSON(src []byte) error {
-	var value InstanceParametersLazyfreeLazyExpire
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceParametersLazyfreeLazyExpire
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceParametersLazyfreeLazyExpire
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -432,13 +438,16 @@ var AllowedInstanceParametersMaxmemoryPolicyEnumValues = []InstanceParametersMax
 }
 
 func (v *InstanceParametersMaxmemoryPolicy) UnmarshalJSON(src []byte) error {
-	var value InstanceParametersMaxmemoryPolicy
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceParametersMaxmemoryPolicy
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceParametersMaxmemoryPolicy
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -779,13 +788,16 @@ var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsPro
 }
 
 func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
-	var value InstanceParametersTlsProtocols
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceParametersTlsProtocols
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceParametersTlsProtocols
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
