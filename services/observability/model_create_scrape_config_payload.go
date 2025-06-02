@@ -248,6 +248,7 @@ func setCreateScrapeConfigPayloadGetSampleLimitAttributeType(arg *CreateScrapeCo
 // isEnum
 
 // CreateScrapeConfigPayloadScheme Configures the protocol scheme used for requests. https or http
+// value type for enums
 type CreateScrapeConfigPayloadScheme string
 
 // List of Scheme
@@ -263,13 +264,16 @@ var AllowedCreateScrapeConfigPayloadSchemeEnumValues = []CreateScrapeConfigPaylo
 }
 
 func (v *CreateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateScrapeConfigPayloadScheme
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -286,7 +290,7 @@ func (v *CreateScrapeConfigPayloadScheme) UnmarshalJSON(src []byte) error {
 
 // NewCreateScrapeConfigPayloadSchemeFromValue returns a pointer to a valid CreateScrapeConfigPayloadScheme
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateScrapeConfigPayloadSchemeFromValue(v string) (*CreateScrapeConfigPayloadScheme, error) {
+func NewCreateScrapeConfigPayloadSchemeFromValue(v CreateScrapeConfigPayloadScheme) (*CreateScrapeConfigPayloadScheme, error) {
 	ev := CreateScrapeConfigPayloadScheme(v)
 	if ev.IsValid() {
 		return &ev, nil
