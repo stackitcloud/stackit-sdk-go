@@ -505,13 +505,16 @@ var AllowedZoneStateEnumValues = []ZoneState{
 }
 
 func (v *ZoneState) UnmarshalJSON(src []byte) error {
-	var value ZoneState
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ZoneState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ZoneState
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -626,13 +629,16 @@ var AllowedZoneTypesEnumValues = []ZoneTypes{
 }
 
 func (v *ZoneTypes) UnmarshalJSON(src []byte) error {
-	var value ZoneTypes
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ZoneTypes
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ZoneTypes
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -787,13 +793,16 @@ var AllowedZoneVisibilityEnumValues = []ZoneVisibility{
 }
 
 func (v *ZoneVisibility) UnmarshalJSON(src []byte) error {
-	var value ZoneVisibility
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ZoneVisibility
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ZoneVisibility
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
