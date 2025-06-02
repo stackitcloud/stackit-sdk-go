@@ -64,13 +64,16 @@ var AllowedInstanceLastOperationStateEnumValues = []InstanceLastOperationState{
 }
 
 func (v *InstanceLastOperationState) UnmarshalJSON(src []byte) error {
-	var value InstanceLastOperationState
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceLastOperationState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceLastOperationState
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -187,13 +190,16 @@ var AllowedInstanceLastOperationTypesEnumValues = []InstanceLastOperationTypes{
 }
 
 func (v *InstanceLastOperationTypes) UnmarshalJSON(src []byte) error {
-	var value InstanceLastOperationTypes
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceLastOperationTypes
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceLastOperationTypes
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
