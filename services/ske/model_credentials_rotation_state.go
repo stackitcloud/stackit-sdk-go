@@ -88,13 +88,16 @@ var AllowedCredentialsRotationStatePhaseEnumValues = []CredentialsRotationStateP
 }
 
 func (v *CredentialsRotationStatePhase) UnmarshalJSON(src []byte) error {
-	var value CredentialsRotationStatePhase
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CredentialsRotationStatePhase
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue CredentialsRotationStatePhase
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

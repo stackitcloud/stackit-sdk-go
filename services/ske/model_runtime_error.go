@@ -59,13 +59,16 @@ var AllowedRuntimeErrorCodeEnumValues = []RuntimeErrorCode{
 }
 
 func (v *RuntimeErrorCode) UnmarshalJSON(src []byte) error {
-	var value RuntimeErrorCode
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson RuntimeErrorCode
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue RuntimeErrorCode
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
