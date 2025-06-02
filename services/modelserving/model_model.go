@@ -43,13 +43,16 @@ var AllowedModelCategoryEnumValues = []ModelCategory{
 }
 
 func (v *ModelCategory) UnmarshalJSON(src []byte) error {
-	var value ModelCategory
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ModelCategory
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ModelCategory
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -309,13 +312,16 @@ var AllowedModelTypesEnumValues = []ModelTypes{
 }
 
 func (v *ModelTypes) UnmarshalJSON(src []byte) error {
-	var value ModelTypes
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ModelTypes
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ModelTypes
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

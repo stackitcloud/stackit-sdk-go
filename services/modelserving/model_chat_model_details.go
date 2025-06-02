@@ -47,13 +47,16 @@ var AllowedChatModelDetailsBitsEnumValues = []ChatModelDetailsBits{
 }
 
 func (v *ChatModelDetailsBits) UnmarshalJSON(src []byte) error {
-	var value ChatModelDetailsBits
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ChatModelDetailsBits
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ChatModelDetailsBits
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -170,13 +173,16 @@ var AllowedChatModelDetailsCategoryEnumValues = []ChatModelDetailsCategory{
 }
 
 func (v *ChatModelDetailsCategory) UnmarshalJSON(src []byte) error {
-	var value ChatModelDetailsCategory
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ChatModelDetailsCategory
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ChatModelDetailsCategory
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -395,13 +401,16 @@ var AllowedChatModelDetailsQuantizationMethodEnumValues = []ChatModelDetailsQuan
 }
 
 func (v *ChatModelDetailsQuantizationMethod) UnmarshalJSON(src []byte) error {
-	var value ChatModelDetailsQuantizationMethod
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ChatModelDetailsQuantizationMethod
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ChatModelDetailsQuantizationMethod
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
