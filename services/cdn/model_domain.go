@@ -102,13 +102,16 @@ var AllowedDomainTypesEnumValues = []DomainTypes{
 }
 
 func (v *DomainTypes) UnmarshalJSON(src []byte) error {
-	var value DomainTypes
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson DomainTypes
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue DomainTypes
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
