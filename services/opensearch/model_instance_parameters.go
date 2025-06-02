@@ -86,13 +86,16 @@ var AllowedInstanceParametersJavaGarbageCollectorEnumValues = []InstanceParamete
 }
 
 func (v *InstanceParametersJavaGarbageCollector) UnmarshalJSON(src []byte) error {
-	var value InstanceParametersJavaGarbageCollector
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceParametersJavaGarbageCollector
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceParametersJavaGarbageCollector
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -410,13 +413,16 @@ var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsPro
 }
 
 func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
-	var value InstanceParametersTlsProtocols
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceParametersTlsProtocols
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceParametersTlsProtocols
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
