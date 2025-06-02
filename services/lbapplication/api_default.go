@@ -199,9 +199,9 @@ type DefaultApi interface {
 	*/
 	GetLoadBalancerExecute(ctx context.Context, projectId string, name string) (*LoadBalancer, error)
 	/*
-		GetQuota Get the quota of application load balancers and target pools in a project.
-		Deprecated: Retrieves the configured Application Load Balancer quota for the project.
-		 The default quota is 3.
+		GetQuota Get the quota of Application Load Balancers in a project.
+		Deprecated: Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
+		 There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -215,8 +215,8 @@ type DefaultApi interface {
 		@param projectId
 		@return GetQuotaResponse
 
-		Deprecated: Retrieves the configured Application Load Balancer quota for the project.
-		 The default quota is 3.
+		Deprecated: Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
+		 There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 	*/
 	GetQuotaExecute(ctx context.Context, projectId string) (*GetQuotaResponse, error)
 	/*
@@ -1803,11 +1803,11 @@ func (r GetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 }
 
 /*
-GetQuota: Get the quota of application load balancers and target pools in a project.
+GetQuota: Get the quota of Application Load Balancers in a project.
 
-Deprecated: Retrieves the configured Application Load Balancer quota for the project.
+Deprecated: Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
 
-	The default quota is 3.
+	There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -1822,9 +1822,9 @@ func (a *APIClient) GetQuota(ctx context.Context, projectId string) ApiGetQuotaR
 }
 
 /*
-Deprecated: Retrieves the configured Application Load Balancer quota for the project.
+Deprecated: Retrieves the configured Application Load Balancer quota for the project. Limit can be changed via service request.
 
-	The default quota is 3.
+	There can be 3 times as many TLS certificates and observability credentials as Load Balancers.
 */
 func (a *APIClient) GetQuotaExecute(ctx context.Context, projectId string) (*GetQuotaResponse, error) {
 	r := GetQuotaRequest{
