@@ -101,13 +101,16 @@ var AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues = []Part
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue PartialUpdateServiceAccountKeyResponseKeyAlgorithm
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -222,13 +225,16 @@ var AllowedPartialUpdateServiceAccountKeyResponseKeyOriginEnumValues = []Partial
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value PartialUpdateServiceAccountKeyResponseKeyOrigin
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson PartialUpdateServiceAccountKeyResponseKeyOrigin
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue PartialUpdateServiceAccountKeyResponseKeyOrigin
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -343,13 +349,16 @@ var AllowedPartialUpdateServiceAccountKeyResponseKeyTypeEnumValues = []PartialUp
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value PartialUpdateServiceAccountKeyResponseKeyType
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson PartialUpdateServiceAccountKeyResponseKeyType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue PartialUpdateServiceAccountKeyResponseKeyType
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

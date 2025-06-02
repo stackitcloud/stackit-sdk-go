@@ -121,13 +121,16 @@ var AllowedCreateServiceAccountKeyResponseKeyAlgorithmEnumValues = []CreateServi
 }
 
 func (v *CreateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value CreateServiceAccountKeyResponseKeyAlgorithm
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateServiceAccountKeyResponseKeyAlgorithm
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue CreateServiceAccountKeyResponseKeyAlgorithm
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -242,13 +245,16 @@ var AllowedCreateServiceAccountKeyResponseKeyOriginEnumValues = []CreateServiceA
 }
 
 func (v *CreateServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value CreateServiceAccountKeyResponseKeyOrigin
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateServiceAccountKeyResponseKeyOrigin
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue CreateServiceAccountKeyResponseKeyOrigin
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -363,13 +369,16 @@ var AllowedCreateServiceAccountKeyResponseKeyTypeEnumValues = []CreateServiceAcc
 }
 
 func (v *CreateServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value CreateServiceAccountKeyResponseKeyType
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateServiceAccountKeyResponseKeyType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue CreateServiceAccountKeyResponseKeyType
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

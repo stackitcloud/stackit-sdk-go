@@ -101,13 +101,16 @@ var AllowedServiceAccountKeyListResponseKeyAlgorithmEnumValues = []ServiceAccoun
 }
 
 func (v *ServiceAccountKeyListResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value ServiceAccountKeyListResponseKeyAlgorithm
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ServiceAccountKeyListResponseKeyAlgorithm
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ServiceAccountKeyListResponseKeyAlgorithm
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -222,13 +225,16 @@ var AllowedServiceAccountKeyListResponseKeyOriginEnumValues = []ServiceAccountKe
 }
 
 func (v *ServiceAccountKeyListResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value ServiceAccountKeyListResponseKeyOrigin
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ServiceAccountKeyListResponseKeyOrigin
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ServiceAccountKeyListResponseKeyOrigin
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -343,13 +349,16 @@ var AllowedServiceAccountKeyListResponseKeyTypeEnumValues = []ServiceAccountKeyL
 }
 
 func (v *ServiceAccountKeyListResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value ServiceAccountKeyListResponseKeyType
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ServiceAccountKeyListResponseKeyType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ServiceAccountKeyListResponseKeyType
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

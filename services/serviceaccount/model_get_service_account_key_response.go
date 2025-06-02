@@ -121,13 +121,16 @@ var AllowedGetServiceAccountKeyResponseKeyAlgorithmEnumValues = []GetServiceAcco
 }
 
 func (v *GetServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
-	var value GetServiceAccountKeyResponseKeyAlgorithm
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson GetServiceAccountKeyResponseKeyAlgorithm
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue GetServiceAccountKeyResponseKeyAlgorithm
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -242,13 +245,16 @@ var AllowedGetServiceAccountKeyResponseKeyOriginEnumValues = []GetServiceAccount
 }
 
 func (v *GetServiceAccountKeyResponseKeyOrigin) UnmarshalJSON(src []byte) error {
-	var value GetServiceAccountKeyResponseKeyOrigin
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson GetServiceAccountKeyResponseKeyOrigin
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue GetServiceAccountKeyResponseKeyOrigin
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -363,13 +369,16 @@ var AllowedGetServiceAccountKeyResponseKeyTypeEnumValues = []GetServiceAccountKe
 }
 
 func (v *GetServiceAccountKeyResponseKeyType) UnmarshalJSON(src []byte) error {
-	var value GetServiceAccountKeyResponseKeyType
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson GetServiceAccountKeyResponseKeyType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue GetServiceAccountKeyResponseKeyType
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
