@@ -89,13 +89,16 @@ var AllowedInstanceListInstanceStatusEnumValues = []InstanceListInstanceStatus{
 }
 
 func (v *InstanceListInstanceStatus) UnmarshalJSON(src []byte) error {
-	var value InstanceListInstanceStatus
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson InstanceListInstanceStatus
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue InstanceListInstanceStatus
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
