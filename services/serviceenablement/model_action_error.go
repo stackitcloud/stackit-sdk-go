@@ -41,13 +41,16 @@ var AllowedActionErrorActionEnumValues = []ActionErrorAction{
 }
 
 func (v *ActionErrorAction) UnmarshalJSON(src []byte) error {
-	var value ActionErrorAction
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ActionErrorAction
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ActionErrorAction
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

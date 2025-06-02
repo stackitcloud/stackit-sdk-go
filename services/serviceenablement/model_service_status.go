@@ -61,13 +61,16 @@ var AllowedServiceStatusEnablementEnumValues = []ServiceStatusEnablement{
 }
 
 func (v *ServiceStatusEnablement) UnmarshalJSON(src []byte) error {
-	var value ServiceStatusEnablement
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ServiceStatusEnablement
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ServiceStatusEnablement
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -222,13 +225,16 @@ var AllowedServiceStatusLifecycleEnumValues = []ServiceStatusLifecycle{
 }
 
 func (v *ServiceStatusLifecycle) UnmarshalJSON(src []byte) error {
-	var value ServiceStatusLifecycle
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ServiceStatusLifecycle
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ServiceStatusLifecycle
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -363,13 +369,16 @@ var AllowedServiceStatusScopeEnumValues = []ServiceStatusScope{
 }
 
 func (v *ServiceStatusScope) UnmarshalJSON(src []byte) error {
-	var value ServiceStatusScope
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ServiceStatusScope
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ServiceStatusScope
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -509,13 +518,16 @@ var AllowedServiceStatusStateEnumValues = []ServiceStatusState{
 }
 
 func (v *ServiceStatusState) UnmarshalJSON(src []byte) error {
-	var value ServiceStatusState
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ServiceStatusState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ServiceStatusState
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

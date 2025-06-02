@@ -83,13 +83,16 @@ var AllowedParametersGeneralProjectScopeEnumValues = []ParametersGeneralProjectS
 }
 
 func (v *ParametersGeneralProjectScope) UnmarshalJSON(src []byte) error {
-	var value ParametersGeneralProjectScope
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson ParametersGeneralProjectScope
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue ParametersGeneralProjectScope
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}

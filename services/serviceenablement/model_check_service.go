@@ -60,13 +60,16 @@ var AllowedCheckServiceResourceTypeEnumValues = []CheckServiceResourceType{
 }
 
 func (v *CheckServiceResourceType) UnmarshalJSON(src []byte) error {
-	var value CheckServiceResourceType
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CheckServiceResourceType
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue CheckServiceResourceType
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
