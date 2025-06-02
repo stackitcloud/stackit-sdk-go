@@ -35,6 +35,11 @@ const (
 	RequestFailedStatus  = "FAILED"
 
 	XRequestIDHeader = "X-Request-Id"
+
+	SnapshotCreateSuccess = "AVAILABLE"
+	SnapshotCreateFail    = "ERROR"
+	SnapshotDeleteSuccess = "DELETED"
+	SnapshotDeleteFail    = "ERROR"
 )
 
 // Interfaces needed for tests
@@ -46,6 +51,7 @@ type APIClientInterface interface {
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaas.Server, error)
 	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaas.VolumeAttachment, error)
 	GetImageExecute(ctx context.Context, projectId string, imageId string) (*iaas.Image, error)
+	GetSnapshotExecute(ctx context.Context, projectId string, snapshotId string) (*iaas.Snapshot, error)
 }
 
 // CreateNetworkAreaWaitHandler will wait for network area creation
@@ -597,5 +603,49 @@ func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 		return true, nil, nil
 	})
 	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// CreateSnapshotWaitHandler will wait for snapshot creation
+func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
+		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
+		if err != nil {
+			return false, nil, err
+		}
+		if snapshot.Id == nil || snapshot.Status == nil {
+			return false, nil, fmt.Errorf("could not get snapshot id or status from response for project %s and snapshot %s", projectId, snapshotId)
+		}
+		if *snapshot.Id == snapshotId && *snapshot.Status == SnapshotCreateSuccess {
+			return true, snapshot, nil
+		}
+		if *snapshot.Id == snapshotId && *snapshot.Status == SnapshotCreateFail {
+			return true, snapshot, fmt.Errorf("create failed for snapshot with id %s", snapshotId)
+		}
+		return false, nil, nil
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+// DeleteSnapshotWaitHandler will wait for snapshot deletion
+func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
+		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
+		if err != nil {
+			return false, nil, err
+		}
+		if snapshot.Id == nil || snapshot.Status == nil {
+			return false, nil, fmt.Errorf("could not get snapshot id or status from response for project %s and snapshot %s", projectId, snapshotId)
+		}
+		if *snapshot.Id == snapshotId && *snapshot.Status == SnapshotDeleteSuccess {
+			return true, snapshot, nil
+		}
+		if *snapshot.Id == snapshotId && *snapshot.Status == SnapshotDeleteFail {
+			return true, snapshot, fmt.Errorf("delete failed for snapshot with id %s", snapshotId)
+		}
+		return false, nil, nil
+	})
+	handler.SetTimeout(20 * time.Minute)
 	return handler
 }

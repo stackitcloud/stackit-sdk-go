@@ -24,6 +24,7 @@ type apiClientMocked struct {
 	isAttached             bool
 	requestAction          string
 	returnResizing         bool
+	getSnapshotFails       bool
 }
 
 func (a *apiClientMocked) GetNetworkAreaExecute(_ context.Context, _, _ string) (*iaas.NetworkArea, error) {
@@ -158,6 +159,25 @@ func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaas
 
 	return &iaas.Image{
 		Id:     utils.Ptr("iid"),
+		Status: &a.resourceState,
+	}, nil
+}
+
+func (a *apiClientMocked) GetSnapshotExecute(_ context.Context, _, _ string) (*iaas.Snapshot, error) {
+	if a.isDeleted {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 404,
+		}
+	}
+
+	if a.getSnapshotFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	return &iaas.Snapshot{
+		Id:     utils.Ptr("sid"),
 		Status: &a.resourceState,
 	}, nil
 }
@@ -1500,6 +1520,136 @@ func TestDeleteImageWaitHandler(t *testing.T) {
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+func TestCreateSnapshotWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "create_succeeded",
+			getFails:      false,
+			resourceState: SnapshotCreateSuccess,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: SnapshotCreateFail,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER_STATUS",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getSnapshotFails: tt.getFails,
+				resourceState:    tt.resourceState,
+			}
+
+			var wantRes *iaas.Snapshot
+			if tt.wantResp {
+				wantRes = &iaas.Snapshot{
+					Id:     utils.Ptr("sid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := CreateSnapshotWaitHandler(context.Background(), apiClient, "pid", "sid")
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestDeleteSnapshotWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "delete_succeeded",
+			getFails:      false,
+			resourceState: SnapshotDeleteSuccess,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: SnapshotDeleteFail,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER_STATUS",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getSnapshotFails: tt.getFails,
+				resourceState:    tt.resourceState,
+			}
+
+			var wantRes *iaas.Snapshot
+			if tt.wantResp {
+				wantRes = &iaas.Snapshot{
+					Id:     utils.Ptr("sid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := DeleteSnapshotWaitHandler(context.Background(), apiClient, "pid", "sid")
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
 			}
 		})
 	}
