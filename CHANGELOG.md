@@ -2,46 +2,46 @@
 - `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-05-22)
   - **Bugfix:** Access tokens generated via key flow authentication are refreshed 5 seconds before expiration to prevent timing issues with upstream systems which could lead to unexpected 401 error responses
 - `alb`: [v0.5.0](services/alb/CHANGELOG.md#v050-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `cdn`: [v1.3.0](services/cdn/CHANGELOG.md#v130-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
     - **Feature:** Added `Optimizer` attribute
 - `dns`: [v0.16.0](services/dns/CHANGELOG.md#v0160-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `git`: [v0.6.0](services/git/CHANGELOG.md#v060-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `loadbalancer`: [v1.3.0](services/loadbalancer/CHANGELOG.md#v130-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `logme`: [v0.25.0](services/logme/CHANGELOG.md#v0250-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `mariadb`: [v0.25.0](services/mariadb/CHANGELOG.md#v0250-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `modelserving`: [v0.5.0](services/modelserving/CHANGELOG.md#v050-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `mongodbflex`: [v1.3.0](services/mongodbflex/CHANGELOG.md#v130-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `observability`: [v0.8.0](services/observability/CHANGELOG.md#v080-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
     - **Feature:** Added `Priority` and `SendResolved` attributes
     - **Deprecation:** `Match` and `MatchRe` attributes are deprecated.
 - `opensearch`: [v0.24.0](services/opensearch/CHANGELOG.md#v0240-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `rabbitmq`: [v0.25.0](services/rabbitmq/CHANGELOG.md#v0250-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `redis`: [v0.25.0](services/redis/CHANGELOG.md#v0250-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `resourcemanager`: [v0.16.0](services/resourcemanager/CHANGELOG.md#v0160-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `runcommand`: [v1.3.0](services/runcommand/CHANGELOG.md#v130-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `serverbackup`: [v1.3.0](services/serverbackup/CHANGELOG.md#v130-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `serviceaccount`: [v0.9.0](services/serviceaccount/CHANGELOG.md#v090-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants 
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `serviceenablement`: [v1.3.0](services/serviceenablement/CHANGELOG.md#v130-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `ske`: [v0.25.0](services/ske/CHANGELOG.md#v0250-2025-05-28)
-    - **Breaking change:** Added missing typed enum constants
+    - **Breaking change:** Added missing typed enum constants and added tests for enums
 
 ## Release (2025-05-15)
 - `alb`:
