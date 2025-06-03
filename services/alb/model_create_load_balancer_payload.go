@@ -210,6 +210,7 @@ type CreateLoadBalancerPayloadGetRegionRetType = string
 // isEnum
 
 // CreateLoadBalancerPayloadStatus the model 'CreateLoadBalancerPayload'
+// value type for enums
 type CreateLoadBalancerPayloadStatus string
 
 // List of Status
