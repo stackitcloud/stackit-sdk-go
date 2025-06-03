@@ -22,7 +22,7 @@
     - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `observability`: [v0.8.0](services/observability/CHANGELOG.md#v080-2025-05-28)
     - **Breaking change:** Added missing typed enum constants and added tests for enums
-    - **Feature:** Added `Priority` and `SendResolved` attributes
+    - **Feature:** Added `Priority`, `SendResolved` and `Matchers` attributes
     - **Deprecation:** `Match` and `MatchRe` attributes are deprecated.
 - `opensearch`: [v0.24.0](services/opensearch/CHANGELOG.md#v0240-2025-05-28)
     - **Breaking change:** Added missing typed enum constants and added tests for enums
@@ -42,6 +42,8 @@
     - **Breaking change:** Added missing typed enum constants and added tests for enums
 - `ske`: [v0.25.0](services/ske/CHANGELOG.md#v0250-2025-05-28)
     - **Breaking change:** Added missing typed enum constants and added tests for enums
+- `stackitmarketplace`: [v1.3.1](services/stackitmarketplace/CHANGELOG.md#v131-2025-06-03)
+    - **Feature:** Added `Industries` attribute
 
 ## Release (2025-05-15)
 - `alb`:
