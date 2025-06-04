@@ -158,8 +158,9 @@ type DefaultApi interface {
 	*/
 	GetLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (*LoadBalancer, error)
 	/*
-		GetQuota Get the quota of Load Balancers and Target Pools in a project.
-		GetQuota gets the configured load balancer quota for the project. Default is 3.
+		GetQuota Get the quota of Load Balancers in a project.
+		Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.
+		 There can be 3 times as many observability credentials as Load Balancers.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -1433,9 +1434,11 @@ func (r GetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 }
 
 /*
-GetQuota: Get the quota of Load Balancers and Target Pools in a project.
+GetQuota: Get the quota of Load Balancers in a project.
 
-GetQuota gets the configured load balancer quota for the project. Default is 3.
+Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.
+
+	There can be 3 times as many observability credentials as Load Balancers.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId

@@ -278,6 +278,7 @@ type GetInstanceResponseGetServiceNameRetType = string
 // isEnum
 
 // GetInstanceResponseStatus the model 'GetInstanceResponse'
+// value type for enums
 type GetInstanceResponseStatus string
 
 // List of Status
@@ -307,13 +308,16 @@ var AllowedGetInstanceResponseStatusEnumValues = []GetInstanceResponseStatus{
 }
 
 func (v *GetInstanceResponseStatus) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson GetInstanceResponseStatus
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -330,7 +334,7 @@ func (v *GetInstanceResponseStatus) UnmarshalJSON(src []byte) error {
 
 // NewGetInstanceResponseStatusFromValue returns a pointer to a valid GetInstanceResponseStatus
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewGetInstanceResponseStatusFromValue(v string) (*GetInstanceResponseStatus, error) {
+func NewGetInstanceResponseStatusFromValue(v GetInstanceResponseStatus) (*GetInstanceResponseStatus, error) {
 	ev := GetInstanceResponseStatus(v)
 	if ev.IsValid() {
 		return &ev, nil

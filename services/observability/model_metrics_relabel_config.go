@@ -25,6 +25,7 @@ var _ MappedNullable = &MetricsRelabelConfig{}
 // isEnum
 
 // MetricsRelabelConfigAction the model 'MetricsRelabelConfig'
+// value type for enums
 type MetricsRelabelConfigAction string
 
 // List of Action
@@ -50,13 +51,16 @@ var AllowedMetricsRelabelConfigActionEnumValues = []MetricsRelabelConfigAction{
 }
 
 func (v *MetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson MetricsRelabelConfigAction
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -73,7 +77,7 @@ func (v *MetricsRelabelConfigAction) UnmarshalJSON(src []byte) error {
 
 // NewMetricsRelabelConfigActionFromValue returns a pointer to a valid MetricsRelabelConfigAction
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewMetricsRelabelConfigActionFromValue(v string) (*MetricsRelabelConfigAction, error) {
+func NewMetricsRelabelConfigActionFromValue(v MetricsRelabelConfigAction) (*MetricsRelabelConfigAction, error) {
 	ev := MetricsRelabelConfigAction(v)
 	if ev.IsValid() {
 		return &ev, nil

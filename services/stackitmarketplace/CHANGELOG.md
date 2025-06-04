@@ -1,3 +1,6 @@
+## v1.3.1 (2025-06-04)
+- **Feature:** Added `Industries` attribute
+
 ## v1.3.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 

@@ -131,6 +131,7 @@ type TokenCreatedGetRegionRetType = string
 // isEnum
 
 // TokenCreatedState the model 'TokenCreated'
+// value type for enums
 type TokenCreatedState string
 
 // List of State
@@ -148,13 +149,16 @@ var AllowedTokenCreatedStateEnumValues = []TokenCreatedState{
 }
 
 func (v *TokenCreatedState) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson TokenCreatedState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -171,7 +175,7 @@ func (v *TokenCreatedState) UnmarshalJSON(src []byte) error {
 
 // NewTokenCreatedStateFromValue returns a pointer to a valid TokenCreatedState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewTokenCreatedStateFromValue(v string) (*TokenCreatedState, error) {
+func NewTokenCreatedStateFromValue(v TokenCreatedState) (*TokenCreatedState, error) {
 	ev := TokenCreatedState(v)
 	if ev.IsValid() {
 		return &ev, nil

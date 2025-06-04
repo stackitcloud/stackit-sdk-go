@@ -1,6 +1,49 @@
 ## Release (2025-YY-XX)
 - `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-05-22)
   - **Bugfix:** Access tokens generated via key flow authentication are refreshed 5 seconds before expiration to prevent timing issues with upstream systems which could lead to unexpected 401 error responses
+- `alb`: [v0.4.1](services/alb/CHANGELOG.md#v041-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `cdn`: [v1.2.1](services/cdn/CHANGELOG.md#v121-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+    - **Feature:** Added `Optimizer` attribute
+- `dns`: [v0.15.1](services/dns/CHANGELOG.md#v0151-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `git`: [v0.5.1](services/git/CHANGELOG.md#v051-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `loadbalancer`: [v1.2.1](services/loadbalancer/CHANGELOG.md#v121-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `logme`: [v0.24.1](services/logme/CHANGELOG.md#v0241-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `mariadb`: [v0.24.1](services/mariadb/CHANGELOG.md#v0241-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `modelserving`: [v0.4.1](services/modelserving/CHANGELOG.md#v041-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `mongodbflex`: [v1.2.1](services/mongodbflex/CHANGELOG.md#v121-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `observability`: [v0.7.1](services/observability/CHANGELOG.md#v071-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+    - **Feature:** Added `Priority`, `SendResolved` and `Matchers` attributes
+    - **Deprecation:** `Match` and `MatchRe` attributes are deprecated.
+- `opensearch`: [v0.23.1](services/opensearch/CHANGELOG.md#v0231-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `rabbitmq`: [v0.24.1](services/rabbitmq/CHANGELOG.md#v0241-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `redis`: [v0.24.1](services/redis/CHANGELOG.md#v0241-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `resourcemanager`: [v0.15.1](services/resourcemanager/CHANGELOG.md#v0151-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `runcommand`: [v1.2.1](services/runcommand/CHANGELOG.md#v121-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `serverbackup`: [v1.2.1](services/serverbackup/CHANGELOG.md#v121-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `serviceaccount`: [v0.8.1](services/serviceaccount/CHANGELOG.md#v081-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `serviceenablement`: [v1.2.1](services/serviceenablement/CHANGELOG.md#v121-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `ske`: [v0.24.1](services/ske/CHANGELOG.md#v0241-2025-06-04)
+    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `stackitmarketplace`: [v1.3.1](services/stackitmarketplace/CHANGELOG.md#v131-2025-06-04)
+    - **Feature:** Added `Industries` attribute
 
 ## Release (2025-05-15)
 - `alb`:
