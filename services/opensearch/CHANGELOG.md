@@ -1,5 +1,5 @@
-## v0.24.0 (2025-05-28)
-- **Breaking change:** Added missing typed enum constants
+## v0.23.1 (2025-06-04)
+- **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 
 ## v0.23.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs

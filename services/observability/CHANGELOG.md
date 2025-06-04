@@ -1,5 +1,5 @@
-## v0.8.0 (2025-05-28)
-- **Breaking change:** Added missing typed enum constants
+## v0.7.1 (2025-06-04)
+- **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - **Feature:** Added `Priority` and `SendResolved` attributes
 - **Deprecation:** `Match` and `MatchRe` attributes are deprecated.
 
