@@ -30,7 +30,13 @@
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - `redis`: [v0.24.1](services/redis/CHANGELOG.md#v0241-2025-06-04)
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
-- `resourcemanager`: [v0.15.1](services/resourcemanager/CHANGELOG.md#v0151-2025-06-04)
+- `resourcemanager`:
+  - [v0.16.0](services/resourcemanager/CHANGELOG.md#v0160-2025-06-04)
+    - **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
+    - **Feature:** Delete Project labels using the new method `DeleteProjectLabels`
+    - **Feature:** List folders using the new method `ListFolders`
+    - **Feature:** Partial Update Organization using the new method `PartialUpdateOrganization`
+  - [v0.15.1](services/resourcemanager/CHANGELOG.md#v0151-2025-06-04)
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - `runcommand`: [v1.2.1](services/runcommand/CHANGELOG.md#v121-2025-06-04)
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums

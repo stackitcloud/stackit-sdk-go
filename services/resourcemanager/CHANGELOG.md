@@ -1,3 +1,9 @@
+## v0.16.0 (2025-06-04)
+- **Feature:** Delete Organization labels using the new method `DeleteOrganizationLabels`
+- **Feature:** Delete Project labels using the new method `DeleteProjectLabels`
+- **Feature:** List folders using the new method `ListFolders`
+- **Feature:** Partial Update Organization using the new method `PartialUpdateOrganization`
+
 ## v0.15.1 (2025-06-04)
 - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 
