@@ -1,5 +1,5 @@
 ## Release (2025-YY-XX)
-- `iaas`: [v0.24.0](services/iaas/CHANGELOG.md#v0240-2025-06-02)
+- `iaas`: [v0.24.0](services/iaas/CHANGELOG.md#v0240-2025-06-05)
   - **Feature:** Add waiters for async operations: `CreateBackupWaitHandler`, `DeleteBackupWaitHandler`, `RestoreBackupWaitHandler`
   - **Feature:** Add Waiters for async operations: `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
 - `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-05-22)

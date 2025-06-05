@@ -1,4 +1,4 @@
-## v0.24.0 (2025-06-02)
+## v0.24.0 (2025-06-05)
 - **Feature:** Add waiters for async operations: `CreateBackupWaitHandler`, `DeleteBackupWaitHandler`, `RestoreBackupWaitHandler`
 - **Feature:** Add Waiters for async operations: `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
 
