@@ -25,6 +25,7 @@ type apiClientMocked struct {
 	isAttached             bool
 	requestAction          string
 	returnResizing         bool
+	getSnapshotFails       bool
 }
 
 func (a *apiClientMocked) GetNetworkAreaExecute(_ context.Context, _, _ string) (*iaas.NetworkArea, error) {
@@ -103,7 +104,7 @@ func (a *apiClientMocked) GetServerExecute(_ context.Context, _, _ string) (*iaa
 		a.returnResizing = false
 		return &iaas.Server{
 			Id:     utils.Ptr("sid"),
-			Status: utils.Ptr(ServerResizingStatus),
+			Status: utils.Ptr(ResizingStatus),
 		}, nil
 	}
 
@@ -182,6 +183,25 @@ func (a *apiClientMocked) GetBackupExecute(_ context.Context, _, _ string) (*iaa
 	}, nil
 }
 
+func (a *apiClientMocked) GetSnapshotExecute(_ context.Context, _, _ string) (*iaas.Snapshot, error) {
+	if a.isDeleted {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 404,
+		}
+	}
+
+	if a.getSnapshotFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	return &iaas.Snapshot{
+		Id:     utils.Ptr("sid"),
+		Status: &a.resourceState,
+	}, nil
+}
+
 func TestCreateNetworkAreaWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
@@ -193,7 +213,7 @@ func TestCreateNetworkAreaWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: CreateSuccess,
+			resourceState: CreatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -252,7 +272,7 @@ func TestUpdateNetworkAreaWaitHandler(t *testing.T) {
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: CreateSuccess,
+			resourceState: CreatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -372,7 +392,7 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: CreateSuccess,
+			resourceState: CreatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -431,7 +451,7 @@ func TestUpdateNetworkWaitHandler(t *testing.T) {
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: CreateSuccess,
+			resourceState: CreatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -551,7 +571,7 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: VolumeAvailableStatus,
+			resourceState: AvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -678,7 +698,7 @@ func TestCreateServerWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: ServerActiveStatus,
+			resourceState: ActiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -807,7 +827,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			desc:               "resize_succeeded",
 			getFails:           false,
 			returnResizing:     true,
-			finalResourceState: ServerActiveStatus,
+			finalResourceState: ActiveStatus,
 			wantErr:            false,
 			wantResp:           true,
 		},
@@ -815,7 +835,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			desc:               "resizing_status_is_never_returned",
 			getFails:           false,
 			returnResizing:     false,
-			finalResourceState: ServerActiveStatus,
+			finalResourceState: ActiveStatus,
 			wantErr:            true,
 			wantResp:           true,
 		},
@@ -883,7 +903,7 @@ func TestStartServerWaitHandler(t *testing.T) {
 		{
 			desc:          "start_succeeded",
 			getFails:      false,
-			resourceState: ServerActiveStatus,
+			resourceState: ActiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -949,7 +969,7 @@ func TestStopServerWaitHandler(t *testing.T) {
 		{
 			desc:          "stop_succeeded",
 			getFails:      false,
-			resourceState: ServerInactiveStatus,
+			resourceState: InactiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1015,7 +1035,7 @@ func TestDeallocateServerWaitHandler(t *testing.T) {
 		{
 			desc:          "deallocate_succeeded",
 			getFails:      false,
-			resourceState: ServerDeallocatedStatus,
+			resourceState: DeallocatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1081,7 +1101,7 @@ func TestRescueServerWaitHandler(t *testing.T) {
 		{
 			desc:          "rescue_succeeded",
 			getFails:      false,
-			resourceState: ServerRescueStatus,
+			resourceState: RescueStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1147,7 +1167,7 @@ func TestUnrescueServerWaitHandler(t *testing.T) {
 		{
 			desc:          "unrescue_succeeded",
 			getFails:      false,
-			resourceState: ServerActiveStatus,
+			resourceState: ActiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1214,24 +1234,24 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			requestAction: RequestCreateAction,
-			requestState:  RequestCreatedStatus,
+			requestAction: CreateAction,
+			requestState:  CreatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			requestAction: RequestUpdateAction,
-			requestState:  RequestUpdatedStatus,
+			requestAction: UpdateAction,
+			requestState:  UpdatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
-			requestAction: RequestDeleteAction,
-			requestState:  RequestDeletedStatus,
+			requestAction: DeleteAction,
+			requestState:  DeletedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1245,7 +1265,7 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 		{
 			desc:          "error_status",
 			getFails:      false,
-			requestAction: RequestCreateAction,
+			requestAction: CreateAction,
 			requestState:  ErrorStatus,
 			wantErr:       true,
 			wantResp:      true,
@@ -1260,7 +1280,7 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			requestAction: RequestCreateAction,
+			requestAction: CreateAction,
 			requestState:  "ANOTHER Status",
 			wantErr:       true,
 			wantResp:      true,
@@ -1424,7 +1444,7 @@ func TestUploadImageWaitHandler(t *testing.T) {
 		{
 			desc:          "upload_succeeded",
 			getFails:      false,
-			resourceState: ImageAvailableStatus,
+			resourceState: AvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1536,7 +1556,7 @@ func TestCreateBackupWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: BackupAvailableStatus,
+			resourceState: AvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1653,7 +1673,7 @@ func TestRestoreBackupWaitHandler(t *testing.T) {
 		{
 			desc:          "restore_succeeded",
 			getFails:      false,
-			resourceState: BackupAvailableStatus,
+			resourceState: AvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1695,6 +1715,136 @@ func TestRestoreBackupWaitHandler(t *testing.T) {
 			}
 
 			handler := RestoreBackupWaitHandler(context.Background(), apiClient, "pid", "bid")
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestCreateSnapshotWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "create_succeeded",
+			getFails:      false,
+			resourceState: CreatedStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER_STATUS",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getSnapshotFails: tt.getFails,
+				resourceState:    tt.resourceState,
+			}
+
+			var wantRes *iaas.Snapshot
+			if tt.wantResp {
+				wantRes = &iaas.Snapshot{
+					Id:     utils.Ptr("sid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := CreateSnapshotWaitHandler(context.Background(), apiClient, "pid", "sid")
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestDeleteSnapshotWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "delete_succeeded",
+			getFails:      false,
+			resourceState: DeletedStatus,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "error_status",
+			getFails:      false,
+			resourceState: ErrorStatus,
+			wantErr:       true,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER_STATUS",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getSnapshotFails: tt.getFails,
+				resourceState:    tt.resourceState,
+			}
+
+			var wantRes *iaas.Snapshot
+			if tt.wantResp {
+				wantRes = &iaas.Snapshot{
+					Id:     utils.Ptr("sid"),
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := DeleteSnapshotWaitHandler(context.Background(), apiClient, "pid", "sid")
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
