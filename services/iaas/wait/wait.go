@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"errors"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
@@ -602,19 +604,21 @@ func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
 		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
-		if err != nil {
-			return false, nil, err
+		if err == nil {
+			if backup != nil {
+				if backup.Id == nil || backup.Status == nil {
+					return false, backup, fmt.Errorf("create failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+				}
+				if *backup.Id == backupId && *backup.Status == AvailableStatus {
+					return true, backup, nil
+				}
+				if *backup.Id == backupId && *backup.Status == ErrorStatus {
+					return true, backup, fmt.Errorf("create failed for backup with id %s", backupId)
+				}
+			}
+			return false, nil, nil
 		}
-		if backup.Id == nil || backup.Status == nil {
-			return false, nil, fmt.Errorf("could not get backup id or status from response for project %s and backup %s", projectId, backupId)
-		}
-		if *backup.Id == backupId && *backup.Status == AvailableStatus {
-			return true, backup, nil
-		}
-		if *backup.Id == backupId && *backup.Status == ErrorStatus {
-			return true, backup, fmt.Errorf("create failed for backup with id %s", backupId)
-		}
-		return false, nil, nil
+		return false, nil, err
 	})
 	handler.SetTimeout(45 * time.Minute)
 	return handler
@@ -624,19 +628,24 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
 		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
-		if err != nil {
-			return false, nil, err
+		if err == nil {
+			if backup != nil {
+				if backup.Id == nil || backup.Status == nil {
+					return false, backup, fmt.Errorf("delete failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+				}
+				if *backup.Id == backupId && *backup.Status == DeletedStatus {
+					return true, backup, nil
+				}
+			}
+			return false, nil, nil
 		}
-		if backup.Id == nil || backup.Status == nil {
-			return false, nil, fmt.Errorf("could not get backup id or status from response for project %s and backup %s", projectId, backupId)
+		var oapiError *oapierror.GenericOpenAPIError
+		if errors.As(err, &oapiError) {
+			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
+				return true, nil, nil
+			}
 		}
-		if *backup.Id == backupId && *backup.Status == DeletedStatus {
-			return true, backup, nil
-		}
-		if *backup.Id == backupId && *backup.Status == ErrorStatus {
-			return true, backup, fmt.Errorf("delete failed for backup with id %s", backupId)
-		}
-		return false, nil, nil
+		return false, nil, err
 	})
 	handler.SetTimeout(20 * time.Minute)
 	return handler
@@ -646,19 +655,21 @@ func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
 		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
-		if err != nil {
-			return false, nil, err
+		if err == nil {
+			if backup != nil {
+				if backup.Id == nil || backup.Status == nil {
+					return false, backup, fmt.Errorf("restore failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+				}
+				if *backup.Id == backupId && *backup.Status == AvailableStatus {
+					return true, backup, nil
+				}
+				if *backup.Id == backupId && *backup.Status == ErrorStatus {
+					return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
+				}
+			}
+			return false, nil, nil
 		}
-		if backup.Id == nil || backup.Status == nil {
-			return false, nil, fmt.Errorf("could not get backup id or status from response for project %s and backup %s", projectId, backupId)
-		}
-		if *backup.Id == backupId && *backup.Status == AvailableStatus {
-			return true, backup, nil
-		}
-		if *backup.Id == backupId && *backup.Status == ErrorStatus {
-			return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
-		}
-		return false, nil, nil
+		return false, nil, err
 	})
 	handler.SetTimeout(45 * time.Minute)
 	return handler
@@ -668,19 +679,21 @@ func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, project
 func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
 		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
-		if err != nil {
-			return false, nil, err
+		if err == nil {
+			if snapshot != nil {
+				if snapshot.Id == nil || snapshot.Status == nil {
+					return false, snapshot, fmt.Errorf("create failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
+				}
+				if *snapshot.Id == snapshotId && *snapshot.Status == AvailableStatus {
+					return true, snapshot, nil
+				}
+				if *snapshot.Id == snapshotId && *snapshot.Status == ErrorStatus {
+					return true, snapshot, fmt.Errorf("create failed for snapshot with id %s", snapshotId)
+				}
+			}
+			return false, nil, nil
 		}
-		if snapshot.Id == nil || snapshot.Status == nil {
-			return false, nil, fmt.Errorf("could not get snapshot id or status from response for project %s and snapshot %s", projectId, snapshotId)
-		}
-		if *snapshot.Id == snapshotId && *snapshot.Status == AvailableStatus {
-			return true, snapshot, nil
-		}
-		if *snapshot.Id == snapshotId && *snapshot.Status == ErrorStatus {
-			return true, snapshot, fmt.Errorf("create failed for snapshot with id %s", snapshotId)
-		}
-		return false, nil, nil
+		return false, nil, err
 	})
 	handler.SetTimeout(45 * time.Minute)
 	return handler
@@ -690,19 +703,24 @@ func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projec
 func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
 		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
-		if err != nil {
-			return false, nil, err
+		if err == nil {
+			if snapshot != nil {
+				if snapshot.Id == nil || snapshot.Status == nil {
+					return false, snapshot, fmt.Errorf("delete failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
+				}
+				if *snapshot.Id == snapshotId && *snapshot.Status == DeletedStatus {
+					return true, snapshot, nil
+				}
+			}
+			return false, nil, nil
 		}
-		if snapshot.Id == nil || snapshot.Status == nil {
-			return false, nil, fmt.Errorf("could not get snapshot id or status from response for project %s and snapshot %s", projectId, snapshotId)
+		var oapiError *oapierror.GenericOpenAPIError
+		if errors.As(err, &oapiError) {
+			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
+				return true, nil, nil
+			}
 		}
-		if *snapshot.Id == snapshotId && *snapshot.Status == DeletedStatus {
-			return true, snapshot, nil
-		}
-		if *snapshot.Id == snapshotId && *snapshot.Status == ErrorStatus {
-			return true, snapshot, fmt.Errorf("delete failed for snapshot with id %s", snapshotId)
-		}
-		return false, nil, nil
+		return false, nil, err
 	})
 	handler.SetTimeout(20 * time.Minute)
 	return handler
