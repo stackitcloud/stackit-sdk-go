@@ -104,7 +104,7 @@ func (a *apiClientMocked) GetServerExecute(_ context.Context, _, _ string) (*iaa
 		a.returnResizing = false
 		return &iaas.Server{
 			Id:     utils.Ptr("sid"),
-			Status: utils.Ptr(ResizingStatus),
+			Status: utils.Ptr(ServerResizingStatus),
 		}, nil
 	}
 
@@ -213,7 +213,7 @@ func TestCreateNetworkAreaWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: CreatedStatus,
+			resourceState: CreateSuccess,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -272,7 +272,7 @@ func TestUpdateNetworkAreaWaitHandler(t *testing.T) {
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: CreatedStatus,
+			resourceState: CreateSuccess,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -392,7 +392,7 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: CreatedStatus,
+			resourceState: CreateSuccess,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -451,7 +451,7 @@ func TestUpdateNetworkWaitHandler(t *testing.T) {
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			resourceState: CreatedStatus,
+			resourceState: CreateSuccess,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -571,7 +571,7 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: AvailableStatus,
+			resourceState: VolumeAvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -698,7 +698,7 @@ func TestCreateServerWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: ActiveStatus,
+			resourceState: ServerActiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -827,7 +827,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			desc:               "resize_succeeded",
 			getFails:           false,
 			returnResizing:     true,
-			finalResourceState: ActiveStatus,
+			finalResourceState: ServerActiveStatus,
 			wantErr:            false,
 			wantResp:           true,
 		},
@@ -835,7 +835,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 			desc:               "resizing_status_is_never_returned",
 			getFails:           false,
 			returnResizing:     false,
-			finalResourceState: ActiveStatus,
+			finalResourceState: ServerActiveStatus,
 			wantErr:            true,
 			wantResp:           true,
 		},
@@ -903,7 +903,7 @@ func TestStartServerWaitHandler(t *testing.T) {
 		{
 			desc:          "start_succeeded",
 			getFails:      false,
-			resourceState: ActiveStatus,
+			resourceState: ServerActiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -969,7 +969,7 @@ func TestStopServerWaitHandler(t *testing.T) {
 		{
 			desc:          "stop_succeeded",
 			getFails:      false,
-			resourceState: InactiveStatus,
+			resourceState: ServerInactiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1035,7 +1035,7 @@ func TestDeallocateServerWaitHandler(t *testing.T) {
 		{
 			desc:          "deallocate_succeeded",
 			getFails:      false,
-			resourceState: DeallocatedStatus,
+			resourceState: ServerDeallocatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1101,7 +1101,7 @@ func TestRescueServerWaitHandler(t *testing.T) {
 		{
 			desc:          "rescue_succeeded",
 			getFails:      false,
-			resourceState: RescueStatus,
+			resourceState: ServerRescueStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1167,7 +1167,7 @@ func TestUnrescueServerWaitHandler(t *testing.T) {
 		{
 			desc:          "unrescue_succeeded",
 			getFails:      false,
-			resourceState: ActiveStatus,
+			resourceState: ServerActiveStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1234,24 +1234,24 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			requestAction: CreateAction,
-			requestState:  CreatedStatus,
+			requestAction: RequestCreateAction,
+			requestState:  RequestCreatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "update_succeeded",
 			getFails:      false,
-			requestAction: UpdateAction,
-			requestState:  UpdatedStatus,
+			requestAction: RequestUpdateAction,
+			requestState:  RequestUpdatedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
-			requestAction: DeleteAction,
-			requestState:  DeletedStatus,
+			requestAction: RequestDeleteAction,
+			requestState:  RequestDeletedStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1265,7 +1265,7 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 		{
 			desc:          "error_status",
 			getFails:      false,
-			requestAction: CreateAction,
+			requestAction: RequestCreateAction,
 			requestState:  ErrorStatus,
 			wantErr:       true,
 			wantResp:      true,
@@ -1280,7 +1280,7 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 		{
 			desc:          "timeout",
 			getFails:      false,
-			requestAction: CreateAction,
+			requestAction: RequestCreateAction,
 			requestState:  "ANOTHER Status",
 			wantErr:       true,
 			wantResp:      true,
@@ -1444,7 +1444,7 @@ func TestUploadImageWaitHandler(t *testing.T) {
 		{
 			desc:          "upload_succeeded",
 			getFails:      false,
-			resourceState: AvailableStatus,
+			resourceState: ImageAvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1556,7 +1556,7 @@ func TestCreateBackupWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: AvailableStatus,
+			resourceState: BackupAvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1673,7 +1673,7 @@ func TestRestoreBackupWaitHandler(t *testing.T) {
 		{
 			desc:          "restore_succeeded",
 			getFails:      false,
-			resourceState: AvailableStatus,
+			resourceState: BackupAvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1738,7 +1738,7 @@ func TestCreateSnapshotWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: CreatedStatus,
+			resourceState: CreateSuccess,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1803,7 +1803,7 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 		{
 			desc:          "delete_succeeded",
 			getFails:      false,
-			resourceState: DeletedStatus,
+			resourceState: DeleteSuccess,
 			wantErr:       false,
 			wantResp:      true,
 		},
