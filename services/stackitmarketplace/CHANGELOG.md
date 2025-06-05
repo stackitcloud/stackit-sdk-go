@@ -1,4 +1,4 @@
-## v1.4.0 (2025-06-05)
+## v1.4.0 (2025-06-06)
 - **Fix:** Fixed types for `VendorId`, `ProjectId`, `OrganizationId` and `SubscriptionId`
 
 ## v1.3.1 (2025-06-04)
