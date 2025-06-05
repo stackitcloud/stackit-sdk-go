@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"time"
 
+	"errors"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
@@ -35,6 +37,12 @@ const (
 	RequestFailedStatus  = "FAILED"
 
 	XRequestIDHeader = "X-Request-Id"
+
+	BackupAvailableStatus = "AVAILABLE"
+	BackupRestoringStatus = "RESTORING"
+	BackupDeletingStatus  = "DELETING"
+
+	SnapshotAvailableStatus = "AVAILABLE"
 )
 
 // Interfaces needed for tests
@@ -46,6 +54,8 @@ type APIClientInterface interface {
 	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaas.Server, error)
 	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaas.VolumeAttachment, error)
 	GetImageExecute(ctx context.Context, projectId string, imageId string) (*iaas.Image, error)
+	GetBackupExecute(ctx context.Context, projectId string, backupId string) (*iaas.Backup, error)
+	GetSnapshotExecute(ctx context.Context, projectId string, snapshotId string) (*iaas.Snapshot, error)
 }
 
 // CreateNetworkAreaWaitHandler will wait for network area creation
@@ -597,5 +607,131 @@ func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 		return true, nil, nil
 	})
 	handler.SetTimeout(15 * time.Minute)
+	return handler
+}
+
+// CreateBackupWaitHandler will wait for backup creation
+func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
+		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
+		if err == nil {
+			if backup != nil {
+				if backup.Id == nil || backup.Status == nil {
+					return false, backup, fmt.Errorf("create failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+				}
+				if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
+					return true, backup, nil
+				}
+				if *backup.Id == backupId && *backup.Status == ErrorStatus {
+					return true, backup, fmt.Errorf("create failed for backup with id %s", backupId)
+				}
+			}
+			return false, nil, nil
+		}
+		return false, nil, err
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+// DeleteBackupWaitHandler will wait for backup deletion
+func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
+		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
+		if err == nil {
+			if backup != nil {
+				if backup.Id == nil || backup.Status == nil {
+					return false, backup, fmt.Errorf("delete failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+				}
+				if *backup.Id == backupId && *backup.Status == DeleteSuccess {
+					return true, backup, nil
+				}
+			}
+			return false, nil, nil
+		}
+		var oapiError *oapierror.GenericOpenAPIError
+		if errors.As(err, &oapiError) {
+			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
+				return true, nil, nil
+			}
+		}
+		return false, nil, err
+	})
+	handler.SetTimeout(20 * time.Minute)
+	return handler
+}
+
+// RestoreBackupWaitHandler will wait for backup restoration
+func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
+		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
+		if err == nil {
+			if backup != nil {
+				if backup.Id == nil || backup.Status == nil {
+					return false, backup, fmt.Errorf("restore failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
+				}
+				if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
+					return true, backup, nil
+				}
+				if *backup.Id == backupId && *backup.Status == ErrorStatus {
+					return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
+				}
+			}
+			return false, nil, nil
+		}
+		return false, nil, err
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+// CreateSnapshotWaitHandler will wait for snapshot creation
+func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
+		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
+		if err == nil {
+			if snapshot != nil {
+				if snapshot.Id == nil || snapshot.Status == nil {
+					return false, snapshot, fmt.Errorf("create failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
+				}
+				if *snapshot.Id == snapshotId && *snapshot.Status == SnapshotAvailableStatus {
+					return true, snapshot, nil
+				}
+				if *snapshot.Id == snapshotId && *snapshot.Status == ErrorStatus {
+					return true, snapshot, fmt.Errorf("create failed for snapshot with id %s", snapshotId)
+				}
+			}
+			return false, nil, nil
+		}
+		return false, nil, err
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+// DeleteSnapshotWaitHandler will wait for snapshot deletion
+func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
+		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
+		if err == nil {
+			if snapshot != nil {
+				if snapshot.Id == nil || snapshot.Status == nil {
+					return false, snapshot, fmt.Errorf("delete failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
+				}
+				if *snapshot.Id == snapshotId && *snapshot.Status == DeleteSuccess {
+					return true, snapshot, nil
+				}
+			}
+			return false, nil, nil
+		}
+		var oapiError *oapierror.GenericOpenAPIError
+		if errors.As(err, &oapiError) {
+			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
+				return true, nil, nil
+			}
+		}
+		return false, nil, err
+	})
+	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
