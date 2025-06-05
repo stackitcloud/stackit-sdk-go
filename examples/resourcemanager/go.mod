@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.2
-	github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.15.0
+	github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.16.0
 )
 
 require (
