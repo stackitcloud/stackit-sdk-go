@@ -12,6 +12,7 @@ package runcommand
 
 import (
 	"encoding/json"
+	"math/rand"
 	"reflect"
 	"time"
 )
@@ -370,4 +371,15 @@ func IsNil(i interface{}) bool {
 
 type MappedNullable interface {
 	ToMap() (map[string]interface{}, error)
+}
+
+const letterRunes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+// randString returns a random string with a specified length. It panics if n <= 0.
+func randString(n int) string {
+	b := make([]byte, n)
+	for i := range b {
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
+	}
+	return string(b)
 }
