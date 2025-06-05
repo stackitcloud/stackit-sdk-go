@@ -85,7 +85,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		bucketNameValue := "bucketName-value"
+		bucketNameValue := randString(3)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -257,7 +257,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		bucketNameValue := "bucketName-value"
+		bucketNameValue := randString(3)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -483,7 +483,7 @@ func Test_objectstorage_DefaultApiService(t *testing.T) {
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
-		bucketNameValue := "bucketName-value"
+		bucketNameValue := randString(3)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(bucketNameValue, "bucketName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
