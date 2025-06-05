@@ -14,25 +14,35 @@ import (
 )
 
 const (
-	CreatedStatus     = "CREATED"
-	UpdatedStatus     = "UPDATED"
-	DeletedStatus     = "DELETED"
-	FailedStatus      = "FAILED"
-	DeallocatedStatus = "DEALLOCATED"
-	AvailableStatus   = "AVAILABLE"
-	ActiveStatus      = "ACTIVE"
-	ResizingStatus    = "RESIZING"
-	InactiveStatus    = "INACTIVE"
-	RescueStatus      = "RESCUE"
-	RestoringStatus   = "RESTORING"
-	DeletingStatus    = "DELETING"
-	ErrorStatus       = "ERROR"
+	CreateSuccess         = "CREATED"
+	VolumeAvailableStatus = "AVAILABLE"
+	DeleteSuccess         = "DELETED"
 
-	CreateAction = "CREATE"
-	UpdateAction = "UPDATE"
-	DeleteAction = "DELETE"
+	ErrorStatus = "ERROR"
+
+	ServerActiveStatus      = "ACTIVE"
+	ServerResizingStatus    = "RESIZING"
+	ServerInactiveStatus    = "INACTIVE"
+	ServerDeallocatedStatus = "DEALLOCATED"
+	ServerRescueStatus      = "RESCUE"
+
+	ImageAvailableStatus = "AVAILABLE"
+
+	RequestCreateAction  = "CREATE"
+	RequestUpdateAction  = "UPDATE"
+	RequestDeleteAction  = "DELETE"
+	RequestCreatedStatus = "CREATED"
+	RequestUpdatedStatus = "UPDATED"
+	RequestDeletedStatus = "DELETED"
+	RequestFailedStatus  = "FAILED"
 
 	XRequestIDHeader = "X-Request-Id"
+
+	BackupAvailableStatus = "AVAILABLE"
+	BackupRestoringStatus = "RESTORING"
+	BackupDeletingStatus  = "DELETING"
+
+	SnapshotAvailableStatus = "AVAILABLE"
 )
 
 // Interfaces needed for tests
@@ -58,7 +68,7 @@ func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 		if area.AreaId == nil || area.State == nil {
 			return false, area, fmt.Errorf("create failed for network area with id %s, the response is not valid: the id or the state are missing", areaId)
 		}
-		if *area.AreaId == areaId && *area.State == CreatedStatus {
+		if *area.AreaId == areaId && *area.State == CreateSuccess {
 			return true, area, nil
 		}
 		return false, area, nil
@@ -78,7 +88,7 @@ func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 			return false, nil, fmt.Errorf("update failed for network area with id %s, the response is not valid: the id or the state are missing", areaId)
 		}
 		// The state returns to "CREATED" after a successful update is completed
-		if *area.AreaId == areaId && *area.State == CreatedStatus {
+		if *area.AreaId == areaId && *area.State == CreateSuccess {
 			return true, area, nil
 		}
 		return false, area, nil
@@ -119,7 +129,7 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 			return false, network, fmt.Errorf("crate failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		// The state returns to "CREATED" after a successful creation is completed
-		if *network.NetworkId == networkId && *network.State == CreatedStatus {
+		if *network.NetworkId == networkId && *network.State == CreateSuccess {
 			return true, network, nil
 		}
 		return false, network, nil
@@ -140,7 +150,7 @@ func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 			return false, network, fmt.Errorf("update failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		// The state returns to "CREATED" after a successful update is completed
-		if *network.NetworkId == networkId && *network.State == CreatedStatus {
+		if *network.NetworkId == networkId && *network.State == CreateSuccess {
 			return true, network, nil
 		}
 		return false, network, nil
@@ -180,7 +190,7 @@ func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if volume.Id == nil || volume.Status == nil {
 			return false, volume, fmt.Errorf("create failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
 		}
-		if *volume.Id == volumeId && *volume.Status == AvailableStatus {
+		if *volume.Id == volumeId && *volume.Status == VolumeAvailableStatus {
 			return true, volume, nil
 		}
 		if *volume.Id == volumeId && *volume.Status == ErrorStatus {
@@ -201,7 +211,7 @@ func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 				if volume.Id == nil || volume.Status == nil {
 					return false, volume, fmt.Errorf("delete failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
 				}
-				if *volume.Id == volumeId && *volume.Status == DeletedStatus {
+				if *volume.Id == volumeId && *volume.Status == DeleteSuccess {
 					return true, volume, nil
 				}
 			}
@@ -230,7 +240,7 @@ func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("create failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == ActiveStatus {
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -266,14 +276,14 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		}
 
 		if !h.IntermediateStateReached {
-			if *server.Id == serverId && *server.Status == ResizingStatus {
+			if *server.Id == serverId && *server.Status == ServerResizingStatus {
 				h.IntermediateStateReached = true
 				return false, server, nil
 			}
 			return false, server, nil
 		}
 
-		if *server.Id == serverId && *server.Status == ActiveStatus {
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
 			return true, server, nil
 		}
 
@@ -292,7 +302,7 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 				if server.Id == nil || server.Status == nil {
 					return false, server, fmt.Errorf("delete failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 				}
-				if *server.Id == serverId && *server.Status == DeletedStatus {
+				if *server.Id == serverId && *server.Status == DeleteSuccess {
 					return true, server, nil
 				}
 			}
@@ -321,7 +331,7 @@ func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("start failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == ActiveStatus {
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -346,7 +356,7 @@ func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("stop failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == InactiveStatus {
+		if *server.Id == serverId && *server.Status == ServerInactiveStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -371,7 +381,7 @@ func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, proj
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("deallocate failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == DeallocatedStatus {
+		if *server.Id == serverId && *server.Status == ServerDeallocatedStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -396,7 +406,7 @@ func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("rescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == RescueStatus {
+		if *server.Id == serverId && *server.Status == ServerRescueStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -421,7 +431,7 @@ func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projec
 		if server.Id == nil || server.Status == nil {
 			return false, server, fmt.Errorf("unrescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 		}
-		if *server.Id == serverId && *server.Status == ActiveStatus {
+		if *server.Id == serverId && *server.Status == ServerActiveStatus {
 			return true, server, nil
 		}
 		if *server.Id == serverId && *server.Status == ErrorStatus {
@@ -471,23 +481,23 @@ func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projec
 		}
 
 		switch *request.RequestAction {
-		case CreateAction:
-			if *request.Status == CreatedStatus {
+		case RequestCreateAction:
+			if *request.Status == RequestCreatedStatus {
 				return true, request, nil
 			}
-		case UpdateAction:
-			if *request.Status == UpdatedStatus {
+		case RequestUpdateAction:
+			if *request.Status == RequestUpdatedStatus {
 				return true, request, nil
 			}
-		case DeleteAction:
-			if *request.Status == DeletedStatus {
+		case RequestDeleteAction:
+			if *request.Status == RequestDeletedStatus {
 				return true, request, nil
 			}
 		default:
 			return false, request, fmt.Errorf("request failed for request with id %s, the request action %s is not supported", requestId, *request.RequestAction)
 		}
 
-		if *request.Status == FailedStatus {
+		if *request.Status == RequestFailedStatus {
 			return true, request, fmt.Errorf("request failed for request with id %s", requestId)
 		}
 
@@ -560,7 +570,7 @@ func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 		if image.Id == nil || image.Status == nil {
 			return false, image, fmt.Errorf("upload failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
 		}
-		if *image.Id == imageId && *image.Status == AvailableStatus {
+		if *image.Id == imageId && *image.Status == ImageAvailableStatus {
 			return true, image, nil
 		}
 		if *image.Id == imageId && *image.Status == ErrorStatus {
@@ -581,7 +591,7 @@ func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 				if image.Id == nil || image.Status == nil {
 					return false, image, fmt.Errorf("delete failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
 				}
-				if *image.Id == imageId && *image.Status == DeletedStatus {
+				if *image.Id == imageId && *image.Status == DeleteSuccess {
 					return true, image, nil
 				}
 			}
@@ -609,7 +619,7 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 				if backup.Id == nil || backup.Status == nil {
 					return false, backup, fmt.Errorf("create failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
 				}
-				if *backup.Id == backupId && *backup.Status == AvailableStatus {
+				if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
 					return true, backup, nil
 				}
 				if *backup.Id == backupId && *backup.Status == ErrorStatus {
@@ -633,7 +643,7 @@ func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 				if backup.Id == nil || backup.Status == nil {
 					return false, backup, fmt.Errorf("delete failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
 				}
-				if *backup.Id == backupId && *backup.Status == DeletedStatus {
+				if *backup.Id == backupId && *backup.Status == DeleteSuccess {
 					return true, backup, nil
 				}
 			}
@@ -660,7 +670,7 @@ func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, project
 				if backup.Id == nil || backup.Status == nil {
 					return false, backup, fmt.Errorf("restore failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
 				}
-				if *backup.Id == backupId && *backup.Status == AvailableStatus {
+				if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
 					return true, backup, nil
 				}
 				if *backup.Id == backupId && *backup.Status == ErrorStatus {
@@ -684,7 +694,7 @@ func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projec
 				if snapshot.Id == nil || snapshot.Status == nil {
 					return false, snapshot, fmt.Errorf("create failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
 				}
-				if *snapshot.Id == snapshotId && *snapshot.Status == AvailableStatus {
+				if *snapshot.Id == snapshotId && *snapshot.Status == SnapshotAvailableStatus {
 					return true, snapshot, nil
 				}
 				if *snapshot.Id == snapshotId && *snapshot.Status == ErrorStatus {
@@ -708,7 +718,7 @@ func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projec
 				if snapshot.Id == nil || snapshot.Status == nil {
 					return false, snapshot, fmt.Errorf("delete failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
 				}
-				if *snapshot.Id == snapshotId && *snapshot.Status == DeletedStatus {
+				if *snapshot.Id == snapshotId && *snapshot.Status == DeleteSuccess {
 					return true, snapshot, nil
 				}
 			}
