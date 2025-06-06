@@ -354,6 +354,26 @@ func setLoadBalancerGetTargetPoolsAttributeType(arg *LoadBalancerGetTargetPoolsA
 }
 
 /*
+	types and functions for targetSecurityGroup
+*/
+
+// isModel
+type LoadBalancerGetTargetSecurityGroupAttributeType = *CreateLoadBalancerPayloadTargetSecurityGroup
+type LoadBalancerGetTargetSecurityGroupArgType = CreateLoadBalancerPayloadTargetSecurityGroup
+type LoadBalancerGetTargetSecurityGroupRetType = CreateLoadBalancerPayloadTargetSecurityGroup
+
+func getLoadBalancerGetTargetSecurityGroupAttributeTypeOk(arg LoadBalancerGetTargetSecurityGroupAttributeType) (ret LoadBalancerGetTargetSecurityGroupRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerGetTargetSecurityGroupAttributeType(arg *LoadBalancerGetTargetSecurityGroupAttributeType, val LoadBalancerGetTargetSecurityGroupRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for version
 */
 
@@ -395,7 +415,8 @@ type LoadBalancer struct {
 	Region LoadBalancerGetRegionAttributeType `json:"region,omitempty"`
 	Status LoadBalancerGetStatusAttributeType `json:"status,omitempty"`
 	// List of all target pools which will be used in the load balancer. Limited to 20.
-	TargetPools LoadBalancerGetTargetPoolsAttributeType `json:"targetPools,omitempty"`
+	TargetPools         LoadBalancerGetTargetPoolsAttributeType         `json:"targetPools,omitempty"`
+	TargetSecurityGroup LoadBalancerGetTargetSecurityGroupAttributeType `json:"targetSecurityGroup,omitempty"`
 	// Load balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this load balancer resource that changes during updates of the load balancers. On updates this field specified the load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.
 	Version LoadBalancerGetVersionAttributeType `json:"version,omitempty"`
 }
@@ -670,6 +691,29 @@ func (o *LoadBalancer) SetTargetPools(v LoadBalancerGetTargetPoolsRetType) {
 	setLoadBalancerGetTargetPoolsAttributeType(&o.TargetPools, v)
 }
 
+// GetTargetSecurityGroup returns the TargetSecurityGroup field value if set, zero value otherwise.
+func (o *LoadBalancer) GetTargetSecurityGroup() (res LoadBalancerGetTargetSecurityGroupRetType) {
+	res, _ = o.GetTargetSecurityGroupOk()
+	return
+}
+
+// GetTargetSecurityGroupOk returns a tuple with the TargetSecurityGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoadBalancer) GetTargetSecurityGroupOk() (ret LoadBalancerGetTargetSecurityGroupRetType, ok bool) {
+	return getLoadBalancerGetTargetSecurityGroupAttributeTypeOk(o.TargetSecurityGroup)
+}
+
+// HasTargetSecurityGroup returns a boolean if a field has been set.
+func (o *LoadBalancer) HasTargetSecurityGroup() bool {
+	_, ok := o.GetTargetSecurityGroupOk()
+	return ok
+}
+
+// SetTargetSecurityGroup gets a reference to the given CreateLoadBalancerPayloadTargetSecurityGroup and assigns it to the TargetSecurityGroup field.
+func (o *LoadBalancer) SetTargetSecurityGroup(v LoadBalancerGetTargetSecurityGroupRetType) {
+	setLoadBalancerGetTargetSecurityGroupAttributeType(&o.TargetSecurityGroup, v)
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *LoadBalancer) GetVersion() (res LoadBalancerGetVersionRetType) {
 	res, _ = o.GetVersionOk()
@@ -727,6 +771,9 @@ func (o LoadBalancer) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getLoadBalancerGetTargetPoolsAttributeTypeOk(o.TargetPools); ok {
 		toSerialize["TargetPools"] = val
+	}
+	if val, ok := getLoadBalancerGetTargetSecurityGroupAttributeTypeOk(o.TargetSecurityGroup); ok {
+		toSerialize["TargetSecurityGroup"] = val
 	}
 	if val, ok := getLoadBalancerGetVersionAttributeTypeOk(o.Version); ok {
 		toSerialize["Version"] = val
