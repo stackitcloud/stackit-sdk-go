@@ -39,6 +39,26 @@ type ListCatalogProductsResponseGetCursorArgType = string
 type ListCatalogProductsResponseGetCursorRetType = string
 
 /*
+	types and functions for facets
+*/
+
+// isContainer
+type ListCatalogProductsResponseGetFacetsAttributeType = *map[string][]CatalogProductFacetsValueInner
+type ListCatalogProductsResponseGetFacetsArgType = map[string][]CatalogProductFacetsValueInner
+type ListCatalogProductsResponseGetFacetsRetType = map[string][]CatalogProductFacetsValueInner
+
+func getListCatalogProductsResponseGetFacetsAttributeTypeOk(arg ListCatalogProductsResponseGetFacetsAttributeType) (ret ListCatalogProductsResponseGetFacetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListCatalogProductsResponseGetFacetsAttributeType(arg *ListCatalogProductsResponseGetFacetsAttributeType, val ListCatalogProductsResponseGetFacetsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for items
 */
 
@@ -83,6 +103,8 @@ type ListCatalogProductsResponse struct {
 	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 	// REQUIRED
 	Cursor ListCatalogProductsResponseGetCursorAttributeType `json:"cursor"`
+	// A collection of facets, where each key represents a facet category.
+	Facets ListCatalogProductsResponseGetFacetsAttributeType `json:"facets,omitempty"`
 	// REQUIRED
 	Items ListCatalogProductsResponseGetItemsAttributeType `json:"items"`
 	// Limit for returned Objects.
@@ -131,6 +153,29 @@ func (o *ListCatalogProductsResponse) SetCursor(v ListCatalogProductsResponseGet
 	setListCatalogProductsResponseGetCursorAttributeType(&o.Cursor, v)
 }
 
+// GetFacets returns the Facets field value if set, zero value otherwise.
+func (o *ListCatalogProductsResponse) GetFacets() (res ListCatalogProductsResponseGetFacetsRetType) {
+	res, _ = o.GetFacetsOk()
+	return
+}
+
+// GetFacetsOk returns a tuple with the Facets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListCatalogProductsResponse) GetFacetsOk() (ret ListCatalogProductsResponseGetFacetsRetType, ok bool) {
+	return getListCatalogProductsResponseGetFacetsAttributeTypeOk(o.Facets)
+}
+
+// HasFacets returns a boolean if a field has been set.
+func (o *ListCatalogProductsResponse) HasFacets() bool {
+	_, ok := o.GetFacetsOk()
+	return ok
+}
+
+// SetFacets gets a reference to the given map[string][]CatalogProductFacetsValueInner and assigns it to the Facets field.
+func (o *ListCatalogProductsResponse) SetFacets(v ListCatalogProductsResponseGetFacetsRetType) {
+	setListCatalogProductsResponseGetFacetsAttributeType(&o.Facets, v)
+}
+
 // GetItems returns the Items field value
 func (o *ListCatalogProductsResponse) GetItems() (ret ListCatalogProductsResponseGetItemsRetType) {
 	ret, _ = o.GetItemsOk()
@@ -169,6 +214,9 @@ func (o ListCatalogProductsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListCatalogProductsResponseGetCursorAttributeTypeOk(o.Cursor); ok {
 		toSerialize["Cursor"] = val
+	}
+	if val, ok := getListCatalogProductsResponseGetFacetsAttributeTypeOk(o.Facets); ok {
+		toSerialize["Facets"] = val
 	}
 	if val, ok := getListCatalogProductsResponseGetItemsAttributeTypeOk(o.Items); ok {
 		toSerialize["Items"] = val
