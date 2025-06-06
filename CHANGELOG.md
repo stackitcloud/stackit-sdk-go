@@ -51,7 +51,10 @@
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - `ske`: [v0.24.1](services/ske/CHANGELOG.md#v0241-2025-06-04)
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
-- `stackitmarketplace`: [v1.3.1](services/stackitmarketplace/CHANGELOG.md#v131-2025-06-04)
+- `stackitmarketplace`:
+  - [v1.4.0](services/stackitmarketplace/CHANGELOG.md#v140-2025-06-06)
+    - **Fix:** Fixed types for `VendorId`, `ProjectId`, `OrganizationId` and `SubscriptionId`
+  - [v1.3.1](services/stackitmarketplace/CHANGELOG.md#v131-2025-06-04)
     - **Feature:** Added `Industries` attribute
 
 ## Release (2025-05-15)

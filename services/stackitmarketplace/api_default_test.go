@@ -18,7 +18,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/uuid"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
@@ -26,9 +25,9 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ApproveSubscription", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}/approve"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		subscriptionIdValue := uuid.NewString()
+		subscriptionIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -75,7 +74,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetCatalogProduct", func(t *testing.T) {
 		_apiUrlPath := "/v1/catalog/products/{productId}"
-		productIdValue := "productId-value"
+		productIdValue := randString(10)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"productId"+"}", url.PathEscape(ParameterValueToString(productIdValue, "productId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -127,9 +126,9 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetVendorSubscription", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		subscriptionIdValue := uuid.NewString()
+		subscriptionIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -274,7 +273,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListVendorSubscriptions", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -326,7 +325,7 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ResolveCustomer", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/resolve-customer"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -379,9 +378,9 @@ func Test_stackitmarketplace_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService VendorsSubscriptionsReject", func(t *testing.T) {
 		_apiUrlPath := "/v1/vendors/projects/{projectId}/subscriptions/{subscriptionId}/reject"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		subscriptionIdValue := uuid.NewString()
+		subscriptionIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"subscriptionId"+"}", url.PathEscape(ParameterValueToString(subscriptionIdValue, "subscriptionId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

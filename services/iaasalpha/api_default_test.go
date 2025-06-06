@@ -18,7 +18,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/uuid"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
@@ -26,11 +25,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddMemberToVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}/add-member"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		virtualIpIdValue := uuid.NewString()
+		virtualIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -85,11 +84,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddNetworkToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -137,11 +136,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddNicToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		nicIdValue := uuid.NewString()
+		nicIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -189,11 +188,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddPublicIpToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		publicIpIdValue := uuid.NewString()
+		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -241,11 +240,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddSecurityGroupToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -293,11 +292,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddServiceAccountToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		serviceAccountMailValue := "serviceAccountMail-value"
+		serviceAccountMailValue := randString(255)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -351,11 +350,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddVolumeToServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -409,7 +408,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAffinityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -462,7 +461,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -515,7 +514,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -618,7 +617,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -671,7 +670,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -724,9 +723,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRange", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -780,9 +779,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -836,9 +835,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -892,7 +891,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreatePublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -945,7 +944,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -998,9 +997,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateSecurityGroupRule", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1054,7 +1053,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1107,7 +1106,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1160,9 +1159,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1216,7 +1215,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1269,9 +1268,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeallocateServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/deallocate"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1318,9 +1317,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteAffinityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups/{affinityGroupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		affinityGroupIdValue := uuid.NewString()
+		affinityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1367,9 +1366,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := uuid.NewString()
+		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1416,9 +1415,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1465,9 +1464,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1514,11 +1513,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteImageShareConsumer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
-		consumerProjectIdValue := uuid.NewString()
+		consumerProjectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1566,7 +1565,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs/{keypairName}"
-		keypairNameValue := "keypairName-value"
+		keypairNameValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1612,9 +1611,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1661,9 +1660,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1710,11 +1709,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRange", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		networkRangeIdValue := uuid.NewString()
+		networkRangeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1762,11 +1761,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		routeIdValue := uuid.NewString()
+		routeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1814,11 +1813,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		nicIdValue := uuid.NewString()
+		nicIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1866,9 +1865,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeletePublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips/{publicIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		publicIpIdValue := uuid.NewString()
+		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1915,9 +1914,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -1964,11 +1963,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteSecurityGroupRule", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
-		securityGroupRuleIdValue := uuid.NewString()
+		securityGroupRuleIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2016,9 +2015,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2065,9 +2064,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots/{snapshotId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		snapshotIdValue := uuid.NewString()
+		snapshotIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2114,11 +2113,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		virtualIpIdValue := uuid.NewString()
+		virtualIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2166,9 +2165,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2215,9 +2214,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetAffinityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups/{affinityGroupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		affinityGroupIdValue := uuid.NewString()
+		affinityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2270,11 +2269,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetAttachedVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2328,9 +2327,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := uuid.NewString()
+		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2383,9 +2382,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2438,9 +2437,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2493,11 +2492,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetImageShareConsumer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
-		consumerProjectIdValue := uuid.NewString()
+		consumerProjectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"consumerProjectId"+"}", url.PathEscape(ParameterValueToString(consumerProjectIdValue, "consumerProjectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2551,7 +2550,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs/{keypairName}"
-		keypairNameValue := "keypairName-value"
+		keypairNameValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2603,9 +2602,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetMachineType", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/machine-types/{machineType}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		machineTypeValue := "machineType-value"
+		machineTypeValue := randString(63)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(machineTypeValue, "machineType")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2658,9 +2657,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2713,9 +2712,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2768,11 +2767,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetNetworkAreaRange", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		networkRangeIdValue := uuid.NewString()
+		networkRangeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2826,11 +2825,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetNetworkAreaRoute", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		routeIdValue := uuid.NewString()
+		routeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2884,11 +2883,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		nicIdValue := uuid.NewString()
+		nicIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2942,9 +2941,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetOrganizationRequest", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/requests/{requestId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		requestIdValue := "requestId-value"
+		requestIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -2997,7 +2996,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetProjectDetails", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3049,9 +3048,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetProjectNIC", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/nics/{nicId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		nicIdValue := uuid.NewString()
+		nicIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3104,9 +3103,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetProjectRequest", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/requests/{requestId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		requestIdValue := "requestId-value"
+		requestIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3159,9 +3158,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetPublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips/{publicIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		publicIpIdValue := uuid.NewString()
+		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3214,9 +3213,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3269,11 +3268,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetSecurityGroupRule", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
-		securityGroupRuleIdValue := uuid.NewString()
+		securityGroupRuleIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupRuleId"+"}", url.PathEscape(ParameterValueToString(securityGroupRuleIdValue, "securityGroupRuleId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3327,9 +3326,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3382,9 +3381,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetServerConsole", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/console"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3437,9 +3436,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetServerLog", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/log"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3492,9 +3491,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots/{snapshotId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		snapshotIdValue := uuid.NewString()
+		snapshotIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3547,11 +3546,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		virtualIpIdValue := uuid.NewString()
+		virtualIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3605,9 +3604,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3660,9 +3659,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetVolumePerformanceClass", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumePerformanceClassValue := "volumePerformanceClass-value"
+		volumePerformanceClassValue := randString(63)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(volumePerformanceClassValue, "volumePerformanceClass")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3715,7 +3714,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAffinityGroups", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/affinity-groups"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3767,9 +3766,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListAttachedVolumes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3870,7 +3869,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3922,7 +3921,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListImages", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4022,7 +4021,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListMachineTypes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/machine-types"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4074,9 +4073,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListNetworkAreaProjects", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/projects"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4129,9 +4128,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListNetworkAreaRanges", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4184,9 +4183,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListNetworkAreaRoutes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4239,7 +4238,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListNetworkAreas", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4291,7 +4290,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListNetworks", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4343,9 +4342,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListNics", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4398,7 +4397,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListProjectNICs", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/nics"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4450,7 +4449,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListPublicIPs", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4550,7 +4549,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListQuotas", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/quotas"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4602,9 +4601,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListSecurityGroupRules", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}/rules"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4657,7 +4656,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListSecurityGroups", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4709,9 +4708,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListServerNics", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/nics"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4764,9 +4763,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListServerServiceAccounts", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/service-accounts"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4819,7 +4818,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListServers", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4871,7 +4870,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListSnapshots", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4923,9 +4922,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListVirtualIPs", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -4978,7 +4977,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListVolumePerformanceClasses", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volume-performance-classes"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5030,7 +5029,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListVolumes", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5082,9 +5081,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateNetwork", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5132,9 +5131,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PartialUpdateNetworkArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5188,9 +5187,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RebootServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/reboot"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5237,11 +5236,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveMemberFromVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}/remove-member"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		virtualIpIdValue := uuid.NewString()
+		virtualIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5296,11 +5295,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveNetworkFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5348,11 +5347,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveNicFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		nicIdValue := uuid.NewString()
+		nicIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5400,11 +5399,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemovePublicIpFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		publicIpIdValue := uuid.NewString()
+		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5452,11 +5451,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveSecurityGroupFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5504,11 +5503,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveServiceAccountFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		serviceAccountMailValue := "serviceAccountMail-value"
+		serviceAccountMailValue := randString(255)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serviceAccountMail"+"}", url.PathEscape(ParameterValueToString(serviceAccountMailValue, "serviceAccountMail")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5562,11 +5561,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RemoveVolumeFromServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5614,9 +5613,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RescueServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/rescue"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5664,9 +5663,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ResizeServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/resize"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5714,9 +5713,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ResizeVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}/resize"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5763,9 +5762,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService RestoreBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}/restore"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := uuid.NewString()
+		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5812,9 +5811,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService SetImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5868,9 +5867,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService StartServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/start"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5917,9 +5916,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService StopServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/stop"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -5966,9 +5965,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UnrescueServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/unrescue"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6015,11 +6014,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateAttachedVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6074,9 +6073,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateBackup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/backups/{backupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		backupIdValue := uuid.NewString()
+		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6130,9 +6129,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateImage", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6186,9 +6185,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateImageScopeLocal", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/publish"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6241,9 +6240,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateImageScopePublic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/publish"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6296,9 +6295,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateImageShare", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/images/{imageId}/share"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := uuid.NewString()
+		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6352,7 +6351,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateKeyPair", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/keypairs/{keypairName}"
-		keypairNameValue := "keypairName-value"
+		keypairNameValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6405,11 +6404,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateNic", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		nicIdValue := uuid.NewString()
+		nicIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6464,9 +6463,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdatePublicIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/public-ips/{publicIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		publicIpIdValue := uuid.NewString()
+		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6520,9 +6519,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateSecurityGroup", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/security-groups/{securityGroupId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		securityGroupIdValue := uuid.NewString()
+		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6576,9 +6575,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateServer", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/servers/{serverId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		serverIdValue := uuid.NewString()
+		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6632,9 +6631,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateSnapshot", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/snapshots/{snapshotId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		snapshotIdValue := uuid.NewString()
+		snapshotIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6688,11 +6687,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateVirtualIP", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/networks/{networkId}/virtual-ips/{virtualIpId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		networkIdValue := uuid.NewString()
+		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
-		virtualIpIdValue := uuid.NewString()
+		virtualIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"virtualIpId"+"}", url.PathEscape(ParameterValueToString(virtualIpIdValue, "virtualIpId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6741,9 +6740,9 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService UpdateVolume", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volumes/{volumeId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumeIdValue := uuid.NewString()
+		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -6797,11 +6796,11 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService V1alpha1UpdateRouteOfArea", func(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
-		organizationIdValue := uuid.NewString()
+		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
-		areaIdValue := uuid.NewString()
+		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
-		routeIdValue := uuid.NewString()
+		routeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

@@ -18,7 +18,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/uuid"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
 
@@ -26,7 +25,7 @@ func Test_git_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/instances"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -79,9 +78,9 @@ func Test_git_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := uuid.NewString()
+		instanceIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -128,9 +127,9 @@ func Test_git_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/instances/{instanceId}"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		instanceIdValue := uuid.NewString()
+		instanceIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -183,7 +182,7 @@ func Test_git_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
 		_apiUrlPath := "/v1beta/projects/{projectId}/instances"
-		projectIdValue := uuid.NewString()
+		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

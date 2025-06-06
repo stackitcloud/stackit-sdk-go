@@ -42,10 +42,8 @@ type CatalogProductOverviewVendorGetNameRetType = string
 	types and functions for vendorId
 */
 
-// isModel
-type CatalogProductOverviewVendorGetVendorIdAttributeType = *VendorId
-type CatalogProductOverviewVendorGetVendorIdArgType = VendorId
-type CatalogProductOverviewVendorGetVendorIdRetType = VendorId
+// isNotNullableString
+type CatalogProductOverviewVendorGetVendorIdAttributeType = *string
 
 func getCatalogProductOverviewVendorGetVendorIdAttributeTypeOk(arg CatalogProductOverviewVendorGetVendorIdAttributeType) (ret CatalogProductOverviewVendorGetVendorIdRetType, ok bool) {
 	if arg == nil {
@@ -57,6 +55,9 @@ func getCatalogProductOverviewVendorGetVendorIdAttributeTypeOk(arg CatalogProduc
 func setCatalogProductOverviewVendorGetVendorIdAttributeType(arg *CatalogProductOverviewVendorGetVendorIdAttributeType, val CatalogProductOverviewVendorGetVendorIdRetType) {
 	*arg = &val
 }
+
+type CatalogProductOverviewVendorGetVendorIdArgType = string
+type CatalogProductOverviewVendorGetVendorIdRetType = string
 
 /*
 	types and functions for websiteUrl
@@ -84,6 +85,7 @@ type CatalogProductOverviewVendor struct {
 	// The product's vendor name.
 	// REQUIRED
 	Name CatalogProductOverviewVendorGetNameAttributeType `json:"name"`
+	// Universally Unique Identifier (UUID).
 	// REQUIRED
 	VendorId CatalogProductOverviewVendorGetVendorIdAttributeType `json:"vendorId"`
 	// Uniform Resource Locator.
