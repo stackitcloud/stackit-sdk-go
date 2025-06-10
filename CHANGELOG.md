@@ -52,7 +52,10 @@
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - `serviceenablement`: [v1.2.1](services/serviceenablement/CHANGELOG.md#v121-2025-06-04)
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
-- `ske`: [v0.24.1](services/ske/CHANGELOG.md#v0241-2025-06-04)
+- `ske`:
+  - [v0.25.0](services/ske/CHANGELOG.md#v0250-2025-06-10)
+    - **Feature:** Add new field `PodAddressRanges` to `ClusterStatus` 
+  - [v0.24.1](services/ske/CHANGELOG.md#v0241-2025-06-04)
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - `stackitmarketplace`:
   - [v1.5.0](services/stackitmarketplace/CHANGELOG.md#v150-2025-06-10)
