@@ -1,3 +1,6 @@
+## v1.5.0 (2025-06-10)
+- **Feature:** Add new field `Facets` in `ListCatalogProductsResponse`
+
 ## v1.4.0 (2025-06-06)
 - **Fix:** Fixed types for `VendorId`, `ProjectId`, `OrganizationId` and `SubscriptionId`
 
