@@ -354,6 +354,26 @@ func setCreateLoadBalancerPayloadGetTargetPoolsAttributeType(arg *CreateLoadBala
 }
 
 /*
+	types and functions for targetSecurityGroup
+*/
+
+// isModel
+type CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType = *CreateLoadBalancerPayloadTargetSecurityGroup
+type CreateLoadBalancerPayloadGetTargetSecurityGroupArgType = CreateLoadBalancerPayloadTargetSecurityGroup
+type CreateLoadBalancerPayloadGetTargetSecurityGroupRetType = CreateLoadBalancerPayloadTargetSecurityGroup
+
+func getCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeTypeOk(arg CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType) (ret CreateLoadBalancerPayloadGetTargetSecurityGroupRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType(arg *CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType, val CreateLoadBalancerPayloadGetTargetSecurityGroupRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for version
 */
 
@@ -395,7 +415,8 @@ type CreateLoadBalancerPayload struct {
 	Region CreateLoadBalancerPayloadGetRegionAttributeType `json:"region,omitempty"`
 	Status CreateLoadBalancerPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// List of all target pools which will be used in the load balancer. Limited to 20.
-	TargetPools CreateLoadBalancerPayloadGetTargetPoolsAttributeType `json:"targetPools,omitempty"`
+	TargetPools         CreateLoadBalancerPayloadGetTargetPoolsAttributeType         `json:"targetPools,omitempty"`
+	TargetSecurityGroup CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType `json:"targetSecurityGroup,omitempty"`
 	// Load balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this load balancer resource that changes during updates of the load balancers. On updates this field specified the load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.
 	Version CreateLoadBalancerPayloadGetVersionAttributeType `json:"version,omitempty"`
 }
@@ -670,6 +691,29 @@ func (o *CreateLoadBalancerPayload) SetTargetPools(v CreateLoadBalancerPayloadGe
 	setCreateLoadBalancerPayloadGetTargetPoolsAttributeType(&o.TargetPools, v)
 }
 
+// GetTargetSecurityGroup returns the TargetSecurityGroup field value if set, zero value otherwise.
+func (o *CreateLoadBalancerPayload) GetTargetSecurityGroup() (res CreateLoadBalancerPayloadGetTargetSecurityGroupRetType) {
+	res, _ = o.GetTargetSecurityGroupOk()
+	return
+}
+
+// GetTargetSecurityGroupOk returns a tuple with the TargetSecurityGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLoadBalancerPayload) GetTargetSecurityGroupOk() (ret CreateLoadBalancerPayloadGetTargetSecurityGroupRetType, ok bool) {
+	return getCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeTypeOk(o.TargetSecurityGroup)
+}
+
+// HasTargetSecurityGroup returns a boolean if a field has been set.
+func (o *CreateLoadBalancerPayload) HasTargetSecurityGroup() bool {
+	_, ok := o.GetTargetSecurityGroupOk()
+	return ok
+}
+
+// SetTargetSecurityGroup gets a reference to the given CreateLoadBalancerPayloadTargetSecurityGroup and assigns it to the TargetSecurityGroup field.
+func (o *CreateLoadBalancerPayload) SetTargetSecurityGroup(v CreateLoadBalancerPayloadGetTargetSecurityGroupRetType) {
+	setCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType(&o.TargetSecurityGroup, v)
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *CreateLoadBalancerPayload) GetVersion() (res CreateLoadBalancerPayloadGetVersionRetType) {
 	res, _ = o.GetVersionOk()
@@ -727,6 +771,9 @@ func (o CreateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateLoadBalancerPayloadGetTargetPoolsAttributeTypeOk(o.TargetPools); ok {
 		toSerialize["TargetPools"] = val
+	}
+	if val, ok := getCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeTypeOk(o.TargetSecurityGroup); ok {
+		toSerialize["TargetSecurityGroup"] = val
 	}
 	if val, ok := getCreateLoadBalancerPayloadGetVersionAttributeTypeOk(o.Version); ok {
 		toSerialize["Version"] = val
