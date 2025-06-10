@@ -158,6 +158,26 @@ func setClusterStatusgetHibernatedAttributeType(arg *ClusterStatusgetHibernatedA
 	*arg = &val
 }
 
+/*
+	types and functions for podAddressRanges
+*/
+
+// isArray
+type ClusterStatusGetPodAddressRangesAttributeType = *[]string
+type ClusterStatusGetPodAddressRangesArgType = []string
+type ClusterStatusGetPodAddressRangesRetType = []string
+
+func getClusterStatusGetPodAddressRangesAttributeTypeOk(arg ClusterStatusGetPodAddressRangesAttributeType) (ret ClusterStatusGetPodAddressRangesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetPodAddressRangesAttributeType(arg *ClusterStatusGetPodAddressRangesAttributeType, val ClusterStatusGetPodAddressRangesRetType) {
+	*arg = &val
+}
+
 // ClusterStatus struct for ClusterStatus
 type ClusterStatus struct {
 	Aggregated ClusterStatusGetAggregatedAttributeType `json:"aggregated,omitempty"`
@@ -169,6 +189,8 @@ type ClusterStatus struct {
 	Error               ClusterStatusGetErrorAttributeType               `json:"error,omitempty"`
 	Errors              ClusterStatusGetErrorsAttributeType              `json:"errors,omitempty"`
 	Hibernated          ClusterStatusgetHibernatedAttributeType          `json:"hibernated,omitempty"`
+	// The network ranges (in CIDR notation) used by pods of the cluster.
+	PodAddressRanges ClusterStatusGetPodAddressRangesAttributeType `json:"podAddressRanges,omitempty"`
 }
 
 // NewClusterStatus instantiates a new ClusterStatus object
@@ -351,6 +373,29 @@ func (o *ClusterStatus) SetHibernated(v ClusterStatusgetHibernatedRetType) {
 	setClusterStatusgetHibernatedAttributeType(&o.Hibernated, v)
 }
 
+// GetPodAddressRanges returns the PodAddressRanges field value if set, zero value otherwise.
+func (o *ClusterStatus) GetPodAddressRanges() (res ClusterStatusGetPodAddressRangesRetType) {
+	res, _ = o.GetPodAddressRangesOk()
+	return
+}
+
+// GetPodAddressRangesOk returns a tuple with the PodAddressRanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetPodAddressRangesOk() (ret ClusterStatusGetPodAddressRangesRetType, ok bool) {
+	return getClusterStatusGetPodAddressRangesAttributeTypeOk(o.PodAddressRanges)
+}
+
+// HasPodAddressRanges returns a boolean if a field has been set.
+func (o *ClusterStatus) HasPodAddressRanges() bool {
+	_, ok := o.GetPodAddressRangesOk()
+	return ok
+}
+
+// SetPodAddressRanges gets a reference to the given []string and assigns it to the PodAddressRanges field.
+func (o *ClusterStatus) SetPodAddressRanges(v ClusterStatusGetPodAddressRangesRetType) {
+	setClusterStatusGetPodAddressRangesAttributeType(&o.PodAddressRanges, v)
+}
+
 func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getClusterStatusGetAggregatedAttributeTypeOk(o.Aggregated); ok {
@@ -373,6 +418,9 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getClusterStatusgetHibernatedAttributeTypeOk(o.Hibernated); ok {
 		toSerialize["Hibernated"] = val
+	}
+	if val, ok := getClusterStatusGetPodAddressRangesAttributeTypeOk(o.PodAddressRanges); ok {
+		toSerialize["PodAddressRanges"] = val
 	}
 	return toSerialize, nil
 }
