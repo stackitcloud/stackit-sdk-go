@@ -314,7 +314,7 @@ type CreateVolumePayload struct {
 	Bootable CreateVolumePayloadgetBootableAttributeType `json:"bootable,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt CreateVolumePayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description CreateVolumePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id          CreateVolumePayloadGetIdAttributeType          `json:"id,omitempty"`
