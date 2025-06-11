@@ -19,6 +19,26 @@ import (
 var _ MappedNullable = &LoadBalancer{}
 
 /*
+	types and functions for disableTargetSecurityGroupAssignment
+*/
+
+// isBoolean
+type LoadBalancergetDisableTargetSecurityGroupAssignmentAttributeType = *bool
+type LoadBalancergetDisableTargetSecurityGroupAssignmentArgType = bool
+type LoadBalancergetDisableTargetSecurityGroupAssignmentRetType = bool
+
+func getLoadBalancergetDisableTargetSecurityGroupAssignmentAttributeTypeOk(arg LoadBalancergetDisableTargetSecurityGroupAssignmentAttributeType) (ret LoadBalancergetDisableTargetSecurityGroupAssignmentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancergetDisableTargetSecurityGroupAssignmentAttributeType(arg *LoadBalancergetDisableTargetSecurityGroupAssignmentAttributeType, val LoadBalancergetDisableTargetSecurityGroupAssignmentRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for errors
 */
 
@@ -396,6 +416,8 @@ type LoadBalancerGetVersionRetType = string
 
 // LoadBalancer struct for LoadBalancer
 type LoadBalancer struct {
+	// Disable target security group assignemt to allow targets outside of the given network. Connectivity to targets need to be ensured by the customer, including routing and Security Groups (targetSecurityGroup can be assigned). Not changeable after creation.
+	DisableTargetSecurityGroupAssignment LoadBalancergetDisableTargetSecurityGroupAssignmentAttributeType `json:"disableTargetSecurityGroupAssignment,omitempty"`
 	// Reports all errors a load balancer has.
 	Errors LoadBalancerGetErrorsAttributeType `json:"errors,omitempty"`
 	// External load balancer IP address where this load balancer is exposed. Not changeable after creation.
@@ -436,6 +458,29 @@ func NewLoadBalancer() *LoadBalancer {
 func NewLoadBalancerWithDefaults() *LoadBalancer {
 	this := LoadBalancer{}
 	return &this
+}
+
+// GetDisableTargetSecurityGroupAssignment returns the DisableTargetSecurityGroupAssignment field value if set, zero value otherwise.
+func (o *LoadBalancer) GetDisableTargetSecurityGroupAssignment() (res LoadBalancergetDisableTargetSecurityGroupAssignmentRetType) {
+	res, _ = o.GetDisableTargetSecurityGroupAssignmentOk()
+	return
+}
+
+// GetDisableTargetSecurityGroupAssignmentOk returns a tuple with the DisableTargetSecurityGroupAssignment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoadBalancer) GetDisableTargetSecurityGroupAssignmentOk() (ret LoadBalancergetDisableTargetSecurityGroupAssignmentRetType, ok bool) {
+	return getLoadBalancergetDisableTargetSecurityGroupAssignmentAttributeTypeOk(o.DisableTargetSecurityGroupAssignment)
+}
+
+// HasDisableTargetSecurityGroupAssignment returns a boolean if a field has been set.
+func (o *LoadBalancer) HasDisableTargetSecurityGroupAssignment() bool {
+	_, ok := o.GetDisableTargetSecurityGroupAssignmentOk()
+	return ok
+}
+
+// SetDisableTargetSecurityGroupAssignment gets a reference to the given bool and assigns it to the DisableTargetSecurityGroupAssignment field.
+func (o *LoadBalancer) SetDisableTargetSecurityGroupAssignment(v LoadBalancergetDisableTargetSecurityGroupAssignmentRetType) {
+	setLoadBalancergetDisableTargetSecurityGroupAssignmentAttributeType(&o.DisableTargetSecurityGroupAssignment, v)
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -739,6 +784,9 @@ func (o *LoadBalancer) SetVersion(v LoadBalancerGetVersionRetType) {
 
 func (o LoadBalancer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getLoadBalancergetDisableTargetSecurityGroupAssignmentAttributeTypeOk(o.DisableTargetSecurityGroupAssignment); ok {
+		toSerialize["DisableTargetSecurityGroupAssignment"] = val
+	}
 	if val, ok := getLoadBalancerGetErrorsAttributeTypeOk(o.Errors); ok {
 		toSerialize["Errors"] = val
 	}
