@@ -19,6 +19,26 @@ import (
 var _ MappedNullable = &UpdateLoadBalancerPayload{}
 
 /*
+	types and functions for disableTargetSecurityGroupAssignment
+*/
+
+// isBoolean
+type UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType = *bool
+type UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentArgType = bool
+type UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType = bool
+
+func getUpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeTypeOk(arg UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType) (ret UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType(arg *UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType, val UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for errors
 */
 
@@ -396,6 +416,8 @@ type UpdateLoadBalancerPayloadGetVersionRetType = string
 
 // UpdateLoadBalancerPayload struct for UpdateLoadBalancerPayload
 type UpdateLoadBalancerPayload struct {
+	// Disable target security group assignemt to allow targets outside of the given network. Connectivity to targets need to be ensured by the customer, including routing and Security Groups (targetSecurityGroup can be assigned). Not changeable after creation.
+	DisableTargetSecurityGroupAssignment UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType `json:"disableTargetSecurityGroupAssignment,omitempty"`
 	// Reports all errors a load balancer has.
 	Errors UpdateLoadBalancerPayloadGetErrorsAttributeType `json:"errors,omitempty"`
 	// External load balancer IP address where this load balancer is exposed. Not changeable after creation.
@@ -436,6 +458,29 @@ func NewUpdateLoadBalancerPayload() *UpdateLoadBalancerPayload {
 func NewUpdateLoadBalancerPayloadWithDefaults() *UpdateLoadBalancerPayload {
 	this := UpdateLoadBalancerPayload{}
 	return &this
+}
+
+// GetDisableTargetSecurityGroupAssignment returns the DisableTargetSecurityGroupAssignment field value if set, zero value otherwise.
+func (o *UpdateLoadBalancerPayload) GetDisableTargetSecurityGroupAssignment() (res UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType) {
+	res, _ = o.GetDisableTargetSecurityGroupAssignmentOk()
+	return
+}
+
+// GetDisableTargetSecurityGroupAssignmentOk returns a tuple with the DisableTargetSecurityGroupAssignment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoadBalancerPayload) GetDisableTargetSecurityGroupAssignmentOk() (ret UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeTypeOk(o.DisableTargetSecurityGroupAssignment)
+}
+
+// HasDisableTargetSecurityGroupAssignment returns a boolean if a field has been set.
+func (o *UpdateLoadBalancerPayload) HasDisableTargetSecurityGroupAssignment() bool {
+	_, ok := o.GetDisableTargetSecurityGroupAssignmentOk()
+	return ok
+}
+
+// SetDisableTargetSecurityGroupAssignment gets a reference to the given bool and assigns it to the DisableTargetSecurityGroupAssignment field.
+func (o *UpdateLoadBalancerPayload) SetDisableTargetSecurityGroupAssignment(v UpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType) {
+	setUpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType(&o.DisableTargetSecurityGroupAssignment, v)
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -739,6 +784,9 @@ func (o *UpdateLoadBalancerPayload) SetVersion(v UpdateLoadBalancerPayloadGetVer
 
 func (o UpdateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getUpdateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeTypeOk(o.DisableTargetSecurityGroupAssignment); ok {
+		toSerialize["DisableTargetSecurityGroupAssignment"] = val
+	}
 	if val, ok := getUpdateLoadBalancerPayloadGetErrorsAttributeTypeOk(o.Errors); ok {
 		toSerialize["Errors"] = val
 	}
