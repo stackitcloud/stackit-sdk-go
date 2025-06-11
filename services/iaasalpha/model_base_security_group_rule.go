@@ -206,7 +206,7 @@ type BaseSecurityGroupRuleGetSecurityGroupIdRetType = string
 
 // BaseSecurityGroupRule The base schema for a security group rule.
 type BaseSecurityGroupRule struct {
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description BaseSecurityGroupRuleGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match.
 	// REQUIRED

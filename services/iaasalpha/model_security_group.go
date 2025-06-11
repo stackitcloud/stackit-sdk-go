@@ -185,7 +185,7 @@ func setSecurityGroupGetUpdatedAtAttributeType(arg *SecurityGroupGetUpdatedAtAtt
 type SecurityGroup struct {
 	// Date-time when resource was created.
 	CreatedAt SecurityGroupGetCreatedAtAttributeType `json:"createdAt,omitempty"`
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description SecurityGroupGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id SecurityGroupGetIdAttributeType `json:"id,omitempty"`
