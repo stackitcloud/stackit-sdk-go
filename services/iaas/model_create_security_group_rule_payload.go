@@ -226,7 +226,7 @@ func setCreateSecurityGroupRulePayloadGetProtocolAttributeType(arg *CreateSecuri
 
 // CreateSecurityGroupRulePayload Object that represents a request body for security group rule creation.
 type CreateSecurityGroupRulePayload struct {
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description CreateSecurityGroupRulePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match.
 	// REQUIRED

@@ -314,7 +314,7 @@ type Volume struct {
 	Bootable VolumegetBootableAttributeType `json:"bootable,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt VolumeGetCreatedAtAttributeType `json:"createdAt,omitempty"`
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description VolumeGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id          VolumeGetIdAttributeType          `json:"id,omitempty"`

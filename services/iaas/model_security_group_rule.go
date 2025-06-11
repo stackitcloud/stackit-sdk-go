@@ -226,7 +226,7 @@ func setSecurityGroupRuleGetProtocolAttributeType(arg *SecurityGroupRuleGetProto
 
 // SecurityGroupRule Object that represents a security group rule.
 type SecurityGroupRule struct {
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description SecurityGroupRuleGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match.
 	// REQUIRED

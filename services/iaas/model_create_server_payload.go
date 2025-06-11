@@ -505,7 +505,7 @@ type CreateServerPayload struct {
 	SecurityGroups CreateServerPayloadGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
 	// A list of service account mails.
 	ServiceAccountMails CreateServerPayloadGetServiceAccountMailsAttributeType `json:"serviceAccountMails,omitempty"`
-	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
+	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `PAUSED`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
 	Status CreateServerPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt CreateServerPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
