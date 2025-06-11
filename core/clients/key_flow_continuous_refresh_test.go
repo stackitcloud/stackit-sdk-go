@@ -133,17 +133,22 @@ func TestContinuousRefreshToken(t *testing.T) {
 			ctx, cancel := context.WithTimeout(ctx, tt.contextClosesIn)
 			defer cancel()
 
-			keyFlow := &KeyFlow{
-				config: &KeyFlowConfig{
-					BackgroundTokenRefreshContext: ctx,
-				},
-				authClient: &http.Client{
+			keyFlow := &KeyFlow{}
+			keyFlowConfig := &KeyFlowConfig{
+				BackgroundTokenRefreshContext: ctx,
+				AuthHTTPClient: &http.Client{
 					Transport: mockTransportFn{mockDo},
 				},
-				token: &TokenResponseBody{
-					AccessToken:  accessToken,
-					RefreshToken: refreshToken,
-				},
+			}
+			err = keyFlow.Init(keyFlowConfig)
+			if err != nil {
+				t.Fatalf("failed to initialize key flow: %v", err)
+			}
+
+			// Set the token after initialization
+			err = keyFlow.SetToken(accessToken, refreshToken)
+			if err != nil {
+				t.Fatalf("failed to set token: %v", err)
 			}
 
 			refresher := &continuousTokenRefresher{
@@ -328,18 +333,23 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 		}
 	}
 
-	keyFlow := &KeyFlow{
-		config: &KeyFlowConfig{
-			BackgroundTokenRefreshContext: ctx,
-		},
-		authClient: &http.Client{
+	keyFlow := &KeyFlow{}
+	keyFlowConfig := &KeyFlowConfig{
+		BackgroundTokenRefreshContext: ctx,
+		AuthHTTPClient: &http.Client{
 			Transport: mockTransportFn{mockDo},
 		},
-		rt: mockTransportFn{mockDo},
-		token: &TokenResponseBody{
-			AccessToken:  accessTokenFirst,
-			RefreshToken: refreshToken,
-		},
+		HTTPTransport: mockTransportFn{mockDo},
+	}
+	err = keyFlow.Init(keyFlowConfig)
+	if err != nil {
+		t.Fatalf("failed to initialize key flow: %v", err)
+	}
+
+	// Set the token after initialization
+	err = keyFlow.SetToken(accessTokenFirst, refreshToken)
+	if err != nil {
+		t.Fatalf("failed to set token: %v", err)
 	}
 
 	// TEST START
