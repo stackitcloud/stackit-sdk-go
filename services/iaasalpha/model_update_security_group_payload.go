@@ -81,7 +81,7 @@ type UpdateSecurityGroupPayloadGetNameRetType = string
 
 // UpdateSecurityGroupPayload Object that represents an update request body of a security group.
 type UpdateSecurityGroupPayload struct {
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description UpdateSecurityGroupPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels UpdateSecurityGroupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
