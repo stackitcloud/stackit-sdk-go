@@ -123,7 +123,7 @@ type UpdateVolumePayloadGetNameRetType = string
 type UpdateVolumePayload struct {
 	// Indicates if a volume is bootable.
 	Bootable UpdateVolumePayloadgetBootableAttributeType `json:"bootable,omitempty"`
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description UpdateVolumePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	ImageConfig UpdateVolumePayloadGetImageConfigAttributeType `json:"imageConfig,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.

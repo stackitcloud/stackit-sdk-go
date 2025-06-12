@@ -121,7 +121,7 @@ func setVolumePerformanceClassGetThroughputAttributeType(arg *VolumePerformanceC
 
 // VolumePerformanceClass Object that represents a Volume performance class.
 type VolumePerformanceClass struct {
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description VolumePerformanceClassGetDescriptionAttributeType `json:"description,omitempty"`
 	// Input/Output Operations per second.
 	Iops VolumePerformanceClassGetIopsAttributeType `json:"iops,omitempty"`
