@@ -1,3 +1,6 @@
+## v1.4.0 (2025-06-12)
+- **Feature:** Add new field `DisableTargetSecurityGroupAssignment` in `LoadBalancer` Model
+
 ## v1.3.0 (2025-06-10)
 - **Feature:** Add new field `TargetSecurityGroup` in `LoadBalancer` Model
 
