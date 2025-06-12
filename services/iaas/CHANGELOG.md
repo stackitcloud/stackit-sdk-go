@@ -1,3 +1,6 @@
+## v0.24.1 (2025-06-12)
+- Update descriptions of model fields
+
 ## v0.24.0 (2025-06-05)
 - **Feature:** Add waiters for async operations: `CreateBackupWaitHandler`, `DeleteBackupWaitHandler`, `RestoreBackupWaitHandler`
 - **Feature:** Add Waiters for async operations: `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
