@@ -1,7 +1,10 @@
 ## Release (2025-YY-XX)
-- `iaas`: [v0.24.0](services/iaas/CHANGELOG.md#v0240-2025-06-05)
-  - **Feature:** Add waiters for async operations: `CreateBackupWaitHandler`, `DeleteBackupWaitHandler`, `RestoreBackupWaitHandler`
-  - **Feature:** Add Waiters for async operations: `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
+- `iaas`: 
+  - [v0.24.1](services/iaas/CHANGELOG.md#v0241-2025-06-12)
+    - Update descriptions of model fields
+  - [v0.24.0](services/iaas/CHANGELOG.md#v0240-2025-06-05)
+    - **Feature:** Add waiters for async operations: `CreateBackupWaitHandler`, `DeleteBackupWaitHandler`, `RestoreBackupWaitHandler`
+    - **Feature:** Add Waiters for async operations: `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
 - `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-05-22)
   - **Bugfix:** Access tokens generated via key flow authentication are refreshed 5 seconds before expiration to prevent timing issues with upstream systems which could lead to unexpected 401 error responses
 - `alb`: 

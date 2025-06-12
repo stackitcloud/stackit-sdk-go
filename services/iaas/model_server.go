@@ -505,7 +505,7 @@ type Server struct {
 	SecurityGroups ServerGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
 	// A list of service account mails.
 	ServiceAccountMails ServerGetServiceAccountMailsAttributeType `json:"serviceAccountMails,omitempty"`
-	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
+	// The status of a server object. Possible values: `ACTIVE`, `BACKING-UP`, `CREATING`, `DEALLOCATED`, `DEALLOCATING`, `DELETED`, `DELETING`, `ERROR`, `INACTIVE`, `MIGRATING`, `PAUSED`, `REBOOT`, `REBOOTING`, `REBUILD`, `REBUILDING`, `RESCUE`, `RESCUING`, `RESIZING`, `RESTORING`, `SNAPSHOTTING`, `STARTING`, `STOPPING`, `UNRESCUING`, `UPDATING`.
 	Status ServerGetStatusAttributeType `json:"status,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt ServerGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`

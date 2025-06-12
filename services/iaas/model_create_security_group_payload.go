@@ -185,7 +185,7 @@ func setCreateSecurityGroupPayloadGetUpdatedAtAttributeType(arg *CreateSecurityG
 type CreateSecurityGroupPayload struct {
 	// Date-time when resource was created.
 	CreatedAt CreateSecurityGroupPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
-	// Description Object. Allows string up to 127 Characters.
+	// Description Object. Allows string up to 255 Characters.
 	Description CreateSecurityGroupPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id CreateSecurityGroupPayloadGetIdAttributeType `json:"id,omitempty"`
