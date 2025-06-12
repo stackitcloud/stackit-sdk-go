@@ -1,3 +1,6 @@
+## v0.5.0 (2025-06-12)
+- **Feature:** Add new fields `DisableTargetSecurityGroupAssignment` and `TargetSecurityGroup` in `LoadBalancer` Model
+
 ## v0.4.1 (2025-06-04)
 - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 

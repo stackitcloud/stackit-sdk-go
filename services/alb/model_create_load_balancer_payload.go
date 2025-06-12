@@ -19,6 +19,26 @@ import (
 var _ MappedNullable = &CreateLoadBalancerPayload{}
 
 /*
+	types and functions for disableTargetSecurityGroupAssignment
+*/
+
+// isBoolean
+type CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType = *bool
+type CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentArgType = bool
+type CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType = bool
+
+func getCreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeTypeOk(arg CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType) (ret CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType(arg *CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType, val CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for errors
 */
 
@@ -354,6 +374,26 @@ func setCreateLoadBalancerPayloadGetTargetPoolsAttributeType(arg *CreateLoadBala
 }
 
 /*
+	types and functions for targetSecurityGroup
+*/
+
+// isModel
+type CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType = *CreateLoadBalancerPayloadTargetSecurityGroup
+type CreateLoadBalancerPayloadGetTargetSecurityGroupArgType = CreateLoadBalancerPayloadTargetSecurityGroup
+type CreateLoadBalancerPayloadGetTargetSecurityGroupRetType = CreateLoadBalancerPayloadTargetSecurityGroup
+
+func getCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeTypeOk(arg CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType) (ret CreateLoadBalancerPayloadGetTargetSecurityGroupRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType(arg *CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType, val CreateLoadBalancerPayloadGetTargetSecurityGroupRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for version
 */
 
@@ -376,6 +416,8 @@ type CreateLoadBalancerPayloadGetVersionRetType = string
 
 // CreateLoadBalancerPayload struct for CreateLoadBalancerPayload
 type CreateLoadBalancerPayload struct {
+	// Disable target security group assignemt to allow targets outside of the given network. Connectivity to targets need to be ensured by the customer, including routing and Security Groups (targetSecurityGroup can be assigned). Not changeable after creation.
+	DisableTargetSecurityGroupAssignment CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType `json:"disableTargetSecurityGroupAssignment,omitempty"`
 	// Reports all errors a application load balancer has.
 	Errors CreateLoadBalancerPayloadGetErrorsAttributeType `json:"errors,omitempty"`
 	// External application load balancer IP address where this application load balancer is exposed. Not changeable after creation.
@@ -395,7 +437,8 @@ type CreateLoadBalancerPayload struct {
 	Region CreateLoadBalancerPayloadGetRegionAttributeType `json:"region,omitempty"`
 	Status CreateLoadBalancerPayloadGetStatusAttributeType `json:"status,omitempty"`
 	// List of all target pools which will be used in the application load balancer. Limited to 20.
-	TargetPools CreateLoadBalancerPayloadGetTargetPoolsAttributeType `json:"targetPools,omitempty"`
+	TargetPools         CreateLoadBalancerPayloadGetTargetPoolsAttributeType         `json:"targetPools,omitempty"`
+	TargetSecurityGroup CreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType `json:"targetSecurityGroup,omitempty"`
 	// Application Load Balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this application load balancer resource that changes during updates of the load balancers. On updates this field specified the application load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a application load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of application load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.
 	Version CreateLoadBalancerPayloadGetVersionAttributeType `json:"version,omitempty"`
 }
@@ -415,6 +458,29 @@ func NewCreateLoadBalancerPayload() *CreateLoadBalancerPayload {
 func NewCreateLoadBalancerPayloadWithDefaults() *CreateLoadBalancerPayload {
 	this := CreateLoadBalancerPayload{}
 	return &this
+}
+
+// GetDisableTargetSecurityGroupAssignment returns the DisableTargetSecurityGroupAssignment field value if set, zero value otherwise.
+func (o *CreateLoadBalancerPayload) GetDisableTargetSecurityGroupAssignment() (res CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType) {
+	res, _ = o.GetDisableTargetSecurityGroupAssignmentOk()
+	return
+}
+
+// GetDisableTargetSecurityGroupAssignmentOk returns a tuple with the DisableTargetSecurityGroupAssignment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLoadBalancerPayload) GetDisableTargetSecurityGroupAssignmentOk() (ret CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType, ok bool) {
+	return getCreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeTypeOk(o.DisableTargetSecurityGroupAssignment)
+}
+
+// HasDisableTargetSecurityGroupAssignment returns a boolean if a field has been set.
+func (o *CreateLoadBalancerPayload) HasDisableTargetSecurityGroupAssignment() bool {
+	_, ok := o.GetDisableTargetSecurityGroupAssignmentOk()
+	return ok
+}
+
+// SetDisableTargetSecurityGroupAssignment gets a reference to the given bool and assigns it to the DisableTargetSecurityGroupAssignment field.
+func (o *CreateLoadBalancerPayload) SetDisableTargetSecurityGroupAssignment(v CreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentRetType) {
+	setCreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeType(&o.DisableTargetSecurityGroupAssignment, v)
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -670,6 +736,29 @@ func (o *CreateLoadBalancerPayload) SetTargetPools(v CreateLoadBalancerPayloadGe
 	setCreateLoadBalancerPayloadGetTargetPoolsAttributeType(&o.TargetPools, v)
 }
 
+// GetTargetSecurityGroup returns the TargetSecurityGroup field value if set, zero value otherwise.
+func (o *CreateLoadBalancerPayload) GetTargetSecurityGroup() (res CreateLoadBalancerPayloadGetTargetSecurityGroupRetType) {
+	res, _ = o.GetTargetSecurityGroupOk()
+	return
+}
+
+// GetTargetSecurityGroupOk returns a tuple with the TargetSecurityGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLoadBalancerPayload) GetTargetSecurityGroupOk() (ret CreateLoadBalancerPayloadGetTargetSecurityGroupRetType, ok bool) {
+	return getCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeTypeOk(o.TargetSecurityGroup)
+}
+
+// HasTargetSecurityGroup returns a boolean if a field has been set.
+func (o *CreateLoadBalancerPayload) HasTargetSecurityGroup() bool {
+	_, ok := o.GetTargetSecurityGroupOk()
+	return ok
+}
+
+// SetTargetSecurityGroup gets a reference to the given CreateLoadBalancerPayloadTargetSecurityGroup and assigns it to the TargetSecurityGroup field.
+func (o *CreateLoadBalancerPayload) SetTargetSecurityGroup(v CreateLoadBalancerPayloadGetTargetSecurityGroupRetType) {
+	setCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeType(&o.TargetSecurityGroup, v)
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *CreateLoadBalancerPayload) GetVersion() (res CreateLoadBalancerPayloadGetVersionRetType) {
 	res, _ = o.GetVersionOk()
@@ -695,6 +784,9 @@ func (o *CreateLoadBalancerPayload) SetVersion(v CreateLoadBalancerPayloadGetVer
 
 func (o CreateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateLoadBalancerPayloadgetDisableTargetSecurityGroupAssignmentAttributeTypeOk(o.DisableTargetSecurityGroupAssignment); ok {
+		toSerialize["DisableTargetSecurityGroupAssignment"] = val
+	}
 	if val, ok := getCreateLoadBalancerPayloadGetErrorsAttributeTypeOk(o.Errors); ok {
 		toSerialize["Errors"] = val
 	}
@@ -727,6 +819,9 @@ func (o CreateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateLoadBalancerPayloadGetTargetPoolsAttributeTypeOk(o.TargetPools); ok {
 		toSerialize["TargetPools"] = val
+	}
+	if val, ok := getCreateLoadBalancerPayloadGetTargetSecurityGroupAttributeTypeOk(o.TargetSecurityGroup); ok {
+		toSerialize["TargetSecurityGroup"] = val
 	}
 	if val, ok := getCreateLoadBalancerPayloadGetVersionAttributeTypeOk(o.Version); ok {
 		toSerialize["Version"] = val

@@ -4,8 +4,11 @@
   - **Feature:** Add Waiters for async operations: `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
 - `core`: [v0.17.2](core/CHANGELOG.md#v0172-2025-05-22)
   - **Bugfix:** Access tokens generated via key flow authentication are refreshed 5 seconds before expiration to prevent timing issues with upstream systems which could lead to unexpected 401 error responses
-- `alb`: [v0.4.1](services/alb/CHANGELOG.md#v041-2025-06-04)
-    - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
+- `alb`: 
+    - [v0.5.0](services/alb/CHANGELOG.md#v050-2025-06-12)
+        - **Feature:** Add new fields `DisableTargetSecurityGroupAssignment` and `TargetSecurityGroup` in `LoadBalancer` Model
+    - [v0.4.1](services/alb/CHANGELOG.md#v041-2025-06-04)
+        - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - `cdn`: [v1.2.1](services/cdn/CHANGELOG.md#v121-2025-06-04)
     - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
     - **Feature:** Added `Optimizer` attribute
