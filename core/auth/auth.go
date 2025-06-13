@@ -9,6 +9,8 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
+
+	"github.com/zalando/go-keyring"
 )
 
 type credentialType string
@@ -29,6 +31,7 @@ const (
 	serviceAccountKeyPathCredentialType credentialType = "service_account_key_path"
 	privateKeyCredentialType            credentialType = "private_key"
 	privateKeyPathCredentialType        credentialType = "private_key_path"
+	keyringService                                     = "stackit-cli"
 )
 
 var userHomeDir = os.UserHomeDir
@@ -57,6 +60,19 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 		}
 		return keyRoundTripper, nil
 	} else if cfg.Token != "" {
+		tokenRoundTripper, err := TokenAuth(cfg)
+		if err != nil {
+			return nil, fmt.Errorf("configuring token authentication: %w", err)
+		}
+		return tokenRoundTripper, nil
+	} else if cfg.CliAuth {
+		get, err := keyring.Get(keyringService, "access_token")
+		if err != nil {
+			return nil, err
+		}
+		cfg.Token = get
+		TokenAuth(cfg)
+		fmt.Printf("CLI auth token: %s\n", get)
 		tokenRoundTripper, err := TokenAuth(cfg)
 		if err != nil {
 			return nil, fmt.Errorf("configuring token authentication: %w", err)

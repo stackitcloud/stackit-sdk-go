@@ -95,6 +95,7 @@ type Configuration struct {
 	OperationServers      map[string]ServerConfigurations
 	HTTPClient            *http.Client
 	Middleware            []Middleware
+	CliAuth               bool
 
 	// If != nil, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
 	// The goroutine is killed whenever this context is canceled.
@@ -163,6 +164,13 @@ func WithEndpoint(endpoint string) ConfigurationOption {
 		}
 		config.Servers = customServers
 		config.setCustomEndpoint = true
+		return nil
+	}
+}
+
+func WithCliAuth() ConfigurationOption {
+	return func(config *Configuration) error {
+		config.CliAuth = true
 		return nil
 	}
 }
