@@ -1,4 +1,4 @@
-## Release (2025-YY-XX)
+## Release (2025-06-16)
 - `iaas`: 
   - [v0.24.1](services/iaas/CHANGELOG.md#v0241-2025-06-12)
     - Update descriptions of model fields
