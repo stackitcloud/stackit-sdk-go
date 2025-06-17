@@ -84,10 +84,10 @@ type MoveCodeResponseGetMessageRetType = string
 type MoveCodeResponse struct {
 	// code to move the zone. It is one time shown so better keep it.
 	// REQUIRED
-	Code MoveCodeResponseGetCodeAttributeType `json:"code"`
+	Code MoveCodeResponseGetCodeAttributeType `json:"code" required:"true"`
 	// when the code expires
 	// REQUIRED
-	ExpiresAt MoveCodeResponseGetExpiresAtAttributeType `json:"expiresAt"`
+	ExpiresAt MoveCodeResponseGetExpiresAtAttributeType `json:"expiresAt" required:"true"`
 	// human readable message
 	Message MoveCodeResponseGetMessageAttributeType `json:"message,omitempty"`
 }

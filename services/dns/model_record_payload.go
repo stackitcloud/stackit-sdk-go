@@ -42,7 +42,7 @@ type RecordPayloadGetContentRetType = string
 type RecordPayload struct {
 	// content of the record
 	// REQUIRED
-	Content RecordPayloadGetContentAttributeType `json:"content"`
+	Content RecordPayloadGetContentAttributeType `json:"content" required:"true"`
 }
 
 type _RecordPayload RecordPayload

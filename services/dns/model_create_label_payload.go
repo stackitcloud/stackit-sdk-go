@@ -62,9 +62,9 @@ type CreateLabelPayloadGetValueRetType = string
 // CreateLabelPayload struct for CreateLabelPayload
 type CreateLabelPayload struct {
 	// REQUIRED
-	Key CreateLabelPayloadGetKeyAttributeType `json:"key"`
+	Key CreateLabelPayloadGetKeyAttributeType `json:"key" required:"true"`
 	// REQUIRED
-	Value CreateLabelPayloadGetValueAttributeType `json:"value"`
+	Value CreateLabelPayloadGetValueAttributeType `json:"value" required:"true"`
 }
 
 type _CreateLabelPayload CreateLabelPayload
