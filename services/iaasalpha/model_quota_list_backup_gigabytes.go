@@ -60,9 +60,9 @@ func setQuotaListBackupGigabytesGetUsageAttributeType(arg *QuotaListBackupGigaby
 // QuotaListBackupGigabytes Total size in GiB of backups.
 type QuotaListBackupGigabytes struct {
 	// REQUIRED
-	Limit QuotaListBackupGigabytesGetLimitAttributeType `json:"limit"`
+	Limit QuotaListBackupGigabytesGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListBackupGigabytesGetUsageAttributeType `json:"usage"`
+	Usage QuotaListBackupGigabytesGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListBackupGigabytes QuotaListBackupGigabytes
