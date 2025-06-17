@@ -61,7 +61,7 @@ func setDNSGetZonesAttributeType(arg *DNSGetZonesAttributeType, val DNSGetZonesR
 type DNS struct {
 	// Enables the dns extension.
 	// REQUIRED
-	Enabled DNSgetEnabledAttributeType `json:"enabled"`
+	Enabled DNSgetEnabledAttributeType `json:"enabled" required:"true"`
 	// Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud.
 	Zones DNSGetZonesAttributeType `json:"zones,omitempty"`
 }

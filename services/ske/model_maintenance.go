@@ -60,9 +60,9 @@ func setMaintenanceGetTimeWindowAttributeType(arg *MaintenanceGetTimeWindowAttri
 // Maintenance struct for Maintenance
 type Maintenance struct {
 	// REQUIRED
-	AutoUpdate MaintenanceGetAutoUpdateAttributeType `json:"autoUpdate"`
+	AutoUpdate MaintenanceGetAutoUpdateAttributeType `json:"autoUpdate" required:"true"`
 	// REQUIRED
-	TimeWindow MaintenanceGetTimeWindowAttributeType `json:"timeWindow"`
+	TimeWindow MaintenanceGetTimeWindowAttributeType `json:"timeWindow" required:"true"`
 }
 
 type _Maintenance Maintenance

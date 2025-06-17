@@ -62,9 +62,9 @@ type ImageGetVersionRetType = string
 // Image For valid names and versions please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `machineImages`.
 type Image struct {
 	// REQUIRED
-	Name ImageGetNameAttributeType `json:"name"`
+	Name ImageGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Version ImageGetVersionAttributeType `json:"version"`
+	Version ImageGetVersionAttributeType `json:"version" required:"true"`
 }
 
 type _Image Image

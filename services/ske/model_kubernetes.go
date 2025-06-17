@@ -63,7 +63,7 @@ type Kubernetes struct {
 	// DEPRECATED as of Kubernetes 1.25+ Flag to specify if privileged mode for containers is enabled or not. This should be used with care since it also disables a couple of other features like the use of some volume type (e.g. PVCs). By default this is set to true.
 	AllowPrivilegedContainers KubernetesgetAllowPrivilegedContainersAttributeType `json:"allowPrivilegedContainers,omitempty"`
 	// REQUIRED
-	Version KubernetesGetVersionAttributeType `json:"version"`
+	Version KubernetesGetVersionAttributeType `json:"version" required:"true"`
 }
 
 type _Kubernetes Kubernetes

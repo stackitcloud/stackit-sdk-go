@@ -61,10 +61,10 @@ func setACLgetEnabledAttributeType(arg *ACLgetEnabledAttributeType, val ACLgetEn
 type ACL struct {
 	// Array of CIDRs to allow access to the kubernetes API.
 	// REQUIRED
-	AllowedCidrs ACLGetAllowedCidrsAttributeType `json:"allowedCidrs"`
+	AllowedCidrs ACLGetAllowedCidrsAttributeType `json:"allowedCidrs" required:"true"`
 	// Enables the acl extension.
 	// REQUIRED
-	Enabled ACLgetEnabledAttributeType `json:"enabled"`
+	Enabled ACLgetEnabledAttributeType `json:"enabled" required:"true"`
 }
 
 type _ACL ACL
