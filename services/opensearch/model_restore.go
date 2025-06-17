@@ -123,13 +123,13 @@ type RestoreGetTriggeredAtRetType = string
 // Restore struct for Restore
 type Restore struct {
 	// REQUIRED
-	BackupId RestoreGetBackupIdAttributeType `json:"backup_id"`
+	BackupId RestoreGetBackupIdAttributeType `json:"backup_id" required:"true"`
 	// REQUIRED
-	FinishedAt RestoreGetFinishedAtAttributeType `json:"finished_at"`
+	FinishedAt RestoreGetFinishedAtAttributeType `json:"finished_at" required:"true"`
 	// REQUIRED
-	Id RestoreGetIdAttributeType `json:"id"`
+	Id RestoreGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Status      RestoreGetStatusAttributeType      `json:"status"`
+	Status      RestoreGetStatusAttributeType      `json:"status" required:"true"`
 	TriggeredAt RestoreGetTriggeredAtAttributeType `json:"triggered_at,omitempty"`
 }
 
