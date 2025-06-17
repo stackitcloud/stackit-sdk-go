@@ -61,9 +61,9 @@ type AlertConfigRouteResponseGetMessageRetType = string
 // AlertConfigRouteResponse struct for AlertConfigRouteResponse
 type AlertConfigRouteResponse struct {
 	// REQUIRED
-	Data AlertConfigRouteResponseGetDataAttributeType `json:"data"`
+	Data AlertConfigRouteResponseGetDataAttributeType `json:"data" required:"true"`
 	// REQUIRED
-	Message AlertConfigRouteResponseGetMessageAttributeType `json:"message"`
+	Message AlertConfigRouteResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _AlertConfigRouteResponse AlertConfigRouteResponse

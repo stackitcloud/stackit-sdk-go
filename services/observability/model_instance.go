@@ -350,22 +350,22 @@ func setInstanceGetStateAttributeType(arg *InstanceGetStateAttributeType, val In
 // Instance struct for Instance
 type Instance struct {
 	// REQUIRED
-	Cluster InstanceGetClusterAttributeType `json:"cluster"`
+	Cluster InstanceGetClusterAttributeType `json:"cluster" required:"true"`
 	// REQUIRED
-	GrafanaPublicReadAccess InstancegetGrafanaPublicReadAccessAttributeType `json:"grafanaPublicReadAccess"`
+	GrafanaPublicReadAccess InstancegetGrafanaPublicReadAccessAttributeType `json:"grafanaPublicReadAccess" required:"true"`
 	// REQUIRED
-	GrafanaUseStackitSso InstancegetGrafanaUseStackitSsoAttributeType `json:"grafanaUseStackitSso"`
+	GrafanaUseStackitSso InstancegetGrafanaUseStackitSsoAttributeType `json:"grafanaUseStackitSso" required:"true"`
 	// REQUIRED
-	Instance InstanceGetInstanceAttributeType `json:"instance"`
+	Instance InstanceGetInstanceAttributeType `json:"instance" required:"true"`
 	// REQUIRED
-	MetricsRetentionTime1h InstanceGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h InstanceGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h" required:"true"`
 	// REQUIRED
-	MetricsRetentionTime5m InstanceGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m InstanceGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m" required:"true"`
 	// REQUIRED
-	MetricsRetentionTimeRaw InstanceGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw InstanceGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw" required:"true"`
 	Name                    InstanceGetNameAttributeType                    `json:"name,omitempty"`
 	// REQUIRED
-	Plan  InstanceGetPlanAttributeType  `json:"plan"`
+	Plan  InstanceGetPlanAttributeType  `json:"plan" required:"true"`
 	State InstanceGetStateAttributeType `json:"state,omitempty"`
 }
 

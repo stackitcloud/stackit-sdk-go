@@ -41,7 +41,7 @@ type InstanceResponseGetMessageRetType = string
 // InstanceResponse struct for InstanceResponse
 type InstanceResponse struct {
 	// REQUIRED
-	Message InstanceResponseGetMessageAttributeType `json:"message"`
+	Message InstanceResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _InstanceResponse InstanceResponse

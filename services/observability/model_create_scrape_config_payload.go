@@ -460,7 +460,7 @@ type CreateScrapeConfigPayload struct {
 	HttpSdConfigs CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType `json:"httpSdConfigs,omitempty"`
 	// The job name assigned to scraped metrics by default. `Additional Validators:` * must be unique * key and values should only include the characters: a-zA-Z0-9-
 	// REQUIRED
-	JobName CreateScrapeConfigPayloadGetJobNameAttributeType `json:"jobName"`
+	JobName CreateScrapeConfigPayloadGetJobNameAttributeType `json:"jobName" required:"true"`
 	// The HTTP resource path on which to fetch metrics from targets. E.g. /metrics
 	MetricsPath CreateScrapeConfigPayloadGetMetricsPathAttributeType `json:"metricsPath,omitempty"`
 	// List of metric relabel configurations
@@ -472,16 +472,16 @@ type CreateScrapeConfigPayload struct {
 	SampleLimit CreateScrapeConfigPayloadGetSampleLimitAttributeType `json:"sampleLimit,omitempty"`
 	// Configures the protocol scheme used for requests. https or http
 	// REQUIRED
-	Scheme CreateScrapeConfigPayloadGetSchemeAttributeType `json:"scheme"`
+	Scheme CreateScrapeConfigPayloadGetSchemeAttributeType `json:"scheme" required:"true"`
 	// How frequently to scrape targets from this job. E.g. 5m `Additional Validators:` * must be a valid time format* must be >= 60s
 	// REQUIRED
-	ScrapeInterval CreateScrapeConfigPayloadGetScrapeIntervalAttributeType `json:"scrapeInterval"`
+	ScrapeInterval CreateScrapeConfigPayloadGetScrapeIntervalAttributeType `json:"scrapeInterval" required:"true"`
 	// Per-scrape timeout when scraping this job. `Additional Validators:` * must be a valid time format* must be smaller than scrapeInterval
 	// REQUIRED
-	ScrapeTimeout CreateScrapeConfigPayloadGetScrapeTimeoutAttributeType `json:"scrapeTimeout"`
+	ScrapeTimeout CreateScrapeConfigPayloadGetScrapeTimeoutAttributeType `json:"scrapeTimeout" required:"true"`
 	// A list of scrape configurations.
 	// REQUIRED
-	StaticConfigs CreateScrapeConfigPayloadGetStaticConfigsAttributeType `json:"staticConfigs"`
+	StaticConfigs CreateScrapeConfigPayloadGetStaticConfigsAttributeType `json:"staticConfigs" required:"true"`
 	TlsConfig     CreateScrapeConfigPayloadGetTlsConfigAttributeType     `json:"tlsConfig,omitempty"`
 }
 

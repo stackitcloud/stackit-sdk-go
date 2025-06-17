@@ -83,7 +83,7 @@ type WebHook struct {
 	MsTeams      WebHookgetMsTeamsAttributeType      `json:"msTeams,omitempty"`
 	SendResolved WebHookgetSendResolvedAttributeType `json:"sendResolved,omitempty"`
 	// REQUIRED
-	Url WebHookGetUrlAttributeType `json:"url"`
+	Url WebHookGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _WebHook WebHook

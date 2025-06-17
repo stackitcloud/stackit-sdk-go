@@ -64,7 +64,7 @@ type UpdateLogsAlertgroupPayload struct {
 	Interval UpdateLogsAlertgroupPayloadGetIntervalAttributeType `json:"interval,omitempty"`
 	// rules for the alert group
 	// REQUIRED
-	Rules UpdateLogsAlertgroupPayloadGetRulesAttributeType `json:"rules"`
+	Rules UpdateLogsAlertgroupPayloadGetRulesAttributeType `json:"rules" required:"true"`
 }
 
 type _UpdateLogsAlertgroupPayload UpdateLogsAlertgroupPayload

@@ -61,9 +61,9 @@ type DeleteScrapeConfigResponseGetMessageRetType = string
 // DeleteScrapeConfigResponse struct for DeleteScrapeConfigResponse
 type DeleteScrapeConfigResponse struct {
 	// REQUIRED
-	Data DeleteScrapeConfigResponseGetDataAttributeType `json:"data"`
+	Data DeleteScrapeConfigResponseGetDataAttributeType `json:"data" required:"true"`
 	// REQUIRED
-	Message DeleteScrapeConfigResponseGetMessageAttributeType `json:"message"`
+	Message DeleteScrapeConfigResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _DeleteScrapeConfigResponse DeleteScrapeConfigResponse

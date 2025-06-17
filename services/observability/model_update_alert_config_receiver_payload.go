@@ -104,7 +104,7 @@ type UpdateAlertConfigReceiverPayload struct {
 	EmailConfigs UpdateAlertConfigReceiverPayloadGetEmailConfigsAttributeType `json:"emailConfigs,omitempty"`
 	// `Additional Validators:` * must be unique * should only include the characters: a-zA-Z0-9-
 	// REQUIRED
-	Name UpdateAlertConfigReceiverPayloadGetNameAttributeType `json:"name"`
+	Name UpdateAlertConfigReceiverPayloadGetNameAttributeType `json:"name" required:"true"`
 	// Configuration for ops genie.
 	OpsgenieConfigs UpdateAlertConfigReceiverPayloadGetOpsgenieConfigsAttributeType `json:"opsgenieConfigs,omitempty"`
 	WebHookConfigs  UpdateAlertConfigReceiverPayloadGetWebHookConfigsAttributeType  `json:"webHookConfigs,omitempty"`

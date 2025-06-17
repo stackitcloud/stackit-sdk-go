@@ -61,9 +61,9 @@ type ReceiverGetMessageRetType = string
 // Receiver struct for Receiver
 type Receiver struct {
 	// REQUIRED
-	Data ReceiverGetDataAttributeType `json:"data"`
+	Data ReceiverGetDataAttributeType `json:"data" required:"true"`
 	// REQUIRED
-	Message ReceiverGetMessageAttributeType `json:"message"`
+	Message ReceiverGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _Receiver Receiver

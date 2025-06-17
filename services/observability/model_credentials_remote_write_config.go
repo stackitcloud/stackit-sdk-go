@@ -81,11 +81,11 @@ type CredentialsRemoteWriteConfigGetMessageRetType = string
 // CredentialsRemoteWriteConfig struct for CredentialsRemoteWriteConfig
 type CredentialsRemoteWriteConfig struct {
 	// REQUIRED
-	CredentialsMaxLimit CredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType `json:"credentialsMaxLimit"`
+	CredentialsMaxLimit CredentialsRemoteWriteConfigGetCredentialsMaxLimitAttributeType `json:"credentialsMaxLimit" required:"true"`
 	// REQUIRED
-	MaxLimit CredentialsRemoteWriteConfigGetMaxLimitAttributeType `json:"maxLimit"`
+	MaxLimit CredentialsRemoteWriteConfigGetMaxLimitAttributeType `json:"maxLimit" required:"true"`
 	// REQUIRED
-	Message CredentialsRemoteWriteConfigGetMessageAttributeType `json:"message"`
+	Message CredentialsRemoteWriteConfigGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _CredentialsRemoteWriteConfig CredentialsRemoteWriteConfig
