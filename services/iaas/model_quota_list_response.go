@@ -40,7 +40,7 @@ func setQuotaListResponseGetQuotasAttributeType(arg *QuotaListResponseGetQuotasA
 // QuotaListResponse Quotas list response.
 type QuotaListResponse struct {
 	// REQUIRED
-	Quotas QuotaListResponseGetQuotasAttributeType `json:"quotas"`
+	Quotas QuotaListResponseGetQuotasAttributeType `json:"quotas" required:"true"`
 }
 
 type _QuotaListResponse QuotaListResponse

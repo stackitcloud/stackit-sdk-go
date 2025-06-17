@@ -129,7 +129,7 @@ type VolumePerformanceClass struct {
 	Labels VolumePerformanceClassGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name VolumePerformanceClassGetNameAttributeType `json:"name"`
+	Name VolumePerformanceClassGetNameAttributeType `json:"name" required:"true"`
 	// Throughput in Megabyte per second.
 	Throughput VolumePerformanceClassGetThroughputAttributeType `json:"throughput,omitempty"`
 }

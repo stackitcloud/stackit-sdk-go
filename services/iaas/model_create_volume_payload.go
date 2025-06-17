@@ -309,7 +309,7 @@ func setCreateVolumePayloadGetUpdatedAtAttributeType(arg *CreateVolumePayloadGet
 type CreateVolumePayload struct {
 	// Object that represents an availability zone.
 	// REQUIRED
-	AvailabilityZone CreateVolumePayloadGetAvailabilityZoneAttributeType `json:"availabilityZone"`
+	AvailabilityZone CreateVolumePayloadGetAvailabilityZoneAttributeType `json:"availabilityZone" required:"true"`
 	// Indicates if a volume is bootable.
 	Bootable CreateVolumePayloadgetBootableAttributeType `json:"bootable,omitempty"`
 	// Date-time when resource was created.

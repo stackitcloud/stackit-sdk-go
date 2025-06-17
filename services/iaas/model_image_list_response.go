@@ -41,7 +41,7 @@ func setImageListResponseGetItemsAttributeType(arg *ImageListResponseGetItemsAtt
 type ImageListResponse struct {
 	// A list containing image objects.
 	// REQUIRED
-	Items ImageListResponseGetItemsAttributeType `json:"items"`
+	Items ImageListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _ImageListResponse ImageListResponse

@@ -61,10 +61,10 @@ func setPortRangeGetMinAttributeType(arg *PortRangeGetMinAttributeType, val Port
 type PortRange struct {
 	// The maximum port number. Should be greater or equal to the minimum.
 	// REQUIRED
-	Max PortRangeGetMaxAttributeType `json:"max"`
+	Max PortRangeGetMaxAttributeType `json:"max" required:"true"`
 	// The minimum port number. Should be less or equal to the maximum.
 	// REQUIRED
-	Min PortRangeGetMinAttributeType `json:"min"`
+	Min PortRangeGetMinAttributeType `json:"min" required:"true"`
 }
 
 type _PortRange PortRange
