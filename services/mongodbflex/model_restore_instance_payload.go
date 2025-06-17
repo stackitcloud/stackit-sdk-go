@@ -62,9 +62,9 @@ type RestoreInstancePayloadGetInstanceIdRetType = string
 // RestoreInstancePayload struct for RestoreInstancePayload
 type RestoreInstancePayload struct {
 	// REQUIRED
-	BackupId RestoreInstancePayloadGetBackupIdAttributeType `json:"backupId"`
+	BackupId RestoreInstancePayloadGetBackupIdAttributeType `json:"backupId" required:"true"`
 	// REQUIRED
-	InstanceId RestoreInstancePayloadGetInstanceIdAttributeType `json:"instanceId"`
+	InstanceId RestoreInstancePayloadGetInstanceIdAttributeType `json:"instanceId" required:"true"`
 }
 
 type _RestoreInstancePayload RestoreInstancePayload
