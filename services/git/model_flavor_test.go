@@ -16,7 +16,7 @@ import (
 
 // isEnum
 
-func TestInstanceState_UnmarshalJSON(t *testing.T) {
+func TestFlavorAvailability_UnmarshalJSON(t *testing.T) {
 	type args struct {
 		src []byte
 	}
@@ -28,42 +28,28 @@ func TestInstanceState_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 1`,
 			args: args{
-				src: []byte(`"Creating"`),
+				src: []byte(`"available"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 2`,
 			args: args{
-				src: []byte(`"WaitingForResources"`),
+				src: []byte(`"unavailable"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 3`,
 			args: args{
-				src: []byte(`"Updating"`),
+				src: []byte(`"internal"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 4`,
 			args: args{
-				src: []byte(`"Deleting"`),
-			},
-			wantErr: false,
-		},
-		{
-			name: `success - possible enum value no. 5`,
-			args: args{
-				src: []byte(`"Ready"`),
-			},
-			wantErr: false,
-		},
-		{
-			name: `success - possible enum value no. 6`,
-			args: args{
-				src: []byte(`"Error"`),
+				src: []byte(`"deprecated"`),
 			},
 			wantErr: false,
 		},
@@ -77,7 +63,7 @@ func TestInstanceState_UnmarshalJSON(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			v := InstanceState("")
+			v := FlavorAvailability("")
 			if err := v.UnmarshalJSON(tt.args.src); (err != nil) != tt.wantErr {
 				t.Errorf("UnmarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
 			}
