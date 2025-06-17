@@ -42,7 +42,7 @@ type ConflictGetMessageRetType = string
 type Conflict struct {
 	// The error message for conflicts
 	// REQUIRED
-	Message ConflictGetMessageAttributeType `json:"message"`
+	Message ConflictGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _Conflict Conflict

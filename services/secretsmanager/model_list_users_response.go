@@ -40,7 +40,7 @@ func setListUsersResponseGetUsersAttributeType(arg *ListUsersResponseGetUsersAtt
 // ListUsersResponse struct for ListUsersResponse
 type ListUsersResponse struct {
 	// REQUIRED
-	Users ListUsersResponseGetUsersAttributeType `json:"users"`
+	Users ListUsersResponseGetUsersAttributeType `json:"users" required:"true"`
 }
 
 type _ListUsersResponse ListUsersResponse

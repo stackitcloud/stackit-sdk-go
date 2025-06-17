@@ -62,10 +62,10 @@ func setCreateUserPayloadgetWriteAttributeType(arg *CreateUserPayloadgetWriteAtt
 type CreateUserPayload struct {
 	// A user chosen description to differentiate between multiple users.
 	// REQUIRED
-	Description CreateUserPayloadGetDescriptionAttributeType `json:"description"`
+	Description CreateUserPayloadGetDescriptionAttributeType `json:"description" required:"true"`
 	// Is true if the user has write access to the secrets engine. Is false for a read-only user.
 	// REQUIRED
-	Write CreateUserPayloadgetWriteAttributeType `json:"write"`
+	Write CreateUserPayloadgetWriteAttributeType `json:"write" required:"true"`
 }
 
 type _CreateUserPayload CreateUserPayload
