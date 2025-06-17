@@ -88,7 +88,7 @@ type DatabaseDocumentationCreateDatabaseRequestOptions struct {
 	CompatibilityLevel DatabaseDocumentationCreateDatabaseRequestOptionsGetCompatibilityLevelAttributeType `json:"compatibilityLevel,omitempty"`
 	// Name of the owner of the database.
 	// REQUIRED
-	Owner DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType `json:"owner"`
+	Owner DatabaseDocumentationCreateDatabaseRequestOptionsGetOwnerAttributeType `json:"owner" required:"true"`
 }
 
 type _DatabaseDocumentationCreateDatabaseRequestOptions DatabaseDocumentationCreateDatabaseRequestOptions
