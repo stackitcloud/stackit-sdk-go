@@ -185,25 +185,25 @@ func setProjectGetUpdateTimeAttributeType(arg *ProjectGetUpdateTimeAttributeType
 type Project struct {
 	// Globally unique, user-friendly identifier.
 	// REQUIRED
-	ContainerId ProjectGetContainerIdAttributeType `json:"containerId"`
+	ContainerId ProjectGetContainerIdAttributeType `json:"containerId" required:"true"`
 	// Timestamp at which the project was created.
 	// REQUIRED
-	CreationTime ProjectGetCreationTimeAttributeType `json:"creationTime"`
+	CreationTime ProjectGetCreationTimeAttributeType `json:"creationTime" required:"true"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels ProjectGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	LifecycleState ProjectGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState ProjectGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// Project name.
 	// REQUIRED
-	Name ProjectGetNameAttributeType `json:"name"`
+	Name ProjectGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Parent ProjectGetParentAttributeType `json:"parent"`
+	Parent ProjectGetParentAttributeType `json:"parent" required:"true"`
 	// Globally unique, project identifier.
 	// REQUIRED
-	ProjectId ProjectGetProjectIdAttributeType `json:"projectId"`
+	ProjectId ProjectGetProjectIdAttributeType `json:"projectId" required:"true"`
 	// Timestamp at which the project was last modified.
 	// REQUIRED
-	UpdateTime ProjectGetUpdateTimeAttributeType `json:"updateTime"`
+	UpdateTime ProjectGetUpdateTimeAttributeType `json:"updateTime" required:"true"`
 }
 
 type _Project Project

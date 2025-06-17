@@ -165,23 +165,23 @@ func setListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType(arg *ListO
 type ListOrganizationsResponseItemsInner struct {
 	// Globally unique, user-friendly identifier.
 	// REQUIRED
-	ContainerId ListOrganizationsResponseItemsInnerGetContainerIdAttributeType `json:"containerId"`
+	ContainerId ListOrganizationsResponseItemsInnerGetContainerIdAttributeType `json:"containerId" required:"true"`
 	// Timestamp at which the organization was created.
 	// REQUIRED
-	CreationTime ListOrganizationsResponseItemsInnerGetCreationTimeAttributeType `json:"creationTime"`
+	CreationTime ListOrganizationsResponseItemsInnerGetCreationTimeAttributeType `json:"creationTime" required:"true"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels ListOrganizationsResponseItemsInnerGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	LifecycleState ListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState ListOrganizationsResponseItemsInnerGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// Name of the organization.
 	// REQUIRED
-	Name ListOrganizationsResponseItemsInnerGetNameAttributeType `json:"name"`
+	Name ListOrganizationsResponseItemsInnerGetNameAttributeType `json:"name" required:"true"`
 	// Globally unique, organization identifier.
 	// REQUIRED
-	OrganizationId ListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType `json:"organizationId"`
+	OrganizationId ListOrganizationsResponseItemsInnerGetOrganizationIdAttributeType `json:"organizationId" required:"true"`
 	// Timestamp at which the organization was last modified.
 	// REQUIRED
-	UpdateTime ListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType `json:"updateTime"`
+	UpdateTime ListOrganizationsResponseItemsInnerGetUpdateTimeAttributeType `json:"updateTime" required:"true"`
 }
 
 type _ListOrganizationsResponseItemsInner ListOrganizationsResponseItemsInner

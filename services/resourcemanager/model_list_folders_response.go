@@ -80,13 +80,13 @@ func setListFoldersResponseGetOffsetAttributeType(arg *ListFoldersResponseGetOff
 // ListFoldersResponse struct for ListFoldersResponse
 type ListFoldersResponse struct {
 	// REQUIRED
-	Items ListFoldersResponseGetItemsAttributeType `json:"items"`
+	Items ListFoldersResponseGetItemsAttributeType `json:"items" required:"true"`
 	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	// REQUIRED
-	Limit ListFoldersResponseGetLimitAttributeType `json:"limit"`
+	Limit ListFoldersResponseGetLimitAttributeType `json:"limit" required:"true"`
 	// The offset of the first item in the collection to return.
 	// REQUIRED
-	Offset ListFoldersResponseGetOffsetAttributeType `json:"offset"`
+	Offset ListFoldersResponseGetOffsetAttributeType `json:"offset" required:"true"`
 }
 
 type _ListFoldersResponse ListFoldersResponse

@@ -165,23 +165,23 @@ func setOrganizationResponseGetUpdateTimeAttributeType(arg *OrganizationResponse
 type OrganizationResponse struct {
 	// Globally unique, user-friendly identifier.
 	// REQUIRED
-	ContainerId OrganizationResponseGetContainerIdAttributeType `json:"containerId"`
+	ContainerId OrganizationResponseGetContainerIdAttributeType `json:"containerId" required:"true"`
 	// Timestamp at which the organization was created.
 	// REQUIRED
-	CreationTime OrganizationResponseGetCreationTimeAttributeType `json:"creationTime"`
+	CreationTime OrganizationResponseGetCreationTimeAttributeType `json:"creationTime" required:"true"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels OrganizationResponseGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	LifecycleState OrganizationResponseGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState OrganizationResponseGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// Organization name.
 	// REQUIRED
-	Name OrganizationResponseGetNameAttributeType `json:"name"`
+	Name OrganizationResponseGetNameAttributeType `json:"name" required:"true"`
 	// Globally unique, organization identifier.
 	// REQUIRED
-	OrganizationId OrganizationResponseGetOrganizationIdAttributeType `json:"organizationId"`
+	OrganizationId OrganizationResponseGetOrganizationIdAttributeType `json:"organizationId" required:"true"`
 	// Timestamp at which the organization was last modified.
 	// REQUIRED
-	UpdateTime OrganizationResponseGetUpdateTimeAttributeType `json:"updateTime"`
+	UpdateTime OrganizationResponseGetUpdateTimeAttributeType `json:"updateTime" required:"true"`
 }
 
 type _OrganizationResponse OrganizationResponse

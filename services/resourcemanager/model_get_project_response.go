@@ -205,26 +205,26 @@ func setGetProjectResponseGetUpdateTimeAttributeType(arg *GetProjectResponseGetU
 type GetProjectResponse struct {
 	// Globally unique identifier.
 	// REQUIRED
-	ContainerId GetProjectResponseGetContainerIdAttributeType `json:"containerId"`
+	ContainerId GetProjectResponseGetContainerIdAttributeType `json:"containerId" required:"true"`
 	// Timestamp at which the project was created.
 	// REQUIRED
-	CreationTime GetProjectResponseGetCreationTimeAttributeType `json:"creationTime"`
+	CreationTime GetProjectResponseGetCreationTimeAttributeType `json:"creationTime" required:"true"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels GetProjectResponseGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	LifecycleState GetProjectResponseGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState GetProjectResponseGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// Project name.
 	// REQUIRED
-	Name GetProjectResponseGetNameAttributeType `json:"name"`
+	Name GetProjectResponseGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Parent  GetProjectResponseGetParentAttributeType  `json:"parent"`
+	Parent  GetProjectResponseGetParentAttributeType  `json:"parent" required:"true"`
 	Parents GetProjectResponseGetParentsAttributeType `json:"parents,omitempty"`
 	// Globally unique identifier.
 	// REQUIRED
-	ProjectId GetProjectResponseGetProjectIdAttributeType `json:"projectId"`
+	ProjectId GetProjectResponseGetProjectIdAttributeType `json:"projectId" required:"true"`
 	// Timestamp at which the project was last modified.
 	// REQUIRED
-	UpdateTime GetProjectResponseGetUpdateTimeAttributeType `json:"updateTime"`
+	UpdateTime GetProjectResponseGetUpdateTimeAttributeType `json:"updateTime" required:"true"`
 }
 
 type _GetProjectResponse GetProjectResponse

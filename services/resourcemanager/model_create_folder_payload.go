@@ -103,14 +103,14 @@ type CreateFolderPayloadGetNameRetType = string
 type CreateFolderPayload struct {
 	// Identifier of the parent resource container - containerId as well as UUID identifier is supported.
 	// REQUIRED
-	ContainerParentId CreateFolderPayloadGetContainerParentIdAttributeType `json:"containerParentId"`
+	ContainerParentId CreateFolderPayloadGetContainerParentIdAttributeType `json:"containerParentId" required:"true"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels CreateFolderPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
 	Members CreateFolderPayloadGetMembersAttributeType `json:"members,omitempty"`
 	// The name of the folder matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	// REQUIRED
-	Name CreateFolderPayloadGetNameAttributeType `json:"name"`
+	Name CreateFolderPayloadGetNameAttributeType `json:"name" required:"true"`
 }
 
 type _CreateFolderPayload CreateFolderPayload

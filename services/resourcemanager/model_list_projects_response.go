@@ -80,13 +80,13 @@ func setListProjectsResponseGetOffsetAttributeType(arg *ListProjectsResponseGetO
 // ListProjectsResponse struct for ListProjectsResponse
 type ListProjectsResponse struct {
 	// REQUIRED
-	Items ListProjectsResponseGetItemsAttributeType `json:"items"`
+	Items ListProjectsResponseGetItemsAttributeType `json:"items" required:"true"`
 	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	// REQUIRED
-	Limit ListProjectsResponseGetLimitAttributeType `json:"limit"`
+	Limit ListProjectsResponseGetLimitAttributeType `json:"limit" required:"true"`
 	// The offset of the first item in the collection to return.
 	// REQUIRED
-	Offset ListProjectsResponseGetOffsetAttributeType `json:"offset"`
+	Offset ListProjectsResponseGetOffsetAttributeType `json:"offset" required:"true"`
 }
 
 type _ListProjectsResponse ListProjectsResponse
