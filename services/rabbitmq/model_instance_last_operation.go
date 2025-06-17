@@ -294,11 +294,11 @@ func setInstanceLastOperationGetTypeAttributeType(arg *InstanceLastOperationGetT
 // InstanceLastOperation struct for InstanceLastOperation
 type InstanceLastOperation struct {
 	// REQUIRED
-	Description InstanceLastOperationGetDescriptionAttributeType `json:"description"`
+	Description InstanceLastOperationGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	State InstanceLastOperationGetStateAttributeType `json:"state"`
+	State InstanceLastOperationGetStateAttributeType `json:"state" required:"true"`
 	// REQUIRED
-	Type InstanceLastOperationGetTypeAttributeType `json:"type"`
+	Type InstanceLastOperationGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _InstanceLastOperation InstanceLastOperation

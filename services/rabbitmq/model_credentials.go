@@ -268,7 +268,7 @@ type CredentialsGetUsernameRetType = string
 // Credentials struct for Credentials
 type Credentials struct {
 	// REQUIRED
-	Host  CredentialsGetHostAttributeType  `json:"host"`
+	Host  CredentialsGetHostAttributeType  `json:"host" required:"true"`
 	Hosts CredentialsGetHostsAttributeType `json:"hosts,omitempty"`
 	// for rabbitmq only
 	HttpApiUri  CredentialsGetHttpApiUriAttributeType  `json:"http_api_uri,omitempty"`
@@ -276,14 +276,14 @@ type Credentials struct {
 	Management  CredentialsGetManagementAttributeType  `json:"management,omitempty"`
 	Mqtt        CredentialsGetMqttAttributeType        `json:"mqtt,omitempty"`
 	// REQUIRED
-	Password CredentialsGetPasswordAttributeType `json:"password"`
+	Password CredentialsGetPasswordAttributeType `json:"password" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	Port  CredentialsGetPortAttributeType  `json:"port,omitempty"`
 	Stomp CredentialsGetStompAttributeType `json:"stomp,omitempty"`
 	Uri   CredentialsGetUriAttributeType   `json:"uri,omitempty"`
 	Uris  CredentialsGetUrisAttributeType  `json:"uris,omitempty"`
 	// REQUIRED
-	Username CredentialsGetUsernameAttributeType `json:"username"`
+	Username CredentialsGetUsernameAttributeType `json:"username" required:"true"`
 }
 
 type _Credentials Credentials

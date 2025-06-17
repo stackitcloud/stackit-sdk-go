@@ -41,7 +41,7 @@ type CreateInstanceResponseGetInstanceIdRetType = string
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
 	// REQUIRED
-	InstanceId CreateInstanceResponseGetInstanceIdAttributeType `json:"instanceId"`
+	InstanceId CreateInstanceResponseGetInstanceIdAttributeType `json:"instanceId" required:"true"`
 }
 
 type _CreateInstanceResponse CreateInstanceResponse

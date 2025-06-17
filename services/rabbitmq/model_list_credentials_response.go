@@ -40,7 +40,7 @@ func setListCredentialsResponseGetCredentialsListAttributeType(arg *ListCredenti
 // ListCredentialsResponse struct for ListCredentialsResponse
 type ListCredentialsResponse struct {
 	// REQUIRED
-	CredentialsList ListCredentialsResponseGetCredentialsListAttributeType `json:"credentialsList"`
+	CredentialsList ListCredentialsResponseGetCredentialsListAttributeType `json:"credentialsList" required:"true"`
 }
 
 type _ListCredentialsResponse ListCredentialsResponse

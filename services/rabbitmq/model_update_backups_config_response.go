@@ -41,7 +41,7 @@ type UpdateBackupsConfigResponseGetMessageRetType = string
 // UpdateBackupsConfigResponse struct for UpdateBackupsConfigResponse
 type UpdateBackupsConfigResponse struct {
 	// REQUIRED
-	Message UpdateBackupsConfigResponseGetMessageAttributeType `json:"message"`
+	Message UpdateBackupsConfigResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _UpdateBackupsConfigResponse UpdateBackupsConfigResponse
