@@ -420,7 +420,7 @@ type CreateZonePayload struct {
 	Description CreateZonePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// zone name
 	// REQUIRED
-	DnsName CreateZonePayloadGetDnsNameAttributeType `json:"dnsName"`
+	DnsName CreateZonePayloadGetDnsNameAttributeType `json:"dnsName" required:"true"`
 	// expire time
 	// Can be cast to int32 without loss of precision.
 	ExpireTime CreateZonePayloadGetExpireTimeAttributeType `json:"expireTime,omitempty"`
@@ -429,7 +429,7 @@ type CreateZonePayload struct {
 	IsReverseZone CreateZonePayloadgetIsReverseZoneAttributeType `json:"isReverseZone,omitempty"`
 	// user given name
 	// REQUIRED
-	Name CreateZonePayloadGetNameAttributeType `json:"name"`
+	Name CreateZonePayloadGetNameAttributeType `json:"name" required:"true"`
 	// negative caching
 	// Can be cast to int32 without loss of precision.
 	NegativeCache CreateZonePayloadGetNegativeCacheAttributeType `json:"negativeCache,omitempty"`

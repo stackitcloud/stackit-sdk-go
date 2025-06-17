@@ -165,10 +165,10 @@ func setPartialUpdateRecordPayloadGetRecordsAttributeType(arg *PartialUpdateReco
 // PartialUpdateRecordPayload RecordPatch for record patch in record set.
 type PartialUpdateRecordPayload struct {
 	// REQUIRED
-	Action PartialUpdateRecordPayloadGetActionAttributeType `json:"action"`
+	Action PartialUpdateRecordPayloadGetActionAttributeType `json:"action" required:"true"`
 	// records
 	// REQUIRED
-	Records PartialUpdateRecordPayloadGetRecordsAttributeType `json:"records"`
+	Records PartialUpdateRecordPayloadGetRecordsAttributeType `json:"records" required:"true"`
 }
 
 type _PartialUpdateRecordPayload PartialUpdateRecordPayload

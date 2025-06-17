@@ -62,7 +62,7 @@ func setRecordSetResponseGetRrsetAttributeType(arg *RecordSetResponseGetRrsetAtt
 type RecordSetResponse struct {
 	Message RecordSetResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Rrset RecordSetResponseGetRrsetAttributeType `json:"rrset"`
+	Rrset RecordSetResponseGetRrsetAttributeType `json:"rrset" required:"true"`
 }
 
 type _RecordSetResponse RecordSetResponse

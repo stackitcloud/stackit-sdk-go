@@ -62,7 +62,7 @@ type ZoneObservabilityExtensionGetStateRetType = string
 // ZoneObservabilityExtension struct for ZoneObservabilityExtension
 type ZoneObservabilityExtension struct {
 	// REQUIRED
-	ObservabilityInstanceId ZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType `json:"observabilityInstanceId"`
+	ObservabilityInstanceId ZoneObservabilityExtensionGetObservabilityInstanceIdAttributeType `json:"observabilityInstanceId" required:"true"`
 	State                   ZoneObservabilityExtensionGetStateAttributeType                   `json:"state,omitempty"`
 }
 

@@ -898,80 +898,80 @@ func setZoneGetVisibilityAttributeType(arg *ZoneGetVisibilityAttributeType, val 
 type Zone struct {
 	// access control list
 	// REQUIRED
-	Acl    ZoneGetAclAttributeType    `json:"acl"`
+	Acl    ZoneGetAclAttributeType    `json:"acl" required:"true"`
 	Active ZonegetActiveAttributeType `json:"active,omitempty"`
 	// contact email from soa record
 	ContactEmail ZoneGetContactEmailAttributeType `json:"contactEmail,omitempty"`
 	// when zone creation finished
 	// REQUIRED
-	CreationFinished ZoneGetCreationFinishedAttributeType `json:"creationFinished"`
+	CreationFinished ZoneGetCreationFinishedAttributeType `json:"creationFinished" required:"true"`
 	// when zone creation started
 	// REQUIRED
-	CreationStarted ZoneGetCreationStartedAttributeType `json:"creationStarted"`
+	CreationStarted ZoneGetCreationStartedAttributeType `json:"creationStarted" required:"true"`
 	// default time to live
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	DefaultTTL ZoneGetDefaultTTLAttributeType `json:"defaultTTL"`
+	DefaultTTL ZoneGetDefaultTTLAttributeType `json:"defaultTTL" required:"true"`
 	// description of the zone
 	Description ZoneGetDescriptionAttributeType `json:"description,omitempty"`
 	// zone name
 	// REQUIRED
-	DnsName ZoneGetDnsNameAttributeType `json:"dnsName"`
+	DnsName ZoneGetDnsNameAttributeType `json:"dnsName" required:"true"`
 	// Error shows error in case create/update/delete failed
 	Error ZoneGetErrorAttributeType `json:"error,omitempty"`
 	// expire time
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	ExpireTime ZoneGetExpireTimeAttributeType `json:"expireTime"`
+	ExpireTime ZoneGetExpireTimeAttributeType `json:"expireTime" required:"true"`
 	Extensions ZoneGetExtensionsAttributeType `json:"extensions,omitempty"`
 	// zone id
 	// REQUIRED
-	Id ZoneGetIdAttributeType `json:"id"`
+	Id ZoneGetIdAttributeType `json:"id" required:"true"`
 	// if the zone is a reverse zone or not
 	IsReverseZone ZonegetIsReverseZoneAttributeType `json:"isReverseZone,omitempty"`
 	Labels        ZoneGetLabelsAttributeType        `json:"labels,omitempty"`
 	// user given name
 	// REQUIRED
-	Name ZoneGetNameAttributeType `json:"name"`
+	Name ZoneGetNameAttributeType `json:"name" required:"true"`
 	// negative caching
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	NegativeCache ZoneGetNegativeCacheAttributeType `json:"negativeCache"`
+	NegativeCache ZoneGetNegativeCacheAttributeType `json:"negativeCache" required:"true"`
 	// primary name server for secondary zone
 	Primaries ZoneGetPrimariesAttributeType `json:"primaries,omitempty"`
 	// primary name server. FQDN
 	// REQUIRED
-	PrimaryNameServer ZoneGetPrimaryNameServerAttributeType `json:"primaryNameServer"`
+	PrimaryNameServer ZoneGetPrimaryNameServerAttributeType `json:"primaryNameServer" required:"true"`
 	// record count how many records are in the zone
 	// Can be cast to int32 without loss of precision.
 	RecordCount ZoneGetRecordCountAttributeType `json:"recordCount,omitempty"`
 	// refresh time
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	RefreshTime ZoneGetRefreshTimeAttributeType `json:"refreshTime"`
+	RefreshTime ZoneGetRefreshTimeAttributeType `json:"refreshTime" required:"true"`
 	// retry time
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	RetryTime ZoneGetRetryTimeAttributeType `json:"retryTime"`
+	RetryTime ZoneGetRetryTimeAttributeType `json:"retryTime" required:"true"`
 	// serial number
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	SerialNumber ZoneGetSerialNumberAttributeType `json:"serialNumber"`
+	SerialNumber ZoneGetSerialNumberAttributeType `json:"serialNumber" required:"true"`
 	// zone state
 	// REQUIRED
-	State ZoneGetStateAttributeType `json:"state"`
+	State ZoneGetStateAttributeType `json:"state" required:"true"`
 	// zone type
 	// REQUIRED
-	Type ZoneGetTypeAttributeType `json:"type"`
+	Type ZoneGetTypeAttributeType `json:"type" required:"true"`
 	// when zone update/deletion finished
 	// REQUIRED
-	UpdateFinished ZoneGetUpdateFinishedAttributeType `json:"updateFinished"`
+	UpdateFinished ZoneGetUpdateFinishedAttributeType `json:"updateFinished" required:"true"`
 	// when zone update/deletion started
 	// REQUIRED
-	UpdateStarted ZoneGetUpdateStartedAttributeType `json:"updateStarted"`
+	UpdateStarted ZoneGetUpdateStartedAttributeType `json:"updateStarted" required:"true"`
 	// visibility of the zone
 	// REQUIRED
-	Visibility ZoneGetVisibilityAttributeType `json:"visibility"`
+	Visibility ZoneGetVisibilityAttributeType `json:"visibility" required:"true"`
 }
 
 type _Zone Zone

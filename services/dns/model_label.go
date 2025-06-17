@@ -62,9 +62,9 @@ type LabelGetValueRetType = string
 // Label struct for Label
 type Label struct {
 	// REQUIRED
-	Key LabelGetKeyAttributeType `json:"key"`
+	Key LabelGetKeyAttributeType `json:"key" required:"true"`
 	// REQUIRED
-	Value LabelGetValueAttributeType `json:"value"`
+	Value LabelGetValueAttributeType `json:"value" required:"true"`
 }
 
 type _Label Label

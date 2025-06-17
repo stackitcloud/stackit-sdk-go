@@ -62,7 +62,7 @@ func setImportRecordSetsResponseGetSummaryAttributeType(arg *ImportRecordSetsRes
 type ImportRecordSetsResponse struct {
 	Message ImportRecordSetsResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Summary ImportRecordSetsResponseGetSummaryAttributeType `json:"summary"`
+	Summary ImportRecordSetsResponseGetSummaryAttributeType `json:"summary" required:"true"`
 }
 
 type _ImportRecordSetsResponse ImportRecordSetsResponse

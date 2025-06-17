@@ -62,7 +62,7 @@ type DomainObservabilityExtensionGetStateRetType = string
 // DomainObservabilityExtension struct for DomainObservabilityExtension
 type DomainObservabilityExtension struct {
 	// REQUIRED
-	ObservabilityInstanceId DomainObservabilityExtensionGetObservabilityInstanceIdAttributeType `json:"observabilityInstanceId"`
+	ObservabilityInstanceId DomainObservabilityExtensionGetObservabilityInstanceIdAttributeType `json:"observabilityInstanceId" required:"true"`
 	State                   DomainObservabilityExtensionGetStateAttributeType                   `json:"state,omitempty"`
 }
 

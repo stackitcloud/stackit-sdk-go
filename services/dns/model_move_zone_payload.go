@@ -63,10 +63,10 @@ type MoveZonePayloadGetZoneDnsNameRetType = string
 type MoveZonePayload struct {
 	// Code to move the zone. It must be valid, not expired and belong
 	// REQUIRED
-	Code MoveZonePayloadGetCodeAttributeType `json:"code"`
+	Code MoveZonePayloadGetCodeAttributeType `json:"code" required:"true"`
 	// ZoneDnsName is the dns name of the zone to move
 	// REQUIRED
-	ZoneDnsName MoveZonePayloadGetZoneDnsNameAttributeType `json:"zoneDnsName"`
+	ZoneDnsName MoveZonePayloadGetZoneDnsNameAttributeType `json:"zoneDnsName" required:"true"`
 }
 
 type _MoveZonePayload MoveZonePayload
