@@ -41,7 +41,7 @@ type UpdateBackupSchedulePayloadGetBackupScheduleRetType = string
 // UpdateBackupSchedulePayload struct for UpdateBackupSchedulePayload
 type UpdateBackupSchedulePayload struct {
 	// REQUIRED
-	BackupSchedule UpdateBackupSchedulePayloadGetBackupScheduleAttributeType `json:"backupSchedule"`
+	BackupSchedule UpdateBackupSchedulePayloadGetBackupScheduleAttributeType `json:"backupSchedule" required:"true"`
 }
 
 type _UpdateBackupSchedulePayload UpdateBackupSchedulePayload

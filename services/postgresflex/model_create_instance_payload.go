@@ -204,24 +204,24 @@ type CreateInstancePayloadGetVersionRetType = string
 // CreateInstancePayload struct for CreateInstancePayload
 type CreateInstancePayload struct {
 	// REQUIRED
-	Acl CreateInstancePayloadGetAclAttributeType `json:"acl"`
+	Acl CreateInstancePayloadGetAclAttributeType `json:"acl" required:"true"`
 	// REQUIRED
-	BackupSchedule CreateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule"`
+	BackupSchedule CreateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule" required:"true"`
 	// REQUIRED
-	FlavorId CreateInstancePayloadGetFlavorIdAttributeType `json:"flavorId"`
+	FlavorId CreateInstancePayloadGetFlavorIdAttributeType `json:"flavorId" required:"true"`
 	// Labels field is not certain/clear
 	Labels CreateInstancePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	Name CreateInstancePayloadGetNameAttributeType `json:"name"`
+	Name CreateInstancePayloadGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Options CreateInstancePayloadGetOptionsAttributeType `json:"options"`
+	Options CreateInstancePayloadGetOptionsAttributeType `json:"options" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Replicas CreateInstancePayloadGetReplicasAttributeType `json:"replicas"`
+	Replicas CreateInstancePayloadGetReplicasAttributeType `json:"replicas" required:"true"`
 	// REQUIRED
-	Storage CreateInstancePayloadGetStorageAttributeType `json:"storage"`
+	Storage CreateInstancePayloadGetStorageAttributeType `json:"storage" required:"true"`
 	// REQUIRED
-	Version CreateInstancePayloadGetVersionAttributeType `json:"version"`
+	Version CreateInstancePayloadGetVersionAttributeType `json:"version" required:"true"`
 }
 
 type _CreateInstancePayload CreateInstancePayload
