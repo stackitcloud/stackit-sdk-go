@@ -323,14 +323,14 @@ type Network struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels NetworkGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	Name NetworkGetNameAttributeType `json:"name"`
+	Name NetworkGetNameAttributeType `json:"name" required:"true"`
 	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers NetworkGetNameserversAttributeType `json:"nameservers,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv6.
 	NameserversV6 NetworkGetNameserversV6AttributeType `json:"nameserversV6,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	NetworkId  NetworkGetNetworkIdAttributeType  `json:"networkId"`
+	NetworkId  NetworkGetNetworkIdAttributeType  `json:"networkId" required:"true"`
 	Prefixes   NetworkGetPrefixesAttributeType   `json:"prefixes,omitempty"`
 	PrefixesV6 NetworkGetPrefixesV6AttributeType `json:"prefixesV6,omitempty"`
 	// Object that represents an IP address.
@@ -339,7 +339,7 @@ type Network struct {
 	Routed NetworkgetRoutedAttributeType `json:"routed,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
-	State NetworkGetStateAttributeType `json:"state"`
+	State NetworkGetStateAttributeType `json:"state" required:"true"`
 	// Date-time when resource was last updated.
 	UpdatedAt NetworkGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }

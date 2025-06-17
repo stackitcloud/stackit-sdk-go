@@ -63,10 +63,10 @@ type BootVolumeSourceGetTypeRetType = string
 type BootVolumeSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id BootVolumeSourceGetIdAttributeType `json:"id"`
+	Id BootVolumeSourceGetIdAttributeType `json:"id" required:"true"`
 	// The source types of a boot volume. Possible values: `image`, `volume`.
 	// REQUIRED
-	Type BootVolumeSourceGetTypeAttributeType `json:"type"`
+	Type BootVolumeSourceGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _BootVolumeSource BootVolumeSource

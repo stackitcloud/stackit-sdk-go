@@ -63,10 +63,10 @@ type BackupSourceGetTypeRetType = string
 type BackupSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id BackupSourceGetIdAttributeType `json:"id"`
+	Id BackupSourceGetIdAttributeType `json:"id" required:"true"`
 	// The source types of a backup. Possible values: `volume`, `snapshot`.
 	// REQUIRED
-	Type BackupSourceGetTypeAttributeType `json:"type"`
+	Type BackupSourceGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _BackupSource BackupSource

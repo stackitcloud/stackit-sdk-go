@@ -103,12 +103,12 @@ type AreaConfig struct {
 	DefaultNameservers AreaConfigGetDefaultNameserversAttributeType `json:"defaultNameservers,omitempty"`
 	// A list of network ranges.
 	// REQUIRED
-	NetworkRanges AreaConfigGetNetworkRangesAttributeType `json:"networkRanges"`
+	NetworkRanges AreaConfigGetNetworkRangesAttributeType `json:"networkRanges" required:"true"`
 	// A list of routes.
 	Routes AreaConfigGetRoutesAttributeType `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	TransferNetwork AreaConfigGetTransferNetworkAttributeType `json:"transferNetwork"`
+	TransferNetwork AreaConfigGetTransferNetworkAttributeType `json:"transferNetwork" required:"true"`
 }
 
 type _AreaConfig AreaConfig

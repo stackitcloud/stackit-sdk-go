@@ -41,7 +41,7 @@ func setVolumeAttachmentListResponseGetItemsAttributeType(arg *VolumeAttachmentL
 type VolumeAttachmentListResponse struct {
 	// A list containing Volume attachments of a server.
 	// REQUIRED
-	Items VolumeAttachmentListResponseGetItemsAttributeType `json:"items"`
+	Items VolumeAttachmentListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _VolumeAttachmentListResponse VolumeAttachmentListResponse

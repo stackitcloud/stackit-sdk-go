@@ -60,9 +60,9 @@ func setQuotaListSnapshotsGetUsageAttributeType(arg *QuotaListSnapshotsGetUsageA
 // QuotaListSnapshots Number of snapshots.
 type QuotaListSnapshots struct {
 	// REQUIRED
-	Limit QuotaListSnapshotsGetLimitAttributeType `json:"limit"`
+	Limit QuotaListSnapshotsGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListSnapshotsGetUsageAttributeType `json:"usage"`
+	Usage QuotaListSnapshotsGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListSnapshots QuotaListSnapshots

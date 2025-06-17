@@ -41,7 +41,7 @@ func setServiceAccountMailListResponseGetItemsAttributeType(arg *ServiceAccountM
 type ServiceAccountMailListResponse struct {
 	// A list of service account mails.
 	// REQUIRED
-	Items ServiceAccountMailListResponseGetItemsAttributeType `json:"items"`
+	Items ServiceAccountMailListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _ServiceAccountMailListResponse ServiceAccountMailListResponse

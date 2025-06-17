@@ -41,7 +41,7 @@ func setKeyPairListResponseGetItemsAttributeType(arg *KeyPairListResponseGetItem
 type KeyPairListResponse struct {
 	// A list of SSH keypairs.
 	// REQUIRED
-	Items KeyPairListResponseGetItemsAttributeType `json:"items"`
+	Items KeyPairListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _KeyPairListResponse KeyPairListResponse
