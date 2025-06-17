@@ -41,7 +41,7 @@ func setUpdateScheduleAllOfGetIdAttributeType(arg *UpdateScheduleAllOfGetIdAttri
 type UpdateScheduleAllOf struct {
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Id UpdateScheduleAllOfGetIdAttributeType `json:"id"`
+	Id UpdateScheduleAllOfGetIdAttributeType `json:"id" required:"true"`
 }
 
 type _UpdateScheduleAllOf UpdateScheduleAllOf

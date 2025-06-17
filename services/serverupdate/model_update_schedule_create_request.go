@@ -102,14 +102,14 @@ type UpdateScheduleCreateRequestGetRruleRetType = string
 // UpdateScheduleCreateRequest struct for UpdateScheduleCreateRequest
 type UpdateScheduleCreateRequest struct {
 	// REQUIRED
-	Enabled UpdateScheduleCreateRequestgetEnabledAttributeType `json:"enabled"`
+	Enabled UpdateScheduleCreateRequestgetEnabledAttributeType `json:"enabled" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	MaintenanceWindow UpdateScheduleCreateRequestGetMaintenanceWindowAttributeType `json:"maintenanceWindow"`
+	MaintenanceWindow UpdateScheduleCreateRequestGetMaintenanceWindowAttributeType `json:"maintenanceWindow" required:"true"`
 	// REQUIRED
-	Name UpdateScheduleCreateRequestGetNameAttributeType `json:"name"`
+	Name UpdateScheduleCreateRequestGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Rrule UpdateScheduleCreateRequestGetRruleAttributeType `json:"rrule"`
+	Rrule UpdateScheduleCreateRequestGetRruleAttributeType `json:"rrule" required:"true"`
 }
 
 type _UpdateScheduleCreateRequest UpdateScheduleCreateRequest
