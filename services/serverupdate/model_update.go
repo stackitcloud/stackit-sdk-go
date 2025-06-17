@@ -169,13 +169,13 @@ type Update struct {
 	FailedUpdates UpdateGetFailedUpdatesAttributeType `json:"failedUpdates,omitempty"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Id UpdateGetIdAttributeType `json:"id"`
+	Id UpdateGetIdAttributeType `json:"id" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	InstalledUpdates UpdateGetInstalledUpdatesAttributeType `json:"installedUpdates,omitempty"`
 	// REQUIRED
-	StartDate UpdateGetStartDateAttributeType `json:"startDate"`
+	StartDate UpdateGetStartDateAttributeType `json:"startDate" required:"true"`
 	// REQUIRED
-	Status UpdateGetStatusAttributeType `json:"status"`
+	Status UpdateGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _Update Update

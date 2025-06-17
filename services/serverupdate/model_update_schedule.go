@@ -122,17 +122,17 @@ func setUpdateScheduleGetIdAttributeType(arg *UpdateScheduleGetIdAttributeType, 
 // UpdateSchedule struct for UpdateSchedule
 type UpdateSchedule struct {
 	// REQUIRED
-	Enabled UpdateSchedulegetEnabledAttributeType `json:"enabled"`
+	Enabled UpdateSchedulegetEnabledAttributeType `json:"enabled" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	MaintenanceWindow UpdateScheduleGetMaintenanceWindowAttributeType `json:"maintenanceWindow"`
+	MaintenanceWindow UpdateScheduleGetMaintenanceWindowAttributeType `json:"maintenanceWindow" required:"true"`
 	// REQUIRED
-	Name UpdateScheduleGetNameAttributeType `json:"name"`
+	Name UpdateScheduleGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Rrule UpdateScheduleGetRruleAttributeType `json:"rrule"`
+	Rrule UpdateScheduleGetRruleAttributeType `json:"rrule" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Id UpdateScheduleGetIdAttributeType `json:"id"`
+	Id UpdateScheduleGetIdAttributeType `json:"id" required:"true"`
 }
 
 type _UpdateSchedule UpdateSchedule
