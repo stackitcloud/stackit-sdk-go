@@ -63,10 +63,10 @@ type MemberGetSubjectRetType = string
 type Member struct {
 	// A valid role defined for the resource.
 	// REQUIRED
-	Role MemberGetRoleAttributeType `json:"role"`
+	Role MemberGetRoleAttributeType `json:"role" required:"true"`
 	// Unique identifier of the user, service account or client.
 	// REQUIRED
-	Subject MemberGetSubjectAttributeType `json:"subject"`
+	Subject MemberGetSubjectAttributeType `json:"subject" required:"true"`
 }
 
 type _Member Member

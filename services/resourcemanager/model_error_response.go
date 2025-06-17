@@ -125,19 +125,19 @@ func setErrorResponseGetTimeStampAttributeType(arg *ErrorResponseGetTimeStampAtt
 type ErrorResponse struct {
 	// The reason phrase of the status code.
 	// REQUIRED
-	Error ErrorResponseGetErrorAttributeType `json:"error"`
+	Error ErrorResponseGetErrorAttributeType `json:"error" required:"true"`
 	// Description of the error.
 	// REQUIRED
-	Message ErrorResponseGetMessageAttributeType `json:"message"`
+	Message ErrorResponseGetMessageAttributeType `json:"message" required:"true"`
 	// Path which was called.
 	// REQUIRED
-	Path ErrorResponseGetPathAttributeType `json:"path"`
+	Path ErrorResponseGetPathAttributeType `json:"path" required:"true"`
 	// Http Status Code.
 	// REQUIRED
-	Status ErrorResponseGetStatusAttributeType `json:"status"`
+	Status ErrorResponseGetStatusAttributeType `json:"status" required:"true"`
 	// Timestamp at which the error occurred.
 	// REQUIRED
-	TimeStamp ErrorResponseGetTimeStampAttributeType `json:"timeStamp"`
+	TimeStamp ErrorResponseGetTimeStampAttributeType `json:"timeStamp" required:"true"`
 }
 
 type _ErrorResponse ErrorResponse
