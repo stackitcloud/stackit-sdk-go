@@ -82,11 +82,11 @@ type ListMembersResponseGetResourceTypeRetType = string
 // ListMembersResponse struct for ListMembersResponse
 type ListMembersResponse struct {
 	// REQUIRED
-	Members ListMembersResponseGetMembersAttributeType `json:"members"`
+	Members ListMembersResponseGetMembersAttributeType `json:"members" required:"true"`
 	// REQUIRED
-	ResourceId ListMembersResponseGetResourceIdAttributeType `json:"resourceId"`
+	ResourceId ListMembersResponseGetResourceIdAttributeType `json:"resourceId" required:"true"`
 	// REQUIRED
-	ResourceType ListMembersResponseGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType ListMembersResponseGetResourceTypeAttributeType `json:"resourceType" required:"true"`
 }
 
 type _ListMembersResponse ListMembersResponse

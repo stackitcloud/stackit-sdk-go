@@ -82,11 +82,11 @@ type UserPermissionGetResourceTypeRetType = string
 // UserPermission struct for UserPermission
 type UserPermission struct {
 	// REQUIRED
-	Permissions UserPermissionGetPermissionsAttributeType `json:"permissions"`
+	Permissions UserPermissionGetPermissionsAttributeType `json:"permissions" required:"true"`
 	// REQUIRED
-	ResourceId UserPermissionGetResourceIdAttributeType `json:"resourceId"`
+	ResourceId UserPermissionGetResourceIdAttributeType `json:"resourceId" required:"true"`
 	// REQUIRED
-	ResourceType UserPermissionGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType UserPermissionGetResourceTypeAttributeType `json:"resourceType" required:"true"`
 }
 
 type _UserPermission UserPermission

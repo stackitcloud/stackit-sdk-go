@@ -102,11 +102,11 @@ func setMembersResponseGetWrittenAtAttributeType(arg *MembersResponseGetWrittenA
 // MembersResponse struct for MembersResponse
 type MembersResponse struct {
 	// REQUIRED
-	Members MembersResponseGetMembersAttributeType `json:"members"`
+	Members MembersResponseGetMembersAttributeType `json:"members" required:"true"`
 	// REQUIRED
-	ResourceId MembersResponseGetResourceIdAttributeType `json:"resourceId"`
+	ResourceId MembersResponseGetResourceIdAttributeType `json:"resourceId" required:"true"`
 	// REQUIRED
-	ResourceType MembersResponseGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType MembersResponseGetResourceTypeAttributeType `json:"resourceType" required:"true"`
 	WrittenAt    MembersResponseGetWrittenAtAttributeType    `json:"writtenAt,omitempty"`
 }
 

@@ -124,15 +124,15 @@ func setErrorResponseGetTimeStampAttributeType(arg *ErrorResponseGetTimeStampAtt
 // ErrorResponse struct for ErrorResponse
 type ErrorResponse struct {
 	// REQUIRED
-	Error ErrorResponseGetErrorAttributeType `json:"error"`
+	Error ErrorResponseGetErrorAttributeType `json:"error" required:"true"`
 	// REQUIRED
-	Message ErrorResponseGetMessageAttributeType `json:"message"`
+	Message ErrorResponseGetMessageAttributeType `json:"message" required:"true"`
 	// REQUIRED
-	Path ErrorResponseGetPathAttributeType `json:"path"`
+	Path ErrorResponseGetPathAttributeType `json:"path" required:"true"`
 	// REQUIRED
-	Status ErrorResponseGetStatusAttributeType `json:"status"`
+	Status ErrorResponseGetStatusAttributeType `json:"status" required:"true"`
 	// REQUIRED
-	TimeStamp ErrorResponseGetTimeStampAttributeType `json:"timeStamp"`
+	TimeStamp ErrorResponseGetTimeStampAttributeType `json:"timeStamp" required:"true"`
 }
 
 type _ErrorResponse ErrorResponse

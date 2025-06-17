@@ -40,7 +40,7 @@ func setListUserPermissionsResponseGetItemsAttributeType(arg *ListUserPermission
 // ListUserPermissionsResponse struct for ListUserPermissionsResponse
 type ListUserPermissionsResponse struct {
 	// REQUIRED
-	Items ListUserPermissionsResponseGetItemsAttributeType `json:"items"`
+	Items ListUserPermissionsResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _ListUserPermissionsResponse ListUserPermissionsResponse

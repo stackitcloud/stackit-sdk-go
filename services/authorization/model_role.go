@@ -103,12 +103,12 @@ func setRoleGetPermissionsAttributeType(arg *RoleGetPermissionsAttributeType, va
 // Role struct for Role
 type Role struct {
 	// REQUIRED
-	Description RoleGetDescriptionAttributeType `json:"description"`
+	Description RoleGetDescriptionAttributeType `json:"description" required:"true"`
 	Id          RoleGetIdAttributeType          `json:"id,omitempty"`
 	// REQUIRED
-	Name RoleGetNameAttributeType `json:"name"`
+	Name RoleGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Permissions RoleGetPermissionsAttributeType `json:"permissions"`
+	Permissions RoleGetPermissionsAttributeType `json:"permissions" required:"true"`
 }
 
 type _Role Role
