@@ -58,6 +58,27 @@ func setCreateDistributionPayloadGetBlockedIPsAttributeType(arg *CreateDistribut
 }
 
 /*
+	types and functions for defaultCacheDuration
+*/
+
+// isNotNullableString
+type CreateDistributionPayloadGetDefaultCacheDurationAttributeType = *string
+
+func getCreateDistributionPayloadGetDefaultCacheDurationAttributeTypeOk(arg CreateDistributionPayloadGetDefaultCacheDurationAttributeType) (ret CreateDistributionPayloadGetDefaultCacheDurationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetDefaultCacheDurationAttributeType(arg *CreateDistributionPayloadGetDefaultCacheDurationAttributeType, val CreateDistributionPayloadGetDefaultCacheDurationRetType) {
+	*arg = &val
+}
+
+type CreateDistributionPayloadGetDefaultCacheDurationArgType = string
+type CreateDistributionPayloadGetDefaultCacheDurationRetType = string
+
+/*
 	types and functions for intentId
 */
 
@@ -185,6 +206,8 @@ type CreateDistributionPayload struct {
 	BlockedCountries CreateDistributionPayloadGetBlockedCountriesAttributeType `json:"blockedCountries,omitempty"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIPs CreateDistributionPayloadGetBlockedIPsAttributeType `json:"blockedIPs,omitempty"`
+	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	DefaultCacheDuration CreateDistributionPayloadGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId CreateDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
@@ -265,6 +288,29 @@ func (o *CreateDistributionPayload) HasBlockedIPs() bool {
 // SetBlockedIPs gets a reference to the given []string and assigns it to the BlockedIPs field.
 func (o *CreateDistributionPayload) SetBlockedIPs(v CreateDistributionPayloadGetBlockedIPsRetType) {
 	setCreateDistributionPayloadGetBlockedIPsAttributeType(&o.BlockedIPs, v)
+}
+
+// GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetDefaultCacheDuration() (res CreateDistributionPayloadGetDefaultCacheDurationRetType) {
+	res, _ = o.GetDefaultCacheDurationOk()
+	return
+}
+
+// GetDefaultCacheDurationOk returns a tuple with the DefaultCacheDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetDefaultCacheDurationOk() (ret CreateDistributionPayloadGetDefaultCacheDurationRetType, ok bool) {
+	return getCreateDistributionPayloadGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration)
+}
+
+// HasDefaultCacheDuration returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasDefaultCacheDuration() bool {
+	_, ok := o.GetDefaultCacheDurationOk()
+	return ok
+}
+
+// SetDefaultCacheDuration gets a reference to the given string and assigns it to the DefaultCacheDuration field.
+func (o *CreateDistributionPayload) SetDefaultCacheDuration(v CreateDistributionPayloadGetDefaultCacheDurationRetType) {
+	setCreateDistributionPayloadGetDefaultCacheDurationAttributeType(&o.DefaultCacheDuration, v)
 }
 
 // GetIntentId returns the IntentId field value if set, zero value otherwise.
@@ -400,6 +446,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetBlockedIPsAttributeTypeOk(o.BlockedIPs); ok {
 		toSerialize["BlockedIPs"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
+		toSerialize["DefaultCacheDuration"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {
 		toSerialize["IntentId"] = val
