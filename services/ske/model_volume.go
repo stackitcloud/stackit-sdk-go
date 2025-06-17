@@ -62,7 +62,7 @@ type VolumeGetTypeRetType = string
 type Volume struct {
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Size VolumeGetSizeAttributeType `json:"size"`
+	Size VolumeGetSizeAttributeType `json:"size" required:"true"`
 	// For valid values please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `volumeTypes`.
 	Type VolumeGetTypeAttributeType `json:"type,omitempty"`
 }

@@ -62,10 +62,10 @@ func setArgusgetEnabledAttributeType(arg *ArgusgetEnabledAttributeType, val Argu
 type Argus struct {
 	// Argus instance ID to choose which Argus instance is used.
 	// REQUIRED
-	ArgusInstanceId ArgusGetArgusInstanceIdAttributeType `json:"argusInstanceId"`
+	ArgusInstanceId ArgusGetArgusInstanceIdAttributeType `json:"argusInstanceId" required:"true"`
 	// Enables the argus extension.
 	// REQUIRED
-	Enabled ArgusgetEnabledAttributeType `json:"enabled"`
+	Enabled ArgusgetEnabledAttributeType `json:"enabled" required:"true"`
 }
 
 type _Argus Argus
