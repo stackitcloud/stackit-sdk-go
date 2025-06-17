@@ -41,7 +41,7 @@ func setResizeVolumePayloadGetSizeAttributeType(arg *ResizeVolumePayloadGetSizeA
 type ResizeVolumePayload struct {
 	// Size in Gigabyte.
 	// REQUIRED
-	Size ResizeVolumePayloadGetSizeAttributeType `json:"size"`
+	Size ResizeVolumePayloadGetSizeAttributeType `json:"size" required:"true"`
 }
 
 type _ResizeVolumePayload ResizeVolumePayload
