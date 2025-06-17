@@ -40,7 +40,7 @@ func setListInstancesGetInstancesAttributeType(arg *ListInstancesGetInstancesAtt
 // ListInstances A list of STACKIT Git instances.
 type ListInstances struct {
 	// REQUIRED
-	Instances ListInstancesGetInstancesAttributeType `json:"instances"`
+	Instances ListInstancesGetInstancesAttributeType `json:"instances" required:"true"`
 }
 
 type _ListInstances ListInstances
