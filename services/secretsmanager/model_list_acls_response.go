@@ -40,7 +40,7 @@ func setListACLsResponseGetAclsAttributeType(arg *ListACLsResponseGetAclsAttribu
 // ListACLsResponse struct for ListACLsResponse
 type ListACLsResponse struct {
 	// REQUIRED
-	Acls ListACLsResponseGetAclsAttributeType `json:"acls"`
+	Acls ListACLsResponseGetAclsAttributeType `json:"acls" required:"true"`
 }
 
 type _ListACLsResponse ListACLsResponse

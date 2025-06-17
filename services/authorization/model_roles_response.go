@@ -82,11 +82,11 @@ func setRolesResponseGetRolesAttributeType(arg *RolesResponseGetRolesAttributeTy
 // RolesResponse struct for RolesResponse
 type RolesResponse struct {
 	// REQUIRED
-	ResourceId RolesResponseGetResourceIdAttributeType `json:"resourceId"`
+	ResourceId RolesResponseGetResourceIdAttributeType `json:"resourceId" required:"true"`
 	// REQUIRED
-	ResourceType RolesResponseGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType RolesResponseGetResourceTypeAttributeType `json:"resourceType" required:"true"`
 	// REQUIRED
-	Roles RolesResponseGetRolesAttributeType `json:"roles"`
+	Roles RolesResponseGetRolesAttributeType `json:"roles" required:"true"`
 }
 
 type _RolesResponse RolesResponse

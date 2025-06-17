@@ -62,7 +62,7 @@ type CloneInstancePayloadGetTimestampRetType = string
 // CloneInstancePayload struct for CloneInstancePayload
 type CloneInstancePayload struct {
 	// REQUIRED
-	InstanceId CloneInstancePayloadGetInstanceIdAttributeType `json:"instanceId"`
+	InstanceId CloneInstancePayloadGetInstanceIdAttributeType `json:"instanceId" required:"true"`
 	Timestamp  CloneInstancePayloadGetTimestampAttributeType  `json:"timestamp,omitempty"`
 }
 

@@ -85,7 +85,7 @@ type CreateBackupPayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name CreateBackupPayloadGetNameAttributeType `json:"name,omitempty"`
 	// REQUIRED
-	Source CreateBackupPayloadGetSourceAttributeType `json:"source"`
+	Source CreateBackupPayloadGetSourceAttributeType `json:"source" required:"true"`
 }
 
 type _CreateBackupPayload CreateBackupPayload

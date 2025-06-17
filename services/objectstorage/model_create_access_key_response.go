@@ -147,22 +147,22 @@ type CreateAccessKeyResponseGetSecretAccessKeyRetType = string
 type CreateAccessKeyResponse struct {
 	// Access key
 	// REQUIRED
-	AccessKey CreateAccessKeyResponseGetAccessKeyAttributeType `json:"accessKey"`
+	AccessKey CreateAccessKeyResponseGetAccessKeyAttributeType `json:"accessKey" required:"true"`
 	// Obfuscated access key
 	// REQUIRED
-	DisplayName CreateAccessKeyResponseGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName CreateAccessKeyResponseGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// Expiration date. Null means never expires.
 	// REQUIRED
-	Expires CreateAccessKeyResponseGetExpiresAttributeType `json:"expires"`
+	Expires CreateAccessKeyResponseGetExpiresAttributeType `json:"expires" required:"true"`
 	// Identifies the pair of access key and secret access key for deletion
 	// REQUIRED
-	KeyId CreateAccessKeyResponseGetKeyIdAttributeType `json:"keyId"`
+	KeyId CreateAccessKeyResponseGetKeyIdAttributeType `json:"keyId" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project CreateAccessKeyResponseGetProjectAttributeType `json:"project"`
+	Project CreateAccessKeyResponseGetProjectAttributeType `json:"project" required:"true"`
 	// Secret access key
 	// REQUIRED
-	SecretAccessKey CreateAccessKeyResponseGetSecretAccessKeyAttributeType `json:"secretAccessKey"`
+	SecretAccessKey CreateAccessKeyResponseGetSecretAccessKeyAttributeType `json:"secretAccessKey" required:"true"`
 }
 
 type _CreateAccessKeyResponse CreateAccessKeyResponse

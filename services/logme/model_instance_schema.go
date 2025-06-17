@@ -60,9 +60,9 @@ func setInstanceSchemaGetUpdateAttributeType(arg *InstanceSchemaGetUpdateAttribu
 // InstanceSchema struct for InstanceSchema
 type InstanceSchema struct {
 	// REQUIRED
-	Create InstanceSchemaGetCreateAttributeType `json:"create"`
+	Create InstanceSchemaGetCreateAttributeType `json:"create" required:"true"`
 	// REQUIRED
-	Update InstanceSchemaGetUpdateAttributeType `json:"update"`
+	Update InstanceSchemaGetUpdateAttributeType `json:"update" required:"true"`
 }
 
 type _InstanceSchema InstanceSchema

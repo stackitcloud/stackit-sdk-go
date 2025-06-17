@@ -63,7 +63,7 @@ type CreateScrapeConfigPayloadStaticConfigsInner struct {
 	Labels CreateScrapeConfigPayloadStaticConfigsInnerGetLabelsAttributeType `json:"labels,omitempty"`
 	// The targets specified by the static config.
 	// REQUIRED
-	Targets CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType `json:"targets"`
+	Targets CreateScrapeConfigPayloadStaticConfigsInnerGetTargetsAttributeType `json:"targets" required:"true"`
 }
 
 type _CreateScrapeConfigPayloadStaticConfigsInner CreateScrapeConfigPayloadStaticConfigsInner

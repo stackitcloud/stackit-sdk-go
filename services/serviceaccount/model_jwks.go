@@ -40,7 +40,7 @@ func setJWKSGetKeysAttributeType(arg *JWKSGetKeysAttributeType, val JWKSGetKeysR
 // JWKS struct for JWKS
 type JWKS struct {
 	// REQUIRED
-	Keys JWKSGetKeysAttributeType `json:"keys"`
+	Keys JWKSGetKeysAttributeType `json:"keys" required:"true"`
 }
 
 type _JWKS JWKS

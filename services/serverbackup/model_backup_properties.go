@@ -82,11 +82,11 @@ func setBackupPropertiesGetVolumeIdsAttributeType(arg *BackupPropertiesGetVolume
 type BackupProperties struct {
 	// Max 255 characters
 	// REQUIRED
-	Name BackupPropertiesGetNameAttributeType `json:"name"`
+	Name BackupPropertiesGetNameAttributeType `json:"name" required:"true"`
 	// Values are set in days (1-36500)
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	RetentionPeriod BackupPropertiesGetRetentionPeriodAttributeType `json:"retentionPeriod"`
+	RetentionPeriod BackupPropertiesGetRetentionPeriodAttributeType `json:"retentionPeriod" required:"true"`
 	VolumeIds       BackupPropertiesGetVolumeIdsAttributeType       `json:"volumeIds,omitempty"`
 }
 

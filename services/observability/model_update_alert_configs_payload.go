@@ -103,9 +103,9 @@ type UpdateAlertConfigsPayload struct {
 	InhibitRules UpdateAlertConfigsPayloadGetInhibitRulesAttributeType `json:"inhibitRules,omitempty"`
 	// A list of notification receivers.
 	// REQUIRED
-	Receivers UpdateAlertConfigsPayloadGetReceiversAttributeType `json:"receivers"`
+	Receivers UpdateAlertConfigsPayloadGetReceiversAttributeType `json:"receivers" required:"true"`
 	// REQUIRED
-	Route UpdateAlertConfigsPayloadGetRouteAttributeType `json:"route"`
+	Route UpdateAlertConfigsPayloadGetRouteAttributeType `json:"route" required:"true"`
 }
 
 type _UpdateAlertConfigsPayload UpdateAlertConfigsPayload

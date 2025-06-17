@@ -60,9 +60,9 @@ func setQuotaListRamGetUsageAttributeType(arg *QuotaListRamGetUsageAttributeType
 // QuotaListRam Amount of server RAM in MiB.
 type QuotaListRam struct {
 	// REQUIRED
-	Limit QuotaListRamGetLimitAttributeType `json:"limit"`
+	Limit QuotaListRamGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListRamGetUsageAttributeType `json:"usage"`
+	Usage QuotaListRamGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListRam QuotaListRam

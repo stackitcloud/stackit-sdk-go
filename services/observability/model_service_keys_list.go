@@ -83,9 +83,9 @@ type ServiceKeysListGetNameRetType = string
 type ServiceKeysList struct {
 	CredentialsInfo ServiceKeysListGetCredentialsInfoAttributeType `json:"credentialsInfo,omitempty"`
 	// REQUIRED
-	Id ServiceKeysListGetIdAttributeType `json:"id"`
+	Id ServiceKeysListGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Name ServiceKeysListGetNameAttributeType `json:"name"`
+	Name ServiceKeysListGetNameAttributeType `json:"name" required:"true"`
 }
 
 type _ServiceKeysList ServiceKeysList

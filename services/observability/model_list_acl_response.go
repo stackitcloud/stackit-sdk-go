@@ -61,9 +61,9 @@ type ListACLResponseGetMessageRetType = string
 // ListACLResponse struct for ListACLResponse
 type ListACLResponse struct {
 	// REQUIRED
-	Acl ListACLResponseGetAclAttributeType `json:"acl"`
+	Acl ListACLResponseGetAclAttributeType `json:"acl" required:"true"`
 	// REQUIRED
-	Message ListACLResponseGetMessageAttributeType `json:"message"`
+	Message ListACLResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _ListACLResponse ListACLResponse

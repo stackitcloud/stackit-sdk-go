@@ -104,13 +104,13 @@ type UserMembershipGetSubjectRetType = string
 // UserMembership struct for UserMembership
 type UserMembership struct {
 	// REQUIRED
-	ResourceId UserMembershipGetResourceIdAttributeType `json:"resourceId"`
+	ResourceId UserMembershipGetResourceIdAttributeType `json:"resourceId" required:"true"`
 	// REQUIRED
-	ResourceType UserMembershipGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType UserMembershipGetResourceTypeAttributeType `json:"resourceType" required:"true"`
 	// REQUIRED
-	Role UserMembershipGetRoleAttributeType `json:"role"`
+	Role UserMembershipGetRoleAttributeType `json:"role" required:"true"`
 	// REQUIRED
-	Subject UserMembershipGetSubjectAttributeType `json:"subject"`
+	Subject UserMembershipGetSubjectAttributeType `json:"subject" required:"true"`
 }
 
 type _UserMembership UserMembership

@@ -536,37 +536,37 @@ type RecordSet struct {
 	Comment RecordSetGetCommentAttributeType `json:"comment,omitempty"`
 	// when record set creation finished
 	// REQUIRED
-	CreationFinished RecordSetGetCreationFinishedAttributeType `json:"creationFinished"`
+	CreationFinished RecordSetGetCreationFinishedAttributeType `json:"creationFinished" required:"true"`
 	// when record set creation started
 	// REQUIRED
-	CreationStarted RecordSetGetCreationStartedAttributeType `json:"creationStarted"`
+	CreationStarted RecordSetGetCreationStartedAttributeType `json:"creationStarted" required:"true"`
 	// Error shows error in case create/update/delete failed
 	Error RecordSetGetErrorAttributeType `json:"error,omitempty"`
 	// rr set id
 	// REQUIRED
-	Id RecordSetGetIdAttributeType `json:"id"`
+	Id RecordSetGetIdAttributeType `json:"id" required:"true"`
 	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4
 	// REQUIRED
-	Name RecordSetGetNameAttributeType `json:"name"`
+	Name RecordSetGetNameAttributeType `json:"name" required:"true"`
 	// records
 	// REQUIRED
-	Records RecordSetGetRecordsAttributeType `json:"records"`
+	Records RecordSetGetRecordsAttributeType `json:"records" required:"true"`
 	// record set state
 	// REQUIRED
-	State RecordSetGetStateAttributeType `json:"state"`
+	State RecordSetGetStateAttributeType `json:"state" required:"true"`
 	// time to live
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Ttl RecordSetGetTtlAttributeType `json:"ttl"`
+	Ttl RecordSetGetTtlAttributeType `json:"ttl" required:"true"`
 	// record set type
 	// REQUIRED
-	Type RecordSetGetTypeAttributeType `json:"type"`
+	Type RecordSetGetTypeAttributeType `json:"type" required:"true"`
 	// when record set update/deletion finished
 	// REQUIRED
-	UpdateFinished RecordSetGetUpdateFinishedAttributeType `json:"updateFinished"`
+	UpdateFinished RecordSetGetUpdateFinishedAttributeType `json:"updateFinished" required:"true"`
 	// when record set update/deletion started
 	// REQUIRED
-	UpdateStarted RecordSetGetUpdateStartedAttributeType `json:"updateStarted"`
+	UpdateStarted RecordSetGetUpdateStartedAttributeType `json:"updateStarted" required:"true"`
 }
 
 type _RecordSet RecordSet

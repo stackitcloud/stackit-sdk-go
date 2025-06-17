@@ -153,7 +153,7 @@ type CreateKeyPairPayload struct {
 	Name CreateKeyPairPayloadGetNameAttributeType `json:"name,omitempty"`
 	// Object that represents a public SSH key.
 	// REQUIRED
-	PublicKey CreateKeyPairPayloadGetPublicKeyAttributeType `json:"publicKey"`
+	PublicKey CreateKeyPairPayloadGetPublicKeyAttributeType `json:"publicKey" required:"true"`
 	// Date-time when resource was last updated.
 	UpdatedAt CreateKeyPairPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }

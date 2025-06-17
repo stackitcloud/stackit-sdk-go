@@ -62,7 +62,7 @@ type CreateUpdatePayload struct {
 	BackupBeforeUpdate CreateUpdatePayloadgetBackupBeforeUpdateAttributeType `json:"backupBeforeUpdate,omitempty"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	MaintenanceWindow CreateUpdatePayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow"`
+	MaintenanceWindow CreateUpdatePayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow" required:"true"`
 }
 
 type _CreateUpdatePayload CreateUpdatePayload

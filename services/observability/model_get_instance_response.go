@@ -412,26 +412,26 @@ func setGetInstanceResponseGetStatusAttributeType(arg *GetInstanceResponseGetSta
 // GetInstanceResponse struct for GetInstanceResponse
 type GetInstanceResponse struct {
 	// REQUIRED
-	DashboardUrl GetInstanceResponseGetDashboardUrlAttributeType `json:"dashboardUrl"`
+	DashboardUrl GetInstanceResponseGetDashboardUrlAttributeType `json:"dashboardUrl" required:"true"`
 	Error        GetInstanceResponseGetErrorAttributeType        `json:"error,omitempty"`
 	// REQUIRED
-	Id GetInstanceResponseGetIdAttributeType `json:"id"`
+	Id GetInstanceResponseGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Instance    GetInstanceResponseGetInstanceAttributeType    `json:"instance"`
+	Instance    GetInstanceResponseGetInstanceAttributeType    `json:"instance" required:"true"`
 	IsUpdatable GetInstanceResponsegetIsUpdatableAttributeType `json:"isUpdatable,omitempty"`
 	// REQUIRED
-	Message    GetInstanceResponseGetMessageAttributeType    `json:"message"`
+	Message    GetInstanceResponseGetMessageAttributeType    `json:"message" required:"true"`
 	Name       GetInstanceResponseGetNameAttributeType       `json:"name,omitempty"`
 	Parameters GetInstanceResponseGetParametersAttributeType `json:"parameters,omitempty"`
 	// REQUIRED
-	PlanId GetInstanceResponseGetPlanIdAttributeType `json:"planId"`
+	PlanId GetInstanceResponseGetPlanIdAttributeType `json:"planId" required:"true"`
 	// REQUIRED
-	PlanName   GetInstanceResponseGetPlanNameAttributeType   `json:"planName"`
+	PlanName   GetInstanceResponseGetPlanNameAttributeType   `json:"planName" required:"true"`
 	PlanSchema GetInstanceResponseGetPlanSchemaAttributeType `json:"planSchema,omitempty"`
 	// REQUIRED
-	ServiceName GetInstanceResponseGetServiceNameAttributeType `json:"serviceName"`
+	ServiceName GetInstanceResponseGetServiceNameAttributeType `json:"serviceName" required:"true"`
 	// REQUIRED
-	Status GetInstanceResponseGetStatusAttributeType `json:"status"`
+	Status GetInstanceResponseGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _GetInstanceResponse GetInstanceResponse

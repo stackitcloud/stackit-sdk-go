@@ -82,9 +82,9 @@ type CreateUserPayloadGetUsernameRetType = string
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
 	// REQUIRED
-	Database CreateUserPayloadGetDatabaseAttributeType `json:"database"`
+	Database CreateUserPayloadGetDatabaseAttributeType `json:"database" required:"true"`
 	// REQUIRED
-	Roles    CreateUserPayloadGetRolesAttributeType    `json:"roles"`
+	Roles    CreateUserPayloadGetRolesAttributeType    `json:"roles" required:"true"`
 	Username CreateUserPayloadGetUsernameAttributeType `json:"username,omitempty"`
 }
 

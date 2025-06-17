@@ -82,11 +82,11 @@ type ValidationErrorGetTypeRetType = string
 // ValidationError struct for ValidationError
 type ValidationError struct {
 	// REQUIRED
-	Loc ValidationErrorGetLocAttributeType `json:"loc"`
+	Loc ValidationErrorGetLocAttributeType `json:"loc" required:"true"`
 	// REQUIRED
-	Msg ValidationErrorGetMsgAttributeType `json:"msg"`
+	Msg ValidationErrorGetMsgAttributeType `json:"msg" required:"true"`
 	// REQUIRED
-	Type ValidationErrorGetTypeAttributeType `json:"type"`
+	Type ValidationErrorGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _ValidationError ValidationError

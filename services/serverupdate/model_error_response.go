@@ -63,10 +63,10 @@ type ErrorResponseGetStatusRetType = string
 type ErrorResponse struct {
 	// Details about the error
 	// REQUIRED
-	Message ErrorResponseGetMessageAttributeType `json:"message"`
+	Message ErrorResponseGetMessageAttributeType `json:"message" required:"true"`
 	// The string representation of the http status code (i.e. Not Found, Bad Request, etc)
 	// REQUIRED
-	Status ErrorResponseGetStatusAttributeType `json:"status"`
+	Status ErrorResponseGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _ErrorResponse ErrorResponse

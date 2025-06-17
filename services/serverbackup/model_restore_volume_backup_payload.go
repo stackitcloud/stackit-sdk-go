@@ -41,7 +41,7 @@ type RestoreVolumeBackupPayloadGetRestoreVolumeIdRetType = string
 // RestoreVolumeBackupPayload struct for RestoreVolumeBackupPayload
 type RestoreVolumeBackupPayload struct {
 	// REQUIRED
-	RestoreVolumeId RestoreVolumeBackupPayloadGetRestoreVolumeIdAttributeType `json:"restoreVolumeId"`
+	RestoreVolumeId RestoreVolumeBackupPayloadGetRestoreVolumeIdAttributeType `json:"restoreVolumeId" required:"true"`
 }
 
 type _RestoreVolumeBackupPayload RestoreVolumeBackupPayload

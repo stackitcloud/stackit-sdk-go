@@ -41,7 +41,7 @@ func setPublicIpListResponseGetItemsAttributeType(arg *PublicIpListResponseGetIt
 type PublicIpListResponse struct {
 	// A list of public IPs.
 	// REQUIRED
-	Items PublicIpListResponseGetItemsAttributeType `json:"items"`
+	Items PublicIpListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _PublicIpListResponse PublicIpListResponse

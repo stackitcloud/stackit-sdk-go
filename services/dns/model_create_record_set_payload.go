@@ -268,16 +268,16 @@ type CreateRecordSetPayload struct {
 	Comment CreateRecordSetPayloadGetCommentAttributeType `json:"comment,omitempty"`
 	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4
 	// REQUIRED
-	Name CreateRecordSetPayloadGetNameAttributeType `json:"name"`
+	Name CreateRecordSetPayloadGetNameAttributeType `json:"name" required:"true"`
 	// records
 	// REQUIRED
-	Records CreateRecordSetPayloadGetRecordsAttributeType `json:"records"`
+	Records CreateRecordSetPayloadGetRecordsAttributeType `json:"records" required:"true"`
 	// time to live. If nothing provided we will set the zone ttl.
 	// Can be cast to int32 without loss of precision.
 	Ttl CreateRecordSetPayloadGetTtlAttributeType `json:"ttl,omitempty"`
 	// record set type
 	// REQUIRED
-	Type CreateRecordSetPayloadGetTypeAttributeType `json:"type"`
+	Type CreateRecordSetPayloadGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _CreateRecordSetPayload CreateRecordSetPayload

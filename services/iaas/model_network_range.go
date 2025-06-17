@@ -108,7 +108,7 @@ type NetworkRange struct {
 	NetworkRangeId NetworkRangeGetNetworkRangeIdAttributeType `json:"networkRangeId,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	Prefix NetworkRangeGetPrefixAttributeType `json:"prefix"`
+	Prefix NetworkRangeGetPrefixAttributeType `json:"prefix" required:"true"`
 	// Date-time when resource was last updated.
 	UpdatedAt NetworkRangeGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }

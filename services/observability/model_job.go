@@ -455,7 +455,7 @@ type Job struct {
 	HonorTimeStamps JobgetHonorTimeStampsAttributeType `json:"honorTimeStamps,omitempty"`
 	HttpSdConfigs   JobGetHttpSdConfigsAttributeType   `json:"httpSdConfigs,omitempty"`
 	// REQUIRED
-	JobName               JobGetJobNameAttributeType               `json:"jobName"`
+	JobName               JobGetJobNameAttributeType               `json:"jobName" required:"true"`
 	MetricsPath           JobGetMetricsPathAttributeType           `json:"metricsPath,omitempty"`
 	MetricsRelabelConfigs JobGetMetricsRelabelConfigsAttributeType `json:"metricsRelabelConfigs,omitempty"`
 	Oauth2                JobGetOauth2AttributeType                `json:"oauth2,omitempty"`
@@ -463,11 +463,11 @@ type Job struct {
 	SampleLimit           JobGetSampleLimitAttributeType           `json:"sampleLimit,omitempty"`
 	Scheme                JobGetSchemeAttributeType                `json:"scheme,omitempty"`
 	// REQUIRED
-	ScrapeInterval JobGetScrapeIntervalAttributeType `json:"scrapeInterval"`
+	ScrapeInterval JobGetScrapeIntervalAttributeType `json:"scrapeInterval" required:"true"`
 	// REQUIRED
-	ScrapeTimeout JobGetScrapeTimeoutAttributeType `json:"scrapeTimeout"`
+	ScrapeTimeout JobGetScrapeTimeoutAttributeType `json:"scrapeTimeout" required:"true"`
 	// REQUIRED
-	StaticConfigs JobGetStaticConfigsAttributeType `json:"staticConfigs"`
+	StaticConfigs JobGetStaticConfigsAttributeType `json:"staticConfigs" required:"true"`
 	TlsConfig     JobGetTlsConfigAttributeType     `json:"tlsConfig,omitempty"`
 }
 

@@ -63,10 +63,10 @@ type ACLGetIdRetType = string
 type ACL struct {
 	// The given IP/IP Range that is permitted to access.
 	// REQUIRED
-	Cidr ACLGetCidrAttributeType `json:"cidr"`
+	Cidr ACLGetCidrAttributeType `json:"cidr" required:"true"`
 	// A auto generated unique id which identifies the acl.
 	// REQUIRED
-	Id ACLGetIdAttributeType `json:"id"`
+	Id ACLGetIdAttributeType `json:"id" required:"true"`
 }
 
 type _ACL ACL

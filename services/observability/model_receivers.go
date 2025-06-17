@@ -102,7 +102,7 @@ func setReceiversGetWebHookConfigsAttributeType(arg *ReceiversGetWebHookConfigsA
 type Receivers struct {
 	EmailConfigs ReceiversGetEmailConfigsAttributeType `json:"emailConfigs,omitempty"`
 	// REQUIRED
-	Name            ReceiversGetNameAttributeType            `json:"name"`
+	Name            ReceiversGetNameAttributeType            `json:"name" required:"true"`
 	OpsgenieConfigs ReceiversGetOpsgenieConfigsAttributeType `json:"opsgenieConfigs,omitempty"`
 	WebHookConfigs  ReceiversGetWebHookConfigsAttributeType  `json:"webHookConfigs,omitempty"`
 }

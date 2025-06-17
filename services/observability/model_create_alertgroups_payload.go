@@ -85,10 +85,10 @@ type CreateAlertgroupsPayload struct {
 	Interval CreateAlertgroupsPayloadGetIntervalAttributeType `json:"interval,omitempty"`
 	// The name of the group. Must be unique. `Additional Validators:` * is the identifier and so unique * should only include the characters: a-zA-Z0-9-
 	// REQUIRED
-	Name CreateAlertgroupsPayloadGetNameAttributeType `json:"name"`
+	Name CreateAlertgroupsPayloadGetNameAttributeType `json:"name" required:"true"`
 	// rules for the alert group
 	// REQUIRED
-	Rules CreateAlertgroupsPayloadGetRulesAttributeType `json:"rules"`
+	Rules CreateAlertgroupsPayloadGetRulesAttributeType `json:"rules" required:"true"`
 }
 
 type _CreateAlertgroupsPayload CreateAlertgroupsPayload

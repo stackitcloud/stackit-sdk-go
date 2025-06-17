@@ -83,11 +83,11 @@ type CreateInstanceResponseGetMessageRetType = string
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
 	// REQUIRED
-	DashboardUrl CreateInstanceResponseGetDashboardUrlAttributeType `json:"dashboardUrl"`
+	DashboardUrl CreateInstanceResponseGetDashboardUrlAttributeType `json:"dashboardUrl" required:"true"`
 	// REQUIRED
-	InstanceId CreateInstanceResponseGetInstanceIdAttributeType `json:"instanceId"`
+	InstanceId CreateInstanceResponseGetInstanceIdAttributeType `json:"instanceId" required:"true"`
 	// REQUIRED
-	Message CreateInstanceResponseGetMessageAttributeType `json:"message"`
+	Message CreateInstanceResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _CreateInstanceResponse CreateInstanceResponse

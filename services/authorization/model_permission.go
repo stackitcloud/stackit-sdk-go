@@ -62,9 +62,9 @@ type PermissionGetNameRetType = string
 // Permission struct for Permission
 type Permission struct {
 	// REQUIRED
-	Description PermissionGetDescriptionAttributeType `json:"description"`
+	Description PermissionGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	Name PermissionGetNameAttributeType `json:"name"`
+	Name PermissionGetNameAttributeType `json:"name" required:"true"`
 }
 
 type _Permission Permission

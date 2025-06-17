@@ -61,9 +61,9 @@ type AlertGroupResponseGetMessageRetType = string
 // AlertGroupResponse struct for AlertGroupResponse
 type AlertGroupResponse struct {
 	// REQUIRED
-	Data AlertGroupResponseGetDataAttributeType `json:"data"`
+	Data AlertGroupResponseGetDataAttributeType `json:"data" required:"true"`
 	// REQUIRED
-	Message AlertGroupResponseGetMessageAttributeType `json:"message"`
+	Message AlertGroupResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _AlertGroupResponse AlertGroupResponse

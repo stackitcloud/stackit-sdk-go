@@ -40,7 +40,7 @@ func setAuthErrorGetErrorAttributeType(arg *AuthErrorGetErrorAttributeType, val 
 // AuthError struct for AuthError
 type AuthError struct {
 	// REQUIRED
-	Error AuthErrorGetErrorAttributeType `json:"error"`
+	Error AuthErrorGetErrorAttributeType `json:"error" required:"true"`
 }
 
 type _AuthError AuthError

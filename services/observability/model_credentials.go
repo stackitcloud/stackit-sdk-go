@@ -62,9 +62,9 @@ type CredentialsGetUsernameRetType = string
 // Credentials struct for Credentials
 type Credentials struct {
 	// REQUIRED
-	Password CredentialsGetPasswordAttributeType `json:"password"`
+	Password CredentialsGetPasswordAttributeType `json:"password" required:"true"`
 	// REQUIRED
-	Username CredentialsGetUsernameAttributeType `json:"username"`
+	Username CredentialsGetUsernameAttributeType `json:"username" required:"true"`
 }
 
 type _Credentials Credentials

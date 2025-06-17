@@ -62,9 +62,9 @@ type ExistingPermissionGetNameRetType = string
 // ExistingPermission struct for ExistingPermission
 type ExistingPermission struct {
 	// REQUIRED
-	Description ExistingPermissionGetDescriptionAttributeType `json:"description"`
+	Description ExistingPermissionGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	Name ExistingPermissionGetNameAttributeType `json:"name"`
+	Name ExistingPermissionGetNameAttributeType `json:"name" required:"true"`
 }
 
 type _ExistingPermission ExistingPermission

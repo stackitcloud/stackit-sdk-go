@@ -122,16 +122,16 @@ func setListRecordSetsResponseGetTotalPagesAttributeType(arg *ListRecordSetsResp
 type ListRecordSetsResponse struct {
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	ItemsPerPage ListRecordSetsResponseGetItemsPerPageAttributeType `json:"itemsPerPage"`
+	ItemsPerPage ListRecordSetsResponseGetItemsPerPageAttributeType `json:"itemsPerPage" required:"true"`
 	Message      ListRecordSetsResponseGetMessageAttributeType      `json:"message,omitempty"`
 	// REQUIRED
-	RrSets ListRecordSetsResponseGetRrSetsAttributeType `json:"rrSets"`
+	RrSets ListRecordSetsResponseGetRrSetsAttributeType `json:"rrSets" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalItems ListRecordSetsResponseGetTotalItemsAttributeType `json:"totalItems"`
+	TotalItems ListRecordSetsResponseGetTotalItemsAttributeType `json:"totalItems" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalPages ListRecordSetsResponseGetTotalPagesAttributeType `json:"totalPages"`
+	TotalPages ListRecordSetsResponseGetTotalPagesAttributeType `json:"totalPages" required:"true"`
 }
 
 type _ListRecordSetsResponse ListRecordSetsResponse

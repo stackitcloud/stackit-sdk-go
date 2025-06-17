@@ -62,7 +62,7 @@ func setZoneResponseGetZoneAttributeType(arg *ZoneResponseGetZoneAttributeType, 
 type ZoneResponse struct {
 	Message ZoneResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Zone ZoneResponseGetZoneAttributeType `json:"zone"`
+	Zone ZoneResponseGetZoneAttributeType `json:"zone" required:"true"`
 }
 
 type _ZoneResponse ZoneResponse

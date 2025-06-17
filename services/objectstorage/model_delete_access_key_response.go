@@ -63,10 +63,10 @@ type DeleteAccessKeyResponseGetProjectRetType = string
 type DeleteAccessKeyResponse struct {
 	// Identifies the pair of access key and secret access key for deletion
 	// REQUIRED
-	KeyId DeleteAccessKeyResponseGetKeyIdAttributeType `json:"keyId"`
+	KeyId DeleteAccessKeyResponseGetKeyIdAttributeType `json:"keyId" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project DeleteAccessKeyResponseGetProjectAttributeType `json:"project"`
+	Project DeleteAccessKeyResponseGetProjectAttributeType `json:"project" required:"true"`
 }
 
 type _DeleteAccessKeyResponse DeleteAccessKeyResponse

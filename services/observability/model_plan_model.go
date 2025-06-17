@@ -404,40 +404,40 @@ func setPlanModelGetTracesStorageAttributeType(arg *PlanModelGetTracesStorageAtt
 // PlanModel struct for PlanModel
 type PlanModel struct {
 	// REQUIRED
-	AlertMatchers PlanModelGetAlertMatchersAttributeType `json:"alertMatchers"`
+	AlertMatchers PlanModelGetAlertMatchersAttributeType `json:"alertMatchers" required:"true"`
 	// REQUIRED
-	AlertReceivers PlanModelGetAlertReceiversAttributeType `json:"alertReceivers"`
+	AlertReceivers PlanModelGetAlertReceiversAttributeType `json:"alertReceivers" required:"true"`
 	// REQUIRED
-	AlertRules PlanModelGetAlertRulesAttributeType `json:"alertRules"`
+	AlertRules PlanModelGetAlertRulesAttributeType `json:"alertRules" required:"true"`
 	Amount     PlanModelGetAmountAttributeType     `json:"amount,omitempty"`
 	// REQUIRED
-	BucketSize  PlanModelGetBucketSizeAttributeType  `json:"bucketSize"`
+	BucketSize  PlanModelGetBucketSizeAttributeType  `json:"bucketSize" required:"true"`
 	Description PlanModelGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	GrafanaGlobalDashboards PlanModelGetGrafanaGlobalDashboardsAttributeType `json:"grafanaGlobalDashboards"`
+	GrafanaGlobalDashboards PlanModelGetGrafanaGlobalDashboardsAttributeType `json:"grafanaGlobalDashboards" required:"true"`
 	// REQUIRED
-	GrafanaGlobalOrgs PlanModelGetGrafanaGlobalOrgsAttributeType `json:"grafanaGlobalOrgs"`
+	GrafanaGlobalOrgs PlanModelGetGrafanaGlobalOrgsAttributeType `json:"grafanaGlobalOrgs" required:"true"`
 	// REQUIRED
-	GrafanaGlobalSessions PlanModelGetGrafanaGlobalSessionsAttributeType `json:"grafanaGlobalSessions"`
+	GrafanaGlobalSessions PlanModelGetGrafanaGlobalSessionsAttributeType `json:"grafanaGlobalSessions" required:"true"`
 	// REQUIRED
-	GrafanaGlobalUsers PlanModelGetGrafanaGlobalUsersAttributeType `json:"grafanaGlobalUsers"`
+	GrafanaGlobalUsers PlanModelGetGrafanaGlobalUsersAttributeType `json:"grafanaGlobalUsers" required:"true"`
 	// REQUIRED
-	Id PlanModelGetIdAttributeType `json:"id"`
+	Id PlanModelGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	LogsAlert PlanModelGetLogsAlertAttributeType `json:"logsAlert"`
+	LogsAlert PlanModelGetLogsAlertAttributeType `json:"logsAlert" required:"true"`
 	// REQUIRED
-	LogsStorage PlanModelGetLogsStorageAttributeType `json:"logsStorage"`
+	LogsStorage PlanModelGetLogsStorageAttributeType `json:"logsStorage" required:"true"`
 	Name        PlanModelGetNameAttributeType        `json:"name,omitempty"`
 	// REQUIRED
-	PlanId PlanModelGetPlanIdAttributeType `json:"planId"`
+	PlanId PlanModelGetPlanIdAttributeType `json:"planId" required:"true"`
 	// REQUIRED
-	SamplesPerScrape PlanModelGetSamplesPerScrapeAttributeType `json:"samplesPerScrape"`
+	SamplesPerScrape PlanModelGetSamplesPerScrapeAttributeType `json:"samplesPerScrape" required:"true"`
 	// REQUIRED
-	TargetNumber PlanModelGetTargetNumberAttributeType `json:"targetNumber"`
+	TargetNumber PlanModelGetTargetNumberAttributeType `json:"targetNumber" required:"true"`
 	// REQUIRED
-	TotalMetricSamples PlanModelGetTotalMetricSamplesAttributeType `json:"totalMetricSamples"`
+	TotalMetricSamples PlanModelGetTotalMetricSamplesAttributeType `json:"totalMetricSamples" required:"true"`
 	// REQUIRED
-	TracesStorage PlanModelGetTracesStorageAttributeType `json:"tracesStorage"`
+	TracesStorage PlanModelGetTracesStorageAttributeType `json:"tracesStorage" required:"true"`
 }
 
 type _PlanModel PlanModel

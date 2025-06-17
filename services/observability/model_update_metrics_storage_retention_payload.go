@@ -84,13 +84,13 @@ type UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawRetType = str
 type UpdateMetricsStorageRetentionPayload struct {
 	// Retention time of longtime storage of 1h sampled data. After that time the data will be deleted permanently. `Additional Validators:` * Should be a valid time string * Should not be bigger than metricsRetentionTime5m
 	// REQUIRED
-	MetricsRetentionTime1h UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h" required:"true"`
 	// Retention time of longtime storage of 5m sampled data. After that time the data will be down sampled to 1h. `Additional Validators:` * Should be a valid time string * Should not be bigger than metricsRetentionTimeRaw
 	// REQUIRED
-	MetricsRetentionTime5m UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m" required:"true"`
 	// Retention time of longtime storage of raw sampled data. After that time the data will be down sampled to 5m. Keep in mind, that the initial goal of downsampling is not saving disk or object storage space. In fact, downsampling doesn't save you any space but instead, it adds 2 more blocks for each raw block which are only slightly smaller or relatively similar size to raw block. This is done by internal downsampling implementation which to be mathematically correct holds various aggregations. This means that downsampling can increase the size of your storage a bit (~3x), if you choose to store all resolutions (recommended). The goal of downsampling is to provide an opportunity to get fast results for range queries of big time intervals like months or years. `Additional Validators:` * Should be a valid time string * Should not be bigger than 13 months
 	// REQUIRED
-	MetricsRetentionTimeRaw UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw UpdateMetricsStorageRetentionPayloadGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw" required:"true"`
 }
 
 type _UpdateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload

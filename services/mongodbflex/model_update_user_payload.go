@@ -61,9 +61,9 @@ func setUpdateUserPayloadGetRolesAttributeType(arg *UpdateUserPayloadGetRolesAtt
 // UpdateUserPayload struct for UpdateUserPayload
 type UpdateUserPayload struct {
 	// REQUIRED
-	Database UpdateUserPayloadGetDatabaseAttributeType `json:"database"`
+	Database UpdateUserPayloadGetDatabaseAttributeType `json:"database" required:"true"`
 	// REQUIRED
-	Roles UpdateUserPayloadGetRolesAttributeType `json:"roles"`
+	Roles UpdateUserPayloadGetRolesAttributeType `json:"roles" required:"true"`
 }
 
 type _UpdateUserPayload UpdateUserPayload

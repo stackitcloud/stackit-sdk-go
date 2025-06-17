@@ -62,9 +62,9 @@ type MemberGetSubjectRetType = string
 // Member struct for Member
 type Member struct {
 	// REQUIRED
-	Role MemberGetRoleAttributeType `json:"role"`
+	Role MemberGetRoleAttributeType `json:"role" required:"true"`
 	// REQUIRED
-	Subject MemberGetSubjectAttributeType `json:"subject"`
+	Subject MemberGetSubjectAttributeType `json:"subject" required:"true"`
 }
 
 type _Member Member

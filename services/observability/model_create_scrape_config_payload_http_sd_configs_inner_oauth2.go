@@ -124,16 +124,16 @@ type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlRetType = strin
 type CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 struct {
 	// clientId
 	// REQUIRED
-	ClientId CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType `json:"clientId"`
+	ClientId CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientIdAttributeType `json:"clientId" required:"true"`
 	// clientSecret
 	// REQUIRED
-	ClientSecret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType `json:"clientSecret"`
+	ClientSecret CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetClientSecretAttributeType `json:"clientSecret" required:"true"`
 	// The URL to fetch the token from.
 	Scopes    CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetScopesAttributeType    `json:"scopes,omitempty"`
 	TlsConfig CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTlsConfigAttributeType `json:"tlsConfig,omitempty"`
 	// The URL to fetch the token from.
 	// REQUIRED
-	TokenUrl CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType `json:"tokenUrl"`
+	TokenUrl CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2GetTokenUrlAttributeType `json:"tokenUrl" required:"true"`
 }
 
 type _CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2

@@ -104,15 +104,15 @@ type BucketGetUrlVirtualHostedStyleRetType = string
 // Bucket struct for Bucket
 type Bucket struct {
 	// REQUIRED
-	Name BucketGetNameAttributeType `json:"name"`
+	Name BucketGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Region BucketGetRegionAttributeType `json:"region"`
+	Region BucketGetRegionAttributeType `json:"region" required:"true"`
 	// URL in path style
 	// REQUIRED
-	UrlPathStyle BucketGetUrlPathStyleAttributeType `json:"urlPathStyle"`
+	UrlPathStyle BucketGetUrlPathStyleAttributeType `json:"urlPathStyle" required:"true"`
 	// URL in virtual hosted style
 	// REQUIRED
-	UrlVirtualHostedStyle BucketGetUrlVirtualHostedStyleAttributeType `json:"urlVirtualHostedStyle"`
+	UrlVirtualHostedStyle BucketGetUrlVirtualHostedStyleAttributeType `json:"urlVirtualHostedStyle" required:"true"`
 }
 
 type _Bucket Bucket

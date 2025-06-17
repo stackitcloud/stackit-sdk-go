@@ -231,7 +231,7 @@ type RouteSerializer struct {
 	MatchRe       RouteSerializerGetMatchReAttributeType       `json:"matchRe,omitempty"`
 	Matchers      RouteSerializerGetMatchersAttributeType      `json:"matchers,omitempty"`
 	// REQUIRED
-	Receiver       RouteSerializerGetReceiverAttributeType       `json:"receiver"`
+	Receiver       RouteSerializerGetReceiverAttributeType       `json:"receiver" required:"true"`
 	RepeatInterval RouteSerializerGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
 	Routes         RouteSerializerGetRoutesAttributeType         `json:"routes,omitempty"`
 }

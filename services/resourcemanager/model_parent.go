@@ -188,13 +188,13 @@ func setParentGetTypeAttributeType(arg *ParentGetTypeAttributeType, val ParentGe
 type Parent struct {
 	// User-friendly identifier of either organization or folder (will replace id).
 	// REQUIRED
-	ContainerId ParentGetContainerIdAttributeType `json:"containerId"`
+	ContainerId ParentGetContainerIdAttributeType `json:"containerId" required:"true"`
 	// Identifier of either organization or folder.
 	// REQUIRED
-	Id ParentGetIdAttributeType `json:"id"`
+	Id ParentGetIdAttributeType `json:"id" required:"true"`
 	// Container type of parent container.
 	// REQUIRED
-	Type ParentGetTypeAttributeType `json:"type"`
+	Type ParentGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _Parent Parent

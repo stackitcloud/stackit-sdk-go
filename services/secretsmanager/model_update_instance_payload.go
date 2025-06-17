@@ -42,7 +42,7 @@ type UpdateInstancePayloadGetNameRetType = string
 type UpdateInstancePayload struct {
 	// A user chosen name to distinguish multiple secrets manager instances.
 	// REQUIRED
-	Name UpdateInstancePayloadGetNameAttributeType `json:"name"`
+	Name UpdateInstancePayloadGetNameAttributeType `json:"name" required:"true"`
 }
 
 type _UpdateInstancePayload UpdateInstancePayload

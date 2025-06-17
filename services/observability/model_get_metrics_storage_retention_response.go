@@ -104,13 +104,13 @@ type GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawRetType = strin
 // GetMetricsStorageRetentionResponse struct for GetMetricsStorageRetentionResponse
 type GetMetricsStorageRetentionResponse struct {
 	// REQUIRED
-	Message GetMetricsStorageRetentionResponseGetMessageAttributeType `json:"message"`
+	Message GetMetricsStorageRetentionResponseGetMessageAttributeType `json:"message" required:"true"`
 	// REQUIRED
-	MetricsRetentionTime1h GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h GetMetricsStorageRetentionResponseGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h" required:"true"`
 	// REQUIRED
-	MetricsRetentionTime5m GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m GetMetricsStorageRetentionResponseGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m" required:"true"`
 	// REQUIRED
-	MetricsRetentionTimeRaw GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw GetMetricsStorageRetentionResponseGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw" required:"true"`
 }
 
 type _GetMetricsStorageRetentionResponse GetMetricsStorageRetentionResponse

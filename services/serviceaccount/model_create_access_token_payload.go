@@ -41,7 +41,7 @@ func setCreateAccessTokenPayloadGetTtlDaysAttributeType(arg *CreateAccessTokenPa
 type CreateAccessTokenPayload struct {
 	// The duration in days for how long the new Access Token should be valid.
 	// REQUIRED
-	TtlDays CreateAccessTokenPayloadGetTtlDaysAttributeType `json:"ttlDays"`
+	TtlDays CreateAccessTokenPayloadGetTtlDaysAttributeType `json:"ttlDays" required:"true"`
 }
 
 type _CreateAccessTokenPayload CreateAccessTokenPayload
