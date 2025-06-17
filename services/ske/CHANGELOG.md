@@ -1,3 +1,6 @@
+## v0.26.0 
+- Add `required:"true"` tags to model structs
+
 ## v0.25.0 (2025-06-10)
 - **Feature:** Add new field `PodAddressRanges` to `ClusterStatus`
 
