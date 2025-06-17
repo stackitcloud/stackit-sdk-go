@@ -193,7 +193,7 @@ type SecurityGroup struct {
 	Labels SecurityGroupGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name SecurityGroupGetNameAttributeType `json:"name"`
+	Name SecurityGroupGetNameAttributeType `json:"name" required:"true"`
 	// A list containing security group rule objects.
 	Rules SecurityGroupGetRulesAttributeType `json:"rules,omitempty"`
 	// Shows if a security group is stateful or stateless. You can only have one type of security groups per network interface/server.

@@ -163,12 +163,12 @@ type CreateAreaIPv4 struct {
 	DefaultNameservers CreateAreaIPv4GetDefaultNameserversAttributeType `json:"defaultNameservers,omitempty"`
 	// A list of network ranges.
 	// REQUIRED
-	NetworkRanges CreateAreaIPv4GetNetworkRangesAttributeType `json:"networkRanges"`
+	NetworkRanges CreateAreaIPv4GetNetworkRangesAttributeType `json:"networkRanges" required:"true"`
 	// A list of routes.
 	Routes CreateAreaIPv4GetRoutesAttributeType `json:"routes,omitempty"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	TransferNetwork CreateAreaIPv4GetTransferNetworkAttributeType `json:"transferNetwork"`
+	TransferNetwork CreateAreaIPv4GetTransferNetworkAttributeType `json:"transferNetwork" required:"true"`
 	// The default prefix length for networks in the network area.
 	DefaultPrefixLen CreateAreaIPv4GetDefaultPrefixLenAttributeType `json:"defaultPrefixLen,omitempty"`
 	// The maximal prefix length for networks in the network area.

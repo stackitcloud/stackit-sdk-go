@@ -153,7 +153,7 @@ type Keypair struct {
 	Name KeypairGetNameAttributeType `json:"name,omitempty"`
 	// Object that represents a public SSH key.
 	// REQUIRED
-	PublicKey KeypairGetPublicKeyAttributeType `json:"publicKey"`
+	PublicKey KeypairGetPublicKeyAttributeType `json:"publicKey" required:"true"`
 	// Date-time when resource was last updated.
 	UpdatedAt KeypairGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }

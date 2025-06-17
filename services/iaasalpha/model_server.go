@@ -491,11 +491,11 @@ type Server struct {
 	LaunchedAt ServerGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	MachineType       ServerGetMachineTypeAttributeType       `json:"machineType"`
+	MachineType       ServerGetMachineTypeAttributeType       `json:"machineType" required:"true"`
 	MaintenanceWindow ServerGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
 	// The name for a Server.
 	// REQUIRED
-	Name       ServerGetNameAttributeType       `json:"name"`
+	Name       ServerGetNameAttributeType       `json:"name" required:"true"`
 	Networking ServerGetNetworkingAttributeType `json:"networking,omitempty"`
 	// A list of networks attached to a server.
 	Nics ServerGetNicsAttributeType `json:"nics,omitempty"`

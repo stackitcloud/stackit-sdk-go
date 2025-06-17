@@ -230,7 +230,7 @@ type CreateSecurityGroupRulePayload struct {
 	Description CreateSecurityGroupRulePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match.
 	// REQUIRED
-	Direction CreateSecurityGroupRulePayloadGetDirectionAttributeType `json:"direction"`
+	Direction CreateSecurityGroupRulePayloadGetDirectionAttributeType `json:"direction" required:"true"`
 	// The ethertype which the rule should match.
 	Ethertype      CreateSecurityGroupRulePayloadGetEthertypeAttributeType      `json:"ethertype,omitempty"`
 	IcmpParameters CreateSecurityGroupRulePayloadGetIcmpParametersAttributeType `json:"icmpParameters,omitempty"`

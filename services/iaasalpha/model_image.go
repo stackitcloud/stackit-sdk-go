@@ -332,7 +332,7 @@ type Image struct {
 	CreatedAt ImageGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	// REQUIRED
-	DiskFormat ImageGetDiskFormatAttributeType `json:"diskFormat"`
+	DiskFormat ImageGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Id ImageGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
@@ -343,7 +343,7 @@ type Image struct {
 	MinRam ImageGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name ImageGetNameAttributeType `json:"name"`
+	Name ImageGetNameAttributeType `json:"name" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Owner     ImageGetOwnerAttributeType     `json:"owner,omitempty"`
 	Protected ImagegetProtectedAttributeType `json:"protected,omitempty"`

@@ -63,10 +63,10 @@ type ImageChecksumGetDigestRetType = string
 type ImageChecksum struct {
 	// Algorithm for the checksum of the image data.
 	// REQUIRED
-	Algorithm ImageChecksumGetAlgorithmAttributeType `json:"algorithm"`
+	Algorithm ImageChecksumGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// Hexdigest of the checksum of the image data.
 	// REQUIRED
-	Digest ImageChecksumGetDigestAttributeType `json:"digest"`
+	Digest ImageChecksumGetDigestAttributeType `json:"digest" required:"true"`
 }
 
 type _ImageChecksum ImageChecksum

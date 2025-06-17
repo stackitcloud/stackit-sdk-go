@@ -41,7 +41,7 @@ func setRouteListResponseGetItemsAttributeType(arg *RouteListResponseGetItemsAtt
 type RouteListResponse struct {
 	// A list of routes.
 	// REQUIRED
-	Items RouteListResponseGetItemsAttributeType `json:"items"`
+	Items RouteListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _RouteListResponse RouteListResponse

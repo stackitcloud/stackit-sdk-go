@@ -260,29 +260,29 @@ func setQuotaListGetVolumesAttributeType(arg *QuotaListGetVolumesAttributeType, 
 // QuotaList Object that represents the quotas for a project.
 type QuotaList struct {
 	// REQUIRED
-	BackupGigabytes QuotaListGetBackupGigabytesAttributeType `json:"backupGigabytes"`
+	BackupGigabytes QuotaListGetBackupGigabytesAttributeType `json:"backupGigabytes" required:"true"`
 	// REQUIRED
-	Backups QuotaListGetBackupsAttributeType `json:"backups"`
+	Backups QuotaListGetBackupsAttributeType `json:"backups" required:"true"`
 	// REQUIRED
-	Gigabytes QuotaListGetGigabytesAttributeType `json:"gigabytes"`
+	Gigabytes QuotaListGetGigabytesAttributeType `json:"gigabytes" required:"true"`
 	// REQUIRED
-	Networks QuotaListGetNetworksAttributeType `json:"networks"`
+	Networks QuotaListGetNetworksAttributeType `json:"networks" required:"true"`
 	// REQUIRED
-	Nics QuotaListGetNicsAttributeType `json:"nics"`
+	Nics QuotaListGetNicsAttributeType `json:"nics" required:"true"`
 	// REQUIRED
-	PublicIps QuotaListGetPublicIpsAttributeType `json:"publicIps"`
+	PublicIps QuotaListGetPublicIpsAttributeType `json:"publicIps" required:"true"`
 	// REQUIRED
-	Ram QuotaListGetRamAttributeType `json:"ram"`
+	Ram QuotaListGetRamAttributeType `json:"ram" required:"true"`
 	// REQUIRED
-	SecurityGroupRules QuotaListGetSecurityGroupRulesAttributeType `json:"securityGroupRules"`
+	SecurityGroupRules QuotaListGetSecurityGroupRulesAttributeType `json:"securityGroupRules" required:"true"`
 	// REQUIRED
-	SecurityGroups QuotaListGetSecurityGroupsAttributeType `json:"securityGroups"`
+	SecurityGroups QuotaListGetSecurityGroupsAttributeType `json:"securityGroups" required:"true"`
 	// REQUIRED
-	Snapshots QuotaListGetSnapshotsAttributeType `json:"snapshots"`
+	Snapshots QuotaListGetSnapshotsAttributeType `json:"snapshots" required:"true"`
 	// REQUIRED
-	Vcpu QuotaListGetVcpuAttributeType `json:"vcpu"`
+	Vcpu QuotaListGetVcpuAttributeType `json:"vcpu" required:"true"`
 	// REQUIRED
-	Volumes QuotaListGetVolumesAttributeType `json:"volumes"`
+	Volumes QuotaListGetVolumesAttributeType `json:"volumes" required:"true"`
 }
 
 type _QuotaList QuotaList

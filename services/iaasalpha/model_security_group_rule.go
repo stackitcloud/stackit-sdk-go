@@ -230,7 +230,7 @@ type SecurityGroupRule struct {
 	Description SecurityGroupRuleGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match.
 	// REQUIRED
-	Direction SecurityGroupRuleGetDirectionAttributeType `json:"direction"`
+	Direction SecurityGroupRuleGetDirectionAttributeType `json:"direction" required:"true"`
 	// The ethertype which the rule should match.
 	Ethertype      SecurityGroupRuleGetEthertypeAttributeType      `json:"ethertype,omitempty"`
 	IcmpParameters SecurityGroupRuleGetIcmpParametersAttributeType `json:"icmpParameters,omitempty"`

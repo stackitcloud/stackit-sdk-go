@@ -41,7 +41,7 @@ func setBackupListResponseGetItemsAttributeType(arg *BackupListResponseGetItemsA
 type BackupListResponse struct {
 	// A list containing backup objects.
 	// REQUIRED
-	Items BackupListResponseGetItemsAttributeType `json:"items"`
+	Items BackupListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _BackupListResponse BackupListResponse

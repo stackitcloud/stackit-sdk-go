@@ -41,7 +41,7 @@ func setNICListResponseGetItemsAttributeType(arg *NICListResponseGetItemsAttribu
 type NICListResponse struct {
 	// A list of network interfaces.
 	// REQUIRED
-	Items NICListResponseGetItemsAttributeType `json:"items"`
+	Items NICListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _NICListResponse NICListResponse

@@ -41,7 +41,7 @@ func setSnapshotListResponseGetItemsAttributeType(arg *SnapshotListResponseGetIt
 type SnapshotListResponse struct {
 	// A list containing snapshot objects.
 	// REQUIRED
-	Items SnapshotListResponseGetItemsAttributeType `json:"items"`
+	Items SnapshotListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _SnapshotListResponse SnapshotListResponse

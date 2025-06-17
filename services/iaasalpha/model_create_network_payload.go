@@ -105,7 +105,7 @@ type CreateNetworkPayload struct {
 	Labels CreateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name CreateNetworkPayloadGetNameAttributeType `json:"name"`
+	Name CreateNetworkPayloadGetNameAttributeType `json:"name" required:"true"`
 	// Shows if the network is routed and therefore accessible from other networks.
 	Routed CreateNetworkPayloadgetRoutedAttributeType `json:"routed,omitempty"`
 }

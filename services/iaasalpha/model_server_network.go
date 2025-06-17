@@ -234,19 +234,19 @@ type ServerNetwork struct {
 	Ipv6 ServerNetworkGetIpv6AttributeType `json:"ipv6,omitempty"`
 	// Object that represents an MAC address.
 	// REQUIRED
-	Mac ServerNetworkGetMacAttributeType `json:"mac"`
+	Mac ServerNetworkGetMacAttributeType `json:"mac" required:"true"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	NetworkId ServerNetworkGetNetworkIdAttributeType `json:"networkId"`
+	NetworkId ServerNetworkGetNetworkIdAttributeType `json:"networkId" required:"true"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	NetworkName ServerNetworkGetNetworkNameAttributeType `json:"networkName"`
+	NetworkName ServerNetworkGetNetworkNameAttributeType `json:"networkName" required:"true"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	NicId ServerNetworkGetNicIdAttributeType `json:"nicId"`
+	NicId ServerNetworkGetNicIdAttributeType `json:"nicId" required:"true"`
 	// If this is set to false, then no security groups will apply to this server network interface.
 	// REQUIRED
-	NicSecurity ServerNetworkgetNicSecurityAttributeType `json:"nicSecurity"`
+	NicSecurity ServerNetworkgetNicSecurityAttributeType `json:"nicSecurity" required:"true"`
 	// Object that represents an IP address.
 	PublicIp ServerNetworkGetPublicIpAttributeType `json:"publicIp,omitempty"`
 	// A list of UUIDs.

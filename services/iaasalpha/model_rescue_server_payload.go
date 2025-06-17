@@ -42,7 +42,7 @@ type RescueServerPayloadGetImageRetType = string
 type RescueServerPayload struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Image RescueServerPayloadGetImageAttributeType `json:"image"`
+	Image RescueServerPayloadGetImageAttributeType `json:"image" required:"true"`
 }
 
 type _RescueServerPayload RescueServerPayload

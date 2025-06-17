@@ -60,9 +60,9 @@ func setQuotaListPublicIpsGetUsageAttributeType(arg *QuotaListPublicIpsGetUsageA
 // QuotaListPublicIps Number of public IP addresses.
 type QuotaListPublicIps struct {
 	// REQUIRED
-	Limit QuotaListPublicIpsGetLimitAttributeType `json:"limit"`
+	Limit QuotaListPublicIpsGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListPublicIpsGetUsageAttributeType `json:"usage"`
+	Usage QuotaListPublicIpsGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListPublicIps QuotaListPublicIps

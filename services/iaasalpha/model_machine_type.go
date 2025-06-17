@@ -145,18 +145,18 @@ type MachineType struct {
 	Description MachineTypeGetDescriptionAttributeType `json:"description,omitempty"`
 	// Size in Gigabyte.
 	// REQUIRED
-	Disk MachineTypeGetDiskAttributeType `json:"disk"`
+	Disk MachineTypeGetDiskAttributeType `json:"disk" required:"true"`
 	// Properties to control certain aspects or scheduling behavior for an object.
 	ExtraSpecs MachineTypeGetExtraSpecsAttributeType `json:"extraSpecs,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name MachineTypeGetNameAttributeType `json:"name"`
+	Name MachineTypeGetNameAttributeType `json:"name" required:"true"`
 	// Size in Megabyte.
 	// REQUIRED
-	Ram MachineTypeGetRamAttributeType `json:"ram"`
+	Ram MachineTypeGetRamAttributeType `json:"ram" required:"true"`
 	// The number of virtual CPUs of a server.
 	// REQUIRED
-	Vcpus MachineTypeGetVcpusAttributeType `json:"vcpus"`
+	Vcpus MachineTypeGetVcpusAttributeType `json:"vcpus" required:"true"`
 }
 
 type _MachineType MachineType

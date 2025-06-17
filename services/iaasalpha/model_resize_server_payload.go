@@ -42,7 +42,7 @@ type ResizeServerPayloadGetMachineTypeRetType = string
 type ResizeServerPayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	MachineType ResizeServerPayloadGetMachineTypeAttributeType `json:"machineType"`
+	MachineType ResizeServerPayloadGetMachineTypeAttributeType `json:"machineType" required:"true"`
 }
 
 type _ResizeServerPayload ResizeServerPayload

@@ -60,9 +60,9 @@ func setQuotaListSecurityGroupRulesGetUsageAttributeType(arg *QuotaListSecurityG
 // QuotaListSecurityGroupRules Number of security group rules.
 type QuotaListSecurityGroupRules struct {
 	// REQUIRED
-	Limit QuotaListSecurityGroupRulesGetLimitAttributeType `json:"limit"`
+	Limit QuotaListSecurityGroupRulesGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListSecurityGroupRulesGetUsageAttributeType `json:"usage"`
+	Usage QuotaListSecurityGroupRulesGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListSecurityGroupRules QuotaListSecurityGroupRules

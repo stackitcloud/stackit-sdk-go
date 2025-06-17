@@ -60,9 +60,9 @@ func setQuotaListVcpuGetUsageAttributeType(arg *QuotaListVcpuGetUsageAttributeTy
 // QuotaListVcpu Number of server cores.
 type QuotaListVcpu struct {
 	// REQUIRED
-	Limit QuotaListVcpuGetLimitAttributeType `json:"limit"`
+	Limit QuotaListVcpuGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListVcpuGetUsageAttributeType `json:"usage"`
+	Usage QuotaListVcpuGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListVcpu QuotaListVcpu

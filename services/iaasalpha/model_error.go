@@ -61,10 +61,10 @@ type ErrorGetMsgRetType = string
 // Error Error with HTTP error code and an error message.
 type Error struct {
 	// REQUIRED
-	Code ErrorGetCodeAttributeType `json:"code"`
+	Code ErrorGetCodeAttributeType `json:"code" required:"true"`
 	// An error message.
 	// REQUIRED
-	Msg ErrorGetMsgAttributeType `json:"msg"`
+	Msg ErrorGetMsgAttributeType `json:"msg" required:"true"`
 }
 
 type _Error Error

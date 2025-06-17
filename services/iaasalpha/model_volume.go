@@ -309,7 +309,7 @@ func setVolumeGetUpdatedAtAttributeType(arg *VolumeGetUpdatedAtAttributeType, va
 type Volume struct {
 	// Object that represents an availability zone.
 	// REQUIRED
-	AvailabilityZone VolumeGetAvailabilityZoneAttributeType `json:"availabilityZone"`
+	AvailabilityZone VolumeGetAvailabilityZoneAttributeType `json:"availabilityZone" required:"true"`
 	// Indicates if a volume is bootable.
 	Bootable VolumegetBootableAttributeType `json:"bootable,omitempty"`
 	// Date-time when resource was created.

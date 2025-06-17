@@ -193,7 +193,7 @@ type CreateSecurityGroupPayload struct {
 	Labels CreateSecurityGroupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name CreateSecurityGroupPayloadGetNameAttributeType `json:"name"`
+	Name CreateSecurityGroupPayloadGetNameAttributeType `json:"name" required:"true"`
 	// A list containing security group rule objects.
 	Rules CreateSecurityGroupPayloadGetRulesAttributeType `json:"rules,omitempty"`
 	// Shows if a security group is stateful or stateless. You can only have one type of security groups per network interface/server.

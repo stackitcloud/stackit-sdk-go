@@ -63,9 +63,9 @@ type ImageCreateResponseGetUploadUrlRetType = string
 type ImageCreateResponse struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id ImageCreateResponseGetIdAttributeType `json:"id"`
+	Id ImageCreateResponseGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	UploadUrl ImageCreateResponseGetUploadUrlAttributeType `json:"uploadUrl"`
+	UploadUrl ImageCreateResponseGetUploadUrlAttributeType `json:"uploadUrl" required:"true"`
 }
 
 type _ImageCreateResponse ImageCreateResponse

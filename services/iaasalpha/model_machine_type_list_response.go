@@ -41,7 +41,7 @@ func setMachineTypeListResponseGetItemsAttributeType(arg *MachineTypeListRespons
 type MachineTypeListResponse struct {
 	// Machine type list.
 	// REQUIRED
-	Items MachineTypeListResponseGetItemsAttributeType `json:"items"`
+	Items MachineTypeListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _MachineTypeListResponse MachineTypeListResponse

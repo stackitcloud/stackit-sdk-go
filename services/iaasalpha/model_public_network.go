@@ -42,7 +42,7 @@ type PublicNetworkGetCidrRetType = string
 type PublicNetwork struct {
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	Cidr PublicNetworkGetCidrAttributeType `json:"cidr"`
+	Cidr PublicNetworkGetCidrAttributeType `json:"cidr" required:"true"`
 }
 
 type _PublicNetwork PublicNetwork

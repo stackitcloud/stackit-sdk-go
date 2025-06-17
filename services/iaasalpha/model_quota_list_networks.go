@@ -60,9 +60,9 @@ func setQuotaListNetworksGetUsageAttributeType(arg *QuotaListNetworksGetUsageAtt
 // QuotaListNetworks Number of networks.
 type QuotaListNetworks struct {
 	// REQUIRED
-	Limit QuotaListNetworksGetLimitAttributeType `json:"limit"`
+	Limit QuotaListNetworksGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListNetworksGetUsageAttributeType `json:"usage"`
+	Usage QuotaListNetworksGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListNetworks QuotaListNetworks

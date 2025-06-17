@@ -147,18 +147,18 @@ type Request struct {
 	Details RequestGetDetailsAttributeType `json:"details,omitempty"`
 	// Object that represents a resource action. Possible values: `CREATE`, `DELETE`, `UPDATE`.
 	// REQUIRED
-	RequestAction RequestGetRequestActionAttributeType `json:"requestAction"`
+	RequestAction RequestGetRequestActionAttributeType `json:"requestAction" required:"true"`
 	// Identifier (ID) representing a single API request.
 	// REQUIRED
-	RequestId RequestGetRequestIdAttributeType `json:"requestId"`
+	RequestId RequestGetRequestIdAttributeType `json:"requestId" required:"true"`
 	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
 	// REQUIRED
-	RequestType RequestGetRequestTypeAttributeType `json:"requestType"`
+	RequestType RequestGetRequestTypeAttributeType `json:"requestType" required:"true"`
 	// REQUIRED
-	Resources RequestGetResourcesAttributeType `json:"resources"`
+	Resources RequestGetResourcesAttributeType `json:"resources" required:"true"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
-	Status RequestGetStatusAttributeType `json:"status"`
+	Status RequestGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _Request Request

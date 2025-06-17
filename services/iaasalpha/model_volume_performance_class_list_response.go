@@ -41,7 +41,7 @@ func setVolumePerformanceClassListResponseGetItemsAttributeType(arg *VolumePerfo
 type VolumePerformanceClassListResponse struct {
 	// A list containing Volume performance classes.
 	// REQUIRED
-	Items VolumePerformanceClassListResponseGetItemsAttributeType `json:"items"`
+	Items VolumePerformanceClassListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _VolumePerformanceClassListResponse VolumePerformanceClassListResponse

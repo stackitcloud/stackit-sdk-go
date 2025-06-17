@@ -42,7 +42,7 @@ type AddMemberToVirtualIPPayloadGetMemberRetType = string
 type AddMemberToVirtualIPPayload struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Member AddMemberToVirtualIPPayloadGetMemberAttributeType `json:"member"`
+	Member AddMemberToVirtualIPPayloadGetMemberAttributeType `json:"member" required:"true"`
 }
 
 type _AddMemberToVirtualIPPayload AddMemberToVirtualIPPayload

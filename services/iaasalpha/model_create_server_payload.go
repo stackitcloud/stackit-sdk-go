@@ -491,11 +491,11 @@ type CreateServerPayload struct {
 	LaunchedAt CreateServerPayloadGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	MachineType       CreateServerPayloadGetMachineTypeAttributeType       `json:"machineType"`
+	MachineType       CreateServerPayloadGetMachineTypeAttributeType       `json:"machineType" required:"true"`
 	MaintenanceWindow CreateServerPayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
 	// The name for a Server.
 	// REQUIRED
-	Name       CreateServerPayloadGetNameAttributeType       `json:"name"`
+	Name       CreateServerPayloadGetNameAttributeType       `json:"name" required:"true"`
 	Networking CreateServerPayloadGetNetworkingAttributeType `json:"networking,omitempty"`
 	// A list of networks attached to a server.
 	Nics CreateServerPayloadGetNicsAttributeType `json:"nics,omitempty"`

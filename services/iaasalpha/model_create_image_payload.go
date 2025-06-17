@@ -332,7 +332,7 @@ type CreateImagePayload struct {
 	CreatedAt CreateImagePayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	// REQUIRED
-	DiskFormat CreateImagePayloadGetDiskFormatAttributeType `json:"diskFormat"`
+	DiskFormat CreateImagePayloadGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Id CreateImagePayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
@@ -343,7 +343,7 @@ type CreateImagePayload struct {
 	MinRam CreateImagePayloadGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name CreateImagePayloadGetNameAttributeType `json:"name"`
+	Name CreateImagePayloadGetNameAttributeType `json:"name" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Owner     CreateImagePayloadGetOwnerAttributeType     `json:"owner,omitempty"`
 	Protected CreateImagePayloadgetProtectedAttributeType `json:"protected,omitempty"`

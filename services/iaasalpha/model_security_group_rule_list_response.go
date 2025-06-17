@@ -41,7 +41,7 @@ func setSecurityGroupRuleListResponseGetItemsAttributeType(arg *SecurityGroupRul
 type SecurityGroupRuleListResponse struct {
 	// A list containing security group rule objects.
 	// REQUIRED
-	Items SecurityGroupRuleListResponseGetItemsAttributeType `json:"items"`
+	Items SecurityGroupRuleListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _SecurityGroupRuleListResponse SecurityGroupRuleListResponse

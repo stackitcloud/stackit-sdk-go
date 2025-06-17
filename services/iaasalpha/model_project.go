@@ -164,7 +164,7 @@ func setProjectGetUpdatedAtAttributeType(arg *ProjectGetUpdatedAtAttributeType, 
 // Project Object that represents a STACKIT project.
 type Project struct {
 	// REQUIRED
-	AreaId ProjectGetAreaIdAttributeType `json:"areaId"`
+	AreaId ProjectGetAreaIdAttributeType `json:"areaId" required:"true"`
 	// Date-time when resource was created.
 	CreatedAt      ProjectGetCreatedAtAttributeType      `json:"createdAt,omitempty"`
 	InternetAccess ProjectgetInternetAccessAttributeType `json:"internetAccess,omitempty"`
@@ -172,10 +172,10 @@ type Project struct {
 	OpenstackProjectId ProjectGetOpenstackProjectIdAttributeType `json:"openstackProjectId,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	ProjectId ProjectGetProjectIdAttributeType `json:"projectId"`
+	ProjectId ProjectGetProjectIdAttributeType `json:"projectId" required:"true"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	// REQUIRED
-	State ProjectGetStateAttributeType `json:"state"`
+	State ProjectGetStateAttributeType `json:"state" required:"true"`
 	// Date-time when resource was last updated.
 	UpdatedAt ProjectGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 }

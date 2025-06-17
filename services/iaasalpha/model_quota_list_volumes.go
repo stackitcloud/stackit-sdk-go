@@ -60,9 +60,9 @@ func setQuotaListVolumesGetUsageAttributeType(arg *QuotaListVolumesGetUsageAttri
 // QuotaListVolumes Number of volumes.
 type QuotaListVolumes struct {
 	// REQUIRED
-	Limit QuotaListVolumesGetLimitAttributeType `json:"limit"`
+	Limit QuotaListVolumesGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListVolumesGetUsageAttributeType `json:"usage"`
+	Usage QuotaListVolumesGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListVolumes QuotaListVolumes

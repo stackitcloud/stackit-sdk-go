@@ -41,7 +41,7 @@ func setServerListResponseGetItemsAttributeType(arg *ServerListResponseGetItemsA
 type ServerListResponse struct {
 	// A list of servers.
 	// REQUIRED
-	Items ServerListResponseGetItemsAttributeType `json:"items"`
+	Items ServerListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _ServerListResponse ServerListResponse

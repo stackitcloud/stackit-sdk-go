@@ -41,7 +41,7 @@ func setPublicNetworkListResponseGetItemsAttributeType(arg *PublicNetworkListRes
 type PublicNetworkListResponse struct {
 	// A list of public networks.
 	// REQUIRED
-	Items PublicNetworkListResponseGetItemsAttributeType `json:"items"`
+	Items PublicNetworkListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _PublicNetworkListResponse PublicNetworkListResponse

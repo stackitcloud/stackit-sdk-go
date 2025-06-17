@@ -61,10 +61,10 @@ func setICMPParametersGetTypeAttributeType(arg *ICMPParametersGetTypeAttributeTy
 type ICMPParameters struct {
 	// ICMP code. Can be set if the protocol is ICMP.
 	// REQUIRED
-	Code ICMPParametersGetCodeAttributeType `json:"code"`
+	Code ICMPParametersGetCodeAttributeType `json:"code" required:"true"`
 	// ICMP type. Can be set if the protocol is ICMP.
 	// REQUIRED
-	Type ICMPParametersGetTypeAttributeType `json:"type"`
+	Type ICMPParametersGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _ICMPParameters ICMPParameters

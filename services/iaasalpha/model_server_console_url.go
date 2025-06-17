@@ -41,7 +41,7 @@ type ServerConsoleUrlGetUrlRetType = string
 // ServerConsoleUrl Object that represents a server console URL.
 type ServerConsoleUrl struct {
 	// REQUIRED
-	Url ServerConsoleUrlGetUrlAttributeType `json:"url"`
+	Url ServerConsoleUrlGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _ServerConsoleUrl ServerConsoleUrl

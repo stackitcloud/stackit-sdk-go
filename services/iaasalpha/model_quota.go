@@ -60,9 +60,9 @@ func setQuotaGetUsageAttributeType(arg *QuotaGetUsageAttributeType, val QuotaGet
 // Quota Object that represents a single resource quota.
 type Quota struct {
 	// REQUIRED
-	Limit QuotaGetLimitAttributeType `json:"limit"`
+	Limit QuotaGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaGetUsageAttributeType `json:"usage"`
+	Usage QuotaGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _Quota Quota

@@ -200,7 +200,7 @@ type CreateSnapshotPayload struct {
 	UpdatedAt CreateSnapshotPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	VolumeId CreateSnapshotPayloadGetVolumeIdAttributeType `json:"volumeId"`
+	VolumeId CreateSnapshotPayloadGetVolumeIdAttributeType `json:"volumeId" required:"true"`
 }
 
 type _CreateSnapshotPayload CreateSnapshotPayload
