@@ -41,7 +41,7 @@ func setAffinityGroupListResponseGetItemsAttributeType(arg *AffinityGroupListRes
 type AffinityGroupListResponse struct {
 	// A list of affinity groups.
 	// REQUIRED
-	Items AffinityGroupListResponseGetItemsAttributeType `json:"items"`
+	Items AffinityGroupListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _AffinityGroupListResponse AffinityGroupListResponse

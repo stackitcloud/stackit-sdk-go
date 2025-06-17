@@ -41,7 +41,7 @@ func setVolumeListResponseGetItemsAttributeType(arg *VolumeListResponseGetItemsA
 type VolumeListResponse struct {
 	// A list containing volume objects.
 	// REQUIRED
-	Items VolumeListResponseGetItemsAttributeType `json:"items"`
+	Items VolumeListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _VolumeListResponse VolumeListResponse

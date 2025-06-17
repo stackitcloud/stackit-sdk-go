@@ -60,9 +60,9 @@ func setQuotaListNicsGetUsageAttributeType(arg *QuotaListNicsGetUsageAttributeTy
 // QuotaListNics Number of network interfaces.
 type QuotaListNics struct {
 	// REQUIRED
-	Limit QuotaListNicsGetLimitAttributeType `json:"limit"`
+	Limit QuotaListNicsGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListNicsGetUsageAttributeType `json:"usage"`
+	Usage QuotaListNicsGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListNics QuotaListNics

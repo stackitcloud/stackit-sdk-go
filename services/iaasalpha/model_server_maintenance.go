@@ -105,12 +105,12 @@ type ServerMaintenance struct {
 	Details ServerMaintenanceGetDetailsAttributeType `json:"details,omitempty"`
 	// End of the maintenance window.
 	// REQUIRED
-	EndsAt ServerMaintenanceGetEndsAtAttributeType `json:"endsAt"`
+	EndsAt ServerMaintenanceGetEndsAtAttributeType `json:"endsAt" required:"true"`
 	// Start of the maintenance window.
 	// REQUIRED
-	StartsAt ServerMaintenanceGetStartsAtAttributeType `json:"startsAt"`
+	StartsAt ServerMaintenanceGetStartsAtAttributeType `json:"startsAt" required:"true"`
 	// REQUIRED
-	Status ServerMaintenanceGetStatusAttributeType `json:"status"`
+	Status ServerMaintenanceGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _ServerMaintenance ServerMaintenance
