@@ -103,16 +103,16 @@ func setAccessTokenMetadataGetValidUntilAttributeType(arg *AccessTokenMetadataGe
 type AccessTokenMetadata struct {
 	// If true, access token can be used for authorized API calls, if false, the token is not usable anymore.
 	// REQUIRED
-	Active AccessTokenMetadatagetActiveAttributeType `json:"active"`
+	Active AccessTokenMetadatagetActiveAttributeType `json:"active" required:"true"`
 	// Creation time of the access token.
 	// REQUIRED
-	CreatedAt AccessTokenMetadataGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt AccessTokenMetadataGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// Unique ID of the access token. Also used as JTI field.
 	// REQUIRED
-	Id AccessTokenMetadataGetIdAttributeType `json:"id"`
+	Id AccessTokenMetadataGetIdAttributeType `json:"id" required:"true"`
 	// Approximate expiration time of the access token. Check the JWT for actual validity date.
 	// REQUIRED
-	ValidUntil AccessTokenMetadataGetValidUntilAttributeType `json:"validUntil"`
+	ValidUntil AccessTokenMetadataGetValidUntilAttributeType `json:"validUntil" required:"true"`
 }
 
 type _AccessTokenMetadata AccessTokenMetadata

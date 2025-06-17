@@ -227,17 +227,17 @@ func setCreateShortLivedAccessTokenResponseGetTokenTypeAttributeType(arg *Create
 type CreateShortLivedAccessTokenResponse struct {
 	// The short lived token that can be used for API access
 	// REQUIRED
-	AccessToken CreateShortLivedAccessTokenResponseGetAccessTokenAttributeType `json:"access_token"`
+	AccessToken CreateShortLivedAccessTokenResponseGetAccessTokenAttributeType `json:"access_token" required:"true"`
 	// REQUIRED
-	ExpiresIn CreateShortLivedAccessTokenResponseGetExpiresInAttributeType `json:"expires_in"`
+	ExpiresIn CreateShortLivedAccessTokenResponseGetExpiresInAttributeType `json:"expires_in" required:"true"`
 	// Refresh token that can be used to request a new access token when it expires (and before refresh token expires). Tokens are rotated.
 	// REQUIRED
-	RefreshToken CreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType `json:"refresh_token"`
+	RefreshToken CreateShortLivedAccessTokenResponseGetRefreshTokenAttributeType `json:"refresh_token" required:"true"`
 	// scope field of the self signed token
 	// REQUIRED
-	Scope CreateShortLivedAccessTokenResponseGetScopeAttributeType `json:"scope"`
+	Scope CreateShortLivedAccessTokenResponseGetScopeAttributeType `json:"scope" required:"true"`
 	// REQUIRED
-	TokenType CreateShortLivedAccessTokenResponseGetTokenTypeAttributeType `json:"token_type"`
+	TokenType CreateShortLivedAccessTokenResponseGetTokenTypeAttributeType `json:"token_type" required:"true"`
 }
 
 type _CreateShortLivedAccessTokenResponse CreateShortLivedAccessTokenResponse

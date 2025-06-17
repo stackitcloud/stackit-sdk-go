@@ -40,7 +40,7 @@ func setListServiceAccountsResponseGetItemsAttributeType(arg *ListServiceAccount
 // ListServiceAccountsResponse struct for ListServiceAccountsResponse
 type ListServiceAccountsResponse struct {
 	// REQUIRED
-	Items ListServiceAccountsResponseGetItemsAttributeType `json:"items"`
+	Items ListServiceAccountsResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _ListServiceAccountsResponse ListServiceAccountsResponse

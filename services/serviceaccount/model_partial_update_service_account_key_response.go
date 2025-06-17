@@ -473,19 +473,19 @@ func setPartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType(arg *Pa
 // PartialUpdateServiceAccountKeyResponse struct for PartialUpdateServiceAccountKeyResponse
 type PartialUpdateServiceAccountKeyResponse struct {
 	// REQUIRED
-	Active PartialUpdateServiceAccountKeyResponsegetActiveAttributeType `json:"active"`
+	Active PartialUpdateServiceAccountKeyResponsegetActiveAttributeType `json:"active" required:"true"`
 	// Creation time of the key
 	// REQUIRED
-	CreatedAt PartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt PartialUpdateServiceAccountKeyResponseGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// Unique ID of the key.
 	// REQUIRED
-	Id PartialUpdateServiceAccountKeyResponseGetIdAttributeType `json:"id"`
+	Id PartialUpdateServiceAccountKeyResponseGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	KeyAlgorithm PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm"`
+	KeyAlgorithm PartialUpdateServiceAccountKeyResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm" required:"true"`
 	// REQUIRED
-	KeyOrigin PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType `json:"keyOrigin"`
+	KeyOrigin PartialUpdateServiceAccountKeyResponseGetKeyOriginAttributeType `json:"keyOrigin" required:"true"`
 	// REQUIRED
-	KeyType PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType `json:"keyType"`
+	KeyType PartialUpdateServiceAccountKeyResponseGetKeyTypeAttributeType `json:"keyType" required:"true"`
 	// If specified, the timestamp until the key is active. May be null
 	ValidUntil PartialUpdateServiceAccountKeyResponseGetValidUntilAttributeType `json:"validUntil,omitempty"`
 }

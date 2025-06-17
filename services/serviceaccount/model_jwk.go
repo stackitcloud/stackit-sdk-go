@@ -252,11 +252,11 @@ type JWKGetX5uRetType = string
 type JWK struct {
 	Alg JWKGetAlgAttributeType `json:"alg,omitempty"`
 	// REQUIRED
-	E   JWKGetEAttributeType   `json:"e"`
+	E   JWKGetEAttributeType   `json:"e" required:"true"`
 	Kid JWKGetKidAttributeType `json:"kid,omitempty"`
 	Ks  JWKGetKsAttributeType  `json:"ks,omitempty"`
 	// REQUIRED
-	N      JWKGetNAttributeType      `json:"n"`
+	N      JWKGetNAttributeType      `json:"n" required:"true"`
 	Ops    JWKGetOpsAttributeType    `json:"ops,omitempty"`
 	Use    JWKGetUseAttributeType    `json:"use,omitempty"`
 	X5c    JWKGetX5cAttributeType    `json:"x5c,omitempty"`

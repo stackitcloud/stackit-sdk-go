@@ -514,21 +514,21 @@ func setGetServiceAccountKeyResponseGetValidUntilAttributeType(arg *GetServiceAc
 // GetServiceAccountKeyResponse struct for GetServiceAccountKeyResponse
 type GetServiceAccountKeyResponse struct {
 	// REQUIRED
-	Active GetServiceAccountKeyResponsegetActiveAttributeType `json:"active"`
+	Active GetServiceAccountKeyResponsegetActiveAttributeType `json:"active" required:"true"`
 	// Creation time of the key
 	// REQUIRED
-	CreatedAt GetServiceAccountKeyResponseGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt GetServiceAccountKeyResponseGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// REQUIRED
-	Credentials GetServiceAccountKeyResponseGetCredentialsAttributeType `json:"credentials"`
+	Credentials GetServiceAccountKeyResponseGetCredentialsAttributeType `json:"credentials" required:"true"`
 	// Unique ID of the key.
 	// REQUIRED
-	Id GetServiceAccountKeyResponseGetIdAttributeType `json:"id"`
+	Id GetServiceAccountKeyResponseGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	KeyAlgorithm GetServiceAccountKeyResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm"`
+	KeyAlgorithm GetServiceAccountKeyResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm" required:"true"`
 	// REQUIRED
-	KeyOrigin GetServiceAccountKeyResponseGetKeyOriginAttributeType `json:"keyOrigin"`
+	KeyOrigin GetServiceAccountKeyResponseGetKeyOriginAttributeType `json:"keyOrigin" required:"true"`
 	// REQUIRED
-	KeyType GetServiceAccountKeyResponseGetKeyTypeAttributeType `json:"keyType"`
+	KeyType GetServiceAccountKeyResponseGetKeyTypeAttributeType `json:"keyType" required:"true"`
 	// Public key, in the requested format
 	PublicKey GetServiceAccountKeyResponseGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// If specified, the timestamp until the key is active. May be null
