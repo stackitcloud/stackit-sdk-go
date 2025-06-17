@@ -333,27 +333,27 @@ type EmbeddingModelDetailsGetUrlRetType = string
 // EmbeddingModelDetails struct for EmbeddingModelDetails
 type EmbeddingModelDetails struct {
 	// REQUIRED
-	Category EmbeddingModelDetailsGetCategoryAttributeType `json:"category"`
+	Category EmbeddingModelDetailsGetCategoryAttributeType `json:"category" required:"true"`
 	// REQUIRED
-	Description EmbeddingModelDetailsGetDescriptionAttributeType `json:"description"`
+	Description EmbeddingModelDetailsGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	DisplayedName EmbeddingModelDetailsGetDisplayedNameAttributeType `json:"displayedName"`
+	DisplayedName EmbeddingModelDetailsGetDisplayedNameAttributeType `json:"displayedName" required:"true"`
 	// generated uuid to identify a model
 	// REQUIRED
-	Id EmbeddingModelDetailsGetIdAttributeType `json:"id"`
+	Id EmbeddingModelDetailsGetIdAttributeType `json:"id" required:"true"`
 	// huggingface name
 	// REQUIRED
-	Name EmbeddingModelDetailsGetNameAttributeType `json:"name"`
+	Name EmbeddingModelDetailsGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	OutputDimension EmbeddingModelDetailsGetOutputDimensionAttributeType `json:"outputDimension"`
+	OutputDimension EmbeddingModelDetailsGetOutputDimensionAttributeType `json:"outputDimension" required:"true"`
 	// REQUIRED
-	Region EmbeddingModelDetailsGetRegionAttributeType `json:"region"`
+	Region EmbeddingModelDetailsGetRegionAttributeType `json:"region" required:"true"`
 	// REQUIRED
-	Skus EmbeddingModelDetailsGetSkusAttributeType `json:"skus"`
+	Skus EmbeddingModelDetailsGetSkusAttributeType `json:"skus" required:"true"`
 	Tags EmbeddingModelDetailsGetTagsAttributeType `json:"tags,omitempty"`
 	// url of the model
 	// REQUIRED
-	Url EmbeddingModelDetailsGetUrlAttributeType `json:"url"`
+	Url EmbeddingModelDetailsGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _EmbeddingModelDetails EmbeddingModelDetails

@@ -62,7 +62,7 @@ func setGetTokenResponseGetTokenAttributeType(arg *GetTokenResponseGetTokenAttri
 type GetTokenResponse struct {
 	Message GetTokenResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Token GetTokenResponseGetTokenAttributeType `json:"token"`
+	Token GetTokenResponseGetTokenAttributeType `json:"token" required:"true"`
 }
 
 type _GetTokenResponse GetTokenResponse

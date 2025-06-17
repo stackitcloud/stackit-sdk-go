@@ -84,7 +84,7 @@ type SKUGetTypeRetType = string
 type SKU struct {
 	Description SKUGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	Id   SKUGetIdAttributeType   `json:"id"`
+	Id   SKUGetIdAttributeType   `json:"id" required:"true"`
 	Type SKUGetTypeAttributeType `json:"type,omitempty"`
 }
 
