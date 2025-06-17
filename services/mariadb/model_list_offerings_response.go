@@ -40,7 +40,7 @@ func setListOfferingsResponseGetOfferingsAttributeType(arg *ListOfferingsRespons
 // ListOfferingsResponse struct for ListOfferingsResponse
 type ListOfferingsResponse struct {
 	// REQUIRED
-	Offerings ListOfferingsResponseGetOfferingsAttributeType `json:"offerings"`
+	Offerings ListOfferingsResponseGetOfferingsAttributeType `json:"offerings" required:"true"`
 }
 
 type _ListOfferingsResponse ListOfferingsResponse
