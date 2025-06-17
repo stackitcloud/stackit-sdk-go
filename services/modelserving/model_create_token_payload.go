@@ -84,7 +84,7 @@ type CreateTokenPayloadGetTtlDurationRetType = string
 type CreateTokenPayload struct {
 	Description CreateTokenPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	Name CreateTokenPayloadGetNameAttributeType `json:"name"`
+	Name CreateTokenPayloadGetNameAttributeType `json:"name" required:"true"`
 	// time to live duration. Must be valid duration string. If not set the token will never expire.
 	TtlDuration CreateTokenPayloadGetTtlDurationAttributeType `json:"ttlDuration,omitempty"`
 }

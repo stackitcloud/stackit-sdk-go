@@ -62,7 +62,7 @@ func setGetEmbeddingsModelRespGetModelAttributeType(arg *GetEmbeddingsModelRespG
 type GetEmbeddingsModelResp struct {
 	Message GetEmbeddingsModelRespGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Model GetEmbeddingsModelRespGetModelAttributeType `json:"model"`
+	Model GetEmbeddingsModelRespGetModelAttributeType `json:"model" required:"true"`
 }
 
 type _GetEmbeddingsModelResp GetEmbeddingsModelResp

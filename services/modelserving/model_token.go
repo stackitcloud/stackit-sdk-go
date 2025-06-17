@@ -255,15 +255,15 @@ func setTokenGetValidUntilAttributeType(arg *TokenGetValidUntilAttributeType, va
 type Token struct {
 	Description TokenGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	Id TokenGetIdAttributeType `json:"id"`
+	Id TokenGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Name TokenGetNameAttributeType `json:"name"`
+	Name TokenGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Region TokenGetRegionAttributeType `json:"region"`
+	Region TokenGetRegionAttributeType `json:"region" required:"true"`
 	// REQUIRED
-	State TokenGetStateAttributeType `json:"state"`
+	State TokenGetStateAttributeType `json:"state" required:"true"`
 	// REQUIRED
-	ValidUntil TokenGetValidUntilAttributeType `json:"validUntil"`
+	ValidUntil TokenGetValidUntilAttributeType `json:"validUntil" required:"true"`
 }
 
 type _Token Token

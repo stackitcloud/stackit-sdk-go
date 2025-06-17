@@ -62,7 +62,7 @@ func setListModelsResponseGetModelsAttributeType(arg *ListModelsResponseGetModel
 type ListModelsResponse struct {
 	Message ListModelsResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Models ListModelsResponseGetModelsAttributeType `json:"models"`
+	Models ListModelsResponseGetModelsAttributeType `json:"models" required:"true"`
 }
 
 type _ListModelsResponse ListModelsResponse

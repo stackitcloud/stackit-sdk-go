@@ -273,18 +273,18 @@ func setTokenCreatedGetValidUntilAttributeType(arg *TokenCreatedGetValidUntilAtt
 // TokenCreated struct for TokenCreated
 type TokenCreated struct {
 	// REQUIRED
-	Content     TokenCreatedGetContentAttributeType     `json:"content"`
+	Content     TokenCreatedGetContentAttributeType     `json:"content" required:"true"`
 	Description TokenCreatedGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
-	Id TokenCreatedGetIdAttributeType `json:"id"`
+	Id TokenCreatedGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Name TokenCreatedGetNameAttributeType `json:"name"`
+	Name TokenCreatedGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Region TokenCreatedGetRegionAttributeType `json:"region"`
+	Region TokenCreatedGetRegionAttributeType `json:"region" required:"true"`
 	// REQUIRED
-	State TokenCreatedGetStateAttributeType `json:"state"`
+	State TokenCreatedGetStateAttributeType `json:"state" required:"true"`
 	// REQUIRED
-	ValidUntil TokenCreatedGetValidUntilAttributeType `json:"validUntil"`
+	ValidUntil TokenCreatedGetValidUntilAttributeType `json:"validUntil" required:"true"`
 }
 
 type _TokenCreated TokenCreated
