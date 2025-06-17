@@ -78,6 +78,31 @@ func setConfigPatchGetBlockedIPsAttributeType(arg *ConfigPatchGetBlockedIPsAttri
 }
 
 /*
+	types and functions for defaultCacheDuration
+*/
+
+// isNullableString
+type ConfigPatchGetDefaultCacheDurationAttributeType = *NullableString
+
+func getConfigPatchGetDefaultCacheDurationAttributeTypeOk(arg ConfigPatchGetDefaultCacheDurationAttributeType) (ret ConfigPatchGetDefaultCacheDurationRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg.Get(), true
+}
+
+func setConfigPatchGetDefaultCacheDurationAttributeType(arg *ConfigPatchGetDefaultCacheDurationAttributeType, val ConfigPatchGetDefaultCacheDurationRetType) {
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
+}
+
+type ConfigPatchGetDefaultCacheDurationArgType = *string
+type ConfigPatchGetDefaultCacheDurationRetType = *string
+
+/*
 	types and functions for monthlyLimitBytes
 */
 
@@ -144,6 +169,8 @@ type ConfigPatch struct {
 	BlockedCountries ConfigPatchGetBlockedCountriesAttributeType `json:"blockedCountries,omitempty"`
 	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIPs ConfigPatchGetBlockedIPsAttributeType `json:"blockedIPs,omitempty"`
+	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	DefaultCacheDuration ConfigPatchGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigPatchGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         ConfigPatchGetOptimizerAttributeType         `json:"optimizer,omitempty"`
@@ -236,6 +263,40 @@ func (o *ConfigPatch) SetBlockedIPs(v ConfigPatchGetBlockedIPsRetType) {
 	setConfigPatchGetBlockedIPsAttributeType(&o.BlockedIPs, v)
 }
 
+// GetDefaultCacheDuration returns the DefaultCacheDuration field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConfigPatch) GetDefaultCacheDuration() (res ConfigPatchGetDefaultCacheDurationRetType) {
+	res, _ = o.GetDefaultCacheDurationOk()
+	return
+}
+
+// GetDefaultCacheDurationOk returns a tuple with the DefaultCacheDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConfigPatch) GetDefaultCacheDurationOk() (ret ConfigPatchGetDefaultCacheDurationRetType, ok bool) {
+	return getConfigPatchGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration)
+}
+
+// HasDefaultCacheDuration returns a boolean if a field has been set.
+func (o *ConfigPatch) HasDefaultCacheDuration() bool {
+	_, ok := o.GetDefaultCacheDurationOk()
+	return ok
+}
+
+// SetDefaultCacheDuration gets a reference to the given string and assigns it to the DefaultCacheDuration field.
+func (o *ConfigPatch) SetDefaultCacheDuration(v ConfigPatchGetDefaultCacheDurationRetType) {
+	setConfigPatchGetDefaultCacheDurationAttributeType(&o.DefaultCacheDuration, v)
+}
+
+// SetDefaultCacheDurationNil sets the value for DefaultCacheDuration to be an explicit nil
+func (o *ConfigPatch) SetDefaultCacheDurationNil() {
+	o.DefaultCacheDuration = nil
+}
+
+// UnsetDefaultCacheDuration ensures that no value is present for DefaultCacheDuration, not even an explicit nil
+func (o *ConfigPatch) UnsetDefaultCacheDuration() {
+	o.DefaultCacheDuration = nil
+}
+
 // GetMonthlyLimitBytes returns the MonthlyLimitBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ConfigPatch) GetMonthlyLimitBytes() (res ConfigPatchGetMonthlyLimitBytesRetType) {
 	res, _ = o.GetMonthlyLimitBytesOk()
@@ -326,6 +387,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigPatchGetBlockedIPsAttributeTypeOk(o.BlockedIPs); ok {
 		toSerialize["BlockedIPs"] = val
+	}
+	if val, ok := getConfigPatchGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
+		toSerialize["DefaultCacheDuration"] = val
 	}
 	if val, ok := getConfigPatchGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
 		toSerialize["MonthlyLimitBytes"] = val
