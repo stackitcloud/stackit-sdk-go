@@ -61,10 +61,10 @@ type MachineGetTypeRetType = string
 // Machine struct for Machine
 type Machine struct {
 	// REQUIRED
-	Image MachineGetImageAttributeType `json:"image"`
+	Image MachineGetImageAttributeType `json:"image" required:"true"`
 	// For valid types please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `machineTypes`.
 	// REQUIRED
-	Type MachineGetTypeAttributeType `json:"type"`
+	Type MachineGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _Machine Machine

@@ -189,9 +189,9 @@ type TaintGetValueRetType = string
 // Taint struct for Taint
 type Taint struct {
 	// REQUIRED
-	Effect TaintGetEffectAttributeType `json:"effect"`
+	Effect TaintGetEffectAttributeType `json:"effect" required:"true"`
 	// REQUIRED
-	Key   TaintGetKeyAttributeType   `json:"key"`
+	Key   TaintGetKeyAttributeType   `json:"key" required:"true"`
 	Value TaintGetValueAttributeType `json:"value,omitempty"`
 }
 

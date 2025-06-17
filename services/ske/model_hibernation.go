@@ -40,7 +40,7 @@ func setHibernationGetSchedulesAttributeType(arg *HibernationGetSchedulesAttribu
 // Hibernation struct for Hibernation
 type Hibernation struct {
 	// REQUIRED
-	Schedules HibernationGetSchedulesAttributeType `json:"schedules"`
+	Schedules HibernationGetSchedulesAttributeType `json:"schedules" required:"true"`
 }
 
 type _Hibernation Hibernation

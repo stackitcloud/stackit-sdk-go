@@ -162,11 +162,11 @@ type CreateOrUpdateClusterPayload struct {
 	Extensions  CreateOrUpdateClusterPayloadGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation CreateOrUpdateClusterPayloadGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
-	Kubernetes  CreateOrUpdateClusterPayloadGetKubernetesAttributeType  `json:"kubernetes"`
+	Kubernetes  CreateOrUpdateClusterPayloadGetKubernetesAttributeType  `json:"kubernetes" required:"true"`
 	Maintenance CreateOrUpdateClusterPayloadGetMaintenanceAttributeType `json:"maintenance,omitempty"`
 	Network     CreateOrUpdateClusterPayloadGetNetworkAttributeType     `json:"network,omitempty"`
 	// REQUIRED
-	Nodepools CreateOrUpdateClusterPayloadGetNodepoolsAttributeType `json:"nodepools"`
+	Nodepools CreateOrUpdateClusterPayloadGetNodepoolsAttributeType `json:"nodepools" required:"true"`
 	Status    CreateOrUpdateClusterPayloadGetStatusAttributeType    `json:"status,omitempty"`
 }
 

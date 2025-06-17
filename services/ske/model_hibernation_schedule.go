@@ -83,9 +83,9 @@ type HibernationScheduleGetTimezoneRetType = string
 // HibernationSchedule struct for HibernationSchedule
 type HibernationSchedule struct {
 	// REQUIRED
-	End HibernationScheduleGetEndAttributeType `json:"end"`
+	End HibernationScheduleGetEndAttributeType `json:"end" required:"true"`
 	// REQUIRED
-	Start    HibernationScheduleGetStartAttributeType    `json:"start"`
+	Start    HibernationScheduleGetStartAttributeType    `json:"start" required:"true"`
 	Timezone HibernationScheduleGetTimezoneAttributeType `json:"timezone,omitempty"`
 }
 
