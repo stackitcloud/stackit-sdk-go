@@ -61,9 +61,9 @@ func setTimeWindowGetStartAttributeType(arg *TimeWindowGetStartAttributeType, va
 // TimeWindow struct for TimeWindow
 type TimeWindow struct {
 	// REQUIRED
-	End TimeWindowGetEndAttributeType `json:"end"`
+	End TimeWindowGetEndAttributeType `json:"end" required:"true"`
 	// REQUIRED
-	Start TimeWindowGetStartAttributeType `json:"start"`
+	Start TimeWindowGetStartAttributeType `json:"start" required:"true"`
 }
 
 type _TimeWindow TimeWindow

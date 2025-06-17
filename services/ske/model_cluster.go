@@ -183,12 +183,12 @@ type Cluster struct {
 	Extensions  ClusterGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation ClusterGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
-	Kubernetes  ClusterGetKubernetesAttributeType  `json:"kubernetes"`
+	Kubernetes  ClusterGetKubernetesAttributeType  `json:"kubernetes" required:"true"`
 	Maintenance ClusterGetMaintenanceAttributeType `json:"maintenance,omitempty"`
 	Name        ClusterGetNameAttributeType        `json:"name,omitempty"`
 	Network     ClusterGetNetworkAttributeType     `json:"network,omitempty"`
 	// REQUIRED
-	Nodepools ClusterGetNodepoolsAttributeType `json:"nodepools"`
+	Nodepools ClusterGetNodepoolsAttributeType `json:"nodepools" required:"true"`
 	Status    ClusterGetStatusAttributeType    `json:"status,omitempty"`
 }
 

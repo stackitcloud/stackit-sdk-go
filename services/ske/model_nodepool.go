@@ -263,11 +263,11 @@ type Nodepool struct {
 	// This needs to be true for at least one node pool.
 	AllowSystemComponents NodepoolgetAllowSystemComponentsAttributeType `json:"allowSystemComponents,omitempty"`
 	// REQUIRED
-	AvailabilityZones NodepoolGetAvailabilityZonesAttributeType `json:"availabilityZones"`
+	AvailabilityZones NodepoolGetAvailabilityZonesAttributeType `json:"availabilityZones" required:"true"`
 	Cri               NodepoolGetCriAttributeType               `json:"cri,omitempty"`
 	Labels            NodepoolGetLabelsAttributeType            `json:"labels,omitempty"`
 	// REQUIRED
-	Machine NodepoolGetMachineAttributeType `json:"machine"`
+	Machine NodepoolGetMachineAttributeType `json:"machine" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	MaxSurge NodepoolGetMaxSurgeAttributeType `json:"maxSurge,omitempty"`
 	// Can be cast to int32 without loss of precision.
@@ -275,17 +275,17 @@ type Nodepool struct {
 	// Maximum number of nodes in the pool. During runtime, the cluster will never scale beyond 1000 nodes, even if the total maximum would allow for a larger cluster.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Maximum NodepoolGetMaximumAttributeType `json:"maximum"`
+	Maximum NodepoolGetMaximumAttributeType `json:"maximum" required:"true"`
 	// Minimum number of nodes in the pool. The sum of all minima must not exceed 1000.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Minimum NodepoolGetMinimumAttributeType `json:"minimum"`
+	Minimum NodepoolGetMinimumAttributeType `json:"minimum" required:"true"`
 	// Maximum 15 chars
 	// REQUIRED
-	Name   NodepoolGetNameAttributeType   `json:"name"`
+	Name   NodepoolGetNameAttributeType   `json:"name" required:"true"`
 	Taints NodepoolGetTaintsAttributeType `json:"taints,omitempty"`
 	// REQUIRED
-	Volume NodepoolGetVolumeAttributeType `json:"volume"`
+	Volume NodepoolGetVolumeAttributeType `json:"volume" required:"true"`
 }
 
 type _Nodepool Nodepool
