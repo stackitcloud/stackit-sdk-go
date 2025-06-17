@@ -63,10 +63,10 @@ type CreateBucketResponseGetProjectRetType = string
 type CreateBucketResponse struct {
 	// Name of the bucket
 	// REQUIRED
-	Bucket CreateBucketResponseGetBucketAttributeType `json:"bucket"`
+	Bucket CreateBucketResponseGetBucketAttributeType `json:"bucket" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project CreateBucketResponseGetProjectAttributeType `json:"project"`
+	Project CreateBucketResponseGetProjectAttributeType `json:"project" required:"true"`
 }
 
 type _CreateBucketResponse CreateBucketResponse

@@ -62,9 +62,9 @@ type DetailedErrorGetMsgRetType = string
 // DetailedError struct for DetailedError
 type DetailedError struct {
 	// REQUIRED
-	Key DetailedErrorGetKeyAttributeType `json:"key"`
+	Key DetailedErrorGetKeyAttributeType `json:"key" required:"true"`
 	// REQUIRED
-	Msg DetailedErrorGetMsgAttributeType `json:"msg"`
+	Msg DetailedErrorGetMsgAttributeType `json:"msg" required:"true"`
 }
 
 type _DetailedError DetailedError

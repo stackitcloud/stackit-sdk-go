@@ -63,10 +63,10 @@ type DeleteBucketResponseGetProjectRetType = string
 type DeleteBucketResponse struct {
 	// Name of the bucket
 	// REQUIRED
-	Bucket DeleteBucketResponseGetBucketAttributeType `json:"bucket"`
+	Bucket DeleteBucketResponseGetBucketAttributeType `json:"bucket" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project DeleteBucketResponseGetProjectAttributeType `json:"project"`
+	Project DeleteBucketResponseGetProjectAttributeType `json:"project" required:"true"`
 }
 
 type _DeleteBucketResponse DeleteBucketResponse

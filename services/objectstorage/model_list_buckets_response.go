@@ -61,10 +61,10 @@ type ListBucketsResponseGetProjectRetType = string
 // ListBucketsResponse struct for ListBucketsResponse
 type ListBucketsResponse struct {
 	// REQUIRED
-	Buckets ListBucketsResponseGetBucketsAttributeType `json:"buckets"`
+	Buckets ListBucketsResponseGetBucketsAttributeType `json:"buckets" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project ListBucketsResponseGetProjectAttributeType `json:"project"`
+	Project ListBucketsResponseGetProjectAttributeType `json:"project" required:"true"`
 }
 
 type _ListBucketsResponse ListBucketsResponse

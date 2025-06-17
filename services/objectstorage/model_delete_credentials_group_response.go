@@ -63,10 +63,10 @@ type DeleteCredentialsGroupResponseGetProjectRetType = string
 type DeleteCredentialsGroupResponse struct {
 	// The ID of the credentials group
 	// REQUIRED
-	CredentialsGroupId DeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType `json:"credentialsGroupId"`
+	CredentialsGroupId DeleteCredentialsGroupResponseGetCredentialsGroupIdAttributeType `json:"credentialsGroupId" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project DeleteCredentialsGroupResponseGetProjectAttributeType `json:"project"`
+	Project DeleteCredentialsGroupResponseGetProjectAttributeType `json:"project" required:"true"`
 }
 
 type _DeleteCredentialsGroupResponse DeleteCredentialsGroupResponse

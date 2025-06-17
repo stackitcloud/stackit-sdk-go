@@ -61,10 +61,10 @@ type ListAccessKeysResponseGetProjectRetType = string
 // ListAccessKeysResponse struct for ListAccessKeysResponse
 type ListAccessKeysResponse struct {
 	// REQUIRED
-	AccessKeys ListAccessKeysResponseGetAccessKeysAttributeType `json:"accessKeys"`
+	AccessKeys ListAccessKeysResponseGetAccessKeysAttributeType `json:"accessKeys" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project ListAccessKeysResponseGetProjectAttributeType `json:"project"`
+	Project ListAccessKeysResponseGetProjectAttributeType `json:"project" required:"true"`
 }
 
 type _ListAccessKeysResponse ListAccessKeysResponse

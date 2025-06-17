@@ -61,10 +61,10 @@ type CreateCredentialsGroupResponseGetProjectRetType = string
 // CreateCredentialsGroupResponse struct for CreateCredentialsGroupResponse
 type CreateCredentialsGroupResponse struct {
 	// REQUIRED
-	CredentialsGroup CreateCredentialsGroupResponseGetCredentialsGroupAttributeType `json:"credentialsGroup"`
+	CredentialsGroup CreateCredentialsGroupResponseGetCredentialsGroupAttributeType `json:"credentialsGroup" required:"true"`
 	// Project ID
 	// REQUIRED
-	Project CreateCredentialsGroupResponseGetProjectAttributeType `json:"project"`
+	Project CreateCredentialsGroupResponseGetProjectAttributeType `json:"project" required:"true"`
 }
 
 type _CreateCredentialsGroupResponse CreateCredentialsGroupResponse
