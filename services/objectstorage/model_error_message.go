@@ -40,7 +40,7 @@ func setErrorMessageGetDetailAttributeType(arg *ErrorMessageGetDetailAttributeTy
 // ErrorMessage struct for ErrorMessage
 type ErrorMessage struct {
 	// REQUIRED
-	Detail ErrorMessageGetDetailAttributeType `json:"detail"`
+	Detail ErrorMessageGetDetailAttributeType `json:"detail" required:"true"`
 }
 
 type _ErrorMessage ErrorMessage

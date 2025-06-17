@@ -42,7 +42,7 @@ type CreateCredentialsGroupPayloadGetDisplayNameRetType = string
 type CreateCredentialsGroupPayload struct {
 	// Name of the group holding credentials
 	// REQUIRED
-	DisplayName CreateCredentialsGroupPayloadGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName CreateCredentialsGroupPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 }
 
 type _CreateCredentialsGroupPayload CreateCredentialsGroupPayload
