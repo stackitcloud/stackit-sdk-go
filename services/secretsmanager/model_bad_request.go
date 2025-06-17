@@ -42,7 +42,7 @@ type BadRequestGetMessageRetType = string
 type BadRequest struct {
 	// The error message for bad requests
 	// REQUIRED
-	Message BadRequestGetMessageAttributeType `json:"message"`
+	Message BadRequestGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _BadRequest BadRequest

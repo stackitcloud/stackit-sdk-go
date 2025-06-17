@@ -230,27 +230,27 @@ type InstanceGetUpdateStartDateRetType = string
 type Instance struct {
 	// The API endpoint for connecting to the secrets engine.
 	// REQUIRED
-	ApiUrl InstanceGetApiUrlAttributeType `json:"apiUrl"`
+	ApiUrl InstanceGetApiUrlAttributeType `json:"apiUrl" required:"true"`
 	// The date and time the creation of the Secrets Manager instance was finished.
 	CreationFinishedDate InstanceGetCreationFinishedDateAttributeType `json:"creationFinishedDate,omitempty"`
 	// The date and time the creation of the Secrets Manager instance was triggered.
 	// REQUIRED
-	CreationStartDate InstanceGetCreationStartDateAttributeType `json:"creationStartDate"`
+	CreationStartDate InstanceGetCreationStartDateAttributeType `json:"creationStartDate" required:"true"`
 	// A auto generated unique id which identifies the secrets manager instances.
 	// REQUIRED
-	Id InstanceGetIdAttributeType `json:"id"`
+	Id InstanceGetIdAttributeType `json:"id" required:"true"`
 	// A user chosen name to distinguish multiple secrets manager instances.
 	// REQUIRED
-	Name InstanceGetNameAttributeType `json:"name"`
+	Name InstanceGetNameAttributeType `json:"name" required:"true"`
 	// The number of secrets currently stored inside of the instance. This value will be updated once per hour.
 	// REQUIRED
-	SecretCount InstanceGetSecretCountAttributeType `json:"secretCount"`
+	SecretCount InstanceGetSecretCountAttributeType `json:"secretCount" required:"true"`
 	// The name of the secrets engine.
 	// REQUIRED
-	SecretsEngine InstanceGetSecretsEngineAttributeType `json:"secretsEngine"`
+	SecretsEngine InstanceGetSecretsEngineAttributeType `json:"secretsEngine" required:"true"`
 	// The current state of the Secrets Manager instance.
 	// REQUIRED
-	State              InstanceGetStateAttributeType              `json:"state"`
+	State              InstanceGetStateAttributeType              `json:"state" required:"true"`
 	UpdateFinishedDate InstanceGetUpdateFinishedDateAttributeType `json:"updateFinishedDate,omitempty"`
 	UpdateStartDate    InstanceGetUpdateStartDateAttributeType    `json:"updateStartDate,omitempty"`
 }

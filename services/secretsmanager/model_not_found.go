@@ -42,7 +42,7 @@ type NotFoundGetMessageRetType = string
 type NotFound struct {
 	// The error message for not found resources
 	// REQUIRED
-	Message NotFoundGetMessageAttributeType `json:"message"`
+	Message NotFoundGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _NotFound NotFound
