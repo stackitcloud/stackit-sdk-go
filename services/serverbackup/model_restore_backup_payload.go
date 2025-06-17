@@ -60,7 +60,7 @@ func setRestoreBackupPayloadGetVolumeIdsAttributeType(arg *RestoreBackupPayloadG
 // RestoreBackupPayload struct for RestoreBackupPayload
 type RestoreBackupPayload struct {
 	// REQUIRED
-	StartServerAfterRestore RestoreBackupPayloadgetStartServerAfterRestoreAttributeType `json:"startServerAfterRestore"`
+	StartServerAfterRestore RestoreBackupPayloadgetStartServerAfterRestoreAttributeType `json:"startServerAfterRestore" required:"true"`
 	VolumeIds               RestoreBackupPayloadGetVolumeIdsAttributeType               `json:"volumeIds,omitempty"`
 }
 

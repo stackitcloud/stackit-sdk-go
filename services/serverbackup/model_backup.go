@@ -304,18 +304,18 @@ func setBackupGetVolumeBackupsAttributeType(arg *BackupGetVolumeBackupsAttribute
 // Backup struct for Backup
 type Backup struct {
 	// REQUIRED
-	CreatedAt BackupGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt BackupGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// REQUIRED
-	ExpireAt BackupGetExpireAtAttributeType `json:"expireAt"`
+	ExpireAt BackupGetExpireAtAttributeType `json:"expireAt" required:"true"`
 	// REQUIRED
-	Id             BackupGetIdAttributeType             `json:"id"`
+	Id             BackupGetIdAttributeType             `json:"id" required:"true"`
 	LastRestoredAt BackupGetLastRestoredAtAttributeType `json:"lastRestoredAt,omitempty"`
 	// REQUIRED
-	Name BackupGetNameAttributeType `json:"name"`
+	Name BackupGetNameAttributeType `json:"name" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	Size BackupGetSizeAttributeType `json:"size,omitempty"`
 	// REQUIRED
-	Status        BackupGetStatusAttributeType        `json:"status"`
+	Status        BackupGetStatusAttributeType        `json:"status" required:"true"`
 	VolumeBackups BackupGetVolumeBackupsAttributeType `json:"volumeBackups,omitempty"`
 }
 

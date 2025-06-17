@@ -103,12 +103,12 @@ type UpdateBackupSchedulePayloadGetRruleRetType = string
 type UpdateBackupSchedulePayload struct {
 	BackupProperties UpdateBackupSchedulePayloadGetBackupPropertiesAttributeType `json:"backupProperties,omitempty"`
 	// REQUIRED
-	Enabled UpdateBackupSchedulePayloadgetEnabledAttributeType `json:"enabled"`
+	Enabled UpdateBackupSchedulePayloadgetEnabledAttributeType `json:"enabled" required:"true"`
 	// Max 255 characters
 	// REQUIRED
-	Name UpdateBackupSchedulePayloadGetNameAttributeType `json:"name"`
+	Name UpdateBackupSchedulePayloadGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Rrule UpdateBackupSchedulePayloadGetRruleAttributeType `json:"rrule"`
+	Rrule UpdateBackupSchedulePayloadGetRruleAttributeType `json:"rrule" required:"true"`
 }
 
 type _UpdateBackupSchedulePayload UpdateBackupSchedulePayload

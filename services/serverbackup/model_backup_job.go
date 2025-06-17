@@ -41,7 +41,7 @@ type BackupJobGetIdRetType = string
 // BackupJob struct for BackupJob
 type BackupJob struct {
 	// REQUIRED
-	Id BackupJobGetIdAttributeType `json:"id"`
+	Id BackupJobGetIdAttributeType `json:"id" required:"true"`
 }
 
 type _BackupJob BackupJob
