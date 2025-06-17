@@ -104,11 +104,11 @@ type GetCredentialsResponseGetNameRetType = string
 type GetCredentialsResponse struct {
 	CredentialsInfo GetCredentialsResponseGetCredentialsInfoAttributeType `json:"credentialsInfo,omitempty"`
 	// REQUIRED
-	Id GetCredentialsResponseGetIdAttributeType `json:"id"`
+	Id GetCredentialsResponseGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Message GetCredentialsResponseGetMessageAttributeType `json:"message"`
+	Message GetCredentialsResponseGetMessageAttributeType `json:"message" required:"true"`
 	// REQUIRED
-	Name GetCredentialsResponseGetNameAttributeType `json:"name"`
+	Name GetCredentialsResponseGetNameAttributeType `json:"name" required:"true"`
 }
 
 type _GetCredentialsResponse GetCredentialsResponse

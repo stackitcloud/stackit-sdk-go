@@ -231,7 +231,7 @@ type Route struct {
 	MatchRe       RouteGetMatchReAttributeType       `json:"matchRe,omitempty"`
 	Matchers      RouteGetMatchersAttributeType      `json:"matchers,omitempty"`
 	// REQUIRED
-	Receiver       RouteGetReceiverAttributeType       `json:"receiver"`
+	Receiver       RouteGetReceiverAttributeType       `json:"receiver" required:"true"`
 	RepeatInterval RouteGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
 	Routes         RouteGetRoutesAttributeType         `json:"routes,omitempty"`
 }

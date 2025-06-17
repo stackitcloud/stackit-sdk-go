@@ -61,9 +61,9 @@ type ListCredentialsResponseGetMessageRetType = string
 // ListCredentialsResponse struct for ListCredentialsResponse
 type ListCredentialsResponse struct {
 	// REQUIRED
-	Credentials ListCredentialsResponseGetCredentialsAttributeType `json:"credentials"`
+	Credentials ListCredentialsResponseGetCredentialsAttributeType `json:"credentials" required:"true"`
 	// REQUIRED
-	Message ListCredentialsResponseGetMessageAttributeType `json:"message"`
+	Message ListCredentialsResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _ListCredentialsResponse ListCredentialsResponse

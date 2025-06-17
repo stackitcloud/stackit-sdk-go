@@ -41,7 +41,7 @@ func setUpdateACLPayloadGetAclAttributeType(arg *UpdateACLPayloadGetAclAttribute
 type UpdateACLPayload struct {
 	// list of cidr
 	// REQUIRED
-	Acl UpdateACLPayloadGetAclAttributeType `json:"acl"`
+	Acl UpdateACLPayloadGetAclAttributeType `json:"acl" required:"true"`
 }
 
 type _UpdateACLPayload UpdateACLPayload

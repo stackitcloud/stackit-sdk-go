@@ -239,7 +239,7 @@ type UpdateAlertConfigRoutePayload struct {
 	Matchers UpdateAlertConfigRoutePayloadGetMatchersAttributeType `json:"matchers,omitempty"`
 	// Receiver that should be one item of receivers `Additional Validators:` * must be a in name of receivers
 	// REQUIRED
-	Receiver UpdateAlertConfigRoutePayloadGetReceiverAttributeType `json:"receiver"`
+	Receiver UpdateAlertConfigRoutePayloadGetReceiverAttributeType `json:"receiver" required:"true"`
 	// How long to wait before sending a notification again if it has already been sent successfully for an alert. (Usually ~3h or more). `Additional Validators:` * must be a valid time format
 	RepeatInterval UpdateAlertConfigRoutePayloadGetRepeatIntervalAttributeType `json:"repeatInterval,omitempty"`
 	// Zero or more child routes.

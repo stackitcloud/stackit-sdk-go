@@ -87,7 +87,7 @@ type CreateInstancePayload struct {
 	Parameter CreateInstancePayloadGetParameterAttributeType `json:"parameter,omitempty"`
 	// uuid of the plan to create/update
 	// REQUIRED
-	PlanId CreateInstancePayloadGetPlanIdAttributeType `json:"planId"`
+	PlanId CreateInstancePayloadGetPlanIdAttributeType `json:"planId" required:"true"`
 }
 
 type _CreateInstancePayload CreateInstancePayload

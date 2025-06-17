@@ -102,7 +102,7 @@ func setGrafanaConfigsgetUseStackitSsoAttributeType(arg *GrafanaConfigsgetUseSta
 type GrafanaConfigs struct {
 	GenericOauth GrafanaConfigsGetGenericOauthAttributeType `json:"genericOauth,omitempty"`
 	// REQUIRED
-	Message          GrafanaConfigsGetMessageAttributeType          `json:"message"`
+	Message          GrafanaConfigsGetMessageAttributeType          `json:"message" required:"true"`
 	PublicReadAccess GrafanaConfigsgetPublicReadAccessAttributeType `json:"publicReadAccess,omitempty"`
 	UseStackitSso    GrafanaConfigsgetUseStackitSsoAttributeType    `json:"useStackitSso,omitempty"`
 }

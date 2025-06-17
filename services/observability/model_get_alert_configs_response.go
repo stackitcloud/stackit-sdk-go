@@ -61,9 +61,9 @@ type GetAlertConfigsResponseGetMessageRetType = string
 // GetAlertConfigsResponse struct for GetAlertConfigsResponse
 type GetAlertConfigsResponse struct {
 	// REQUIRED
-	Data GetAlertConfigsResponseGetDataAttributeType `json:"data"`
+	Data GetAlertConfigsResponseGetDataAttributeType `json:"data" required:"true"`
 	// REQUIRED
-	Message GetAlertConfigsResponseGetMessageAttributeType `json:"message"`
+	Message GetAlertConfigsResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _GetAlertConfigsResponse GetAlertConfigsResponse

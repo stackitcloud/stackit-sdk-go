@@ -61,9 +61,9 @@ type CredentialsRemoteWriteDeleteResponseGetMessageRetType = string
 // CredentialsRemoteWriteDeleteResponse struct for CredentialsRemoteWriteDeleteResponse
 type CredentialsRemoteWriteDeleteResponse struct {
 	// REQUIRED
-	MaxLimit CredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType `json:"maxLimit"`
+	MaxLimit CredentialsRemoteWriteDeleteResponseGetMaxLimitAttributeType `json:"maxLimit" required:"true"`
 	// REQUIRED
-	Message CredentialsRemoteWriteDeleteResponseGetMessageAttributeType `json:"message"`
+	Message CredentialsRemoteWriteDeleteResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _CredentialsRemoteWriteDeleteResponse CredentialsRemoteWriteDeleteResponse

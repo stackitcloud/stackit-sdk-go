@@ -146,7 +146,7 @@ type AlertRuleRecord struct {
 	Alert       AlertRuleRecordGetAlertAttributeType       `json:"alert,omitempty"`
 	Annotations AlertRuleRecordGetAnnotationsAttributeType `json:"annotations,omitempty"`
 	// REQUIRED
-	Expr   AlertRuleRecordGetExprAttributeType   `json:"expr"`
+	Expr   AlertRuleRecordGetExprAttributeType   `json:"expr" required:"true"`
 	For    AlertRuleRecordGetForAttributeType    `json:"for,omitempty"`
 	Labels AlertRuleRecordGetLabelsAttributeType `json:"labels,omitempty"`
 	Record AlertRuleRecordGetRecordAttributeType `json:"record,omitempty"`

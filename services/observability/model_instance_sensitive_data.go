@@ -497,50 +497,50 @@ type InstanceSensitiveDataGetZipkinSpansUrlRetType = string
 // InstanceSensitiveData struct for InstanceSensitiveData
 type InstanceSensitiveData struct {
 	// REQUIRED
-	AlertingUrl InstanceSensitiveDataGetAlertingUrlAttributeType `json:"alertingUrl"`
+	AlertingUrl InstanceSensitiveDataGetAlertingUrlAttributeType `json:"alertingUrl" required:"true"`
 	// REQUIRED
-	Cluster InstanceSensitiveDataGetClusterAttributeType `json:"cluster"`
+	Cluster InstanceSensitiveDataGetClusterAttributeType `json:"cluster" required:"true"`
 	// REQUIRED
-	DashboardUrl InstanceSensitiveDataGetDashboardUrlAttributeType `json:"dashboardUrl"`
+	DashboardUrl InstanceSensitiveDataGetDashboardUrlAttributeType `json:"dashboardUrl" required:"true"`
 	// REQUIRED
-	GrafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType `json:"grafanaAdminPassword"`
+	GrafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordAttributeType `json:"grafanaAdminPassword" required:"true"`
 	// REQUIRED
-	GrafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserAttributeType `json:"grafanaAdminUser"`
+	GrafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserAttributeType `json:"grafanaAdminUser" required:"true"`
 	// REQUIRED
-	GrafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType `json:"grafanaPublicReadAccess"`
+	GrafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessAttributeType `json:"grafanaPublicReadAccess" required:"true"`
 	// REQUIRED
-	GrafanaUrl InstanceSensitiveDataGetGrafanaUrlAttributeType `json:"grafanaUrl"`
+	GrafanaUrl InstanceSensitiveDataGetGrafanaUrlAttributeType `json:"grafanaUrl" required:"true"`
 	// REQUIRED
-	GrafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType `json:"grafanaUseStackitSso"`
+	GrafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType `json:"grafanaUseStackitSso" required:"true"`
 	// REQUIRED
-	Instance InstanceSensitiveDataGetInstanceAttributeType `json:"instance"`
+	Instance InstanceSensitiveDataGetInstanceAttributeType `json:"instance" required:"true"`
 	// REQUIRED
-	JaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlAttributeType `json:"jaegerTracesUrl"`
+	JaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlAttributeType `json:"jaegerTracesUrl" required:"true"`
 	// REQUIRED
-	JaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlAttributeType `json:"jaegerUiUrl"`
+	JaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlAttributeType `json:"jaegerUiUrl" required:"true"`
 	// REQUIRED
-	LogsPushUrl InstanceSensitiveDataGetLogsPushUrlAttributeType `json:"logsPushUrl"`
+	LogsPushUrl InstanceSensitiveDataGetLogsPushUrlAttributeType `json:"logsPushUrl" required:"true"`
 	// REQUIRED
-	LogsUrl InstanceSensitiveDataGetLogsUrlAttributeType `json:"logsUrl"`
+	LogsUrl InstanceSensitiveDataGetLogsUrlAttributeType `json:"logsUrl" required:"true"`
 	// REQUIRED
-	MetricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h"`
+	MetricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h" required:"true"`
 	// REQUIRED
-	MetricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m"`
+	MetricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m" required:"true"`
 	// REQUIRED
-	MetricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw"`
+	MetricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType `json:"metricsRetentionTimeRaw" required:"true"`
 	// REQUIRED
-	MetricsUrl InstanceSensitiveDataGetMetricsUrlAttributeType `json:"metricsUrl"`
+	MetricsUrl InstanceSensitiveDataGetMetricsUrlAttributeType `json:"metricsUrl" required:"true"`
 	Name       InstanceSensitiveDataGetNameAttributeType       `json:"name,omitempty"`
 	// REQUIRED
-	OtlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlAttributeType `json:"otlpTracesUrl"`
+	OtlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlAttributeType `json:"otlpTracesUrl" required:"true"`
 	// REQUIRED
-	Plan InstanceSensitiveDataGetPlanAttributeType `json:"plan"`
+	Plan InstanceSensitiveDataGetPlanAttributeType `json:"plan" required:"true"`
 	// REQUIRED
-	PushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlAttributeType `json:"pushMetricsUrl"`
+	PushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlAttributeType `json:"pushMetricsUrl" required:"true"`
 	// REQUIRED
-	TargetsUrl InstanceSensitiveDataGetTargetsUrlAttributeType `json:"targetsUrl"`
+	TargetsUrl InstanceSensitiveDataGetTargetsUrlAttributeType `json:"targetsUrl" required:"true"`
 	// REQUIRED
-	ZipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlAttributeType `json:"zipkinSpansUrl"`
+	ZipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlAttributeType `json:"zipkinSpansUrl" required:"true"`
 }
 
 type _InstanceSensitiveData InstanceSensitiveData

@@ -248,22 +248,22 @@ func setGrafanaOauthgetUsePkceAttributeType(arg *GrafanaOauthgetUsePkceAttribute
 // GrafanaOauth struct for GrafanaOauth
 type GrafanaOauth struct {
 	// REQUIRED
-	ApiUrl GrafanaOauthGetApiUrlAttributeType `json:"apiUrl"`
+	ApiUrl GrafanaOauthGetApiUrlAttributeType `json:"apiUrl" required:"true"`
 	// REQUIRED
-	AuthUrl GrafanaOauthGetAuthUrlAttributeType `json:"authUrl"`
+	AuthUrl GrafanaOauthGetAuthUrlAttributeType `json:"authUrl" required:"true"`
 	// REQUIRED
-	Enabled GrafanaOauthgetEnabledAttributeType `json:"enabled"`
+	Enabled GrafanaOauthgetEnabledAttributeType `json:"enabled" required:"true"`
 	Name    GrafanaOauthGetNameAttributeType    `json:"name,omitempty"`
 	// REQUIRED
-	OauthClientId GrafanaOauthGetOauthClientIdAttributeType `json:"oauthClientId"`
+	OauthClientId GrafanaOauthGetOauthClientIdAttributeType `json:"oauthClientId" required:"true"`
 	// REQUIRED
-	OauthClientSecret GrafanaOauthGetOauthClientSecretAttributeType `json:"oauthClientSecret"`
+	OauthClientSecret GrafanaOauthGetOauthClientSecretAttributeType `json:"oauthClientSecret" required:"true"`
 	// REQUIRED
-	RoleAttributePath   GrafanaOauthGetRoleAttributePathAttributeType   `json:"roleAttributePath"`
+	RoleAttributePath   GrafanaOauthGetRoleAttributePathAttributeType   `json:"roleAttributePath" required:"true"`
 	RoleAttributeStrict GrafanaOauthgetRoleAttributeStrictAttributeType `json:"roleAttributeStrict,omitempty"`
 	Scopes              GrafanaOauthGetScopesAttributeType              `json:"scopes,omitempty"`
 	// REQUIRED
-	TokenUrl GrafanaOauthGetTokenUrlAttributeType `json:"tokenUrl"`
+	TokenUrl GrafanaOauthGetTokenUrlAttributeType `json:"tokenUrl" required:"true"`
 	UsePkce  GrafanaOauthgetUsePkceAttributeType  `json:"usePkce,omitempty"`
 }
 

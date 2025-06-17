@@ -62,7 +62,7 @@ type ErrorGetMessageRetType = string
 type Error struct {
 	Errors ErrorGetErrorsAttributeType `json:"errors,omitempty"`
 	// REQUIRED
-	Message ErrorGetMessageAttributeType `json:"message"`
+	Message ErrorGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _Error Error

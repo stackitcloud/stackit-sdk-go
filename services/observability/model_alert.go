@@ -102,9 +102,9 @@ type Alert struct {
 	Global       AlertGetGlobalAttributeType       `json:"global,omitempty"`
 	InhibitRules AlertGetInhibitRulesAttributeType `json:"inhibitRules,omitempty"`
 	// REQUIRED
-	Receivers AlertGetReceiversAttributeType `json:"receivers"`
+	Receivers AlertGetReceiversAttributeType `json:"receivers" required:"true"`
 	// REQUIRED
-	Route AlertGetRouteAttributeType `json:"route"`
+	Route AlertGetRouteAttributeType `json:"route" required:"true"`
 }
 
 type _Alert Alert

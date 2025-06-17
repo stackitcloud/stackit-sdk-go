@@ -41,7 +41,7 @@ type MessageGetMessageRetType = string
 // Message struct for Message
 type Message struct {
 	// REQUIRED
-	Message MessageGetMessageAttributeType `json:"message"`
+	Message MessageGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _Message Message
