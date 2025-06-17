@@ -124,15 +124,15 @@ type PlanGetSkuNameRetType = string
 // Plan struct for Plan
 type Plan struct {
 	// REQUIRED
-	Description PlanGetDescriptionAttributeType `json:"description"`
+	Description PlanGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	Free PlangetFreeAttributeType `json:"free"`
+	Free PlangetFreeAttributeType `json:"free" required:"true"`
 	// REQUIRED
-	Id PlanGetIdAttributeType `json:"id"`
+	Id PlanGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Name PlanGetNameAttributeType `json:"name"`
+	Name PlanGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	SkuName PlanGetSkuNameAttributeType `json:"skuName"`
+	SkuName PlanGetSkuNameAttributeType `json:"skuName" required:"true"`
 }
 
 type _Plan Plan
