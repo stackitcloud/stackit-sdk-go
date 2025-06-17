@@ -82,11 +82,11 @@ func setCreateBackupPayloadGetVolumeIdsAttributeType(arg *CreateBackupPayloadGet
 type CreateBackupPayload struct {
 	// Max 255 characters
 	// REQUIRED
-	Name CreateBackupPayloadGetNameAttributeType `json:"name"`
+	Name CreateBackupPayloadGetNameAttributeType `json:"name" required:"true"`
 	// Values are set in days (1-36500)
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	RetentionPeriod CreateBackupPayloadGetRetentionPeriodAttributeType `json:"retentionPeriod"`
+	RetentionPeriod CreateBackupPayloadGetRetentionPeriodAttributeType `json:"retentionPeriod" required:"true"`
 	VolumeIds       CreateBackupPayloadGetVolumeIdsAttributeType       `json:"volumeIds,omitempty"`
 }
 
