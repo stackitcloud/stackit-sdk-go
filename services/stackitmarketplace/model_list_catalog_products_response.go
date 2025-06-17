@@ -102,14 +102,14 @@ func setListCatalogProductsResponseGetLimitAttributeType(arg *ListCatalogProduct
 type ListCatalogProductsResponse struct {
 	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 	// REQUIRED
-	Cursor ListCatalogProductsResponseGetCursorAttributeType `json:"cursor"`
+	Cursor ListCatalogProductsResponseGetCursorAttributeType `json:"cursor" required:"true"`
 	// A collection of facets, where each key represents a facet category.
 	Facets ListCatalogProductsResponseGetFacetsAttributeType `json:"facets,omitempty"`
 	// REQUIRED
-	Items ListCatalogProductsResponseGetItemsAttributeType `json:"items"`
+	Items ListCatalogProductsResponseGetItemsAttributeType `json:"items" required:"true"`
 	// Limit for returned Objects.
 	// REQUIRED
-	Limit ListCatalogProductsResponseGetLimitAttributeType `json:"limit"`
+	Limit ListCatalogProductsResponseGetLimitAttributeType `json:"limit" required:"true"`
 }
 
 type _ListCatalogProductsResponse ListCatalogProductsResponse

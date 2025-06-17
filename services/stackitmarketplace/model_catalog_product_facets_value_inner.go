@@ -63,10 +63,10 @@ type CatalogProductFacetsValueInner struct {
 	// The number of items associated with this facet value.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Count CatalogProductFacetsValueInnerGetCountAttributeType `json:"count"`
+	Count CatalogProductFacetsValueInnerGetCountAttributeType `json:"count" required:"true"`
 	// The value of the facet.
 	// REQUIRED
-	Value CatalogProductFacetsValueInnerGetValueAttributeType `json:"value"`
+	Value CatalogProductFacetsValueInnerGetValueAttributeType `json:"value" required:"true"`
 }
 
 type _CatalogProductFacetsValueInner CatalogProductFacetsValueInner
