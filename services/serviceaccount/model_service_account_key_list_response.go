@@ -473,19 +473,19 @@ func setServiceAccountKeyListResponseGetValidUntilAttributeType(arg *ServiceAcco
 // ServiceAccountKeyListResponse struct for ServiceAccountKeyListResponse
 type ServiceAccountKeyListResponse struct {
 	// REQUIRED
-	Active ServiceAccountKeyListResponsegetActiveAttributeType `json:"active"`
+	Active ServiceAccountKeyListResponsegetActiveAttributeType `json:"active" required:"true"`
 	// Creation time of the key
 	// REQUIRED
-	CreatedAt ServiceAccountKeyListResponseGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt ServiceAccountKeyListResponseGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// Unique ID of the key.
 	// REQUIRED
-	Id ServiceAccountKeyListResponseGetIdAttributeType `json:"id"`
+	Id ServiceAccountKeyListResponseGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	KeyAlgorithm ServiceAccountKeyListResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm"`
+	KeyAlgorithm ServiceAccountKeyListResponseGetKeyAlgorithmAttributeType `json:"keyAlgorithm" required:"true"`
 	// REQUIRED
-	KeyOrigin ServiceAccountKeyListResponseGetKeyOriginAttributeType `json:"keyOrigin"`
+	KeyOrigin ServiceAccountKeyListResponseGetKeyOriginAttributeType `json:"keyOrigin" required:"true"`
 	// REQUIRED
-	KeyType ServiceAccountKeyListResponseGetKeyTypeAttributeType `json:"keyType"`
+	KeyType ServiceAccountKeyListResponseGetKeyTypeAttributeType `json:"keyType" required:"true"`
 	// If specified, the timestamp until the key is active. May be null
 	ValidUntil ServiceAccountKeyListResponseGetValidUntilAttributeType `json:"validUntil,omitempty"`
 }
