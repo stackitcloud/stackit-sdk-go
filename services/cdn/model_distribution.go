@@ -294,24 +294,24 @@ func setDistributionGetUpdatedAtAttributeType(arg *DistributionGetUpdatedAtAttri
 // Distribution struct for Distribution
 type Distribution struct {
 	// REQUIRED
-	Config DistributionGetConfigAttributeType `json:"config"`
+	Config DistributionGetConfigAttributeType `json:"config" required:"true"`
 	// RFC3339 string defining when the distribution was created
 	// REQUIRED
-	CreatedAt DistributionGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt DistributionGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// REQUIRED
-	Domains DistributionGetDomainsAttributeType `json:"domains"`
+	Domains DistributionGetDomainsAttributeType `json:"domains" required:"true"`
 	// This object may be present if, and only if the distribution has encountered an error state.
 	Errors DistributionGetErrorsAttributeType `json:"errors,omitempty"`
 	// REQUIRED
-	Id DistributionGetIdAttributeType `json:"id"`
+	Id DistributionGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	ProjectId DistributionGetProjectIdAttributeType `json:"projectId"`
+	ProjectId DistributionGetProjectIdAttributeType `json:"projectId" required:"true"`
 	// - `CREATING`: The distribution was just created.    All the relevant resources are created in the background. Once fully reconciled,   this switches to `ACTIVE`. If there are any issues, the status changes to    `ERROR`. You can look at the `errors` array to get more infos. - `ACTIVE`: The usual state. The desired configuration is synced, there are no errors - `UPDATING`: The state when there is a discrepancy between the desired and    actual configuration state. This occurs right after an update. Will switch to    `ACTIVE` or `ERROR`, depending on if synchronizing succeeds or not. - `DELETING`: The state right after a delete request was received. The distribution will stay in this status   until all resources have been successfully removed, or until we encounter an `ERROR` state.    **NOTE:** You can keep fetching the distribution while it is deleting.    After successful deletion, trying to get a distribution will return a 404 Not Found response - `ERROR`: The error state. Look at the `errors` array for more info.
 	// REQUIRED
-	Status DistributionGetStatusAttributeType `json:"status"`
+	Status DistributionGetStatusAttributeType `json:"status" required:"true"`
 	// RFC3339 string which returns the last time the distribution configuration was modified.
 	// REQUIRED
-	UpdatedAt DistributionGetUpdatedAtAttributeType `json:"updatedAt"`
+	UpdatedAt DistributionGetUpdatedAtAttributeType `json:"updatedAt" required:"true"`
 }
 
 type _Distribution Distribution

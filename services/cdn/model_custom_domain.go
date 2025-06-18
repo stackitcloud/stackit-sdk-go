@@ -84,9 +84,9 @@ type CustomDomain struct {
 	Errors CustomDomainGetErrorsAttributeType `json:"errors,omitempty"`
 	// The domain. Can be used as input for the GetCustomDomain endpoint
 	// REQUIRED
-	Name CustomDomainGetNameAttributeType `json:"name"`
+	Name CustomDomainGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Status CustomDomainGetStatusAttributeType `json:"status"`
+	Status CustomDomainGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _CustomDomain CustomDomain

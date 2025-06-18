@@ -209,12 +209,12 @@ type Domain struct {
 	Errors DomainGetErrorsAttributeType `json:"errors,omitempty"`
 	// The domain. If this is a custom domain, you can call the GetCustomDomain Endpoint
 	// REQUIRED
-	Name DomainGetNameAttributeType `json:"name"`
+	Name DomainGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Status DomainGetStatusAttributeType `json:"status"`
+	Status DomainGetStatusAttributeType `json:"status" required:"true"`
 	// Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
 	// REQUIRED
-	Type DomainGetTypeAttributeType `json:"type"`
+	Type DomainGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _Domain Domain
