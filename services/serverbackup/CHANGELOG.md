@@ -1,3 +1,6 @@
+## v1.3.0 
+- Add `required:"true"` tags to model structs
+
 ## v1.2.1 (2025-06-04)
 - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 
