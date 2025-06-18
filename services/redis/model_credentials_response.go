@@ -82,10 +82,10 @@ type CredentialsResponseGetUriRetType = string
 // CredentialsResponse struct for CredentialsResponse
 type CredentialsResponse struct {
 	// REQUIRED
-	Id  CredentialsResponseGetIdAttributeType  `json:"id"`
+	Id  CredentialsResponseGetIdAttributeType  `json:"id" required:"true"`
 	Raw CredentialsResponseGetRawAttributeType `json:"raw,omitempty"`
 	// REQUIRED
-	Uri CredentialsResponseGetUriAttributeType `json:"uri"`
+	Uri CredentialsResponseGetUriAttributeType `json:"uri" required:"true"`
 }
 
 type _CredentialsResponse CredentialsResponse

@@ -40,7 +40,7 @@ func setSchemaGetParametersAttributeType(arg *SchemaGetParametersAttributeType, 
 // Schema struct for Schema
 type Schema struct {
 	// REQUIRED
-	Parameters SchemaGetParametersAttributeType `json:"parameters"`
+	Parameters SchemaGetParametersAttributeType `json:"parameters" required:"true"`
 }
 
 type _Schema Schema
