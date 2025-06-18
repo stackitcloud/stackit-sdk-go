@@ -61,9 +61,9 @@ func setCreateDatabasePayloadGetOptionsAttributeType(arg *CreateDatabasePayloadG
 // CreateDatabasePayload struct for CreateDatabasePayload
 type CreateDatabasePayload struct {
 	// REQUIRED
-	Name CreateDatabasePayloadGetNameAttributeType `json:"name"`
+	Name CreateDatabasePayloadGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Options CreateDatabasePayloadGetOptionsAttributeType `json:"options"`
+	Options CreateDatabasePayloadGetOptionsAttributeType `json:"options" required:"true"`
 }
 
 type _CreateDatabasePayload CreateDatabasePayload

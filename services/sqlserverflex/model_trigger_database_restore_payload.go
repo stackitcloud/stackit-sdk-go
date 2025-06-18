@@ -63,10 +63,10 @@ type TriggerDatabaseRestorePayloadGetRestoreDateTimeRetType = string
 type TriggerDatabaseRestorePayload struct {
 	// Name for the restored database no overwrite allowed at the moment
 	// REQUIRED
-	Name TriggerDatabaseRestorePayloadGetNameAttributeType `json:"name"`
+	Name TriggerDatabaseRestorePayloadGetNameAttributeType `json:"name" required:"true"`
 	// Time of the restore point formate RFC3339
 	// REQUIRED
-	RestoreDateTime TriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType `json:"restoreDateTime"`
+	RestoreDateTime TriggerDatabaseRestorePayloadGetRestoreDateTimeAttributeType `json:"restoreDateTime" required:"true"`
 }
 
 type _TriggerDatabaseRestorePayload TriggerDatabaseRestorePayload
