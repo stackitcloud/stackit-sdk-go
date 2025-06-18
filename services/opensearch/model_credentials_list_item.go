@@ -41,7 +41,7 @@ type CredentialsListItemGetIdRetType = string
 // CredentialsListItem struct for CredentialsListItem
 type CredentialsListItem struct {
 	// REQUIRED
-	Id CredentialsListItemGetIdAttributeType `json:"id"`
+	Id CredentialsListItemGetIdAttributeType `json:"id" required:"true"`
 }
 
 type _CredentialsListItem CredentialsListItem

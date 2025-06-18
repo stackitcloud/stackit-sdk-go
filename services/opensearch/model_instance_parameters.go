@@ -394,114 +394,10 @@ func setInstanceParametersGetTlsCiphersAttributeType(arg *InstanceParametersGetT
 	types and functions for tls-protocols
 */
 
-// isEnum
-
-// InstanceParametersTlsProtocols the model 'InstanceParameters'
-// value type for enums
-type InstanceParametersTlsProtocols string
-
-// List of TlsProtocols
-const (
-	INSTANCEPARAMETERSTLS_PROTOCOLS__2 InstanceParametersTlsProtocols = "TLSv1.2"
-	INSTANCEPARAMETERSTLS_PROTOCOLS__3 InstanceParametersTlsProtocols = "TLSv1.3"
-)
-
-// All allowed values of InstanceParameters enum
-var AllowedInstanceParametersTlsProtocolsEnumValues = []InstanceParametersTlsProtocols{
-	"TLSv1.2",
-	"TLSv1.3",
-}
-
-func (v *InstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
-	// use a type alias to prevent infinite recursion during unmarshal,
-	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
-	type TmpJson InstanceParametersTlsProtocols
-	var value TmpJson
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	// Allow unmarshalling zero value for testing purposes
-	var zeroValue TmpJson
-	if value == zeroValue {
-		return nil
-	}
-	enumTypeValue := InstanceParametersTlsProtocols(value)
-	for _, existing := range AllowedInstanceParametersTlsProtocolsEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid InstanceParameters", value)
-}
-
-// NewInstanceParametersTlsProtocolsFromValue returns a pointer to a valid InstanceParametersTlsProtocols
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewInstanceParametersTlsProtocolsFromValue(v InstanceParametersTlsProtocols) (*InstanceParametersTlsProtocols, error) {
-	ev := InstanceParametersTlsProtocols(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for InstanceParametersTlsProtocols: valid values are %v", v, AllowedInstanceParametersTlsProtocolsEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v InstanceParametersTlsProtocols) IsValid() bool {
-	for _, existing := range AllowedInstanceParametersTlsProtocolsEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to TlsProtocolsTlsProtocols value
-func (v InstanceParametersTlsProtocols) Ptr() *InstanceParametersTlsProtocols {
-	return &v
-}
-
-type NullableInstanceParametersTlsProtocols struct {
-	value *InstanceParametersTlsProtocols
-	isSet bool
-}
-
-func (v NullableInstanceParametersTlsProtocols) Get() *InstanceParametersTlsProtocols {
-	return v.value
-}
-
-func (v *NullableInstanceParametersTlsProtocols) Set(val *InstanceParametersTlsProtocols) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableInstanceParametersTlsProtocols) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableInstanceParametersTlsProtocols) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableInstanceParametersTlsProtocols(val *InstanceParametersTlsProtocols) *NullableInstanceParametersTlsProtocols {
-	return &NullableInstanceParametersTlsProtocols{value: val, isSet: true}
-}
-
-func (v NullableInstanceParametersTlsProtocols) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableInstanceParametersTlsProtocols) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-type InstanceParametersGetTlsProtocolsAttributeType = *InstanceParametersTlsProtocols
-type InstanceParametersGetTlsProtocolsArgType = InstanceParametersTlsProtocols
-type InstanceParametersGetTlsProtocolsRetType = InstanceParametersTlsProtocols
+// isArray
+type InstanceParametersGetTlsProtocolsAttributeType = *[]string
+type InstanceParametersGetTlsProtocolsArgType = []string
+type InstanceParametersGetTlsProtocolsRetType = []string
 
 func getInstanceParametersGetTlsProtocolsAttributeTypeOk(arg InstanceParametersGetTlsProtocolsAttributeType) (ret InstanceParametersGetTlsProtocolsRetType, ok bool) {
 	if arg == nil {
@@ -889,7 +785,7 @@ func (o *InstanceParameters) HasTlsProtocols() bool {
 	return ok
 }
 
-// SetTlsProtocols gets a reference to the given string and assigns it to the TlsProtocols field.
+// SetTlsProtocols gets a reference to the given []string and assigns it to the TlsProtocols field.
 func (o *InstanceParameters) SetTlsProtocols(v InstanceParametersGetTlsProtocolsRetType) {
 	setInstanceParametersGetTlsProtocolsAttributeType(&o.TlsProtocols, v)
 }

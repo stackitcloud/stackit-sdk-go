@@ -40,7 +40,7 @@ func setRawCredentialsGetCredentialsAttributeType(arg *RawCredentialsGetCredenti
 // RawCredentials struct for RawCredentials
 type RawCredentials struct {
 	// REQUIRED
-	Credentials RawCredentialsGetCredentialsAttributeType `json:"credentials"`
+	Credentials RawCredentialsGetCredentialsAttributeType `json:"credentials" required:"true"`
 }
 
 type _RawCredentials RawCredentials
