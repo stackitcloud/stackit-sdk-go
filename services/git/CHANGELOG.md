@@ -1,3 +1,9 @@
+## v0.6.0
+- **Feature:** Add support for `Flavors` for STACKIT git instance
+- **Feature:** Add support for `Acl` for STACKIT git instance
+- `projectId` and `instanceId` strings must have a length of 36 characters now (previously was only limited to a maximum of 36 characters)
+- Add `required:"true"` tags to model structs
+
 ## v0.5.1 (2025-06-04)
 - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 

@@ -1,6 +1,11 @@
 ## Release (2025-XX-XX)
 - `ske`: [v0.26.0](services/ske/CHANGELOG.md#v0260)
   - Add `required:"true"` tags to model structs
+- `git`: [v0.6.0](services/git/CHANGELOG.md#v060)
+  - **Feature:** Add support for `Flavors` for STACKIT git instance
+  - **Feature:** Add support for `Acl` for STACKIT git instance
+  - `projectId` and `instanceId` strings must have a length of 36 characters now (previously was only limited to a maximum of 36 characters)
+  - Add `required:"true"` tags to model structs
 
 ## Release (2025-06-16)
 - `iaas`: 
