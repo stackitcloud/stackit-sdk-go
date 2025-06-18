@@ -60,9 +60,9 @@ func setSuggestProductGetTypeAttributeType(arg *SuggestProductGetTypeAttributeTy
 // SuggestProduct Suggest a product.
 type SuggestProduct struct {
 	// REQUIRED
-	SuggestProduct SuggestProductGetSuggestProductAttributeType `json:"suggestProduct"`
+	SuggestProduct SuggestProductGetSuggestProductAttributeType `json:"suggestProduct" required:"true"`
 	// REQUIRED
-	Type SuggestProductGetTypeAttributeType `json:"type"`
+	Type SuggestProductGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _SuggestProduct SuggestProduct

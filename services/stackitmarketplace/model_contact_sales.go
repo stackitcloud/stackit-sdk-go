@@ -60,9 +60,9 @@ func setContactSalesGetTypeAttributeType(arg *ContactSalesGetTypeAttributeType, 
 // ContactSales Contact sales.
 type ContactSales struct {
 	// REQUIRED
-	ContactSales ContactSalesGetContactSalesAttributeType `json:"contactSales"`
+	ContactSales ContactSalesGetContactSalesAttributeType `json:"contactSales" required:"true"`
 	// REQUIRED
-	Type ContactSalesGetTypeAttributeType `json:"type"`
+	Type ContactSalesGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _ContactSales ContactSales

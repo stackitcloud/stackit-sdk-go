@@ -60,9 +60,9 @@ func setRegisterTestingGetTypeAttributeType(arg *RegisterTestingGetTypeAttribute
 // RegisterTesting Register for testing.
 type RegisterTesting struct {
 	// REQUIRED
-	RegisterTesting RegisterTestingGetRegisterTestingAttributeType `json:"registerTesting"`
+	RegisterTesting RegisterTestingGetRegisterTestingAttributeType `json:"registerTesting" required:"true"`
 	// REQUIRED
-	Type RegisterTestingGetTypeAttributeType `json:"type"`
+	Type RegisterTestingGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _RegisterTesting RegisterTesting

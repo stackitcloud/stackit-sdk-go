@@ -123,18 +123,18 @@ type VendorSubscriptionGetSubscriptionIdRetType = string
 // VendorSubscription struct for VendorSubscription
 type VendorSubscription struct {
 	// REQUIRED
-	LifecycleState VendorSubscriptionGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState VendorSubscriptionGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	OrganizationId VendorSubscriptionGetOrganizationIdAttributeType `json:"organizationId"`
+	OrganizationId VendorSubscriptionGetOrganizationIdAttributeType `json:"organizationId" required:"true"`
 	// REQUIRED
-	Product VendorSubscriptionGetProductAttributeType `json:"product"`
+	Product VendorSubscriptionGetProductAttributeType `json:"product" required:"true"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	ProjectId VendorSubscriptionGetProjectIdAttributeType `json:"projectId"`
+	ProjectId VendorSubscriptionGetProjectIdAttributeType `json:"projectId" required:"true"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	SubscriptionId VendorSubscriptionGetSubscriptionIdAttributeType `json:"subscriptionId"`
+	SubscriptionId VendorSubscriptionGetSubscriptionIdAttributeType `json:"subscriptionId" required:"true"`
 }
 
 type _VendorSubscription VendorSubscription

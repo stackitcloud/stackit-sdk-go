@@ -82,13 +82,13 @@ func setListVendorSubscriptionsResponseGetLimitAttributeType(arg *ListVendorSubs
 type ListVendorSubscriptionsResponse struct {
 	// A pagination cursor that represents a position in the dataset. If given, results will be returned from the item after the cursor. If not given, results will be returned from the beginning.
 	// REQUIRED
-	Cursor ListVendorSubscriptionsResponseGetCursorAttributeType `json:"cursor"`
+	Cursor ListVendorSubscriptionsResponseGetCursorAttributeType `json:"cursor" required:"true"`
 	// List of subscriptions.
 	// REQUIRED
-	Items ListVendorSubscriptionsResponseGetItemsAttributeType `json:"items"`
+	Items ListVendorSubscriptionsResponseGetItemsAttributeType `json:"items" required:"true"`
 	// Limit for returned Objects.
 	// REQUIRED
-	Limit ListVendorSubscriptionsResponseGetLimitAttributeType `json:"limit"`
+	Limit ListVendorSubscriptionsResponseGetLimitAttributeType `json:"limit" required:"true"`
 }
 
 type _ListVendorSubscriptionsResponse ListVendorSubscriptionsResponse

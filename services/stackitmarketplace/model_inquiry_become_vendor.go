@@ -63,10 +63,10 @@ type InquiryBecomeVendorGetMessageRetType = string
 type InquiryBecomeVendor struct {
 	// A e-mail address.
 	// REQUIRED
-	ContactEmail InquiryBecomeVendorGetContactEmailAttributeType `json:"contactEmail"`
+	ContactEmail InquiryBecomeVendorGetContactEmailAttributeType `json:"contactEmail" required:"true"`
 	// A custom message.
 	// REQUIRED
-	Message InquiryBecomeVendorGetMessageAttributeType `json:"message"`
+	Message InquiryBecomeVendorGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _InquiryBecomeVendor InquiryBecomeVendor

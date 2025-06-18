@@ -146,22 +146,22 @@ type CatalogProductDetailsVendorGetWebsiteUrlRetType = string
 type CatalogProductDetailsVendor struct {
 	// The vendor description.
 	// REQUIRED
-	Description CatalogProductDetailsVendorGetDescriptionAttributeType `json:"description"`
+	Description CatalogProductDetailsVendorGetDescriptionAttributeType `json:"description" required:"true"`
 	// The logo base64 encoded.
 	// REQUIRED
-	Logo CatalogProductDetailsVendorGetLogoAttributeType `json:"logo"`
+	Logo CatalogProductDetailsVendorGetLogoAttributeType `json:"logo" required:"true"`
 	// The product's vendor name.
 	// REQUIRED
-	Name CatalogProductDetailsVendorGetNameAttributeType `json:"name"`
+	Name CatalogProductDetailsVendorGetNameAttributeType `json:"name" required:"true"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	VendorId CatalogProductDetailsVendorGetVendorIdAttributeType `json:"vendorId"`
+	VendorId CatalogProductDetailsVendorGetVendorIdAttributeType `json:"vendorId" required:"true"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	VideoUrl CatalogProductDetailsVendorGetVideoUrlAttributeType `json:"videoUrl"`
+	VideoUrl CatalogProductDetailsVendorGetVideoUrlAttributeType `json:"videoUrl" required:"true"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	WebsiteUrl CatalogProductDetailsVendorGetWebsiteUrlAttributeType `json:"websiteUrl"`
+	WebsiteUrl CatalogProductDetailsVendorGetWebsiteUrlAttributeType `json:"websiteUrl" required:"true"`
 }
 
 type _CatalogProductDetailsVendor CatalogProductDetailsVendor
