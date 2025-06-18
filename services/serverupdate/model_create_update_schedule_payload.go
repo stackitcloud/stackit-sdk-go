@@ -102,14 +102,14 @@ type CreateUpdateSchedulePayloadGetRruleRetType = string
 // CreateUpdateSchedulePayload struct for CreateUpdateSchedulePayload
 type CreateUpdateSchedulePayload struct {
 	// REQUIRED
-	Enabled CreateUpdateSchedulePayloadgetEnabledAttributeType `json:"enabled"`
+	Enabled CreateUpdateSchedulePayloadgetEnabledAttributeType `json:"enabled" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	MaintenanceWindow CreateUpdateSchedulePayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow"`
+	MaintenanceWindow CreateUpdateSchedulePayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow" required:"true"`
 	// REQUIRED
-	Name CreateUpdateSchedulePayloadGetNameAttributeType `json:"name"`
+	Name CreateUpdateSchedulePayloadGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Rrule CreateUpdateSchedulePayloadGetRruleAttributeType `json:"rrule"`
+	Rrule CreateUpdateSchedulePayloadGetRruleAttributeType `json:"rrule" required:"true"`
 }
 
 type _CreateUpdateSchedulePayload CreateUpdateSchedulePayload

@@ -126,7 +126,7 @@ type HTTPServiceSD struct {
 	RefreshInterval HTTPServiceSDGetRefreshIntervalAttributeType `json:"refreshInterval,omitempty"`
 	TlsConfig       HTTPServiceSDGetTlsConfigAttributeType       `json:"tlsConfig,omitempty"`
 	// REQUIRED
-	Url HTTPServiceSDGetUrlAttributeType `json:"url"`
+	Url HTTPServiceSDGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _HTTPServiceSD HTTPServiceSD

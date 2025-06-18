@@ -62,9 +62,9 @@ func setProjectStatusGetScopeAttributeType(arg *ProjectStatusGetScopeAttributeTy
 type ProjectStatus struct {
 	// Project ID
 	// REQUIRED
-	Project ProjectStatusGetProjectAttributeType `json:"project"`
+	Project ProjectStatusGetProjectAttributeType `json:"project" required:"true"`
 	// REQUIRED
-	Scope ProjectStatusGetScopeAttributeType `json:"scope"`
+	Scope ProjectStatusGetScopeAttributeType `json:"scope" required:"true"`
 }
 
 type _ProjectStatus ProjectStatus

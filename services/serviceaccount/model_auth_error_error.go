@@ -82,11 +82,11 @@ type AuthErrorErrorGetStatusRetType = string
 // AuthErrorError struct for AuthErrorError
 type AuthErrorError struct {
 	// REQUIRED
-	Code AuthErrorErrorGetCodeAttributeType `json:"code"`
+	Code AuthErrorErrorGetCodeAttributeType `json:"code" required:"true"`
 	// REQUIRED
-	Message AuthErrorErrorGetMessageAttributeType `json:"message"`
+	Message AuthErrorErrorGetMessageAttributeType `json:"message" required:"true"`
 	// REQUIRED
-	Status AuthErrorErrorGetStatusAttributeType `json:"status"`
+	Status AuthErrorErrorGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _AuthErrorError AuthErrorError

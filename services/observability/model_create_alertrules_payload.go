@@ -124,12 +124,12 @@ func setCreateAlertrulesPayloadGetLabelsAttributeType(arg *CreateAlertrulesPaylo
 type CreateAlertrulesPayload struct {
 	// The name of the alert. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9-
 	// REQUIRED
-	Alert CreateAlertrulesPayloadGetAlertAttributeType `json:"alert"`
+	Alert CreateAlertrulesPayloadGetAlertAttributeType `json:"alert" required:"true"`
 	// map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
 	Annotations CreateAlertrulesPayloadGetAnnotationsAttributeType `json:"annotations,omitempty"`
 	// The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.
 	// REQUIRED
-	Expr CreateAlertrulesPayloadGetExprAttributeType `json:"expr"`
+	Expr CreateAlertrulesPayloadGetExprAttributeType `json:"expr" required:"true"`
 	// Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string
 	For CreateAlertrulesPayloadGetForAttributeType `json:"for,omitempty"`
 	// map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters

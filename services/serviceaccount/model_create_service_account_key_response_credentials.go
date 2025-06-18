@@ -126,18 +126,18 @@ type CreateServiceAccountKeyResponseCredentialsGetSubRetType = string
 type CreateServiceAccountKeyResponseCredentials struct {
 	// Audience - service account API URL
 	// REQUIRED
-	Aud CreateServiceAccountKeyResponseCredentialsGetAudAttributeType `json:"aud"`
+	Aud CreateServiceAccountKeyResponseCredentialsGetAudAttributeType `json:"aud" required:"true"`
 	// Service account email
 	// REQUIRED
-	Iss CreateServiceAccountKeyResponseCredentialsGetIssAttributeType `json:"iss"`
+	Iss CreateServiceAccountKeyResponseCredentialsGetIssAttributeType `json:"iss" required:"true"`
 	// Key id to use
 	// REQUIRED
-	Kid CreateServiceAccountKeyResponseCredentialsGetKidAttributeType `json:"kid"`
+	Kid CreateServiceAccountKeyResponseCredentialsGetKidAttributeType `json:"kid" required:"true"`
 	// Private key. Only present, if the service account API was generating the key. Not recoverable later.
 	PrivateKey CreateServiceAccountKeyResponseCredentialsGetPrivateKeyAttributeType `json:"privateKey,omitempty"`
 	// Service account id
 	// REQUIRED
-	Sub CreateServiceAccountKeyResponseCredentialsGetSubAttributeType `json:"sub"`
+	Sub CreateServiceAccountKeyResponseCredentialsGetSubAttributeType `json:"sub" required:"true"`
 }
 
 type _CreateServiceAccountKeyResponseCredentials CreateServiceAccountKeyResponseCredentials

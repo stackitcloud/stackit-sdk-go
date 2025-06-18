@@ -108,10 +108,10 @@ type CreateAffinityGroupPayload struct {
 	Members CreateAffinityGroupPayloadGetMembersAttributeType `json:"members,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name CreateAffinityGroupPayloadGetNameAttributeType `json:"name"`
+	Name CreateAffinityGroupPayloadGetNameAttributeType `json:"name" required:"true"`
 	// The affinity group policy. `hard-affinity`: All servers in this group will be hosted on the same compute node. `soft-affinity`: All servers in this group will be hosted on as few compute nodes as possible. `hard-anti-affinity`: All servers in this group will be hosted on different compute nodes. `soft-anti-affinity`: All servers in this group will be hosted on as many compute nodes as possible. Possible values: `hard-anti-affinity`, `hard-affinity`, `soft-anti-affinity`, `soft-affinity`.
 	// REQUIRED
-	Policy CreateAffinityGroupPayloadGetPolicyAttributeType `json:"policy"`
+	Policy CreateAffinityGroupPayloadGetPolicyAttributeType `json:"policy" required:"true"`
 }
 
 type _CreateAffinityGroupPayload CreateAffinityGroupPayload

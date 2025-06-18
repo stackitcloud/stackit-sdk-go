@@ -85,10 +85,10 @@ type UpdateAlertgroupsRequestInner struct {
 	Interval UpdateAlertgroupsRequestInnerGetIntervalAttributeType `json:"interval,omitempty"`
 	// The name of the group. Must be unique. `Additional Validators:` * is the identifier and so unique * should only include the characters: a-zA-Z0-9-
 	// REQUIRED
-	Name UpdateAlertgroupsRequestInnerGetNameAttributeType `json:"name"`
+	Name UpdateAlertgroupsRequestInnerGetNameAttributeType `json:"name" required:"true"`
 	// rules for the alert group
 	// REQUIRED
-	Rules UpdateAlertgroupsRequestInnerGetRulesAttributeType `json:"rules"`
+	Rules UpdateAlertgroupsRequestInnerGetRulesAttributeType `json:"rules" required:"true"`
 }
 
 type _UpdateAlertgroupsRequestInner UpdateAlertgroupsRequestInner

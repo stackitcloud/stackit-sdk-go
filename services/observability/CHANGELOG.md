@@ -1,3 +1,6 @@
+## v0.8.0
+- Add `required:"true"` tags to model structs
+
 ## v0.7.1 (2025-06-04)
 - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - **Feature:** Added `Priority` and `SendResolved` attributes

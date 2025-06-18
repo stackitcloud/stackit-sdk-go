@@ -122,16 +122,16 @@ func setListZonesResponseGetZonesAttributeType(arg *ListZonesResponseGetZonesAtt
 type ListZonesResponse struct {
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	ItemsPerPage ListZonesResponseGetItemsPerPageAttributeType `json:"itemsPerPage"`
+	ItemsPerPage ListZonesResponseGetItemsPerPageAttributeType `json:"itemsPerPage" required:"true"`
 	Message      ListZonesResponseGetMessageAttributeType      `json:"message,omitempty"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalItems ListZonesResponseGetTotalItemsAttributeType `json:"totalItems"`
+	TotalItems ListZonesResponseGetTotalItemsAttributeType `json:"totalItems" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	TotalPages ListZonesResponseGetTotalPagesAttributeType `json:"totalPages"`
+	TotalPages ListZonesResponseGetTotalPagesAttributeType `json:"totalPages" required:"true"`
 	// REQUIRED
-	Zones ListZonesResponseGetZonesAttributeType `json:"zones"`
+	Zones ListZonesResponseGetZonesAttributeType `json:"zones" required:"true"`
 }
 
 type _ListZonesResponse ListZonesResponse

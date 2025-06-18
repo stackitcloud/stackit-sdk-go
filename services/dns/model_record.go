@@ -63,10 +63,10 @@ type RecordGetIdRetType = string
 type Record struct {
 	// content of the record
 	// REQUIRED
-	Content RecordGetContentAttributeType `json:"content"`
+	Content RecordGetContentAttributeType `json:"content" required:"true"`
 	// rr set id
 	// REQUIRED
-	Id RecordGetIdAttributeType `json:"id"`
+	Id RecordGetIdAttributeType `json:"id" required:"true"`
 }
 
 type _Record Record

@@ -172,7 +172,7 @@ type EmailConfig struct {
 	SendResolved EmailConfiggetSendResolvedAttributeType `json:"sendResolved,omitempty"`
 	Smarthost    EmailConfigGetSmarthostAttributeType    `json:"smarthost,omitempty"`
 	// REQUIRED
-	To EmailConfigGetToAttributeType `json:"to"`
+	To EmailConfigGetToAttributeType `json:"to" required:"true"`
 }
 
 type _EmailConfig EmailConfig

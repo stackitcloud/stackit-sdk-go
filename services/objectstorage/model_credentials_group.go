@@ -84,13 +84,13 @@ type CredentialsGroupGetUrnRetType = string
 type CredentialsGroup struct {
 	// The ID of the credentials group
 	// REQUIRED
-	CredentialsGroupId CredentialsGroupGetCredentialsGroupIdAttributeType `json:"credentialsGroupId"`
+	CredentialsGroupId CredentialsGroupGetCredentialsGroupIdAttributeType `json:"credentialsGroupId" required:"true"`
 	// Name of the group holding credentials
 	// REQUIRED
-	DisplayName CredentialsGroupGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName CredentialsGroupGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// Credentials group URN
 	// REQUIRED
-	Urn CredentialsGroupGetUrnAttributeType `json:"urn"`
+	Urn CredentialsGroupGetUrnAttributeType `json:"urn" required:"true"`
 }
 
 type _CredentialsGroup CredentialsGroup

@@ -42,7 +42,7 @@ type ValidateMoveCodePayloadGetCodeRetType = string
 type ValidateMoveCodePayload struct {
 	// code that should be validated. It validates if it is valid, not expired and belongs to the zone.
 	// REQUIRED
-	Code ValidateMoveCodePayloadGetCodeAttributeType `json:"code"`
+	Code ValidateMoveCodePayloadGetCodeAttributeType `json:"code" required:"true"`
 }
 
 type _ValidateMoveCodePayload ValidateMoveCodePayload

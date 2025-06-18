@@ -165,23 +165,23 @@ func setListFoldersResponseItemsInnerGetUpdateTimeAttributeType(arg *ListFolders
 type ListFoldersResponseItemsInner struct {
 	// Globally unique folder identifier.
 	// REQUIRED
-	ContainerId ListFoldersResponseItemsInnerGetContainerIdAttributeType `json:"containerId"`
+	ContainerId ListFoldersResponseItemsInnerGetContainerIdAttributeType `json:"containerId" required:"true"`
 	// Timestamp at which the folder was created.
 	// REQUIRED
-	CreationTime ListFoldersResponseItemsInnerGetCreationTimeAttributeType `json:"creationTime"`
+	CreationTime ListFoldersResponseItemsInnerGetCreationTimeAttributeType `json:"creationTime" required:"true"`
 	// Globally unique folder identifier.
 	// REQUIRED
-	FolderId ListFoldersResponseItemsInnerGetFolderIdAttributeType `json:"folderId"`
+	FolderId ListFoldersResponseItemsInnerGetFolderIdAttributeType `json:"folderId" required:"true"`
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels ListFoldersResponseItemsInnerGetLabelsAttributeType `json:"labels,omitempty"`
 	// Name of the folder.
 	// REQUIRED
-	Name ListFoldersResponseItemsInnerGetNameAttributeType `json:"name"`
+	Name ListFoldersResponseItemsInnerGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Parent ListFoldersResponseItemsInnerGetParentAttributeType `json:"parent"`
+	Parent ListFoldersResponseItemsInnerGetParentAttributeType `json:"parent" required:"true"`
 	// Timestamp at which the folder was created.
 	// REQUIRED
-	UpdateTime ListFoldersResponseItemsInnerGetUpdateTimeAttributeType `json:"updateTime"`
+	UpdateTime ListFoldersResponseItemsInnerGetUpdateTimeAttributeType `json:"updateTime" required:"true"`
 }
 
 type _ListFoldersResponseItemsInner ListFoldersResponseItemsInner

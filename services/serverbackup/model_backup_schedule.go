@@ -123,14 +123,14 @@ type BackupScheduleGetRruleRetType = string
 type BackupSchedule struct {
 	BackupProperties BackupScheduleGetBackupPropertiesAttributeType `json:"backupProperties,omitempty"`
 	// REQUIRED
-	Enabled BackupSchedulegetEnabledAttributeType `json:"enabled"`
+	Enabled BackupSchedulegetEnabledAttributeType `json:"enabled" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	Id BackupScheduleGetIdAttributeType `json:"id"`
+	Id BackupScheduleGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Name BackupScheduleGetNameAttributeType `json:"name"`
+	Name BackupScheduleGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Rrule BackupScheduleGetRruleAttributeType `json:"rrule"`
+	Rrule BackupScheduleGetRruleAttributeType `json:"rrule" required:"true"`
 }
 
 type _BackupSchedule BackupSchedule

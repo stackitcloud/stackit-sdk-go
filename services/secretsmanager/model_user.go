@@ -125,19 +125,19 @@ func setUsergetWriteAttributeType(arg *UsergetWriteAttributeType, val UsergetWri
 type User struct {
 	// A user chosen description to differentiate between multiple users.
 	// REQUIRED
-	Description UserGetDescriptionAttributeType `json:"description"`
+	Description UserGetDescriptionAttributeType `json:"description" required:"true"`
 	// A auto generated unique id which identifies the users.
 	// REQUIRED
-	Id UserGetIdAttributeType `json:"id"`
+	Id UserGetIdAttributeType `json:"id" required:"true"`
 	// A auto generated password for logging in with the user.
 	// REQUIRED
-	Password UserGetPasswordAttributeType `json:"password"`
+	Password UserGetPasswordAttributeType `json:"password" required:"true"`
 	// A auto generated username for logging in with the user.
 	// REQUIRED
-	Username UserGetUsernameAttributeType `json:"username"`
+	Username UserGetUsernameAttributeType `json:"username" required:"true"`
 	// Is true if the user has write access to the secrets engine. Is false for a read-only user.
 	// REQUIRED
-	Write UsergetWriteAttributeType `json:"write"`
+	Write UsergetWriteAttributeType `json:"write" required:"true"`
 }
 
 type _User User

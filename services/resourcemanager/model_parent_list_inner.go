@@ -251,20 +251,20 @@ func setParentListInnerGetTypeAttributeType(arg *ParentListInnerGetTypeAttribute
 type ParentListInner struct {
 	// User-friendly identifier of either organization or folder (will replace id).
 	// REQUIRED
-	ContainerId ParentListInnerGetContainerIdAttributeType `json:"containerId"`
+	ContainerId ParentListInnerGetContainerIdAttributeType `json:"containerId" required:"true"`
 	// User-friendly parent identifier of either organization or folder (will replace parentId).
 	ContainerParentId ParentListInnerGetContainerParentIdAttributeType `json:"containerParentId,omitempty"`
 	// Identifier.
 	// REQUIRED
-	Id ParentListInnerGetIdAttributeType `json:"id"`
+	Id ParentListInnerGetIdAttributeType `json:"id" required:"true"`
 	// Parent container name.
 	// REQUIRED
-	Name ParentListInnerGetNameAttributeType `json:"name"`
+	Name ParentListInnerGetNameAttributeType `json:"name" required:"true"`
 	// Identifier of the parent resource container.
 	ParentId ParentListInnerGetParentIdAttributeType `json:"parentId,omitempty"`
 	// Parent container type.
 	// REQUIRED
-	Type ParentListInnerGetTypeAttributeType `json:"type"`
+	Type ParentListInnerGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _ParentListInner ParentListInner

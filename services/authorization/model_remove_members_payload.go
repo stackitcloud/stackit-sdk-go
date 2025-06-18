@@ -82,9 +82,9 @@ type RemoveMembersPayloadGetResourceTypeRetType = string
 type RemoveMembersPayload struct {
 	ForceRemove RemoveMembersPayloadgetForceRemoveAttributeType `json:"forceRemove,omitempty"`
 	// REQUIRED
-	Members RemoveMembersPayloadGetMembersAttributeType `json:"members"`
+	Members RemoveMembersPayloadGetMembersAttributeType `json:"members" required:"true"`
 	// REQUIRED
-	ResourceType RemoveMembersPayloadGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType RemoveMembersPayloadGetResourceTypeAttributeType `json:"resourceType" required:"true"`
 }
 
 type _RemoveMembersPayload RemoveMembersPayload

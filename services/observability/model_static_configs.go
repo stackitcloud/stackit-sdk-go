@@ -61,7 +61,7 @@ func setStaticConfigsGetTargetsAttributeType(arg *StaticConfigsGetTargetsAttribu
 type StaticConfigs struct {
 	Labels StaticConfigsGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
-	Targets StaticConfigsGetTargetsAttributeType `json:"targets"`
+	Targets StaticConfigsGetTargetsAttributeType `json:"targets" required:"true"`
 }
 
 type _StaticConfigs StaticConfigs

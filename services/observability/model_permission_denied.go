@@ -41,7 +41,7 @@ type PermissionDeniedGetDetailRetType = string
 // PermissionDenied struct for PermissionDenied
 type PermissionDenied struct {
 	// REQUIRED
-	Detail PermissionDeniedGetDetailAttributeType `json:"detail"`
+	Detail PermissionDeniedGetDetailAttributeType `json:"detail" required:"true"`
 }
 
 type _PermissionDenied PermissionDenied

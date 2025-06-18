@@ -61,9 +61,9 @@ func setPlansResponseGetPlansAttributeType(arg *PlansResponseGetPlansAttributeTy
 // PlansResponse struct for PlansResponse
 type PlansResponse struct {
 	// REQUIRED
-	Message PlansResponseGetMessageAttributeType `json:"message"`
+	Message PlansResponseGetMessageAttributeType `json:"message" required:"true"`
 	// REQUIRED
-	Plans PlansResponseGetPlansAttributeType `json:"plans"`
+	Plans PlansResponseGetPlansAttributeType `json:"plans" required:"true"`
 }
 
 type _PlansResponse PlansResponse

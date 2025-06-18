@@ -123,13 +123,13 @@ type OAuth2GetTokenUrlRetType = string
 // OAuth2 struct for OAuth2
 type OAuth2 struct {
 	// REQUIRED
-	ClientId OAuth2GetClientIdAttributeType `json:"clientId"`
+	ClientId OAuth2GetClientIdAttributeType `json:"clientId" required:"true"`
 	// REQUIRED
-	ClientSecret OAuth2GetClientSecretAttributeType `json:"clientSecret"`
+	ClientSecret OAuth2GetClientSecretAttributeType `json:"clientSecret" required:"true"`
 	Scopes       OAuth2GetScopesAttributeType       `json:"scopes,omitempty"`
 	TlsConfig    OAuth2GetTlsConfigAttributeType    `json:"tlsConfig,omitempty"`
 	// REQUIRED
-	TokenUrl OAuth2GetTokenUrlAttributeType `json:"tokenUrl"`
+	TokenUrl OAuth2GetTokenUrlAttributeType `json:"tokenUrl" required:"true"`
 }
 
 type _OAuth2 OAuth2

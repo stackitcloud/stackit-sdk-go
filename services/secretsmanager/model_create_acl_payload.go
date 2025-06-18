@@ -42,7 +42,7 @@ type CreateACLPayloadGetCidrRetType = string
 type CreateACLPayload struct {
 	// The given IP/IP Range that is permitted to access.
 	// REQUIRED
-	Cidr CreateACLPayloadGetCidrAttributeType `json:"cidr"`
+	Cidr CreateACLPayloadGetCidrAttributeType `json:"cidr" required:"true"`
 }
 
 type _CreateACLPayload CreateACLPayload

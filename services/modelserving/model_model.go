@@ -437,27 +437,27 @@ type ModelGetUrlRetType = string
 // Model struct for Model
 type Model struct {
 	// REQUIRED
-	Category ModelGetCategoryAttributeType `json:"category"`
+	Category ModelGetCategoryAttributeType `json:"category" required:"true"`
 	// REQUIRED
-	Description ModelGetDescriptionAttributeType `json:"description"`
+	Description ModelGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	DisplayedName ModelGetDisplayedNameAttributeType `json:"displayedName"`
+	DisplayedName ModelGetDisplayedNameAttributeType `json:"displayedName" required:"true"`
 	// generated uuid to identify a model
 	// REQUIRED
-	Id ModelGetIdAttributeType `json:"id"`
+	Id ModelGetIdAttributeType `json:"id" required:"true"`
 	// huggingface name
 	// REQUIRED
-	Name ModelGetNameAttributeType `json:"name"`
+	Name ModelGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Region ModelGetRegionAttributeType `json:"region"`
+	Region ModelGetRegionAttributeType `json:"region" required:"true"`
 	// REQUIRED
-	Skus ModelGetSkusAttributeType `json:"skus"`
+	Skus ModelGetSkusAttributeType `json:"skus" required:"true"`
 	Tags ModelGetTagsAttributeType `json:"tags,omitempty"`
 	// REQUIRED
-	Type ModelGetTypeAttributeType `json:"type"`
+	Type ModelGetTypeAttributeType `json:"type" required:"true"`
 	// url of the model
 	// REQUIRED
-	Url ModelGetUrlAttributeType `json:"url"`
+	Url ModelGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _Model Model

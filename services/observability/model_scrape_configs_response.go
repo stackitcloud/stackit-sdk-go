@@ -61,9 +61,9 @@ type ScrapeConfigsResponseGetMessageRetType = string
 // ScrapeConfigsResponse struct for ScrapeConfigsResponse
 type ScrapeConfigsResponse struct {
 	// REQUIRED
-	Data ScrapeConfigsResponseGetDataAttributeType `json:"data"`
+	Data ScrapeConfigsResponseGetDataAttributeType `json:"data" required:"true"`
 	// REQUIRED
-	Message ScrapeConfigsResponseGetMessageAttributeType `json:"message"`
+	Message ScrapeConfigsResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _ScrapeConfigsResponse ScrapeConfigsResponse

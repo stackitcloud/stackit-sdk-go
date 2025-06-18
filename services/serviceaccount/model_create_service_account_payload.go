@@ -42,7 +42,7 @@ type CreateServiceAccountPayloadGetNameRetType = string
 type CreateServiceAccountPayload struct {
 	// The requested name of the service account. The service will generate a unique email from this name.
 	// REQUIRED
-	Name CreateServiceAccountPayloadGetNameAttributeType `json:"name"`
+	Name CreateServiceAccountPayloadGetNameAttributeType `json:"name" required:"true"`
 }
 
 type _CreateServiceAccountPayload CreateServiceAccountPayload

@@ -284,7 +284,7 @@ type MetricsRelabelConfig struct {
 	Replacement MetricsRelabelConfigGetReplacementAttributeType `json:"replacement,omitempty"`
 	Separator   MetricsRelabelConfigGetSeparatorAttributeType   `json:"separator,omitempty"`
 	// REQUIRED
-	SourceLabels MetricsRelabelConfigGetSourceLabelsAttributeType `json:"sourceLabels"`
+	SourceLabels MetricsRelabelConfigGetSourceLabelsAttributeType `json:"sourceLabels" required:"true"`
 	TargetLabel  MetricsRelabelConfigGetTargetLabelAttributeType  `json:"targetLabel,omitempty"`
 }
 

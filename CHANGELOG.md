@@ -6,6 +6,36 @@
   - **Feature:** Add support for `Acl` for STACKIT git instance
   - `projectId` and `instanceId` strings must have a length of 36 characters now (previously was only limited to a maximum of 36 characters)
   - Add `required:"true"` tags to model structs
+- `serverupdate`: [v1.2.0](services/serverupdate/CHANGELOG.md#v120)
+  - Add `required:"true"` tags to model structs
+- `serverbackup`: [v1.3.0](services/serverbackup/CHANGELOG.md#v130)
+  - Add `required:"true"` tags to model structs
+- `secretsmanager`: [v0.13.0](services/secretsmanager/CHANGELOG.md#v0130)
+  - Add `required:"true"` tags to model structs
+- `runcommand`: [v1.3.0](services/runcommand/CHANGELOG.md#v130)
+  - Add `required:"true"` tags to model structs
+- `resourcemanager`: [v0.17.0](services/resourcemanager/CHANGELOG.md#v0170)
+  - Add `required:"true"` tags to model structs
+- `observability`: [v0.8.0](services/observability/CHANGELOG.md#v080)
+  - Add `required:"true"` tags to model structs
+- `objectstorage`: [v1.3.0](services/objectstorage/CHANGELOG.md#v130)
+  - Add `required:"true"` tags to model structs
+- `mondodbflex`: [v1.3.0](services/mondodbflex/CHANGELOG.md#v130)
+  - Add `required:"true"` tags to model structs
+- `modelserving`: [v0.5.0](services/modelserving/CHANGELOG.md#v050)
+  - Add `required:"true"` tags to model structs
+- `mariadb`: [v0.25.0](services/mariadb/CHANGELOG.md#v0250)
+  - Add `required:"true"` tags to model structs
+- `logme`: [v0.25.0](services/logme/CHANGELOG.md#v0250)
+  - Add `required:"true"` tags to model structs
+- `iaas`: [v0.25.0](services/iaas/CHANGELOG.md#v0250)
+  - Add `required:"true"` tags to model structs
+- `dns`: [v0.16.0](services/dns/CHANGELOG.md#v0160)
+  - Add `required:"true"` tags to model structs
+- `authorization`: [v0.8.0](services/authorization/CHANGELOG.md#v080)
+  - Add `required:"true"` tags to model structs
+- `serviceaccount`: [v0.9.0](services/serviceaccount/CHANGELOG.md#v090)
+  - Add `required:"true"` tags to model structs
 
 ## Release (2025-06-16)
 - `iaas`: 

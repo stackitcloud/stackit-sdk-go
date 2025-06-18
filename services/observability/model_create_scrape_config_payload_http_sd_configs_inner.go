@@ -128,7 +128,7 @@ type CreateScrapeConfigPayloadHttpSdConfigsInner struct {
 	TlsConfig       CreateScrapeConfigPayloadHttpSdConfigsInnerGetTlsConfigAttributeType       `json:"tlsConfig,omitempty"`
 	// URL from which the targets are fetched.
 	// REQUIRED
-	Url CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType `json:"url"`
+	Url CreateScrapeConfigPayloadHttpSdConfigsInnerGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _CreateScrapeConfigPayloadHttpSdConfigsInner CreateScrapeConfigPayloadHttpSdConfigsInner

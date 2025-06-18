@@ -62,9 +62,9 @@ type BasicAuthGetUsernameRetType = string
 // BasicAuth struct for BasicAuth
 type BasicAuth struct {
 	// REQUIRED
-	Password BasicAuthGetPasswordAttributeType `json:"password"`
+	Password BasicAuthGetPasswordAttributeType `json:"password" required:"true"`
 	// REQUIRED
-	Username BasicAuthGetUsernameAttributeType `json:"username"`
+	Username BasicAuthGetUsernameAttributeType `json:"username" required:"true"`
 }
 
 type _BasicAuth BasicAuth

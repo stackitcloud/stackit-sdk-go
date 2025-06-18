@@ -124,19 +124,19 @@ func setAccessTokenGetValidUntilAttributeType(arg *AccessTokenGetValidUntilAttri
 type AccessToken struct {
 	// Newly created access tokens are valid, and can be revoked if needed.
 	// REQUIRED
-	Active AccessTokengetActiveAttributeType `json:"active"`
+	Active AccessTokengetActiveAttributeType `json:"active" required:"true"`
 	// Creation time of the access token.
 	// REQUIRED
-	CreatedAt AccessTokenGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt AccessTokenGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// Unique ID of the access token. Also used as JTI field.
 	// REQUIRED
-	Id AccessTokenGetIdAttributeType `json:"id"`
+	Id AccessTokenGetIdAttributeType `json:"id" required:"true"`
 	// The access token in JWT format. Use this with `Bearer` prefix for API calls. Store it, as it is not recoverable later.
 	// REQUIRED
-	Token AccessTokenGetTokenAttributeType `json:"token"`
+	Token AccessTokenGetTokenAttributeType `json:"token" required:"true"`
 	// Approximate expiration time of the access token. Check the JWT for actual validity date.
 	// REQUIRED
-	ValidUntil AccessTokenGetValidUntilAttributeType `json:"validUntil"`
+	ValidUntil AccessTokenGetValidUntilAttributeType `json:"validUntil" required:"true"`
 }
 
 type _AccessToken AccessToken

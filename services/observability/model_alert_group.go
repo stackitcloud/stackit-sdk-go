@@ -83,9 +83,9 @@ func setAlertGroupGetRulesAttributeType(arg *AlertGroupGetRulesAttributeType, va
 type AlertGroup struct {
 	Interval AlertGroupGetIntervalAttributeType `json:"interval,omitempty"`
 	// REQUIRED
-	Name AlertGroupGetNameAttributeType `json:"name"`
+	Name AlertGroupGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Rules AlertGroupGetRulesAttributeType `json:"rules"`
+	Rules AlertGroupGetRulesAttributeType `json:"rules" required:"true"`
 }
 
 type _AlertGroup AlertGroup

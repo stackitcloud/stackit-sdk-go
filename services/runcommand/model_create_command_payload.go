@@ -61,7 +61,7 @@ func setCreateCommandPayloadGetParametersAttributeType(arg *CreateCommandPayload
 // CreateCommandPayload struct for CreateCommandPayload
 type CreateCommandPayload struct {
 	// REQUIRED
-	CommandTemplateName CreateCommandPayloadGetCommandTemplateNameAttributeType `json:"commandTemplateName"`
+	CommandTemplateName CreateCommandPayloadGetCommandTemplateNameAttributeType `json:"commandTemplateName" required:"true"`
 	Parameters          CreateCommandPayloadGetParametersAttributeType          `json:"parameters,omitempty"`
 }
 

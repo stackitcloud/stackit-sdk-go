@@ -124,15 +124,15 @@ func setErrorGetTimeStampAttributeType(arg *ErrorGetTimeStampAttributeType, val 
 // Error Contains error information.
 type Error struct {
 	// REQUIRED
-	Error ErrorGetErrorAttributeType `json:"error"`
+	Error ErrorGetErrorAttributeType `json:"error" required:"true"`
 	// REQUIRED
-	Message ErrorGetMessageAttributeType `json:"message"`
+	Message ErrorGetMessageAttributeType `json:"message" required:"true"`
 	// REQUIRED
-	Path ErrorGetPathAttributeType `json:"path"`
+	Path ErrorGetPathAttributeType `json:"path" required:"true"`
 	// REQUIRED
-	Status ErrorGetStatusAttributeType `json:"status"`
+	Status ErrorGetStatusAttributeType `json:"status" required:"true"`
 	// REQUIRED
-	TimeStamp ErrorGetTimeStampAttributeType `json:"timeStamp"`
+	TimeStamp ErrorGetTimeStampAttributeType `json:"timeStamp" required:"true"`
 }
 
 type _Error Error

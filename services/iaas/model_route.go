@@ -149,10 +149,10 @@ type Route struct {
 	Labels RouteGetLabelsAttributeType `json:"labels,omitempty"`
 	// Object that represents an IP address.
 	// REQUIRED
-	Nexthop RouteGetNexthopAttributeType `json:"nexthop"`
+	Nexthop RouteGetNexthopAttributeType `json:"nexthop" required:"true"`
 	// Classless Inter-Domain Routing (CIDR).
 	// REQUIRED
-	Prefix RouteGetPrefixAttributeType `json:"prefix"`
+	Prefix RouteGetPrefixAttributeType `json:"prefix" required:"true"`
 	// Universally Unique Identifier (UUID).
 	RouteId RouteGetRouteIdAttributeType `json:"routeId,omitempty"`
 	// Date-time when resource was last updated.

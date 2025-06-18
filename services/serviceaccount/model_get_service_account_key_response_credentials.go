@@ -105,16 +105,16 @@ type GetServiceAccountKeyResponseCredentialsGetSubRetType = string
 type GetServiceAccountKeyResponseCredentials struct {
 	// Audience - service account API URL
 	// REQUIRED
-	Aud GetServiceAccountKeyResponseCredentialsGetAudAttributeType `json:"aud"`
+	Aud GetServiceAccountKeyResponseCredentialsGetAudAttributeType `json:"aud" required:"true"`
 	// Service account email
 	// REQUIRED
-	Iss GetServiceAccountKeyResponseCredentialsGetIssAttributeType `json:"iss"`
+	Iss GetServiceAccountKeyResponseCredentialsGetIssAttributeType `json:"iss" required:"true"`
 	// Key id to use
 	// REQUIRED
-	Kid GetServiceAccountKeyResponseCredentialsGetKidAttributeType `json:"kid"`
+	Kid GetServiceAccountKeyResponseCredentialsGetKidAttributeType `json:"kid" required:"true"`
 	// Service account id
 	// REQUIRED
-	Sub GetServiceAccountKeyResponseCredentialsGetSubAttributeType `json:"sub"`
+	Sub GetServiceAccountKeyResponseCredentialsGetSubAttributeType `json:"sub" required:"true"`
 }
 
 type _GetServiceAccountKeyResponseCredentials GetServiceAccountKeyResponseCredentials

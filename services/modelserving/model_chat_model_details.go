@@ -609,32 +609,32 @@ type ChatModelDetails struct {
 	// Can be cast to int32 without loss of precision.
 	Bits ChatModelDetailsGetBitsAttributeType `json:"bits,omitempty"`
 	// REQUIRED
-	Category ChatModelDetailsGetCategoryAttributeType `json:"category"`
+	Category ChatModelDetailsGetCategoryAttributeType `json:"category" required:"true"`
 	// REQUIRED
-	ContextLength ChatModelDetailsGetContextLengthAttributeType `json:"contextLength"`
+	ContextLength ChatModelDetailsGetContextLengthAttributeType `json:"contextLength" required:"true"`
 	// REQUIRED
-	Description ChatModelDetailsGetDescriptionAttributeType `json:"description"`
+	Description ChatModelDetailsGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	DisplayedName ChatModelDetailsGetDisplayedNameAttributeType `json:"displayedName"`
+	DisplayedName ChatModelDetailsGetDisplayedNameAttributeType `json:"displayedName" required:"true"`
 	// generated uuid to identify a model
 	// REQUIRED
-	Id ChatModelDetailsGetIdAttributeType `json:"id"`
+	Id ChatModelDetailsGetIdAttributeType `json:"id" required:"true"`
 	// huggingface name
 	// REQUIRED
-	Name               ChatModelDetailsGetNameAttributeType               `json:"name"`
+	Name               ChatModelDetailsGetNameAttributeType               `json:"name" required:"true"`
 	QuantizationMethod ChatModelDetailsGetQuantizationMethodAttributeType `json:"quantizationMethod,omitempty"`
 	// REQUIRED
-	Region ChatModelDetailsGetRegionAttributeType `json:"region"`
+	Region ChatModelDetailsGetRegionAttributeType `json:"region" required:"true"`
 	// model size in bytes
 	// REQUIRED
-	Size ChatModelDetailsGetSizeAttributeType `json:"size"`
+	Size ChatModelDetailsGetSizeAttributeType `json:"size" required:"true"`
 	// REQUIRED
-	Skus ChatModelDetailsGetSkusAttributeType `json:"skus"`
+	Skus ChatModelDetailsGetSkusAttributeType `json:"skus" required:"true"`
 	// REQUIRED
-	Tags ChatModelDetailsGetTagsAttributeType `json:"tags"`
+	Tags ChatModelDetailsGetTagsAttributeType `json:"tags" required:"true"`
 	// url of the model
 	// REQUIRED
-	Url ChatModelDetailsGetUrlAttributeType `json:"url"`
+	Url ChatModelDetailsGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _ChatModelDetails ChatModelDetails

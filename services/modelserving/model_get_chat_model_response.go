@@ -62,7 +62,7 @@ func setGetChatModelResponseGetModelAttributeType(arg *GetChatModelResponseGetMo
 type GetChatModelResponse struct {
 	Message GetChatModelResponseGetMessageAttributeType `json:"message,omitempty"`
 	// REQUIRED
-	Model GetChatModelResponseGetModelAttributeType `json:"model"`
+	Model GetChatModelResponseGetModelAttributeType `json:"model" required:"true"`
 }
 
 type _GetChatModelResponse GetChatModelResponse

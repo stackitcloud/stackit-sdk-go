@@ -83,12 +83,12 @@ type AccessKeyGetKeyIdRetType = string
 // AccessKey struct for AccessKey
 type AccessKey struct {
 	// REQUIRED
-	DisplayName AccessKeyGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName AccessKeyGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// REQUIRED
-	Expires AccessKeyGetExpiresAttributeType `json:"expires"`
+	Expires AccessKeyGetExpiresAttributeType `json:"expires" required:"true"`
 	// Identifies the pair of access key and secret access key for deletion
 	// REQUIRED
-	KeyId AccessKeyGetKeyIdAttributeType `json:"keyId"`
+	KeyId AccessKeyGetKeyIdAttributeType `json:"keyId" required:"true"`
 }
 
 type _AccessKey AccessKey

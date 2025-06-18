@@ -397,7 +397,7 @@ type UpdateScrapeConfigPayload struct {
 	HonorTimeStamps UpdateScrapeConfigPayloadgetHonorTimeStampsAttributeType `json:"honorTimeStamps,omitempty"`
 	// The HTTP resource path on which to fetch metrics from targets. E.g. /metrics
 	// REQUIRED
-	MetricsPath UpdateScrapeConfigPayloadGetMetricsPathAttributeType `json:"metricsPath"`
+	MetricsPath UpdateScrapeConfigPayloadGetMetricsPathAttributeType `json:"metricsPath" required:"true"`
 	// List of metric relabel configurations
 	MetricsRelabelConfigs UpdateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType `json:"metricsRelabelConfigs,omitempty"`
 	// Optional http params `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
@@ -406,16 +406,16 @@ type UpdateScrapeConfigPayload struct {
 	SampleLimit UpdateScrapeConfigPayloadGetSampleLimitAttributeType `json:"sampleLimit,omitempty"`
 	// Configures the protocol scheme used for requests. https or http
 	// REQUIRED
-	Scheme UpdateScrapeConfigPayloadGetSchemeAttributeType `json:"scheme"`
+	Scheme UpdateScrapeConfigPayloadGetSchemeAttributeType `json:"scheme" required:"true"`
 	// How frequently to scrape targets from this job. E.g. 5m `Additional Validators:` * must be a valid time format* must be >= 60s
 	// REQUIRED
-	ScrapeInterval UpdateScrapeConfigPayloadGetScrapeIntervalAttributeType `json:"scrapeInterval"`
+	ScrapeInterval UpdateScrapeConfigPayloadGetScrapeIntervalAttributeType `json:"scrapeInterval" required:"true"`
 	// Per-scrape timeout when scraping this job. `Additional Validators:` * must be a valid time format* must be smaller than scrapeInterval
 	// REQUIRED
-	ScrapeTimeout UpdateScrapeConfigPayloadGetScrapeTimeoutAttributeType `json:"scrapeTimeout"`
+	ScrapeTimeout UpdateScrapeConfigPayloadGetScrapeTimeoutAttributeType `json:"scrapeTimeout" required:"true"`
 	// A list of scrape configurations.
 	// REQUIRED
-	StaticConfigs UpdateScrapeConfigPayloadGetStaticConfigsAttributeType `json:"staticConfigs"`
+	StaticConfigs UpdateScrapeConfigPayloadGetStaticConfigsAttributeType `json:"staticConfigs" required:"true"`
 	TlsConfig     UpdateScrapeConfigPayloadGetTlsConfigAttributeType     `json:"tlsConfig,omitempty"`
 }
 

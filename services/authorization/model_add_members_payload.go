@@ -61,9 +61,9 @@ type AddMembersPayloadGetResourceTypeRetType = string
 // AddMembersPayload struct for AddMembersPayload
 type AddMembersPayload struct {
 	// REQUIRED
-	Members AddMembersPayloadGetMembersAttributeType `json:"members"`
+	Members AddMembersPayloadGetMembersAttributeType `json:"members" required:"true"`
 	// REQUIRED
-	ResourceType AddMembersPayloadGetResourceTypeAttributeType `json:"resourceType"`
+	ResourceType AddMembersPayloadGetResourceTypeAttributeType `json:"resourceType" required:"true"`
 }
 
 type _AddMembersPayload AddMembersPayload

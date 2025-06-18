@@ -63,10 +63,10 @@ type VolumeSourceGetTypeRetType = string
 type VolumeSource struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Id VolumeSourceGetIdAttributeType `json:"id"`
+	Id VolumeSourceGetIdAttributeType `json:"id" required:"true"`
 	// The source types of a volume. Possible values: `image`, `volume`, `snapshot`, `backup`.
 	// REQUIRED
-	Type VolumeSourceGetTypeAttributeType `json:"type"`
+	Type VolumeSourceGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _VolumeSource VolumeSource

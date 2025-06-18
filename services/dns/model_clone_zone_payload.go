@@ -108,7 +108,7 @@ type CloneZonePayload struct {
 	Description CloneZonePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// DnsName is the dns name of the zone to clone
 	// REQUIRED
-	DnsName CloneZonePayloadGetDnsNameAttributeType `json:"dnsName"`
+	DnsName CloneZonePayloadGetDnsNameAttributeType `json:"dnsName" required:"true"`
 	// New Name for the cloned zone. Leave empty to use the same name as the original zone
 	Name CloneZonePayloadGetNameAttributeType `json:"name,omitempty"`
 }

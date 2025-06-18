@@ -290,16 +290,16 @@ func setProjectInstanceFullGetStatusAttributeType(arg *ProjectInstanceFullGetSta
 type ProjectInstanceFull struct {
 	Error ProjectInstanceFullGetErrorAttributeType `json:"error,omitempty"`
 	// REQUIRED
-	Id ProjectInstanceFullGetIdAttributeType `json:"id"`
+	Id ProjectInstanceFullGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Instance ProjectInstanceFullGetInstanceAttributeType `json:"instance"`
+	Instance ProjectInstanceFullGetInstanceAttributeType `json:"instance" required:"true"`
 	Name     ProjectInstanceFullGetNameAttributeType     `json:"name,omitempty"`
 	// REQUIRED
-	PlanName ProjectInstanceFullGetPlanNameAttributeType `json:"planName"`
+	PlanName ProjectInstanceFullGetPlanNameAttributeType `json:"planName" required:"true"`
 	// REQUIRED
-	ServiceName ProjectInstanceFullGetServiceNameAttributeType `json:"serviceName"`
+	ServiceName ProjectInstanceFullGetServiceNameAttributeType `json:"serviceName" required:"true"`
 	// REQUIRED
-	Status ProjectInstanceFullGetStatusAttributeType `json:"status"`
+	Status ProjectInstanceFullGetStatusAttributeType `json:"status" required:"true"`
 }
 
 type _ProjectInstanceFull ProjectInstanceFull

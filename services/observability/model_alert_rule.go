@@ -123,10 +123,10 @@ func setAlertRuleGetLabelsAttributeType(arg *AlertRuleGetLabelsAttributeType, va
 // AlertRule struct for AlertRule
 type AlertRule struct {
 	// REQUIRED
-	Alert       AlertRuleGetAlertAttributeType       `json:"alert"`
+	Alert       AlertRuleGetAlertAttributeType       `json:"alert" required:"true"`
 	Annotations AlertRuleGetAnnotationsAttributeType `json:"annotations,omitempty"`
 	// REQUIRED
-	Expr   AlertRuleGetExprAttributeType   `json:"expr"`
+	Expr   AlertRuleGetExprAttributeType   `json:"expr" required:"true"`
 	For    AlertRuleGetForAttributeType    `json:"for,omitempty"`
 	Labels AlertRuleGetLabelsAttributeType `json:"labels,omitempty"`
 }

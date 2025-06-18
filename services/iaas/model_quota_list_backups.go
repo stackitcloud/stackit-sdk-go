@@ -60,9 +60,9 @@ func setQuotaListBackupsGetUsageAttributeType(arg *QuotaListBackupsGetUsageAttri
 // QuotaListBackups Number of backups.
 type QuotaListBackups struct {
 	// REQUIRED
-	Limit QuotaListBackupsGetLimitAttributeType `json:"limit"`
+	Limit QuotaListBackupsGetLimitAttributeType `json:"limit" required:"true"`
 	// REQUIRED
-	Usage QuotaListBackupsGetUsageAttributeType `json:"usage"`
+	Usage QuotaListBackupsGetUsageAttributeType `json:"usage" required:"true"`
 }
 
 type _QuotaListBackups QuotaListBackups
