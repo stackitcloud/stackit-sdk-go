@@ -105,15 +105,15 @@ type InquirySuggestProductGetUrlRetType = string
 type InquirySuggestProduct struct {
 	// The product's vendor name.
 	// REQUIRED
-	CompanyName InquirySuggestProductGetCompanyNameAttributeType `json:"companyName"`
+	CompanyName InquirySuggestProductGetCompanyNameAttributeType `json:"companyName" required:"true"`
 	// A custom message.
 	Message InquirySuggestProductGetMessageAttributeType `json:"message,omitempty"`
 	// The name of the product.
 	// REQUIRED
-	Name InquirySuggestProductGetNameAttributeType `json:"name"`
+	Name InquirySuggestProductGetNameAttributeType `json:"name" required:"true"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	Url InquirySuggestProductGetUrlAttributeType `json:"url"`
+	Url InquirySuggestProductGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _InquirySuggestProduct InquirySuggestProduct

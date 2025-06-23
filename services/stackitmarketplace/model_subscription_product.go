@@ -227,30 +227,30 @@ type SubscriptionProductGetVendorWebsiteUrlRetType = string
 // SubscriptionProduct The product of a subscription
 type SubscriptionProduct struct {
 	// REQUIRED
-	DeliveryMethod SubscriptionProductGetDeliveryMethodAttributeType `json:"deliveryMethod"`
+	DeliveryMethod SubscriptionProductGetDeliveryMethodAttributeType `json:"deliveryMethod" required:"true"`
 	// REQUIRED
-	LifecycleState SubscriptionProductGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState SubscriptionProductGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// REQUIRED
-	PriceType SubscriptionProductGetPriceTypeAttributeType `json:"priceType"`
+	PriceType SubscriptionProductGetPriceTypeAttributeType `json:"priceType" required:"true"`
 	// Additional price type information.
 	// REQUIRED
-	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan"`
+	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan" required:"true"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId"`
+	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId" required:"true"`
 	// The name of the product.
 	// REQUIRED
-	ProductName SubscriptionProductGetProductNameAttributeType `json:"productName"`
+	ProductName SubscriptionProductGetProductNameAttributeType `json:"productName" required:"true"`
 	// The product's vendor name.
 	// REQUIRED
-	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName"`
+	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName" required:"true"`
 	// The vendor provided plan ID.
 	VendorPlanId SubscriptionProductGetVendorPlanIdAttributeType `json:"vendorPlanId,omitempty"`
 	// The vendor provided product ID.
 	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl"`
+	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl" required:"true"`
 }
 
 type _SubscriptionProduct SubscriptionProduct
