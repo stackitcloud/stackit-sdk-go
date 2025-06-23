@@ -60,9 +60,9 @@ func setBecomeVendorGetTypeAttributeType(arg *BecomeVendorGetTypeAttributeType, 
 // BecomeVendor Become a Vendor.
 type BecomeVendor struct {
 	// REQUIRED
-	BecomeVendor BecomeVendorGetBecomeVendorAttributeType `json:"becomeVendor"`
+	BecomeVendor BecomeVendorGetBecomeVendorAttributeType `json:"becomeVendor" required:"true"`
 	// REQUIRED
-	Type BecomeVendorGetTypeAttributeType `json:"type"`
+	Type BecomeVendorGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _BecomeVendor BecomeVendor
