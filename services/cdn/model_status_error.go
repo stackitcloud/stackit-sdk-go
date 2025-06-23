@@ -194,10 +194,10 @@ type StatusError struct {
 	De StatusErrorGetDeAttributeType `json:"de,omitempty"`
 	// An english translation string corresponding to the error key. An english translation key is always present.
 	// REQUIRED
-	En StatusErrorGetEnAttributeType `json:"en"`
+	En StatusErrorGetEnAttributeType `json:"en" required:"true"`
 	// An enum value that describes a Status Error.
 	// REQUIRED
-	Key StatusErrorGetKeyAttributeType `json:"key"`
+	Key StatusErrorGetKeyAttributeType `json:"key" required:"true"`
 }
 
 type _StatusError StatusError
