@@ -424,31 +424,31 @@ func setInstanceGetStatusAttributeType(arg *InstanceGetStatusAttributeType, val 
 // Instance struct for Instance
 type Instance struct {
 	// REQUIRED
-	CfGuid InstanceGetCfGuidAttributeType `json:"cfGuid"`
+	CfGuid InstanceGetCfGuidAttributeType `json:"cfGuid" required:"true"`
 	// REQUIRED
-	CfOrganizationGuid InstanceGetCfOrganizationGuidAttributeType `json:"cfOrganizationGuid"`
+	CfOrganizationGuid InstanceGetCfOrganizationGuidAttributeType `json:"cfOrganizationGuid" required:"true"`
 	// REQUIRED
-	CfSpaceGuid InstanceGetCfSpaceGuidAttributeType `json:"cfSpaceGuid"`
+	CfSpaceGuid InstanceGetCfSpaceGuidAttributeType `json:"cfSpaceGuid" required:"true"`
 	// REQUIRED
-	DashboardUrl InstanceGetDashboardUrlAttributeType `json:"dashboardUrl"`
+	DashboardUrl InstanceGetDashboardUrlAttributeType `json:"dashboardUrl" required:"true"`
 	// REQUIRED
-	ImageUrl   InstanceGetImageUrlAttributeType   `json:"imageUrl"`
+	ImageUrl   InstanceGetImageUrlAttributeType   `json:"imageUrl" required:"true"`
 	InstanceId InstanceGetInstanceIdAttributeType `json:"instanceId,omitempty"`
 	// REQUIRED
-	LastOperation InstanceGetLastOperationAttributeType `json:"lastOperation"`
+	LastOperation InstanceGetLastOperationAttributeType `json:"lastOperation" required:"true"`
 	// REQUIRED
-	Name InstanceGetNameAttributeType `json:"name"`
+	Name InstanceGetNameAttributeType `json:"name" required:"true"`
 	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
-	OfferingName InstanceGetOfferingNameAttributeType `json:"offeringName"`
+	OfferingName InstanceGetOfferingNameAttributeType `json:"offeringName" required:"true"`
 	// REQUIRED
-	OfferingVersion InstanceGetOfferingVersionAttributeType `json:"offeringVersion"`
+	OfferingVersion InstanceGetOfferingVersionAttributeType `json:"offeringVersion" required:"true"`
 	// REQUIRED
-	Parameters InstanceGetParametersAttributeType `json:"parameters"`
+	Parameters InstanceGetParametersAttributeType `json:"parameters" required:"true"`
 	// REQUIRED
-	PlanId InstanceGetPlanIdAttributeType `json:"planId"`
+	PlanId InstanceGetPlanIdAttributeType `json:"planId" required:"true"`
 	// REQUIRED
-	PlanName InstanceGetPlanNameAttributeType `json:"planName"`
+	PlanName InstanceGetPlanNameAttributeType `json:"planName" required:"true"`
 	Status   InstanceGetStatusAttributeType   `json:"status,omitempty"`
 }
 
