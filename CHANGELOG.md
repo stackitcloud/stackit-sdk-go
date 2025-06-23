@@ -36,6 +36,8 @@
   - Add `required:"true"` tags to model structs
 - `serviceaccount`: [v0.9.0](services/serviceaccount/CHANGELOG.md#v090)
   - Add `required:"true"` tags to model structs
+- `sqlserverflex`: [v1.3.0](services/sqlserverflex/CHANGELOG.md#v130)
+  - Add `required:"true"` tags to model structs
 
 ## Release (2025-06-16)
 - `iaas`: 
