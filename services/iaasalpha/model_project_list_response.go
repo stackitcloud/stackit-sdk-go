@@ -41,7 +41,7 @@ func setProjectListResponseGetItemsAttributeType(arg *ProjectListResponseGetItem
 type ProjectListResponse struct {
 	// A list of STACKIT projects.
 	// REQUIRED
-	Items ProjectListResponseGetItemsAttributeType `json:"items"`
+	Items ProjectListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _ProjectListResponse ProjectListResponse

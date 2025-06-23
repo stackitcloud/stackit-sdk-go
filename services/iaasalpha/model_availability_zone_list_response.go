@@ -41,7 +41,7 @@ func setAvailabilityZoneListResponseGetItemsAttributeType(arg *AvailabilityZoneL
 type AvailabilityZoneListResponse struct {
 	// A list of availability zones.
 	// REQUIRED
-	Items AvailabilityZoneListResponseGetItemsAttributeType `json:"items"`
+	Items AvailabilityZoneListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _AvailabilityZoneListResponse AvailabilityZoneListResponse

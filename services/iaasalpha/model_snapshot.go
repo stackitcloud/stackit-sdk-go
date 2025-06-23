@@ -200,7 +200,7 @@ type Snapshot struct {
 	UpdatedAt SnapshotGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	VolumeId SnapshotGetVolumeIdAttributeType `json:"volumeId"`
+	VolumeId SnapshotGetVolumeIdAttributeType `json:"volumeId" required:"true"`
 }
 
 type _Snapshot Snapshot
