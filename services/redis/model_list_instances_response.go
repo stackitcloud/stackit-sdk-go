@@ -40,7 +40,7 @@ func setListInstancesResponseGetInstancesAttributeType(arg *ListInstancesRespons
 // ListInstancesResponse struct for ListInstancesResponse
 type ListInstancesResponse struct {
 	// REQUIRED
-	Instances ListInstancesResponseGetInstancesAttributeType `json:"instances"`
+	Instances ListInstancesResponseGetInstancesAttributeType `json:"instances" required:"true"`
 }
 
 type _ListInstancesResponse ListInstancesResponse
