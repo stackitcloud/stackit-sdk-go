@@ -266,6 +266,26 @@ func setServerGetMaintenanceWindowAttributeType(arg *ServerGetMaintenanceWindowA
 }
 
 /*
+	types and functions for metadata
+*/
+
+// isFreeform
+type ServerGetMetadataAttributeType = *map[string]interface{}
+type ServerGetMetadataArgType = map[string]interface{}
+type ServerGetMetadataRetType = map[string]interface{}
+
+func getServerGetMetadataAttributeTypeOk(arg ServerGetMetadataAttributeType) (ret ServerGetMetadataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetMetadataAttributeType(arg *ServerGetMetadataAttributeType, val ServerGetMetadataRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -491,11 +511,13 @@ type Server struct {
 	LaunchedAt ServerGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	MachineType       ServerGetMachineTypeAttributeType       `json:"machineType"`
+	MachineType       ServerGetMachineTypeAttributeType       `json:"machineType" required:"true"`
 	MaintenanceWindow ServerGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
+	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.
+	Metadata ServerGetMetadataAttributeType `json:"metadata,omitempty"`
 	// The name for a Server.
 	// REQUIRED
-	Name       ServerGetNameAttributeType       `json:"name"`
+	Name       ServerGetNameAttributeType       `json:"name" required:"true"`
 	Networking ServerGetNetworkingAttributeType `json:"networking,omitempty"`
 	// A list of networks attached to a server.
 	Nics ServerGetNicsAttributeType `json:"nics,omitempty"`
@@ -806,6 +828,29 @@ func (o *Server) SetMaintenanceWindow(v ServerGetMaintenanceWindowRetType) {
 	setServerGetMaintenanceWindowAttributeType(&o.MaintenanceWindow, v)
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *Server) GetMetadata() (res ServerGetMetadataRetType) {
+	res, _ = o.GetMetadataOk()
+	return
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetMetadataOk() (ret ServerGetMetadataRetType, ok bool) {
+	return getServerGetMetadataAttributeTypeOk(o.Metadata)
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *Server) HasMetadata() bool {
+	_, ok := o.GetMetadataOk()
+	return ok
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Server) SetMetadata(v ServerGetMetadataRetType) {
+	setServerGetMetadataAttributeType(&o.Metadata, v)
+}
+
 // GetName returns the Name field value
 func (o *Server) GetName() (ret ServerGetNameRetType) {
 	ret, _ = o.GetNameOk()
@@ -1067,6 +1112,9 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getServerGetMaintenanceWindowAttributeTypeOk(o.MaintenanceWindow); ok {
 		toSerialize["MaintenanceWindow"] = val
+	}
+	if val, ok := getServerGetMetadataAttributeTypeOk(o.Metadata); ok {
+		toSerialize["Metadata"] = val
 	}
 	if val, ok := getServerGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
