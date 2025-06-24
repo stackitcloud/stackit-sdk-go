@@ -366,6 +366,10 @@ const (
 	RECORDSETTYPE_ALIAS RecordSetTypes = "ALIAS"
 	RECORDSETTYPE_DNAME RecordSetTypes = "DNAME"
 	RECORDSETTYPE_CAA   RecordSetTypes = "CAA"
+	RECORDSETTYPE_CSYNC RecordSetTypes = "CSYNC"
+	RECORDSETTYPE_HINFO RecordSetTypes = "HINFO"
+	RECORDSETTYPE_SSHFP RecordSetTypes = "SSHFP"
+	RECORDSETTYPE_HTTPS RecordSetTypes = "HTTPS"
 )
 
 // All allowed values of RecordSet enum
@@ -382,6 +386,10 @@ var AllowedRecordSetTypesEnumValues = []RecordSetTypes{
 	"ALIAS",
 	"DNAME",
 	"CAA",
+	"CSYNC",
+	"HINFO",
+	"SSHFP",
+	"HTTPS",
 }
 
 func (v *RecordSetTypes) UnmarshalJSON(src []byte) error {
@@ -545,7 +553,7 @@ type RecordSet struct {
 	// rr set id
 	// REQUIRED
 	Id RecordSetGetIdAttributeType `json:"id" required:"true"`
-	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4
+	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4. For APEX records (same as zone name), the zone name itself has to be put in here.
 	// REQUIRED
 	Name RecordSetGetNameAttributeType `json:"name" required:"true"`
 	// records
