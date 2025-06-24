@@ -63,7 +63,7 @@ type GenericJSONResponse struct {
 	// Listing of issues with your request
 	Details GenericJSONResponseGetDetailsAttributeType `json:"details,omitempty"`
 	// REQUIRED
-	Message GenericJSONResponseGetMessageAttributeType `json:"message"`
+	Message GenericJSONResponseGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _GenericJSONResponse GenericJSONResponse
