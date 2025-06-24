@@ -40,7 +40,7 @@ func setCreateDistributionResponseGetDistributionAttributeType(arg *CreateDistri
 // CreateDistributionResponse struct for CreateDistributionResponse
 type CreateDistributionResponse struct {
 	// REQUIRED
-	Distribution CreateDistributionResponseGetDistributionAttributeType `json:"distribution"`
+	Distribution CreateDistributionResponseGetDistributionAttributeType `json:"distribution" required:"true"`
 }
 
 type _CreateDistributionResponse CreateDistributionResponse
