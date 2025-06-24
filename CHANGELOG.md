@@ -1048,7 +1048,7 @@
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
 - `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-29)
-  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
 - `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
