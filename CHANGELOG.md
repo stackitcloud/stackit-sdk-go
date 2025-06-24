@@ -1,4 +1,9 @@
 ## Release (2025-XX-XX)
+- `auditlog`: [v0.1.0](services/auditlog/CHANGELOG.md#v010)
+  - **New:** Manage your STACKIT Audit Log resources: `AuditLogEntry`
+  - **Feature:** Download audit log entries for folders, organizations, and projects
+  - **Feature:** Support for time range filtering and pagination
+  - **Feature:** Rate limiting and API constraints
 - `sqlserverflex`: [v1.3.0](services/sqlserverflex/CHANGELOG.md#v130)
   - Add `required:"true"` tags to model structs
 - `postgresflex`: [v1.2.0](services/postgresflex/CHANGELOG.md#v120)
