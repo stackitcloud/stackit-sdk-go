@@ -82,10 +82,10 @@ type CreateInstancePayloadGetPlanIdRetType = string
 // CreateInstancePayload struct for CreateInstancePayload
 type CreateInstancePayload struct {
 	// REQUIRED
-	InstanceName CreateInstancePayloadGetInstanceNameAttributeType `json:"instanceName"`
+	InstanceName CreateInstancePayloadGetInstanceNameAttributeType `json:"instanceName" required:"true"`
 	Parameters   CreateInstancePayloadGetParametersAttributeType   `json:"parameters,omitempty"`
 	// REQUIRED
-	PlanId CreateInstancePayloadGetPlanIdAttributeType `json:"planId"`
+	PlanId CreateInstancePayloadGetPlanIdAttributeType `json:"planId" required:"true"`
 }
 
 type _CreateInstancePayload CreateInstancePayload
