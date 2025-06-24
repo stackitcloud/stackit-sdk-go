@@ -82,12 +82,12 @@ func setDistributionStatisticsRecordAllOfGetStartAttributeType(arg *Distribution
 type DistributionStatisticsRecordAllOf struct {
 	// Exclusive end of the time interval the statistics refer to
 	// REQUIRED
-	End DistributionStatisticsRecordAllOfGetEndAttributeType `json:"end"`
+	End DistributionStatisticsRecordAllOfGetEndAttributeType `json:"end" required:"true"`
 	// REQUIRED
-	Regions DistributionStatisticsRecordAllOfGetRegionsAttributeType `json:"regions"`
+	Regions DistributionStatisticsRecordAllOfGetRegionsAttributeType `json:"regions" required:"true"`
 	// Start of the time interval the statistics refer to
 	// REQUIRED
-	Start DistributionStatisticsRecordAllOfGetStartAttributeType `json:"start"`
+	Start DistributionStatisticsRecordAllOfGetStartAttributeType `json:"start" required:"true"`
 }
 
 type _DistributionStatisticsRecordAllOf DistributionStatisticsRecordAllOf

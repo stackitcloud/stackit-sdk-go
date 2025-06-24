@@ -40,7 +40,7 @@ func setFindCachePathsResponseGetResponseAttributeType(arg *FindCachePathsRespon
 // FindCachePathsResponse struct for FindCachePathsResponse
 type FindCachePathsResponse struct {
 	// REQUIRED
-	Response FindCachePathsResponseGetResponseAttributeType `json:"response"`
+	Response FindCachePathsResponseGetResponseAttributeType `json:"response" required:"true"`
 }
 
 type _FindCachePathsResponse FindCachePathsResponse
