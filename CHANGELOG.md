@@ -1,4 +1,13 @@
 ## Release (2025-XX-XX)
+- `stackitmarketplace`: [v1.6.0](services/stackitmarketplace/CHANGELOG.md#v160)
+  - **Feature:** Add new `Assets` model for managing service certificate assets
+  - **Feature:** Add new `LocalizedVersion` model for localized content management
+  - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
+  - **Feature:** Add new `ServiceCertificate` model for service certification
+  - **Feature:** Add `Assets` field to `CatalogProductDetail` model
+  - **Feature:** Add `OfferType` field to `CatalogProductDetail` model
+  - **Feature:** Add `NoticePeriod` field to `CatalogProductPricingOption` model
+  - Add `required:"true"` tags to model structs
 - `ske`: 
   - [v0.26.0](services/ske/CHANGELOG.md#v0260)
     - Add `required:"true"` tags to model structs
