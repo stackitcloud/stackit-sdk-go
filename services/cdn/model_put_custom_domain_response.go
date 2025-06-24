@@ -61,10 +61,10 @@ type PutCustomDomainResponseGetDomainRetType = string
 // PutCustomDomainResponse struct for PutCustomDomainResponse
 type PutCustomDomainResponse struct {
 	// REQUIRED
-	CustomDomain PutCustomDomainResponseGetCustomDomainAttributeType `json:"customDomain"`
+	CustomDomain PutCustomDomainResponseGetCustomDomainAttributeType `json:"customDomain" required:"true"`
 	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
-	Domain PutCustomDomainResponseGetDomainAttributeType `json:"domain"`
+	Domain PutCustomDomainResponseGetDomainAttributeType `json:"domain" required:"true"`
 }
 
 type _PutCustomDomainResponse PutCustomDomainResponse

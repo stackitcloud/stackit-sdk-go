@@ -120,15 +120,15 @@ func setDistributionStatisticsRecordRegionsGetUSAttributeType(arg *DistributionS
 // DistributionStatisticsRecordRegions Mapping of regions to the metrics for this region for the defined time interval All regions are always present. If no traffic was reported for a region, it will  still contain 0-filled properties
 type DistributionStatisticsRecordRegions struct {
 	// REQUIRED
-	AF DistributionStatisticsRecordRegionsGetAFAttributeType `json:"AF"`
+	AF DistributionStatisticsRecordRegionsGetAFAttributeType `json:"AF" required:"true"`
 	// REQUIRED
-	ASIA DistributionStatisticsRecordRegionsGetASIAAttributeType `json:"ASIA"`
+	ASIA DistributionStatisticsRecordRegionsGetASIAAttributeType `json:"ASIA" required:"true"`
 	// REQUIRED
-	EU DistributionStatisticsRecordRegionsGetEUAttributeType `json:"EU"`
+	EU DistributionStatisticsRecordRegionsGetEUAttributeType `json:"EU" required:"true"`
 	// REQUIRED
-	SA DistributionStatisticsRecordRegionsGetSAAttributeType `json:"SA"`
+	SA DistributionStatisticsRecordRegionsGetSAAttributeType `json:"SA" required:"true"`
 	// REQUIRED
-	US DistributionStatisticsRecordRegionsGetUSAttributeType `json:"US"`
+	US DistributionStatisticsRecordRegionsGetUSAttributeType `json:"US" required:"true"`
 }
 
 type _DistributionStatisticsRecordRegions DistributionStatisticsRecordRegions

@@ -40,7 +40,7 @@ func setGetStatisticsResponseGetRecordsAttributeType(arg *GetStatisticsResponseG
 // GetStatisticsResponse struct for GetStatisticsResponse
 type GetStatisticsResponse struct {
 	// REQUIRED
-	Records GetStatisticsResponseGetRecordsAttributeType `json:"records"`
+	Records GetStatisticsResponseGetRecordsAttributeType `json:"records" required:"true"`
 }
 
 type _GetStatisticsResponse GetStatisticsResponse
