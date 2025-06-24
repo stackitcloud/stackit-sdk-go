@@ -126,19 +126,19 @@ type InquiryContactSalesGetProductIdRetType = string
 type InquiryContactSales struct {
 	// The product's vendor name.
 	// REQUIRED
-	CompanyName InquiryContactSalesGetCompanyNameAttributeType `json:"companyName"`
+	CompanyName InquiryContactSalesGetCompanyNameAttributeType `json:"companyName" required:"true"`
 	// A e-mail address.
 	// REQUIRED
-	ContactEmail InquiryContactSalesGetContactEmailAttributeType `json:"contactEmail"`
+	ContactEmail InquiryContactSalesGetContactEmailAttributeType `json:"contactEmail" required:"true"`
 	// The full name of the contact person.
 	// REQUIRED
-	FullName InquiryContactSalesGetFullNameAttributeType `json:"fullName"`
+	FullName InquiryContactSalesGetFullNameAttributeType `json:"fullName" required:"true"`
 	// A custom message.
 	// REQUIRED
-	Message InquiryContactSalesGetMessageAttributeType `json:"message"`
+	Message InquiryContactSalesGetMessageAttributeType `json:"message" required:"true"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId InquiryContactSalesGetProductIdAttributeType `json:"productId"`
+	ProductId InquiryContactSalesGetProductIdAttributeType `json:"productId" required:"true"`
 }
 
 type _InquiryContactSales InquiryContactSales
