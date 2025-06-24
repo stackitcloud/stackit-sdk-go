@@ -1,3 +1,6 @@
+## v1.3.0
+- Add `required:"true"` tags to model structs
+
 ## v1.2.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 

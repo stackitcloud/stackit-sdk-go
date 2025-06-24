@@ -1,4 +1,6 @@
 ## Release (2025-XX-XX)
+- `sqlserverflex`: [v1.3.0](services/sqlserverflex/CHANGELOG.md#v130)
+  - Add `required:"true"` tags to model structs
 - `postgresflex`: [v1.2.0](services/postgresflex/CHANGELOG.md#v120)
   - Add `required:"true"` tags to model structs
 - `cdn`: [v1.3.0](services/cdn/CHANGELOG.md#v130)
@@ -210,7 +212,7 @@
     - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
   - [v0.22.0](services/opensearch/CHANGELOG.md#v0220-2025-05-14)
     - **Breaking change:** Introduce typed enum constants for status attributes
-- `postgresflex`: [v1.1.0](services/postgresflex/CHANGELOG.md#v110-2025-05-15)
+- `postgresflex`: [v1.0.4](services/postgresflex/CHANGELOG.md#v104-2025-05-09)
     - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 - `rabbitmq`: 
   - [v0.24.0](services/rabbitmq/CHANGELOG.md#v0240-2025-05-15)
