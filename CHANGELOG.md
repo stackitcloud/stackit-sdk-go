@@ -1,4 +1,6 @@
 ## Release (2025-XX-XX)
+- `postgresflex`: [v1.2.0](services/postgresflex/CHANGELOG.md#v120)
+  - Add `required:"true"` tags to model structs
 - `cdn`: [v1.3.0](services/cdn/CHANGELOG.md#v130)
   - **Feature:** Add `DefaultCacheDuration` field to `Config`, `ConfigPatch`, and `CreateDistributionPayload` models
   - Add `required:"true"` tags to model structs
