@@ -228,13 +228,13 @@ func setCatalogProductPricingOptionGetUnitAttributeType(arg *CatalogProductPrici
 type CatalogProductPricingOption struct {
 	// The pricing option description.
 	// REQUIRED
-	Description CatalogProductPricingOptionGetDescriptionAttributeType `json:"description"`
+	Description CatalogProductPricingOptionGetDescriptionAttributeType `json:"description" required:"true"`
 	// The list of highlights.
 	// REQUIRED
-	Highlights CatalogProductPricingOptionGetHighlightsAttributeType `json:"highlights"`
+	Highlights CatalogProductPricingOptionGetHighlightsAttributeType `json:"highlights" required:"true"`
 	// The pricing option name.
 	// REQUIRED
-	Name      CatalogProductPricingOptionGetNameAttributeType      `json:"name"`
+	Name      CatalogProductPricingOptionGetNameAttributeType      `json:"name" required:"true"`
 	PriceType CatalogProductPricingOptionGetPriceTypeAttributeType `json:"priceType,omitempty"`
 	// Additional price type information.
 	PricingPlan CatalogProductPricingOptionGetPricingPlanAttributeType `json:"pricingPlan,omitempty"`
@@ -242,13 +242,13 @@ type CatalogProductPricingOption struct {
 	Rate CatalogProductPricingOptionGetRateAttributeType `json:"rate,omitempty"`
 	// The concrete variant of the product.
 	// REQUIRED
-	Sku CatalogProductPricingOptionGetSkuAttributeType `json:"sku"`
+	Sku CatalogProductPricingOptionGetSkuAttributeType `json:"sku" required:"true"`
 	// Short description of this offering.
 	// REQUIRED
-	SkuInfo CatalogProductPricingOptionGetSkuInfoAttributeType `json:"skuInfo"`
+	SkuInfo CatalogProductPricingOptionGetSkuInfoAttributeType `json:"skuInfo" required:"true"`
 	// More details about what this offering entails.
 	// REQUIRED
-	SkuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsAttributeType `json:"skuInfoDetails"`
+	SkuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsAttributeType `json:"skuInfoDetails" required:"true"`
 	Unit           CatalogProductPricingOptionGetUnitAttributeType           `json:"unit,omitempty"`
 }
 
