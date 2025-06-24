@@ -144,21 +144,21 @@ type UpdateInstancePayloadGetVersionRetType = string
 // UpdateInstancePayload struct for UpdateInstancePayload
 type UpdateInstancePayload struct {
 	// REQUIRED
-	Acl UpdateInstancePayloadGetAclAttributeType `json:"acl"`
+	Acl UpdateInstancePayloadGetAclAttributeType `json:"acl" required:"true"`
 	// Cronjob for the daily full backup if not provided a job will generated between 00:00 and 04:59
 	// REQUIRED
-	BackupSchedule UpdateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule"`
+	BackupSchedule UpdateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule" required:"true"`
 	// Id of the selected flavor
 	// REQUIRED
-	FlavorId UpdateInstancePayloadGetFlavorIdAttributeType `json:"flavorId"`
+	FlavorId UpdateInstancePayloadGetFlavorIdAttributeType `json:"flavorId" required:"true"`
 	// REQUIRED
-	Labels UpdateInstancePayloadGetLabelsAttributeType `json:"labels"`
+	Labels UpdateInstancePayloadGetLabelsAttributeType `json:"labels" required:"true"`
 	// Name of the instance
 	// REQUIRED
-	Name UpdateInstancePayloadGetNameAttributeType `json:"name"`
+	Name UpdateInstancePayloadGetNameAttributeType `json:"name" required:"true"`
 	// Version of the MSSQL Server
 	// REQUIRED
-	Version UpdateInstancePayloadGetVersionAttributeType `json:"version"`
+	Version UpdateInstancePayloadGetVersionAttributeType `json:"version" required:"true"`
 }
 
 type _UpdateInstancePayload UpdateInstancePayload
