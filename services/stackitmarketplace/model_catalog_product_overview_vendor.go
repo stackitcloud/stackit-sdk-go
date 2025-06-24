@@ -84,13 +84,13 @@ type CatalogProductOverviewVendorGetWebsiteUrlRetType = string
 type CatalogProductOverviewVendor struct {
 	// The product's vendor name.
 	// REQUIRED
-	Name CatalogProductOverviewVendorGetNameAttributeType `json:"name"`
+	Name CatalogProductOverviewVendorGetNameAttributeType `json:"name" required:"true"`
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	VendorId CatalogProductOverviewVendorGetVendorIdAttributeType `json:"vendorId"`
+	VendorId CatalogProductOverviewVendorGetVendorIdAttributeType `json:"vendorId" required:"true"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	WebsiteUrl CatalogProductOverviewVendorGetWebsiteUrlAttributeType `json:"websiteUrl"`
+	WebsiteUrl CatalogProductOverviewVendorGetWebsiteUrlAttributeType `json:"websiteUrl" required:"true"`
 }
 
 type _CatalogProductOverviewVendor CatalogProductOverviewVendor

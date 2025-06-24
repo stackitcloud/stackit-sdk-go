@@ -42,7 +42,7 @@ type ResolveCustomerPayloadGetTokenRetType = string
 type ResolveCustomerPayload struct {
 	// Opaque token exchangeable for subscription details.
 	// REQUIRED
-	Token ResolveCustomerPayloadGetTokenAttributeType `json:"token"`
+	Token ResolveCustomerPayloadGetTokenAttributeType `json:"token" required:"true"`
 }
 
 type _ResolveCustomerPayload ResolveCustomerPayload
