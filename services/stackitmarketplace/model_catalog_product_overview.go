@@ -163,22 +163,22 @@ func setCatalogProductOverviewGetVendorAttributeType(arg *CatalogProductOverview
 // CatalogProductOverview struct for CatalogProductOverview
 type CatalogProductOverview struct {
 	// REQUIRED
-	DeliveryMethod CatalogProductOverviewGetDeliveryMethodAttributeType `json:"deliveryMethod"`
+	DeliveryMethod CatalogProductOverviewGetDeliveryMethodAttributeType `json:"deliveryMethod" required:"true"`
 	// REQUIRED
-	LifecycleState CatalogProductOverviewGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState CatalogProductOverviewGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// The logo base64 encoded.
 	Logo CatalogProductOverviewGetLogoAttributeType `json:"logo,omitempty"`
 	// The name of the product.
 	// REQUIRED
-	Name CatalogProductOverviewGetNameAttributeType `json:"name"`
+	Name CatalogProductOverviewGetNameAttributeType `json:"name" required:"true"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId CatalogProductOverviewGetProductIdAttributeType `json:"productId"`
+	ProductId CatalogProductOverviewGetProductIdAttributeType `json:"productId" required:"true"`
 	// A custom message.
 	// REQUIRED
-	Summary CatalogProductOverviewGetSummaryAttributeType `json:"summary"`
+	Summary CatalogProductOverviewGetSummaryAttributeType `json:"summary" required:"true"`
 	// REQUIRED
-	Vendor CatalogProductOverviewGetVendorAttributeType `json:"vendor"`
+	Vendor CatalogProductOverviewGetVendorAttributeType `json:"vendor" required:"true"`
 }
 
 type _CatalogProductOverview CatalogProductOverview

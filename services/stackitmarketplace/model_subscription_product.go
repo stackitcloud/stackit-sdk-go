@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &SubscriptionProduct{}
 
 /*
+	types and functions for assets
+*/
+
+// isModel
+type SubscriptionProductGetAssetsAttributeType = *Assets
+type SubscriptionProductGetAssetsArgType = Assets
+type SubscriptionProductGetAssetsRetType = Assets
+
+func getSubscriptionProductGetAssetsAttributeTypeOk(arg SubscriptionProductGetAssetsAttributeType) (ret SubscriptionProductGetAssetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetAssetsAttributeType(arg *SubscriptionProductGetAssetsAttributeType, val SubscriptionProductGetAssetsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for deliveryMethod
 */
 
@@ -226,31 +246,32 @@ type SubscriptionProductGetVendorWebsiteUrlRetType = string
 
 // SubscriptionProduct The product of a subscription
 type SubscriptionProduct struct {
+	Assets SubscriptionProductGetAssetsAttributeType `json:"assets,omitempty"`
 	// REQUIRED
-	DeliveryMethod SubscriptionProductGetDeliveryMethodAttributeType `json:"deliveryMethod"`
+	DeliveryMethod SubscriptionProductGetDeliveryMethodAttributeType `json:"deliveryMethod" required:"true"`
 	// REQUIRED
-	LifecycleState SubscriptionProductGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState SubscriptionProductGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// REQUIRED
-	PriceType SubscriptionProductGetPriceTypeAttributeType `json:"priceType"`
+	PriceType SubscriptionProductGetPriceTypeAttributeType `json:"priceType" required:"true"`
 	// Additional price type information.
 	// REQUIRED
-	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan"`
+	PricingPlan SubscriptionProductGetPricingPlanAttributeType `json:"pricingPlan" required:"true"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId"`
+	ProductId SubscriptionProductGetProductIdAttributeType `json:"productId" required:"true"`
 	// The name of the product.
 	// REQUIRED
-	ProductName SubscriptionProductGetProductNameAttributeType `json:"productName"`
+	ProductName SubscriptionProductGetProductNameAttributeType `json:"productName" required:"true"`
 	// The product's vendor name.
 	// REQUIRED
-	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName"`
+	VendorName SubscriptionProductGetVendorNameAttributeType `json:"vendorName" required:"true"`
 	// The vendor provided plan ID.
 	VendorPlanId SubscriptionProductGetVendorPlanIdAttributeType `json:"vendorPlanId,omitempty"`
 	// The vendor provided product ID.
 	VendorProductId SubscriptionProductGetVendorProductIdAttributeType `json:"vendorProductId,omitempty"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl"`
+	VendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlAttributeType `json:"vendorWebsiteUrl" required:"true"`
 }
 
 type _SubscriptionProduct SubscriptionProduct
@@ -278,6 +299,29 @@ func NewSubscriptionProduct(deliveryMethod SubscriptionProductGetDeliveryMethodA
 func NewSubscriptionProductWithDefaults() *SubscriptionProduct {
 	this := SubscriptionProduct{}
 	return &this
+}
+
+// GetAssets returns the Assets field value if set, zero value otherwise.
+func (o *SubscriptionProduct) GetAssets() (res SubscriptionProductGetAssetsRetType) {
+	res, _ = o.GetAssetsOk()
+	return
+}
+
+// GetAssetsOk returns a tuple with the Assets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionProduct) GetAssetsOk() (ret SubscriptionProductGetAssetsRetType, ok bool) {
+	return getSubscriptionProductGetAssetsAttributeTypeOk(o.Assets)
+}
+
+// HasAssets returns a boolean if a field has been set.
+func (o *SubscriptionProduct) HasAssets() bool {
+	_, ok := o.GetAssetsOk()
+	return ok
+}
+
+// SetAssets gets a reference to the given Assets and assigns it to the Assets field.
+func (o *SubscriptionProduct) SetAssets(v SubscriptionProductGetAssetsRetType) {
+	setSubscriptionProductGetAssetsAttributeType(&o.Assets, v)
 }
 
 // GetDeliveryMethod returns the DeliveryMethod field value
@@ -464,6 +508,9 @@ func (o *SubscriptionProduct) SetVendorWebsiteUrl(v SubscriptionProductGetVendor
 
 func (o SubscriptionProduct) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getSubscriptionProductGetAssetsAttributeTypeOk(o.Assets); ok {
+		toSerialize["Assets"] = val
+	}
 	if val, ok := getSubscriptionProductGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod); ok {
 		toSerialize["DeliveryMethod"] = val
 	}

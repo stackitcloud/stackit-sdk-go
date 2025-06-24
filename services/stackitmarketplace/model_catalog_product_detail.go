@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CatalogProductDetail{}
 
 /*
+	types and functions for assets
+*/
+
+// isModel
+type CatalogProductDetailGetAssetsAttributeType = *Assets
+type CatalogProductDetailGetAssetsArgType = Assets
+type CatalogProductDetailGetAssetsRetType = Assets
+
+func getCatalogProductDetailGetAssetsAttributeTypeOk(arg CatalogProductDetailGetAssetsAttributeType) (ret CatalogProductDetailGetAssetsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductDetailGetAssetsAttributeType(arg *CatalogProductDetailGetAssetsAttributeType, val CatalogProductDetailGetAssetsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for categories
 */
 
@@ -242,6 +262,26 @@ type CatalogProductDetailGetNameArgType = string
 type CatalogProductDetailGetNameRetType = string
 
 /*
+	types and functions for offerType
+*/
+
+// isEnumRef
+type CatalogProductDetailGetOfferTypeAttributeType = *OfferType
+type CatalogProductDetailGetOfferTypeArgType = OfferType
+type CatalogProductDetailGetOfferTypeRetType = OfferType
+
+func getCatalogProductDetailGetOfferTypeAttributeTypeOk(arg CatalogProductDetailGetOfferTypeAttributeType) (ret CatalogProductDetailGetOfferTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductDetailGetOfferTypeAttributeType(arg *CatalogProductDetailGetOfferTypeAttributeType, val CatalogProductDetailGetOfferTypeRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for pricingOptions
 */
 
@@ -428,43 +468,45 @@ type CatalogProductDetailGetVideoUrlRetType = string
 
 // CatalogProductDetail struct for CatalogProductDetail
 type CatalogProductDetail struct {
+	Assets CatalogProductDetailGetAssetsAttributeType `json:"assets,omitempty"`
 	// The list of categories associated to the product.
 	Categories CatalogProductDetailGetCategoriesAttributeType `json:"categories,omitempty"`
 	// REQUIRED
-	DeliveryMethod CatalogProductDetailGetDeliveryMethodAttributeType `json:"deliveryMethod"`
+	DeliveryMethod CatalogProductDetailGetDeliveryMethodAttributeType `json:"deliveryMethod" required:"true"`
 	// The product description.
 	// REQUIRED
-	Description CatalogProductDetailGetDescriptionAttributeType `json:"description"`
+	Description CatalogProductDetailGetDescriptionAttributeType `json:"description" required:"true"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	DocumentationUrl CatalogProductDetailGetDocumentationUrlAttributeType `json:"documentationUrl"`
+	DocumentationUrl CatalogProductDetailGetDocumentationUrlAttributeType `json:"documentationUrl" required:"true"`
 	// A e-mail address.
 	Email CatalogProductDetailGetEmailAttributeType `json:"email,omitempty"`
 	// The list of highlights.
 	// REQUIRED
-	Highlights CatalogProductDetailGetHighlightsAttributeType `json:"highlights"`
+	Highlights CatalogProductDetailGetHighlightsAttributeType `json:"highlights" required:"true"`
 	// The list of industries associated to the product.
 	Industries CatalogProductDetailGetIndustriesAttributeType `json:"industries,omitempty"`
 	// Boolean data type.
+	IsProductListing CatalogProductDetailgetIsProductListingAttributeType `json:"isProductListing,omitempty"`
 	// REQUIRED
-	IsProductListing CatalogProductDetailgetIsProductListingAttributeType `json:"isProductListing"`
-	// REQUIRED
-	LifecycleState CatalogProductDetailGetLifecycleStateAttributeType `json:"lifecycleState"`
+	LifecycleState CatalogProductDetailGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// The logo base64 encoded.
 	// REQUIRED
-	Logo CatalogProductDetailGetLogoAttributeType `json:"logo"`
+	Logo CatalogProductDetailGetLogoAttributeType `json:"logo" required:"true"`
 	// The name of the product.
 	// REQUIRED
-	Name CatalogProductDetailGetNameAttributeType `json:"name"`
+	Name CatalogProductDetailGetNameAttributeType `json:"name" required:"true"`
+	// REQUIRED
+	OfferType CatalogProductDetailGetOfferTypeAttributeType `json:"offerType" required:"true"`
 	// The list of pricing options.
 	// REQUIRED
-	PricingOptions CatalogProductDetailGetPricingOptionsAttributeType `json:"pricingOptions"`
+	PricingOptions CatalogProductDetailGetPricingOptionsAttributeType `json:"pricingOptions" required:"true"`
 	// The user-readable product ID.
 	// REQUIRED
-	ProductId CatalogProductDetailGetProductIdAttributeType `json:"productId"`
+	ProductId CatalogProductDetailGetProductIdAttributeType `json:"productId" required:"true"`
 	// The short summary of the product.
 	// REQUIRED
-	Summary CatalogProductDetailGetSummaryAttributeType `json:"summary"`
+	Summary CatalogProductDetailGetSummaryAttributeType `json:"summary" required:"true"`
 	// Uniform Resource Locator.
 	SupportFaq CatalogProductDetailGetSupportFaqAttributeType `json:"supportFaq,omitempty"`
 	// The phone number for support inquiries.
@@ -472,12 +514,12 @@ type CatalogProductDetail struct {
 	// The list of support resources.
 	SupportResources CatalogProductDetailGetSupportResourcesAttributeType `json:"supportResources,omitempty"`
 	// REQUIRED
-	Vendor CatalogProductDetailGetVendorAttributeType `json:"vendor"`
+	Vendor CatalogProductDetailGetVendorAttributeType `json:"vendor" required:"true"`
 	// The list of terms of use.
 	VendorTerms CatalogProductDetailGetVendorTermsAttributeType `json:"vendorTerms,omitempty"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	VideoUrl CatalogProductDetailGetVideoUrlAttributeType `json:"videoUrl"`
+	VideoUrl CatalogProductDetailGetVideoUrlAttributeType `json:"videoUrl" required:"true"`
 }
 
 type _CatalogProductDetail CatalogProductDetail
@@ -486,16 +528,16 @@ type _CatalogProductDetail CatalogProductDetail
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCatalogProductDetail(deliveryMethod CatalogProductDetailGetDeliveryMethodArgType, description CatalogProductDetailGetDescriptionArgType, documentationUrl CatalogProductDetailGetDocumentationUrlArgType, highlights CatalogProductDetailGetHighlightsArgType, isProductListing CatalogProductDetailgetIsProductListingArgType, lifecycleState CatalogProductDetailGetLifecycleStateArgType, logo CatalogProductDetailGetLogoArgType, name CatalogProductDetailGetNameArgType, pricingOptions CatalogProductDetailGetPricingOptionsArgType, productId CatalogProductDetailGetProductIdArgType, summary CatalogProductDetailGetSummaryArgType, vendor CatalogProductDetailGetVendorArgType, videoUrl CatalogProductDetailGetVideoUrlArgType) *CatalogProductDetail {
+func NewCatalogProductDetail(deliveryMethod CatalogProductDetailGetDeliveryMethodArgType, description CatalogProductDetailGetDescriptionArgType, documentationUrl CatalogProductDetailGetDocumentationUrlArgType, highlights CatalogProductDetailGetHighlightsArgType, lifecycleState CatalogProductDetailGetLifecycleStateArgType, logo CatalogProductDetailGetLogoArgType, name CatalogProductDetailGetNameArgType, offerType CatalogProductDetailGetOfferTypeArgType, pricingOptions CatalogProductDetailGetPricingOptionsArgType, productId CatalogProductDetailGetProductIdArgType, summary CatalogProductDetailGetSummaryArgType, vendor CatalogProductDetailGetVendorArgType, videoUrl CatalogProductDetailGetVideoUrlArgType) *CatalogProductDetail {
 	this := CatalogProductDetail{}
 	setCatalogProductDetailGetDeliveryMethodAttributeType(&this.DeliveryMethod, deliveryMethod)
 	setCatalogProductDetailGetDescriptionAttributeType(&this.Description, description)
 	setCatalogProductDetailGetDocumentationUrlAttributeType(&this.DocumentationUrl, documentationUrl)
 	setCatalogProductDetailGetHighlightsAttributeType(&this.Highlights, highlights)
-	setCatalogProductDetailgetIsProductListingAttributeType(&this.IsProductListing, isProductListing)
 	setCatalogProductDetailGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
 	setCatalogProductDetailGetLogoAttributeType(&this.Logo, logo)
 	setCatalogProductDetailGetNameAttributeType(&this.Name, name)
+	setCatalogProductDetailGetOfferTypeAttributeType(&this.OfferType, offerType)
 	setCatalogProductDetailGetPricingOptionsAttributeType(&this.PricingOptions, pricingOptions)
 	setCatalogProductDetailGetProductIdAttributeType(&this.ProductId, productId)
 	setCatalogProductDetailGetSummaryAttributeType(&this.Summary, summary)
@@ -510,6 +552,29 @@ func NewCatalogProductDetail(deliveryMethod CatalogProductDetailGetDeliveryMetho
 func NewCatalogProductDetailWithDefaults() *CatalogProductDetail {
 	this := CatalogProductDetail{}
 	return &this
+}
+
+// GetAssets returns the Assets field value if set, zero value otherwise.
+func (o *CatalogProductDetail) GetAssets() (res CatalogProductDetailGetAssetsRetType) {
+	res, _ = o.GetAssetsOk()
+	return
+}
+
+// GetAssetsOk returns a tuple with the Assets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogProductDetail) GetAssetsOk() (ret CatalogProductDetailGetAssetsRetType, ok bool) {
+	return getCatalogProductDetailGetAssetsAttributeTypeOk(o.Assets)
+}
+
+// HasAssets returns a boolean if a field has been set.
+func (o *CatalogProductDetail) HasAssets() bool {
+	_, ok := o.GetAssetsOk()
+	return ok
+}
+
+// SetAssets gets a reference to the given Assets and assigns it to the Assets field.
+func (o *CatalogProductDetail) SetAssets(v CatalogProductDetailGetAssetsRetType) {
+	setCatalogProductDetailGetAssetsAttributeType(&o.Assets, v)
 }
 
 // GetCategories returns the Categories field value if set, zero value otherwise.
@@ -649,19 +714,25 @@ func (o *CatalogProductDetail) SetIndustries(v CatalogProductDetailGetIndustries
 	setCatalogProductDetailGetIndustriesAttributeType(&o.Industries, v)
 }
 
-// GetIsProductListing returns the IsProductListing field value
-func (o *CatalogProductDetail) GetIsProductListing() (ret CatalogProductDetailgetIsProductListingRetType) {
-	ret, _ = o.GetIsProductListingOk()
-	return ret
+// GetIsProductListing returns the IsProductListing field value if set, zero value otherwise.
+func (o *CatalogProductDetail) GetIsProductListing() (res CatalogProductDetailgetIsProductListingRetType) {
+	res, _ = o.GetIsProductListingOk()
+	return
 }
 
-// GetIsProductListingOk returns a tuple with the IsProductListing field value
+// GetIsProductListingOk returns a tuple with the IsProductListing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogProductDetail) GetIsProductListingOk() (ret CatalogProductDetailgetIsProductListingRetType, ok bool) {
 	return getCatalogProductDetailgetIsProductListingAttributeTypeOk(o.IsProductListing)
 }
 
-// SetIsProductListing sets field value
+// HasIsProductListing returns a boolean if a field has been set.
+func (o *CatalogProductDetail) HasIsProductListing() bool {
+	_, ok := o.GetIsProductListingOk()
+	return ok
+}
+
+// SetIsProductListing gets a reference to the given bool and assigns it to the IsProductListing field.
 func (o *CatalogProductDetail) SetIsProductListing(v CatalogProductDetailgetIsProductListingRetType) {
 	setCatalogProductDetailgetIsProductListingAttributeType(&o.IsProductListing, v)
 }
@@ -715,6 +786,23 @@ func (o *CatalogProductDetail) GetNameOk() (ret CatalogProductDetailGetNameRetTy
 // SetName sets field value
 func (o *CatalogProductDetail) SetName(v CatalogProductDetailGetNameRetType) {
 	setCatalogProductDetailGetNameAttributeType(&o.Name, v)
+}
+
+// GetOfferType returns the OfferType field value
+func (o *CatalogProductDetail) GetOfferType() (ret CatalogProductDetailGetOfferTypeRetType) {
+	ret, _ = o.GetOfferTypeOk()
+	return ret
+}
+
+// GetOfferTypeOk returns a tuple with the OfferType field value
+// and a boolean to check if the value has been set.
+func (o *CatalogProductDetail) GetOfferTypeOk() (ret CatalogProductDetailGetOfferTypeRetType, ok bool) {
+	return getCatalogProductDetailGetOfferTypeAttributeTypeOk(o.OfferType)
+}
+
+// SetOfferType sets field value
+func (o *CatalogProductDetail) SetOfferType(v CatalogProductDetailGetOfferTypeRetType) {
+	setCatalogProductDetailGetOfferTypeAttributeType(&o.OfferType, v)
 }
 
 // GetPricingOptions returns the PricingOptions field value
@@ -896,6 +984,9 @@ func (o *CatalogProductDetail) SetVideoUrl(v CatalogProductDetailGetVideoUrlRetT
 
 func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCatalogProductDetailGetAssetsAttributeTypeOk(o.Assets); ok {
+		toSerialize["Assets"] = val
+	}
 	if val, ok := getCatalogProductDetailGetCategoriesAttributeTypeOk(o.Categories); ok {
 		toSerialize["Categories"] = val
 	}
@@ -928,6 +1019,9 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductDetailGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
+	}
+	if val, ok := getCatalogProductDetailGetOfferTypeAttributeTypeOk(o.OfferType); ok {
+		toSerialize["OfferType"] = val
 	}
 	if val, ok := getCatalogProductDetailGetPricingOptionsAttributeTypeOk(o.PricingOptions); ok {
 		toSerialize["PricingOptions"] = val
