@@ -226,23 +226,23 @@ type OfferingGetVersionRetType = string
 // Offering struct for Offering
 type Offering struct {
 	// REQUIRED
-	Description OfferingGetDescriptionAttributeType `json:"description"`
+	Description OfferingGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	DocumentationUrl OfferingGetDocumentationUrlAttributeType `json:"documentationUrl"`
+	DocumentationUrl OfferingGetDocumentationUrlAttributeType `json:"documentationUrl" required:"true"`
 	// REQUIRED
-	ImageUrl OfferingGetImageUrlAttributeType `json:"imageUrl"`
+	ImageUrl OfferingGetImageUrlAttributeType `json:"imageUrl" required:"true"`
 	// REQUIRED
-	Latest    OfferinggetLatestAttributeType    `json:"latest"`
+	Latest    OfferinggetLatestAttributeType    `json:"latest" required:"true"`
 	Lifecycle OfferingGetLifecycleAttributeType `json:"lifecycle,omitempty"`
 	// REQUIRED
-	Name OfferingGetNameAttributeType `json:"name"`
+	Name OfferingGetNameAttributeType `json:"name" required:"true"`
 	// REQUIRED
-	Plans OfferingGetPlansAttributeType `json:"plans"`
+	Plans OfferingGetPlansAttributeType `json:"plans" required:"true"`
 	// REQUIRED
-	QuotaCount OfferingGetQuotaCountAttributeType `json:"quotaCount"`
+	QuotaCount OfferingGetQuotaCountAttributeType `json:"quotaCount" required:"true"`
 	Schema     OfferingGetSchemaAttributeType     `json:"schema,omitempty"`
 	// REQUIRED
-	Version OfferingGetVersionAttributeType `json:"version"`
+	Version OfferingGetVersionAttributeType `json:"version" required:"true"`
 }
 
 type _Offering Offering
