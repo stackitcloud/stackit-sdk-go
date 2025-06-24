@@ -1,4 +1,6 @@
 ## Release (2025-XX-XX)
+- `redis`: [v0.25.0](services/redis/CHANGELOG.md#v0250)
+  - Add `required:"true"` tags to model structs
 - `stackitmarketplace`: [v1.6.0](services/stackitmarketplace/CHANGELOG.md#v160)
   - **Feature:** Add new `Assets` model for managing service certificate assets
   - **Feature:** Add new `LocalizedVersion` model for localized content management
@@ -1054,7 +1056,7 @@
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
 - `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-29)
-  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
   - **Breaking change**: Deleted unused data type
 - `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
