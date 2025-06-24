@@ -1,4 +1,7 @@
 ## Release (2025-XX-XX)
+- `iaas`: [v0.26.0](services/iaas/CHANGELOG.md#v0260)
+  - **Feature:** Add `Metadata` field to `Server`, `CreateServerPayload`, and `UpdateServerPayload` models
+  - **Feature:** Increase maximum length validation for `machineType` and `volumePerformanceClass` from 63 to 127 characters
 - `ske`: 
   - [v0.26.0](services/ske/CHANGELOG.md#v0260)
     - Add `required:"true"` tags to model structs
@@ -1045,7 +1048,7 @@
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
   - **Breaking change**: Deleted unused data type
 - `redis`: [v0.15.0](services/redis/CHANGELOG.md#v0150-2024-05-29)
-  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`
+  - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
   - **Breaking change**: Deleted unused data type
 - `logme`: [v0.15.0](services/logme/CHANGELOG.md#v0150-2024-05-29)
   - **Feature**: `GetMetricsResponse` has new fields: `Load1`, `Load15`, `Load5`, `OpenSearchDashboardUrl`
