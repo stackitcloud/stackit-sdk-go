@@ -1,4 +1,10 @@
 ## Release (2025-XX-XX)
+- `dns`: 
+  - [v0.17.0](services/dns/CHANGELOG.md#v0170)
+    - **Feature:** Add new record set types: `CSYNC`, `HINFO`, `SSHFP`, `HTTPS`
+    - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
+  - [v0.16.0](services/dns/CHANGELOG.md#v0160)
+    - Add `required:"true"` tags to model structs
 - `ske`: 
   - [v0.26.0](services/ske/CHANGELOG.md#v0260)
     - Add `required:"true"` tags to model structs
@@ -32,8 +38,6 @@
 - `logme`: [v0.25.0](services/logme/CHANGELOG.md#v0250)
   - Add `required:"true"` tags to model structs
 - `iaas`: [v0.25.0](services/iaas/CHANGELOG.md#v0250)
-  - Add `required:"true"` tags to model structs
-- `dns`: [v0.16.0](services/dns/CHANGELOG.md#v0160)
   - Add `required:"true"` tags to model structs
 - `authorization`: [v0.8.0](services/authorization/CHANGELOG.md#v080)
   - Add `required:"true"` tags to model structs

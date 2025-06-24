@@ -1,3 +1,7 @@
+## v0.17.0
+- **Feature:** Add new record set types: `CSYNC`, `HINFO`, `SSHFP`, `HTTPS`
+- **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
+
 ## v0.16.0
 - Add `required:"true"` tags to model structs
 
