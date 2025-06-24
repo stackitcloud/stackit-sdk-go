@@ -41,7 +41,7 @@ func setNetworkRangeListResponseGetItemsAttributeType(arg *NetworkRangeListRespo
 type NetworkRangeListResponse struct {
 	// A list of network ranges.
 	// REQUIRED
-	Items NetworkRangeListResponseGetItemsAttributeType `json:"items"`
+	Items NetworkRangeListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _NetworkRangeListResponse NetworkRangeListResponse

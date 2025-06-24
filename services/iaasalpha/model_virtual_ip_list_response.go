@@ -41,7 +41,7 @@ func setVirtualIpListResponseGetItemsAttributeType(arg *VirtualIpListResponseGet
 type VirtualIpListResponse struct {
 	// A list of virtual IPs.
 	// REQUIRED
-	Items VirtualIpListResponseGetItemsAttributeType `json:"items"`
+	Items VirtualIpListResponseGetItemsAttributeType `json:"items" required:"true"`
 }
 
 type _VirtualIpListResponse VirtualIpListResponse

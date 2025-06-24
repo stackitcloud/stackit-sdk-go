@@ -2604,7 +2604,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/machine-types/{machineType}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		machineTypeValue := randString(63)
+		machineTypeValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(machineTypeValue, "machineType")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
@@ -3661,7 +3661,7 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		_apiUrlPath := "/v1alpha1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		volumePerformanceClassValue := randString(63)
+		volumePerformanceClassValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(volumePerformanceClassValue, "volumePerformanceClass")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()

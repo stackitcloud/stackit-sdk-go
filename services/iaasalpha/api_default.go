@@ -12662,8 +12662,8 @@ func (r GetMachineTypeRequest) Execute() (*MachineType, error) {
 	if strlen(r.projectId) > 36 {
 		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
 	}
-	if strlen(r.machineType) > 63 {
-		return localVarReturnValue, fmt.Errorf("machineType must have less than 63 elements")
+	if strlen(r.machineType) > 127 {
+		return localVarReturnValue, fmt.Errorf("machineType must have less than 127 elements")
 	}
 
 	// to determine the Content-Type header
@@ -16373,8 +16373,8 @@ func (r GetVolumePerformanceClassRequest) Execute() (*VolumePerformanceClass, er
 	if strlen(r.projectId) > 36 {
 		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
 	}
-	if strlen(r.volumePerformanceClass) > 63 {
-		return localVarReturnValue, fmt.Errorf("volumePerformanceClass must have less than 63 elements")
+	if strlen(r.volumePerformanceClass) > 127 {
+		return localVarReturnValue, fmt.Errorf("volumePerformanceClass must have less than 127 elements")
 	}
 
 	// to determine the Content-Type header

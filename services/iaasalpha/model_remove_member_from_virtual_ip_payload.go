@@ -42,7 +42,7 @@ type RemoveMemberFromVirtualIPPayloadGetMemberRetType = string
 type RemoveMemberFromVirtualIPPayload struct {
 	// Universally Unique Identifier (UUID).
 	// REQUIRED
-	Member RemoveMemberFromVirtualIPPayloadGetMemberAttributeType `json:"member"`
+	Member RemoveMemberFromVirtualIPPayloadGetMemberAttributeType `json:"member" required:"true"`
 }
 
 type _RemoveMemberFromVirtualIPPayload RemoveMemberFromVirtualIPPayload
