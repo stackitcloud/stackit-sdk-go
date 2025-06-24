@@ -1,7 +1,29 @@
 ## Release (2025-XX-XX)
-- `iaas`: [v0.26.0](services/iaas/CHANGELOG.md#v0260)
-  - **Feature:** Add `Metadata` field to `Server`, `CreateServerPayload`, and `UpdateServerPayload` models
-  - **Feature:** Increase maximum length validation for `machineType` and `volumePerformanceClass` from 63 to 127 characters
+- `auditlog`: [v0.1.0](services/auditlog/CHANGELOG.md#v010)
+  - **New:** Manage your STACKIT Audit Log resources: `AuditLogEntry`
+  - **Feature:** Download audit log entries for folders, organizations, and projects
+  - **Feature:** Support for time range filtering and pagination
+  - **Feature:** Rate limiting and API constraints
+- `sqlserverflex`: [v1.3.0](services/sqlserverflex/CHANGELOG.md#v130)
+  - Add `required:"true"` tags to model structs
+- `postgresflex`: [v1.2.0](services/postgresflex/CHANGELOG.md#v120)
+  - Add `required:"true"` tags to model structs
+- `cdn`: [v1.3.0](services/cdn/CHANGELOG.md#v130)
+  - **Feature:** Add `DefaultCacheDuration` field to `Config`, `ConfigPatch`, and `CreateDistributionPayload` models
+  - Add `required:"true"` tags to model structs
+- `redis`: [v0.25.0](services/redis/CHANGELOG.md#v0250)
+  - Add `required:"true"` tags to model structs
+- `rabbitmq`: [v0.25.0](services/rabbitmq/CHANGELOG.md#v0250)
+  - Add `required:"true"` tags to model structs
+- `stackitmarketplace`: [v1.6.0](services/stackitmarketplace/CHANGELOG.md#v160)
+  - **Feature:** Add new `Assets` model for managing service certificate assets
+  - **Feature:** Add new `LocalizedVersion` model for localized content management
+  - **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
+  - **Feature:** Add new `ServiceCertificate` model for service certification
+  - **Feature:** Add `Assets` field to `CatalogProductDetail` model
+  - **Feature:** Add `OfferType` field to `CatalogProductDetail` model
+  - **Feature:** Add `NoticePeriod` field to `CatalogProductPricingOption` model
+  - Add `required:"true"` tags to model structs
 - `ske`: 
   - [v0.26.0](services/ske/CHANGELOG.md#v0260)
     - Add `required:"true"` tags to model structs
@@ -34,8 +56,12 @@
   - Add `required:"true"` tags to model structs
 - `logme`: [v0.25.0](services/logme/CHANGELOG.md#v0250)
   - Add `required:"true"` tags to model structs
-- `iaas`: [v0.25.0](services/iaas/CHANGELOG.md#v0250)
-  - Add `required:"true"` tags to model structs
+- `iaas`: 
+  - [v0.26.0](services/iaas/CHANGELOG.md#v0260)
+    - **Feature:** Add `Metadata` field to `Server`, `CreateServerPayload`, and `UpdateServerPayload` models
+    - **Feature:** Increase maximum length validation for `machineType` and `volumePerformanceClass` from 63 to 127 characters
+  - [v0.25.0](services/iaas/CHANGELOG.md#v0250)
+    - Add `required:"true"` tags to model structs
 - `dns`: [v0.16.0](services/dns/CHANGELOG.md#v0160)
   - Add `required:"true"` tags to model structs
 - `authorization`: [v0.8.0](services/authorization/CHANGELOG.md#v080)
