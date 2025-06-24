@@ -142,21 +142,21 @@ func setDistributionStatisticsRecordGetStartAttributeType(arg *DistributionStati
 type DistributionStatisticsRecord struct {
 	// Number of cached requests that were served
 	// REQUIRED
-	CachedRequests DistributionStatisticsRecordGetCachedRequestsAttributeType `json:"cachedRequests"`
+	CachedRequests DistributionStatisticsRecordGetCachedRequestsAttributeType `json:"cachedRequests" required:"true"`
 	// Total number of requests that were served
 	// REQUIRED
-	TotalRequests DistributionStatisticsRecordGetTotalRequestsAttributeType `json:"totalRequests"`
+	TotalRequests DistributionStatisticsRecordGetTotalRequestsAttributeType `json:"totalRequests" required:"true"`
 	// Total traffic in bytes that occurred during the time interval
 	// REQUIRED
-	TotalTrafficBytes DistributionStatisticsRecordGetTotalTrafficBytesAttributeType `json:"totalTrafficBytes"`
+	TotalTrafficBytes DistributionStatisticsRecordGetTotalTrafficBytesAttributeType `json:"totalTrafficBytes" required:"true"`
 	// Exclusive end of the time interval the statistics refer to
 	// REQUIRED
-	End DistributionStatisticsRecordGetEndAttributeType `json:"end"`
+	End DistributionStatisticsRecordGetEndAttributeType `json:"end" required:"true"`
 	// REQUIRED
-	Regions DistributionStatisticsRecordGetRegionsAttributeType `json:"regions"`
+	Regions DistributionStatisticsRecordGetRegionsAttributeType `json:"regions" required:"true"`
 	// Start of the time interval the statistics refer to
 	// REQUIRED
-	Start DistributionStatisticsRecordGetStartAttributeType `json:"start"`
+	Start DistributionStatisticsRecordGetStartAttributeType `json:"start" required:"true"`
 }
 
 type _DistributionStatisticsRecord DistributionStatisticsRecord
