@@ -1,3 +1,7 @@
+## v1.3.0
+- **Feature:** Add `DefaultCacheDuration` field to `Config`, `ConfigPatch`, and `CreateDistributionPayload` models
+- Add `required:"true"` tags to model structs
+
 ## v1.2.1 (2025-06-04)
 - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 - **Feature:** Added `Optimizer` attribute

@@ -1,4 +1,7 @@
 ## Release (2025-XX-XX)
+- `cdn`: [v1.3.0](services/cdn/CHANGELOG.md#v130)
+  - **Feature:** Add `DefaultCacheDuration` field to `Config`, `ConfigPatch`, and `CreateDistributionPayload` models
+  - Add `required:"true"` tags to model structs
 - `redis`: [v0.25.0](services/redis/CHANGELOG.md#v0250)
   - Add `required:"true"` tags to model structs
 - `rabbitmq`: [v0.25.0](services/rabbitmq/CHANGELOG.md#v0250)
