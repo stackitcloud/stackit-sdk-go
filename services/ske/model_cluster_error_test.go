@@ -42,14 +42,14 @@ func TestClusterErrorCode_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 3`,
 			args: args{
-				src: []byte(`"SKE_NODE_MISCONFIGURED_PDB"`),
+				src: []byte(`"SKE_NODE_NO_VALID_HOST_FOUND"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 4`,
 			args: args{
-				src: []byte(`"SKE_NODE_NO_VALID_HOST_FOUND"`),
+				src: []byte(`"SKE_NODE_MISCONFIGURED_PDB"`),
 			},
 			wantErr: false,
 		},
@@ -57,6 +57,20 @@ func TestClusterErrorCode_UnmarshalJSON(t *testing.T) {
 			name: `success - possible enum value no. 5`,
 			args: args{
 				src: []byte(`"SKE_NODE_MACHINE_TYPE_NOT_FOUND"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 6`,
+			args: args{
+				src: []byte(`"SKE_INFRA_SNA_NETWORK_NOT_FOUND"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 7`,
+			args: args{
+				src: []byte(`"SKE_FETCHING_ERRORS_NOT_POSSIBLE"`),
 			},
 			wantErr: false,
 		},
