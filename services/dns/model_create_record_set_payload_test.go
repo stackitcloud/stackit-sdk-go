@@ -173,6 +173,34 @@ func TestCreateRecordSetPayloadTypes_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 22`,
+			args: args{
+				src: []byte(`"TYPE"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 23`,
+			args: args{
+				src: []byte(`"CSYNC"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 24`,
+			args: args{
+				src: []byte(`"HINFO"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 25`,
+			args: args{
+				src: []byte(`"HTTPS"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),
