@@ -32,7 +32,6 @@ use (
 	./scripts
 	./services/alb
 	./services/archiving
-	./services/auditlog
 	./services/authorization
 	./services/cdn
 	./services/certificates
