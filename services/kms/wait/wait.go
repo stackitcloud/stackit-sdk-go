@@ -15,7 +15,7 @@ import (
 const (
 	// Deprecated: StatusKeyActive is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_ACTIVE] instead.
 	StatusKeyActive = "active"
-	// Deprecated: StatusKeyNotReady is deprecated and will be removed after 14th November 2025. Use [kms.] instead.
+	// Deprecated: StatusKeyNotReady is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_CREATING] instead.
 	StatusKeyNotReady = "version_not_ready"
 	// Deprecated: StatusKeyDeleted is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_DELETED] instead.
 	StatusKeyDeleted = "deleted"
