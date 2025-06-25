@@ -41,7 +41,7 @@ func setEncryptPayloadGetDataAttributeType(arg *EncryptPayloadGetDataAttributeTy
 type EncryptPayload struct {
 	// The data that has to be encrypted. Encoded in base64.
 	// REQUIRED
-	Data EncryptPayloadGetDataAttributeType `json:"data"`
+	Data EncryptPayloadGetDataAttributeType `json:"data" required:"true"`
 }
 
 type _EncryptPayload EncryptPayload

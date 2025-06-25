@@ -122,16 +122,16 @@ func setCreateWrappingKeyPayloadGetPurposeAttributeType(arg *CreateWrappingKeyPa
 // CreateWrappingKeyPayload struct for CreateWrappingKeyPayload
 type CreateWrappingKeyPayload struct {
 	// REQUIRED
-	Algorithm CreateWrappingKeyPayloadGetAlgorithmAttributeType `json:"algorithm"`
+	Algorithm CreateWrappingKeyPayloadGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// REQUIRED
-	Backend CreateWrappingKeyPayloadGetBackendAttributeType `json:"backend"`
+	Backend CreateWrappingKeyPayloadGetBackendAttributeType `json:"backend" required:"true"`
 	// A user chosen description to distinguish multiple wrapping keys.
 	Description CreateWrappingKeyPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple wrapping keys.
 	// REQUIRED
-	DisplayName CreateWrappingKeyPayloadGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName CreateWrappingKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// REQUIRED
-	Purpose CreateWrappingKeyPayloadGetPurposeAttributeType `json:"purpose"`
+	Purpose CreateWrappingKeyPayloadGetPurposeAttributeType `json:"purpose" required:"true"`
 }
 
 type _CreateWrappingKeyPayload CreateWrappingKeyPayload

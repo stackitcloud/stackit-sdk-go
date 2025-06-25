@@ -63,10 +63,10 @@ type ImportKeyPayloadGetWrappingKeyIdRetType = string
 type ImportKeyPayload struct {
 	// The wrapped key material that has to be imported. Encoded in base64.
 	// REQUIRED
-	WrappedKey ImportKeyPayloadGetWrappedKeyAttributeType `json:"wrappedKey"`
+	WrappedKey ImportKeyPayloadGetWrappedKeyAttributeType `json:"wrappedKey" required:"true"`
 	// The unique id of the wrapping key the key material has been wrapped with.
 	// REQUIRED
-	WrappingKeyId ImportKeyPayloadGetWrappingKeyIdAttributeType `json:"wrappingKeyId"`
+	WrappingKeyId ImportKeyPayloadGetWrappingKeyIdAttributeType `json:"wrappingKeyId" required:"true"`
 }
 
 type _ImportKeyPayload ImportKeyPayload

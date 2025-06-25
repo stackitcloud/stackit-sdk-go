@@ -40,7 +40,7 @@ func setKeyRingListGetKeyRingsAttributeType(arg *KeyRingListGetKeyRingsAttribute
 // KeyRingList struct for KeyRingList
 type KeyRingList struct {
 	// REQUIRED
-	KeyRings KeyRingListGetKeyRingsAttributeType `json:"keyRings"`
+	KeyRings KeyRingListGetKeyRingsAttributeType `json:"keyRings" required:"true"`
 }
 
 type _KeyRingList KeyRingList

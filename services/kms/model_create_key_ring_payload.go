@@ -65,7 +65,7 @@ type CreateKeyRingPayload struct {
 	Description CreateKeyRingPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple key rings.
 	// REQUIRED
-	DisplayName CreateKeyRingPayloadGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName CreateKeyRingPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 }
 
 type _CreateKeyRingPayload CreateKeyRingPayload

@@ -230,30 +230,40 @@ func setKeyGetPurposeAttributeType(arg *KeyGetPurposeAttributeType, val KeyGetPu
 // isEnum
 
 // KeyState The current state of the key.
+// value type for enums
 type KeyState string
 
 // List of State
 const (
-	KEYSTATE_ACTIVE            KeyState = "active"
-	KEYSTATE_VERSION_NOT_READY KeyState = "version_not_ready"
-	KEYSTATE_DELETED           KeyState = "deleted"
+	KEYSTATE_ACTIVE        KeyState = "active"
+	KEYSTATE_DELETED       KeyState = "deleted"
+	KEYSTATE_NOT_AVAILABLE KeyState = "not_available"
+	KEYSTATE_ERRORS_EXIST  KeyState = "errors_exist"
+	KEYSTATE_CREATING      KeyState = "creating"
+	KEYSTATE_NO_VERSION    KeyState = "no_version"
 )
 
 // All allowed values of Key enum
 var AllowedKeyStateEnumValues = []KeyState{
 	"active",
-	"version_not_ready",
 	"deleted",
+	"not_available",
+	"errors_exist",
+	"creating",
+	"no_version",
 }
 
 func (v *KeyState) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson KeyState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -270,7 +280,7 @@ func (v *KeyState) UnmarshalJSON(src []byte) error {
 
 // NewKeyStateFromValue returns a pointer to a valid KeyState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewKeyStateFromValue(v string) (*KeyState, error) {
+func NewKeyStateFromValue(v KeyState) (*KeyState, error) {
 	ev := KeyState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -348,32 +358,32 @@ func setKeyGetStateAttributeType(arg *KeyGetStateAttributeType, val KeyGetStateR
 // Key struct for Key
 type Key struct {
 	// REQUIRED
-	Algorithm KeyGetAlgorithmAttributeType `json:"algorithm"`
+	Algorithm KeyGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// REQUIRED
-	Backend KeyGetBackendAttributeType `json:"backend"`
+	Backend KeyGetBackendAttributeType `json:"backend" required:"true"`
 	// The date and time the creation of the key was triggered.
 	// REQUIRED
-	CreatedAt KeyGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt KeyGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// This date is set when a key is pending deletion and refers to the scheduled date of deletion
 	DeletionDate KeyGetDeletionDateAttributeType `json:"deletionDate,omitempty"`
 	// A user chosen description to distinguish multiple keys.
 	Description KeyGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple keys.
 	// REQUIRED
-	DisplayName KeyGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName KeyGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// A auto generated unique id which identifies the keys.
 	// REQUIRED
-	Id KeyGetIdAttributeType `json:"id"`
+	Id KeyGetIdAttributeType `json:"id" required:"true"`
 	// States whether versions can be created or only imported.
 	ImportOnly KeygetImportOnlyAttributeType `json:"importOnly,omitempty"`
 	// The unique id of the key ring this key is assigned to.
 	// REQUIRED
-	KeyRingId KeyGetKeyRingIdAttributeType `json:"keyRingId"`
+	KeyRingId KeyGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
 	// REQUIRED
-	Purpose KeyGetPurposeAttributeType `json:"purpose"`
+	Purpose KeyGetPurposeAttributeType `json:"purpose" required:"true"`
 	// The current state of the key.
 	// REQUIRED
-	State KeyGetStateAttributeType `json:"state"`
+	State KeyGetStateAttributeType `json:"state" required:"true"`
 }
 
 type _Key Key

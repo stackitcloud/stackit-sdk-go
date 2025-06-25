@@ -42,7 +42,7 @@ type HttpErrorGetMessageRetType = string
 type HttpError struct {
 	// A string that gives a short information about what went wrong.
 	// REQUIRED
-	Message HttpErrorGetMessageAttributeType `json:"message"`
+	Message HttpErrorGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _HttpError HttpError
