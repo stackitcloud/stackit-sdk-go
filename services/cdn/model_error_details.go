@@ -234,14 +234,14 @@ type ErrorDetails struct {
 	De ErrorDetailsGetDeAttributeType `json:"de,omitempty"`
 	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
-	Description ErrorDetailsGetDescriptionAttributeType `json:"description"`
+	Description ErrorDetailsGetDescriptionAttributeType `json:"description" required:"true"`
 	// English description of the error
 	// REQUIRED
-	En ErrorDetailsGetEnAttributeType `json:"en"`
+	En ErrorDetailsGetEnAttributeType `json:"en" required:"true"`
 	// Optional field in the request this error detail refers to
 	Field ErrorDetailsGetFieldAttributeType `json:"field,omitempty"`
 	// REQUIRED
-	Key ErrorDetailsGetKeyAttributeType `json:"key"`
+	Key ErrorDetailsGetKeyAttributeType `json:"key" required:"true"`
 }
 
 type _ErrorDetails ErrorDetails
