@@ -60,6 +60,7 @@ func main() {
 	}
 	fmt.Printf("[kms API] Created key %s\n", *key.Id)
 
+	// List key rings
 	keyRings, err := kmsClient.ListKeyRingsExecute(ctx, projectId, region)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[kms API] Cannot list keyrings: %v\n", err)
@@ -80,6 +81,5 @@ func main() {
 				fmt.Printf("[kms API] Keys in Keyring %s: %v\n", *keyring.Id, len(*keys))
 			}
 		}
-
 	}
 }
