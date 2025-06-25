@@ -40,7 +40,7 @@ func setListBackupsResponseGetInstanceBackupsAttributeType(arg *ListBackupsRespo
 // ListBackupsResponse struct for ListBackupsResponse
 type ListBackupsResponse struct {
 	// REQUIRED
-	InstanceBackups ListBackupsResponseGetInstanceBackupsAttributeType `json:"instanceBackups"`
+	InstanceBackups ListBackupsResponseGetInstanceBackupsAttributeType `json:"instanceBackups" required:"true"`
 }
 
 type _ListBackupsResponse ListBackupsResponse

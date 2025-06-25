@@ -40,7 +40,7 @@ func setListRestoresResponseGetInstanceRestoresAttributeType(arg *ListRestoresRe
 // ListRestoresResponse struct for ListRestoresResponse
 type ListRestoresResponse struct {
 	// REQUIRED
-	InstanceRestores ListRestoresResponseGetInstanceRestoresAttributeType `json:"instanceRestores"`
+	InstanceRestores ListRestoresResponseGetInstanceRestoresAttributeType `json:"instanceRestores" required:"true"`
 }
 
 type _ListRestoresResponse ListRestoresResponse
