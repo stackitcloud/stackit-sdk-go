@@ -70,6 +70,13 @@
   - Add `required:"true"` tags to model structs
 - `serviceaccount`: [v0.9.0](services/serviceaccount/CHANGELOG.md#v090)
   - Add `required:"true"` tags to model structs
+- `kms` [v0.3.0](services/kms/CHANGELOG.md#v030)
+  - **Feature:** New method `DeleteWrappingKey`
+  - **Breaking change:** Enum `KEYSTATE_VERSION_NOT_READY` removed. Use instead `KEYSTATE_CREATING`
+  - **Breaking change:** Enum `VERSIONSTATE_KEY_MATERIAL_NOT_READY` removed. Use instead `VERSIONSTATE_CREATING`
+  - **Breaking change:** Enum `WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY` removed. Use instead `WRAPPINGKEYSTATE_CREATING`
+  - **Feature:** New enums for `KEYSTATE`, `KEYRINGSTATE`, `VERSIONSTATE` and `WRAPPINGKEYSTATE`
+  - **Feature:** Add `required:"true"` tags to model structs
 
 ## Release (2025-06-16)
 - `iaas`: 
