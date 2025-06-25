@@ -9,7 +9,6 @@ use (
 	./examples/dns
 	./examples/errorhandling
 	./examples/iaas
-	./examples/iaasalpha
 	./examples/kms
 	./examples/loadbalancer
 	./examples/logme
