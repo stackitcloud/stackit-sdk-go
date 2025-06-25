@@ -133,6 +133,10 @@ const (
 	CREATERECORDSETPAYLOADTYPE_URI    CreateRecordSetPayloadTypes = "URI"
 	CREATERECORDSETPAYLOADTYPE_CERT   CreateRecordSetPayloadTypes = "CERT"
 	CREATERECORDSETPAYLOADTYPE_SVCB   CreateRecordSetPayloadTypes = "SVCB"
+	CREATERECORDSETPAYLOADTYPE_TYPE   CreateRecordSetPayloadTypes = "TYPE"
+	CREATERECORDSETPAYLOADTYPE_CSYNC  CreateRecordSetPayloadTypes = "CSYNC"
+	CREATERECORDSETPAYLOADTYPE_HINFO  CreateRecordSetPayloadTypes = "HINFO"
+	CREATERECORDSETPAYLOADTYPE_HTTPS  CreateRecordSetPayloadTypes = "HTTPS"
 )
 
 // All allowed values of CreateRecordSetPayload enum
@@ -158,6 +162,10 @@ var AllowedCreateRecordSetPayloadTypesEnumValues = []CreateRecordSetPayloadTypes
 	"URI",
 	"CERT",
 	"SVCB",
+	"TYPE",
+	"CSYNC",
+	"HINFO",
+	"HTTPS",
 }
 
 func (v *CreateRecordSetPayloadTypes) UnmarshalJSON(src []byte) error {

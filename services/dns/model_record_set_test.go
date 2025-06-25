@@ -204,26 +204,89 @@ func TestRecordSetTypes_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 13`,
 			args: args{
-				src: []byte(`"CSYNC"`),
+				src: []byte(`"DNSKEY"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 14`,
 			args: args{
-				src: []byte(`"HINFO"`),
+				src: []byte(`"DS"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 15`,
 			args: args{
-				src: []byte(`"SSHFP"`),
+				src: []byte(`"LOC"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 16`,
+			args: args{
+				src: []byte(`"NAPTR"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 17`,
+			args: args{
+				src: []byte(`"SSHFP"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 18`,
+			args: args{
+				src: []byte(`"TLSA"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 19`,
+			args: args{
+				src: []byte(`"URI"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 20`,
+			args: args{
+				src: []byte(`"CERT"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 21`,
+			args: args{
+				src: []byte(`"SVCB"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 22`,
+			args: args{
+				src: []byte(`"TYPE"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 23`,
+			args: args{
+				src: []byte(`"CSYNC"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 24`,
+			args: args{
+				src: []byte(`"HINFO"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 25`,
 			args: args{
 				src: []byte(`"HTTPS"`),
 			},
