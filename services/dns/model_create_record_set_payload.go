@@ -266,7 +266,7 @@ func setCreateRecordSetPayloadGetTypeAttributeType(arg *CreateRecordSetPayloadGe
 type CreateRecordSetPayload struct {
 	// user comment
 	Comment CreateRecordSetPayloadGetCommentAttributeType `json:"comment,omitempty"`
-	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4
+	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4. For APEX records (same as zone name), the zone name itself has to be put in here.
 	// REQUIRED
 	Name CreateRecordSetPayloadGetNameAttributeType `json:"name" required:"true"`
 	// records

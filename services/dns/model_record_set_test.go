@@ -202,6 +202,34 @@ func TestRecordSetTypes_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 13`,
+			args: args{
+				src: []byte(`"CSYNC"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 14`,
+			args: args{
+				src: []byte(`"HINFO"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 15`,
+			args: args{
+				src: []byte(`"SSHFP"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 16`,
+			args: args{
+				src: []byte(`"HTTPS"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),
