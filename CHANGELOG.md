@@ -21,7 +21,7 @@
   - Add `required:"true"` tags to model structs
 - `dns`: 
   - [v0.17.0](services/dns/CHANGELOG.md#v0170)
-    - **Feature:** Add new record set types: `CSYNC`, `HINFO`, `SSHFP`, `HTTPS`
+    - **Feature:** Add new record set types
     - **Feature:** Improve documentation for APEX records in `RecordSet` and `CreateRecordSetPayload` models
   - [v0.16.0](services/dns/CHANGELOG.md#v0160)
     - Add `required:"true"` tags to model structs
