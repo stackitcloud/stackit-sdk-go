@@ -481,47 +481,47 @@ func setGetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType(a
 type GetMetricsResponse struct {
 	CpuIdleTime GetMetricsResponseGetCpuIdleTimeAttributeType `json:"cpuIdleTime,omitempty"`
 	// REQUIRED
-	CpuLoadPercent GetMetricsResponseGetCpuLoadPercentAttributeType `json:"cpuLoadPercent"`
+	CpuLoadPercent GetMetricsResponseGetCpuLoadPercentAttributeType `json:"cpuLoadPercent" required:"true"`
 	CpuSystemTime  GetMetricsResponseGetCpuSystemTimeAttributeType  `json:"cpuSystemTime,omitempty"`
 	CpuUserTime    GetMetricsResponseGetCpuUserTimeAttributeType    `json:"cpuUserTime,omitempty"`
 	// REQUIRED
-	DiskEphemeralTotal GetMetricsResponseGetDiskEphemeralTotalAttributeType `json:"diskEphemeralTotal"`
+	DiskEphemeralTotal GetMetricsResponseGetDiskEphemeralTotalAttributeType `json:"diskEphemeralTotal" required:"true"`
 	// REQUIRED
-	DiskEphemeralUsed GetMetricsResponseGetDiskEphemeralUsedAttributeType `json:"diskEphemeralUsed"`
+	DiskEphemeralUsed GetMetricsResponseGetDiskEphemeralUsedAttributeType `json:"diskEphemeralUsed" required:"true"`
 	// REQUIRED
-	DiskPersistentTotal GetMetricsResponseGetDiskPersistentTotalAttributeType `json:"diskPersistentTotal"`
+	DiskPersistentTotal GetMetricsResponseGetDiskPersistentTotalAttributeType `json:"diskPersistentTotal" required:"true"`
 	// REQUIRED
-	DiskPersistentUsed GetMetricsResponseGetDiskPersistentUsedAttributeType `json:"diskPersistentUsed"`
+	DiskPersistentUsed GetMetricsResponseGetDiskPersistentUsedAttributeType `json:"diskPersistentUsed" required:"true"`
 	// REQUIRED
-	Load1 GetMetricsResponseGetLoad1AttributeType `json:"load1"`
+	Load1 GetMetricsResponseGetLoad1AttributeType `json:"load1" required:"true"`
 	// REQUIRED
-	Load15 GetMetricsResponseGetLoad15AttributeType `json:"load15"`
+	Load15 GetMetricsResponseGetLoad15AttributeType `json:"load15" required:"true"`
 	// REQUIRED
-	Load5 GetMetricsResponseGetLoad5AttributeType `json:"load5"`
+	Load5 GetMetricsResponseGetLoad5AttributeType `json:"load5" required:"true"`
 	// REQUIRED
-	MemoryTotal GetMetricsResponseGetMemoryTotalAttributeType `json:"memoryTotal"`
+	MemoryTotal GetMetricsResponseGetMemoryTotalAttributeType `json:"memoryTotal" required:"true"`
 	// REQUIRED
-	MemoryUsed GetMetricsResponseGetMemoryUsedAttributeType `json:"memoryUsed"`
+	MemoryUsed GetMetricsResponseGetMemoryUsedAttributeType `json:"memoryUsed" required:"true"`
 	// REQUIRED
-	ParachuteDiskEphemeralActivated GetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType `json:"parachuteDiskEphemeralActivated"`
+	ParachuteDiskEphemeralActivated GetMetricsResponsegetParachuteDiskEphemeralActivatedAttributeType `json:"parachuteDiskEphemeralActivated" required:"true"`
 	// REQUIRED
-	ParachuteDiskEphemeralTotal GetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType `json:"parachuteDiskEphemeralTotal"`
+	ParachuteDiskEphemeralTotal GetMetricsResponseGetParachuteDiskEphemeralTotalAttributeType `json:"parachuteDiskEphemeralTotal" required:"true"`
 	// REQUIRED
-	ParachuteDiskEphemeralUsed GetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType `json:"parachuteDiskEphemeralUsed"`
+	ParachuteDiskEphemeralUsed GetMetricsResponseGetParachuteDiskEphemeralUsedAttributeType `json:"parachuteDiskEphemeralUsed" required:"true"`
 	// REQUIRED
-	ParachuteDiskEphemeralUsedPercent GetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType `json:"parachuteDiskEphemeralUsedPercent"`
+	ParachuteDiskEphemeralUsedPercent GetMetricsResponseGetParachuteDiskEphemeralUsedPercentAttributeType `json:"parachuteDiskEphemeralUsedPercent" required:"true"`
 	// REQUIRED
-	ParachuteDiskEphemeralUsedThreshold GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType `json:"parachuteDiskEphemeralUsedThreshold"`
+	ParachuteDiskEphemeralUsedThreshold GetMetricsResponseGetParachuteDiskEphemeralUsedThresholdAttributeType `json:"parachuteDiskEphemeralUsedThreshold" required:"true"`
 	// REQUIRED
-	ParachuteDiskPersistentActivated GetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType `json:"parachuteDiskPersistentActivated"`
+	ParachuteDiskPersistentActivated GetMetricsResponsegetParachuteDiskPersistentActivatedAttributeType `json:"parachuteDiskPersistentActivated" required:"true"`
 	// REQUIRED
-	ParachuteDiskPersistentTotal GetMetricsResponseGetParachuteDiskPersistentTotalAttributeType `json:"parachuteDiskPersistentTotal"`
+	ParachuteDiskPersistentTotal GetMetricsResponseGetParachuteDiskPersistentTotalAttributeType `json:"parachuteDiskPersistentTotal" required:"true"`
 	// REQUIRED
-	ParachuteDiskPersistentUsed GetMetricsResponseGetParachuteDiskPersistentUsedAttributeType `json:"parachuteDiskPersistentUsed"`
+	ParachuteDiskPersistentUsed GetMetricsResponseGetParachuteDiskPersistentUsedAttributeType `json:"parachuteDiskPersistentUsed" required:"true"`
 	// REQUIRED
-	ParachuteDiskPersistentUsedPercent GetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType `json:"parachuteDiskPersistentUsedPercent"`
+	ParachuteDiskPersistentUsedPercent GetMetricsResponseGetParachuteDiskPersistentUsedPercentAttributeType `json:"parachuteDiskPersistentUsedPercent" required:"true"`
 	// REQUIRED
-	ParachuteDiskPersistentUsedThreshold GetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType `json:"parachuteDiskPersistentUsedThreshold"`
+	ParachuteDiskPersistentUsedThreshold GetMetricsResponseGetParachuteDiskPersistentUsedThresholdAttributeType `json:"parachuteDiskPersistentUsedThreshold" required:"true"`
 }
 
 type _GetMetricsResponse GetMetricsResponse

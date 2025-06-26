@@ -187,11 +187,11 @@ func setGetCacheInfoResponseHistoryEntryGetTypeAttributeType(arg *GetCacheInfoRe
 type GetCacheInfoResponseHistoryEntry struct {
 	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
-	OccuredAt GetCacheInfoResponseHistoryEntryGetOccuredAtAttributeType `json:"occuredAt"`
+	OccuredAt GetCacheInfoResponseHistoryEntryGetOccuredAtAttributeType `json:"occuredAt" required:"true"`
 	// REQUIRED
-	OccurredAt GetCacheInfoResponseHistoryEntryGetOccurredAtAttributeType `json:"occurredAt"`
+	OccurredAt GetCacheInfoResponseHistoryEntryGetOccurredAtAttributeType `json:"occurredAt" required:"true"`
 	// REQUIRED
-	Type GetCacheInfoResponseHistoryEntryGetTypeAttributeType `json:"type"`
+	Type GetCacheInfoResponseHistoryEntryGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _GetCacheInfoResponseHistoryEntry GetCacheInfoResponseHistoryEntry

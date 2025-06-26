@@ -61,9 +61,9 @@ type CreateBackupResponseItemGetMessageRetType = string
 // CreateBackupResponseItem struct for CreateBackupResponseItem
 type CreateBackupResponseItem struct {
 	// REQUIRED
-	Id CreateBackupResponseItemGetIdAttributeType `json:"id"`
+	Id CreateBackupResponseItemGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
-	Message CreateBackupResponseItemGetMessageAttributeType `json:"message"`
+	Message CreateBackupResponseItemGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _CreateBackupResponseItem CreateBackupResponseItem
