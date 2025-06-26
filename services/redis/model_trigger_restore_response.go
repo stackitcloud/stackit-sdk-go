@@ -40,7 +40,7 @@ func setTriggerRestoreResponseGetIdAttributeType(arg *TriggerRestoreResponseGetI
 // TriggerRestoreResponse struct for TriggerRestoreResponse
 type TriggerRestoreResponse struct {
 	// REQUIRED
-	Id TriggerRestoreResponseGetIdAttributeType `json:"id"`
+	Id TriggerRestoreResponseGetIdAttributeType `json:"id" required:"true"`
 }
 
 type _TriggerRestoreResponse TriggerRestoreResponse
