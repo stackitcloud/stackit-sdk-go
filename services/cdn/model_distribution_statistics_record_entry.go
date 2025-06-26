@@ -81,13 +81,13 @@ func setDistributionStatisticsRecordEntryGetTotalTrafficBytesAttributeType(arg *
 type DistributionStatisticsRecordEntry struct {
 	// Number of cached requests that were served
 	// REQUIRED
-	CachedRequests DistributionStatisticsRecordEntryGetCachedRequestsAttributeType `json:"cachedRequests"`
+	CachedRequests DistributionStatisticsRecordEntryGetCachedRequestsAttributeType `json:"cachedRequests" required:"true"`
 	// Total number of requests that were served
 	// REQUIRED
-	TotalRequests DistributionStatisticsRecordEntryGetTotalRequestsAttributeType `json:"totalRequests"`
+	TotalRequests DistributionStatisticsRecordEntryGetTotalRequestsAttributeType `json:"totalRequests" required:"true"`
 	// Total traffic in bytes that occurred during the time interval
 	// REQUIRED
-	TotalTrafficBytes DistributionStatisticsRecordEntryGetTotalTrafficBytesAttributeType `json:"totalTrafficBytes"`
+	TotalTrafficBytes DistributionStatisticsRecordEntryGetTotalTrafficBytesAttributeType `json:"totalTrafficBytes" required:"true"`
 }
 
 type _DistributionStatisticsRecordEntry DistributionStatisticsRecordEntry

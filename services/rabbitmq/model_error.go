@@ -62,9 +62,9 @@ type ErrorGetErrorRetType = string
 // Error struct for Error
 type Error struct {
 	// REQUIRED
-	Description ErrorGetDescriptionAttributeType `json:"description"`
+	Description ErrorGetDescriptionAttributeType `json:"description" required:"true"`
 	// REQUIRED
-	Error ErrorGetErrorAttributeType `json:"error"`
+	Error ErrorGetErrorAttributeType `json:"error" required:"true"`
 }
 
 type _Error Error

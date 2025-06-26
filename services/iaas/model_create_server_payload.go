@@ -266,6 +266,26 @@ func setCreateServerPayloadGetMaintenanceWindowAttributeType(arg *CreateServerPa
 }
 
 /*
+	types and functions for metadata
+*/
+
+// isFreeform
+type CreateServerPayloadGetMetadataAttributeType = *map[string]interface{}
+type CreateServerPayloadGetMetadataArgType = map[string]interface{}
+type CreateServerPayloadGetMetadataRetType = map[string]interface{}
+
+func getCreateServerPayloadGetMetadataAttributeTypeOk(arg CreateServerPayloadGetMetadataAttributeType) (ret CreateServerPayloadGetMetadataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServerPayloadGetMetadataAttributeType(arg *CreateServerPayloadGetMetadataAttributeType, val CreateServerPayloadGetMetadataRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -493,6 +513,8 @@ type CreateServerPayload struct {
 	// REQUIRED
 	MachineType       CreateServerPayloadGetMachineTypeAttributeType       `json:"machineType" required:"true"`
 	MaintenanceWindow CreateServerPayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
+	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.
+	Metadata CreateServerPayloadGetMetadataAttributeType `json:"metadata,omitempty"`
 	// The name for a Server.
 	// REQUIRED
 	Name       CreateServerPayloadGetNameAttributeType       `json:"name" required:"true"`
@@ -806,6 +828,29 @@ func (o *CreateServerPayload) SetMaintenanceWindow(v CreateServerPayloadGetMaint
 	setCreateServerPayloadGetMaintenanceWindowAttributeType(&o.MaintenanceWindow, v)
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetMetadata() (res CreateServerPayloadGetMetadataRetType) {
+	res, _ = o.GetMetadataOk()
+	return
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetMetadataOk() (ret CreateServerPayloadGetMetadataRetType, ok bool) {
+	return getCreateServerPayloadGetMetadataAttributeTypeOk(o.Metadata)
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasMetadata() bool {
+	_, ok := o.GetMetadataOk()
+	return ok
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *CreateServerPayload) SetMetadata(v CreateServerPayloadGetMetadataRetType) {
+	setCreateServerPayloadGetMetadataAttributeType(&o.Metadata, v)
+}
+
 // GetName returns the Name field value
 func (o *CreateServerPayload) GetName() (ret CreateServerPayloadGetNameRetType) {
 	ret, _ = o.GetNameOk()
@@ -1067,6 +1112,9 @@ func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateServerPayloadGetMaintenanceWindowAttributeTypeOk(o.MaintenanceWindow); ok {
 		toSerialize["MaintenanceWindow"] = val
+	}
+	if val, ok := getCreateServerPayloadGetMetadataAttributeTypeOk(o.Metadata); ok {
+		toSerialize["Metadata"] = val
 	}
 	if val, ok := getCreateServerPayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val

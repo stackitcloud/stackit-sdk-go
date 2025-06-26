@@ -1,5 +1,5 @@
-## v0.27.0 
-- Added new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
+## v0.27.0
+- **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
 
 ## v0.26.0 
 - Add `required:"true"` tags to model structs
