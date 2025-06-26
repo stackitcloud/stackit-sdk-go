@@ -354,18 +354,31 @@ type RecordSetTypes string
 
 // List of Type
 const (
-	RECORDSETTYPE_A     RecordSetTypes = "A"
-	RECORDSETTYPE_AAAA  RecordSetTypes = "AAAA"
-	RECORDSETTYPE_SOA   RecordSetTypes = "SOA"
-	RECORDSETTYPE_CNAME RecordSetTypes = "CNAME"
-	RECORDSETTYPE_NS    RecordSetTypes = "NS"
-	RECORDSETTYPE_MX    RecordSetTypes = "MX"
-	RECORDSETTYPE_TXT   RecordSetTypes = "TXT"
-	RECORDSETTYPE_SRV   RecordSetTypes = "SRV"
-	RECORDSETTYPE_PTR   RecordSetTypes = "PTR"
-	RECORDSETTYPE_ALIAS RecordSetTypes = "ALIAS"
-	RECORDSETTYPE_DNAME RecordSetTypes = "DNAME"
-	RECORDSETTYPE_CAA   RecordSetTypes = "CAA"
+	RECORDSETTYPE_A      RecordSetTypes = "A"
+	RECORDSETTYPE_AAAA   RecordSetTypes = "AAAA"
+	RECORDSETTYPE_SOA    RecordSetTypes = "SOA"
+	RECORDSETTYPE_CNAME  RecordSetTypes = "CNAME"
+	RECORDSETTYPE_NS     RecordSetTypes = "NS"
+	RECORDSETTYPE_MX     RecordSetTypes = "MX"
+	RECORDSETTYPE_TXT    RecordSetTypes = "TXT"
+	RECORDSETTYPE_SRV    RecordSetTypes = "SRV"
+	RECORDSETTYPE_PTR    RecordSetTypes = "PTR"
+	RECORDSETTYPE_ALIAS  RecordSetTypes = "ALIAS"
+	RECORDSETTYPE_DNAME  RecordSetTypes = "DNAME"
+	RECORDSETTYPE_CAA    RecordSetTypes = "CAA"
+	RECORDSETTYPE_DNSKEY RecordSetTypes = "DNSKEY"
+	RECORDSETTYPE_DS     RecordSetTypes = "DS"
+	RECORDSETTYPE_LOC    RecordSetTypes = "LOC"
+	RECORDSETTYPE_NAPTR  RecordSetTypes = "NAPTR"
+	RECORDSETTYPE_SSHFP  RecordSetTypes = "SSHFP"
+	RECORDSETTYPE_TLSA   RecordSetTypes = "TLSA"
+	RECORDSETTYPE_URI    RecordSetTypes = "URI"
+	RECORDSETTYPE_CERT   RecordSetTypes = "CERT"
+	RECORDSETTYPE_SVCB   RecordSetTypes = "SVCB"
+	RECORDSETTYPE_TYPE   RecordSetTypes = "TYPE"
+	RECORDSETTYPE_CSYNC  RecordSetTypes = "CSYNC"
+	RECORDSETTYPE_HINFO  RecordSetTypes = "HINFO"
+	RECORDSETTYPE_HTTPS  RecordSetTypes = "HTTPS"
 )
 
 // All allowed values of RecordSet enum
@@ -382,6 +395,19 @@ var AllowedRecordSetTypesEnumValues = []RecordSetTypes{
 	"ALIAS",
 	"DNAME",
 	"CAA",
+	"DNSKEY",
+	"DS",
+	"LOC",
+	"NAPTR",
+	"SSHFP",
+	"TLSA",
+	"URI",
+	"CERT",
+	"SVCB",
+	"TYPE",
+	"CSYNC",
+	"HINFO",
+	"HTTPS",
 }
 
 func (v *RecordSetTypes) UnmarshalJSON(src []byte) error {
@@ -545,7 +571,7 @@ type RecordSet struct {
 	// rr set id
 	// REQUIRED
 	Id RecordSetGetIdAttributeType `json:"id" required:"true"`
-	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4
+	// name of the record which should be a valid domain according to rfc1035 Section 2.3.4. For APEX records (same as zone name), the zone name itself has to be put in here.
 	// REQUIRED
 	Name RecordSetGetNameAttributeType `json:"name" required:"true"`
 	// records

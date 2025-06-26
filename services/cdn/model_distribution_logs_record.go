@@ -206,25 +206,25 @@ func setDistributionLogsRecordGetTimestampAttributeType(arg *DistributionLogsRec
 // DistributionLogsRecord struct for DistributionLogsRecord
 type DistributionLogsRecord struct {
 	// REQUIRED
-	CacheHit DistributionLogsRecordgetCacheHitAttributeType `json:"cacheHit"`
+	CacheHit DistributionLogsRecordgetCacheHitAttributeType `json:"cacheHit" required:"true"`
 	// REQUIRED
-	DataCenterRegion DistributionLogsRecordGetDataCenterRegionAttributeType `json:"dataCenterRegion"`
+	DataCenterRegion DistributionLogsRecordGetDataCenterRegionAttributeType `json:"dataCenterRegion" required:"true"`
 	// REQUIRED
-	DistributionID DistributionLogsRecordGetDistributionIDAttributeType `json:"distributionID"`
+	DistributionID DistributionLogsRecordGetDistributionIDAttributeType `json:"distributionID" required:"true"`
 	// REQUIRED
-	Host DistributionLogsRecordGetHostAttributeType `json:"host"`
+	Host DistributionLogsRecordGetHostAttributeType `json:"host" required:"true"`
 	// REQUIRED
-	Path DistributionLogsRecordGetPathAttributeType `json:"path"`
+	Path DistributionLogsRecordGetPathAttributeType `json:"path" required:"true"`
 	// ISO 3166-1 A2 compliant country code
 	// REQUIRED
-	RequestCountryCode DistributionLogsRecordGetRequestCountryCodeAttributeType `json:"requestCountryCode"`
+	RequestCountryCode DistributionLogsRecordGetRequestCountryCodeAttributeType `json:"requestCountryCode" required:"true"`
 	// REQUIRED
-	Size DistributionLogsRecordGetSizeAttributeType `json:"size"`
+	Size DistributionLogsRecordGetSizeAttributeType `json:"size" required:"true"`
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
-	StatusCode DistributionLogsRecordGetStatusCodeAttributeType `json:"statusCode"`
+	StatusCode DistributionLogsRecordGetStatusCodeAttributeType `json:"statusCode" required:"true"`
 	// REQUIRED
-	Timestamp DistributionLogsRecordGetTimestampAttributeType `json:"timestamp"`
+	Timestamp DistributionLogsRecordGetTimestampAttributeType `json:"timestamp" required:"true"`
 }
 
 type _DistributionLogsRecord DistributionLogsRecord

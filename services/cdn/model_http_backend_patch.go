@@ -86,7 +86,7 @@ type HttpBackendPatch struct {
 	OriginUrl            HttpBackendPatchGetOriginUrlAttributeType            `json:"originUrl,omitempty"`
 	// This property is required to determine the used backend type.
 	// REQUIRED
-	Type HttpBackendPatchGetTypeAttributeType `json:"type"`
+	Type HttpBackendPatchGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _HttpBackendPatch HttpBackendPatch
