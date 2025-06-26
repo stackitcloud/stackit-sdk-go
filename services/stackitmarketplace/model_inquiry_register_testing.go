@@ -84,13 +84,13 @@ type InquiryRegisterTestingGetMessageRetType = string
 type InquiryRegisterTesting struct {
 	// A e-mail address.
 	// REQUIRED
-	ContactEmail InquiryRegisterTestingGetContactEmailAttributeType `json:"contactEmail"`
+	ContactEmail InquiryRegisterTestingGetContactEmailAttributeType `json:"contactEmail" required:"true"`
 	// The full name of the contact person.
 	// REQUIRED
-	FullName InquiryRegisterTestingGetFullNameAttributeType `json:"fullName"`
+	FullName InquiryRegisterTestingGetFullNameAttributeType `json:"fullName" required:"true"`
 	// A custom message.
 	// REQUIRED
-	Message InquiryRegisterTestingGetMessageAttributeType `json:"message"`
+	Message InquiryRegisterTestingGetMessageAttributeType `json:"message" required:"true"`
 }
 
 type _InquiryRegisterTesting InquiryRegisterTesting

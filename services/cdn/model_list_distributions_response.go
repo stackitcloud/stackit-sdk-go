@@ -61,7 +61,7 @@ type ListDistributionsResponseGetNextPageIdentifierRetType = string
 // ListDistributionsResponse struct for ListDistributionsResponse
 type ListDistributionsResponse struct {
 	// REQUIRED
-	Distributions      ListDistributionsResponseGetDistributionsAttributeType      `json:"distributions"`
+	Distributions      ListDistributionsResponseGetDistributionsAttributeType      `json:"distributions" required:"true"`
 	NextPageIdentifier ListDistributionsResponseGetNextPageIdentifierAttributeType `json:"nextPageIdentifier,omitempty"`
 }
 

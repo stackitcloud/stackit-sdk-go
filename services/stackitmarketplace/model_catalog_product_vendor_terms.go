@@ -84,13 +84,13 @@ type CatalogProductVendorTermsGetUrlRetType = string
 type CatalogProductVendorTerms struct {
 	// The terms of service description.
 	// REQUIRED
-	Description CatalogProductVendorTermsGetDescriptionAttributeType `json:"description"`
+	Description CatalogProductVendorTermsGetDescriptionAttributeType `json:"description" required:"true"`
 	// The terms of service title.
 	// REQUIRED
-	Title CatalogProductVendorTermsGetTitleAttributeType `json:"title"`
+	Title CatalogProductVendorTermsGetTitleAttributeType `json:"title" required:"true"`
 	// Uniform Resource Locator.
 	// REQUIRED
-	Url CatalogProductVendorTermsGetUrlAttributeType `json:"url"`
+	Url CatalogProductVendorTermsGetUrlAttributeType `json:"url" required:"true"`
 }
 
 type _CatalogProductVendorTerms CatalogProductVendorTerms

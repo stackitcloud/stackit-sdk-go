@@ -144,12 +144,12 @@ type BackupGetTriggeredAtRetType = string
 type Backup struct {
 	Downloadable BackupgetDownloadableAttributeType `json:"downloadable,omitempty"`
 	// REQUIRED
-	FinishedAt BackupGetFinishedAtAttributeType `json:"finished_at"`
+	FinishedAt BackupGetFinishedAtAttributeType `json:"finished_at" required:"true"`
 	// REQUIRED
-	Id   BackupGetIdAttributeType   `json:"id"`
+	Id   BackupGetIdAttributeType   `json:"id" required:"true"`
 	Size BackupGetSizeAttributeType `json:"size,omitempty"`
 	// REQUIRED
-	Status      BackupGetStatusAttributeType      `json:"status"`
+	Status      BackupGetStatusAttributeType      `json:"status" required:"true"`
 	TriggeredAt BackupGetTriggeredAtAttributeType `json:"triggered_at,omitempty"`
 }
 
