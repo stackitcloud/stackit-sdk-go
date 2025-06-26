@@ -1,3 +1,13 @@
+## v1.6.0
+- **Feature:** Add new `Assets` model for managing service certificate assets
+- **Feature:** Add new `LocalizedVersion` model for localized content management
+- **Feature:** Add new `NoticePeriod` model with types: `SAME_DAY`, `DAYS`, `MONTHS`
+- **Feature:** Add new `ServiceCertificate` model for service certification
+- **Feature:** Add `Assets` field to `CatalogProductDetail` model
+- **Feature:** Add `OfferType` field to `CatalogProductDetail` model
+- **Feature:** Add `NoticePeriod` field to `CatalogProductPricingOption` model
+- Add `required:"true"` tags to model structs
+
 ## v1.5.0 (2025-06-10)
 - **Feature:** Add new field `Facets` in `ListCatalogProductsResponse`
 
