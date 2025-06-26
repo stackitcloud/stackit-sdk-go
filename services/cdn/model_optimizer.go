@@ -41,7 +41,7 @@ func setOptimizergetEnabledAttributeType(arg *OptimizergetEnabledAttributeType, 
 type Optimizer struct {
 	// Determines if the optimizer should be enabled for this distribution and incurs a monthly fee
 	// REQUIRED
-	Enabled OptimizergetEnabledAttributeType `json:"enabled"`
+	Enabled OptimizergetEnabledAttributeType `json:"enabled" required:"true"`
 }
 
 type _Optimizer Optimizer

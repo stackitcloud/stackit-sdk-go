@@ -38,6 +38,26 @@ func setUpdateServerPayloadGetLabelsAttributeType(arg *UpdateServerPayloadGetLab
 }
 
 /*
+	types and functions for metadata
+*/
+
+// isFreeform
+type UpdateServerPayloadGetMetadataAttributeType = *map[string]interface{}
+type UpdateServerPayloadGetMetadataArgType = map[string]interface{}
+type UpdateServerPayloadGetMetadataRetType = map[string]interface{}
+
+func getUpdateServerPayloadGetMetadataAttributeTypeOk(arg UpdateServerPayloadGetMetadataAttributeType) (ret UpdateServerPayloadGetMetadataRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateServerPayloadGetMetadataAttributeType(arg *UpdateServerPayloadGetMetadataAttributeType, val UpdateServerPayloadGetMetadataRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -62,6 +82,8 @@ type UpdateServerPayloadGetNameRetType = string
 type UpdateServerPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels UpdateServerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
+	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.
+	Metadata UpdateServerPayloadGetMetadataAttributeType `json:"metadata,omitempty"`
 	// The name for a Server.
 	Name UpdateServerPayloadGetNameAttributeType `json:"name,omitempty"`
 }
@@ -106,6 +128,29 @@ func (o *UpdateServerPayload) SetLabels(v UpdateServerPayloadGetLabelsRetType) {
 	setUpdateServerPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *UpdateServerPayload) GetMetadata() (res UpdateServerPayloadGetMetadataRetType) {
+	res, _ = o.GetMetadataOk()
+	return
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateServerPayload) GetMetadataOk() (ret UpdateServerPayloadGetMetadataRetType, ok bool) {
+	return getUpdateServerPayloadGetMetadataAttributeTypeOk(o.Metadata)
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *UpdateServerPayload) HasMetadata() bool {
+	_, ok := o.GetMetadataOk()
+	return ok
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *UpdateServerPayload) SetMetadata(v UpdateServerPayloadGetMetadataRetType) {
+	setUpdateServerPayloadGetMetadataAttributeType(&o.Metadata, v)
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateServerPayload) GetName() (res UpdateServerPayloadGetNameRetType) {
 	res, _ = o.GetNameOk()
@@ -133,6 +178,9 @@ func (o UpdateServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateServerPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
+	}
+	if val, ok := getUpdateServerPayloadGetMetadataAttributeTypeOk(o.Metadata); ok {
+		toSerialize["Metadata"] = val
 	}
 	if val, ok := getUpdateServerPayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
