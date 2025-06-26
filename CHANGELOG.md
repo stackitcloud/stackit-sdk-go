@@ -26,10 +26,10 @@
   - [v0.16.0](services/dns/CHANGELOG.md#v0160)
     - Add `required:"true"` tags to model structs
 - `ske`: 
+  - [v0.27.0](services/ske/CHANGELOG.md#v0270)
+    - **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
   - [v0.26.0](services/ske/CHANGELOG.md#v0260)
     - Add `required:"true"` tags to model structs
-  - [v0.27.0](services/ske/CHANGELOG.md#v0270)
-    - Added new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
 - `git`: [v0.6.0](services/git/CHANGELOG.md#v060)
   - **Feature:** Add support for `Flavors` for STACKIT git instance
   - **Feature:** Add support for `Acl` for STACKIT git instance
