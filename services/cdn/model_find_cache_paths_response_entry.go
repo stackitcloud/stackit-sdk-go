@@ -42,7 +42,7 @@ type FindCachePathsResponseEntryGetPathRetType = string
 type FindCachePathsResponseEntry struct {
 	// Defines one path that was previously used as part of a granular purge
 	// REQUIRED
-	Path FindCachePathsResponseEntryGetPathAttributeType `json:"path"`
+	Path FindCachePathsResponseEntryGetPathAttributeType `json:"path" required:"true"`
 }
 
 type _FindCachePathsResponseEntry FindCachePathsResponseEntry

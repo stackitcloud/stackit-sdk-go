@@ -83,11 +83,11 @@ type HttpBackendGetTypeRetType = string
 type HttpBackend struct {
 	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
 	// REQUIRED
-	OriginRequestHeaders HttpBackendGetOriginRequestHeadersAttributeType `json:"originRequestHeaders"`
+	OriginRequestHeaders HttpBackendGetOriginRequestHeadersAttributeType `json:"originRequestHeaders" required:"true"`
 	// REQUIRED
-	OriginUrl HttpBackendGetOriginUrlAttributeType `json:"originUrl"`
+	OriginUrl HttpBackendGetOriginUrlAttributeType `json:"originUrl" required:"true"`
 	// REQUIRED
-	Type HttpBackendGetTypeAttributeType `json:"type"`
+	Type HttpBackendGetTypeAttributeType `json:"type" required:"true"`
 }
 
 type _HttpBackend HttpBackend
