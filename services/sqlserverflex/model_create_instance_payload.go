@@ -188,11 +188,11 @@ type CreateInstancePayload struct {
 	BackupSchedule CreateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule,omitempty"`
 	// Id of the selected flavor
 	// REQUIRED
-	FlavorId CreateInstancePayloadGetFlavorIdAttributeType `json:"flavorId"`
+	FlavorId CreateInstancePayloadGetFlavorIdAttributeType `json:"flavorId" required:"true"`
 	Labels   CreateInstancePayloadGetLabelsAttributeType   `json:"labels,omitempty"`
 	// Name of the instance
 	// REQUIRED
-	Name    CreateInstancePayloadGetNameAttributeType    `json:"name"`
+	Name    CreateInstancePayloadGetNameAttributeType    `json:"name" required:"true"`
 	Options CreateInstancePayloadGetOptionsAttributeType `json:"options,omitempty"`
 	Storage CreateInstancePayloadGetStorageAttributeType `json:"storage,omitempty"`
 	// Version of the MSSQL Server

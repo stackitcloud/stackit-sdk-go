@@ -494,6 +494,9 @@ type DefaultApi interface {
 		PartialUpdateInstance Update Instance
 		Update available instance of a mssql database.
 
+		**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
+
+
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project ID
 		@param instanceId Instance ID
@@ -588,6 +591,9 @@ type DefaultApi interface {
 	/*
 		UpdateInstance Update Instance
 		Update available instance of a mssql database.
+
+		**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
+
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Project ID
@@ -4391,6 +4397,8 @@ PartialUpdateInstance: Update Instance
 
 Update available instance of a mssql database.
 
+**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
+
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID
 	@param instanceId Instance ID
@@ -5231,6 +5239,8 @@ func (r UpdateInstanceRequest) Execute() (*UpdateInstanceResponse, error) {
 UpdateInstance: Update Instance
 
 Update available instance of a mssql database.
+
+**Please note that any changes applied via PUT or PATCH requests will initiate a reboot of the SQL Server Flex Instance.**
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Project ID

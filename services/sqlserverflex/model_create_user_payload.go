@@ -83,9 +83,9 @@ type CreateUserPayloadGetUsernameRetType = string
 type CreateUserPayload struct {
 	DefaultDatabase CreateUserPayloadGetDefaultDatabaseAttributeType `json:"default_database,omitempty"`
 	// REQUIRED
-	Roles CreateUserPayloadGetRolesAttributeType `json:"roles"`
+	Roles CreateUserPayloadGetRolesAttributeType `json:"roles" required:"true"`
 	// REQUIRED
-	Username CreateUserPayloadGetUsernameAttributeType `json:"username"`
+	Username CreateUserPayloadGetUsernameAttributeType `json:"username" required:"true"`
 }
 
 type _CreateUserPayload CreateUserPayload
