@@ -61,7 +61,7 @@ type GetLogsResponseGetNextPageIdentifierRetType = string
 // GetLogsResponse struct for GetLogsResponse
 type GetLogsResponse struct {
 	// REQUIRED
-	Logs               GetLogsResponseGetLogsAttributeType               `json:"logs"`
+	Logs               GetLogsResponseGetLogsAttributeType               `json:"logs" required:"true"`
 	NextPageIdentifier GetLogsResponseGetNextPageIdentifierAttributeType `json:"nextPageIdentifier,omitempty"`
 }
 
