@@ -1,4 +1,7 @@
 ## Release (2025-XX-XX)
+- `opensearch`: [v0.24.0](services/opensearch/CHANGELOG.md#v0240)
+  - **Breaking change:** `InstanceParametersTlsProtocols` is now a string array instead of a single string
+  - Add `required:"true"` tags to model structs
 - `sqlserverflex`: [v1.3.0](services/sqlserverflex/CHANGELOG.md#v130)
   - Add `required:"true"` tags to model structs
 - `postgresflex`: [v1.2.0](services/postgresflex/CHANGELOG.md#v120)
