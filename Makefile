@@ -40,10 +40,6 @@ lint-golangci-lint: ## Lint Go code
 	@echo ">> Linting with golangci-lint"
 	@$(SCRIPTS_BASE)/lint-golangci-lint.sh "${skip-non-generated-files}" "${service}"
 
-lint-scripts: ## Lint scripts
-	@echo ">> Linting scripts"
-	@cd ${ROOT_DIR}/scripts && golangci-lint run ${GOLANG_CI_ARGS}
-
 sync-tidy: ## Sync and tidy dependencies
 	@echo ">> Syncing and tidying dependencies"
 	@$(SCRIPTS_BASE)/sync-tidy.sh

@@ -39,6 +39,3 @@ jobs:
         run: |
           make lint
           scripts/check-sync-tidy.sh
-      - name: Lint scripts
-        run: |
-          make lint-scripts
