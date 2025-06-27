@@ -1,3 +1,7 @@
+## v0.24.0
+- **Breaking change:** `InstanceParametersTlsProtocols` is now a string array instead of a single string
+- Add `required:"true"` tags to model structs
+
 ## v0.23.1 (2025-06-04)
 - **Bugfix:** Adjusted `UnmarshalJSON` function to use enum types and added tests for enums
 
