@@ -3,7 +3,6 @@ package wait
 import (
 	"context"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -58,7 +57,6 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 			return false, nil, err
 		}
 
-		fmt.Printf("state: %+v\n", *response.State)
 		if response.State != nil {
 			switch *response.State {
 			case kms.KEYSTATE_CREATING:
@@ -70,7 +68,6 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 
 		return false, nil, nil
 	})
-	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
@@ -89,7 +86,6 @@ func DeleteKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, r
 		}
 		return false, nil, nil
 	})
-	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
@@ -118,7 +114,6 @@ func EnableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proje
 
 		return false, nil, nil
 	})
-	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
@@ -137,7 +132,6 @@ func DisableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proj
 		}
 		return false, nil, nil
 	})
-	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
@@ -160,7 +154,6 @@ func CreateWrappingKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 
 		return false, nil, nil
 	})
-	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
