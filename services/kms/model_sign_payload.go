@@ -41,7 +41,7 @@ func setSignPayloadGetDataAttributeType(arg *SignPayloadGetDataAttributeType, va
 type SignPayload struct {
 	// The data that has to be signed. Encoded in base64.
 	// REQUIRED
-	Data SignPayloadGetDataAttributeType `json:"data"`
+	Data SignPayloadGetDataAttributeType `json:"data" required:"true"`
 }
 
 type _SignPayload SignPayload

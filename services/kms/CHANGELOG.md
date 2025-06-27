@@ -1,3 +1,11 @@
+## v0.3.0
+- **Feature:** New method `DeleteWrappingKey`
+- **Breaking change:** Enum `KEYSTATE_VERSION_NOT_READY` removed. Use instead `KEYSTATE_CREATING`
+- **Breaking change:** Enum `VERSIONSTATE_KEY_MATERIAL_NOT_READY` removed. Use instead `VERSIONSTATE_CREATING`
+- **Breaking change:** Enum `WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY` removed. Use instead `WRAPPINGKEYSTATE_CREATING`
+- **Feature:** New enums for `KEYSTATE`, `KEYRINGSTATE`, `VERSIONSTATE` and `WRAPPINGKEYSTATE`
+- **Feature:** Add `required:"true"` tags to model structs
+
 ## v0.2.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 

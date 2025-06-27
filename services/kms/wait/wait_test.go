@@ -136,9 +136,9 @@ func TestCreateOrUpdateKeyWaitHandler(t *testing.T) {
 		{
 			"create succeeded delayed",
 			[]keyResponse{
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 				{fixtureKey(kms.KEYSTATE_ACTIVE), nil},
 			},
 			fixtureKey(kms.KEYSTATE_ACTIVE),
@@ -147,9 +147,9 @@ func TestCreateOrUpdateKeyWaitHandler(t *testing.T) {
 		{
 			"create failed delayed",
 			[]keyResponse{
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 				{fixtureKey(kms.KEYSTATE_DELETED), nil},
 			},
 			fixtureKey(kms.KEYSTATE_DELETED),
@@ -158,7 +158,7 @@ func TestCreateOrUpdateKeyWaitHandler(t *testing.T) {
 		{
 			"timeout",
 			[]keyResponse{
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 			},
 			nil,
 			true,
@@ -212,9 +212,9 @@ func TestDeleteKeyWaitHandler(t *testing.T) {
 		{
 			"Delete with '404' delayed",
 			[]keyResponse{
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
 			},
 			false,
@@ -229,9 +229,9 @@ func TestDeleteKeyWaitHandler(t *testing.T) {
 		{
 			"Delete with 'gone' delayed",
 			[]keyResponse{
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 				{nil, oapierror.NewError(http.StatusGone, "not found")},
 			},
 			false,
@@ -239,10 +239,10 @@ func TestDeleteKeyWaitHandler(t *testing.T) {
 		{
 			"Delete with error delayed",
 			[]keyResponse{
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 				{fixtureKey(kms.KEYSTATE_DELETED), oapierror.NewError(http.StatusInternalServerError, "kapow")},
 			},
 			true,
@@ -250,9 +250,9 @@ func TestDeleteKeyWaitHandler(t *testing.T) {
 		{
 			"Cannot delete",
 			[]keyResponse{
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
-				{fixtureKey(kms.KEYSTATE_VERSION_NOT_READY), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
+				{fixtureKey(kms.KEYSTATE_CREATING), nil},
 				{fixtureKey(kms.KEYSTATE_DELETED), oapierror.NewError(http.StatusOK, "ok")},
 			},
 			true,
@@ -300,9 +300,9 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 		{
 			"create succeeded delayed",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 				{fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE), nil},
 			},
 			fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE),
@@ -311,9 +311,9 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 		{
 			"create failed delayed",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_INVALID), nil},
 			},
 			fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_INVALID),
@@ -322,7 +322,7 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 		{
 			"timeout",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 			},
 			nil,
 			true,
@@ -376,9 +376,9 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 		{
 			"Delete with '404' delayed",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
 			},
 			false,
@@ -393,9 +393,9 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 		{
 			"Delete with 'gone' delayed",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 				{nil, oapierror.NewError(http.StatusGone, "not found")},
 			},
 			false,
@@ -403,10 +403,10 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 		{
 			"Delete with error delayed",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 				{fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED), oapierror.NewError(http.StatusInternalServerError, "kapow")},
 			},
 			true,
@@ -414,9 +414,9 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 		{
 			"Cannot delete",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 				{fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED), oapierror.NewError(http.StatusOK, "ok")},
 			},
 			true,
@@ -464,9 +464,9 @@ func TestCreateWrappingWaitHandler(t *testing.T) {
 		{
 			"create succeeded delayed",
 			[]wrappingKeyResponse{
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_CREATING), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_CREATING), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_CREATING), nil},
 				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_ACTIVE), nil},
 			},
 			fixtureWrappingKey(kms.WRAPPINGKEYSTATE_ACTIVE),
@@ -475,18 +475,18 @@ func TestCreateWrappingWaitHandler(t *testing.T) {
 		{
 			"create failed delayed",
 			[]wrappingKeyResponse{
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY), nil},
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_DELETING), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_CREATING), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_CREATING), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_CREATING), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_DELETED), nil},
 			},
-			fixtureWrappingKey(kms.WRAPPINGKEYSTATE_DELETING),
+			fixtureWrappingKey(kms.WRAPPINGKEYSTATE_DELETED),
 			false,
 		},
 		{
 			"timeout",
 			[]wrappingKeyResponse{
-				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY), nil},
+				{fixtureWrappingKey(kms.WRAPPINGKEYSTATE_CREATING), nil},
 			},
 			nil,
 			true,

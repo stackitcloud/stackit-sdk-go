@@ -41,7 +41,7 @@ func setDecryptedDataGetDataAttributeType(arg *DecryptedDataGetDataAttributeType
 type DecryptedData struct {
 	// The decrypted data. Encoded in base64.
 	// REQUIRED
-	Data DecryptedDataGetDataAttributeType `json:"data"`
+	Data DecryptedDataGetDataAttributeType `json:"data" required:"true"`
 }
 
 type _DecryptedData DecryptedData

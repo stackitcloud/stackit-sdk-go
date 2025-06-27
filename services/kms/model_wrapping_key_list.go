@@ -40,7 +40,7 @@ func setWrappingKeyListGetWrappingKeysAttributeType(arg *WrappingKeyListGetWrapp
 // WrappingKeyList struct for WrappingKeyList
 type WrappingKeyList struct {
 	// REQUIRED
-	WrappingKeys WrappingKeyListGetWrappingKeysAttributeType `json:"wrappingKeys"`
+	WrappingKeys WrappingKeyListGetWrappingKeysAttributeType `json:"wrappingKeys" required:"true"`
 }
 
 type _WrappingKeyList WrappingKeyList

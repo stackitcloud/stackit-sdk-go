@@ -109,28 +109,34 @@ type KeyRingGetIdRetType = string
 // isEnum
 
 // KeyRingState The current state of the key ring.
+// value type for enums
 type KeyRingState string
 
 // List of State
 const (
-	KEYRINGSTATE_ACTIVE  KeyRingState = "active"
-	KEYRINGSTATE_DELETED KeyRingState = "deleted"
+	KEYRINGSTATE_CREATING KeyRingState = "creating"
+	KEYRINGSTATE_ACTIVE   KeyRingState = "active"
+	KEYRINGSTATE_DELETED  KeyRingState = "deleted"
 )
 
 // All allowed values of KeyRing enum
 var AllowedKeyRingStateEnumValues = []KeyRingState{
+	"creating",
 	"active",
 	"deleted",
 }
 
 func (v *KeyRingState) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson KeyRingState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -147,7 +153,7 @@ func (v *KeyRingState) UnmarshalJSON(src []byte) error {
 
 // NewKeyRingStateFromValue returns a pointer to a valid KeyRingState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewKeyRingStateFromValue(v string) (*KeyRingState, error) {
+func NewKeyRingStateFromValue(v KeyRingState) (*KeyRingState, error) {
 	ev := KeyRingState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -226,18 +232,18 @@ func setKeyRingGetStateAttributeType(arg *KeyRingGetStateAttributeType, val KeyR
 type KeyRing struct {
 	// The date and time the creation of the key ring was triggered.
 	// REQUIRED
-	CreatedAt KeyRingGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt KeyRingGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// A user chosen description to distinguish multiple key rings.
 	Description KeyRingGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple key rings.
 	// REQUIRED
-	DisplayName KeyRingGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName KeyRingGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// A auto generated unique id which identifies the key ring.
 	// REQUIRED
-	Id KeyRingGetIdAttributeType `json:"id"`
+	Id KeyRingGetIdAttributeType `json:"id" required:"true"`
 	// The current state of the key ring.
 	// REQUIRED
-	State KeyRingGetStateAttributeType `json:"state"`
+	State KeyRingGetStateAttributeType `json:"state" required:"true"`
 }
 
 type _KeyRing KeyRing

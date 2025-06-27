@@ -41,7 +41,7 @@ func setVerifiedDatagetValidAttributeType(arg *VerifiedDatagetValidAttributeType
 type VerifiedData struct {
 	// Whether or not the data has a valid signature.
 	// REQUIRED
-	Valid VerifiedDatagetValidAttributeType `json:"valid"`
+	Valid VerifiedDatagetValidAttributeType `json:"valid" required:"true"`
 }
 
 type _VerifiedData VerifiedData

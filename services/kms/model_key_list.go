@@ -40,7 +40,7 @@ func setKeyListGetKeysAttributeType(arg *KeyListGetKeysAttributeType, val KeyLis
 // KeyList struct for KeyList
 type KeyList struct {
 	// REQUIRED
-	Keys KeyListGetKeysAttributeType `json:"keys"`
+	Keys KeyListGetKeysAttributeType `json:"keys" required:"true"`
 }
 
 type _KeyList KeyList

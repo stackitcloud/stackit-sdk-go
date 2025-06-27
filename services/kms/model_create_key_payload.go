@@ -142,18 +142,18 @@ func setCreateKeyPayloadGetPurposeAttributeType(arg *CreateKeyPayloadGetPurposeA
 // CreateKeyPayload struct for CreateKeyPayload
 type CreateKeyPayload struct {
 	// REQUIRED
-	Algorithm CreateKeyPayloadGetAlgorithmAttributeType `json:"algorithm"`
+	Algorithm CreateKeyPayloadGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// REQUIRED
-	Backend CreateKeyPayloadGetBackendAttributeType `json:"backend"`
+	Backend CreateKeyPayloadGetBackendAttributeType `json:"backend" required:"true"`
 	// A user chosen description to distinguish multiple keys.
 	Description CreateKeyPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple keys.
 	// REQUIRED
-	DisplayName CreateKeyPayloadGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName CreateKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// States whether versions can be created or only imported.
 	ImportOnly CreateKeyPayloadgetImportOnlyAttributeType `json:"importOnly,omitempty"`
 	// REQUIRED
-	Purpose CreateKeyPayloadGetPurposeAttributeType `json:"purpose"`
+	Purpose CreateKeyPayloadGetPurposeAttributeType `json:"purpose" required:"true"`
 }
 
 type _CreateKeyPayload CreateKeyPayload

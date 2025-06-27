@@ -231,32 +231,38 @@ func setWrappingKeyGetPurposeAttributeType(arg *WrappingKeyGetPurposeAttributeTy
 // isEnum
 
 // WrappingKeyState The current state of the wrapping key.
+// value type for enums
 type WrappingKeyState string
 
 // List of State
 const (
-	WRAPPINGKEYSTATE_ACTIVE                 WrappingKeyState = "active"
-	WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY WrappingKeyState = "key_material_not_ready"
-	WRAPPINGKEYSTATE_EXPIRED                WrappingKeyState = "expired"
-	WRAPPINGKEYSTATE_DELETING               WrappingKeyState = "deleting"
+	WRAPPINGKEYSTATE_ACTIVE                   WrappingKeyState = "active"
+	WRAPPINGKEYSTATE_CREATING                 WrappingKeyState = "creating"
+	WRAPPINGKEYSTATE_EXPIRED                  WrappingKeyState = "expired"
+	WRAPPINGKEYSTATE_DELETED                  WrappingKeyState = "deleted"
+	WRAPPINGKEYSTATE_KEY_MATERIAL_UNAVAILABLE WrappingKeyState = "key_material_unavailable"
 )
 
 // All allowed values of WrappingKey enum
 var AllowedWrappingKeyStateEnumValues = []WrappingKeyState{
 	"active",
-	"key_material_not_ready",
+	"creating",
 	"expired",
-	"deleting",
+	"deleted",
+	"key_material_unavailable",
 }
 
 func (v *WrappingKeyState) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson WrappingKeyState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -273,7 +279,7 @@ func (v *WrappingKeyState) UnmarshalJSON(src []byte) error {
 
 // NewWrappingKeyStateFromValue returns a pointer to a valid WrappingKeyState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewWrappingKeyStateFromValue(v string) (*WrappingKeyState, error) {
+func NewWrappingKeyStateFromValue(v WrappingKeyState) (*WrappingKeyState, error) {
 	ev := WrappingKeyState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -351,33 +357,33 @@ func setWrappingKeyGetStateAttributeType(arg *WrappingKeyGetStateAttributeType, 
 // WrappingKey struct for WrappingKey
 type WrappingKey struct {
 	// REQUIRED
-	Algorithm WrappingKeyGetAlgorithmAttributeType `json:"algorithm"`
+	Algorithm WrappingKeyGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// REQUIRED
-	Backend WrappingKeyGetBackendAttributeType `json:"backend"`
+	Backend WrappingKeyGetBackendAttributeType `json:"backend" required:"true"`
 	// The date and time the creation of the wrapping key was triggered.
 	// REQUIRED
-	CreatedAt WrappingKeyGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt WrappingKeyGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// A user chosen description to distinguish multiple wrapping keys.
 	Description WrappingKeyGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple wrapping keys.
 	// REQUIRED
-	DisplayName WrappingKeyGetDisplayNameAttributeType `json:"displayName"`
+	DisplayName WrappingKeyGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// The date and time the wrapping key will expire.
 	// REQUIRED
-	ExpiresAt WrappingKeyGetExpiresAtAttributeType `json:"expiresAt"`
+	ExpiresAt WrappingKeyGetExpiresAtAttributeType `json:"expiresAt" required:"true"`
 	// A auto generated unique id which identifies the wrapping keys.
 	// REQUIRED
-	Id WrappingKeyGetIdAttributeType `json:"id"`
+	Id WrappingKeyGetIdAttributeType `json:"id" required:"true"`
 	// The unique id of the key ring this wrapping key is assigned to.
 	// REQUIRED
-	KeyRingId WrappingKeyGetKeyRingIdAttributeType `json:"keyRingId"`
+	KeyRingId WrappingKeyGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
 	// The public key of the wrapping key.
 	PublicKey WrappingKeyGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// REQUIRED
-	Purpose WrappingKeyGetPurposeAttributeType `json:"purpose"`
+	Purpose WrappingKeyGetPurposeAttributeType `json:"purpose" required:"true"`
 	// The current state of the wrapping key.
 	// REQUIRED
-	State WrappingKeyGetStateAttributeType `json:"state"`
+	State WrappingKeyGetStateAttributeType `json:"state" required:"true"`
 }
 
 type _WrappingKey WrappingKey

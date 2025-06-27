@@ -61,10 +61,10 @@ func setVerifyPayloadGetSignatureAttributeType(arg *VerifyPayloadGetSignatureAtt
 type VerifyPayload struct {
 	// The data to be verified. Encoded in base64.
 	// REQUIRED
-	Data VerifyPayloadGetDataAttributeType `json:"data"`
+	Data VerifyPayloadGetDataAttributeType `json:"data" required:"true"`
 	// The signature of the data. Encoded in base64.
 	// REQUIRED
-	Signature VerifyPayloadGetSignatureAttributeType `json:"signature"`
+	Signature VerifyPayloadGetSignatureAttributeType `json:"signature" required:"true"`
 }
 
 type _VerifyPayload VerifyPayload

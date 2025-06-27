@@ -40,7 +40,7 @@ func setVersionListGetVersionsAttributeType(arg *VersionListGetVersionsAttribute
 // VersionList struct for VersionList
 type VersionList struct {
 	// REQUIRED
-	Versions VersionListGetVersionsAttributeType `json:"versions"`
+	Versions VersionListGetVersionsAttributeType `json:"versions" required:"true"`
 }
 
 type _VersionList VersionList

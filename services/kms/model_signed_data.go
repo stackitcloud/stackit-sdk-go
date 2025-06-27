@@ -61,10 +61,10 @@ func setSignedDataGetSignatureAttributeType(arg *SignedDataGetSignatureAttribute
 type SignedData struct {
 	// The data that was signed. Encoded in base64.
 	// REQUIRED
-	Data SignedDataGetDataAttributeType `json:"data"`
+	Data SignedDataGetDataAttributeType `json:"data" required:"true"`
 	// The signature of the data. Encoded in base64.
 	// REQUIRED
-	Signature SignedDataGetSignatureAttributeType `json:"signature"`
+	Signature SignedDataGetSignatureAttributeType `json:"signature" required:"true"`
 }
 
 type _SignedData SignedData

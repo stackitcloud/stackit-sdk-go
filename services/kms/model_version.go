@@ -169,34 +169,40 @@ type VersionGetPublicKeyRetType = string
 // isEnum
 
 // VersionState The current state of the key.
+// value type for enums
 type VersionState string
 
 // List of State
 const (
-	VERSIONSTATE_ACTIVE                 VersionState = "active"
-	VERSIONSTATE_KEY_MATERIAL_NOT_READY VersionState = "key_material_not_ready"
-	VERSIONSTATE_KEY_MATERIAL_INVALID   VersionState = "key_material_invalid"
-	VERSIONSTATE_DISABLED               VersionState = "disabled"
-	VERSIONSTATE_DESTROYED              VersionState = "destroyed"
+	VERSIONSTATE_ACTIVE                   VersionState = "active"
+	VERSIONSTATE_CREATING                 VersionState = "creating"
+	VERSIONSTATE_KEY_MATERIAL_INVALID     VersionState = "key_material_invalid"
+	VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE VersionState = "key_material_unavailable"
+	VERSIONSTATE_DISABLED                 VersionState = "disabled"
+	VERSIONSTATE_DESTROYED                VersionState = "destroyed"
 )
 
 // All allowed values of Version enum
 var AllowedVersionStateEnumValues = []VersionState{
 	"active",
-	"key_material_not_ready",
+	"creating",
 	"key_material_invalid",
+	"key_material_unavailable",
 	"disabled",
 	"destroyed",
 }
 
 func (v *VersionState) UnmarshalJSON(src []byte) error {
-	var value string
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson VersionState
+	var value TmpJson
 	err := json.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
 	// Allow unmarshalling zero value for testing purposes
-	var zeroValue string
+	var zeroValue TmpJson
 	if value == zeroValue {
 		return nil
 	}
@@ -213,7 +219,7 @@ func (v *VersionState) UnmarshalJSON(src []byte) error {
 
 // NewVersionStateFromValue returns a pointer to a valid VersionState
 // for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewVersionStateFromValue(v string) (*VersionState, error) {
+func NewVersionStateFromValue(v VersionState) (*VersionState, error) {
 	ev := VersionState(v)
 	if ev.IsValid() {
 		return &ev, nil
@@ -292,25 +298,25 @@ func setVersionGetStateAttributeType(arg *VersionGetStateAttributeType, val Vers
 type Version struct {
 	// The date and time the creation of the key was triggered.
 	// REQUIRED
-	CreatedAt VersionGetCreatedAtAttributeType `json:"createdAt"`
+	CreatedAt VersionGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// The scheduled date when a version's key material will be erased completely from the backend
 	DestroyDate VersionGetDestroyDateAttributeType `json:"destroyDate,omitempty"`
 	// States whether versions is enabled or disabled.
 	Disabled VersiongetDisabledAttributeType `json:"disabled,omitempty"`
 	// The unique id of the key this version is assigned to.
 	// REQUIRED
-	KeyId VersionGetKeyIdAttributeType `json:"keyId"`
+	KeyId VersionGetKeyIdAttributeType `json:"keyId" required:"true"`
 	// The unique id of the key ring the key of this version is assigned to.
 	// REQUIRED
-	KeyRingId VersionGetKeyRingIdAttributeType `json:"keyRingId"`
+	KeyRingId VersionGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
 	// A sequential number which identifies the key versions.
 	// REQUIRED
-	Number VersionGetNumberAttributeType `json:"number"`
+	Number VersionGetNumberAttributeType `json:"number" required:"true"`
 	// The public key of the key version. Only present in asymmetric keys.
 	PublicKey VersionGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// The current state of the key.
 	// REQUIRED
-	State VersionGetStateAttributeType `json:"state"`
+	State VersionGetStateAttributeType `json:"state" required:"true"`
 }
 
 type _Version Version

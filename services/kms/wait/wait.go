@@ -14,7 +14,7 @@ import (
 const (
 	// Deprecated: StatusKeyActive is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_ACTIVE] instead.
 	StatusKeyActive = "active"
-	// Deprecated: StatusKeyNotReady is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_VERSION_NOT_READY] instead.
+	// Deprecated: StatusKeyNotReady is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_CREATING] instead.
 	StatusKeyNotReady = "version_not_ready"
 	// Deprecated: StatusKeyDeleted is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_DELETED] instead.
 	StatusKeyDeleted = "deleted"
@@ -23,7 +23,7 @@ const (
 const (
 	// Deprecated: StatusKeyVersionActive is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_ACTIVE] instead.
 	StatusKeyVersionActive = "active"
-	// Deprecated: StatusKeyVersionKeyMaterialNotReady is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY] instead.
+	// Deprecated: StatusKeyVersionKeyMaterialNotReady is deprecated and will be removed after 14th November 2025. Use [kms.KEYSTATE_CREATING] instead.
 	StatusKeyVersionKeyMaterialNotReady = "key_material_not_ready"
 	// Deprecated: StatusKeyVersionKeyMaterialInvalid is deprecated and will be removed after 14th November 2025. Use [kms.VERSIONSTATE_KEY_MATERIAL_INVALID] instead.
 	StatusKeyVersionKeyMaterialInvalid = "key_material_invalid"
@@ -36,11 +36,11 @@ const (
 const (
 	// Deprecated: StatusWrappingKeyActive is deprecated and will be removed after 12th November 2025. Use [kms.WRAPPINGKEYSTATE_ACTIVE] instead.
 	StatusWrappingKeyActive = "active"
-	// Deprecated: StatusWrappingKeyKeyMaterialNotReady is deprecated and will be removed after 12th November 2025. Use [kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY] instead.
+	// Deprecated: StatusWrappingKeyKeyMaterialNotReady is deprecated and will be removed after 12th November 2025. Use [kms.VERSIONSTATE_CREATING] instead.
 	StatusWrappingKeyKeyMaterialNotReady = "key_material_not_ready"
 	// Deprecated: StatusWrappingKeyExpired is deprecated and will be removed after 12th November 2025. Use [kms.WRAPPINGKEYSTATE_EXPIRED] instead.
 	StatusWrappingKeyExpired = "expired"
-	// Deprecated: StatusWrappingKeyDeleting is deprecated and will be removed after 12th November 2025. Use [kms.WRAPPINGKEYSTATE_DELETING] instead.
+	// Deprecated: StatusWrappingKeyDeleting is deprecated and will be removed after 12th November 2025. Use [kms.WRAPPINGKEYSTATE_CREATING] instead.
 	StatusWrappingKeyDeleting = "deleting"
 )
 
@@ -59,7 +59,7 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 
 		if response.State != nil {
 			switch *response.State {
-			case kms.KEYSTATE_VERSION_NOT_READY:
+			case kms.KEYSTATE_CREATING:
 				return false, nil, nil
 			default:
 				return true, response, nil
@@ -105,7 +105,7 @@ func EnableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proje
 				return true, response, nil
 			case kms.VERSIONSTATE_DISABLED:
 				return true, response, nil
-			case kms.VERSIONSTATE_KEY_MATERIAL_NOT_READY:
+			case kms.VERSIONSTATE_CREATING:
 				return false, nil, nil
 			default:
 				return true, response, nil
@@ -145,7 +145,7 @@ func CreateWrappingKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 
 		if state := response.State; state != nil {
 			switch *state {
-			case kms.WRAPPINGKEYSTATE_KEY_MATERIAL_NOT_READY:
+			case kms.WRAPPINGKEYSTATE_CREATING:
 				return false, nil, nil
 			default:
 				return true, response, nil
