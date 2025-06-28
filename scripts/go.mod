@@ -25,9 +25,7 @@ exclude (
 	golang.org/x/net v0.35.0
 	golang.org/x/net v0.36.0
 	golang.org/x/net v0.37.0
-	golang.org/x/net v0.38.0
-
-	golang.org/x/net v0.39.0
+	golang.org/x/net v0.41.0
 	golang.org/x/sys v0.31.0
 
 	golang.org/x/sys v0.32.0
@@ -39,7 +37,7 @@ exclude (
 require (
 	github.com/go-git/go-git/v5 v5.13.2
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.2
-	golang.org/x/mod v0.24.0
+	golang.org/x/mod v0.17.0
 	golang.org/x/term v0.29.0
 )
 
