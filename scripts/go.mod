@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/scripts
 go 1.21
 
 exclude (
-	github.com/ProtonMail/go-crypto v1.2.0
+	github.com/ProtonMail/go-crypto v1.3.0
 	github.com/cloudflare/circl v1.6.1
 	// exclude versions not compatible with go 1.21
 	github.com/go-git/go-git/v5 v5.14.0
@@ -39,7 +39,7 @@ exclude (
 require (
 	github.com/go-git/go-git/v5 v5.13.2
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.2
-	golang.org/x/mod v0.24.0
+	golang.org/x/mod v0.17.0
 	golang.org/x/term v0.29.0
 )
 
