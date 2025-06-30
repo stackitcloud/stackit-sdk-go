@@ -422,7 +422,10 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 
 	// TEST START
 	currentTestPhase = 1
-	go refresher.continuousRefreshToken()
+	// Ignore returned error as expected in test
+	go func() {
+		_ = refresher.continuousRefreshToken()
+	}()
 
 	// Wait until continuousRefreshToken() is blocked
 	<-chanBlockContinuousRefreshToken
