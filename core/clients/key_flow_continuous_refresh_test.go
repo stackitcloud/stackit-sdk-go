@@ -134,11 +134,17 @@ func TestContinuousRefreshToken(t *testing.T) {
 			defer cancel()
 
 			keyFlow := &KeyFlow{}
+			privateKeyBytes, err := generatePrivateKey()
+			if err != nil {
+				t.Fatalf("Error generating private key: %s", err)
+			}
 			keyFlowConfig := &KeyFlowConfig{
 				BackgroundTokenRefreshContext: ctx,
 				AuthHTTPClient: &http.Client{
 					Transport: mockTransportFn{mockDo},
 				},
+				ServiceAccountKey: fixtureServiceAccountKey(),
+				PrivateKey:        string(privateKeyBytes),
 			}
 			err = keyFlow.Init(keyFlowConfig)
 			if err != nil {
@@ -334,12 +340,17 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	}
 
 	keyFlow := &KeyFlow{}
+	privateKeyBytes, err := generatePrivateKey()
+	if err != nil {
+		t.Fatalf("Error generating private key: %s", err)
+	}
 	keyFlowConfig := &KeyFlowConfig{
 		BackgroundTokenRefreshContext: ctx,
 		AuthHTTPClient: &http.Client{
 			Transport: mockTransportFn{mockDo},
 		},
-		HTTPTransport: mockTransportFn{mockDo},
+		ServiceAccountKey: fixtureServiceAccountKey(),
+		PrivateKey:        string(privateKeyBytes),
 	}
 	err = keyFlow.Init(keyFlowConfig)
 	if err != nil {
