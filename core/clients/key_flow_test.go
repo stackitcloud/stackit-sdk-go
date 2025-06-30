@@ -283,15 +283,21 @@ func TestRequestToken(t *testing.T) {
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
 			keyFlow := &KeyFlow{}
+			privateKeyBytes, err := generatePrivateKey()
+			if err != nil {
+				t.Fatalf("Error generating private key: %s", err)
+			}
 			keyFlowConfig := &KeyFlowConfig{
 				AuthHTTPClient: &http.Client{
 					Transport: mockTransportFn{func(_ *http.Request) (*http.Response, error) {
 						return tt.mockResponse, tt.mockError
 					}},
 				},
-				HTTPTransport: http.DefaultTransport,
+				ServiceAccountKey: fixtureServiceAccountKey(),
+				PrivateKey:        string(privateKeyBytes),
+				HTTPTransport:     http.DefaultTransport,
 			}
-			err := keyFlow.Init(keyFlowConfig)
+			err = keyFlow.Init(keyFlowConfig)
 			if err != nil {
 				t.Fatalf("failed to initialize key flow: %v", err)
 			}
