@@ -20,11 +20,13 @@ func TestContinuousRefreshToken(t *testing.T) {
 	// For this to work, we need to increase precision of the expiration timestamps
 	jwt.TimePrecision = time.Millisecond
 
-	// Set up timing for the test
-	accessTokensTimeToLive := 1 * time.Second
+	// Refresher settings
 	timeStartBeforeTokenExpiration := 500 * time.Millisecond
 	timeBetweenContextCheck := 10 * time.Millisecond
 	timeBetweenTries := 100 * time.Millisecond
+
+	// All generated acess tokens will have this time to live
+	accessTokensTimeToLive := 1 * time.Second
 
 	tests := []struct {
 		desc                  string
@@ -212,7 +214,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 
 	// The access token at the start
 	accessTokenFirst, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-		ExpiresAt: jwt.NewNumericDate(time.Now().Add(10 * time.Second)), // Much longer expiration
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(10 * time.Second)),
 	}).SignedString([]byte("token-first"))
 	if err != nil {
 		t.Fatalf("failed to create first access token: %v", err)
