@@ -38,44 +38,62 @@ func DestinationCIDRv6AsRouteDestination(v *DestinationCIDRv6) RouteDestination 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *RouteDestination) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into DestinationCIDRv4
-	err = newStrictDecoder(data).Decode(&dst.DestinationCIDRv4)
-	if err == nil {
-		jsonDestinationCIDRv4, _ := json.Marshal(dst.DestinationCIDRv4)
-		if string(jsonDestinationCIDRv4) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'DestinationCIDRv4'
+	if jsonDict["type"] == "DestinationCIDRv4" {
+		// try to unmarshal JSON data into DestinationCIDRv4
+		err = json.Unmarshal(data, &dst.DestinationCIDRv4)
+		if err == nil {
+			return nil // data stored in dst.DestinationCIDRv4, return on the first match
+		} else {
 			dst.DestinationCIDRv4 = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal RouteDestination as DestinationCIDRv4: %s", err.Error())
 		}
-	} else {
-		dst.DestinationCIDRv4 = nil
 	}
 
-	// try to unmarshal data into DestinationCIDRv6
-	err = newStrictDecoder(data).Decode(&dst.DestinationCIDRv6)
-	if err == nil {
-		jsonDestinationCIDRv6, _ := json.Marshal(dst.DestinationCIDRv6)
-		if string(jsonDestinationCIDRv6) == "{}" { // empty struct
+	// check if the discriminator value is 'DestinationCIDRv6'
+	if jsonDict["type"] == "DestinationCIDRv6" {
+		// try to unmarshal JSON data into DestinationCIDRv6
+		err = json.Unmarshal(data, &dst.DestinationCIDRv6)
+		if err == nil {
+			return nil // data stored in dst.DestinationCIDRv6, return on the first match
+		} else {
 			dst.DestinationCIDRv6 = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal RouteDestination as DestinationCIDRv6: %s", err.Error())
 		}
-	} else {
-		dst.DestinationCIDRv6 = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.DestinationCIDRv4 = nil
-		dst.DestinationCIDRv6 = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(RouteDestination)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(RouteDestination)")
+	// check if the discriminator value is 'cidrv4'
+	if jsonDict["type"] == "cidrv4" {
+		// try to unmarshal JSON data into DestinationCIDRv4
+		err = json.Unmarshal(data, &dst.DestinationCIDRv4)
+		if err == nil {
+			return nil // data stored in dst.DestinationCIDRv4, return on the first match
+		} else {
+			dst.DestinationCIDRv4 = nil
+			return fmt.Errorf("failed to unmarshal RouteDestination as DestinationCIDRv4: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'cidrv6'
+	if jsonDict["type"] == "cidrv6" {
+		// try to unmarshal JSON data into DestinationCIDRv6
+		err = json.Unmarshal(data, &dst.DestinationCIDRv6)
+		if err == nil {
+			return nil // data stored in dst.DestinationCIDRv6, return on the first match
+		} else {
+			dst.DestinationCIDRv6 = nil
+			return fmt.Errorf("failed to unmarshal RouteDestination as DestinationCIDRv6: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
