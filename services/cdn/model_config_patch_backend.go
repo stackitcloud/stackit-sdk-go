@@ -30,30 +30,38 @@ func HttpBackendPatchAsConfigPatchBackend(v *HttpBackendPatch) ConfigPatchBacken
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ConfigPatchBackend) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into HttpBackendPatch
-	err = newStrictDecoder(data).Decode(&dst.HttpBackendPatch)
-	if err == nil {
-		jsonHttpBackendPatch, _ := json.Marshal(dst.HttpBackendPatch)
-		if string(jsonHttpBackendPatch) == "{}" { // empty struct
-			dst.HttpBackendPatch = nil
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'HttpBackendPatch'
+	if jsonDict["type"] == "HttpBackendPatch" {
+		// try to unmarshal JSON data into HttpBackendPatch
+		err = json.Unmarshal(data, &dst.HttpBackendPatch)
+		if err == nil {
+			return nil // data stored in dst.HttpBackendPatch, return on the first match
 		} else {
-			match++
+			dst.HttpBackendPatch = nil
+			return fmt.Errorf("failed to unmarshal ConfigPatchBackend as HttpBackendPatch: %s", err.Error())
 		}
-	} else {
-		dst.HttpBackendPatch = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.HttpBackendPatch = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(ConfigPatchBackend)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ConfigPatchBackend)")
+	// check if the discriminator value is 'http'
+	if jsonDict["type"] == "http" {
+		// try to unmarshal JSON data into HttpBackendPatch
+		err = json.Unmarshal(data, &dst.HttpBackendPatch)
+		if err == nil {
+			return nil // data stored in dst.HttpBackendPatch, return on the first match
+		} else {
+			dst.HttpBackendPatch = nil
+			return fmt.Errorf("failed to unmarshal ConfigPatchBackend as HttpBackendPatch: %s", err.Error())
+		}
 	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
