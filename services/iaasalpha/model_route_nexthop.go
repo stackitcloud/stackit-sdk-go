@@ -54,72 +54,110 @@ func NexthopInternetAsRouteNexthop(v *NexthopInternet) RouteNexthop {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *RouteNexthop) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into NexthopBlackhole
-	err = newStrictDecoder(data).Decode(&dst.NexthopBlackhole)
-	if err == nil {
-		jsonNexthopBlackhole, _ := json.Marshal(dst.NexthopBlackhole)
-		if string(jsonNexthopBlackhole) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'NexthopBlackhole'
+	if jsonDict["type"] == "NexthopBlackhole" {
+		// try to unmarshal JSON data into NexthopBlackhole
+		err = json.Unmarshal(data, &dst.NexthopBlackhole)
+		if err == nil {
+			return nil // data stored in dst.NexthopBlackhole, return on the first match
+		} else {
 			dst.NexthopBlackhole = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopBlackhole: %s", err.Error())
 		}
-	} else {
-		dst.NexthopBlackhole = nil
 	}
 
-	// try to unmarshal data into NexthopIPv4
-	err = newStrictDecoder(data).Decode(&dst.NexthopIPv4)
-	if err == nil {
-		jsonNexthopIPv4, _ := json.Marshal(dst.NexthopIPv4)
-		if string(jsonNexthopIPv4) == "{}" { // empty struct
+	// check if the discriminator value is 'NexthopIPv4'
+	if jsonDict["type"] == "NexthopIPv4" {
+		// try to unmarshal JSON data into NexthopIPv4
+		err = json.Unmarshal(data, &dst.NexthopIPv4)
+		if err == nil {
+			return nil // data stored in dst.NexthopIPv4, return on the first match
+		} else {
 			dst.NexthopIPv4 = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopIPv4: %s", err.Error())
 		}
-	} else {
-		dst.NexthopIPv4 = nil
 	}
 
-	// try to unmarshal data into NexthopIPv6
-	err = newStrictDecoder(data).Decode(&dst.NexthopIPv6)
-	if err == nil {
-		jsonNexthopIPv6, _ := json.Marshal(dst.NexthopIPv6)
-		if string(jsonNexthopIPv6) == "{}" { // empty struct
+	// check if the discriminator value is 'NexthopIPv6'
+	if jsonDict["type"] == "NexthopIPv6" {
+		// try to unmarshal JSON data into NexthopIPv6
+		err = json.Unmarshal(data, &dst.NexthopIPv6)
+		if err == nil {
+			return nil // data stored in dst.NexthopIPv6, return on the first match
+		} else {
 			dst.NexthopIPv6 = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopIPv6: %s", err.Error())
 		}
-	} else {
-		dst.NexthopIPv6 = nil
 	}
 
-	// try to unmarshal data into NexthopInternet
-	err = newStrictDecoder(data).Decode(&dst.NexthopInternet)
-	if err == nil {
-		jsonNexthopInternet, _ := json.Marshal(dst.NexthopInternet)
-		if string(jsonNexthopInternet) == "{}" { // empty struct
+	// check if the discriminator value is 'NexthopInternet'
+	if jsonDict["type"] == "NexthopInternet" {
+		// try to unmarshal JSON data into NexthopInternet
+		err = json.Unmarshal(data, &dst.NexthopInternet)
+		if err == nil {
+			return nil // data stored in dst.NexthopInternet, return on the first match
+		} else {
 			dst.NexthopInternet = nil
-		} else {
-			match++
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopInternet: %s", err.Error())
 		}
-	} else {
-		dst.NexthopInternet = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.NexthopBlackhole = nil
-		dst.NexthopIPv4 = nil
-		dst.NexthopIPv6 = nil
-		dst.NexthopInternet = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(RouteNexthop)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(RouteNexthop)")
+	// check if the discriminator value is 'blackhole'
+	if jsonDict["type"] == "blackhole" {
+		// try to unmarshal JSON data into NexthopBlackhole
+		err = json.Unmarshal(data, &dst.NexthopBlackhole)
+		if err == nil {
+			return nil // data stored in dst.NexthopBlackhole, return on the first match
+		} else {
+			dst.NexthopBlackhole = nil
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopBlackhole: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'internet'
+	if jsonDict["type"] == "internet" {
+		// try to unmarshal JSON data into NexthopInternet
+		err = json.Unmarshal(data, &dst.NexthopInternet)
+		if err == nil {
+			return nil // data stored in dst.NexthopInternet, return on the first match
+		} else {
+			dst.NexthopInternet = nil
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopInternet: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ipv4'
+	if jsonDict["type"] == "ipv4" {
+		// try to unmarshal JSON data into NexthopIPv4
+		err = json.Unmarshal(data, &dst.NexthopIPv4)
+		if err == nil {
+			return nil // data stored in dst.NexthopIPv4, return on the first match
+		} else {
+			dst.NexthopIPv4 = nil
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopIPv4: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'ipv6'
+	if jsonDict["type"] == "ipv6" {
+		// try to unmarshal JSON data into NexthopIPv6
+		err = json.Unmarshal(data, &dst.NexthopIPv6)
+		if err == nil {
+			return nil // data stored in dst.NexthopIPv6, return on the first match
+		} else {
+			dst.NexthopIPv6 = nil
+			return fmt.Errorf("failed to unmarshal RouteNexthop as NexthopIPv6: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

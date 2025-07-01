@@ -40,7 +40,7 @@ func (dst *CreateNetworkIPv6) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CreateNetworkIPv6WithPrefix
-	err = newStrictDecoder(data).Decode(&dst.CreateNetworkIPv6WithPrefix)
+	err = json.Unmarshal(data, &dst.CreateNetworkIPv6WithPrefix)
 	if err == nil {
 		jsonCreateNetworkIPv6WithPrefix, _ := json.Marshal(dst.CreateNetworkIPv6WithPrefix)
 		if string(jsonCreateNetworkIPv6WithPrefix) == "{}" { // empty struct
@@ -53,7 +53,7 @@ func (dst *CreateNetworkIPv6) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CreateNetworkIPv6WithPrefixLength
-	err = newStrictDecoder(data).Decode(&dst.CreateNetworkIPv6WithPrefixLength)
+	err = json.Unmarshal(data, &dst.CreateNetworkIPv6WithPrefixLength)
 	if err == nil {
 		jsonCreateNetworkIPv6WithPrefixLength, _ := json.Marshal(dst.CreateNetworkIPv6WithPrefixLength)
 		if string(jsonCreateNetworkIPv6WithPrefixLength) == "{}" { // empty struct
