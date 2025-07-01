@@ -105,25 +105,25 @@ func TestKeyFlowInit(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &KeyFlow{}
-			cfg := &KeyFlowConfig{}
+			keyFlow := &KeyFlow{}
+			keyFlowConfig := &KeyFlowConfig{}
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_KEY", "")
 			if tt.genPrivateKey {
 				privateKeyBytes, err := generatePrivateKey()
 				if err != nil {
 					t.Fatalf("Error generating private key: %s", err)
 				}
-				cfg.PrivateKey = string(privateKeyBytes)
+				keyFlowConfig.PrivateKey = string(privateKeyBytes)
 			}
 			if tt.invalidPrivateKey {
-				cfg.PrivateKey = "invalid_key"
+				keyFlowConfig.PrivateKey = "invalid_key"
 			}
 
-			cfg.ServiceAccountKey = tt.serviceAccountKey
-			if err := c.Init(cfg); (err != nil) != tt.wantErr {
+			keyFlowConfig.ServiceAccountKey = tt.serviceAccountKey
+			if err := keyFlow.Init(keyFlowConfig); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
 			}
-			if c.config == nil {
+			if keyFlow.config == nil {
 				t.Error("config is nil")
 			}
 		})
@@ -167,8 +167,8 @@ func TestSetToken(t *testing.T) {
 				}
 			}
 
-			c := &KeyFlow{}
-			err = c.SetToken(accessToken, tt.refreshToken)
+			keyFlow := &KeyFlow{}
+			err = keyFlow.SetToken(accessToken, tt.refreshToken)
 
 			if (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.SetToken() error = %v, wantErr %v", err, tt.wantErr)
@@ -181,8 +181,8 @@ func TestSetToken(t *testing.T) {
 					Scope:        defaultScope,
 					TokenType:    defaultTokenType,
 				}
-				if !cmp.Equal(expectedKeyFlowToken, c.token) {
-					t.Errorf("The returned result is wrong. Expected %+v, got %+v", expectedKeyFlowToken, c.token)
+				if !cmp.Equal(expectedKeyFlowToken, keyFlow.token) {
+					t.Errorf("The returned result is wrong. Expected %+v, got %+v", expectedKeyFlowToken, keyFlow.token)
 				}
 			}
 		})
@@ -282,17 +282,27 @@ func TestRequestToken(t *testing.T) {
 
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			c := &KeyFlow{
-				authClient: &http.Client{
+			keyFlow := &KeyFlow{}
+			privateKeyBytes, err := generatePrivateKey()
+			if err != nil {
+				t.Fatalf("Error generating private key: %s", err)
+			}
+			keyFlowConfig := &KeyFlowConfig{
+				AuthHTTPClient: &http.Client{
 					Transport: mockTransportFn{func(_ *http.Request) (*http.Response, error) {
 						return tt.mockResponse, tt.mockError
 					}},
 				},
-				config: &KeyFlowConfig{},
-				rt:     http.DefaultTransport,
+				ServiceAccountKey: fixtureServiceAccountKey(),
+				PrivateKey:        string(privateKeyBytes),
+				HTTPTransport:     http.DefaultTransport,
+			}
+			err = keyFlow.Init(keyFlowConfig)
+			if err != nil {
+				t.Fatalf("failed to initialize key flow: %v", err)
 			}
 
-			res, err := c.requestToken(tt.grant, tt.assertion)
+			res, err := keyFlow.requestToken(tt.grant, tt.assertion)
 			defer func() {
 				if res != nil {
 					tempErr := res.Body.Close()
@@ -324,14 +334,12 @@ func TestKeyFlow_Do(t *testing.T) {
 
 	tests := []struct {
 		name      string
-		keyFlow   *KeyFlow
 		handlerFn func(tb testing.TB) http.HandlerFunc
 		want      int
 		wantErr   bool
 	}{
 		{
-			name:    "success",
-			keyFlow: &KeyFlow{rt: http.DefaultTransport, config: &KeyFlowConfig{}},
+			name: "success",
 			handlerFn: func(tb testing.TB) http.HandlerFunc {
 				tb.Helper()
 
@@ -349,8 +357,7 @@ func TestKeyFlow_Do(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name:    "success with code 500",
-			keyFlow: &KeyFlow{rt: http.DefaultTransport, config: &KeyFlowConfig{}},
+			name: "success with code 500",
 			handlerFn: func(_ testing.TB) http.HandlerFunc {
 				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "text/html")
@@ -363,16 +370,6 @@ func TestKeyFlow_Do(t *testing.T) {
 		},
 		{
 			name: "success with custom transport",
-			keyFlow: &KeyFlow{
-				rt: mockTransportFn{
-					fn: func(req *http.Request) (*http.Response, error) {
-						req.Header.Set("User-Agent", "custom_transport")
-
-						return http.DefaultTransport.RoundTrip(req)
-					},
-				},
-				config: &KeyFlowConfig{},
-			},
 			handlerFn: func(tb testing.TB) http.HandlerFunc {
 				tb.Helper()
 
@@ -391,14 +388,6 @@ func TestKeyFlow_Do(t *testing.T) {
 		},
 		{
 			name: "fail with custom proxy",
-			keyFlow: &KeyFlow{
-				rt: &http.Transport{
-					Proxy: func(_ *http.Request) (*url.URL, error) {
-						return nil, fmt.Errorf("proxy error")
-					},
-				},
-				config: &KeyFlowConfig{},
-			},
 			handlerFn: func(testing.TB) http.HandlerFunc {
 				return func(w http.ResponseWriter, _ *http.Request) {
 					w.Header().Set("Content-Type", "application/json")
@@ -421,37 +410,59 @@ func TestKeyFlow_Do(t *testing.T) {
 				t.Errorf("no error is expected, but got %v", err)
 			}
 
-			tt.keyFlow.config.ServiceAccountKey = fixtureServiceAccountKey()
-			tt.keyFlow.config.PrivateKey = string(privateKeyBytes)
-			tt.keyFlow.config.BackgroundTokenRefreshContext = ctx
-			tt.keyFlow.authClient = &http.Client{
-				Transport: mockTransportFn{
-					fn: func(_ *http.Request) (*http.Response, error) {
-						res := httptest.NewRecorder()
-						res.WriteHeader(http.StatusOK)
-						res.Header().Set("Content-Type", "application/json")
-
-						token := &TokenResponseBody{
-							AccessToken:  testBearerToken,
-							ExpiresIn:    2147483647,
-							RefreshToken: testBearerToken,
-							TokenType:    "Bearer",
+			keyFlow := &KeyFlow{}
+			keyFlowConfig := &KeyFlowConfig{
+				ServiceAccountKey:             fixtureServiceAccountKey(),
+				PrivateKey:                    string(privateKeyBytes),
+				BackgroundTokenRefreshContext: ctx,
+				HTTPTransport: func() http.RoundTripper {
+					switch tt.name {
+					case "success with custom transport":
+						return mockTransportFn{
+							fn: func(req *http.Request) (*http.Response, error) {
+								req.Header.Set("User-Agent", "custom_transport")
+								return http.DefaultTransport.RoundTrip(req)
+							},
 						}
-
-						if err := json.NewEncoder(res.Body).Encode(token); err != nil {
-							t.Logf("no error is expected, but got %v", err)
+					case "fail with custom proxy":
+						return &http.Transport{
+							Proxy: func(_ *http.Request) (*url.URL, error) {
+								return nil, fmt.Errorf("proxy error")
+							},
 						}
+					default:
+						return http.DefaultTransport
+					}
+				}(),
+				AuthHTTPClient: &http.Client{
+					Transport: mockTransportFn{
+						fn: func(_ *http.Request) (*http.Response, error) {
+							res := httptest.NewRecorder()
+							res.WriteHeader(http.StatusOK)
+							res.Header().Set("Content-Type", "application/json")
 
-						return res.Result(), nil
+							token := &TokenResponseBody{
+								AccessToken:  testBearerToken,
+								ExpiresIn:    2147483647,
+								RefreshToken: testBearerToken,
+								TokenType:    "Bearer",
+							}
+
+							if err := json.NewEncoder(res.Body).Encode(token); err != nil {
+								t.Logf("no error is expected, but got %v", err)
+							}
+
+							return res.Result(), nil
+						},
 					},
 				},
 			}
-
-			if err := tt.keyFlow.validate(); err != nil {
-				t.Errorf("no error is expected, but got %v", err)
+			err = keyFlow.Init(keyFlowConfig)
+			if err != nil {
+				t.Fatalf("failed to initialize key flow: %v", err)
 			}
 
-			go continuousRefreshToken(tt.keyFlow)
+			go continuousRefreshToken(keyFlow)
 
 			tokenCtx, tokenCancel := context.WithTimeout(context.Background(), 1*time.Second)
 
@@ -461,14 +472,14 @@ func TestKeyFlow_Do(t *testing.T) {
 				case <-tokenCtx.Done():
 					t.Error(tokenCtx.Err())
 				case <-time.After(50 * time.Millisecond):
-					tt.keyFlow.tokenMutex.RLock()
-					if tt.keyFlow.token != nil {
-						tt.keyFlow.tokenMutex.RUnlock()
+					keyFlow.tokenMutex.RLock()
+					if keyFlow.token != nil {
+						keyFlow.tokenMutex.RUnlock()
 						tokenCancel()
 						break token
 					}
 
-					tt.keyFlow.tokenMutex.RUnlock()
+					keyFlow.tokenMutex.RUnlock()
 				}
 			}
 
@@ -486,7 +497,7 @@ func TestKeyFlow_Do(t *testing.T) {
 			}
 
 			httpClient := &http.Client{
-				Transport: tt.keyFlow,
+				Transport: keyFlow,
 			}
 
 			res, err := httpClient.Do(req)

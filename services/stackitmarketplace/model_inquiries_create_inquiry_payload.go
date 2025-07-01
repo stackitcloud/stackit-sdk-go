@@ -56,7 +56,7 @@ func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into BecomeVendor
-	err = newStrictDecoder(data).Decode(&dst.BecomeVendor)
+	err = json.Unmarshal(data, &dst.BecomeVendor)
 	if err == nil {
 		jsonBecomeVendor, _ := json.Marshal(dst.BecomeVendor)
 		if string(jsonBecomeVendor) == "{}" { // empty struct
@@ -69,7 +69,7 @@ func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into ContactSales
-	err = newStrictDecoder(data).Decode(&dst.ContactSales)
+	err = json.Unmarshal(data, &dst.ContactSales)
 	if err == nil {
 		jsonContactSales, _ := json.Marshal(dst.ContactSales)
 		if string(jsonContactSales) == "{}" { // empty struct
@@ -82,7 +82,7 @@ func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into RegisterTesting
-	err = newStrictDecoder(data).Decode(&dst.RegisterTesting)
+	err = json.Unmarshal(data, &dst.RegisterTesting)
 	if err == nil {
 		jsonRegisterTesting, _ := json.Marshal(dst.RegisterTesting)
 		if string(jsonRegisterTesting) == "{}" { // empty struct
@@ -95,7 +95,7 @@ func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into SuggestProduct
-	err = newStrictDecoder(data).Decode(&dst.SuggestProduct)
+	err = json.Unmarshal(data, &dst.SuggestProduct)
 	if err == nil {
 		jsonSuggestProduct, _ := json.Marshal(dst.SuggestProduct)
 		if string(jsonSuggestProduct) == "{}" { // empty struct
