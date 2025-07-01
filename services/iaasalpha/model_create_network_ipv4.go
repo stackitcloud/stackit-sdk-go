@@ -40,7 +40,7 @@ func (dst *CreateNetworkIPv4) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CreateNetworkIPv4WithPrefix
-	err = newStrictDecoder(data).Decode(&dst.CreateNetworkIPv4WithPrefix)
+	err = json.Unmarshal(data, &dst.CreateNetworkIPv4WithPrefix)
 	if err == nil {
 		jsonCreateNetworkIPv4WithPrefix, _ := json.Marshal(dst.CreateNetworkIPv4WithPrefix)
 		if string(jsonCreateNetworkIPv4WithPrefix) == "{}" { // empty struct
@@ -53,7 +53,7 @@ func (dst *CreateNetworkIPv4) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CreateNetworkIPv4WithPrefixLength
-	err = newStrictDecoder(data).Decode(&dst.CreateNetworkIPv4WithPrefixLength)
+	err = json.Unmarshal(data, &dst.CreateNetworkIPv4WithPrefixLength)
 	if err == nil {
 		jsonCreateNetworkIPv4WithPrefixLength, _ := json.Marshal(dst.CreateNetworkIPv4WithPrefixLength)
 		if string(jsonCreateNetworkIPv4WithPrefixLength) == "{}" { // empty struct
