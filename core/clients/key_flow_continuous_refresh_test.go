@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"testing"
 	"time"
 
@@ -245,6 +246,10 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel() // This cancels the refresher goroutine
 
+	// Extract host from tokenAPI constant for consistency
+	tokenURL, _ := url.Parse(tokenAPI)
+	tokenHost := tokenURL.Host
+
 	// The Do() routine, that both the keyFlow and continuousRefreshToken() use to make their requests
 	// The bools are used to make sure only one request goes through on each test phase
 	doTestPhase1RequestDone := false
@@ -252,7 +257,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	doTestPhase4RequestDone := false
 	mockDo := func(req *http.Request) (resp *http.Response, err error) {
 		// Handle auth requests (token refresh)
-		if req.URL.Host == "service-account.api.stackit.cloud" {
+		if req.URL.Host == tokenHost {
 			switch currentTestPhase {
 			default:
 				// After phase 1, allow additional auth requests but don't fail the test
