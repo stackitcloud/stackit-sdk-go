@@ -40,10 +40,10 @@ func (dst *CreateProtocol) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into Int64
-	err = newStrictDecoder(data).Decode(&dst.Int64)
+	err = json.Unmarshal(data, &dst.Int64)
 	if err == nil {
-		jsonInt64, _ := json.Marshal(dst.Int64)
-		if string(jsonInt64) == "{}" { // empty struct
+		jsonint64, _ := json.Marshal(dst.Int64)
+		if string(jsonint64) == "{}" { // empty struct
 			dst.Int64 = nil
 		} else {
 			match++
@@ -53,10 +53,10 @@ func (dst *CreateProtocol) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into String
-	err = newStrictDecoder(data).Decode(&dst.String)
+	err = json.Unmarshal(data, &dst.String)
 	if err == nil {
-		jsonString, _ := json.Marshal(dst.String)
-		if string(jsonString) == "{}" { // empty struct
+		jsonstring, _ := json.Marshal(dst.String)
+		if string(jsonstring) == "{}" { // empty struct
 			dst.String = nil
 		} else {
 			match++

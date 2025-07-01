@@ -40,7 +40,7 @@ func (dst *CreateServerPayloadNetworking) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into CreateServerNetworking
-	err = newStrictDecoder(data).Decode(&dst.CreateServerNetworking)
+	err = json.Unmarshal(data, &dst.CreateServerNetworking)
 	if err == nil {
 		jsonCreateServerNetworking, _ := json.Marshal(dst.CreateServerNetworking)
 		if string(jsonCreateServerNetworking) == "{}" { // empty struct
@@ -53,7 +53,7 @@ func (dst *CreateServerPayloadNetworking) UnmarshalJSON(data []byte) error {
 	}
 
 	// try to unmarshal data into CreateServerNetworkingWithNics
-	err = newStrictDecoder(data).Decode(&dst.CreateServerNetworkingWithNics)
+	err = json.Unmarshal(data, &dst.CreateServerNetworkingWithNics)
 	if err == nil {
 		jsonCreateServerNetworkingWithNics, _ := json.Marshal(dst.CreateServerNetworkingWithNics)
 		if string(jsonCreateServerNetworkingWithNics) == "{}" { // empty struct
