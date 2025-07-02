@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"time"
@@ -28,7 +29,7 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 			return false, network, err
 		}
 		if network.Id == nil || network.Status == nil {
-			return false, network, fmt.Errorf("crate failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
+			return false, network, fmt.Errorf("create failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		// The state returns to "CREATED" after a successful creation is completed
 		if *network.Id == networkId && *network.Status == CreateSuccess {
@@ -69,7 +70,8 @@ func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 		if err == nil {
 			return false, nil, nil
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr)
 		if !ok {
 			return false, network, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
 		}
