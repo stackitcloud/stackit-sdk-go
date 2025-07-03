@@ -30,30 +30,38 @@ func HttpBackendAsConfigBackend(v *HttpBackend) ConfigBackend {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ConfigBackend) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into HttpBackend
-	err = newStrictDecoder(data).Decode(&dst.HttpBackend)
-	if err == nil {
-		jsonHttpBackend, _ := json.Marshal(dst.HttpBackend)
-		if string(jsonHttpBackend) == "{}" { // empty struct
-			dst.HttpBackend = nil
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'HttpBackend'
+	if jsonDict["type"] == "HttpBackend" {
+		// try to unmarshal JSON data into HttpBackend
+		err = json.Unmarshal(data, &dst.HttpBackend)
+		if err == nil {
+			return nil // data stored in dst.HttpBackend, return on the first match
 		} else {
-			match++
+			dst.HttpBackend = nil
+			return fmt.Errorf("failed to unmarshal ConfigBackend as HttpBackend: %s", err.Error())
 		}
-	} else {
-		dst.HttpBackend = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.HttpBackend = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(ConfigBackend)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ConfigBackend)")
+	// check if the discriminator value is 'http'
+	if jsonDict["type"] == "http" {
+		// try to unmarshal JSON data into HttpBackend
+		err = json.Unmarshal(data, &dst.HttpBackend)
+		if err == nil {
+			return nil // data stored in dst.HttpBackend, return on the first match
+		} else {
+			dst.HttpBackend = nil
+			return fmt.Errorf("failed to unmarshal ConfigBackend as HttpBackend: %s", err.Error())
+		}
 	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
