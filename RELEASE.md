@@ -17,10 +17,8 @@ The SDK is split into all the different STACKIT [services](https://github.com/st
 
 **Releasing a single service**
 
-1. Check out latest main branch on your machine
-2. Create git tag: `git tag services/<SERVICE-NAME>/vX.X.X`
-    - E.g. for the `sqlserverflex` service version `v1.0.1` the git tag would be named `services/sqlserverflex/v1.0.1`
-3. Push the git tag: `git push origin --tags`
+1. Update the VERSION file of the corresponding service
+2. When the PR is merged to main the tag is created automatically
 
 ### Whole SDK
 

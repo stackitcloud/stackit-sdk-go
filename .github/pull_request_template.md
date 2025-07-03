@@ -14,6 +14,7 @@ relates to #1234
 - [ ] Changelogs
     - [ ] Changelog in the root directory was adjusted (see [here](https://github.com/stackitcloud/stackit-sdk-go/blob/f1e375a38064f798821d22a951bc74ca8a9c8845/CHANGELOG.md))
     - [ ] Changelog(s) of the service(s) were adjusted (see e.g. [here](https://github.com/stackitcloud/stackit-sdk-go/blob/f1e375a38064f798821d22a951bc74ca8a9c8845/services/dns/CHANGELOG.md))
+- [ ] VERSION file(s) of the service(s) were adjusted
 - [ ] Code format was applied: `make fmt`
 - [ ] Examples were added / adjusted (see `examples/` directory)
 - [ ] Unit tests got implemented or updated

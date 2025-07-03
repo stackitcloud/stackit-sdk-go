@@ -1,0 +1,25 @@
+name: CD Workflow to update tags of services
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Push tag for each updated package
+        env:
+          GH_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+        run: |
+          git config --global user.name "SDK Releaser Bot"
+          git config --global user.email "noreply@stackit.de"
+
+          scripts/update-service-tags.sh
