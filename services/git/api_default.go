@@ -85,7 +85,7 @@ type DefaultApi interface {
 
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@param projectId Project identifier.
 		@return ApiListFlavorsRequest
 	*/
 	ListFlavors(ctx context.Context, projectId string) ApiListFlavorsRequest
@@ -93,7 +93,7 @@ type DefaultApi interface {
 		ListFlavorsExecute executes the request
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+		@param projectId Project identifier.
 		@return ListFlavors
 
 	*/
@@ -685,6 +685,9 @@ func (r ListFlavorsRequest) Execute() (*ListFlavors, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
 	if strlen(r.projectId) > 36 {
 		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
 	}
@@ -738,6 +741,17 @@ func (r ListFlavorsRequest) Execute() (*ListFlavors, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedResponse
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -750,7 +764,7 @@ func (r ListFlavorsRequest) Execute() (*ListFlavors, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v InternalServerErrorResponse
+			var v GenericErrorResponse
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -781,7 +795,7 @@ ListFlavors: Returns the details for the given STACKIT Git flavors.
 Provides detailed information about possible Git Flavors.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT portal project UUID the STACKIT Git instance is part of.
+	@param projectId Project identifier.
 	@return ApiListFlavorsRequest
 */
 func (a *APIClient) ListFlavors(ctx context.Context, projectId string) ApiListFlavorsRequest {
