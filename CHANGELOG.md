@@ -1,3 +1,7 @@
+## Release (2025-XX-XX)
+- `mongodbflex`: [v1.4.0](services/mongodbflex/CHANGELOG.md#v140)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+
 ## Release (2025-07-07)
 
 - `ske`: [v1.0.0](services/ske/CHANGELOG.md#v100)
