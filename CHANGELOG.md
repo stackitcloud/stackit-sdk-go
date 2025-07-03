@@ -6,9 +6,12 @@
   - Add `required:"true"` tags to model structs
 - `postgresflex`: [v1.2.0](services/postgresflex/CHANGELOG.md#v120)
   - Add `required:"true"` tags to model structs
-- `cdn`: [v1.3.0](services/cdn/CHANGELOG.md#v130)
-  - **Feature:** Add `DefaultCacheDuration` field to `Config`, `ConfigPatch`, and `CreateDistributionPayload` models
-  - Add `required:"true"` tags to model structs
+- `cdn`: 
+  - [v1.3.1](services/cdn/CHANGELOG.md#v131)
+    - **Improvement:** Improve parsing of oneOf
+  - [v1.3.0](services/cdn/CHANGELOG.md#v130)
+    - **Feature:** Add `DefaultCacheDuration` field to `Config`, `ConfigPatch`, and `CreateDistributionPayload` models
+    - Add `required:"true"` tags to model structs
 - `redis`: [v0.25.0](services/redis/CHANGELOG.md#v0250)
   - Add `required:"true"` tags to model structs
 - `rabbitmq`: [v0.25.0](services/rabbitmq/CHANGELOG.md#v0250)
