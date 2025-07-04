@@ -31,7 +31,7 @@ const (
 	CredentialsRotationStateCompleting = "COMPLETING"
 	// Deprecated: CredentialsRotationStateCompleted is deprecated and will be removed after 14th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED] instead.
 	CredentialsRotationStateCompleted = "COMPLETED"
-	// Deprecated: InvalidArgusInstanceErrorCode is deprecated and will be removed after 14th November 2025. Use [ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND] instead.
+	// Deprecated: InvalidArgusInstanceErrorCode is deprecated and will be removed after 14th November 2025. Use [ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND] instead.
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
@@ -52,7 +52,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
 		// -- alignment meeting with SKE team on 4.8.23
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
-		if state == ske.CLUSTERSTATUSSTATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND {
+		if state == ske.CLUSTERSTATUSSTATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND {
 			return true, s, nil
 		}
 

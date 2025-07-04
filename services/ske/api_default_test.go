@@ -24,9 +24,11 @@ import (
 func Test_ske_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CompleteCredentialsRotation", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/complete-credentials-rotation"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/complete-credentials-rotation"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -66,9 +68,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.CompleteCredentialsRotation(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.CompleteCredentialsRotation(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -79,9 +82,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateKubeconfig", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/kubeconfig"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -121,10 +126,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 		createKubeconfigPayload := CreateKubeconfigPayload{}
 
-		resp, reqErr := apiClient.CreateKubeconfig(context.Background(), projectId, clusterName).CreateKubeconfigPayload(createKubeconfigPayload).Execute()
+		resp, reqErr := apiClient.CreateKubeconfig(context.Background(), projectId, region, clusterName).CreateKubeconfigPayload(createKubeconfigPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -135,9 +141,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateOrUpdateCluster", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -177,10 +185,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 		createOrUpdateClusterPayload := CreateOrUpdateClusterPayload{}
 
-		resp, reqErr := apiClient.CreateOrUpdateCluster(context.Background(), projectId, clusterName).CreateOrUpdateClusterPayload(createOrUpdateClusterPayload).Execute()
+		resp, reqErr := apiClient.CreateOrUpdateCluster(context.Background(), projectId, region, clusterName).CreateOrUpdateClusterPayload(createOrUpdateClusterPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -191,9 +200,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteCluster", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -233,9 +244,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.DeleteCluster(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.DeleteCluster(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -246,9 +258,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetCluster", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -288,9 +302,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.GetCluster(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.GetCluster(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -301,9 +316,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetLoginKubeconfig", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/kubeconfig/login"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/kubeconfig/login"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -343,9 +360,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.GetLoginKubeconfig(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.GetLoginKubeconfig(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -356,9 +374,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListClusters", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -396,8 +416,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListClusters(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListClusters(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -408,7 +429,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListProviderOptions", func(t *testing.T) {
-		_apiUrlPath := "/v1/provider-options"
+		_apiUrlPath := "/v2/regions/{region}/provider-options"
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -445,7 +468,9 @@ func Test_ske_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		resp, reqErr := apiClient.ListProviderOptions(context.Background()).Execute()
+		region := regionValue
+
+		resp, reqErr := apiClient.ListProviderOptions(context.Background(), region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -456,9 +481,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService StartCredentialsRotation", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/start-credentials-rotation"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/start-credentials-rotation"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -498,9 +525,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.StartCredentialsRotation(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.StartCredentialsRotation(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -511,9 +539,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService TriggerHibernate", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/hibernate"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/hibernate"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -553,9 +583,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.TriggerHibernate(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.TriggerHibernate(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -566,9 +597,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService TriggerMaintenance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/maintenance"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/maintenance"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -608,9 +641,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.TriggerMaintenance(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.TriggerMaintenance(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -621,9 +655,11 @@ func Test_ske_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService TriggerReconcile", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/clusters/{clusterName}/reconcile"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/reconcile"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		clusterNameValue := "clusterName-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(clusterNameValue, "clusterName")), -1)
 
@@ -663,9 +699,10 @@ func Test_ske_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		clusterName := clusterNameValue
 
-		resp, reqErr := apiClient.TriggerReconcile(context.Background(), projectId, clusterName).Execute()
+		resp, reqErr := apiClient.TriggerReconcile(context.Background(), projectId, region, clusterName).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
