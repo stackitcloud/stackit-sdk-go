@@ -1,3 +1,6 @@
+## v1.3.1
+- **Improvement:** Improve parsing of oneOf
+
 ## v1.3.0
 - **Feature:** Add `DefaultCacheDuration` field to `Config`, `ConfigPatch`, and `CreateDistributionPayload` models
 - Add `required:"true"` tags to model structs
