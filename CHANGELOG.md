@@ -1,4 +1,7 @@
 ## Release (2025-XX-XX)
+
+- `ske`: [v1.0.0](services/ske/CHANGELOG.md#v100)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `opensearch`: [v0.24.0](services/opensearch/CHANGELOG.md#v0240)
   - **Breaking change:** `InstanceParametersTlsProtocols` is now a string array instead of a single string
   - Add `required:"true"` tags to model structs

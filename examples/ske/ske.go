@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/ske"
 	"github.com/stackitcloud/stackit-sdk-go/services/ske/wait"
@@ -15,10 +14,11 @@ func main() {
 	// Specify the project ID
 	projectId := "PROJECT_ID"
 
+	// Specify the region
+	region := "REGION"
+
 	// Create a new API client, that uses default authentication and configuration
-	skeClient, err := ske.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	skeClient, err := ske.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)
@@ -33,7 +33,7 @@ func main() {
 	// }
 
 	// Get the ske clusters for your project
-	getClustersResp, err := skeClient.ListClusters(context.Background(), projectId).Execute()
+	getClustersResp, err := skeClient.ListClusters(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetClusters`: %v\n", err)
 	} else {
@@ -42,7 +42,7 @@ func main() {
 
 	var availableVersion string
 	// Get the ske provider options
-	getOptionsResp, err := skeClient.ListProviderOptions(context.Background()).Execute()
+	getOptionsResp, err := skeClient.ListProviderOptions(context.Background(), region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOptions`: %v\n", err)
 	} else {
@@ -77,7 +77,7 @@ func main() {
 		},
 	}
 	clusterName := "cl-name"
-	createClusterResp, err := skeClient.CreateOrUpdateCluster(context.Background(), projectId, clusterName).CreateOrUpdateClusterPayload(createInstancePayload).Execute()
+	createClusterResp, err := skeClient.CreateOrUpdateCluster(context.Background(), projectId, region, clusterName).CreateOrUpdateClusterPayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateCluster`: %v\n", err)
 	} else {
@@ -85,7 +85,7 @@ func main() {
 	}
 
 	// Wait for cluster creation to complete
-	_, err = wait.CreateOrUpdateClusterWaitHandler(context.Background(), skeClient, projectId, clusterName).WaitWithContext(context.Background())
+	_, err = wait.CreateOrUpdateClusterWaitHandler(context.Background(), skeClient, projectId, region, clusterName).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateOrUpdateCluster`: %v\n", err)
 	} else {
@@ -93,7 +93,7 @@ func main() {
 	}
 
 	// Start cluster credential rotation
-	_, err = skeClient.StartCredentialsRotationExecute(context.Background(), projectId, clusterName)
+	_, err = skeClient.StartCredentialsRotationExecute(context.Background(), projectId, region, clusterName)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StartCredentialsRotation`: %v\n", err)
 	} else {
@@ -101,7 +101,7 @@ func main() {
 	}
 
 	// Wait for cluster credential rotation to be prepared
-	_, err = wait.StartCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, clusterName).WaitWithContext(context.Background())
+	_, err = wait.StartCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, region, clusterName).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StartRotateCredentials`: %v\n", err)
 	} else {
@@ -109,7 +109,7 @@ func main() {
 	}
 
 	// Complete cluster credential rotation
-	_, err = skeClient.CompleteCredentialsRotationExecute(context.Background(), projectId, clusterName)
+	_, err = skeClient.CompleteCredentialsRotationExecute(context.Background(), projectId, region, clusterName)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CompleteCredentialsRotation`: %v\n", err)
 	} else {
@@ -117,7 +117,7 @@ func main() {
 	}
 
 	// Wait for cluster credential rotation to be completed
-	_, err = wait.CompleteCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, clusterName).WaitWithContext(context.Background())
+	_, err = wait.CompleteCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, region, clusterName).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CompleteRotateCredentials`: %v\n", err)
 	} else {
