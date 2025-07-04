@@ -340,6 +340,8 @@ type ApiCreateBackupScheduleRequest interface {
 }
 
 type ApiDeleteBackupRequest interface {
+	// force delete the backup
+	Force(force bool) ApiDeleteBackupRequest
 	Execute() error
 }
 
@@ -348,6 +350,8 @@ type ApiDeleteBackupScheduleRequest interface {
 }
 
 type ApiDeleteVolumeBackupRequest interface {
+	// Force delete the volume backup
+	Force(force bool) ApiDeleteVolumeBackupRequest
 	Execute() error
 }
 
@@ -705,6 +709,14 @@ type DeleteBackupRequest struct {
 	serverId   string
 	region     string
 	backupId   string
+	force      *bool
+}
+
+// force delete the backup
+
+func (r DeleteBackupRequest) Force(force bool) ApiDeleteBackupRequest {
+	r.force = &force
+	return r
 }
 
 func (r DeleteBackupRequest) Execute() error {
@@ -733,6 +745,9 @@ func (r DeleteBackupRequest) Execute() error {
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.force != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -974,6 +989,14 @@ type DeleteVolumeBackupRequest struct {
 	region         string
 	backupId       string
 	volumeBackupId string
+	force          *bool
+}
+
+// Force delete the volume backup
+
+func (r DeleteVolumeBackupRequest) Force(force bool) ApiDeleteVolumeBackupRequest {
+	r.force = &force
+	return r
 }
 
 func (r DeleteVolumeBackupRequest) Execute() error {
@@ -1003,6 +1026,9 @@ func (r DeleteVolumeBackupRequest) Execute() error {
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.force != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
