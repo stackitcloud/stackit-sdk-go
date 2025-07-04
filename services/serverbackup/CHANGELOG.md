@@ -1,4 +1,7 @@
-## v1.3.0 
+## v1.3.1
+- **Feature:** Add `Force` flag to `DeleteBackupRequest` and `DeleteVolumeBackupRequest`
+
+## v1.3.0
 - Add `required:"true"` tags to model structs
 
 ## v1.2.1 (2025-06-04)
