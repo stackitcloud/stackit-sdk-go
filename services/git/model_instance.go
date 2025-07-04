@@ -170,7 +170,7 @@ type InstanceGetNameRetType = string
 
 // isEnum
 
-// InstanceState Indicate the readiness state of the instance.
+// InstanceState The current state of the STACKIT Git instance.
 // value type for enums
 type InstanceState string
 
@@ -338,7 +338,7 @@ func setInstanceGetVersionAttributeType(arg *InstanceGetVersionAttributeType, va
 type InstanceGetVersionArgType = string
 type InstanceGetVersionRetType = string
 
-// Instance Information about an Instance.
+// Instance Describes a STACKIT Git instance.
 type Instance struct {
 	// Restricted ACL for instance access.
 	// REQUIRED
@@ -349,25 +349,25 @@ type Instance struct {
 	// How many bytes of Object Storage is consumed. Read Only.
 	// REQUIRED
 	ConsumedObjectStorage InstanceGetConsumedObjectStorageAttributeType `json:"consumed_object_storage" required:"true"`
-	// Instance creation timestamp in RFC3339 format.
+	// The date and time the creation of the STACKIT Git instance was triggered.
 	// REQUIRED
 	Created InstanceGetCreatedAttributeType `json:"created" required:"true"`
-	// Instance flavor.
+	// Desired instance flavor. Must be one of the defined enum values
 	// REQUIRED
 	Flavor InstanceGetFlavorAttributeType `json:"flavor" required:"true"`
-	// Instance identifier.
+	// A auto generated unique id which identifies the STACKIT Git instances.
 	// REQUIRED
 	Id InstanceGetIdAttributeType `json:"id" required:"true"`
-	// Instance name.
+	// A user chosen name to distinguish multiple STACKIT Git instances.
 	// REQUIRED
 	Name InstanceGetNameAttributeType `json:"name" required:"true"`
-	// Indicate the readiness state of the instance.
+	// The current state of the STACKIT Git instance.
 	// REQUIRED
 	State InstanceGetStateAttributeType `json:"state" required:"true"`
-	// Instance url.
+	// The URL for reaching the STACKIT Git instance.
 	// REQUIRED
 	Url InstanceGetUrlAttributeType `json:"url" required:"true"`
-	// STACKIT Git version indicator.
+	// The current version of STACKIT Git deployed to the instance.
 	// REQUIRED
 	Version InstanceGetVersionAttributeType `json:"version" required:"true"`
 }
