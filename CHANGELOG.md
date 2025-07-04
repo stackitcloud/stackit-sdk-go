@@ -47,8 +47,11 @@
     - Add `required:"true"` tags to model structs
 - `serverupdate`: [v1.2.0](services/serverupdate/CHANGELOG.md#v120)
   - Add `required:"true"` tags to model structs
-- `serverbackup`: [v1.3.0](services/serverbackup/CHANGELOG.md#v130)
-  - Add `required:"true"` tags to model structs
+- `serverbackup`:
+  - [v1.3.1](services/serverbackup/CHANGELOG.md#v131)
+    - **Feature:** Add `Force` flag to `DeleteBackupRequest` and `DeleteVolumeBackupRequest` 
+  - [v1.3.0](services/serverbackup/CHANGELOG.md#v130)
+    - Add `required:"true"` tags to model structs
 - `secretsmanager`: [v0.13.0](services/secretsmanager/CHANGELOG.md#v0130)
   - Add `required:"true"` tags to model structs
 - `runcommand`: [v1.3.0](services/runcommand/CHANGELOG.md#v130)

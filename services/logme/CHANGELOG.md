@@ -1,4 +1,4 @@
-## v0.25.0 
+## v0.25.0
 - Add `required:"true"` tags to model structs
 
 ## v0.24.1 (2025-06-04)
