@@ -36,11 +36,15 @@
     - **Feature:** Add new `ClusterErrorCode` types: `CLUSTERERRORCODE_INFRA_SNA_NETWORK_NOT_FOUND`, `CLUSTERERRORCODE_FETCHING_ERRORS_NOT_POSSIBLE`
   - [v0.26.0](services/ske/CHANGELOG.md#v0260)
     - Add `required:"true"` tags to model structs
-- `git`: [v0.6.0](services/git/CHANGELOG.md#v060)
-  - **Feature:** Add support for `Flavors` for STACKIT git instance
-  - **Feature:** Add support for `Acl` for STACKIT git instance
-  - `projectId` and `instanceId` strings must have a length of 36 characters now (previously was only limited to a maximum of 36 characters)
-  - Add `required:"true"` tags to model structs
+- `git`:
+  - [v0.7.0](services/git/CHANGELOG.md#v070)
+    - **Feature:** Add `Sku` field to `Flavors` model
+    - **Feature:** Add enums `CreateInstancePayloadFlavor` for `Flavor` field in `CreateInstancePayload`
+  - [v0.6.0](services/git/CHANGELOG.md#v060)
+    - **Feature:** Add support for `Flavors` for STACKIT git instance
+    - **Feature:** Add support for `Acl` for STACKIT git instance
+    - `projectId` and `instanceId` strings must have a length of 36 characters now (previously was only limited to a maximum of 36 characters)
+    - Add `required:"true"` tags to model structs
 - `serverupdate`: [v1.2.0](services/serverupdate/CHANGELOG.md#v120)
   - Add `required:"true"` tags to model structs
 - `serverbackup`: [v1.3.0](services/serverbackup/CHANGELOG.md#v130)
