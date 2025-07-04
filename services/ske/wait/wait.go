@@ -31,19 +31,19 @@ const (
 	CredentialsRotationStateCompleting = "COMPLETING"
 	// Deprecated: CredentialsRotationStateCompleted is deprecated and will be removed after 14th November 2025. Use [ske.CREDENTIALSROTATIONSTATEPHASE_COMPLETED] instead.
 	CredentialsRotationStateCompleted = "COMPLETED"
-	// Deprecated: InvalidArgusInstanceErrorCode is deprecated and will be removed after 14th November 2025. Use [ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND] instead.
+	// Deprecated: InvalidArgusInstanceErrorCode is deprecated and will be removed after 14th November 2025. Use [ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND] instead.
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
 type APIClientClusterInterface interface {
-	GetClusterExecute(ctx context.Context, projectId, name string) (*ske.Cluster, error)
-	ListClustersExecute(ctx context.Context, projectId string) (*ske.ListClustersResponse, error)
+	GetClusterExecute(ctx context.Context, projectId, region, name string) (*ske.Cluster, error)
+	ListClustersExecute(ctx context.Context, projectId, region string) (*ske.ListClustersResponse, error)
 }
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
-func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.Cluster] {
+func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, name string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
-		s, err := a.GetClusterExecute(ctx, projectId, name)
+		s, err := a.GetClusterExecute(ctx, projectId, region, name)
 		if err != nil {
 			return false, nil, err
 		}
@@ -52,7 +52,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// The state "STATE_UNHEALTHY" (aka "Impaired" in the portal) could be temporarily occur during cluster creation and the system is recovering usually, so it is not considered as a failed state here.
 		// -- alignment meeting with SKE team on 4.8.23
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
-		if state == ske.CLUSTERSTATUSSTATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND {
+		if state == ske.CLUSTERSTATUSSTATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND {
 			return true, s, nil
 		}
 
@@ -71,9 +71,9 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 }
 
 // DeleteClusterWaitHandler will wait for cluster deletion
-func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, name string) *wait.AsyncActionHandler[ske.ListClustersResponse] {
+func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, name string) *wait.AsyncActionHandler[ske.ListClustersResponse] {
 	handler := wait.New(func() (waitFinished bool, response *ske.ListClustersResponse, err error) {
-		s, err := a.ListClustersExecute(ctx, projectId)
+		s, err := a.ListClustersExecute(ctx, projectId, region)
 		if err != nil {
 			return false, nil, err
 		}
@@ -91,9 +91,9 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 }
 
 // RotateCredentialsWaitHandler will wait for credentials rotation
-func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
-		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		s, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
 		if err != nil {
 			return false, nil, err
 		}
@@ -119,9 +119,9 @@ func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterfa
 }
 
 // StartCredentialsRotationWaitHandler will wait for credentials rotation
-func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
-		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		s, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
 		if err != nil {
 			return false, nil, err
 		}
@@ -143,9 +143,9 @@ func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientCluster
 }
 
 // CompleteCredentialsRotationWaitHandler will wait for credentials rotation
-func CompleteCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+func CompleteCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
-		s, err := a.GetClusterExecute(ctx, projectId, clusterName)
+		s, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
 		if err != nil {
 			return false, nil, err
 		}

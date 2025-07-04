@@ -20,7 +20,9 @@ type apiClientClusterMocked struct {
 	invalidArgusInstance bool
 }
 
-func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ string) (*ske.Cluster, error) {
+const testRegion = "eu01"
+
+func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _, _ string) (*ske.Cluster, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
@@ -34,7 +36,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 			Status: &ske.ClusterStatus{
 				Aggregated: &rs,
 				Error: &ske.RuntimeError{
-					Code:    utils.Ptr(ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND),
+					Code:    utils.Ptr(ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
 					Message: utils.Ptr("invalid argus instance"),
 				},
 			},
@@ -48,7 +50,7 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _ strin
 	}, nil
 }
 
-func (a *apiClientClusterMocked) ListClustersExecute(_ context.Context, _ string) (*ske.ListClustersResponse, error) {
+func (a *apiClientClusterMocked) ListClustersExecute(_ context.Context, _, _ string) (*ske.ListClustersResponse, error) {
 	if a.getFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: http.StatusInternalServerError,
@@ -141,13 +143,13 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 
 				if tt.invalidArgusInstance {
 					wantRes.Status.Error = &ske.RuntimeError{
-						Code:    utils.Ptr(ske.RUNTIMEERRORCODE_ARGUS_INSTANCE_NOT_FOUND),
+						Code:    utils.Ptr(ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
 						Message: utils.Ptr("invalid argus instance"),
 					}
 				}
 			}
 
-			handler := CreateOrUpdateClusterWaitHandler(context.Background(), apiClient, "", name)
+			handler := CreateOrUpdateClusterWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -223,7 +225,7 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := RotateCredentialsWaitHandler(context.Background(), apiClient, "", name)
+			handler := RotateCredentialsWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
