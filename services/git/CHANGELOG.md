@@ -1,3 +1,7 @@
+## v0.7.0
+- **Feature:** Add `Sku` field to `Flavors` model
+- **Feature:** Add enums `CreateInstancePayloadFlavor` for `Flavor` field in `CreateInstancePayload`
+
 ## v0.6.0
 - **Feature:** Add support for `Flavors` for STACKIT git instance
 - **Feature:** Add support for `Acl` for STACKIT git instance

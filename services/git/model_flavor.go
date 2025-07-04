@@ -209,6 +209,27 @@ func setFlavorGetIdAttributeType(arg *FlavorGetIdAttributeType, val FlavorGetIdR
 type FlavorGetIdArgType = string
 type FlavorGetIdRetType = string
 
+/*
+	types and functions for sku
+*/
+
+// isNotNullableString
+type FlavorGetSkuAttributeType = *string
+
+func getFlavorGetSkuAttributeTypeOk(arg FlavorGetSkuAttributeType) (ret FlavorGetSkuRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setFlavorGetSkuAttributeType(arg *FlavorGetSkuAttributeType, val FlavorGetSkuRetType) {
+	*arg = &val
+}
+
+type FlavorGetSkuArgType = string
+type FlavorGetSkuRetType = string
+
 // Flavor Describes a STACKIT Git Flavor.
 type Flavor struct {
 	// Defines the flavor availability.
@@ -223,6 +244,9 @@ type Flavor struct {
 	// Flavor id.
 	// REQUIRED
 	Id FlavorGetIdAttributeType `json:"id" required:"true"`
+	// SAP article number.
+	// REQUIRED
+	Sku FlavorGetSkuAttributeType `json:"sku" required:"true"`
 }
 
 type _Flavor Flavor
@@ -231,12 +255,13 @@ type _Flavor Flavor
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFlavor(availability FlavorGetAvailabilityArgType, description FlavorGetDescriptionArgType, displayName FlavorGetDisplayNameArgType, id FlavorGetIdArgType) *Flavor {
+func NewFlavor(availability FlavorGetAvailabilityArgType, description FlavorGetDescriptionArgType, displayName FlavorGetDisplayNameArgType, id FlavorGetIdArgType, sku FlavorGetSkuArgType) *Flavor {
 	this := Flavor{}
 	setFlavorGetAvailabilityAttributeType(&this.Availability, availability)
 	setFlavorGetDescriptionAttributeType(&this.Description, description)
 	setFlavorGetDisplayNameAttributeType(&this.DisplayName, displayName)
 	setFlavorGetIdAttributeType(&this.Id, id)
+	setFlavorGetSkuAttributeType(&this.Sku, sku)
 	return &this
 }
 
@@ -316,6 +341,23 @@ func (o *Flavor) SetId(v FlavorGetIdRetType) {
 	setFlavorGetIdAttributeType(&o.Id, v)
 }
 
+// GetSku returns the Sku field value
+func (o *Flavor) GetSku() (ret FlavorGetSkuRetType) {
+	ret, _ = o.GetSkuOk()
+	return ret
+}
+
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *Flavor) GetSkuOk() (ret FlavorGetSkuRetType, ok bool) {
+	return getFlavorGetSkuAttributeTypeOk(o.Sku)
+}
+
+// SetSku sets field value
+func (o *Flavor) SetSku(v FlavorGetSkuRetType) {
+	setFlavorGetSkuAttributeType(&o.Sku, v)
+}
+
 func (o Flavor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getFlavorGetAvailabilityAttributeTypeOk(o.Availability); ok {
@@ -329,6 +371,9 @@ func (o Flavor) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getFlavorGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getFlavorGetSkuAttributeTypeOk(o.Sku); ok {
+		toSerialize["Sku"] = val
 	}
 	return toSerialize, nil
 }
