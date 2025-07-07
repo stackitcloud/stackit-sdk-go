@@ -185,7 +185,7 @@ func setAddRoutingTableToAreaPayloadGetUpdatedAtAttributeType(arg *AddRoutingTab
 type AddRoutingTableToAreaPayload struct {
 	// Date-time when resource was created.
 	CreatedAt AddRoutingTableToAreaPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
-	// This is the default routing table for this area. It can't be deleted and is used if the user does not specify it otherwise.
+	// This is the default routing table. It can't be deleted and is used if the user does not specify it otherwise.
 	Default AddRoutingTableToAreaPayloadgetDefaultAttributeType `json:"default,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description AddRoutingTableToAreaPayloadGetDescriptionAttributeType `json:"description,omitempty"`

@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CreateNetworkPayload{}
 
 /*
+	types and functions for dhcp
+*/
+
+// isBoolean
+type CreateNetworkPayloadgetDhcpAttributeType = *bool
+type CreateNetworkPayloadgetDhcpArgType = bool
+type CreateNetworkPayloadgetDhcpRetType = bool
+
+func getCreateNetworkPayloadgetDhcpAttributeTypeOk(arg CreateNetworkPayloadgetDhcpAttributeType) (ret CreateNetworkPayloadgetDhcpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkPayloadgetDhcpAttributeType(arg *CreateNetworkPayloadgetDhcpAttributeType, val CreateNetworkPayloadgetDhcpRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for ipv4
 */
 
@@ -141,6 +161,8 @@ type CreateNetworkPayloadGetRoutingTableIdRetType = string
 
 // CreateNetworkPayload Object that represents the request body for a network create.
 type CreateNetworkPayload struct {
+	// Enable or disable DHCP for a network.
+	Dhcp CreateNetworkPayloadgetDhcpAttributeType `json:"dhcp,omitempty"`
 	Ipv4 CreateNetworkPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
 	Ipv6 CreateNetworkPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
@@ -171,7 +193,32 @@ func NewCreateNetworkPayload(name CreateNetworkPayloadGetNameArgType) *CreateNet
 // but it doesn't guarantee that properties required by API are set
 func NewCreateNetworkPayloadWithDefaults() *CreateNetworkPayload {
 	this := CreateNetworkPayload{}
+	var dhcp bool = true
+	this.Dhcp = &dhcp
 	return &this
+}
+
+// GetDhcp returns the Dhcp field value if set, zero value otherwise.
+func (o *CreateNetworkPayload) GetDhcp() (res CreateNetworkPayloadgetDhcpRetType) {
+	res, _ = o.GetDhcpOk()
+	return
+}
+
+// GetDhcpOk returns a tuple with the Dhcp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkPayload) GetDhcpOk() (ret CreateNetworkPayloadgetDhcpRetType, ok bool) {
+	return getCreateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp)
+}
+
+// HasDhcp returns a boolean if a field has been set.
+func (o *CreateNetworkPayload) HasDhcp() bool {
+	_, ok := o.GetDhcpOk()
+	return ok
+}
+
+// SetDhcp gets a reference to the given bool and assigns it to the Dhcp field.
+func (o *CreateNetworkPayload) SetDhcp(v CreateNetworkPayloadgetDhcpRetType) {
+	setCreateNetworkPayloadgetDhcpAttributeType(&o.Dhcp, v)
 }
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
@@ -308,6 +355,9 @@ func (o *CreateNetworkPayload) SetRoutingTableId(v CreateNetworkPayloadGetRoutin
 
 func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp); ok {
+		toSerialize["Dhcp"] = val
+	}
 	if val, ok := getCreateNetworkPayloadGetIpv4AttributeTypeOk(o.Ipv4); ok {
 		toSerialize["Ipv4"] = val
 	}

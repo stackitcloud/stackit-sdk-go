@@ -21,21 +21,26 @@ var _ MappedNullable = &UpdateNetworkIPv6Body{}
 	types and functions for gateway
 */
 
-// isModel
-type UpdateNetworkIPv6BodyGetGatewayAttributeType = *NullableNetworkGatewayIPv6
-type UpdateNetworkIPv6BodyGetGatewayArgType = *NullableNetworkGatewayIPv6
-type UpdateNetworkIPv6BodyGetGatewayRetType = *NullableNetworkGatewayIPv6
+// isNullableString
+type UpdateNetworkIPv6BodyGetGatewayAttributeType = *NullableString
 
 func getUpdateNetworkIPv6BodyGetGatewayAttributeTypeOk(arg UpdateNetworkIPv6BodyGetGatewayAttributeType) (ret UpdateNetworkIPv6BodyGetGatewayRetType, ok bool) {
 	if arg == nil {
 		return nil, false
 	}
-	return arg, true
+	return arg.Get(), true
 }
 
 func setUpdateNetworkIPv6BodyGetGatewayAttributeType(arg *UpdateNetworkIPv6BodyGetGatewayAttributeType, val UpdateNetworkIPv6BodyGetGatewayRetType) {
-	*arg = val
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
 }
+
+type UpdateNetworkIPv6BodyGetGatewayArgType = *string
+type UpdateNetworkIPv6BodyGetGatewayRetType = *string
 
 /*
 	types and functions for nameservers
@@ -59,6 +64,7 @@ func setUpdateNetworkIPv6BodyGetNameserversAttributeType(arg *UpdateNetworkIPv6B
 
 // UpdateNetworkIPv6Body The config object for a IPv6 network update.
 type UpdateNetworkIPv6Body struct {
+	// The IPv6 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway UpdateNetworkIPv6BodyGetGatewayAttributeType `json:"gateway,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv6.
 	Nameservers UpdateNetworkIPv6BodyGetNameserversAttributeType `json:"nameservers,omitempty"`
@@ -100,7 +106,7 @@ func (o *UpdateNetworkIPv6Body) HasGateway() bool {
 	return ok
 }
 
-// SetGateway gets a reference to the given NetworkGatewayIPv6 and assigns it to the Gateway field.
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
 func (o *UpdateNetworkIPv6Body) SetGateway(v UpdateNetworkIPv6BodyGetGatewayRetType) {
 	setUpdateNetworkIPv6BodyGetGatewayAttributeType(&o.Gateway, v)
 }

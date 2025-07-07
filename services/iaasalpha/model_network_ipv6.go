@@ -21,21 +21,26 @@ var _ MappedNullable = &NetworkIPv6{}
 	types and functions for gateway
 */
 
-// isModel
-type NetworkIPv6GetGatewayAttributeType = *NullableNetworkGatewayIPv6
-type NetworkIPv6GetGatewayArgType = *NullableNetworkGatewayIPv6
-type NetworkIPv6GetGatewayRetType = *NullableNetworkGatewayIPv6
+// isNullableString
+type NetworkIPv6GetGatewayAttributeType = *NullableString
 
 func getNetworkIPv6GetGatewayAttributeTypeOk(arg NetworkIPv6GetGatewayAttributeType) (ret NetworkIPv6GetGatewayRetType, ok bool) {
 	if arg == nil {
 		return nil, false
 	}
-	return arg, true
+	return arg.Get(), true
 }
 
 func setNetworkIPv6GetGatewayAttributeType(arg *NetworkIPv6GetGatewayAttributeType, val NetworkIPv6GetGatewayRetType) {
-	*arg = val
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
 }
+
+type NetworkIPv6GetGatewayArgType = *string
+type NetworkIPv6GetGatewayRetType = *string
 
 /*
 	types and functions for nameservers
@@ -79,6 +84,7 @@ func setNetworkIPv6GetPrefixesAttributeType(arg *NetworkIPv6GetPrefixesAttribute
 
 // NetworkIPv6 Object that represents the IPv6 part of a network.
 type NetworkIPv6 struct {
+	// The IPv6 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway NetworkIPv6GetGatewayAttributeType `json:"gateway,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv6.
 	Nameservers NetworkIPv6GetNameserversAttributeType `json:"nameservers,omitempty"`
@@ -125,7 +131,7 @@ func (o *NetworkIPv6) HasGateway() bool {
 	return ok
 }
 
-// SetGateway gets a reference to the given NetworkGatewayIPv6 and assigns it to the Gateway field.
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
 func (o *NetworkIPv6) SetGateway(v NetworkIPv6GetGatewayRetType) {
 	setNetworkIPv6GetGatewayAttributeType(&o.Gateway, v)
 }

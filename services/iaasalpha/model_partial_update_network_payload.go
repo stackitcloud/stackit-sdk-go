@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &PartialUpdateNetworkPayload{}
 
 /*
+	types and functions for dhcp
+*/
+
+// isBoolean
+type PartialUpdateNetworkPayloadgetDhcpAttributeType = *bool
+type PartialUpdateNetworkPayloadgetDhcpArgType = bool
+type PartialUpdateNetworkPayloadgetDhcpRetType = bool
+
+func getPartialUpdateNetworkPayloadgetDhcpAttributeTypeOk(arg PartialUpdateNetworkPayloadgetDhcpAttributeType) (ret PartialUpdateNetworkPayloadgetDhcpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateNetworkPayloadgetDhcpAttributeType(arg *PartialUpdateNetworkPayloadgetDhcpAttributeType, val PartialUpdateNetworkPayloadgetDhcpRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for ipv4
 */
 
@@ -141,6 +161,8 @@ type PartialUpdateNetworkPayloadGetRoutingTableIdRetType = string
 
 // PartialUpdateNetworkPayload Object that represents the request body for a network update.
 type PartialUpdateNetworkPayload struct {
+	// Enable or disable DHCP for a network.
+	Dhcp PartialUpdateNetworkPayloadgetDhcpAttributeType `json:"dhcp,omitempty"`
 	Ipv4 PartialUpdateNetworkPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
 	Ipv6 PartialUpdateNetworkPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
@@ -168,6 +190,29 @@ func NewPartialUpdateNetworkPayload() *PartialUpdateNetworkPayload {
 func NewPartialUpdateNetworkPayloadWithDefaults() *PartialUpdateNetworkPayload {
 	this := PartialUpdateNetworkPayload{}
 	return &this
+}
+
+// GetDhcp returns the Dhcp field value if set, zero value otherwise.
+func (o *PartialUpdateNetworkPayload) GetDhcp() (res PartialUpdateNetworkPayloadgetDhcpRetType) {
+	res, _ = o.GetDhcpOk()
+	return
+}
+
+// GetDhcpOk returns a tuple with the Dhcp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateNetworkPayload) GetDhcpOk() (ret PartialUpdateNetworkPayloadgetDhcpRetType, ok bool) {
+	return getPartialUpdateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp)
+}
+
+// HasDhcp returns a boolean if a field has been set.
+func (o *PartialUpdateNetworkPayload) HasDhcp() bool {
+	_, ok := o.GetDhcpOk()
+	return ok
+}
+
+// SetDhcp gets a reference to the given bool and assigns it to the Dhcp field.
+func (o *PartialUpdateNetworkPayload) SetDhcp(v PartialUpdateNetworkPayloadgetDhcpRetType) {
+	setPartialUpdateNetworkPayloadgetDhcpAttributeType(&o.Dhcp, v)
 }
 
 // GetIpv4 returns the Ipv4 field value if set, zero value otherwise.
@@ -310,6 +355,9 @@ func (o *PartialUpdateNetworkPayload) SetRoutingTableId(v PartialUpdateNetworkPa
 
 func (o PartialUpdateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getPartialUpdateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp); ok {
+		toSerialize["Dhcp"] = val
+	}
 	if val, ok := getPartialUpdateNetworkPayloadGetIpv4AttributeTypeOk(o.Ipv4); ok {
 		toSerialize["Ipv4"] = val
 	}
