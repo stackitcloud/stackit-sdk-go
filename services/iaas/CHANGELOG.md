@@ -1,3 +1,6 @@
+## v0.27.0
+- **Feature:** Add `Dhcp` field in `CreateNetworkPayload`, `Network` and `PartialUpdateNetworkPayload` models
+
 ## v0.26.0
 - **Feature:** Add `Metadata` field to `Server`, `CreateServerPayload`, and `UpdateServerPayload` models
 - **Feature:** Increase maximum length validation for `machineType` and `volumePerformanceClass` from 63 to 127 characters

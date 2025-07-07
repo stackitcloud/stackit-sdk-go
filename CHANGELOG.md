@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-07-07)
 
 - `ske`: [v1.0.0](services/ske/CHANGELOG.md#v100)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
@@ -74,6 +74,8 @@
 - `logme`: [v0.25.0](services/logme/CHANGELOG.md#v0250)
   - Add `required:"true"` tags to model structs
 - `iaas`: 
+  - [v0.27.0](services/iaas/CHANGELOG.md#v0270)
+    - **Feature:** Add `Dhcp` field in `CreateNetworkPayload`, `Network` and `PartialUpdateNetworkPayload` models 
   - [v0.26.0](services/iaas/CHANGELOG.md#v0260)
     - **Feature:** Add `Metadata` field to `Server`, `CreateServerPayload`, and `UpdateServerPayload` models
     - **Feature:** Increase maximum length validation for `machineType` and `volumePerformanceClass` from 63 to 127 characters
