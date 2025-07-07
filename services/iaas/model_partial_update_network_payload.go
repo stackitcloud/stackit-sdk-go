@@ -38,6 +38,26 @@ func setPartialUpdateNetworkPayloadGetAddressFamilyAttributeType(arg *PartialUpd
 }
 
 /*
+	types and functions for dhcp
+*/
+
+// isBoolean
+type PartialUpdateNetworkPayloadgetDhcpAttributeType = *bool
+type PartialUpdateNetworkPayloadgetDhcpArgType = bool
+type PartialUpdateNetworkPayloadgetDhcpRetType = bool
+
+func getPartialUpdateNetworkPayloadgetDhcpAttributeTypeOk(arg PartialUpdateNetworkPayloadgetDhcpAttributeType) (ret PartialUpdateNetworkPayloadgetDhcpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPartialUpdateNetworkPayloadgetDhcpAttributeType(arg *PartialUpdateNetworkPayloadgetDhcpAttributeType, val PartialUpdateNetworkPayloadgetDhcpRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for labels
 */
 
@@ -101,6 +121,8 @@ func setPartialUpdateNetworkPayloadgetRoutedAttributeType(arg *PartialUpdateNetw
 // PartialUpdateNetworkPayload Object that represents the request body for a network update.
 type PartialUpdateNetworkPayload struct {
 	AddressFamily PartialUpdateNetworkPayloadGetAddressFamilyAttributeType `json:"addressFamily,omitempty"`
+	// Enable or disable DHCP for a network.
+	Dhcp PartialUpdateNetworkPayloadgetDhcpAttributeType `json:"dhcp,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels PartialUpdateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -147,6 +169,29 @@ func (o *PartialUpdateNetworkPayload) HasAddressFamily() bool {
 // SetAddressFamily gets a reference to the given UpdateNetworkAddressFamily and assigns it to the AddressFamily field.
 func (o *PartialUpdateNetworkPayload) SetAddressFamily(v PartialUpdateNetworkPayloadGetAddressFamilyRetType) {
 	setPartialUpdateNetworkPayloadGetAddressFamilyAttributeType(&o.AddressFamily, v)
+}
+
+// GetDhcp returns the Dhcp field value if set, zero value otherwise.
+func (o *PartialUpdateNetworkPayload) GetDhcp() (res PartialUpdateNetworkPayloadgetDhcpRetType) {
+	res, _ = o.GetDhcpOk()
+	return
+}
+
+// GetDhcpOk returns a tuple with the Dhcp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PartialUpdateNetworkPayload) GetDhcpOk() (ret PartialUpdateNetworkPayloadgetDhcpRetType, ok bool) {
+	return getPartialUpdateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp)
+}
+
+// HasDhcp returns a boolean if a field has been set.
+func (o *PartialUpdateNetworkPayload) HasDhcp() bool {
+	_, ok := o.GetDhcpOk()
+	return ok
+}
+
+// SetDhcp gets a reference to the given bool and assigns it to the Dhcp field.
+func (o *PartialUpdateNetworkPayload) SetDhcp(v PartialUpdateNetworkPayloadgetDhcpRetType) {
+	setPartialUpdateNetworkPayloadgetDhcpAttributeType(&o.Dhcp, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -222,6 +267,9 @@ func (o PartialUpdateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateNetworkPayloadGetAddressFamilyAttributeTypeOk(o.AddressFamily); ok {
 		toSerialize["AddressFamily"] = val
+	}
+	if val, ok := getPartialUpdateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp); ok {
+		toSerialize["Dhcp"] = val
 	}
 	if val, ok := getPartialUpdateNetworkPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val

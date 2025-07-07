@@ -38,6 +38,26 @@ func setCreateNetworkPayloadGetAddressFamilyAttributeType(arg *CreateNetworkPayl
 }
 
 /*
+	types and functions for dhcp
+*/
+
+// isBoolean
+type CreateNetworkPayloadgetDhcpAttributeType = *bool
+type CreateNetworkPayloadgetDhcpArgType = bool
+type CreateNetworkPayloadgetDhcpRetType = bool
+
+func getCreateNetworkPayloadgetDhcpAttributeTypeOk(arg CreateNetworkPayloadgetDhcpAttributeType) (ret CreateNetworkPayloadgetDhcpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNetworkPayloadgetDhcpAttributeType(arg *CreateNetworkPayloadgetDhcpAttributeType, val CreateNetworkPayloadgetDhcpRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for labels
 */
 
@@ -101,6 +121,8 @@ func setCreateNetworkPayloadgetRoutedAttributeType(arg *CreateNetworkPayloadgetR
 // CreateNetworkPayload Object that represents the request body for a network create.
 type CreateNetworkPayload struct {
 	AddressFamily CreateNetworkPayloadGetAddressFamilyAttributeType `json:"addressFamily,omitempty"`
+	// Enable or disable DHCP for a network.
+	Dhcp CreateNetworkPayloadgetDhcpAttributeType `json:"dhcp,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
 	Labels CreateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -127,6 +149,8 @@ func NewCreateNetworkPayload(name CreateNetworkPayloadGetNameArgType) *CreateNet
 // but it doesn't guarantee that properties required by API are set
 func NewCreateNetworkPayloadWithDefaults() *CreateNetworkPayload {
 	this := CreateNetworkPayload{}
+	var dhcp bool = true
+	this.Dhcp = &dhcp
 	return &this
 }
 
@@ -151,6 +175,29 @@ func (o *CreateNetworkPayload) HasAddressFamily() bool {
 // SetAddressFamily gets a reference to the given CreateNetworkAddressFamily and assigns it to the AddressFamily field.
 func (o *CreateNetworkPayload) SetAddressFamily(v CreateNetworkPayloadGetAddressFamilyRetType) {
 	setCreateNetworkPayloadGetAddressFamilyAttributeType(&o.AddressFamily, v)
+}
+
+// GetDhcp returns the Dhcp field value if set, zero value otherwise.
+func (o *CreateNetworkPayload) GetDhcp() (res CreateNetworkPayloadgetDhcpRetType) {
+	res, _ = o.GetDhcpOk()
+	return
+}
+
+// GetDhcpOk returns a tuple with the Dhcp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNetworkPayload) GetDhcpOk() (ret CreateNetworkPayloadgetDhcpRetType, ok bool) {
+	return getCreateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp)
+}
+
+// HasDhcp returns a boolean if a field has been set.
+func (o *CreateNetworkPayload) HasDhcp() bool {
+	_, ok := o.GetDhcpOk()
+	return ok
+}
+
+// SetDhcp gets a reference to the given bool and assigns it to the Dhcp field.
+func (o *CreateNetworkPayload) SetDhcp(v CreateNetworkPayloadgetDhcpRetType) {
+	setCreateNetworkPayloadgetDhcpAttributeType(&o.Dhcp, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -220,6 +267,9 @@ func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateNetworkPayloadGetAddressFamilyAttributeTypeOk(o.AddressFamily); ok {
 		toSerialize["AddressFamily"] = val
+	}
+	if val, ok := getCreateNetworkPayloadgetDhcpAttributeTypeOk(o.Dhcp); ok {
+		toSerialize["Dhcp"] = val
 	}
 	if val, ok := getCreateNetworkPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
