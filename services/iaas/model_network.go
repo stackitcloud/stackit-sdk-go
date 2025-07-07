@@ -39,6 +39,26 @@ func setNetworkGetCreatedAtAttributeType(arg *NetworkGetCreatedAtAttributeType, 
 }
 
 /*
+	types and functions for dhcp
+*/
+
+// isBoolean
+type NetworkgetDhcpAttributeType = *bool
+type NetworkgetDhcpArgType = bool
+type NetworkgetDhcpRetType = bool
+
+func getNetworkgetDhcpAttributeTypeOk(arg NetworkgetDhcpAttributeType) (ret NetworkgetDhcpRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkgetDhcpAttributeType(arg *NetworkgetDhcpAttributeType, val NetworkgetDhcpRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for gateway
 */
 
@@ -316,6 +336,8 @@ func setNetworkGetUpdatedAtAttributeType(arg *NetworkGetUpdatedAtAttributeType, 
 type Network struct {
 	// Date-time when resource was created.
 	CreatedAt NetworkGetCreatedAtAttributeType `json:"createdAt,omitempty"`
+	// Enable or disable DHCP for a network.
+	Dhcp NetworkgetDhcpAttributeType `json:"dhcp,omitempty"`
 	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway NetworkGetGatewayAttributeType `json:"gateway,omitempty"`
 	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
@@ -387,6 +409,29 @@ func (o *Network) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Network) SetCreatedAt(v NetworkGetCreatedAtRetType) {
 	setNetworkGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetDhcp returns the Dhcp field value if set, zero value otherwise.
+func (o *Network) GetDhcp() (res NetworkgetDhcpRetType) {
+	res, _ = o.GetDhcpOk()
+	return
+}
+
+// GetDhcpOk returns a tuple with the Dhcp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetDhcpOk() (ret NetworkgetDhcpRetType, ok bool) {
+	return getNetworkgetDhcpAttributeTypeOk(o.Dhcp)
+}
+
+// HasDhcp returns a boolean if a field has been set.
+func (o *Network) HasDhcp() bool {
+	_, ok := o.GetDhcpOk()
+	return ok
+}
+
+// SetDhcp gets a reference to the given bool and assigns it to the Dhcp field.
+func (o *Network) SetDhcp(v NetworkgetDhcpRetType) {
+	setNetworkgetDhcpAttributeType(&o.Dhcp, v)
 }
 
 // GetGateway returns the Gateway field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -696,6 +741,9 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getNetworkGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getNetworkgetDhcpAttributeTypeOk(o.Dhcp); ok {
+		toSerialize["Dhcp"] = val
 	}
 	if val, ok := getNetworkGetGatewayAttributeTypeOk(o.Gateway); ok {
 		toSerialize["Gateway"] = val
