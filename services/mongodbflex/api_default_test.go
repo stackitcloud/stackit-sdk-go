@@ -24,11 +24,13 @@ import (
 func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CloneInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/clone"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/clone"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -67,9 +69,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 		cloneInstancePayload := CloneInstancePayload{}
 
-		resp, reqErr := apiClient.CloneInstance(context.Background(), projectId, instanceId).CloneInstancePayload(cloneInstancePayload).Execute()
+		resp, reqErr := apiClient.CloneInstance(context.Background(), projectId, instanceId, region).CloneInstancePayload(cloneInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -80,9 +83,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -120,9 +125,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createInstancePayload := CreateInstancePayload{}
 
-		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId, region).CreateInstancePayload(createInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -133,11 +139,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateUser", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -176,9 +184,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 		createUserPayload := CreateUserPayload{}
 
-		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId).CreateUserPayload(createUserPayload).Execute()
+		resp, reqErr := apiClient.CreateUser(context.Background(), projectId, instanceId, region).CreateUserPayload(createUserPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -189,11 +198,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -229,8 +240,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 
-		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId).Execute()
+		reqErr := apiClient.DeleteInstance(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -238,13 +250,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteUser", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -281,8 +295,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 		instanceId := instanceIdValue
 		userId := userIdValue
+		region := regionValue
 
-		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId).Execute()
+		reqErr := apiClient.DeleteUser(context.Background(), projectId, instanceId, userId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -290,13 +305,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/{backupId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		backupIdValue := "backupId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -336,8 +353,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 		instanceId := instanceIdValue
 		backupId := backupIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId).Execute()
+		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, instanceId, backupId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -348,15 +366,17 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := GetInstanceResponse{}
+			data := HandlersInstancesGetInstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -391,8 +411,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.GetInstance(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -403,13 +424,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetUser", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -449,8 +472,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 		instanceId := instanceIdValue
 		userId := userIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId).Execute()
+		resp, reqErr := apiClient.GetUser(context.Background(), projectId, instanceId, userId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -461,11 +485,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAdvisorSlowQueries", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/advisor/slow-queries"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/advisor/slow-queries"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -504,8 +530,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListAdvisorSlowQueries(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListAdvisorSlowQueries(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -516,11 +543,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -559,8 +588,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -571,13 +601,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListFlavors", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/flavors"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/flavors"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := ListFlavorsResponse{}
+			data := HandlersInfraGetFlavorsResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})
@@ -611,8 +643,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListFlavors(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -623,9 +656,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -664,8 +699,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		var tag string
+		region := regionValue
 
-		resp, reqErr := apiClient.ListInstances(context.Background(), projectId).Tag(tag).Execute()
+		resp, reqErr := apiClient.ListInstances(context.Background(), projectId, region).Tag(tag).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -676,13 +712,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListMetrics", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/metrics/{metric}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		metricValue := "metric-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(metricValue, "metric")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -723,8 +761,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		instanceId := instanceIdValue
 		metric := metricValue
 		var granularity string
+		region := regionValue
 
-		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, instanceId, metric).Granularity(granularity).Execute()
+		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, instanceId, metric, region).Granularity(granularity).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -735,11 +774,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListRestoreJobs", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restores"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/restores"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -778,8 +819,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListRestoreJobs(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListRestoreJobs(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -790,11 +832,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListStorages", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/storages/{flavor}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/storages/{flavor}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		flavorValue := "flavor-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"flavor"+"}", url.PathEscape(ParameterValueToString(flavorValue, "flavor")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -833,8 +877,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		flavor := flavorValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavor).Execute()
+		resp, reqErr := apiClient.ListStorages(context.Background(), projectId, flavor, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -845,11 +890,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListSuggestedIndexes", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/advisor/suggested-indexes"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/advisor/suggested-indexes"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -888,8 +935,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListSuggestedIndexes(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListSuggestedIndexes(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -900,11 +948,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListUsers", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -943,8 +993,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId).Execute()
+		resp, reqErr := apiClient.ListUsers(context.Background(), projectId, instanceId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -955,9 +1006,11 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListVersions", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/versions"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/versions"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -995,8 +1048,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListVersions(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListVersions(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1007,11 +1061,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1050,9 +1106,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 		partialUpdateInstancePayload := PartialUpdateInstancePayload{}
 
-		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
+		resp, reqErr := apiClient.PartialUpdateInstance(context.Background(), projectId, instanceId, region).PartialUpdateInstancePayload(partialUpdateInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1063,13 +1120,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateUser", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1106,9 +1165,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 		instanceId := instanceIdValue
 		userId := userIdValue
+		region := regionValue
 		partialUpdateUserPayload := PartialUpdateUserPayload{}
 
-		reqErr := apiClient.PartialUpdateUser(context.Background(), projectId, instanceId, userId).PartialUpdateUserPayload(partialUpdateUserPayload).Execute()
+		reqErr := apiClient.PartialUpdateUser(context.Background(), projectId, instanceId, userId, region).PartialUpdateUserPayload(partialUpdateUserPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1116,13 +1176,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResetUser", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}/reset"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}/reset"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1162,8 +1224,9 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 		instanceId := instanceIdValue
 		userId := userIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId).Execute()
+		resp, reqErr := apiClient.ResetUser(context.Background(), projectId, instanceId, userId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1174,11 +1237,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RestoreInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/restores"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/restores"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1217,9 +1282,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 		restoreInstancePayload := RestoreInstancePayload{}
 
-		resp, reqErr := apiClient.RestoreInstance(context.Background(), projectId, instanceId).RestoreInstancePayload(restoreInstancePayload).Execute()
+		resp, reqErr := apiClient.RestoreInstance(context.Background(), projectId, instanceId, region).RestoreInstancePayload(restoreInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1230,11 +1296,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateBackupSchedule", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/backups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/backups"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1273,9 +1341,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 		updateBackupSchedulePayload := UpdateBackupSchedulePayload{}
 
-		resp, reqErr := apiClient.UpdateBackupSchedule(context.Background(), projectId, instanceId).UpdateBackupSchedulePayload(updateBackupSchedulePayload).Execute()
+		resp, reqErr := apiClient.UpdateBackupSchedule(context.Background(), projectId, instanceId, region).UpdateBackupSchedulePayload(updateBackupSchedulePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1286,11 +1355,13 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1329,9 +1400,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 		updateInstancePayload := UpdateInstancePayload{}
 
-		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId).UpdateInstancePayload(updateInstancePayload).Execute()
+		resp, reqErr := apiClient.UpdateInstance(context.Background(), projectId, instanceId, region).UpdateInstancePayload(updateInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1342,13 +1414,15 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateUser", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/users/{userId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
 		userIdValue := "userId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"userId"+"}", url.PathEscape(ParameterValueToString(userIdValue, "userId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1385,9 +1459,10 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 		instanceId := instanceIdValue
 		userId := userIdValue
+		region := regionValue
 		updateUserPayload := UpdateUserPayload{}
 
-		reqErr := apiClient.UpdateUser(context.Background(), projectId, instanceId, userId).UpdateUserPayload(updateUserPayload).Execute()
+		reqErr := apiClient.UpdateUser(context.Background(), projectId, instanceId, userId, region).UpdateUserPayload(updateUserPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
