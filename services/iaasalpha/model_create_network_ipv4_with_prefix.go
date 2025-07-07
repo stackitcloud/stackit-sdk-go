@@ -21,21 +21,26 @@ var _ MappedNullable = &CreateNetworkIPv4WithPrefix{}
 	types and functions for gateway
 */
 
-// isModel
-type CreateNetworkIPv4WithPrefixGetGatewayAttributeType = *NullableNetworkGatewayIPv4
-type CreateNetworkIPv4WithPrefixGetGatewayArgType = *NullableNetworkGatewayIPv4
-type CreateNetworkIPv4WithPrefixGetGatewayRetType = *NullableNetworkGatewayIPv4
+// isNullableString
+type CreateNetworkIPv4WithPrefixGetGatewayAttributeType = *NullableString
 
 func getCreateNetworkIPv4WithPrefixGetGatewayAttributeTypeOk(arg CreateNetworkIPv4WithPrefixGetGatewayAttributeType) (ret CreateNetworkIPv4WithPrefixGetGatewayRetType, ok bool) {
 	if arg == nil {
 		return nil, false
 	}
-	return arg, true
+	return arg.Get(), true
 }
 
 func setCreateNetworkIPv4WithPrefixGetGatewayAttributeType(arg *CreateNetworkIPv4WithPrefixGetGatewayAttributeType, val CreateNetworkIPv4WithPrefixGetGatewayRetType) {
-	*arg = val
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
 }
+
+type CreateNetworkIPv4WithPrefixGetGatewayArgType = *string
+type CreateNetworkIPv4WithPrefixGetGatewayRetType = *string
 
 /*
 	types and functions for nameservers
@@ -80,6 +85,7 @@ type CreateNetworkIPv4WithPrefixGetPrefixRetType = string
 
 // CreateNetworkIPv4WithPrefix The create request for an IPv4 network with a specified prefix.
 type CreateNetworkIPv4WithPrefix struct {
+	// The IPv4 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway CreateNetworkIPv4WithPrefixGetGatewayAttributeType `json:"gateway,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers CreateNetworkIPv4WithPrefixGetNameserversAttributeType `json:"nameservers,omitempty"`
@@ -127,7 +133,7 @@ func (o *CreateNetworkIPv4WithPrefix) HasGateway() bool {
 	return ok
 }
 
-// SetGateway gets a reference to the given NetworkGatewayIPv4 and assigns it to the Gateway field.
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
 func (o *CreateNetworkIPv4WithPrefix) SetGateway(v CreateNetworkIPv4WithPrefixGetGatewayRetType) {
 	setCreateNetworkIPv4WithPrefixGetGatewayAttributeType(&o.Gateway, v)
 }

@@ -21,21 +21,26 @@ var _ MappedNullable = &NetworkIPv4{}
 	types and functions for gateway
 */
 
-// isModel
-type NetworkIPv4GetGatewayAttributeType = *NullableNetworkGatewayIPv4
-type NetworkIPv4GetGatewayArgType = *NullableNetworkGatewayIPv4
-type NetworkIPv4GetGatewayRetType = *NullableNetworkGatewayIPv4
+// isNullableString
+type NetworkIPv4GetGatewayAttributeType = *NullableString
 
 func getNetworkIPv4GetGatewayAttributeTypeOk(arg NetworkIPv4GetGatewayAttributeType) (ret NetworkIPv4GetGatewayRetType, ok bool) {
 	if arg == nil {
 		return nil, false
 	}
-	return arg, true
+	return arg.Get(), true
 }
 
 func setNetworkIPv4GetGatewayAttributeType(arg *NetworkIPv4GetGatewayAttributeType, val NetworkIPv4GetGatewayRetType) {
-	*arg = val
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
 }
+
+type NetworkIPv4GetGatewayArgType = *string
+type NetworkIPv4GetGatewayRetType = *string
 
 /*
 	types and functions for nameservers
@@ -100,6 +105,7 @@ type NetworkIPv4GetPublicIpRetType = string
 
 // NetworkIPv4 Object that represents the IPv4 part of a network.
 type NetworkIPv4 struct {
+	// The IPv4 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway NetworkIPv4GetGatewayAttributeType `json:"gateway,omitempty"`
 	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers NetworkIPv4GetNameserversAttributeType `json:"nameservers,omitempty"`
@@ -148,7 +154,7 @@ func (o *NetworkIPv4) HasGateway() bool {
 	return ok
 }
 
-// SetGateway gets a reference to the given NetworkGatewayIPv4 and assigns it to the Gateway field.
+// SetGateway gets a reference to the given string and assigns it to the Gateway field.
 func (o *NetworkIPv4) SetGateway(v NetworkIPv4GetGatewayRetType) {
 	setNetworkIPv4GetGatewayAttributeType(&o.Gateway, v)
 }
