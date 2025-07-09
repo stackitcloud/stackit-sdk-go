@@ -23,7 +23,9 @@ type apiClientInstanceMocked struct {
 	listRestoreJobsFails bool
 }
 
-func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ string) (*mongodbflex.GetInstanceResponse, error) {
+const testRegion = "eu01"
+
+func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ string) (*mongodbflex.GetInstanceResponse, error) {
 	if a.instanceGetFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -44,7 +46,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _ str
 	}, nil
 }
 
-func (a *apiClientInstanceMocked) ListRestoreJobsExecute(_ context.Context, _, _ string) (*mongodbflex.ListRestoreJobsResponse, error) {
+func (a *apiClientInstanceMocked) ListRestoreJobsExecute(_ context.Context, _, _, _ string) (*mongodbflex.ListRestoreJobsResponse, error) {
 	if a.listRestoreJobsFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -125,7 +127,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -202,7 +204,7 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -252,7 +254,7 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 				instanceState:     tt.instanceState,
 			}
 
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -328,7 +330,7 @@ func TestRestoreInstanceWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := RestoreInstanceWaitHandler(context.Background(), apiClient, "", "", backupId)
+			handler := RestoreInstanceWaitHandler(context.Background(), apiClient, "", "", backupId, testRegion)
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
