@@ -164,10 +164,10 @@ type DefaultApi interface {
 		@param projectId project id
 		@param instanceId instance id
 		@param region The region which should be addressed
-		@return GetInstanceResponse
+		@return InstanceResponse
 
 	*/
-	GetInstanceExecute(ctx context.Context, projectId string, instanceId string, region string) (*GetInstanceResponse, error)
+	GetInstanceExecute(ctx context.Context, projectId string, instanceId string, region string) (*InstanceResponse, error)
 	/*
 		GetUser Get User
 		get detailed information of a user of a mongodb instance
@@ -587,7 +587,7 @@ type ApiGetBackupRequest interface {
 }
 
 type ApiGetInstanceRequest interface {
-	Execute() (*GetInstanceResponse, error)
+	Execute() (*InstanceResponse, error)
 }
 
 type ApiGetUserRequest interface {
@@ -1751,12 +1751,12 @@ type GetInstanceRequest struct {
 	region     string
 }
 
-func (r GetInstanceRequest) Execute() (*GetInstanceResponse, error) {
+func (r GetInstanceRequest) Execute() (*InstanceResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetInstanceResponse
+		localVarReturnValue *InstanceResponse
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -1895,7 +1895,7 @@ func (a *APIClient) GetInstance(ctx context.Context, projectId string, instanceI
 	}
 }
 
-func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, instanceId string, region string) (*GetInstanceResponse, error) {
+func (a *APIClient) GetInstanceExecute(ctx context.Context, projectId string, instanceId string, region string) (*InstanceResponse, error) {
 	r := GetInstanceRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
