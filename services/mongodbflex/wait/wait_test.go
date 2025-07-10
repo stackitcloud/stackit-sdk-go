@@ -25,7 +25,7 @@ type apiClientInstanceMocked struct {
 
 const testRegion = "eu01"
 
-func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ string) (*mongodbflex.GetInstanceResponse, error) {
+func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ string) (*mongodbflex.InstanceResponse, error) {
 	if a.instanceGetFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -38,7 +38,7 @@ func (a *apiClientInstanceMocked) GetInstanceExecute(_ context.Context, _, _, _ 
 		}
 	}
 
-	return &mongodbflex.GetInstanceResponse{
+	return &mongodbflex.InstanceResponse{
 		Item: &mongodbflex.Instance{
 			Id:     &a.instanceId,
 			Status: &a.instanceState,
@@ -117,9 +117,9 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 				instanceGetFails: tt.instanceGetFails,
 			}
 
-			var wantRes *mongodbflex.GetInstanceResponse
+			var wantRes *mongodbflex.InstanceResponse
 			if tt.wantResp {
-				wantRes = &mongodbflex.GetInstanceResponse{
+				wantRes = &mongodbflex.InstanceResponse{
 					Item: &mongodbflex.Instance{
 						Id:     &instanceId,
 						Status: utils.Ptr(tt.instanceState),
@@ -194,9 +194,9 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 				instanceGetFails: tt.instanceGetFails,
 			}
 
-			var wantRes *mongodbflex.GetInstanceResponse
+			var wantRes *mongodbflex.InstanceResponse
 			if tt.wantResp {
-				wantRes = &mongodbflex.GetInstanceResponse{
+				wantRes = &mongodbflex.InstanceResponse{
 					Item: &mongodbflex.Instance{
 						Id:     &instanceId,
 						Status: utils.Ptr(tt.instanceState),
