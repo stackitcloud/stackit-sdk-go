@@ -593,6 +593,26 @@ type DefaultApi interface {
 	*/
 	GetLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupResponse, error)
 	/*
+		GetLogsConfigs Method for GetLogsConfigs
+		Get logs configuration.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiGetLogsConfigsRequest
+	*/
+	GetLogsConfigs(ctx context.Context, instanceId string, projectId string) ApiGetLogsConfigsRequest
+	/*
+		GetLogsConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return LogsConfigResponse
+
+	*/
+	GetLogsConfigsExecute(ctx context.Context, instanceId string, projectId string) (*LogsConfigResponse, error)
+	/*
 		GetMetricsStorageRetention Method for GetMetricsStorageRetention
 		Get metric storage retention time.
 
@@ -634,6 +654,26 @@ type DefaultApi interface {
 
 	*/
 	GetScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*GetScrapeConfigResponse, error)
+	/*
+		GetTracesConfigs Method for GetTracesConfigs
+		Get traces config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiGetTracesConfigsRequest
+	*/
+	GetTracesConfigs(ctx context.Context, instanceId string, projectId string) ApiGetTracesConfigsRequest
+	/*
+		GetTracesConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return TracesConfigResponse
+
+	*/
+	GetTracesConfigsExecute(ctx context.Context, instanceId string, projectId string) (*TracesConfigResponse, error)
 	/*
 		ListACL Method for ListACL
 		Get acl for instance.
@@ -1085,6 +1125,26 @@ type DefaultApi interface {
 	*/
 	UpdateLogsAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupsResponse, error)
 	/*
+		UpdateLogsConfigs Method for UpdateLogsConfigs
+		Update logs config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateLogsConfigsRequest
+	*/
+	UpdateLogsConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateLogsConfigsRequest
+	/*
+		UpdateLogsConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return Message
+
+	*/
+	UpdateLogsConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error)
+	/*
 		UpdateMetricsStorageRetention Method for UpdateMetricsStorageRetention
 		Update metric update retention time.
 
@@ -1126,6 +1186,26 @@ type DefaultApi interface {
 
 	*/
 	UpdateScrapeConfigExecute(ctx context.Context, instanceId string, jobName string, projectId string) (*ScrapeConfigsResponse, error)
+	/*
+		UpdateTracesConfigs Method for UpdateTracesConfigs
+		Update traces config.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return ApiUpdateTracesConfigsRequest
+	*/
+	UpdateTracesConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateTracesConfigsRequest
+	/*
+		UpdateTracesConfigsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param instanceId
+		@param projectId
+		@return Message
+
+	*/
+	UpdateTracesConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error)
 }
 
 type ApiCreateAlertConfigReceiverRequest interface {
@@ -1247,12 +1327,20 @@ type ApiGetLogsAlertgroupRequest interface {
 	Execute() (*AlertGroupResponse, error)
 }
 
+type ApiGetLogsConfigsRequest interface {
+	Execute() (*LogsConfigResponse, error)
+}
+
 type ApiGetMetricsStorageRetentionRequest interface {
 	Execute() (*GetMetricsStorageRetentionResponse, error)
 }
 
 type ApiGetScrapeConfigRequest interface {
 	Execute() (*GetScrapeConfigResponse, error)
+}
+
+type ApiGetTracesConfigsRequest interface {
+	Execute() (*TracesConfigResponse, error)
 }
 
 type ApiListACLRequest interface {
@@ -1355,6 +1443,11 @@ type ApiUpdateLogsAlertgroupRequest interface {
 	Execute() (*AlertGroupsResponse, error)
 }
 
+type ApiUpdateLogsConfigsRequest interface {
+	UpdateLogsConfigsPayload(updateLogsConfigsPayload UpdateLogsConfigsPayload) ApiUpdateLogsConfigsRequest
+	Execute() (*Message, error)
+}
+
 type ApiUpdateMetricsStorageRetentionRequest interface {
 	UpdateMetricsStorageRetentionPayload(updateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload) ApiUpdateMetricsStorageRetentionRequest
 	Execute() (*Message, error)
@@ -1363,6 +1456,11 @@ type ApiUpdateMetricsStorageRetentionRequest interface {
 type ApiUpdateScrapeConfigRequest interface {
 	UpdateScrapeConfigPayload(updateScrapeConfigPayload UpdateScrapeConfigPayload) ApiUpdateScrapeConfigRequest
 	Execute() (*ScrapeConfigsResponse, error)
+}
+
+type ApiUpdateTracesConfigsRequest interface {
+	UpdateTracesConfigsPayload(updateTracesConfigsPayload UpdateTracesConfigsPayload) ApiUpdateTracesConfigsRequest
+	Execute() (*Message, error)
 }
 
 // DefaultApiService DefaultApi service
@@ -5508,6 +5606,142 @@ func (a *APIClient) GetLogsAlertgroupExecute(ctx context.Context, groupName stri
 	return r.Execute()
 }
 
+type GetLogsConfigsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+}
+
+func (r GetLogsConfigsRequest) Execute() (*LogsConfigResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *LogsConfigResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogsConfigs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/logs-configs"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetLogsConfigs: Method for GetLogsConfigs
+
+Get logs configuration.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiGetLogsConfigsRequest
+*/
+func (a *APIClient) GetLogsConfigs(ctx context.Context, instanceId string, projectId string) ApiGetLogsConfigsRequest {
+	return GetLogsConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) GetLogsConfigsExecute(ctx context.Context, instanceId string, projectId string) (*LogsConfigResponse, error) {
+	r := GetLogsConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
 type GetMetricsStorageRetentionRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -5780,6 +6014,142 @@ func (a *APIClient) GetScrapeConfigExecute(ctx context.Context, instanceId strin
 		ctx:        ctx,
 		instanceId: instanceId,
 		jobName:    jobName,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type GetTracesConfigsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	instanceId string
+	projectId  string
+}
+
+func (r GetTracesConfigsRequest) Execute() (*TracesConfigResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TracesConfigResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetTracesConfigs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/traces-configs"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetTracesConfigs: Method for GetTracesConfigs
+
+Get traces config.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiGetTracesConfigsRequest
+*/
+func (a *APIClient) GetTracesConfigs(ctx context.Context, instanceId string, projectId string) ApiGetTracesConfigsRequest {
+	return GetTracesConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) GetTracesConfigsExecute(ctx context.Context, instanceId string, projectId string) (*TracesConfigResponse, error) {
+	r := GetTracesConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
 		projectId:  projectId,
 	}
 	return r.Execute()
@@ -9151,6 +9521,164 @@ func (a *APIClient) UpdateLogsAlertgroupExecute(ctx context.Context, groupName s
 	return r.Execute()
 }
 
+type UpdateLogsConfigsRequest struct {
+	ctx                      context.Context
+	apiService               *DefaultApiService
+	instanceId               string
+	projectId                string
+	updateLogsConfigsPayload *UpdateLogsConfigsPayload
+}
+
+func (r UpdateLogsConfigsRequest) UpdateLogsConfigsPayload(updateLogsConfigsPayload UpdateLogsConfigsPayload) ApiUpdateLogsConfigsRequest {
+	r.updateLogsConfigsPayload = &updateLogsConfigsPayload
+	return r
+}
+
+func (r UpdateLogsConfigsRequest) Execute() (*Message, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Message
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateLogsConfigs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/logs-configs"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateLogsConfigsPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateLogsConfigsPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateLogsConfigsPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateLogsConfigs: Method for UpdateLogsConfigs
+
+Update logs config.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiUpdateLogsConfigsRequest
+*/
+func (a *APIClient) UpdateLogsConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateLogsConfigsRequest {
+	return UpdateLogsConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) UpdateLogsConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
+	r := UpdateLogsConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
 type UpdateMetricsStorageRetentionRequest struct {
 	ctx                                  context.Context
 	apiService                           *DefaultApiService
@@ -9478,6 +10006,164 @@ func (a *APIClient) UpdateScrapeConfigExecute(ctx context.Context, instanceId st
 		ctx:        ctx,
 		instanceId: instanceId,
 		jobName:    jobName,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type UpdateTracesConfigsRequest struct {
+	ctx                        context.Context
+	apiService                 *DefaultApiService
+	instanceId                 string
+	projectId                  string
+	updateTracesConfigsPayload *UpdateTracesConfigsPayload
+}
+
+func (r UpdateTracesConfigsRequest) UpdateTracesConfigsPayload(updateTracesConfigsPayload UpdateTracesConfigsPayload) ApiUpdateTracesConfigsRequest {
+	r.updateTracesConfigsPayload = &updateTracesConfigsPayload
+	return r
+}
+
+func (r UpdateTracesConfigsRequest) Execute() (*Message, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Message
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateTracesConfigs")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/traces-configs"
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateTracesConfigsPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateTracesConfigsPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateTracesConfigsPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateTracesConfigs: Method for UpdateTracesConfigs
+
+Update traces config.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param instanceId
+	@param projectId
+	@return ApiUpdateTracesConfigsRequest
+*/
+func (a *APIClient) UpdateTracesConfigs(ctx context.Context, instanceId string, projectId string) ApiUpdateTracesConfigsRequest {
+	return UpdateTracesConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) UpdateTracesConfigsExecute(ctx context.Context, instanceId string, projectId string) (*Message, error) {
+	r := UpdateTracesConfigsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		instanceId: instanceId,
 		projectId:  projectId,
 	}
 	return r.Execute()
