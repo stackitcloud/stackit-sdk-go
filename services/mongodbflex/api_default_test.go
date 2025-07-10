@@ -376,7 +376,7 @@ func Test_mongodbflex_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := GetInstanceResponse{}
+			data := InstanceResponse{}
 			w.Header().Add("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(data)
 		})

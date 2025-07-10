@@ -31,13 +31,13 @@ const (
 
 // Interface needed for tests
 type APIClientInstanceInterface interface {
-	GetInstanceExecute(ctx context.Context, projectId, instanceId, region string) (*mongodbflex.GetInstanceResponse, error)
+	GetInstanceExecute(ctx context.Context, projectId, instanceId, region string) (*mongodbflex.InstanceResponse, error)
 	ListRestoreJobsExecute(ctx context.Context, projectId, instanceId, region string) (*mongodbflex.ListRestoreJobsResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *mongodbflex.GetInstanceResponse, err error) {
+func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
+	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId, region)
 		if err != nil {
 			return false, nil, err
@@ -66,7 +66,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // CloneInstanceWaitHandler will wait for instance clone to be created
-func CloneInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
+func CloneInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	return CreateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
 }
 
@@ -115,8 +115,8 @@ func RestoreInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterfac
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
-func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *mongodbflex.GetInstanceResponse, err error) {
+func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
+	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId, region)
 		if err != nil {
 			return false, nil, err
@@ -144,7 +144,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.GetInstanceResponse] {
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
 	return UpdateInstanceWaitHandler(ctx, a, projectId, instanceId, region)
 }
 

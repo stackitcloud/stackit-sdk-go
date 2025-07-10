@@ -1,6 +1,11 @@
 ## Release (2025-XX-XX)
+- `ske`: [v1.1.0](services/ske/CHANGELOG.md#v110)
+  - **Breaking Change:** `ClusterError.Code` field is now a string type instead of an enum. The field no longer validates against predefined enum values and accepts any string value.
+- `mongodbflex`: [v1.5.0](services/mongodbflex/CHANGELOG.md#v150)
+  - **Breaking Change:** Renamed `GetInstanceResponse` to `InstanceResponse`. This affects the return type of the `GetInstance` method.
 - `mongodbflex`: [v1.4.0](services/mongodbflex/CHANGELOG.md#v140)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+
 
 ## Release (2025-07-07)
 

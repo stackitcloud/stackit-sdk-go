@@ -1,3 +1,6 @@
+## v1.5.0
+- **Breaking Change:** Renamed `GetInstanceResponse` to `InstanceResponse`. This affects the return type of the `GetInstance` method.
+
 ## v1.4.0
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 

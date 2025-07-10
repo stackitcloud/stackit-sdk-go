@@ -1,3 +1,6 @@
+## v1.1.0
+- **Breaking Change:** `ClusterError.Code` field is now a string type instead of an enum. The field no longer validates against predefined enum values and accepts any string value.
+
 ## v1.0.0
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
