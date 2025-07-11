@@ -1,3 +1,6 @@
+## v1.5.0
+- **Feature:** Add new `LoadBalancerSecurityGroup` field to `CreateLoadBalancerPayload`, `LoadBalancer`, and `UpdateLoadBalancerPayload` models
+
 ## v1.4.0 (2025-06-12)
 - **Feature:** Add new field `DisableTargetSecurityGroupAssignment` in `LoadBalancer` Model
 
