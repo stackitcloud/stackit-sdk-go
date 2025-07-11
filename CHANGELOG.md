@@ -1,4 +1,6 @@
 ## Release (2025-XX-XX)
+- `alb`: [v0.6.0](services/alb/CHANGELOG.md#v060)
+  - **Feature:** Add new `LoadBalancerSecurityGroup` field to `CreateLoadBalancerPayload`, `LoadBalancer`, and `UpdateLoadBalancerPayload` models
 - `ske`: [v1.1.0](services/ske/CHANGELOG.md#v110)
   - **Breaking Change:** `ClusterError.Code` field is now a string type instead of an enum. The field no longer validates against predefined enum values and accepts any string value.
 - `mongodbflex`: [v1.5.0](services/mongodbflex/CHANGELOG.md#v150)
