@@ -9,6 +9,10 @@
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 - `loadbalancer`: [v1.5.0](services/loadbalancer/CHANGELOG.md#v150)
   - **Feature:** Add new `LoadBalancerSecurityGroup` field to `CreateLoadBalancerPayload`, `LoadBalancer`, and `UpdateLoadBalancerPayload` models
+- `observability`: [v0.9.0](services/observability/CHANGELOG.md#v090)
+  - **Feature:** Add new API methods for logs configuration management: `GetLogsConfigs` and `UpdateLogsConfigs`
+  - **Feature:** Add new API methods for traces configuration management: `GetTracesConfigs` and `UpdateTracesConfigs`
+  - **Feature:** Add new models for configuration management: `LogsConfig`, `LogsConfigResponse`, `TraceConfig`, `TracesConfigResponse`, `UpdateLogsConfigsPayload`, and `UpdateTracesConfigsPayload`
 
 
 ## Release (2025-07-07)
