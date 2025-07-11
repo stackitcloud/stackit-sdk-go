@@ -7,6 +7,8 @@
   - **Breaking Change:** Renamed `GetInstanceResponse` to `InstanceResponse`. This affects the return type of the `GetInstance` method.
 - `mongodbflex`: [v1.4.0](services/mongodbflex/CHANGELOG.md#v140)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- `loadbalancer`: [v1.5.0](services/loadbalancer/CHANGELOG.md#v150)
+  - **Feature:** Add new `LoadBalancerSecurityGroup` field to `CreateLoadBalancerPayload`, `LoadBalancer`, and `UpdateLoadBalancerPayload` models
 
 
 ## Release (2025-07-07)
