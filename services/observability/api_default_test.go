@@ -1559,6 +1559,61 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService GetLogsConfigs", func(t *testing.T) {
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/logs-configs"
+		instanceIdValue := "instanceId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := LogsConfigResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for observability_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+
+		resp, reqErr := apiClient.GetLogsConfigs(context.Background(), instanceId, projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService GetMetricsStorageRetention", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
 		instanceIdValue := "instanceId-value"
@@ -1663,6 +1718,61 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 
 		resp, reqErr := apiClient.GetScrapeConfig(context.Background(), instanceId, jobName, projectId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetTracesConfigs", func(t *testing.T) {
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/traces-configs"
+		instanceIdValue := "instanceId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := TracesConfigResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for observability_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+
+		resp, reqErr := apiClient.GetTracesConfigs(context.Background(), instanceId, projectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2908,6 +3018,62 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService UpdateLogsConfigs", func(t *testing.T) {
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/logs-configs"
+		instanceIdValue := "instanceId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := Message{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for observability_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		updateLogsConfigsPayload := UpdateLogsConfigsPayload{}
+
+		resp, reqErr := apiClient.UpdateLogsConfigs(context.Background(), instanceId, projectId).UpdateLogsConfigsPayload(updateLogsConfigsPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService UpdateMetricsStorageRetention", func(t *testing.T) {
 		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/metrics-storage-retentions"
 		instanceIdValue := "instanceId-value"
@@ -3014,6 +3180,62 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		updateScrapeConfigPayload := UpdateScrapeConfigPayload{}
 
 		resp, reqErr := apiClient.UpdateScrapeConfig(context.Background(), instanceId, jobName, projectId).UpdateScrapeConfigPayload(updateScrapeConfigPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateTracesConfigs", func(t *testing.T) {
+		_apiUrlPath := "/v1/projects/{projectId}/instances/{instanceId}/traces-configs"
+		instanceIdValue := "instanceId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		projectIdValue := "projectId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := Message{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for observability_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		instanceId := instanceIdValue
+		projectId := projectIdValue
+		updateTracesConfigsPayload := UpdateTracesConfigsPayload{}
+
+		resp, reqErr := apiClient.UpdateTracesConfigs(context.Background(), instanceId, projectId).UpdateTracesConfigsPayload(updateTracesConfigsPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
