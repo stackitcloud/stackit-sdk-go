@@ -59,7 +59,7 @@ func setCreateLoadBalancerPayloadTargetSecurityGroupGetNameAttributeType(arg *Cr
 type CreateLoadBalancerPayloadTargetSecurityGroupGetNameArgType = string
 type CreateLoadBalancerPayloadTargetSecurityGroupGetNameRetType = string
 
-// CreateLoadBalancerPayloadTargetSecurityGroup Security Group permitting network traffic from the LoadBalancer to the targets. Useful when disableTargetSecurityGroupAssignment=true to manually assign target security groups to targets.
+// CreateLoadBalancerPayloadTargetSecurityGroup Security Group that allows the targets to receive traffic from the LoadBalancer. Useful when disableTargetSecurityGroupAssignment=true to manually assign target security groups to targets.
 type CreateLoadBalancerPayloadTargetSecurityGroup struct {
 	// ID of the security Group
 	Id CreateLoadBalancerPayloadTargetSecurityGroupGetIdAttributeType `json:"id,omitempty"`

@@ -100,6 +100,26 @@ func setUpdateLoadBalancerPayloadGetListenersAttributeType(arg *UpdateLoadBalanc
 }
 
 /*
+	types and functions for loadBalancerSecurityGroup
+*/
+
+// isModel
+type UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType = *CreateLoadBalancerPayloadLoadBalancerSecurityGroup
+type UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupArgType = CreateLoadBalancerPayloadLoadBalancerSecurityGroup
+type UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupRetType = CreateLoadBalancerPayloadLoadBalancerSecurityGroup
+
+func getUpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeTypeOk(arg UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType) (ret UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType(arg *UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType, val UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -423,7 +443,8 @@ type UpdateLoadBalancerPayload struct {
 	// External load balancer IP address where this load balancer is exposed. Not changeable after creation.
 	ExternalAddress UpdateLoadBalancerPayloadGetExternalAddressAttributeType `json:"externalAddress,omitempty"`
 	// There is a maximum listener count of 20.  Port and protocol limitations:  - UDP listeners cannot have the same port. - TCP-derived listeners cannot have the same port. A TCP-derived listener is any listener that listens on a TCP port. As of now those are: TCP, TCP_PROXY, and PROTOCOL_TLS_PASSTHROUGH. The only exception is, if all listeners for the same port are PROTOCOL_TLS_PASSTHROUGH. - PROTOCOL_TLS_PASSTHROUGH listeners cannot have the same port and at least one common domain name. - PROTOCOL_TLS_PASSTHROUGH listeners can have the same domain name and different ports though (e.g. ports 443 and 8443 for domain example.com). - PROTOCOL_TLS_PASSTHROUGH listeners without a domain name serve as a default listener and you can have only one default listener.
-	Listeners UpdateLoadBalancerPayloadGetListenersAttributeType `json:"listeners,omitempty"`
+	Listeners                 UpdateLoadBalancerPayloadGetListenersAttributeType                 `json:"listeners,omitempty"`
+	LoadBalancerSecurityGroup UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType `json:"loadBalancerSecurityGroup,omitempty"`
 	// Load balancer name. Not changeable after creation.
 	Name UpdateLoadBalancerPayloadGetNameAttributeType `json:"name,omitempty"`
 	// List of networks that listeners and targets reside in. Currently limited to one. Not changeable after creation.
@@ -550,6 +571,29 @@ func (o *UpdateLoadBalancerPayload) HasListeners() bool {
 // SetListeners gets a reference to the given []Listener and assigns it to the Listeners field.
 func (o *UpdateLoadBalancerPayload) SetListeners(v UpdateLoadBalancerPayloadGetListenersRetType) {
 	setUpdateLoadBalancerPayloadGetListenersAttributeType(&o.Listeners, v)
+}
+
+// GetLoadBalancerSecurityGroup returns the LoadBalancerSecurityGroup field value if set, zero value otherwise.
+func (o *UpdateLoadBalancerPayload) GetLoadBalancerSecurityGroup() (res UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupRetType) {
+	res, _ = o.GetLoadBalancerSecurityGroupOk()
+	return
+}
+
+// GetLoadBalancerSecurityGroupOk returns a tuple with the LoadBalancerSecurityGroup field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoadBalancerPayload) GetLoadBalancerSecurityGroupOk() (ret UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeTypeOk(o.LoadBalancerSecurityGroup)
+}
+
+// HasLoadBalancerSecurityGroup returns a boolean if a field has been set.
+func (o *UpdateLoadBalancerPayload) HasLoadBalancerSecurityGroup() bool {
+	_, ok := o.GetLoadBalancerSecurityGroupOk()
+	return ok
+}
+
+// SetLoadBalancerSecurityGroup gets a reference to the given CreateLoadBalancerPayloadLoadBalancerSecurityGroup and assigns it to the LoadBalancerSecurityGroup field.
+func (o *UpdateLoadBalancerPayload) SetLoadBalancerSecurityGroup(v UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupRetType) {
+	setUpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType(&o.LoadBalancerSecurityGroup, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -795,6 +839,9 @@ func (o UpdateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getUpdateLoadBalancerPayloadGetListenersAttributeTypeOk(o.Listeners); ok {
 		toSerialize["Listeners"] = val
+	}
+	if val, ok := getUpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeTypeOk(o.LoadBalancerSecurityGroup); ok {
+		toSerialize["LoadBalancerSecurityGroup"] = val
 	}
 	if val, ok := getUpdateLoadBalancerPayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
