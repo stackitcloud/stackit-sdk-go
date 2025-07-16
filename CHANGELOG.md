@@ -13,7 +13,8 @@
   - **Feature:** Add new API methods for logs configuration management: `GetLogsConfigs` and `UpdateLogsConfigs`
   - **Feature:** Add new API methods for traces configuration management: `GetTracesConfigs` and `UpdateTracesConfigs`
   - **Feature:** Add new models for configuration management: `LogsConfig`, `LogsConfigResponse`, `TraceConfig`, `TracesConfigResponse`, `UpdateLogsConfigsPayload`, and `UpdateTracesConfigsPayload`
-
+- `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
+  - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
 
 ## Release (2025-07-07)
 
@@ -82,7 +83,7 @@
   - Add `required:"true"` tags to model structs
 - `objectstorage`: [v1.3.0](services/objectstorage/CHANGELOG.md#v130)
   - Add `required:"true"` tags to model structs
-- `mondodbflex`: [v1.3.0](services/mondodbflex/CHANGELOG.md#v130)
+- `mongodbflex`: [v1.3.0](services/mongodbflex/CHANGELOG.md#v130)
   - Add `required:"true"` tags to model structs
 - `modelserving`: [v0.5.0](services/modelserving/CHANGELOG.md#v050)
   - Add `required:"true"` tags to model structs
