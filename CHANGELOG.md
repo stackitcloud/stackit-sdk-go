@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-07-21)
 - `alb`: [v0.6.0](services/alb/CHANGELOG.md#v060)
   - **Feature:** Add new `LoadBalancerSecurityGroup` field to `CreateLoadBalancerPayload`, `LoadBalancer`, and `UpdateLoadBalancerPayload` models
 - `ske`: [v1.1.0](services/ske/CHANGELOG.md#v110)
