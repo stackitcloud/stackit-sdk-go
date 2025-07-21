@@ -282,6 +282,28 @@ type DefaultApi interface {
 
 	*/
 	TriggerReconcileExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error)
+	/*
+		TriggerWakeup Trigger cluster wakeup
+		Trigger immediate wake up of the cluster. If the cluster is already in running state, the method does nothing.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param clusterName
+		@return ApiTriggerWakeupRequest
+	*/
+	TriggerWakeup(ctx context.Context, projectId string, region string, clusterName string) ApiTriggerWakeupRequest
+	/*
+		TriggerWakeupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param clusterName
+		@return map[string]interface{}
+
+	*/
+	TriggerWakeupExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error)
 }
 
 type ApiCompleteCredentialsRotationRequest interface {
@@ -331,6 +353,10 @@ type ApiTriggerMaintenanceRequest interface {
 }
 
 type ApiTriggerReconcileRequest interface {
+	Execute() (map[string]interface{}, error)
+}
+
+type ApiTriggerWakeupRequest interface {
 	Execute() (map[string]interface{}, error)
 }
 
@@ -2344,6 +2370,178 @@ func (a *APIClient) TriggerReconcile(ctx context.Context, projectId string, regi
 
 func (a *APIClient) TriggerReconcileExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error) {
 	r := TriggerReconcileRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		region:      region,
+		clusterName: clusterName,
+	}
+	return r.Execute()
+}
+
+type TriggerWakeupRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	projectId   string
+	region      string
+	clusterName string
+}
+
+func (r TriggerWakeupRequest) Execute() (map[string]interface{}, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.TriggerWakeup")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/regions/{region}/clusters/{clusterName}/wakeup"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"clusterName"+"}", url.PathEscape(ParameterValueToString(r.clusterName, "clusterName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v RuntimeError
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+TriggerWakeup: Trigger cluster wakeup
+
+Trigger immediate wake up of the cluster. If the cluster is already in running state, the method does nothing.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param clusterName
+	@return ApiTriggerWakeupRequest
+*/
+func (a *APIClient) TriggerWakeup(ctx context.Context, projectId string, region string, clusterName string) ApiTriggerWakeupRequest {
+	return TriggerWakeupRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		projectId:   projectId,
+		region:      region,
+		clusterName: clusterName,
+	}
+}
+
+func (a *APIClient) TriggerWakeupExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error) {
+	r := TriggerWakeupRequest{
 		apiService:  a.defaultApi,
 		ctx:         ctx,
 		projectId:   projectId,
