@@ -30,7 +30,6 @@ use (
 	./examples/sqlserverflex
 	./examples/waiter
 	./services/alb
-	./services/archiving
 	./services/authorization
 	./services/cdn
 	./services/certificates
