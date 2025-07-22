@@ -1,3 +1,6 @@
+## v0.7.1
+  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v0.7.0
 - **Feature:** Add `Sku` field to `Flavors` model
 - **Feature:** Add enums `CreateInstancePayloadFlavor` for `Flavor` field in `CreateInstancePayload`
