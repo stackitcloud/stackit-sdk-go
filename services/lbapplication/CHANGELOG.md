@@ -1,3 +1,6 @@
+## v0.5.1
+  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v0.5.0 (2025-05-15)
 - **Breaking change:** Introduce interfaces for `APIClient` and the request structs
 

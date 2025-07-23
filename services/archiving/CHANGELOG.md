@@ -1,3 +1,6 @@
+## v0.2.1
+  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v0.2.0 (2025-02-21)
 - **New:** Minimal go version is now Go 1.21
 

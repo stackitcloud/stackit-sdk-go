@@ -1,3 +1,6 @@
+## v0.17.3 
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v0.17.2 (2025-05-22)
 - **Bugfix:** Access tokens generated via key flow authentication are refreshed 5 seconds before expiration to prevent timing issues with upstream systems which could lead to unexpected 401 error responses
 

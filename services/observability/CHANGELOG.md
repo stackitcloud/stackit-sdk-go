@@ -1,3 +1,6 @@
+## v0.9.1
+  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v0.9.0
 - **Feature:** Add new API methods for logs configuration management: `GetLogsConfigs` and `UpdateLogsConfigs`
 - **Feature:** Add new API methods for traces configuration management: `GetTracesConfigs` and `UpdateTracesConfigs`

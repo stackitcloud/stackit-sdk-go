@@ -1,3 +1,6 @@
+## v0.3.1
+  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v0.3.0
 - **Feature:** New method `DeleteWrappingKey`
 - **Breaking change:** Enum `KEYSTATE_VERSION_NOT_READY` removed. Use instead `KEYSTATE_CREATING`
