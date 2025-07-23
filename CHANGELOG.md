@@ -57,8 +57,11 @@
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `serviceenablement`: [v1.2.2](services/serviceenablement/CHANGELOG.md#v122) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `ske`: [v1.1.1](services/ske/CHANGELOG.md#v111) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `ske`:
+  - [v1.2.0](services/ske/CHANGELOG.md#v120)
+    - **Feature:** Add new method `TriggerWakeup`
+  - [v1.1.1](services/ske/CHANGELOG.md#v111) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `sqlserverflex`: [v1.3.1](services/sqlserverflex/CHANGELOG.md#v131) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `stackitmarketplace`: [v1.6.1](services/stackitmarketplace/CHANGELOG.md#v161) 
