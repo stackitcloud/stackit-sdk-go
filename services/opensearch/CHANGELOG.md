@@ -1,3 +1,6 @@
+## v0.24.1
+  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v0.24.0
 - **Breaking change:** `InstanceParametersTlsProtocols` is now a string array instead of a single string
 - Add `required:"true"` tags to model structs

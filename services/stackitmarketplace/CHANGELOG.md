@@ -1,3 +1,6 @@
+## v1.6.1
+  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+
 ## v1.6.0
 - **Feature:** Add new `Assets` model for managing service certificate assets
 - **Feature:** Add new `LocalizedVersion` model for localized content management
