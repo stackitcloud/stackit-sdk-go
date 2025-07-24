@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &PutCustomDomainResponse{}
 
 /*
+	types and functions for certificate
+*/
+
+// isModel
+type PutCustomDomainResponseGetCertificateAttributeType = *PutCustomDomainResponseCertificate
+type PutCustomDomainResponseGetCertificateArgType = PutCustomDomainResponseCertificate
+type PutCustomDomainResponseGetCertificateRetType = PutCustomDomainResponseCertificate
+
+func getPutCustomDomainResponseGetCertificateAttributeTypeOk(arg PutCustomDomainResponseGetCertificateAttributeType) (ret PutCustomDomainResponseGetCertificateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPutCustomDomainResponseGetCertificateAttributeType(arg *PutCustomDomainResponseGetCertificateAttributeType, val PutCustomDomainResponseGetCertificateRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for customDomain
 */
 
@@ -60,6 +80,7 @@ type PutCustomDomainResponseGetDomainRetType = string
 
 // PutCustomDomainResponse struct for PutCustomDomainResponse
 type PutCustomDomainResponse struct {
+	Certificate PutCustomDomainResponseGetCertificateAttributeType `json:"certificate,omitempty"`
 	// REQUIRED
 	CustomDomain PutCustomDomainResponseGetCustomDomainAttributeType `json:"customDomain" required:"true"`
 	// Deprecated: Check the GitHub changelog for alternatives
@@ -86,6 +107,29 @@ func NewPutCustomDomainResponse(customDomain PutCustomDomainResponseGetCustomDom
 func NewPutCustomDomainResponseWithDefaults() *PutCustomDomainResponse {
 	this := PutCustomDomainResponse{}
 	return &this
+}
+
+// GetCertificate returns the Certificate field value if set, zero value otherwise.
+func (o *PutCustomDomainResponse) GetCertificate() (res PutCustomDomainResponseGetCertificateRetType) {
+	res, _ = o.GetCertificateOk()
+	return
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutCustomDomainResponse) GetCertificateOk() (ret PutCustomDomainResponseGetCertificateRetType, ok bool) {
+	return getPutCustomDomainResponseGetCertificateAttributeTypeOk(o.Certificate)
+}
+
+// HasCertificate returns a boolean if a field has been set.
+func (o *PutCustomDomainResponse) HasCertificate() bool {
+	_, ok := o.GetCertificateOk()
+	return ok
+}
+
+// SetCertificate gets a reference to the given PutCustomDomainResponseCertificate and assigns it to the Certificate field.
+func (o *PutCustomDomainResponse) SetCertificate(v PutCustomDomainResponseGetCertificateRetType) {
+	setPutCustomDomainResponseGetCertificateAttributeType(&o.Certificate, v)
 }
 
 // GetCustomDomain returns the CustomDomain field value
@@ -127,6 +171,9 @@ func (o *PutCustomDomainResponse) SetDomain(v PutCustomDomainResponseGetDomainRe
 
 func (o PutCustomDomainResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getPutCustomDomainResponseGetCertificateAttributeTypeOk(o.Certificate); ok {
+		toSerialize["Certificate"] = val
+	}
 	if val, ok := getPutCustomDomainResponseGetCustomDomainAttributeTypeOk(o.CustomDomain); ok {
 		toSerialize["CustomDomain"] = val
 	}
