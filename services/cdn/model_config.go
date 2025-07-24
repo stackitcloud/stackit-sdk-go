@@ -103,6 +103,26 @@ type ConfigGetDefaultCacheDurationArgType = *string
 type ConfigGetDefaultCacheDurationRetType = *string
 
 /*
+	types and functions for logSink
+*/
+
+// isModel
+type ConfigGetLogSinkAttributeType = *ConfigLogSink
+type ConfigGetLogSinkArgType = ConfigLogSink
+type ConfigGetLogSinkRetType = ConfigLogSink
+
+func getConfigGetLogSinkAttributeTypeOk(arg ConfigGetLogSinkAttributeType) (ret ConfigGetLogSinkRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigGetLogSinkAttributeType(arg *ConfigGetLogSinkAttributeType, val ConfigGetLogSinkRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for monthlyLimitBytes
 */
 
@@ -174,6 +194,7 @@ type Config struct {
 	BlockedIPs ConfigGetBlockedIPsAttributeType `json:"blockedIPs" required:"true"`
 	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration ConfigGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
+	LogSink              ConfigGetLogSinkAttributeType              `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         ConfigGetOptimizerAttributeType         `json:"optimizer,omitempty"`
@@ -289,6 +310,29 @@ func (o *Config) UnsetDefaultCacheDuration() {
 	o.DefaultCacheDuration = nil
 }
 
+// GetLogSink returns the LogSink field value if set, zero value otherwise.
+func (o *Config) GetLogSink() (res ConfigGetLogSinkRetType) {
+	res, _ = o.GetLogSinkOk()
+	return
+}
+
+// GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Config) GetLogSinkOk() (ret ConfigGetLogSinkRetType, ok bool) {
+	return getConfigGetLogSinkAttributeTypeOk(o.LogSink)
+}
+
+// HasLogSink returns a boolean if a field has been set.
+func (o *Config) HasLogSink() bool {
+	_, ok := o.GetLogSinkOk()
+	return ok
+}
+
+// SetLogSink gets a reference to the given ConfigLogSink and assigns it to the LogSink field.
+func (o *Config) SetLogSink(v ConfigGetLogSinkRetType) {
+	setConfigGetLogSinkAttributeType(&o.LogSink, v)
+}
+
 // GetMonthlyLimitBytes returns the MonthlyLimitBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Config) GetMonthlyLimitBytes() (res ConfigGetMonthlyLimitBytesRetType) {
 	res, _ = o.GetMonthlyLimitBytesOk()
@@ -376,6 +420,9 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
 		toSerialize["DefaultCacheDuration"] = val
+	}
+	if val, ok := getConfigGetLogSinkAttributeTypeOk(o.LogSink); ok {
+		toSerialize["LogSink"] = val
 	}
 	if val, ok := getConfigGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
 		toSerialize["MonthlyLimitBytes"] = val

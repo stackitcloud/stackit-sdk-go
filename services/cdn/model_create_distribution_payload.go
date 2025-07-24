@@ -100,6 +100,26 @@ type CreateDistributionPayloadGetIntentIdArgType = string
 type CreateDistributionPayloadGetIntentIdRetType = string
 
 /*
+	types and functions for logSink
+*/
+
+// isModel
+type CreateDistributionPayloadGetLogSinkAttributeType = *CreateDistributionPayloadLogSink
+type CreateDistributionPayloadGetLogSinkArgType = CreateDistributionPayloadLogSink
+type CreateDistributionPayloadGetLogSinkRetType = CreateDistributionPayloadLogSink
+
+func getCreateDistributionPayloadGetLogSinkAttributeTypeOk(arg CreateDistributionPayloadGetLogSinkAttributeType) (ret CreateDistributionPayloadGetLogSinkRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetLogSinkAttributeType(arg *CreateDistributionPayloadGetLogSinkAttributeType, val CreateDistributionPayloadGetLogSinkRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for monthlyLimitBytes
 */
 
@@ -210,6 +230,7 @@ type CreateDistributionPayload struct {
 	DefaultCacheDuration CreateDistributionPayloadGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId CreateDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
+	LogSink  CreateDistributionPayloadGetLogSinkAttributeType  `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes CreateDistributionPayloadGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         CreateDistributionPayloadGetOptimizerAttributeType         `json:"optimizer,omitempty"`
@@ -336,6 +357,29 @@ func (o *CreateDistributionPayload) SetIntentId(v CreateDistributionPayloadGetIn
 	setCreateDistributionPayloadGetIntentIdAttributeType(&o.IntentId, v)
 }
 
+// GetLogSink returns the LogSink field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetLogSink() (res CreateDistributionPayloadGetLogSinkRetType) {
+	res, _ = o.GetLogSinkOk()
+	return
+}
+
+// GetLogSinkOk returns a tuple with the LogSink field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetLogSinkOk() (ret CreateDistributionPayloadGetLogSinkRetType, ok bool) {
+	return getCreateDistributionPayloadGetLogSinkAttributeTypeOk(o.LogSink)
+}
+
+// HasLogSink returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasLogSink() bool {
+	_, ok := o.GetLogSinkOk()
+	return ok
+}
+
+// SetLogSink gets a reference to the given CreateDistributionPayloadLogSink and assigns it to the LogSink field.
+func (o *CreateDistributionPayload) SetLogSink(v CreateDistributionPayloadGetLogSinkRetType) {
+	setCreateDistributionPayloadGetLogSinkAttributeType(&o.LogSink, v)
+}
+
 // GetMonthlyLimitBytes returns the MonthlyLimitBytes field value if set, zero value otherwise.
 func (o *CreateDistributionPayload) GetMonthlyLimitBytes() (res CreateDistributionPayloadGetMonthlyLimitBytesRetType) {
 	res, _ = o.GetMonthlyLimitBytesOk()
@@ -452,6 +496,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {
 		toSerialize["IntentId"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetLogSinkAttributeTypeOk(o.LogSink); ok {
+		toSerialize["LogSink"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetMonthlyLimitBytesAttributeTypeOk(o.MonthlyLimitBytes); ok {
 		toSerialize["MonthlyLimitBytes"] = val
