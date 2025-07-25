@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &PutCustomDomainPayload{}
 
 /*
+	types and functions for certificate
+*/
+
+// isModel
+type PutCustomDomainPayloadGetCertificateAttributeType = *PutCustomDomainPayloadCertificate
+type PutCustomDomainPayloadGetCertificateArgType = PutCustomDomainPayloadCertificate
+type PutCustomDomainPayloadGetCertificateRetType = PutCustomDomainPayloadCertificate
+
+func getPutCustomDomainPayloadGetCertificateAttributeTypeOk(arg PutCustomDomainPayloadGetCertificateAttributeType) (ret PutCustomDomainPayloadGetCertificateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPutCustomDomainPayloadGetCertificateAttributeType(arg *PutCustomDomainPayloadGetCertificateAttributeType, val PutCustomDomainPayloadGetCertificateRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for intentId
 */
 
@@ -40,6 +60,7 @@ type PutCustomDomainPayloadGetIntentIdRetType = string
 
 // PutCustomDomainPayload struct for PutCustomDomainPayload
 type PutCustomDomainPayload struct {
+	Certificate PutCustomDomainPayloadGetCertificateAttributeType `json:"certificate,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId PutCustomDomainPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
 }
@@ -59,6 +80,29 @@ func NewPutCustomDomainPayload() *PutCustomDomainPayload {
 func NewPutCustomDomainPayloadWithDefaults() *PutCustomDomainPayload {
 	this := PutCustomDomainPayload{}
 	return &this
+}
+
+// GetCertificate returns the Certificate field value if set, zero value otherwise.
+func (o *PutCustomDomainPayload) GetCertificate() (res PutCustomDomainPayloadGetCertificateRetType) {
+	res, _ = o.GetCertificateOk()
+	return
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutCustomDomainPayload) GetCertificateOk() (ret PutCustomDomainPayloadGetCertificateRetType, ok bool) {
+	return getPutCustomDomainPayloadGetCertificateAttributeTypeOk(o.Certificate)
+}
+
+// HasCertificate returns a boolean if a field has been set.
+func (o *PutCustomDomainPayload) HasCertificate() bool {
+	_, ok := o.GetCertificateOk()
+	return ok
+}
+
+// SetCertificate gets a reference to the given PutCustomDomainPayloadCertificate and assigns it to the Certificate field.
+func (o *PutCustomDomainPayload) SetCertificate(v PutCustomDomainPayloadGetCertificateRetType) {
+	setPutCustomDomainPayloadGetCertificateAttributeType(&o.Certificate, v)
 }
 
 // GetIntentId returns the IntentId field value if set, zero value otherwise.
@@ -86,6 +130,9 @@ func (o *PutCustomDomainPayload) SetIntentId(v PutCustomDomainPayloadGetIntentId
 
 func (o PutCustomDomainPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getPutCustomDomainPayloadGetCertificateAttributeTypeOk(o.Certificate); ok {
+		toSerialize["Certificate"] = val
+	}
 	if val, ok := getPutCustomDomainPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {
 		toSerialize["IntentId"] = val
 	}

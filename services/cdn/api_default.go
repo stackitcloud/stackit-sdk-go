@@ -372,6 +372,14 @@ type ApiGetLogsRequest interface {
 	// The following sort options exist. We default to &#x60;timestamp&#x60; - &#x60;timestamp&#x60; - Sort by log message time stamp.
 	SortBy(sortBy string) ApiGetLogsRequest
 	SortOrder(sortOrder string) ApiGetLogsRequest
+	// Filters by the CDN data center region that served the request. Can be combined with other filters
+	DataCenterRegion(dataCenterRegion string) ApiGetLogsRequest
+	// Filters by the originating country of the user request. Can be combined with other filters
+	RequestCountryCode(requestCountryCode string) ApiGetLogsRequest
+	// Filters by the HTTP status code returned to the client. Can be combined with other filters
+	StatusCode(statusCode int32) ApiGetLogsRequest
+	// Filters based on whether the request was served from the CDN cache. Can be combined with other filters
+	CacheHit(cacheHit bool) ApiGetLogsRequest
 	Execute() (*GetLogsResponse, error)
 }
 
@@ -1696,16 +1704,20 @@ func (a *APIClient) GetDistributionExecute(ctx context.Context, projectId string
 }
 
 type GetLogsRequest struct {
-	ctx            context.Context
-	apiService     *DefaultApiService
-	projectId      string
-	distributionId string
-	from           *time.Time
-	to             *time.Time
-	pageSize       *int32
-	pageIdentifier *string
-	sortBy         *string
-	sortOrder      *string
+	ctx                context.Context
+	apiService         *DefaultApiService
+	projectId          string
+	distributionId     string
+	from               *time.Time
+	to                 *time.Time
+	pageSize           *int32
+	pageIdentifier     *string
+	sortBy             *string
+	sortOrder          *string
+	dataCenterRegion   *string
+	requestCountryCode *string
+	statusCode         *int32
+	cacheHit           *bool
 }
 
 // the start of the time range for which logs should be returned
@@ -1745,6 +1757,34 @@ func (r GetLogsRequest) SortBy(sortBy string) ApiGetLogsRequest {
 
 func (r GetLogsRequest) SortOrder(sortOrder string) ApiGetLogsRequest {
 	r.sortOrder = &sortOrder
+	return r
+}
+
+// Filters by the CDN data center region that served the request. Can be combined with other filters
+
+func (r GetLogsRequest) DataCenterRegion(dataCenterRegion string) ApiGetLogsRequest {
+	r.dataCenterRegion = &dataCenterRegion
+	return r
+}
+
+// Filters by the originating country of the user request. Can be combined with other filters
+
+func (r GetLogsRequest) RequestCountryCode(requestCountryCode string) ApiGetLogsRequest {
+	r.requestCountryCode = &requestCountryCode
+	return r
+}
+
+// Filters by the HTTP status code returned to the client. Can be combined with other filters
+
+func (r GetLogsRequest) StatusCode(statusCode int32) ApiGetLogsRequest {
+	r.statusCode = &statusCode
+	return r
+}
+
+// Filters based on whether the request was served from the CDN cache. Can be combined with other filters
+
+func (r GetLogsRequest) CacheHit(cacheHit bool) ApiGetLogsRequest {
+	r.cacheHit = &cacheHit
 	return r
 }
 
@@ -1790,6 +1830,18 @@ func (r GetLogsRequest) Execute() (*GetLogsResponse, error) {
 	}
 	if r.sortOrder != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sortOrder", r.sortOrder, "")
+	}
+	if r.dataCenterRegion != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "dataCenterRegion", r.dataCenterRegion, "")
+	}
+	if r.requestCountryCode != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "requestCountryCode", r.requestCountryCode, "")
+	}
+	if r.statusCode != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "statusCode", r.statusCode, "")
+	}
+	if r.cacheHit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cacheHit", r.cacheHit, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
