@@ -8,6 +8,12 @@ set -e
 
 # Check all version files which have changed
 for file in $(git diff --name-only HEAD~1..HEAD | grep VERSION); do
+    # Skip version file of the openapi-generator
+    if [[ $file =~ ".openapi-generator" ]]; then
+      echo "Skipped openapi-generator version file '$file'"
+      continue
+    fi
+
     # Extract the current version and build the expected tag
     dirpath=$(dirname $file)
     version_path="$dirpath/VERSION"
