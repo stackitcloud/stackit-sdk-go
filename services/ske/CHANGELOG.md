@@ -1,8 +1,11 @@
+## v1.3.0
+- **Feature:** Add new wait handlers: `TriggerClusterHibernationWaitHandler`, `TriggerClusterMaintenanceWaitHandler`, `TriggerClusterReconciliationWaitHandler`, `TriggerClusterWakeupWaitHandler`
+
 ## v1.2.0
-  - **Feature:** Add new method `TriggerWakeup`
+- **Feature:** Add new method `TriggerWakeup`
 
 ## v1.1.1
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## v1.1.0
 - **Breaking Change:** `ClusterError.Code` field is now a string type instead of an enum. The field no longer validates against predefined enum values and accepts any string value.

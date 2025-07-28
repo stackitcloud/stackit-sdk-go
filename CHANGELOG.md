@@ -65,6 +65,8 @@
 - `serviceenablement`: [v1.2.2](services/serviceenablement/CHANGELOG.md#v122) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `ske`:
+  - [v1.3.0](services/ske/CHANGELOG.md#v130)
+    - **Feature:** Add new wait handlers: `TriggerClusterHibernationWaitHandler`, `TriggerClusterMaintenanceWaitHandler`, `TriggerClusterReconciliationWaitHandler`, `TriggerClusterWakeupWaitHandler`
   - [v1.2.0](services/ske/CHANGELOG.md#v120)
     - **Feature:** Add new method `TriggerWakeup`
   - [v1.1.1](services/ske/CHANGELOG.md#v111) 
