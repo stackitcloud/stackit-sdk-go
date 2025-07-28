@@ -90,6 +90,78 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 	return handler
 }
 
+func TriggerClusterHibernationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *cluster.Status.Aggregated
+
+		if state == ske.CLUSTERSTATUSSTATE_HIBERNATING {
+			return false, nil, nil
+		}
+
+		return true, cluster, nil
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+func TriggerClusterMaintenanceWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *cluster.Status.Aggregated
+
+		if state == ske.CLUSTERSTATUSSTATE_RECONCILING {
+			return false, nil, nil
+		}
+
+		return true, cluster, nil
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+func TriggerClusterReconciliationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *cluster.Status.Aggregated
+
+		if state == ske.CLUSTERSTATUSSTATE_RECONCILING {
+			return false, nil, nil
+		}
+
+		return true, cluster, nil
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
+func TriggerClusterWakeupWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
+	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
+		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
+		if err != nil {
+			return false, nil, err
+		}
+		state := *cluster.Status.Aggregated
+
+		if state == ske.CLUSTERSTATUSSTATE_WAKINGUP {
+			return false, nil, nil
+		}
+
+		return true, cluster, nil
+	})
+	handler.SetTimeout(45 * time.Minute)
+	return handler
+}
+
 // RotateCredentialsWaitHandler will wait for credentials rotation
 func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {

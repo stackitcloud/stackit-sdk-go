@@ -163,6 +163,282 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 	}
 }
 
+func TestTriggerClusterHibernationWaitHandler(t *testing.T) {
+	tests := []struct {
+		description   string
+		getFails      bool
+		resourceState ske.ClusterStatusState
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			description:   "hibernation ongoing (timeout)",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_HIBERNATING,
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			description:   "hibernation succeeded",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_HIBERNATED,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description:   "unexpected status",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description: "get_fails",
+			getFails:    true,
+			wantErr:     true,
+			wantResp:    false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.description, func(t *testing.T) {
+			name := "cluster"
+
+			apiClient := &apiClientClusterMocked{
+				getFails:      tt.getFails,
+				name:          name,
+				resourceState: tt.resourceState,
+			}
+			var wantRes *ske.Cluster
+			if tt.wantResp {
+				wantRes = &ske.Cluster{
+					Name: &name,
+					Status: &ske.ClusterStatus{
+						Aggregated: utils.Ptr(tt.resourceState),
+					},
+				}
+			}
+
+			handler := TriggerClusterHibernationWaitHandler(context.Background(), apiClient, "", testRegion, name)
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestTriggerClusterMaintenanceWaitHandler(t *testing.T) {
+	tests := []struct {
+		description   string
+		getFails      bool
+		resourceState ske.ClusterStatusState
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			description:   "maintenance ongoing (timeout)",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_RECONCILING,
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			description:   "maintenance succeeded",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description:   "unexpected status",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_HIBERNATED,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description: "get_fails",
+			getFails:    true,
+			wantErr:     true,
+			wantResp:    false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.description, func(t *testing.T) {
+			name := "cluster"
+
+			apiClient := &apiClientClusterMocked{
+				getFails:      tt.getFails,
+				name:          name,
+				resourceState: tt.resourceState,
+			}
+			var wantRes *ske.Cluster
+			if tt.wantResp {
+				wantRes = &ske.Cluster{
+					Name: &name,
+					Status: &ske.ClusterStatus{
+						Aggregated: utils.Ptr(tt.resourceState),
+					},
+				}
+			}
+
+			handler := TriggerClusterMaintenanceWaitHandler(context.Background(), apiClient, "", testRegion, name)
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestTriggerClusterWakeupWaitHandler(t *testing.T) {
+	tests := []struct {
+		description   string
+		getFails      bool
+		resourceState ske.ClusterStatusState
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			description:   "wakeup ongoing (timeout)",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_WAKINGUP,
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			description:   "wakeup succeeded",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description:   "unexpected status",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_DELETING,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description: "get_fails",
+			getFails:    true,
+			wantErr:     true,
+			wantResp:    false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.description, func(t *testing.T) {
+			name := "cluster"
+
+			apiClient := &apiClientClusterMocked{
+				getFails:      tt.getFails,
+				name:          name,
+				resourceState: tt.resourceState,
+			}
+			var wantRes *ske.Cluster
+			if tt.wantResp {
+				wantRes = &ske.Cluster{
+					Name: &name,
+					Status: &ske.ClusterStatus{
+						Aggregated: utils.Ptr(tt.resourceState),
+					},
+				}
+			}
+
+			handler := TriggerClusterWakeupWaitHandler(context.Background(), apiClient, "", testRegion, name)
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestTriggerClusterReconciliationWaitHandler(t *testing.T) {
+	tests := []struct {
+		description   string
+		getFails      bool
+		resourceState ske.ClusterStatusState
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			description:   "reconciliation ongoing (timeout)",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_RECONCILING,
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			description:   "reconciliation succeeded",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_HEALTHY,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description:   "unexpected status",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_CREATING,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			description: "get_fails",
+			getFails:    true,
+			wantErr:     true,
+			wantResp:    false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.description, func(t *testing.T) {
+			name := "cluster"
+
+			apiClient := &apiClientClusterMocked{
+				getFails:      tt.getFails,
+				name:          name,
+				resourceState: tt.resourceState,
+			}
+			var wantRes *ske.Cluster
+			if tt.wantResp {
+				wantRes = &ske.Cluster{
+					Name: &name,
+					Status: &ske.ClusterStatus{
+						Aggregated: utils.Ptr(tt.resourceState),
+					},
+				}
+			}
+
+			handler := TriggerClusterReconciliationWaitHandler(context.Background(), apiClient, "", testRegion, name)
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
 func TestRotateCredentialsWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
