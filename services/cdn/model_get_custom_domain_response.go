@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &GetCustomDomainResponse{}
 
 /*
+	types and functions for certificate
+*/
+
+// isModel
+type GetCustomDomainResponseGetCertificateAttributeType = *GetCustomDomainResponseCertificate
+type GetCustomDomainResponseGetCertificateArgType = GetCustomDomainResponseCertificate
+type GetCustomDomainResponseGetCertificateRetType = GetCustomDomainResponseCertificate
+
+func getGetCustomDomainResponseGetCertificateAttributeTypeOk(arg GetCustomDomainResponseGetCertificateAttributeType) (ret GetCustomDomainResponseGetCertificateRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetCustomDomainResponseGetCertificateAttributeType(arg *GetCustomDomainResponseGetCertificateAttributeType, val GetCustomDomainResponseGetCertificateRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for customDomain
 */
 
@@ -61,6 +81,8 @@ type GetCustomDomainResponseGetDomainRetType = string
 // GetCustomDomainResponse struct for GetCustomDomainResponse
 type GetCustomDomainResponse struct {
 	// REQUIRED
+	Certificate GetCustomDomainResponseGetCertificateAttributeType `json:"certificate" required:"true"`
+	// REQUIRED
 	CustomDomain GetCustomDomainResponseGetCustomDomainAttributeType `json:"customDomain" required:"true"`
 	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
@@ -73,8 +95,9 @@ type _GetCustomDomainResponse GetCustomDomainResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCustomDomainResponse(customDomain GetCustomDomainResponseGetCustomDomainArgType, domain GetCustomDomainResponseGetDomainArgType) *GetCustomDomainResponse {
+func NewGetCustomDomainResponse(certificate GetCustomDomainResponseGetCertificateArgType, customDomain GetCustomDomainResponseGetCustomDomainArgType, domain GetCustomDomainResponseGetDomainArgType) *GetCustomDomainResponse {
 	this := GetCustomDomainResponse{}
+	setGetCustomDomainResponseGetCertificateAttributeType(&this.Certificate, certificate)
 	setGetCustomDomainResponseGetCustomDomainAttributeType(&this.CustomDomain, customDomain)
 	setGetCustomDomainResponseGetDomainAttributeType(&this.Domain, domain)
 	return &this
@@ -86,6 +109,23 @@ func NewGetCustomDomainResponse(customDomain GetCustomDomainResponseGetCustomDom
 func NewGetCustomDomainResponseWithDefaults() *GetCustomDomainResponse {
 	this := GetCustomDomainResponse{}
 	return &this
+}
+
+// GetCertificate returns the Certificate field value
+func (o *GetCustomDomainResponse) GetCertificate() (ret GetCustomDomainResponseGetCertificateRetType) {
+	ret, _ = o.GetCertificateOk()
+	return ret
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value
+// and a boolean to check if the value has been set.
+func (o *GetCustomDomainResponse) GetCertificateOk() (ret GetCustomDomainResponseGetCertificateRetType, ok bool) {
+	return getGetCustomDomainResponseGetCertificateAttributeTypeOk(o.Certificate)
+}
+
+// SetCertificate sets field value
+func (o *GetCustomDomainResponse) SetCertificate(v GetCustomDomainResponseGetCertificateRetType) {
+	setGetCustomDomainResponseGetCertificateAttributeType(&o.Certificate, v)
 }
 
 // GetCustomDomain returns the CustomDomain field value
@@ -127,6 +167,9 @@ func (o *GetCustomDomainResponse) SetDomain(v GetCustomDomainResponseGetDomainRe
 
 func (o GetCustomDomainResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getGetCustomDomainResponseGetCertificateAttributeTypeOk(o.Certificate); ok {
+		toSerialize["Certificate"] = val
+	}
 	if val, ok := getGetCustomDomainResponseGetCustomDomainAttributeTypeOk(o.CustomDomain); ok {
 		toSerialize["CustomDomain"] = val
 	}

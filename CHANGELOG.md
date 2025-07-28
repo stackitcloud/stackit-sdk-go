@@ -7,8 +7,13 @@
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `authorization`: [v0.8.1](services/authorization/CHANGELOG.md#v081) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `cdn`: [v1.3.2](services/cdn/CHANGELOG.md#v132) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `cdn`:
+  - [v1.4.0](services/cdn/CHANGELOG.md#v140)
+    - **Feature:** Added new filter functions `DataCenterRegion`, `RequestCountryCode`, `StatusCode` and `CacheHit`
+    - **Feature:** Added Attribute `LogSink` and `Certificate`
+    - **Feature:** Added `ConfigLogSink` and `PatchLokiLogSink` functionality
+  - [v1.3.2](services/cdn/CHANGELOG.md#v132)
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `certificates`: [v1.1.1](services/certificates/CHANGELOG.md#v111) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `dns`: [v0.17.1](services/dns/CHANGELOG.md#v0171) 
