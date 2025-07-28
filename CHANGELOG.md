@@ -17,6 +17,8 @@
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `iaas`: [v0.27.1](services/iaas/CHANGELOG.md#v0271) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
+  - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
 - `kms`: [v0.3.1](services/kms/CHANGELOG.md#v031) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `lbapplication`: [v0.5.1](services/lbapplication/CHANGELOG.md#v051) 
@@ -151,7 +153,7 @@
   - Add `required:"true"` tags to model structs
 - `objectstorage`: [v1.3.0](services/objectstorage/CHANGELOG.md#v130)
   - Add `required:"true"` tags to model structs
-- `mondodbflex`: [v1.3.0](services/mondodbflex/CHANGELOG.md#v130)
+- `mongodbflex`: [v1.3.0](services/mongodbflex/CHANGELOG.md#v130)
   - Add `required:"true"` tags to model structs
 - `modelserving`: [v0.5.0](services/modelserving/CHANGELOG.md#v050)
   - Add `required:"true"` tags to model structs
