@@ -7,7 +7,8 @@ set -e
 # in the following format e.g. v0.3.0
 
 # Check all version files which have changed
-for file in $(git diff --name-only HEAD~1..HEAD | grep VERSION); do
+for file in $(git diff --name-only HEAD~1..HEAD | grep -E "(^services/[^/]+/VERSION$|^core/VERSION$)"); do
+
     # Extract the current version and build the expected tag
     dirpath=$(dirname $file)
     version_path="$dirpath/VERSION"
