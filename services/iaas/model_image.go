@@ -19,6 +19,26 @@ import (
 var _ MappedNullable = &Image{}
 
 /*
+	types and functions for agent
+*/
+
+// isModel
+type ImageGetAgentAttributeType = *ImageAgent
+type ImageGetAgentArgType = ImageAgent
+type ImageGetAgentRetType = ImageAgent
+
+func getImageGetAgentAttributeTypeOk(arg ImageGetAgentAttributeType) (ret ImageGetAgentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetAgentAttributeType(arg *ImageGetAgentAttributeType, val ImageGetAgentRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for checksum
 */
 
@@ -326,6 +346,7 @@ func setImageGetUpdatedAtAttributeType(arg *ImageGetUpdatedAtAttributeType, val 
 
 // Image Object that represents an Image and its parameters. Used for Creating and returning (get/list).
 type Image struct {
+	Agent    ImageGetAgentAttributeType    `json:"agent,omitempty"`
 	Checksum ImageGetChecksumAttributeType `json:"checksum,omitempty"`
 	Config   ImageGetConfigAttributeType   `json:"config,omitempty"`
 	// Date-time when resource was created.
@@ -335,7 +356,7 @@ type Image struct {
 	DiskFormat ImageGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Id ImageGetIdAttributeType `json:"id,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels ImageGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
 	MinDiskSize ImageGetMinDiskSizeAttributeType `json:"minDiskSize,omitempty"`
@@ -345,7 +366,8 @@ type Image struct {
 	// REQUIRED
 	Name ImageGetNameAttributeType `json:"name" required:"true"`
 	// Universally Unique Identifier (UUID).
-	Owner     ImageGetOwnerAttributeType     `json:"owner,omitempty"`
+	Owner ImageGetOwnerAttributeType `json:"owner,omitempty"`
+	// When true the image is prevented from being deleted.
 	Protected ImagegetProtectedAttributeType `json:"protected,omitempty"`
 	// Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`.
 	Scope ImageGetScopeAttributeType `json:"scope,omitempty"`
@@ -376,6 +398,29 @@ func NewImage(diskFormat ImageGetDiskFormatArgType, name ImageGetNameArgType) *I
 func NewImageWithDefaults() *Image {
 	this := Image{}
 	return &this
+}
+
+// GetAgent returns the Agent field value if set, zero value otherwise.
+func (o *Image) GetAgent() (res ImageGetAgentRetType) {
+	res, _ = o.GetAgentOk()
+	return
+}
+
+// GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Image) GetAgentOk() (ret ImageGetAgentRetType, ok bool) {
+	return getImageGetAgentAttributeTypeOk(o.Agent)
+}
+
+// HasAgent returns a boolean if a field has been set.
+func (o *Image) HasAgent() bool {
+	_, ok := o.GetAgentOk()
+	return ok
+}
+
+// SetAgent gets a reference to the given ImageAgent and assigns it to the Agent field.
+func (o *Image) SetAgent(v ImageGetAgentRetType) {
+	setImageGetAgentAttributeType(&o.Agent, v)
 }
 
 // GetChecksum returns the Checksum field value if set, zero value otherwise.
@@ -713,6 +758,9 @@ func (o *Image) SetUpdatedAt(v ImageGetUpdatedAtRetType) {
 
 func (o Image) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getImageGetAgentAttributeTypeOk(o.Agent); ok {
+		toSerialize["Agent"] = val
+	}
 	if val, ok := getImageGetChecksumAttributeTypeOk(o.Checksum); ok {
 		toSerialize["Checksum"] = val
 	}
