@@ -54,6 +54,7 @@ use (
 	./services/redis
 	./services/resourcemanager
 	./services/runcommand
+	./services/scf
 	./services/secretsmanager
 	./services/serverbackup
 	./services/serverupdate
