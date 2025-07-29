@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** Add new wait handler for key ring creation (`CreateKeyRingWaitHandler`)
+
 ## v0.3.1
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 

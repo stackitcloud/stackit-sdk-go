@@ -31,8 +31,11 @@
     - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
   - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
-- `kms`: [v0.3.1](services/kms/CHANGELOG.md#v031) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `kms`: 
+  - [v0.4.0](services/kms/CHANGELOG.md#v040) 
+    - **Feature:** Add new wait handler for key ring creation (`CreateKeyRingWaitHandler`)
+  - [v0.3.1](services/kms/CHANGELOG.md#v031) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `lbapplication`: [v0.5.1](services/lbapplication/CHANGELOG.md#v051) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `loadbalancer`: [v1.5.1](services/loadbalancer/CHANGELOG.md#v151) 

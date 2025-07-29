@@ -46,8 +46,31 @@ const (
 
 type ApiKmsClient interface {
 	GetKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*kms.Key, error)
+	GetKeyRingExecute(ctx context.Context, projectId string, regionId string, keyRingId string) (*kms.KeyRing, error)
 	GetVersionExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string, versionNumber int64) (*kms.Version, error)
 	GetWrappingKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) (*kms.WrappingKey, error)
+}
+
+func CreateKeyRingWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId string) *wait.AsyncActionHandler[kms.KeyRing] {
+	handler := wait.New(func() (bool, *kms.KeyRing, error) {
+		response, err := client.GetKeyRingExecute(ctx, projectId, region, keyRingId)
+		if err != nil {
+			return false, nil, err
+		}
+
+		if response.State != nil {
+			switch *response.State {
+			case kms.KEYRINGSTATE_CREATING:
+				return false, nil, nil
+			default:
+				return true, response, nil
+			}
+		}
+
+		return false, nil, nil
+	})
+	handler.SetTimeout(10 * time.Minute)
+	return handler
 }
 
 func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
