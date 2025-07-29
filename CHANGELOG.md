@@ -1,4 +1,6 @@
 ## Release (2025-XX-XX)
+- `scf`: [v0.1.0](services/scf/CHANGELOG.md#v010)
+  - **New:** STACKIT Cloud Foundry module
 - `core`: [v0.17.3](core/CHANGELOG.md#v0173) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `alb`: [v0.6.1](services/alb/CHANGELOG.md#v061) 
