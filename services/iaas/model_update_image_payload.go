@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &UpdateImagePayload{}
 
 /*
+	types and functions for agent
+*/
+
+// isModel
+type UpdateImagePayloadGetAgentAttributeType = *ImageAgent
+type UpdateImagePayloadGetAgentArgType = ImageAgent
+type UpdateImagePayloadGetAgentRetType = ImageAgent
+
+func getUpdateImagePayloadGetAgentAttributeTypeOk(arg UpdateImagePayloadGetAgentAttributeType) (ret UpdateImagePayloadGetAgentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateImagePayloadGetAgentAttributeType(arg *UpdateImagePayloadGetAgentAttributeType, val UpdateImagePayloadGetAgentRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for config
 */
 
@@ -161,17 +181,19 @@ func setUpdateImagePayloadgetProtectedAttributeType(arg *UpdateImagePayloadgetPr
 
 // UpdateImagePayload Object that represents an update request body of an Image.
 type UpdateImagePayload struct {
+	Agent  UpdateImagePayloadGetAgentAttributeType  `json:"agent,omitempty"`
 	Config UpdateImagePayloadGetConfigAttributeType `json:"config,omitempty"`
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
 	DiskFormat UpdateImagePayloadGetDiskFormatAttributeType `json:"diskFormat,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels UpdateImagePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
 	MinDiskSize UpdateImagePayloadGetMinDiskSizeAttributeType `json:"minDiskSize,omitempty"`
 	// Size in Megabyte.
 	MinRam UpdateImagePayloadGetMinRamAttributeType `json:"minRam,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name      UpdateImagePayloadGetNameAttributeType      `json:"name,omitempty"`
+	Name UpdateImagePayloadGetNameAttributeType `json:"name,omitempty"`
+	// When true the image is prevented from being deleted.
 	Protected UpdateImagePayloadgetProtectedAttributeType `json:"protected,omitempty"`
 }
 
@@ -190,6 +212,29 @@ func NewUpdateImagePayload() *UpdateImagePayload {
 func NewUpdateImagePayloadWithDefaults() *UpdateImagePayload {
 	this := UpdateImagePayload{}
 	return &this
+}
+
+// GetAgent returns the Agent field value if set, zero value otherwise.
+func (o *UpdateImagePayload) GetAgent() (res UpdateImagePayloadGetAgentRetType) {
+	res, _ = o.GetAgentOk()
+	return
+}
+
+// GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateImagePayload) GetAgentOk() (ret UpdateImagePayloadGetAgentRetType, ok bool) {
+	return getUpdateImagePayloadGetAgentAttributeTypeOk(o.Agent)
+}
+
+// HasAgent returns a boolean if a field has been set.
+func (o *UpdateImagePayload) HasAgent() bool {
+	_, ok := o.GetAgentOk()
+	return ok
+}
+
+// SetAgent gets a reference to the given ImageAgent and assigns it to the Agent field.
+func (o *UpdateImagePayload) SetAgent(v UpdateImagePayloadGetAgentRetType) {
+	setUpdateImagePayloadGetAgentAttributeType(&o.Agent, v)
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
@@ -355,6 +400,9 @@ func (o *UpdateImagePayload) SetProtected(v UpdateImagePayloadgetProtectedRetTyp
 
 func (o UpdateImagePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getUpdateImagePayloadGetAgentAttributeTypeOk(o.Agent); ok {
+		toSerialize["Agent"] = val
+	}
 	if val, ok := getUpdateImagePayloadGetConfigAttributeTypeOk(o.Config); ok {
 		toSerialize["Config"] = val
 	}

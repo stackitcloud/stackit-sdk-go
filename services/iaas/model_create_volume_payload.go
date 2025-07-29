@@ -305,7 +305,7 @@ func setCreateVolumePayloadGetUpdatedAtAttributeType(arg *CreateVolumePayloadGet
 	*arg = &val
 }
 
-// CreateVolumePayload Object that represents a volume and its parameters. Used for Creating and returning (get/list).
+// CreateVolumePayload Object that represents a volume and its parameters. Volumes sized up to 16000GB are supported.
 type CreateVolumePayload struct {
 	// Object that represents an availability zone.
 	// REQUIRED
@@ -319,7 +319,7 @@ type CreateVolumePayload struct {
 	// Universally Unique Identifier (UUID).
 	Id          CreateVolumePayloadGetIdAttributeType          `json:"id,omitempty"`
 	ImageConfig CreateVolumePayloadGetImageConfigAttributeType `json:"imageConfig,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels CreateVolumePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name CreateVolumePayloadGetNameAttributeType `json:"name,omitempty"`
