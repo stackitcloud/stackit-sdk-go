@@ -109,6 +109,7 @@ type ServerMaintenance struct {
 	// Start of the maintenance window.
 	// REQUIRED
 	StartsAt ServerMaintenanceGetStartsAtAttributeType `json:"startsAt" required:"true"`
+	// Possible values: `PLANNED`, `ONGOING`.
 	// REQUIRED
 	Status ServerMaintenanceGetStatusAttributeType `json:"status" required:"true"`
 }
