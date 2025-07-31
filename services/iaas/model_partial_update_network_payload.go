@@ -123,7 +123,7 @@ type PartialUpdateNetworkPayload struct {
 	AddressFamily PartialUpdateNetworkPayloadGetAddressFamilyAttributeType `json:"addressFamily,omitempty"`
 	// Enable or disable DHCP for a network.
 	Dhcp PartialUpdateNetworkPayloadgetDhcpAttributeType `json:"dhcp,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels PartialUpdateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name PartialUpdateNetworkPayloadGetNameAttributeType `json:"name,omitempty"`
