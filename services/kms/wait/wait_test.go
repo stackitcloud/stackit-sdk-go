@@ -30,6 +30,11 @@ type keyResponse struct {
 	err error
 }
 
+type keyRingResponse struct {
+	keyRing *kms.KeyRing
+	err     error
+}
+
 type versionResponse struct {
 	version *kms.Version
 	err     error
@@ -42,9 +47,11 @@ type wrappingKeyResponse struct {
 
 type apiKmsMocked struct {
 	idxKeyResponse         int
+	idxKeyRingResponse     int
 	idxVersionResponse     int
 	idxWrappingKeyResponse int
 	keyResponses           []keyResponse
+	keyRingResponses       []keyRingResponse
 	versionResponses       []versionResponse
 	wrappingKeyResponses   []wrappingKeyResponse
 }
@@ -73,6 +80,14 @@ func (a *apiKmsMocked) GetKeyExecute(_ context.Context, _, _, _, _ string) (*kms
 	return resp.key, resp.err
 }
 
+// GetKeyRingExecute implements ApiKmsClient.
+func (a *apiKmsMocked) GetKeyRingExecute(_ context.Context, _, _, _ string) (*kms.KeyRing, error) {
+	resp := a.keyRingResponses[a.idxKeyRingResponse]
+	a.idxKeyRingResponse++
+	a.idxKeyRingResponse %= len(a.keyRingResponses)
+	return resp.keyRing, resp.err
+}
+
 func fixtureKey(state kms.KeyState) *kms.Key {
 	return &kms.Key{
 		Algorithm:    kms.ALGORITHM_AES_256_GCM.Ptr(),
@@ -86,6 +101,16 @@ func fixtureKey(state kms.KeyState) *kms.Key {
 		KeyRingId:    &testKeyRingId,
 		Purpose:      kms.PURPOSE_SYMMETRIC_ENCRYPT_DECRYPT.Ptr(),
 		State:        &state,
+	}
+}
+
+func fixtureKeyRing(state kms.KeyRingState) *kms.KeyRing {
+	return &kms.KeyRing{
+		CreatedAt:   &testDate,
+		Description: utils.Ptr("test-description"),
+		DisplayName: utils.Ptr("test-displayname"),
+		Id:          &testKeyRingId,
+		State:       &state,
 	}
 }
 
@@ -115,6 +140,83 @@ func fixtureVersion(version int, disabled bool, state kms.VersionState) *kms.Ver
 		Number:      utils.Ptr(int64(version)),
 		PublicKey:   &testPublicKey,
 		State:       &state,
+	}
+}
+
+func TestCreateKeyRingWaitHandler(t *testing.T) {
+	tests := []struct {
+		name      string
+		responses []keyRingResponse
+		want      *kms.KeyRing
+		wantErr   bool
+	}{
+		{
+			name: "create succeeded immediately",
+			responses: []keyRingResponse{
+				{fixtureKeyRing(kms.KEYRINGSTATE_ACTIVE), nil},
+			},
+			want:    fixtureKeyRing(kms.KEYRINGSTATE_ACTIVE),
+			wantErr: false,
+		},
+		{
+			name: "create succeeded delayed",
+			responses: []keyRingResponse{
+				{fixtureKeyRing(kms.KEYRINGSTATE_CREATING), nil},
+				{fixtureKeyRing(kms.KEYRINGSTATE_CREATING), nil},
+				{fixtureKeyRing(kms.KEYRINGSTATE_CREATING), nil},
+				{fixtureKeyRing(kms.KEYRINGSTATE_ACTIVE), nil},
+			},
+			want:    fixtureKeyRing(kms.KEYRINGSTATE_ACTIVE),
+			wantErr: false,
+		},
+		{
+			name: "create failed delayed",
+			responses: []keyRingResponse{
+				{fixtureKeyRing(kms.KEYRINGSTATE_CREATING), nil},
+				{fixtureKeyRing(kms.KEYRINGSTATE_CREATING), nil},
+				{fixtureKeyRing(kms.KEYRINGSTATE_CREATING), nil},
+				{fixtureKeyRing(kms.KEYRINGSTATE_DELETED), nil},
+			},
+			want:    fixtureKeyRing(kms.KEYRINGSTATE_DELETED),
+			wantErr: false,
+		},
+		{
+			name: "timeout",
+			responses: []keyRingResponse{
+				{fixtureKeyRing(kms.KEYRINGSTATE_CREATING), nil},
+			},
+			want:    nil,
+			wantErr: true,
+		},
+		{
+			name: "broken state",
+			responses: []keyRingResponse{
+				{fixtureKeyRing("bogus"), nil},
+			},
+			want:    fixtureKeyRing("bogus"),
+			wantErr: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ctx := context.Background()
+			client := &apiKmsMocked{
+				keyRingResponses: tt.responses,
+			}
+
+			handler := CreateKeyRingWaitHandler(ctx, client, testProject, testRegion, testKeyRingId)
+			got, err := handler.SetTimeout(1 * time.Second).
+				SetThrottle(250 * time.Millisecond).
+				WaitWithContext(ctx)
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
+			}
+
+			if diff := cmp.Diff(tt.want, got); diff != "" {
+				t.Errorf("differing key %s", diff)
+			}
+		})
 	}
 }
 
