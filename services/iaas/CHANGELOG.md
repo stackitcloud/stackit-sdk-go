@@ -1,5 +1,10 @@
+## v0.28.0
+- **Docs:** Improved descriptions of properties in structs with their possible values
+- **Feature:** Add `Agent` field to `CreateImagePayload`, `UpdateImagePayload` and `Image` model
+- **Feature:** Add `Encrypted` and `EncryptionsParameters` fields to `CreateVolumePayload` model
+
 ## v0.27.1
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## v0.27.0
 - **Feature:** Add `Dhcp` field in `CreateNetworkPayload`, `Network` and `PartialUpdateNetworkPayload` models

@@ -80,9 +80,9 @@ type UpdateServerPayloadGetNameRetType = string
 
 // UpdateServerPayload Object that represents an update request body of a server.
 type UpdateServerPayload struct {
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels UpdateServerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
-	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.
+	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`. Providing a `null` value for a key will remove that key.
 	Metadata UpdateServerPayloadGetMetadataAttributeType `json:"metadata,omitempty"`
 	// The name for a Server.
 	Name UpdateServerPayloadGetNameAttributeType `json:"name,omitempty"`
