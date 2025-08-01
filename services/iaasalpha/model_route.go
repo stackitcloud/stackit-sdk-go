@@ -147,7 +147,7 @@ type Route struct {
 	Destination RouteGetDestinationAttributeType `json:"destination" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Id RouteGetIdAttributeType `json:"id,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels RouteGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
 	Nexthop RouteGetNexthopAttributeType `json:"nexthop" required:"true"`
