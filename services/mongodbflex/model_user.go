@@ -126,9 +126,9 @@ func setUserGetPortAttributeType(arg *UserGetPortAttributeType, val UserGetPortR
 */
 
 // isArray
-type UserGetRolesAttributeType = *[]string
-type UserGetRolesArgType = []string
-type UserGetRolesRetType = []string
+type UserGetRolesAttributeType = *[]UserRole
+type UserGetRolesArgType = []UserRole
+type UserGetRolesRetType = []UserRole
 
 func getUserGetRolesAttributeTypeOk(arg UserGetRolesAttributeType) (ret UserGetRolesRetType, ok bool) {
 	if arg == nil {
@@ -345,7 +345,7 @@ func (o *User) HasRoles() bool {
 	return ok
 }
 
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+// SetRoles gets a reference to the given []UserRole and assigns it to the Roles field.
 func (o *User) SetRoles(v UserGetRolesRetType) {
 	setUserGetRolesAttributeType(&o.Roles, v)
 }
