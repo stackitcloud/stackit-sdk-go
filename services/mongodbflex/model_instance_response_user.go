@@ -105,9 +105,9 @@ func setInstanceResponseUserGetPortAttributeType(arg *InstanceResponseUserGetPor
 */
 
 // isArray
-type InstanceResponseUserGetRolesAttributeType = *[]string
-type InstanceResponseUserGetRolesArgType = []string
-type InstanceResponseUserGetRolesRetType = []string
+type InstanceResponseUserGetRolesAttributeType = *[]UserRole
+type InstanceResponseUserGetRolesArgType = []UserRole
+type InstanceResponseUserGetRolesRetType = []UserRole
 
 func getInstanceResponseUserGetRolesAttributeTypeOk(arg InstanceResponseUserGetRolesAttributeType) (ret InstanceResponseUserGetRolesRetType, ok bool) {
 	if arg == nil {
@@ -278,7 +278,7 @@ func (o *InstanceResponseUser) HasRoles() bool {
 	return ok
 }
 
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+// SetRoles gets a reference to the given []UserRole and assigns it to the Roles field.
 func (o *InstanceResponseUser) SetRoles(v InstanceResponseUserGetRolesRetType) {
 	setInstanceResponseUserGetRolesAttributeType(&o.Roles, v)
 }
