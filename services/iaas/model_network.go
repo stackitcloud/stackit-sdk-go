@@ -342,7 +342,7 @@ type Network struct {
 	Gateway NetworkGetGatewayAttributeType `json:"gateway,omitempty"`
 	// The gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gatewayv6 NetworkGetGatewayv6AttributeType `json:"gatewayv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels NetworkGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
 	Name NetworkGetNameAttributeType `json:"name" required:"true"`

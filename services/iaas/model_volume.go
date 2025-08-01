@@ -101,6 +101,46 @@ type VolumeGetDescriptionArgType = string
 type VolumeGetDescriptionRetType = string
 
 /*
+	types and functions for encrypted
+*/
+
+// isBoolean
+type VolumegetEncryptedAttributeType = *bool
+type VolumegetEncryptedArgType = bool
+type VolumegetEncryptedRetType = bool
+
+func getVolumegetEncryptedAttributeTypeOk(arg VolumegetEncryptedAttributeType) (ret VolumegetEncryptedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumegetEncryptedAttributeType(arg *VolumegetEncryptedAttributeType, val VolumegetEncryptedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for encryptionParameters
+*/
+
+// isModel
+type VolumeGetEncryptionParametersAttributeType = *VolumeEncryptionParameter
+type VolumeGetEncryptionParametersArgType = VolumeEncryptionParameter
+type VolumeGetEncryptionParametersRetType = VolumeEncryptionParameter
+
+func getVolumeGetEncryptionParametersAttributeTypeOk(arg VolumeGetEncryptionParametersAttributeType) (ret VolumeGetEncryptionParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setVolumeGetEncryptionParametersAttributeType(arg *VolumeGetEncryptionParametersAttributeType, val VolumeGetEncryptionParametersRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for id
 */
 
@@ -305,7 +345,7 @@ func setVolumeGetUpdatedAtAttributeType(arg *VolumeGetUpdatedAtAttributeType, va
 	*arg = &val
 }
 
-// Volume Object that represents a volume and its parameters. Used for Creating and returning (get/list).
+// Volume Object that represents a volume and its parameters. Volumes sized up to 16000GB are supported.
 type Volume struct {
 	// Object that represents an availability zone.
 	// REQUIRED
@@ -316,10 +356,13 @@ type Volume struct {
 	CreatedAt VolumeGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description VolumeGetDescriptionAttributeType `json:"description,omitempty"`
+	// Indicates if a volume is encrypted.
+	Encrypted            VolumegetEncryptedAttributeType            `json:"encrypted,omitempty"`
+	EncryptionParameters VolumeGetEncryptionParametersAttributeType `json:"encryptionParameters,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id          VolumeGetIdAttributeType          `json:"id,omitempty"`
 	ImageConfig VolumeGetImageConfigAttributeType `json:"imageConfig,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels VolumeGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name VolumeGetNameAttributeType `json:"name,omitempty"`
@@ -440,6 +483,52 @@ func (o *Volume) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *Volume) SetDescription(v VolumeGetDescriptionRetType) {
 	setVolumeGetDescriptionAttributeType(&o.Description, v)
+}
+
+// GetEncrypted returns the Encrypted field value if set, zero value otherwise.
+func (o *Volume) GetEncrypted() (res VolumegetEncryptedRetType) {
+	res, _ = o.GetEncryptedOk()
+	return
+}
+
+// GetEncryptedOk returns a tuple with the Encrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Volume) GetEncryptedOk() (ret VolumegetEncryptedRetType, ok bool) {
+	return getVolumegetEncryptedAttributeTypeOk(o.Encrypted)
+}
+
+// HasEncrypted returns a boolean if a field has been set.
+func (o *Volume) HasEncrypted() bool {
+	_, ok := o.GetEncryptedOk()
+	return ok
+}
+
+// SetEncrypted gets a reference to the given bool and assigns it to the Encrypted field.
+func (o *Volume) SetEncrypted(v VolumegetEncryptedRetType) {
+	setVolumegetEncryptedAttributeType(&o.Encrypted, v)
+}
+
+// GetEncryptionParameters returns the EncryptionParameters field value if set, zero value otherwise.
+func (o *Volume) GetEncryptionParameters() (res VolumeGetEncryptionParametersRetType) {
+	res, _ = o.GetEncryptionParametersOk()
+	return
+}
+
+// GetEncryptionParametersOk returns a tuple with the EncryptionParameters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Volume) GetEncryptionParametersOk() (ret VolumeGetEncryptionParametersRetType, ok bool) {
+	return getVolumeGetEncryptionParametersAttributeTypeOk(o.EncryptionParameters)
+}
+
+// HasEncryptionParameters returns a boolean if a field has been set.
+func (o *Volume) HasEncryptionParameters() bool {
+	_, ok := o.GetEncryptionParametersOk()
+	return ok
+}
+
+// SetEncryptionParameters gets a reference to the given VolumeEncryptionParameter and assigns it to the EncryptionParameters field.
+func (o *Volume) SetEncryptionParameters(v VolumeGetEncryptionParametersRetType) {
+	setVolumeGetEncryptionParametersAttributeType(&o.EncryptionParameters, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -685,6 +774,12 @@ func (o Volume) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getVolumeGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
+	}
+	if val, ok := getVolumegetEncryptedAttributeTypeOk(o.Encrypted); ok {
+		toSerialize["Encrypted"] = val
+	}
+	if val, ok := getVolumeGetEncryptionParametersAttributeTypeOk(o.EncryptionParameters); ok {
+		toSerialize["EncryptionParameters"] = val
 	}
 	if val, ok := getVolumeGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val

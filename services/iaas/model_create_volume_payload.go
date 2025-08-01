@@ -101,6 +101,46 @@ type CreateVolumePayloadGetDescriptionArgType = string
 type CreateVolumePayloadGetDescriptionRetType = string
 
 /*
+	types and functions for encrypted
+*/
+
+// isBoolean
+type CreateVolumePayloadgetEncryptedAttributeType = *bool
+type CreateVolumePayloadgetEncryptedArgType = bool
+type CreateVolumePayloadgetEncryptedRetType = bool
+
+func getCreateVolumePayloadgetEncryptedAttributeTypeOk(arg CreateVolumePayloadgetEncryptedAttributeType) (ret CreateVolumePayloadgetEncryptedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateVolumePayloadgetEncryptedAttributeType(arg *CreateVolumePayloadgetEncryptedAttributeType, val CreateVolumePayloadgetEncryptedRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for encryptionParameters
+*/
+
+// isModel
+type CreateVolumePayloadGetEncryptionParametersAttributeType = *VolumeEncryptionParameter
+type CreateVolumePayloadGetEncryptionParametersArgType = VolumeEncryptionParameter
+type CreateVolumePayloadGetEncryptionParametersRetType = VolumeEncryptionParameter
+
+func getCreateVolumePayloadGetEncryptionParametersAttributeTypeOk(arg CreateVolumePayloadGetEncryptionParametersAttributeType) (ret CreateVolumePayloadGetEncryptionParametersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateVolumePayloadGetEncryptionParametersAttributeType(arg *CreateVolumePayloadGetEncryptionParametersAttributeType, val CreateVolumePayloadGetEncryptionParametersRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for id
 */
 
@@ -305,7 +345,7 @@ func setCreateVolumePayloadGetUpdatedAtAttributeType(arg *CreateVolumePayloadGet
 	*arg = &val
 }
 
-// CreateVolumePayload Object that represents a volume and its parameters. Used for Creating and returning (get/list).
+// CreateVolumePayload Object that represents a volume and its parameters. Volumes sized up to 16000GB are supported.
 type CreateVolumePayload struct {
 	// Object that represents an availability zone.
 	// REQUIRED
@@ -316,10 +356,13 @@ type CreateVolumePayload struct {
 	CreatedAt CreateVolumePayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description CreateVolumePayloadGetDescriptionAttributeType `json:"description,omitempty"`
+	// Indicates if a volume is encrypted.
+	Encrypted            CreateVolumePayloadgetEncryptedAttributeType            `json:"encrypted,omitempty"`
+	EncryptionParameters CreateVolumePayloadGetEncryptionParametersAttributeType `json:"encryptionParameters,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id          CreateVolumePayloadGetIdAttributeType          `json:"id,omitempty"`
 	ImageConfig CreateVolumePayloadGetImageConfigAttributeType `json:"imageConfig,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels CreateVolumePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name CreateVolumePayloadGetNameAttributeType `json:"name,omitempty"`
@@ -440,6 +483,52 @@ func (o *CreateVolumePayload) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *CreateVolumePayload) SetDescription(v CreateVolumePayloadGetDescriptionRetType) {
 	setCreateVolumePayloadGetDescriptionAttributeType(&o.Description, v)
+}
+
+// GetEncrypted returns the Encrypted field value if set, zero value otherwise.
+func (o *CreateVolumePayload) GetEncrypted() (res CreateVolumePayloadgetEncryptedRetType) {
+	res, _ = o.GetEncryptedOk()
+	return
+}
+
+// GetEncryptedOk returns a tuple with the Encrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateVolumePayload) GetEncryptedOk() (ret CreateVolumePayloadgetEncryptedRetType, ok bool) {
+	return getCreateVolumePayloadgetEncryptedAttributeTypeOk(o.Encrypted)
+}
+
+// HasEncrypted returns a boolean if a field has been set.
+func (o *CreateVolumePayload) HasEncrypted() bool {
+	_, ok := o.GetEncryptedOk()
+	return ok
+}
+
+// SetEncrypted gets a reference to the given bool and assigns it to the Encrypted field.
+func (o *CreateVolumePayload) SetEncrypted(v CreateVolumePayloadgetEncryptedRetType) {
+	setCreateVolumePayloadgetEncryptedAttributeType(&o.Encrypted, v)
+}
+
+// GetEncryptionParameters returns the EncryptionParameters field value if set, zero value otherwise.
+func (o *CreateVolumePayload) GetEncryptionParameters() (res CreateVolumePayloadGetEncryptionParametersRetType) {
+	res, _ = o.GetEncryptionParametersOk()
+	return
+}
+
+// GetEncryptionParametersOk returns a tuple with the EncryptionParameters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateVolumePayload) GetEncryptionParametersOk() (ret CreateVolumePayloadGetEncryptionParametersRetType, ok bool) {
+	return getCreateVolumePayloadGetEncryptionParametersAttributeTypeOk(o.EncryptionParameters)
+}
+
+// HasEncryptionParameters returns a boolean if a field has been set.
+func (o *CreateVolumePayload) HasEncryptionParameters() bool {
+	_, ok := o.GetEncryptionParametersOk()
+	return ok
+}
+
+// SetEncryptionParameters gets a reference to the given VolumeEncryptionParameter and assigns it to the EncryptionParameters field.
+func (o *CreateVolumePayload) SetEncryptionParameters(v CreateVolumePayloadGetEncryptionParametersRetType) {
+	setCreateVolumePayloadGetEncryptionParametersAttributeType(&o.EncryptionParameters, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -685,6 +774,12 @@ func (o CreateVolumePayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateVolumePayloadGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
+	}
+	if val, ok := getCreateVolumePayloadgetEncryptedAttributeTypeOk(o.Encrypted); ok {
+		toSerialize["Encrypted"] = val
+	}
+	if val, ok := getCreateVolumePayloadGetEncryptionParametersAttributeTypeOk(o.EncryptionParameters); ok {
+		toSerialize["EncryptionParameters"] = val
 	}
 	if val, ok := getCreateVolumePayloadGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val

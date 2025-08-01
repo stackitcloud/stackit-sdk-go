@@ -228,10 +228,10 @@ func setSecurityGroupRuleGetProtocolAttributeType(arg *SecurityGroupRuleGetProto
 type SecurityGroupRule struct {
 	// Description Object. Allows string up to 255 Characters.
 	Description SecurityGroupRuleGetDescriptionAttributeType `json:"description,omitempty"`
-	// The direction of the traffic which the rule should match.
+	// The direction of the traffic which the rule should match. Possible values: `ingress`, `egress`.
 	// REQUIRED
 	Direction SecurityGroupRuleGetDirectionAttributeType `json:"direction" required:"true"`
-	// The ethertype which the rule should match.
+	// The ethertype which the rule should match. Possible values: `IPv4`, `IPv6`.
 	Ethertype      SecurityGroupRuleGetEthertypeAttributeType      `json:"ethertype,omitempty"`
 	IcmpParameters SecurityGroupRuleGetIcmpParametersAttributeType `json:"icmpParameters,omitempty"`
 	// Universally Unique Identifier (UUID).

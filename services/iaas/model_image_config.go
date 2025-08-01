@@ -341,31 +341,31 @@ func setImageConfiggetVirtioScsiAttributeType(arg *ImageConfiggetVirtioScsiAttri
 
 // ImageConfig Properties to set hardware and scheduling settings for an Image.
 type ImageConfig struct {
-	// Represents CPU architecture. The default for new images is x86.
+	// Represents CPU architecture. The default for new images is x86. Possible values: `arm64`, `x86`.
 	Architecture ImageConfigGetArchitectureAttributeType `json:"architecture,omitempty"`
 	// Enables the BIOS bootmenu. The default for new images is disabled.
 	BootMenu ImageConfiggetBootMenuAttributeType `json:"bootMenu,omitempty"`
-	// Sets CDROM bus controller type.
+	// Sets CDROM bus controller type. Possible values: `scsi`, `virtio`, `ide`, `usb`.
 	CdromBus ImageConfigGetCdromBusAttributeType `json:"cdromBus,omitempty"`
-	// Sets Disk bus controller type.
+	// Sets Disk bus controller type. Possible values: `scsi`, `virtio`, `ide`, `usb`.
 	DiskBus ImageConfigGetDiskBusAttributeType `json:"diskBus,omitempty"`
-	// Sets virtual nic model.
+	// Sets virtual nic model. Possible values: `e1000`, `e1000e`, `ne2k_pci`, `pcnet`, `rtl8139`, `virtio`, `vmxnet3`.
 	NicModel ImageConfigGetNicModelAttributeType `json:"nicModel,omitempty"`
-	// Enables OS specific optimizations.
+	// Enables OS specific optimizations. Possible values: `windows`, `linux`.
 	OperatingSystem ImageConfigGetOperatingSystemAttributeType `json:"operatingSystem,omitempty"`
 	// Operating System Distribution.
 	OperatingSystemDistro ImageConfigGetOperatingSystemDistroAttributeType `json:"operatingSystemDistro,omitempty"`
 	// Version of the OS.
 	OperatingSystemVersion ImageConfigGetOperatingSystemVersionAttributeType `json:"operatingSystemVersion,omitempty"`
-	// Sets the device bus when the image is used as a rescue image.
+	// Sets the device bus when the image is used as a rescue image. Possible values: `sata`, `scsi`, `virtio`, `usb`.
 	RescueBus ImageConfigGetRescueBusAttributeType `json:"rescueBus,omitempty"`
-	// Sets the device when the image is used as a rescue image.
+	// Sets the device when the image is used as a rescue image. Possible values: `cdrom`, `disk`.
 	RescueDevice ImageConfigGetRescueDeviceAttributeType `json:"rescueDevice,omitempty"`
 	// Enables Secure Boot. The default for new images is disabled.
 	SecureBoot ImageConfiggetSecureBootAttributeType `json:"secureBoot,omitempty"`
 	// Configure UEFI boot. The default for new images is enabled.
 	Uefi ImageConfiggetUefiAttributeType `json:"uefi,omitempty"`
-	// Sets Graphic device model.
+	// Sets Graphic device model. Possible values: `vga`, `cirrus`, `vmvga`, `qxl`, `virtio`, `none`.
 	VideoModel ImageConfigGetVideoModelAttributeType `json:"videoModel,omitempty"`
 	// Enables the use of VirtIO SCSI to provide block device access. By default servers use VirtIO Block.
 	VirtioScsi ImageConfiggetVirtioScsiAttributeType `json:"virtioScsi,omitempty"`

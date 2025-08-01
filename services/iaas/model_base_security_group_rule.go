@@ -208,10 +208,10 @@ type BaseSecurityGroupRuleGetSecurityGroupIdRetType = string
 type BaseSecurityGroupRule struct {
 	// Description Object. Allows string up to 255 Characters.
 	Description BaseSecurityGroupRuleGetDescriptionAttributeType `json:"description,omitempty"`
-	// The direction of the traffic which the rule should match.
+	// The direction of the traffic which the rule should match. Possible values: `ingress`, `egress`.
 	// REQUIRED
 	Direction BaseSecurityGroupRuleGetDirectionAttributeType `json:"direction" required:"true"`
-	// The ethertype which the rule should match.
+	// The ethertype which the rule should match. Possible values: `IPv4`, `IPv6`.
 	Ethertype      BaseSecurityGroupRuleGetEthertypeAttributeType      `json:"ethertype,omitempty"`
 	IcmpParameters BaseSecurityGroupRuleGetIcmpParametersAttributeType `json:"icmpParameters,omitempty"`
 	// Universally Unique Identifier (UUID).

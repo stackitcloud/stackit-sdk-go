@@ -298,7 +298,7 @@ type CreateNicPayload struct {
 	Ipv4 CreateNicPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
 	// String that represents an IPv6 address.
 	Ipv6 CreateNicPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels CreateNicPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Object that represents an MAC address.
 	Mac CreateNicPayloadGetMacAttributeType `json:"mac,omitempty"`
@@ -310,8 +310,10 @@ type CreateNicPayload struct {
 	NicSecurity CreateNicPayloadgetNicSecurityAttributeType `json:"nicSecurity,omitempty"`
 	// A list of UUIDs.
 	SecurityGroups CreateNicPayloadGetSecurityGroupsAttributeType `json:"securityGroups,omitempty"`
-	Status         CreateNicPayloadGetStatusAttributeType         `json:"status,omitempty"`
-	Type           CreateNicPayloadGetTypeAttributeType           `json:"type,omitempty"`
+	// Possible values: `ACTIVE`, `DOWN`.
+	Status CreateNicPayloadGetStatusAttributeType `json:"status,omitempty"`
+	// Possible values: `server`, `metadata`, `gateway`, `none`.
+	Type CreateNicPayloadGetTypeAttributeType `json:"type,omitempty"`
 }
 
 // NewCreateNicPayload instantiates a new CreateNicPayload object

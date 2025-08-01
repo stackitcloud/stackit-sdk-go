@@ -61,7 +61,7 @@ type ImageChecksumGetDigestRetType = string
 
 // ImageChecksum Representation of an image checksum.
 type ImageChecksum struct {
-	// Algorithm for the checksum of the image data.
+	// Algorithm for the checksum of the image data. Possible values: `md5`, `sha512`.
 	// REQUIRED
 	Algorithm ImageChecksumGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// Hexdigest of the checksum of the image data.

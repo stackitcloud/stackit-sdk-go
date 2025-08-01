@@ -19,6 +19,26 @@ import (
 var _ MappedNullable = &CreateImagePayload{}
 
 /*
+	types and functions for agent
+*/
+
+// isModel
+type CreateImagePayloadGetAgentAttributeType = *ImageAgent
+type CreateImagePayloadGetAgentArgType = ImageAgent
+type CreateImagePayloadGetAgentRetType = ImageAgent
+
+func getCreateImagePayloadGetAgentAttributeTypeOk(arg CreateImagePayloadGetAgentAttributeType) (ret CreateImagePayloadGetAgentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetAgentAttributeType(arg *CreateImagePayloadGetAgentAttributeType, val CreateImagePayloadGetAgentRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for checksum
 */
 
@@ -326,6 +346,7 @@ func setCreateImagePayloadGetUpdatedAtAttributeType(arg *CreateImagePayloadGetUp
 
 // CreateImagePayload Object that represents an Image and its parameters. Used for Creating and returning (get/list).
 type CreateImagePayload struct {
+	Agent    CreateImagePayloadGetAgentAttributeType    `json:"agent,omitempty"`
 	Checksum CreateImagePayloadGetChecksumAttributeType `json:"checksum,omitempty"`
 	Config   CreateImagePayloadGetConfigAttributeType   `json:"config,omitempty"`
 	// Date-time when resource was created.
@@ -335,7 +356,7 @@ type CreateImagePayload struct {
 	DiskFormat CreateImagePayloadGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Id CreateImagePayloadGetIdAttributeType `json:"id,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels CreateImagePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
 	MinDiskSize CreateImagePayloadGetMinDiskSizeAttributeType `json:"minDiskSize,omitempty"`
@@ -345,7 +366,8 @@ type CreateImagePayload struct {
 	// REQUIRED
 	Name CreateImagePayloadGetNameAttributeType `json:"name" required:"true"`
 	// Universally Unique Identifier (UUID).
-	Owner     CreateImagePayloadGetOwnerAttributeType     `json:"owner,omitempty"`
+	Owner CreateImagePayloadGetOwnerAttributeType `json:"owner,omitempty"`
+	// When true the image is prevented from being deleted.
 	Protected CreateImagePayloadgetProtectedAttributeType `json:"protected,omitempty"`
 	// Scope of an Image. Possible values: `public`, `local`, `projects`, `organization`.
 	Scope CreateImagePayloadGetScopeAttributeType `json:"scope,omitempty"`
@@ -376,6 +398,29 @@ func NewCreateImagePayload(diskFormat CreateImagePayloadGetDiskFormatArgType, na
 func NewCreateImagePayloadWithDefaults() *CreateImagePayload {
 	this := CreateImagePayload{}
 	return &this
+}
+
+// GetAgent returns the Agent field value if set, zero value otherwise.
+func (o *CreateImagePayload) GetAgent() (res CreateImagePayloadGetAgentRetType) {
+	res, _ = o.GetAgentOk()
+	return
+}
+
+// GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateImagePayload) GetAgentOk() (ret CreateImagePayloadGetAgentRetType, ok bool) {
+	return getCreateImagePayloadGetAgentAttributeTypeOk(o.Agent)
+}
+
+// HasAgent returns a boolean if a field has been set.
+func (o *CreateImagePayload) HasAgent() bool {
+	_, ok := o.GetAgentOk()
+	return ok
+}
+
+// SetAgent gets a reference to the given ImageAgent and assigns it to the Agent field.
+func (o *CreateImagePayload) SetAgent(v CreateImagePayloadGetAgentRetType) {
+	setCreateImagePayloadGetAgentAttributeType(&o.Agent, v)
 }
 
 // GetChecksum returns the Checksum field value if set, zero value otherwise.
@@ -713,6 +758,9 @@ func (o *CreateImagePayload) SetUpdatedAt(v CreateImagePayloadGetUpdatedAtRetTyp
 
 func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateImagePayloadGetAgentAttributeTypeOk(o.Agent); ok {
+		toSerialize["Agent"] = val
+	}
 	if val, ok := getCreateImagePayloadGetChecksumAttributeTypeOk(o.Checksum); ok {
 		toSerialize["Checksum"] = val
 	}

@@ -505,7 +505,7 @@ type CreateServerPayload struct {
 	ImageId CreateServerPayloadGetImageIdAttributeType `json:"imageId,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
 	KeypairName CreateServerPayloadGetKeypairNameAttributeType `json:"keypairName,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`.
+	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
 	Labels CreateServerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Date-time when resource was launched.
 	LaunchedAt CreateServerPayloadGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
@@ -513,7 +513,7 @@ type CreateServerPayload struct {
 	// REQUIRED
 	MachineType       CreateServerPayloadGetMachineTypeAttributeType       `json:"machineType" required:"true"`
 	MaintenanceWindow CreateServerPayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
-	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`.
+	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`. Providing a `null` value for a key will remove that key.
 	Metadata CreateServerPayloadGetMetadataAttributeType `json:"metadata,omitempty"`
 	// The name for a Server.
 	// REQUIRED
