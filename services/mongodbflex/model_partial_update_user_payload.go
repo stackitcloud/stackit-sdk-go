@@ -43,9 +43,9 @@ type PartialUpdateUserPayloadGetDatabaseRetType = string
 */
 
 // isArray
-type PartialUpdateUserPayloadGetRolesAttributeType = *[]string
-type PartialUpdateUserPayloadGetRolesArgType = []string
-type PartialUpdateUserPayloadGetRolesRetType = []string
+type PartialUpdateUserPayloadGetRolesAttributeType = *[]UserRole
+type PartialUpdateUserPayloadGetRolesArgType = []UserRole
+type PartialUpdateUserPayloadGetRolesRetType = []UserRole
 
 func getPartialUpdateUserPayloadGetRolesAttributeTypeOk(arg PartialUpdateUserPayloadGetRolesAttributeType) (ret PartialUpdateUserPayloadGetRolesRetType, ok bool) {
 	if arg == nil {
@@ -122,7 +122,7 @@ func (o *PartialUpdateUserPayload) HasRoles() bool {
 	return ok
 }
 
-// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+// SetRoles gets a reference to the given []UserRole and assigns it to the Roles field.
 func (o *PartialUpdateUserPayload) SetRoles(v PartialUpdateUserPayloadGetRolesRetType) {
 	setPartialUpdateUserPayloadGetRolesAttributeType(&o.Roles, v)
 }

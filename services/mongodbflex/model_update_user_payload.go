@@ -43,9 +43,9 @@ type UpdateUserPayloadGetDatabaseRetType = string
 */
 
 // isArray
-type UpdateUserPayloadGetRolesAttributeType = *[]string
-type UpdateUserPayloadGetRolesArgType = []string
-type UpdateUserPayloadGetRolesRetType = []string
+type UpdateUserPayloadGetRolesAttributeType = *[]UserRole
+type UpdateUserPayloadGetRolesArgType = []UserRole
+type UpdateUserPayloadGetRolesRetType = []UserRole
 
 func getUpdateUserPayloadGetRolesAttributeTypeOk(arg UpdateUserPayloadGetRolesAttributeType) (ret UpdateUserPayloadGetRolesRetType, ok bool) {
 	if arg == nil {
