@@ -60,6 +60,27 @@ type OrgManagerGetGuidArgType = string
 type OrgManagerGetGuidRetType = string
 
 /*
+	types and functions for orgId
+*/
+
+// isNotNullableString
+type OrgManagerGetOrgIdAttributeType = *string
+
+func getOrgManagerGetOrgIdAttributeTypeOk(arg OrgManagerGetOrgIdAttributeType) (ret OrgManagerGetOrgIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setOrgManagerGetOrgIdAttributeType(arg *OrgManagerGetOrgIdAttributeType, val OrgManagerGetOrgIdRetType) {
+	*arg = &val
+}
+
+type OrgManagerGetOrgIdArgType = string
+type OrgManagerGetOrgIdRetType = string
+
+/*
 	types and functions for platformId
 */
 
@@ -170,6 +191,8 @@ type OrgManager struct {
 	// REQUIRED
 	Guid OrgManagerGetGuidAttributeType `json:"guid" required:"true"`
 	// REQUIRED
+	OrgId OrgManagerGetOrgIdAttributeType `json:"orgId" required:"true"`
+	// REQUIRED
 	PlatformId OrgManagerGetPlatformIdAttributeType `json:"platformId" required:"true"`
 	// REQUIRED
 	ProjectId OrgManagerGetProjectIdAttributeType `json:"projectId" required:"true"`
@@ -187,10 +210,11 @@ type _OrgManager OrgManager
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgManager(createdAt OrgManagerGetCreatedAtArgType, guid OrgManagerGetGuidArgType, platformId OrgManagerGetPlatformIdArgType, projectId OrgManagerGetProjectIdArgType, region OrgManagerGetRegionArgType, updatedAt OrgManagerGetUpdatedAtArgType, username OrgManagerGetUsernameArgType) *OrgManager {
+func NewOrgManager(createdAt OrgManagerGetCreatedAtArgType, guid OrgManagerGetGuidArgType, orgId OrgManagerGetOrgIdArgType, platformId OrgManagerGetPlatformIdArgType, projectId OrgManagerGetProjectIdArgType, region OrgManagerGetRegionArgType, updatedAt OrgManagerGetUpdatedAtArgType, username OrgManagerGetUsernameArgType) *OrgManager {
 	this := OrgManager{}
 	setOrgManagerGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
 	setOrgManagerGetGuidAttributeType(&this.Guid, guid)
+	setOrgManagerGetOrgIdAttributeType(&this.OrgId, orgId)
 	setOrgManagerGetPlatformIdAttributeType(&this.PlatformId, platformId)
 	setOrgManagerGetProjectIdAttributeType(&this.ProjectId, projectId)
 	setOrgManagerGetRegionAttributeType(&this.Region, region)
@@ -239,6 +263,23 @@ func (o *OrgManager) GetGuidOk() (ret OrgManagerGetGuidRetType, ok bool) {
 // SetGuid sets field value
 func (o *OrgManager) SetGuid(v OrgManagerGetGuidRetType) {
 	setOrgManagerGetGuidAttributeType(&o.Guid, v)
+}
+
+// GetOrgId returns the OrgId field value
+func (o *OrgManager) GetOrgId() (ret OrgManagerGetOrgIdRetType) {
+	ret, _ = o.GetOrgIdOk()
+	return ret
+}
+
+// GetOrgIdOk returns a tuple with the OrgId field value
+// and a boolean to check if the value has been set.
+func (o *OrgManager) GetOrgIdOk() (ret OrgManagerGetOrgIdRetType, ok bool) {
+	return getOrgManagerGetOrgIdAttributeTypeOk(o.OrgId)
+}
+
+// SetOrgId sets field value
+func (o *OrgManager) SetOrgId(v OrgManagerGetOrgIdRetType) {
+	setOrgManagerGetOrgIdAttributeType(&o.OrgId, v)
 }
 
 // GetPlatformId returns the PlatformId field value
@@ -333,6 +374,9 @@ func (o OrgManager) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getOrgManagerGetGuidAttributeTypeOk(o.Guid); ok {
 		toSerialize["Guid"] = val
+	}
+	if val, ok := getOrgManagerGetOrgIdAttributeTypeOk(o.OrgId); ok {
+		toSerialize["OrgId"] = val
 	}
 	if val, ok := getOrgManagerGetPlatformIdAttributeTypeOk(o.PlatformId); ok {
 		toSerialize["PlatformId"] = val
