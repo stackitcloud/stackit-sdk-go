@@ -87,8 +87,11 @@
     - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `sqlserverflex`: [v1.3.1](services/sqlserverflex/CHANGELOG.md#v131) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `stackitmarketplace`: [v1.6.1](services/stackitmarketplace/CHANGELOG.md#v161) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `stackitmarketplace`:
+  - [v1.7.0](services/stackitmarketplace/CHANGELOG.md#v170)
+    - **Breaking Change:** Update `InquiryFormType` enums 
+  - [v1.6.1](services/stackitmarketplace/CHANGELOG.md#v161) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## Release (2025-07-21)
 - `alb`: [v0.6.0](services/alb/CHANGELOG.md#v060)
