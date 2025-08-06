@@ -83,6 +83,7 @@ type CreateUserPayloadGetUsernameRetType = string
 type CreateUserPayload struct {
 	// REQUIRED
 	Database CreateUserPayloadGetDatabaseAttributeType `json:"database" required:"true"`
+	// The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
 	// REQUIRED
 	Roles    CreateUserPayloadGetRolesAttributeType    `json:"roles" required:"true"`
 	Username CreateUserPayloadGetUsernameAttributeType `json:"username,omitempty"`
