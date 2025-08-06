@@ -18,6 +18,27 @@ import (
 var _ MappedNullable = &Credentials{}
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CredentialsGetDescriptionAttributeType = *string
+
+func getCredentialsGetDescriptionAttributeTypeOk(arg CredentialsGetDescriptionAttributeType) (ret CredentialsGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCredentialsGetDescriptionAttributeType(arg *CredentialsGetDescriptionAttributeType, val CredentialsGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CredentialsGetDescriptionArgType = string
+type CredentialsGetDescriptionRetType = string
+
+/*
 	types and functions for password
 */
 
@@ -61,6 +82,7 @@ type CredentialsGetUsernameRetType = string
 
 // Credentials struct for Credentials
 type Credentials struct {
+	Description CredentialsGetDescriptionAttributeType `json:"description,omitempty"`
 	// REQUIRED
 	Password CredentialsGetPasswordAttributeType `json:"password" required:"true"`
 	// REQUIRED
@@ -86,6 +108,29 @@ func NewCredentials(password CredentialsGetPasswordArgType, username Credentials
 func NewCredentialsWithDefaults() *Credentials {
 	this := Credentials{}
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Credentials) GetDescription() (res CredentialsGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Credentials) GetDescriptionOk() (ret CredentialsGetDescriptionRetType, ok bool) {
+	return getCredentialsGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *Credentials) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *Credentials) SetDescription(v CredentialsGetDescriptionRetType) {
+	setCredentialsGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetPassword returns the Password field value
@@ -124,6 +169,9 @@ func (o *Credentials) SetUsername(v CredentialsGetUsernameRetType) {
 
 func (o Credentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCredentialsGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
 	if val, ok := getCredentialsGetPasswordAttributeTypeOk(o.Password); ok {
 		toSerialize["Password"] = val
 	}
