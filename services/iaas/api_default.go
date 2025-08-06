@@ -971,6 +971,24 @@ type DefaultApi interface {
 	*/
 	GetOrganizationRequestExecute(ctx context.Context, organizationId string, requestId string) (*Request, error)
 	/*
+		GetProjectDetails Get project details.
+		Get details about a STACKIT project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The identifier (ID) of a STACKIT Project.
+		@return ApiGetProjectDetailsRequest
+	*/
+	GetProjectDetails(ctx context.Context, projectId string) ApiGetProjectDetailsRequest
+	/*
+		GetProjectDetailsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The identifier (ID) of a STACKIT Project.
+		@return Project
+
+	*/
+	GetProjectDetailsExecute(ctx context.Context, projectId string) (*Project, error)
+	/*
 		GetProjectNIC Get details about a network interface of a project.
 		Get details about a network interface inside a project.
 
@@ -2459,6 +2477,10 @@ type ApiGetNicRequest interface {
 
 type ApiGetOrganizationRequestRequest interface {
 	Execute() (*Request, error)
+}
+
+type ApiGetProjectDetailsRequest interface {
+	Execute() (*Project, error)
 }
 
 type ApiGetProjectNICRequest interface {
@@ -13173,6 +13195,187 @@ func (a *APIClient) GetOrganizationRequestExecute(ctx context.Context, organizat
 		ctx:            ctx,
 		organizationId: organizationId,
 		requestId:      requestId,
+	}
+	return r.Execute()
+}
+
+type GetProjectDetailsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r GetProjectDetailsRequest) Execute() (*Project, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Project
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetProjectDetails")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return localVarReturnValue, fmt.Errorf("projectId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetProjectDetails: Get project details.
+
+Get details about a STACKIT project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@return ApiGetProjectDetailsRequest
+*/
+func (a *APIClient) GetProjectDetails(ctx context.Context, projectId string) ApiGetProjectDetailsRequest {
+	return GetProjectDetailsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) GetProjectDetailsExecute(ctx context.Context, projectId string) (*Project, error) {
+	r := GetProjectDetailsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
 	}
 	return r.Execute()
 }
