@@ -62,6 +62,7 @@ func setUpdateUserPayloadGetRolesAttributeType(arg *UpdateUserPayloadGetRolesAtt
 type UpdateUserPayload struct {
 	// REQUIRED
 	Database UpdateUserPayloadGetDatabaseAttributeType `json:"database" required:"true"`
+	// The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
 	// REQUIRED
 	Roles UpdateUserPayloadGetRolesAttributeType `json:"roles" required:"true"`
 }
