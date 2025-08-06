@@ -112,12 +112,14 @@ type GetServiceAccountKeyResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
 const (
-	GETSERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM_RSA_2048 GetServiceAccountKeyResponseKeyAlgorithm = "RSA_2048"
+	GETSERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM__2048 GetServiceAccountKeyResponseKeyAlgorithm = "RSA_2048"
+	GETSERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM__4096 GetServiceAccountKeyResponseKeyAlgorithm = "RSA_4096"
 )
 
 // All allowed values of GetServiceAccountKeyResponse enum
 var AllowedGetServiceAccountKeyResponseKeyAlgorithmEnumValues = []GetServiceAccountKeyResponseKeyAlgorithm{
 	"RSA_2048",
+	"RSA_4096",
 }
 
 func (v *GetServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {

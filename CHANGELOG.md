@@ -74,8 +74,11 @@
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `serverupdate`: [v1.2.1](services/serverupdate/CHANGELOG.md#v121) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `serviceaccount`: [v0.9.1](services/serviceaccount/CHANGELOG.md#v091) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `serviceaccount`:
+  - [v0.10.0](services/serviceaccount/CHANGELOG.md#v0100)
+    - **Feature:** Add new enum for Key Algorithm `RSA_4096`
+  - [v0.9.1](services/serviceaccount/CHANGELOG.md#v091) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `serviceenablement`: [v1.2.2](services/serviceenablement/CHANGELOG.md#v122) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `ske`:

@@ -92,12 +92,14 @@ type PartialUpdateServiceAccountKeyResponseKeyAlgorithm string
 
 // List of KeyAlgorithm
 const (
-	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM_RSA_2048 PartialUpdateServiceAccountKeyResponseKeyAlgorithm = "RSA_2048"
+	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM__2048 PartialUpdateServiceAccountKeyResponseKeyAlgorithm = "RSA_2048"
+	PARTIALUPDATESERVICEACCOUNTKEYRESPONSEKEY_ALGORITHM__4096 PartialUpdateServiceAccountKeyResponseKeyAlgorithm = "RSA_4096"
 )
 
 // All allowed values of PartialUpdateServiceAccountKeyResponse enum
 var AllowedPartialUpdateServiceAccountKeyResponseKeyAlgorithmEnumValues = []PartialUpdateServiceAccountKeyResponseKeyAlgorithm{
 	"RSA_2048",
+	"RSA_4096",
 }
 
 func (v *PartialUpdateServiceAccountKeyResponseKeyAlgorithm) UnmarshalJSON(src []byte) error {
