@@ -33,6 +33,13 @@ func TestGetServiceAccountKeyResponseKeyAlgorithm_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 2`,
+			args: args{
+				src: []byte(`"RSA_4096"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),
