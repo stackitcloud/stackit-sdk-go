@@ -147,6 +147,7 @@ type InstanceResponseUser struct {
 	Host     InstanceResponseUserGetHostAttributeType     `json:"host,omitempty"`
 	Id       InstanceResponseUserGetIdAttributeType       `json:"id,omitempty"`
 	Port     InstanceResponseUserGetPortAttributeType     `json:"port,omitempty"`
+	// The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
 	Roles    InstanceResponseUserGetRolesAttributeType    `json:"roles,omitempty"`
 	Username InstanceResponseUserGetUsernameAttributeType `json:"username,omitempty"`
 }
