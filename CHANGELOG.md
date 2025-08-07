@@ -59,8 +59,14 @@
     - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `objectstorage`: [v1.3.1](services/objectstorage/CHANGELOG.md#v131) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `observability`: [v0.9.1](services/observability/CHANGELOG.md#v091) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `observability`:
+  - [v0.9.2](services/observability/CHANGELOG.md#v092)
+    - **Feature:** Add new `CreateCredentialsPayload` model for creating credentials with optional description
+    - **Feature:** Add `Description` field to `Credentials` and `ServiceKeysList` models
+    - **Feature:** Update `CreateCredentials` API to accept payload with description
+    - **Improvement:** Improved documentation for some fields of the `UpdateMetricsStorageRetentionPayloard` model regarding downsampling behavior and validation rules
+  - [v0.9.1](services/observability/CHANGELOG.md#v091) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `opensearch`: [v0.24.1](services/opensearch/CHANGELOG.md#v0241) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `postgresflex`: [v1.2.1](services/postgresflex/CHANGELOG.md#v121) 
