@@ -1,3 +1,6 @@
+## v0.11.0
+- **Feature:** Add new `Algorithm` field to `CreateServiceAccountKeyPayload` model with enum values `RSA_2048` and `RSA_4096`
+
 ## v0.10.0
 - **Feature:** Add new enum for Key Algorithm `RSA_4096`
 
