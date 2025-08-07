@@ -38,6 +38,27 @@ func setServiceKeysListGetCredentialsInfoAttributeType(arg *ServiceKeysListGetCr
 }
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+type ServiceKeysListGetDescriptionAttributeType = *string
+
+func getServiceKeysListGetDescriptionAttributeTypeOk(arg ServiceKeysListGetDescriptionAttributeType) (ret ServiceKeysListGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServiceKeysListGetDescriptionAttributeType(arg *ServiceKeysListGetDescriptionAttributeType, val ServiceKeysListGetDescriptionRetType) {
+	*arg = &val
+}
+
+type ServiceKeysListGetDescriptionArgType = string
+type ServiceKeysListGetDescriptionRetType = string
+
+/*
 	types and functions for id
 */
 
@@ -82,6 +103,7 @@ type ServiceKeysListGetNameRetType = string
 // ServiceKeysList struct for ServiceKeysList
 type ServiceKeysList struct {
 	CredentialsInfo ServiceKeysListGetCredentialsInfoAttributeType `json:"credentialsInfo,omitempty"`
+	Description     ServiceKeysListGetDescriptionAttributeType     `json:"description,omitempty"`
 	// REQUIRED
 	Id ServiceKeysListGetIdAttributeType `json:"id" required:"true"`
 	// REQUIRED
@@ -132,6 +154,29 @@ func (o *ServiceKeysList) SetCredentialsInfo(v ServiceKeysListGetCredentialsInfo
 	setServiceKeysListGetCredentialsInfoAttributeType(&o.CredentialsInfo, v)
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *ServiceKeysList) GetDescription() (res ServiceKeysListGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceKeysList) GetDescriptionOk() (ret ServiceKeysListGetDescriptionRetType, ok bool) {
+	return getServiceKeysListGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *ServiceKeysList) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *ServiceKeysList) SetDescription(v ServiceKeysListGetDescriptionRetType) {
+	setServiceKeysListGetDescriptionAttributeType(&o.Description, v)
+}
+
 // GetId returns the Id field value
 func (o *ServiceKeysList) GetId() (ret ServiceKeysListGetIdRetType) {
 	ret, _ = o.GetIdOk()
@@ -170,6 +215,9 @@ func (o ServiceKeysList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getServiceKeysListGetCredentialsInfoAttributeTypeOk(o.CredentialsInfo); ok {
 		toSerialize["CredentialsInfo"] = val
+	}
+	if val, ok := getServiceKeysListGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	if val, ok := getServiceKeysListGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val

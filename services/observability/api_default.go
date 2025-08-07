@@ -1229,6 +1229,7 @@ type ApiCreateAlertrulesRequest interface {
 }
 
 type ApiCreateCredentialsRequest interface {
+	CreateCredentialsPayload(createCredentialsPayload CreateCredentialsPayload) ApiCreateCredentialsRequest
 	Execute() (*CreateCredentialsResponse, error)
 }
 
@@ -2104,10 +2105,16 @@ func (a *APIClient) CreateAlertrulesExecute(ctx context.Context, groupName strin
 }
 
 type CreateCredentialsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	instanceId string
-	projectId  string
+	ctx                      context.Context
+	apiService               *DefaultApiService
+	instanceId               string
+	projectId                string
+	createCredentialsPayload *CreateCredentialsPayload
+}
+
+func (r CreateCredentialsRequest) CreateCredentialsPayload(createCredentialsPayload CreateCredentialsPayload) ApiCreateCredentialsRequest {
+	r.createCredentialsPayload = &createCredentialsPayload
+	return r
 }
 
 func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) {
@@ -2136,7 +2143,7 @@ func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) 
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2152,6 +2159,8 @@ func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.createCredentialsPayload
 	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -2183,6 +2192,17 @@ func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) 
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
