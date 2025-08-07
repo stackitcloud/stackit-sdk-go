@@ -360,10 +360,10 @@ type DefaultApi interface {
 		@param regionId The STACKIT region name the key ring is located in.
 		@param keyRingId The key ring UUID.
 		@param keyId The key UUID.
-		@return Key
+		@return Version
 
 	*/
-	ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error)
+	ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error)
 	/*
 		ListKeyRings List key rings
 		Returns a list of all key rings within the project.
@@ -507,10 +507,10 @@ type DefaultApi interface {
 		@param regionId The STACKIT region name the key ring is located in.
 		@param keyRingId The key ring UUID.
 		@param keyId The key UUID.
-		@return Key
+		@return Version
 
 	*/
-	RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error)
+	RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error)
 	/*
 		Sign Sign
 		Sign data using the given key version as secret.
@@ -632,7 +632,7 @@ type ApiGetWrappingKeyRequest interface {
 
 type ApiImportKeyRequest interface {
 	ImportKeyPayload(importKeyPayload ImportKeyPayload) ApiImportKeyRequest
-	Execute() (*Key, error)
+	Execute() (*Version, error)
 }
 
 type ApiListKeyRingsRequest interface {
@@ -660,7 +660,7 @@ type ApiRestoreVersionRequest interface {
 }
 
 type ApiRotateKeyRequest interface {
-	Execute() (*Key, error)
+	Execute() (*Version, error)
 }
 
 type ApiSignRequest interface {
@@ -3376,12 +3376,12 @@ func (r ImportKeyRequest) ImportKeyPayload(importKeyPayload ImportKeyPayload) Ap
 	return r
 }
 
-func (r ImportKeyRequest) Execute() (*Key, error) {
+func (r ImportKeyRequest) Execute() (*Version, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Key
+		localVarReturnValue *Version
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -3550,7 +3550,7 @@ func (a *APIClient) ImportKey(ctx context.Context, projectId string, regionId st
 	}
 }
 
-func (a *APIClient) ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error) {
+func (a *APIClient) ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error) {
 	r := ImportKeyRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -4597,12 +4597,12 @@ type RotateKeyRequest struct {
 	keyId      string
 }
 
-func (r RotateKeyRequest) Execute() (*Key, error) {
+func (r RotateKeyRequest) Execute() (*Version, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Key
+		localVarReturnValue *Version
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -4777,7 +4777,7 @@ func (a *APIClient) RotateKey(ctx context.Context, projectId string, regionId st
 	}
 }
 
-func (a *APIClient) RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error) {
+func (a *APIClient) RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error) {
 	r := RotateKeyRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
