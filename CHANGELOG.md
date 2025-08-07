@@ -50,8 +50,11 @@
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `modelserving`: [v0.5.1](services/modelserving/CHANGELOG.md#v051) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `mongodbflex`: [v1.5.1](services/mongodbflex/CHANGELOG.md#v151) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `mongodbflex`:
+  - [v1.5.2](services/mongodbflex/CHANGELOG.md#v152)
+    - **Improvement:** Improved documentation for the `Roles` field in user-related models.
+  - [v1.5.1](services/mongodbflex/CHANGELOG.md#v151) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `objectstorage`: [v1.3.1](services/objectstorage/CHANGELOG.md#v131) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `observability`: [v0.9.1](services/observability/CHANGELOG.md#v091) 
