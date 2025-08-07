@@ -1,3 +1,6 @@
+## v1.5.2
+- **Improvement:** Improved documentation for the `Roles` field in user-related models.
+
 ## v1.5.1
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 

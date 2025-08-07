@@ -38,6 +38,8 @@
 - `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
   - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
 - `kms`: 
+  - [v0.5.0](services/kms/CHANGELOG.md#v050) 
+    - **Breaking Change:** Updated return types for `ImportKeyExecute` and `RotateKeyExecute` methods from `*Key` to `*Version`
   - [v0.4.0](services/kms/CHANGELOG.md#v040) 
     - **Feature:** Add new wait handler for key ring creation (`CreateKeyRingWaitHandler`)
   - [v0.3.1](services/kms/CHANGELOG.md#v031) 
@@ -52,12 +54,21 @@
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `modelserving`: [v0.5.1](services/modelserving/CHANGELOG.md#v051) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `mongodbflex`: [v1.5.1](services/mongodbflex/CHANGELOG.md#v151) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `mongodbflex`:
+  - [v1.5.2](services/mongodbflex/CHANGELOG.md#v152)
+    - **Improvement:** Improved documentation for the `Roles` field in user-related models.
+  - [v1.5.1](services/mongodbflex/CHANGELOG.md#v151) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `objectstorage`: [v1.3.1](services/objectstorage/CHANGELOG.md#v131) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
-- `observability`: [v0.9.1](services/observability/CHANGELOG.md#v091) 
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `observability`:
+  - [v0.10.0](services/observability/CHANGELOG.md#v0100)
+    - **Feature:** Add new `CreateCredentialsPayload` model for creating credentials with optional description
+    - **Feature:** Add `Description` field to `Credentials` and `ServiceKeysList` models
+    - **Feature:** Update `CreateCredentials` API to accept payload with description
+    - **Improvement:** Improved documentation for some fields of the `UpdateMetricsStorageRetentionPayloard` model regarding downsampling behavior and validation rules
+  - [v0.9.1](services/observability/CHANGELOG.md#v091) 
+    - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `opensearch`: [v0.24.1](services/opensearch/CHANGELOG.md#v0241) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `postgresflex`: [v1.2.1](services/postgresflex/CHANGELOG.md#v121) 
@@ -77,6 +88,8 @@
 - `serverupdate`: [v1.2.1](services/serverupdate/CHANGELOG.md#v121) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `serviceaccount`:
+  - [v0.11.0](services/serviceaccount/CHANGELOG.md#v0110)
+    - **Feature:** Add new `Algorithm` field to `CreateServiceAccountKeyPayload` model with enum values `RSA_2048` and `RSA_4096`
   - [v0.10.0](services/serviceaccount/CHANGELOG.md#v0100)
     - **Feature:** Add new enum for Key Algorithm `RSA_4096`
   - [v0.9.1](services/serviceaccount/CHANGELOG.md#v091) 

@@ -1,3 +1,9 @@
+## v0.10.0
+- **Feature:** Add new `CreateCredentialsPayload` model for creating credentials with optional description
+- **Feature:** Add `Description` field to `Credentials` and `ServiceKeysList` models
+- **Feature:** Update `CreateCredentials` API to accept payload with description
+- **Improvement:** Improved documentation for some fields of the `UpdateMetricsStorageRetentionPayloard` model regarding downsampling behavior and validation rules
+
 ## v0.9.1
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
