@@ -360,10 +360,10 @@ type DefaultApi interface {
 		@param regionId The STACKIT region name the key ring is located in.
 		@param keyRingId The key ring UUID.
 		@param keyId The key UUID.
-		@return Key
+		@return Version
 
 	*/
-	ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error)
+	ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error)
 	/*
 		ListKeyRings List key rings
 		Returns a list of all key rings within the project.
@@ -507,10 +507,10 @@ type DefaultApi interface {
 		@param regionId The STACKIT region name the key ring is located in.
 		@param keyRingId The key ring UUID.
 		@param keyId The key UUID.
-		@return Key
+		@return Version
 
 	*/
-	RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error)
+	RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error)
 	/*
 		Sign Sign
 		Sign data using the given key version as secret.
@@ -632,7 +632,7 @@ type ApiGetWrappingKeyRequest interface {
 
 type ApiImportKeyRequest interface {
 	ImportKeyPayload(importKeyPayload ImportKeyPayload) ApiImportKeyRequest
-	Execute() (*Key, error)
+	Execute() (*Version, error)
 }
 
 type ApiListKeyRingsRequest interface {
@@ -660,7 +660,7 @@ type ApiRestoreVersionRequest interface {
 }
 
 type ApiRotateKeyRequest interface {
-	Execute() (*Key, error)
+	Execute() (*Version, error)
 }
 
 type ApiSignRequest interface {
@@ -1538,6 +1538,17 @@ func (r DeleteKeyRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1694,6 +1705,17 @@ func (r DeleteKeyRingRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1869,6 +1891,17 @@ func (r DeleteWrappingKeyRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2029,6 +2062,17 @@ func (r DestroyVersionRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2212,6 +2256,17 @@ func (r DisableVersionRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2375,6 +2430,17 @@ func (r EnableVersionRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3376,12 +3442,12 @@ func (r ImportKeyRequest) ImportKeyPayload(importKeyPayload ImportKeyPayload) Ap
 	return r
 }
 
-func (r ImportKeyRequest) Execute() (*Key, error) {
+func (r ImportKeyRequest) Execute() (*Version, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Key
+		localVarReturnValue *Version
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -3550,7 +3616,7 @@ func (a *APIClient) ImportKey(ctx context.Context, projectId string, regionId st
 	}
 }
 
-func (a *APIClient) ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error) {
+func (a *APIClient) ImportKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error) {
 	r := ImportKeyRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
@@ -4364,6 +4430,17 @@ func (r RestoreKeyRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4534,6 +4611,17 @@ func (r RestoreVersionRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4597,12 +4685,12 @@ type RotateKeyRequest struct {
 	keyId      string
 }
 
-func (r RotateKeyRequest) Execute() (*Key, error) {
+func (r RotateKeyRequest) Execute() (*Version, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Key
+		localVarReturnValue *Version
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -4777,7 +4865,7 @@ func (a *APIClient) RotateKey(ctx context.Context, projectId string, regionId st
 	}
 }
 
-func (a *APIClient) RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Key, error) {
+func (a *APIClient) RotateKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*Version, error) {
 	r := RotateKeyRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
