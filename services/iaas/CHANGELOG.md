@@ -1,3 +1,6 @@
+## v0.29.0
+- **Feature:** Add new method to get project details `GetProjectDetails`
+
 ## v0.28.0
 - **Docs:** Improved descriptions of properties in structs with their possible values
 - **Feature:** Add `Agent` field to `CreateImagePayload`, `UpdateImagePayload` and `Image` model
