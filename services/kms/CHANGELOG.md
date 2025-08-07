@@ -1,3 +1,6 @@
+## v0.5.0
+- **Breaking Change:** Updated return types for `ImportKeyExecute` and `RotateKeyExecute` methods from `*Key` to `*Version`
+
 ## v0.4.0
 - **Feature:** Add new wait handler for key ring creation (`CreateKeyRingWaitHandler`)
 
