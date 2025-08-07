@@ -12,11 +12,136 @@ package serviceaccount
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
 // checks if the CreateServiceAccountKeyPayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateServiceAccountKeyPayload{}
+
+/*
+	types and functions for algorithm
+*/
+
+// isEnum
+
+// CreateServiceAccountKeyPayloadAlgorithm Optional, key algorithm of the generated key-pair. Used only if publicKey attribute is not specified, otherwise the algorithm is derived from the public key.
+// value type for enums
+type CreateServiceAccountKeyPayloadAlgorithm string
+
+// List of Algorithm
+const (
+	CREATESERVICEACCOUNTKEYPAYLOADALGORITHM__2048 CreateServiceAccountKeyPayloadAlgorithm = "RSA_2048"
+	CREATESERVICEACCOUNTKEYPAYLOADALGORITHM__4096 CreateServiceAccountKeyPayloadAlgorithm = "RSA_4096"
+)
+
+// All allowed values of CreateServiceAccountKeyPayload enum
+var AllowedCreateServiceAccountKeyPayloadAlgorithmEnumValues = []CreateServiceAccountKeyPayloadAlgorithm{
+	"RSA_2048",
+	"RSA_4096",
+}
+
+func (v *CreateServiceAccountKeyPayloadAlgorithm) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson CreateServiceAccountKeyPayloadAlgorithm
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := CreateServiceAccountKeyPayloadAlgorithm(value)
+	for _, existing := range AllowedCreateServiceAccountKeyPayloadAlgorithmEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid CreateServiceAccountKeyPayload", value)
+}
+
+// NewCreateServiceAccountKeyPayloadAlgorithmFromValue returns a pointer to a valid CreateServiceAccountKeyPayloadAlgorithm
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func NewCreateServiceAccountKeyPayloadAlgorithmFromValue(v CreateServiceAccountKeyPayloadAlgorithm) (*CreateServiceAccountKeyPayloadAlgorithm, error) {
+	ev := CreateServiceAccountKeyPayloadAlgorithm(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for CreateServiceAccountKeyPayloadAlgorithm: valid values are %v", v, AllowedCreateServiceAccountKeyPayloadAlgorithmEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v CreateServiceAccountKeyPayloadAlgorithm) IsValid() bool {
+	for _, existing := range AllowedCreateServiceAccountKeyPayloadAlgorithmEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to AlgorithmAlgorithm value
+func (v CreateServiceAccountKeyPayloadAlgorithm) Ptr() *CreateServiceAccountKeyPayloadAlgorithm {
+	return &v
+}
+
+type NullableCreateServiceAccountKeyPayloadAlgorithm struct {
+	value *CreateServiceAccountKeyPayloadAlgorithm
+	isSet bool
+}
+
+func (v NullableCreateServiceAccountKeyPayloadAlgorithm) Get() *CreateServiceAccountKeyPayloadAlgorithm {
+	return v.value
+}
+
+func (v *NullableCreateServiceAccountKeyPayloadAlgorithm) Set(val *CreateServiceAccountKeyPayloadAlgorithm) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateServiceAccountKeyPayloadAlgorithm) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateServiceAccountKeyPayloadAlgorithm) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateServiceAccountKeyPayloadAlgorithm(val *CreateServiceAccountKeyPayloadAlgorithm) *NullableCreateServiceAccountKeyPayloadAlgorithm {
+	return &NullableCreateServiceAccountKeyPayloadAlgorithm{value: val, isSet: true}
+}
+
+func (v NullableCreateServiceAccountKeyPayloadAlgorithm) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCreateServiceAccountKeyPayloadAlgorithm) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+type CreateServiceAccountKeyPayloadGetAlgorithmAttributeType = *CreateServiceAccountKeyPayloadAlgorithm
+type CreateServiceAccountKeyPayloadGetAlgorithmArgType = CreateServiceAccountKeyPayloadAlgorithm
+type CreateServiceAccountKeyPayloadGetAlgorithmRetType = CreateServiceAccountKeyPayloadAlgorithm
+
+func getCreateServiceAccountKeyPayloadGetAlgorithmAttributeTypeOk(arg CreateServiceAccountKeyPayloadGetAlgorithmAttributeType) (ret CreateServiceAccountKeyPayloadGetAlgorithmRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateServiceAccountKeyPayloadGetAlgorithmAttributeType(arg *CreateServiceAccountKeyPayloadGetAlgorithmAttributeType, val CreateServiceAccountKeyPayloadGetAlgorithmRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for publicKey
@@ -61,6 +186,8 @@ func setCreateServiceAccountKeyPayloadGetValidUntilAttributeType(arg *CreateServ
 
 // CreateServiceAccountKeyPayload struct for CreateServiceAccountKeyPayload
 type CreateServiceAccountKeyPayload struct {
+	// Optional, key algorithm of the generated key-pair. Used only if publicKey attribute is not specified, otherwise the algorithm is derived from the public key.
+	Algorithm CreateServiceAccountKeyPayloadGetAlgorithmAttributeType `json:"algorithm,omitempty"`
 	// Optional, public key part of the user generated RSA key-pair wrapped in a [X.509 v3 certificate](https://www.rfc-editor.org/rfc/rfc5280)
 	PublicKey CreateServiceAccountKeyPayloadGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// Optional, date of key expiration. When omitted, key is valid until deleted
@@ -82,6 +209,29 @@ func NewCreateServiceAccountKeyPayload() *CreateServiceAccountKeyPayload {
 func NewCreateServiceAccountKeyPayloadWithDefaults() *CreateServiceAccountKeyPayload {
 	this := CreateServiceAccountKeyPayload{}
 	return &this
+}
+
+// GetAlgorithm returns the Algorithm field value if set, zero value otherwise.
+func (o *CreateServiceAccountKeyPayload) GetAlgorithm() (res CreateServiceAccountKeyPayloadGetAlgorithmRetType) {
+	res, _ = o.GetAlgorithmOk()
+	return
+}
+
+// GetAlgorithmOk returns a tuple with the Algorithm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServiceAccountKeyPayload) GetAlgorithmOk() (ret CreateServiceAccountKeyPayloadGetAlgorithmRetType, ok bool) {
+	return getCreateServiceAccountKeyPayloadGetAlgorithmAttributeTypeOk(o.Algorithm)
+}
+
+// HasAlgorithm returns a boolean if a field has been set.
+func (o *CreateServiceAccountKeyPayload) HasAlgorithm() bool {
+	_, ok := o.GetAlgorithmOk()
+	return ok
+}
+
+// SetAlgorithm gets a reference to the given string and assigns it to the Algorithm field.
+func (o *CreateServiceAccountKeyPayload) SetAlgorithm(v CreateServiceAccountKeyPayloadGetAlgorithmRetType) {
+	setCreateServiceAccountKeyPayloadGetAlgorithmAttributeType(&o.Algorithm, v)
 }
 
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
@@ -132,6 +282,9 @@ func (o *CreateServiceAccountKeyPayload) SetValidUntil(v CreateServiceAccountKey
 
 func (o CreateServiceAccountKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateServiceAccountKeyPayloadGetAlgorithmAttributeTypeOk(o.Algorithm); ok {
+		toSerialize["Algorithm"] = val
+	}
 	if val, ok := getCreateServiceAccountKeyPayloadGetPublicKeyAttributeTypeOk(o.PublicKey); ok {
 		toSerialize["PublicKey"] = val
 	}
