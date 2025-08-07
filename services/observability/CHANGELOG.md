@@ -1,4 +1,4 @@
-## v0.9.2
+## v0.10.0
 - **Feature:** Add new `CreateCredentialsPayload` model for creating credentials with optional description
 - **Feature:** Add `Description` field to `Credentials` and `ServiceKeysList` models
 - **Feature:** Update `CreateCredentials` API to accept payload with description

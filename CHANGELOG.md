@@ -60,7 +60,7 @@
 - `objectstorage`: [v1.3.1](services/objectstorage/CHANGELOG.md#v131) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `observability`:
-  - [v0.9.2](services/observability/CHANGELOG.md#v092)
+  - [v0.10.0](services/observability/CHANGELOG.md#v0100)
     - **Feature:** Add new `CreateCredentialsPayload` model for creating credentials with optional description
     - **Feature:** Add `Description` field to `Credentials` and `ServiceKeysList` models
     - **Feature:** Update `CreateCredentials` API to accept payload with description
