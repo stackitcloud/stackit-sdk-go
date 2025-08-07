@@ -61,7 +61,8 @@ func setPartialUpdateUserPayloadGetRolesAttributeType(arg *PartialUpdateUserPayl
 // PartialUpdateUserPayload struct for PartialUpdateUserPayload
 type PartialUpdateUserPayload struct {
 	Database PartialUpdateUserPayloadGetDatabaseAttributeType `json:"database,omitempty"`
-	Roles    PartialUpdateUserPayloadGetRolesAttributeType    `json:"roles,omitempty"`
+	// The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
+	Roles PartialUpdateUserPayloadGetRolesAttributeType `json:"roles,omitempty"`
 }
 
 // NewPartialUpdateUserPayload instantiates a new PartialUpdateUserPayload object
