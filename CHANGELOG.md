@@ -27,6 +27,8 @@
 - `git`: [v0.7.1](services/git/CHANGELOG.md#v071) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `iaas`:
+  - [v0.29.0](services/iaas/CHANGELOG.md#v0290)
+    - **Feature:** Add new method to get project details `GetProjectDetails`
   - [v0.28.0](services/iaas/CHANGELOG.md#v0280)
     - **Docs:** Improved descriptions of properties in structs with their possible values
     - **Feature:** Add `Agent` field to `CreateImagePayload`, `UpdateImagePayload` and `Image` model
