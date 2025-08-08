@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.17.3 h1:GsZGmRRc/3GJLmCUnsZswirr5wfLRrwavbnL/renOqg=
 github.com/stackitcloud/stackit-sdk-go/core v0.17.3/go.mod h1:HBCXJGPgdRulplDzhrmwC+Dak9B/x0nzNtmOpu+1Ahg=
-github.com/stackitcloud/stackit-sdk-go/services/iaas v0.28.0 h1:ggnr5AD62QiP+Us+RMAB+uPYN8cq08V6LtUNZe/c8TA=
-github.com/stackitcloud/stackit-sdk-go/services/iaas v0.28.0/go.mod h1:b/jgJf7QHdRzU2fmZeJJtu5j0TAevDRghzcn5MyRmOI=
+github.com/stackitcloud/stackit-sdk-go/services/iaas v0.29.0 h1:j4FKFOVkcTot8xNxpvDsPzIFyjADE4GxXF0rFE6/Uo4=
+github.com/stackitcloud/stackit-sdk-go/services/iaas v0.29.0/go.mod h1:b/jgJf7QHdRzU2fmZeJJtu5j0TAevDRghzcn5MyRmOI=
