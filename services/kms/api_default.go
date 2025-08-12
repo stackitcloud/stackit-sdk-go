@@ -1538,6 +1538,17 @@ func (r DeleteKeyRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1694,6 +1705,17 @@ func (r DeleteKeyRingRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1869,6 +1891,17 @@ func (r DeleteWrappingKeyRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2029,6 +2062,17 @@ func (r DestroyVersionRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2212,6 +2256,17 @@ func (r DisableVersionRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2375,6 +2430,17 @@ func (r EnableVersionRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -4364,6 +4430,17 @@ func (r RestoreKeyRequest) Execute() error {
 			newErr.Model = v
 			return newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -4524,6 +4601,17 @@ func (r RestoreVersionRequest) Execute() error {
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v HttpError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v HttpError
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
