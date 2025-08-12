@@ -40,6 +40,8 @@
 - `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
   - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
 - `kms`: 
+  - [v0.5.1](services/kms/CHANGELOG.md#v051)
+    - **Improvement:** Improved error handling for multiple API methods including `DeleteKey`, `DeleteKeyRing`, `DeleteWrappingKey`, `DestroyVersion`, `DisableVersion`, `EnableVersion`, `RestoreKey`, and `RestoreVersion`
   - [v0.5.0](services/kms/CHANGELOG.md#v050) 
     - **Breaking Change:** Updated return types for `ImportKeyExecute` and `RotateKeyExecute` methods from `*Key` to `*Version`
   - [v0.4.0](services/kms/CHANGELOG.md#v040) 
