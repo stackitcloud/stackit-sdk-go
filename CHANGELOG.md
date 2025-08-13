@@ -1,4 +1,4 @@
-## Release (2025-XX-XX)
+## Release (2025-08-13)
 - `scf`:
   - [v0.2.0](services/scf/CHANGELOG.md#v020)
     - **Feature:** Add field `OrgId` in model `OrgManager`
