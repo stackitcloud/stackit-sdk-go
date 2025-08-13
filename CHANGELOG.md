@@ -11,6 +11,8 @@
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `archiving`: [v0.2.1](services/archiving/CHANGELOG.md#v021) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- `auditlog`: [v0.1.0](services/auditlog/CHANGELOG.md#v010)
+  - **New**: STACKIT Audit Log module for retrieving recorded actions and system changes. Download audit log entries for folders, organizations, and projects with time range filtering, pagination, and configurable result limits.
 - `authorization`: [v0.8.1](services/authorization/CHANGELOG.md#v081) 
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 - `cdn`:
@@ -38,6 +40,8 @@
 - `intake`: [v0.1.0](services/intake/CHANGELOG.md#v010)
   - **New**: STACKIT Intake module can be used to manage the STACKIT Intake. Manage your `IntakeRunners`, `Intakes` and `IntakeUsers`
 - `kms`: 
+  - [v0.5.1](services/kms/CHANGELOG.md#v051)
+    - **Improvement:** Improved error handling for multiple API methods including `DeleteKey`, `DeleteKeyRing`, `DeleteWrappingKey`, `DestroyVersion`, `DisableVersion`, `EnableVersion`, `RestoreKey`, and `RestoreVersion`
   - [v0.5.0](services/kms/CHANGELOG.md#v050) 
     - **Breaking Change:** Updated return types for `ImportKeyExecute` and `RotateKeyExecute` methods from `*Key` to `*Version`
   - [v0.4.0](services/kms/CHANGELOG.md#v040) 
