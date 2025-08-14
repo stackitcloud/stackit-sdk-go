@@ -12,7 +12,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/scf"
 )
 
-const status_deleting_failed = "deleting_failed"
+const statusDeletingFailed = "deleting_failed"
 
 // Interfaces needed for tests
 type APIClientInterface interface {
