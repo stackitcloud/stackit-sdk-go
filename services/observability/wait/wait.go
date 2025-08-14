@@ -37,6 +37,9 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		if err != nil {
 			return false, nil, err
 		}
+		if s == nil {
+			return false, nil, nil
+		}
 		if s.Id == nil || s.Status == nil {
 			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
 		}
@@ -58,6 +61,9 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
+		}
+		if s == nil {
+			return false, nil, nil
 		}
 		if s.Id == nil || s.Status == nil {
 			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
@@ -81,6 +87,9 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 		s, err := a.GetInstanceExecute(ctx, instanceId, projectId)
 		if err != nil {
 			return false, nil, err
+		}
+		if s == nil {
+			return false, nil, nil
 		}
 		if s.Id == nil || s.Status == nil {
 			return false, nil, fmt.Errorf("could not get instance id or status from response for project %s and instance %s", projectId, instanceId)
