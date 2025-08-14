@@ -12,7 +12,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/scf"
 )
 
-const STATUS_DELETING_FAILED = "deleting_failed"
+const status_deleting_failed = "deleting_failed"
 
 // Interfaces needed for tests
 type APIClientInterface interface {
@@ -31,7 +31,10 @@ func DeleteOrganizationWaitHandler(ctx context.Context, a APIClientInterface, pr
 			}
 			return false, s, err
 		}
-		if *s.Status == STATUS_DELETING_FAILED {
+		if s == nil {
+			return false, nil, errors.New("organization is nil")
+		}
+		if *s.Status == status_deleting_failed {
 			return true, nil, fmt.Errorf("delete failed for Organization with id %s", orgId)
 		}
 		return false, s, nil

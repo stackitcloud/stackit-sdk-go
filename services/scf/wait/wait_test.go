@@ -22,7 +22,7 @@ type apiClientMocked struct {
 	returnInstance bool
 	projectId      string
 	instanceId     string
-	getGitResponse *scf.Organization
+	getSCFResponse *scf.Organization
 }
 
 func (a *apiClientMocked) GetOrganizationExecute(_ context.Context, _, _, _ string) (*scf.Organization, error) {
@@ -34,7 +34,7 @@ func (a *apiClientMocked) GetOrganizationExecute(_ context.Context, _, _, _ stri
 	if !a.returnInstance {
 		return nil, nil
 	}
-	return a.getGitResponse, nil
+	return a.getSCFResponse, nil
 }
 
 func TestDeleteOrganizationWaitHandler(t *testing.T) {
@@ -67,6 +67,12 @@ func TestDeleteOrganizationWaitHandler(t *testing.T) {
 				Status: &statusDeletingFailed,
 			},
 		},
+		{
+			desc:           "Instance is nil",
+			wantErr:        true,
+			returnInstance: true,
+			getOrgResponse: nil,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
@@ -76,7 +82,7 @@ func TestDeleteOrganizationWaitHandler(t *testing.T) {
 				getFails:       tt.getFails,
 				errorCode:      tt.errorCode,
 				returnInstance: tt.returnInstance,
-				getGitResponse: tt.getOrgResponse,
+				getSCFResponse: tt.getOrgResponse,
 			}
 
 			handler := DeleteOrganizationWaitHandler(context.Background(), apiClient, apiClient.projectId, REGION, apiClient.instanceId)
