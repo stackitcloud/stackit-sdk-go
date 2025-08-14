@@ -1,3 +1,8 @@
+## Release (2025-xx-xx)
+- `scf`:
+    - [v0.2.1](services/scf/CHANGELOG.md#v021)
+        - **Feature:** Add waiter for deletion of organization
+
 ## Release (2025-08-13)
 - `scf`:
   - [v0.2.0](services/scf/CHANGELOG.md#v020)
