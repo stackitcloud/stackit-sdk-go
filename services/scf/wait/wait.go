@@ -34,7 +34,7 @@ func DeleteOrganizationWaitHandler(ctx context.Context, a APIClientInterface, pr
 		if s == nil {
 			return false, nil, errors.New("organization is nil")
 		}
-		if *s.Status == status_deleting_failed {
+		if *s.Status == statusDeletingFailed {
 			return true, nil, fmt.Errorf("delete failed for Organization with id %s", orgId)
 		}
 		return false, s, nil
