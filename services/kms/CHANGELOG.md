@@ -1,3 +1,6 @@
+## v0.5.1
+- **Improvement:** Improved error handling for multiple API methods including `DeleteKey`, `DeleteKeyRing`, `DeleteWrappingKey`, `DestroyVersion`, `DisableVersion`, `EnableVersion`, `RestoreKey`, and `RestoreVersion`
+
 ## v0.5.0
 - **Breaking Change:** Updated return types for `ImportKeyExecute` and `RotateKeyExecute` methods from `*Key` to `*Version`
 
