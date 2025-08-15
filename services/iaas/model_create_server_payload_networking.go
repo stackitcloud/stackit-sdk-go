@@ -39,30 +39,29 @@ func CreateServerNetworkingWithNicsAsCreateServerPayloadNetworking(v *CreateServ
 func (dst *CreateServerPayloadNetworking) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// Workaround until upstream issue is fixed:
+	// https://github.com/OpenAPITools/openapi-generator/issues/21751
+	// Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-226
 	// try to unmarshal data into CreateServerNetworking
-	err = json.Unmarshal(data, &dst.CreateServerNetworking)
+	dstCreateServerPayloadNetworking1 := &CreateServerPayloadNetworking{}
+	err = json.Unmarshal(data, &dstCreateServerPayloadNetworking1.CreateServerNetworking)
 	if err == nil {
-		jsonCreateServerNetworking, _ := json.Marshal(dst.CreateServerNetworking)
-		if string(jsonCreateServerNetworking) == "{}" { // empty struct
-			dst.CreateServerNetworking = nil
-		} else {
+		jsonCreateServerNetworking, _ := json.Marshal(&dstCreateServerPayloadNetworking1.CreateServerNetworking)
+		if string(jsonCreateServerNetworking) != "{}" { // empty struct
+			dst.CreateServerNetworking = dstCreateServerPayloadNetworking1.CreateServerNetworking
 			match++
 		}
-	} else {
-		dst.CreateServerNetworking = nil
 	}
 
 	// try to unmarshal data into CreateServerNetworkingWithNics
-	err = json.Unmarshal(data, &dst.CreateServerNetworkingWithNics)
+	dstCreateServerPayloadNetworking2 := &CreateServerPayloadNetworking{}
+	err = json.Unmarshal(data, &dstCreateServerPayloadNetworking2.CreateServerNetworkingWithNics)
 	if err == nil {
-		jsonCreateServerNetworkingWithNics, _ := json.Marshal(dst.CreateServerNetworkingWithNics)
-		if string(jsonCreateServerNetworkingWithNics) == "{}" { // empty struct
-			dst.CreateServerNetworkingWithNics = nil
-		} else {
+		jsonCreateServerNetworkingWithNics, _ := json.Marshal(&dstCreateServerPayloadNetworking2.CreateServerNetworkingWithNics)
+		if string(jsonCreateServerNetworkingWithNics) != "{}" { // empty struct
+			dst.CreateServerNetworkingWithNics = dstCreateServerPayloadNetworking2.CreateServerNetworkingWithNics
 			match++
 		}
-	} else {
-		dst.CreateServerNetworkingWithNics = nil
 	}
 
 	if match > 1 { // more than 1 match

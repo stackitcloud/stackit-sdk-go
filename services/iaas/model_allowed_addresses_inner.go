@@ -13,6 +13,7 @@ package iaas
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 )
 
 // AllowedAddressesInner - struct for AllowedAddressesInner
@@ -31,17 +32,39 @@ func StringAsAllowedAddressesInner(v *string) AllowedAddressesInner {
 func (dst *AllowedAddressesInner) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// Workaround until upstream issue is fixed:
+	// https://github.com/OpenAPITools/openapi-generator/issues/21751
+	// Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-226
 	// try to unmarshal data into String
-	err = json.Unmarshal(data, &dst.String)
+	dstAllowedAddressesInner1 := &AllowedAddressesInner{}
+	err = json.Unmarshal(data, &dstAllowedAddressesInner1.String)
 	if err == nil {
-		jsonstring, _ := json.Marshal(dst.String)
-		if string(jsonstring) == "{}" { // empty struct
-			dst.String = nil
-		} else {
+		jsonstring, _ := json.Marshal(&dstAllowedAddressesInner1.String)
+		regex := `/((^\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\s*$)|(^\\s*((([0-9a-f]{1,4}:){7}([0-9a-f]{1,4}|:))|(([0-9a-f]{1,4}:){6}(:[0-9a-f]{1,4}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1,4}:){5}(((:[0-9a-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|(([0-9a-f]{1,4}:){4}(((:[0-9a-f]{1,4}){1,3})|((:[0-9a-f]{1,4})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1,4}:){3}(((:[0-9a-f]{1,4}){1,4})|((:[0-9a-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1,4}:){2}(((:[0-9a-f]{1,4}){1,5})|((:[0-9a-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(([0-9a-f]{1,4}:){1}(((:[0-9a-f]{1,4}){1,6})|((:[0-9a-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:[0-9a-f]{1,4}){1,7})|((:[0-9a-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*$))/`
+		regex = regexp.MustCompile("^\\/|\\/$").ReplaceAllString(regex, "$1")                              // Remove beginning slash and ending slash
+		regex = regexp.MustCompile("\\\\(.)").ReplaceAllString(regex, "$1")                                // Remove duplicate escaping char for dots
+		rawString := regexp.MustCompile(`^"|"$`).ReplaceAllString(*dstAllowedAddressesInner1.String, "$1") // Remove quotes
+		isMatched, _ := regexp.MatchString(regex, rawString)
+		if string(jsonstring) != "{}" && isMatched { // empty struct
+			dst.String = dstAllowedAddressesInner1.String
 			match++
 		}
-	} else {
-		dst.String = nil
+	}
+
+	// try to unmarshal data into String
+	dstAllowedAddressesInner2 := &AllowedAddressesInner{}
+	err = json.Unmarshal(data, &dstAllowedAddressesInner2.String)
+	if err == nil {
+		jsonstring, _ := json.Marshal(&dstAllowedAddressesInner2.String)
+		regex := `/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$/`
+		regex = regexp.MustCompile("^\\/|\\/$").ReplaceAllString(regex, "$1")                              // Remove beginning slash and ending slash
+		regex = regexp.MustCompile("\\\\(.)").ReplaceAllString(regex, "$1")                                // Remove duplicate escaping char for dots
+		rawString := regexp.MustCompile(`^"|"$`).ReplaceAllString(*dstAllowedAddressesInner2.String, "$1") // Remove quotes
+		isMatched, _ := regexp.MatchString(regex, rawString)
+		if string(jsonstring) != "{}" && isMatched { // empty struct
+			dst.String = dstAllowedAddressesInner2.String
+			match++
+		}
 	}
 
 	if match > 1 { // more than 1 match
