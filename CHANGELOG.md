@@ -1,3 +1,7 @@
+## Release (2025-XX-XX)
+- `iaas`: [v0.29.1](services/iaas/CHANGELOG.md#v0291)
+  - **Bugfix:** Parsing oneOf with enum and string value
+
 ## Release (2025-08-13)
 - `scf`:
   - [v0.2.0](services/scf/CHANGELOG.md#v020)
