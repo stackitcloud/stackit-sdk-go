@@ -55,56 +55,51 @@ func SuggestProductAsInquiriesCreateInquiryPayload(v *SuggestProduct) InquiriesC
 func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into BecomeVendor
-	err = json.Unmarshal(data, &dst.BecomeVendor)
+	// Workaround until upstream issue is fixed:
+	// https://github.com/OpenAPITools/openapi-generator/issues/21751
+	// Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-226
+	// try to unmarshal data into SuggestProduct
+	dstInquiriesCreateInquiryPayload1 := &InquiriesCreateInquiryPayload{}
+	err = json.Unmarshal(data, &dstInquiriesCreateInquiryPayload1.SuggestProduct)
 	if err == nil {
-		jsonBecomeVendor, _ := json.Marshal(dst.BecomeVendor)
-		if string(jsonBecomeVendor) == "{}" { // empty struct
-			dst.BecomeVendor = nil
-		} else {
+		jsonSuggestProduct, _ := json.Marshal(&dstInquiriesCreateInquiryPayload1.SuggestProduct)
+		if string(jsonSuggestProduct) != "{}" { // empty struct
+			dst.SuggestProduct = dstInquiriesCreateInquiryPayload1.SuggestProduct
 			match++
 		}
-	} else {
-		dst.BecomeVendor = nil
 	}
 
 	// try to unmarshal data into ContactSales
-	err = json.Unmarshal(data, &dst.ContactSales)
+	dstInquiriesCreateInquiryPayload2 := &InquiriesCreateInquiryPayload{}
+	err = json.Unmarshal(data, &dstInquiriesCreateInquiryPayload2.ContactSales)
 	if err == nil {
-		jsonContactSales, _ := json.Marshal(dst.ContactSales)
-		if string(jsonContactSales) == "{}" { // empty struct
-			dst.ContactSales = nil
-		} else {
+		jsonContactSales, _ := json.Marshal(&dstInquiriesCreateInquiryPayload2.ContactSales)
+		if string(jsonContactSales) != "{}" { // empty struct
+			dst.ContactSales = dstInquiriesCreateInquiryPayload2.ContactSales
 			match++
 		}
-	} else {
-		dst.ContactSales = nil
+	}
+
+	// try to unmarshal data into BecomeVendor
+	dstInquiriesCreateInquiryPayload3 := &InquiriesCreateInquiryPayload{}
+	err = json.Unmarshal(data, &dstInquiriesCreateInquiryPayload3.BecomeVendor)
+	if err == nil {
+		jsonBecomeVendor, _ := json.Marshal(&dstInquiriesCreateInquiryPayload3.BecomeVendor)
+		if string(jsonBecomeVendor) != "{}" { // empty struct
+			dst.BecomeVendor = dstInquiriesCreateInquiryPayload3.BecomeVendor
+			match++
+		}
 	}
 
 	// try to unmarshal data into RegisterTesting
-	err = json.Unmarshal(data, &dst.RegisterTesting)
+	dstInquiriesCreateInquiryPayload4 := &InquiriesCreateInquiryPayload{}
+	err = json.Unmarshal(data, &dstInquiriesCreateInquiryPayload4.RegisterTesting)
 	if err == nil {
-		jsonRegisterTesting, _ := json.Marshal(dst.RegisterTesting)
-		if string(jsonRegisterTesting) == "{}" { // empty struct
-			dst.RegisterTesting = nil
-		} else {
+		jsonRegisterTesting, _ := json.Marshal(&dstInquiriesCreateInquiryPayload4.RegisterTesting)
+		if string(jsonRegisterTesting) != "{}" { // empty struct
+			dst.RegisterTesting = dstInquiriesCreateInquiryPayload4.RegisterTesting
 			match++
 		}
-	} else {
-		dst.RegisterTesting = nil
-	}
-
-	// try to unmarshal data into SuggestProduct
-	err = json.Unmarshal(data, &dst.SuggestProduct)
-	if err == nil {
-		jsonSuggestProduct, _ := json.Marshal(dst.SuggestProduct)
-		if string(jsonSuggestProduct) == "{}" { // empty struct
-			dst.SuggestProduct = nil
-		} else {
-			match++
-		}
-	} else {
-		dst.SuggestProduct = nil
 	}
 
 	if match > 1 { // more than 1 match
