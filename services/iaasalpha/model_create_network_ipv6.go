@@ -39,30 +39,29 @@ func CreateNetworkIPv6WithPrefixLengthAsCreateNetworkIPv6(v *CreateNetworkIPv6Wi
 func (dst *CreateNetworkIPv6) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// Workaround until upstream issue is fixed:
+	// https://github.com/OpenAPITools/openapi-generator/issues/21751
+	// Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-226
 	// try to unmarshal data into CreateNetworkIPv6WithPrefix
-	err = json.Unmarshal(data, &dst.CreateNetworkIPv6WithPrefix)
+	dstCreateNetworkIPv61 := &CreateNetworkIPv6{}
+	err = json.Unmarshal(data, &dstCreateNetworkIPv61.CreateNetworkIPv6WithPrefix)
 	if err == nil {
-		jsonCreateNetworkIPv6WithPrefix, _ := json.Marshal(dst.CreateNetworkIPv6WithPrefix)
-		if string(jsonCreateNetworkIPv6WithPrefix) == "{}" { // empty struct
-			dst.CreateNetworkIPv6WithPrefix = nil
-		} else {
+		jsonCreateNetworkIPv6WithPrefix, _ := json.Marshal(&dstCreateNetworkIPv61.CreateNetworkIPv6WithPrefix)
+		if string(jsonCreateNetworkIPv6WithPrefix) != "{}" { // empty struct
+			dst.CreateNetworkIPv6WithPrefix = dstCreateNetworkIPv61.CreateNetworkIPv6WithPrefix
 			match++
 		}
-	} else {
-		dst.CreateNetworkIPv6WithPrefix = nil
 	}
 
 	// try to unmarshal data into CreateNetworkIPv6WithPrefixLength
-	err = json.Unmarshal(data, &dst.CreateNetworkIPv6WithPrefixLength)
+	dstCreateNetworkIPv62 := &CreateNetworkIPv6{}
+	err = json.Unmarshal(data, &dstCreateNetworkIPv62.CreateNetworkIPv6WithPrefixLength)
 	if err == nil {
-		jsonCreateNetworkIPv6WithPrefixLength, _ := json.Marshal(dst.CreateNetworkIPv6WithPrefixLength)
-		if string(jsonCreateNetworkIPv6WithPrefixLength) == "{}" { // empty struct
-			dst.CreateNetworkIPv6WithPrefixLength = nil
-		} else {
+		jsonCreateNetworkIPv6WithPrefixLength, _ := json.Marshal(&dstCreateNetworkIPv62.CreateNetworkIPv6WithPrefixLength)
+		if string(jsonCreateNetworkIPv6WithPrefixLength) != "{}" { // empty struct
+			dst.CreateNetworkIPv6WithPrefixLength = dstCreateNetworkIPv62.CreateNetworkIPv6WithPrefixLength
 			match++
 		}
-	} else {
-		dst.CreateNetworkIPv6WithPrefixLength = nil
 	}
 
 	if match > 1 { // more than 1 match
