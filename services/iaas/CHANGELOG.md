@@ -1,3 +1,6 @@
+## v0.29.1
+- **Bugfix:** Parsing oneOf with enum and string value
+
 ## v0.29.0
 - **Feature:** Add new method to get project details `GetProjectDetails`
 

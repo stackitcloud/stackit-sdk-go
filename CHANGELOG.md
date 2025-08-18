@@ -1,7 +1,8 @@
 ## Release (2025-xx-xx)
-- `scf`:
-    - [v0.2.1](services/scf/CHANGELOG.md#v021)
-        - **Feature:** Add waiter for deletion of organization
+- `scf`: [v0.2.1](services/scf/CHANGELOG.md#v021)
+  - **Feature:** Add waiter for deletion of organization
+- `iaas`: [v0.29.1](services/iaas/CHANGELOG.md#v0291)
+  - **Bugfix:** Parsing oneOf with enum and string value
 
 ## Release (2025-08-13)
 - `scf`:

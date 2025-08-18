@@ -39,30 +39,29 @@ func StringAsCreateProtocol(v *string) CreateProtocol {
 func (dst *CreateProtocol) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// Workaround until upstream issue is fixed:
+	// https://github.com/OpenAPITools/openapi-generator/issues/21751
+	// Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-226
 	// try to unmarshal data into Int64
-	err = json.Unmarshal(data, &dst.Int64)
+	dstCreateProtocol1 := &CreateProtocol{}
+	err = json.Unmarshal(data, &dstCreateProtocol1.Int64)
 	if err == nil {
-		jsonint64, _ := json.Marshal(dst.Int64)
-		if string(jsonint64) == "{}" { // empty struct
-			dst.Int64 = nil
-		} else {
+		jsonint64, _ := json.Marshal(&dstCreateProtocol1.Int64)
+		if string(jsonint64) != "{}" { // empty struct
+			dst.Int64 = dstCreateProtocol1.Int64
 			match++
 		}
-	} else {
-		dst.Int64 = nil
 	}
 
 	// try to unmarshal data into String
-	err = json.Unmarshal(data, &dst.String)
+	dstCreateProtocol2 := &CreateProtocol{}
+	err = json.Unmarshal(data, &dstCreateProtocol2.String)
 	if err == nil {
-		jsonstring, _ := json.Marshal(dst.String)
-		if string(jsonstring) == "{}" { // empty struct
-			dst.String = nil
-		} else {
+		jsonstring, _ := json.Marshal(&dstCreateProtocol2.String)
+		if string(jsonstring) != "{}" { // empty struct
+			dst.String = dstCreateProtocol2.String
 			match++
 		}
-	} else {
-		dst.String = nil
 	}
 
 	if match > 1 { // more than 1 match

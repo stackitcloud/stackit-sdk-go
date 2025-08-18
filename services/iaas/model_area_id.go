@@ -13,6 +13,7 @@ package iaas
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 )
 
 // AreaId - The identifier (ID) of an area.
@@ -39,30 +40,34 @@ func StringAsAreaId(v *string) AreaId {
 func (dst *AreaId) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into StaticAreaID
-	err = json.Unmarshal(data, &dst.StaticAreaID)
+	// Workaround until upstream issue is fixed:
+	// https://github.com/OpenAPITools/openapi-generator/issues/21751
+	// Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-226
+	// try to unmarshal data into String
+	dstAreaId1 := &AreaId{}
+	err = json.Unmarshal(data, &dstAreaId1.String)
 	if err == nil {
-		jsonStaticAreaID, _ := json.Marshal(dst.StaticAreaID)
-		if string(jsonStaticAreaID) == "{}" { // empty struct
-			dst.StaticAreaID = nil
-		} else {
+		jsonstring, _ := json.Marshal(&dstAreaId1.String)
+		regex := `/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/`
+		regex = regexp.MustCompile("^\\/|\\/$").ReplaceAllString(regex, "$1")               // Remove beginning slash and ending slash
+		regex = regexp.MustCompile("\\\\(.)").ReplaceAllString(regex, "$1")                 // Remove duplicate escaping char for dots
+		rawString := regexp.MustCompile(`^"|"$`).ReplaceAllString(*dstAreaId1.String, "$1") // Remove quotes
+		isMatched, _ := regexp.MatchString(regex, rawString)
+		if string(jsonstring) != "{}" && isMatched { // empty struct
+			dst.String = dstAreaId1.String
 			match++
 		}
-	} else {
-		dst.StaticAreaID = nil
 	}
 
-	// try to unmarshal data into String
-	err = json.Unmarshal(data, &dst.String)
+	// try to unmarshal data into StaticAreaID
+	dstAreaId2 := &AreaId{}
+	err = json.Unmarshal(data, &dstAreaId2.StaticAreaID)
 	if err == nil {
-		jsonstring, _ := json.Marshal(dst.String)
-		if string(jsonstring) == "{}" { // empty struct
-			dst.String = nil
-		} else {
+		jsonStaticAreaID, _ := json.Marshal(&dstAreaId2.StaticAreaID)
+		if string(jsonStaticAreaID) != "{}" { // empty struct
+			dst.StaticAreaID = dstAreaId2.StaticAreaID
 			match++
 		}
-	} else {
-		dst.String = nil
 	}
 
 	if match > 1 { // more than 1 match
