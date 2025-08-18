@@ -1,3 +1,6 @@
+## v0.2.1
+- **Feature:** Add waiter for deletion of organization
+
 ## v0.2.0
 - **Feature:** Add field `OrgId` in model `OrgManager`
 - **Feature:** Add new model `OrganizationCreateBffResponse` and `SpaceCreatedBffResponse`
