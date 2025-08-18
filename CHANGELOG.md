@@ -3,6 +3,8 @@
   - **Feature:** Add waiter for deletion of organization
 - `iaas`: [v0.29.1](services/iaas/CHANGELOG.md#v0291)
   - **Bugfix:** Parsing oneOf with enum and string value
+- `stackitmarketplace`: [v1.7.1](services/stackitmarketplace/CHANGELOG.md#v171)
+  - **Bugfix:** oneOfs with enums and strings can not be parsed
 
 ## Release (2025-08-13)
 - `scf`:
