@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CreateAlertConfigReceiverPayloadWebHookConfigsInner{}
 
 /*
+	types and functions for googleChat
+*/
+
+// isBoolean
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeType = *bool
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatArgType = bool
+type CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatRetType = bool
+
+func getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeTypeOk(arg CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeType) (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeType(arg *CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeType, val CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for msTeams
 */
 
@@ -80,7 +100,9 @@ type CreateAlertConfigReceiverPayloadWebHookConfigsInnerGetUrlRetType = string
 
 // CreateAlertConfigReceiverPayloadWebHookConfigsInner struct for CreateAlertConfigReceiverPayloadWebHookConfigsInner
 type CreateAlertConfigReceiverPayloadWebHookConfigsInner struct {
-	// Microsoft Teams webhooks require special handling. If you set this property to true, it is treated as such
+	// Google Chat webhooks require special handling. If you set this property to true, it is treated as such. `Additional Validators:` * When set to true, msTeams must be false.
+	GoogleChat CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeType `json:"googleChat,omitempty"`
+	// Microsoft Teams webhooks require special handling. If you set this property to true, it is treated as such. `Additional Validators:` * When set to true, googleChat must be false.
 	MsTeams CreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeType `json:"msTeams,omitempty"`
 	// Whether to notify about resolved alerts.
 	SendResolved CreateAlertConfigReceiverPayloadWebHookConfigsInnergetSendResolvedAttributeType `json:"sendResolved,omitempty"`
@@ -102,11 +124,36 @@ func NewCreateAlertConfigReceiverPayloadWebHookConfigsInner() *CreateAlertConfig
 // but it doesn't guarantee that properties required by API are set
 func NewCreateAlertConfigReceiverPayloadWebHookConfigsInnerWithDefaults() *CreateAlertConfigReceiverPayloadWebHookConfigsInner {
 	this := CreateAlertConfigReceiverPayloadWebHookConfigsInner{}
+	var googleChat bool = false
+	this.GoogleChat = &googleChat
 	var msTeams bool = false
 	this.MsTeams = &msTeams
 	var sendResolved bool = true
 	this.SendResolved = &sendResolved
 	return &this
+}
+
+// GetGoogleChat returns the GoogleChat field value if set, zero value otherwise.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetGoogleChat() (res CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatRetType) {
+	res, _ = o.GetGoogleChatOk()
+	return
+}
+
+// GetGoogleChatOk returns a tuple with the GoogleChat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) GetGoogleChatOk() (ret CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatRetType, ok bool) {
+	return getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeTypeOk(o.GoogleChat)
+}
+
+// HasGoogleChat returns a boolean if a field has been set.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) HasGoogleChat() bool {
+	_, ok := o.GetGoogleChatOk()
+	return ok
+}
+
+// SetGoogleChat gets a reference to the given bool and assigns it to the GoogleChat field.
+func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetGoogleChat(v CreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatRetType) {
+	setCreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeType(&o.GoogleChat, v)
 }
 
 // GetMsTeams returns the MsTeams field value if set, zero value otherwise.
@@ -180,6 +227,9 @@ func (o *CreateAlertConfigReceiverPayloadWebHookConfigsInner) SetUrl(v CreateAle
 
 func (o CreateAlertConfigReceiverPayloadWebHookConfigsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetGoogleChatAttributeTypeOk(o.GoogleChat); ok {
+		toSerialize["GoogleChat"] = val
+	}
 	if val, ok := getCreateAlertConfigReceiverPayloadWebHookConfigsInnergetMsTeamsAttributeTypeOk(o.MsTeams); ok {
 		toSerialize["MsTeams"] = val
 	}
