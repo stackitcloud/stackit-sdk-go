@@ -39,30 +39,29 @@ func CreateNetworkIPv4WithPrefixLengthAsCreateNetworkIPv4(v *CreateNetworkIPv4Wi
 func (dst *CreateNetworkIPv4) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// Workaround until upstream issue is fixed:
+	// https://github.com/OpenAPITools/openapi-generator/issues/21751
+	// Tracking issue on our side: https://jira.schwarz/browse/STACKITSDK-226
 	// try to unmarshal data into CreateNetworkIPv4WithPrefix
-	err = json.Unmarshal(data, &dst.CreateNetworkIPv4WithPrefix)
+	dstCreateNetworkIPv41 := &CreateNetworkIPv4{}
+	err = json.Unmarshal(data, &dstCreateNetworkIPv41.CreateNetworkIPv4WithPrefix)
 	if err == nil {
-		jsonCreateNetworkIPv4WithPrefix, _ := json.Marshal(dst.CreateNetworkIPv4WithPrefix)
-		if string(jsonCreateNetworkIPv4WithPrefix) == "{}" { // empty struct
-			dst.CreateNetworkIPv4WithPrefix = nil
-		} else {
+		jsonCreateNetworkIPv4WithPrefix, _ := json.Marshal(&dstCreateNetworkIPv41.CreateNetworkIPv4WithPrefix)
+		if string(jsonCreateNetworkIPv4WithPrefix) != "{}" { // empty struct
+			dst.CreateNetworkIPv4WithPrefix = dstCreateNetworkIPv41.CreateNetworkIPv4WithPrefix
 			match++
 		}
-	} else {
-		dst.CreateNetworkIPv4WithPrefix = nil
 	}
 
 	// try to unmarshal data into CreateNetworkIPv4WithPrefixLength
-	err = json.Unmarshal(data, &dst.CreateNetworkIPv4WithPrefixLength)
+	dstCreateNetworkIPv42 := &CreateNetworkIPv4{}
+	err = json.Unmarshal(data, &dstCreateNetworkIPv42.CreateNetworkIPv4WithPrefixLength)
 	if err == nil {
-		jsonCreateNetworkIPv4WithPrefixLength, _ := json.Marshal(dst.CreateNetworkIPv4WithPrefixLength)
-		if string(jsonCreateNetworkIPv4WithPrefixLength) == "{}" { // empty struct
-			dst.CreateNetworkIPv4WithPrefixLength = nil
-		} else {
+		jsonCreateNetworkIPv4WithPrefixLength, _ := json.Marshal(&dstCreateNetworkIPv42.CreateNetworkIPv4WithPrefixLength)
+		if string(jsonCreateNetworkIPv4WithPrefixLength) != "{}" { // empty struct
+			dst.CreateNetworkIPv4WithPrefixLength = dstCreateNetworkIPv42.CreateNetworkIPv4WithPrefixLength
 			match++
 		}
-	} else {
-		dst.CreateNetworkIPv4WithPrefixLength = nil
 	}
 
 	if match > 1 { // more than 1 match

@@ -1,3 +1,6 @@
+## v1.7.1
+- **Bugfix:** oneOfs with enums and strings can not be parsed
+
 ## v1.7.0
 - **Breaking Change:** Update `InquiryFormType` enums
 
