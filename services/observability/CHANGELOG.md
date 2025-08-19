@@ -1,3 +1,6 @@
+## v0.11.0
+- **Feature:** Add new `GoogleChat` webhook
+
 ## v0.10.0
 - **Feature:** Add new `CreateCredentialsPayload` model for creating credentials with optional description
 - **Feature:** Add `Description` field to `Credentials` and `ServiceKeysList` models

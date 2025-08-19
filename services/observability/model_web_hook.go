@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &WebHook{}
 
 /*
+	types and functions for googleChat
+*/
+
+// isBoolean
+type WebHookgetGoogleChatAttributeType = *bool
+type WebHookgetGoogleChatArgType = bool
+type WebHookgetGoogleChatRetType = bool
+
+func getWebHookgetGoogleChatAttributeTypeOk(arg WebHookgetGoogleChatAttributeType) (ret WebHookgetGoogleChatRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setWebHookgetGoogleChatAttributeType(arg *WebHookgetGoogleChatAttributeType, val WebHookgetGoogleChatRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for msTeams
 */
 
@@ -80,6 +100,7 @@ type WebHookGetUrlRetType = string
 
 // WebHook struct for WebHook
 type WebHook struct {
+	GoogleChat   WebHookgetGoogleChatAttributeType   `json:"googleChat,omitempty"`
 	MsTeams      WebHookgetMsTeamsAttributeType      `json:"msTeams,omitempty"`
 	SendResolved WebHookgetSendResolvedAttributeType `json:"sendResolved,omitempty"`
 	// REQUIRED
@@ -103,11 +124,36 @@ func NewWebHook(url WebHookGetUrlArgType) *WebHook {
 // but it doesn't guarantee that properties required by API are set
 func NewWebHookWithDefaults() *WebHook {
 	this := WebHook{}
+	var googleChat bool = false
+	this.GoogleChat = &googleChat
 	var msTeams bool = false
 	this.MsTeams = &msTeams
 	var sendResolved bool = true
 	this.SendResolved = &sendResolved
 	return &this
+}
+
+// GetGoogleChat returns the GoogleChat field value if set, zero value otherwise.
+func (o *WebHook) GetGoogleChat() (res WebHookgetGoogleChatRetType) {
+	res, _ = o.GetGoogleChatOk()
+	return
+}
+
+// GetGoogleChatOk returns a tuple with the GoogleChat field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebHook) GetGoogleChatOk() (ret WebHookgetGoogleChatRetType, ok bool) {
+	return getWebHookgetGoogleChatAttributeTypeOk(o.GoogleChat)
+}
+
+// HasGoogleChat returns a boolean if a field has been set.
+func (o *WebHook) HasGoogleChat() bool {
+	_, ok := o.GetGoogleChatOk()
+	return ok
+}
+
+// SetGoogleChat gets a reference to the given bool and assigns it to the GoogleChat field.
+func (o *WebHook) SetGoogleChat(v WebHookgetGoogleChatRetType) {
+	setWebHookgetGoogleChatAttributeType(&o.GoogleChat, v)
 }
 
 // GetMsTeams returns the MsTeams field value if set, zero value otherwise.
@@ -175,6 +221,9 @@ func (o *WebHook) SetUrl(v WebHookGetUrlRetType) {
 
 func (o WebHook) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getWebHookgetGoogleChatAttributeTypeOk(o.GoogleChat); ok {
+		toSerialize["GoogleChat"] = val
+	}
 	if val, ok := getWebHookgetMsTeamsAttributeTypeOk(o.MsTeams); ok {
 		toSerialize["MsTeams"] = val
 	}
