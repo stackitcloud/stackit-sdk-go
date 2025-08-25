@@ -20,6 +20,26 @@ import (
 var _ MappedNullable = &Key{}
 
 /*
+	types and functions for access_scope
+*/
+
+// isEnumRef
+type KeyGetAccessScopeAttributeType = *AccessScope
+type KeyGetAccessScopeArgType = AccessScope
+type KeyGetAccessScopeRetType = AccessScope
+
+func getKeyGetAccessScopeAttributeTypeOk(arg KeyGetAccessScopeAttributeType) (ret KeyGetAccessScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeyGetAccessScopeAttributeType(arg *KeyGetAccessScopeAttributeType, val KeyGetAccessScopeRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for algorithm
 */
 
@@ -204,6 +224,26 @@ type KeyGetKeyRingIdArgType = string
 type KeyGetKeyRingIdRetType = string
 
 /*
+	types and functions for protection
+*/
+
+// isEnumRef
+type KeyGetProtectionAttributeType = *Protection
+type KeyGetProtectionArgType = Protection
+type KeyGetProtectionRetType = Protection
+
+func getKeyGetProtectionAttributeTypeOk(arg KeyGetProtectionAttributeType) (ret KeyGetProtectionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setKeyGetProtectionAttributeType(arg *KeyGetProtectionAttributeType, val KeyGetProtectionRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for purpose
 */
 
@@ -358,7 +398,10 @@ func setKeyGetStateAttributeType(arg *KeyGetStateAttributeType, val KeyGetStateR
 // Key struct for Key
 type Key struct {
 	// REQUIRED
+	AccessScope KeyGetAccessScopeAttributeType `json:"access_scope" required:"true"`
+	// REQUIRED
 	Algorithm KeyGetAlgorithmAttributeType `json:"algorithm" required:"true"`
+	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
 	Backend KeyGetBackendAttributeType `json:"backend" required:"true"`
 	// The date and time the creation of the key was triggered.
@@ -378,7 +421,8 @@ type Key struct {
 	ImportOnly KeygetImportOnlyAttributeType `json:"importOnly,omitempty"`
 	// The unique id of the key ring this key is assigned to.
 	// REQUIRED
-	KeyRingId KeyGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
+	KeyRingId  KeyGetKeyRingIdAttributeType  `json:"keyRingId" required:"true"`
+	Protection KeyGetProtectionAttributeType `json:"protection,omitempty"`
 	// REQUIRED
 	Purpose KeyGetPurposeAttributeType `json:"purpose" required:"true"`
 	// The current state of the key.
@@ -392,8 +436,9 @@ type _Key Key
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKey(algorithm KeyGetAlgorithmArgType, backend KeyGetBackendArgType, createdAt KeyGetCreatedAtArgType, displayName KeyGetDisplayNameArgType, id KeyGetIdArgType, keyRingId KeyGetKeyRingIdArgType, purpose KeyGetPurposeArgType, state KeyGetStateArgType) *Key {
+func NewKey(accessScope KeyGetAccessScopeArgType, algorithm KeyGetAlgorithmArgType, backend KeyGetBackendArgType, createdAt KeyGetCreatedAtArgType, displayName KeyGetDisplayNameArgType, id KeyGetIdArgType, keyRingId KeyGetKeyRingIdArgType, purpose KeyGetPurposeArgType, state KeyGetStateArgType) *Key {
 	this := Key{}
+	setKeyGetAccessScopeAttributeType(&this.AccessScope, accessScope)
 	setKeyGetAlgorithmAttributeType(&this.Algorithm, algorithm)
 	setKeyGetBackendAttributeType(&this.Backend, backend)
 	setKeyGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
@@ -410,9 +455,28 @@ func NewKey(algorithm KeyGetAlgorithmArgType, backend KeyGetBackendArgType, crea
 // but it doesn't guarantee that properties required by API are set
 func NewKeyWithDefaults() *Key {
 	this := Key{}
+	var accessScope AccessScope = ACCESSSCOPE_PUBLIC
+	this.AccessScope = &accessScope
 	var importOnly bool = false
 	this.ImportOnly = &importOnly
 	return &this
+}
+
+// GetAccessScope returns the AccessScope field value
+func (o *Key) GetAccessScope() (ret KeyGetAccessScopeRetType) {
+	ret, _ = o.GetAccessScopeOk()
+	return ret
+}
+
+// GetAccessScopeOk returns a tuple with the AccessScope field value
+// and a boolean to check if the value has been set.
+func (o *Key) GetAccessScopeOk() (ret KeyGetAccessScopeRetType, ok bool) {
+	return getKeyGetAccessScopeAttributeTypeOk(o.AccessScope)
+}
+
+// SetAccessScope sets field value
+func (o *Key) SetAccessScope(v KeyGetAccessScopeRetType) {
+	setKeyGetAccessScopeAttributeType(&o.AccessScope, v)
 }
 
 // GetAlgorithm returns the Algorithm field value
@@ -433,6 +497,7 @@ func (o *Key) SetAlgorithm(v KeyGetAlgorithmRetType) {
 }
 
 // GetBackend returns the Backend field value
+// Deprecated
 func (o *Key) GetBackend() (ret KeyGetBackendRetType) {
 	ret, _ = o.GetBackendOk()
 	return ret
@@ -440,11 +505,13 @@ func (o *Key) GetBackend() (ret KeyGetBackendRetType) {
 
 // GetBackendOk returns a tuple with the Backend field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Key) GetBackendOk() (ret KeyGetBackendRetType, ok bool) {
 	return getKeyGetBackendAttributeTypeOk(o.Backend)
 }
 
 // SetBackend sets field value
+// Deprecated
 func (o *Key) SetBackend(v KeyGetBackendRetType) {
 	setKeyGetBackendAttributeType(&o.Backend, v)
 }
@@ -586,6 +653,29 @@ func (o *Key) SetKeyRingId(v KeyGetKeyRingIdRetType) {
 	setKeyGetKeyRingIdAttributeType(&o.KeyRingId, v)
 }
 
+// GetProtection returns the Protection field value if set, zero value otherwise.
+func (o *Key) GetProtection() (res KeyGetProtectionRetType) {
+	res, _ = o.GetProtectionOk()
+	return
+}
+
+// GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Key) GetProtectionOk() (ret KeyGetProtectionRetType, ok bool) {
+	return getKeyGetProtectionAttributeTypeOk(o.Protection)
+}
+
+// HasProtection returns a boolean if a field has been set.
+func (o *Key) HasProtection() bool {
+	_, ok := o.GetProtectionOk()
+	return ok
+}
+
+// SetProtection gets a reference to the given Protection and assigns it to the Protection field.
+func (o *Key) SetProtection(v KeyGetProtectionRetType) {
+	setKeyGetProtectionAttributeType(&o.Protection, v)
+}
+
 // GetPurpose returns the Purpose field value
 func (o *Key) GetPurpose() (ret KeyGetPurposeRetType) {
 	ret, _ = o.GetPurposeOk()
@@ -622,6 +712,9 @@ func (o *Key) SetState(v KeyGetStateRetType) {
 
 func (o Key) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getKeyGetAccessScopeAttributeTypeOk(o.AccessScope); ok {
+		toSerialize["AccessScope"] = val
+	}
 	if val, ok := getKeyGetAlgorithmAttributeTypeOk(o.Algorithm); ok {
 		toSerialize["Algorithm"] = val
 	}
@@ -648,6 +741,9 @@ func (o Key) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getKeyGetKeyRingIdAttributeTypeOk(o.KeyRingId); ok {
 		toSerialize["KeyRingId"] = val
+	}
+	if val, ok := getKeyGetProtectionAttributeTypeOk(o.Protection); ok {
+		toSerialize["Protection"] = val
 	}
 	if val, ok := getKeyGetPurposeAttributeTypeOk(o.Purpose); ok {
 		toSerialize["Purpose"] = val
