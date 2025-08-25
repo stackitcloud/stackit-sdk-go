@@ -20,6 +20,26 @@ import (
 var _ MappedNullable = &WrappingKey{}
 
 /*
+	types and functions for access_scope
+*/
+
+// isEnumRef
+type WrappingKeyGetAccessScopeAttributeType = *AccessScope
+type WrappingKeyGetAccessScopeArgType = AccessScope
+type WrappingKeyGetAccessScopeRetType = AccessScope
+
+func getWrappingKeyGetAccessScopeAttributeTypeOk(arg WrappingKeyGetAccessScopeAttributeType) (ret WrappingKeyGetAccessScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setWrappingKeyGetAccessScopeAttributeType(arg *WrappingKeyGetAccessScopeAttributeType, val WrappingKeyGetAccessScopeRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for algorithm
 */
 
@@ -182,6 +202,26 @@ func setWrappingKeyGetKeyRingIdAttributeType(arg *WrappingKeyGetKeyRingIdAttribu
 
 type WrappingKeyGetKeyRingIdArgType = string
 type WrappingKeyGetKeyRingIdRetType = string
+
+/*
+	types and functions for protection
+*/
+
+// isEnumRef
+type WrappingKeyGetProtectionAttributeType = *Protection
+type WrappingKeyGetProtectionArgType = Protection
+type WrappingKeyGetProtectionRetType = Protection
+
+func getWrappingKeyGetProtectionAttributeTypeOk(arg WrappingKeyGetProtectionAttributeType) (ret WrappingKeyGetProtectionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setWrappingKeyGetProtectionAttributeType(arg *WrappingKeyGetProtectionAttributeType, val WrappingKeyGetProtectionRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for publicKey
@@ -357,7 +397,10 @@ func setWrappingKeyGetStateAttributeType(arg *WrappingKeyGetStateAttributeType, 
 // WrappingKey struct for WrappingKey
 type WrappingKey struct {
 	// REQUIRED
+	AccessScope WrappingKeyGetAccessScopeAttributeType `json:"access_scope" required:"true"`
+	// REQUIRED
 	Algorithm WrappingKeyGetAlgorithmAttributeType `json:"algorithm" required:"true"`
+	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
 	Backend WrappingKeyGetBackendAttributeType `json:"backend" required:"true"`
 	// The date and time the creation of the wrapping key was triggered.
@@ -376,7 +419,8 @@ type WrappingKey struct {
 	Id WrappingKeyGetIdAttributeType `json:"id" required:"true"`
 	// The unique id of the key ring this wrapping key is assigned to.
 	// REQUIRED
-	KeyRingId WrappingKeyGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
+	KeyRingId  WrappingKeyGetKeyRingIdAttributeType  `json:"keyRingId" required:"true"`
+	Protection WrappingKeyGetProtectionAttributeType `json:"protection,omitempty"`
 	// The public key of the wrapping key.
 	PublicKey WrappingKeyGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// REQUIRED
@@ -392,8 +436,9 @@ type _WrappingKey WrappingKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWrappingKey(algorithm WrappingKeyGetAlgorithmArgType, backend WrappingKeyGetBackendArgType, createdAt WrappingKeyGetCreatedAtArgType, displayName WrappingKeyGetDisplayNameArgType, expiresAt WrappingKeyGetExpiresAtArgType, id WrappingKeyGetIdArgType, keyRingId WrappingKeyGetKeyRingIdArgType, purpose WrappingKeyGetPurposeArgType, state WrappingKeyGetStateArgType) *WrappingKey {
+func NewWrappingKey(accessScope WrappingKeyGetAccessScopeArgType, algorithm WrappingKeyGetAlgorithmArgType, backend WrappingKeyGetBackendArgType, createdAt WrappingKeyGetCreatedAtArgType, displayName WrappingKeyGetDisplayNameArgType, expiresAt WrappingKeyGetExpiresAtArgType, id WrappingKeyGetIdArgType, keyRingId WrappingKeyGetKeyRingIdArgType, purpose WrappingKeyGetPurposeArgType, state WrappingKeyGetStateArgType) *WrappingKey {
 	this := WrappingKey{}
+	setWrappingKeyGetAccessScopeAttributeType(&this.AccessScope, accessScope)
 	setWrappingKeyGetAlgorithmAttributeType(&this.Algorithm, algorithm)
 	setWrappingKeyGetBackendAttributeType(&this.Backend, backend)
 	setWrappingKeyGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
@@ -411,7 +456,26 @@ func NewWrappingKey(algorithm WrappingKeyGetAlgorithmArgType, backend WrappingKe
 // but it doesn't guarantee that properties required by API are set
 func NewWrappingKeyWithDefaults() *WrappingKey {
 	this := WrappingKey{}
+	var accessScope AccessScope = ACCESSSCOPE_PUBLIC
+	this.AccessScope = &accessScope
 	return &this
+}
+
+// GetAccessScope returns the AccessScope field value
+func (o *WrappingKey) GetAccessScope() (ret WrappingKeyGetAccessScopeRetType) {
+	ret, _ = o.GetAccessScopeOk()
+	return ret
+}
+
+// GetAccessScopeOk returns a tuple with the AccessScope field value
+// and a boolean to check if the value has been set.
+func (o *WrappingKey) GetAccessScopeOk() (ret WrappingKeyGetAccessScopeRetType, ok bool) {
+	return getWrappingKeyGetAccessScopeAttributeTypeOk(o.AccessScope)
+}
+
+// SetAccessScope sets field value
+func (o *WrappingKey) SetAccessScope(v WrappingKeyGetAccessScopeRetType) {
+	setWrappingKeyGetAccessScopeAttributeType(&o.AccessScope, v)
 }
 
 // GetAlgorithm returns the Algorithm field value
@@ -432,6 +496,7 @@ func (o *WrappingKey) SetAlgorithm(v WrappingKeyGetAlgorithmRetType) {
 }
 
 // GetBackend returns the Backend field value
+// Deprecated
 func (o *WrappingKey) GetBackend() (ret WrappingKeyGetBackendRetType) {
 	ret, _ = o.GetBackendOk()
 	return ret
@@ -439,11 +504,13 @@ func (o *WrappingKey) GetBackend() (ret WrappingKeyGetBackendRetType) {
 
 // GetBackendOk returns a tuple with the Backend field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *WrappingKey) GetBackendOk() (ret WrappingKeyGetBackendRetType, ok bool) {
 	return getWrappingKeyGetBackendAttributeTypeOk(o.Backend)
 }
 
 // SetBackend sets field value
+// Deprecated
 func (o *WrappingKey) SetBackend(v WrappingKeyGetBackendRetType) {
 	setWrappingKeyGetBackendAttributeType(&o.Backend, v)
 }
@@ -556,6 +623,29 @@ func (o *WrappingKey) SetKeyRingId(v WrappingKeyGetKeyRingIdRetType) {
 	setWrappingKeyGetKeyRingIdAttributeType(&o.KeyRingId, v)
 }
 
+// GetProtection returns the Protection field value if set, zero value otherwise.
+func (o *WrappingKey) GetProtection() (res WrappingKeyGetProtectionRetType) {
+	res, _ = o.GetProtectionOk()
+	return
+}
+
+// GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WrappingKey) GetProtectionOk() (ret WrappingKeyGetProtectionRetType, ok bool) {
+	return getWrappingKeyGetProtectionAttributeTypeOk(o.Protection)
+}
+
+// HasProtection returns a boolean if a field has been set.
+func (o *WrappingKey) HasProtection() bool {
+	_, ok := o.GetProtectionOk()
+	return ok
+}
+
+// SetProtection gets a reference to the given Protection and assigns it to the Protection field.
+func (o *WrappingKey) SetProtection(v WrappingKeyGetProtectionRetType) {
+	setWrappingKeyGetProtectionAttributeType(&o.Protection, v)
+}
+
 // GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *WrappingKey) GetPublicKey() (res WrappingKeyGetPublicKeyRetType) {
 	res, _ = o.GetPublicKeyOk()
@@ -615,6 +705,9 @@ func (o *WrappingKey) SetState(v WrappingKeyGetStateRetType) {
 
 func (o WrappingKey) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getWrappingKeyGetAccessScopeAttributeTypeOk(o.AccessScope); ok {
+		toSerialize["AccessScope"] = val
+	}
 	if val, ok := getWrappingKeyGetAlgorithmAttributeTypeOk(o.Algorithm); ok {
 		toSerialize["Algorithm"] = val
 	}
@@ -638,6 +731,9 @@ func (o WrappingKey) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getWrappingKeyGetKeyRingIdAttributeTypeOk(o.KeyRingId); ok {
 		toSerialize["KeyRingId"] = val
+	}
+	if val, ok := getWrappingKeyGetProtectionAttributeTypeOk(o.Protection); ok {
+		toSerialize["Protection"] = val
 	}
 	if val, ok := getWrappingKeyGetPublicKeyAttributeTypeOk(o.PublicKey); ok {
 		toSerialize["PublicKey"] = val

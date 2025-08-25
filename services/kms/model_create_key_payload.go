@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CreateKeyPayload{}
 
 /*
+	types and functions for access_scope
+*/
+
+// isEnumRef
+type CreateKeyPayloadGetAccessScopeAttributeType = *AccessScope
+type CreateKeyPayloadGetAccessScopeArgType = AccessScope
+type CreateKeyPayloadGetAccessScopeRetType = AccessScope
+
+func getCreateKeyPayloadGetAccessScopeAttributeTypeOk(arg CreateKeyPayloadGetAccessScopeAttributeType) (ret CreateKeyPayloadGetAccessScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateKeyPayloadGetAccessScopeAttributeType(arg *CreateKeyPayloadGetAccessScopeAttributeType, val CreateKeyPayloadGetAccessScopeRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for algorithm
 */
 
@@ -120,6 +140,26 @@ func setCreateKeyPayloadgetImportOnlyAttributeType(arg *CreateKeyPayloadgetImpor
 }
 
 /*
+	types and functions for protection
+*/
+
+// isEnumRef
+type CreateKeyPayloadGetProtectionAttributeType = *Protection
+type CreateKeyPayloadGetProtectionArgType = Protection
+type CreateKeyPayloadGetProtectionRetType = Protection
+
+func getCreateKeyPayloadGetProtectionAttributeTypeOk(arg CreateKeyPayloadGetProtectionAttributeType) (ret CreateKeyPayloadGetProtectionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateKeyPayloadGetProtectionAttributeType(arg *CreateKeyPayloadGetProtectionAttributeType, val CreateKeyPayloadGetProtectionRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for purpose
 */
 
@@ -141,8 +181,10 @@ func setCreateKeyPayloadGetPurposeAttributeType(arg *CreateKeyPayloadGetPurposeA
 
 // CreateKeyPayload struct for CreateKeyPayload
 type CreateKeyPayload struct {
+	AccessScope CreateKeyPayloadGetAccessScopeAttributeType `json:"access_scope,omitempty"`
 	// REQUIRED
 	Algorithm CreateKeyPayloadGetAlgorithmAttributeType `json:"algorithm" required:"true"`
+	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
 	Backend CreateKeyPayloadGetBackendAttributeType `json:"backend" required:"true"`
 	// A user chosen description to distinguish multiple keys.
@@ -152,6 +194,7 @@ type CreateKeyPayload struct {
 	DisplayName CreateKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// States whether versions can be created or only imported.
 	ImportOnly CreateKeyPayloadgetImportOnlyAttributeType `json:"importOnly,omitempty"`
+	Protection CreateKeyPayloadGetProtectionAttributeType `json:"protection,omitempty"`
 	// REQUIRED
 	Purpose CreateKeyPayloadGetPurposeAttributeType `json:"purpose" required:"true"`
 }
@@ -176,9 +219,34 @@ func NewCreateKeyPayload(algorithm CreateKeyPayloadGetAlgorithmArgType, backend 
 // but it doesn't guarantee that properties required by API are set
 func NewCreateKeyPayloadWithDefaults() *CreateKeyPayload {
 	this := CreateKeyPayload{}
+	var accessScope AccessScope = ACCESSSCOPE_PUBLIC
+	this.AccessScope = &accessScope
 	var importOnly bool = false
 	this.ImportOnly = &importOnly
 	return &this
+}
+
+// GetAccessScope returns the AccessScope field value if set, zero value otherwise.
+func (o *CreateKeyPayload) GetAccessScope() (res CreateKeyPayloadGetAccessScopeRetType) {
+	res, _ = o.GetAccessScopeOk()
+	return
+}
+
+// GetAccessScopeOk returns a tuple with the AccessScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateKeyPayload) GetAccessScopeOk() (ret CreateKeyPayloadGetAccessScopeRetType, ok bool) {
+	return getCreateKeyPayloadGetAccessScopeAttributeTypeOk(o.AccessScope)
+}
+
+// HasAccessScope returns a boolean if a field has been set.
+func (o *CreateKeyPayload) HasAccessScope() bool {
+	_, ok := o.GetAccessScopeOk()
+	return ok
+}
+
+// SetAccessScope gets a reference to the given AccessScope and assigns it to the AccessScope field.
+func (o *CreateKeyPayload) SetAccessScope(v CreateKeyPayloadGetAccessScopeRetType) {
+	setCreateKeyPayloadGetAccessScopeAttributeType(&o.AccessScope, v)
 }
 
 // GetAlgorithm returns the Algorithm field value
@@ -199,6 +267,7 @@ func (o *CreateKeyPayload) SetAlgorithm(v CreateKeyPayloadGetAlgorithmRetType) {
 }
 
 // GetBackend returns the Backend field value
+// Deprecated
 func (o *CreateKeyPayload) GetBackend() (ret CreateKeyPayloadGetBackendRetType) {
 	ret, _ = o.GetBackendOk()
 	return ret
@@ -206,11 +275,13 @@ func (o *CreateKeyPayload) GetBackend() (ret CreateKeyPayloadGetBackendRetType) 
 
 // GetBackendOk returns a tuple with the Backend field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CreateKeyPayload) GetBackendOk() (ret CreateKeyPayloadGetBackendRetType, ok bool) {
 	return getCreateKeyPayloadGetBackendAttributeTypeOk(o.Backend)
 }
 
 // SetBackend sets field value
+// Deprecated
 func (o *CreateKeyPayload) SetBackend(v CreateKeyPayloadGetBackendRetType) {
 	setCreateKeyPayloadGetBackendAttributeType(&o.Backend, v)
 }
@@ -278,6 +349,29 @@ func (o *CreateKeyPayload) SetImportOnly(v CreateKeyPayloadgetImportOnlyRetType)
 	setCreateKeyPayloadgetImportOnlyAttributeType(&o.ImportOnly, v)
 }
 
+// GetProtection returns the Protection field value if set, zero value otherwise.
+func (o *CreateKeyPayload) GetProtection() (res CreateKeyPayloadGetProtectionRetType) {
+	res, _ = o.GetProtectionOk()
+	return
+}
+
+// GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateKeyPayload) GetProtectionOk() (ret CreateKeyPayloadGetProtectionRetType, ok bool) {
+	return getCreateKeyPayloadGetProtectionAttributeTypeOk(o.Protection)
+}
+
+// HasProtection returns a boolean if a field has been set.
+func (o *CreateKeyPayload) HasProtection() bool {
+	_, ok := o.GetProtectionOk()
+	return ok
+}
+
+// SetProtection gets a reference to the given Protection and assigns it to the Protection field.
+func (o *CreateKeyPayload) SetProtection(v CreateKeyPayloadGetProtectionRetType) {
+	setCreateKeyPayloadGetProtectionAttributeType(&o.Protection, v)
+}
+
 // GetPurpose returns the Purpose field value
 func (o *CreateKeyPayload) GetPurpose() (ret CreateKeyPayloadGetPurposeRetType) {
 	ret, _ = o.GetPurposeOk()
@@ -297,6 +391,9 @@ func (o *CreateKeyPayload) SetPurpose(v CreateKeyPayloadGetPurposeRetType) {
 
 func (o CreateKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateKeyPayloadGetAccessScopeAttributeTypeOk(o.AccessScope); ok {
+		toSerialize["AccessScope"] = val
+	}
 	if val, ok := getCreateKeyPayloadGetAlgorithmAttributeTypeOk(o.Algorithm); ok {
 		toSerialize["Algorithm"] = val
 	}
@@ -311,6 +408,9 @@ func (o CreateKeyPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateKeyPayloadgetImportOnlyAttributeTypeOk(o.ImportOnly); ok {
 		toSerialize["ImportOnly"] = val
+	}
+	if val, ok := getCreateKeyPayloadGetProtectionAttributeTypeOk(o.Protection); ok {
+		toSerialize["Protection"] = val
 	}
 	if val, ok := getCreateKeyPayloadGetPurposeAttributeTypeOk(o.Purpose); ok {
 		toSerialize["Purpose"] = val
