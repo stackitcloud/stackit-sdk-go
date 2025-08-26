@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CreateWrappingKeyPayload{}
 
 /*
+	types and functions for access_scope
+*/
+
+// isEnumRef
+type CreateWrappingKeyPayloadGetAccessScopeAttributeType = *AccessScope
+type CreateWrappingKeyPayloadGetAccessScopeArgType = AccessScope
+type CreateWrappingKeyPayloadGetAccessScopeRetType = AccessScope
+
+func getCreateWrappingKeyPayloadGetAccessScopeAttributeTypeOk(arg CreateWrappingKeyPayloadGetAccessScopeAttributeType) (ret CreateWrappingKeyPayloadGetAccessScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateWrappingKeyPayloadGetAccessScopeAttributeType(arg *CreateWrappingKeyPayloadGetAccessScopeAttributeType, val CreateWrappingKeyPayloadGetAccessScopeRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for algorithm
 */
 
@@ -100,6 +120,26 @@ type CreateWrappingKeyPayloadGetDisplayNameArgType = string
 type CreateWrappingKeyPayloadGetDisplayNameRetType = string
 
 /*
+	types and functions for protection
+*/
+
+// isEnumRef
+type CreateWrappingKeyPayloadGetProtectionAttributeType = *Protection
+type CreateWrappingKeyPayloadGetProtectionArgType = Protection
+type CreateWrappingKeyPayloadGetProtectionRetType = Protection
+
+func getCreateWrappingKeyPayloadGetProtectionAttributeTypeOk(arg CreateWrappingKeyPayloadGetProtectionAttributeType) (ret CreateWrappingKeyPayloadGetProtectionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateWrappingKeyPayloadGetProtectionAttributeType(arg *CreateWrappingKeyPayloadGetProtectionAttributeType, val CreateWrappingKeyPayloadGetProtectionRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for purpose
 */
 
@@ -121,8 +161,10 @@ func setCreateWrappingKeyPayloadGetPurposeAttributeType(arg *CreateWrappingKeyPa
 
 // CreateWrappingKeyPayload struct for CreateWrappingKeyPayload
 type CreateWrappingKeyPayload struct {
+	AccessScope CreateWrappingKeyPayloadGetAccessScopeAttributeType `json:"access_scope,omitempty"`
 	// REQUIRED
 	Algorithm CreateWrappingKeyPayloadGetAlgorithmAttributeType `json:"algorithm" required:"true"`
+	// Deprecated: Check the GitHub changelog for alternatives
 	// REQUIRED
 	Backend CreateWrappingKeyPayloadGetBackendAttributeType `json:"backend" required:"true"`
 	// A user chosen description to distinguish multiple wrapping keys.
@@ -130,6 +172,7 @@ type CreateWrappingKeyPayload struct {
 	// The display name to distinguish multiple wrapping keys.
 	// REQUIRED
 	DisplayName CreateWrappingKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
+	Protection  CreateWrappingKeyPayloadGetProtectionAttributeType  `json:"protection,omitempty"`
 	// REQUIRED
 	Purpose CreateWrappingKeyPayloadGetPurposeAttributeType `json:"purpose" required:"true"`
 }
@@ -154,7 +197,32 @@ func NewCreateWrappingKeyPayload(algorithm CreateWrappingKeyPayloadGetAlgorithmA
 // but it doesn't guarantee that properties required by API are set
 func NewCreateWrappingKeyPayloadWithDefaults() *CreateWrappingKeyPayload {
 	this := CreateWrappingKeyPayload{}
+	var accessScope AccessScope = ACCESSSCOPE_PUBLIC
+	this.AccessScope = &accessScope
 	return &this
+}
+
+// GetAccessScope returns the AccessScope field value if set, zero value otherwise.
+func (o *CreateWrappingKeyPayload) GetAccessScope() (res CreateWrappingKeyPayloadGetAccessScopeRetType) {
+	res, _ = o.GetAccessScopeOk()
+	return
+}
+
+// GetAccessScopeOk returns a tuple with the AccessScope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateWrappingKeyPayload) GetAccessScopeOk() (ret CreateWrappingKeyPayloadGetAccessScopeRetType, ok bool) {
+	return getCreateWrappingKeyPayloadGetAccessScopeAttributeTypeOk(o.AccessScope)
+}
+
+// HasAccessScope returns a boolean if a field has been set.
+func (o *CreateWrappingKeyPayload) HasAccessScope() bool {
+	_, ok := o.GetAccessScopeOk()
+	return ok
+}
+
+// SetAccessScope gets a reference to the given AccessScope and assigns it to the AccessScope field.
+func (o *CreateWrappingKeyPayload) SetAccessScope(v CreateWrappingKeyPayloadGetAccessScopeRetType) {
+	setCreateWrappingKeyPayloadGetAccessScopeAttributeType(&o.AccessScope, v)
 }
 
 // GetAlgorithm returns the Algorithm field value
@@ -175,6 +243,7 @@ func (o *CreateWrappingKeyPayload) SetAlgorithm(v CreateWrappingKeyPayloadGetAlg
 }
 
 // GetBackend returns the Backend field value
+// Deprecated
 func (o *CreateWrappingKeyPayload) GetBackend() (ret CreateWrappingKeyPayloadGetBackendRetType) {
 	ret, _ = o.GetBackendOk()
 	return ret
@@ -182,11 +251,13 @@ func (o *CreateWrappingKeyPayload) GetBackend() (ret CreateWrappingKeyPayloadGet
 
 // GetBackendOk returns a tuple with the Backend field value
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *CreateWrappingKeyPayload) GetBackendOk() (ret CreateWrappingKeyPayloadGetBackendRetType, ok bool) {
 	return getCreateWrappingKeyPayloadGetBackendAttributeTypeOk(o.Backend)
 }
 
 // SetBackend sets field value
+// Deprecated
 func (o *CreateWrappingKeyPayload) SetBackend(v CreateWrappingKeyPayloadGetBackendRetType) {
 	setCreateWrappingKeyPayloadGetBackendAttributeType(&o.Backend, v)
 }
@@ -231,6 +302,29 @@ func (o *CreateWrappingKeyPayload) SetDisplayName(v CreateWrappingKeyPayloadGetD
 	setCreateWrappingKeyPayloadGetDisplayNameAttributeType(&o.DisplayName, v)
 }
 
+// GetProtection returns the Protection field value if set, zero value otherwise.
+func (o *CreateWrappingKeyPayload) GetProtection() (res CreateWrappingKeyPayloadGetProtectionRetType) {
+	res, _ = o.GetProtectionOk()
+	return
+}
+
+// GetProtectionOk returns a tuple with the Protection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateWrappingKeyPayload) GetProtectionOk() (ret CreateWrappingKeyPayloadGetProtectionRetType, ok bool) {
+	return getCreateWrappingKeyPayloadGetProtectionAttributeTypeOk(o.Protection)
+}
+
+// HasProtection returns a boolean if a field has been set.
+func (o *CreateWrappingKeyPayload) HasProtection() bool {
+	_, ok := o.GetProtectionOk()
+	return ok
+}
+
+// SetProtection gets a reference to the given Protection and assigns it to the Protection field.
+func (o *CreateWrappingKeyPayload) SetProtection(v CreateWrappingKeyPayloadGetProtectionRetType) {
+	setCreateWrappingKeyPayloadGetProtectionAttributeType(&o.Protection, v)
+}
+
 // GetPurpose returns the Purpose field value
 func (o *CreateWrappingKeyPayload) GetPurpose() (ret CreateWrappingKeyPayloadGetPurposeRetType) {
 	ret, _ = o.GetPurposeOk()
@@ -250,6 +344,9 @@ func (o *CreateWrappingKeyPayload) SetPurpose(v CreateWrappingKeyPayloadGetPurpo
 
 func (o CreateWrappingKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateWrappingKeyPayloadGetAccessScopeAttributeTypeOk(o.AccessScope); ok {
+		toSerialize["AccessScope"] = val
+	}
 	if val, ok := getCreateWrappingKeyPayloadGetAlgorithmAttributeTypeOk(o.Algorithm); ok {
 		toSerialize["Algorithm"] = val
 	}
@@ -261,6 +358,9 @@ func (o CreateWrappingKeyPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateWrappingKeyPayloadGetDisplayNameAttributeTypeOk(o.DisplayName); ok {
 		toSerialize["DisplayName"] = val
+	}
+	if val, ok := getCreateWrappingKeyPayloadGetProtectionAttributeTypeOk(o.Protection); ok {
+		toSerialize["Protection"] = val
 	}
 	if val, ok := getCreateWrappingKeyPayloadGetPurposeAttributeTypeOk(o.Purpose); ok {
 		toSerialize["Purpose"] = val

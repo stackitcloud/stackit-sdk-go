@@ -1,3 +1,10 @@
+## v0.6.0
+- **Breaking Change:** Updated `NewKey()` and `NewWrappingKey()` constructor signatures to require new `AccessScope` parameter
+- **Breaking Change:** Added new required `AccessScope` field to `Key` and `WrappingKey` models
+- **Feature:** Add new `AccessScope` field to `CreateKeyPayload` and `CreateWrappingKeyPayload` models for managing key access permissions
+- **Feature:** Add new `Protection` field to `CreateKeyPayload`, `CreateWrappingKeyPayload`, `Key`, and `WrappingKey` models as a replacement for the deprecated `Backend` field
+- **Deprecation:** The `Backend` field is now deprecated in all relevant models. Use the new `Protection` field instead
+
 ## v0.5.1
 - **Improvement:** Improved error handling for multiple API methods including `DeleteKey`, `DeleteKeyRing`, `DeleteWrappingKey`, `DestroyVersion`, `DisableVersion`, `EnableVersion`, `RestoreKey`, and `RestoreVersion`
 

@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// Backend The backend that is responsible for maintaining this key.
+// Backend The backend that is responsible for maintaining this key. Deprecated - use `protection`.
 type Backend string
 
 // List of backend
