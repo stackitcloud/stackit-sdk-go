@@ -1,3 +1,6 @@
+## v0.11.1
+- Introduce new struct `UpdateAlertConfigsPayloadRouteRoutesInner`
+
 ## v0.11.0
 - **Feature:** Add new `GoogleChat` webhook
 
