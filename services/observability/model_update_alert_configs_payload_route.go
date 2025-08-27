@@ -140,26 +140,6 @@ func setUpdateAlertConfigsPayloadRouteGetMatchReAttributeType(arg *UpdateAlertCo
 }
 
 /*
-	types and functions for matchers
-*/
-
-// isArray
-type UpdateAlertConfigsPayloadRouteGetMatchersAttributeType = *[]string
-type UpdateAlertConfigsPayloadRouteGetMatchersArgType = []string
-type UpdateAlertConfigsPayloadRouteGetMatchersRetType = []string
-
-func getUpdateAlertConfigsPayloadRouteGetMatchersAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetMatchersAttributeType) (ret UpdateAlertConfigsPayloadRouteGetMatchersRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-func setUpdateAlertConfigsPayloadRouteGetMatchersAttributeType(arg *UpdateAlertConfigsPayloadRouteGetMatchersAttributeType, val UpdateAlertConfigsPayloadRouteGetMatchersRetType) {
-	*arg = &val
-}
-
-/*
 	types and functions for receiver
 */
 
@@ -206,9 +186,9 @@ type UpdateAlertConfigsPayloadRouteGetRepeatIntervalRetType = string
 */
 
 // isArray
-type UpdateAlertConfigsPayloadRouteGetRoutesAttributeType = *[]CreateAlertConfigRoutePayloadRoutesInner
-type UpdateAlertConfigsPayloadRouteGetRoutesArgType = []CreateAlertConfigRoutePayloadRoutesInner
-type UpdateAlertConfigsPayloadRouteGetRoutesRetType = []CreateAlertConfigRoutePayloadRoutesInner
+type UpdateAlertConfigsPayloadRouteGetRoutesAttributeType = *[]UpdateAlertConfigsPayloadRouteRoutesInner
+type UpdateAlertConfigsPayloadRouteGetRoutesArgType = []UpdateAlertConfigsPayloadRouteRoutesInner
+type UpdateAlertConfigsPayloadRouteGetRoutesRetType = []UpdateAlertConfigsPayloadRouteRoutesInner
 
 func getUpdateAlertConfigsPayloadRouteGetRoutesAttributeTypeOk(arg UpdateAlertConfigsPayloadRouteGetRoutesAttributeType) (ret UpdateAlertConfigsPayloadRouteGetRoutesRetType, ok bool) {
 	if arg == nil {
@@ -235,8 +215,6 @@ type UpdateAlertConfigsPayloadRoute struct {
 	Match UpdateAlertConfigsPayloadRouteGetMatchAttributeType `json:"match,omitempty"`
 	//  Deprecated: map of key:value. A set of regex-matchers an alert has to fulfill to match the node.  `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
 	MatchRe UpdateAlertConfigsPayloadRouteGetMatchReAttributeType `json:"matchRe,omitempty"`
-	// A list of matchers that an alert has to fulfill to match the node. A matcher is a string with a syntax inspired by PromQL and OpenMetrics. The syntax of a matcher consists of three tokens: * A valid Prometheus label name. * One of =, !=, =~, or !~. = means equals, != means that the strings are not equal, =~ is used for equality of regex expressions and !~ is used for un-equality of regex expressions. They have the same meaning as known from PromQL selectors. * A UTF-8 string, which may be enclosed in double quotes. Before or after each token, there may be any amount of whitespace. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
-	Matchers UpdateAlertConfigsPayloadRouteGetMatchersAttributeType `json:"matchers,omitempty"`
 	// Receiver that should be one item of receivers `Additional Validators:` * must be a in name of receivers
 	// REQUIRED
 	Receiver UpdateAlertConfigsPayloadRouteGetReceiverAttributeType `json:"receiver" required:"true"`
@@ -418,29 +396,6 @@ func (o *UpdateAlertConfigsPayloadRoute) SetMatchRe(v UpdateAlertConfigsPayloadR
 	setUpdateAlertConfigsPayloadRouteGetMatchReAttributeType(&o.MatchRe, v)
 }
 
-// GetMatchers returns the Matchers field value if set, zero value otherwise.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatchers() (res UpdateAlertConfigsPayloadRouteGetMatchersRetType) {
-	res, _ = o.GetMatchersOk()
-	return
-}
-
-// GetMatchersOk returns a tuple with the Matchers field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateAlertConfigsPayloadRoute) GetMatchersOk() (ret UpdateAlertConfigsPayloadRouteGetMatchersRetType, ok bool) {
-	return getUpdateAlertConfigsPayloadRouteGetMatchersAttributeTypeOk(o.Matchers)
-}
-
-// HasMatchers returns a boolean if a field has been set.
-func (o *UpdateAlertConfigsPayloadRoute) HasMatchers() bool {
-	_, ok := o.GetMatchersOk()
-	return ok
-}
-
-// SetMatchers gets a reference to the given []string and assigns it to the Matchers field.
-func (o *UpdateAlertConfigsPayloadRoute) SetMatchers(v UpdateAlertConfigsPayloadRouteGetMatchersRetType) {
-	setUpdateAlertConfigsPayloadRouteGetMatchersAttributeType(&o.Matchers, v)
-}
-
 // GetReceiver returns the Receiver field value
 func (o *UpdateAlertConfigsPayloadRoute) GetReceiver() (ret UpdateAlertConfigsPayloadRouteGetReceiverRetType) {
 	ret, _ = o.GetReceiverOk()
@@ -499,7 +454,7 @@ func (o *UpdateAlertConfigsPayloadRoute) HasRoutes() bool {
 	return ok
 }
 
-// SetRoutes gets a reference to the given []CreateAlertConfigRoutePayloadRoutesInner and assigns it to the Routes field.
+// SetRoutes gets a reference to the given []UpdateAlertConfigsPayloadRouteRoutesInner and assigns it to the Routes field.
 func (o *UpdateAlertConfigsPayloadRoute) SetRoutes(v UpdateAlertConfigsPayloadRouteGetRoutesRetType) {
 	setUpdateAlertConfigsPayloadRouteGetRoutesAttributeType(&o.Routes, v)
 }
@@ -523,9 +478,6 @@ func (o UpdateAlertConfigsPayloadRoute) ToMap() (map[string]interface{}, error) 
 	}
 	if val, ok := getUpdateAlertConfigsPayloadRouteGetMatchReAttributeTypeOk(o.MatchRe); ok {
 		toSerialize["MatchRe"] = val
-	}
-	if val, ok := getUpdateAlertConfigsPayloadRouteGetMatchersAttributeTypeOk(o.Matchers); ok {
-		toSerialize["Matchers"] = val
 	}
 	if val, ok := getUpdateAlertConfigsPayloadRouteGetReceiverAttributeTypeOk(o.Receiver); ok {
 		toSerialize["Receiver"] = val

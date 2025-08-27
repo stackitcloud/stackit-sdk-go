@@ -1,6 +1,9 @@
 ## Release (2025-xx-xx)
-- `observability`: [v0.11.0](services/observability/CHANGELOG.md#v0110)
-  - **Feature:** Add new `GoogleChat` webhook
+- `observability`: 
+  - [v0.11.1](services/observability/CHANGELOG.md#v0111)
+    - Introduce new struct `UpdateAlertConfigsPayloadRouteRoutesInner`
+  - [v0.11.0](services/observability/CHANGELOG.md#v0110)
+    - **Feature:** Add new `GoogleChat` webhook
 - `scf`: [v0.2.1](services/scf/CHANGELOG.md#v021)
   - **Feature:** Add waiter for deletion of organization
 - `iaas`: [v0.29.1](services/iaas/CHANGELOG.md#v0291)
