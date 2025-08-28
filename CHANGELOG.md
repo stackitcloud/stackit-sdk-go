@@ -6,8 +6,11 @@
     - **Feature:** Add new `GoogleChat` webhook
 - `scf`: [v0.2.1](services/scf/CHANGELOG.md#v021)
   - **Feature:** Add waiter for deletion of organization
-- `iaas`: [v0.29.1](services/iaas/CHANGELOG.md#v0291)
-  - **Bugfix:** Parsing oneOf with enum and string value
+- `iaas`: 
+  - [v0.29.2](services/iaas/CHANGELOG.md#v0291)
+    - Increase Timeouts for network area and network wait handlers to 30 minutes
+  - [v0.29.1](services/iaas/CHANGELOG.md#v0291)
+    - **Bugfix:** Parsing oneOf with enum and string value
 - `stackitmarketplace`: [v1.7.1](services/stackitmarketplace/CHANGELOG.md#v171)
   - **Bugfix:** oneOfs with enums and strings can not be parsed
 

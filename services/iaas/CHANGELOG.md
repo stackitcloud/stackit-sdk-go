@@ -1,3 +1,6 @@
+## v0.29.2
+- Increase Timeouts for network area and network wait handlers to 30 minutes
+
 ## v0.29.1
 - **Bugfix:** Parsing oneOf with enum and string value
 
