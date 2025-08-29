@@ -1,4 +1,4 @@
-## Release (2025-xx-xx)
+## Release (2025-08-29)
 - `observability`: 
   - [v0.11.1](services/observability/CHANGELOG.md#v0111)
     - Introduce new struct `UpdateAlertConfigsPayloadRouteRoutesInner`
