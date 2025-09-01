@@ -185,7 +185,7 @@ func setUpdateAlertConfigsPayloadGlobalGetSmtpSmarthostAttributeType(arg *Update
 type UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostArgType = string
 type UpdateAlertConfigsPayloadGlobalGetSmtpSmarthostRetType = string
 
-// UpdateAlertConfigsPayloadGlobal Global config. If nothing passed the default argus config will be used.
+// UpdateAlertConfigsPayloadGlobal Global config. If nothing passed the default argus config will be used. It is only possible to update the entire global part, not individual attributes.
 type UpdateAlertConfigsPayloadGlobal struct {
 	// Opsgenie api key `Additional Validators:` * should only include the characters: a-zA-Z0-9-
 	OpsgenieApiKey UpdateAlertConfigsPayloadGlobalGetOpsgenieApiKeyAttributeType `json:"opsgenieApiKey,omitempty"`
