@@ -2,6 +2,7 @@ package wait
 
 import (
 	"context"
+	"net/http"
 	"testing"
 	"time"
 
@@ -9,23 +10,55 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
+	"github.com/stackitcloud/stackit-sdk-go/services/resourcemanager"
 )
 
 type apiClientMocked struct {
-	getNetworkAreaFails    bool
-	getNetworkFails        bool
-	getProjectRequestFails bool
-	isDeleted              bool
-	resourceState          string
-	getVolumeFails         bool
-	getServerFails         bool
-	getAttachedVolumeFails bool
-	getImageFails          bool
-	getBackupFails         bool
-	isAttached             bool
-	requestAction          string
-	returnResizing         bool
-	getSnapshotFails       bool
+	getNetworkAreaFails      bool
+	getNetworkFails          bool
+	getProjectRequestFails   bool
+	isDeleted                bool
+	resourceState            string
+	getVolumeFails           bool
+	getServerFails           bool
+	getAttachedVolumeFails   bool
+	getImageFails            bool
+	getBackupFails           bool
+	isAttached               bool
+	requestAction            string
+	returnResizing           bool
+	getSnapshotFails         bool
+	listProjectsResponses    []listProjectsResponses
+	listProjectsResponsesIdx int
+}
+
+type listProjectsResponses struct {
+	resp *iaas.ProjectListResponse
+	err  error
+}
+
+type resourceManagerClientMocked struct {
+	getProjectResponses    []getProjectResponse
+	getProjectResponsesIdx int
+}
+
+type getProjectResponse struct {
+	resp *resourcemanager.GetProjectResponse
+	err  error
+}
+
+func (r *resourceManagerClientMocked) GetProjectExecute(_ context.Context, _ string) (*resourcemanager.GetProjectResponse, error) {
+	resp := r.getProjectResponses[r.getProjectResponsesIdx].resp
+	err := r.getProjectResponses[r.getProjectResponsesIdx].err
+	r.getProjectResponsesIdx = (r.getProjectResponsesIdx + 1) % len(r.getProjectResponses)
+	return resp, err
+}
+
+func (a *apiClientMocked) ListNetworkAreaProjectsExecute(_ context.Context, _, _ string) (*iaas.ProjectListResponse, error) {
+	resp := a.listProjectsResponses[a.listProjectsResponsesIdx].resp
+	err := a.listProjectsResponses[a.listProjectsResponsesIdx].err
+	a.listProjectsResponsesIdx = (a.listProjectsResponsesIdx + 1) % len(a.listProjectsResponses)
+	return resp, err
 }
 
 func (a *apiClientMocked) GetNetworkAreaExecute(_ context.Context, _, _ string) (*iaas.NetworkArea, error) {
@@ -1846,6 +1879,155 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 
 			handler := DeleteSnapshotWaitHandler(context.Background(), apiClient, "pid", "sid")
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestReadyForNetworkAreaDeletionWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc                  string
+		listProjectsResponses []listProjectsResponses
+		getProjectResponses   []getProjectResponse
+		wantErr               bool
+		wantResp              bool
+	}{
+		{
+			desc: "projects still active",
+			listProjectsResponses: []listProjectsResponses{
+				{
+					resp: &iaas.ProjectListResponse{
+						Items: utils.Ptr([]string{"project1", "project2"}),
+					},
+					err: nil,
+				},
+			},
+			getProjectResponses: []getProjectResponse{
+				{&resourcemanager.GetProjectResponse{}, nil},
+				{&resourcemanager.GetProjectResponse{}, nil},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc: "no projects - ready for deletion",
+			listProjectsResponses: []listProjectsResponses{
+				{
+					resp: &iaas.ProjectListResponse{
+						Items: utils.Ptr([]string{}),
+					},
+					err: nil,
+				},
+			},
+			getProjectResponses: []getProjectResponse{},
+			wantErr:             false,
+			wantResp:            true,
+		},
+		{
+			desc: "projects in deletion state",
+			listProjectsResponses: []listProjectsResponses{
+				{
+					resp: &iaas.ProjectListResponse{
+						Items: utils.Ptr([]string{"project1", "project2"}),
+					},
+					err: nil,
+				},
+				{
+					resp: &iaas.ProjectListResponse{
+						Items: utils.Ptr([]string{}),
+					},
+					err: nil,
+				},
+			},
+			getProjectResponses: []getProjectResponse{
+				{nil, oapierror.NewError(http.StatusForbidden, "")},
+				{nil, oapierror.NewError(http.StatusForbidden, "")},
+			},
+			wantErr:  false,
+			wantResp: true,
+		},
+		{
+			desc: "network area includes one active project",
+			listProjectsResponses: []listProjectsResponses{
+				{
+					resp: &iaas.ProjectListResponse{
+						Items: utils.Ptr([]string{"project1", "project2", "project3"}),
+					},
+					err: nil,
+				},
+			},
+			getProjectResponses: []getProjectResponse{
+				{nil, oapierror.NewError(http.StatusForbidden, "")},
+				{nil, oapierror.NewError(http.StatusForbidden, "")},
+				{&resourcemanager.GetProjectResponse{}, nil},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc: "network area not found",
+			listProjectsResponses: []listProjectsResponses{
+				{
+					resp: nil,
+					err:  oapierror.NewError(http.StatusNotFound, "not found"),
+				},
+			},
+			getProjectResponses: []getProjectResponse{},
+			wantErr:             true,
+			wantResp:            false,
+		},
+		{
+			desc: "network area items is nil",
+			listProjectsResponses: []listProjectsResponses{
+				{
+					resp: &iaas.ProjectListResponse{
+						Items: nil,
+					},
+				},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc: "timeout",
+			listProjectsResponses: []listProjectsResponses{
+				{
+					resp: &iaas.ProjectListResponse{
+						Items: utils.Ptr([]string{"project1"}),
+					},
+					err: nil,
+				},
+			},
+			getProjectResponses: []getProjectResponse{
+				{nil, oapierror.NewError(http.StatusForbidden, "")},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				listProjectsResponses: tt.listProjectsResponses,
+			}
+
+			rmApiClient := &resourceManagerClientMocked{
+				getProjectResponses: tt.getProjectResponses,
+			}
+
+			var wantRes *iaas.ProjectListResponse
+			if tt.wantResp {
+				wantRes = tt.listProjectsResponses[len(tt.listProjectsResponses)-1].resp
+			}
+
+			handler := ReadyForNetworkAreaDeletionWaitHandler(context.Background(), apiClient, rmApiClient, "oid", "aid")
+			gotRes, err := handler.SetTimeout(200 * time.Millisecond).SetThrottle(5 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
