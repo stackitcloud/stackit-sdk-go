@@ -1612,7 +1612,7 @@ func TestCreateBackupWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER_STATUS",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -1729,7 +1729,7 @@ func TestRestoreBackupWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER_STATUS",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -1771,7 +1771,7 @@ func TestCreateSnapshotWaitHandler(t *testing.T) {
 		{
 			desc:          "create_succeeded",
 			getFails:      false,
-			resourceState: CreateSuccess,
+			resourceState: SnapshotAvailableStatus,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -1794,7 +1794,7 @@ func TestCreateSnapshotWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER_STATUS",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
@@ -1845,7 +1845,7 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: ErrorStatus,
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 		{
 			desc:          "get_fails",
@@ -1859,7 +1859,7 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 			getFails:      false,
 			resourceState: "ANOTHER_STATUS",
 			wantErr:       true,
-			wantResp:      true,
+			wantResp:      false,
 		},
 	}
 	for _, tt := range tests {
