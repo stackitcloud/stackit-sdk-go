@@ -1,6 +1,8 @@
 ## Release (2025-MM-DD)
 - `intake`: [v0.1.1](services/intake/CHANGELOG.md#v011) 
   - Mark fields `MaxMessageSizeKiB` and `MaxMessagesPerHour` as optional instead of required in `UpdateIntakeRunnerPayload` model struct 
+- `observability`: [v0.12.0](services/observability/CHANGELOG.md#v0120) 
+  - **Feature:** Add `MetricsEndpointUrl` field to `InstanceSensitiveData` model struct
 
 ## Release (2025-08-29)
 - `observability`: 

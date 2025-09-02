@@ -1,3 +1,6 @@
+## v0.12.0
+- **Feature:** Add `MetricsEndpointUrl` field to `InstanceSensitiveData` model struct
+
 ## v0.11.1
 - Introduce new struct `UpdateAlertConfigsPayloadRouteRoutesInner`
 

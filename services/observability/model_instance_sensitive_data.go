@@ -289,6 +289,27 @@ type InstanceSensitiveDataGetLogsUrlArgType = string
 type InstanceSensitiveDataGetLogsUrlRetType = string
 
 /*
+	types and functions for metricsEndpointUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetMetricsEndpointUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetMetricsEndpointUrlAttributeTypeOk(arg InstanceSensitiveDataGetMetricsEndpointUrlAttributeType) (ret InstanceSensitiveDataGetMetricsEndpointUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetMetricsEndpointUrlAttributeType(arg *InstanceSensitiveDataGetMetricsEndpointUrlAttributeType, val InstanceSensitiveDataGetMetricsEndpointUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetMetricsEndpointUrlArgType = string
+type InstanceSensitiveDataGetMetricsEndpointUrlRetType = string
+
+/*
 	types and functions for metricsRetentionTime1h
 */
 
@@ -523,6 +544,8 @@ type InstanceSensitiveData struct {
 	// REQUIRED
 	LogsUrl InstanceSensitiveDataGetLogsUrlAttributeType `json:"logsUrl" required:"true"`
 	// REQUIRED
+	MetricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlAttributeType `json:"metricsEndpointUrl" required:"true"`
+	// REQUIRED
 	MetricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hAttributeType `json:"metricsRetentionTime1h" required:"true"`
 	// REQUIRED
 	MetricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mAttributeType `json:"metricsRetentionTime5m" required:"true"`
@@ -549,7 +572,7 @@ type _InstanceSensitiveData InstanceSensitiveData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
+func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
 	this := InstanceSensitiveData{}
 	setInstanceSensitiveDataGetAlertingUrlAttributeType(&this.AlertingUrl, alertingUrl)
 	setInstanceSensitiveDataGetClusterAttributeType(&this.Cluster, cluster)
@@ -564,6 +587,7 @@ func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArg
 	setInstanceSensitiveDataGetJaegerUiUrlAttributeType(&this.JaegerUiUrl, jaegerUiUrl)
 	setInstanceSensitiveDataGetLogsPushUrlAttributeType(&this.LogsPushUrl, logsPushUrl)
 	setInstanceSensitiveDataGetLogsUrlAttributeType(&this.LogsUrl, logsUrl)
+	setInstanceSensitiveDataGetMetricsEndpointUrlAttributeType(&this.MetricsEndpointUrl, metricsEndpointUrl)
 	setInstanceSensitiveDataGetMetricsRetentionTime1hAttributeType(&this.MetricsRetentionTime1h, metricsRetentionTime1h)
 	setInstanceSensitiveDataGetMetricsRetentionTime5mAttributeType(&this.MetricsRetentionTime5m, metricsRetentionTime5m)
 	setInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType(&this.MetricsRetentionTimeRaw, metricsRetentionTimeRaw)
@@ -807,6 +831,23 @@ func (o *InstanceSensitiveData) SetLogsUrl(v InstanceSensitiveDataGetLogsUrlRetT
 	setInstanceSensitiveDataGetLogsUrlAttributeType(&o.LogsUrl, v)
 }
 
+// GetMetricsEndpointUrl returns the MetricsEndpointUrl field value
+func (o *InstanceSensitiveData) GetMetricsEndpointUrl() (ret InstanceSensitiveDataGetMetricsEndpointUrlRetType) {
+	ret, _ = o.GetMetricsEndpointUrlOk()
+	return ret
+}
+
+// GetMetricsEndpointUrlOk returns a tuple with the MetricsEndpointUrl field value
+// and a boolean to check if the value has been set.
+func (o *InstanceSensitiveData) GetMetricsEndpointUrlOk() (ret InstanceSensitiveDataGetMetricsEndpointUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetMetricsEndpointUrlAttributeTypeOk(o.MetricsEndpointUrl)
+}
+
+// SetMetricsEndpointUrl sets field value
+func (o *InstanceSensitiveData) SetMetricsEndpointUrl(v InstanceSensitiveDataGetMetricsEndpointUrlRetType) {
+	setInstanceSensitiveDataGetMetricsEndpointUrlAttributeType(&o.MetricsEndpointUrl, v)
+}
+
 // GetMetricsRetentionTime1h returns the MetricsRetentionTime1h field value
 func (o *InstanceSensitiveData) GetMetricsRetentionTime1h() (ret InstanceSensitiveDataGetMetricsRetentionTime1hRetType) {
 	ret, _ = o.GetMetricsRetentionTime1hOk()
@@ -1023,6 +1064,9 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getInstanceSensitiveDataGetLogsUrlAttributeTypeOk(o.LogsUrl); ok {
 		toSerialize["LogsUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetMetricsEndpointUrlAttributeTypeOk(o.MetricsEndpointUrl); ok {
+		toSerialize["MetricsEndpointUrl"] = val
 	}
 	if val, ok := getInstanceSensitiveDataGetMetricsRetentionTime1hAttributeTypeOk(o.MetricsRetentionTime1h); ok {
 		toSerialize["MetricsRetentionTime1h"] = val
