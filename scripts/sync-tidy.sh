@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script runs go work sync and go mod tidy for SDK modules and examples
 set -eo pipefail
 

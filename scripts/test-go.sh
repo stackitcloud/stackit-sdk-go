@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script tests the SDK modules
 # To skip manually maintained files, pass an extra "true" argument
 # Pre-requisites: Go
