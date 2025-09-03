@@ -30,11 +30,11 @@ type ChatModelDetailsBits int
 
 // List of Bits
 const (
-	CHATMODELDETAILSBITS_1Bit   ChatModelDetailsBits = 1
-	CHATMODELDETAILSBITS_2Bits  ChatModelDetailsBits = 2
-	CHATMODELDETAILSBITS_4Bits  ChatModelDetailsBits = 4
-	CHATMODELDETAILSBITS_8Bits  ChatModelDetailsBits = 8
-	CHATMODELDETAILSBITS_16Bits ChatModelDetailsBits = 16
+	CHATMODELDETAILSBITS_ONE_BIT      ChatModelDetailsBits = 1
+	CHATMODELDETAILSBITS_TWO_BITS     ChatModelDetailsBits = 2
+	CHATMODELDETAILSBITS_FOUR_BITS    ChatModelDetailsBits = 4
+	CHATMODELDETAILSBITS_EIGHT_BITS   ChatModelDetailsBits = 8
+	CHATMODELDETAILSBITS_SIXTEEN_BITS ChatModelDetailsBits = 16
 )
 
 // All allowed values of ChatModelDetails enum
