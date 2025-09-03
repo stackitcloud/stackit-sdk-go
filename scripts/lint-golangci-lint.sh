@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script lints the SDK modules and examples
 # To skip manually maintained files, pass an extra "true" argument
 # Pre-requisites: golangci-lint

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # This script is run in CI to check if sync-tidy produced any changes and it fails if it did
 set -eo pipefail
 
