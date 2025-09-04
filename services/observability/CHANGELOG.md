@@ -1,3 +1,6 @@
+## v0.13.0
+- **Feature:** Add support for HTTP checks and cert checks
+
 ## v0.12.0
 - **Feature:** Add `MetricsEndpointUrl` field to `InstanceSensitiveData` model struct
 
