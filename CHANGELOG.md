@@ -6,6 +6,17 @@
     - **Feature:** Add support for HTTP checks and cert checks
   - [v0.12.0](services/observability/CHANGELOG.md#v0120) 
     - **Feature:** Add `MetricsEndpointUrl` field to `InstanceSensitiveData` model struct
+- `kms`: [v1.0.0](services/kms/CHANGELOG.md#v100) 
+  - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
+  - **Feature:** New enum values `MODELTYPE_AUDIO` and `MODELTYPE_IMAGE` for `ModelTypes` enum
+  - **Breaking Change:** Removal of deprecated `Backend` model
+  - **Breaking Change:** Remove `Backend` field and mark `Protection` field as required in `Key`, `CreateKeyPayload`, `CreateWrappingKeyPayload` and `WrappingKey` model
+  - **Breaking Change:** Renaming of `ChatModelDetailsBits` enum fields
+    - `CHATMODELDETAILSBITS_1Bit` -> `CHATMODELDETAILSBITS_ONE_BIT`
+    - `CHATMODELDETAILSBITS_2Bits` -> `CHATMODELDETAILSBITS_TWO_BITS`
+    - `CHATMODELDETAILSBITS_4Bits` -> `CHATMODELDETAILSBITS_FOUR_BITS`
+    - `CHATMODELDETAILSBITS_8Bits` -> `CHATMODELDETAILSBITS_EIGHT_BITS`
+    - `CHATMODELDETAILSBITS_16Bits` -> `CHATMODELDETAILSBITS_SIXTEEN_BITS`
 
 ## Release (2025-08-29)
 - `observability`: 
