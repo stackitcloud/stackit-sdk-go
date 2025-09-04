@@ -90,6 +90,20 @@ func TestModelTypes_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 3`,
+			args: args{
+				src: []byte(`"audio"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 4`,
+			args: args{
+				src: []byte(`"image"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),
