@@ -91,7 +91,6 @@ func (a *apiKmsMocked) GetKeyRingExecute(_ context.Context, _, _, _ string) (*km
 func fixtureKey(state kms.KeyState) *kms.Key {
 	return &kms.Key{
 		Algorithm:    kms.ALGORITHM_AES_256_GCM.Ptr(),
-		Backend:      kms.BACKEND_SOFTWARE.Ptr(),
 		CreatedAt:    &testDate,
 		DeletionDate: &testDate,
 		Description:  utils.Ptr("test-description"),
@@ -117,7 +116,6 @@ func fixtureKeyRing(state kms.KeyRingState) *kms.KeyRing {
 func fixtureWrappingKey(state kms.WrappingKeyState) *kms.WrappingKey {
 	return &kms.WrappingKey{
 		Algorithm:   kms.WRAPPINGALGORITHM__2048_OAEP_SHA256.Ptr(),
-		Backend:     kms.BACKEND_SOFTWARE.Ptr(),
 		CreatedAt:   &testDate,
 		Description: utils.Ptr("test-description"),
 		DisplayName: utils.Ptr("test-displayname"),

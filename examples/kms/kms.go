@@ -41,7 +41,6 @@ func main() {
 		CreateKeyPayload(
 			kms.CreateKeyPayload{
 				Algorithm:   kms.ALGORITHM_AES_256_GCM.Ptr(),
-				Backend:     kms.BACKEND_SOFTWARE.Ptr(),
 				Description: utils.Ptr("A test key"),
 				DisplayName: utils.Ptr("test-key"),
 				Purpose:     kms.PURPOSE_SYMMETRIC_ENCRYPT_DECRYPT.Ptr(),

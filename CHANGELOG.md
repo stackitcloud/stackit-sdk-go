@@ -6,6 +6,10 @@
     - **Feature:** Add support for HTTP checks and cert checks
   - [v0.12.0](services/observability/CHANGELOG.md#v0120) 
     - **Feature:** Add `MetricsEndpointUrl` field to `InstanceSensitiveData` model struct
+- `kms`: [v1.0.0](services/kms/CHANGELOG.md#v100) 
+  - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
+  - **Breaking Change:** Removal of deprecated `Backend` model
+  - **Breaking Change:** Remove `Backend` field and mark `Protection` field as required in `Key`, `CreateKeyPayload`, `CreateWrappingKeyPayload` and `WrappingKey` model
 
 ## Release (2025-08-29)
 - `observability`: 

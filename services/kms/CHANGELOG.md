@@ -1,3 +1,8 @@
+## v1.0.0
+- Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
+- **Breaking Change:** Removal of deprecated `Backend` model
+- **Breaking Change:** Remove `Backend` field and mark `Protection` field as required in `Key`, `CreateKeyPayload`, `CreateWrappingKeyPayload` and `WrappingKey` model
+
 ## v0.6.0
 - **Breaking Change:** Updated `NewKey()` and `NewWrappingKey()` constructor signatures to require new `AccessScope` parameter
 - **Breaking Change:** Added new required `AccessScope` field to `Key` and `WrappingKey` models
