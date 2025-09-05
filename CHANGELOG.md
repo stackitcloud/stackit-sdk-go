@@ -1,6 +1,14 @@
 ## Release (2025-MM-DD)
 - `intake`: [v0.1.1](services/intake/CHANGELOG.md#v011) 
-  - Mark fields `MaxMessageSizeKiB` and `MaxMessagesPerHour` as optional instead of required in `UpdateIntakeRunnerPayload` model struct 
+  - Mark fields `MaxMessageSizeKiB` and `MaxMessagesPerHour` as optional instead of required in `UpdateIntakeRunnerPayload` model struct
+- `modelserving`: [v0.6.0](services/modelserving/CHANGELOG.md#v060)
+  - **Feature:** New enum values `MODELTYPE_AUDIO` and `MODELTYPE_IMAGE` for `ModelTypes` enum
+  - **Breaking Change:** Renaming of `ChatModelDetailsBits` enum fields
+    - `CHATMODELDETAILSBITS_1Bit` -> `CHATMODELDETAILSBITS_ONE_BIT`
+    - `CHATMODELDETAILSBITS_2Bits` -> `CHATMODELDETAILSBITS_TWO_BITS`
+    - `CHATMODELDETAILSBITS_4Bits` -> `CHATMODELDETAILSBITS_FOUR_BITS`
+    - `CHATMODELDETAILSBITS_8Bits` -> `CHATMODELDETAILSBITS_EIGHT_BITS`
+    - `CHATMODELDETAILSBITS_16Bits` -> `CHATMODELDETAILSBITS_SIXTEEN_BITS` 
 - `observability`:
   - [v0.13.0](services/observability/CHANGELOG.md#v0130)
     - **Feature:** Add support for HTTP checks and cert checks

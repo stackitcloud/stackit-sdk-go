@@ -1,5 +1,14 @@
+## v0.6.0
+- **Feature:** New enum values `MODELTYPE_AUDIO` and `MODELTYPE_IMAGE` for `ModelTypes` enum
+- **Breaking Change:** Renaming of `ChatModelDetailsBits` enum fields
+    - `CHATMODELDETAILSBITS_1Bit` -> `CHATMODELDETAILSBITS_ONE_BIT`
+    - `CHATMODELDETAILSBITS_2Bits` -> `CHATMODELDETAILSBITS_TWO_BITS`
+    - `CHATMODELDETAILSBITS_4Bits` -> `CHATMODELDETAILSBITS_FOUR_BITS`
+    - `CHATMODELDETAILSBITS_8Bits` -> `CHATMODELDETAILSBITS_EIGHT_BITS`
+    - `CHATMODELDETAILSBITS_16Bits` -> `CHATMODELDETAILSBITS_SIXTEEN_BITS`
+
 ## v0.5.1
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## v0.5.0
 - Add `required:"true"` tags to model structs
