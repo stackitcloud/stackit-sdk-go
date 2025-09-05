@@ -10,6 +10,8 @@
     - `CHATMODELDETAILSBITS_8Bits` -> `CHATMODELDETAILSBITS_EIGHT_BITS`
     - `CHATMODELDETAILSBITS_16Bits` -> `CHATMODELDETAILSBITS_SIXTEEN_BITS` 
 - `observability`:
+  - [v0.14.0](services/observability/CHANGELOG.md#v0131)
+    - **Feature:** Add attributes `JaegerHttpTracesUrl`, `OtlpGrpcTracesUrl` and `OtlpHttpTracesUrl` to `InstanceSensitiveData` model
   - [v0.13.0](services/observability/CHANGELOG.md#v0130)
     - **Feature:** Add support for HTTP checks and cert checks
   - [v0.12.0](services/observability/CHANGELOG.md#v0120) 
