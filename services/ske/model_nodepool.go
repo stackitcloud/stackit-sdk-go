@@ -78,6 +78,26 @@ func setNodepoolGetCriAttributeType(arg *NodepoolGetCriAttributeType, val Nodepo
 }
 
 /*
+	types and functions for kubernetes
+*/
+
+// isModel
+type NodepoolGetKubernetesAttributeType = *NodepoolKubernetes
+type NodepoolGetKubernetesArgType = NodepoolKubernetes
+type NodepoolGetKubernetesRetType = NodepoolKubernetes
+
+func getNodepoolGetKubernetesAttributeTypeOk(arg NodepoolGetKubernetesAttributeType) (ret NodepoolGetKubernetesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNodepoolGetKubernetesAttributeType(arg *NodepoolGetKubernetesAttributeType, val NodepoolGetKubernetesRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for labels
 */
 
@@ -265,6 +285,7 @@ type Nodepool struct {
 	// REQUIRED
 	AvailabilityZones NodepoolGetAvailabilityZonesAttributeType `json:"availabilityZones" required:"true"`
 	Cri               NodepoolGetCriAttributeType               `json:"cri,omitempty"`
+	Kubernetes        NodepoolGetKubernetesAttributeType        `json:"kubernetes,omitempty"`
 	Labels            NodepoolGetLabelsAttributeType            `json:"labels,omitempty"`
 	// REQUIRED
 	Machine NodepoolGetMachineAttributeType `json:"machine" required:"true"`
@@ -374,6 +395,29 @@ func (o *Nodepool) HasCri() bool {
 // SetCri gets a reference to the given CRI and assigns it to the Cri field.
 func (o *Nodepool) SetCri(v NodepoolGetCriRetType) {
 	setNodepoolGetCriAttributeType(&o.Cri, v)
+}
+
+// GetKubernetes returns the Kubernetes field value if set, zero value otherwise.
+func (o *Nodepool) GetKubernetes() (res NodepoolGetKubernetesRetType) {
+	res, _ = o.GetKubernetesOk()
+	return
+}
+
+// GetKubernetesOk returns a tuple with the Kubernetes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Nodepool) GetKubernetesOk() (ret NodepoolGetKubernetesRetType, ok bool) {
+	return getNodepoolGetKubernetesAttributeTypeOk(o.Kubernetes)
+}
+
+// HasKubernetes returns a boolean if a field has been set.
+func (o *Nodepool) HasKubernetes() bool {
+	_, ok := o.GetKubernetesOk()
+	return ok
+}
+
+// SetKubernetes gets a reference to the given NodepoolKubernetes and assigns it to the Kubernetes field.
+func (o *Nodepool) SetKubernetes(v NodepoolGetKubernetesRetType) {
+	setNodepoolGetKubernetesAttributeType(&o.Kubernetes, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -563,6 +607,9 @@ func (o Nodepool) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getNodepoolGetCriAttributeTypeOk(o.Cri); ok {
 		toSerialize["Cri"] = val
+	}
+	if val, ok := getNodepoolGetKubernetesAttributeTypeOk(o.Kubernetes); ok {
+		toSerialize["Kubernetes"] = val
 	}
 	if val, ok := getNodepoolGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val

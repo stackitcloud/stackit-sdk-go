@@ -1,3 +1,6 @@
+## v1.4.0
+- **Feature:** Add new field `Kubernetes` to `Nodepool` model
+
 ## v1.3.0
 - **Feature:** Add new wait handlers: `TriggerClusterHibernationWaitHandler`, `TriggerClusterMaintenanceWaitHandler`, `TriggerClusterReconciliationWaitHandler`, `TriggerClusterWakeupWaitHandler`
 
