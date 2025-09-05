@@ -303,12 +303,16 @@ type ModelTypes string
 const (
 	MODELTYPE_CHAT      ModelTypes = "chat"
 	MODELTYPE_EMBEDDING ModelTypes = "embedding"
+	MODELTYPE_AUDIO     ModelTypes = "audio"
+	MODELTYPE_IMAGE     ModelTypes = "image"
 )
 
 // All allowed values of Model enum
 var AllowedModelTypesEnumValues = []ModelTypes{
 	"chat",
 	"embedding",
+	"audio",
+	"image",
 }
 
 func (v *ModelTypes) UnmarshalJSON(src []byte) error {
