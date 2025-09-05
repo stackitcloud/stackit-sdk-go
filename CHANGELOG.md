@@ -20,6 +20,8 @@
   - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
   - **Breaking Change:** Removal of deprecated `Backend` model
   - **Breaking Change:** Remove `Backend` field and mark `Protection` field as required in `Key`, `CreateKeyPayload`, `CreateWrappingKeyPayload` and `WrappingKey` model
+- `ske`: [v1.4.0](services/ske/CHANGELOG.md#v140)
+  - **Feature:** Add new field `Kubernetes` to `Nodepool` model
 
 ## Release (2025-08-29)
 - `observability`: 
