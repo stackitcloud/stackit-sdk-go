@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.3
-	github.com/stackitcloud/stackit-sdk-go/services/kms v0.6.0
+	github.com/stackitcloud/stackit-sdk-go/services/kms v1.0.0
 )
 
 require (
