@@ -1,3 +1,6 @@
+## v1.8.0
+- **Feature:** Add new field `FreeTrial` in `CatalogProductOverview` model
+
 ## v1.7.1
 - **Bugfix:** oneOfs with enums and strings can not be parsed
 

@@ -22,6 +22,8 @@
   - **Breaking Change:** Remove `Backend` field and mark `Protection` field as required in `Key`, `CreateKeyPayload`, `CreateWrappingKeyPayload` and `WrappingKey` model
 - `ske`: [v1.4.0](services/ske/CHANGELOG.md#v140)
   - **Feature:** Add new field `Kubernetes` to `Nodepool` model
+- `stackitmarketplace`: [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
+  - **Feature:** Add new field `FreeTrial` in `CatalogProductOverview` model
 
 ## Release (2025-08-29)
 - `observability`: 
