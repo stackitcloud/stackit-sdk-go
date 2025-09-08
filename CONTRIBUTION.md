@@ -169,7 +169,7 @@ func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, proj
 
 To make your contribution, follow these steps:
 
-1. Check open or recently closed [Pull Requests](https://github.com/stackitcloud/stackit-sdk-go/pulls) and [Issues](https://github.com/stackitcloud/stackit-sdk-go/issues)to make sure the contribution you are making has not been already tackled by someone else.
+1. Check open or recently closed [Pull Requests](https://github.com/stackitcloud/stackit-sdk-go/pulls) and [Issues](https://github.com/stackitcloud/stackit-sdk-go/issues) to make sure the contribution you are making has not been already tackled by someone else.
 2. Fork the repo.
 3. Make your changes in a branch that is up-to-date with the original repo's `main` branch.
 4. Commit your changes including a descriptive message.
@@ -183,6 +183,6 @@ If you would like to report a bug, please open a [GitHub issue](https://github.c
 To ensure we can provide the best support to your issue, follow these guidelines:
 
 1. Go through the existing issues to check if your issue has already been reported.
-2. Make sure you are using the latest version of the provider, we will not provide bug fixes for older versions. Also, latest versions may have the fix for your bug.
-3. Please provide as much information as you can about your environment, e.g. your version of Go, your version of the provider, which operating system you are using and the corresponding version.
+2. Make sure you are using the latest version of the SDK modules, we will not provide bug fixes for older versions. Also, latest versions may have the fix for your bug.
+3. Please provide as much information as you can about your environment, e.g. your version of Go, your version of the SDK modules, which operating system you are using and the corresponding version.
 4. Include in your issue the steps to reproduce it, along with code snippets and/or information about your specific use case. This will make the support process much easier and efficient.
