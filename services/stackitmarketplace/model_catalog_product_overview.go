@@ -38,6 +38,26 @@ func setCatalogProductOverviewGetDeliveryMethodAttributeType(arg *CatalogProduct
 }
 
 /*
+	types and functions for freeTrial
+*/
+
+// isModel
+type CatalogProductOverviewGetFreeTrialAttributeType = *FreeTrial
+type CatalogProductOverviewGetFreeTrialArgType = FreeTrial
+type CatalogProductOverviewGetFreeTrialRetType = FreeTrial
+
+func getCatalogProductOverviewGetFreeTrialAttributeTypeOk(arg CatalogProductOverviewGetFreeTrialAttributeType) (ret CatalogProductOverviewGetFreeTrialRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductOverviewGetFreeTrialAttributeType(arg *CatalogProductOverviewGetFreeTrialAttributeType, val CatalogProductOverviewGetFreeTrialRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for lifecycleState
 */
 
@@ -164,6 +184,7 @@ func setCatalogProductOverviewGetVendorAttributeType(arg *CatalogProductOverview
 type CatalogProductOverview struct {
 	// REQUIRED
 	DeliveryMethod CatalogProductOverviewGetDeliveryMethodAttributeType `json:"deliveryMethod" required:"true"`
+	FreeTrial      CatalogProductOverviewGetFreeTrialAttributeType      `json:"freeTrial,omitempty"`
 	// REQUIRED
 	LifecycleState CatalogProductOverviewGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
 	// The logo base64 encoded.
@@ -221,6 +242,29 @@ func (o *CatalogProductOverview) GetDeliveryMethodOk() (ret CatalogProductOvervi
 // SetDeliveryMethod sets field value
 func (o *CatalogProductOverview) SetDeliveryMethod(v CatalogProductOverviewGetDeliveryMethodRetType) {
 	setCatalogProductOverviewGetDeliveryMethodAttributeType(&o.DeliveryMethod, v)
+}
+
+// GetFreeTrial returns the FreeTrial field value if set, zero value otherwise.
+func (o *CatalogProductOverview) GetFreeTrial() (res CatalogProductOverviewGetFreeTrialRetType) {
+	res, _ = o.GetFreeTrialOk()
+	return
+}
+
+// GetFreeTrialOk returns a tuple with the FreeTrial field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogProductOverview) GetFreeTrialOk() (ret CatalogProductOverviewGetFreeTrialRetType, ok bool) {
+	return getCatalogProductOverviewGetFreeTrialAttributeTypeOk(o.FreeTrial)
+}
+
+// HasFreeTrial returns a boolean if a field has been set.
+func (o *CatalogProductOverview) HasFreeTrial() bool {
+	_, ok := o.GetFreeTrialOk()
+	return ok
+}
+
+// SetFreeTrial gets a reference to the given FreeTrial and assigns it to the FreeTrial field.
+func (o *CatalogProductOverview) SetFreeTrial(v CatalogProductOverviewGetFreeTrialRetType) {
+	setCatalogProductOverviewGetFreeTrialAttributeType(&o.FreeTrial, v)
 }
 
 // GetLifecycleState returns the LifecycleState field value
@@ -335,6 +379,9 @@ func (o CatalogProductOverview) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCatalogProductOverviewGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod); ok {
 		toSerialize["DeliveryMethod"] = val
+	}
+	if val, ok := getCatalogProductOverviewGetFreeTrialAttributeTypeOk(o.FreeTrial); ok {
+		toSerialize["FreeTrial"] = val
 	}
 	if val, ok := getCatalogProductOverviewGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
 		toSerialize["LifecycleState"] = val
