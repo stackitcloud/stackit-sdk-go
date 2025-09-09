@@ -151,3 +151,55 @@ func TestConvertByteArraysToBase64(t *testing.T) {
 		})
 	}
 }
+
+func TestConvertByteArraysToBase64Recursive(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    interface{}
+		expected string // check if []byte was converted to base64 string
+	}{
+		{"nil", nil, ""},
+		{"map with []byte", map[string]interface{}{"data": []byte("hello")}, "aGVsbG8="},
+		{"slice with []byte", []interface{}{[]byte("test")}, "dGVzdA=="},
+		{"nested map", map[string]interface{}{"level": map[string]interface{}{"data": []byte("nested")}}, "bmVzdGVk"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			convertByteArraysToBase64Recursive(tt.input)
+
+			if tt.expected == "" {
+				return
+			}
+
+			// check if base64 string in the result
+			found := findBase64String(tt.input)
+			if found != tt.expected {
+				t.Fatalf("Expected %s, got %s", tt.expected, found)
+			}
+		})
+	}
+}
+
+// helper to find base64 string in interface{}
+func findBase64String(data interface{}) string {
+	switch v := data.(type) {
+	case map[string]interface{}:
+		for _, val := range v {
+			if str := findBase64String(val); str != "" {
+				return str
+			}
+		}
+	case []interface{}:
+		for _, val := range v {
+			if str := findBase64String(val); str != "" {
+				return str
+			}
+		}
+	case string:
+		if len(v) > 0 && v != "hello" && v != "test" && v != "nested" {
+			return v
+		}
+	}
+	return ""
+}
