@@ -195,7 +195,7 @@ func findBase64String(data interface{}) string {
 			}
 		}
 	case string:
-		if len(v) > 0 && v != "hello" && v != "test" && v != "nested" {
+		if v != "" && v != "hello" && v != "test" && v != "nested" {
 			return v
 		}
 	}
