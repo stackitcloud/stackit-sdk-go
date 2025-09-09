@@ -1,3 +1,6 @@
+## v0.1.2
+- **Feature:** Add new field `Partitioning` to `IntakeCatalog` model
+
 ## v0.1.1
 - Mark fields `MaxMessageSizeKiB` and `MaxMessagesPerHour` as optional instead of required in `UpdateIntakeRunnerPayload` model struct 
 

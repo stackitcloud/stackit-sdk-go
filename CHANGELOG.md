@@ -1,6 +1,9 @@
 ## Release (2025-MM-DD)
-- `intake`: [v0.1.1](services/intake/CHANGELOG.md#v011) 
-  - Mark fields `MaxMessageSizeKiB` and `MaxMessagesPerHour` as optional instead of required in `UpdateIntakeRunnerPayload` model struct
+- `intake`:
+  - [v0.1.2](services/intake/CHANGELOG.md#v012)
+    - **Feature:** Add new field `Partitioning` to `IntakeCatalog` model
+  - [v0.1.1](services/intake/CHANGELOG.md#v011) 
+    - Mark fields `MaxMessageSizeKiB` and `MaxMessagesPerHour` as optional instead of required in `UpdateIntakeRunnerPayload` model struct
 - `modelserving`: [v0.6.0](services/modelserving/CHANGELOG.md#v060)
   - **Feature:** New enum values `MODELTYPE_AUDIO` and `MODELTYPE_IMAGE` for `ModelTypes` enum
   - **Breaking Change:** Renaming of `ChatModelDetailsBits` enum fields
