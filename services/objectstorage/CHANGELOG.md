@@ -1,5 +1,8 @@
+## v1.4.0
+- **Breaking change:** Set `Expires` field in `CreateAccessKeyResponse` model to NullableString
+
 ## v1.3.1
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## v1.3.0
 - Add `required:"true"` tags to model structs
