@@ -63,22 +63,26 @@ type CreateAccessKeyResponseGetDisplayNameRetType = string
 	types and functions for expires
 */
 
-// isNotNullableString
-type CreateAccessKeyResponseGetExpiresAttributeType = *string
+// isNullableString
+type CreateAccessKeyResponseGetExpiresAttributeType = *NullableString
 
 func getCreateAccessKeyResponseGetExpiresAttributeTypeOk(arg CreateAccessKeyResponseGetExpiresAttributeType) (ret CreateAccessKeyResponseGetExpiresRetType, ok bool) {
 	if arg == nil {
-		return ret, false
+		return nil, false
 	}
-	return *arg, true
+	return arg.Get(), true
 }
 
 func setCreateAccessKeyResponseGetExpiresAttributeType(arg *CreateAccessKeyResponseGetExpiresAttributeType, val CreateAccessKeyResponseGetExpiresRetType) {
-	*arg = &val
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
 }
 
-type CreateAccessKeyResponseGetExpiresArgType = string
-type CreateAccessKeyResponseGetExpiresRetType = string
+type CreateAccessKeyResponseGetExpiresArgType = *string
+type CreateAccessKeyResponseGetExpiresRetType = *string
 
 /*
 	types and functions for keyId
@@ -225,6 +229,7 @@ func (o *CreateAccessKeyResponse) SetDisplayName(v CreateAccessKeyResponseGetDis
 }
 
 // GetExpires returns the Expires field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CreateAccessKeyResponse) GetExpires() (ret CreateAccessKeyResponseGetExpiresRetType) {
 	ret, _ = o.GetExpiresOk()
 	return ret
@@ -232,6 +237,7 @@ func (o *CreateAccessKeyResponse) GetExpires() (ret CreateAccessKeyResponseGetEx
 
 // GetExpiresOk returns a tuple with the Expires field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CreateAccessKeyResponse) GetExpiresOk() (ret CreateAccessKeyResponseGetExpiresRetType, ok bool) {
 	return getCreateAccessKeyResponseGetExpiresAttributeTypeOk(o.Expires)
 }
