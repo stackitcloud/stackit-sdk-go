@@ -12,6 +12,8 @@
     - `CHATMODELDETAILSBITS_4Bits` -> `CHATMODELDETAILSBITS_FOUR_BITS`
     - `CHATMODELDETAILSBITS_8Bits` -> `CHATMODELDETAILSBITS_EIGHT_BITS`
     - `CHATMODELDETAILSBITS_16Bits` -> `CHATMODELDETAILSBITS_SIXTEEN_BITS` 
+- `objectstorage`: [v1.4.0](services/objectstorage/CHANGELOG.md#v140)
+  - **Breaking change:** Set `Expires` field in `CreateAccessKeyResponse` model to NullableString
 - `observability`:
   - [v0.14.0](services/observability/CHANGELOG.md#v0131)
     - **Feature:** Add attributes `JaegerHttpTracesUrl`, `OtlpGrpcTracesUrl` and `OtlpHttpTracesUrl` to `InstanceSensitiveData` model
