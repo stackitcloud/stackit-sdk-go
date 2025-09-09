@@ -131,10 +131,8 @@ func TestConvertByteArraysToBase64(t *testing.T) {
 						continue
 					}
 					t.Fatalf("Expected field %s to exist, but it doesn't", fieldName)
-				} else {
-					if actualValue != expectedValue {
-						t.Fatalf("Expected field %s to be %v, got %v", fieldName, expectedValue, actualValue)
-					}
+				} else if actualValue != expectedValue {
+					t.Fatalf("Expected field %s to be %v, got %v", fieldName, expectedValue, actualValue)
 				}
 			}
 
