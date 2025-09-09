@@ -47,113 +47,107 @@ type TestServer struct {
 }
 
 func TestConvertByteArraysToBase64(t *testing.T) {
-	// Test with nil input
-	result, err := ConvertByteArraysToBase64(nil)
-	if err != nil {
-		t.Fatalf("Expected no error for nil input, got: %v", err)
-	}
-	if result != nil {
-		t.Fatalf("Expected nil result for nil input, got: %v", result)
-	}
-
-	// Test with server containing byte arrays
-	userData := []byte("hello world")
-	data := []byte("test data")
-
-	server := TestServer{
-		Name:     "test-server",
-		UserData: &userData,
-		Data:     data,
-	}
-
-	result1, err := ConvertByteArraysToBase64(server)
-	if err != nil {
-		t.Fatalf("Expected no error, got: %v", err)
-	}
-
-	// Check that UserData is converted to base64
-	if userDataStr, ok := result1["userData"].(string); !ok {
-		t.Fatalf("Expected userData to be a string, got: %T", result1["userData"])
-	} else {
-		expected := base64.StdEncoding.EncodeToString(userData)
-		if userDataStr != expected {
-			t.Fatalf("Expected userData to be %s, got: %s", expected, userDataStr)
-		}
-	}
-
-	// Check that Data is converted to base64
-	if dataStr, ok := result1["data"].(string); !ok {
-		t.Fatalf("Expected data to be a string, got: %T", result1["data"])
-	} else {
-		expected := base64.StdEncoding.EncodeToString(data)
-		if dataStr != expected {
-			t.Fatalf("Expected data to be %s, got: %s", expected, dataStr)
-		}
-	}
-
-	// Check that other fields remain unchanged
-	if result1["name"] != "test-server" {
-		t.Fatalf("Expected name to be 'test-server', got: %v", result1["name"])
-	}
-}
-
-func TestConvertByteArraysToBase64WithNilPointer(t *testing.T) {
-	// Test with nil pointer to byte array
-	server := TestServer{
-		Name:     "test-server",
-		UserData: nil, // nil pointer
-		Data:     []byte("test"),
+	tests := []struct {
+		name           string
+		input          interface{}
+		expectedFields map[string]interface{}
+		expectError    bool
+	}{
+		{
+			name:        "nil input",
+			input:       nil,
+			expectError: false,
+		},
+		{
+			name: "normal case with byte arrays",
+			input: TestServer{
+				Name:     "test-server",
+				UserData: func() *[]byte { b := []byte("hello world"); return &b }(),
+				Data:     []byte("test data"),
+			},
+			expectedFields: map[string]interface{}{
+				"name":     "test-server",
+				"userData": base64.StdEncoding.EncodeToString([]byte("hello world")),
+				"data":     base64.StdEncoding.EncodeToString([]byte("test data")),
+			},
+			expectError: false,
+		},
+		{
+			name: "nil pointer case",
+			input: TestServer{
+				Name:     "test-server",
+				UserData: nil,
+				Data:     []byte("test"),
+			},
+			expectedFields: map[string]interface{}{
+				"name": "test-server",
+				"data": base64.StdEncoding.EncodeToString([]byte("test")),
+			},
+			expectError: false,
+		},
+		{
+			name: "empty byte array case",
+			input: TestServer{
+				Name: "test-server",
+				Data: []byte{},
+			},
+			expectedFields: map[string]interface{}{
+				"name": "test-server",
+				// Note: empty byte arrays are omitted from JSON output
+			},
+			expectError: false,
+		},
 	}
 
-	result2, err := ConvertByteArraysToBase64(server)
-	if err != nil {
-		t.Fatalf("Expected no error, got: %v", err)
-	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result, err := ConvertByteArraysToBase64(tt.input)
 
-	// Check that nil pointer is handled correctly
-	if result2["userData"] != nil {
-		t.Fatalf("Expected userData to be nil, got: %v", result2["userData"])
-	}
+			if tt.expectError {
+				if err == nil {
+					t.Fatalf("Expected error but got none")
+				}
+				return
+			}
 
-	// Check that non-nil byte array is still converted
-	if dataStr, ok := result2["data"].(string); !ok {
-		t.Fatalf("Expected data to be a string, got: %T", result2["data"])
-	} else {
-		expected := base64.StdEncoding.EncodeToString([]byte("test"))
-		if dataStr != expected {
-			t.Fatalf("Expected data to be %s, got: %s", expected, dataStr)
-		}
-	}
-}
+			if err != nil {
+				t.Fatalf("Expected no error, got: %v", err)
+			}
 
-func TestConvertByteArraysToBase64WithEmptyByteArray(t *testing.T) {
-	// Test with empty byte array
-	emptyData := []byte{}
+			// Special case for nil input
+			if tt.input == nil {
+				if result != nil {
+					t.Fatalf("Expected nil result for nil input, got: %v", result)
+				}
+				return
+			}
 
-	server := TestServer{
-		Name: "test-server",
-		Data: emptyData,
-	}
+			// Check expected fields
+			for fieldName, expectedValue := range tt.expectedFields {
+				if actualValue, exists := result[fieldName]; !exists {
+					// For empty byte arrays, the field might be omitted from JSON
+					if fieldName == "data" && expectedValue == nil {
+						t.Logf("Empty byte array was omitted from JSON output, which is expected")
+						continue
+					}
+					t.Fatalf("Expected field %s to exist, but it doesn't", fieldName)
+				} else {
+					if actualValue != expectedValue {
+						t.Fatalf("Expected field %s to be %v, got %v", fieldName, expectedValue, actualValue)
+					}
+				}
+			}
 
-	result3, err := ConvertByteArraysToBase64(server)
-	if err != nil {
-		t.Fatalf("Expected no error, got: %v", err)
-	}
-
-	// Check that empty byte array is converted to empty base64 string
-	// Note: empty byte arrays might be omitted from JSON, so we check if it exists
-	if dataStr, exists := result3["data"]; !exists {
-		// Empty byte array was omitted from JSON, which is expected behavior
-		t.Logf("Empty byte array was omitted from JSON output, which is expected")
-	} else if dataStr, ok := dataStr.(string); !ok {
-		t.Fatalf("Expected data to be a string, got: %T", result3["data"])
-	} else {
-		expected := base64.StdEncoding.EncodeToString(emptyData)
-		if dataStr != expected {
-			t.Fatalf("Expected data to be %s, got: %s", expected, dataStr)
-		}
-		if dataStr != "" {
-			t.Fatalf("Expected empty byte array to be converted to empty string, got: %s", dataStr)
-		}
+			// Check that no unexpected fields exist (except for omitted empty byte arrays)
+			for fieldName, actualValue := range result {
+				if _, expected := tt.expectedFields[fieldName]; !expected {
+					// Allow data field to exist even if not in expectedFields (for empty byte array case)
+					if fieldName == "data" && tt.name == "empty byte array case" {
+						continue
+					}
+					t.Fatalf("Unexpected field %s with value %v", fieldName, actualValue)
+				}
+			}
+		})
 	}
 }
