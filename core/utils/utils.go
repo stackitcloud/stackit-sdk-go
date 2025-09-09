@@ -19,10 +19,10 @@ func Contains[T comparable](slice []T, element T) bool {
 	return false
 }
 
-// ConvertForYAML converts a struct to a map with byte arrays converted to base64 strings
-// for proper YAML marshaling. This handles the case where []byte fields need to be
-// displayed as base64 strings in YAML output instead of byte arrays.
-func ConvertForYAML(obj interface{}) (map[string]interface{}, error) {
+// ConvertByteArraysToBase64 converts a struct to a map with byte arrays converted to base64 strings.
+// This is useful for serialization formats like YAML where []byte fields should be displayed
+// as base64 strings instead of byte arrays. Works with any struct containing []byte fields.
+func ConvertByteArraysToBase64(obj interface{}) (map[string]interface{}, error) {
 	if obj == nil {
 		return nil, nil
 	}

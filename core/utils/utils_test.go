@@ -46,9 +46,9 @@ type TestServer struct {
 	Data     []byte  `json:"data,omitempty"`
 }
 
-func TestConvertForYAML(t *testing.T) {
+func TestConvertByteArraysToBase64(t *testing.T) {
 	// Test with nil input
-	result, err := ConvertForYAML(nil)
+	result, err := ConvertByteArraysToBase64(nil)
 	if err != nil {
 		t.Fatalf("Expected no error for nil input, got: %v", err)
 	}
@@ -66,7 +66,7 @@ func TestConvertForYAML(t *testing.T) {
 		Data:     data,
 	}
 
-	result1, err := ConvertForYAML(server)
+	result1, err := ConvertByteArraysToBase64(server)
 	if err != nil {
 		t.Fatalf("Expected no error, got: %v", err)
 	}
@@ -97,7 +97,7 @@ func TestConvertForYAML(t *testing.T) {
 	}
 }
 
-func TestConvertForYAMLWithNilPointer(t *testing.T) {
+func TestConvertByteArraysToBase64WithNilPointer(t *testing.T) {
 	// Test with nil pointer to byte array
 	server := TestServer{
 		Name:     "test-server",
@@ -105,7 +105,7 @@ func TestConvertForYAMLWithNilPointer(t *testing.T) {
 		Data:     []byte("test"),
 	}
 
-	result2, err := ConvertForYAML(server)
+	result2, err := ConvertByteArraysToBase64(server)
 	if err != nil {
 		t.Fatalf("Expected no error, got: %v", err)
 	}
@@ -126,7 +126,7 @@ func TestConvertForYAMLWithNilPointer(t *testing.T) {
 	}
 }
 
-func TestConvertForYAMLWithEmptyByteArray(t *testing.T) {
+func TestConvertByteArraysToBase64WithEmptyByteArray(t *testing.T) {
 	// Test with empty byte array
 	emptyData := []byte{}
 
@@ -135,7 +135,7 @@ func TestConvertForYAMLWithEmptyByteArray(t *testing.T) {
 		Data: emptyData,
 	}
 
-	result3, err := ConvertForYAML(server)
+	result3, err := ConvertByteArraysToBase64(server)
 	if err != nil {
 		t.Fatalf("Expected no error, got: %v", err)
 	}
