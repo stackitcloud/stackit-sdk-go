@@ -39,20 +39,20 @@ func ConvertByteArraysToBase64(obj interface{}) (map[string]interface{}, error) 
 	}
 
 	// Convert byte arrays to base64 strings
-	convertByteArraysToBase64(result)
+	convertByteArraysToBase64Recursive(result)
 
 	return result, nil
 }
 
-// convertByteArraysToBase64 recursively converts []byte values to base64 strings
-func convertByteArraysToBase64(data interface{}) {
+// convertByteArraysToBase64Recursive recursively converts []byte values to base64 strings
+func convertByteArraysToBase64Recursive(data interface{}) {
 	switch v := data.(type) {
 	case map[string]interface{}:
 		for key, value := range v {
 			if byteArray, ok := value.([]byte); ok {
 				v[key] = base64.StdEncoding.EncodeToString(byteArray)
 			} else {
-				convertByteArraysToBase64(value)
+				convertByteArraysToBase64Recursive(value)
 			}
 		}
 	case []interface{}:
@@ -60,7 +60,7 @@ func convertByteArraysToBase64(data interface{}) {
 			if byteArray, ok := value.([]byte); ok {
 				v[i] = base64.StdEncoding.EncodeToString(byteArray)
 			} else {
-				convertByteArraysToBase64(value)
+				convertByteArraysToBase64Recursive(value)
 			}
 		}
 	}
