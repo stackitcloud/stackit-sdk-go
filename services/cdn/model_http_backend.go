@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &HttpBackend{}
 
 /*
+	types and functions for geofencing
+*/
+
+// isContainer
+type HttpBackendGetGeofencingAttributeType = *map[string][]string
+type HttpBackendGetGeofencingArgType = map[string][]string
+type HttpBackendGetGeofencingRetType = map[string][]string
+
+func getHttpBackendGetGeofencingAttributeTypeOk(arg HttpBackendGetGeofencingAttributeType) (ret HttpBackendGetGeofencingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHttpBackendGetGeofencingAttributeType(arg *HttpBackendGetGeofencingAttributeType, val HttpBackendGetGeofencingRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for originRequestHeaders
 */
 
@@ -81,6 +101,9 @@ type HttpBackendGetTypeRetType = string
 
 // HttpBackend struct for HttpBackend
 type HttpBackend struct {
+	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins.
+	// REQUIRED
+	Geofencing HttpBackendGetGeofencingAttributeType `json:"geofencing" required:"true"`
 	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
 	// REQUIRED
 	OriginRequestHeaders HttpBackendGetOriginRequestHeadersAttributeType `json:"originRequestHeaders" required:"true"`
@@ -96,8 +119,9 @@ type _HttpBackend HttpBackend
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpBackend(originRequestHeaders HttpBackendGetOriginRequestHeadersArgType, originUrl HttpBackendGetOriginUrlArgType, types HttpBackendGetTypeArgType) *HttpBackend {
+func NewHttpBackend(geofencing HttpBackendGetGeofencingArgType, originRequestHeaders HttpBackendGetOriginRequestHeadersArgType, originUrl HttpBackendGetOriginUrlArgType, types HttpBackendGetTypeArgType) *HttpBackend {
 	this := HttpBackend{}
+	setHttpBackendGetGeofencingAttributeType(&this.Geofencing, geofencing)
 	setHttpBackendGetOriginRequestHeadersAttributeType(&this.OriginRequestHeaders, originRequestHeaders)
 	setHttpBackendGetOriginUrlAttributeType(&this.OriginUrl, originUrl)
 	setHttpBackendGetTypeAttributeType(&this.Type, types)
@@ -110,6 +134,23 @@ func NewHttpBackend(originRequestHeaders HttpBackendGetOriginRequestHeadersArgTy
 func NewHttpBackendWithDefaults() *HttpBackend {
 	this := HttpBackend{}
 	return &this
+}
+
+// GetGeofencing returns the Geofencing field value
+func (o *HttpBackend) GetGeofencing() (ret HttpBackendGetGeofencingRetType) {
+	ret, _ = o.GetGeofencingOk()
+	return ret
+}
+
+// GetGeofencingOk returns a tuple with the Geofencing field value
+// and a boolean to check if the value has been set.
+func (o *HttpBackend) GetGeofencingOk() (ret HttpBackendGetGeofencingRetType, ok bool) {
+	return getHttpBackendGetGeofencingAttributeTypeOk(o.Geofencing)
+}
+
+// SetGeofencing sets field value
+func (o *HttpBackend) SetGeofencing(v HttpBackendGetGeofencingRetType) {
+	setHttpBackendGetGeofencingAttributeType(&o.Geofencing, v)
 }
 
 // GetOriginRequestHeaders returns the OriginRequestHeaders field value
@@ -165,6 +206,9 @@ func (o *HttpBackend) SetType(v HttpBackendGetTypeRetType) {
 
 func (o HttpBackend) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getHttpBackendGetGeofencingAttributeTypeOk(o.Geofencing); ok {
+		toSerialize["Geofencing"] = val
+	}
 	if val, ok := getHttpBackendGetOriginRequestHeadersAttributeTypeOk(o.OriginRequestHeaders); ok {
 		toSerialize["OriginRequestHeaders"] = val
 	}
