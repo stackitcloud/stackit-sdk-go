@@ -17,10 +17,11 @@ import (
 
 // InquiriesCreateInquiryPayload - struct for InquiriesCreateInquiryPayload
 type InquiriesCreateInquiryPayload struct {
-	BecomeVendor    *BecomeVendor
-	ContactSales    *ContactSales
-	RegisterTesting *RegisterTesting
-	SuggestProduct  *SuggestProduct
+	BecomeVendor       *BecomeVendor
+	ContactSales       *ContactSales
+	RegisterTesting    *RegisterTesting
+	RequestPrivatePlan *RequestPrivatePlan
+	SuggestProduct     *SuggestProduct
 }
 
 // BecomeVendorAsInquiriesCreateInquiryPayload is a convenience function that returns BecomeVendor wrapped in InquiriesCreateInquiryPayload
@@ -41,6 +42,13 @@ func ContactSalesAsInquiriesCreateInquiryPayload(v *ContactSales) InquiriesCreat
 func RegisterTestingAsInquiriesCreateInquiryPayload(v *RegisterTesting) InquiriesCreateInquiryPayload {
 	return InquiriesCreateInquiryPayload{
 		RegisterTesting: v,
+	}
+}
+
+// RequestPrivatePlanAsInquiriesCreateInquiryPayload is a convenience function that returns RequestPrivatePlan wrapped in InquiriesCreateInquiryPayload
+func RequestPrivatePlanAsInquiriesCreateInquiryPayload(v *RequestPrivatePlan) InquiriesCreateInquiryPayload {
+	return InquiriesCreateInquiryPayload{
+		RequestPrivatePlan: v,
 	}
 }
 
@@ -91,13 +99,24 @@ func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// try to unmarshal data into RegisterTesting
+	// try to unmarshal data into RequestPrivatePlan
 	dstInquiriesCreateInquiryPayload4 := &InquiriesCreateInquiryPayload{}
-	err = json.Unmarshal(data, &dstInquiriesCreateInquiryPayload4.RegisterTesting)
+	err = json.Unmarshal(data, &dstInquiriesCreateInquiryPayload4.RequestPrivatePlan)
 	if err == nil {
-		jsonRegisterTesting, _ := json.Marshal(&dstInquiriesCreateInquiryPayload4.RegisterTesting)
+		jsonRequestPrivatePlan, _ := json.Marshal(&dstInquiriesCreateInquiryPayload4.RequestPrivatePlan)
+		if string(jsonRequestPrivatePlan) != "{}" { // empty struct
+			dst.RequestPrivatePlan = dstInquiriesCreateInquiryPayload4.RequestPrivatePlan
+			match++
+		}
+	}
+
+	// try to unmarshal data into RegisterTesting
+	dstInquiriesCreateInquiryPayload5 := &InquiriesCreateInquiryPayload{}
+	err = json.Unmarshal(data, &dstInquiriesCreateInquiryPayload5.RegisterTesting)
+	if err == nil {
+		jsonRegisterTesting, _ := json.Marshal(&dstInquiriesCreateInquiryPayload5.RegisterTesting)
 		if string(jsonRegisterTesting) != "{}" { // empty struct
-			dst.RegisterTesting = dstInquiriesCreateInquiryPayload4.RegisterTesting
+			dst.RegisterTesting = dstInquiriesCreateInquiryPayload5.RegisterTesting
 			match++
 		}
 	}
@@ -107,6 +126,7 @@ func (dst *InquiriesCreateInquiryPayload) UnmarshalJSON(data []byte) error {
 		dst.BecomeVendor = nil
 		dst.ContactSales = nil
 		dst.RegisterTesting = nil
+		dst.RequestPrivatePlan = nil
 		dst.SuggestProduct = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(InquiriesCreateInquiryPayload)")
@@ -131,6 +151,10 @@ func (src InquiriesCreateInquiryPayload) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.RegisterTesting)
 	}
 
+	if src.RequestPrivatePlan != nil {
+		return json.Marshal(&src.RequestPrivatePlan)
+	}
+
 	if src.SuggestProduct != nil {
 		return json.Marshal(&src.SuggestProduct)
 	}
@@ -153,6 +177,10 @@ func (obj *InquiriesCreateInquiryPayload) GetActualInstance() interface{} {
 
 	if obj.RegisterTesting != nil {
 		return obj.RegisterTesting
+	}
+
+	if obj.RequestPrivatePlan != nil {
+		return obj.RequestPrivatePlan
 	}
 
 	if obj.SuggestProduct != nil {
