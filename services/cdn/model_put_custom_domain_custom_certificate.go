@@ -82,10 +82,10 @@ type PutCustomDomainCustomCertificateGetTypeRetType = string
 
 // PutCustomDomainCustomCertificate Returned if a custom certificate is used. Response does not contain the certificate or key.
 type PutCustomDomainCustomCertificate struct {
-	// base64-encoded certificate
+	// base64-encoded PEM-encoded certificate
 	// REQUIRED
 	Certificate PutCustomDomainCustomCertificateGetCertificateAttributeType `json:"certificate" required:"true"`
-	// base64-encoded key
+	// base64-encoded PEM encoded key
 	// REQUIRED
 	Key PutCustomDomainCustomCertificateGetKeyAttributeType `json:"key" required:"true"`
 	// REQUIRED

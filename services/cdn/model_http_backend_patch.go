@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &HttpBackendPatch{}
 
 /*
+	types and functions for geofencing
+*/
+
+// isContainer
+type HttpBackendPatchGetGeofencingAttributeType = *map[string][]string
+type HttpBackendPatchGetGeofencingArgType = map[string][]string
+type HttpBackendPatchGetGeofencingRetType = map[string][]string
+
+func getHttpBackendPatchGetGeofencingAttributeTypeOk(arg HttpBackendPatchGetGeofencingAttributeType) (ret HttpBackendPatchGetGeofencingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHttpBackendPatchGetGeofencingAttributeType(arg *HttpBackendPatchGetGeofencingAttributeType, val HttpBackendPatchGetGeofencingRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for originRequestHeaders
 */
 
@@ -81,6 +101,8 @@ type HttpBackendPatchGetTypeRetType = string
 
 // HttpBackendPatch A partial HTTP Backend
 type HttpBackendPatch struct {
+	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins.
+	Geofencing HttpBackendPatchGetGeofencingAttributeType `json:"geofencing,omitempty"`
 	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
 	OriginRequestHeaders HttpBackendPatchGetOriginRequestHeadersAttributeType `json:"originRequestHeaders,omitempty"`
 	OriginUrl            HttpBackendPatchGetOriginUrlAttributeType            `json:"originUrl,omitempty"`
@@ -107,6 +129,29 @@ func NewHttpBackendPatch(types HttpBackendPatchGetTypeArgType) *HttpBackendPatch
 func NewHttpBackendPatchWithDefaults() *HttpBackendPatch {
 	this := HttpBackendPatch{}
 	return &this
+}
+
+// GetGeofencing returns the Geofencing field value if set, zero value otherwise.
+func (o *HttpBackendPatch) GetGeofencing() (res HttpBackendPatchGetGeofencingRetType) {
+	res, _ = o.GetGeofencingOk()
+	return
+}
+
+// GetGeofencingOk returns a tuple with the Geofencing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HttpBackendPatch) GetGeofencingOk() (ret HttpBackendPatchGetGeofencingRetType, ok bool) {
+	return getHttpBackendPatchGetGeofencingAttributeTypeOk(o.Geofencing)
+}
+
+// HasGeofencing returns a boolean if a field has been set.
+func (o *HttpBackendPatch) HasGeofencing() bool {
+	_, ok := o.GetGeofencingOk()
+	return ok
+}
+
+// SetGeofencing gets a reference to the given map[string][]string and assigns it to the Geofencing field.
+func (o *HttpBackendPatch) SetGeofencing(v HttpBackendPatchGetGeofencingRetType) {
+	setHttpBackendPatchGetGeofencingAttributeType(&o.Geofencing, v)
 }
 
 // GetOriginRequestHeaders returns the OriginRequestHeaders field value if set, zero value otherwise.
@@ -174,6 +219,9 @@ func (o *HttpBackendPatch) SetType(v HttpBackendPatchGetTypeRetType) {
 
 func (o HttpBackendPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getHttpBackendPatchGetGeofencingAttributeTypeOk(o.Geofencing); ok {
+		toSerialize["Geofencing"] = val
+	}
 	if val, ok := getHttpBackendPatchGetOriginRequestHeadersAttributeTypeOk(o.OriginRequestHeaders); ok {
 		toSerialize["OriginRequestHeaders"] = val
 	}

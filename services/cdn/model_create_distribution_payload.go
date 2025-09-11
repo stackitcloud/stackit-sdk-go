@@ -79,6 +79,26 @@ type CreateDistributionPayloadGetDefaultCacheDurationArgType = string
 type CreateDistributionPayloadGetDefaultCacheDurationRetType = string
 
 /*
+	types and functions for geofencing
+*/
+
+// isContainer
+type CreateDistributionPayloadGetGeofencingAttributeType = *map[string][]string
+type CreateDistributionPayloadGetGeofencingArgType = map[string][]string
+type CreateDistributionPayloadGetGeofencingRetType = map[string][]string
+
+func getCreateDistributionPayloadGetGeofencingAttributeTypeOk(arg CreateDistributionPayloadGetGeofencingAttributeType) (ret CreateDistributionPayloadGetGeofencingRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetGeofencingAttributeType(arg *CreateDistributionPayloadGetGeofencingAttributeType, val CreateDistributionPayloadGetGeofencingRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for intentId
 */
 
@@ -228,6 +248,8 @@ type CreateDistributionPayload struct {
 	BlockedIPs CreateDistributionPayloadGetBlockedIPsAttributeType `json:"blockedIPs,omitempty"`
 	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration CreateDistributionPayloadGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
+	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You can not have a country be assigned to multiple alternative origins.
+	Geofencing CreateDistributionPayloadGetGeofencingAttributeType `json:"geofencing,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId CreateDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
 	LogSink  CreateDistributionPayloadGetLogSinkAttributeType  `json:"logSink,omitempty"`
@@ -332,6 +354,29 @@ func (o *CreateDistributionPayload) HasDefaultCacheDuration() bool {
 // SetDefaultCacheDuration gets a reference to the given string and assigns it to the DefaultCacheDuration field.
 func (o *CreateDistributionPayload) SetDefaultCacheDuration(v CreateDistributionPayloadGetDefaultCacheDurationRetType) {
 	setCreateDistributionPayloadGetDefaultCacheDurationAttributeType(&o.DefaultCacheDuration, v)
+}
+
+// GetGeofencing returns the Geofencing field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetGeofencing() (res CreateDistributionPayloadGetGeofencingRetType) {
+	res, _ = o.GetGeofencingOk()
+	return
+}
+
+// GetGeofencingOk returns a tuple with the Geofencing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetGeofencingOk() (ret CreateDistributionPayloadGetGeofencingRetType, ok bool) {
+	return getCreateDistributionPayloadGetGeofencingAttributeTypeOk(o.Geofencing)
+}
+
+// HasGeofencing returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasGeofencing() bool {
+	_, ok := o.GetGeofencingOk()
+	return ok
+}
+
+// SetGeofencing gets a reference to the given map[string][]string and assigns it to the Geofencing field.
+func (o *CreateDistributionPayload) SetGeofencing(v CreateDistributionPayloadGetGeofencingRetType) {
+	setCreateDistributionPayloadGetGeofencingAttributeType(&o.Geofencing, v)
 }
 
 // GetIntentId returns the IntentId field value if set, zero value otherwise.
@@ -493,6 +538,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
 		toSerialize["DefaultCacheDuration"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetGeofencingAttributeTypeOk(o.Geofencing); ok {
+		toSerialize["Geofencing"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {
 		toSerialize["IntentId"] = val

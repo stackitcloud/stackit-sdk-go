@@ -79,7 +79,7 @@ type DefaultApi interface {
 	GetVendorSubscriptionExecute(ctx context.Context, projectId string, subscriptionId string) (*VendorSubscription, error)
 	/*
 		InquiriesCreateInquiry Create inquiry
-		Create an inquiry to contact sales, become a vendor, or suggest a product. Requests are limited to 10 per 5 minutes.
+		Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiInquiriesCreateInquiryRequest
@@ -894,7 +894,7 @@ func (r InquiriesCreateInquiryRequest) Execute() error {
 /*
 InquiriesCreateInquiry: Create inquiry
 
-Create an inquiry to contact sales, become a vendor, or suggest a product. Requests are limited to 10 per 5 minutes.
+Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiInquiriesCreateInquiryRequest

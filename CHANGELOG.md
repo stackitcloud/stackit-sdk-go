@@ -1,4 +1,8 @@
 ## Release (2025-MM-DD)
+- `cdn`: [v1.5.0](services/cdn/CHANGELOG.md#v150)
+  - **Feature:** Added Attribute `LogSink` to `ConfigPatch`
+  - **Feature:** Added Attribute `Geofencing` to `DistributionPayload`, `HttpBackend` and `HttpBackendPatch`
+  - **Feature:** Added new function `GetLogsSearchFilters`
 - `intake`:
   - [v0.1.2](services/intake/CHANGELOG.md#v012)
     - **Feature:** Add new field `Partitioning` to `IntakeCatalog` model
@@ -29,8 +33,11 @@
   - **Feature:** Add new field `Kubernetes` to `Nodepool` model
 - `serviceaccount`: [v0.11.1](services/serviceaccount/CHANGELOG.md#v0111)
   - **Improvement:** Improve error handling for `CreateShortLivedAccessToken`
-- `stackitmarketplace`: [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
-  - **Feature:** Add new field `FreeTrial` in `CatalogProductOverview` model
+- `stackitmarketplace`:
+  - [v1.9.0](services/stackitmarketplace/CHANGELOG.md#v190)
+    - **Feature:** Added `RequestPrivatePlan` to `InquiriesCreateInquiryPayload`
+  - [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
+    - **Feature:** Add new field `FreeTrial` in `CatalogProductOverview` model
 
 ## Release (2025-08-29)
 - `observability`: 

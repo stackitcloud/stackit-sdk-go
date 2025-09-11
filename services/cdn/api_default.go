@@ -208,6 +208,25 @@ type DefaultApi interface {
 	*/
 	GetLogsExecute(ctx context.Context, projectId string, distributionId string) (*GetLogsResponse, error)
 	/*
+		GetLogsSearchFilters Get relevant search filters for this distribution based on user input
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId Your CDN distribution ID
+		@return ApiGetLogsSearchFiltersRequest
+	*/
+	GetLogsSearchFilters(ctx context.Context, projectId string, distributionId string) ApiGetLogsSearchFiltersRequest
+	/*
+		GetLogsSearchFiltersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@param distributionId Your CDN distribution ID
+		@return GetLogsSearchFiltersResponse
+
+	*/
+	GetLogsSearchFiltersExecute(ctx context.Context, projectId string, distributionId string) (*GetLogsSearchFiltersResponse, error)
+	/*
 		GetStatistics Retrieve the statistics of a distribution
 		Returns the statistics of the distribution in the given
 		time range. The response is a list of statistics records. Each record aggregates the statistics for its time interval.
@@ -369,7 +388,7 @@ type ApiGetLogsRequest interface {
 	PageSize(pageSize int32) ApiGetLogsRequest
 	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 	PageIdentifier(pageIdentifier string) ApiGetLogsRequest
-	// The following sort options exist. We default to &#x60;timestamp&#x60; - &#x60;timestamp&#x60; - Sort by log message time stamp.
+	// Sorts the log messages by a specific field. Defaults to &#x60;timestamp&#x60;.  Supported sort options: - &#x60;timestamp&#x60; - &#x60;dataCenterRegion&#x60; - &#x60;requestCountryCode&#x60; - &#x60;statusCode&#x60; - &#x60;cacheHit&#x60; - &#x60;size&#x60; - &#x60;path&#x60; - &#x60;host&#x60;
 	SortBy(sortBy string) ApiGetLogsRequest
 	SortOrder(sortOrder string) ApiGetLogsRequest
 	// Filters by the CDN data center region that served the request. Can be combined with other filters
@@ -381,6 +400,12 @@ type ApiGetLogsRequest interface {
 	// Filters based on whether the request was served from the CDN cache. Can be combined with other filters
 	CacheHit(cacheHit bool) ApiGetLogsRequest
 	Execute() (*GetLogsResponse, error)
+}
+
+type ApiGetLogsSearchFiltersRequest interface {
+	// Required filter for search suggestions (e.g., status&#x3D;4, requestCountry, cacheHit&#x3D;tru, dataCenterRegion). The filter query cannot be empty.
+	Filter(filter string) ApiGetLogsSearchFiltersRequest
+	Execute() (*GetLogsSearchFiltersResponse, error)
 }
 
 type ApiGetStatisticsRequest interface {
@@ -1748,7 +1773,7 @@ func (r GetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsRequest 
 	return r
 }
 
-// The following sort options exist. We default to &#x60;timestamp&#x60; - &#x60;timestamp&#x60; - Sort by log message time stamp.
+// Sorts the log messages by a specific field. Defaults to &#x60;timestamp&#x60;.  Supported sort options: - &#x60;timestamp&#x60; - &#x60;dataCenterRegion&#x60; - &#x60;requestCountryCode&#x60; - &#x60;statusCode&#x60; - &#x60;cacheHit&#x60; - &#x60;size&#x60; - &#x60;path&#x60; - &#x60;host&#x60;
 
 func (r GetLogsRequest) SortBy(sortBy string) ApiGetLogsRequest {
 	r.sortBy = &sortBy
@@ -1968,6 +1993,194 @@ func (a *APIClient) GetLogs(ctx context.Context, projectId string, distributionI
 
 func (a *APIClient) GetLogsExecute(ctx context.Context, projectId string, distributionId string) (*GetLogsResponse, error) {
 	r := GetLogsRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		distributionId: distributionId,
+	}
+	return r.Execute()
+}
+
+type GetLogsSearchFiltersRequest struct {
+	ctx            context.Context
+	apiService     *DefaultApiService
+	projectId      string
+	distributionId string
+	filter         *string
+}
+
+// Required filter for search suggestions (e.g., status&#x3D;4, requestCountry, cacheHit&#x3D;tru, dataCenterRegion). The filter query cannot be empty.
+
+func (r GetLogsSearchFiltersRequest) Filter(filter string) ApiGetLogsSearchFiltersRequest {
+	r.filter = &filter
+	return r
+}
+
+func (r GetLogsSearchFiltersRequest) Execute() (*GetLogsSearchFiltersResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetLogsSearchFiltersResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetLogsSearchFilters")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/distributions/{distributionId}/logs/searchFilters"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"distributionId"+"}", url.PathEscape(ParameterValueToString(r.distributionId, "distributionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.filter == nil {
+		return localVarReturnValue, fmt.Errorf("filter is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "filter", r.filter, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v GenericJSONResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v GenericJSONResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericJSONResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v GenericJSONResponse
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetLogsSearchFilters: Get relevant search filters for this distribution based on user input
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Your STACKIT Project ID
+	@param distributionId Your CDN distribution ID
+	@return ApiGetLogsSearchFiltersRequest
+*/
+func (a *APIClient) GetLogsSearchFilters(ctx context.Context, projectId string, distributionId string) ApiGetLogsSearchFiltersRequest {
+	return GetLogsSearchFiltersRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		projectId:      projectId,
+		distributionId: distributionId,
+	}
+}
+
+func (a *APIClient) GetLogsSearchFiltersExecute(ctx context.Context, projectId string, distributionId string) (*GetLogsSearchFiltersResponse, error) {
+	r := GetLogsSearchFiltersRequest{
 		apiService:     a.defaultApi,
 		ctx:            ctx,
 		projectId:      projectId,

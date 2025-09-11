@@ -20,10 +20,11 @@ type InquiryFormType string
 
 // List of inquiryFormType
 const (
-	INQUIRYFORMTYPE_SUGGEST_PRODUCT  InquiryFormType = "SUGGEST_PRODUCT"
-	INQUIRYFORMTYPE_CONTACT_SALES    InquiryFormType = "CONTACT_SALES"
-	INQUIRYFORMTYPE_BECOME_VENDOR    InquiryFormType = "BECOME_VENDOR"
-	INQUIRYFORMTYPE_REGISTER_TESTING InquiryFormType = "REGISTER_TESTING"
+	INQUIRYFORMTYPE_SUGGEST_PRODUCT      InquiryFormType = "SUGGEST_PRODUCT"
+	INQUIRYFORMTYPE_CONTACT_SALES        InquiryFormType = "CONTACT_SALES"
+	INQUIRYFORMTYPE_BECOME_VENDOR        InquiryFormType = "BECOME_VENDOR"
+	INQUIRYFORMTYPE_REGISTER_TESTING     InquiryFormType = "REGISTER_TESTING"
+	INQUIRYFORMTYPE_REQUEST_PRIVATE_PLAN InquiryFormType = "REQUEST_PRIVATE_PLAN"
 )
 
 // All allowed values of InquiryFormType enum
@@ -32,6 +33,7 @@ var AllowedInquiryFormTypeEnumValues = []InquiryFormType{
 	"CONTACT_SALES",
 	"BECOME_VENDOR",
 	"REGISTER_TESTING",
+	"REQUEST_PRIVATE_PLAN",
 }
 
 func (v *InquiryFormType) UnmarshalJSON(src []byte) error {
