@@ -1,3 +1,8 @@
+## Release (2025-MM-DD)
+- `iaas`: [v0.30.0](services/iaas/CHANGELOG.md#v0300)
+  - **Feature:** Add waiter to wait until the preconditions for network area deletion are met: `ReadyForNetworkAreaDeletionWaitHandler`
+
+
 ## Release (2025-09-11)
 - `cdn`: [v1.5.0](services/cdn/CHANGELOG.md#v150)
   - **Feature:** Added Attribute `LogSink` to `ConfigPatch`

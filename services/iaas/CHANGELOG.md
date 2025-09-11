@@ -1,3 +1,6 @@
+## v0.30.0
+- **Feature:** Add waiter to wait until the preconditions for network area deletion are met: `ReadyForNetworkAreaDeletionWaitHandler`
+
 ## v0.29.2
 - Increase Timeouts for network area and network wait handlers to 30 minutes
 

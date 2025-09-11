@@ -2,15 +2,16 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
-
-	"errors"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
+	"github.com/stackitcloud/stackit-sdk-go/services/resourcemanager"
 )
 
 const (
@@ -48,6 +49,7 @@ const (
 // Interfaces needed for tests
 type APIClientInterface interface {
 	GetNetworkAreaExecute(ctx context.Context, organizationId, areaId string) (*iaas.NetworkArea, error)
+	ListNetworkAreaProjectsExecute(ctx context.Context, organizationId, areaId string) (*iaas.ProjectListResponse, error)
 	GetProjectRequestExecute(ctx context.Context, projectId string, requestId string) (*iaas.Request, error)
 	GetNetworkExecute(ctx context.Context, projectId, networkId string) (*iaas.Network, error)
 	GetVolumeExecute(ctx context.Context, projectId string, volumeId string) (*iaas.Volume, error)
@@ -56,6 +58,10 @@ type APIClientInterface interface {
 	GetImageExecute(ctx context.Context, projectId string, imageId string) (*iaas.Image, error)
 	GetBackupExecute(ctx context.Context, projectId string, backupId string) (*iaas.Backup, error)
 	GetSnapshotExecute(ctx context.Context, projectId string, snapshotId string) (*iaas.Snapshot, error)
+}
+
+type ResourceManagerAPIClientInterface interface {
+	GetProjectExecute(ctx context.Context, id string) (*resourcemanager.GetProjectResponse, error)
 }
 
 // CreateNetworkAreaWaitHandler will wait for network area creation
@@ -95,6 +101,52 @@ func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 	})
 	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(30 * time.Minute)
+	return handler
+}
+
+// ReadyForNetworkAreaDeletionWaitHandler will wait until a deletion of network area is possible
+// Workaround for https://github.com/stackitcloud/terraform-provider-stackit/issues/907.
+// When the deletion for a project is triggered, the backend starts a workflow in the background which cleans up all resources
+// within a project and deletes the project in each service. When the project is attached to an SNA, the SNA can't be
+// deleted until the workflow inform the IaaS-API that the project is deleted.
+func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a APIClientInterface, r ResourceManagerAPIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.ProjectListResponse] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.ProjectListResponse, err error) {
+		projectList, err := a.ListNetworkAreaProjectsExecute(ctx, organizationId, areaId)
+		if err != nil {
+			return false, projectList, err
+		}
+		if projectList == nil || projectList.Items == nil {
+			return false, nil, fmt.Errorf("read failed for projects in network area with id %s, the response is not valid: the items are missing", areaId)
+		}
+		if len(*projectList.Items) == 0 {
+			return true, projectList, nil
+		}
+		var activeProjects, forbiddenProjects []string
+		for _, projectId := range *projectList.Items {
+			_, err := r.GetProjectExecute(ctx, projectId)
+			if err == nil {
+				activeProjects = append(activeProjects, projectId)
+				continue
+			}
+			var oapiErr *oapierror.GenericOpenAPIError
+			ok := errors.As(err, &oapiErr)
+			if !ok {
+				return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+			}
+			// The resource manager api responds with StatusForbidden(=403) when a project is deleted or if the project does not exist
+			if oapiErr.StatusCode == http.StatusNotFound || oapiErr.StatusCode == http.StatusForbidden {
+				forbiddenProjects = append(forbiddenProjects, projectId)
+			}
+		}
+		if len(activeProjects) > 0 {
+			return false, nil, fmt.Errorf("network area with id %s has still active projects: %s", areaId, strings.Join(activeProjects, ","))
+		}
+		if len(forbiddenProjects) > 0 {
+			return false, nil, nil
+		}
+		return true, projectList, nil
+	})
+	handler.SetTimeout(1 * time.Minute)
 	return handler
 }
 
