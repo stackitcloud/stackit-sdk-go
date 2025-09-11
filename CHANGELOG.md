@@ -1,3 +1,8 @@
+## Release (2025-MM-DD)
+- `iaas`: [v0.30.0](services/iaas/CHANGELOG.md#v0300)
+  - **Feature:** Add waiter to wait until the preconditions for network area deletion are met: `ReadyForNetworkAreaDeletionWaitHandler`
+
+
 ## Release (2025-09-11)
 - `cdn`: [v1.5.0](services/cdn/CHANGELOG.md#v150)
   - **Feature:** Added Attribute `LogSink` to `ConfigPatch`
@@ -48,8 +53,6 @@
 - `scf`: [v0.2.1](services/scf/CHANGELOG.md#v021)
   - **Feature:** Add waiter for deletion of organization
 - `iaas`: 
-  - [v0.30.0](services/iaas/CHANGELOG.md#v0300)
-    - **Feature:** Add waiter to wait until the preconditions for network area deletion are met: `ReadyForNetworkAreaDeletionWaitHandler`
   - [v0.29.2](services/iaas/CHANGELOG.md#v0291)
     - Increase Timeouts for network area and network wait handlers to 30 minutes
   - [v0.29.1](services/iaas/CHANGELOG.md#v0291)

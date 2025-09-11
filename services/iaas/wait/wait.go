@@ -115,14 +115,13 @@ func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a APIClientInte
 		if err != nil {
 			return false, projectList, err
 		}
-		if projectList.Items == nil {
+		if projectList == nil || projectList.Items == nil {
 			return false, nil, fmt.Errorf("read failed for projects in network area with id %s, the response is not valid: the items are missing", areaId)
 		}
 		if len(*projectList.Items) == 0 {
 			return true, projectList, nil
 		}
-		var activeProjects []string
-		var forbiddenProjects []string
+		var activeProjects, forbiddenProjects []string
 		for _, projectId := range *projectList.Items {
 			_, err := r.GetProjectExecute(ctx, projectId)
 			if err == nil {
