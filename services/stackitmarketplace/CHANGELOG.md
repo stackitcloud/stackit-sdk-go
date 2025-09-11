@@ -1,3 +1,6 @@
+## v1.9.0
+- **Feature:** Added `RequestPrivatePlan` to `InquiriesCreateInquiryPayload`
+
 ## v1.8.0
 - **Feature:** Add new field `FreeTrial` in `CatalogProductOverview` model
 

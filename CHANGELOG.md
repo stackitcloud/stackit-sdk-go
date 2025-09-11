@@ -33,8 +33,11 @@
   - **Feature:** Add new field `Kubernetes` to `Nodepool` model
 - `serviceaccount`: [v0.11.1](services/serviceaccount/CHANGELOG.md#v0111)
   - **Improvement:** Improve error handling for `CreateShortLivedAccessToken`
-- `stackitmarketplace`: [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
-  - **Feature:** Add new field `FreeTrial` in `CatalogProductOverview` model
+- `stackitmarketplace`:
+  - [v1.9.0](services/stackitmarketplace/CHANGELOG.md#v190)
+    - **Feature:** Added `RequestPrivatePlan` to `InquiriesCreateInquiryPayload`
+  - [v1.8.0](services/stackitmarketplace/CHANGELOG.md#v180)
+    - **Feature:** Add new field `FreeTrial` in `CatalogProductOverview` model
 
 ## Release (2025-08-29)
 - `observability`: 
