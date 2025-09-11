@@ -1,7 +1,7 @@
 ## Release (2025-MM-DD)
 - `cdn`: [v1.5.0](services/cdn/CHANGELOG.md#v150)
   - **Feature:** Added Attribute `LogSink` to `ConfigPatch`
-  - **Feature:** Added Attribute `Geofencing` to `DistributionPayload`
+  - **Feature:** Added Attribute `Geofencing` to `DistributionPayload`, `HttpBackend` and `HttpBackendPatch`
   - **Feature:** Added new function `GetLogsSearchFilters`
 - `intake`:
   - [v0.1.2](services/intake/CHANGELOG.md#v012)
