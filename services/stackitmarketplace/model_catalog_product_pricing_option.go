@@ -100,6 +100,27 @@ func setCatalogProductPricingOptionGetNoticePeriodAttributeType(arg *CatalogProd
 }
 
 /*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type CatalogProductPricingOptionGetPlanIdAttributeType = *string
+
+func getCatalogProductPricingOptionGetPlanIdAttributeTypeOk(arg CatalogProductPricingOptionGetPlanIdAttributeType) (ret CatalogProductPricingOptionGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetPlanIdAttributeType(arg *CatalogProductPricingOptionGetPlanIdAttributeType, val CatalogProductPricingOptionGetPlanIdRetType) {
+	*arg = &val
+}
+
+type CatalogProductPricingOptionGetPlanIdArgType = string
+type CatalogProductPricingOptionGetPlanIdRetType = string
+
+/*
 	types and functions for priceType
 */
 
@@ -256,7 +277,10 @@ type CatalogProductPricingOption struct {
 	// REQUIRED
 	Name         CatalogProductPricingOptionGetNameAttributeType         `json:"name" required:"true"`
 	NoticePeriod CatalogProductPricingOptionGetNoticePeriodAttributeType `json:"noticePeriod,omitempty"`
-	PriceType    CatalogProductPricingOptionGetPriceTypeAttributeType    `json:"priceType,omitempty"`
+	// The user-readable plan ID of a pricing option.
+	// REQUIRED
+	PlanId    CatalogProductPricingOptionGetPlanIdAttributeType    `json:"planId" required:"true"`
+	PriceType CatalogProductPricingOptionGetPriceTypeAttributeType `json:"priceType,omitempty"`
 	// Additional price type information.
 	PricingPlan CatalogProductPricingOptionGetPricingPlanAttributeType `json:"pricingPlan,omitempty"`
 	// The price of the product (per unit).
@@ -279,11 +303,12 @@ type _CatalogProductPricingOption CatalogProductPricingOption
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCatalogProductPricingOption(description CatalogProductPricingOptionGetDescriptionArgType, highlights CatalogProductPricingOptionGetHighlightsArgType, name CatalogProductPricingOptionGetNameArgType, sku CatalogProductPricingOptionGetSkuArgType, skuInfo CatalogProductPricingOptionGetSkuInfoArgType, skuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsArgType) *CatalogProductPricingOption {
+func NewCatalogProductPricingOption(description CatalogProductPricingOptionGetDescriptionArgType, highlights CatalogProductPricingOptionGetHighlightsArgType, name CatalogProductPricingOptionGetNameArgType, planId CatalogProductPricingOptionGetPlanIdArgType, sku CatalogProductPricingOptionGetSkuArgType, skuInfo CatalogProductPricingOptionGetSkuInfoArgType, skuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsArgType) *CatalogProductPricingOption {
 	this := CatalogProductPricingOption{}
 	setCatalogProductPricingOptionGetDescriptionAttributeType(&this.Description, description)
 	setCatalogProductPricingOptionGetHighlightsAttributeType(&this.Highlights, highlights)
 	setCatalogProductPricingOptionGetNameAttributeType(&this.Name, name)
+	setCatalogProductPricingOptionGetPlanIdAttributeType(&this.PlanId, planId)
 	setCatalogProductPricingOptionGetSkuAttributeType(&this.Sku, sku)
 	setCatalogProductPricingOptionGetSkuInfoAttributeType(&this.SkuInfo, skuInfo)
 	setCatalogProductPricingOptionGetSkuInfoDetailsAttributeType(&this.SkuInfoDetails, skuInfoDetails)
@@ -370,6 +395,23 @@ func (o *CatalogProductPricingOption) HasNoticePeriod() bool {
 // SetNoticePeriod gets a reference to the given NoticePeriod and assigns it to the NoticePeriod field.
 func (o *CatalogProductPricingOption) SetNoticePeriod(v CatalogProductPricingOptionGetNoticePeriodRetType) {
 	setCatalogProductPricingOptionGetNoticePeriodAttributeType(&o.NoticePeriod, v)
+}
+
+// GetPlanId returns the PlanId field value
+func (o *CatalogProductPricingOption) GetPlanId() (ret CatalogProductPricingOptionGetPlanIdRetType) {
+	ret, _ = o.GetPlanIdOk()
+	return ret
+}
+
+// GetPlanIdOk returns a tuple with the PlanId field value
+// and a boolean to check if the value has been set.
+func (o *CatalogProductPricingOption) GetPlanIdOk() (ret CatalogProductPricingOptionGetPlanIdRetType, ok bool) {
+	return getCatalogProductPricingOptionGetPlanIdAttributeTypeOk(o.PlanId)
+}
+
+// SetPlanId sets field value
+func (o *CatalogProductPricingOption) SetPlanId(v CatalogProductPricingOptionGetPlanIdRetType) {
+	setCatalogProductPricingOptionGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 // GetPriceType returns the PriceType field value if set, zero value otherwise.
@@ -528,6 +570,9 @@ func (o CatalogProductPricingOption) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductPricingOptionGetNoticePeriodAttributeTypeOk(o.NoticePeriod); ok {
 		toSerialize["NoticePeriod"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
 	}
 	if val, ok := getCatalogProductPricingOptionGetPriceTypeAttributeTypeOk(o.PriceType); ok {
 		toSerialize["PriceType"] = val

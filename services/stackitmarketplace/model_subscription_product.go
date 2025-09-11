@@ -78,6 +78,27 @@ func setSubscriptionProductGetLifecycleStateAttributeType(arg *SubscriptionProdu
 }
 
 /*
+	types and functions for planId
+*/
+
+// isNotNullableString
+type SubscriptionProductGetPlanIdAttributeType = *string
+
+func getSubscriptionProductGetPlanIdAttributeTypeOk(arg SubscriptionProductGetPlanIdAttributeType) (ret SubscriptionProductGetPlanIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSubscriptionProductGetPlanIdAttributeType(arg *SubscriptionProductGetPlanIdAttributeType, val SubscriptionProductGetPlanIdRetType) {
+	*arg = &val
+}
+
+type SubscriptionProductGetPlanIdArgType = string
+type SubscriptionProductGetPlanIdRetType = string
+
+/*
 	types and functions for priceType
 */
 
@@ -251,6 +272,9 @@ type SubscriptionProduct struct {
 	DeliveryMethod SubscriptionProductGetDeliveryMethodAttributeType `json:"deliveryMethod" required:"true"`
 	// REQUIRED
 	LifecycleState SubscriptionProductGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
+	// The user-readable plan ID of a pricing option.
+	// REQUIRED
+	PlanId SubscriptionProductGetPlanIdAttributeType `json:"planId" required:"true"`
 	// REQUIRED
 	PriceType SubscriptionProductGetPriceTypeAttributeType `json:"priceType" required:"true"`
 	// Additional price type information.
@@ -280,10 +304,11 @@ type _SubscriptionProduct SubscriptionProduct
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSubscriptionProduct(deliveryMethod SubscriptionProductGetDeliveryMethodArgType, lifecycleState SubscriptionProductGetLifecycleStateArgType, priceType SubscriptionProductGetPriceTypeArgType, pricingPlan SubscriptionProductGetPricingPlanArgType, productId SubscriptionProductGetProductIdArgType, productName SubscriptionProductGetProductNameArgType, vendorName SubscriptionProductGetVendorNameArgType, vendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlArgType) *SubscriptionProduct {
+func NewSubscriptionProduct(deliveryMethod SubscriptionProductGetDeliveryMethodArgType, lifecycleState SubscriptionProductGetLifecycleStateArgType, planId SubscriptionProductGetPlanIdArgType, priceType SubscriptionProductGetPriceTypeArgType, pricingPlan SubscriptionProductGetPricingPlanArgType, productId SubscriptionProductGetProductIdArgType, productName SubscriptionProductGetProductNameArgType, vendorName SubscriptionProductGetVendorNameArgType, vendorWebsiteUrl SubscriptionProductGetVendorWebsiteUrlArgType) *SubscriptionProduct {
 	this := SubscriptionProduct{}
 	setSubscriptionProductGetDeliveryMethodAttributeType(&this.DeliveryMethod, deliveryMethod)
 	setSubscriptionProductGetLifecycleStateAttributeType(&this.LifecycleState, lifecycleState)
+	setSubscriptionProductGetPlanIdAttributeType(&this.PlanId, planId)
 	setSubscriptionProductGetPriceTypeAttributeType(&this.PriceType, priceType)
 	setSubscriptionProductGetPricingPlanAttributeType(&this.PricingPlan, pricingPlan)
 	setSubscriptionProductGetProductIdAttributeType(&this.ProductId, productId)
@@ -356,6 +381,23 @@ func (o *SubscriptionProduct) GetLifecycleStateOk() (ret SubscriptionProductGetL
 // SetLifecycleState sets field value
 func (o *SubscriptionProduct) SetLifecycleState(v SubscriptionProductGetLifecycleStateRetType) {
 	setSubscriptionProductGetLifecycleStateAttributeType(&o.LifecycleState, v)
+}
+
+// GetPlanId returns the PlanId field value
+func (o *SubscriptionProduct) GetPlanId() (ret SubscriptionProductGetPlanIdRetType) {
+	ret, _ = o.GetPlanIdOk()
+	return ret
+}
+
+// GetPlanIdOk returns a tuple with the PlanId field value
+// and a boolean to check if the value has been set.
+func (o *SubscriptionProduct) GetPlanIdOk() (ret SubscriptionProductGetPlanIdRetType, ok bool) {
+	return getSubscriptionProductGetPlanIdAttributeTypeOk(o.PlanId)
+}
+
+// SetPlanId sets field value
+func (o *SubscriptionProduct) SetPlanId(v SubscriptionProductGetPlanIdRetType) {
+	setSubscriptionProductGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 // GetPriceType returns the PriceType field value
@@ -516,6 +558,9 @@ func (o SubscriptionProduct) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getSubscriptionProductGetLifecycleStateAttributeTypeOk(o.LifecycleState); ok {
 		toSerialize["LifecycleState"] = val
+	}
+	if val, ok := getSubscriptionProductGetPlanIdAttributeTypeOk(o.PlanId); ok {
+		toSerialize["PlanId"] = val
 	}
 	if val, ok := getSubscriptionProductGetPriceTypeAttributeTypeOk(o.PriceType); ok {
 		toSerialize["PriceType"] = val
