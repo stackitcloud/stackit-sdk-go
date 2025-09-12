@@ -1,6 +1,9 @@
 ## Release (2025-MM-DD)
 - `iaas`: [v0.30.0](services/iaas/CHANGELOG.md#v0300)
   - **Feature:** Add waiter to wait until the preconditions for network area deletion are met: `ReadyForNetworkAreaDeletionWaitHandler`
+- `stackitmarketplace`: [v1.10.0](services/stackitmarketplace/CHANGELOG.md#v1100)
+  - **Feature:** Added `PlanId` to `CatalogProductPricingOption`and `SubscriptionProduct`
+
 
 
 ## Release (2025-09-11)

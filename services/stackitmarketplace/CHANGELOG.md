@@ -1,3 +1,6 @@
+## v1.10.0
+- **Feature:** Added `PlanId` to `CatalogProductPricingOption`and `SubscriptionProduct`
+
 ## v1.9.0
 - **Feature:** Added `RequestPrivatePlan` to `InquiriesCreateInquiryPayload`
 
