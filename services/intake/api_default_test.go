@@ -769,6 +769,9 @@ func Test_intake_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := IntakeRunnerResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -804,10 +807,13 @@ func Test_intake_DefaultApiService(t *testing.T) {
 		intakeRunnerId := intakeRunnerIdValue
 		updateIntakeRunnerPayload := UpdateIntakeRunnerPayload{}
 
-		reqErr := apiClient.UpdateIntakeRunner(context.Background(), projectId, regionId, intakeRunnerId).UpdateIntakeRunnerPayload(updateIntakeRunnerPayload).Execute()
+		resp, reqErr := apiClient.UpdateIntakeRunner(context.Background(), projectId, regionId, intakeRunnerId).UpdateIntakeRunnerPayload(updateIntakeRunnerPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
 		}
 	})
 
@@ -824,6 +830,9 @@ func Test_intake_DefaultApiService(t *testing.T) {
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := IntakeUserResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
 		})
 		testServer := httptest.NewServer(testDefaultApiServeMux)
 		defer testServer.Close()
@@ -860,10 +869,13 @@ func Test_intake_DefaultApiService(t *testing.T) {
 		intakeUserId := intakeUserIdValue
 		updateIntakeUserPayload := UpdateIntakeUserPayload{}
 
-		reqErr := apiClient.UpdateIntakeUser(context.Background(), projectId, regionId, intakeId, intakeUserId).UpdateIntakeUserPayload(updateIntakeUserPayload).Execute()
+		resp, reqErr := apiClient.UpdateIntakeUser(context.Background(), projectId, regionId, intakeId, intakeUserId).UpdateIntakeUserPayload(updateIntakeUserPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
 		}
 	})
 
