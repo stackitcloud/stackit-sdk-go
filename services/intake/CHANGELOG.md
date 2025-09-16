@@ -1,3 +1,7 @@
+## v0.2.0
+- **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
+- **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
+
 ## v0.1.2
 - **Feature:** Add new field `Partitioning` to `IntakeCatalog` model
 
