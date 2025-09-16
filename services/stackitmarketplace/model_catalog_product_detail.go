@@ -78,6 +78,27 @@ func setCatalogProductDetailGetDeliveryMethodAttributeType(arg *CatalogProductDe
 }
 
 /*
+	types and functions for demoUrl
+*/
+
+// isNotNullableString
+type CatalogProductDetailGetDemoUrlAttributeType = *string
+
+func getCatalogProductDetailGetDemoUrlAttributeTypeOk(arg CatalogProductDetailGetDemoUrlAttributeType) (ret CatalogProductDetailGetDemoUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductDetailGetDemoUrlAttributeType(arg *CatalogProductDetailGetDemoUrlAttributeType, val CatalogProductDetailGetDemoUrlRetType) {
+	*arg = &val
+}
+
+type CatalogProductDetailGetDemoUrlArgType = string
+type CatalogProductDetailGetDemoUrlRetType = string
+
+/*
 	types and functions for description
 */
 
@@ -473,6 +494,8 @@ type CatalogProductDetail struct {
 	Categories CatalogProductDetailGetCategoriesAttributeType `json:"categories,omitempty"`
 	// REQUIRED
 	DeliveryMethod CatalogProductDetailGetDeliveryMethodAttributeType `json:"deliveryMethod" required:"true"`
+	// Uniform Resource Locator.
+	DemoUrl CatalogProductDetailGetDemoUrlAttributeType `json:"demoUrl,omitempty"`
 	// The product description.
 	// REQUIRED
 	Description CatalogProductDetailGetDescriptionAttributeType `json:"description" required:"true"`
@@ -615,6 +638,29 @@ func (o *CatalogProductDetail) GetDeliveryMethodOk() (ret CatalogProductDetailGe
 // SetDeliveryMethod sets field value
 func (o *CatalogProductDetail) SetDeliveryMethod(v CatalogProductDetailGetDeliveryMethodRetType) {
 	setCatalogProductDetailGetDeliveryMethodAttributeType(&o.DeliveryMethod, v)
+}
+
+// GetDemoUrl returns the DemoUrl field value if set, zero value otherwise.
+func (o *CatalogProductDetail) GetDemoUrl() (res CatalogProductDetailGetDemoUrlRetType) {
+	res, _ = o.GetDemoUrlOk()
+	return
+}
+
+// GetDemoUrlOk returns a tuple with the DemoUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogProductDetail) GetDemoUrlOk() (ret CatalogProductDetailGetDemoUrlRetType, ok bool) {
+	return getCatalogProductDetailGetDemoUrlAttributeTypeOk(o.DemoUrl)
+}
+
+// HasDemoUrl returns a boolean if a field has been set.
+func (o *CatalogProductDetail) HasDemoUrl() bool {
+	_, ok := o.GetDemoUrlOk()
+	return ok
+}
+
+// SetDemoUrl gets a reference to the given string and assigns it to the DemoUrl field.
+func (o *CatalogProductDetail) SetDemoUrl(v CatalogProductDetailGetDemoUrlRetType) {
+	setCatalogProductDetailGetDemoUrlAttributeType(&o.DemoUrl, v)
 }
 
 // GetDescription returns the Description field value
@@ -992,6 +1038,9 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductDetailGetDeliveryMethodAttributeTypeOk(o.DeliveryMethod); ok {
 		toSerialize["DeliveryMethod"] = val
+	}
+	if val, ok := getCatalogProductDetailGetDemoUrlAttributeTypeOk(o.DemoUrl); ok {
+		toSerialize["DemoUrl"] = val
 	}
 	if val, ok := getCatalogProductDetailGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
