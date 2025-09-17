@@ -42,10 +42,8 @@ type CatalogProductDetailsVendorGetDescriptionRetType = string
 	types and functions for logo
 */
 
-// isByteArray
-type CatalogProductDetailsVendorGetLogoAttributeType = *[]byte
-type CatalogProductDetailsVendorGetLogoArgType = []byte
-type CatalogProductDetailsVendorGetLogoRetType = []byte
+// isNotNullableString
+type CatalogProductDetailsVendorGetLogoAttributeType = *string
 
 func getCatalogProductDetailsVendorGetLogoAttributeTypeOk(arg CatalogProductDetailsVendorGetLogoAttributeType) (ret CatalogProductDetailsVendorGetLogoRetType, ok bool) {
 	if arg == nil {
@@ -57,6 +55,9 @@ func getCatalogProductDetailsVendorGetLogoAttributeTypeOk(arg CatalogProductDeta
 func setCatalogProductDetailsVendorGetLogoAttributeType(arg *CatalogProductDetailsVendorGetLogoAttributeType, val CatalogProductDetailsVendorGetLogoRetType) {
 	*arg = &val
 }
+
+type CatalogProductDetailsVendorGetLogoArgType = string
+type CatalogProductDetailsVendorGetLogoRetType = string
 
 /*
 	types and functions for name
@@ -147,7 +148,7 @@ type CatalogProductDetailsVendor struct {
 	// The vendor description.
 	// REQUIRED
 	Description CatalogProductDetailsVendorGetDescriptionAttributeType `json:"description" required:"true"`
-	// The logo base64 encoded.
+	// The logo information.
 	// REQUIRED
 	Logo CatalogProductDetailsVendorGetLogoAttributeType `json:"logo" required:"true"`
 	// The product's vendor name.
