@@ -81,10 +81,8 @@ func setCatalogProductOverviewGetLifecycleStateAttributeType(arg *CatalogProduct
 	types and functions for logo
 */
 
-// isByteArray
-type CatalogProductOverviewGetLogoAttributeType = *[]byte
-type CatalogProductOverviewGetLogoArgType = []byte
-type CatalogProductOverviewGetLogoRetType = []byte
+// isNotNullableString
+type CatalogProductOverviewGetLogoAttributeType = *string
 
 func getCatalogProductOverviewGetLogoAttributeTypeOk(arg CatalogProductOverviewGetLogoAttributeType) (ret CatalogProductOverviewGetLogoRetType, ok bool) {
 	if arg == nil {
@@ -96,6 +94,9 @@ func getCatalogProductOverviewGetLogoAttributeTypeOk(arg CatalogProductOverviewG
 func setCatalogProductOverviewGetLogoAttributeType(arg *CatalogProductOverviewGetLogoAttributeType, val CatalogProductOverviewGetLogoRetType) {
 	*arg = &val
 }
+
+type CatalogProductOverviewGetLogoArgType = string
+type CatalogProductOverviewGetLogoRetType = string
 
 /*
 	types and functions for name
@@ -187,7 +188,7 @@ type CatalogProductOverview struct {
 	FreeTrial      CatalogProductOverviewGetFreeTrialAttributeType      `json:"freeTrial,omitempty"`
 	// REQUIRED
 	LifecycleState CatalogProductOverviewGetLifecycleStateAttributeType `json:"lifecycleState" required:"true"`
-	// The logo base64 encoded.
+	// The logo information.
 	Logo CatalogProductOverviewGetLogoAttributeType `json:"logo,omitempty"`
 	// The name of the product.
 	// REQUIRED
