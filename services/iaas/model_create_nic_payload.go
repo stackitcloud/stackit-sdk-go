@@ -38,6 +38,27 @@ func setCreateNicPayloadGetAllowedAddressesAttributeType(arg *CreateNicPayloadGe
 }
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+type CreateNicPayloadGetDescriptionAttributeType = *string
+
+func getCreateNicPayloadGetDescriptionAttributeTypeOk(arg CreateNicPayloadGetDescriptionAttributeType) (ret CreateNicPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateNicPayloadGetDescriptionAttributeType(arg *CreateNicPayloadGetDescriptionAttributeType, val CreateNicPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type CreateNicPayloadGetDescriptionArgType = string
+type CreateNicPayloadGetDescriptionRetType = string
+
+/*
 	types and functions for device
 */
 
@@ -290,6 +311,8 @@ type CreateNicPayloadGetTypeRetType = string
 type CreateNicPayload struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses CreateNicPayloadGetAllowedAddressesAttributeType `json:"allowedAddresses,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description CreateNicPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Device CreateNicPayloadGetDeviceAttributeType `json:"device,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -298,7 +321,7 @@ type CreateNicPayload struct {
 	Ipv4 CreateNicPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
 	// String that represents an IPv6 address.
 	Ipv6 CreateNicPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels CreateNicPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Object that represents an MAC address.
 	Mac CreateNicPayloadGetMacAttributeType `json:"mac,omitempty"`
@@ -356,6 +379,29 @@ func (o *CreateNicPayload) HasAllowedAddresses() bool {
 // SetAllowedAddresses gets a reference to the given []AllowedAddressesInner and assigns it to the AllowedAddresses field.
 func (o *CreateNicPayload) SetAllowedAddresses(v CreateNicPayloadGetAllowedAddressesRetType) {
 	setCreateNicPayloadGetAllowedAddressesAttributeType(&o.AllowedAddresses, v)
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *CreateNicPayload) GetDescription() (res CreateNicPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateNicPayload) GetDescriptionOk() (ret CreateNicPayloadGetDescriptionRetType, ok bool) {
+	return getCreateNicPayloadGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *CreateNicPayload) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *CreateNicPayload) SetDescription(v CreateNicPayloadGetDescriptionRetType) {
+	setCreateNicPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDevice returns the Device field value if set, zero value otherwise.
@@ -638,6 +684,9 @@ func (o CreateNicPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateNicPayloadGetAllowedAddressesAttributeTypeOk(o.AllowedAddresses); ok {
 		toSerialize["AllowedAddresses"] = val
+	}
+	if val, ok := getCreateNicPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	if val, ok := getCreateNicPayloadGetDeviceAttributeTypeOk(o.Device); ok {
 		toSerialize["Device"] = val
