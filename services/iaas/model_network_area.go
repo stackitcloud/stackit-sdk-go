@@ -189,7 +189,7 @@ type NetworkArea struct {
 	// Date-time when resource was created.
 	CreatedAt NetworkAreaGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	Ipv4      NetworkAreaGetIpv4AttributeType      `json:"ipv4,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels NetworkAreaGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
 	Name NetworkAreaGetNameAttributeType `json:"name" required:"true"`

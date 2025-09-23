@@ -38,6 +38,27 @@ func setNICGetAllowedAddressesAttributeType(arg *NICGetAllowedAddressesAttribute
 }
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+type NICGetDescriptionAttributeType = *string
+
+func getNICGetDescriptionAttributeTypeOk(arg NICGetDescriptionAttributeType) (ret NICGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNICGetDescriptionAttributeType(arg *NICGetDescriptionAttributeType, val NICGetDescriptionRetType) {
+	*arg = &val
+}
+
+type NICGetDescriptionArgType = string
+type NICGetDescriptionRetType = string
+
+/*
 	types and functions for device
 */
 
@@ -290,6 +311,8 @@ type NICGetTypeRetType = string
 type NIC struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses NICGetAllowedAddressesAttributeType `json:"allowedAddresses,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description NICGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Device NICGetDeviceAttributeType `json:"device,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -298,7 +321,7 @@ type NIC struct {
 	Ipv4 NICGetIpv4AttributeType `json:"ipv4,omitempty"`
 	// String that represents an IPv6 address.
 	Ipv6 NICGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels NICGetLabelsAttributeType `json:"labels,omitempty"`
 	// Object that represents an MAC address.
 	Mac NICGetMacAttributeType `json:"mac,omitempty"`
@@ -356,6 +379,29 @@ func (o *NIC) HasAllowedAddresses() bool {
 // SetAllowedAddresses gets a reference to the given []AllowedAddressesInner and assigns it to the AllowedAddresses field.
 func (o *NIC) SetAllowedAddresses(v NICGetAllowedAddressesRetType) {
 	setNICGetAllowedAddressesAttributeType(&o.AllowedAddresses, v)
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *NIC) GetDescription() (res NICGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NIC) GetDescriptionOk() (ret NICGetDescriptionRetType, ok bool) {
+	return getNICGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *NIC) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *NIC) SetDescription(v NICGetDescriptionRetType) {
+	setNICGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetDevice returns the Device field value if set, zero value otherwise.
@@ -638,6 +684,9 @@ func (o NIC) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getNICGetAllowedAddressesAttributeTypeOk(o.AllowedAddresses); ok {
 		toSerialize["AllowedAddresses"] = val
+	}
+	if val, ok := getNICGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	if val, ok := getNICGetDeviceAttributeTypeOk(o.Device); ok {
 		toSerialize["Device"] = val
