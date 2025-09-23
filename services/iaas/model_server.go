@@ -40,6 +40,26 @@ type ServerGetAffinityGroupArgType = string
 type ServerGetAffinityGroupRetType = string
 
 /*
+	types and functions for agent
+*/
+
+// isModel
+type ServerGetAgentAttributeType = *ServerAgent
+type ServerGetAgentArgType = ServerAgent
+type ServerGetAgentRetType = ServerAgent
+
+func getServerGetAgentAttributeTypeOk(arg ServerGetAgentAttributeType) (ret ServerGetAgentRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setServerGetAgentAttributeType(arg *ServerGetAgentAttributeType, val ServerGetAgentRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for availabilityZone
 */
 
@@ -492,6 +512,7 @@ func setServerGetVolumesAttributeType(arg *ServerGetVolumesAttributeType, val Se
 type Server struct {
 	// Universally Unique Identifier (UUID).
 	AffinityGroup ServerGetAffinityGroupAttributeType `json:"affinityGroup,omitempty"`
+	Agent         ServerGetAgentAttributeType         `json:"agent,omitempty"`
 	// Object that represents an availability zone.
 	AvailabilityZone ServerGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	BootVolume       ServerGetBootVolumeAttributeType       `json:"bootVolume,omitempty"`
@@ -505,7 +526,7 @@ type Server struct {
 	ImageId ServerGetImageIdAttributeType `json:"imageId,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
 	KeypairName ServerGetKeypairNameAttributeType `json:"keypairName,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels ServerGetLabelsAttributeType `json:"labels,omitempty"`
 	// Date-time when resource was launched.
 	LaunchedAt ServerGetLaunchedAtAttributeType `json:"launchedAt,omitempty"`
@@ -579,6 +600,29 @@ func (o *Server) HasAffinityGroup() bool {
 // SetAffinityGroup gets a reference to the given string and assigns it to the AffinityGroup field.
 func (o *Server) SetAffinityGroup(v ServerGetAffinityGroupRetType) {
 	setServerGetAffinityGroupAttributeType(&o.AffinityGroup, v)
+}
+
+// GetAgent returns the Agent field value if set, zero value otherwise.
+func (o *Server) GetAgent() (res ServerGetAgentRetType) {
+	res, _ = o.GetAgentOk()
+	return
+}
+
+// GetAgentOk returns a tuple with the Agent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Server) GetAgentOk() (ret ServerGetAgentRetType, ok bool) {
+	return getServerGetAgentAttributeTypeOk(o.Agent)
+}
+
+// HasAgent returns a boolean if a field has been set.
+func (o *Server) HasAgent() bool {
+	_, ok := o.GetAgentOk()
+	return ok
+}
+
+// SetAgent gets a reference to the given ServerAgent and assigns it to the Agent field.
+func (o *Server) SetAgent(v ServerGetAgentRetType) {
+	setServerGetAgentAttributeType(&o.Agent, v)
 }
 
 // GetAvailabilityZone returns the AvailabilityZone field value if set, zero value otherwise.
@@ -1079,6 +1123,9 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getServerGetAffinityGroupAttributeTypeOk(o.AffinityGroup); ok {
 		toSerialize["AffinityGroup"] = val
+	}
+	if val, ok := getServerGetAgentAttributeTypeOk(o.Agent); ok {
+		toSerialize["Agent"] = val
 	}
 	if val, ok := getServerGetAvailabilityZoneAttributeTypeOk(o.AvailabilityZone); ok {
 		toSerialize["AvailabilityZone"] = val
