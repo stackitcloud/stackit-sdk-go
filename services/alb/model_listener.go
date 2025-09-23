@@ -225,6 +225,27 @@ func setListenerGetProtocolAttributeType(arg *ListenerGetProtocolAttributeType, 
 	*arg = &val
 }
 
+/*
+	types and functions for wafConfigName
+*/
+
+// isNotNullableString
+type ListenerGetWafConfigNameAttributeType = *string
+
+func getListenerGetWafConfigNameAttributeTypeOk(arg ListenerGetWafConfigNameAttributeType) (ret ListenerGetWafConfigNameRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setListenerGetWafConfigNameAttributeType(arg *ListenerGetWafConfigNameAttributeType, val ListenerGetWafConfigNameRetType) {
+	*arg = &val
+}
+
+type ListenerGetWafConfigNameArgType = string
+type ListenerGetWafConfigNameRetType = string
+
 // Listener struct for Listener
 type Listener struct {
 	Http  ListenerGetHttpAttributeType  `json:"http,omitempty"`
@@ -236,6 +257,8 @@ type Listener struct {
 	Port ListenerGetPortAttributeType `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
 	Protocol ListenerGetProtocolAttributeType `json:"protocol,omitempty"`
+	// Enable Web Application Firewall (WAF), referenced to a by name. See \"Application Load Balancer - Web Application Firewall API\" for more information.
+	WafConfigName ListenerGetWafConfigNameAttributeType `json:"wafConfigName,omitempty"`
 }
 
 // NewListener instantiates a new Listener object
@@ -370,6 +393,29 @@ func (o *Listener) SetProtocol(v ListenerGetProtocolRetType) {
 	setListenerGetProtocolAttributeType(&o.Protocol, v)
 }
 
+// GetWafConfigName returns the WafConfigName field value if set, zero value otherwise.
+func (o *Listener) GetWafConfigName() (res ListenerGetWafConfigNameRetType) {
+	res, _ = o.GetWafConfigNameOk()
+	return
+}
+
+// GetWafConfigNameOk returns a tuple with the WafConfigName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Listener) GetWafConfigNameOk() (ret ListenerGetWafConfigNameRetType, ok bool) {
+	return getListenerGetWafConfigNameAttributeTypeOk(o.WafConfigName)
+}
+
+// HasWafConfigName returns a boolean if a field has been set.
+func (o *Listener) HasWafConfigName() bool {
+	_, ok := o.GetWafConfigNameOk()
+	return ok
+}
+
+// SetWafConfigName gets a reference to the given string and assigns it to the WafConfigName field.
+func (o *Listener) SetWafConfigName(v ListenerGetWafConfigNameRetType) {
+	setListenerGetWafConfigNameAttributeType(&o.WafConfigName, v)
+}
+
 func (o Listener) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListenerGetHttpAttributeTypeOk(o.Http); ok {
@@ -386,6 +432,9 @@ func (o Listener) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getListenerGetProtocolAttributeTypeOk(o.Protocol); ok {
 		toSerialize["Protocol"] = val
+	}
+	if val, ok := getListenerGetWafConfigNameAttributeTypeOk(o.WafConfigName); ok {
+		toSerialize["WafConfigName"] = val
 	}
 	return toSerialize, nil
 }
