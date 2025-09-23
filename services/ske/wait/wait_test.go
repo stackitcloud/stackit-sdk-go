@@ -18,6 +18,7 @@ type apiClientClusterMocked struct {
 	name                 string
 	resourceState        ske.ClusterStatusState
 	invalidArgusInstance bool
+	errorList            *[]ske.ClusterError
 }
 
 const testRegion = "eu01"
@@ -45,7 +46,17 @@ func (a *apiClientClusterMocked) GetClusterExecute(_ context.Context, _, _, _ st
 	return &ske.Cluster{
 		Name: utils.Ptr("cluster"),
 		Status: &ske.ClusterStatus{
-			Aggregated: &rs,
+			Aggregated: utils.Ptr(rs),
+			Error: func() *ske.RuntimeError {
+				if a.invalidArgusInstance {
+					return &ske.RuntimeError{
+						Code:    utils.Ptr(ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
+						Message: utils.Ptr("invalid argus instance"),
+					}
+				}
+				return nil
+			}(),
+			Errors: a.errorList,
 		},
 	}, nil
 }
@@ -77,6 +88,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 		invalidArgusInstance bool
 		wantErr              bool
 		wantResp             bool
+		errorList            *[]ske.ClusterError
 	}{
 		{
 			desc:          "create_succeeded",
@@ -120,6 +132,40 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 			wantErr:       true,
 			wantResp:      false,
 		},
+		{
+			desc:          "status_errors_present_state_unhealthy",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_UNHEALTHY,
+			errorList: &[]ske.ClusterError{
+				{
+					Code:    utils.Ptr("ERR_CODE"),
+					Message: utils.Ptr("Error 1"),
+				},
+				{
+					Code:    utils.Ptr("ERR_OTHER"),
+					Message: utils.Ptr("Error 2"),
+				},
+			},
+			wantErr:  false,
+			wantResp: true,
+		},
+		{
+			desc:          "status_errors_present_state_unspecified",
+			getFails:      false,
+			resourceState: ske.CLUSTERSTATUSSTATE_UNSPECIFIED,
+			errorList: &[]ske.ClusterError{
+				{
+					Code:    utils.Ptr("ERR_CODE"),
+					Message: utils.Ptr("Error 1"),
+				},
+				{
+					Code:    utils.Ptr("ERR_OTHER"),
+					Message: utils.Ptr("Error 2"),
+				},
+			},
+			wantErr:  false,
+			wantResp: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
@@ -130,6 +176,7 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 				name:                 name,
 				resourceState:        tt.resourceState,
 				invalidArgusInstance: tt.invalidArgusInstance,
+				errorList:            tt.errorList,
 			}
 			var wantRes *ske.Cluster
 			rs := ske.ClusterStatusState(tt.resourceState)
@@ -146,6 +193,10 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 						Code:    utils.Ptr(ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
 						Message: utils.Ptr("invalid argus instance"),
 					}
+				}
+
+				if tt.errorList != nil && len(*tt.errorList) > 0 {
+					wantRes.Status.Errors = tt.errorList
 				}
 			}
 
