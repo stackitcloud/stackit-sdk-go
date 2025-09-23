@@ -162,6 +162,26 @@ type CatalogProductDetailGetEmailArgType = string
 type CatalogProductDetailGetEmailRetType = string
 
 /*
+	types and functions for hasDemo
+*/
+
+// isBoolean
+type CatalogProductDetailgetHasDemoAttributeType = *bool
+type CatalogProductDetailgetHasDemoArgType = bool
+type CatalogProductDetailgetHasDemoRetType = bool
+
+func getCatalogProductDetailgetHasDemoAttributeTypeOk(arg CatalogProductDetailgetHasDemoAttributeType) (ret CatalogProductDetailgetHasDemoRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductDetailgetHasDemoAttributeType(arg *CatalogProductDetailgetHasDemoAttributeType, val CatalogProductDetailgetHasDemoRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for highlights
 */
 
@@ -505,6 +525,8 @@ type CatalogProductDetail struct {
 	DocumentationUrl CatalogProductDetailGetDocumentationUrlAttributeType `json:"documentationUrl" required:"true"`
 	// A e-mail address.
 	Email CatalogProductDetailGetEmailAttributeType `json:"email,omitempty"`
+	// If the product has a demoUrl available.
+	HasDemo CatalogProductDetailgetHasDemoAttributeType `json:"hasDemo,omitempty"`
 	// The list of highlights.
 	// REQUIRED
 	Highlights CatalogProductDetailGetHighlightsAttributeType `json:"highlights" required:"true"`
@@ -719,6 +741,29 @@ func (o *CatalogProductDetail) HasEmail() bool {
 // SetEmail gets a reference to the given string and assigns it to the Email field.
 func (o *CatalogProductDetail) SetEmail(v CatalogProductDetailGetEmailRetType) {
 	setCatalogProductDetailGetEmailAttributeType(&o.Email, v)
+}
+
+// GetHasDemo returns the HasDemo field value if set, zero value otherwise.
+func (o *CatalogProductDetail) GetHasDemo() (res CatalogProductDetailgetHasDemoRetType) {
+	res, _ = o.GetHasDemoOk()
+	return
+}
+
+// GetHasDemoOk returns a tuple with the HasDemo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogProductDetail) GetHasDemoOk() (ret CatalogProductDetailgetHasDemoRetType, ok bool) {
+	return getCatalogProductDetailgetHasDemoAttributeTypeOk(o.HasDemo)
+}
+
+// HasHasDemo returns a boolean if a field has been set.
+func (o *CatalogProductDetail) HasHasDemo() bool {
+	_, ok := o.GetHasDemoOk()
+	return ok
+}
+
+// SetHasDemo gets a reference to the given bool and assigns it to the HasDemo field.
+func (o *CatalogProductDetail) SetHasDemo(v CatalogProductDetailgetHasDemoRetType) {
+	setCatalogProductDetailgetHasDemoAttributeType(&o.HasDemo, v)
 }
 
 // GetHighlights returns the Highlights field value
@@ -1051,6 +1096,9 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductDetailGetEmailAttributeTypeOk(o.Email); ok {
 		toSerialize["Email"] = val
+	}
+	if val, ok := getCatalogProductDetailgetHasDemoAttributeTypeOk(o.HasDemo); ok {
+		toSerialize["HasDemo"] = val
 	}
 	if val, ok := getCatalogProductDetailGetHighlightsAttributeTypeOk(o.Highlights); ok {
 		toSerialize["Highlights"] = val
