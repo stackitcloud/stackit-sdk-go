@@ -110,7 +110,7 @@ type UpdatePublicIPPayload struct {
 	Id UpdatePublicIPPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents an IP address.
 	Ip UpdatePublicIPPayloadGetIpAttributeType `json:"ip,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels UpdatePublicIPPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Universally Unique Identifier (UUID).
 	NetworkInterface UpdatePublicIPPayloadGetNetworkInterfaceAttributeType `json:"networkInterface,omitempty"`

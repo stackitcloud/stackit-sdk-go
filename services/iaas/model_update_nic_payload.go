@@ -38,6 +38,27 @@ func setUpdateNicPayloadGetAllowedAddressesAttributeType(arg *UpdateNicPayloadGe
 }
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+type UpdateNicPayloadGetDescriptionAttributeType = *string
+
+func getUpdateNicPayloadGetDescriptionAttributeTypeOk(arg UpdateNicPayloadGetDescriptionAttributeType) (ret UpdateNicPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateNicPayloadGetDescriptionAttributeType(arg *UpdateNicPayloadGetDescriptionAttributeType, val UpdateNicPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+type UpdateNicPayloadGetDescriptionArgType = string
+type UpdateNicPayloadGetDescriptionRetType = string
+
+/*
 	types and functions for labels
 */
 
@@ -122,7 +143,9 @@ func setUpdateNicPayloadGetSecurityGroupsAttributeType(arg *UpdateNicPayloadGetS
 type UpdateNicPayload struct {
 	// A list of IPs or CIDR notations.
 	AllowedAddresses UpdateNicPayloadGetAllowedAddressesAttributeType `json:"allowedAddresses,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Description Object. Allows string up to 255 Characters.
+	Description UpdateNicPayloadGetDescriptionAttributeType `json:"description,omitempty"`
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels UpdateNicPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name UpdateNicPayloadGetNameAttributeType `json:"name,omitempty"`
@@ -170,6 +193,29 @@ func (o *UpdateNicPayload) HasAllowedAddresses() bool {
 // SetAllowedAddresses gets a reference to the given []AllowedAddressesInner and assigns it to the AllowedAddresses field.
 func (o *UpdateNicPayload) SetAllowedAddresses(v UpdateNicPayloadGetAllowedAddressesRetType) {
 	setUpdateNicPayloadGetAllowedAddressesAttributeType(&o.AllowedAddresses, v)
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *UpdateNicPayload) GetDescription() (res UpdateNicPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateNicPayload) GetDescriptionOk() (ret UpdateNicPayloadGetDescriptionRetType, ok bool) {
+	return getUpdateNicPayloadGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *UpdateNicPayload) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *UpdateNicPayload) SetDescription(v UpdateNicPayloadGetDescriptionRetType) {
+	setUpdateNicPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -268,6 +314,9 @@ func (o UpdateNicPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateNicPayloadGetAllowedAddressesAttributeTypeOk(o.AllowedAddresses); ok {
 		toSerialize["AllowedAddresses"] = val
+	}
+	if val, ok := getUpdateNicPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	if val, ok := getUpdateNicPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
