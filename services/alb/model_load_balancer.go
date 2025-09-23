@@ -80,6 +80,26 @@ type LoadBalancerGetExternalAddressArgType = string
 type LoadBalancerGetExternalAddressRetType = string
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+type LoadBalancerGetLabelsAttributeType = *map[string]string
+type LoadBalancerGetLabelsArgType = map[string]string
+type LoadBalancerGetLabelsRetType = map[string]string
+
+func getLoadBalancerGetLabelsAttributeTypeOk(arg LoadBalancerGetLabelsAttributeType) (ret LoadBalancerGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setLoadBalancerGetLabelsAttributeType(arg *LoadBalancerGetLabelsAttributeType, val LoadBalancerGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for listeners
 */
 
@@ -442,6 +462,8 @@ type LoadBalancer struct {
 	Errors LoadBalancerGetErrorsAttributeType `json:"errors,omitempty"`
 	// External application load balancer IP address where this application load balancer is exposed. Not changeable after creation.
 	ExternalAddress LoadBalancerGetExternalAddressAttributeType `json:"externalAddress,omitempty"`
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per ALB.  **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels LoadBalancerGetLabelsAttributeType `json:"labels,omitempty"`
 	// There is a maximum listener count of 20.
 	Listeners                 LoadBalancerGetListenersAttributeType                 `json:"listeners,omitempty"`
 	LoadBalancerSecurityGroup LoadBalancerGetLoadBalancerSecurityGroupAttributeType `json:"loadBalancerSecurityGroup,omitempty"`
@@ -548,6 +570,29 @@ func (o *LoadBalancer) HasExternalAddress() bool {
 // SetExternalAddress gets a reference to the given string and assigns it to the ExternalAddress field.
 func (o *LoadBalancer) SetExternalAddress(v LoadBalancerGetExternalAddressRetType) {
 	setLoadBalancerGetExternalAddressAttributeType(&o.ExternalAddress, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *LoadBalancer) GetLabels() (res LoadBalancerGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoadBalancer) GetLabelsOk() (ret LoadBalancerGetLabelsRetType, ok bool) {
+	return getLoadBalancerGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *LoadBalancer) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *LoadBalancer) SetLabels(v LoadBalancerGetLabelsRetType) {
+	setLoadBalancerGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetListeners returns the Listeners field value if set, zero value otherwise.
@@ -836,6 +881,9 @@ func (o LoadBalancer) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getLoadBalancerGetExternalAddressAttributeTypeOk(o.ExternalAddress); ok {
 		toSerialize["ExternalAddress"] = val
+	}
+	if val, ok := getLoadBalancerGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getLoadBalancerGetListenersAttributeTypeOk(o.Listeners); ok {
 		toSerialize["Listeners"] = val

@@ -80,6 +80,26 @@ type CreateLoadBalancerPayloadGetExternalAddressArgType = string
 type CreateLoadBalancerPayloadGetExternalAddressRetType = string
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+type CreateLoadBalancerPayloadGetLabelsAttributeType = *map[string]string
+type CreateLoadBalancerPayloadGetLabelsArgType = map[string]string
+type CreateLoadBalancerPayloadGetLabelsRetType = map[string]string
+
+func getCreateLoadBalancerPayloadGetLabelsAttributeTypeOk(arg CreateLoadBalancerPayloadGetLabelsAttributeType) (ret CreateLoadBalancerPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateLoadBalancerPayloadGetLabelsAttributeType(arg *CreateLoadBalancerPayloadGetLabelsAttributeType, val CreateLoadBalancerPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for listeners
 */
 
@@ -442,6 +462,8 @@ type CreateLoadBalancerPayload struct {
 	Errors CreateLoadBalancerPayloadGetErrorsAttributeType `json:"errors,omitempty"`
 	// External application load balancer IP address where this application load balancer is exposed. Not changeable after creation.
 	ExternalAddress CreateLoadBalancerPayloadGetExternalAddressAttributeType `json:"externalAddress,omitempty"`
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per ALB.  **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels CreateLoadBalancerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// There is a maximum listener count of 20.
 	Listeners                 CreateLoadBalancerPayloadGetListenersAttributeType                 `json:"listeners,omitempty"`
 	LoadBalancerSecurityGroup CreateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType `json:"loadBalancerSecurityGroup,omitempty"`
@@ -548,6 +570,29 @@ func (o *CreateLoadBalancerPayload) HasExternalAddress() bool {
 // SetExternalAddress gets a reference to the given string and assigns it to the ExternalAddress field.
 func (o *CreateLoadBalancerPayload) SetExternalAddress(v CreateLoadBalancerPayloadGetExternalAddressRetType) {
 	setCreateLoadBalancerPayloadGetExternalAddressAttributeType(&o.ExternalAddress, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateLoadBalancerPayload) GetLabels() (res CreateLoadBalancerPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateLoadBalancerPayload) GetLabelsOk() (ret CreateLoadBalancerPayloadGetLabelsRetType, ok bool) {
+	return getCreateLoadBalancerPayloadGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateLoadBalancerPayload) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateLoadBalancerPayload) SetLabels(v CreateLoadBalancerPayloadGetLabelsRetType) {
+	setCreateLoadBalancerPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetListeners returns the Listeners field value if set, zero value otherwise.
@@ -836,6 +881,9 @@ func (o CreateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateLoadBalancerPayloadGetExternalAddressAttributeTypeOk(o.ExternalAddress); ok {
 		toSerialize["ExternalAddress"] = val
+	}
+	if val, ok := getCreateLoadBalancerPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getCreateLoadBalancerPayloadGetListenersAttributeTypeOk(o.Listeners); ok {
 		toSerialize["Listeners"] = val
