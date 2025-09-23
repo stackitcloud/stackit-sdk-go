@@ -33,6 +33,8 @@ const (
 	CredentialsRotationStateCompleted = "COMPLETED"
 	// Deprecated: InvalidArgusInstanceErrorCode is deprecated and will be removed after 14th November 2025. Use [ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND] instead.
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
+
+	ClusterNoValidHostFound = "SKE_NODE_NO_VALID_HOST_FOUND"
 )
 
 type APIClientClusterInterface interface {
@@ -42,6 +44,8 @@ type APIClientClusterInterface interface {
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
 func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, name string) *wait.AsyncActionHandler[ske.Cluster] {
+	startTime := time.Now()
+
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, region, name)
 		if err != nil {
@@ -54,6 +58,26 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 		// The exception is when providing an invalid argus instance id, in that case the cluster will stay as "Impaired" until the SKE team solves it, but it is still usable.
 		if state == ske.CLUSTERSTATUSSTATE_UNHEALTHY && s.Status.Error != nil && s.Status.Error.Message != nil && *s.Status.Error.Code == ske.RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND {
 			return true, s, nil
+		}
+
+		// If cluster is UNSPECIFIED or UNHEALTHY and has structured errors, exit early
+		hasStructuredErrors := s.Status.Errors != nil && len(*s.Status.Errors) > 0
+		if (state == ske.CLUSTERSTATUSSTATE_UNSPECIFIED || state == ske.CLUSTERSTATUSSTATE_UNHEALTHY) && hasStructuredErrors {
+			for _, clusterError := range *s.Status.Errors {
+				if clusterError.Code != nil && clusterError.Message != nil {
+					return true, s, nil
+				}
+			}
+		}
+
+		// Waiter has been running more than 15 minutes and cluster is still in CREATING or RECONCILING state with errors
+		if time.Since(startTime) > 15*time.Minute &&
+			(state == ske.CLUSTERSTATUSSTATE_CREATING || state == ske.CLUSTERSTATUSSTATE_RECONCILING) && hasStructuredErrors {
+			for _, clusterError := range *s.Status.Errors {
+				if clusterError.Code != nil && clusterError.Message != nil {
+					return true, s, nil
+				}
+			}
 		}
 
 		if state == ske.CLUSTERSTATUSSTATE_HEALTHY || state == ske.CLUSTERSTATUSSTATE_HIBERNATED {
