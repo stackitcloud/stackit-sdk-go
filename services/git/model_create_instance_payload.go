@@ -185,7 +185,7 @@ type CreateInstancePayloadGetNameRetType = string
 
 // CreateInstancePayload Request a STACKIT Git instance to be created with these properties.
 type CreateInstancePayload struct {
-	// Restricted ACL for instance access.
+	// A list of CIDR network addresses that are allowed to access the instance.
 	Acl CreateInstancePayloadGetAclAttributeType `json:"acl,omitempty"`
 	// Desired instance flavor. Must be one of the defined enum values
 	Flavor CreateInstancePayloadGetFlavorAttributeType `json:"flavor,omitempty"`
