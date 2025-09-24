@@ -1,3 +1,6 @@
+## v0.8.0
+- **Feature:** Add support for the instance patch operation
+
 ## v0.7.1
 - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 

@@ -18,6 +18,8 @@
   - Add field `WafConfigName` (type `*string`) to `Listener` struct
 - `loadbalancer`: [v1.6.0](services/loadbalancer/CHANGELOG.md#v160)
   - Add field `Labels` (type `*map[string]string`) to structs `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload`
+- `git`: [v0.8.0](services/git/CHANGELOG.md#v080)
+  - **Feature:** Add support for the instance patch operation
 
 ## Release (2025-09-11)
 - `cdn`: [v1.5.0](services/cdn/CHANGELOG.md#v150)
