@@ -1,3 +1,6 @@
+## v1.13.0
+- **Feature:** Add `HasDemo` field (type `*bool`) to `CatalogProductDetail` struct
+
 ## v1.12.0
 - **Breaking Change:** Change `Logo` field type from `*[]byte` to `*string` in `CatalogProductDetail`, `CatalogProductDetailsVendor`, and `CatalogProductOverview` models
 
