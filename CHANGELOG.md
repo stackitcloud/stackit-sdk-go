@@ -5,6 +5,8 @@
   - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
   - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
 - `stackitmarketplace`:
+  - [v1.13.0](services/stackitmarketplace/CHANGELOG.md#v1130)
+    - **Feature:** Add `HasDemo` field (type `*bool`) to `CatalogProductDetail` struct
   - [v1.12.0](services/stackitmarketplace/CHANGELOG.md#v1120)
     - **Breaking Change:** Change `Logo` field type from `*[]byte` to `*string` in `CatalogProductDetail`, `CatalogProductDetailsVendor`, and `CatalogProductOverview` models
   - [v1.11.0](services/stackitmarketplace/CHANGELOG.md#v1110)
