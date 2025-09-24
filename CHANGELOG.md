@@ -13,6 +13,9 @@
     - **Feature:** Add new field `DemoUrl` to `CatalogProductDetail` model
   - [v1.10.0](services/stackitmarketplace/CHANGELOG.md#v1100)
     - **Feature:** Added `PlanId` to `CatalogProductPricingOption` and `SubscriptionProduct`
+- `alb`: [v0.7.0](services/alb/CHANGELOG.md#v070)
+  - Add field `Labels` (type `*map[string]string`) to structs `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload`
+  - Add field `WafConfigName` (type `*string`) to `Listener` struct
 
 
 
