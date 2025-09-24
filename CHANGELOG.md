@@ -1,6 +1,13 @@
 ## Release (2025-MM-DD)
-- `iaas`: [v0.30.0](services/iaas/CHANGELOG.md#v0300)
-  - **Feature:** Add waiter to wait until the preconditions for network area deletion are met: `ReadyForNetworkAreaDeletionWaitHandler`
+- `iaas`: 
+  - [v0.31.0](services/iaas/CHANGELOG.md#v0310)
+    - Add `CreatedAt` and `UpdatedAt` fields to `BaseSecurityGroupRule` struct
+    - Add `Description` field to `CreateNicPayload`, `NIC`, `UpdateNicPayload` structs
+    - Add `Agent` field to `Server`, `CreateServerPayload` structs
+    - Add `CreatedAt`, `UpdatedAt` and `Protocol` fields to `SecurityGroupRule`, `CreateSecurityGroupRulePayload` structs
+    - New struct: `ServerAgent`
+  - [v0.30.0](services/iaas/CHANGELOG.md#v0300)
+    - **Feature:** Add waiter to wait until the preconditions for network area deletion are met: `ReadyForNetworkAreaDeletionWaitHandler`
 - `intake`: [v0.2.0](services/intake/CHANGELOG.md#v020)
   - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
   - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
