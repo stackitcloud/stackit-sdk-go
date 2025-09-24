@@ -1,5 +1,9 @@
+## v0.7.0
+- Add field `Labels` (type `*map[string]string`) to structs `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload`
+- Add field `WafConfigName` (type `*string`) to `Listener` struct
+
 ## v0.6.1
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## v0.6.0
 - **Feature:** Add new `LoadBalancerSecurityGroup` field to `CreateLoadBalancerPayload`, `LoadBalancer`, and `UpdateLoadBalancerPayload` models
