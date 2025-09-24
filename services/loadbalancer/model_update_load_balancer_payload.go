@@ -80,6 +80,26 @@ type UpdateLoadBalancerPayloadGetExternalAddressArgType = string
 type UpdateLoadBalancerPayloadGetExternalAddressRetType = string
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+type UpdateLoadBalancerPayloadGetLabelsAttributeType = *map[string]string
+type UpdateLoadBalancerPayloadGetLabelsArgType = map[string]string
+type UpdateLoadBalancerPayloadGetLabelsRetType = map[string]string
+
+func getUpdateLoadBalancerPayloadGetLabelsAttributeTypeOk(arg UpdateLoadBalancerPayloadGetLabelsAttributeType) (ret UpdateLoadBalancerPayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateLoadBalancerPayloadGetLabelsAttributeType(arg *UpdateLoadBalancerPayloadGetLabelsAttributeType, val UpdateLoadBalancerPayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for listeners
 */
 
@@ -442,6 +462,8 @@ type UpdateLoadBalancerPayload struct {
 	Errors UpdateLoadBalancerPayloadGetErrorsAttributeType `json:"errors,omitempty"`
 	// External load balancer IP address where this load balancer is exposed. Not changeable after creation.
 	ExternalAddress UpdateLoadBalancerPayloadGetExternalAddressAttributeType `json:"externalAddress,omitempty"`
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per LB. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels UpdateLoadBalancerPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// There is a maximum listener count of 20.  Port and protocol limitations:  - UDP listeners cannot have the same port. - TCP-derived listeners cannot have the same port. A TCP-derived listener is any listener that listens on a TCP port. As of now those are: TCP, TCP_PROXY, and PROTOCOL_TLS_PASSTHROUGH. The only exception is, if all listeners for the same port are PROTOCOL_TLS_PASSTHROUGH. - PROTOCOL_TLS_PASSTHROUGH listeners cannot have the same port and at least one common domain name. - PROTOCOL_TLS_PASSTHROUGH listeners can have the same domain name and different ports though (e.g. ports 443 and 8443 for domain example.com). - PROTOCOL_TLS_PASSTHROUGH listeners without a domain name serve as a default listener and you can have only one default listener.
 	Listeners                 UpdateLoadBalancerPayloadGetListenersAttributeType                 `json:"listeners,omitempty"`
 	LoadBalancerSecurityGroup UpdateLoadBalancerPayloadGetLoadBalancerSecurityGroupAttributeType `json:"loadBalancerSecurityGroup,omitempty"`
@@ -548,6 +570,29 @@ func (o *UpdateLoadBalancerPayload) HasExternalAddress() bool {
 // SetExternalAddress gets a reference to the given string and assigns it to the ExternalAddress field.
 func (o *UpdateLoadBalancerPayload) SetExternalAddress(v UpdateLoadBalancerPayloadGetExternalAddressRetType) {
 	setUpdateLoadBalancerPayloadGetExternalAddressAttributeType(&o.ExternalAddress, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *UpdateLoadBalancerPayload) GetLabels() (res UpdateLoadBalancerPayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoadBalancerPayload) GetLabelsOk() (ret UpdateLoadBalancerPayloadGetLabelsRetType, ok bool) {
+	return getUpdateLoadBalancerPayloadGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *UpdateLoadBalancerPayload) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *UpdateLoadBalancerPayload) SetLabels(v UpdateLoadBalancerPayloadGetLabelsRetType) {
+	setUpdateLoadBalancerPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetListeners returns the Listeners field value if set, zero value otherwise.
@@ -836,6 +881,9 @@ func (o UpdateLoadBalancerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getUpdateLoadBalancerPayloadGetExternalAddressAttributeTypeOk(o.ExternalAddress); ok {
 		toSerialize["ExternalAddress"] = val
+	}
+	if val, ok := getUpdateLoadBalancerPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getUpdateLoadBalancerPayloadGetListenersAttributeTypeOk(o.Listeners); ok {
 		toSerialize["Listeners"] = val
