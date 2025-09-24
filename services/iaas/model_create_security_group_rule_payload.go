@@ -12,10 +12,31 @@ package iaas
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the CreateSecurityGroupRulePayload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateSecurityGroupRulePayload{}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type CreateSecurityGroupRulePayloadGetCreatedAtAttributeType = *time.Time
+type CreateSecurityGroupRulePayloadGetCreatedAtArgType = time.Time
+type CreateSecurityGroupRulePayloadGetCreatedAtRetType = time.Time
+
+func getCreateSecurityGroupRulePayloadGetCreatedAtAttributeTypeOk(arg CreateSecurityGroupRulePayloadGetCreatedAtAttributeType) (ret CreateSecurityGroupRulePayloadGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupRulePayloadGetCreatedAtAttributeType(arg *CreateSecurityGroupRulePayloadGetCreatedAtAttributeType, val CreateSecurityGroupRulePayloadGetCreatedAtRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for description
@@ -205,6 +226,26 @@ type CreateSecurityGroupRulePayloadGetSecurityGroupIdArgType = string
 type CreateSecurityGroupRulePayloadGetSecurityGroupIdRetType = string
 
 /*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type CreateSecurityGroupRulePayloadGetUpdatedAtAttributeType = *time.Time
+type CreateSecurityGroupRulePayloadGetUpdatedAtArgType = time.Time
+type CreateSecurityGroupRulePayloadGetUpdatedAtRetType = time.Time
+
+func getCreateSecurityGroupRulePayloadGetUpdatedAtAttributeTypeOk(arg CreateSecurityGroupRulePayloadGetUpdatedAtAttributeType) (ret CreateSecurityGroupRulePayloadGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateSecurityGroupRulePayloadGetUpdatedAtAttributeType(arg *CreateSecurityGroupRulePayloadGetUpdatedAtAttributeType, val CreateSecurityGroupRulePayloadGetUpdatedAtRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for protocol
 */
 
@@ -226,6 +267,8 @@ func setCreateSecurityGroupRulePayloadGetProtocolAttributeType(arg *CreateSecuri
 
 // CreateSecurityGroupRulePayload Object that represents a request body for security group rule creation.
 type CreateSecurityGroupRulePayload struct {
+	// Date-time when resource was created.
+	CreatedAt CreateSecurityGroupRulePayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description CreateSecurityGroupRulePayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match. Possible values: `ingress`, `egress`.
@@ -243,7 +286,9 @@ type CreateSecurityGroupRulePayload struct {
 	RemoteSecurityGroupId CreateSecurityGroupRulePayloadGetRemoteSecurityGroupIdAttributeType `json:"remoteSecurityGroupId,omitempty"`
 	// Universally Unique Identifier (UUID).
 	SecurityGroupId CreateSecurityGroupRulePayloadGetSecurityGroupIdAttributeType `json:"securityGroupId,omitempty"`
-	Protocol        CreateSecurityGroupRulePayloadGetProtocolAttributeType        `json:"protocol,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt CreateSecurityGroupRulePayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
+	Protocol  CreateSecurityGroupRulePayloadGetProtocolAttributeType  `json:"protocol,omitempty"`
 }
 
 type _CreateSecurityGroupRulePayload CreateSecurityGroupRulePayload
@@ -266,6 +311,29 @@ func NewCreateSecurityGroupRulePayloadWithDefaults() *CreateSecurityGroupRulePay
 	var ethertype string = "IPv4"
 	this.Ethertype = &ethertype
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *CreateSecurityGroupRulePayload) GetCreatedAt() (res CreateSecurityGroupRulePayloadGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSecurityGroupRulePayload) GetCreatedAtOk() (ret CreateSecurityGroupRulePayloadGetCreatedAtRetType, ok bool) {
+	return getCreateSecurityGroupRulePayloadGetCreatedAtAttributeTypeOk(o.CreatedAt)
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CreateSecurityGroupRulePayload) HasCreatedAt() bool {
+	_, ok := o.GetCreatedAtOk()
+	return ok
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *CreateSecurityGroupRulePayload) SetCreatedAt(v CreateSecurityGroupRulePayloadGetCreatedAtRetType) {
+	setCreateSecurityGroupRulePayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -469,6 +537,29 @@ func (o *CreateSecurityGroupRulePayload) SetSecurityGroupId(v CreateSecurityGrou
 	setCreateSecurityGroupRulePayloadGetSecurityGroupIdAttributeType(&o.SecurityGroupId, v)
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *CreateSecurityGroupRulePayload) GetUpdatedAt() (res CreateSecurityGroupRulePayloadGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSecurityGroupRulePayload) GetUpdatedAtOk() (ret CreateSecurityGroupRulePayloadGetUpdatedAtRetType, ok bool) {
+	return getCreateSecurityGroupRulePayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CreateSecurityGroupRulePayload) HasUpdatedAt() bool {
+	_, ok := o.GetUpdatedAtOk()
+	return ok
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *CreateSecurityGroupRulePayload) SetUpdatedAt(v CreateSecurityGroupRulePayloadGetUpdatedAtRetType) {
+	setCreateSecurityGroupRulePayloadGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+}
+
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *CreateSecurityGroupRulePayload) GetProtocol() (res CreateSecurityGroupRulePayloadGetProtocolRetType) {
 	res, _ = o.GetProtocolOk()
@@ -494,6 +585,9 @@ func (o *CreateSecurityGroupRulePayload) SetProtocol(v CreateSecurityGroupRulePa
 
 func (o CreateSecurityGroupRulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateSecurityGroupRulePayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
+	}
 	if val, ok := getCreateSecurityGroupRulePayloadGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
 	}
@@ -520,6 +614,9 @@ func (o CreateSecurityGroupRulePayload) ToMap() (map[string]interface{}, error) 
 	}
 	if val, ok := getCreateSecurityGroupRulePayloadGetSecurityGroupIdAttributeTypeOk(o.SecurityGroupId); ok {
 		toSerialize["SecurityGroupId"] = val
+	}
+	if val, ok := getCreateSecurityGroupRulePayloadGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	if val, ok := getCreateSecurityGroupRulePayloadGetProtocolAttributeTypeOk(o.Protocol); ok {
 		toSerialize["Protocol"] = val

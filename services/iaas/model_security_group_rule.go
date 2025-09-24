@@ -12,10 +12,31 @@ package iaas
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the SecurityGroupRule type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SecurityGroupRule{}
+
+/*
+	types and functions for createdAt
+*/
+
+// isDateTime
+type SecurityGroupRuleGetCreatedAtAttributeType = *time.Time
+type SecurityGroupRuleGetCreatedAtArgType = time.Time
+type SecurityGroupRuleGetCreatedAtRetType = time.Time
+
+func getSecurityGroupRuleGetCreatedAtAttributeTypeOk(arg SecurityGroupRuleGetCreatedAtAttributeType) (ret SecurityGroupRuleGetCreatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSecurityGroupRuleGetCreatedAtAttributeType(arg *SecurityGroupRuleGetCreatedAtAttributeType, val SecurityGroupRuleGetCreatedAtRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for description
@@ -205,6 +226,26 @@ type SecurityGroupRuleGetSecurityGroupIdArgType = string
 type SecurityGroupRuleGetSecurityGroupIdRetType = string
 
 /*
+	types and functions for updatedAt
+*/
+
+// isDateTime
+type SecurityGroupRuleGetUpdatedAtAttributeType = *time.Time
+type SecurityGroupRuleGetUpdatedAtArgType = time.Time
+type SecurityGroupRuleGetUpdatedAtRetType = time.Time
+
+func getSecurityGroupRuleGetUpdatedAtAttributeTypeOk(arg SecurityGroupRuleGetUpdatedAtAttributeType) (ret SecurityGroupRuleGetUpdatedAtRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setSecurityGroupRuleGetUpdatedAtAttributeType(arg *SecurityGroupRuleGetUpdatedAtAttributeType, val SecurityGroupRuleGetUpdatedAtRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for protocol
 */
 
@@ -226,6 +267,8 @@ func setSecurityGroupRuleGetProtocolAttributeType(arg *SecurityGroupRuleGetProto
 
 // SecurityGroupRule Object that represents a security group rule.
 type SecurityGroupRule struct {
+	// Date-time when resource was created.
+	CreatedAt SecurityGroupRuleGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description SecurityGroupRuleGetDescriptionAttributeType `json:"description,omitempty"`
 	// The direction of the traffic which the rule should match. Possible values: `ingress`, `egress`.
@@ -243,7 +286,9 @@ type SecurityGroupRule struct {
 	RemoteSecurityGroupId SecurityGroupRuleGetRemoteSecurityGroupIdAttributeType `json:"remoteSecurityGroupId,omitempty"`
 	// Universally Unique Identifier (UUID).
 	SecurityGroupId SecurityGroupRuleGetSecurityGroupIdAttributeType `json:"securityGroupId,omitempty"`
-	Protocol        SecurityGroupRuleGetProtocolAttributeType        `json:"protocol,omitempty"`
+	// Date-time when resource was last updated.
+	UpdatedAt SecurityGroupRuleGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
+	Protocol  SecurityGroupRuleGetProtocolAttributeType  `json:"protocol,omitempty"`
 }
 
 type _SecurityGroupRule SecurityGroupRule
@@ -266,6 +311,29 @@ func NewSecurityGroupRuleWithDefaults() *SecurityGroupRule {
 	var ethertype string = "IPv4"
 	this.Ethertype = &ethertype
 	return &this
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *SecurityGroupRule) GetCreatedAt() (res SecurityGroupRuleGetCreatedAtRetType) {
+	res, _ = o.GetCreatedAtOk()
+	return
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroupRule) GetCreatedAtOk() (ret SecurityGroupRuleGetCreatedAtRetType, ok bool) {
+	return getSecurityGroupRuleGetCreatedAtAttributeTypeOk(o.CreatedAt)
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *SecurityGroupRule) HasCreatedAt() bool {
+	_, ok := o.GetCreatedAtOk()
+	return ok
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *SecurityGroupRule) SetCreatedAt(v SecurityGroupRuleGetCreatedAtRetType) {
+	setSecurityGroupRuleGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -469,6 +537,29 @@ func (o *SecurityGroupRule) SetSecurityGroupId(v SecurityGroupRuleGetSecurityGro
 	setSecurityGroupRuleGetSecurityGroupIdAttributeType(&o.SecurityGroupId, v)
 }
 
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *SecurityGroupRule) GetUpdatedAt() (res SecurityGroupRuleGetUpdatedAtRetType) {
+	res, _ = o.GetUpdatedAtOk()
+	return
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityGroupRule) GetUpdatedAtOk() (ret SecurityGroupRuleGetUpdatedAtRetType, ok bool) {
+	return getSecurityGroupRuleGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *SecurityGroupRule) HasUpdatedAt() bool {
+	_, ok := o.GetUpdatedAtOk()
+	return ok
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *SecurityGroupRule) SetUpdatedAt(v SecurityGroupRuleGetUpdatedAtRetType) {
+	setSecurityGroupRuleGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+}
+
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *SecurityGroupRule) GetProtocol() (res SecurityGroupRuleGetProtocolRetType) {
 	res, _ = o.GetProtocolOk()
@@ -494,6 +585,9 @@ func (o *SecurityGroupRule) SetProtocol(v SecurityGroupRuleGetProtocolRetType) {
 
 func (o SecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getSecurityGroupRuleGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
+	}
 	if val, ok := getSecurityGroupRuleGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
 	}
@@ -520,6 +614,9 @@ func (o SecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getSecurityGroupRuleGetSecurityGroupIdAttributeTypeOk(o.SecurityGroupId); ok {
 		toSerialize["SecurityGroupId"] = val
+	}
+	if val, ok := getSecurityGroupRuleGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+		toSerialize["UpdatedAt"] = val
 	}
 	if val, ok := getSecurityGroupRuleGetProtocolAttributeTypeOk(o.Protocol); ok {
 		toSerialize["Protocol"] = val
