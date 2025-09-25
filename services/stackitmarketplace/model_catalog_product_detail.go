@@ -182,6 +182,26 @@ func setCatalogProductDetailgetHasDemoAttributeType(arg *CatalogProductDetailget
 }
 
 /*
+	types and functions for hasPrivatePlanOption
+*/
+
+// isBoolean
+type CatalogProductDetailgetHasPrivatePlanOptionAttributeType = *bool
+type CatalogProductDetailgetHasPrivatePlanOptionArgType = bool
+type CatalogProductDetailgetHasPrivatePlanOptionRetType = bool
+
+func getCatalogProductDetailgetHasPrivatePlanOptionAttributeTypeOk(arg CatalogProductDetailgetHasPrivatePlanOptionAttributeType) (ret CatalogProductDetailgetHasPrivatePlanOptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductDetailgetHasPrivatePlanOptionAttributeType(arg *CatalogProductDetailgetHasPrivatePlanOptionAttributeType, val CatalogProductDetailgetHasPrivatePlanOptionRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for highlights
 */
 
@@ -525,8 +545,10 @@ type CatalogProductDetail struct {
 	DocumentationUrl CatalogProductDetailGetDocumentationUrlAttributeType `json:"documentationUrl" required:"true"`
 	// A e-mail address.
 	Email CatalogProductDetailGetEmailAttributeType `json:"email,omitempty"`
-	// If the product has a demoUrl available.
+	// Boolean data type.
 	HasDemo CatalogProductDetailgetHasDemoAttributeType `json:"hasDemo,omitempty"`
+	// Boolean data type.
+	HasPrivatePlanOption CatalogProductDetailgetHasPrivatePlanOptionAttributeType `json:"hasPrivatePlanOption,omitempty"`
 	// The list of highlights.
 	// REQUIRED
 	Highlights CatalogProductDetailGetHighlightsAttributeType `json:"highlights" required:"true"`
@@ -764,6 +786,29 @@ func (o *CatalogProductDetail) HasHasDemo() bool {
 // SetHasDemo gets a reference to the given bool and assigns it to the HasDemo field.
 func (o *CatalogProductDetail) SetHasDemo(v CatalogProductDetailgetHasDemoRetType) {
 	setCatalogProductDetailgetHasDemoAttributeType(&o.HasDemo, v)
+}
+
+// GetHasPrivatePlanOption returns the HasPrivatePlanOption field value if set, zero value otherwise.
+func (o *CatalogProductDetail) GetHasPrivatePlanOption() (res CatalogProductDetailgetHasPrivatePlanOptionRetType) {
+	res, _ = o.GetHasPrivatePlanOptionOk()
+	return
+}
+
+// GetHasPrivatePlanOptionOk returns a tuple with the HasPrivatePlanOption field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogProductDetail) GetHasPrivatePlanOptionOk() (ret CatalogProductDetailgetHasPrivatePlanOptionRetType, ok bool) {
+	return getCatalogProductDetailgetHasPrivatePlanOptionAttributeTypeOk(o.HasPrivatePlanOption)
+}
+
+// HasHasPrivatePlanOption returns a boolean if a field has been set.
+func (o *CatalogProductDetail) HasHasPrivatePlanOption() bool {
+	_, ok := o.GetHasPrivatePlanOptionOk()
+	return ok
+}
+
+// SetHasPrivatePlanOption gets a reference to the given bool and assigns it to the HasPrivatePlanOption field.
+func (o *CatalogProductDetail) SetHasPrivatePlanOption(v CatalogProductDetailgetHasPrivatePlanOptionRetType) {
+	setCatalogProductDetailgetHasPrivatePlanOptionAttributeType(&o.HasPrivatePlanOption, v)
 }
 
 // GetHighlights returns the Highlights field value
@@ -1099,6 +1144,9 @@ func (o CatalogProductDetail) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductDetailgetHasDemoAttributeTypeOk(o.HasDemo); ok {
 		toSerialize["HasDemo"] = val
+	}
+	if val, ok := getCatalogProductDetailgetHasPrivatePlanOptionAttributeTypeOk(o.HasPrivatePlanOption); ok {
+		toSerialize["HasPrivatePlanOption"] = val
 	}
 	if val, ok := getCatalogProductDetailGetHighlightsAttributeTypeOk(o.Highlights); ok {
 		toSerialize["Highlights"] = val
