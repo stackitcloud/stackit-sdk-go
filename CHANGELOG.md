@@ -12,6 +12,8 @@
   - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
   - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
 - `stackitmarketplace`:
+  - [v1.14.0](services/stackitmarketplace/CHANGELOG.md#v1140)
+    - **Feature:** Add `HasPrivatePlanOption` field (type `*bool`) to `CatalogProductDetail` struct
   - [v1.13.0](services/stackitmarketplace/CHANGELOG.md#v1130)
     - **Feature:** Add `HasDemo` field (type `*bool`) to `CatalogProductDetail` struct
   - [v1.12.0](services/stackitmarketplace/CHANGELOG.md#v1120)
