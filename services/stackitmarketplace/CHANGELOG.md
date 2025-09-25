@@ -1,3 +1,6 @@
+## v1.14.0
+- **Feature:** Add `HasPrivatePlanOption` field (type `*bool`) to `CatalogProductDetail` struct
+
 ## v1.13.0
 - **Feature:** Add `HasDemo` field (type `*bool`) to `CatalogProductDetail` struct
 
