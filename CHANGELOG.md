@@ -1,4 +1,6 @@
 ## Release (2025-MM-DD)
+- `authorization`: [v0.9.0](services/authorization/CHANGELOG.md#v090)
+  - **Feature:** Add support for assignable subjects
 - `iaas`: 
   - [v0.31.0](services/iaas/CHANGELOG.md#v0310)
     - Add `CreatedAt` and `UpdatedAt` fields to `BaseSecurityGroupRule` struct
