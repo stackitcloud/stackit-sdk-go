@@ -76,6 +76,61 @@ func Test_authorization_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService GetAssignableSubjects", func(t *testing.T) {
+		_apiUrlPath := "/v2/bff/{resourceType}/{resourceId}/assignableSubjects"
+		resourceTypeValue := "resourceType-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(resourceTypeValue, "resourceType")), -1)
+		resourceIdValue := "resourceId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(resourceIdValue, "resourceId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := ListAssignableSubjectsResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for authorization_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		resourceType := resourceTypeValue
+		resourceId := resourceIdValue
+
+		resp, reqErr := apiClient.GetAssignableSubjects(context.Background(), resourceType, resourceId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService ListMembers", func(t *testing.T) {
 		_apiUrlPath := "/v2/{resourceType}/{resourceId}/members"
 		resourceTypeValue := "resourceType-value"
