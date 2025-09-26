@@ -31,6 +31,11 @@
   - Add field `Labels` (type `*map[string]string`) to structs `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload`
 - `git`: [v0.8.0](services/git/CHANGELOG.md#v080)
   - **Feature:** Add support for the instance patch operation
+- `ske`
+  - [v1.12.0](services/ske/CHANGELOG.md#v141)
+    - **Feature:** Exit `CreateOrUpdateClusterWaitHandler` early when the cluster reports structured errors and is in a failure state.
+
+
 
 ## Release (2025-09-11)
 - `cdn`: [v1.5.0](services/cdn/CHANGELOG.md#v150)
