@@ -44,6 +44,26 @@ type DefaultApi interface {
 	*/
 	AddMembersExecute(ctx context.Context, resourceId string) (*MembersResponse, error)
 	/*
+		GetAssignableSubjects Get subjects assignable to a resource
+		BFF endpoint for portal. List subjects assignable to a given resource.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return ApiGetAssignableSubjectsRequest
+	*/
+	GetAssignableSubjects(ctx context.Context, resourceType string, resourceId string) ApiGetAssignableSubjectsRequest
+	/*
+		GetAssignableSubjectsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return ListAssignableSubjectsResponse
+
+	*/
+	GetAssignableSubjectsExecute(ctx context.Context, resourceType string, resourceId string) (*ListAssignableSubjectsResponse, error)
+	/*
 		ListMembers Get members to a resource
 		List members of the given resource.
 
@@ -158,6 +178,11 @@ type DefaultApi interface {
 type ApiAddMembersRequest interface {
 	AddMembersPayload(addMembersPayload AddMembersPayload) ApiAddMembersRequest
 	Execute() (*MembersResponse, error)
+}
+
+type ApiGetAssignableSubjectsRequest interface {
+	Subject(subject string) ApiGetAssignableSubjectsRequest
+	Execute() (*ListAssignableSubjectsResponse, error)
 }
 
 type ApiListMembersRequest interface {
@@ -356,6 +381,173 @@ func (a *APIClient) AddMembersExecute(ctx context.Context, resourceId string) (*
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		resourceId: resourceId,
+	}
+	return r.Execute()
+}
+
+type GetAssignableSubjectsRequest struct {
+	ctx          context.Context
+	apiService   *DefaultApiService
+	resourceType string
+	resourceId   string
+	subject      *string
+}
+
+func (r GetAssignableSubjectsRequest) Subject(subject string) ApiGetAssignableSubjectsRequest {
+	r.subject = &subject
+	return r
+}
+
+func (r GetAssignableSubjectsRequest) Execute() (*ListAssignableSubjectsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListAssignableSubjectsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAssignableSubjects")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/bff/{resourceType}/{resourceId}/assignableSubjects"
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(r.resourceType, "resourceType")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(r.resourceId, "resourceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.subject != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetAssignableSubjects: Get subjects assignable to a resource
+
+BFF endpoint for portal. List subjects assignable to a given resource.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param resourceType
+	@param resourceId
+	@return ApiGetAssignableSubjectsRequest
+*/
+func (a *APIClient) GetAssignableSubjects(ctx context.Context, resourceType string, resourceId string) ApiGetAssignableSubjectsRequest {
+	return GetAssignableSubjectsRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+	}
+}
+
+func (a *APIClient) GetAssignableSubjectsExecute(ctx context.Context, resourceType string, resourceId string) (*ListAssignableSubjectsResponse, error) {
+	r := GetAssignableSubjectsRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
 	}
 	return r.Execute()
 }
