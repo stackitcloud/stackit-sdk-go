@@ -1,4 +1,4 @@
-## Release (2025-MM-DD)
+## Release (2025-09-30)
 - `authorization`: [v0.9.0](services/authorization/CHANGELOG.md#v090)
   - **Feature:** Add support for assignable subjects
 - `iaas`: 
