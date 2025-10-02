@@ -226,6 +226,27 @@ type InstanceSensitiveDataGetJaegerHttpTracesUrlArgType = string
 type InstanceSensitiveDataGetJaegerHttpTracesUrlRetType = string
 
 /*
+	types and functions for jaegerHttpUrl
+*/
+
+// isNotNullableString
+type InstanceSensitiveDataGetJaegerHttpUrlAttributeType = *string
+
+func getInstanceSensitiveDataGetJaegerHttpUrlAttributeTypeOk(arg InstanceSensitiveDataGetJaegerHttpUrlAttributeType) (ret InstanceSensitiveDataGetJaegerHttpUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceSensitiveDataGetJaegerHttpUrlAttributeType(arg *InstanceSensitiveDataGetJaegerHttpUrlAttributeType, val InstanceSensitiveDataGetJaegerHttpUrlRetType) {
+	*arg = &val
+}
+
+type InstanceSensitiveDataGetJaegerHttpUrlArgType = string
+type InstanceSensitiveDataGetJaegerHttpUrlRetType = string
+
+/*
 	types and functions for jaegerTracesUrl
 */
 
@@ -597,8 +618,11 @@ type InstanceSensitiveData struct {
 	// REQUIRED
 	GrafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType `json:"grafanaUseStackitSso" required:"true"`
 	// REQUIRED
-	Instance            InstanceSensitiveDataGetInstanceAttributeType            `json:"instance" required:"true"`
+	Instance InstanceSensitiveDataGetInstanceAttributeType `json:"instance" required:"true"`
+	// Deprecated: Check the GitHub changelog for alternatives
 	JaegerHttpTracesUrl InstanceSensitiveDataGetJaegerHttpTracesUrlAttributeType `json:"jaegerHttpTracesUrl,omitempty"`
+	// REQUIRED
+	JaegerHttpUrl InstanceSensitiveDataGetJaegerHttpUrlAttributeType `json:"jaegerHttpUrl" required:"true"`
 	// REQUIRED
 	JaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlAttributeType `json:"jaegerTracesUrl" required:"true"`
 	// REQUIRED
@@ -640,7 +664,7 @@ type _InstanceSensitiveData InstanceSensitiveData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpGrpcTracesUrl InstanceSensitiveDataGetOtlpGrpcTracesUrlArgType, otlpHttpTracesUrl InstanceSensitiveDataGetOtlpHttpTracesUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
+func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerHttpUrl InstanceSensitiveDataGetJaegerHttpUrlArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpGrpcTracesUrl InstanceSensitiveDataGetOtlpGrpcTracesUrlArgType, otlpHttpTracesUrl InstanceSensitiveDataGetOtlpHttpTracesUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
 	this := InstanceSensitiveData{}
 	setInstanceSensitiveDataGetAlertingUrlAttributeType(&this.AlertingUrl, alertingUrl)
 	setInstanceSensitiveDataGetClusterAttributeType(&this.Cluster, cluster)
@@ -651,6 +675,7 @@ func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArg
 	setInstanceSensitiveDataGetGrafanaUrlAttributeType(&this.GrafanaUrl, grafanaUrl)
 	setInstanceSensitiveDatagetGrafanaUseStackitSsoAttributeType(&this.GrafanaUseStackitSso, grafanaUseStackitSso)
 	setInstanceSensitiveDataGetInstanceAttributeType(&this.Instance, instance)
+	setInstanceSensitiveDataGetJaegerHttpUrlAttributeType(&this.JaegerHttpUrl, jaegerHttpUrl)
 	setInstanceSensitiveDataGetJaegerTracesUrlAttributeType(&this.JaegerTracesUrl, jaegerTracesUrl)
 	setInstanceSensitiveDataGetJaegerUiUrlAttributeType(&this.JaegerUiUrl, jaegerUiUrl)
 	setInstanceSensitiveDataGetLogsPushUrlAttributeType(&this.LogsPushUrl, logsPushUrl)
@@ -834,6 +859,7 @@ func (o *InstanceSensitiveData) SetInstance(v InstanceSensitiveDataGetInstanceRe
 }
 
 // GetJaegerHttpTracesUrl returns the JaegerHttpTracesUrl field value if set, zero value otherwise.
+// Deprecated
 func (o *InstanceSensitiveData) GetJaegerHttpTracesUrl() (res InstanceSensitiveDataGetJaegerHttpTracesUrlRetType) {
 	res, _ = o.GetJaegerHttpTracesUrlOk()
 	return
@@ -841,6 +867,7 @@ func (o *InstanceSensitiveData) GetJaegerHttpTracesUrl() (res InstanceSensitiveD
 
 // GetJaegerHttpTracesUrlOk returns a tuple with the JaegerHttpTracesUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *InstanceSensitiveData) GetJaegerHttpTracesUrlOk() (ret InstanceSensitiveDataGetJaegerHttpTracesUrlRetType, ok bool) {
 	return getInstanceSensitiveDataGetJaegerHttpTracesUrlAttributeTypeOk(o.JaegerHttpTracesUrl)
 }
@@ -852,8 +879,26 @@ func (o *InstanceSensitiveData) HasJaegerHttpTracesUrl() bool {
 }
 
 // SetJaegerHttpTracesUrl gets a reference to the given string and assigns it to the JaegerHttpTracesUrl field.
+// Deprecated
 func (o *InstanceSensitiveData) SetJaegerHttpTracesUrl(v InstanceSensitiveDataGetJaegerHttpTracesUrlRetType) {
 	setInstanceSensitiveDataGetJaegerHttpTracesUrlAttributeType(&o.JaegerHttpTracesUrl, v)
+}
+
+// GetJaegerHttpUrl returns the JaegerHttpUrl field value
+func (o *InstanceSensitiveData) GetJaegerHttpUrl() (ret InstanceSensitiveDataGetJaegerHttpUrlRetType) {
+	ret, _ = o.GetJaegerHttpUrlOk()
+	return ret
+}
+
+// GetJaegerHttpUrlOk returns a tuple with the JaegerHttpUrl field value
+// and a boolean to check if the value has been set.
+func (o *InstanceSensitiveData) GetJaegerHttpUrlOk() (ret InstanceSensitiveDataGetJaegerHttpUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetJaegerHttpUrlAttributeTypeOk(o.JaegerHttpUrl)
+}
+
+// SetJaegerHttpUrl sets field value
+func (o *InstanceSensitiveData) SetJaegerHttpUrl(v InstanceSensitiveDataGetJaegerHttpUrlRetType) {
+	setInstanceSensitiveDataGetJaegerHttpUrlAttributeType(&o.JaegerHttpUrl, v)
 }
 
 // GetJaegerTracesUrl returns the JaegerTracesUrl field value
@@ -1182,6 +1227,9 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getInstanceSensitiveDataGetJaegerHttpTracesUrlAttributeTypeOk(o.JaegerHttpTracesUrl); ok {
 		toSerialize["JaegerHttpTracesUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetJaegerHttpUrlAttributeTypeOk(o.JaegerHttpUrl); ok {
+		toSerialize["JaegerHttpUrl"] = val
 	}
 	if val, ok := getInstanceSensitiveDataGetJaegerTracesUrlAttributeTypeOk(o.JaegerTracesUrl); ok {
 		toSerialize["JaegerTracesUrl"] = val
