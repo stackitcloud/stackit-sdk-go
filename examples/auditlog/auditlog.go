@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	// Specify the project ID, startTime and endTIme
+	// Specify the project ID, startTime and endTime
 	projectId := "PROJECT_ID"
 	startTime := time.Now().Add(-time.Hour * 24)
 	endTime := time.Now()
@@ -33,13 +33,20 @@ func main() {
 		Limit(limit)
 	result, err := listProjectLogsReq.Execute()
 
+	// To fetch all audit log items within a specified time range, we must implement pagination, because the api returns only
+	// up to 100 elements per request. We store the result of each request in `allItems`. The response includes a cursor,
+	// if more elements are available. This cursor must be used to get the next set of elements.
+	// The api has a rate limit, which can be reached when all elements will be fetched with pagination or if you do multiple request.
+	// The rate limit should be taken care in this case.
 	var allItems []auditlog.AuditLogEntryResponse
 	for {
 		if err != nil {
 			var oapiErr *oapierror.GenericOpenAPIError
 			if errors.As(err, &oapiErr) {
-				// reached rate limit
+				// Check if rate limit is reached
 				if oapiErr.StatusCode == http.StatusTooManyRequests {
+					// In case you want to fetch all items, you may want to wait some time and retry the request.
+					// In this example we just stop here the pagination.
 					fmt.Fprintf(os.Stderr, "[Auditlog API] Too Many Requests: %v\n", string(oapiErr.Body))
 					break
 				}
@@ -57,7 +64,7 @@ func main() {
 
 		// If cursor is not set, end of logs is reached
 		if result.Cursor == nil {
-			fmt.Printf("[Auditlog API] Successfully all items.\n")
+			fmt.Printf("[Auditlog API] Successfully fetched all items.\n")
 			break
 		}
 
