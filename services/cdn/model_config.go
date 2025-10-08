@@ -182,6 +182,26 @@ func setConfigGetRegionsAttributeType(arg *ConfigGetRegionsAttributeType, val Co
 	*arg = &val
 }
 
+/*
+	types and functions for waf
+*/
+
+// isModel
+type ConfigGetWafAttributeType = *WafConfig
+type ConfigGetWafArgType = WafConfig
+type ConfigGetWafRetType = WafConfig
+
+func getConfigGetWafAttributeTypeOk(arg ConfigGetWafAttributeType) (ret ConfigGetWafRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigGetWafAttributeType(arg *ConfigGetWafAttributeType, val ConfigGetWafRetType) {
+	*arg = &val
+}
+
 // Config struct for Config
 type Config struct {
 	// REQUIRED
@@ -200,6 +220,8 @@ type Config struct {
 	Optimizer         ConfigGetOptimizerAttributeType         `json:"optimizer,omitempty"`
 	// REQUIRED
 	Regions ConfigGetRegionsAttributeType `json:"regions" required:"true"`
+	// REQUIRED
+	Waf ConfigGetWafAttributeType `json:"waf" required:"true"`
 }
 
 type _Config Config
@@ -208,12 +230,13 @@ type _Config Config
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConfig(backend ConfigGetBackendArgType, blockedCountries ConfigGetBlockedCountriesArgType, blockedIPs ConfigGetBlockedIPsArgType, regions ConfigGetRegionsArgType) *Config {
+func NewConfig(backend ConfigGetBackendArgType, blockedCountries ConfigGetBlockedCountriesArgType, blockedIPs ConfigGetBlockedIPsArgType, regions ConfigGetRegionsArgType, waf ConfigGetWafArgType) *Config {
 	this := Config{}
 	setConfigGetBackendAttributeType(&this.Backend, backend)
 	setConfigGetBlockedCountriesAttributeType(&this.BlockedCountries, blockedCountries)
 	setConfigGetBlockedIPsAttributeType(&this.BlockedIPs, blockedIPs)
 	setConfigGetRegionsAttributeType(&this.Regions, regions)
+	setConfigGetWafAttributeType(&this.Waf, waf)
 	return &this
 }
 
@@ -407,6 +430,23 @@ func (o *Config) SetRegions(v ConfigGetRegionsRetType) {
 	setConfigGetRegionsAttributeType(&o.Regions, v)
 }
 
+// GetWaf returns the Waf field value
+func (o *Config) GetWaf() (ret ConfigGetWafRetType) {
+	ret, _ = o.GetWafOk()
+	return ret
+}
+
+// GetWafOk returns a tuple with the Waf field value
+// and a boolean to check if the value has been set.
+func (o *Config) GetWafOk() (ret ConfigGetWafRetType, ok bool) {
+	return getConfigGetWafAttributeTypeOk(o.Waf)
+}
+
+// SetWaf sets field value
+func (o *Config) SetWaf(v ConfigGetWafRetType) {
+	setConfigGetWafAttributeType(&o.Waf, v)
+}
+
 func (o Config) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getConfigGetBackendAttributeTypeOk(o.Backend); ok {
@@ -432,6 +472,9 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val
+	}
+	if val, ok := getConfigGetWafAttributeTypeOk(o.Waf); ok {
+		toSerialize["Waf"] = val
 	}
 	return toSerialize, nil
 }
