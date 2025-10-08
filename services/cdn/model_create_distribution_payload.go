@@ -240,6 +240,26 @@ func setCreateDistributionPayloadGetRegionsAttributeType(arg *CreateDistribution
 	*arg = &val
 }
 
+/*
+	types and functions for waf
+*/
+
+// isModel
+type CreateDistributionPayloadGetWafAttributeType = *WafConfig
+type CreateDistributionPayloadGetWafArgType = WafConfig
+type CreateDistributionPayloadGetWafRetType = WafConfig
+
+func getCreateDistributionPayloadGetWafAttributeTypeOk(arg CreateDistributionPayloadGetWafAttributeType) (ret CreateDistributionPayloadGetWafRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetWafAttributeType(arg *CreateDistributionPayloadGetWafAttributeType, val CreateDistributionPayloadGetWafRetType) {
+	*arg = &val
+}
+
 // CreateDistributionPayload struct for CreateDistributionPayload
 type CreateDistributionPayload struct {
 	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
@@ -264,6 +284,7 @@ type CreateDistributionPayload struct {
 	// Define in which regions you would like your content to be cached.
 	// REQUIRED
 	Regions CreateDistributionPayloadGetRegionsAttributeType `json:"regions" required:"true"`
+	Waf     CreateDistributionPayloadGetWafAttributeType     `json:"waf,omitempty"`
 }
 
 type _CreateDistributionPayload CreateDistributionPayload
@@ -528,6 +549,29 @@ func (o *CreateDistributionPayload) SetRegions(v CreateDistributionPayloadGetReg
 	setCreateDistributionPayloadGetRegionsAttributeType(&o.Regions, v)
 }
 
+// GetWaf returns the Waf field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetWaf() (res CreateDistributionPayloadGetWafRetType) {
+	res, _ = o.GetWafOk()
+	return
+}
+
+// GetWafOk returns a tuple with the Waf field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetWafOk() (ret CreateDistributionPayloadGetWafRetType, ok bool) {
+	return getCreateDistributionPayloadGetWafAttributeTypeOk(o.Waf)
+}
+
+// HasWaf returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasWaf() bool {
+	_, ok := o.GetWafOk()
+	return ok
+}
+
+// SetWaf gets a reference to the given WafConfig and assigns it to the Waf field.
+func (o *CreateDistributionPayload) SetWaf(v CreateDistributionPayloadGetWafRetType) {
+	setCreateDistributionPayloadGetWafAttributeType(&o.Waf, v)
+}
+
 func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateDistributionPayloadGetBlockedCountriesAttributeTypeOk(o.BlockedCountries); ok {
@@ -562,6 +606,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetWafAttributeTypeOk(o.Waf); ok {
+		toSerialize["Waf"] = val
 	}
 	return toSerialize, nil
 }

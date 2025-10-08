@@ -291,6 +291,26 @@ func setDistributionGetUpdatedAtAttributeType(arg *DistributionGetUpdatedAtAttri
 	*arg = &val
 }
 
+/*
+	types and functions for waf
+*/
+
+// isModel
+type DistributionGetWafAttributeType = *DistributionWaf
+type DistributionGetWafArgType = DistributionWaf
+type DistributionGetWafRetType = DistributionWaf
+
+func getDistributionGetWafAttributeTypeOk(arg DistributionGetWafAttributeType) (ret DistributionGetWafRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setDistributionGetWafAttributeType(arg *DistributionGetWafAttributeType, val DistributionGetWafRetType) {
+	*arg = &val
+}
+
 // Distribution struct for Distribution
 type Distribution struct {
 	// REQUIRED
@@ -312,6 +332,7 @@ type Distribution struct {
 	// RFC3339 string which returns the last time the distribution configuration was modified.
 	// REQUIRED
 	UpdatedAt DistributionGetUpdatedAtAttributeType `json:"updatedAt" required:"true"`
+	Waf       DistributionGetWafAttributeType       `json:"waf,omitempty"`
 }
 
 type _Distribution Distribution
@@ -482,6 +503,29 @@ func (o *Distribution) SetUpdatedAt(v DistributionGetUpdatedAtRetType) {
 	setDistributionGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
+// GetWaf returns the Waf field value if set, zero value otherwise.
+func (o *Distribution) GetWaf() (res DistributionGetWafRetType) {
+	res, _ = o.GetWafOk()
+	return
+}
+
+// GetWafOk returns a tuple with the Waf field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Distribution) GetWafOk() (ret DistributionGetWafRetType, ok bool) {
+	return getDistributionGetWafAttributeTypeOk(o.Waf)
+}
+
+// HasWaf returns a boolean if a field has been set.
+func (o *Distribution) HasWaf() bool {
+	_, ok := o.GetWafOk()
+	return ok
+}
+
+// SetWaf gets a reference to the given DistributionWaf and assigns it to the Waf field.
+func (o *Distribution) SetWaf(v DistributionGetWafRetType) {
+	setDistributionGetWafAttributeType(&o.Waf, v)
+}
+
 func (o Distribution) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getDistributionGetConfigAttributeTypeOk(o.Config); ok {
@@ -507,6 +551,9 @@ func (o Distribution) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getDistributionGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
 		toSerialize["UpdatedAt"] = val
+	}
+	if val, ok := getDistributionGetWafAttributeTypeOk(o.Waf); ok {
+		toSerialize["Waf"] = val
 	}
 	return toSerialize, nil
 }

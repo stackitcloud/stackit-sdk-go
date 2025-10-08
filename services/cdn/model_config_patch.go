@@ -182,6 +182,26 @@ func setConfigPatchGetRegionsAttributeType(arg *ConfigPatchGetRegionsAttributeTy
 	*arg = &val
 }
 
+/*
+	types and functions for waf
+*/
+
+// isModel
+type ConfigPatchGetWafAttributeType = *WafConfigPatch
+type ConfigPatchGetWafArgType = WafConfigPatch
+type ConfigPatchGetWafRetType = WafConfigPatch
+
+func getConfigPatchGetWafAttributeTypeOk(arg ConfigPatchGetWafAttributeType) (ret ConfigPatchGetWafRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigPatchGetWafAttributeType(arg *ConfigPatchGetWafAttributeType, val ConfigPatchGetWafRetType) {
+	*arg = &val
+}
+
 // ConfigPatch struct for ConfigPatch
 type ConfigPatch struct {
 	Backend ConfigPatchGetBackendAttributeType `json:"backend,omitempty"`
@@ -196,6 +216,7 @@ type ConfigPatch struct {
 	MonthlyLimitBytes ConfigPatchGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         ConfigPatchGetOptimizerAttributeType         `json:"optimizer,omitempty"`
 	Regions           ConfigPatchGetRegionsAttributeType           `json:"regions,omitempty"`
+	Waf               ConfigPatchGetWafAttributeType               `json:"waf,omitempty"`
 }
 
 // NewConfigPatch instantiates a new ConfigPatch object
@@ -432,6 +453,29 @@ func (o *ConfigPatch) SetRegions(v ConfigPatchGetRegionsRetType) {
 	setConfigPatchGetRegionsAttributeType(&o.Regions, v)
 }
 
+// GetWaf returns the Waf field value if set, zero value otherwise.
+func (o *ConfigPatch) GetWaf() (res ConfigPatchGetWafRetType) {
+	res, _ = o.GetWafOk()
+	return
+}
+
+// GetWafOk returns a tuple with the Waf field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetWafOk() (ret ConfigPatchGetWafRetType, ok bool) {
+	return getConfigPatchGetWafAttributeTypeOk(o.Waf)
+}
+
+// HasWaf returns a boolean if a field has been set.
+func (o *ConfigPatch) HasWaf() bool {
+	_, ok := o.GetWafOk()
+	return ok
+}
+
+// SetWaf gets a reference to the given WafConfigPatch and assigns it to the Waf field.
+func (o *ConfigPatch) SetWaf(v ConfigPatchGetWafRetType) {
+	setConfigPatchGetWafAttributeType(&o.Waf, v)
+}
+
 func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getConfigPatchGetBackendAttributeTypeOk(o.Backend); ok {
@@ -457,6 +501,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigPatchGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val
+	}
+	if val, ok := getConfigPatchGetWafAttributeTypeOk(o.Waf); ok {
+		toSerialize["Waf"] = val
 	}
 	return toSerialize, nil
 }

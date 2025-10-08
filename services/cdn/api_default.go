@@ -278,6 +278,24 @@ type DefaultApi interface {
 	*/
 	ListDistributionsExecute(ctx context.Context, projectId string) (*ListDistributionsResponse, error)
 	/*
+		ListWAFCollections List all WAF rule collections of the project
+		Returns all WAF rule collections available to the project
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@return ApiListWAFCollectionsRequest
+	*/
+	ListWAFCollections(ctx context.Context, projectId string) ApiListWAFCollectionsRequest
+	/*
+		ListWAFCollectionsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId Your STACKIT Project ID
+		@return ListWAFCollectionsResponse
+
+	*/
+	ListWAFCollectionsExecute(ctx context.Context, projectId string) (*ListWAFCollectionsResponse, error)
+	/*
 		PatchDistribution Update existing distribution
 		Modify a CDN distribution with a partial update. Only the fields specified in the request will be modified.
 
@@ -376,6 +394,8 @@ type ApiGetCustomDomainRequest interface {
 }
 
 type ApiGetDistributionRequest interface {
+	// If set, the top level of a distribution contains a &#x60;waf&#x60; property, which defines the status of the waf. This includes a list of all resolved rules.
+	WithWafStatus(withWafStatus bool) ApiGetDistributionRequest
 	Execute() (*GetDistributionResponse, error)
 }
 
@@ -421,12 +441,18 @@ type ApiGetStatisticsRequest interface {
 type ApiListDistributionsRequest interface {
 	// Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
 	PageSize(pageSize int32) ApiListDistributionsRequest
+	// If set, the top level of a distribution contains a &#x60;waf&#x60; property, which defines the status of the waf. This includes a list of all resolved rules.
+	WithWafStatus(withWafStatus bool) ApiListDistributionsRequest
 	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 	PageIdentifier(pageIdentifier string) ApiListDistributionsRequest
 	// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The origin URL is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
 	SortBy(sortBy string) ApiListDistributionsRequest
 	SortOrder(sortOrder string) ApiListDistributionsRequest
 	Execute() (*ListDistributionsResponse, error)
+}
+
+type ApiListWAFCollectionsRequest interface {
+	Execute() (*ListWAFCollectionsResponse, error)
 }
 
 type ApiPatchDistributionRequest interface {
@@ -1555,6 +1581,14 @@ type GetDistributionRequest struct {
 	apiService     *DefaultApiService
 	projectId      string
 	distributionId string
+	withWafStatus  *bool
+}
+
+// If set, the top level of a distribution contains a &#x60;waf&#x60; property, which defines the status of the waf. This includes a list of all resolved rules.
+
+func (r GetDistributionRequest) WithWafStatus(withWafStatus bool) ApiGetDistributionRequest {
+	r.withWafStatus = &withWafStatus
+	return r
 }
 
 func (r GetDistributionRequest) Execute() (*GetDistributionResponse, error) {
@@ -1582,6 +1616,9 @@ func (r GetDistributionRequest) Execute() (*GetDistributionResponse, error) {
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.withWafStatus != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "withWafStatus", r.withWafStatus, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2405,6 +2442,7 @@ type ListDistributionsRequest struct {
 	apiService     *DefaultApiService
 	projectId      string
 	pageSize       *int32
+	withWafStatus  *bool
 	pageIdentifier *string
 	sortBy         *string
 	sortOrder      *string
@@ -2414,6 +2452,13 @@ type ListDistributionsRequest struct {
 
 func (r ListDistributionsRequest) PageSize(pageSize int32) ApiListDistributionsRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// If set, the top level of a distribution contains a &#x60;waf&#x60; property, which defines the status of the waf. This includes a list of all resolved rules.
+
+func (r ListDistributionsRequest) WithWafStatus(withWafStatus bool) ApiListDistributionsRequest {
+	r.withWafStatus = &withWafStatus
 	return r
 }
 
@@ -2462,6 +2507,9 @@ func (r ListDistributionsRequest) Execute() (*ListDistributionsResponse, error) 
 
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+	}
+	if r.withWafStatus != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "withWafStatus", r.withWafStatus, "")
 	}
 	if r.pageIdentifier != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "pageIdentifier", r.pageIdentifier, "")
@@ -2598,6 +2646,168 @@ func (a *APIClient) ListDistributions(ctx context.Context, projectId string) Api
 
 func (a *APIClient) ListDistributionsExecute(ctx context.Context, projectId string) (*ListDistributionsResponse, error) {
 	r := ListDistributionsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type ListWAFCollectionsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+}
+
+func (r ListWAFCollectionsRequest) Execute() (*ListWAFCollectionsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListWAFCollectionsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListWAFCollections")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta/projects/{projectId}/waf/collections"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v GenericJSONResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v GenericJSONResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v GenericJSONResponse
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListWAFCollections: List all WAF rule collections of the project
+
+Returns all WAF rule collections available to the project
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId Your STACKIT Project ID
+	@return ApiListWAFCollectionsRequest
+*/
+func (a *APIClient) ListWAFCollections(ctx context.Context, projectId string) ApiListWAFCollectionsRequest {
+	return ListWAFCollectionsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListWAFCollectionsExecute(ctx context.Context, projectId string) (*ListWAFCollectionsResponse, error) {
+	r := ListWAFCollectionsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
