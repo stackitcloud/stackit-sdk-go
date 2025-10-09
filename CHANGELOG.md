@@ -1,3 +1,11 @@
+## Release (2025-xx-xx)
+- `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
+  - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
+- `cdn`: [v1.6.0](services/cdn/CHANGELOG.md#v160)
+  - **Feature:** Add models: `DistributionWaf`, `WafConfig`, `WAFConfigPatch`, `WAFMode`, `WAFRule`, `WAFRuleCollection`, `WAFRuleGroup` and `WAFStatusRuleBlock`
+  - **Feature:** Add `Waf` attribute to `Config` and `Distribution`
+  - **Feature:** Add `WafStatus` to `DistributionRequest` and `ListWafCollections`
+
 ## Release (2025-09-30)
 - `authorization`: [v0.9.0](services/authorization/CHANGELOG.md#v090)
   - **Feature:** Add support for assignable subjects
