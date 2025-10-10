@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.3
-	github.com/stackitcloud/stackit-sdk-go/services/observability v0.14.0
+	github.com/stackitcloud/stackit-sdk-go/services/observability v0.15.0
 )
 
 require (
