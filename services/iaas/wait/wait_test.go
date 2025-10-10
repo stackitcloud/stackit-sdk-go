@@ -14,22 +14,23 @@ import (
 )
 
 type apiClientMocked struct {
-	getNetworkAreaFails      bool
-	getNetworkFails          bool
-	getProjectRequestFails   bool
-	isDeleted                bool
-	resourceState            string
-	getVolumeFails           bool
-	getServerFails           bool
-	getAttachedVolumeFails   bool
-	getImageFails            bool
-	getBackupFails           bool
-	isAttached               bool
-	requestAction            string
-	returnResizing           bool
-	getSnapshotFails         bool
-	listProjectsResponses    []listProjectsResponses
-	listProjectsResponsesIdx int
+	getNetworkAreaRegionFails bool
+	getNetworkAreaFails       bool
+	getNetworkFails           bool
+	getProjectRequestFails    bool
+	isDeleted                 bool
+	resourceState             string
+	getVolumeFails            bool
+	getServerFails            bool
+	getAttachedVolumeFails    bool
+	getImageFails             bool
+	getBackupFails            bool
+	isAttached                bool
+	requestAction             string
+	returnResizing            bool
+	getSnapshotFails          bool
+	listProjectsResponses     []listProjectsResponses
+	listProjectsResponsesIdx  int
 }
 
 type listProjectsResponses struct {
@@ -75,12 +76,29 @@ func (a *apiClientMocked) GetNetworkAreaExecute(_ context.Context, _, _ string) 
 	}
 
 	return &iaas.NetworkArea{
-		AreaId: utils.Ptr("naid"),
-		State:  &a.resourceState,
+		Id: utils.Ptr("naid"),
 	}, nil
 }
 
-func (a *apiClientMocked) GetNetworkExecute(_ context.Context, _, _ string) (*iaas.Network, error) {
+func (a *apiClientMocked) GetNetworkAreaRegionExecute(_ context.Context, _, _, _ string) (*iaas.RegionalArea, error) {
+	if a.isDeleted {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 404,
+		}
+	}
+
+	if a.getNetworkAreaRegionFails {
+		return nil, &oapierror.GenericOpenAPIError{
+			StatusCode: 500,
+		}
+	}
+
+	return &iaas.RegionalArea{
+		Status: &a.resourceState,
+	}, nil
+}
+
+func (a *apiClientMocked) GetNetworkExecute(_ context.Context, _, _, _ string) (*iaas.Network, error) {
 	if a.isDeleted {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
@@ -94,12 +112,12 @@ func (a *apiClientMocked) GetNetworkExecute(_ context.Context, _, _ string) (*ia
 	}
 
 	return &iaas.Network{
-		NetworkId: utils.Ptr("nid"),
-		State:     &a.resourceState,
+		Id:     utils.Ptr("nid"),
+		Status: &a.resourceState,
 	}, nil
 }
 
-func (a *apiClientMocked) GetProjectRequestExecute(_ context.Context, _, _ string) (*iaas.Request, error) {
+func (a *apiClientMocked) GetProjectRequestExecute(_ context.Context, _, _, _ string) (*iaas.Request, error) {
 	if a.getProjectRequestFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -113,7 +131,7 @@ func (a *apiClientMocked) GetProjectRequestExecute(_ context.Context, _, _ strin
 	}, nil
 }
 
-func (a *apiClientMocked) GetVolumeExecute(_ context.Context, _, _ string) (*iaas.Volume, error) {
+func (a *apiClientMocked) GetVolumeExecute(_ context.Context, _, _, _ string) (*iaas.Volume, error) {
 	if a.isDeleted {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
@@ -132,7 +150,7 @@ func (a *apiClientMocked) GetVolumeExecute(_ context.Context, _, _ string) (*iaa
 	}, nil
 }
 
-func (a *apiClientMocked) GetServerExecute(_ context.Context, _, _ string) (*iaas.Server, error) {
+func (a *apiClientMocked) GetServerExecute(_ context.Context, _, _, _ string) (*iaas.Server, error) {
 	if a.returnResizing {
 		a.returnResizing = false
 		return &iaas.Server{
@@ -159,7 +177,7 @@ func (a *apiClientMocked) GetServerExecute(_ context.Context, _, _ string) (*iaa
 	}, nil
 }
 
-func (a *apiClientMocked) GetAttachedVolumeExecute(_ context.Context, _, _, _ string) (*iaas.VolumeAttachment, error) {
+func (a *apiClientMocked) GetAttachedVolumeExecute(_ context.Context, _, _, _, _ string) (*iaas.VolumeAttachment, error) {
 	if a.getAttachedVolumeFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -178,7 +196,7 @@ func (a *apiClientMocked) GetAttachedVolumeExecute(_ context.Context, _, _, _ st
 	}, nil
 }
 
-func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaas.Image, error) {
+func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _, _ string) (*iaas.Image, error) {
 	if a.getImageFails {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 500,
@@ -197,7 +215,7 @@ func (a *apiClientMocked) GetImageExecute(_ context.Context, _, _ string) (*iaas
 	}, nil
 }
 
-func (a *apiClientMocked) GetBackupExecute(_ context.Context, _, _ string) (*iaas.Backup, error) {
+func (a *apiClientMocked) GetBackupExecute(_ context.Context, _, _, _ string) (*iaas.Backup, error) {
 	if a.isDeleted {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
@@ -216,7 +234,7 @@ func (a *apiClientMocked) GetBackupExecute(_ context.Context, _, _ string) (*iaa
 	}, nil
 }
 
-func (a *apiClientMocked) GetSnapshotExecute(_ context.Context, _, _ string) (*iaas.Snapshot, error) {
+func (a *apiClientMocked) GetSnapshotExecute(_ context.Context, _, _, _ string) (*iaas.Snapshot, error) {
 	if a.isDeleted {
 		return nil, &oapierror.GenericOpenAPIError{
 			StatusCode: 404,
@@ -233,185 +251,6 @@ func (a *apiClientMocked) GetSnapshotExecute(_ context.Context, _, _ string) (*i
 		Id:     utils.Ptr("sid"),
 		Status: &a.resourceState,
 	}, nil
-}
-
-func TestCreateNetworkAreaWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc          string
-		getFails      bool
-		resourceState string
-		wantErr       bool
-		wantResp      bool
-	}{
-		{
-			desc:          "create_succeeded",
-			getFails:      false,
-			resourceState: CreateSuccess,
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "get_fails",
-			getFails:      true,
-			resourceState: "",
-			wantErr:       true,
-			wantResp:      false,
-		},
-		{
-			desc:          "timeout",
-			getFails:      false,
-			resourceState: "ANOTHER STATE",
-			wantErr:       true,
-			wantResp:      true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkAreaFails: tt.getFails,
-				resourceState:       tt.resourceState,
-			}
-
-			var wantRes *iaas.NetworkArea
-			if tt.wantResp {
-				wantRes = &iaas.NetworkArea{
-					AreaId: utils.Ptr("naid"),
-					State:  utils.Ptr(tt.resourceState),
-				}
-			}
-
-			handler := CreateNetworkAreaWaitHandler(context.Background(), apiClient, "oid", "naid")
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-		})
-	}
-}
-
-func TestUpdateNetworkAreaWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc          string
-		getFails      bool
-		resourceState string
-		wantErr       bool
-		wantResp      bool
-	}{
-		{
-			desc:          "update_succeeded",
-			getFails:      false,
-			resourceState: CreateSuccess,
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "get_fails",
-			getFails:      true,
-			resourceState: "",
-			wantErr:       true,
-			wantResp:      false,
-		},
-		{
-			desc:          "timeout",
-			getFails:      false,
-			resourceState: "ANOTHER STATE",
-			wantErr:       true,
-			wantResp:      true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkAreaFails: tt.getFails,
-				resourceState:       tt.resourceState,
-			}
-
-			var wantRes *iaas.NetworkArea
-			if tt.wantResp {
-				wantRes = &iaas.NetworkArea{
-					AreaId: utils.Ptr("naid"),
-					State:  utils.Ptr(tt.resourceState),
-				}
-			}
-
-			handler := UpdateNetworkAreaWaitHandler(context.Background(), apiClient, "oid", "naid")
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-		})
-	}
-}
-
-func TestDeleteNetworkAreaWaitHandler(t *testing.T) {
-	tests := []struct {
-		desc          string
-		getFails      bool
-		isDeleted     bool
-		resourceState string
-		wantErr       bool
-		wantResp      bool
-	}{
-		{
-			desc:      "delete_succeeded",
-			getFails:  false,
-			isDeleted: true,
-			wantErr:   false,
-			wantResp:  false,
-		},
-		{
-			desc:          "get_fails",
-			getFails:      true,
-			resourceState: "",
-			wantErr:       true,
-			wantResp:      false,
-		},
-		{
-			desc:          "timeout",
-			getFails:      false,
-			resourceState: "ANOTHER STATE",
-			wantErr:       true,
-			wantResp:      false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkAreaFails: tt.getFails,
-				isDeleted:           tt.isDeleted,
-				resourceState:       tt.resourceState,
-			}
-
-			var wantRes *iaas.NetworkArea
-			if tt.wantResp {
-				wantRes = &iaas.NetworkArea{
-					AreaId: utils.Ptr("naid"),
-					State:  utils.Ptr(tt.resourceState),
-				}
-			}
-
-			handler := DeleteNetworkAreaWaitHandler(context.Background(), apiClient, "oid", "naid")
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-		})
-	}
 }
 
 func TestCreateNetworkWaitHandler(t *testing.T) {
@@ -454,12 +293,12 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 			var wantRes *iaas.Network
 			if tt.wantResp {
 				wantRes = &iaas.Network{
-					NetworkId: utils.Ptr("nid"),
-					State:     utils.Ptr(tt.resourceState),
+					Id:     utils.Ptr("nid"),
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
-			handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "nid")
+			handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -513,12 +352,12 @@ func TestUpdateNetworkWaitHandler(t *testing.T) {
 			var wantRes *iaas.Network
 			if tt.wantResp {
 				wantRes = &iaas.Network{
-					NetworkId: utils.Ptr("nid"),
-					State:     utils.Ptr(tt.resourceState),
+					Id:     utils.Ptr("nid"),
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
-			handler := UpdateNetworkWaitHandler(context.Background(), apiClient, "pid", "nid")
+			handler := UpdateNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -574,12 +413,12 @@ func TestDeleteNetworkWaitHandler(t *testing.T) {
 			var wantRes *iaas.Network
 			if tt.wantResp {
 				wantRes = &iaas.Network{
-					NetworkId: utils.Ptr("nid"),
-					State:     utils.Ptr(tt.resourceState),
+					Id:     utils.Ptr("nid"),
+					Status: utils.Ptr(tt.resourceState),
 				}
 			}
 
-			handler := DeleteNetworkWaitHandler(context.Background(), apiClient, "pid", "nid")
+			handler := DeleteNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -645,7 +484,7 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateVolumeWaitHandler(context.Background(), apiClient, "pid", "vid")
+			handler := CreateVolumeWaitHandler(context.Background(), apiClient, "pid", "region", "vid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -706,7 +545,7 @@ func TestDeleteVolumeWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := DeleteVolumeWaitHandler(context.Background(), apiClient, "pid", "vid")
+			handler := DeleteVolumeWaitHandler(context.Background(), apiClient, "pid", "region", "vid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -772,7 +611,7 @@ func TestCreateServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := CreateServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -833,7 +672,7 @@ func TestDeleteServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := DeleteServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := DeleteServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -911,7 +750,7 @@ func TestResizeServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := ResizeServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := ResizeServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetThrottle(1 * time.Millisecond).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -977,7 +816,7 @@ func TestStartServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := StartServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := StartServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1043,7 +882,7 @@ func TestStopServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := StopServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := StopServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1109,7 +948,7 @@ func TestDeallocateServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := DeallocateServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := DeallocateServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1175,7 +1014,7 @@ func TestRescueServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := RescueServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := RescueServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1241,7 +1080,7 @@ func TestUnrescueServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := UnrescueServerWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := UnrescueServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1336,7 +1175,7 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := ProjectRequestWaitHandler(context.Background(), apiClient, "pid", "rid")
+			handler := ProjectRequestWaitHandler(context.Background(), apiClient, "pid", "region", "rid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1394,7 +1233,7 @@ func TestAddVolumeToServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := AddVolumeToServerWaitHandler(context.Background(), apiClient, "pid", "sid", "vid")
+			handler := AddVolumeToServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid", "vid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1452,7 +1291,7 @@ func TestRemoveVolumeFromServerWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := RemoveVolumeFromServerWaitHandler(context.Background(), apiClient, "pid", "sid", "vid")
+			handler := RemoveVolumeFromServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid", "vid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1518,7 +1357,7 @@ func TestUploadImageWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := UploadImageWaitHandler(context.Background(), apiClient, "pid", "iid")
+			handler := UploadImageWaitHandler(context.Background(), apiClient, "pid", "region", "iid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1567,7 +1406,7 @@ func TestDeleteImageWaitHandler(t *testing.T) {
 				resourceState: tt.resourceState,
 			}
 
-			handler := DeleteImageWaitHandler(context.Background(), apiClient, "pid", "iid")
+			handler := DeleteImageWaitHandler(context.Background(), apiClient, "pid", "region", "iid")
 
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -1630,7 +1469,7 @@ func TestCreateBackupWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateBackupWaitHandler(context.Background(), apiClient, "pid", "bid")
+			handler := CreateBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
@@ -1682,7 +1521,7 @@ func TestDeleteBackupWaitHandler(t *testing.T) {
 				resourceState:  tt.resourceState,
 			}
 
-			handler := DeleteBackupWaitHandler(context.Background(), apiClient, "pid", "bid")
+			handler := DeleteBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
@@ -1747,7 +1586,7 @@ func TestRestoreBackupWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := RestoreBackupWaitHandler(context.Background(), apiClient, "pid", "bid")
+			handler := RestoreBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
@@ -1812,7 +1651,7 @@ func TestCreateSnapshotWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := CreateSnapshotWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := CreateSnapshotWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
@@ -1877,7 +1716,7 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := DeleteSnapshotWaitHandler(context.Background(), apiClient, "pid", "sid")
+			handler := DeleteSnapshotWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
@@ -2028,6 +1867,124 @@ func TestReadyForNetworkAreaDeletionWaitHandler(t *testing.T) {
 
 			handler := ReadyForNetworkAreaDeletionWaitHandler(context.Background(), apiClient, rmApiClient, "oid", "aid")
 			gotRes, err := handler.SetTimeout(200 * time.Millisecond).SetThrottle(5 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestCreateRegionalNetworkAreaConfigurationWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "create_succeeded",
+			getFails:      false,
+			resourceState: CreateSuccess,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getNetworkAreaRegionFails: tt.getFails,
+				resourceState:             tt.resourceState,
+			}
+
+			var wantRes *iaas.RegionalArea
+			if tt.wantResp {
+				wantRes = &iaas.RegionalArea{
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := CreateNetworkAreaRegionWaitHandler(context.Background(), apiClient, "pid", "aid", "region")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
+func TestDeleteRegionalNetworkAreaConfigurationWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		isDeleted     bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:      "delete_succeeded",
+			getFails:  false,
+			isDeleted: true,
+			wantErr:   false,
+			wantResp:  false,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getNetworkAreaRegionFails: tt.getFails,
+				isDeleted:                 tt.isDeleted,
+				resourceState:             tt.resourceState,
+			}
+
+			var wantRes *iaas.RegionalArea
+			if tt.wantResp {
+				wantRes = &iaas.RegionalArea{
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := DeleteRegionalNetworkAreaConfigurationWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
