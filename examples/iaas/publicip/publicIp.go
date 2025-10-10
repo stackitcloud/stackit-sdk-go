@@ -5,25 +5,24 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
 )
 
 func main() {
-	// Specify the organization ID and project ID
+	// Specify the project ID, network interface ID and region
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
+	networkInterfaceId := "NETWORK_INTERFACE_ID"
+	region := "eu01"
 
 	// Create a new API client, that uses default authentication and configuration
-	iaasClient, err := iaas.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	iaasClient, err := iaas.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Creating API client: %v\n", err)
 		os.Exit(1)
 	}
 
-	publicIps, err := iaasClient.ListPublicIPs(context.Background(), projectId).Execute()
+	publicIps, err := iaasClient.ListPublicIPs(context.Background(), projectId, region).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `ListPublicIPs`: %v\n", err)
@@ -33,9 +32,9 @@ func main() {
 
 	// Create a publicIp
 	createpublicIpPayload := iaas.CreatePublicIPPayload{
-		NetworkInterface: iaas.NewNullableString(utils.Ptr("NIC_ID")),
+		NetworkInterface: iaas.NewNullableString(utils.Ptr(networkInterfaceId)),
 	}
-	publicIp, err := iaasClient.CreatePublicIP(context.Background(), projectId).CreatePublicIPPayload(createpublicIpPayload).Execute()
+	publicIp, err := iaasClient.CreatePublicIP(context.Background(), projectId, region).CreatePublicIPPayload(createpublicIpPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `CreatePublicIP`: %v\n", err)
 	} else {
@@ -46,7 +45,7 @@ func main() {
 	updatepublicIpPayload := iaas.UpdatePublicIPPayload{
 		NetworkInterface: iaas.NewNullableString(nil),
 	}
-	publicIp, err = iaasClient.UpdatePublicIP(context.Background(), projectId, *publicIp.Id).UpdatePublicIPPayload(updatepublicIpPayload).Execute()
+	publicIp, err = iaasClient.UpdatePublicIP(context.Background(), projectId, region, *publicIp.Id).UpdatePublicIPPayload(updatepublicIpPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `UpdatePublicIP`: %v\n", err)
 	}
@@ -59,7 +58,7 @@ func main() {
 	}
 
 	// Delete a public IP
-	err = iaasClient.DeletePublicIP(context.Background(), projectId, *publicIp.Id).Execute()
+	err = iaasClient.DeletePublicIP(context.Background(), projectId, region, *publicIp.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `DeletepublicIp`: %v\n", err)
 	} else {
