@@ -24,9 +24,11 @@ import (
 func Test_iaas_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService AddNetworkToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/networks/{networkId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		networkIdValue := randString(36)
@@ -65,10 +67,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		networkId := networkIdValue
 
-		reqErr := apiClient.AddNetworkToServer(context.Background(), projectId, serverId, networkId).Execute()
+		reqErr := apiClient.AddNetworkToServer(context.Background(), projectId, region, serverId, networkId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -76,9 +79,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddNicToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/nics/{nicId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		nicIdValue := randString(36)
@@ -117,10 +122,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		nicId := nicIdValue
 
-		reqErr := apiClient.AddNicToServer(context.Background(), projectId, serverId, nicId).Execute()
+		reqErr := apiClient.AddNicToServer(context.Background(), projectId, region, serverId, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -128,9 +134,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddPublicIpToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/public-ips/{publicIpId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		publicIpIdValue := randString(36)
@@ -169,20 +177,144 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		publicIpId := publicIpIdValue
 
-		reqErr := apiClient.AddPublicIpToServer(context.Background(), projectId, serverId, publicIpId).Execute()
+		reqErr := apiClient.AddPublicIpToServer(context.Background(), projectId, region, serverId, publicIpId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
 		}
 	})
 
+	t.Run("Test DefaultApiService AddRoutesToRoutingTable", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}/routes"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RouteListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+		addRoutesToRoutingTablePayload := AddRoutesToRoutingTablePayload{}
+
+		resp, reqErr := apiClient.AddRoutesToRoutingTable(context.Background(), organizationId, areaId, region, routingTableId).AddRoutesToRoutingTablePayload(addRoutesToRoutingTablePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService AddRoutingTableToArea", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RoutingTable{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		addRoutingTableToAreaPayload := AddRoutingTableToAreaPayload{}
+
+		resp, reqErr := apiClient.AddRoutingTableToArea(context.Background(), organizationId, areaId, region).AddRoutingTableToAreaPayload(addRoutingTableToAreaPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService AddSecurityGroupToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/security-groups/{securityGroupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		securityGroupIdValue := randString(36)
@@ -221,10 +353,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		securityGroupId := securityGroupIdValue
 
-		reqErr := apiClient.AddSecurityGroupToServer(context.Background(), projectId, serverId, securityGroupId).Execute()
+		reqErr := apiClient.AddSecurityGroupToServer(context.Background(), projectId, region, serverId, securityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -232,9 +365,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddServiceAccountToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service-accounts/{serviceAccountMail}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		serviceAccountMailValue := randString(255)
@@ -276,10 +411,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		serviceAccountMail := serviceAccountMailValue
 
-		resp, reqErr := apiClient.AddServiceAccountToServer(context.Background(), projectId, serverId, serviceAccountMail).Execute()
+		resp, reqErr := apiClient.AddServiceAccountToServer(context.Background(), projectId, region, serverId, serviceAccountMail).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -290,9 +426,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService AddVolumeToServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		volumeIdValue := randString(36)
@@ -334,10 +472,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		volumeId := volumeIdValue
 
-		resp, reqErr := apiClient.AddVolumeToServer(context.Background(), projectId, serverId, volumeId).Execute()
+		resp, reqErr := apiClient.AddVolumeToServer(context.Background(), projectId, region, serverId, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -348,9 +487,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateAffinityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/affinity-groups"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -388,9 +529,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createAffinityGroupPayload := CreateAffinityGroupPayload{}
 
-		resp, reqErr := apiClient.CreateAffinityGroup(context.Background(), projectId).CreateAffinityGroupPayload(createAffinityGroupPayload).Execute()
+		resp, reqErr := apiClient.CreateAffinityGroup(context.Background(), projectId, region).CreateAffinityGroupPayload(createAffinityGroupPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -401,9 +543,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/backups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/backups"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -441,9 +585,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createBackupPayload := CreateBackupPayload{}
 
-		resp, reqErr := apiClient.CreateBackup(context.Background(), projectId).CreateBackupPayload(createBackupPayload).Execute()
+		resp, reqErr := apiClient.CreateBackup(context.Background(), projectId, region).CreateBackupPayload(createBackupPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -454,9 +599,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateImage", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -494,9 +641,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createImagePayload := CreateImagePayload{}
 
-		resp, reqErr := apiClient.CreateImage(context.Background(), projectId).CreateImagePayload(createImagePayload).Execute()
+		resp, reqErr := apiClient.CreateImage(context.Background(), projectId, region).CreateImagePayload(createImagePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -507,7 +655,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1/keypairs"
+		_apiUrlPath := "/v2/keypairs"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -556,10 +704,12 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService CreateNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks"
+	t.Run("Test DefaultApiService CreateManagementNetwork", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/management-network"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -597,9 +747,122 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
+		createManagementNetworkPayload := CreateManagementNetworkPayload{}
+
+		resp, reqErr := apiClient.CreateManagementNetwork(context.Background(), projectId, region).CreateManagementNetworkPayload(createManagementNetworkPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateManagementNetworkRoute", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/management-network/routes"
+		projectIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := ManagementRouteListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		region := regionValue
+		createManagementNetworkRoutePayload := CreateManagementNetworkRoutePayload{}
+
+		resp, reqErr := apiClient.CreateManagementNetworkRoute(context.Background(), projectId, region).CreateManagementNetworkRoutePayload(createManagementNetworkRoutePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateNetwork", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks"
+		projectIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := Network{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		region := regionValue
 		createNetworkPayload := CreateNetworkPayload{}
 
-		resp, reqErr := apiClient.CreateNetwork(context.Background(), projectId).CreateNetworkPayload(createNetworkPayload).Execute()
+		resp, reqErr := apiClient.CreateNetwork(context.Background(), projectId, region).CreateNetworkPayload(createNetworkPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -610,7 +873,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
@@ -663,11 +926,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRange", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/network-ranges"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -706,9 +971,69 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 		createNetworkAreaRangePayload := CreateNetworkAreaRangePayload{}
 
-		resp, reqErr := apiClient.CreateNetworkAreaRange(context.Background(), organizationId, areaId).CreateNetworkAreaRangePayload(createNetworkAreaRangePayload).Execute()
+		resp, reqErr := apiClient.CreateNetworkAreaRange(context.Background(), organizationId, areaId, region).CreateNetworkAreaRangePayload(createNetworkAreaRangePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService CreateNetworkAreaRegion", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RegionalArea{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		createNetworkAreaRegionPayload := CreateNetworkAreaRegionPayload{}
+
+		resp, reqErr := apiClient.CreateNetworkAreaRegion(context.Background(), organizationId, areaId, region).CreateNetworkAreaRegionPayload(createNetworkAreaRegionPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -719,11 +1044,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routes"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -762,9 +1089,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 		createNetworkAreaRoutePayload := CreateNetworkAreaRoutePayload{}
 
-		resp, reqErr := apiClient.CreateNetworkAreaRoute(context.Background(), organizationId, areaId).CreateNetworkAreaRoutePayload(createNetworkAreaRoutePayload).Execute()
+		resp, reqErr := apiClient.CreateNetworkAreaRoute(context.Background(), organizationId, areaId, region).CreateNetworkAreaRoutePayload(createNetworkAreaRoutePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -775,9 +1103,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateNic", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}/nics"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
@@ -817,10 +1147,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 		createNicPayload := CreateNicPayload{}
 
-		resp, reqErr := apiClient.CreateNic(context.Background(), projectId, networkId).CreateNicPayload(createNicPayload).Execute()
+		resp, reqErr := apiClient.CreateNic(context.Background(), projectId, region, networkId).CreateNicPayload(createNicPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -831,9 +1162,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreatePublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/public-ips"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/public-ips"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -871,9 +1204,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createPublicIPPayload := CreatePublicIPPayload{}
 
-		resp, reqErr := apiClient.CreatePublicIP(context.Background(), projectId).CreatePublicIPPayload(createPublicIPPayload).Execute()
+		resp, reqErr := apiClient.CreatePublicIP(context.Background(), projectId, region).CreatePublicIPPayload(createPublicIPPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -884,9 +1218,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -924,9 +1260,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createSecurityGroupPayload := CreateSecurityGroupPayload{}
 
-		resp, reqErr := apiClient.CreateSecurityGroup(context.Background(), projectId).CreateSecurityGroupPayload(createSecurityGroupPayload).Execute()
+		resp, reqErr := apiClient.CreateSecurityGroup(context.Background(), projectId, region).CreateSecurityGroupPayload(createSecurityGroupPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -937,9 +1274,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateSecurityGroupRule", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups/{securityGroupId}/rules"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
@@ -979,10 +1318,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		securityGroupId := securityGroupIdValue
 		createSecurityGroupRulePayload := CreateSecurityGroupRulePayload{}
 
-		resp, reqErr := apiClient.CreateSecurityGroupRule(context.Background(), projectId, securityGroupId).CreateSecurityGroupRulePayload(createSecurityGroupRulePayload).Execute()
+		resp, reqErr := apiClient.CreateSecurityGroupRule(context.Background(), projectId, region, securityGroupId).CreateSecurityGroupRulePayload(createSecurityGroupRulePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -993,9 +1333,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1033,9 +1375,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createServerPayload := CreateServerPayload{}
 
-		resp, reqErr := apiClient.CreateServer(context.Background(), projectId).CreateServerPayload(createServerPayload).Execute()
+		resp, reqErr := apiClient.CreateServer(context.Background(), projectId, region).CreateServerPayload(createServerPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1046,9 +1389,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/snapshots"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/snapshots"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1086,9 +1431,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createSnapshotPayload := CreateSnapshotPayload{}
 
-		resp, reqErr := apiClient.CreateSnapshot(context.Background(), projectId).CreateSnapshotPayload(createSnapshotPayload).Execute()
+		resp, reqErr := apiClient.CreateSnapshot(context.Background(), projectId, region).CreateSnapshotPayload(createSnapshotPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1099,9 +1445,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volumes"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volumes"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -1139,9 +1487,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		createVolumePayload := CreateVolumePayload{}
 
-		resp, reqErr := apiClient.CreateVolume(context.Background(), projectId).CreateVolumePayload(createVolumePayload).Execute()
+		resp, reqErr := apiClient.CreateVolume(context.Background(), projectId, region).CreateVolumePayload(createVolumePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1152,9 +1501,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeallocateServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/deallocate"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/deallocate"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -1191,9 +1542,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		reqErr := apiClient.DeallocateServer(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.DeallocateServer(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1201,9 +1553,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteAffinityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/affinity-groups/{affinityGroupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		affinityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
@@ -1240,9 +1594,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		affinityGroupId := affinityGroupIdValue
 
-		reqErr := apiClient.DeleteAffinityGroup(context.Background(), projectId, affinityGroupId).Execute()
+		reqErr := apiClient.DeleteAffinityGroup(context.Background(), projectId, region, affinityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1250,9 +1605,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/backups/{backupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
@@ -1289,9 +1646,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		backupId := backupIdValue
 
-		reqErr := apiClient.DeleteBackup(context.Background(), projectId, backupId).Execute()
+		reqErr := apiClient.DeleteBackup(context.Background(), projectId, region, backupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1299,9 +1657,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImage", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
@@ -1338,9 +1698,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 
-		reqErr := apiClient.DeleteImage(context.Background(), projectId, imageId).Execute()
+		reqErr := apiClient.DeleteImage(context.Background(), projectId, region, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1348,9 +1709,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}/share"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
@@ -1387,9 +1750,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 
-		reqErr := apiClient.DeleteImageShare(context.Background(), projectId, imageId).Execute()
+		reqErr := apiClient.DeleteImageShare(context.Background(), projectId, region, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1397,9 +1761,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteImageShareConsumer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}/share/{consumerProjectId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 		consumerProjectIdValue := randString(36)
@@ -1438,10 +1804,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 		consumerProjectId := consumerProjectIdValue
 
-		reqErr := apiClient.DeleteImageShareConsumer(context.Background(), projectId, imageId, consumerProjectId).Execute()
+		reqErr := apiClient.DeleteImageShareConsumer(context.Background(), projectId, region, imageId, consumerProjectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1449,7 +1816,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1/keypairs/{keypairName}"
+		_apiUrlPath := "/v2/keypairs/{keypairName}"
 		keypairNameValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
@@ -1494,10 +1861,64 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService DeleteNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}"
+	t.Run("Test DefaultApiService DeleteManagementNetworkRoute", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/management-network/routes/{routeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routeIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		region := regionValue
+		routeId := routeIdValue
+
+		reqErr := apiClient.DeleteManagementNetworkRoute(context.Background(), projectId, region, routeId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteNetwork", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}"
+		projectIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
@@ -1534,9 +1955,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 
-		reqErr := apiClient.DeleteNetwork(context.Background(), projectId, networkId).Execute()
+		reqErr := apiClient.DeleteNetwork(context.Background(), projectId, region, networkId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1544,7 +1966,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
@@ -1593,11 +2015,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRange", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/network-ranges/{networkRangeId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkRangeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
@@ -1635,9 +2059,62 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 		networkRangeId := networkRangeIdValue
 
-		reqErr := apiClient.DeleteNetworkAreaRange(context.Background(), organizationId, areaId, networkRangeId).Execute()
+		reqErr := apiClient.DeleteNetworkAreaRange(context.Background(), organizationId, areaId, region, networkRangeId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteNetworkAreaRegion", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+
+		reqErr := apiClient.DeleteNetworkAreaRegion(context.Background(), organizationId, areaId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1645,11 +2122,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routes/{routeId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		routeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
@@ -1687,9 +2166,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 		routeId := routeIdValue
 
-		reqErr := apiClient.DeleteNetworkAreaRoute(context.Background(), organizationId, areaId, routeId).Execute()
+		reqErr := apiClient.DeleteNetworkAreaRoute(context.Background(), organizationId, areaId, region, routeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1697,9 +2177,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteNic", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 		nicIdValue := randString(36)
@@ -1738,10 +2220,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 		nicId := nicIdValue
 
-		reqErr := apiClient.DeleteNic(context.Background(), projectId, networkId, nicId).Execute()
+		reqErr := apiClient.DeleteNic(context.Background(), projectId, region, networkId, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1749,9 +2232,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeletePublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/public-ips/{publicIpId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
@@ -1788,9 +2273,123 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		publicIpId := publicIpIdValue
 
-		reqErr := apiClient.DeletePublicIP(context.Background(), projectId, publicIpId).Execute()
+		reqErr := apiClient.DeletePublicIP(context.Background(), projectId, region, publicIpId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteRouteFromRoutingTable", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}/routes/{routeId}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+		routeIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+		routeId := routeIdValue
+
+		reqErr := apiClient.DeleteRouteFromRoutingTable(context.Background(), organizationId, areaId, region, routingTableId, routeId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+	})
+
+	t.Run("Test DefaultApiService DeleteRoutingTableFromArea", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+
+		reqErr := apiClient.DeleteRoutingTableFromArea(context.Background(), organizationId, areaId, region, routingTableId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1798,9 +2397,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups/{securityGroupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
@@ -1837,9 +2438,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		securityGroupId := securityGroupIdValue
 
-		reqErr := apiClient.DeleteSecurityGroup(context.Background(), projectId, securityGroupId).Execute()
+		reqErr := apiClient.DeleteSecurityGroup(context.Background(), projectId, region, securityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1847,9 +2449,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSecurityGroupRule", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 		securityGroupRuleIdValue := randString(36)
@@ -1888,10 +2492,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		securityGroupId := securityGroupIdValue
 		securityGroupRuleId := securityGroupRuleIdValue
 
-		reqErr := apiClient.DeleteSecurityGroupRule(context.Background(), projectId, securityGroupId, securityGroupRuleId).Execute()
+		reqErr := apiClient.DeleteSecurityGroupRule(context.Background(), projectId, region, securityGroupId, securityGroupRuleId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1899,9 +2504,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -1938,9 +2545,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		reqErr := apiClient.DeleteServer(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.DeleteServer(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1948,9 +2556,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/snapshots/{snapshotId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/snapshots/{snapshotId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		snapshotIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
@@ -1987,9 +2597,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		snapshotId := snapshotIdValue
 
-		reqErr := apiClient.DeleteSnapshot(context.Background(), projectId, snapshotId).Execute()
+		reqErr := apiClient.DeleteSnapshot(context.Background(), projectId, region, snapshotId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -1997,9 +2608,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volumes/{volumeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
@@ -2036,9 +2649,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		volumeId := volumeIdValue
 
-		reqErr := apiClient.DeleteVolume(context.Background(), projectId, volumeId).Execute()
+		reqErr := apiClient.DeleteVolume(context.Background(), projectId, region, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2046,9 +2660,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetAffinityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups/{affinityGroupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/affinity-groups/{affinityGroupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		affinityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"affinityGroupId"+"}", url.PathEscape(ParameterValueToString(affinityGroupIdValue, "affinityGroupId")), -1)
 
@@ -2088,9 +2704,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		affinityGroupId := affinityGroupIdValue
 
-		resp, reqErr := apiClient.GetAffinityGroup(context.Background(), projectId, affinityGroupId).Execute()
+		resp, reqErr := apiClient.GetAffinityGroup(context.Background(), projectId, region, affinityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2101,9 +2718,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetAttachedVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		volumeIdValue := randString(36)
@@ -2145,10 +2764,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		volumeId := volumeIdValue
 
-		resp, reqErr := apiClient.GetAttachedVolume(context.Background(), projectId, serverId, volumeId).Execute()
+		resp, reqErr := apiClient.GetAttachedVolume(context.Background(), projectId, region, serverId, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2159,9 +2779,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/backups/{backupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
@@ -2201,9 +2823,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		backupId := backupIdValue
 
-		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, backupId).Execute()
+		resp, reqErr := apiClient.GetBackup(context.Background(), projectId, region, backupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2214,9 +2837,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetImage", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
@@ -2256,9 +2881,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 
-		resp, reqErr := apiClient.GetImage(context.Background(), projectId, imageId).Execute()
+		resp, reqErr := apiClient.GetImage(context.Background(), projectId, region, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2269,9 +2895,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}/share"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
@@ -2311,9 +2939,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 
-		resp, reqErr := apiClient.GetImageShare(context.Background(), projectId, imageId).Execute()
+		resp, reqErr := apiClient.GetImageShare(context.Background(), projectId, region, imageId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2324,9 +2953,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetImageShareConsumer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share/{consumerProjectId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}/share/{consumerProjectId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 		consumerProjectIdValue := randString(36)
@@ -2368,10 +2999,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 		consumerProjectId := consumerProjectIdValue
 
-		resp, reqErr := apiClient.GetImageShareConsumer(context.Background(), projectId, imageId, consumerProjectId).Execute()
+		resp, reqErr := apiClient.GetImageShareConsumer(context.Background(), projectId, region, imageId, consumerProjectId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2382,7 +3014,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1/keypairs/{keypairName}"
+		_apiUrlPath := "/v2/keypairs/{keypairName}"
 		keypairNameValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
@@ -2434,9 +3066,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetMachineType", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/machine-types/{machineType}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/machine-types/{machineType}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		machineTypeValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"machineType"+"}", url.PathEscape(ParameterValueToString(machineTypeValue, "machineType")), -1)
 
@@ -2476,9 +3110,68 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		machineType := machineTypeValue
 
-		resp, reqErr := apiClient.GetMachineType(context.Background(), projectId, machineType).Execute()
+		resp, reqErr := apiClient.GetMachineType(context.Background(), projectId, region, machineType).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetManagementNetworkRoute", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/management-network/routes/{routeId}"
+		projectIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routeIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := ManagementRoute{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		region := regionValue
+		routeId := routeIdValue
+
+		resp, reqErr := apiClient.GetManagementNetworkRoute(context.Background(), projectId, region, routeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2489,9 +3182,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
@@ -2531,9 +3226,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 
-		resp, reqErr := apiClient.GetNetwork(context.Background(), projectId, networkId).Execute()
+		resp, reqErr := apiClient.GetNetwork(context.Background(), projectId, region, networkId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2544,7 +3240,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
@@ -2599,11 +3295,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetworkAreaRange", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges/{networkRangeId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/network-ranges/{networkRangeId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkRangeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkRangeId"+"}", url.PathEscape(ParameterValueToString(networkRangeIdValue, "networkRangeId")), -1)
 
@@ -2644,9 +3342,68 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 		networkRangeId := networkRangeIdValue
 
-		resp, reqErr := apiClient.GetNetworkAreaRange(context.Background(), organizationId, areaId, networkRangeId).Execute()
+		resp, reqErr := apiClient.GetNetworkAreaRange(context.Background(), organizationId, areaId, region, networkRangeId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetNetworkAreaRegion", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RegionalArea{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+
+		resp, reqErr := apiClient.GetNetworkAreaRegion(context.Background(), organizationId, areaId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2657,11 +3414,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routes/{routeId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		routeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
@@ -2702,9 +3461,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 		routeId := routeIdValue
 
-		resp, reqErr := apiClient.GetNetworkAreaRoute(context.Background(), organizationId, areaId, routeId).Execute()
+		resp, reqErr := apiClient.GetNetworkAreaRoute(context.Background(), organizationId, areaId, region, routeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2715,9 +3475,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetNic", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 		nicIdValue := randString(36)
@@ -2759,10 +3521,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 		nicId := nicIdValue
 
-		resp, reqErr := apiClient.GetNic(context.Background(), projectId, networkId, nicId).Execute()
+		resp, reqErr := apiClient.GetNic(context.Background(), projectId, region, networkId, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2773,7 +3536,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetOrganizationRequest", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/requests/{requestId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/requests/{requestId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		requestIdValue := randString(36)
@@ -2828,7 +3591,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetProjectDetails", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}"
+		_apiUrlPath := "/v2/projects/{projectId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 
@@ -2880,9 +3643,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetProjectNIC", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/nics/{nicId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/nics/{nicId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		nicIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"nicId"+"}", url.PathEscape(ParameterValueToString(nicIdValue, "nicId")), -1)
 
@@ -2922,9 +3687,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		nicId := nicIdValue
 
-		resp, reqErr := apiClient.GetProjectNIC(context.Background(), projectId, nicId).Execute()
+		resp, reqErr := apiClient.GetProjectNIC(context.Background(), projectId, region, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2935,9 +3701,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetProjectRequest", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/requests/{requestId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/requests/{requestId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		requestIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"requestId"+"}", url.PathEscape(ParameterValueToString(requestIdValue, "requestId")), -1)
 
@@ -2977,9 +3745,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		requestId := requestIdValue
 
-		resp, reqErr := apiClient.GetProjectRequest(context.Background(), projectId, requestId).Execute()
+		resp, reqErr := apiClient.GetProjectRequest(context.Background(), projectId, region, requestId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -2990,9 +3759,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetPublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/public-ips/{publicIpId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
@@ -3032,9 +3803,135 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		publicIpId := publicIpIdValue
 
-		resp, reqErr := apiClient.GetPublicIP(context.Background(), projectId, publicIpId).Execute()
+		resp, reqErr := apiClient.GetPublicIP(context.Background(), projectId, region, publicIpId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetRouteOfRoutingTable", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}/routes/{routeId}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+		routeIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := Route{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+		routeId := routeIdValue
+
+		resp, reqErr := apiClient.GetRouteOfRoutingTable(context.Background(), organizationId, areaId, region, routingTableId, routeId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService GetRoutingTableOfArea", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RoutingTable{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+
+		resp, reqErr := apiClient.GetRoutingTableOfArea(context.Background(), organizationId, areaId, region, routingTableId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3045,9 +3942,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups/{securityGroupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
@@ -3087,9 +3986,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		securityGroupId := securityGroupIdValue
 
-		resp, reqErr := apiClient.GetSecurityGroup(context.Background(), projectId, securityGroupId).Execute()
+		resp, reqErr := apiClient.GetSecurityGroup(context.Background(), projectId, region, securityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3100,9 +4000,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetSecurityGroupRule", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups/{securityGroupId}/rules/{securityGroupRuleId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 		securityGroupRuleIdValue := randString(36)
@@ -3144,10 +4046,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		securityGroupId := securityGroupIdValue
 		securityGroupRuleId := securityGroupRuleIdValue
 
-		resp, reqErr := apiClient.GetSecurityGroupRule(context.Background(), projectId, securityGroupId, securityGroupRuleId).Execute()
+		resp, reqErr := apiClient.GetSecurityGroupRule(context.Background(), projectId, region, securityGroupId, securityGroupRuleId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3158,9 +4061,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -3200,9 +4105,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		resp, reqErr := apiClient.GetServer(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.GetServer(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3213,9 +4119,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServerConsole", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/console"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/console"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -3255,9 +4163,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		resp, reqErr := apiClient.GetServerConsole(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.GetServerConsole(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3268,9 +4177,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetServerLog", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/log"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/log"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -3310,9 +4221,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		resp, reqErr := apiClient.GetServerLog(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.GetServerLog(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3323,9 +4235,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/snapshots/{snapshotId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/snapshots/{snapshotId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		snapshotIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
@@ -3365,9 +4279,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		snapshotId := snapshotIdValue
 
-		resp, reqErr := apiClient.GetSnapshot(context.Background(), projectId, snapshotId).Execute()
+		resp, reqErr := apiClient.GetSnapshot(context.Background(), projectId, region, snapshotId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3378,9 +4293,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volumes/{volumeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
@@ -3420,9 +4337,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		volumeId := volumeIdValue
 
-		resp, reqErr := apiClient.GetVolume(context.Background(), projectId, volumeId).Execute()
+		resp, reqErr := apiClient.GetVolume(context.Background(), projectId, region, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3433,9 +4351,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetVolumePerformanceClass", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volume-performance-classes/{volumePerformanceClass}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volume-performance-classes/{volumePerformanceClass}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		volumePerformanceClassValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumePerformanceClass"+"}", url.PathEscape(ParameterValueToString(volumePerformanceClassValue, "volumePerformanceClass")), -1)
 
@@ -3475,9 +4395,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		volumePerformanceClass := volumePerformanceClassValue
 
-		resp, reqErr := apiClient.GetVolumePerformanceClass(context.Background(), projectId, volumePerformanceClass).Execute()
+		resp, reqErr := apiClient.GetVolumePerformanceClass(context.Background(), projectId, region, volumePerformanceClass).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3488,9 +4409,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAffinityGroups", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/affinity-groups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/affinity-groups"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3528,8 +4451,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListAffinityGroups(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListAffinityGroups(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3540,9 +4464,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAttachedVolumes", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/volume-attachments"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -3582,9 +4508,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		resp, reqErr := apiClient.ListAttachedVolumes(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.ListAttachedVolumes(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3595,7 +4522,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAvailabilityZones", func(t *testing.T) {
-		_apiUrlPath := "/v1/availability-zones"
+		_apiUrlPath := "/v2/regions/{region}/availability-zones"
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3632,7 +4561,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 			t.Fatalf("creating API client: %v", err)
 		}
 
-		resp, reqErr := apiClient.ListAvailabilityZones(context.Background()).Execute()
+		region := regionValue
+
+		resp, reqErr := apiClient.ListAvailabilityZones(context.Background(), region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3643,9 +4574,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListBackups", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/backups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/backups"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3683,8 +4616,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListBackups(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListBackups(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3695,9 +4629,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListImages", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3735,8 +4671,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListImages(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListImages(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3747,7 +4684,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListKeyPairs", func(t *testing.T) {
-		_apiUrlPath := "/v1/keypairs"
+		_apiUrlPath := "/v2/keypairs"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3795,9 +4732,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListMachineTypes", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/machine-types"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/machine-types"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3835,8 +4774,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListMachineTypes(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListMachineTypes(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3847,7 +4787,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaProjects", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/projects"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/projects"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
@@ -3902,11 +4842,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaRanges", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/network-ranges"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/network-ranges"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -3945,8 +4887,64 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListNetworkAreaRanges(context.Background(), organizationId, areaId).Execute()
+		resp, reqErr := apiClient.ListNetworkAreaRanges(context.Background(), organizationId, areaId, region).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListNetworkAreaRegions", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RegionalAreaListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+
+		resp, reqErr := apiClient.ListNetworkAreaRegions(context.Background(), organizationId, areaId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -3957,11 +4955,13 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreaRoutes", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routes"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4000,8 +5000,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListNetworkAreaRoutes(context.Background(), organizationId, areaId).Execute()
+		resp, reqErr := apiClient.ListNetworkAreaRoutes(context.Background(), organizationId, areaId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4012,7 +5013,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworkAreas", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 
@@ -4064,9 +5065,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNetworks", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4104,8 +5107,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListNetworks(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListNetworks(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4116,9 +5120,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListNics", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}/nics"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
@@ -4158,9 +5164,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 
-		resp, reqErr := apiClient.ListNics(context.Background(), projectId, networkId).Execute()
+		resp, reqErr := apiClient.ListNics(context.Background(), projectId, region, networkId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4171,9 +5178,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListProjectNICs", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/nics"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/nics"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4211,8 +5220,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListProjectNICs(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListProjectNICs(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4223,7 +5233,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListPublicIPRanges", func(t *testing.T) {
-		_apiUrlPath := "/v1/networks/public-ip-ranges"
+		_apiUrlPath := "/v2/networks/public-ip-ranges"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4271,9 +5281,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListPublicIPs", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/public-ips"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/public-ips"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4311,8 +5323,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListPublicIPs(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListPublicIPs(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4323,9 +5336,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListQuotas", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/quotas"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/quotas"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4363,8 +5378,183 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListQuotas(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListQuotas(context.Background(), projectId, region).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListRoutesOfManagementNetwork", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/management-network/routes"
+		projectIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := ManagementRouteListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		region := regionValue
+
+		resp, reqErr := apiClient.ListRoutesOfManagementNetwork(context.Background(), projectId, region).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListRoutesOfRoutingTable", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}/routes"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RouteListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+
+		resp, reqErr := apiClient.ListRoutesOfRoutingTable(context.Background(), organizationId, areaId, region, routingTableId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListRoutingTablesOfArea", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RoutingTableListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+
+		resp, reqErr := apiClient.ListRoutingTablesOfArea(context.Background(), organizationId, areaId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4375,9 +5565,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListSecurityGroupRules", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}/rules"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups/{securityGroupId}/rules"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
@@ -4417,9 +5609,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		securityGroupId := securityGroupIdValue
 
-		resp, reqErr := apiClient.ListSecurityGroupRules(context.Background(), projectId, securityGroupId).Execute()
+		resp, reqErr := apiClient.ListSecurityGroupRules(context.Background(), projectId, region, securityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4430,9 +5623,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListSecurityGroups", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4470,8 +5665,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListSecurityGroups(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListSecurityGroups(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4481,10 +5677,12 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListServerNics", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/nics"
+	t.Run("Test DefaultApiService ListServerNICs", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/nics"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -4524,9 +5722,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		resp, reqErr := apiClient.ListServerNics(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.ListServerNICs(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4537,9 +5736,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListServerServiceAccounts", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/service-accounts"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service-accounts"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -4579,9 +5780,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		resp, reqErr := apiClient.ListServerServiceAccounts(context.Background(), projectId, serverId).Execute()
+		resp, reqErr := apiClient.ListServerServiceAccounts(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4592,9 +5794,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListServers", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4632,8 +5836,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListServers(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListServers(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4643,10 +5848,12 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListSnapshots", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/snapshots"
+	t.Run("Test DefaultApiService ListSnapshotsInProject", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/snapshots"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4684,8 +5891,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListSnapshots(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListSnapshotsInProject(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4696,9 +5904,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListVolumePerformanceClasses", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volume-performance-classes"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volume-performance-classes"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4736,8 +5946,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListVolumePerformanceClasses(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListVolumePerformanceClasses(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4748,9 +5959,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListVolumes", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volumes"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volumes"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -4788,8 +6001,9 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 
-		resp, reqErr := apiClient.ListVolumes(context.Background(), projectId).Execute()
+		resp, reqErr := apiClient.ListVolumes(context.Background(), projectId, region).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4800,9 +6014,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateNetwork", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 
@@ -4839,10 +6055,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 		partialUpdateNetworkPayload := PartialUpdateNetworkPayload{}
 
-		reqErr := apiClient.PartialUpdateNetwork(context.Background(), projectId, networkId).PartialUpdateNetworkPayload(partialUpdateNetworkPayload).Execute()
+		reqErr := apiClient.PartialUpdateNetwork(context.Background(), projectId, region, networkId).PartialUpdateNetworkPayload(partialUpdateNetworkPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4850,7 +6067,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService PartialUpdateNetworkArea", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}"
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
@@ -4906,9 +6123,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RebootServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/reboot"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/reboot"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -4945,9 +6164,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		reqErr := apiClient.RebootServer(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.RebootServer(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -4955,9 +6175,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveNetworkFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/networks/{networkId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/networks/{networkId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		networkIdValue := randString(36)
@@ -4996,10 +6218,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		networkId := networkIdValue
 
-		reqErr := apiClient.RemoveNetworkFromServer(context.Background(), projectId, serverId, networkId).Execute()
+		reqErr := apiClient.RemoveNetworkFromServer(context.Background(), projectId, region, serverId, networkId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5007,9 +6230,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveNicFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/nics/{nicId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/nics/{nicId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		nicIdValue := randString(36)
@@ -5048,10 +6273,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		nicId := nicIdValue
 
-		reqErr := apiClient.RemoveNicFromServer(context.Background(), projectId, serverId, nicId).Execute()
+		reqErr := apiClient.RemoveNicFromServer(context.Background(), projectId, region, serverId, nicId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5059,9 +6285,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemovePublicIpFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/public-ips/{publicIpId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		publicIpIdValue := randString(36)
@@ -5100,10 +6328,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		publicIpId := publicIpIdValue
 
-		reqErr := apiClient.RemovePublicIpFromServer(context.Background(), projectId, serverId, publicIpId).Execute()
+		reqErr := apiClient.RemovePublicIpFromServer(context.Background(), projectId, region, serverId, publicIpId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5111,9 +6340,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveSecurityGroupFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/security-groups/{securityGroupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		securityGroupIdValue := randString(36)
@@ -5152,10 +6383,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		securityGroupId := securityGroupIdValue
 
-		reqErr := apiClient.RemoveSecurityGroupFromServer(context.Background(), projectId, serverId, securityGroupId).Execute()
+		reqErr := apiClient.RemoveSecurityGroupFromServer(context.Background(), projectId, region, serverId, securityGroupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5163,9 +6395,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveServiceAccountFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/service-accounts/{serviceAccountMail}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/service-accounts/{serviceAccountMail}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		serviceAccountMailValue := randString(255)
@@ -5207,10 +6441,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		serviceAccountMail := serviceAccountMailValue
 
-		resp, reqErr := apiClient.RemoveServiceAccountFromServer(context.Background(), projectId, serverId, serviceAccountMail).Execute()
+		resp, reqErr := apiClient.RemoveServiceAccountFromServer(context.Background(), projectId, region, serverId, serviceAccountMail).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5221,9 +6456,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RemoveVolumeFromServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		volumeIdValue := randString(36)
@@ -5262,10 +6499,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		volumeId := volumeIdValue
 
-		reqErr := apiClient.RemoveVolumeFromServer(context.Background(), projectId, serverId, volumeId).Execute()
+		reqErr := apiClient.RemoveVolumeFromServer(context.Background(), projectId, region, serverId, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5273,9 +6511,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RescueServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/rescue"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/rescue"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -5312,10 +6552,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		rescueServerPayload := RescueServerPayload{}
 
-		reqErr := apiClient.RescueServer(context.Background(), projectId, serverId).RescueServerPayload(rescueServerPayload).Execute()
+		reqErr := apiClient.RescueServer(context.Background(), projectId, region, serverId).RescueServerPayload(rescueServerPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5323,9 +6564,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResizeServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/resize"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/resize"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -5362,10 +6605,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		resizeServerPayload := ResizeServerPayload{}
 
-		reqErr := apiClient.ResizeServer(context.Background(), projectId, serverId).ResizeServerPayload(resizeServerPayload).Execute()
+		reqErr := apiClient.ResizeServer(context.Background(), projectId, region, serverId).ResizeServerPayload(resizeServerPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5373,9 +6617,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ResizeVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}/resize"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volumes/{volumeId}/resize"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
@@ -5412,9 +6658,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		volumeId := volumeIdValue
 
-		reqErr := apiClient.ResizeVolume(context.Background(), projectId, volumeId).Execute()
+		reqErr := apiClient.ResizeVolume(context.Background(), projectId, region, volumeId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5422,9 +6669,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService RestoreBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}/restore"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/backups/{backupId}/restore"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
@@ -5461,9 +6710,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		backupId := backupIdValue
 
-		reqErr := apiClient.RestoreBackup(context.Background(), projectId, backupId).Execute()
+		reqErr := apiClient.RestoreBackup(context.Background(), projectId, region, backupId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5471,9 +6721,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService SetImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}/share"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
@@ -5513,10 +6765,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 		setImageSharePayload := SetImageSharePayload{}
 
-		resp, reqErr := apiClient.SetImageShare(context.Background(), projectId, imageId).SetImageSharePayload(setImageSharePayload).Execute()
+		resp, reqErr := apiClient.SetImageShare(context.Background(), projectId, region, imageId).SetImageSharePayload(setImageSharePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5527,9 +6780,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService StartServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/start"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/start"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -5566,9 +6821,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		reqErr := apiClient.StartServer(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.StartServer(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5576,9 +6832,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService StopServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/stop"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/stop"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -5615,9 +6873,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		reqErr := apiClient.StopServer(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.StopServer(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5625,9 +6884,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UnrescueServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/unrescue"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/unrescue"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -5664,9 +6925,10 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 
-		reqErr := apiClient.UnrescueServer(context.Background(), projectId, serverId).Execute()
+		reqErr := apiClient.UnrescueServer(context.Background(), projectId, region, serverId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5674,9 +6936,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateAttachedVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}/volume-attachments/{volumeId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}/volume-attachments/{volumeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 		volumeIdValue := randString(36)
@@ -5718,11 +6982,12 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		volumeId := volumeIdValue
 		updateAttachedVolumePayload := UpdateAttachedVolumePayload{}
 
-		resp, reqErr := apiClient.UpdateAttachedVolume(context.Background(), projectId, serverId, volumeId).UpdateAttachedVolumePayload(updateAttachedVolumePayload).Execute()
+		resp, reqErr := apiClient.UpdateAttachedVolume(context.Background(), projectId, region, serverId, volumeId).UpdateAttachedVolumePayload(updateAttachedVolumePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5733,9 +6998,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateBackup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/backups/{backupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/backups/{backupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		backupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"backupId"+"}", url.PathEscape(ParameterValueToString(backupIdValue, "backupId")), -1)
 
@@ -5775,10 +7042,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		backupId := backupIdValue
 		updateBackupPayload := UpdateBackupPayload{}
 
-		resp, reqErr := apiClient.UpdateBackup(context.Background(), projectId, backupId).UpdateBackupPayload(updateBackupPayload).Execute()
+		resp, reqErr := apiClient.UpdateBackup(context.Background(), projectId, region, backupId).UpdateBackupPayload(updateBackupPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5789,9 +7057,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateImage", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
@@ -5831,120 +7101,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 		updateImagePayload := UpdateImagePayload{}
 
-		resp, reqErr := apiClient.UpdateImage(context.Background(), projectId, imageId).UpdateImagePayload(updateImagePayload).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if IsNil(resp) {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService UpdateImageScopeLocal", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/publish"
-		projectIdValue := randString(36)
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := randString(36)
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := Image{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for iaas_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := projectIdValue
-		imageId := imageIdValue
-
-		resp, reqErr := apiClient.UpdateImageScopeLocal(context.Background(), projectId, imageId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if IsNil(resp) {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService UpdateImageScopePublic", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/publish"
-		projectIdValue := randString(36)
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		imageIdValue := randString(36)
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := Image{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for iaas_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := projectIdValue
-		imageId := imageIdValue
-
-		resp, reqErr := apiClient.UpdateImageScopePublic(context.Background(), projectId, imageId).Execute()
+		resp, reqErr := apiClient.UpdateImage(context.Background(), projectId, region, imageId).UpdateImagePayload(updateImagePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -5955,9 +7116,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateImageShare", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/images/{imageId}/share"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/images/{imageId}/share"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		imageIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"imageId"+"}", url.PathEscape(ParameterValueToString(imageIdValue, "imageId")), -1)
 
@@ -5997,10 +7160,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		imageId := imageIdValue
 		updateImageSharePayload := UpdateImageSharePayload{}
 
-		resp, reqErr := apiClient.UpdateImageShare(context.Background(), projectId, imageId).UpdateImageSharePayload(updateImageSharePayload).Execute()
+		resp, reqErr := apiClient.UpdateImageShare(context.Background(), projectId, region, imageId).UpdateImageSharePayload(updateImageSharePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -6011,7 +7175,7 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateKeyPair", func(t *testing.T) {
-		_apiUrlPath := "/v1/keypairs/{keypairName}"
+		_apiUrlPath := "/v2/keypairs/{keypairName}"
 		keypairNameValue := randString(127)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"keypairName"+"}", url.PathEscape(ParameterValueToString(keypairNameValue, "keypairName")), -1)
 
@@ -6063,12 +7227,132 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService UpdateNetworkAreaRoute", func(t *testing.T) {
-		_apiUrlPath := "/v1/organizations/{organizationId}/network-areas/{areaId}/routes/{routeId}"
+	t.Run("Test DefaultApiService UpdateManagementNetworkRoute", func(t *testing.T) {
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/management-network/routes/{routeId}"
+		projectIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routeIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := ManagementRoute{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		region := regionValue
+		routeId := routeIdValue
+		updateManagementNetworkRoutePayload := UpdateManagementNetworkRoutePayload{}
+
+		resp, reqErr := apiClient.UpdateManagementNetworkRoute(context.Background(), projectId, region, routeId).UpdateManagementNetworkRoutePayload(updateManagementNetworkRoutePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateNetworkAreaRegion", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}"
 		organizationIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
 		areaIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RegionalArea{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		updateNetworkAreaRegionPayload := UpdateNetworkAreaRegionPayload{}
+
+		resp, reqErr := apiClient.UpdateNetworkAreaRegion(context.Background(), organizationId, areaId, region).UpdateNetworkAreaRegionPayload(updateNetworkAreaRegionPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateNetworkAreaRoute", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routes/{routeId}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		routeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
 
@@ -6109,10 +7393,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 
 		organizationId := organizationIdValue
 		areaId := areaIdValue
+		region := regionValue
 		routeId := routeIdValue
 		updateNetworkAreaRoutePayload := UpdateNetworkAreaRoutePayload{}
 
-		resp, reqErr := apiClient.UpdateNetworkAreaRoute(context.Background(), organizationId, areaId, routeId).UpdateNetworkAreaRoutePayload(updateNetworkAreaRoutePayload).Execute()
+		resp, reqErr := apiClient.UpdateNetworkAreaRoute(context.Background(), organizationId, areaId, region, routeId).UpdateNetworkAreaRoutePayload(updateNetworkAreaRoutePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -6123,9 +7408,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateNic", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/networks/{networkId}/nics/{nicId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/networks/{networkId}/nics/{nicId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		networkIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"networkId"+"}", url.PathEscape(ParameterValueToString(networkIdValue, "networkId")), -1)
 		nicIdValue := randString(36)
@@ -6167,11 +7454,12 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		networkId := networkIdValue
 		nicId := nicIdValue
 		updateNicPayload := UpdateNicPayload{}
 
-		resp, reqErr := apiClient.UpdateNic(context.Background(), projectId, networkId, nicId).UpdateNicPayload(updateNicPayload).Execute()
+		resp, reqErr := apiClient.UpdateNic(context.Background(), projectId, region, networkId, nicId).UpdateNicPayload(updateNicPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -6182,9 +7470,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdatePublicIP", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/public-ips/{publicIpId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/public-ips/{publicIpId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		publicIpIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"publicIpId"+"}", url.PathEscape(ParameterValueToString(publicIpIdValue, "publicIpId")), -1)
 
@@ -6224,10 +7514,138 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		publicIpId := publicIpIdValue
 		updatePublicIPPayload := UpdatePublicIPPayload{}
 
-		resp, reqErr := apiClient.UpdatePublicIP(context.Background(), projectId, publicIpId).UpdatePublicIPPayload(updatePublicIPPayload).Execute()
+		resp, reqErr := apiClient.UpdatePublicIP(context.Background(), projectId, region, publicIpId).UpdatePublicIPPayload(updatePublicIPPayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateRouteOfRoutingTable", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}/routes/{routeId}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+		routeIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routeId"+"}", url.PathEscape(ParameterValueToString(routeIdValue, "routeId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := Route{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+		routeId := routeIdValue
+		updateRouteOfRoutingTablePayload := UpdateRouteOfRoutingTablePayload{}
+
+		resp, reqErr := apiClient.UpdateRouteOfRoutingTable(context.Background(), organizationId, areaId, region, routingTableId, routeId).UpdateRouteOfRoutingTablePayload(updateRouteOfRoutingTablePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService UpdateRoutingTableOfArea", func(t *testing.T) {
+		_apiUrlPath := "/v2/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := RoutingTable{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaas_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+		updateRoutingTableOfAreaPayload := UpdateRoutingTableOfAreaPayload{}
+
+		resp, reqErr := apiClient.UpdateRoutingTableOfArea(context.Background(), organizationId, areaId, region, routingTableId).UpdateRoutingTableOfAreaPayload(updateRoutingTableOfAreaPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -6238,9 +7656,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateSecurityGroup", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/security-groups/{securityGroupId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/security-groups/{securityGroupId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		securityGroupIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"securityGroupId"+"}", url.PathEscape(ParameterValueToString(securityGroupIdValue, "securityGroupId")), -1)
 
@@ -6280,10 +7700,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		securityGroupId := securityGroupIdValue
 		updateSecurityGroupPayload := UpdateSecurityGroupPayload{}
 
-		resp, reqErr := apiClient.UpdateSecurityGroup(context.Background(), projectId, securityGroupId).UpdateSecurityGroupPayload(updateSecurityGroupPayload).Execute()
+		resp, reqErr := apiClient.UpdateSecurityGroup(context.Background(), projectId, region, securityGroupId).UpdateSecurityGroupPayload(updateSecurityGroupPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -6294,9 +7715,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateServer", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/servers/{serverId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/servers/{serverId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		serverIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"serverId"+"}", url.PathEscape(ParameterValueToString(serverIdValue, "serverId")), -1)
 
@@ -6336,10 +7759,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		serverId := serverIdValue
 		updateServerPayload := UpdateServerPayload{}
 
-		resp, reqErr := apiClient.UpdateServer(context.Background(), projectId, serverId).UpdateServerPayload(updateServerPayload).Execute()
+		resp, reqErr := apiClient.UpdateServer(context.Background(), projectId, region, serverId).UpdateServerPayload(updateServerPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -6350,9 +7774,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/snapshots/{snapshotId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/snapshots/{snapshotId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		snapshotIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"snapshotId"+"}", url.PathEscape(ParameterValueToString(snapshotIdValue, "snapshotId")), -1)
 
@@ -6392,10 +7818,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		snapshotId := snapshotIdValue
 		updateSnapshotPayload := UpdateSnapshotPayload{}
 
-		resp, reqErr := apiClient.UpdateSnapshot(context.Background(), projectId, snapshotId).UpdateSnapshotPayload(updateSnapshotPayload).Execute()
+		resp, reqErr := apiClient.UpdateSnapshot(context.Background(), projectId, region, snapshotId).UpdateSnapshotPayload(updateSnapshotPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -6406,9 +7833,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateVolume", func(t *testing.T) {
-		_apiUrlPath := "/v1/projects/{projectId}/volumes/{volumeId}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/volumes/{volumeId}"
 		projectIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		volumeIdValue := randString(36)
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(volumeIdValue, "volumeId")), -1)
 
@@ -6448,10 +7877,11 @@ func Test_iaas_DefaultApiService(t *testing.T) {
 		}
 
 		projectId := projectIdValue
+		region := regionValue
 		volumeId := volumeIdValue
 		updateVolumePayload := UpdateVolumePayload{}
 
-		resp, reqErr := apiClient.UpdateVolume(context.Background(), projectId, volumeId).UpdateVolumePayload(updateVolumePayload).Execute()
+		resp, reqErr := apiClient.UpdateVolume(context.Background(), projectId, region, volumeId).UpdateVolumePayload(updateVolumePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
