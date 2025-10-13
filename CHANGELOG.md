@@ -1,4 +1,4 @@
-## Release (2025-xx-xx)
+## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
   - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
 - `cdn`: [v1.6.0](services/cdn/CHANGELOG.md#v160)
