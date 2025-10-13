@@ -165,9 +165,9 @@ func setPartialUpdateInstancePayloadGetReplicasAttributeType(arg *PartialUpdateI
 */
 
 // isModel
-type PartialUpdateInstancePayloadGetStorageAttributeType = *Storage
-type PartialUpdateInstancePayloadGetStorageArgType = Storage
-type PartialUpdateInstancePayloadGetStorageRetType = Storage
+type PartialUpdateInstancePayloadGetStorageAttributeType = *StorageUpdate
+type PartialUpdateInstancePayloadGetStorageArgType = StorageUpdate
+type PartialUpdateInstancePayloadGetStorageRetType = StorageUpdate
 
 func getPartialUpdateInstancePayloadGetStorageAttributeTypeOk(arg PartialUpdateInstancePayloadGetStorageAttributeType) (ret PartialUpdateInstancePayloadGetStorageRetType, ok bool) {
 	if arg == nil {
@@ -412,7 +412,7 @@ func (o *PartialUpdateInstancePayload) HasStorage() bool {
 	return ok
 }
 
-// SetStorage gets a reference to the given Storage and assigns it to the Storage field.
+// SetStorage gets a reference to the given StorageUpdate and assigns it to the Storage field.
 func (o *PartialUpdateInstancePayload) SetStorage(v PartialUpdateInstancePayloadGetStorageRetType) {
 	setPartialUpdateInstancePayloadGetStorageAttributeType(&o.Storage, v)
 }
