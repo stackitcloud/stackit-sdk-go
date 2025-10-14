@@ -4,6 +4,14 @@
 - `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
   - **Breaking Change:** The attribute type for `PartialUpdateInstancePayload` and `UpdateInstancePayload` changed from `Storage` to `StorageUpdate`.
   - **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
+- `iaas`: [v1.0.0](services/iaas/CHANGELOG.md#v100)
+  - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - **Feature:** Add new methods to manage routing tables: `AddRoutingTableToArea`, `DeleteRoutingTableFromArea`, `GetRoutingTableOfArea`, `ListRoutingTablesOfArea` and `UpdateRoutingTableOfArea`
+  - **Feature:** Add new methods to manage routes in routing tables: `AddRoutesToRoutingTable`, `DeleteRouteFromRoutingTable`, `GetRouteOfRoutingTable`, `ListRoutesOfRoutingTable` and `UpdateRouteOfRoutingTable`
+  - **Breaking Change:** Add new method to manage network area regions: `CreateNetworkAreaRegion`, `DeleteNetworkAreaRegion`, `GetNetworkAreaRegion`, `ListNetworkAreaRegions` and `UpdateNetworkAreaRegion`
+  - **Feature:** Add new wait handler for network area region: `CreateNetworkAreaRegionWaitHandler` and `DeleteRegionalNetworkAreaConfigurationWaitHandler`
+  - **Deprecated:** Deprecated wait handler and will be removed after April 2026: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
+  - Migrate iaas examples to the new iaas methods
 
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
