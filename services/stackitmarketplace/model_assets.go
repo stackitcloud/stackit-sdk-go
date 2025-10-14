@@ -18,13 +18,53 @@ import (
 var _ MappedNullable = &Assets{}
 
 /*
+	types and functions for endUserLicenseAgreement
+*/
+
+// isModel
+type AssetsGetEndUserLicenseAgreementAttributeType = *AssetsEndUserLicenseAgreement
+type AssetsGetEndUserLicenseAgreementArgType = AssetsEndUserLicenseAgreement
+type AssetsGetEndUserLicenseAgreementRetType = AssetsEndUserLicenseAgreement
+
+func getAssetsGetEndUserLicenseAgreementAttributeTypeOk(arg AssetsGetEndUserLicenseAgreementAttributeType) (ret AssetsGetEndUserLicenseAgreementRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAssetsGetEndUserLicenseAgreementAttributeType(arg *AssetsGetEndUserLicenseAgreementAttributeType, val AssetsGetEndUserLicenseAgreementRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for productDescription
+*/
+
+// isModel
+type AssetsGetProductDescriptionAttributeType = *AssetsProductDescription
+type AssetsGetProductDescriptionArgType = AssetsProductDescription
+type AssetsGetProductDescriptionRetType = AssetsProductDescription
+
+func getAssetsGetProductDescriptionAttributeTypeOk(arg AssetsGetProductDescriptionAttributeType) (ret AssetsGetProductDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAssetsGetProductDescriptionAttributeType(arg *AssetsGetProductDescriptionAttributeType, val AssetsGetProductDescriptionRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for serviceCertificate
 */
 
 // isModel
-type AssetsGetServiceCertificateAttributeType = *ServiceCertificate
-type AssetsGetServiceCertificateArgType = ServiceCertificate
-type AssetsGetServiceCertificateRetType = ServiceCertificate
+type AssetsGetServiceCertificateAttributeType = *AssetsServiceCertificate
+type AssetsGetServiceCertificateArgType = AssetsServiceCertificate
+type AssetsGetServiceCertificateRetType = AssetsServiceCertificate
 
 func getAssetsGetServiceCertificateAttributeTypeOk(arg AssetsGetServiceCertificateAttributeType) (ret AssetsGetServiceCertificateRetType, ok bool) {
 	if arg == nil {
@@ -37,9 +77,32 @@ func setAssetsGetServiceCertificateAttributeType(arg *AssetsGetServiceCertificat
 	*arg = &val
 }
 
+/*
+	types and functions for serviceLevelAgreement
+*/
+
+// isModel
+type AssetsGetServiceLevelAgreementAttributeType = *AssetsServiceLevelAgreement
+type AssetsGetServiceLevelAgreementArgType = AssetsServiceLevelAgreement
+type AssetsGetServiceLevelAgreementRetType = AssetsServiceLevelAgreement
+
+func getAssetsGetServiceLevelAgreementAttributeTypeOk(arg AssetsGetServiceLevelAgreementAttributeType) (ret AssetsGetServiceLevelAgreementRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAssetsGetServiceLevelAgreementAttributeType(arg *AssetsGetServiceLevelAgreementAttributeType, val AssetsGetServiceLevelAgreementRetType) {
+	*arg = &val
+}
+
 // Assets The assets associated with the product.
 type Assets struct {
-	ServiceCertificate AssetsGetServiceCertificateAttributeType `json:"serviceCertificate,omitempty"`
+	EndUserLicenseAgreement AssetsGetEndUserLicenseAgreementAttributeType `json:"endUserLicenseAgreement,omitempty"`
+	ProductDescription      AssetsGetProductDescriptionAttributeType      `json:"productDescription,omitempty"`
+	ServiceCertificate      AssetsGetServiceCertificateAttributeType      `json:"serviceCertificate,omitempty"`
+	ServiceLevelAgreement   AssetsGetServiceLevelAgreementAttributeType   `json:"serviceLevelAgreement,omitempty"`
 }
 
 // NewAssets instantiates a new Assets object
@@ -57,6 +120,52 @@ func NewAssets() *Assets {
 func NewAssetsWithDefaults() *Assets {
 	this := Assets{}
 	return &this
+}
+
+// GetEndUserLicenseAgreement returns the EndUserLicenseAgreement field value if set, zero value otherwise.
+func (o *Assets) GetEndUserLicenseAgreement() (res AssetsGetEndUserLicenseAgreementRetType) {
+	res, _ = o.GetEndUserLicenseAgreementOk()
+	return
+}
+
+// GetEndUserLicenseAgreementOk returns a tuple with the EndUserLicenseAgreement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Assets) GetEndUserLicenseAgreementOk() (ret AssetsGetEndUserLicenseAgreementRetType, ok bool) {
+	return getAssetsGetEndUserLicenseAgreementAttributeTypeOk(o.EndUserLicenseAgreement)
+}
+
+// HasEndUserLicenseAgreement returns a boolean if a field has been set.
+func (o *Assets) HasEndUserLicenseAgreement() bool {
+	_, ok := o.GetEndUserLicenseAgreementOk()
+	return ok
+}
+
+// SetEndUserLicenseAgreement gets a reference to the given AssetsEndUserLicenseAgreement and assigns it to the EndUserLicenseAgreement field.
+func (o *Assets) SetEndUserLicenseAgreement(v AssetsGetEndUserLicenseAgreementRetType) {
+	setAssetsGetEndUserLicenseAgreementAttributeType(&o.EndUserLicenseAgreement, v)
+}
+
+// GetProductDescription returns the ProductDescription field value if set, zero value otherwise.
+func (o *Assets) GetProductDescription() (res AssetsGetProductDescriptionRetType) {
+	res, _ = o.GetProductDescriptionOk()
+	return
+}
+
+// GetProductDescriptionOk returns a tuple with the ProductDescription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Assets) GetProductDescriptionOk() (ret AssetsGetProductDescriptionRetType, ok bool) {
+	return getAssetsGetProductDescriptionAttributeTypeOk(o.ProductDescription)
+}
+
+// HasProductDescription returns a boolean if a field has been set.
+func (o *Assets) HasProductDescription() bool {
+	_, ok := o.GetProductDescriptionOk()
+	return ok
+}
+
+// SetProductDescription gets a reference to the given AssetsProductDescription and assigns it to the ProductDescription field.
+func (o *Assets) SetProductDescription(v AssetsGetProductDescriptionRetType) {
+	setAssetsGetProductDescriptionAttributeType(&o.ProductDescription, v)
 }
 
 // GetServiceCertificate returns the ServiceCertificate field value if set, zero value otherwise.
@@ -77,15 +186,47 @@ func (o *Assets) HasServiceCertificate() bool {
 	return ok
 }
 
-// SetServiceCertificate gets a reference to the given ServiceCertificate and assigns it to the ServiceCertificate field.
+// SetServiceCertificate gets a reference to the given AssetsServiceCertificate and assigns it to the ServiceCertificate field.
 func (o *Assets) SetServiceCertificate(v AssetsGetServiceCertificateRetType) {
 	setAssetsGetServiceCertificateAttributeType(&o.ServiceCertificate, v)
 }
 
+// GetServiceLevelAgreement returns the ServiceLevelAgreement field value if set, zero value otherwise.
+func (o *Assets) GetServiceLevelAgreement() (res AssetsGetServiceLevelAgreementRetType) {
+	res, _ = o.GetServiceLevelAgreementOk()
+	return
+}
+
+// GetServiceLevelAgreementOk returns a tuple with the ServiceLevelAgreement field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Assets) GetServiceLevelAgreementOk() (ret AssetsGetServiceLevelAgreementRetType, ok bool) {
+	return getAssetsGetServiceLevelAgreementAttributeTypeOk(o.ServiceLevelAgreement)
+}
+
+// HasServiceLevelAgreement returns a boolean if a field has been set.
+func (o *Assets) HasServiceLevelAgreement() bool {
+	_, ok := o.GetServiceLevelAgreementOk()
+	return ok
+}
+
+// SetServiceLevelAgreement gets a reference to the given AssetsServiceLevelAgreement and assigns it to the ServiceLevelAgreement field.
+func (o *Assets) SetServiceLevelAgreement(v AssetsGetServiceLevelAgreementRetType) {
+	setAssetsGetServiceLevelAgreementAttributeType(&o.ServiceLevelAgreement, v)
+}
+
 func (o Assets) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getAssetsGetEndUserLicenseAgreementAttributeTypeOk(o.EndUserLicenseAgreement); ok {
+		toSerialize["EndUserLicenseAgreement"] = val
+	}
+	if val, ok := getAssetsGetProductDescriptionAttributeTypeOk(o.ProductDescription); ok {
+		toSerialize["ProductDescription"] = val
+	}
 	if val, ok := getAssetsGetServiceCertificateAttributeTypeOk(o.ServiceCertificate); ok {
 		toSerialize["ServiceCertificate"] = val
+	}
+	if val, ok := getAssetsGetServiceLevelAgreementAttributeTypeOk(o.ServiceLevelAgreement); ok {
+		toSerialize["ServiceLevelAgreement"] = val
 	}
 	return toSerialize, nil
 }
