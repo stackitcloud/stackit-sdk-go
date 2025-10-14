@@ -1,3 +1,12 @@
+## v1.0.0
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+- **Feature:** Add new methods to manage routing tables: `AddRoutingTableToArea`, `DeleteRoutingTableFromArea`, `GetRoutingTableOfArea`, `ListRoutingTablesOfArea`, `UpdateRoutingTableOfArea`
+- **Feature:** Add new methods to manage routes in routing tables: `AddRoutesToRoutingTable`, `DeleteRouteFromRoutingTable`, `GetRouteOfRoutingTable`, `ListRoutesOfRoutingTable`, `UpdateRouteOfRoutingTable`
+- **Breaking Change:** Add new method to manage network area regions: `CreateNetworkAreaRegion`, `DeleteNetworkAreaRegion`, `GetNetworkAreaRegion`, `ListNetworkAreaRegions`, `UpdateNetworkAreaRegion`
+- **Feature:** Add new wait handler for network area region: `CreateNetworkAreaRegionWaitHandler` and `DeleteRegionalNetworkAreaConfigurationWaitHandler`
+- **Deprecated:** Deprecated wait handler and will be removed after April 2026: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
+- Migrate iaas examples to the new iaas methods
+
 ## v0.31.0
 - Add `CreatedAt` and `UpdatedAt` fields to `BaseSecurityGroupRule` struct
 - Add `Description` field to `CreateNicPayload`, `NIC`, `UpdateNicPayload` structs
