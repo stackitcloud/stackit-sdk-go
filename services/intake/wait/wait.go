@@ -63,7 +63,7 @@ func DeleteIntakeRunnerWaitHandler(ctx context.Context, a APIClientInterface, pr
 		// An unexpected error occurred
 		return false, nil, err
 	})
-	handler.SetTimeout(20 * time.Minute)
+	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
@@ -92,7 +92,7 @@ func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a APIClientInterface, 
 
 		return false, nil, nil
 	})
-	handler.SetTimeout(20 * time.Minute)
+	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
@@ -138,7 +138,7 @@ func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a APIClientInterfa
 		// it never becomes active.
 		return false, nil, nil
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(5 * time.Minute)
 	return handler
 }
 
@@ -157,6 +157,6 @@ func DeleteIntakeUserWaitHandler(ctx context.Context, a APIClientInterface, proj
 		}
 		return false, nil, err
 	})
-	handler.SetTimeout(10 * time.Minute)
+	handler.SetTimeout(5 * time.Minute)
 	return handler
 }
