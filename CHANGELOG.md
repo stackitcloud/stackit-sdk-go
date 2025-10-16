@@ -1,6 +1,12 @@
 ## Release (2025-xx-xx)
 - `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010)
   - **New**: STACKIT Cost module for detailed cost reporting and analysis. Retrieve comprehensive cost data for projects and services with detailed breakdowns, summaries, and reporting capabilities.
+- `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
+  - **Breaking Change:** Update `PartialUpdateAlertrules` API method to use `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner` as parameter type
+  - **Feature:** Add new model `CreateLogsAlertgroupsPayloadRulesInner` for logs alert group rules
+  - **Feature:** Add new model `PartialUpdateAlertrulesRequestInner` for partial update alert rules
+  - **Feature:** Enhance `UpdateAlertgroupsRequestInnerRulesInner` to support both alerting rules (using 'alert') and recording rules (using 'record')
+  - **Feature:** Make `Alert` field optional in `UpdateAlertgroupsRequestInnerRulesInner` and add new `Record` field for recording rules
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
 - `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
