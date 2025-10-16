@@ -1,3 +1,8 @@
+## Release (2025-10-16)
+- `intake`: [v0.3.0](services/intake/CHANGELOG.md#v030)
+  - **Feature:** Add wait handlers for `Intake`, `IntakeRunner`, and `IntakeUser` resources.
+  - **Improvement:** Add usage examples for the `intake` service.
+
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
   - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
