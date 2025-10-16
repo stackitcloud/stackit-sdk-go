@@ -1,4 +1,6 @@
 ## Release (2025-xx-xx)
+- `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010)
+  - **New**: STACKIT Cost module for detailed cost reporting and analysis. Retrieve comprehensive cost data for projects and services with detailed breakdowns, summaries, and reporting capabilities.
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
 - `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
