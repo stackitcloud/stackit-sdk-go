@@ -1,4 +1,10 @@
-## Release (2025-10-16)
+
+## Release (2025-xx-xx)
+- `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
+  - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
+- `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
+  - **Breaking Change:** The attribute type for `PartialUpdateInstancePayload` and `UpdateInstancePayload` changed from `Storage` to `StorageUpdate`.
+  - **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
 - `intake`: [v0.3.0](services/intake/CHANGELOG.md#v030)
   - **Feature:** Add wait handlers for `Intake`, `IntakeRunner`, and `IntakeUser` resources.
   - **Improvement:** Add usage examples for the `intake` service.
