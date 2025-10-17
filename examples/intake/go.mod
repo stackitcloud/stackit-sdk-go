@@ -1,6 +1,6 @@
 module github.com/stackitcloud/stackit-sdk-go/examples/intake
 
-go 1.24.7
+go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.17.3

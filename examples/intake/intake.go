@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	region := "REGION"        // Region where the resources will be created
+	region := "eu01"          // Region where the resources will be created
 	projectId := "PROJECT_ID" // Your STACKIT project ID
 
 	dremioCatalogURI := "DREMIO_CATALOG_URI"       // E.g., "https://my-dremio-catalog.data-platform.stackit.run/iceberg"
