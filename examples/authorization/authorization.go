@@ -10,8 +10,7 @@ import (
 )
 
 func main() {
-	// Specify the project ID
-	projectId := "PROJECT_ID"
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 	yourEmail := "your-email@example.com"
 	emailToBeAdded := "email@example.com"
 

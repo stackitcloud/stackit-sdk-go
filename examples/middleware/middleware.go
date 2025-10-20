@@ -39,8 +39,7 @@ func (rt roundTripperWithCapture) RoundTrip(req *http.Request) (*http.Response, 
 }
 
 func main() {
-	// Specify the project ID
-	projectId := "PROJECT_ID"
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 
 	// Create a new API client, that uses default authentication
 	// Use the `WithMiddleware` option to add the middleware to the client

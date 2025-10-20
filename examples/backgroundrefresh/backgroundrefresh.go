@@ -11,8 +11,7 @@ import (
 )
 
 func main() {
-	// Specify the project ID
-	projectId := "PROJECT_ID"
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 
 	// Create a cancellable context
 	ctx := context.Background()

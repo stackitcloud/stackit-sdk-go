@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// Specify the organization ID and project ID
-	projectId := "PROJECT_ID"
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 	serverId := "SERVER_ID"
 	volumeId := "VOLUME_ID"
 
