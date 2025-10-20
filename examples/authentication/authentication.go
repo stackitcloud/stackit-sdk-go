@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
+
 	// When creating a new API client without providing any configuration, it will setup default authentication.
 	// The SDK will search for a valid service account key or token in several locations.
 	// It will first try to use the key flow, by looking into the variables STACKIT_SERVICE_ACCOUNT_KEY, STACKIT_SERVICE_ACCOUNT_KEY_PATH,
@@ -53,7 +55,7 @@ func main() {
 	}
 
 	// Check that you can make an authenticated request
-	getZoneResp, err := dnsClient.ListZones(context.Background(), "PROJECT_ID").Execute()
+	getZoneResp, err := dnsClient.ListZones(context.Background(), projectId).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
