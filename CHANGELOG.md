@@ -1,4 +1,9 @@
 ## Release (2025-xx-xx)
+- `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
+  - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
+- `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
+  - **Breaking Change:** The attribute type for `PartialUpdateInstancePayload` and `UpdateInstancePayload` changed from `Storage` to `StorageUpdate`.
+  - **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
 - `resourcemanager`: [v0.18.0](services/resourcemanager/CHANGELOG.md#v0180)
   - **Feature:** Add `ContainerSearchResult` model for container search functionality
 - `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
@@ -6,13 +11,6 @@
   - **Feature:** Field `alert` of `UpdateAlertgroupsRequestInnerRulesInner` is now optional
   - **Feature:** Add `Record` field to `UpdateAlertgroupsRequestInnerRulesInner`
   - **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
-
-## Release (2025-xx-xx)
-- `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
-  - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
-- `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
-  - **Breaking Change:** The attribute type for `PartialUpdateInstancePayload` and `UpdateInstancePayload` changed from `Storage` to `StorageUpdate`.
-  - **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
 
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
