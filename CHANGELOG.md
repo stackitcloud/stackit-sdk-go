@@ -1,6 +1,13 @@
 ## Release (2025-xx-xx)
 - `resourcemanager`: [v0.18.0](services/resourcemanager/CHANGELOG.md#v0180)
   - **Feature:** Add `ContainerSearchResult` model for container search functionality
+- `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
+  - **Breaking Change:** `PartialUpdateAlertrulesRequest` interface method renamed from `UpdateAlertgroupsRequestInnerRulesInner` to `PartialUpdateAlertrulesRequestInner`
+  - **Breaking Change:** `NewUpdateAlertgroupsRequestInnerRulesInner` constructor now only requires `expr` parameter
+  - **Feature:** Add support for recording rules with new `Record` field in `UpdateAlertgroupsRequestInnerRulesInner`
+  - **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
+
+## Release (2025-xx-xx)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
 - `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)

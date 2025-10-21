@@ -79,7 +79,7 @@ func setUpdateAlertgroupsRequestInnerGetRulesAttributeType(arg *UpdateAlertgroup
 	*arg = &val
 }
 
-// UpdateAlertgroupsRequestInner Alert group that should be created or updated `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
+// UpdateAlertgroupsRequestInner Alert group that should be created or updated. `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
 type UpdateAlertgroupsRequestInner struct {
 	// How often rules in the group are evaluated. `Additional Validators:` * must be a valid time string * should be >=60s
 	Interval UpdateAlertgroupsRequestInnerGetIntervalAttributeType `json:"interval,omitempty"`
