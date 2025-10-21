@@ -6,12 +6,19 @@
   - **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
 - `iaas`: [v1.0.0](services/iaas/CHANGELOG.md#v100)
   - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
-  - **Feature:** Add new methods to manage routing tables: `AddRoutingTableToArea`, `DeleteRoutingTableFromArea`, `GetRoutingTableOfArea`, `ListRoutingTablesOfArea` and `UpdateRoutingTableOfArea`
-  - **Feature:** Add new methods to manage routes in routing tables: `AddRoutesToRoutingTable`, `DeleteRouteFromRoutingTable`, `GetRouteOfRoutingTable`, `ListRoutesOfRoutingTable` and `UpdateRouteOfRoutingTable`
-  - **Breaking Change:** Add new method to manage network area regions: `CreateNetworkAreaRegion`, `DeleteNetworkAreaRegion`, `GetNetworkAreaRegion`, `ListNetworkAreaRegions` and `UpdateNetworkAreaRegion`
+  - **Feature:** Add new methods to manage routing tables: `AddRoutingTableToArea`, `DeleteRoutingTableFromArea`, `GetRoutingTableOfArea`, `ListRoutingTablesOfArea`, `UpdateRoutingTableOfArea`
+  - **Feature:** Add new methods to manage routes in routing tables: `AddRoutesToRoutingTable`, `DeleteRouteFromRoutingTable`, `GetRouteOfRoutingTable`, `ListRoutesOfRoutingTable`, `UpdateRouteOfRoutingTable`
+  - **Breaking Change:** Add new method to manage network area regions: `CreateNetworkAreaRegion`, `DeleteNetworkAreaRegion`, `GetNetworkAreaRegion`, `ListNetworkAreaRegions`, `UpdateNetworkAreaRegion`
   - **Feature:** Add new wait handler for network area region: `CreateNetworkAreaRegionWaitHandler` and `DeleteRegionalNetworkAreaConfigurationWaitHandler`
+  - **Breaking Change:** Wait handler which relates to region-specific services, got an additional param for the region: `CreateNetworkWaitHandler`, `UpdateNetworkWaitHandler`, `DeleteNetworkWaitHandler`, `CreateVolumeWaitHandler`, `DeleteVolumeWaitHandler`, `CreateServerWaitHandler`, `ResizeServerWaitHandler`, `DeleteServerWaitHandler`, `StartServerWaitHandler`, `StopServerWaitHandler`, `DeallocateServerWaitHandler`, `RescueServerWaitHandler`, `UnrescueServerWaitHandler`, `ProjectRequestWaitHandler`, `AddVolumeToServerWaitHandler`, `RemoveVolumeFromServerWaitHandler`, `UploadImageWaitHandler`, `DeleteImageWaitHandler`, `CreateBackupWaitHandler`, `DeleteBackupWaitHandler`, `RestoreBackupWaitHandler`, `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
+  - **Breaking Change:** `Network` model has changed:
+      - `NetworkId` has been renamed to `Id`
+      - `Gateway`, `Nameservers`, `Prefixes` and `PublicIp` has been moved to new model `NetworkIPv4`, and can be accessed in the new property `IPv4`
+      - Properties `Gatewayv6`, `Nameserversv6` and `Prefixesv6` moved to new model `NetworkIPv6`, and can be accessed in the new property `IPv6`
+  - **Breaking Change:** `CreateServerPayload` model has changed:
+      - Model `CreateServerPayloadBootVolume` of `BootVolume` property changed to `ServerBootVolume`
+      - Property `Networking` in `CreateServerPayload` is required now
   - **Deprecated:** Deprecated wait handler and will be removed after April 2026: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
-  - Migrate iaas examples to the new iaas methods
 
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)

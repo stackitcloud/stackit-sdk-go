@@ -105,7 +105,7 @@ func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 	return handler
 }
 
-// CreateNetworkAreaRegionWaitHandler will wait for network area update
+// CreateNetworkAreaRegionWaitHandler will wait for network area region creation
 func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
 		area, err := a.GetNetworkAreaRegionExecute(ctx, organizationId, areaId, region)
@@ -126,8 +126,8 @@ func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterfac
 	return handler
 }
 
-// DeleteRegionalNetworkAreaConfigurationWaitHandler will wait for network area update
-func DeleteRegionalNetworkAreaConfigurationWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
+// DeleteNetworkAreaRegionWaitHandler will wait for network area region deletion
+func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
 		area, err := a.GetNetworkAreaRegionExecute(ctx, organizationId, areaId, region)
 		if err == nil {

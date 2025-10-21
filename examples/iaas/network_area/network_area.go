@@ -117,7 +117,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `DeleteNetworkAreaRegion`: %v\n", err)
 	}
 
-	_, err = wait.DeleteRegionalNetworkAreaConfigurationWaitHandler(context.Background(), iaasClient, organizationId, *updatedArea.Id, region).WaitWithContext(context.Background())
+	_, err = wait.DeleteNetworkAreaRegionWaitHandler(context.Background(), iaasClient, organizationId, *updatedArea.Id, region).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for network configuration deletion: %v\n", err)
 		os.Exit(1)

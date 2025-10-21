@@ -1878,7 +1878,7 @@ func TestReadyForNetworkAreaDeletionWaitHandler(t *testing.T) {
 	}
 }
 
-func TestCreateRegionalNetworkAreaConfigurationWaitHandler(t *testing.T) {
+func TestCreateNetworkAreaRegionWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -1936,7 +1936,7 @@ func TestCreateRegionalNetworkAreaConfigurationWaitHandler(t *testing.T) {
 	}
 }
 
-func TestDeleteRegionalNetworkAreaConfigurationWaitHandler(t *testing.T) {
+func TestDeleteNetworkAreaRegionWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string
 		getFails      bool
@@ -1982,7 +1982,7 @@ func TestDeleteRegionalNetworkAreaConfigurationWaitHandler(t *testing.T) {
 				}
 			}
 
-			handler := DeleteRegionalNetworkAreaConfigurationWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
+			handler := DeleteNetworkAreaRegionWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
 			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
