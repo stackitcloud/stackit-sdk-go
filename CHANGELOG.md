@@ -4,7 +4,7 @@
 - `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
   - **Breaking Change:** `PartialUpdateAlertrulesRequest` interface method renamed from `UpdateAlertgroupsRequestInnerRulesInner` to `PartialUpdateAlertrulesRequestInner`
   - **Feature:** Field `alert` of `UpdateAlertgroupsRequestInnerRulesInner` is now optional
-  - **Feature:** Add support for recording rules with new `Record` field in `UpdateAlertgroupsRequestInnerRulesInner`
+  - **Feature:** Add `Record` field to `UpdateAlertgroupsRequestInnerRulesInner`
   - **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
 
 ## Release (2025-xx-xx)
