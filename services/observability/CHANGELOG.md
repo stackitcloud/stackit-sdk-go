@@ -1,8 +1,10 @@
 # v0.16.0
-  - **Breaking Change:** `PartialUpdateAlertrulesRequest` interface method renamed from `UpdateAlertgroupsRequestInnerRulesInner` to `PartialUpdateAlertrulesRequestInner`
-  - **Feature:** Field `alert` of `UpdateAlertgroupsRequestInnerRulesInner` is now optional
-  - **Feature:** Add `Record` field to `UpdateAlertgroupsRequestInnerRulesInner`
-  - **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
+- **Breaking Change:** `PartialUpdateAlertrulesRequest` interface method renamed from `UpdateAlertgroupsRequestInnerRulesInner` to `PartialUpdateAlertrulesRequestInner`
+- **Breaking Change:** `CreateLogsAlertgroupsPayload` now uses `CreateLogsAlertgroupsPayloadRulesInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`
+- **Breaking Change:** `UpdateLogsAlertgroupPayload` now uses `CreateLogsAlertgroupsPayloadRulesInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`
+- **Feature:** Field `alert` of `UpdateAlertgroupsRequestInnerRulesInner` is now optional
+- **Feature:** Add `Record` field to `UpdateAlertgroupsRequestInnerRulesInner`
+- **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
 
 # v0.15.0
 - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
