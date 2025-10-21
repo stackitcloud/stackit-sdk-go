@@ -1,3 +1,6 @@
+## v0.18.0
+- **Feature:** Add `ContainerSearchResult` model for container search functionality
+
 ## v0.17.1
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 

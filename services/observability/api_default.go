@@ -1540,7 +1540,7 @@ type ApiPartialUpdateAlertgroupsRequest interface {
 }
 
 type ApiPartialUpdateAlertrulesRequest interface {
-	UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner []UpdateAlertgroupsRequestInnerRulesInner) ApiPartialUpdateAlertrulesRequest
+	PartialUpdateAlertrulesRequestInner(partialUpdateAlertrulesRequestInner []PartialUpdateAlertrulesRequestInner) ApiPartialUpdateAlertrulesRequest
 	Execute() (*AlertRulesResponse, error)
 }
 
@@ -8731,16 +8731,16 @@ func (a *APIClient) PartialUpdateAlertgroupsExecute(ctx context.Context, instanc
 }
 
 type PartialUpdateAlertrulesRequest struct {
-	ctx                                     context.Context
-	apiService                              *DefaultApiService
-	groupName                               string
-	instanceId                              string
-	projectId                               string
-	updateAlertgroupsRequestInnerRulesInner *[]UpdateAlertgroupsRequestInnerRulesInner
+	ctx                                 context.Context
+	apiService                          *DefaultApiService
+	groupName                           string
+	instanceId                          string
+	projectId                           string
+	partialUpdateAlertrulesRequestInner *[]PartialUpdateAlertrulesRequestInner
 }
 
-func (r PartialUpdateAlertrulesRequest) UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner []UpdateAlertgroupsRequestInnerRulesInner) ApiPartialUpdateAlertrulesRequest {
-	r.updateAlertgroupsRequestInnerRulesInner = &updateAlertgroupsRequestInnerRulesInner
+func (r PartialUpdateAlertrulesRequest) PartialUpdateAlertrulesRequestInner(partialUpdateAlertrulesRequestInner []PartialUpdateAlertrulesRequestInner) ApiPartialUpdateAlertrulesRequest {
+	r.partialUpdateAlertrulesRequestInner = &partialUpdateAlertrulesRequestInner
 	return r
 }
 
@@ -8769,8 +8769,8 @@ func (r PartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateAlertgroupsRequestInnerRulesInner == nil {
-		return localVarReturnValue, fmt.Errorf("updateAlertgroupsRequestInnerRulesInner is required and must be specified")
+	if r.partialUpdateAlertrulesRequestInner == nil {
+		return localVarReturnValue, fmt.Errorf("partialUpdateAlertrulesRequestInner is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8791,7 +8791,7 @@ func (r PartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateAlertgroupsRequestInnerRulesInner
+	localVarPostBody = r.partialUpdateAlertrulesRequestInner
 	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
