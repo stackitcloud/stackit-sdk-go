@@ -1,6 +1,6 @@
 # v0.16.0
 - **Breaking Change:** `PartialUpdateAlertrulesRequest` interface method renamed from `UpdateAlertgroupsRequestInnerRulesInner` to `PartialUpdateAlertrulesRequestInner`
-- **Breaking Change:** `NewUpdateAlertgroupsRequestInnerRulesInner` constructor now only requires `expr` parameter
+- **Feature:** `NewUpdateAlertgroupsRequestInnerRulesInner` constructor now only requires `expr` parameter
 - **Feature:** Add support for recording rules with new `Record` field in `UpdateAlertgroupsRequestInnerRulesInner`
 - **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
 
