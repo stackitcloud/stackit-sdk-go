@@ -49,32 +49,33 @@ const (
 // Interfaces needed for tests
 type APIClientInterface interface {
 	GetNetworkAreaExecute(ctx context.Context, organizationId, areaId string) (*iaas.NetworkArea, error)
+	GetNetworkAreaRegionExecute(ctx context.Context, organizationId string, areaId string, region string) (*iaas.RegionalArea, error)
 	ListNetworkAreaProjectsExecute(ctx context.Context, organizationId, areaId string) (*iaas.ProjectListResponse, error)
-	GetProjectRequestExecute(ctx context.Context, projectId string, requestId string) (*iaas.Request, error)
-	GetNetworkExecute(ctx context.Context, projectId, networkId string) (*iaas.Network, error)
-	GetVolumeExecute(ctx context.Context, projectId string, volumeId string) (*iaas.Volume, error)
-	GetServerExecute(ctx context.Context, projectId string, serverId string) (*iaas.Server, error)
-	GetAttachedVolumeExecute(ctx context.Context, projectId string, serverId string, volumeId string) (*iaas.VolumeAttachment, error)
-	GetImageExecute(ctx context.Context, projectId string, imageId string) (*iaas.Image, error)
-	GetBackupExecute(ctx context.Context, projectId string, backupId string) (*iaas.Backup, error)
-	GetSnapshotExecute(ctx context.Context, projectId string, snapshotId string) (*iaas.Snapshot, error)
+	GetProjectRequestExecute(ctx context.Context, projectId, region, requestId string) (*iaas.Request, error)
+	GetNetworkExecute(ctx context.Context, projectId, region, networkId string) (*iaas.Network, error)
+	GetVolumeExecute(ctx context.Context, projectId, region, volumeId string) (*iaas.Volume, error)
+	GetServerExecute(ctx context.Context, projectId, region, serverId string) (*iaas.Server, error)
+	GetAttachedVolumeExecute(ctx context.Context, projectId, region, serverId, volumeId string) (*iaas.VolumeAttachment, error)
+	GetImageExecute(ctx context.Context, projectId, region, imageId string) (*iaas.Image, error)
+	GetBackupExecute(ctx context.Context, projectId, region, backupId string) (*iaas.Backup, error)
+	GetSnapshotExecute(ctx context.Context, projectId, region, snapshotId string) (*iaas.Snapshot, error)
 }
 
 type ResourceManagerAPIClientInterface interface {
 	GetProjectExecute(ctx context.Context, id string) (*resourcemanager.GetProjectResponse, error)
 }
 
-// CreateNetworkAreaWaitHandler will wait for network area creation
+// Deprecated: CreateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. CreateNetworkAreaWaitHandler will wait for network area creation
 func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
 		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
 		if err != nil {
 			return false, area, err
 		}
-		if area.AreaId == nil || area.State == nil {
-			return false, area, fmt.Errorf("create failed for network area with id %s, the response is not valid: the id or the state are missing", areaId)
+		if area.Id == nil {
+			return false, area, fmt.Errorf("create failed for network area with id %s, the response is not valid: the id is missing", areaId)
 		}
-		if *area.AreaId == areaId && *area.State == CreateSuccess {
+		if *area.Id == areaId {
 			return true, area, nil
 		}
 		return false, area, nil
@@ -83,21 +84,66 @@ func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 	return handler
 }
 
-// UpdateNetworkAreaWaitHandler will wait for network area update
+// Deprecated: UpdateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. UpdateNetworkAreaWaitHandler will wait for network area update
 func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
 		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
 		if err != nil {
 			return false, area, err
 		}
-		if area.AreaId == nil || area.State == nil {
-			return false, nil, fmt.Errorf("update failed for network area with id %s, the response is not valid: the id or the state are missing", areaId)
+		if area.Id == nil {
+			return false, nil, fmt.Errorf("update failed for network area with id %s, the response is not valid: the id is missing", areaId)
 		}
 		// The state returns to "CREATED" after a successful update is completed
-		if *area.AreaId == areaId && *area.State == CreateSuccess {
+		if *area.Id == areaId {
 			return true, area, nil
 		}
 		return false, area, nil
+	})
+	handler.SetSleepBeforeWait(2 * time.Second)
+	handler.SetTimeout(30 * time.Minute)
+	return handler
+}
+
+// CreateNetworkAreaRegionWaitHandler will wait for network area region creation
+func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
+		area, err := a.GetNetworkAreaRegionExecute(ctx, organizationId, areaId, region)
+		if err != nil {
+			return false, area, err
+		}
+		if area.Status == nil {
+			return false, nil, fmt.Errorf("configuring failed for network area with id %s, the response is not valid: the status are missing", areaId)
+		}
+		// The state returns to "CREATED" after a successful update is completed
+		if *area.Status == CreateSuccess {
+			return true, area, nil
+		}
+		return false, area, nil
+	})
+	handler.SetSleepBeforeWait(2 * time.Second)
+	handler.SetTimeout(30 * time.Minute)
+	return handler
+}
+
+// DeleteNetworkAreaRegionWaitHandler will wait for network area region deletion
+func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
+		area, err := a.GetNetworkAreaRegionExecute(ctx, organizationId, areaId, region)
+		if err == nil {
+			return false, nil, nil
+		}
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr)
+		if !ok {
+			return false, area, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
+		}
+		// The IaaS API response with a 400 if the regional network area configuration doesn't exist because of some compatible
+		// issue to v1. When v1 is deleted, they may, will respond with 404.
+		if oapiErr.StatusCode == http.StatusBadRequest || oapiErr.StatusCode == http.StatusNotFound {
+			return true, area, nil
+		}
+		return false, nil, err
 	})
 	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(30 * time.Minute)
@@ -150,14 +196,15 @@ func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a APIClientInte
 	return handler
 }
 
-// DeleteNetworkAreaWaitHandler will wait for network area deletion
+// Deprecated: DeleteNetworkAreaWaitHandler is no longer required and will be removed in April 2026. DeleteNetworkAreaWaitHandler will wait for network area deletion
 func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
 		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
 		if err == nil {
 			return false, nil, nil
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
 		if !ok {
 			return false, area, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
 		}
@@ -171,17 +218,17 @@ func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 }
 
 // CreateNetworkWaitHandler will wait for network creation using network id
-func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
+		network, err := a.GetNetworkExecute(ctx, projectId, region, networkId)
 		if err != nil {
 			return false, network, err
 		}
-		if network.NetworkId == nil || network.State == nil {
+		if network.Id == nil || network.Status == nil {
 			return false, network, fmt.Errorf("crate failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		// The state returns to "CREATED" after a successful creation is completed
-		if *network.NetworkId == networkId && *network.State == CreateSuccess {
+		if *network.Id == networkId && *network.Status == CreateSuccess {
 			return true, network, nil
 		}
 		return false, network, nil
@@ -192,17 +239,17 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // UpdateNetworkWaitHandler will wait for network update
-func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
+		network, err := a.GetNetworkExecute(ctx, projectId, region, networkId)
 		if err != nil {
 			return false, network, err
 		}
-		if network.NetworkId == nil || network.State == nil {
+		if network.Id == nil || network.Status == nil {
 			return false, network, fmt.Errorf("update failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
 		}
 		// The state returns to "CREATED" after a successful update is completed
-		if *network.NetworkId == networkId && *network.State == CreateSuccess {
+		if *network.Id == networkId && *network.Status == CreateSuccess {
 			return true, network, nil
 		}
 		return false, network, nil
@@ -213,9 +260,9 @@ func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // DeleteNetworkWaitHandler will wait for network deletion
-func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetworkExecute(ctx, projectId, networkId)
+		network, err := a.GetNetworkExecute(ctx, projectId, region, networkId)
 		if err == nil {
 			return false, nil, nil
 		}
@@ -233,9 +280,9 @@ func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
-func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
+func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
-		volume, err := a.GetVolumeExecute(ctx, projectId, volumeId)
+		volume, err := a.GetVolumeExecute(ctx, projectId, region, volumeId)
 		if err != nil {
 			return false, volume, err
 		}
@@ -255,9 +302,9 @@ func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteVolumeWaitHandler will wait for volume deletion
-func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
+func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
-		volume, err := a.GetVolumeExecute(ctx, projectId, volumeId)
+		volume, err := a.GetVolumeExecute(ctx, projectId, region, volumeId)
 		if err == nil {
 			if volume != nil {
 				if volume.Id == nil || volume.Status == nil {
@@ -283,9 +330,9 @@ func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // CreateServerWaitHandler will wait for server creation
-func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err != nil {
 			return false, server, err
 		}
@@ -309,9 +356,9 @@ func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 
 // ResizeServerWaitHandler will wait for server resize
 // It checks for an intermediate resizing status and only then waits for the server to become active
-func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) (h *wait.AsyncActionHandler[iaas.Server]) {
+func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) (h *wait.AsyncActionHandler[iaas.Server]) {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err != nil {
 			return false, server, err
 		}
@@ -346,9 +393,9 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteServerWaitHandler will wait for volume deletion
-func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err == nil {
 			if server != nil {
 				if server.Id == nil || server.Status == nil {
@@ -374,9 +421,9 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // StartServerWaitHandler will wait for server start
-func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err != nil {
 			return false, server, err
 		}
@@ -399,9 +446,9 @@ func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // StopServerWaitHandler will wait for server stop
-func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err != nil {
 			return false, server, err
 		}
@@ -424,9 +471,9 @@ func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 }
 
 // DeallocateServerWaitHandler will wait for server deallocation
-func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err != nil {
 			return false, server, err
 		}
@@ -449,9 +496,9 @@ func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, proj
 }
 
 // RescueServerWaitHandler will wait for server rescue
-func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err != nil {
 			return false, server, err
 		}
@@ -474,9 +521,9 @@ func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // UnrescueServerWaitHandler will wait for server unrescue
-func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, serverId)
+		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
 		if err != nil {
 			return false, server, err
 		}
@@ -501,7 +548,7 @@ func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projec
 // ProjectRequestWaitHandler will wait for a request to succeed.
 //
 // It receives a request ID that can be obtained from the "X-Request-Id" header in the HTTP response of any operation in the IaaS API.
-// To get this response header, use the "runtime.WithCaptureHTTPResponse" method from the "core" packaghe to get the raw HTTP response of an SDK operation.
+// To get this response header, use the "runtime.WithCaptureHTTPResponse" method from the "core" package to get the raw HTTP response of an SDK operation.
 // Then, the value of the request ID can be obtained by accessing the header key which is defined in the constant "XRequestIDHeader" of this package.
 //
 // Example usage:
@@ -513,9 +560,9 @@ func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projec
 //
 //	requestId := httpResp.Header[wait.XRequestIDHeader][0]
 //	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, requestId).WaitWithContext(context.Background())
-func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, requestId string) *wait.AsyncActionHandler[iaas.Request] {
+func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, requestId string) *wait.AsyncActionHandler[iaas.Request] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Request, err error) {
-		request, err := a.GetProjectRequestExecute(ctx, projectId, requestId)
+		request, err := a.GetProjectRequestExecute(ctx, projectId, region, requestId)
 		if err != nil {
 			return false, request, err
 		}
@@ -560,9 +607,9 @@ func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projec
 }
 
 // AddVolumeToServerWaitHandler will wait for a volume to be attached to a server
-func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
+func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
-		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, serverId, volumeId)
+		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, region, serverId, volumeId)
 		if err == nil {
 			if volumeAttachment != nil {
 				if volumeAttachment.VolumeId == nil {
@@ -588,9 +635,9 @@ func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, pro
 }
 
 // RemoveVolumeFromServerWaitHandler will wait for a volume to be attached to a server
-func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
+func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
-		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, serverId, volumeId)
+		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, region, serverId, volumeId)
 		if err == nil {
 			if volumeAttachment != nil {
 				if volumeAttachment.VolumeId == nil {
@@ -613,9 +660,9 @@ func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface
 }
 
 // UploadImageWaitHandler will wait for the status image to become AVAILABLE, which indicates the upload of the image has been completed successfully
-func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaas.Image] {
+func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
-		image, err := a.GetImageExecute(ctx, projectId, imageId)
+		image, err := a.GetImageExecute(ctx, projectId, region, imageId)
 		if err != nil {
 			return false, image, err
 		}
@@ -635,9 +682,9 @@ func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // DeleteImageWaitHandler will wait for image deletion
-func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, imageId string) *wait.AsyncActionHandler[iaas.Image] {
+func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
-		image, err := a.GetImageExecute(ctx, projectId, imageId)
+		image, err := a.GetImageExecute(ctx, projectId, region, imageId)
 		if err == nil {
 			if image != nil {
 				if image.Id == nil || image.Status == nil {
@@ -663,9 +710,9 @@ func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // CreateBackupWaitHandler will wait for backup creation
-func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
+		backup, err := a.GetBackupExecute(ctx, projectId, region, backupId)
 		if err == nil {
 			if backup != nil {
 				if backup.Id == nil || backup.Status == nil {
@@ -687,9 +734,9 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteBackupWaitHandler will wait for backup deletion
-func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
+		backup, err := a.GetBackupExecute(ctx, projectId, region, backupId)
 		if err == nil {
 			if backup != nil {
 				if backup.Id == nil || backup.Status == nil {
@@ -714,9 +761,9 @@ func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // RestoreBackupWaitHandler will wait for backup restoration
-func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackupExecute(ctx, projectId, backupId)
+		backup, err := a.GetBackupExecute(ctx, projectId, region, backupId)
 		if err == nil {
 			if backup != nil {
 				if backup.Id == nil || backup.Status == nil {
@@ -738,9 +785,9 @@ func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // CreateSnapshotWaitHandler will wait for snapshot creation
-func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
-		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
+		snapshot, err := a.GetSnapshotExecute(ctx, projectId, region, snapshotId)
 		if err == nil {
 			if snapshot != nil {
 				if snapshot.Id == nil || snapshot.Status == nil {
@@ -762,9 +809,9 @@ func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projec
 }
 
 // DeleteSnapshotWaitHandler will wait for snapshot deletion
-func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
-		snapshot, err := a.GetSnapshotExecute(ctx, projectId, snapshotId)
+		snapshot, err := a.GetSnapshotExecute(ctx, projectId, region, snapshotId)
 		if err == nil {
 			if snapshot != nil {
 				if snapshot.Id == nil || snapshot.Status == nil {
