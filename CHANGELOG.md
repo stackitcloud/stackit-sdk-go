@@ -3,7 +3,7 @@
   - **Feature:** Add `ContainerSearchResult` model for container search functionality
 - `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
   - **Breaking Change:** `PartialUpdateAlertrulesRequest` interface method renamed from `UpdateAlertgroupsRequestInnerRulesInner` to `PartialUpdateAlertrulesRequestInner`
-  - **Feature:** `NewUpdateAlertgroupsRequestInnerRulesInner` constructor now only requires `expr` parameter
+  - **Feature:** Field `alert` of `UpdateAlertgroupsRequestInnerRulesInner` is now optional
   - **Feature:** Add support for recording rules with new `Record` field in `UpdateAlertgroupsRequestInnerRulesInner`
   - **Feature:** Add new models `CreateLogsAlertgroupsPayloadRulesInner` and `PartialUpdateAlertrulesRequestInner`
 
