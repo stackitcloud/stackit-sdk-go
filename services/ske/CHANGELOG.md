@@ -1,3 +1,6 @@
+## v1.4.1
+- **Feature:** Exit `CreateOrUpdateClusterWaitHandler` early when the cluster reports structured errors and is in a failure state.
+
 ## v1.4.0
 - **Feature:** Add new field `Kubernetes` to `Nodepool` model
 
