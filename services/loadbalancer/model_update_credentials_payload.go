@@ -84,9 +84,9 @@ type UpdateCredentialsPayloadGetUsernameRetType = string
 type UpdateCredentialsPayload struct {
 	// Credential name
 	DisplayName UpdateCredentialsPayloadGetDisplayNameAttributeType `json:"displayName,omitempty"`
-	// A valid password used for an existing ARGUS instance, which is used during basic auth.
+	// A valid password used for an existing STACKIT Observability instance, which is used during basic auth.
 	Password UpdateCredentialsPayloadGetPasswordAttributeType `json:"password,omitempty"`
-	// A valid username used for an existing ARGUS instance, which is used during basic auth.
+	// A valid username used for an existing STACKIT Observability instance, which is used during basic auth.
 	Username UpdateCredentialsPayloadGetUsernameAttributeType `json:"username,omitempty"`
 }
 
