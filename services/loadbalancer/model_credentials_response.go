@@ -109,7 +109,7 @@ type CredentialsResponse struct {
 	DisplayName CredentialsResponseGetDisplayNameAttributeType `json:"displayName,omitempty"`
 	// Region of the Credential
 	Region CredentialsResponseGetRegionAttributeType `json:"region,omitempty"`
-	// The username used for the ARGUS instance
+	// The username used for the STACKIT Observability instance
 	Username CredentialsResponseGetUsernameAttributeType `json:"username,omitempty"`
 }
 
