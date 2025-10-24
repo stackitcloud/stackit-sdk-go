@@ -19,7 +19,9 @@
       - Model `CreateServerPayloadBootVolume` of `BootVolume` property changed to `ServerBootVolume`
       - Property `Networking` in `CreateServerPayload` is required now
   - **Deprecated:** Deprecated wait handler and will be removed after April 2026: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
-
+- `resourcemanager`: [v0.18.0](services/resourcemanager/CHANGELOG.md#v0180) 
+  - **Feature:** Add new model `ContainerSearchResult`
+    
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
   - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
