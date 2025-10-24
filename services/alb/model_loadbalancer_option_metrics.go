@@ -63,7 +63,7 @@ type LoadbalancerOptionMetricsGetPushUrlRetType = string
 type LoadbalancerOptionMetrics struct {
 	// Credentials reference for metrics. This reference is created via the observability create endpoint and the credential needs to contain the basic auth username and password for the metrics solution the push URL points to. Then this enables monitoring via remote write for the Application Load Balancer.
 	CredentialsRef LoadbalancerOptionMetricsGetCredentialsRefAttributeType `json:"credentialsRef,omitempty"`
-	// The ARGUS/Prometheus remote write Push URL you want the metrics to be shipped to.
+	// The Observability(Metrics)/Prometheus remote write push URL you want the metrics to be shipped to.
 	PushUrl LoadbalancerOptionMetricsGetPushUrlAttributeType `json:"pushUrl,omitempty"`
 }
 

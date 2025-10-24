@@ -26,9 +26,9 @@ import (
 type DefaultApi interface {
 	/*
 		CreateCredentials Create credentials for observability of the application load balancer
-		Creates and stores credentials for use with Application Load Balancer Observability.
-		 For example, when using ARGUS, credentials must first be created via the ARGUS API
-		 and then stored with this endpoint to be used by the Application Load Balancer.
+		Created credentials can be stored and used for the load balancer observability. For example, when using STACKIT
+		 Observability, credentials first must be created for that STACKIT Observability instance (by using their API or the
+		 STACKIT Portal) and then can be provided to the load balancer by storing them with this endpoint.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -515,10 +515,10 @@ func (r CreateCredentialsRequest) Execute() (*CreateCredentialsResponse, error) 
 /*
 CreateCredentials: Create credentials for observability of the application load balancer
 
-Creates and stores credentials for use with Application Load Balancer Observability.
+Created credentials can be stored and used for the load balancer observability. For example, when using STACKIT
 
-	For example, when using ARGUS, credentials must first be created via the ARGUS API
-	and then stored with this endpoint to be used by the Application Load Balancer.
+	Observability, credentials first must be created for that STACKIT Observability instance (by using their API or the
+	STACKIT Portal) and then can be provided to the load balancer by storing them with this endpoint.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
