@@ -63,7 +63,7 @@ type LoadbalancerOptionLogsGetPushUrlRetType = string
 type LoadbalancerOptionLogs struct {
 	// Credentials reference for logging. This reference is created via the observability create endpoint and the credential needs to contain the basic auth username and password for the logging solution the push URL points to. Then this enables monitoring via remote write for the Application Load Balancer.
 	CredentialsRef LoadbalancerOptionLogsGetCredentialsRefAttributeType `json:"credentialsRef,omitempty"`
-	// The ARGUS/Loki remote write Push URL you want the logs to be shipped to.
+	// The Observability(Logs)/Loki remote write Push URL you want the logs to be shipped to.
 	PushUrl LoadbalancerOptionLogsGetPushUrlAttributeType `json:"pushUrl,omitempty"`
 }
 

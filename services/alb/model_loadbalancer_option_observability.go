@@ -57,7 +57,7 @@ func setLoadbalancerOptionObservabilityGetMetricsAttributeType(arg *Loadbalancer
 	*arg = &val
 }
 
-// LoadbalancerOptionObservability We offer Application Load Balancer metrics observability via ARGUS or external solutions. Not changeable after creation.
+// LoadbalancerOptionObservability We offer Load Balancer observability via STACKIT Observability or external solutions.
 type LoadbalancerOptionObservability struct {
 	Logs    LoadbalancerOptionObservabilityGetLogsAttributeType    `json:"logs,omitempty"`
 	Metrics LoadbalancerOptionObservabilityGetMetricsAttributeType `json:"metrics,omitempty"`
