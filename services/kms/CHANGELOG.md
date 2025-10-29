@@ -1,3 +1,6 @@
+## v1.0.1
+- **Bugfix:** Fixed `DisableKeyVersionWaitHandler` to properly check for `disabled` state 
+
 ## v1.0.0
 - Switch to API version `v1` of STACKIT KMS service (previously `v1beta`)
 - **Breaking Change:** Removal of deprecated `Backend` model

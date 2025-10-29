@@ -1,3 +1,7 @@
+## Release (2025-XX-XX)
+- `kms`: [v1.0.1](services/kms/CHANGELOG.md#v101)
+  - **Bugfix:** Fixed `DisableKeyVersionWaitHandler` to properly check for `disabled` state 
+
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
