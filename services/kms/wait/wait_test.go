@@ -212,7 +212,7 @@ func TestCreateKeyRingWaitHandler(t *testing.T) {
 			}
 
 			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing key %s", diff)
+				t.Errorf("differing key ring %s", diff)
 			}
 		})
 	}
@@ -435,6 +435,30 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			fixtureVersion(1, false, "bogus"),
 			false,
 		},
+		{
+			"version not found (404)",
+			[]versionResponse{
+				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
+			},
+			nil,
+			true,
+		},
+		{
+			"version gone (410)",
+			[]versionResponse{
+				{nil, oapierror.NewError(http.StatusGone, "gone")},
+			},
+			nil,
+			true,
+		},
+		{
+			"error fetching version",
+			[]versionResponse{
+				{nil, oapierror.NewError(http.StatusInternalServerError, "internal error")},
+			},
+			nil,
+			true,
+		},
 		// no special update tests needed as the states are the same
 	}
 	for _, tt := range tests {
@@ -454,7 +478,7 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			}
 
 			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing key %s", diff)
+				t.Errorf("differing version %s", diff)
 			}
 		})
 	}
@@ -464,61 +488,84 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 	tests := []struct {
 		name      string
 		responses []versionResponse
+		want      *kms.Version
 		wantErr   bool
 	}{
 		{
-			"Delete with '404' succeeded immediately",
+			"disable succeeded immediately",
 			[]versionResponse{
-				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
+				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
 			},
+			fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED),
 			false,
 		},
 		{
-			"Delete with '404' delayed",
+			"disable succeeded delayed",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE), nil},
+				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
 			},
+			fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED),
 			false,
 		},
 		{
-			"Delete with 'gone' succeeded immediately",
+			"disable succeeded from creating state",
 			[]versionResponse{
-				{nil, oapierror.NewError(http.StatusGone, "gone")},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
+				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
 			},
+			fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED),
 			false,
 		},
 		{
-			"Delete with 'gone' delayed",
+			"version already destroyed",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{nil, oapierror.NewError(http.StatusGone, "not found")},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED), nil},
 			},
-			false,
-		},
-		{
-			"Delete with error delayed",
-			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED), oapierror.NewError(http.StatusInternalServerError, "kapow")},
-			},
+			fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED),
 			true,
 		},
 		{
-			"Cannot delete",
+			"version key material invalid",
 			[]versionResponse{
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED), oapierror.NewError(http.StatusOK, "ok")},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_INVALID), nil},
 			},
+			fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_INVALID),
+			true,
+		},
+		{
+			"timeout waiting for disabled state",
+			[]versionResponse{
+				{fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE), nil},
+			},
+			nil,
+			true,
+		},
+		{
+			"version not found (404)",
+			[]versionResponse{
+				{nil, oapierror.NewError(http.StatusNotFound, "not found")},
+			},
+			nil,
+			true,
+		},
+		{
+			"version gone (410)",
+			[]versionResponse{
+				{nil, oapierror.NewError(http.StatusGone, "gone")},
+			},
+			nil,
+			true,
+		},
+		{
+			"error fetching version",
+			[]versionResponse{
+				{nil, oapierror.NewError(http.StatusInternalServerError, "internal error")},
+			},
+			nil,
 			true,
 		},
 	}
@@ -529,18 +576,16 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 				versionResponses: tt.responses,
 			}
 			handler := DisableKeyVersionWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId, 1)
-			_, err := handler.SetTimeout(1 * time.Second).
+			got, err := handler.SetTimeout(1 * time.Second).
 				SetThrottle(250 * time.Millisecond).
 				WaitWithContext(ctx)
 
-			if tt.wantErr != (err != nil) {
-				t.Fatalf("wrong error result. want err: %v got %v", tt.wantErr, err)
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
 			}
-			if tt.wantErr {
-				var apiErr *oapierror.GenericOpenAPIError
-				if !errors.As(err, &apiErr) {
-					t.Fatalf("expected openapi error, got %v", err)
-				}
+
+			if diff := cmp.Diff(tt.want, got); diff != "" {
+				t.Errorf("differing version %s", diff)
 			}
 		})
 	}
@@ -618,7 +663,7 @@ func TestCreateWrappingWaitHandler(t *testing.T) {
 			}
 
 			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing key %s", diff)
+				t.Errorf("differing wrapping key %s", diff)
 			}
 		})
 	}
