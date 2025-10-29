@@ -21,6 +21,10 @@
   - **Deprecated:** Deprecated wait handler and will be removed after April 2026: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
 - `resourcemanager`: [v0.18.0](services/resourcemanager/CHANGELOG.md#v0180) 
   - **Feature:** Add new model `ContainerSearchResult`
+- `git`: [v0.9.0](services/git/CHANGELOG.md#v090)
+  - **Feature:** Add support for list runner labels operation
+    - new API client methods `ListRunnerLabels` and `ListRunnerLabelsExecute`
+    - new model struct `RunnerLabel`
     
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
