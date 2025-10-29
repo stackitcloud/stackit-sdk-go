@@ -1,3 +1,6 @@
+## Release (2025-10-30)
+- `core`: [v0.18.0](core/CHANGELOG.md#v0180-2025-10-30)
+  
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct

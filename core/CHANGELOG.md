@@ -1,3 +1,6 @@
+## v0.18.0 (2025-10-30)
+- **New:** Added duration utils
+
 ## v0.17.3 
 - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
