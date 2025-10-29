@@ -28,6 +28,32 @@
   - **Feature:** Add support for list runner labels operation
     - new API client methods `ListRunnerLabels` and `ListRunnerLabelsExecute`
     - new model struct `RunnerLabel`
+- `cdn`: [v2.0.0](services/cdn/CHANGELOG.md#v200)
+  - **Feature:** Switch from `v1beta` CDN API version to `v1beta2` version.
+  - **Breaking change:** Changed spelling from `WAF` to `Waf` in model struct names
+    - `WAFStatusRuleBlock` -> `WafStatusRuleBlock`
+    - `WAFRuleGroup` -> `WafRuleGroup`
+    - `WAFRuleCollection` -> `WafRuleCollection`
+    - `WAFRule` -> `WafRule`
+    - `NullableListWAFCollectionsResponse` -> `NullableListWafCollectionsResponse`
+  - **Breaking change:** Changed spelling from model struct named `GenericJSONResponse` to `GenericJsonResponse`
+  - **Breaking change:** Removal of fields from model structs
+    - Remove `Description` field from `ErrorDetails` model struct
+    - Remove `Domain` field from `PutCustomDomainResponse` and `GetCustomDomainResponse` model structs
+    - Remove `OccuredAt` field from `GetCacheInfoResponseHistoryEntry` model struct
+  - **Breaking change:** Renaming of fields in model structs
+    - Rename `DistributionID` field to `DistributionId` in `DistributionLogsRecord` model struct
+    - Rename `BlockedIPs` field to `BlockedIps` in `CreateDistributionPayload`, `ConfigPatch` and `Config` model structs
+  - **Breaking change:** Removal of API client methods `GetLogsSearchFilters`, `GetLogsSearchFiltersExecute`
+  - **Breaking change:** Removal of request structs `GetLogsSearchFiltersRequest`
+  - **Feature:** Add fields to model structs
+    - Add `Backend` field to `CreateDistributionPayload` model struct
+    - Add `BucketBackend` field to `ConfigBackend` model struct
+    - Add `BucketBackendPatch` field to `ConfigPatchBackend` model struct
+  - **Feature:** New model structs
+    - New Loki model structs: `LokiLogSinkCredentials`, `LokiLogSinkCreate`, `LokiLogSinkPatch`
+    - New Backend model structs: `HttpBackendCreate`,  `BucketBackendCreate`, `BucketBackend`, `BucketBackendPatch`, `CreateDistributionPayloadBackend`
+    - Other new model structs: `BucketCredentials`
     
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
