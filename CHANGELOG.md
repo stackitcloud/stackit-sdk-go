@@ -1,4 +1,4 @@
-## Release (2025-xx-xx)
+## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
 - `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
