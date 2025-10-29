@@ -28,7 +28,9 @@
   - **Feature:** Add support for list runner labels operation
     - new API client methods `ListRunnerLabels` and `ListRunnerLabelsExecute`
     - new model struct `RunnerLabel`
-    
+- `kms`: [v1.0.1](services/kms/CHANGELOG.md#v101)
+  - **Bugfix:** Fixed `DisableKeyVersionWaitHandler` to properly check for `disabled` state 
+
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
   - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
