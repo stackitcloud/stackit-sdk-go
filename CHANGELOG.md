@@ -1,5 +1,6 @@
-## Release (2025-10-30)
-- `core`: [v0.18.0](core/CHANGELOG.md#v0180-2025-10-30)
+## Release (2025-xx-xx)
+- `core`: [v0.18.0](core/CHANGELOG.md#v0180)
+  - **New:** Added duration utils
   
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
