@@ -1,7 +1,11 @@
 ## Release (2025-xx-xx)
 - `core`: [v0.18.0](core/CHANGELOG.md#v0180)
   - **New:** Added duration utils
-  
+- `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
+  - **Breaking Change:** Remove unused `ProjectId` model struct 
+- `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
+  - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
+
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct

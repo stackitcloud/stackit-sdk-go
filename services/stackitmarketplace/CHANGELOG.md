@@ -1,4 +1,7 @@
-## v0.15.0
+## v1.16.0
+- **Breaking Change:** Remove unused `ProjectId` model struct 
+
+## v1.15.0
 - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
 
 ## v1.14.0
