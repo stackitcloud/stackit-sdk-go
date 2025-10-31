@@ -1,3 +1,6 @@
+## v2.1.0
+- **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
+
 ## v2.0.0
 - **Feature:** Switch from `v1beta` CDN API version to `v1beta2` version.
 - **Breaking change:** Changed spelling from `WAF` to `Waf` in model struct names
