@@ -95,15 +95,8 @@ func TestContinuousRefreshToken(t *testing.T) {
 				t.Fatalf("failed to create access token: %v", err)
 			}
 
-			refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-				ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
-			}).SignedString([]byte("test"))
-			if err != nil {
-				t.Fatalf("failed to create refresh token: %v", err)
-			}
-
 			numberDoCalls := 0
-			mockDo := func(_ *http.Request) (resp *http.Response, err error) {
+			mockDo := func(r *http.Request) (resp *http.Response, err error) {
 				numberDoCalls++ // count refresh attempts
 				if tt.doError != nil {
 					return nil, tt.doError
@@ -115,8 +108,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 					t.Fatalf("Do call: failed to create access token: %v", err)
 				}
 				responseBodyStruct := TokenResponseBody{
-					AccessToken:  newAccessToken,
-					RefreshToken: refreshToken,
+					AccessToken: newAccessToken,
 				}
 				responseBody, err := json.Marshal(responseBodyStruct)
 				if err != nil {
@@ -153,7 +145,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 			}
 
 			// Set the token after initialization
-			err = keyFlow.SetToken(accessToken, refreshToken)
+			err = keyFlow.SetToken(accessToken)
 			if err != nil {
 				t.Fatalf("failed to set token: %v", err)
 			}
@@ -186,7 +178,7 @@ func TestContinuousRefreshToken(t *testing.T) {
 }
 
 // Tests if
-//   - continuousRefreshToken() updates access token using the refresh token
+//   - continuousRefreshToken() updates access token
 //   - The access token can be accessed while continuousRefreshToken() is trying to update it
 func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	// The times here are in the order of miliseconds (so they run faster)
@@ -234,14 +226,6 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 		t.Fatalf("created tokens are equal")
 	}
 
-	// The refresh token used to update the access token
-	refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
-	}).SignedString([]byte("test"))
-	if err != nil {
-		t.Fatalf("failed to create refresh token: %v", err)
-	}
-
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel() // This cancels the refresher goroutine
@@ -271,8 +255,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 						t.Fatalf("Do call: failed to create additional access token: %v", err)
 					}
 					responseBodyStruct := TokenResponseBody{
-						AccessToken:  newAccessToken,
-						RefreshToken: refreshToken,
+						AccessToken: newAccessToken,
 					}
 					responseBody, err := json.Marshal(responseBodyStruct)
 					if err != nil {
@@ -308,18 +291,12 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 					t.Fatalf("Do call: failed to parse body form: %v", err)
 				}
 				reqGrantType := req.Form.Get("grant_type")
-				if reqGrantType != "refresh_token" {
-					t.Fatalf("Do call: failed request to refresh token: call to refresh access expected to have grant type as %q, found %q instead", "refresh_token", reqGrantType)
+				if reqGrantType != "urn:ietf:params:oauth:grant-type:jwt-bearer" {
+					t.Fatalf("Do call: failed request to refresh token: call to refresh access expected to have grant type as %q, found %q instead", "urn:ietf:params:oauth:grant-type:jwt-bearer", reqGrantType)
 				}
-				reqRefreshToken := req.Form.Get("refresh_token")
-				if reqRefreshToken != refreshToken {
-					t.Fatalf("Do call: failed request to refresh token: call to refresh access token did not have the expected refresh token set")
-				}
-
 				// Return response with accessTokenSecond
 				responseBodyStruct := TokenResponseBody{
-					AccessToken:  accessTokenSecond,
-					RefreshToken: refreshToken,
+					AccessToken: accessTokenSecond,
 				}
 				responseBody, err := json.Marshal(responseBodyStruct)
 				if err != nil {
@@ -409,7 +386,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	}
 
 	// Set the token after initialization
-	err = keyFlow.SetToken(accessTokenFirst, refreshToken)
+	err = keyFlow.SetToken(accessTokenFirst)
 	if err != nil {
 		t.Fatalf("failed to set token: %v", err)
 	}
