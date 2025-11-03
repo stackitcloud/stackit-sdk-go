@@ -11,11 +11,10 @@ import (
 )
 
 func main() {
-	// Specify the project ID
-	projectId := "PROJECT_ID"
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 
 	// Specify the region
-	region := "REGION"
+	region := "eu01"
 
 	// Create a new API client, that uses default authentication and configuration
 	skeClient, err := ske.NewAPIClient()

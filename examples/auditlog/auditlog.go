@@ -13,11 +13,10 @@ import (
 )
 
 func main() {
-	// Specify the project ID, startTime and endTime
-	projectId := "PROJECT_ID"
-	startTime := time.Now().Add(-time.Hour * 24)
-	endTime := time.Now()
-	limit := float32(100) // set pagination limit to avoid rate limit
+	projectId := "PROJECT_ID"                    // the uuid of your STACKIT project
+	startTime := time.Now().Add(-time.Hour * 24) // your start time
+	endTime := time.Now()                        // your end time
+	limit := float32(100)                        // set pagination limit to avoid rate limit
 
 	// Create a new API client, that uses default authentication and configuration
 	auditlogClient, err := auditlog.NewAPIClient()

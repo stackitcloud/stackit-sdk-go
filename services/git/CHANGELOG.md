@@ -1,3 +1,8 @@
+## v0.9.0
+- **Feature:** Add support for list runner labels operation
+    - new API client methods `ListRunnerLabels` and `ListRunnerLabelsExecute`
+    - new model struct `RunnerLabel`
+
 ## v0.8.0
 - **Feature:** Add support for the instance patch operation
 

@@ -6,22 +6,20 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/runtime"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
 	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
 )
 
 func main() {
-	// Specify the organization ID and project ID
-	projectId := "PROJECT_ID"
+	// Specify the project ID, server ID, nic ID and region
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 	serverId := "SERVER_ID"
 	nicId := "NIC_ID"
+	region := "eu01"
 
 	// Create a new API client, that uses default authentication and configuration
-	iaasClient, err := iaas.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	iaasClient, err := iaas.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Creating API client: %v\n", err)
 		os.Exit(1)
@@ -30,7 +28,7 @@ func main() {
 	// Attach an existing network interface to an existing server
 	var httpResp *http.Response
 	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	err = iaasClient.AddNicToServer(ctxWithHTTPResp, projectId, serverId, nicId).Execute()
+	err = iaasClient.AddNicToServer(ctxWithHTTPResp, projectId, region, serverId, nicId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `AddNICToServer`: %v\n", err)
 	} else {
@@ -39,7 +37,7 @@ func main() {
 	requestId := httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for attachment of the nic
-	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, requestId).WaitWithContext(context.Background())
+	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, region, requestId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for attachment: %v\n", err)
 		os.Exit(1)
@@ -47,7 +45,7 @@ func main() {
 
 	fmt.Printf("[iaas API] Nic %q has been successfully attached to the server %s.\n", nicId, serverId)
 
-	err = iaasClient.RemoveNicFromServer(ctxWithHTTPResp, projectId, serverId, nicId).Execute()
+	err = iaasClient.RemoveNicFromServer(ctxWithHTTPResp, projectId, region, serverId, nicId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `RemoveNICFromServer`: %v\n", err)
 	} else {
@@ -57,7 +55,7 @@ func main() {
 	requestId = httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for dettachment of the nic
-	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, requestId).WaitWithContext(context.Background())
+	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, region, requestId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for removal of attachment of NIC: %v\n", err)
 		os.Exit(1)

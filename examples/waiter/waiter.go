@@ -14,9 +14,8 @@ import (
 func main() {
 	ctx := context.Background()
 
-	// Specify the project ID and DNS name (must be a valid and unique FQDN)
-	projectId := "PROJECT_ID"
-	dnsName := "zoneTest.com"
+	projectId := "PROJECT_ID" // the uuid of your STACKIT project
+	dnsName := "zoneTest.com" // DNS name (must be a valid and unique FQDN)
 
 	// Create a new API client, that uses default authentication.
 	dnsClient, err := dns.NewAPIClient()

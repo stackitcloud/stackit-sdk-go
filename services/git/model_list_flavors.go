@@ -37,7 +37,7 @@ func setListFlavorsGetFlavorsAttributeType(arg *ListFlavorsGetFlavorsAttributeTy
 	*arg = &val
 }
 
-// ListFlavors A list of STACKIT Git flavors.
+// ListFlavors A list of STACKIT Git Flavors.
 type ListFlavors struct {
 	// REQUIRED
 	Flavors ListFlavorsGetFlavorsAttributeType `json:"flavors" required:"true"`

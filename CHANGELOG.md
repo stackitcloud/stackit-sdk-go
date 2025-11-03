@@ -1,5 +1,15 @@
 
 ## Release (2025-xx-xx)
+- `core`: [v0.18.0](core/CHANGELOG.md#v0180)
+  - **New:** Added duration utils
+- `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
+  - **Breaking Change:** Remove unused `ProjectId` model struct 
+- `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
+  - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
+- `cdn`: [v2.1.0](services/cdn/CHANGELOG.md#v210)
+  - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
+
+## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
   - **Feature:** Add `EndUserLicenseAgreement`, `ProductDescription` and `ServiceLevelAgreement` attributes and add them to `Assets` struct
 - `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
@@ -9,6 +19,57 @@
   - **Feature:** Add wait handlers for `Intake`, `IntakeRunner`, and `IntakeUser` resources.
   - **Improvement:** Add usage examples for the `intake` service.
 
+- `iaas`: 
+  - [v1.0.1](services/iaas/CHANGELOG.md#v101)
+    - Bump STACKIT resourcemanager SDK module from `v0.17.1` to `v0.18.0`
+  - [v1.0.0](services/iaas/CHANGELOG.md#v100)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+    - **Feature:** Add new methods to manage routing tables: `AddRoutingTableToArea`, `DeleteRoutingTableFromArea`, `GetRoutingTableOfArea`, `ListRoutingTablesOfArea`, `UpdateRoutingTableOfArea`
+    - **Feature:** Add new methods to manage routes in routing tables: `AddRoutesToRoutingTable`, `DeleteRouteFromRoutingTable`, `GetRouteOfRoutingTable`, `ListRoutesOfRoutingTable`, `UpdateRouteOfRoutingTable`
+    - **Breaking Change:** Add new method to manage network area regions: `CreateNetworkAreaRegion`, `DeleteNetworkAreaRegion`, `GetNetworkAreaRegion`, `ListNetworkAreaRegions`, `UpdateNetworkAreaRegion`
+    - **Feature:** Add new wait handler for network area region: `CreateNetworkAreaRegionWaitHandler` and `DeleteRegionalNetworkAreaConfigurationWaitHandler`
+    - **Breaking Change:** Wait handler which relates to region-specific services, got an additional param for the region: `CreateNetworkWaitHandler`, `UpdateNetworkWaitHandler`, `DeleteNetworkWaitHandler`, `CreateVolumeWaitHandler`, `DeleteVolumeWaitHandler`, `CreateServerWaitHandler`, `ResizeServerWaitHandler`, `DeleteServerWaitHandler`, `StartServerWaitHandler`, `StopServerWaitHandler`, `DeallocateServerWaitHandler`, `RescueServerWaitHandler`, `UnrescueServerWaitHandler`, `ProjectRequestWaitHandler`, `AddVolumeToServerWaitHandler`, `RemoveVolumeFromServerWaitHandler`, `UploadImageWaitHandler`, `DeleteImageWaitHandler`, `CreateBackupWaitHandler`, `DeleteBackupWaitHandler`, `RestoreBackupWaitHandler`, `CreateSnapshotWaitHandler`, `DeleteSnapshotWaitHandler`
+    - **Breaking Change:** `Network` model has changed:
+        - `NetworkId` has been renamed to `Id`
+        - `Gateway`, `Nameservers`, `Prefixes` and `PublicIp` has been moved to new model `NetworkIPv4`, and can be accessed in the new property `IPv4`
+        - Properties `Gatewayv6`, `Nameserversv6` and `Prefixesv6` moved to new model `NetworkIPv6`, and can be accessed in the new property `IPv6`
+    - **Breaking Change:** `CreateServerPayload` model has changed:
+        - Model `CreateServerPayloadBootVolume` of `BootVolume` property changed to `ServerBootVolume`
+        - Property `Networking` in `CreateServerPayload` is required now
+    - **Deprecated:** Deprecated wait handler and will be removed after April 2026: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
+- `resourcemanager`: [v0.18.0](services/resourcemanager/CHANGELOG.md#v0180) 
+  - **Feature:** Add new model `ContainerSearchResult`
+- `git`: [v0.9.0](services/git/CHANGELOG.md#v090)
+  - **Feature:** Add support for list runner labels operation
+    - new API client methods `ListRunnerLabels` and `ListRunnerLabelsExecute`
+    - new model struct `RunnerLabel`
+- `cdn`: [v2.0.0](services/cdn/CHANGELOG.md#v200)
+  - **Feature:** Switch from `v1beta` CDN API version to `v1beta2` version.
+  - **Breaking change:** Changed spelling from `WAF` to `Waf` in model struct names
+    - `WAFStatusRuleBlock` -> `WafStatusRuleBlock`
+    - `WAFRuleGroup` -> `WafRuleGroup`
+    - `WAFRuleCollection` -> `WafRuleCollection`
+    - `WAFRule` -> `WafRule`
+    - `NullableListWAFCollectionsResponse` -> `NullableListWafCollectionsResponse`
+  - **Breaking change:** Changed spelling from model struct named `GenericJSONResponse` to `GenericJsonResponse`
+  - **Breaking change:** Removal of fields from model structs
+    - Remove `Description` field from `ErrorDetails` model struct
+    - Remove `Domain` field from `PutCustomDomainResponse` and `GetCustomDomainResponse` model structs
+    - Remove `OccuredAt` field from `GetCacheInfoResponseHistoryEntry` model struct
+  - **Breaking change:** Renaming of fields in model structs
+    - Rename `DistributionID` field to `DistributionId` in `DistributionLogsRecord` model struct
+    - Rename `BlockedIPs` field to `BlockedIps` in `CreateDistributionPayload`, `ConfigPatch` and `Config` model structs
+  - **Breaking change:** Removal of API client methods `GetLogsSearchFilters`, `GetLogsSearchFiltersExecute`
+  - **Breaking change:** Removal of request structs `GetLogsSearchFiltersRequest`
+  - **Feature:** Add fields to model structs
+    - Add `Backend` field to `CreateDistributionPayload` model struct
+    - Add `BucketBackend` field to `ConfigBackend` model struct
+    - Add `BucketBackendPatch` field to `ConfigPatchBackend` model struct
+  - **Feature:** New model structs
+    - New Loki model structs: `LokiLogSinkCredentials`, `LokiLogSinkCreate`, `LokiLogSinkPatch`
+    - New Backend model structs: `HttpBackendCreate`,  `BucketBackendCreate`, `BucketBackend`, `BucketBackendPatch`, `CreateDistributionPayloadBackend`
+    - Other new model structs: `BucketCredentials`
+    
 ## Release (2025-10-13)
 - `observability`: [v0.15.0](services/observability/CHANGELOG.md#v0150)
   - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
