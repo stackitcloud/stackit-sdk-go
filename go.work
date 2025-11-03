@@ -10,7 +10,6 @@ use (
 	./examples/dns
 	./examples/errorhandling
 	./examples/iaas
-	./examples/intake
 	./examples/kms
 	./examples/loadbalancer
 	./examples/logme
