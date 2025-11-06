@@ -63,9 +63,10 @@ func (a *apiClientMocked) GetIntakeUserExecute(_ context.Context, _, _, _, _ str
 	return a.intakeUserResponse, nil
 }
 
+const region = "eu01"
+
 var (
 	projectId      = uuid.NewString()
-	region         = "eu01"
 	intakeRunnerId = uuid.NewString()
 	intakeId       = uuid.NewString()
 	intakeUserId   = uuid.NewString()
