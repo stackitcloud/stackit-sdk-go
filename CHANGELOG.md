@@ -1,4 +1,7 @@
 ## Release (2025-XX-YY)
+- `core`: 
+  - [v0.21.0](core/CHANGELOG.md#v0210)
+    - **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
 - `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)
   - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 - `iaas`: 
