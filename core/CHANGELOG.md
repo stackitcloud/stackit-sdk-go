@@ -12,6 +12,7 @@
 
 ## v0.18.0
 - **New:** Added duration utils
+- **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
 
 ## v0.17.3 
 - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
