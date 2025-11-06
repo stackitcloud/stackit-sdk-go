@@ -1,4 +1,7 @@
 ## Release (2025-XX-YY)
+- `core`: 
+  - [v0.21.0](core/CHANGELOG.md#v0210)
+    - **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
 - `sfs`:
   - [v0.2.0](services/sfs/CHANGELOG.md)
     - **Breaking change:** Remove region configuration in `APIClient`
