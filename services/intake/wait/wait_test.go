@@ -64,7 +64,7 @@ func (a *apiClientMocked) GetIntakeUserExecute(_ context.Context, _, _, _, _ str
 }
 
 var (
-	PROJECT_ID       = uuid.NewString()
+	projectId       = uuid.NewString()
 	REGION           = "eu01"
 	INTAKE_RUNNER_ID = uuid.NewString()
 	INTAKE_ID        = uuid.NewString()
