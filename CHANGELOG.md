@@ -1,6 +1,7 @@
 ## Release (2025-xx-xx)
 - `core`: [v0.18.0](core/CHANGELOG.md#v0180)
   - **New:** Added duration utils
+  - **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
 - `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
   - **Breaking Change:** Remove unused `ProjectId` model struct 
 - `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
