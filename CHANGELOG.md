@@ -13,6 +13,8 @@
   - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 - `kms`: [v1.1.0](services/kms/CHANGELOG.md#v110)
   - **Bugfix:** Ensure correct state checking in `DisableKeyVersionWaitHandler` and `EnableKeyVersionWaitHandler`
+- `alb`: [v0.7.1](services/alb/CHANGELOG.md#v071)
+  - **Docs** Update description of field `WafConfigName` in `Listener` model
 
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
