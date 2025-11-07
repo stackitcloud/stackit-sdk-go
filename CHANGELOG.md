@@ -7,8 +7,8 @@
   - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
 - `cdn`: [v2.1.0](services/cdn/CHANGELOG.md#v210)
   - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
-- `kms`: [v1.0.1](services/kms/CHANGELOG.md#v101)
-  - **Bugfix:** Fixed `DisableKeyVersionWaitHandler` to properly check for `disabled` state 
+- `kms`: [v1.1.0](services/kms/CHANGELOG.md#v110)
+  - **Bugfix:** Ensure correct state checking in `DisableKeyVersionWaitHandler` and `EnableKeyVersionWaitHandler`
 
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)
