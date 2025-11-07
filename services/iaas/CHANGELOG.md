@@ -1,3 +1,7 @@
+## v1.2.0
+- **Feature:** Add new field `Encrypted` to `Backup` model, which indicates if a backup is encrypted
+- **Feature:** Add new field `ImportProgress` to `Image` model, which indicates the import progress of an image
+
 ## v1.1.0
 - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
 
