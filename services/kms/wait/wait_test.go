@@ -409,7 +409,7 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			false,
 		},
 		{
-			"create failed delayed",
+			"create failed with invalid key material",
 			[]versionResponse{
 				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
 				{fixtureVersion(1, false, kms.VERSIONSTATE_CREATING), nil},
@@ -417,7 +417,7 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_INVALID), nil},
 			},
 			fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_INVALID),
-			false,
+			true,
 		},
 		{
 			"timeout",
@@ -433,6 +433,24 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 				{fixtureVersion(1, false, "bogus"), nil},
 			},
 			fixtureVersion(1, false, "bogus"),
+			true,
+		},
+		{
+			"version destroyed",
+			[]versionResponse{
+				{fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED), nil},
+			},
+			fixtureVersion(1, false, kms.VERSIONSTATE_DESTROYED),
+			true,
+		},
+		{
+			"version disabled - continues waiting",
+			[]versionResponse{
+				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
+				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
+				{fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE), nil},
+			},
+			fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE),
 			false,
 		},
 		{
