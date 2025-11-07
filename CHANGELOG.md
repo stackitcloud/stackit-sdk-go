@@ -3,8 +3,12 @@
   - **New:** Added duration utils
 - `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
   - **Breaking Change:** Remove unused `ProjectId` model struct 
-- `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
-  - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
+- `iaas`: 
+  - [v1.2.0](services/iaas/CHANGELOG.md#v120)
+    - **Feature:** Add new field `Encrypted` to `Backup` model, which indicates if a backup is encrypted
+    - **Feature:** Add new field `ImportProgress` to `Image` model, which indicates the import progress of an image
+  - [v1.1.0](services/iaas/CHANGELOG.md#v110)
+    - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
 - `cdn`: [v2.1.0](services/cdn/CHANGELOG.md#v210)
   - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 - `kms`: [v1.1.0](services/kms/CHANGELOG.md#v110)
