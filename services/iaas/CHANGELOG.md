@@ -1,3 +1,6 @@
+## v1.1.0
+- **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
+
 ## v1.0.1
 - Bump STACKIT resourcemanager SDK module from `v0.17.1` to `v0.18.0`
 
