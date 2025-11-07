@@ -257,7 +257,7 @@ type Listener struct {
 	Port ListenerGetPortAttributeType `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
 	Protocol ListenerGetProtocolAttributeType `json:"protocol,omitempty"`
-	// Enable Web Application Firewall (WAF), referenced to a by name. See \"Application Load Balancer - Web Application Firewall API\" for more information.
+	// Enable Web Application Firewall (WAF), referenced by name. See \"Application Load Balancer - Web Application Firewall API\" for more information.
 	WafConfigName ListenerGetWafConfigNameAttributeType `json:"wafConfigName,omitempty"`
 }
 
