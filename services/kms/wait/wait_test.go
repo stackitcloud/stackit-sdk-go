@@ -444,14 +444,20 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			true,
 		},
 		{
-			"version disabled - continues waiting",
+			"version disabled - unexpected state",
 			[]versionResponse{
 				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
-				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
-				{fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE), nil},
 			},
-			fixtureVersion(1, false, kms.VERSIONSTATE_ACTIVE),
-			false,
+			fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED),
+			true,
+		},
+		{
+			"version key material unavailable - unexpected state",
+			[]versionResponse{
+				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE), nil},
+			},
+			fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE),
+			true,
 		},
 		{
 			"version not found (404)",
