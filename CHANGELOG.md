@@ -1,4 +1,12 @@
-## Release (2025-XX-XX)
+## Release (2025-xx-xx)
+- `core`: [v0.18.0](core/CHANGELOG.md#v0180)
+  - **New:** Added duration utils
+- `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
+  - **Breaking Change:** Remove unused `ProjectId` model struct 
+- `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
+  - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
+- `cdn`: [v2.1.0](services/cdn/CHANGELOG.md#v210)
+  - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 - `kms`: [v1.0.1](services/kms/CHANGELOG.md#v101)
   - **Bugfix:** Fixed `DisableKeyVersionWaitHandler` to properly check for `disabled` state 
 
