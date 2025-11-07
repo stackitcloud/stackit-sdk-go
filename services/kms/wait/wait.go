@@ -131,7 +131,7 @@ func EnableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proje
 			switch *response.State {
 			case kms.VERSIONSTATE_ACTIVE:
 				return true, response, nil
-			case kms.VERSIONSTATE_DISABLED, kms.VERSIONSTATE_CREATING, kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE:
+			case kms.VERSIONSTATE_CREATING:
 				return false, nil, nil
 			case kms.VERSIONSTATE_DESTROYED, kms.VERSIONSTATE_KEY_MATERIAL_INVALID:
 				return true, response, fmt.Errorf("enabling failed for key %s version %d: state %s", keyId, version, *response.State)
