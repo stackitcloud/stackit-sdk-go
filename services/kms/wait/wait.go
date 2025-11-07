@@ -59,7 +59,7 @@ func CreateKeyRingWaitHandler(ctx context.Context, client ApiKmsClient, projectI
 			return false, nil, err
 		}
 
-		if response.State != nil {
+		if response != nil && response.State != nil {
 			switch *response.State {
 			case kms.KEYRINGSTATE_CREATING:
 				return false, nil, nil
@@ -81,7 +81,7 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 			return false, nil, err
 		}
 
-		if response.State != nil {
+		if response != nil && response.State != nil {
 			switch *response.State {
 			case kms.KEYSTATE_CREATING:
 				return false, nil, nil
@@ -121,19 +121,15 @@ func EnableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proje
 			var apiErr *oapierror.GenericOpenAPIError
 			if errors.As(err, &apiErr) {
 				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, fmt.Errorf("enabling failed for key %s version %d: version not found", keyId, version)
+					return true, nil, fmt.Errorf("enabling failed for key %s version %d: version or key not found", keyId, version)
 				}
 			}
 			return false, nil, err
 		}
 
-		if response.State != nil {
+		if response != nil && response.State != nil {
 			switch *response.State {
-			case kms.VERSIONSTATE_DESTROYED:
-				return true, response, nil
-			case kms.VERSIONSTATE_KEY_MATERIAL_INVALID:
-				return true, response, nil
-			case kms.VERSIONSTATE_DISABLED:
+			case kms.VERSIONSTATE_DESTROYED, kms.VERSIONSTATE_KEY_MATERIAL_INVALID, kms.VERSIONSTATE_DISABLED:
 				return true, response, nil
 			case kms.VERSIONSTATE_CREATING:
 				return false, nil, nil
@@ -155,25 +151,19 @@ func DisableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proj
 			var apiErr *oapierror.GenericOpenAPIError
 			if errors.As(err, &apiErr) {
 				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, fmt.Errorf("disabling failed for key %s version %d: version not found", keyId, version)
+					return true, nil, fmt.Errorf("disabling failed for key %s version %d: version or key not found", keyId, version)
 				}
 			}
 			return false, nil, err
 		}
 
-		if response.State != nil {
+		if response != nil && response.State != nil {
 			switch *response.State {
 			case kms.VERSIONSTATE_DISABLED:
 				return true, response, nil
-			case kms.VERSIONSTATE_ACTIVE:
+			case kms.VERSIONSTATE_ACTIVE, kms.VERSIONSTATE_CREATING, kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE:
 				return false, nil, nil
-			case kms.VERSIONSTATE_CREATING:
-				return false, nil, nil
-			case kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE:
-				return false, nil, nil
-			case kms.VERSIONSTATE_DESTROYED:
-				return true, response, fmt.Errorf("disabling failed for key %s version %d: state %s", keyId, version, *response.State)
-			case kms.VERSIONSTATE_KEY_MATERIAL_INVALID:
+			case kms.VERSIONSTATE_DESTROYED, kms.VERSIONSTATE_KEY_MATERIAL_INVALID:
 				return true, response, fmt.Errorf("disabling failed for key %s version %d: state %s", keyId, version, *response.State)
 			default:
 				return true, response, fmt.Errorf("key version %d for key %s has unexpected state %s", version, keyId, *response.State)
@@ -193,8 +183,8 @@ func CreateWrappingKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 			return false, nil, err
 		}
 
-		if state := response.State; state != nil {
-			switch *state {
+		if response != nil && response.State != nil {
+			switch *response.State {
 			case kms.WRAPPINGKEYSTATE_CREATING:
 				return false, nil, nil
 			default:
