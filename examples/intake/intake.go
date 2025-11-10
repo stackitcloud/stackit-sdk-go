@@ -14,12 +14,12 @@ func main() {
 	region := "eu01"          // Region where the resources will be created
 	projectId := "PROJECT_ID" // Your STACKIT project ID
 
-	dremioCatalogURI := "DREMIO_CATALOG_URI"       // E.g., "https://my-dremio-catalog.data-platform.stackit.run/iceberg"
-	dremioTokenEndpoint := "DREMIO_TOKEN_ENDPOINT" // E.g., "https://my-dremio.data-platform.stackit.run/oauth/token"
-	dremioPAT := "DREMIO_PERSONAL_ACCESS_TOKEN"    // Your Dremio Personal Access Token
-	catalogWarehouse := "CATALOG_WAREHOUSE"        // Catalog warehouse where the data will be ingested
+	dremioCatalogURI := "DREMIO_CATALOG_URI"       //nolint:gosec // E.g., "https://my-dremio-catalog.data-platform.stackit.run/iceberg"
+	dremioTokenEndpoint := "DREMIO_TOKEN_ENDPOINT" //nolint:gosec // E.g., "https://my-dremio.data-platform.stackit.run/oauth/token"
+	dremioPAT := "DREMIO_PERSONAL_ACCESS_TOKEN"    //nolint:gosec // Your Dremio Personal Access Token
+	catalogWarehouse := "CATALOG_WAREHOUSE"        //nolint:gosec // Catalog warehouse where the data will be ingested
 
-	intakeUserPassword := "s3cuRe_p@ssW0rd_f0r_1ntake!" // A secure password for the new intake user
+	intakeUserPassword := "s3cuRe_p@ssW0rd_f0r_1ntake!" //nolint:gosec // A secure password for the new intake user
 
 	ctx := context.Background()
 
@@ -76,6 +76,7 @@ func main() {
 		DisplayName: utils.Ptr("my-example-user"),
 		Password:    utils.Ptr(intakeUserPassword),
 	}
+	// Create an Intake user
 	createIntakeUserResp, err := intakeClient.CreateIntakeUser(ctx, projectId, region, intakeId).CreateIntakeUserPayload(createIntakeUserPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating Intake User: %v\n", err)
