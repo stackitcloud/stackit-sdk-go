@@ -1,8 +1,12 @@
 ## Release (2025-xx-xx)
 - `core`: [v0.18.0](core/CHANGELOG.md#v0180)
   - **New:** Added duration utils
-- `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
-  - **Breaking Change:** Remove unused `ProjectId` model struct 
+- `stackitmarketplace`:
+  - [v1.17.0](services/stackitmarketplace/CHANGELOG.md#v1170)
+    - **Feature:** Add new field `Scope` in `CatalogProductPricingOption` model
+    - **Deprecation:** Deprecated API methods `GetCatalogProduct`, `ListCatalogProducts` and `InquiriesCreateInquiry`
+  - [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
+    - **Breaking Change:** Remove unused `ProjectId` model struct 
 - `iaas`: 
   - [v1.2.0](services/iaas/CHANGELOG.md#v120)
     - **Feature:** Add new field `Encrypted` to `Backup` model, which indicates if a backup is encrypted
