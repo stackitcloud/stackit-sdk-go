@@ -183,6 +183,26 @@ type CatalogProductPricingOptionGetRateArgType = string
 type CatalogProductPricingOptionGetRateRetType = string
 
 /*
+	types and functions for scope
+*/
+
+// isEnumRef
+type CatalogProductPricingOptionGetScopeAttributeType = *Scope
+type CatalogProductPricingOptionGetScopeArgType = Scope
+type CatalogProductPricingOptionGetScopeRetType = Scope
+
+func getCatalogProductPricingOptionGetScopeAttributeTypeOk(arg CatalogProductPricingOptionGetScopeAttributeType) (ret CatalogProductPricingOptionGetScopeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCatalogProductPricingOptionGetScopeAttributeType(arg *CatalogProductPricingOptionGetScopeAttributeType, val CatalogProductPricingOptionGetScopeRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for sku
 */
 
@@ -285,6 +305,8 @@ type CatalogProductPricingOption struct {
 	PricingPlan CatalogProductPricingOptionGetPricingPlanAttributeType `json:"pricingPlan,omitempty"`
 	// The price of the product (per unit).
 	Rate CatalogProductPricingOptionGetRateAttributeType `json:"rate,omitempty"`
+	// REQUIRED
+	Scope CatalogProductPricingOptionGetScopeAttributeType `json:"scope" required:"true"`
 	// The concrete variant of the product.
 	// REQUIRED
 	Sku CatalogProductPricingOptionGetSkuAttributeType `json:"sku" required:"true"`
@@ -303,12 +325,13 @@ type _CatalogProductPricingOption CatalogProductPricingOption
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCatalogProductPricingOption(description CatalogProductPricingOptionGetDescriptionArgType, highlights CatalogProductPricingOptionGetHighlightsArgType, name CatalogProductPricingOptionGetNameArgType, planId CatalogProductPricingOptionGetPlanIdArgType, sku CatalogProductPricingOptionGetSkuArgType, skuInfo CatalogProductPricingOptionGetSkuInfoArgType, skuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsArgType) *CatalogProductPricingOption {
+func NewCatalogProductPricingOption(description CatalogProductPricingOptionGetDescriptionArgType, highlights CatalogProductPricingOptionGetHighlightsArgType, name CatalogProductPricingOptionGetNameArgType, planId CatalogProductPricingOptionGetPlanIdArgType, scope CatalogProductPricingOptionGetScopeArgType, sku CatalogProductPricingOptionGetSkuArgType, skuInfo CatalogProductPricingOptionGetSkuInfoArgType, skuInfoDetails CatalogProductPricingOptionGetSkuInfoDetailsArgType) *CatalogProductPricingOption {
 	this := CatalogProductPricingOption{}
 	setCatalogProductPricingOptionGetDescriptionAttributeType(&this.Description, description)
 	setCatalogProductPricingOptionGetHighlightsAttributeType(&this.Highlights, highlights)
 	setCatalogProductPricingOptionGetNameAttributeType(&this.Name, name)
 	setCatalogProductPricingOptionGetPlanIdAttributeType(&this.PlanId, planId)
+	setCatalogProductPricingOptionGetScopeAttributeType(&this.Scope, scope)
 	setCatalogProductPricingOptionGetSkuAttributeType(&this.Sku, sku)
 	setCatalogProductPricingOptionGetSkuInfoAttributeType(&this.SkuInfo, skuInfo)
 	setCatalogProductPricingOptionGetSkuInfoDetailsAttributeType(&this.SkuInfoDetails, skuInfoDetails)
@@ -483,6 +506,23 @@ func (o *CatalogProductPricingOption) SetRate(v CatalogProductPricingOptionGetRa
 	setCatalogProductPricingOptionGetRateAttributeType(&o.Rate, v)
 }
 
+// GetScope returns the Scope field value
+func (o *CatalogProductPricingOption) GetScope() (ret CatalogProductPricingOptionGetScopeRetType) {
+	ret, _ = o.GetScopeOk()
+	return ret
+}
+
+// GetScopeOk returns a tuple with the Scope field value
+// and a boolean to check if the value has been set.
+func (o *CatalogProductPricingOption) GetScopeOk() (ret CatalogProductPricingOptionGetScopeRetType, ok bool) {
+	return getCatalogProductPricingOptionGetScopeAttributeTypeOk(o.Scope)
+}
+
+// SetScope sets field value
+func (o *CatalogProductPricingOption) SetScope(v CatalogProductPricingOptionGetScopeRetType) {
+	setCatalogProductPricingOptionGetScopeAttributeType(&o.Scope, v)
+}
+
 // GetSku returns the Sku field value
 func (o *CatalogProductPricingOption) GetSku() (ret CatalogProductPricingOptionGetSkuRetType) {
 	ret, _ = o.GetSkuOk()
@@ -582,6 +622,9 @@ func (o CatalogProductPricingOption) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCatalogProductPricingOptionGetRateAttributeTypeOk(o.Rate); ok {
 		toSerialize["Rate"] = val
+	}
+	if val, ok := getCatalogProductPricingOptionGetScopeAttributeTypeOk(o.Scope); ok {
+		toSerialize["Scope"] = val
 	}
 	if val, ok := getCatalogProductPricingOptionGetSkuAttributeTypeOk(o.Sku); ok {
 		toSerialize["Sku"] = val

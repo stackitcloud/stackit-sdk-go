@@ -1,3 +1,6 @@
+## v0.7.1
+- **Docs** Update description of field `WafConfigName` in `Listener` model
+
 ## v0.7.0
 - Add field `Labels` (type `*map[string]string`) to structs `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload`
 - Add field `WafConfigName` (type `*string`) to `Listener` struct

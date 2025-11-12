@@ -1,3 +1,7 @@
+## v1.17.0
+- **Feature:** Add new field `Scope` in `CatalogProductPricingOption` model
+- **Deprecation:** Deprecated API methods `GetCatalogProduct`, `ListCatalogProducts` and `InquiriesCreateInquiry`
+
 ## v1.16.0
 - **Breaking Change:** Remove unused `ProjectId` model struct 
 
@@ -32,7 +36,7 @@
 - **Breaking Change:** Update `InquiryFormType` enums
 
 ## v1.6.1
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## v1.6.0
 - **Feature:** Add new `Assets` model for managing service certificate assets

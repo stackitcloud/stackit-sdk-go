@@ -41,7 +41,7 @@ type DefaultApi interface {
 	ApproveSubscriptionExecute(ctx context.Context, projectId string, subscriptionId string) error
 	/*
 		GetCatalogProduct Get a product
-		Get a product.
+		Deprecated: Get a product.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param productId The product ID.
@@ -55,6 +55,7 @@ type DefaultApi interface {
 		@param productId The product ID.
 		@return CatalogProductDetail
 
+		Deprecated: Get a product.
 	*/
 	GetCatalogProductExecute(ctx context.Context, productId string) (*CatalogProductDetail, error)
 	/*
@@ -79,7 +80,7 @@ type DefaultApi interface {
 	GetVendorSubscriptionExecute(ctx context.Context, projectId string, subscriptionId string) (*VendorSubscription, error)
 	/*
 		InquiriesCreateInquiry Create inquiry
-		Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
+		Deprecated: Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiInquiriesCreateInquiryRequest
@@ -88,11 +89,12 @@ type DefaultApi interface {
 	/*
 		InquiriesCreateInquiryExecute executes the request
 
+		Deprecated: Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 	*/
 	InquiriesCreateInquiryExecute(ctx context.Context) error
 	/*
 		ListCatalogProducts List all products
-		List all products.
+		Deprecated: List all products.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiListCatalogProductsRequest
@@ -104,6 +106,7 @@ type DefaultApi interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ListCatalogProductsResponse
 
+		Deprecated: List all products.
 	*/
 	ListCatalogProductsExecute(ctx context.Context) (*ListCatalogProductsResponse, error)
 	/*
@@ -186,7 +189,7 @@ type ApiListCatalogProductsRequest interface {
 	Limit(limit float32) ApiListCatalogProductsRequest
 	// The language of the response.
 	Locale(locale string) ApiListCatalogProductsRequest
-	// Filter the products based on attributes, e.g., &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported operators are: - &#x60;PR&#x60; (present; &#x60;name pr&#x60;) - &#x60;EQ&#x60; (equal) - &#x60;NE&#x60; (not equal) - &#x60;CO&#x60; (contains; &#x60;text co \&quot;searching\&quot;&#x60;) - &#x60;SW&#x60; (starts with) - &#x60;EW&#x60; (ends with) - &#x60;GT&#x60; (greater than) - &#x60;LT&#x60; (less than) - &#x60;GE&#x60; (greater than or equal) - &#x60;LE&#x60; (less than or equal).   These expressions can be logically linked with &#x60;AND&#x60; and &#x60;OR&#x60;. All attributes (and the special &#x60;text&#x60; attribute) can be used as filters, if the attribute type allows the operator.
+	// Filter the products based on attributes, e.g., &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported operators are: - &#x60;PR&#x60; (present; &#x60;name pr&#x60;) - &#x60;EQ&#x60; (equal) - &#x60;NE&#x60; (not equal) - &#x60;CO&#x60; (contains; &#x60;text co \&quot;searching\&quot;&#x60;) - &#x60;SW&#x60; (starts with) - &#x60;EW&#x60; (ends with) - &#x60;GT&#x60; (greater than) - &#x60;LT&#x60; (less than) - &#x60;GE&#x60; (greater than or equal) - &#x60;LE&#x60; (less than or equal).  These expressions can be logically linked with &#x60;AND&#x60; and &#x60;OR&#x60;. All attributes (and the special &#x60;text&#x60; attribute) can be used as filters, if the attribute type allows the operator.
 	Filter(filter string) ApiListCatalogProductsRequest
 	// Sort the products based on attributes and order e.g. &#x60;name:asc&#x60;. Attributes with scalar types (&#x60;createdAt&#x60;, &#x60;isProductListing&#x60;) or keywords (&#x60;name&#x60;, &#x60;deliveryMethod&#x60;, &#x60;lifecycleState&#x60;, &#x60;vendor.name&#x60;) can be used as sort criteria. To set the sort order, append &#x60;asc&#x60; (ascending) or &#x60;desc&#x60; (descending) to the attribute, e.g. &#x60;name:asc&#x60;. To sort by multiple attributes, separate them with a comma. E.g &#x60;name:asc,price:desc&#x60;.
 	Sort(sort string) ApiListCatalogProductsRequest
@@ -551,7 +554,7 @@ func (r GetCatalogProductRequest) Execute() (*CatalogProductDetail, error) {
 /*
 GetCatalogProduct: Get a product
 
-Get a product.
+Deprecated: Get a product.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param productId The product ID.
@@ -565,6 +568,9 @@ func (a *APIClient) GetCatalogProduct(ctx context.Context, productId string) Api
 	}
 }
 
+/*
+Deprecated: Get a product.
+*/
 func (a *APIClient) GetCatalogProductExecute(ctx context.Context, productId string) (*CatalogProductDetail, error) {
 	r := GetCatalogProductRequest{
 		apiService: a.defaultApi,
@@ -894,7 +900,7 @@ func (r InquiriesCreateInquiryRequest) Execute() error {
 /*
 InquiriesCreateInquiry: Create inquiry
 
-Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
+Deprecated: Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiInquiriesCreateInquiryRequest
@@ -906,6 +912,9 @@ func (a *APIClient) InquiriesCreateInquiry(ctx context.Context) ApiInquiriesCrea
 	}
 }
 
+/*
+Deprecated: Create an inquiry to contact sales, become a vendor, request a private plan, register for testing, or suggest a product. Requests are limited to 10 per 5 minutes.
+*/
 func (a *APIClient) InquiriesCreateInquiryExecute(ctx context.Context) error {
 	r := InquiriesCreateInquiryRequest{
 		apiService: a.defaultApi,
@@ -945,7 +954,7 @@ func (r ListCatalogProductsRequest) Locale(locale string) ApiListCatalogProducts
 	return r
 }
 
-// Filter the products based on attributes, e.g., &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported operators are: - &#x60;PR&#x60; (present; &#x60;name pr&#x60;) - &#x60;EQ&#x60; (equal) - &#x60;NE&#x60; (not equal) - &#x60;CO&#x60; (contains; &#x60;text co \&quot;searching\&quot;&#x60;) - &#x60;SW&#x60; (starts with) - &#x60;EW&#x60; (ends with) - &#x60;GT&#x60; (greater than) - &#x60;LT&#x60; (less than) - &#x60;GE&#x60; (greater than or equal) - &#x60;LE&#x60; (less than or equal).   These expressions can be logically linked with &#x60;AND&#x60; and &#x60;OR&#x60;. All attributes (and the special &#x60;text&#x60; attribute) can be used as filters, if the attribute type allows the operator.
+// Filter the products based on attributes, e.g., &#x60;deliveryMethod eq \&quot;SAAS\&quot;&#x60;. The supported operators are: - &#x60;PR&#x60; (present; &#x60;name pr&#x60;) - &#x60;EQ&#x60; (equal) - &#x60;NE&#x60; (not equal) - &#x60;CO&#x60; (contains; &#x60;text co \&quot;searching\&quot;&#x60;) - &#x60;SW&#x60; (starts with) - &#x60;EW&#x60; (ends with) - &#x60;GT&#x60; (greater than) - &#x60;LT&#x60; (less than) - &#x60;GE&#x60; (greater than or equal) - &#x60;LE&#x60; (less than or equal).  These expressions can be logically linked with &#x60;AND&#x60; and &#x60;OR&#x60;. All attributes (and the special &#x60;text&#x60; attribute) can be used as filters, if the attribute type allows the operator.
 
 func (r ListCatalogProductsRequest) Filter(filter string) ApiListCatalogProductsRequest {
 	r.filter = &filter
@@ -1097,7 +1106,7 @@ func (r ListCatalogProductsRequest) Execute() (*ListCatalogProductsResponse, err
 /*
 ListCatalogProducts: List all products
 
-List all products.
+Deprecated: List all products.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListCatalogProductsRequest
@@ -1109,6 +1118,9 @@ func (a *APIClient) ListCatalogProducts(ctx context.Context) ApiListCatalogProdu
 	}
 }
 
+/*
+Deprecated: List all products.
+*/
 func (a *APIClient) ListCatalogProductsExecute(ctx context.Context) (*ListCatalogProductsResponse, error) {
 	r := ListCatalogProductsRequest{
 		apiService: a.defaultApi,

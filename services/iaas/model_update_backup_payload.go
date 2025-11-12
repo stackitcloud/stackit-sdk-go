@@ -60,6 +60,26 @@ func setUpdateBackupPayloadGetCreatedAtAttributeType(arg *UpdateBackupPayloadGet
 }
 
 /*
+	types and functions for encrypted
+*/
+
+// isBoolean
+type UpdateBackupPayloadgetEncryptedAttributeType = *bool
+type UpdateBackupPayloadgetEncryptedArgType = bool
+type UpdateBackupPayloadgetEncryptedRetType = bool
+
+func getUpdateBackupPayloadgetEncryptedAttributeTypeOk(arg UpdateBackupPayloadgetEncryptedAttributeType) (ret UpdateBackupPayloadgetEncryptedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateBackupPayloadgetEncryptedAttributeType(arg *UpdateBackupPayloadgetEncryptedAttributeType, val UpdateBackupPayloadgetEncryptedRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for id
 */
 
@@ -230,6 +250,8 @@ type UpdateBackupPayload struct {
 	AvailabilityZone UpdateBackupPayloadGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt UpdateBackupPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
+	// Indicates if a volume is encrypted.
+	Encrypted UpdateBackupPayloadgetEncryptedAttributeType `json:"encrypted,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id UpdateBackupPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
@@ -309,6 +331,29 @@ func (o *UpdateBackupPayload) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *UpdateBackupPayload) SetCreatedAt(v UpdateBackupPayloadGetCreatedAtRetType) {
 	setUpdateBackupPayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetEncrypted returns the Encrypted field value if set, zero value otherwise.
+func (o *UpdateBackupPayload) GetEncrypted() (res UpdateBackupPayloadgetEncryptedRetType) {
+	res, _ = o.GetEncryptedOk()
+	return
+}
+
+// GetEncryptedOk returns a tuple with the Encrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateBackupPayload) GetEncryptedOk() (ret UpdateBackupPayloadgetEncryptedRetType, ok bool) {
+	return getUpdateBackupPayloadgetEncryptedAttributeTypeOk(o.Encrypted)
+}
+
+// HasEncrypted returns a boolean if a field has been set.
+func (o *UpdateBackupPayload) HasEncrypted() bool {
+	_, ok := o.GetEncryptedOk()
+	return ok
+}
+
+// SetEncrypted gets a reference to the given bool and assigns it to the Encrypted field.
+func (o *UpdateBackupPayload) SetEncrypted(v UpdateBackupPayloadgetEncryptedRetType) {
+	setUpdateBackupPayloadgetEncryptedAttributeType(&o.Encrypted, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -502,6 +547,9 @@ func (o UpdateBackupPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getUpdateBackupPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getUpdateBackupPayloadgetEncryptedAttributeTypeOk(o.Encrypted); ok {
+		toSerialize["Encrypted"] = val
 	}
 	if val, ok := getUpdateBackupPayloadGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
