@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -35,5 +36,53 @@ func TestContainsInt(t *testing.T) {
 	}
 	if Contains([]int{}, 11) {
 		t.Fatalf("Should not be contained")
+	}
+}
+
+func TestEnumSliceToStringSlice(t *testing.T) {
+	type TestEnum string
+
+	const TESTENUM_CREATING TestEnum = "CREATING"
+	const TESTENUM_ACTIVE TestEnum = "ACTIVE"
+	const TESTENUM_UPDATING TestEnum = "UPDATING"
+	const TESTENUM_DELETING TestEnum = "DELETING"
+	const TESTENUM_ERROR TestEnum = "ERROR"
+
+	type args[T interface{ ~string }] struct {
+		inputSlice []T
+	}
+	type test[T interface{ ~string }] struct {
+		name string
+		args args[T]
+		want []string
+	}
+	tests := []test[TestEnum]{
+		{
+			name: "default",
+			args: args[TestEnum]{
+				inputSlice: []TestEnum{
+					TESTENUM_CREATING,
+					TESTENUM_ACTIVE,
+					TESTENUM_UPDATING,
+					TESTENUM_DELETING,
+					TESTENUM_ERROR,
+				},
+			},
+			want: []string{"CREATING", "ACTIVE", "UPDATING", "DELETING", "ERROR"},
+		},
+		{
+			name: "empty input slice",
+			args: args[TestEnum]{
+				inputSlice: []TestEnum{},
+			},
+			want: []string{},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := EnumSliceToStringSlice(tt.args.inputSlice); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("EnumSliceToStringSlice() = %v, want %v", got, tt.want)
+			}
+		})
 	}
 }
