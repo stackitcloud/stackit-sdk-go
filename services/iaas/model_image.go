@@ -141,6 +141,26 @@ type ImageGetIdArgType = string
 type ImageGetIdRetType = string
 
 /*
+	types and functions for importProgress
+*/
+
+// isLong
+type ImageGetImportProgressAttributeType = *int64
+type ImageGetImportProgressArgType = int64
+type ImageGetImportProgressRetType = int64
+
+func getImageGetImportProgressAttributeTypeOk(arg ImageGetImportProgressAttributeType) (ret ImageGetImportProgressRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setImageGetImportProgressAttributeType(arg *ImageGetImportProgressAttributeType, val ImageGetImportProgressRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for labels
 */
 
@@ -356,6 +376,8 @@ type Image struct {
 	DiskFormat ImageGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Id ImageGetIdAttributeType `json:"id,omitempty"`
+	// Indicates Image Import Progress in percent.
+	ImportProgress ImageGetImportProgressAttributeType `json:"importProgress,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels ImageGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
@@ -530,6 +552,29 @@ func (o *Image) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Image) SetId(v ImageGetIdRetType) {
 	setImageGetIdAttributeType(&o.Id, v)
+}
+
+// GetImportProgress returns the ImportProgress field value if set, zero value otherwise.
+func (o *Image) GetImportProgress() (res ImageGetImportProgressRetType) {
+	res, _ = o.GetImportProgressOk()
+	return
+}
+
+// GetImportProgressOk returns a tuple with the ImportProgress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Image) GetImportProgressOk() (ret ImageGetImportProgressRetType, ok bool) {
+	return getImageGetImportProgressAttributeTypeOk(o.ImportProgress)
+}
+
+// HasImportProgress returns a boolean if a field has been set.
+func (o *Image) HasImportProgress() bool {
+	_, ok := o.GetImportProgressOk()
+	return ok
+}
+
+// SetImportProgress gets a reference to the given int64 and assigns it to the ImportProgress field.
+func (o *Image) SetImportProgress(v ImageGetImportProgressRetType) {
+	setImageGetImportProgressAttributeType(&o.ImportProgress, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -775,6 +820,9 @@ func (o Image) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getImageGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getImageGetImportProgressAttributeTypeOk(o.ImportProgress); ok {
+		toSerialize["ImportProgress"] = val
 	}
 	if val, ok := getImageGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val

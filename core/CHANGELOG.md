@@ -1,3 +1,6 @@
+## v0.19.0
+- **New:** Added new `EnumSliceToStringSlice ` util func
+
 ## v0.18.0
 - **New:** Added duration utils
 

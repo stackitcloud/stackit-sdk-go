@@ -1,12 +1,27 @@
 ## Release (2025-xx-xx)
-- `core`: [v0.18.0](core/CHANGELOG.md#v0180)
-  - **New:** Added duration utils
-- `stackitmarketplace`: [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
-  - **Breaking Change:** Remove unused `ProjectId` model struct 
-- `iaas`: [v1.1.0](services/iaas/CHANGELOG.md#v110)
-  - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
+- `core`: 
+  - [v0.19.0](core/CHANGELOG.md#v0190)
+    - **New:** Added new `EnumSliceToStringSlice ` util func
+  - [v0.18.0](core/CHANGELOG.md#v0180)
+    - **New:** Added duration utils
+- `stackitmarketplace`:
+  - [v1.17.0](services/stackitmarketplace/CHANGELOG.md#v1170)
+    - **Feature:** Add new field `Scope` in `CatalogProductPricingOption` model
+    - **Deprecation:** Deprecated API methods `GetCatalogProduct`, `ListCatalogProducts` and `InquiriesCreateInquiry`
+  - [v1.16.0](services/stackitmarketplace/CHANGELOG.md#v1160)
+    - **Breaking Change:** Remove unused `ProjectId` model struct 
+- `iaas`: 
+  - [v1.2.0](services/iaas/CHANGELOG.md#v120)
+    - **Feature:** Add new field `Encrypted` to `Backup` model, which indicates if a backup is encrypted
+    - **Feature:** Add new field `ImportProgress` to `Image` model, which indicates the import progress of an image
+  - [v1.1.0](services/iaas/CHANGELOG.md#v110)
+    - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
 - `cdn`: [v2.1.0](services/cdn/CHANGELOG.md#v210)
   - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
+- `kms`: [v1.1.0](services/kms/CHANGELOG.md#v110)
+  - **Bugfix:** Ensure correct state checking in `DisableKeyVersionWaitHandler` and `EnableKeyVersionWaitHandler`
+- `alb`: [v0.7.1](services/alb/CHANGELOG.md#v071)
+  - **Docs** Update description of field `WafConfigName` in `Listener` model
 
 ## Release (2025-10-29)
 - `stackitmarketplace`: [v1.15.0](services/stackitmarketplace/CHANGELOG.md#v1150)

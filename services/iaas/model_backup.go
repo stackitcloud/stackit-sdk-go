@@ -60,6 +60,26 @@ func setBackupGetCreatedAtAttributeType(arg *BackupGetCreatedAtAttributeType, va
 }
 
 /*
+	types and functions for encrypted
+*/
+
+// isBoolean
+type BackupgetEncryptedAttributeType = *bool
+type BackupgetEncryptedArgType = bool
+type BackupgetEncryptedRetType = bool
+
+func getBackupgetEncryptedAttributeTypeOk(arg BackupgetEncryptedAttributeType) (ret BackupgetEncryptedRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setBackupgetEncryptedAttributeType(arg *BackupgetEncryptedAttributeType, val BackupgetEncryptedRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for id
 */
 
@@ -230,6 +250,8 @@ type Backup struct {
 	AvailabilityZone BackupGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt BackupGetCreatedAtAttributeType `json:"createdAt,omitempty"`
+	// Indicates if a volume is encrypted.
+	Encrypted BackupgetEncryptedAttributeType `json:"encrypted,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id BackupGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
@@ -309,6 +331,29 @@ func (o *Backup) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Backup) SetCreatedAt(v BackupGetCreatedAtRetType) {
 	setBackupGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetEncrypted returns the Encrypted field value if set, zero value otherwise.
+func (o *Backup) GetEncrypted() (res BackupgetEncryptedRetType) {
+	res, _ = o.GetEncryptedOk()
+	return
+}
+
+// GetEncryptedOk returns a tuple with the Encrypted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Backup) GetEncryptedOk() (ret BackupgetEncryptedRetType, ok bool) {
+	return getBackupgetEncryptedAttributeTypeOk(o.Encrypted)
+}
+
+// HasEncrypted returns a boolean if a field has been set.
+func (o *Backup) HasEncrypted() bool {
+	_, ok := o.GetEncryptedOk()
+	return ok
+}
+
+// SetEncrypted gets a reference to the given bool and assigns it to the Encrypted field.
+func (o *Backup) SetEncrypted(v BackupgetEncryptedRetType) {
+	setBackupgetEncryptedAttributeType(&o.Encrypted, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -502,6 +547,9 @@ func (o Backup) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getBackupGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getBackupgetEncryptedAttributeTypeOk(o.Encrypted); ok {
+		toSerialize["Encrypted"] = val
 	}
 	if val, ok := getBackupGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val

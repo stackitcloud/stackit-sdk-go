@@ -141,6 +141,26 @@ type CreateImagePayloadGetIdArgType = string
 type CreateImagePayloadGetIdRetType = string
 
 /*
+	types and functions for importProgress
+*/
+
+// isLong
+type CreateImagePayloadGetImportProgressAttributeType = *int64
+type CreateImagePayloadGetImportProgressArgType = int64
+type CreateImagePayloadGetImportProgressRetType = int64
+
+func getCreateImagePayloadGetImportProgressAttributeTypeOk(arg CreateImagePayloadGetImportProgressAttributeType) (ret CreateImagePayloadGetImportProgressRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateImagePayloadGetImportProgressAttributeType(arg *CreateImagePayloadGetImportProgressAttributeType, val CreateImagePayloadGetImportProgressRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for labels
 */
 
@@ -356,6 +376,8 @@ type CreateImagePayload struct {
 	DiskFormat CreateImagePayloadGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
 	// Universally Unique Identifier (UUID).
 	Id CreateImagePayloadGetIdAttributeType `json:"id,omitempty"`
+	// Indicates Image Import Progress in percent.
+	ImportProgress CreateImagePayloadGetImportProgressAttributeType `json:"importProgress,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels CreateImagePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
@@ -530,6 +552,29 @@ func (o *CreateImagePayload) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *CreateImagePayload) SetId(v CreateImagePayloadGetIdRetType) {
 	setCreateImagePayloadGetIdAttributeType(&o.Id, v)
+}
+
+// GetImportProgress returns the ImportProgress field value if set, zero value otherwise.
+func (o *CreateImagePayload) GetImportProgress() (res CreateImagePayloadGetImportProgressRetType) {
+	res, _ = o.GetImportProgressOk()
+	return
+}
+
+// GetImportProgressOk returns a tuple with the ImportProgress field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateImagePayload) GetImportProgressOk() (ret CreateImagePayloadGetImportProgressRetType, ok bool) {
+	return getCreateImagePayloadGetImportProgressAttributeTypeOk(o.ImportProgress)
+}
+
+// HasImportProgress returns a boolean if a field has been set.
+func (o *CreateImagePayload) HasImportProgress() bool {
+	_, ok := o.GetImportProgressOk()
+	return ok
+}
+
+// SetImportProgress gets a reference to the given int64 and assigns it to the ImportProgress field.
+func (o *CreateImagePayload) SetImportProgress(v CreateImagePayloadGetImportProgressRetType) {
+	setCreateImagePayloadGetImportProgressAttributeType(&o.ImportProgress, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -775,6 +820,9 @@ func (o CreateImagePayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateImagePayloadGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getCreateImagePayloadGetImportProgressAttributeTypeOk(o.ImportProgress); ok {
+		toSerialize["ImportProgress"] = val
 	}
 	if val, ok := getCreateImagePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
