@@ -1,7 +1,7 @@
 ## Release (2025-xx-xx)
 - `core`: 
   - [v0.19.0](core/CHANGELOG.md#v0190)
-    - **New:** Added new `TestEnumSliceToStringSlice` util func
+    - **New:** Added new `EnumSliceToStringSlice ` util func
   - [v0.18.0](core/CHANGELOG.md#v0180)
     - **New:** Added duration utils
 - `stackitmarketplace`:
