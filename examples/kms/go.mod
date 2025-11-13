@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/kms
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.18.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.19.0
 	github.com/stackitcloud/stackit-sdk-go/services/kms v1.1.0
 )
 
