@@ -295,7 +295,7 @@ func (c *KeyFlow) generateSelfSignedJWT() (string, error) {
 		"jti": uuid.New(),
 		"aud": c.key.Credentials.Aud,
 		"iat": jwt.NewNumericDate(time.Now()),
-		"exp": jwt.NewNumericDate(time.Now().Add(10 * time.Minute)),
+		"exp": jwt.NewNumericDate(time.Now().Add(1 * time.Hour)),
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodRS512, claims)
 	token.Header["kid"] = c.key.Credentials.Kid
