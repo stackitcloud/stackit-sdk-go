@@ -29,6 +29,10 @@
 - `postgresflex`: [v1.3.0](services/postgresflex/CHANGELOG.md#v130)
   - **Breaking Change:** The attribute type for `PartialUpdateInstancePayload` and `UpdateInstancePayload` changed from `Storage` to `StorageUpdate`.
   - **Deprecation:** `StorageUpdate`: updating the performance class field is not possible.
+- `intake`: [v0.3.0](services/intake/CHANGELOG.md#v030)
+  - **Feature:** Add wait handlers for `Intake`, `IntakeRunner`, and `IntakeUser` resources.
+  - **Improvement:** Add usage examples for the `intake` service.
+
 - `iaas`: 
   - [v1.0.1](services/iaas/CHANGELOG.md#v101)
     - Bump STACKIT resourcemanager SDK module from `v0.17.1` to `v0.18.0`

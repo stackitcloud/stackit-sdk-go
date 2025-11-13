@@ -1,3 +1,7 @@
+## v0.3.0
+- **Feature:** Add wait handlers for `Intake`, `IntakeRunner`, and `IntakeUser` resources.
+- **Improvement:** Add usage examples for the `intake` service.
+
 ## v0.2.0
 - **Feature:** Add response `IntakeRunnerResponse` to `UpdateIntakeRunnerExecute` request
 - **Feature:** Add response `IntakeUserResponse` to `UpdateIntakeUserExecute` request
