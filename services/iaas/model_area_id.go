@@ -47,13 +47,13 @@ func (dst *AreaId) UnmarshalJSON(data []byte) error {
 	dstAreaId1 := &AreaId{}
 	err = json.Unmarshal(data, &dstAreaId1.String)
 	if err == nil {
-		jsonstring, _ := json.Marshal(&dstAreaId1.String)
+		jsonString, _ := json.Marshal(&dstAreaId1.String)
 		regex := `/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/`
 		regex = regexp.MustCompile("^\\/|\\/$").ReplaceAllString(regex, "$1")               // Remove beginning slash and ending slash
 		regex = regexp.MustCompile("\\\\(.)").ReplaceAllString(regex, "$1")                 // Remove duplicate escaping char for dots
 		rawString := regexp.MustCompile(`^"|"$`).ReplaceAllString(*dstAreaId1.String, "$1") // Remove quotes
 		isMatched, _ := regexp.MatchString(regex, rawString)
-		if string(jsonstring) != "{}" && isMatched { // empty struct
+		if string(jsonString) != "{}" && isMatched { // empty struct
 			dst.String = dstAreaId1.String
 			match++
 		}
