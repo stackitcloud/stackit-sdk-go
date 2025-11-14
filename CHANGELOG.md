@@ -1,4 +1,4 @@
-## Release (2025-xx-xx)
+## Release (2025-11-14)
 - `core`: 
   - [v0.19.0](core/CHANGELOG.md#v0190)
     - **New:** Added new `EnumSliceToStringSlice ` util func
