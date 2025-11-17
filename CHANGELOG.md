@@ -1,3 +1,7 @@
+## Release (2025-XX-YY)
+- `core`: [v0.20.0](core/CHANGELOG.md#v0200)
+  - **New:** Added new `GetTraceId` function
+
 ## Release (2025-11-14)
 - `core`: 
   - [v0.19.0](core/CHANGELOG.md#v0190)
