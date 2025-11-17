@@ -46,8 +46,8 @@ func (dst *CreateProtocol) UnmarshalJSON(data []byte) error {
 	dstCreateProtocol1 := &CreateProtocol{}
 	err = json.Unmarshal(data, &dstCreateProtocol1.Int64)
 	if err == nil {
-		jsonint64, _ := json.Marshal(&dstCreateProtocol1.Int64)
-		if string(jsonint64) != "{}" { // empty struct
+		jsonInt64, _ := json.Marshal(&dstCreateProtocol1.Int64)
+		if string(jsonInt64) != "{}" { // empty struct
 			dst.Int64 = dstCreateProtocol1.Int64
 			match++
 		}
@@ -57,8 +57,8 @@ func (dst *CreateProtocol) UnmarshalJSON(data []byte) error {
 	dstCreateProtocol2 := &CreateProtocol{}
 	err = json.Unmarshal(data, &dstCreateProtocol2.String)
 	if err == nil {
-		jsonstring, _ := json.Marshal(&dstCreateProtocol2.String)
-		if string(jsonstring) != "{}" { // empty struct
+		jsonString, _ := json.Marshal(&dstCreateProtocol2.String)
+		if string(jsonString) != "{}" { // empty struct
 			dst.String = dstCreateProtocol2.String
 			match++
 		}
