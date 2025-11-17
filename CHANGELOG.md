@@ -1,3 +1,8 @@
+## Release (2025-xx-xx)
+- `core`: 
+  - [v0.20.0](core/CHANGELOG.md#v0200)
+    - **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
+
 ## Release (2025-11-14)
 - `core`: 
   - [v0.19.0](core/CHANGELOG.md#v0190)

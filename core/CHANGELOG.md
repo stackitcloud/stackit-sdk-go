@@ -1,3 +1,6 @@
+## v0.20.0
+- **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
+
 ## v0.19.0
 - **New:** Added new `EnumSliceToStringSlice ` util func
 
