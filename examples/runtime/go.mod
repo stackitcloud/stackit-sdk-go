@@ -3,7 +3,7 @@ module github.com/stackitcloud/stackit-sdk-go/examples/runtime
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.19.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.20.0
 	github.com/stackitcloud/stackit-sdk-go/services/postgresflex v1.3.0
 )
 
