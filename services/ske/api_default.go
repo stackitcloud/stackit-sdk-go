@@ -1,5 +1,5 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
 The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
 
@@ -337,6 +337,7 @@ type ApiListClustersRequest interface {
 }
 
 type ApiListProviderOptionsRequest interface {
+	VersionState(versionState string) ApiListProviderOptionsRequest
 	Execute() (*ProviderOptions, error)
 }
 
@@ -1541,9 +1542,15 @@ func (a *APIClient) ListClustersExecute(ctx context.Context, projectId string, r
 }
 
 type ListProviderOptionsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	region     string
+	ctx          context.Context
+	apiService   *DefaultApiService
+	region       string
+	versionState *string
+}
+
+func (r ListProviderOptionsRequest) VersionState(versionState string) ApiListProviderOptionsRequest {
+	r.versionState = &versionState
+	return r
 }
 
 func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
@@ -1570,6 +1577,9 @@ func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.versionState != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "versionState", r.versionState, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
