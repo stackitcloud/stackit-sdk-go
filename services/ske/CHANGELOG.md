@@ -1,3 +1,6 @@
+## v1.4.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v1.4.0
 - **Feature:** Add new field `Kubernetes` to `Nodepool` model
 

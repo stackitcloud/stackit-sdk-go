@@ -1,3 +1,6 @@
+## v0.18.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v0.18.0
   - **Feature:** Add new model `ContainerSearchResult`
 

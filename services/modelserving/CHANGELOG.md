@@ -1,3 +1,6 @@
+## v0.6.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v0.6.0
 - **Feature:** New enum values `MODELTYPE_AUDIO` and `MODELTYPE_IMAGE` for `ModelTypes` enum
 - **Breaking Change:** Renaming of `ChatModelDetailsBits` enum fields

@@ -1,3 +1,6 @@
+## v1.17.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v1.17.0
 - **Feature:** Add new field `Scope` in `CatalogProductPricingOption` model
 - **Deprecation:** Deprecated API methods `GetCatalogProduct`, `ListCatalogProducts` and `InquiriesCreateInquiry`

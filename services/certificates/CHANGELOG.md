@@ -1,3 +1,6 @@
+## v1.1.2
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v1.1.1
   - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 

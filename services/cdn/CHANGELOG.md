@@ -1,3 +1,6 @@
+## v2.1.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v2.1.0
 - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 

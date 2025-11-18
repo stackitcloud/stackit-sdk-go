@@ -1,3 +1,6 @@
+## v0.2.2
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v0.2.1
 - **Feature:** Add waiter for deletion of organization
 
