@@ -1,3 +1,6 @@
+## v0.3.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v0.3.0
 - **Feature:** Add wait handlers for `Intake`, `IntakeRunner`, and `IntakeUser` resources.
 - **Improvement:** Add usage examples for the `intake` service.

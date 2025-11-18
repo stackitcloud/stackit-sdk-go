@@ -1,3 +1,6 @@
+## v1.1.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v1.1.0
 - **Bugfix:** Ensure correct state checking in `DisableKeyVersionWaitHandler` and `EnableKeyVersionWaitHandler`
 

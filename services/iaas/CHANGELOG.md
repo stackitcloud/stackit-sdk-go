@@ -1,3 +1,6 @@
+## v1.2.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v1.2.0
 - **Feature:** Add new field `Encrypted` to `Backup` model, which indicates if a backup is encrypted
 - **Feature:** Add new field `ImportProgress` to `Image` model, which indicates the import progress of an image

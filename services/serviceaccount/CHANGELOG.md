@@ -1,3 +1,6 @@
+## v0.11.2
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v0.11.1
 - **Improvement:** Improve error handling for `CreateShortLivedAccessToken`
 

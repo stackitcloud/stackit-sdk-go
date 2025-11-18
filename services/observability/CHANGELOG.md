@@ -1,3 +1,6 @@
+## v0.15.1
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 # v0.15.0
 - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.
 

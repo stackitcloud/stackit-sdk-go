@@ -1,3 +1,6 @@
+## v1.5.3
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
 ## v1.5.2
 - **Improvement:** Improved documentation for the `Roles` field in user-related models.
 

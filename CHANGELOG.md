@@ -1,4 +1,72 @@
 ## Release (2025-XX-YY)
+- `alb`: [v0.7.2](services/alb/CHANGELOG.md#v072) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `archiving`: [v0.2.2](services/archiving/CHANGELOG.md#v022) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `auditlog`: [v0.1.1](services/auditlog/CHANGELOG.md#v011) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `authorization`: [v0.9.1](services/authorization/CHANGELOG.md#v091) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `cdn`: [v2.1.1](services/cdn/CHANGELOG.md#v211) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `certificates`: [v1.1.2](services/certificates/CHANGELOG.md#v112) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `dns`: [v0.17.2](services/dns/CHANGELOG.md#v0172) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `git`: [v0.9.1](services/git/CHANGELOG.md#v091) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `iaas`: [v1.2.1](services/iaas/CHANGELOG.md#v121) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `intake`: [v0.3.1](services/intake/CHANGELOG.md#v031) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `kms`: [v1.1.1](services/kms/CHANGELOG.md#v111) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `lbapplication`: [v0.5.2](services/lbapplication/CHANGELOG.md#v052) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `loadbalancer`: [v1.6.1](services/loadbalancer/CHANGELOG.md#v161) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `logme`: [v0.25.2](services/logme/CHANGELOG.md#v0252) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `mariadb`: [v0.25.2](services/mariadb/CHANGELOG.md#v0252) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `modelserving`: [v0.6.1](services/modelserving/CHANGELOG.md#v061) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `mongodbflex`: [v1.5.3](services/mongodbflex/CHANGELOG.md#v153) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `objectstorage`: [v1.4.1](services/objectstorage/CHANGELOG.md#v141) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `observability`: [v0.15.1](services/observability/CHANGELOG.md#v0151) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `opensearch`: [v0.24.2](services/opensearch/CHANGELOG.md#v0242) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `postgresflex`: [v1.3.1](services/postgresflex/CHANGELOG.md#v131) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `rabbitmq`: [v0.25.2](services/rabbitmq/CHANGELOG.md#v0252) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `redis`: [v0.25.2](services/redis/CHANGELOG.md#v0252) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `resourcemanager`: [v0.18.1](services/resourcemanager/CHANGELOG.md#v0181) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `runcommand`: [v1.3.2](services/runcommand/CHANGELOG.md#v132) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `scf`: [v0.2.2](services/scf/CHANGELOG.md#v022) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `secretsmanager`: [v0.13.2](services/secretsmanager/CHANGELOG.md#v0132) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serverbackup`: [v1.3.3](services/serverbackup/CHANGELOG.md#v133) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serverupdate`: [v1.2.2](services/serverupdate/CHANGELOG.md#v122) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serviceaccount`: [v0.11.2](services/serviceaccount/CHANGELOG.md#v0112) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serviceenablement`: [v1.2.3](services/serviceenablement/CHANGELOG.md#v123) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `ske`: [v1.4.1](services/ske/CHANGELOG.md#v141) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `sqlserverflex`: [v1.3.2](services/sqlserverflex/CHANGELOG.md#v132) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `stackitmarketplace`: [v1.17.1](services/stackitmarketplace/CHANGELOG.md#v1171) 
+  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `core`: [v0.20.0](core/CHANGELOG.md#v0200)
   - **New:** Added new `GetTraceId` function
 
