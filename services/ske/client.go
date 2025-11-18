@@ -1,5 +1,5 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
 The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the SKE-API API v2.0
+// APIClient manages communication with the STACKIT Kubernetes Engine API API v2.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration
