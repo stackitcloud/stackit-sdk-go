@@ -1,3 +1,6 @@
+## v0.20.0
+- **New:** Added new `GetTraceId` function
+
 ## v0.19.0
 - **New:** Added new `EnumSliceToStringSlice ` util func
 
