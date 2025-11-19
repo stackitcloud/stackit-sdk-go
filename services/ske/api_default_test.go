@@ -1,5 +1,5 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
 Testing DefaultApiService
 
