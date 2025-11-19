@@ -67,8 +67,12 @@
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `serviceenablement`: [v1.2.3](services/serviceenablement/CHANGELOG.md#v123) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `ske`: [v1.4.1](services/ske/CHANGELOG.md#v141) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `ske`: 
+  - [v1.5.0](services/ske/CHANGELOG.md#v150) 
+    - **Feature:** Add `versionState` field to ListProviderOptionsRequest struct
+    - **Feature:** Add new enum `GetProviderOptionsRequestVersionState`
+  - [v1.4.1](services/ske/CHANGELOG.md#v141) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `sqlserverflex`: [v1.3.2](services/sqlserverflex/CHANGELOG.md#v132) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `stackitmarketplace`: [v1.17.1](services/stackitmarketplace/CHANGELOG.md#v1171) 
