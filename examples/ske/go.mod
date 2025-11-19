@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.20.0
-	github.com/stackitcloud/stackit-sdk-go/services/ske v1.4.0
+	github.com/stackitcloud/stackit-sdk-go/services/ske v1.4.1
 )
 
 require (

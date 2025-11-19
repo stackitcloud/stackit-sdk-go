@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.20.0 h1:4rrUk6uT1g4nOn5/g1uXukP07Tux/o5xbMz/f/qE1rY=
 github.com/stackitcloud/stackit-sdk-go/core v0.20.0/go.mod h1:fqto7M82ynGhEnpZU6VkQKYWYoFG5goC076JWXTUPRQ=
-github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.25.1 h1:ALrDCBih8Fu8e6530KdOjuH0iMxOLntO381BbKFlTFY=
-github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.25.1/go.mod h1:+qGWSehoV0Js3FalgvT/bOgPj+UqW4I7lP5s8uAxP+o=
+github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.25.2 h1:Ww0baLTiZha4H1thfEEsDq+O0Ce0hNhdbkJ5eDdGEoE=
+github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.25.2/go.mod h1:lPz9iQ3kLvpzPR7jt6P1VJyjSumo2+D1i3RkjFGpVTI=
