@@ -1,5 +1,8 @@
+## v0.10.0
+- Add `Etag` field to `Role` model struct
+
 ## v0.9.1
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 
 ## v0.9.0
 - **Feature:** Add support for assignable subjects
