@@ -1496,6 +1496,22 @@ type DefaultApi interface {
 	*/
 	GetVolumePerformanceClassExecute(ctx context.Context, projectId string, region string, volumePerformanceClass string) (*VolumePerformanceClass, error)
 	/*
+		ImageFromVolume Create an image out of a volume.
+		Create an image out a a volume.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The identifier (ID) of a STACKIT Project.
+		@param volumeId The identifier (ID) of a STACKIT Volume.
+		@param region The STACKIT Region of the resources.
+		@return ApiImageFromVolumeRequest
+	*/
+	ImageFromVolume(ctx context.Context, projectId string, volumeId string, region string) ApiImageFromVolumeRequest
+	/*
+		ImageFromVolumeExecute executes the request
+
+	*/
+	ImageFromVolumeExecute(ctx context.Context, projectId string, volumeId string, region string) error
+	/*
 		ListAffinityGroups Get the affinity groups setup for a project.
 		Get the affinity groups created in a project. Affinity groups are an indication of locality of a server relative to another group of servers. They can be either running on the same host (affinity) or on different ones (anti-affinity).
 
@@ -3036,6 +3052,12 @@ type ApiGetVolumeRequest interface {
 
 type ApiGetVolumePerformanceClassRequest interface {
 	Execute() (*VolumePerformanceClass, error)
+}
+
+type ApiImageFromVolumeRequest interface {
+	// Create an image from a volume.
+	ImageFromVolumePayload(imageFromVolumePayload ImageFromVolumePayload) ApiImageFromVolumeRequest
+	Execute() error
 }
 
 type ApiListAffinityGroupsRequest interface {
@@ -18236,6 +18258,213 @@ func (a *APIClient) GetVolumePerformanceClassExecute(ctx context.Context, projec
 		projectId:              projectId,
 		region:                 region,
 		volumePerformanceClass: volumePerformanceClass,
+	}
+	return r.Execute()
+}
+
+type ImageFromVolumeRequest struct {
+	ctx                    context.Context
+	apiService             *DefaultApiService
+	projectId              string
+	volumeId               string
+	region                 string
+	imageFromVolumePayload *ImageFromVolumePayload
+}
+
+// Create an image from a volume.
+
+func (r ImageFromVolumeRequest) ImageFromVolumePayload(imageFromVolumePayload ImageFromVolumePayload) ApiImageFromVolumeRequest {
+	r.imageFromVolumePayload = &imageFromVolumePayload
+	return r
+}
+
+func (r ImageFromVolumeRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ImageFromVolume")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/regions/{region}/volumes/{volumeId}/upload"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"volumeId"+"}", url.PathEscape(ParameterValueToString(r.volumeId, "volumeId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.projectId) < 36 {
+		return fmt.Errorf("projectId must have at least 36 elements")
+	}
+	if strlen(r.projectId) > 36 {
+		return fmt.Errorf("projectId must have less than 36 elements")
+	}
+	if strlen(r.volumeId) < 36 {
+		return fmt.Errorf("volumeId must have at least 36 elements")
+	}
+	if strlen(r.volumeId) > 36 {
+		return fmt.Errorf("volumeId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.imageFromVolumePayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+ImageFromVolume: Create an image out of a volume.
+
+Create an image out a a volume.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The identifier (ID) of a STACKIT Project.
+	@param volumeId The identifier (ID) of a STACKIT Volume.
+	@param region The STACKIT Region of the resources.
+	@return ApiImageFromVolumeRequest
+*/
+func (a *APIClient) ImageFromVolume(ctx context.Context, projectId string, volumeId string, region string) ApiImageFromVolumeRequest {
+	return ImageFromVolumeRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		volumeId:   volumeId,
+		region:     region,
+	}
+}
+
+func (a *APIClient) ImageFromVolumeExecute(ctx context.Context, projectId string, volumeId string, region string) error {
+	r := ImageFromVolumeRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		volumeId:   volumeId,
+		region:     region,
 	}
 	return r.Execute()
 }
