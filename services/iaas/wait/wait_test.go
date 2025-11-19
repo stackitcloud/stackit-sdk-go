@@ -1936,6 +1936,64 @@ func TestCreateNetworkAreaRegionWaitHandler(t *testing.T) {
 	}
 }
 
+func TestUpdateNetworkAreaRegionWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc          string
+		getFails      bool
+		resourceState string
+		wantErr       bool
+		wantResp      bool
+	}{
+		{
+			desc:          "update_succeeded",
+			getFails:      false,
+			resourceState: UpdateSuccess,
+			wantErr:       false,
+			wantResp:      true,
+		},
+		{
+			desc:          "get_fails",
+			getFails:      true,
+			resourceState: "",
+			wantErr:       true,
+			wantResp:      false,
+		},
+		{
+			desc:          "timeout",
+			getFails:      false,
+			resourceState: "ANOTHER STATE",
+			wantErr:       true,
+			wantResp:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			apiClient := &apiClientMocked{
+				getNetworkAreaRegionFails: tt.getFails,
+				resourceState:             tt.resourceState,
+			}
+
+			var wantRes *iaas.RegionalArea
+			if tt.wantResp {
+				wantRes = &iaas.RegionalArea{
+					Status: utils.Ptr(tt.resourceState),
+				}
+			}
+
+			handler := UpdateNetworkAreaRegionWaitHandler(context.Background(), apiClient, "pid", "aid", "region")
+
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+			if (err != nil) != tt.wantErr {
+				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if !cmp.Equal(gotRes, wantRes) {
+				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+			}
+		})
+	}
+}
+
 func TestDeleteNetworkAreaRegionWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc          string

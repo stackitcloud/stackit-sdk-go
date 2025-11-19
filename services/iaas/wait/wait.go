@@ -16,6 +16,7 @@ import (
 
 const (
 	CreateSuccess         = "CREATED"
+	UpdateSuccess         = "UPDATED"
 	VolumeAvailableStatus = "AVAILABLE"
 	DeleteSuccess         = "DELETED"
 
@@ -117,6 +118,27 @@ func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterfac
 		}
 		// The state returns to "CREATED" after a successful update is completed
 		if *area.Status == CreateSuccess {
+			return true, area, nil
+		}
+		return false, area, nil
+	})
+	handler.SetSleepBeforeWait(2 * time.Second)
+	handler.SetTimeout(30 * time.Minute)
+	return handler
+}
+
+// UpdateNetworkAreaRegionWaitHandler will wait for network area region update
+func UpdateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
+	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
+		area, err := a.GetNetworkAreaRegionExecute(ctx, organizationId, areaId, region)
+		if err != nil {
+			return false, area, err
+		}
+		if area.Status == nil {
+			return false, nil, fmt.Errorf("configuring failed for network area with id %s, the response is not valid: the status are missing", areaId)
+		}
+		// The state returns to "UPDATED" after a successful update is completed
+		if *area.Status == UpdateSuccess {
 			return true, area, nil
 		}
 		return false, area, nil

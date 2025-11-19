@@ -1,3 +1,6 @@
+## v1.3.0
+- **Feature:** Add `UpdateNetworkAreaRegionWaitHandler`
+
 ## v1.2.2
 - Bump STACKIT SDK resourcemanager module from `v0.18.0` to `v0.18.1`
 
