@@ -5,8 +5,11 @@
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `auditlog`: [v0.1.1](services/auditlog/CHANGELOG.md#v011) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `authorization`: [v0.9.1](services/authorization/CHANGELOG.md#v091) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `authorization`: 
+  - [v0.10.0](services/authorization/CHANGELOG.md#v0100) 
+    - Add `Etag` field to `Role` model struct
+  - [v0.9.1](services/authorization/CHANGELOG.md#v091) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `cdn`: [v2.1.1](services/cdn/CHANGELOG.md#v211) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `certificates`: [v1.1.2](services/certificates/CHANGELOG.md#v112) 
