@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.20.0 h1:4rrUk6uT1g4nOn5/g1uXukP07Tux/o5xbMz/f/qE1rY=
 github.com/stackitcloud/stackit-sdk-go/core v0.20.0/go.mod h1:fqto7M82ynGhEnpZU6VkQKYWYoFG5goC076JWXTUPRQ=
-github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.6.0 h1:q33ZaCBVEBUsnMDxYyuJKtJvGcE5nKgvuPed3s8zXNI=
-github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.6.0/go.mod h1:20QOZ3rBC9wTGgzXzLz9M6YheX0VaxWE0/JI+s8On7k=
+github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.6.1 h1:BHNjq4+OsmVrGu1KBOv0dh/++nwysyINtAUTxNFz2Uo=
+github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.6.1/go.mod h1:sTV6ylmBoMOrOxUED8Ebts4a1PaJSPLtmNh5m+s5fus=

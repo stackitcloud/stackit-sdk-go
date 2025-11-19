@@ -15,8 +15,11 @@
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `git`: [v0.9.1](services/git/CHANGELOG.md#v091) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `iaas`: [v1.2.1](services/iaas/CHANGELOG.md#v121) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `iaas`: 
+  - [v1.2.2](services/iaas/CHANGELOG.md#v122) 
+    - Bump STACKIT SDK resourcemanager module from `v0.18.0` to `v0.18.1`
+  - [v1.2.1](services/iaas/CHANGELOG.md#v121) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `intake`: [v0.3.1](services/intake/CHANGELOG.md#v031) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `kms`: [v1.1.1](services/kms/CHANGELOG.md#v111) 
