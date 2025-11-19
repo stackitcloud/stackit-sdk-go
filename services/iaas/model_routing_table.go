@@ -217,7 +217,8 @@ type RoutingTable struct {
 	Labels RoutingTableGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name         RoutingTableGetNameAttributeType         `json:"name" required:"true"`
+	Name RoutingTableGetNameAttributeType `json:"name" required:"true"`
+	// A config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.
 	SystemRoutes RoutingTablegetSystemRoutesAttributeType `json:"systemRoutes,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt RoutingTableGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`

@@ -217,7 +217,8 @@ type AddRoutingTableToAreaPayload struct {
 	Labels AddRoutingTableToAreaPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name         AddRoutingTableToAreaPayloadGetNameAttributeType         `json:"name" required:"true"`
+	Name AddRoutingTableToAreaPayloadGetNameAttributeType `json:"name" required:"true"`
+	// A config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.
 	SystemRoutes AddRoutingTableToAreaPayloadgetSystemRoutesAttributeType `json:"systemRoutes,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt AddRoutingTableToAreaPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
