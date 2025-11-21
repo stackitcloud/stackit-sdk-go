@@ -10,7 +10,8 @@
     - Add `Etag` field to `Role` model struct
   - [v0.9.1](services/authorization/CHANGELOG.md#v091) 
     - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `cdn`: [v2.1.1](services/cdn/CHANGELOG.md#v211) 
+- `cdn`: [v1.8.1](services/cdn/CHANGELOG.md#v181) (formerly `v1.8.1`)
+  - **Note: This release was formerly known as `v2.1.1` and was re-tagged as `v1.8.1`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `certificates`: [v1.1.2](services/certificates/CHANGELOG.md#v112) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
@@ -98,7 +99,8 @@
     - **Feature:** Add new field `ImportProgress` to `Image` model, which indicates the import progress of an image
   - [v1.1.0](services/iaas/CHANGELOG.md#v110)
     - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
-- `cdn`: [v2.1.0](services/cdn/CHANGELOG.md#v210)
+- `cdn`: [v1.8.0](services/cdn/CHANGELOG.md#v180) (formerly `v2.1.0`)
+  - **Note: This release was formerly known as `v2.1.0` and was re-tagged as `v1.8.0`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
   - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 - `kms`: [v1.1.0](services/kms/CHANGELOG.md#v110)
   - **Bugfix:** Ensure correct state checking in `DisableKeyVersionWaitHandler` and `EnableKeyVersionWaitHandler`
@@ -139,7 +141,8 @@
   - **Feature:** Add support for list runner labels operation
     - new API client methods `ListRunnerLabels` and `ListRunnerLabelsExecute`
     - new model struct `RunnerLabel`
-- `cdn`: [v2.0.0](services/cdn/CHANGELOG.md#v200)
+- `cdn`: [v1.7.0](services/cdn/CHANGELOG.md#v170) (formerly `v2.0.0`)
+  - **Note: This release was formerly known as `v2.0.0` and was re-tagged as `v1.7.0`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
   - **Feature:** Switch from `v1beta` CDN API version to `v1beta2` version.
   - **Breaking change:** Changed spelling from `WAF` to `Waf` in model struct names
     - `WAFStatusRuleBlock` -> `WafStatusRuleBlock`
