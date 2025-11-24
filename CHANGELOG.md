@@ -10,7 +10,7 @@
     - Add `Etag` field to `Role` model struct
   - [v0.9.1](services/authorization/CHANGELOG.md#v091) 
     - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `cdn`: [v1.8.1](services/cdn/CHANGELOG.md#v181) (formerly `v1.8.1`)
+- `cdn`: [v1.8.1](services/cdn/CHANGELOG.md#v181) (formerly `v2.1.1`)
   - **Note: This release was formerly known as `v2.1.1` and was re-tagged as `v1.8.1`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `certificates`: [v1.1.2](services/certificates/CHANGELOG.md#v112) 
