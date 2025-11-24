@@ -44,8 +44,11 @@ sync-tidy: ## Sync and tidy dependencies
 	@echo ">> Syncing and tidying dependencies"
 	@$(SCRIPTS_BASE)/sync-tidy.sh
 
-lint: sync-tidy ## Lint all code
+lint: sync-tidy lint-versions ## Lint all code
 	@$(MAKE) --no-print-directory lint-golangci-lint skip-non-generated-files=${skip-non-generated-files} service=${service}
+
+lint-versions:
+	@go run $(SCRIPTS_BASE)/lint-versions.go
 
 # TEST
 test-go: ## Run Go tests
@@ -59,10 +62,3 @@ test-scripts: ## Run tests for scripts
 test: ## Run all tests
 	@$(MAKE) --no-print-directory test-go skip-non-generated-files=${skip-non-generated-files} service=${service}
 
-# AUTOMATIC TAG
-sdk-tag-services:
-	@go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path};
-
-
-sdk-tag-core: 
-	@go run $(SCRIPTS_BASE)/automatic_tag.go --update-type ${update-type} --ssh-private-key-file-path ${ssh-private-key-file-path} --target core;
