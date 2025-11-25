@@ -24,8 +24,12 @@
     - Bump STACKIT SDK resourcemanager module from `v0.18.0` to `v0.18.1`
   - [v1.2.1](services/iaas/CHANGELOG.md#v121) 
     - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `intake`: [v0.3.1](services/intake/CHANGELOG.md#v031) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `intake`: 
+  - [v0.4.0](services/intake/CHANGELOG.md#v040) 
+    - **Feature:** Add new enum type `PartitioningUpdateType`
+    - **Feature:** Add fields `PartitionBy` and `Partitioning` to `IntakeCatalogPatch` model struct
+  - [v0.3.1](services/intake/CHANGELOG.md#v031) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `kms`: [v1.1.1](services/kms/CHANGELOG.md#v111) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `lbapplication`: [v0.5.2](services/lbapplication/CHANGELOG.md#v052) 
