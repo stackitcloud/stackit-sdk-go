@@ -1,5 +1,5 @@
 /*
-Load Balancer Certificates API
+STACKIT Application Load Balancer Certificates API
 
 This API offers the ability to store TLS certificates, which can be used by load balancing servers in STACKIT. They can be between consumer and load balancing server and/or between load balancing server and endpoint server.
 
