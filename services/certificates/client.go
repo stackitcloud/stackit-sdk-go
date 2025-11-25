@@ -1,5 +1,5 @@
 /*
-Load Balancer Certificates API
+STACKIT Application Load Balancer Certificates API
 
 This API offers the ability to store TLS certificates, which can be used by load balancing servers in STACKIT. They can be between consumer and load balancing server and/or between load balancing server and endpoint server.
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Load Balancer Certificates API API v2beta.0.0
+// APIClient manages communication with the STACKIT Application Load Balancer Certificates API API v2beta.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration

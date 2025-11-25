@@ -1,5 +1,5 @@
 /*
-Load Balancer Certificates API
+STACKIT Application Load Balancer Certificates API
 
 Testing DefaultApiService
 
