@@ -1,5 +1,5 @@
 /*
-Application Load Balancer API
+STACKIT Application Load Balancer API
 
 ### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Application Load Balancer API API v1beta.0.0
+// APIClient manages communication with the STACKIT Application Load Balancer API API v1beta.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration
