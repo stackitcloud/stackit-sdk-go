@@ -1,3 +1,7 @@
+## v0.4.0
+- **Feature:** Add new enum type `PartitioningUpdateType`
+- **Feature:** Add fields `PartitionBy` and `Partitioning` to `IntakeCatalogPatch` model struct
+
 ## v0.3.1
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 
