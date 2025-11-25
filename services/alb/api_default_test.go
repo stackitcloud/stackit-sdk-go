@@ -1,5 +1,5 @@
 /*
-Application Load Balancer API
+STACKIT Application Load Balancer API
 
 Testing DefaultApiService
 
