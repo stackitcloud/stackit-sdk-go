@@ -1,5 +1,5 @@
 /*
-Application Load Balancer API
+STACKIT Application Load Balancer API
 
 ### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -269,8 +269,9 @@ func setListenerGetRulesAttributeType(arg *ListenerGetRulesAttributeType, val Li
 // Listener struct for Listener
 type Listener struct {
 	DisplayName ListenerGetDisplayNameAttributeType `json:"displayName,omitempty"`
-	Http        ListenerGetHttpAttributeType        `json:"http,omitempty"`
-	Https       ListenerGetHttpsAttributeType       `json:"https,omitempty"`
+	// ProtocolOptionsHTTP options to be configured for the PROTOCOL_HTTP protocol.
+	Http  ListenerGetHttpAttributeType  `json:"http,omitempty"`
+	Https ListenerGetHttpsAttributeType `json:"https,omitempty"`
 	// Will be used to reference a listener and will replace display name in the future. Currently uses <protocol>-<port> as the name if no display name is given.
 	Name ListenerGetNameAttributeType `json:"name,omitempty"`
 	// Port number where we listen for traffic
