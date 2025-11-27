@@ -312,7 +312,7 @@ func createTestCredentialFile(t *testing.T, homeDir string, data map[string]stri
 	jsonBytes, _ := json.Marshal(data)
 	encoded := base64.StdEncoding.EncodeToString(jsonBytes)
 
-	filePath := filepath.Join(homeDir, ".stackit", "cli-provider-auth-storage.txt")
+	filePath := filepath.Join(homeDir, ".stackit", "cli-api-auth-storage.txt")
 	os.MkdirAll(filepath.Dir(filePath), 0755)
 	err := os.WriteFile(filePath, []byte(encoded), 0600)
 	if err != nil {

@@ -94,9 +94,9 @@ func TestGetKeyringServiceName(t *testing.T) {
 		profile     string
 		expected    string
 	}{
-		{"default", "stackit-cli-provider"},
-		{"production", "stackit-cli-provider/production"},
-		{"dev", "stackit-cli-provider/dev"},
+		{"default", "stackit-cli-api"},
+		{"production", "stackit-cli-api/production"},
+		{"dev", "stackit-cli-api/dev"},
 	}
 
 	for _, tt := range tests {
@@ -118,8 +118,8 @@ func TestGetFilePath(t *testing.T) {
 		profile  string
 		expected string
 	}{
-		{"default", filepath.Join(tmpDir, ".stackit", "cli-provider-auth-storage.txt")},
-		{"production", filepath.Join(tmpDir, ".stackit", "profiles", "production", "cli-provider-auth-storage.txt")},
+		{"default", filepath.Join(tmpDir, ".stackit", "cli-api-auth-storage.txt")},
+		{"production", filepath.Join(tmpDir, ".stackit", "profiles", "production", "cli-api-auth-storage.txt")},
 	}
 
 	for _, tt := range tests {
@@ -153,7 +153,7 @@ func TestReadFromFile(t *testing.T) {
 	encoded := base64.StdEncoding.EncodeToString(jsonBytes)
 
 	// Write to file
-	filePath := filepath.Join(tmpDir, ".stackit", "cli-provider-auth-storage.txt")
+	filePath := filepath.Join(tmpDir, ".stackit", "cli-api-auth-storage.txt")
 	os.MkdirAll(filepath.Dir(filePath), 0755)
 	os.WriteFile(filePath, []byte(encoded), 0600)
 
@@ -299,7 +299,7 @@ func TestIsAuthenticated(t *testing.T) {
 	jsonBytes, _ := json.Marshal(testCreds)
 	encoded := base64.StdEncoding.EncodeToString(jsonBytes)
 
-	filePath := filepath.Join(tmpDir, ".stackit", "cli-provider-auth-storage.txt")
+	filePath := filepath.Join(tmpDir, ".stackit", "cli-api-auth-storage.txt")
 	os.MkdirAll(filepath.Dir(filePath), 0755)
 	os.WriteFile(filePath, []byte(encoded), 0600)
 
