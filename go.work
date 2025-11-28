@@ -6,6 +6,7 @@ use (
 	./examples/authentication
 	./examples/authorization
 	./examples/backgroundrefresh
+	./examples/cliproviderauth
 	./examples/configuration
 	./examples/dns
 	./examples/errorhandling

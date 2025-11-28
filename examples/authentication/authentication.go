@@ -20,6 +20,8 @@ func main() {
 	// If the key flow cannot be used, it will try to find a token in the STACKIT_SERVICE_ACCOUNT_TOKEN. If not present, it will
 	// search in the credentials file. If the token is found, the TokenAuth flow is used.
 	// In case no authentication flow can be configured, the creation of a new client fails.
+	//
+	// Note: For CLI provider authentication (using credentials from the STACKIT CLI), see the cliproviderauth example.
 	_, err := dns.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
