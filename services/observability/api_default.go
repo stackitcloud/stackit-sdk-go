@@ -1540,7 +1540,7 @@ type ApiPartialUpdateAlertgroupsRequest interface {
 }
 
 type ApiPartialUpdateAlertrulesRequest interface {
-	UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner []UpdateAlertgroupsRequestInnerRulesInner) ApiPartialUpdateAlertrulesRequest
+	PartialUpdateAlertrulesRequestInner(partialUpdateAlertrulesRequestInner []PartialUpdateAlertrulesRequestInner) ApiPartialUpdateAlertrulesRequest
 	Execute() (*AlertRulesResponse, error)
 }
 
@@ -2346,6 +2346,17 @@ func (r CreateCertCheckRequest) Execute() (*CertCheckResponse, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CreateCertCheck400Response
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2647,6 +2658,17 @@ func (r CreateHttpCheckRequest) Execute() (*HttpCheckResponse, error) {
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v CreateCertCheck400Response
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4023,8 +4045,8 @@ func (r DeleteCertCheckRequest) Execute() (*CertCheckResponse, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []string
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -4034,8 +4056,8 @@ func (r DeleteCertCheckRequest) Execute() (*CertCheckResponse, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -4512,8 +4534,8 @@ func (r DeleteHttpCheckRequest) Execute() (*HttpCheckResponse, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []string
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -4523,8 +4545,8 @@ func (r DeleteHttpCheckRequest) Execute() (*HttpCheckResponse, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -7700,6 +7722,17 @@ func (r ListCertChecksRequest) Execute() (*CertCheckResponse, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []string
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -7971,6 +8004,17 @@ func (r ListHttpChecksRequest) Execute() (*HttpCheckResponse, error) {
 			StatusCode:   localVarHTTPResponse.StatusCode,
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v []string
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -8731,16 +8775,16 @@ func (a *APIClient) PartialUpdateAlertgroupsExecute(ctx context.Context, instanc
 }
 
 type PartialUpdateAlertrulesRequest struct {
-	ctx                                     context.Context
-	apiService                              *DefaultApiService
-	groupName                               string
-	instanceId                              string
-	projectId                               string
-	updateAlertgroupsRequestInnerRulesInner *[]UpdateAlertgroupsRequestInnerRulesInner
+	ctx                                 context.Context
+	apiService                          *DefaultApiService
+	groupName                           string
+	instanceId                          string
+	projectId                           string
+	partialUpdateAlertrulesRequestInner *[]PartialUpdateAlertrulesRequestInner
 }
 
-func (r PartialUpdateAlertrulesRequest) UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner []UpdateAlertgroupsRequestInnerRulesInner) ApiPartialUpdateAlertrulesRequest {
-	r.updateAlertgroupsRequestInnerRulesInner = &updateAlertgroupsRequestInnerRulesInner
+func (r PartialUpdateAlertrulesRequest) PartialUpdateAlertrulesRequestInner(partialUpdateAlertrulesRequestInner []PartialUpdateAlertrulesRequestInner) ApiPartialUpdateAlertrulesRequest {
+	r.partialUpdateAlertrulesRequestInner = &partialUpdateAlertrulesRequestInner
 	return r
 }
 
@@ -8769,8 +8813,8 @@ func (r PartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.updateAlertgroupsRequestInnerRulesInner == nil {
-		return localVarReturnValue, fmt.Errorf("updateAlertgroupsRequestInnerRulesInner is required and must be specified")
+	if r.partialUpdateAlertrulesRequestInner == nil {
+		return localVarReturnValue, fmt.Errorf("partialUpdateAlertrulesRequestInner is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -8791,7 +8835,7 @@ func (r PartialUpdateAlertrulesRequest) Execute() (*AlertRulesResponse, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateAlertgroupsRequestInnerRulesInner
+	localVarPostBody = r.partialUpdateAlertrulesRequestInner
 	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
