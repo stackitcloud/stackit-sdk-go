@@ -186,7 +186,7 @@ type ApiListRunnerLabelsRequest interface {
 }
 
 type ApiPatchInstanceRequest interface {
-	PatchOperation(patchOperation []PatchOperation) ApiPatchInstanceRequest
+	PatchInstancePayload(patchInstancePayload PatchInstancePayload) ApiPatchInstanceRequest
 	Execute() (*Instance, error)
 }
 
@@ -1183,15 +1183,15 @@ func (a *APIClient) ListRunnerLabelsExecute(ctx context.Context, projectId strin
 }
 
 type PatchInstanceRequest struct {
-	ctx            context.Context
-	apiService     *DefaultApiService
-	projectId      string
-	instanceId     string
-	patchOperation *[]PatchOperation
+	ctx                  context.Context
+	apiService           *DefaultApiService
+	projectId            string
+	instanceId           string
+	patchInstancePayload *PatchInstancePayload
 }
 
-func (r PatchInstanceRequest) PatchOperation(patchOperation []PatchOperation) ApiPatchInstanceRequest {
-	r.patchOperation = &patchOperation
+func (r PatchInstanceRequest) PatchInstancePayload(patchInstancePayload PatchInstancePayload) ApiPatchInstanceRequest {
+	r.patchInstancePayload = &patchInstancePayload
 	return r
 }
 
@@ -1231,12 +1231,12 @@ func (r PatchInstanceRequest) Execute() (*Instance, error) {
 	if strlen(r.instanceId) > 36 {
 		return localVarReturnValue, fmt.Errorf("instanceId must have less than 36 elements")
 	}
-	if r.patchOperation == nil {
-		return localVarReturnValue, fmt.Errorf("patchOperation is required and must be specified")
+	if r.patchInstancePayload == nil {
+		return localVarReturnValue, fmt.Errorf("patchInstancePayload is required and must be specified")
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json"}
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1253,7 +1253,7 @@ func (r PatchInstanceRequest) Execute() (*Instance, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchOperation
+	localVarPostBody = r.patchInstancePayload
 	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err

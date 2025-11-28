@@ -380,9 +380,9 @@ func Test_git_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
-		patchOperation := []PatchOperation{}
+		patchInstancePayload := PatchInstancePayload{}
 
-		resp, reqErr := apiClient.PatchInstance(context.Background(), projectId, instanceId).PatchOperation(patchOperation).Execute()
+		resp, reqErr := apiClient.PatchInstance(context.Background(), projectId, instanceId).PatchInstancePayload(patchInstancePayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
