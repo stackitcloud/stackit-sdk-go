@@ -12,7 +12,6 @@ package git
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CreateInstancePayload type satisfies the MappedNullable interface at compile time
@@ -42,114 +41,10 @@ func setCreateInstancePayloadGetAclAttributeType(arg *CreateInstancePayloadGetAc
 	types and functions for flavor
 */
 
-// isEnum
-
-// CreateInstancePayloadFlavor Desired instance flavor. Must be one of the defined enum values
-// value type for enums
-type CreateInstancePayloadFlavor string
-
-// List of Flavor
-const (
-	CREATEINSTANCEPAYLOADFLAVOR__10  CreateInstancePayloadFlavor = "git-10"
-	CREATEINSTANCEPAYLOADFLAVOR__100 CreateInstancePayloadFlavor = "git-100"
-)
-
-// All allowed values of CreateInstancePayload enum
-var AllowedCreateInstancePayloadFlavorEnumValues = []CreateInstancePayloadFlavor{
-	"git-10",
-	"git-100",
-}
-
-func (v *CreateInstancePayloadFlavor) UnmarshalJSON(src []byte) error {
-	// use a type alias to prevent infinite recursion during unmarshal,
-	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
-	type TmpJson CreateInstancePayloadFlavor
-	var value TmpJson
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	// Allow unmarshalling zero value for testing purposes
-	var zeroValue TmpJson
-	if value == zeroValue {
-		return nil
-	}
-	enumTypeValue := CreateInstancePayloadFlavor(value)
-	for _, existing := range AllowedCreateInstancePayloadFlavorEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid CreateInstancePayload", value)
-}
-
-// NewCreateInstancePayloadFlavorFromValue returns a pointer to a valid CreateInstancePayloadFlavor
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
-func NewCreateInstancePayloadFlavorFromValue(v CreateInstancePayloadFlavor) (*CreateInstancePayloadFlavor, error) {
-	ev := CreateInstancePayloadFlavor(v)
-	if ev.IsValid() {
-		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for CreateInstancePayloadFlavor: valid values are %v", v, AllowedCreateInstancePayloadFlavorEnumValues)
-	}
-}
-
-// IsValid return true if the value is valid for the enum, false otherwise
-func (v CreateInstancePayloadFlavor) IsValid() bool {
-	for _, existing := range AllowedCreateInstancePayloadFlavorEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
-}
-
-// Ptr returns reference to FlavorFlavor value
-func (v CreateInstancePayloadFlavor) Ptr() *CreateInstancePayloadFlavor {
-	return &v
-}
-
-type NullableCreateInstancePayloadFlavor struct {
-	value *CreateInstancePayloadFlavor
-	isSet bool
-}
-
-func (v NullableCreateInstancePayloadFlavor) Get() *CreateInstancePayloadFlavor {
-	return v.value
-}
-
-func (v *NullableCreateInstancePayloadFlavor) Set(val *CreateInstancePayloadFlavor) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCreateInstancePayloadFlavor) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCreateInstancePayloadFlavor) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCreateInstancePayloadFlavor(val *CreateInstancePayloadFlavor) *NullableCreateInstancePayloadFlavor {
-	return &NullableCreateInstancePayloadFlavor{value: val, isSet: true}
-}
-
-func (v NullableCreateInstancePayloadFlavor) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCreateInstancePayloadFlavor) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
-
-type CreateInstancePayloadGetFlavorAttributeType = *CreateInstancePayloadFlavor
-type CreateInstancePayloadGetFlavorArgType = CreateInstancePayloadFlavor
-type CreateInstancePayloadGetFlavorRetType = CreateInstancePayloadFlavor
+// isEnumRef
+type CreateInstancePayloadGetFlavorAttributeType = *InstanceFlavor
+type CreateInstancePayloadGetFlavorArgType = InstanceFlavor
+type CreateInstancePayloadGetFlavorRetType = InstanceFlavor
 
 func getCreateInstancePayloadGetFlavorAttributeTypeOk(arg CreateInstancePayloadGetFlavorAttributeType) (ret CreateInstancePayloadGetFlavorRetType, ok bool) {
 	if arg == nil {
@@ -186,8 +81,7 @@ type CreateInstancePayloadGetNameRetType = string
 // CreateInstancePayload Request a STACKIT Git instance to be created with these properties.
 type CreateInstancePayload struct {
 	// A list of CIDR network addresses that are allowed to access the instance.
-	Acl CreateInstancePayloadGetAclAttributeType `json:"acl,omitempty"`
-	// Desired instance flavor. Must be one of the defined enum values
+	Acl    CreateInstancePayloadGetAclAttributeType    `json:"acl,omitempty"`
 	Flavor CreateInstancePayloadGetFlavorAttributeType `json:"flavor,omitempty"`
 	// A user chosen name to distinguish multiple STACKIT Git instances.
 	// REQUIRED
@@ -255,7 +149,7 @@ func (o *CreateInstancePayload) HasFlavor() bool {
 	return ok
 }
 
-// SetFlavor gets a reference to the given string and assigns it to the Flavor field.
+// SetFlavor gets a reference to the given InstanceFlavor and assigns it to the Flavor field.
 func (o *CreateInstancePayload) SetFlavor(v CreateInstancePayloadGetFlavorRetType) {
 	setCreateInstancePayloadGetFlavorAttributeType(&o.Flavor, v)
 }
