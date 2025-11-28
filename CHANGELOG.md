@@ -80,10 +80,17 @@
     - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `sqlserverflex`: [v1.3.2](services/sqlserverflex/CHANGELOG.md#v132) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `stackitmarketplace`: [v1.17.1](services/stackitmarketplace/CHANGELOG.md#v1171) 
+- `stackitmarketplace`: [v1.17.1](services/stackitmarketplace/CHANGELOG.md#v1171)
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `core`: [v0.20.0](core/CHANGELOG.md#v0200)
   - **New:** Added new `GetTraceId` function
+  - **Feature:** Add CLI provider authentication support via `cliauth` package
+    - Enables applications to use credentials stored by the STACKIT CLI
+    - Supports reading credentials from system keyring or file fallback
+    - Automatic OAuth2 token refresh with bidirectional credential sync
+    - Multiple CLI profiles support with automatic profile resolution
+    - Thread-safe `CLIProviderFlow` implementing `http.RoundTripper`
+    - 100% backward compatibility with existing STACKIT CLI credentials
 
 ## Release (2025-11-14)
 - `core`: 

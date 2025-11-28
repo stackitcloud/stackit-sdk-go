@@ -1,5 +1,12 @@
 ## v0.20.0
 - **New:** Added new `GetTraceId` function
+- **Feature:** Add CLI provider authentication support via `cliauth` package
+  - Enables applications to use credentials stored by the STACKIT CLI
+  - Supports reading credentials from system keyring or file fallback
+  - Automatic OAuth2 token refresh with bidirectional credential sync
+  - Multiple CLI profiles support with automatic profile resolution
+  - Thread-safe `CLIProviderFlow` implementing `http.RoundTripper`
+  - 100% backward compatibility with existing STACKIT CLI credentials
 
 ## v0.19.0
 - **New:** Added new `EnumSliceToStringSlice ` util func
