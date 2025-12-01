@@ -1,3 +1,6 @@
+## v1.3.3
+- **Bugfix:** Adjust waiters to fail only in `Failure` or `Unknown` state
+
 ## v1.3.2
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 

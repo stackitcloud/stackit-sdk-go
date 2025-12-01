@@ -2,8 +2,10 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
@@ -34,19 +36,13 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
 			return false, nil, nil
 		}
-		switch *s.Item.Status {
-		default:
-			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
-		case InstanceStateEmpty:
-			return false, s, nil
-		case InstanceStateProcessing:
-			return false, s, nil
-		case InstanceStateUnknown:
-			return false, s, nil
-		case InstanceStateSuccess:
+		switch strings.ToLower(*s.Item.Status) {
+		case strings.ToLower(InstanceStateSuccess):
 			return true, s, nil
-		case InstanceStateFailed:
+		case strings.ToLower(InstanceStateUnknown), strings.ToLower(InstanceStateFailed):
 			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
+		default:
+			return false, s, nil
 		}
 	})
 	handler.SetTimeout(45 * time.Minute)
@@ -64,19 +60,13 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
 			return false, nil, nil
 		}
-		switch *s.Item.Status {
-		default:
-			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
-		case InstanceStateEmpty:
-			return false, s, nil
-		case InstanceStateProcessing:
-			return false, s, nil
-		case InstanceStateUnknown:
-			return false, s, nil
-		case InstanceStateSuccess:
+		switch strings.ToLower(*s.Item.Status) {
+		case strings.ToLower(InstanceStateSuccess):
 			return true, s, nil
-		case InstanceStateFailed:
+		case strings.ToLower(InstanceStateUnknown), strings.ToLower(InstanceStateFailed):
 			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
+		default:
+			return false, s, nil
 		}
 	})
 	handler.SetSleepBeforeWait(2 * time.Second)
@@ -96,7 +86,8 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 		if err == nil {
 			return false, nil, nil
 		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		var oapiErr *oapierror.GenericOpenAPIError
+		ok := errors.As(err, &oapiErr)
 		if !ok {
 			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
 		}

@@ -78,8 +78,11 @@
     - **Feature:** Add new enum `GetProviderOptionsRequestVersionState`
   - [v1.4.1](services/ske/CHANGELOG.md#v141) 
     - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `sqlserverflex`: [v1.3.2](services/sqlserverflex/CHANGELOG.md#v132) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `sqlserverflex`:
+  - [v1.3.3](services/sqlserverflex/CHANGELOG.md#v133)
+    - **Bugfix:** Adjust waiters to fail only in `Failure` or `Unknown` state
+  - [v1.3.2](services/sqlserverflex/CHANGELOG.md#v132) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `stackitmarketplace`: [v1.17.1](services/stackitmarketplace/CHANGELOG.md#v1171) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `core`: [v0.20.0](core/CHANGELOG.md#v0200)
