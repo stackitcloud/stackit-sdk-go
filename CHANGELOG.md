@@ -10,9 +10,29 @@
     - Add `Etag` field to `Role` model struct
   - [v0.9.1](services/authorization/CHANGELOG.md#v091) 
     - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `cdn`: [v1.8.1](services/cdn/CHANGELOG.md#v181) (formerly `v2.1.1`)
-  - **Note: This release was formerly known as `v2.1.1` and was re-tagged as `v1.8.1`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `cdn`:
+  - [v1.9.0](services/cdn/CHANGELOG.md#v190)
+    - **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
+    - **Feature:** Add new function `GetLogsSearchFilters`
+    - **Feature:** Add `WafAction` method to `ApiGetLogsRequest` struct
+    - **Feature:** Add `Reason` field to `WafStatusRuleBlock` model struct
+    - **Feature:** Add fields to `WafConfig` and `WafConfigPatch` model struct:
+      - `AllowedHttpMethods`
+      - `AllowedHttpVersions`
+      - `AllowedRequestContentTypes`
+      - `DisabledRuleCollectionIds`
+      - `DisabledRuleGroupIds`
+      - `DisabledRuleIds`
+      - `EnabledRuleCollectionIds`
+      - `EnabledRuleGroupIds`
+      - `EnabledRuleIds`
+      - `LogOnlyRuleCollectionIds`
+      - `LogOnlyRuleGroupIds`
+      - `LogOnlyRuleIds`
+      - `ParanoiaLevel` 
+  - [v1.8.1](services/cdn/CHANGELOG.md#v181) (formerly `v2.1.1`)
+    - **Note: This release was formerly known as `v2.1.1` and was re-tagged as `v1.8.1`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `certificates`: [v1.1.2](services/certificates/CHANGELOG.md#v112) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `dns`: [v0.17.2](services/dns/CHANGELOG.md#v0172) 
