@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"reflect"
+	"strings"
 	"testing"
 	"time"
 
@@ -665,6 +666,19 @@ func TestKeyAuth(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+func TestKeyAuthPemInsteadOfJsonKeyErrorHandling(t *testing.T) {
+	cfg := &config.Configuration{
+		ServiceAccountKey: "-----BEGIN PRIVATE KEY",
+	}
+	_, err := KeyAuth(cfg)
+	if err == nil {
+		t.Fatalf("error expected")
+	}
+	if !strings.HasSuffix(err.Error(), "Please provide it in JSON format.") {
+		t.Fatalf("expected to end with JSON format hint: %s", err)
 	}
 }
 
