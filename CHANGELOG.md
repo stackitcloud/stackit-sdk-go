@@ -37,8 +37,12 @@
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `dns`: [v0.17.2](services/dns/CHANGELOG.md#v0172) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `git`: [v0.9.1](services/git/CHANGELOG.md#v091) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `git`:
+  - [v0.10.0](services/git/CHANGELOG.md#v0100)
+    - **Breaking Change:** Replace `PatchOperation` by `PatchInstancePayload` in `ApiPatchInstanceRequest` struct
+    - **Breaking Change:** Replace `CreateInstancePayloadFlavor` enums by `InstanceFlavor`
+  - [v0.9.1](services/git/CHANGELOG.md#v091) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `iaas`: 
   - [v1.2.2](services/iaas/CHANGELOG.md#v122) 
     - Bump STACKIT SDK resourcemanager module from `v0.18.0` to `v0.18.1`

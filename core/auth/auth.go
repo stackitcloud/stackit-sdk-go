@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
@@ -172,7 +173,11 @@ func KeyAuth(cfg *config.Configuration) (http.RoundTripper, error) {
 	var serviceAccountKey = &clients.ServiceAccountKeyResponse{}
 	err = json.Unmarshal([]byte(cfg.ServiceAccountKey), serviceAccountKey)
 	if err != nil {
-		return nil, fmt.Errorf("unmarshalling service account key: %w", err)
+		var errorSuffix string
+		if strings.HasPrefix(cfg.ServiceAccountKey, "-----BEGIN") {
+			errorSuffix = " - it seems like the provided service account key is in PEM format. Please provide it in JSON format."
+		}
+		return nil, fmt.Errorf("unmarshalling service account key: %w%s", err, errorSuffix)
 	}
 
 	// Try to get private key from configuration, environment or credentials file
