@@ -1,3 +1,6 @@
+## v0.20.1
+- **Improvement:** Improve error message when passing a PEM encoded file to as service account key
+
 ## v0.20.0
 - **New:** Added new `GetTraceId` function
 
