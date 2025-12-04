@@ -1,5 +1,5 @@
 /*
-Audit Log API
+STACKIT Audit Log API
 
 Testing DefaultApiService
 
