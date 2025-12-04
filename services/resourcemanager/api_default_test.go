@@ -1,5 +1,5 @@
 /*
-Resource Manager API
+STACKIT Resource Manager API
 
 Testing DefaultApiService
 
