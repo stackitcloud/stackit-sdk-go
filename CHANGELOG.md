@@ -1,3 +1,7 @@
+## Release (2025-XX-YY)
+- `logs`:
+  -  [v0.1.0](services/logs/CHANGELOG.md#v010-2025-xx-yy)
+    - **New:** API for logs service
 ## Release (2025-12-05)
 - `alb`: 
   - [v0.7.3](services/alb/CHANGELOG.md#v073) 
