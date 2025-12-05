@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &GrafanaOauth{}
 
 /*
+	types and functions for allowAssignGrafanaAdmin
+*/
+
+// isBoolean
+type GrafanaOauthgetAllowAssignGrafanaAdminAttributeType = *bool
+type GrafanaOauthgetAllowAssignGrafanaAdminArgType = bool
+type GrafanaOauthgetAllowAssignGrafanaAdminRetType = bool
+
+func getGrafanaOauthgetAllowAssignGrafanaAdminAttributeTypeOk(arg GrafanaOauthgetAllowAssignGrafanaAdminAttributeType) (ret GrafanaOauthgetAllowAssignGrafanaAdminRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGrafanaOauthgetAllowAssignGrafanaAdminAttributeType(arg *GrafanaOauthgetAllowAssignGrafanaAdminAttributeType, val GrafanaOauthgetAllowAssignGrafanaAdminRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for apiUrl
 */
 
@@ -247,6 +267,7 @@ func setGrafanaOauthgetUsePkceAttributeType(arg *GrafanaOauthgetUsePkceAttribute
 
 // GrafanaOauth struct for GrafanaOauth
 type GrafanaOauth struct {
+	AllowAssignGrafanaAdmin GrafanaOauthgetAllowAssignGrafanaAdminAttributeType `json:"allowAssignGrafanaAdmin,omitempty"`
 	// REQUIRED
 	ApiUrl GrafanaOauthGetApiUrlAttributeType `json:"apiUrl" required:"true"`
 	// REQUIRED
@@ -290,11 +311,36 @@ func NewGrafanaOauth(apiUrl GrafanaOauthGetApiUrlArgType, authUrl GrafanaOauthGe
 // but it doesn't guarantee that properties required by API are set
 func NewGrafanaOauthWithDefaults() *GrafanaOauth {
 	this := GrafanaOauth{}
+	var allowAssignGrafanaAdmin bool = false
+	this.AllowAssignGrafanaAdmin = &allowAssignGrafanaAdmin
 	var roleAttributeStrict bool = true
 	this.RoleAttributeStrict = &roleAttributeStrict
 	var scopes string = "openid profile email"
 	this.Scopes = &scopes
 	return &this
+}
+
+// GetAllowAssignGrafanaAdmin returns the AllowAssignGrafanaAdmin field value if set, zero value otherwise.
+func (o *GrafanaOauth) GetAllowAssignGrafanaAdmin() (res GrafanaOauthgetAllowAssignGrafanaAdminRetType) {
+	res, _ = o.GetAllowAssignGrafanaAdminOk()
+	return
+}
+
+// GetAllowAssignGrafanaAdminOk returns a tuple with the AllowAssignGrafanaAdmin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GrafanaOauth) GetAllowAssignGrafanaAdminOk() (ret GrafanaOauthgetAllowAssignGrafanaAdminRetType, ok bool) {
+	return getGrafanaOauthgetAllowAssignGrafanaAdminAttributeTypeOk(o.AllowAssignGrafanaAdmin)
+}
+
+// HasAllowAssignGrafanaAdmin returns a boolean if a field has been set.
+func (o *GrafanaOauth) HasAllowAssignGrafanaAdmin() bool {
+	_, ok := o.GetAllowAssignGrafanaAdminOk()
+	return ok
+}
+
+// SetAllowAssignGrafanaAdmin gets a reference to the given bool and assigns it to the AllowAssignGrafanaAdmin field.
+func (o *GrafanaOauth) SetAllowAssignGrafanaAdmin(v GrafanaOauthgetAllowAssignGrafanaAdminRetType) {
+	setGrafanaOauthgetAllowAssignGrafanaAdminAttributeType(&o.AllowAssignGrafanaAdmin, v)
 }
 
 // GetApiUrl returns the ApiUrl field value
@@ -510,6 +556,9 @@ func (o *GrafanaOauth) SetUsePkce(v GrafanaOauthgetUsePkceRetType) {
 
 func (o GrafanaOauth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getGrafanaOauthgetAllowAssignGrafanaAdminAttributeTypeOk(o.AllowAssignGrafanaAdmin); ok {
+		toSerialize["AllowAssignGrafanaAdmin"] = val
+	}
 	if val, ok := getGrafanaOauthGetApiUrlAttributeTypeOk(o.ApiUrl); ok {
 		toSerialize["ApiUrl"] = val
 	}
