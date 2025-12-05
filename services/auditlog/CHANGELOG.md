@@ -1,3 +1,6 @@
+## v0.1.2
+  - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v0.1.1
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 

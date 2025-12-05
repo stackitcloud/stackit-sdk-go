@@ -1,5 +1,5 @@
 /*
-Audit Log API
+STACKIT Audit Log API
 
 API Endpoints to retrieve recorded actions and resulting changes in the system.  ### Documentation The user documentation with explanations how to use the api can be found  [here](https://docs.stackit.cloud/stackit/en/retrieve-audit-log-per-api-request-134415907.html).  ### Audit Logging Changes on organizations, folders and projects and respective cloud resources are logged and collected in the audit  log.  ### API Constraints The audit log API allows to download messages from the last 90 days. The maximum duration that can be queried at  once is 24 hours. Requests are rate limited - the current maximum is 60 requests per minute.
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Audit Log API API v2.0
+// APIClient manages communication with the STACKIT Audit Log API API v2.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration

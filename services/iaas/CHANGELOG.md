@@ -1,3 +1,6 @@
+## v1.2.3
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v1.2.2
 - Bump STACKIT SDK resourcemanager module from `v0.18.0` to `v0.18.1`
 
