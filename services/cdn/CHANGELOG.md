@@ -1,3 +1,6 @@
+## v1.9.1
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v1.9.0
 - **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
 - **Feature:** Add new function `GetLogsSearchFilters`
