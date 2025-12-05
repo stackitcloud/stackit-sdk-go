@@ -46,6 +46,7 @@ use (
 	./services/lbapplication
 	./services/loadbalancer
 	./services/logme
+	./services/logs
 	./services/mariadb
 	./services/modelserving
 	./services/mongodbflex
