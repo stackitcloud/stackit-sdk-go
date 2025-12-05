@@ -1,3 +1,6 @@
+## v0.10.1
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v0.10.0
 - **Breaking Change:** Replace `PatchOperation` by `PatchInstancePayload` in `ApiPatchInstanceRequest` struct
 - **Breaking Change:** Replace `CreateInstancePayloadFlavor` enums by `InstanceFlavor`
