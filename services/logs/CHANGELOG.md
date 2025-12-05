@@ -1,2 +1,2 @@
-## v0.1.0 (2025-XX-YY)
+## v0.1.0
 - **New:** API for logs service
