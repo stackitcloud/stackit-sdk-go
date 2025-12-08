@@ -1,3 +1,6 @@
+## v0.3.0
+- **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
+
 ## v0.2.3
   - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
