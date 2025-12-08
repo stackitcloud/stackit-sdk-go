@@ -1,4 +1,6 @@
 ## Release (2025-XX-YY)
+- `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)
+  - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 - `iaas`: [v1.2.4](services/iaas/CHANGELOG.md#v124)
   - Bump STACKIT SDK resourcemanager module from `v0.18.1` to `v0.18.2`
 - `logs`:
