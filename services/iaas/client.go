@@ -1,5 +1,5 @@
 /*
-IaaS-API
+STACKIT IaaS API
 
 This API allows you to create and modify IaaS resources.
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the IaaS-API API v2
+// APIClient manages communication with the STACKIT IaaS API API v2
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration
