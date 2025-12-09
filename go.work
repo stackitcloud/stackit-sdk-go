@@ -14,6 +14,7 @@ use (
 	./examples/kms
 	./examples/loadbalancer
 	./examples/logme
+	./examples/logs
 	./examples/mariadb
 	./examples/middleware
 	./examples/mongodbflex
