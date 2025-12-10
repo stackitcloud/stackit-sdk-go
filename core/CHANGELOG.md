@@ -1,5 +1,6 @@
 ## v0.21.0
 - **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
+- **Feature:** Support Workload Identity Federation flow
 
 ## v0.20.1
 - **Improvement:** Improve error message when passing a PEM encoded file to as service account key
