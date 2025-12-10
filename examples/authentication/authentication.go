@@ -35,10 +35,19 @@ func main() {
 
 	// Create a new API client, that will authenticate using the provided bearer token
 	token := "TOKEN"
-	_, err = dns.NewAPIClient(config.WithToken(token))
+	dnsClient, err := dns.NewAPIClient(config.WithToken(token))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
 		os.Exit(1)
+	}
+
+	// Check that you can make an authenticated request
+	getZoneResp, err := dnsClient.ListZones(context.Background(), projectId).Execute()
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
+	} else {
+		fmt.Printf("[DNS API] Number of zones: %v\n", len(*getZoneResp.Zones))
 	}
 
 	// Create a new API client, that will authenticate using the key flow
@@ -46,7 +55,7 @@ func main() {
 	// you need to add the path to a PEM encoded file including the private key
 	// using config.WithPrivateKeyPath("path/to/private_key.pem")
 	saKeyPath := "/path/to/service_account_key.json"
-	dnsClient, err := dns.NewAPIClient(
+	dnsClient, err = dns.NewAPIClient(
 		config.WithServiceAccountKeyPath(saKeyPath),
 	)
 	if err != nil {
@@ -55,7 +64,51 @@ func main() {
 	}
 
 	// Check that you can make an authenticated request
-	getZoneResp, err := dnsClient.ListZones(context.Background(), projectId).Execute()
+	getZoneResp, err = dnsClient.ListZones(context.Background(), projectId).Execute()
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
+	} else {
+		fmt.Printf("[DNS API] Number of zones: %v\n", len(*getZoneResp.Zones))
+	}
+
+	// Create a new API client, that will authenticate using the wif flow
+	// You need to create a service account key and configure the federate identity provider,
+	// then you can init the SDK using default env var
+	os.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "my-sa@sa-stackit.cloud")
+	os.Setenv("STACKIT_FEDERATED_TOKEN_FILE", "/path/to/your/federated/token") // Default "/var/run/secrets/stackit.cloud/serviceaccount/token"
+	os.Setenv("STACKIT_IDP_ENDPOINT", "custom token endpoint")                 // Default "https://accounts.stackit.cloud/oauth/v2/token"
+	dnsClient, err = dns.NewAPIClient()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Check that you can make an authenticated request
+	getZoneResp, err = dnsClient.ListZones(context.Background(), projectId).Execute()
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
+	} else {
+		fmt.Printf("[DNS API] Number of zones: %v\n", len(*getZoneResp.Zones))
+	}
+
+	// Create a new API client, that will authenticate using the wif flow
+	// You need to create a service account key and configure the federate identity provider,
+	// then you can init the SDK setting fields
+	dnsClient, err = dns.NewAPIClient(
+		config.WithWorkloadIdentityFederationAuth(),
+		config.WithTokenEndpoint("custom token endpoint"),
+		config.WithWorkloadIdentityFederationTokenPath("/path/to/your/federated/token"),
+		config.WithServiceAccountEmail("my-sa@sa-stackit.cloud"),
+	)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "[DNS API] Creating API client: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Check that you can make an authenticated request
+	getZoneResp, err = dnsClient.ListZones(context.Background(), projectId).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
