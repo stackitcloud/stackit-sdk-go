@@ -13,6 +13,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
@@ -121,6 +122,32 @@ func TestSetupAuth(t *testing.T) {
 		}
 	}()
 
+	// create a wif assertion file
+	wifAssertionFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		_ = wifAssertionFile.Close()
+		err := os.Remove(wifAssertionFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute)),
+		Subject:   "sub",
+	}).SignedString([]byte("test"))
+	if err != nil {
+		t.Fatalf("Removing temporary file: %s", err)
+	}
+
+	_, errs = wifAssertionFile.WriteString(string(token))
+	if errs != nil {
+		t.Fatalf("Writing wif assertion to temporary file: %s", err)
+	}
+
 	// create a credentials file with saKey and private key
 	credentialsKeyFile, errs := os.CreateTemp("", "temp-*.txt")
 	if errs != nil {
@@ -147,25 +174,28 @@ func TestSetupAuth(t *testing.T) {
 		desc                        string
 		config                      *config.Configuration
 		setToken                    bool
+		setWorkloadIdentity         bool
 		setKeys                     bool
 		setKeyPaths                 bool
 		setCredentialsFilePathToken bool
 		setCredentialsFilePathKey   bool
-		isValid                     bool
 	}{
+		{
+			desc:                "wif_config",
+			config:              nil,
+			setWorkloadIdentity: true,
+		},
 		{
 			desc:                        "token_config",
 			config:                      nil,
 			setToken:                    true,
 			setCredentialsFilePathToken: false,
-			isValid:                     true,
 		},
 		{
 			desc:                        "key_config",
 			config:                      nil,
 			setKeys:                     true,
 			setCredentialsFilePathToken: false,
-			isValid:                     true,
 		},
 		{
 			desc:                        "key_config_path",
@@ -173,7 +203,6 @@ func TestSetupAuth(t *testing.T) {
 			setKeys:                     false,
 			setKeyPaths:                 true,
 			setCredentialsFilePathToken: false,
-			isValid:                     true,
 		},
 		{
 			desc:                      "key_config_credentials_path",
@@ -181,14 +210,12 @@ func TestSetupAuth(t *testing.T) {
 			setKeys:                   false,
 			setKeyPaths:               false,
 			setCredentialsFilePathKey: true,
-			isValid:                   true,
 		},
 		{
 			desc:                        "valid_path_to_file",
 			config:                      nil,
 			setToken:                    false,
 			setCredentialsFilePathToken: true,
-			isValid:                     true,
 		},
 		{
 			desc: "custom_config_token",
@@ -197,7 +224,6 @@ func TestSetupAuth(t *testing.T) {
 			},
 			setToken:                    false,
 			setCredentialsFilePathToken: false,
-			isValid:                     true,
 		},
 		{
 			desc: "custom_config_path",
@@ -206,7 +232,6 @@ func TestSetupAuth(t *testing.T) {
 			},
 			setToken:                    false,
 			setCredentialsFilePathToken: false,
-			isValid:                     true,
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
@@ -241,19 +266,21 @@ func TestSetupAuth(t *testing.T) {
 				t.Setenv("STACKIT_CREDENTIALS_PATH", "")
 			}
 
+			if test.setWorkloadIdentity {
+				t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", wifAssertionFile.Name())
+			} else {
+				t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", "")
+			}
+
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
 
 			authRoundTripper, err := SetupAuth(test.config)
 
-			if err != nil && test.isValid {
+			if err != nil {
 				t.Fatalf("Test returned error on valid test case: %v", err)
 			}
 
-			if err == nil && !test.isValid {
-				t.Fatalf("Test didn't return error on invalid test case")
-			}
-
-			if test.isValid && authRoundTripper == nil {
+			if authRoundTripper == nil {
 				t.Fatalf("Roundtripper returned is nil for valid test case")
 			}
 		})
@@ -381,6 +408,32 @@ func TestDefaultAuth(t *testing.T) {
 		t.Fatalf("Writing private key to temporary file: %s", err)
 	}
 
+	// create a wif assertion file
+	wifAssertionFile, errs := os.CreateTemp("", "temp-*.txt")
+	if errs != nil {
+		t.Fatalf("Creating temporary file: %s", err)
+	}
+	defer func() {
+		_ = wifAssertionFile.Close()
+		err := os.Remove(wifAssertionFile.Name())
+		if err != nil {
+			t.Fatalf("Removing temporary file: %s", err)
+		}
+	}()
+
+	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Minute)),
+		Subject:   "sub",
+	}).SignedString([]byte("test"))
+	if err != nil {
+		t.Fatalf("Removing temporary file: %s", err)
+	}
+
+	_, errs = wifAssertionFile.WriteString(string(token))
+	if errs != nil {
+		t.Fatalf("Writing wif assertion to temporary file: %s", err)
+	}
+
 	// create a credentials file with saKey and private key
 	credentialsKeyFile, errs := os.CreateTemp("", "temp-*.txt")
 	if errs != nil {
@@ -409,6 +462,7 @@ func TestDefaultAuth(t *testing.T) {
 		setKeyPaths               bool
 		setKeys                   bool
 		setCredentialsFilePathKey bool
+		setWorkloadIdentity       bool
 		isValid                   bool
 		expectedFlow              string
 	}{
@@ -417,6 +471,14 @@ func TestDefaultAuth(t *testing.T) {
 			setToken:     true,
 			isValid:      true,
 			expectedFlow: "token",
+		},
+		{
+			desc:                "wif_precedes_key_precedes_token",
+			setToken:            true,
+			setKeyPaths:         true,
+			setWorkloadIdentity: true,
+			isValid:             true,
+			expectedFlow:        "wif",
 		},
 		{
 			desc:         "key_precedes_token",
@@ -475,6 +537,13 @@ func TestDefaultAuth(t *testing.T) {
 			} else {
 				t.Setenv("STACKIT_SERVICE_ACCOUNT_TOKEN", "")
 			}
+
+			if test.setWorkloadIdentity {
+				t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", wifAssertionFile.Name())
+			} else {
+				t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", "")
+			}
+
 			t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "test-email")
 
 			// Get the default authentication client and ensure that it's not nil
@@ -499,6 +568,10 @@ func TestDefaultAuth(t *testing.T) {
 					}
 				case "key":
 					if _, ok := authClient.(*clients.KeyFlow); !ok {
+						t.Fatalf("Expected key flow, got %s", reflect.TypeOf(authClient))
+					}
+				case "wif":
+					if _, ok := authClient.(*clients.WorkloadIdentityFederationFlow); !ok {
 						t.Fatalf("Expected key flow, got %s", reflect.TypeOf(authClient))
 					}
 				}

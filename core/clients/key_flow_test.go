@@ -17,13 +17,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
-)
-
-var (
-	testSigningKey = []byte(`Test`)
 )
 
 const testBearerToken = "eyJhbGciOiJub25lIn0.eyJleHAiOjIxNDc0ODM2NDd9." //nolint:gosec // linter false positive
@@ -130,89 +125,30 @@ func TestKeyFlowInit(t *testing.T) {
 	}
 }
 
-func TestSetToken(t *testing.T) {
-	tests := []struct {
-		name         string
-		tokenInvalid bool
-		refreshToken string
-		wantErr      bool
-	}{
-		{
-			name:         "ok",
-			tokenInvalid: false,
-			refreshToken: "refresh_token",
-			wantErr:      false,
-		},
-		{
-			name:         "invalid_token",
-			tokenInvalid: true,
-			refreshToken: "",
-			wantErr:      true,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			var accessToken string
-			var err error
-
-			timestamp := time.Now().Add(24 * time.Hour)
-			if tt.tokenInvalid {
-				accessToken = "foo"
-			} else {
-				accessTokenJWT := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-					ExpiresAt: jwt.NewNumericDate(timestamp)})
-				accessToken, err = accessTokenJWT.SignedString(testSigningKey)
-				if err != nil {
-					t.Fatalf("get test access token as string: %s", err)
-				}
-			}
-
-			keyFlow := &KeyFlow{}
-			err = keyFlow.SetToken(accessToken, tt.refreshToken)
-
-			if (err != nil) != tt.wantErr {
-				t.Errorf("KeyFlow.SetToken() error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if err == nil {
-				expectedKeyFlowToken := &TokenResponseBody{
-					AccessToken:  accessToken,
-					ExpiresIn:    int(timestamp.Unix()),
-					RefreshToken: tt.refreshToken,
-					Scope:        defaultScope,
-					TokenType:    defaultTokenType,
-				}
-				if !cmp.Equal(expectedKeyFlowToken, keyFlow.token) {
-					t.Errorf("The returned result is wrong. Expected %+v, got %+v", expectedKeyFlowToken, keyFlow.token)
-				}
-			}
-		})
-	}
-}
-
 func TestTokenExpired(t *testing.T) {
 	tokenExpirationLeeway := 5 * time.Second
 	tests := []struct {
 		desc              string
 		tokenInvalid      bool
-		tokenExpiresAt    time.Time
+		tokenDuration     time.Duration
 		expectedErr       bool
 		expectedIsExpired bool
 	}{
 		{
 			desc:              "token valid",
-			tokenExpiresAt:    time.Now().Add(time.Hour),
+			tokenDuration:     time.Hour,
 			expectedErr:       false,
 			expectedIsExpired: false,
 		},
 		{
 			desc:              "token expired",
-			tokenExpiresAt:    time.Now().Add(-time.Hour),
+			tokenDuration:     -time.Hour,
 			expectedErr:       false,
 			expectedIsExpired: true,
 		},
 		{
 			desc:              "token almost expired",
-			tokenExpiresAt:    time.Now().Add(tokenExpirationLeeway),
+			tokenDuration:     tokenExpirationLeeway,
 			expectedErr:       false,
 			expectedIsExpired: true,
 		},
@@ -228,9 +164,7 @@ func TestTokenExpired(t *testing.T) {
 			var err error
 			token := "foo"
 			if !tt.tokenInvalid {
-				token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-					ExpiresAt: jwt.NewNumericDate(tt.tokenExpiresAt),
-				}).SignedString([]byte("test"))
+				token, err = signToken(tt.tokenDuration)
 				if err != nil {
 					t.Fatalf("failed to create token: %v", err)
 				}
@@ -442,10 +376,9 @@ func TestKeyFlow_Do(t *testing.T) {
 							res.Header().Set("Content-Type", "application/json")
 
 							token := &TokenResponseBody{
-								AccessToken:  testBearerToken,
-								ExpiresIn:    2147483647,
-								RefreshToken: testBearerToken,
-								TokenType:    "Bearer",
+								AccessToken: testBearerToken,
+								ExpiresIn:   2147483647,
+								TokenType:   "Bearer",
 							}
 
 							if err := json.NewEncoder(res.Body).Encode(token); err != nil {
