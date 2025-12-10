@@ -17,13 +17,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
-)
-
-var (
-	testSigningKey = []byte(`Test`)
 )
 
 const testBearerToken = "eyJhbGciOiJub25lIn0.eyJleHAiOjIxNDc0ODM2NDd9." //nolint:gosec // linter false positive
@@ -135,25 +130,25 @@ func TestTokenExpired(t *testing.T) {
 	tests := []struct {
 		desc              string
 		tokenInvalid      bool
-		tokenExpiresAt    time.Time
+		tokenDuration     time.Duration
 		expectedErr       bool
 		expectedIsExpired bool
 	}{
 		{
 			desc:              "token valid",
-			tokenExpiresAt:    time.Now().Add(time.Hour),
+			tokenDuration:     time.Hour,
 			expectedErr:       false,
 			expectedIsExpired: false,
 		},
 		{
 			desc:              "token expired",
-			tokenExpiresAt:    time.Now().Add(-time.Hour),
+			tokenDuration:     -time.Hour,
 			expectedErr:       false,
 			expectedIsExpired: true,
 		},
 		{
 			desc:              "token almost expired",
-			tokenExpiresAt:    time.Now().Add(tokenExpirationLeeway),
+			tokenDuration:     tokenExpirationLeeway,
 			expectedErr:       false,
 			expectedIsExpired: true,
 		},
@@ -169,9 +164,7 @@ func TestTokenExpired(t *testing.T) {
 			var err error
 			token := "foo"
 			if !tt.tokenInvalid {
-				token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-					ExpiresAt: jwt.NewNumericDate(tt.tokenExpiresAt),
-				}).SignedString([]byte("test"))
+				token, err = signToken(tt.tokenDuration)
 				if err != nil {
 					t.Fatalf("failed to create token: %v", err)
 				}
