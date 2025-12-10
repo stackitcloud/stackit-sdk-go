@@ -20,9 +20,9 @@ var (
 // Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Writes to stderr when it terminates.
 //
 // To terminate this routine, close the context in keyFlow.config.BackgroundTokenRefreshContext.
-func continuousRefreshToken(keyflow *KeyFlow) {
+func continuousRefreshToken(flow AuthFlow) {
 	refresher := &continuousTokenRefresher{
-		keyFlow:                        keyflow,
+		flow:                           flow,
 		timeStartBeforeTokenExpiration: defaultTimeStartBeforeTokenExpiration,
 		timeBetweenContextCheck:        defaultTimeBetweenContextCheck,
 		timeBetweenTries:               defaultTimeBetweenTries,
@@ -32,7 +32,7 @@ func continuousRefreshToken(keyflow *KeyFlow) {
 }
 
 type continuousTokenRefresher struct {
-	keyFlow *KeyFlow
+	flow AuthFlow
 	// Token refresh tries start at [Access token expiration timestamp] - [This duration]
 	timeStartBeforeTokenExpiration time.Duration
 	timeBetweenContextCheck        time.Duration
@@ -46,22 +46,12 @@ func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 	// Compute timestamp where we'll refresh token
 	// Access token may be empty at this point, we have to check it
 	var startRefreshTimestamp time.Time
-	var accessToken string
 
-	refresher.keyFlow.tokenMutex.RLock()
-	if refresher.keyFlow.token != nil {
-		accessToken = refresher.keyFlow.token.AccessToken
+	expirationTimestamp, err := refresher.getAccessTokenExpirationTimestamp()
+	if err != nil {
+		return fmt.Errorf("get access token expiration timestamp: %w", err)
 	}
-	refresher.keyFlow.tokenMutex.RUnlock()
-	if accessToken == "" {
-		startRefreshTimestamp = time.Now()
-	} else {
-		expirationTimestamp, err := refresher.getAccessTokenExpirationTimestamp()
-		if err != nil {
-			return fmt.Errorf("get access token expiration timestamp: %w", err)
-		}
-		startRefreshTimestamp = expirationTimestamp.Add(-refresher.timeStartBeforeTokenExpiration)
-	}
+	startRefreshTimestamp = expirationTimestamp.Add(-refresher.timeStartBeforeTokenExpiration)
 
 	for {
 		err := refresher.waitUntilTimestamp(startRefreshTimestamp)
@@ -69,7 +59,7 @@ func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 			return err
 		}
 
-		err = refresher.keyFlow.config.BackgroundTokenRefreshContext.Err()
+		err = refresher.flow.GetBackgroundTokenRefreshContext().Err()
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}
@@ -92,13 +82,14 @@ func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 }
 
 func (refresher *continuousTokenRefresher) getAccessTokenExpirationTimestamp() (*time.Time, error) {
-	refresher.keyFlow.tokenMutex.RLock()
-	token := refresher.keyFlow.token.AccessToken
-	refresher.keyFlow.tokenMutex.RUnlock()
+	accessToken, err := refresher.flow.GetAccessToken()
+	if err != nil {
+		return nil, err
+	}
 
 	// We can safely use ParseUnverified because we are not doing authentication of any kind
 	// We're just checking the expiration time
-	tokenParsed, _, err := jwt.NewParser().ParseUnverified(token, &jwt.RegisteredClaims{})
+	tokenParsed, _, err := jwt.NewParser().ParseUnverified(accessToken, &jwt.RegisteredClaims{})
 	if err != nil {
 		return nil, fmt.Errorf("parse token: %w", err)
 	}
@@ -111,7 +102,7 @@ func (refresher *continuousTokenRefresher) getAccessTokenExpirationTimestamp() (
 
 func (refresher *continuousTokenRefresher) waitUntilTimestamp(timestamp time.Time) error {
 	for time.Now().Before(timestamp) {
-		err := refresher.keyFlow.config.BackgroundTokenRefreshContext.Err()
+		err := refresher.flow.GetBackgroundTokenRefreshContext().Err()
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}
@@ -125,7 +116,7 @@ func (refresher *continuousTokenRefresher) waitUntilTimestamp(timestamp time.Tim
 //   - (false, nil) if not successful but should be retried.
 //   - (_, err) if not successful and shouldn't be retried.
 func (refresher *continuousTokenRefresher) refreshToken() (bool, error) {
-	err := refresher.keyFlow.createAccessToken()
+	_, err := refresher.flow.GetAccessToken()
 	if err == nil {
 		return true, nil
 	}
