@@ -32,7 +32,7 @@ func (a *apiClientMock) GetLogsInstanceExecute(_ context.Context, _, _, _ string
 	return a.getLogsResponse, nil
 }
 
-var PROJECT_ID = uuid.NewString()
+var projectId = uuid.NewString()
 var INSTANCE_ID = uuid.NewString()
 var REGION = "eu01"
 
