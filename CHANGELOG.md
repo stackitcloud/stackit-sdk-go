@@ -1,6 +1,9 @@
 ## Release (2025-XX-YY)
-- `scf`: [v0.3.0](services/scf/CHANGELOG.md#v030)
-  - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
+- `scf`: 
+  - [v0.4.0](services/scf/CHANGELOG.md#v040)
+    - **Feature:** Add new model structs `SpaceWithIsolationSegment` and `SpaceWithIsolationSegmentAllOf`
+  - [v0.3.0](services/scf/CHANGELOG.md#v030)
+    - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 - `iaas`: 
   - [v1.3.0](services/iaas/CHANGELOG.md#v130)
     - **Feature:** Add `CreateIsolatedNetwork` functionality
