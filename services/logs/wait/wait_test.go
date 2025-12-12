@@ -34,6 +34,7 @@ func (a *apiClientMock) GetLogsInstanceExecute(_ context.Context, _, _, _ string
 
 var projectId = uuid.NewString()
 var instanceId = uuid.NewString()
+
 const region = "eu01"
 
 func TestCreateLogsInstanceWaitHandler(t *testing.T) {
@@ -52,7 +53,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			wantResp:       true,
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
-				Id:     utils.Ptr(INSTANCE_ID),
+				Id:     utils.Ptr(instanceId),
 				Status: utils.Ptr(logs.LOGSINSTANCESTATUS_ACTIVE),
 			},
 		},
@@ -63,7 +64,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			wantResp:       false,
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
-				Id:     utils.Ptr(INSTANCE_ID),
+				Id:     utils.Ptr(instanceId),
 				Status: utils.Ptr(logs.LOGSINSTANCESTATUS_ACTIVE),
 			},
 		},
@@ -84,7 +85,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			wantResp:       false,
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
-				Id: utils.Ptr(INSTANCE_ID),
+				Id: utils.Ptr(instanceId),
 			},
 		},
 		{
@@ -94,7 +95,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 			wantResp:       false,
 			returnInstance: true,
 			getLogsResponse: &logs.LogsInstance{
-				Id:     utils.Ptr(INSTANCE_ID),
+				Id:     utils.Ptr(instanceId),
 				Status: utils.Ptr(logs.LOGSINSTANCESTATUS_DELETING),
 			},
 		},
@@ -111,7 +112,7 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 				instanceWanted = tt.getLogsResponse
 			}
 
-			handler := CreateLogsInstanceWaitHandler(context.Background(), client, PROJECT_ID, REGION, INSTANCE_ID)
+			handler := CreateLogsInstanceWaitHandler(context.Background(), client, projectId, region, instanceId)
 
 			response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
@@ -158,7 +159,7 @@ func TestDeleteLogsInstanceWaitHandler(t *testing.T) {
 				statusCode:      tt.statusCode,
 				getLogsResponse: nil,
 			}
-			handler := DeleteLogsInstanceWaitHandler(context.Background(), client, PROJECT_ID, REGION, INSTANCE_ID)
+			handler := DeleteLogsInstanceWaitHandler(context.Background(), client, projectId, region, instanceId)
 			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
