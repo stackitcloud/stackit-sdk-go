@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** Add new model structs `SpaceWithIsolationSegment` and `SpaceWithIsolationSegmentAllOf`
+
 ## v0.3.0
 - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 
