@@ -34,7 +34,7 @@ func (a *apiClientMock) GetLogsInstanceExecute(_ context.Context, _, _, _ string
 
 var projectId = uuid.NewString()
 var instanceId = uuid.NewString()
-var REGION = "eu01"
+const region = "eu01"
 
 func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 	tests := []struct {
