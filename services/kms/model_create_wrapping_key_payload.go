@@ -146,7 +146,7 @@ type CreateWrappingKeyPayload struct {
 	Algorithm CreateWrappingKeyPayloadGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// A user chosen description to distinguish multiple wrapping keys.
 	Description CreateWrappingKeyPayloadGetDescriptionAttributeType `json:"description,omitempty"`
-	// The display name to distinguish multiple wrapping keys.
+	// The display name to distinguish multiple wrapping keys. Valid characters: letters, digits, underscores and hyphens.
 	// REQUIRED
 	DisplayName CreateWrappingKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// REQUIRED

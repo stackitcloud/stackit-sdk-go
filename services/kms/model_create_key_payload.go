@@ -166,7 +166,7 @@ type CreateKeyPayload struct {
 	Algorithm CreateKeyPayloadGetAlgorithmAttributeType `json:"algorithm" required:"true"`
 	// A user chosen description to distinguish multiple keys.
 	Description CreateKeyPayloadGetDescriptionAttributeType `json:"description,omitempty"`
-	// The display name to distinguish multiple keys.
+	// The display name to distinguish multiple keys. Valid characters: letters, digits, underscores and hyphens.
 	// REQUIRED
 	DisplayName CreateKeyPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 	// States whether versions can be created or only imported.
