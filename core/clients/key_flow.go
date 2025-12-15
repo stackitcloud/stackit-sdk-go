@@ -113,32 +113,6 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 	return *c.token
 }
 
-// SetToken can be used to set an access and refresh token manually in the client.
-// The other fields in the token field are determined by inspecting the token or setting default values.
-// Deprecated
-func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
-	// We can safely use ParseUnverified because we are not authenticating the user,
-	// We are parsing the token just to get the expiration time claim
-	parsedAccessToken, _, err := jwt.NewParser().ParseUnverified(accessToken, &jwt.RegisteredClaims{})
-	if err != nil {
-		return fmt.Errorf("parse access token to read expiration time: %w", err)
-	}
-	exp, err := parsedAccessToken.Claims.GetExpirationTime()
-	if err != nil {
-		return fmt.Errorf("get expiration time from access token: %w", err)
-	}
-
-	c.tokenMutex.Lock()
-	c.token = &TokenResponseBody{
-		AccessToken: accessToken,
-		ExpiresIn:   int(exp.Time.Unix()),
-		Scope:       "",
-		TokenType:   "Bearer",
-	}
-	c.tokenMutex.Unlock()
-	return nil
-}
-
 func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	// No concurrency at this point, so no mutex check needed
 	c.token = &TokenResponseBody{}
@@ -168,6 +142,32 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	if c.config.BackgroundTokenRefreshContext != nil {
 		go continuousRefreshToken(c)
 	}
+	return nil
+}
+
+// SetToken can be used to set an access and refresh token manually in the client.
+// The other fields in the token field are determined by inspecting the token or setting default values.
+// Deprecated
+func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
+	// We can safely use ParseUnverified because we are not authenticating the user,
+	// We are parsing the token just to get the expiration time claim
+	parsedAccessToken, _, err := jwt.NewParser().ParseUnverified(accessToken, &jwt.RegisteredClaims{})
+	if err != nil {
+		return fmt.Errorf("parse access token to read expiration time: %w", err)
+	}
+	exp, err := parsedAccessToken.Claims.GetExpirationTime()
+	if err != nil {
+		return fmt.Errorf("get expiration time from access token: %w", err)
+	}
+
+	c.tokenMutex.Lock()
+	c.token = &TokenResponseBody{
+		AccessToken: accessToken,
+		ExpiresIn:   int(exp.Time.Unix()),
+		Scope:       "",
+		TokenType:   "Bearer",
+	}
+	c.tokenMutex.Unlock()
 	return nil
 }
 
