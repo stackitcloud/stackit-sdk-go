@@ -45,18 +45,18 @@ func SetupAuth(cfg *config.Configuration) (rt http.RoundTripper, err error) {
 
 	if cfg.CustomAuth != nil {
 		return cfg.CustomAuth, nil
-	} else if useWorkloadIdentityFederation(cfg) {
-		wifRoundTripper, err := WorkloadIdentityFederationAuth(cfg)
-		if err != nil {
-			return nil, fmt.Errorf("configuring no auth client: %w", err)
-		}
-		return wifRoundTripper, nil
 	} else if cfg.NoAuth {
 		noAuthRoundTripper, err := NoAuth(cfg)
 		if err != nil {
 			return nil, fmt.Errorf("configuring no auth client: %w", err)
 		}
 		return noAuthRoundTripper, nil
+	} else if cfg.WorkloadIdentityFederation {
+		wifRoundTripper, err := WorkloadIdentityFederationAuth(cfg)
+		if err != nil {
+			return nil, fmt.Errorf("configuring no auth client: %w", err)
+		}
+		return wifRoundTripper, nil
 	} else if cfg.ServiceAccountKey != "" || cfg.ServiceAccountKeyPath != "" {
 		keyRoundTripper, err := KeyAuth(cfg)
 		if err != nil {
@@ -393,12 +393,4 @@ func getServiceAccountKey(cfg *config.Configuration) error {
 // getPrivateKey configures the private key in the provided configuration
 func getPrivateKey(cfg *config.Configuration) error {
 	return getKey(&cfg.PrivateKey, &cfg.PrivateKeyPath, "STACKIT_PRIVATE_KEY_PATH", "STACKIT_PRIVATE_KEY", privateKeyPathCredentialType, privateKeyCredentialType, cfg.CredentialsFilePath)
-}
-
-func useWorkloadIdentityFederation(cfg *config.Configuration) bool {
-	if cfg != nil && cfg.WorkloadIdentityFederation {
-		return true
-	}
-	val, exists := os.LookupEnv(clients.FederatedTokenFileEnv)
-	return exists && val != ""
 }

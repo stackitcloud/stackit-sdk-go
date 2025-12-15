@@ -179,23 +179,27 @@ func TestSetupAuth(t *testing.T) {
 		setKeyPaths                 bool
 		setCredentialsFilePathToken bool
 		setCredentialsFilePathKey   bool
+		isValid                     bool
 	}{
 		{
 			desc:                "wif_config",
 			config:              nil,
 			setWorkloadIdentity: true,
+			isValid:             true,
 		},
 		{
 			desc:                        "token_config",
 			config:                      nil,
 			setToken:                    true,
 			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 		{
 			desc:                        "key_config",
 			config:                      nil,
 			setKeys:                     true,
 			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 		{
 			desc:                        "key_config_path",
@@ -203,6 +207,7 @@ func TestSetupAuth(t *testing.T) {
 			setKeys:                     false,
 			setKeyPaths:                 true,
 			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 		{
 			desc:                      "key_config_credentials_path",
@@ -210,12 +215,14 @@ func TestSetupAuth(t *testing.T) {
 			setKeys:                   false,
 			setKeyPaths:               false,
 			setCredentialsFilePathKey: true,
+			isValid:                   true,
 		},
 		{
 			desc:                        "valid_path_to_file",
 			config:                      nil,
 			setToken:                    false,
 			setCredentialsFilePathToken: true,
+			isValid:                     true,
 		},
 		{
 			desc: "custom_config_token",
@@ -224,6 +231,7 @@ func TestSetupAuth(t *testing.T) {
 			},
 			setToken:                    false,
 			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 		{
 			desc: "custom_config_path",
@@ -232,6 +240,7 @@ func TestSetupAuth(t *testing.T) {
 			},
 			setToken:                    false,
 			setCredentialsFilePathToken: false,
+			isValid:                     true,
 		},
 	} {
 		t.Run(test.desc, func(t *testing.T) {
@@ -276,11 +285,15 @@ func TestSetupAuth(t *testing.T) {
 
 			authRoundTripper, err := SetupAuth(test.config)
 
-			if err != nil {
+			if err != nil && test.isValid {
 				t.Fatalf("Test returned error on valid test case: %v", err)
 			}
 
-			if authRoundTripper == nil {
+			if err == nil && !test.isValid {
+				t.Fatalf("Test didn't return error on invalid test case")
+			}
+
+			if authRoundTripper == nil && test.isValid {
 				t.Fatalf("Roundtripper returned is nil for valid test case")
 			}
 		})
