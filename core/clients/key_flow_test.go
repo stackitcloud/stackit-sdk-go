@@ -17,8 +17,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
+)
+
+var (
+	testSigningKey = []byte(`Test`)
 )
 
 const testBearerToken = "eyJhbGciOiJub25lIn0.eyJleHAiOjIxNDc0ODM2NDd9." //nolint:gosec // linter false positive
@@ -120,6 +125,64 @@ func TestKeyFlowInit(t *testing.T) {
 			}
 			if keyFlow.config == nil {
 				t.Error("config is nil")
+			}
+		})
+	}
+}
+
+func TestSetToken(t *testing.T) {
+	tests := []struct {
+		name         string
+		tokenInvalid bool
+		refreshToken string
+		wantErr      bool
+	}{
+		{
+			name:         "ok",
+			tokenInvalid: false,
+			refreshToken: "refresh_token",
+			wantErr:      false,
+		},
+		{
+			name:         "invalid_token",
+			tokenInvalid: true,
+			refreshToken: "",
+			wantErr:      true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var accessToken string
+			var err error
+
+			timestamp := time.Now().Add(24 * time.Hour)
+			if tt.tokenInvalid {
+				accessToken = "foo"
+			} else {
+				accessTokenJWT := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+					ExpiresAt: jwt.NewNumericDate(timestamp)})
+				accessToken, err = accessTokenJWT.SignedString(testSigningKey)
+				if err != nil {
+					t.Fatalf("get test access token as string: %s", err)
+				}
+			}
+
+			keyFlow := &KeyFlow{}
+			err = keyFlow.SetToken(accessToken, tt.refreshToken)
+
+			if (err != nil) != tt.wantErr {
+				t.Errorf("KeyFlow.SetToken() error = %v, wantErr %v", err, tt.wantErr)
+			}
+			if err == nil {
+				expectedKeyFlowToken := &TokenResponseBody{
+					AccessToken: accessToken,
+					ExpiresIn:   int(timestamp.Unix()),
+					Scope:       "",
+					TokenType:   "Bearer",
+				}
+				if !cmp.Equal(expectedKeyFlowToken, keyFlow.token) {
+					t.Errorf("The returned result is wrong. Expected %+v, got %+v", expectedKeyFlowToken, keyFlow.token)
+				}
 			}
 		})
 	}
