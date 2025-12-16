@@ -11,7 +11,7 @@ on:
 env:
   DAYS_BEFORE_PR_STALE: 7
   DAYS_BEFORE_PR_CLOSE: 7
-  EXEMPT_PR_LABELS: "ignore stale"
+  EXEMPT_PR_LABELS: "ignore-stale"
 
 permissions:
   issues: write
