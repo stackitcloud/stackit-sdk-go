@@ -1,3 +1,6 @@
+## v0.2.0
+- **Feature:** Add support for access token GET endpoint
+
 ## v0.1.1
 - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
