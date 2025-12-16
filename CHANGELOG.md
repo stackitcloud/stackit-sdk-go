@@ -1,6 +1,8 @@
 ## Release (2025-XX-YY)
 - `logs`:
-  -  [v0.1.0](services/logs/CHANGELOG.md#v010)
+  - [v0.2.0](services/logs/CHANGELOG.md#v020)
+    - **Feature:** Add new wait handlers for instance creation (`CreateLogsInstanceWaitHandler`), and instance deletion (`DeleteLogsInstanceWaitHandler`)
+  - [v0.1.0](services/logs/CHANGELOG.md#v010)
     - **New:** API for logs service
 ## Release (2025-12-05)
 - `alb`: 
