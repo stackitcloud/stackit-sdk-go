@@ -12,6 +12,8 @@
   - [v1.2.4](services/iaas/CHANGELOG.md#v124)
     - Bump STACKIT SDK resourcemanager module from `v0.18.1` to `v0.18.2`
 - `logs`:
+  - [v0.3.0](services/logs/CHANGELOG.md#v030)
+    - **Feature:** Add new wait handlers for instance creation (`CreateLogsInstanceWaitHandler`), and instance deletion (`DeleteLogsInstanceWaitHandler`)
   - [v0.2.0](services/logs/CHANGELOG.md#v020)
     - **Feature:** Add support for access token GET endpoint
   - [v0.1.1](services/logs/CHANGELOG.md#v011)

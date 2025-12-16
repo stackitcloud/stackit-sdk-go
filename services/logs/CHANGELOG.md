@@ -1,3 +1,6 @@
+## v0.3.0
+- **Feature:** Add new wait handlers for instance creation (`CreateLogsInstanceWaitHandler`), and instance deletion (`DeleteLogsInstanceWaitHandler`)
+
 ## v0.2.0
 - **Feature:** Add support for access token GET endpoint
 
