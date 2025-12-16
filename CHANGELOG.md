@@ -1581,7 +1581,7 @@
 
 > **The STACKIT PostgreSQL service has reached its end of support on June 30th 2024. All calls done to the API have stopped working since then.**
 >
-> Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead.
+> Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead. For more details, check https://docs.stackit.cloud/stackit/en/bring-your-data-to-stackit-postgresql-flex-138347648.html.
 
 - `postgresflex`: [v0.15.0](services/postgresflex/CHANGELOG.md#v0150-2024-06-28)
   - **Feature**: New API methods `CreateDatabase`, `DeleteDatabase`, `ListDatabase`, `ListDatabaseParameters` to manage PostgreSQL Flex databases
@@ -1823,7 +1823,7 @@
 
 > **The STACKIT PostgreSQL service will reach its end of support on June 30th 2024. All calls done to the API after that will stop working.**
 >
-> Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead.
+> Use `github.com/stackitcloud/stackit-sdk-go/services/postgresflex` instead. For more details, check https://docs.stackit.cloud/stackit/en/bring-your-data-to-stackit-postgresql-flex-138347648.html.
 
 ### Highlights
 
