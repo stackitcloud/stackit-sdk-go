@@ -1,5 +1,5 @@
 /*
-IaaS-API
+STACKIT IaaS API
 
 This API allows you to create and modify IaaS resources.
 
@@ -99,16 +99,38 @@ func setUpdateRoutingTableOfAreaPayloadGetNameAttributeType(arg *UpdateRoutingTa
 type UpdateRoutingTableOfAreaPayloadGetNameArgType = string
 type UpdateRoutingTableOfAreaPayloadGetNameRetType = string
 
+/*
+	types and functions for systemRoutes
+*/
+
+// isBoolean
+type UpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeType = *bool
+type UpdateRoutingTableOfAreaPayloadgetSystemRoutesArgType = bool
+type UpdateRoutingTableOfAreaPayloadgetSystemRoutesRetType = bool
+
+func getUpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeTypeOk(arg UpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeType) (ret UpdateRoutingTableOfAreaPayloadgetSystemRoutesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeType(arg *UpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeType, val UpdateRoutingTableOfAreaPayloadgetSystemRoutesRetType) {
+	*arg = &val
+}
+
 // UpdateRoutingTableOfAreaPayload Object that represents the request body for a routing table update.
 type UpdateRoutingTableOfAreaPayload struct {
 	// Description Object. Allows string up to 255 Characters.
 	Description UpdateRoutingTableOfAreaPayloadGetDescriptionAttributeType `json:"description,omitempty"`
-	// A config setting for a routing table which allows propagation of dynamic routes to this routing table.
+	// The update config setting for a routing table which allows propagation of dynamic routes to this routing table.
 	DynamicRoutes UpdateRoutingTableOfAreaPayloadgetDynamicRoutesAttributeType `json:"dynamicRoutes,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels UpdateRoutingTableOfAreaPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name UpdateRoutingTableOfAreaPayloadGetNameAttributeType `json:"name,omitempty"`
+	// The update config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.
+	SystemRoutes UpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeType `json:"systemRoutes,omitempty"`
 }
 
 // NewUpdateRoutingTableOfAreaPayload instantiates a new UpdateRoutingTableOfAreaPayload object
@@ -125,8 +147,6 @@ func NewUpdateRoutingTableOfAreaPayload() *UpdateRoutingTableOfAreaPayload {
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateRoutingTableOfAreaPayloadWithDefaults() *UpdateRoutingTableOfAreaPayload {
 	this := UpdateRoutingTableOfAreaPayload{}
-	var dynamicRoutes bool = true
-	this.DynamicRoutes = &dynamicRoutes
 	return &this
 }
 
@@ -222,6 +242,29 @@ func (o *UpdateRoutingTableOfAreaPayload) SetName(v UpdateRoutingTableOfAreaPayl
 	setUpdateRoutingTableOfAreaPayloadGetNameAttributeType(&o.Name, v)
 }
 
+// GetSystemRoutes returns the SystemRoutes field value if set, zero value otherwise.
+func (o *UpdateRoutingTableOfAreaPayload) GetSystemRoutes() (res UpdateRoutingTableOfAreaPayloadgetSystemRoutesRetType) {
+	res, _ = o.GetSystemRoutesOk()
+	return
+}
+
+// GetSystemRoutesOk returns a tuple with the SystemRoutes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateRoutingTableOfAreaPayload) GetSystemRoutesOk() (ret UpdateRoutingTableOfAreaPayloadgetSystemRoutesRetType, ok bool) {
+	return getUpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeTypeOk(o.SystemRoutes)
+}
+
+// HasSystemRoutes returns a boolean if a field has been set.
+func (o *UpdateRoutingTableOfAreaPayload) HasSystemRoutes() bool {
+	_, ok := o.GetSystemRoutesOk()
+	return ok
+}
+
+// SetSystemRoutes gets a reference to the given bool and assigns it to the SystemRoutes field.
+func (o *UpdateRoutingTableOfAreaPayload) SetSystemRoutes(v UpdateRoutingTableOfAreaPayloadgetSystemRoutesRetType) {
+	setUpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeType(&o.SystemRoutes, v)
+}
+
 func (o UpdateRoutingTableOfAreaPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateRoutingTableOfAreaPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
@@ -235,6 +278,9 @@ func (o UpdateRoutingTableOfAreaPayload) ToMap() (map[string]interface{}, error)
 	}
 	if val, ok := getUpdateRoutingTableOfAreaPayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
+	}
+	if val, ok := getUpdateRoutingTableOfAreaPayloadgetSystemRoutesAttributeTypeOk(o.SystemRoutes); ok {
+		toSerialize["SystemRoutes"] = val
 	}
 	return toSerialize, nil
 }
