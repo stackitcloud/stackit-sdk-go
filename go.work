@@ -65,6 +65,7 @@ use (
 	./services/serverupdate
 	./services/serviceaccount
 	./services/serviceenablement
+	./services/sfs
 	./services/ske
 	./services/sqlserverflex
 	./services/stackitmarketplace
