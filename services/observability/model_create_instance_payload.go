@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CreateInstancePayload{}
 
 /*
+	types and functions for grafanaAdminEnabled
+*/
+
+// isBoolean
+type CreateInstancePayloadgetGrafanaAdminEnabledAttributeType = *bool
+type CreateInstancePayloadgetGrafanaAdminEnabledArgType = bool
+type CreateInstancePayloadgetGrafanaAdminEnabledRetType = bool
+
+func getCreateInstancePayloadgetGrafanaAdminEnabledAttributeTypeOk(arg CreateInstancePayloadgetGrafanaAdminEnabledAttributeType) (ret CreateInstancePayloadgetGrafanaAdminEnabledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateInstancePayloadgetGrafanaAdminEnabledAttributeType(arg *CreateInstancePayloadgetGrafanaAdminEnabledAttributeType, val CreateInstancePayloadgetGrafanaAdminEnabledRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -81,11 +101,13 @@ type CreateInstancePayloadGetPlanIdRetType = string
 
 // CreateInstancePayload Create update instance body.
 type CreateInstancePayload struct {
+	// If true, a default Grafana server admin user is created. It's recommended to set this to false and use STACKIT SSO (`Owner` or `Observability Grafana Server Admin` role) instead. It is still possible to manually create a new Grafana admin user via the Grafana UI later.
+	GrafanaAdminEnabled CreateInstancePayloadgetGrafanaAdminEnabledAttributeType `json:"grafanaAdminEnabled,omitempty"`
 	// Name of the service
 	Name CreateInstancePayloadGetNameAttributeType `json:"name,omitempty"`
-	// additional parameters
+	// Additional parameters
 	Parameter CreateInstancePayloadGetParameterAttributeType `json:"parameter,omitempty"`
-	// uuid of the plan to create/update
+	// UUID of the plan to create/update
 	// REQUIRED
 	PlanId CreateInstancePayloadGetPlanIdAttributeType `json:"planId" required:"true"`
 }
@@ -107,7 +129,32 @@ func NewCreateInstancePayload(planId CreateInstancePayloadGetPlanIdArgType) *Cre
 // but it doesn't guarantee that properties required by API are set
 func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
 	this := CreateInstancePayload{}
+	var grafanaAdminEnabled bool = true
+	this.GrafanaAdminEnabled = &grafanaAdminEnabled
 	return &this
+}
+
+// GetGrafanaAdminEnabled returns the GrafanaAdminEnabled field value if set, zero value otherwise.
+func (o *CreateInstancePayload) GetGrafanaAdminEnabled() (res CreateInstancePayloadgetGrafanaAdminEnabledRetType) {
+	res, _ = o.GetGrafanaAdminEnabledOk()
+	return
+}
+
+// GetGrafanaAdminEnabledOk returns a tuple with the GrafanaAdminEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateInstancePayload) GetGrafanaAdminEnabledOk() (ret CreateInstancePayloadgetGrafanaAdminEnabledRetType, ok bool) {
+	return getCreateInstancePayloadgetGrafanaAdminEnabledAttributeTypeOk(o.GrafanaAdminEnabled)
+}
+
+// HasGrafanaAdminEnabled returns a boolean if a field has been set.
+func (o *CreateInstancePayload) HasGrafanaAdminEnabled() bool {
+	_, ok := o.GetGrafanaAdminEnabledOk()
+	return ok
+}
+
+// SetGrafanaAdminEnabled gets a reference to the given bool and assigns it to the GrafanaAdminEnabled field.
+func (o *CreateInstancePayload) SetGrafanaAdminEnabled(v CreateInstancePayloadgetGrafanaAdminEnabledRetType) {
+	setCreateInstancePayloadgetGrafanaAdminEnabledAttributeType(&o.GrafanaAdminEnabled, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -175,6 +222,9 @@ func (o *CreateInstancePayload) SetPlanId(v CreateInstancePayloadGetPlanIdRetTyp
 
 func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateInstancePayloadgetGrafanaAdminEnabledAttributeTypeOk(o.GrafanaAdminEnabled); ok {
+		toSerialize["GrafanaAdminEnabled"] = val
+	}
 	if val, ok := getCreateInstancePayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
 	}
