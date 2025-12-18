@@ -387,7 +387,8 @@ type Key struct {
 	// This date is set when a key is pending deletion and refers to the scheduled date of deletion
 	DeletionDate KeyGetDeletionDateAttributeType `json:"deletionDate,omitempty"`
 	// A user chosen description to distinguish multiple keys.
-	Description KeyGetDescriptionAttributeType `json:"description,omitempty"`
+	// REQUIRED
+	Description KeyGetDescriptionAttributeType `json:"description" required:"true"`
 	// The display name to distinguish multiple keys.
 	// REQUIRED
 	DisplayName KeyGetDisplayNameAttributeType `json:"displayName" required:"true"`
@@ -395,7 +396,8 @@ type Key struct {
 	// REQUIRED
 	Id KeyGetIdAttributeType `json:"id" required:"true"`
 	// States whether versions can be created or only imported.
-	ImportOnly KeygetImportOnlyAttributeType `json:"importOnly,omitempty"`
+	// REQUIRED
+	ImportOnly KeygetImportOnlyAttributeType `json:"importOnly" required:"true"`
 	// The unique id of the key ring this key is assigned to.
 	// REQUIRED
 	KeyRingId KeyGetKeyRingIdAttributeType `json:"keyRingId" required:"true"`
@@ -414,13 +416,15 @@ type _Key Key
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKey(accessScope KeyGetAccessScopeArgType, algorithm KeyGetAlgorithmArgType, createdAt KeyGetCreatedAtArgType, displayName KeyGetDisplayNameArgType, id KeyGetIdArgType, keyRingId KeyGetKeyRingIdArgType, protection KeyGetProtectionArgType, purpose KeyGetPurposeArgType, state KeyGetStateArgType) *Key {
+func NewKey(accessScope KeyGetAccessScopeArgType, algorithm KeyGetAlgorithmArgType, createdAt KeyGetCreatedAtArgType, description KeyGetDescriptionArgType, displayName KeyGetDisplayNameArgType, id KeyGetIdArgType, importOnly KeygetImportOnlyArgType, keyRingId KeyGetKeyRingIdArgType, protection KeyGetProtectionArgType, purpose KeyGetPurposeArgType, state KeyGetStateArgType) *Key {
 	this := Key{}
 	setKeyGetAccessScopeAttributeType(&this.AccessScope, accessScope)
 	setKeyGetAlgorithmAttributeType(&this.Algorithm, algorithm)
 	setKeyGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setKeyGetDescriptionAttributeType(&this.Description, description)
 	setKeyGetDisplayNameAttributeType(&this.DisplayName, displayName)
 	setKeyGetIdAttributeType(&this.Id, id)
+	setKeygetImportOnlyAttributeType(&this.ImportOnly, importOnly)
 	setKeyGetKeyRingIdAttributeType(&this.KeyRingId, keyRingId)
 	setKeyGetProtectionAttributeType(&this.Protection, protection)
 	setKeyGetPurposeAttributeType(&this.Purpose, purpose)
@@ -514,25 +518,19 @@ func (o *Key) SetDeletionDate(v KeyGetDeletionDateRetType) {
 	setKeyGetDeletionDateAttributeType(&o.DeletionDate, v)
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Key) GetDescription() (res KeyGetDescriptionRetType) {
-	res, _ = o.GetDescriptionOk()
-	return
+// GetDescription returns the Description field value
+func (o *Key) GetDescription() (ret KeyGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *Key) GetDescriptionOk() (ret KeyGetDescriptionRetType, ok bool) {
 	return getKeyGetDescriptionAttributeTypeOk(o.Description)
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *Key) HasDescription() bool {
-	_, ok := o.GetDescriptionOk()
-	return ok
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value
 func (o *Key) SetDescription(v KeyGetDescriptionRetType) {
 	setKeyGetDescriptionAttributeType(&o.Description, v)
 }
@@ -571,25 +569,19 @@ func (o *Key) SetId(v KeyGetIdRetType) {
 	setKeyGetIdAttributeType(&o.Id, v)
 }
 
-// GetImportOnly returns the ImportOnly field value if set, zero value otherwise.
-func (o *Key) GetImportOnly() (res KeygetImportOnlyRetType) {
-	res, _ = o.GetImportOnlyOk()
-	return
+// GetImportOnly returns the ImportOnly field value
+func (o *Key) GetImportOnly() (ret KeygetImportOnlyRetType) {
+	ret, _ = o.GetImportOnlyOk()
+	return ret
 }
 
-// GetImportOnlyOk returns a tuple with the ImportOnly field value if set, nil otherwise
+// GetImportOnlyOk returns a tuple with the ImportOnly field value
 // and a boolean to check if the value has been set.
 func (o *Key) GetImportOnlyOk() (ret KeygetImportOnlyRetType, ok bool) {
 	return getKeygetImportOnlyAttributeTypeOk(o.ImportOnly)
 }
 
-// HasImportOnly returns a boolean if a field has been set.
-func (o *Key) HasImportOnly() bool {
-	_, ok := o.GetImportOnlyOk()
-	return ok
-}
-
-// SetImportOnly gets a reference to the given bool and assigns it to the ImportOnly field.
+// SetImportOnly sets field value
 func (o *Key) SetImportOnly(v KeygetImportOnlyRetType) {
 	setKeygetImportOnlyAttributeType(&o.ImportOnly, v)
 }
