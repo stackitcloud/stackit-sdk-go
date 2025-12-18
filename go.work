@@ -29,6 +29,7 @@ use (
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/serviceenablement
+	./examples/sfs
 	./examples/ske
 	./examples/sqlserverflex
 	./examples/waiter
