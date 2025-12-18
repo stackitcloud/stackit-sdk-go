@@ -1,4 +1,6 @@
 ## Release (2025-XX-YY)
+- `sfs`: [v0.1.0](services/sfs/CHANGELOG.md#v010)
+  - **New**: STACKIT File Storage (SFS) service
 - `scf`: 
   - [v0.4.0](services/scf/CHANGELOG.md#v040)
     - **Feature:** Add new model structs `SpaceWithIsolationSegment` and `SpaceWithIsolationSegmentAllOf`
