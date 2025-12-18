@@ -302,7 +302,8 @@ type Version struct {
 	// The scheduled date when a version's key material will be erased completely from the backend
 	DestroyDate VersionGetDestroyDateAttributeType `json:"destroyDate,omitempty"`
 	// States whether versions is enabled or disabled.
-	Disabled VersiongetDisabledAttributeType `json:"disabled,omitempty"`
+	// REQUIRED
+	Disabled VersiongetDisabledAttributeType `json:"disabled" required:"true"`
 	// The unique id of the key this version is assigned to.
 	// REQUIRED
 	KeyId VersionGetKeyIdAttributeType `json:"keyId" required:"true"`
@@ -325,9 +326,10 @@ type _Version Version
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVersion(createdAt VersionGetCreatedAtArgType, keyId VersionGetKeyIdArgType, keyRingId VersionGetKeyRingIdArgType, number VersionGetNumberArgType, state VersionGetStateArgType) *Version {
+func NewVersion(createdAt VersionGetCreatedAtArgType, disabled VersiongetDisabledArgType, keyId VersionGetKeyIdArgType, keyRingId VersionGetKeyRingIdArgType, number VersionGetNumberArgType, state VersionGetStateArgType) *Version {
 	this := Version{}
 	setVersionGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setVersiongetDisabledAttributeType(&this.Disabled, disabled)
 	setVersionGetKeyIdAttributeType(&this.KeyId, keyId)
 	setVersionGetKeyRingIdAttributeType(&this.KeyRingId, keyRingId)
 	setVersionGetNumberAttributeType(&this.Number, number)
@@ -385,25 +387,19 @@ func (o *Version) SetDestroyDate(v VersionGetDestroyDateRetType) {
 	setVersionGetDestroyDateAttributeType(&o.DestroyDate, v)
 }
 
-// GetDisabled returns the Disabled field value if set, zero value otherwise.
-func (o *Version) GetDisabled() (res VersiongetDisabledRetType) {
-	res, _ = o.GetDisabledOk()
-	return
+// GetDisabled returns the Disabled field value
+func (o *Version) GetDisabled() (ret VersiongetDisabledRetType) {
+	ret, _ = o.GetDisabledOk()
+	return ret
 }
 
-// GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
+// GetDisabledOk returns a tuple with the Disabled field value
 // and a boolean to check if the value has been set.
 func (o *Version) GetDisabledOk() (ret VersiongetDisabledRetType, ok bool) {
 	return getVersiongetDisabledAttributeTypeOk(o.Disabled)
 }
 
-// HasDisabled returns a boolean if a field has been set.
-func (o *Version) HasDisabled() bool {
-	_, ok := o.GetDisabledOk()
-	return ok
-}
-
-// SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
+// SetDisabled sets field value
 func (o *Version) SetDisabled(v VersiongetDisabledRetType) {
 	setVersiongetDisabledAttributeType(&o.Disabled, v)
 }
