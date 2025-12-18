@@ -44,6 +44,48 @@ type DefaultApi interface {
 	*/
 	AddMembersExecute(ctx context.Context, resourceId string) (*MembersResponse, error)
 	/*
+		AddRole Add a new role
+		Add new, user specified roles to a resource, and bind permissions to them. Permissions are predefined.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return ApiAddRoleRequest
+	*/
+	AddRole(ctx context.Context, resourceType string, resourceId string) ApiAddRoleRequest
+	/*
+		AddRoleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@return AddCustomRoleResponse
+
+	*/
+	AddRoleExecute(ctx context.Context, resourceType string, resourceId string) (*AddCustomRoleResponse, error)
+	/*
+		DeleteRole Delete an existing role
+		Delete a custom role by ID.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@param roleId
+		@return ApiDeleteRoleRequest
+	*/
+	DeleteRole(ctx context.Context, resourceType string, resourceId string, roleId string) ApiDeleteRoleRequest
+	/*
+		DeleteRoleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@param roleId
+		@return DeleteRoleResponse
+
+	*/
+	DeleteRoleExecute(ctx context.Context, resourceType string, resourceId string, roleId string) (*DeleteRoleResponse, error)
+	/*
 		GetAssignableSubjects Get subjects assignable to a resource
 		BFF endpoint for portal. List subjects assignable to a given resource.
 
@@ -63,6 +105,28 @@ type DefaultApi interface {
 
 	*/
 	GetAssignableSubjectsExecute(ctx context.Context, resourceType string, resourceId string) (*ListAssignableSubjectsResponse, error)
+	/*
+		GetRole Get an existing role
+		Get a custom role by ID.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@param roleId
+		@return ApiGetRoleRequest
+	*/
+	GetRole(ctx context.Context, resourceType string, resourceId string, roleId string) ApiGetRoleRequest
+	/*
+		GetRoleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@param roleId
+		@return GetRoleResponse
+
+	*/
+	GetRoleExecute(ctx context.Context, resourceType string, resourceId string, roleId string) (*GetRoleResponse, error)
 	/*
 		ListMembers Get members to a resource
 		List members of the given resource.
@@ -173,6 +237,28 @@ type DefaultApi interface {
 
 	*/
 	RemoveMembersExecute(ctx context.Context, resourceId string) (*MembersResponse, error)
+	/*
+		UpdateRole Update an existing role
+		Update a custom role by ID.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@param roleId
+		@return ApiUpdateRoleRequest
+	*/
+	UpdateRole(ctx context.Context, resourceType string, resourceId string, roleId string) ApiUpdateRoleRequest
+	/*
+		UpdateRoleExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param resourceType
+		@param resourceId
+		@param roleId
+		@return UpdateRoleResponse
+
+	*/
+	UpdateRoleExecute(ctx context.Context, resourceType string, resourceId string, roleId string) (*UpdateRoleResponse, error)
 }
 
 type ApiAddMembersRequest interface {
@@ -180,9 +266,23 @@ type ApiAddMembersRequest interface {
 	Execute() (*MembersResponse, error)
 }
 
+type ApiAddRoleRequest interface {
+	AddRolePayload(addRolePayload AddRolePayload) ApiAddRoleRequest
+	Execute() (*AddCustomRoleResponse, error)
+}
+
+type ApiDeleteRoleRequest interface {
+	Etag(etag string) ApiDeleteRoleRequest
+	Execute() (*DeleteRoleResponse, error)
+}
+
 type ApiGetAssignableSubjectsRequest interface {
 	Subject(subject string) ApiGetAssignableSubjectsRequest
 	Execute() (*ListAssignableSubjectsResponse, error)
+}
+
+type ApiGetRoleRequest interface {
+	Execute() (*GetRoleResponse, error)
 }
 
 type ApiListMembersRequest interface {
@@ -216,6 +316,11 @@ type ApiListUserPermissionsRequest interface {
 type ApiRemoveMembersRequest interface {
 	RemoveMembersPayload(removeMembersPayload RemoveMembersPayload) ApiRemoveMembersRequest
 	Execute() (*MembersResponse, error)
+}
+
+type ApiUpdateRoleRequest interface {
+	UpdateRolePayload(updateRolePayload UpdateRolePayload) ApiUpdateRoleRequest
+	Execute() (*UpdateRoleResponse, error)
 }
 
 // DefaultApiService DefaultApi service
@@ -385,6 +490,347 @@ func (a *APIClient) AddMembersExecute(ctx context.Context, resourceId string) (*
 	return r.Execute()
 }
 
+type AddRoleRequest struct {
+	ctx            context.Context
+	apiService     *DefaultApiService
+	resourceType   string
+	resourceId     string
+	addRolePayload *AddRolePayload
+}
+
+func (r AddRoleRequest) AddRolePayload(addRolePayload AddRolePayload) ApiAddRoleRequest {
+	r.addRolePayload = &addRolePayload
+	return r
+}
+
+func (r AddRoleRequest) Execute() (*AddCustomRoleResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AddCustomRoleResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.AddRole")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{resourceType}/{resourceId}/roles"
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(r.resourceType, "resourceType")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(r.resourceId, "resourceId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.addRolePayload == nil {
+		return localVarReturnValue, fmt.Errorf("addRolePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.addRolePayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+AddRole: Add a new role
+
+Add new, user specified roles to a resource, and bind permissions to them. Permissions are predefined.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param resourceType
+	@param resourceId
+	@return ApiAddRoleRequest
+*/
+func (a *APIClient) AddRole(ctx context.Context, resourceType string, resourceId string) ApiAddRoleRequest {
+	return AddRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+	}
+}
+
+func (a *APIClient) AddRoleExecute(ctx context.Context, resourceType string, resourceId string) (*AddCustomRoleResponse, error) {
+	r := AddRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+	}
+	return r.Execute()
+}
+
+type DeleteRoleRequest struct {
+	ctx          context.Context
+	apiService   *DefaultApiService
+	resourceType string
+	resourceId   string
+	roleId       string
+	etag         *string
+}
+
+func (r DeleteRoleRequest) Etag(etag string) ApiDeleteRoleRequest {
+	r.etag = &etag
+	return r
+}
+
+func (r DeleteRoleRequest) Execute() (*DeleteRoleResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeleteRoleResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteRole")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{resourceType}/{resourceId}/roles/{roleId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(r.resourceType, "resourceType")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(r.resourceId, "resourceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", url.PathEscape(ParameterValueToString(r.roleId, "roleId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.etag != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "etag", r.etag, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+DeleteRole: Delete an existing role
+
+Delete a custom role by ID.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param resourceType
+	@param resourceId
+	@param roleId
+	@return ApiDeleteRoleRequest
+*/
+func (a *APIClient) DeleteRole(ctx context.Context, resourceType string, resourceId string, roleId string) ApiDeleteRoleRequest {
+	return DeleteRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+		roleId:       roleId,
+	}
+}
+
+func (a *APIClient) DeleteRoleExecute(ctx context.Context, resourceType string, resourceId string, roleId string) (*DeleteRoleResponse, error) {
+	r := DeleteRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+		roleId:       roleId,
+	}
+	return r.Execute()
+}
+
 type GetAssignableSubjectsRequest struct {
 	ctx          context.Context
 	apiService   *DefaultApiService
@@ -548,6 +994,169 @@ func (a *APIClient) GetAssignableSubjectsExecute(ctx context.Context, resourceTy
 		ctx:          ctx,
 		resourceType: resourceType,
 		resourceId:   resourceId,
+	}
+	return r.Execute()
+}
+
+type GetRoleRequest struct {
+	ctx          context.Context
+	apiService   *DefaultApiService
+	resourceType string
+	resourceId   string
+	roleId       string
+}
+
+func (r GetRoleRequest) Execute() (*GetRoleResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetRoleResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetRole")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{resourceType}/{resourceId}/roles/{roleId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(r.resourceType, "resourceType")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(r.resourceId, "resourceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", url.PathEscape(ParameterValueToString(r.roleId, "roleId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetRole: Get an existing role
+
+Get a custom role by ID.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param resourceType
+	@param resourceId
+	@param roleId
+	@return ApiGetRoleRequest
+*/
+func (a *APIClient) GetRole(ctx context.Context, resourceType string, resourceId string, roleId string) ApiGetRoleRequest {
+	return GetRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+		roleId:       roleId,
+	}
+}
+
+func (a *APIClient) GetRoleExecute(ctx context.Context, resourceType string, resourceId string, roleId string) (*GetRoleResponse, error) {
+	r := GetRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+		roleId:       roleId,
 	}
 	return r.Execute()
 }
@@ -1562,6 +2171,180 @@ func (a *APIClient) RemoveMembersExecute(ctx context.Context, resourceId string)
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		resourceId: resourceId,
+	}
+	return r.Execute()
+}
+
+type UpdateRoleRequest struct {
+	ctx               context.Context
+	apiService        *DefaultApiService
+	resourceType      string
+	resourceId        string
+	roleId            string
+	updateRolePayload *UpdateRolePayload
+}
+
+func (r UpdateRoleRequest) UpdateRolePayload(updateRolePayload UpdateRolePayload) ApiUpdateRoleRequest {
+	r.updateRolePayload = &updateRolePayload
+	return r
+}
+
+func (r UpdateRoleRequest) Execute() (*UpdateRoleResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateRoleResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateRole")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{resourceType}/{resourceId}/roles/{roleId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceType"+"}", url.PathEscape(ParameterValueToString(r.resourceType, "resourceType")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resourceId"+"}", url.PathEscape(ParameterValueToString(r.resourceId, "resourceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"roleId"+"}", url.PathEscape(ParameterValueToString(r.roleId, "roleId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateRolePayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateRolePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateRolePayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorResponse
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateRole: Update an existing role
+
+Update a custom role by ID.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param resourceType
+	@param resourceId
+	@param roleId
+	@return ApiUpdateRoleRequest
+*/
+func (a *APIClient) UpdateRole(ctx context.Context, resourceType string, resourceId string, roleId string) ApiUpdateRoleRequest {
+	return UpdateRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+		roleId:       roleId,
+	}
+}
+
+func (a *APIClient) UpdateRoleExecute(ctx context.Context, resourceType string, resourceId string, roleId string) (*UpdateRoleResponse, error) {
+	r := UpdateRoleRequest{
+		apiService:   a.defaultApi,
+		ctx:          ctx,
+		resourceType: resourceType,
+		resourceId:   resourceId,
+		roleId:       roleId,
 	}
 	return r.Execute()
 }
