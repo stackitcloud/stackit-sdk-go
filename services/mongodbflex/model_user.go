@@ -190,7 +190,7 @@ type User struct {
 	Id       UserGetIdAttributeType       `json:"id,omitempty"`
 	Password UserGetPasswordAttributeType `json:"password,omitempty"`
 	Port     UserGetPortAttributeType     `json:"port,omitempty"`
-	// The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
+	// The roles defined for a user. Currently only one role in the list is supported, therefore only the first role from this list is used. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
 	Roles    UserGetRolesAttributeType    `json:"roles,omitempty"`
 	Uri      UserGetUriAttributeType      `json:"uri,omitempty"`
 	Username UserGetUsernameAttributeType `json:"username,omitempty"`
