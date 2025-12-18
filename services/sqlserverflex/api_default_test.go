@@ -943,11 +943,13 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListMetrics", func(t *testing.T) {
-		_apiUrlPath := "/v2/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
+		_apiUrlPath := "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/metrics/{metric}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		instanceIdValue := "instanceId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(instanceIdValue, "instanceId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
 		metricValue := "metric-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(metricValue, "metric")), -1)
 
@@ -988,10 +990,11 @@ func Test_sqlserverflex_DefaultApiService(t *testing.T) {
 
 		projectId := projectIdValue
 		instanceId := instanceIdValue
+		region := regionValue
 		metric := metricValue
 		var granularity string
 
-		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, instanceId, metric).Granularity(granularity).Execute()
+		resp, reqErr := apiClient.ListMetrics(context.Background(), projectId, instanceId, region, metric).Granularity(granularity).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
