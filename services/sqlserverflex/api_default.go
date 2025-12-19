@@ -367,21 +367,23 @@ type DefaultApi interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The UUID of the project.
 		@param instanceId The UUID of the instance.
+		@param region The region which should be addressed
 		@param metric The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'.
 		@return ApiListMetricsRequest
 	*/
-	ListMetrics(ctx context.Context, projectId string, instanceId string, metric string) ApiListMetricsRequest
+	ListMetrics(ctx context.Context, projectId string, instanceId string, region string, metric string) ApiListMetricsRequest
 	/*
 		ListMetricsExecute executes the request
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The UUID of the project.
 		@param instanceId The UUID of the instance.
+		@param region The region which should be addressed
 		@param metric The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'.
 		@return ListMetricsResponse
 
 	*/
-	ListMetricsExecute(ctx context.Context, projectId string, instanceId string, metric string) (*ListMetricsResponse, error)
+	ListMetricsExecute(ctx context.Context, projectId string, instanceId string, region string, metric string) (*ListMetricsResponse, error)
 	/*
 		ListRestoreJobs List current running restore jobs
 		List all currently running restore jobs which are available for a specific instance
@@ -3284,6 +3286,7 @@ type ListMetricsRequest struct {
 	apiService  *DefaultApiService
 	projectId   string
 	instanceId  string
+	region      string
 	metric      string
 	granularity *string
 	period      *string
@@ -3336,9 +3339,10 @@ func (r ListMetricsRequest) Execute() (*ListMetricsResponse, error) {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/projects/{projectId}/instances/{instanceId}/metrics/{metric}"
+	localVarPath := localBasePath + "/v2/projects/{projectId}/regions/{region}/instances/{instanceId}/metrics/{metric}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"metric"+"}", url.PathEscape(ParameterValueToString(r.metric, "metric")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -3463,25 +3467,28 @@ Returns a metric for an instance. The metric will only be for the master pod if 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId The UUID of the project.
 	@param instanceId The UUID of the instance.
+	@param region The region which should be addressed
 	@param metric The name of the metric. Valid metrics are 'cpu', 'memory', 'data-disk-size', 'data-disk-use','log-disk-size', 'log-disk-use', 'life-expectancy' and 'connections'.
 	@return ApiListMetricsRequest
 */
-func (a *APIClient) ListMetrics(ctx context.Context, projectId string, instanceId string, metric string) ApiListMetricsRequest {
+func (a *APIClient) ListMetrics(ctx context.Context, projectId string, instanceId string, region string, metric string) ApiListMetricsRequest {
 	return ListMetricsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 		instanceId: instanceId,
+		region:     region,
 		metric:     metric,
 	}
 }
 
-func (a *APIClient) ListMetricsExecute(ctx context.Context, projectId string, instanceId string, metric string) (*ListMetricsResponse, error) {
+func (a *APIClient) ListMetricsExecute(ctx context.Context, projectId string, instanceId string, region string, metric string) (*ListMetricsResponse, error) {
 	r := ListMetricsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
 		instanceId: instanceId,
+		region:     region,
 		metric:     metric,
 	}
 	return r.Execute()

@@ -1,3 +1,6 @@
+## v1.4.0
+- **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing 
+
 ## v1.3.4
   - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 

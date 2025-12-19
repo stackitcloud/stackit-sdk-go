@@ -25,6 +25,8 @@
     - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
   - [v0.1.0](services/logs/CHANGELOG.md#v010)
     - **New:** API for logs service
+- `sqlserverflex`: [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
+  - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 - `mongodbflex`: [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
   - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 
