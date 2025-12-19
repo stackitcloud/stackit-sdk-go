@@ -58,7 +58,7 @@ func setUpdateAlertgroupPayloadGetRulesAttributeType(arg *UpdateAlertgroupPayloa
 	*arg = &val
 }
 
-// UpdateAlertgroupPayload Alert group that should be created or updated `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
+// UpdateAlertgroupPayload Alert group that should be created or updated. `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
 type UpdateAlertgroupPayload struct {
 	// How often rules in the group are evaluated. `Additional Validators:` * must be a valid time string * should be >=60s
 	Interval UpdateAlertgroupPayloadGetIntervalAttributeType `json:"interval,omitempty"`

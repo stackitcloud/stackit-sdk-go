@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &CertCheckResponse{}
 
 /*
+	types and functions for certCheck
+*/
+
+// isModel
+type CertCheckResponseGetCertCheckAttributeType = *CertCheckChildResponse
+type CertCheckResponseGetCertCheckArgType = CertCheckChildResponse
+type CertCheckResponseGetCertCheckRetType = CertCheckChildResponse
+
+func getCertCheckResponseGetCertCheckAttributeTypeOk(arg CertCheckResponseGetCertCheckAttributeType) (ret CertCheckResponseGetCertCheckRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCertCheckResponseGetCertCheckAttributeType(arg *CertCheckResponseGetCertCheckAttributeType, val CertCheckResponseGetCertCheckRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for certChecks
 */
 
@@ -60,6 +80,7 @@ type CertCheckResponseGetMessageRetType = string
 
 // CertCheckResponse struct for CertCheckResponse
 type CertCheckResponse struct {
+	CertCheck CertCheckResponseGetCertCheckAttributeType `json:"certCheck,omitempty"`
 	// REQUIRED
 	CertChecks CertCheckResponseGetCertChecksAttributeType `json:"certChecks" required:"true"`
 	// REQUIRED
@@ -85,6 +106,29 @@ func NewCertCheckResponse(certChecks CertCheckResponseGetCertChecksArgType, mess
 func NewCertCheckResponseWithDefaults() *CertCheckResponse {
 	this := CertCheckResponse{}
 	return &this
+}
+
+// GetCertCheck returns the CertCheck field value if set, zero value otherwise.
+func (o *CertCheckResponse) GetCertCheck() (res CertCheckResponseGetCertCheckRetType) {
+	res, _ = o.GetCertCheckOk()
+	return
+}
+
+// GetCertCheckOk returns a tuple with the CertCheck field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CertCheckResponse) GetCertCheckOk() (ret CertCheckResponseGetCertCheckRetType, ok bool) {
+	return getCertCheckResponseGetCertCheckAttributeTypeOk(o.CertCheck)
+}
+
+// HasCertCheck returns a boolean if a field has been set.
+func (o *CertCheckResponse) HasCertCheck() bool {
+	_, ok := o.GetCertCheckOk()
+	return ok
+}
+
+// SetCertCheck gets a reference to the given CertCheckChildResponse and assigns it to the CertCheck field.
+func (o *CertCheckResponse) SetCertCheck(v CertCheckResponseGetCertCheckRetType) {
+	setCertCheckResponseGetCertCheckAttributeType(&o.CertCheck, v)
 }
 
 // GetCertChecks returns the CertChecks field value
@@ -123,6 +167,9 @@ func (o *CertCheckResponse) SetMessage(v CertCheckResponseGetMessageRetType) {
 
 func (o CertCheckResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCertCheckResponseGetCertCheckAttributeTypeOk(o.CertCheck); ok {
+		toSerialize["CertCheck"] = val
+	}
 	if val, ok := getCertCheckResponseGetCertChecksAttributeTypeOk(o.CertChecks); ok {
 		toSerialize["CertChecks"] = val
 	}
