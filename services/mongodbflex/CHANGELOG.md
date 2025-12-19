@@ -1,3 +1,6 @@
+## v1.5.5
+- **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
+
 ## v1.5.4
   - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
