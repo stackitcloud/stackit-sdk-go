@@ -1,6 +1,9 @@
 ## Release (2025-XX-YY)
-- `sfs`: [v0.1.0](services/sfs/CHANGELOG.md#v010)
-  - **New**: STACKIT File Storage (SFS) service
+- `sfs`:
+  - [v0.2.0](services/sfs/CHANGELOG.md)
+    - **Breaking change:** Remove region configuration in `APIClient`
+  - [v0.1.0](services/sfs/CHANGELOG.md#v010)
+    - **New**: STACKIT File Storage (SFS) service
 - `scf`: 
   - [v0.4.0](services/scf/CHANGELOG.md#v040)
     - **Feature:** Add new model structs `SpaceWithIsolationSegment` and `SpaceWithIsolationSegmentAllOf`
@@ -35,6 +38,10 @@
   - Set fields `Description` and `PublicKey` to required in response struct `WrappingKey`
     - **Breaking change:** Constructor `NewWrappingKey` has new parameters `description` and `publicKey`
     - **Breaking change:** Remove methods `HasDescription` and `HasPublicKey` in `WrappingKey` model
+- `sqlserverflex`: [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
+  - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
+- `mongodbflex`: [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
+  - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 
 ## Release (2025-12-05)
 - `alb`: 
