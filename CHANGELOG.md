@@ -42,6 +42,8 @@
   - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 - `mongodbflex`: [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
   - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
+- `authorization`: [v0.11.0](services/authorization/CHANGELOG.md#v0110)
+  - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
 
 ## Release (2025-12-05)
 - `alb`: 

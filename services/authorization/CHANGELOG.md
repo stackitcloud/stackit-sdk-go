@@ -1,3 +1,6 @@
+## v0.11.0
+- **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
+
 ## v0.10.1
 - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
