@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &HttpCheckResponse{}
 
 /*
+	types and functions for httpCheck
+*/
+
+// isModel
+type HttpCheckResponseGetHttpCheckAttributeType = *HttpCheckChildResponse
+type HttpCheckResponseGetHttpCheckArgType = HttpCheckChildResponse
+type HttpCheckResponseGetHttpCheckRetType = HttpCheckChildResponse
+
+func getHttpCheckResponseGetHttpCheckAttributeTypeOk(arg HttpCheckResponseGetHttpCheckAttributeType) (ret HttpCheckResponseGetHttpCheckRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHttpCheckResponseGetHttpCheckAttributeType(arg *HttpCheckResponseGetHttpCheckAttributeType, val HttpCheckResponseGetHttpCheckRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for httpChecks
 */
 
@@ -60,6 +80,7 @@ type HttpCheckResponseGetMessageRetType = string
 
 // HttpCheckResponse struct for HttpCheckResponse
 type HttpCheckResponse struct {
+	HttpCheck HttpCheckResponseGetHttpCheckAttributeType `json:"httpCheck,omitempty"`
 	// REQUIRED
 	HttpChecks HttpCheckResponseGetHttpChecksAttributeType `json:"httpChecks" required:"true"`
 	// REQUIRED
@@ -85,6 +106,29 @@ func NewHttpCheckResponse(httpChecks HttpCheckResponseGetHttpChecksArgType, mess
 func NewHttpCheckResponseWithDefaults() *HttpCheckResponse {
 	this := HttpCheckResponse{}
 	return &this
+}
+
+// GetHttpCheck returns the HttpCheck field value if set, zero value otherwise.
+func (o *HttpCheckResponse) GetHttpCheck() (res HttpCheckResponseGetHttpCheckRetType) {
+	res, _ = o.GetHttpCheckOk()
+	return
+}
+
+// GetHttpCheckOk returns a tuple with the HttpCheck field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HttpCheckResponse) GetHttpCheckOk() (ret HttpCheckResponseGetHttpCheckRetType, ok bool) {
+	return getHttpCheckResponseGetHttpCheckAttributeTypeOk(o.HttpCheck)
+}
+
+// HasHttpCheck returns a boolean if a field has been set.
+func (o *HttpCheckResponse) HasHttpCheck() bool {
+	_, ok := o.GetHttpCheckOk()
+	return ok
+}
+
+// SetHttpCheck gets a reference to the given HttpCheckChildResponse and assigns it to the HttpCheck field.
+func (o *HttpCheckResponse) SetHttpCheck(v HttpCheckResponseGetHttpCheckRetType) {
+	setHttpCheckResponseGetHttpCheckAttributeType(&o.HttpCheck, v)
 }
 
 // GetHttpChecks returns the HttpChecks field value
@@ -123,6 +167,9 @@ func (o *HttpCheckResponse) SetMessage(v HttpCheckResponseGetMessageRetType) {
 
 func (o HttpCheckResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getHttpCheckResponseGetHttpCheckAttributeTypeOk(o.HttpCheck); ok {
+		toSerialize["HttpCheck"] = val
+	}
 	if val, ok := getHttpCheckResponseGetHttpChecksAttributeTypeOk(o.HttpChecks); ok {
 		toSerialize["HttpChecks"] = val
 	}
