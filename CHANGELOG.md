@@ -22,6 +22,8 @@
     - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
   - [v0.1.0](services/logs/CHANGELOG.md#v010)
     - **New:** API for logs service
+- `mongodbflex`: [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
+  - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 
 ## Release (2025-12-05)
 - `alb`: 
