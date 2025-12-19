@@ -25,6 +25,19 @@
     - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
   - [v0.1.0](services/logs/CHANGELOG.md#v010)
     - **New:** API for logs service
+- `kms`: [v1.2.0](services/kms/CHANGELOG.md#v120)
+  - Set fields `Description` and `ImportOnly` to required in response struct `Key`
+    - **Breaking change:** Constructor `NewKey` has new parameters `description` and `importOnly`
+    - **Breaking change:** Remove methods `HasDescription` and `GetImportOnly` in `Key` model
+  - Set field `Description` to required in response struct `KeyRing`
+    - **Breaking change:** Constructor `NewKeyRing` has new parameter `description`
+    - **Breaking change:** Remove method `HasDescription` in `KeyRing` model
+  - Set field `Disabled` to required in response struct `Version`
+    - **Breaking change:** Constructor `NewVersion` has new parameter `disabled`
+    - **Breaking change:** Remove method `HasDisabled` in `Version` model
+  - Set fields `Description` and `PublicKey` to required in response struct `WrappingKey`
+    - **Breaking change:** Constructor `NewWrappingKey` has new parameters `description` and `publicKey`
+    - **Breaking change:** Remove methods `HasDescription` and `HasPublicKey` in `WrappingKey` model
 - `sqlserverflex`: [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
   - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 - `mongodbflex`: [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)

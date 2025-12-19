@@ -384,7 +384,8 @@ type WrappingKey struct {
 	// REQUIRED
 	CreatedAt WrappingKeyGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// A user chosen description to distinguish multiple wrapping keys.
-	Description WrappingKeyGetDescriptionAttributeType `json:"description,omitempty"`
+	// REQUIRED
+	Description WrappingKeyGetDescriptionAttributeType `json:"description" required:"true"`
 	// The display name to distinguish multiple wrapping keys.
 	// REQUIRED
 	DisplayName WrappingKeyGetDisplayNameAttributeType `json:"displayName" required:"true"`
@@ -400,7 +401,7 @@ type WrappingKey struct {
 	// REQUIRED
 	Protection WrappingKeyGetProtectionAttributeType `json:"protection" required:"true"`
 	// The public key of the wrapping key.
-	PublicKey WrappingKeyGetPublicKeyAttributeType `json:"publicKey,omitempty"`
+	PublicKey WrappingKeyGetPublicKeyAttributeType `json:"publicKey,omitempty" required:"true"`
 	// REQUIRED
 	Purpose WrappingKeyGetPurposeAttributeType `json:"purpose" required:"true"`
 	// The current state of the wrapping key.
@@ -414,16 +415,18 @@ type _WrappingKey WrappingKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWrappingKey(accessScope WrappingKeyGetAccessScopeArgType, algorithm WrappingKeyGetAlgorithmArgType, createdAt WrappingKeyGetCreatedAtArgType, displayName WrappingKeyGetDisplayNameArgType, expiresAt WrappingKeyGetExpiresAtArgType, id WrappingKeyGetIdArgType, keyRingId WrappingKeyGetKeyRingIdArgType, protection WrappingKeyGetProtectionArgType, purpose WrappingKeyGetPurposeArgType, state WrappingKeyGetStateArgType) *WrappingKey {
+func NewWrappingKey(accessScope WrappingKeyGetAccessScopeArgType, algorithm WrappingKeyGetAlgorithmArgType, createdAt WrappingKeyGetCreatedAtArgType, description WrappingKeyGetDescriptionArgType, displayName WrappingKeyGetDisplayNameArgType, expiresAt WrappingKeyGetExpiresAtArgType, id WrappingKeyGetIdArgType, keyRingId WrappingKeyGetKeyRingIdArgType, protection WrappingKeyGetProtectionArgType, publicKey WrappingKeyGetPublicKeyArgType, purpose WrappingKeyGetPurposeArgType, state WrappingKeyGetStateArgType) *WrappingKey {
 	this := WrappingKey{}
 	setWrappingKeyGetAccessScopeAttributeType(&this.AccessScope, accessScope)
 	setWrappingKeyGetAlgorithmAttributeType(&this.Algorithm, algorithm)
 	setWrappingKeyGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setWrappingKeyGetDescriptionAttributeType(&this.Description, description)
 	setWrappingKeyGetDisplayNameAttributeType(&this.DisplayName, displayName)
 	setWrappingKeyGetExpiresAtAttributeType(&this.ExpiresAt, expiresAt)
 	setWrappingKeyGetIdAttributeType(&this.Id, id)
 	setWrappingKeyGetKeyRingIdAttributeType(&this.KeyRingId, keyRingId)
 	setWrappingKeyGetProtectionAttributeType(&this.Protection, protection)
+	setWrappingKeyGetPublicKeyAttributeType(&this.PublicKey, publicKey)
 	setWrappingKeyGetPurposeAttributeType(&this.Purpose, purpose)
 	setWrappingKeyGetStateAttributeType(&this.State, state)
 	return &this
@@ -490,25 +493,19 @@ func (o *WrappingKey) SetCreatedAt(v WrappingKeyGetCreatedAtRetType) {
 	setWrappingKeyGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *WrappingKey) GetDescription() (res WrappingKeyGetDescriptionRetType) {
-	res, _ = o.GetDescriptionOk()
-	return
+// GetDescription returns the Description field value
+func (o *WrappingKey) GetDescription() (ret WrappingKeyGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
+	return ret
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *WrappingKey) GetDescriptionOk() (ret WrappingKeyGetDescriptionRetType, ok bool) {
 	return getWrappingKeyGetDescriptionAttributeTypeOk(o.Description)
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *WrappingKey) HasDescription() bool {
-	_, ok := o.GetDescriptionOk()
-	return ok
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value
 func (o *WrappingKey) SetDescription(v WrappingKeyGetDescriptionRetType) {
 	setWrappingKeyGetDescriptionAttributeType(&o.Description, v)
 }
@@ -598,25 +595,19 @@ func (o *WrappingKey) SetProtection(v WrappingKeyGetProtectionRetType) {
 	setWrappingKeyGetProtectionAttributeType(&o.Protection, v)
 }
 
-// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
-func (o *WrappingKey) GetPublicKey() (res WrappingKeyGetPublicKeyRetType) {
-	res, _ = o.GetPublicKeyOk()
-	return
+// GetPublicKey returns the PublicKey field value
+func (o *WrappingKey) GetPublicKey() (ret WrappingKeyGetPublicKeyRetType) {
+	ret, _ = o.GetPublicKeyOk()
+	return ret
 }
 
-// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
+// GetPublicKeyOk returns a tuple with the PublicKey field value
 // and a boolean to check if the value has been set.
 func (o *WrappingKey) GetPublicKeyOk() (ret WrappingKeyGetPublicKeyRetType, ok bool) {
 	return getWrappingKeyGetPublicKeyAttributeTypeOk(o.PublicKey)
 }
 
-// HasPublicKey returns a boolean if a field has been set.
-func (o *WrappingKey) HasPublicKey() bool {
-	_, ok := o.GetPublicKeyOk()
-	return ok
-}
-
-// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
+// SetPublicKey sets field value
 func (o *WrappingKey) SetPublicKey(v WrappingKeyGetPublicKeyRetType) {
 	setWrappingKeyGetPublicKeyAttributeType(&o.PublicKey, v)
 }
