@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.20.1
-	github.com/stackitcloud/stackit-sdk-go/services/authorization v0.10.1
+	github.com/stackitcloud/stackit-sdk-go/services/authorization v0.11.0
 )
 
 require (
