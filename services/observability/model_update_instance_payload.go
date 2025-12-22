@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &UpdateInstancePayload{}
 
 /*
+	types and functions for grafanaAdminEnabled
+*/
+
+// isBoolean
+type UpdateInstancePayloadgetGrafanaAdminEnabledAttributeType = *bool
+type UpdateInstancePayloadgetGrafanaAdminEnabledArgType = bool
+type UpdateInstancePayloadgetGrafanaAdminEnabledRetType = bool
+
+func getUpdateInstancePayloadgetGrafanaAdminEnabledAttributeTypeOk(arg UpdateInstancePayloadgetGrafanaAdminEnabledAttributeType) (ret UpdateInstancePayloadgetGrafanaAdminEnabledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateInstancePayloadgetGrafanaAdminEnabledAttributeType(arg *UpdateInstancePayloadgetGrafanaAdminEnabledAttributeType, val UpdateInstancePayloadgetGrafanaAdminEnabledRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -81,24 +101,22 @@ type UpdateInstancePayloadGetPlanIdRetType = string
 
 // UpdateInstancePayload Create update instance body.
 type UpdateInstancePayload struct {
+	// When set to false, the Grafana server admin created during provisioning will be deleted. It's recommended to set this to false and use STACKIT SSO (`Owner` or `Observability Grafana Server Admin` role) instead. It is still possible to manually create a new Grafana admin user  via the Grafana UI later. Once set to false, it is not possible to set it to true again.
+	GrafanaAdminEnabled UpdateInstancePayloadgetGrafanaAdminEnabledAttributeType `json:"grafanaAdminEnabled,omitempty"`
 	// Name of the service
 	Name UpdateInstancePayloadGetNameAttributeType `json:"name,omitempty"`
-	// additional parameters
+	// Additional parameters
 	Parameter UpdateInstancePayloadGetParameterAttributeType `json:"parameter,omitempty"`
-	// uuid of the plan to create/update
-	// REQUIRED
-	PlanId UpdateInstancePayloadGetPlanIdAttributeType `json:"planId" required:"true"`
+	// UUID of the plan to update
+	PlanId UpdateInstancePayloadGetPlanIdAttributeType `json:"planId,omitempty"`
 }
-
-type _UpdateInstancePayload UpdateInstancePayload
 
 // NewUpdateInstancePayload instantiates a new UpdateInstancePayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateInstancePayload(planId UpdateInstancePayloadGetPlanIdArgType) *UpdateInstancePayload {
+func NewUpdateInstancePayload() *UpdateInstancePayload {
 	this := UpdateInstancePayload{}
-	setUpdateInstancePayloadGetPlanIdAttributeType(&this.PlanId, planId)
 	return &this
 }
 
@@ -107,7 +125,32 @@ func NewUpdateInstancePayload(planId UpdateInstancePayloadGetPlanIdArgType) *Upd
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateInstancePayloadWithDefaults() *UpdateInstancePayload {
 	this := UpdateInstancePayload{}
+	var grafanaAdminEnabled bool = true
+	this.GrafanaAdminEnabled = &grafanaAdminEnabled
 	return &this
+}
+
+// GetGrafanaAdminEnabled returns the GrafanaAdminEnabled field value if set, zero value otherwise.
+func (o *UpdateInstancePayload) GetGrafanaAdminEnabled() (res UpdateInstancePayloadgetGrafanaAdminEnabledRetType) {
+	res, _ = o.GetGrafanaAdminEnabledOk()
+	return
+}
+
+// GetGrafanaAdminEnabledOk returns a tuple with the GrafanaAdminEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInstancePayload) GetGrafanaAdminEnabledOk() (ret UpdateInstancePayloadgetGrafanaAdminEnabledRetType, ok bool) {
+	return getUpdateInstancePayloadgetGrafanaAdminEnabledAttributeTypeOk(o.GrafanaAdminEnabled)
+}
+
+// HasGrafanaAdminEnabled returns a boolean if a field has been set.
+func (o *UpdateInstancePayload) HasGrafanaAdminEnabled() bool {
+	_, ok := o.GetGrafanaAdminEnabledOk()
+	return ok
+}
+
+// SetGrafanaAdminEnabled gets a reference to the given bool and assigns it to the GrafanaAdminEnabled field.
+func (o *UpdateInstancePayload) SetGrafanaAdminEnabled(v UpdateInstancePayloadgetGrafanaAdminEnabledRetType) {
+	setUpdateInstancePayloadgetGrafanaAdminEnabledAttributeType(&o.GrafanaAdminEnabled, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -156,25 +199,34 @@ func (o *UpdateInstancePayload) SetParameter(v UpdateInstancePayloadGetParameter
 	setUpdateInstancePayloadGetParameterAttributeType(&o.Parameter, v)
 }
 
-// GetPlanId returns the PlanId field value
-func (o *UpdateInstancePayload) GetPlanId() (ret UpdateInstancePayloadGetPlanIdRetType) {
-	ret, _ = o.GetPlanIdOk()
-	return ret
+// GetPlanId returns the PlanId field value if set, zero value otherwise.
+func (o *UpdateInstancePayload) GetPlanId() (res UpdateInstancePayloadGetPlanIdRetType) {
+	res, _ = o.GetPlanIdOk()
+	return
 }
 
-// GetPlanIdOk returns a tuple with the PlanId field value
+// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateInstancePayload) GetPlanIdOk() (ret UpdateInstancePayloadGetPlanIdRetType, ok bool) {
 	return getUpdateInstancePayloadGetPlanIdAttributeTypeOk(o.PlanId)
 }
 
-// SetPlanId sets field value
+// HasPlanId returns a boolean if a field has been set.
+func (o *UpdateInstancePayload) HasPlanId() bool {
+	_, ok := o.GetPlanIdOk()
+	return ok
+}
+
+// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
 func (o *UpdateInstancePayload) SetPlanId(v UpdateInstancePayloadGetPlanIdRetType) {
 	setUpdateInstancePayloadGetPlanIdAttributeType(&o.PlanId, v)
 }
 
 func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getUpdateInstancePayloadgetGrafanaAdminEnabledAttributeTypeOk(o.GrafanaAdminEnabled); ok {
+		toSerialize["GrafanaAdminEnabled"] = val
+	}
 	if val, ok := getUpdateInstancePayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
 	}

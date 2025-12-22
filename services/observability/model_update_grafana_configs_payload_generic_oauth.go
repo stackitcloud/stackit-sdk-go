@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &UpdateGrafanaConfigsPayloadGenericOauth{}
 
 /*
+	types and functions for allowAssignGrafanaAdmin
+*/
+
+// isBoolean
+type UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeType = *bool
+type UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminArgType = bool
+type UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminRetType = bool
+
+func getUpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeTypeOk(arg UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeType) (ret UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeType(arg *UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeType, val UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for apiUrl
 */
 
@@ -247,13 +267,15 @@ func setUpdateGrafanaConfigsPayloadGenericOauthgetUsePkceAttributeType(arg *Upda
 
 // UpdateGrafanaConfigsPayloadGenericOauth struct for UpdateGrafanaConfigsPayloadGenericOauth
 type UpdateGrafanaConfigsPayloadGenericOauth struct {
+	// Set to true to enable automatic sync of the Grafana server administrator role.  If this option is set to true and the result of evaluating role_attribute_path for  a user is GrafanaAdmin, Grafana grants the user the server administrator privileges and  organization administrator role. If this option is set to false and the result of  evaluating role_attribute_path for a user is GrafanaAdmin, Grafana grants the user  only organization administrator role.
+	AllowAssignGrafanaAdmin UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeType `json:"allowAssignGrafanaAdmin,omitempty"`
 	// Set api_url to the resource that returns OpenID UserInfo compatible information.
 	// REQUIRED
 	ApiUrl UpdateGrafanaConfigsPayloadGenericOauthGetApiUrlAttributeType `json:"apiUrl" required:"true"`
 	// Authentication endpoint of idp.
 	// REQUIRED
 	AuthUrl UpdateGrafanaConfigsPayloadGenericOauthGetAuthUrlAttributeType `json:"authUrl" required:"true"`
-	// enable or disable generic oauth login
+	// Enable or disable generic oauth login
 	// REQUIRED
 	Enabled UpdateGrafanaConfigsPayloadGenericOauthgetEnabledAttributeType `json:"enabled" required:"true"`
 	// Display name for the oAuth provider
@@ -264,17 +286,17 @@ type UpdateGrafanaConfigsPayloadGenericOauth struct {
 	// Oauth client secret for auth endpoint.
 	// REQUIRED
 	OauthClientSecret UpdateGrafanaConfigsPayloadGenericOauthGetOauthClientSecretAttributeType `json:"oauthClientSecret" required:"true"`
-	// Grafana checks for the presence of a role using the JMESPath specified via the role_attribute_path configuration option. The JMESPath is applied to the id_token first. If there is no match, then the UserInfo endpoint specified via the api_url configuration option is tried next. The result after evaluation of the role_attribute_path JMESPath expression should be a valid Grafana role, for example, Viewer, Editor or Admin For example: contains(roles[\\*], 'grafana-admin') && 'Admin' || contains(roles[\\*], 'grafana-editor') && 'Editor' || contains(roles[\\*], 'grafana-viewer') && 'Viewer'
+	// Grafana checks for the presence of a role using the JMESPath specified via the  role_attribute_path configuration option. The JMESPath is applied to the id_token first.  If there is no match, then the UserInfo endpoint specified via the api_url configuration  option is tried next. The result after evaluation of the role_attribute_path JMESPath  expression should be a valid Grafana role, for example, Viewer, Editor or Admin For example: contains(roles[\\*], 'grafana-admin') && 'Admin' || contains(roles[\\*],  'grafana-editor') && 'Editor' || contains(roles[\\*], 'grafana-viewer') && 'Viewer'
 	// REQUIRED
 	RoleAttributePath UpdateGrafanaConfigsPayloadGenericOauthGetRoleAttributePathAttributeType `json:"roleAttributePath" required:"true"`
-	// If  therole_attribute_path property does not return a role, then the user is assigned the Viewer role by default. You can disable the role assignment by setting role_attribute_strict = true. It denies user access if no role or an invalid role is returned.
+	// If the role_attribute_path property does not return a role, then the user is assigned the Viewer role by default. You can disable the role assignment by setting role_attribute_strict = true. It denies user access if no role or an invalid role is returned.
 	RoleAttributeStrict UpdateGrafanaConfigsPayloadGenericOauthgetRoleAttributeStrictAttributeType `json:"roleAttributeStrict,omitempty"`
 	// Space seperated list of scopes of the token
 	Scopes UpdateGrafanaConfigsPayloadGenericOauthGetScopesAttributeType `json:"scopes,omitempty"`
 	// Token endpoint of the idp.
 	// REQUIRED
 	TokenUrl UpdateGrafanaConfigsPayloadGenericOauthGetTokenUrlAttributeType `json:"tokenUrl" required:"true"`
-	// enable or disable Proof Key for Code Exchange
+	// Enable or disable Proof Key for Code Exchange
 	UsePkce UpdateGrafanaConfigsPayloadGenericOauthgetUsePkceAttributeType `json:"usePkce,omitempty"`
 }
 
@@ -301,11 +323,36 @@ func NewUpdateGrafanaConfigsPayloadGenericOauth(apiUrl UpdateGrafanaConfigsPaylo
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateGrafanaConfigsPayloadGenericOauthWithDefaults() *UpdateGrafanaConfigsPayloadGenericOauth {
 	this := UpdateGrafanaConfigsPayloadGenericOauth{}
+	var allowAssignGrafanaAdmin bool = false
+	this.AllowAssignGrafanaAdmin = &allowAssignGrafanaAdmin
 	var roleAttributeStrict bool = true
 	this.RoleAttributeStrict = &roleAttributeStrict
 	var scopes string = "openid profile email"
 	this.Scopes = &scopes
 	return &this
+}
+
+// GetAllowAssignGrafanaAdmin returns the AllowAssignGrafanaAdmin field value if set, zero value otherwise.
+func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetAllowAssignGrafanaAdmin() (res UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminRetType) {
+	res, _ = o.GetAllowAssignGrafanaAdminOk()
+	return
+}
+
+// GetAllowAssignGrafanaAdminOk returns a tuple with the AllowAssignGrafanaAdmin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateGrafanaConfigsPayloadGenericOauth) GetAllowAssignGrafanaAdminOk() (ret UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminRetType, ok bool) {
+	return getUpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeTypeOk(o.AllowAssignGrafanaAdmin)
+}
+
+// HasAllowAssignGrafanaAdmin returns a boolean if a field has been set.
+func (o *UpdateGrafanaConfigsPayloadGenericOauth) HasAllowAssignGrafanaAdmin() bool {
+	_, ok := o.GetAllowAssignGrafanaAdminOk()
+	return ok
+}
+
+// SetAllowAssignGrafanaAdmin gets a reference to the given bool and assigns it to the AllowAssignGrafanaAdmin field.
+func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetAllowAssignGrafanaAdmin(v UpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminRetType) {
+	setUpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeType(&o.AllowAssignGrafanaAdmin, v)
 }
 
 // GetApiUrl returns the ApiUrl field value
@@ -521,6 +568,9 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) SetUsePkce(v UpdateGrafanaConf
 
 func (o UpdateGrafanaConfigsPayloadGenericOauth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getUpdateGrafanaConfigsPayloadGenericOauthgetAllowAssignGrafanaAdminAttributeTypeOk(o.AllowAssignGrafanaAdmin); ok {
+		toSerialize["AllowAssignGrafanaAdmin"] = val
+	}
 	if val, ok := getUpdateGrafanaConfigsPayloadGenericOauthGetApiUrlAttributeTypeOk(o.ApiUrl); ok {
 		toSerialize["ApiUrl"] = val
 	}
