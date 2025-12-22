@@ -120,20 +120,42 @@ func setUpdateAlertgroupsRequestInnerRulesInnerGetLabelsAttributeType(arg *Updat
 	*arg = &val
 }
 
-// UpdateAlertgroupsRequestInnerRulesInner Alert rule. `Additional Validators:` * total config (all alert groups/rules) should not be bigger than 500000 characters as string since this the limitation of prometheus.
+/*
+	types and functions for record
+*/
+
+// isNotNullableString
+type UpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeType = *string
+
+func getUpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeTypeOk(arg UpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeType) (ret UpdateAlertgroupsRequestInnerRulesInnerGetRecordRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeType(arg *UpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeType, val UpdateAlertgroupsRequestInnerRulesInnerGetRecordRetType) {
+	*arg = &val
+}
+
+type UpdateAlertgroupsRequestInnerRulesInnerGetRecordArgType = string
+type UpdateAlertgroupsRequestInnerRulesInnerGetRecordRetType = string
+
+// UpdateAlertgroupsRequestInnerRulesInner Rule definition. Must be either an Alerting Rule (using 'alert') or a Recording Rule (using 'record'). `Additional Validators:` * total config (all alert groups/rules) should not be bigger than 500000 characters as string since this the limitation of prometheus.
 type UpdateAlertgroupsRequestInnerRulesInner struct {
-	// The name of the alert. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9-
-	// REQUIRED
-	Alert UpdateAlertgroupsRequestInnerRulesInnerGetAlertAttributeType `json:"alert" required:"true"`
-	// map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
+	// The name of the alert. When this attribute is used, an Alerting Rule will be  created. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9- * required when 'record' is not used in this rule, otherwise not allowed
+	Alert UpdateAlertgroupsRequestInnerRulesInnerGetAlertAttributeType `json:"alert,omitempty"`
+	// Map of key:value. Annotations to add to each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters * is not allowed to use when 'record' is used in this rule
 	Annotations UpdateAlertgroupsRequestInnerRulesInnerGetAnnotationsAttributeType `json:"annotations,omitempty"`
-	// The PromQL expression to evaluate. Every evaluation cycle this is evaluated at the current time, and all resultant time series become pending/firing alerts.
+	// The PromQL expression to evaluate to create alerts when using the 'alert' attribute in this rule, or to create a metric when using the 'record' attribute.
 	// REQUIRED
 	Expr UpdateAlertgroupsRequestInnerRulesInnerGetExprAttributeType `json:"expr" required:"true"`
-	// Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string
+	// Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string * is not allowed to use when 'record' is used in this rule
 	For UpdateAlertgroupsRequestInnerRulesInnerGetForAttributeType `json:"for,omitempty"`
-	// map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
+	// Map of key:value. Labels to add or overwrite for each alert or metric. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
 	Labels UpdateAlertgroupsRequestInnerRulesInnerGetLabelsAttributeType `json:"labels,omitempty"`
+	// The name of the metric. When this attribute is used, an Recording Rule will be  created. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9:_ * required when 'alert' is not used in this rule, otherwise not allowed
+	Record UpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeType `json:"record,omitempty"`
 }
 
 type _UpdateAlertgroupsRequestInnerRulesInner UpdateAlertgroupsRequestInnerRulesInner
@@ -142,9 +164,8 @@ type _UpdateAlertgroupsRequestInnerRulesInner UpdateAlertgroupsRequestInnerRules
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateAlertgroupsRequestInnerRulesInner(alert UpdateAlertgroupsRequestInnerRulesInnerGetAlertArgType, expr UpdateAlertgroupsRequestInnerRulesInnerGetExprArgType) *UpdateAlertgroupsRequestInnerRulesInner {
+func NewUpdateAlertgroupsRequestInnerRulesInner(expr UpdateAlertgroupsRequestInnerRulesInnerGetExprArgType) *UpdateAlertgroupsRequestInnerRulesInner {
 	this := UpdateAlertgroupsRequestInnerRulesInner{}
-	setUpdateAlertgroupsRequestInnerRulesInnerGetAlertAttributeType(&this.Alert, alert)
 	setUpdateAlertgroupsRequestInnerRulesInnerGetExprAttributeType(&this.Expr, expr)
 	return &this
 }
@@ -159,19 +180,25 @@ func NewUpdateAlertgroupsRequestInnerRulesInnerWithDefaults() *UpdateAlertgroups
 	return &this
 }
 
-// GetAlert returns the Alert field value
-func (o *UpdateAlertgroupsRequestInnerRulesInner) GetAlert() (ret UpdateAlertgroupsRequestInnerRulesInnerGetAlertRetType) {
-	ret, _ = o.GetAlertOk()
-	return ret
+// GetAlert returns the Alert field value if set, zero value otherwise.
+func (o *UpdateAlertgroupsRequestInnerRulesInner) GetAlert() (res UpdateAlertgroupsRequestInnerRulesInnerGetAlertRetType) {
+	res, _ = o.GetAlertOk()
+	return
 }
 
-// GetAlertOk returns a tuple with the Alert field value
+// GetAlertOk returns a tuple with the Alert field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateAlertgroupsRequestInnerRulesInner) GetAlertOk() (ret UpdateAlertgroupsRequestInnerRulesInnerGetAlertRetType, ok bool) {
 	return getUpdateAlertgroupsRequestInnerRulesInnerGetAlertAttributeTypeOk(o.Alert)
 }
 
-// SetAlert sets field value
+// HasAlert returns a boolean if a field has been set.
+func (o *UpdateAlertgroupsRequestInnerRulesInner) HasAlert() bool {
+	_, ok := o.GetAlertOk()
+	return ok
+}
+
+// SetAlert gets a reference to the given string and assigns it to the Alert field.
 func (o *UpdateAlertgroupsRequestInnerRulesInner) SetAlert(v UpdateAlertgroupsRequestInnerRulesInnerGetAlertRetType) {
 	setUpdateAlertgroupsRequestInnerRulesInnerGetAlertAttributeType(&o.Alert, v)
 }
@@ -262,6 +289,29 @@ func (o *UpdateAlertgroupsRequestInnerRulesInner) SetLabels(v UpdateAlertgroupsR
 	setUpdateAlertgroupsRequestInnerRulesInnerGetLabelsAttributeType(&o.Labels, v)
 }
 
+// GetRecord returns the Record field value if set, zero value otherwise.
+func (o *UpdateAlertgroupsRequestInnerRulesInner) GetRecord() (res UpdateAlertgroupsRequestInnerRulesInnerGetRecordRetType) {
+	res, _ = o.GetRecordOk()
+	return
+}
+
+// GetRecordOk returns a tuple with the Record field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAlertgroupsRequestInnerRulesInner) GetRecordOk() (ret UpdateAlertgroupsRequestInnerRulesInnerGetRecordRetType, ok bool) {
+	return getUpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeTypeOk(o.Record)
+}
+
+// HasRecord returns a boolean if a field has been set.
+func (o *UpdateAlertgroupsRequestInnerRulesInner) HasRecord() bool {
+	_, ok := o.GetRecordOk()
+	return ok
+}
+
+// SetRecord gets a reference to the given string and assigns it to the Record field.
+func (o *UpdateAlertgroupsRequestInnerRulesInner) SetRecord(v UpdateAlertgroupsRequestInnerRulesInnerGetRecordRetType) {
+	setUpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeType(&o.Record, v)
+}
+
 func (o UpdateAlertgroupsRequestInnerRulesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateAlertgroupsRequestInnerRulesInnerGetAlertAttributeTypeOk(o.Alert); ok {
@@ -278,6 +328,9 @@ func (o UpdateAlertgroupsRequestInnerRulesInner) ToMap() (map[string]interface{}
 	}
 	if val, ok := getUpdateAlertgroupsRequestInnerRulesInnerGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
+	}
+	if val, ok := getUpdateAlertgroupsRequestInnerRulesInnerGetRecordAttributeTypeOk(o.Record); ok {
+		toSerialize["Record"] = val
 	}
 	return toSerialize, nil
 }
