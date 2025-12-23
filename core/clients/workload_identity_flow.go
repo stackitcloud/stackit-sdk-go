@@ -59,6 +59,7 @@ type WorkloadIdentityFederationFlow struct {
 type WorkloadIdentityFederationFlowConfig struct {
 	TokenUrl                      string
 	ClientID                      string
+	FederatedToken                string // Static token string. This is optional, if not set the token will be read from file.
 	FederatedTokenFilePath        string
 	TokenExpiration               string          // Not supported yet
 	BackgroundTokenRefreshContext context.Context // Functionality is enabled if this isn't nil
@@ -139,7 +140,7 @@ func (c *WorkloadIdentityFederationFlow) Init(cfg *WorkloadIdentityFederationFlo
 		c.config.ClientID = getEnvOrDefault(clientIDEnv, "")
 	}
 
-	if c.config.FederatedTokenFilePath == "" {
+	if c.config.FederatedToken == "" && c.config.FederatedTokenFilePath == "" {
 		c.config.FederatedTokenFilePath = getEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath)
 	}
 
@@ -161,12 +162,6 @@ func (c *WorkloadIdentityFederationFlow) Init(cfg *WorkloadIdentityFederationFlo
 		return err
 	}
 
-	// // Init the token
-	// _, err = c.GetAccessToken()
-	// if err != nil {
-	// 	return err
-	// }
-
 	if c.config.BackgroundTokenRefreshContext != nil {
 		go continuousRefreshToken(c)
 	}
@@ -181,8 +176,10 @@ func (c *WorkloadIdentityFederationFlow) validate() error {
 	if c.config.TokenUrl == "" {
 		return fmt.Errorf("token URL cannot be empty")
 	}
-	if _, err := c.readJWTFromFileSystem(c.config.FederatedTokenFilePath); err != nil {
-		return fmt.Errorf("error reading federated token file - %w", err)
+	if c.config.FederatedToken == "" {
+		if _, err := c.readJWTFromFileSystem(c.config.FederatedTokenFilePath); err != nil {
+			return fmt.Errorf("error reading federated token file - %w", err)
+		}
 	}
 	if c.tokenExpirationLeeway < 0 {
 		return fmt.Errorf("token expiration leeway cannot be negative")
@@ -192,10 +189,14 @@ func (c *WorkloadIdentityFederationFlow) validate() error {
 }
 
 // createAccessToken creates an access token using self signed JWT
-func (c *WorkloadIdentityFederationFlow) createAccessToken() (err error) {
-	clientAssertion, err := c.readJWTFromFileSystem(c.config.FederatedTokenFilePath)
-	if err != nil {
-		return fmt.Errorf("error reading service account assertion - %w", err)
+func (c *WorkloadIdentityFederationFlow) createAccessToken() error {
+	clientAssertion := c.config.FederatedToken
+	if clientAssertion == "" {
+		var err error
+		clientAssertion, err = c.readJWTFromFileSystem(c.config.FederatedTokenFilePath)
+		if err != nil {
+			return fmt.Errorf("error reading service account assertion - %w", err)
+		}
 	}
 
 	res, err := c.requestToken(c.config.ClientID, clientAssertion)

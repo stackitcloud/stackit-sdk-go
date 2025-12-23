@@ -75,29 +75,30 @@ type Middleware func(http.RoundTripper) http.RoundTripper
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host                                         string            `json:"host,omitempty"`
-	Scheme                                       string            `json:"scheme,omitempty"`
-	DefaultHeader                                map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent                                    string            `json:"userAgent,omitempty"`
-	Debug                                        bool              `json:"debug,omitempty"`
-	NoAuth                                       bool              `json:"noAuth,omitempty"`
-	WorkloadIdentityFederation                   bool              `json:"workloadIdentityFederation,omitempty"`
-	WorkloadIdentityFederationTokenExpiration    string            `json:"workloadIdentityFederationTokenExpiration,omitempty"`
-	WorkloadIdentityFederationFederatedTokenPath string            `json:"workloadIdentityFederationFederatedTokenPath,omitempty"`
-	ServiceAccountEmail                          string            `json:"serviceAccountEmail,omitempty"`
-	Token                                        string            `json:"token,omitempty"`
-	ServiceAccountKey                            string            `json:"serviceAccountKey,omitempty"`
-	PrivateKey                                   string            `json:"privateKey,omitempty"`
-	ServiceAccountKeyPath                        string            `json:"serviceAccountKeyPath,omitempty"`
-	PrivateKeyPath                               string            `json:"privateKeyPath,omitempty"`
-	CredentialsFilePath                          string            `json:"credentialsFilePath,omitempty"`
-	TokenCustomUrl                               string            `json:"tokenCustomUrl,omitempty"`
-	Region                                       string            `json:"region,omitempty"`
-	CustomAuth                                   http.RoundTripper
-	Servers                                      ServerConfigurations
-	OperationServers                             map[string]ServerConfigurations
-	HTTPClient                                   *http.Client
-	Middleware                                   []Middleware
+	Host                                   string            `json:"host,omitempty"`
+	Scheme                                 string            `json:"scheme,omitempty"`
+	DefaultHeader                          map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent                              string            `json:"userAgent,omitempty"`
+	Debug                                  bool              `json:"debug,omitempty"`
+	NoAuth                                 bool              `json:"noAuth,omitempty"`
+	WorkloadIdentityFederation             bool              `json:"workloadIdentityFederation,omitempty"`
+	ServiceAccountFederatedTokenExpiration string            `json:"serviceAccountFederatedTokenExpiration,omitempty"`
+	ServiceAccountFederatedToken           string            `json:"serviceAccountFederatedToken,omitempty"`
+	ServiceAccountFederatedTokenPath       string            `json:"serviceAccountFederatedTokenPath,omitempty"`
+	ServiceAccountEmail                    string            `json:"serviceAccountEmail,omitempty"`
+	Token                                  string            `json:"token,omitempty"`
+	ServiceAccountKey                      string            `json:"serviceAccountKey,omitempty"`
+	PrivateKey                             string            `json:"privateKey,omitempty"`
+	ServiceAccountKeyPath                  string            `json:"serviceAccountKeyPath,omitempty"`
+	PrivateKeyPath                         string            `json:"privateKeyPath,omitempty"`
+	CredentialsFilePath                    string            `json:"credentialsFilePath,omitempty"`
+	TokenCustomUrl                         string            `json:"tokenCustomUrl,omitempty"`
+	Region                                 string            `json:"region,omitempty"`
+	CustomAuth                             http.RoundTripper
+	Servers                                ServerConfigurations
+	OperationServers                       map[string]ServerConfigurations
+	HTTPClient                             *http.Client
+	Middleware                             []Middleware
 
 	// If != nil, a goroutine will be launched that will refresh the service account's access token when it's close to being expired.
 	// The goroutine is killed whenever this context is canceled.
@@ -249,7 +250,7 @@ func WithWorkloadIdentityFederationAuth() ConfigurationOption {
 // WithWorkloadIdentityFederation returns a ConfigurationOption that sets workload identity flow to be used for authentication in API calls
 func WithWorkloadIdentityFederationTokenPath(path string) ConfigurationOption {
 	return func(config *Configuration) error {
-		config.WorkloadIdentityFederationFederatedTokenPath = path
+		config.ServiceAccountFederatedTokenPath = path
 		return nil
 	}
 }
@@ -257,7 +258,7 @@ func WithWorkloadIdentityFederationTokenPath(path string) ConfigurationOption {
 // WithWorkloadIdentityFederationTokenExpiration returns a ConfigurationOption that sets the token expiration for workload identity federation flow
 func WithWorkloadIdentityFederationTokenExpiration(expiration string) ConfigurationOption {
 	return func(config *Configuration) error {
-		config.WorkloadIdentityFederationTokenExpiration = expiration
+		config.ServiceAccountFederatedTokenExpiration = expiration
 		return nil
 	}
 }
