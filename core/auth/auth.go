@@ -238,8 +238,9 @@ func WorkloadIdentityFederationAuth(cfg *config.Configuration) (http.RoundTrippe
 		TokenUrl:                      cfg.TokenCustomUrl,
 		BackgroundTokenRefreshContext: cfg.BackgroundTokenRefreshContext,
 		ClientID:                      cfg.ServiceAccountEmail,
-		FederatedTokenFilePath:        cfg.WorkloadIdentityFederationFederatedTokenPath,
-		TokenExpiration:               cfg.WorkloadIdentityFederationTokenExpiration,
+		FederatedTokenFilePath:        cfg.ServiceAccountFederatedTokenPath,
+		TokenExpiration:               cfg.ServiceAccountFederatedTokenExpiration,
+		FederatedToken:                cfg.ServiceAccountFederatedToken,
 	}
 
 	if cfg.HTTPClient != nil && cfg.HTTPClient.Transport != nil {
