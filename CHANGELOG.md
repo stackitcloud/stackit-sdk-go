@@ -1,4 +1,7 @@
 ## Release (2025-XX-YY)
+- `certificates`: [v1.2.0](services/certificates/CHANGELOG.md#v120)
+  - **Feature:** Switch from `v2beta` API version to `v2` version.
+  - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
 - `sfs`:
   - [v0.2.0](services/sfs/CHANGELOG.md)
     - **Breaking change:** Remove region configuration in `APIClient`

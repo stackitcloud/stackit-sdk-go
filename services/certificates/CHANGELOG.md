@@ -1,3 +1,7 @@
+## v1.2.0
+  - **Feature:** Switch from `v2beta` API version to `v2` version.
+  - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
+
 ## v1.1.3
   - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
