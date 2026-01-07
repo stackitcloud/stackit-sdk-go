@@ -147,8 +147,8 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 
 // SetToken can be used to set an access and refresh token manually in the client.
 // The other fields in the token field are determined by inspecting the token or setting default values.
-// Deprecated
-func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
+// Deprecated This method will be removed in future versions. Access tokens are now automatically managed by the client.
+func (c *KeyFlow) SetToken(accessToken, _ string) error {
 	// We can safely use ParseUnverified because we are not authenticating the user,
 	// We are parsing the token just to get the expiration time claim
 	parsedAccessToken, _, err := jwt.NewParser().ParseUnverified(accessToken, &jwt.RegisteredClaims{})

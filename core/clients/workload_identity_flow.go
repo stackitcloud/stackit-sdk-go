@@ -15,14 +15,14 @@ import (
 
 const (
 	clientIDEnv           = "STACKIT_SERVICE_ACCOUNT_EMAIL"
-	FederatedTokenFileEnv = "STACKIT_FEDERATED_TOKEN_FILE"
-	wifTokenEndpointEnv   = "STACKIT_IDP_ENDPOINT"
-	wifTokenExpirationEnv = "STACKIT_IDP_EXPIRATION_SECONDS"
+	FederatedTokenFileEnv = "STACKIT_FEDERATED_TOKEN_FILE"   //nolint:gosec // This is not a secret, just the env variable name
+	wifTokenEndpointEnv   = "STACKIT_IDP_ENDPOINT"           //nolint:gosec // This is not a secret, just the env variable name
+	wifTokenExpirationEnv = "STACKIT_IDP_EXPIRATION_SECONDS" //nolint:gosec // This is not a secret, just the env variable name
 
 	wifClientAssertionType    = "urn:schwarz:params:oauth:client-assertion-type:workload-jwt"
 	wifGrantType              = "client_credentials"
-	defaultWifTokenEndpoint   = "https://accounts.stackit.cloud/oauth/v2/token"
-	defaultFederatedTokenPath = "/var/run/secrets/stackit.cloud/serviceaccount/token"
+	defaultWifTokenEndpoint   = "https://accounts.stackit.cloud/oauth/v2/token"       //nolint:gosec // This is not a secret, just the public endpoint for default value
+	defaultFederatedTokenPath = "/var/run/secrets/stackit.cloud/serviceaccount/token" //nolint:gosec // This is not a secret, just the default path for workload identity token
 	defaultWifExpirationToken = "1h"
 )
 
