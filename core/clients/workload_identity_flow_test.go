@@ -309,8 +309,10 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 			if (err != nil || resp.StatusCode != http.StatusOK) && !tt.wantErr {
 				t.Fatalf("failed request to protected resource: %v", err)
 			}
-			if err := resp.Body.Close(); err != nil {
-				t.Errorf("resp.Body.Close() error = %v", err)
+			if resp != nil && resp.Body != nil {
+				if err := resp.Body.Close(); err != nil {
+					t.Errorf("resp.Body.Close() error = %v", err)
+				}
 			}
 		})
 	}
