@@ -95,13 +95,21 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 				if err != nil {
 					log.Fatal(err)
 				}
-				defer os.Remove(file.Name())
+				defer func() {
+					err := os.Remove(file.Name())
+					if err != nil {
+						t.Fatalf("Removing temporary file: %s", err)
+					}
+				}()
 				if tt.validAssertion {
 					token, err := signTokenWithSubject("subject", time.Minute)
 					if err != nil {
 						t.Fatalf("failed to create token: %v", err)
 					}
-					os.WriteFile(file.Name(), []byte(token), os.ModeAppend)
+					err = os.WriteFile(file.Name(), []byte(token), os.ModeAppend)
+					if err != nil {
+						t.Fatalf("writing temporary file: %s", err)
+					}
 				}
 				if tt.tokenFilePathAsEnv {
 					t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", file.Name())
@@ -184,7 +192,10 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			authServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				r.ParseForm()
+				err := r.ParseForm()
+				if err != nil {
+					t.Fatalf("failed to parse form: %v", err)
+				}
 				assertionType := r.PostForm.Get("client_assertion_type")
 				if assertionType != "urn:schwarz:params:oauth:client-assertion-type:workload-jwt" {
 					t.Fatalf("invalid assertion type: %s", assertionType)
@@ -224,7 +235,10 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 
 				w.Header().Set("Content-Type", "application/json")
 				w.WriteHeader(http.StatusOK)
-				w.Write(payload)
+				_, err = w.Write(payload)
+				if err != nil {
+					t.Fatalf("writing response: %s", err)
+				}
 			}))
 			t.Cleanup(authServer.Close)
 
@@ -268,9 +282,17 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 				if err != nil {
 					log.Fatal(err)
 				}
-				defer os.Remove(file.Name())
+				defer func() {
+					err := os.Remove(file.Name())
+					if err != nil {
+						t.Fatalf("Removing temporary file: %s", err)
+					}
+				}()
 				flowConfig.FederatedTokenFilePath = file.Name()
-				os.WriteFile(file.Name(), []byte(token), os.ModeAppend)
+				err = os.WriteFile(file.Name(), []byte(token), os.ModeAppend)
+				if err != nil {
+					t.Fatalf("writing temporary file: %s", err)
+				}
 			}
 
 			if err := flow.Init(flowConfig); err != nil {
@@ -286,6 +308,9 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 			resp, err := client.Get(protectedResource.URL)
 			if (err != nil || resp.StatusCode != http.StatusOK) && !tt.wantErr {
 				t.Fatalf("failed request to protected resource: %v", err)
+			}
+			if err := resp.Body.Close(); err != nil {
+				t.Errorf("resp.Body.Close() error = %v", err)
 			}
 		})
 	}

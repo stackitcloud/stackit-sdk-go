@@ -138,7 +138,7 @@ type fakeAuthFlow struct {
 	accessToken                   string
 }
 
-func (f *fakeAuthFlow) RoundTrip(req *http.Request) (*http.Response, error) {
+func (f *fakeAuthFlow) RoundTrip(_ *http.Request) (*http.Response, error) {
 	return nil, nil
 }
 func (f *fakeAuthFlow) GetAccessToken() (string, error) {
