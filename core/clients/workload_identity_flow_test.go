@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
 func TestWorkloadIdentityFlowInit(t *testing.T) {
@@ -54,12 +55,6 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 			name:           "missing client id",
 			validAssertion: true,
 			wantErr:        true,
-		},
-		{
-			name:                 "missing assertion",
-			clientID:             "test@stackit.cloud",
-			missingTokenFilePath: true,
-			wantErr:              true,
 		},
 		{
 			name:     "invalid assertion",
@@ -114,7 +109,9 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 				if tt.tokenFilePathAsEnv {
 					t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", file.Name())
 				} else {
-					flowConfig.FederatedTokenFilePath = file.Name()
+					flowConfig.FederatedTokenFunction = func() (string, error) {
+						return utils.ReadJWTFromFileSystem(file.Name())
+					}
 				}
 			}
 
@@ -135,14 +132,6 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 
 			if tt.customTokenUrl == "" && flow.config.TokenUrl != "https://accounts.stackit.cloud/oauth/v2/token" {
 				t.Errorf("tokenUrl mismatch, want %s, got %s", "https://accounts.stackit.cloud/oauth/v2/token", flow.config.TokenUrl)
-			}
-
-			if tt.missingTokenFilePath && flow.config.FederatedTokenFilePath != "/var/run/secrets/stackit.cloud/serviceaccount/token" {
-				t.Errorf("clientID mismatch, want %s, got %s", "/var/run/secrets/stackit.cloud/serviceaccount/token", flow.config.FederatedTokenFilePath)
-			}
-
-			if !tt.missingTokenFilePath && flow.config.FederatedTokenFilePath == "/var/run/secrets/stackit.cloud/serviceaccount/token" {
-				t.Errorf("clientID mismatch, want different from %s", flow.config.FederatedTokenFilePath)
 			}
 
 			if tt.tokenExpiration != "" && flow.config.TokenExpiration != tt.tokenExpiration {
@@ -276,7 +265,9 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 			}
 
 			if tt.injectToken {
-				flowConfig.FederatedToken = token
+				flowConfig.FederatedTokenFunction = func() (string, error) {
+					return token, nil
+				}
 			} else {
 				file, err := os.CreateTemp("", "*.token")
 				if err != nil {
@@ -288,7 +279,9 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 						t.Fatalf("Removing temporary file: %s", err)
 					}
 				}()
-				flowConfig.FederatedTokenFilePath = file.Name()
+				flowConfig.FederatedTokenFunction = func() (string, error) {
+					return utils.ReadJWTFromFileSystem(file.Name())
+				}
 				err = os.WriteFile(file.Name(), []byte(token), os.ModeAppend)
 				if err != nil {
 					t.Fatalf("writing temporary file: %s", err)

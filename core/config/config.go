@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
 const (
@@ -75,25 +76,24 @@ type Middleware func(http.RoundTripper) http.RoundTripper
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host                                   string            `json:"host,omitempty"`
-	Scheme                                 string            `json:"scheme,omitempty"`
-	DefaultHeader                          map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent                              string            `json:"userAgent,omitempty"`
-	Debug                                  bool              `json:"debug,omitempty"`
-	NoAuth                                 bool              `json:"noAuth,omitempty"`
-	WorkloadIdentityFederation             bool              `json:"workloadIdentityFederation,omitempty"`
-	ServiceAccountFederatedTokenExpiration string            `json:"serviceAccountFederatedTokenExpiration,omitempty"`
-	ServiceAccountFederatedToken           string            `json:"serviceAccountFederatedToken,omitempty"`
-	ServiceAccountFederatedTokenPath       string            `json:"serviceAccountFederatedTokenPath,omitempty"`
-	ServiceAccountEmail                    string            `json:"serviceAccountEmail,omitempty"`
-	Token                                  string            `json:"token,omitempty"`
-	ServiceAccountKey                      string            `json:"serviceAccountKey,omitempty"`
-	PrivateKey                             string            `json:"privateKey,omitempty"`
-	ServiceAccountKeyPath                  string            `json:"serviceAccountKeyPath,omitempty"`
-	PrivateKeyPath                         string            `json:"privateKeyPath,omitempty"`
-	CredentialsFilePath                    string            `json:"credentialsFilePath,omitempty"`
-	TokenCustomUrl                         string            `json:"tokenCustomUrl,omitempty"`
-	Region                                 string            `json:"region,omitempty"`
+	Host                                   string                 `json:"host,omitempty"`
+	Scheme                                 string                 `json:"scheme,omitempty"`
+	DefaultHeader                          map[string]string      `json:"defaultHeader,omitempty"`
+	UserAgent                              string                 `json:"userAgent,omitempty"`
+	Debug                                  bool                   `json:"debug,omitempty"`
+	NoAuth                                 bool                   `json:"noAuth,omitempty"`
+	WorkloadIdentityFederation             bool                   `json:"workloadIdentityFederation,omitempty"`
+	ServiceAccountFederatedTokenExpiration string                 `json:"serviceAccountFederatedTokenExpiration,omitempty"`
+	ServiceAccountFederatedTokenFunc       func() (string, error) `json:"serviceAccountFederatedTokenFunc,omitempty"`
+	ServiceAccountEmail                    string                 `json:"serviceAccountEmail,omitempty"`
+	Token                                  string                 `json:"token,omitempty"`
+	ServiceAccountKey                      string                 `json:"serviceAccountKey,omitempty"`
+	PrivateKey                             string                 `json:"privateKey,omitempty"`
+	ServiceAccountKeyPath                  string                 `json:"serviceAccountKeyPath,omitempty"`
+	PrivateKeyPath                         string                 `json:"privateKeyPath,omitempty"`
+	CredentialsFilePath                    string                 `json:"credentialsFilePath,omitempty"`
+	TokenCustomUrl                         string                 `json:"tokenCustomUrl,omitempty"`
+	Region                                 string                 `json:"region,omitempty"`
 	CustomAuth                             http.RoundTripper
 	Servers                                ServerConfigurations
 	OperationServers                       map[string]ServerConfigurations
@@ -247,10 +247,30 @@ func WithWorkloadIdentityFederationAuth() ConfigurationOption {
 	}
 }
 
-// WithWorkloadIdentityFederation returns a ConfigurationOption that sets workload identity flow to be used for authentication in API calls
-func WithWorkloadIdentityFederationTokenPath(path string) ConfigurationOption {
+// WithWorkloadIdentityFederationFunc returns a ConfigurationOption that sets the function to get the federated token for workload identity federation flow
+func WithWorkloadIdentityFederationFunc(function func() (string, error)) ConfigurationOption {
 	return func(config *Configuration) error {
-		config.ServiceAccountFederatedTokenPath = path
+		config.ServiceAccountFederatedTokenFunc = function
+		return nil
+	}
+}
+
+// WithWorkloadIdentityFederationPath returns a ConfigurationOption that sets the custom path to the federated token file for workload identity federation flow
+func WithWorkloadIdentityFederationPath(path string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.ServiceAccountFederatedTokenFunc = func() (string, error) {
+			return utils.ReadJWTFromFileSystem(path)
+		}
+		return nil
+	}
+}
+
+// WithWorkloadIdentityFederationFunc returns a ConfigurationOption that sets the id token for workload identity federation flow
+func WithWorkloadIdentityFederationToken(token string) ConfigurationOption {
+	return func(config *Configuration) error {
+		config.ServiceAccountFederatedTokenFunc = func() (string, error) {
+			return token, nil
+		}
 		return nil
 	}
 }

@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/golang-jwt/jwt/v5"
+	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
 const (
@@ -48,8 +48,6 @@ type WorkloadIdentityFederationFlow struct {
 	tokenMutex sync.RWMutex
 	token      *TokenResponseBody
 
-	parser *jwt.Parser
-
 	// If the current access token would expire in less than TokenExpirationLeeway,
 	// the client will refresh it early to prevent clock skew or other timing issues.
 	tokenExpirationLeeway time.Duration
@@ -59,12 +57,11 @@ type WorkloadIdentityFederationFlow struct {
 type WorkloadIdentityFederationFlowConfig struct {
 	TokenUrl                      string
 	ClientID                      string
-	FederatedToken                string // Static token string. This is optional, if not set the token will be read from file.
-	FederatedTokenFilePath        string
 	TokenExpiration               string          // Not supported yet
 	BackgroundTokenRefreshContext context.Context // Functionality is enabled if this isn't nil
 	HTTPTransport                 http.RoundTripper
 	AuthHTTPClient                *http.Client
+	FederatedTokenFunction        func() (string, error) // Function to get the federated token
 }
 
 // GetConfig returns the flow configuration
@@ -130,7 +127,6 @@ func (c *WorkloadIdentityFederationFlow) Init(cfg *WorkloadIdentityFederationFlo
 	// No concurrency at this point, so no mutex check needed
 	c.token = &TokenResponseBody{}
 	c.config = cfg
-	c.parser = jwt.NewParser()
 
 	if c.config.TokenUrl == "" {
 		c.config.TokenUrl = getEnvOrDefault(wifTokenEndpointEnv, defaultWifTokenEndpoint)
@@ -140,8 +136,10 @@ func (c *WorkloadIdentityFederationFlow) Init(cfg *WorkloadIdentityFederationFlo
 		c.config.ClientID = getEnvOrDefault(clientIDEnv, "")
 	}
 
-	if c.config.FederatedToken == "" && c.config.FederatedTokenFilePath == "" {
-		c.config.FederatedTokenFilePath = getEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath)
+	if c.config.FederatedTokenFunction == nil {
+		c.config.FederatedTokenFunction = func() (string, error) {
+			return utils.ReadJWTFromFileSystem(getEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath))
+		}
 	}
 
 	c.tokenExpirationLeeway = defaultTokenExpirationLeeway
@@ -176,10 +174,8 @@ func (c *WorkloadIdentityFederationFlow) validate() error {
 	if c.config.TokenUrl == "" {
 		return fmt.Errorf("token URL cannot be empty")
 	}
-	if c.config.FederatedToken == "" {
-		if _, err := c.readJWTFromFileSystem(c.config.FederatedTokenFilePath); err != nil {
-			return fmt.Errorf("error reading federated token file - %w", err)
-		}
+	if _, err := c.config.FederatedTokenFunction(); err != nil {
+		return fmt.Errorf("error reading federated token file - %w", err)
 	}
 	if c.tokenExpirationLeeway < 0 {
 		return fmt.Errorf("token expiration leeway cannot be negative")
@@ -190,15 +186,10 @@ func (c *WorkloadIdentityFederationFlow) validate() error {
 
 // createAccessToken creates an access token using self signed JWT
 func (c *WorkloadIdentityFederationFlow) createAccessToken() error {
-	clientAssertion := c.config.FederatedToken
-	if clientAssertion == "" {
-		var err error
-		clientAssertion, err = c.readJWTFromFileSystem(c.config.FederatedTokenFilePath)
-		if err != nil {
-			return fmt.Errorf("error reading service account assertion - %w", err)
-		}
+	clientAssertion, err := c.config.FederatedTokenFunction()
+	if err != nil {
+		return err
 	}
-
 	res, err := c.requestToken(c.config.ClientID, clientAssertion)
 	if err != nil {
 		return err
@@ -234,17 +225,4 @@ func (c *WorkloadIdentityFederationFlow) requestToken(clientID, assertion string
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 
 	return c.authClient.Do(req)
-}
-
-func (c *WorkloadIdentityFederationFlow) readJWTFromFileSystem(tokenFilePath string) (string, error) {
-	token, err := os.ReadFile(tokenFilePath)
-	if err != nil {
-		return "", err
-	}
-	tokenStr := string(token)
-	_, _, err = c.parser.ParseUnverified(tokenStr, jwt.MapClaims{})
-	if err != nil {
-		return "", err
-	}
-	return tokenStr, nil
 }
