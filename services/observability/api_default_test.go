@@ -2770,9 +2770,9 @@ func Test_observability_DefaultApiService(t *testing.T) {
 		groupName := groupNameValue
 		instanceId := instanceIdValue
 		projectId := projectIdValue
-		updateAlertgroupsRequestInnerRulesInner := []UpdateAlertgroupsRequestInnerRulesInner{}
+		partialUpdateAlertrulesRequestInner := []PartialUpdateAlertrulesRequestInner{}
 
-		resp, reqErr := apiClient.PartialUpdateAlertrules(context.Background(), groupName, instanceId, projectId).UpdateAlertgroupsRequestInnerRulesInner(updateAlertgroupsRequestInnerRulesInner).Execute()
+		resp, reqErr := apiClient.PartialUpdateAlertrules(context.Background(), groupName, instanceId, projectId).PartialUpdateAlertrulesRequestInner(partialUpdateAlertrulesRequestInner).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
