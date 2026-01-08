@@ -155,15 +155,18 @@ type BackupStatus string
 
 // List of Status
 const (
-	BACKUPSTATUS_CREATING       BackupStatus = "creating"
-	BACKUPSTATUS_AVAILABLE      BackupStatus = "available"
-	BACKUPSTATUS_DELETING       BackupStatus = "deleting"
-	BACKUPSTATUS_ERROR          BackupStatus = "error"
-	BACKUPSTATUS_RESTORING      BackupStatus = "restoring"
-	BACKUPSTATUS_ERROR_DELETING BackupStatus = "error_deleting"
-	BACKUPSTATUS_BACKING_UP     BackupStatus = "backing up"
-	BACKUPSTATUS_INCONSISTENT   BackupStatus = "inconsistent"
-	BACKUPSTATUS_ERROR_CREATING BackupStatus = "error-creating"
+	BACKUPSTATUS_CREATING        BackupStatus = "creating"
+	BACKUPSTATUS_AVAILABLE       BackupStatus = "available"
+	BACKUPSTATUS_DELETING        BackupStatus = "deleting"
+	BACKUPSTATUS_ERROR           BackupStatus = "error"
+	BACKUPSTATUS_RESTORING       BackupStatus = "restoring"
+	BACKUPSTATUS_ERROR_DELETING  BackupStatus = "error_deleting"
+	BACKUPSTATUS_BACKING_UP      BackupStatus = "backing up"
+	BACKUPSTATUS_INCONSISTENT    BackupStatus = "inconsistent"
+	BACKUPSTATUS_ERROR_CREATING  BackupStatus = "error-creating"
+	BACKUPSTATUS_IN_PROGRESS     BackupStatus = "in-progress"
+	BACKUPSTATUS_ERROR_RESTORING BackupStatus = "error-restoring"
+	BACKUPSTATUS_ERROR_DELETING  BackupStatus = "error-deleting"
 )
 
 // All allowed values of Backup enum
@@ -177,6 +180,9 @@ var AllowedBackupStatusEnumValues = []BackupStatus{
 	"backing up",
 	"inconsistent",
 	"error-creating",
+	"in-progress",
+	"error-restoring",
+	"error-deleting",
 }
 
 func (v *BackupStatus) UnmarshalJSON(src []byte) error {
