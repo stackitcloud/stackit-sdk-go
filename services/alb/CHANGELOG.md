@@ -1,8 +1,15 @@
+## v0.8.0
+- **Feature:** Switch from `v2beta` API version to `v2` version.
+- **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
+- **Breaking change:** added `version` to LoadBalancer constructor
+- **Breaking change:** renamed `exact` to `exactMatch` in Path model
+- **Breaking change:** removed `pathPrefix` from Rule model
+
 ## v0.7.3
-  - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
 ## v0.7.2
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 
 ## v0.7.1
 - **Docs** Update description of field `WafConfigName` in `Listener` model

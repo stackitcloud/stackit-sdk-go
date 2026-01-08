@@ -1,4 +1,10 @@
-## Release (2025-XX-YY)
+## Release (2026-XX-YY)
+- `alb`: [v0.8.0](services/alb/CHANGELOG.md#v080)
+  - **Feature:** Switch from `v2beta` API version to `v2` version.
+  - **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
+  - **Breaking change:** added `version` to LoadBalancer constructor
+  - **Breaking change:** renamed `exact` to `exactMatch` in Path model
+  - **Breaking change:** removed `pathPrefix` from Rule model
 - `certificates`: [v1.2.0](services/certificates/CHANGELOG.md#v120)
   - **Feature:** Switch from `v2beta` API version to `v2` version.
   - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
