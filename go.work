@@ -55,6 +55,7 @@ use (
 	./services/objectstorage
 	./services/observability
 	./services/opensearch
+	./services/pim
 	./services/postgresflex
 	./services/rabbitmq
 	./services/redis
