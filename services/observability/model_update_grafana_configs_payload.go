@@ -80,9 +80,9 @@ func setUpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType(arg *UpdateGraf
 // UpdateGrafanaConfigsPayload Sending any of the attributes results in a set of the attribute and overwrites any previous configuration.
 type UpdateGrafanaConfigsPayload struct {
 	GenericOauth UpdateGrafanaConfigsPayloadGetGenericOauthAttributeType `json:"genericOauth,omitempty"`
-	// If it's true, anyone can access the Grafana dashboards without logging in. If it is wrong, a login is required.
+	// If it's true, anyone can access the Grafana dashboards without logging in.  If it is wrong, a login is required.
 	PublicReadAccess UpdateGrafanaConfigsPayloadgetPublicReadAccessAttributeType `json:"publicReadAccess,omitempty"`
-	// If it's true, it overwrites the current genericOauth config and configures STACKIT SSO for this instance.
+	// If it's true, it overwrites the current genericOauth config and configures  STACKIT SSO for this instance.
 	UseStackitSso UpdateGrafanaConfigsPayloadgetUseStackitSsoAttributeType `json:"useStackitSso,omitempty"`
 }
 
