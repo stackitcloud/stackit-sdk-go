@@ -1,5 +1,5 @@
 /*
-IaaS-API
+STACKIT IaaS API
 
 This API allows you to create and modify IaaS resources.
 
@@ -234,6 +234,30 @@ type DefaultApi interface {
 	*/
 	ListNetworksExecute(ctx context.Context, projectId string, region string) (*NetworkListResponse, error)
 	/*
+		ListNetworksOfRoutingTable List all networks in a routing table.
+		Get a list of all networks in a routing table.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param organizationId The identifier (ID) of a STACKIT Organization.
+		@param areaId The identifier (ID) of a STACKIT Network Area.
+		@param region The STACKIT Region of the resources.
+		@param routingTableId The identifier (ID) of a STACKIT Routing Table.
+		@return ApiListNetworksOfRoutingTableRequest
+	*/
+	ListNetworksOfRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string) ApiListNetworksOfRoutingTableRequest
+	/*
+		ListNetworksOfRoutingTableExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param organizationId The identifier (ID) of a STACKIT Organization.
+		@param areaId The identifier (ID) of a STACKIT Network Area.
+		@param region The STACKIT Region of the resources.
+		@param routingTableId The identifier (ID) of a STACKIT Routing Table.
+		@return NetworkListResponse
+
+	*/
+	ListNetworksOfRoutingTableExecute(ctx context.Context, organizationId string, areaId string, region string, routingTableId string) (*NetworkListResponse, error)
+	/*
 		ListRoutesOfRoutingTable List all routes in a routing table.
 		Get a list of all routes in a routing table.
 
@@ -392,6 +416,10 @@ type ApiGetRoutingTableOfAreaRequest interface {
 type ApiListNetworksRequest interface {
 	// Filter resources by labels.
 	LabelSelector(labelSelector string) ApiListNetworksRequest
+	Execute() (*NetworkListResponse, error)
+}
+
+type ApiListNetworksOfRoutingTableRequest interface {
 	Execute() (*NetworkListResponse, error)
 }
 
@@ -2510,6 +2538,214 @@ func (a *APIClient) ListNetworksExecute(ctx context.Context, projectId string, r
 		ctx:        ctx,
 		projectId:  projectId,
 		region:     region,
+	}
+	return r.Execute()
+}
+
+type ListNetworksOfRoutingTableRequest struct {
+	ctx            context.Context
+	apiService     *DefaultApiService
+	organizationId string
+	areaId         string
+	region         string
+	routingTableId string
+}
+
+func (r ListNetworksOfRoutingTableRequest) Execute() (*NetworkListResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *NetworkListResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListNetworksOfRoutingTable")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2alpha1/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}/networks"
+	localVarPath = strings.Replace(localVarPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(r.organizationId, "organizationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(r.areaId, "areaId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(r.routingTableId, "routingTableId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.organizationId) < 36 {
+		return localVarReturnValue, fmt.Errorf("organizationId must have at least 36 elements")
+	}
+	if strlen(r.organizationId) > 36 {
+		return localVarReturnValue, fmt.Errorf("organizationId must have less than 36 elements")
+	}
+	if strlen(r.areaId) < 36 {
+		return localVarReturnValue, fmt.Errorf("areaId must have at least 36 elements")
+	}
+	if strlen(r.areaId) > 36 {
+		return localVarReturnValue, fmt.Errorf("areaId must have less than 36 elements")
+	}
+	if strlen(r.routingTableId) < 36 {
+		return localVarReturnValue, fmt.Errorf("routingTableId must have at least 36 elements")
+	}
+	if strlen(r.routingTableId) > 36 {
+		return localVarReturnValue, fmt.Errorf("routingTableId must have less than 36 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListNetworksOfRoutingTable: List all networks in a routing table.
+
+Get a list of all networks in a routing table.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param organizationId The identifier (ID) of a STACKIT Organization.
+	@param areaId The identifier (ID) of a STACKIT Network Area.
+	@param region The STACKIT Region of the resources.
+	@param routingTableId The identifier (ID) of a STACKIT Routing Table.
+	@return ApiListNetworksOfRoutingTableRequest
+*/
+func (a *APIClient) ListNetworksOfRoutingTable(ctx context.Context, organizationId string, areaId string, region string, routingTableId string) ApiListNetworksOfRoutingTableRequest {
+	return ListNetworksOfRoutingTableRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		organizationId: organizationId,
+		areaId:         areaId,
+		region:         region,
+		routingTableId: routingTableId,
+	}
+}
+
+func (a *APIClient) ListNetworksOfRoutingTableExecute(ctx context.Context, organizationId string, areaId string, region string, routingTableId string) (*NetworkListResponse, error) {
+	r := ListNetworksOfRoutingTableRequest{
+		apiService:     a.defaultApi,
+		ctx:            ctx,
+		organizationId: organizationId,
+		areaId:         areaId,
+		region:         region,
+		routingTableId: routingTableId,
 	}
 	return r.Execute()
 }
