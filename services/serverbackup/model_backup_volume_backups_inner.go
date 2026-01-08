@@ -120,6 +120,7 @@ const (
 	BACKUPVOLUMEBACKUPSINNERSTATUS_RESTORING      BackupVolumeBackupsInnerStatus = "restoring"
 	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_DELETING BackupVolumeBackupsInnerStatus = "error_deleting"
 	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_CREATING BackupVolumeBackupsInnerStatus = "error-creating"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_DELETING BackupVolumeBackupsInnerStatus = "error-deleting"
 )
 
 // All allowed values of BackupVolumeBackupsInner enum
@@ -131,6 +132,7 @@ var AllowedBackupVolumeBackupsInnerStatusEnumValues = []BackupVolumeBackupsInner
 	"restoring",
 	"error_deleting",
 	"error-creating",
+	"error-deleting",
 }
 
 func (v *BackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {
