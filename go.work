@@ -40,6 +40,7 @@ use (
 	./services/cdn
 	./services/certificates
 	./services/dns
+	./services/edge
 	./services/git
 	./services/iaas
 	./services/iaasalpha
