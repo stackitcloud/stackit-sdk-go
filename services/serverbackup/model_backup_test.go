@@ -89,6 +89,27 @@ func TestBackupStatus_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 10`,
+			args: args{
+				src: []byte(`"in-progress"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 11`,
+			args: args{
+				src: []byte(`"error-restoring"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 12`,
+			args: args{
+				src: []byte(`"error-deleting"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),

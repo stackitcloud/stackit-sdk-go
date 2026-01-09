@@ -75,6 +75,13 @@ func TestBackupVolumeBackupsInnerStatus_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 8`,
+			args: args{
+				src: []byte(`"error-deleting"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),
