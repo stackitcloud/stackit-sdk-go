@@ -8,6 +8,7 @@ use (
 	./examples/backgroundrefresh
 	./examples/configuration
 	./examples/dns
+	./examples/edge
 	./examples/errorhandling
 	./examples/iaas
 	./examples/intake
