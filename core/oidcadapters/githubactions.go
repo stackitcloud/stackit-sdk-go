@@ -9,9 +9,9 @@ import (
 	"net/url"
 )
 
-func RequestGHOIDCToken(oidc_request_url, oidc_request_token string) OIDCTokenFunc {
+func RequestGHOIDCToken(oidcRequestUrl, oidcRequestToken string) OIDCTokenFunc {
 	return func(ctx context.Context) (string, error) {
-		req, err := http.NewRequestWithContext(ctx, http.MethodGet, oidc_request_url, http.NoBody)
+		req, err := http.NewRequestWithContext(ctx, http.MethodGet, oidcRequestUrl, http.NoBody)
 		if err != nil {
 			return "", fmt.Errorf("githubAssertion: failed to build request: %w", err)
 		}
@@ -27,7 +27,7 @@ func RequestGHOIDCToken(oidc_request_url, oidc_request_token string) OIDCTokenFu
 		}
 
 		req.Header.Set("Accept", "application/json")
-		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", oidc_request_token))
+		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", oidcRequestToken))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
 		resp, err := http.DefaultClient.Do(req)
