@@ -1,3 +1,6 @@
+## v0.4.0
+- **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+
 ## v0.3.0
 - **Feature:** Add new wait handlers for instance creation (`CreateLogsInstanceWaitHandler`), and instance deletion (`DeleteLogsInstanceWaitHandler`)
 
