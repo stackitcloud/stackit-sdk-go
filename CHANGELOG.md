@@ -1,4 +1,6 @@
 ## Release (2026-XX-YY)
+- `edge`: [v0.1.0](services/edge/CHANGELOG.md#v010)
+  - **New:** STACKIT Edge Cloud service
 - `alb`: [v0.8.0](services/alb/CHANGELOG.md#v080)
   - **Feature:** Switch from `v2beta` API version to `v2` version.
   - **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
