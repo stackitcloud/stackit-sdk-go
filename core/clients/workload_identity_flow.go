@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 	"sync"
 	"time"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/oidcadapters"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
@@ -27,15 +27,8 @@ const (
 )
 
 var (
-	_ = getEnvOrDefault(wifTokenExpirationEnv, defaultWifExpirationToken) // Not used yet
+	_ = utils.GetEnvOrDefault(wifTokenExpirationEnv, defaultWifExpirationToken) // Not used yet
 )
-
-func getEnvOrDefault(envVar, defaultValue string) string {
-	if value := os.Getenv(envVar); value != "" {
-		return value
-	}
-	return defaultValue
-}
 
 var _ AuthFlow = &WorkloadIdentityFederationFlow{}
 
@@ -129,17 +122,15 @@ func (c *WorkloadIdentityFederationFlow) Init(cfg *WorkloadIdentityFederationFlo
 	c.config = cfg
 
 	if c.config.TokenUrl == "" {
-		c.config.TokenUrl = getEnvOrDefault(wifTokenEndpointEnv, defaultWifTokenEndpoint)
+		c.config.TokenUrl = utils.GetEnvOrDefault(wifTokenEndpointEnv, defaultWifTokenEndpoint)
 	}
 
 	if c.config.ClientID == "" {
-		c.config.ClientID = getEnvOrDefault(clientIDEnv, "")
+		c.config.ClientID = utils.GetEnvOrDefault(clientIDEnv, "")
 	}
 
 	if c.config.FederatedTokenFunction == nil {
-		c.config.FederatedTokenFunction = func() (string, error) {
-			return utils.ReadJWTFromFileSystem(getEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath))
-		}
+		c.config.FederatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(utils.GetEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath))
 	}
 
 	c.tokenExpirationLeeway = defaultTokenExpirationLeeway

@@ -10,8 +10,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/oidcadapters"
+
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
 func TestWorkloadIdentityFlowInit(t *testing.T) {
@@ -109,9 +110,7 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 				if tt.tokenFilePathAsEnv {
 					t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", file.Name())
 				} else {
-					flowConfig.FederatedTokenFunction = func() (string, error) {
-						return utils.ReadJWTFromFileSystem(file.Name())
-					}
+					flowConfig.FederatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(file.Name())
 				}
 			}
 
@@ -279,9 +278,7 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 						t.Fatalf("Removing temporary file: %s", err)
 					}
 				}()
-				flowConfig.FederatedTokenFunction = func() (string, error) {
-					return utils.ReadJWTFromFileSystem(file.Name())
-				}
+				flowConfig.FederatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(file.Name())
 				err = os.WriteFile(file.Name(), []byte(token), os.ModeAppend)
 				if err != nil {
 					t.Fatalf("writing temporary file: %s", err)

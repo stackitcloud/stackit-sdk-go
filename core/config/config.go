@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/core/oidcadapters"
 )
 
 const (
@@ -76,24 +76,24 @@ type Middleware func(http.RoundTripper) http.RoundTripper
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host                                   string                 `json:"host,omitempty"`
-	Scheme                                 string                 `json:"scheme,omitempty"`
-	DefaultHeader                          map[string]string      `json:"defaultHeader,omitempty"`
-	UserAgent                              string                 `json:"userAgent,omitempty"`
-	Debug                                  bool                   `json:"debug,omitempty"`
-	NoAuth                                 bool                   `json:"noAuth,omitempty"`
-	WorkloadIdentityFederation             bool                   `json:"workloadIdentityFederation,omitempty"`
-	ServiceAccountFederatedTokenExpiration string                 `json:"serviceAccountFederatedTokenExpiration,omitempty"`
-	ServiceAccountFederatedTokenFunc       func() (string, error) `json:"serviceAccountFederatedTokenFunc,omitempty"`
-	ServiceAccountEmail                    string                 `json:"serviceAccountEmail,omitempty"`
-	Token                                  string                 `json:"token,omitempty"`
-	ServiceAccountKey                      string                 `json:"serviceAccountKey,omitempty"`
-	PrivateKey                             string                 `json:"privateKey,omitempty"`
-	ServiceAccountKeyPath                  string                 `json:"serviceAccountKeyPath,omitempty"`
-	PrivateKeyPath                         string                 `json:"privateKeyPath,omitempty"`
-	CredentialsFilePath                    string                 `json:"credentialsFilePath,omitempty"`
-	TokenCustomUrl                         string                 `json:"tokenCustomUrl,omitempty"`
-	Region                                 string                 `json:"region,omitempty"`
+	Host                                   string                     `json:"host,omitempty"`
+	Scheme                                 string                     `json:"scheme,omitempty"`
+	DefaultHeader                          map[string]string          `json:"defaultHeader,omitempty"`
+	UserAgent                              string                     `json:"userAgent,omitempty"`
+	Debug                                  bool                       `json:"debug,omitempty"`
+	NoAuth                                 bool                       `json:"noAuth,omitempty"`
+	WorkloadIdentityFederation             bool                       `json:"workloadIdentityFederation,omitempty"`
+	ServiceAccountFederatedTokenExpiration string                     `json:"serviceAccountFederatedTokenExpiration,omitempty"`
+	ServiceAccountFederatedTokenFunc       oidcadapters.OIDCTokenFunc `json:"serviceAccountFederatedTokenFunc,omitempty"`
+	ServiceAccountEmail                    string                     `json:"serviceAccountEmail,omitempty"`
+	Token                                  string                     `json:"token,omitempty"`
+	ServiceAccountKey                      string                     `json:"serviceAccountKey,omitempty"`
+	PrivateKey                             string                     `json:"privateKey,omitempty"`
+	ServiceAccountKeyPath                  string                     `json:"serviceAccountKeyPath,omitempty"`
+	PrivateKeyPath                         string                     `json:"privateKeyPath,omitempty"`
+	CredentialsFilePath                    string                     `json:"credentialsFilePath,omitempty"`
+	TokenCustomUrl                         string                     `json:"tokenCustomUrl,omitempty"`
+	Region                                 string                     `json:"region,omitempty"`
 	CustomAuth                             http.RoundTripper
 	Servers                                ServerConfigurations
 	OperationServers                       map[string]ServerConfigurations
@@ -258,9 +258,7 @@ func WithWorkloadIdentityFederationFunc(function func() (string, error)) Configu
 // WithWorkloadIdentityFederationPath returns a ConfigurationOption that sets the custom path to the federated token file for workload identity federation flow
 func WithWorkloadIdentityFederationPath(path string) ConfigurationOption {
 	return func(config *Configuration) error {
-		config.ServiceAccountFederatedTokenFunc = func() (string, error) {
-			return utils.ReadJWTFromFileSystem(path)
-		}
+		config.ServiceAccountFederatedTokenFunc = oidcadapters.ReadJWTFromFileSystem(path)
 		return nil
 	}
 }
