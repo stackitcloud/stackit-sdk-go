@@ -1,6 +1,7 @@
 package oidcadapters
 
 import (
+	"context"
 	"log"
 	"os"
 	"testing"
@@ -23,7 +24,7 @@ func TestReadJWTFromFileSystem(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Writing temporary file: %s", err)
 	}
-	_, err = ReadJWTFromFileSystem(file.Name())()
+	_, err = ReadJWTFromFileSystem(file.Name())(context.Background())
 	if err != nil {
 		t.Fatalf("Reading JWT from file system: %s", err)
 	}
@@ -47,14 +48,14 @@ func TestReadRandomContentFromFileSystem(t *testing.T) {
 		t.Fatalf("Writing temporary file: %s", err)
 	}
 
-	_, err = ReadJWTFromFileSystem(file.Name())()
+	_, err = ReadJWTFromFileSystem(file.Name())(context.Background())
 	if err == nil {
 		t.Fatalf("Reading JWT from file system must fail")
 	}
 }
 
 func TestReadMissingFileFromFileSystem(t *testing.T) {
-	_, err := ReadJWTFromFileSystem("/path/to/nonexistent/file.token")()
+	_, err := ReadJWTFromFileSystem("/path/to/nonexistent/file.token")(context.Background())
 	if err == nil {
 		t.Fatalf("Reading JWT from file system must fail")
 	}

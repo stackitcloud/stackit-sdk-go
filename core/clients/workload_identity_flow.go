@@ -54,7 +54,7 @@ type WorkloadIdentityFederationFlowConfig struct {
 	BackgroundTokenRefreshContext context.Context // Functionality is enabled if this isn't nil
 	HTTPTransport                 http.RoundTripper
 	AuthHTTPClient                *http.Client
-	FederatedTokenFunction        func() (string, error) // Function to get the federated token
+	FederatedTokenFunction        oidcadapters.OIDCTokenFunc // Function to get the federated token
 }
 
 // GetConfig returns the flow configuration
@@ -165,7 +165,7 @@ func (c *WorkloadIdentityFederationFlow) validate() error {
 	if c.config.TokenUrl == "" {
 		return fmt.Errorf("token URL cannot be empty")
 	}
-	if _, err := c.config.FederatedTokenFunction(); err != nil {
+	if _, err := c.config.FederatedTokenFunction(context.Background()); err != nil {
 		return fmt.Errorf("error reading federated token file - %w", err)
 	}
 	if c.tokenExpirationLeeway < 0 {
@@ -177,7 +177,7 @@ func (c *WorkloadIdentityFederationFlow) validate() error {
 
 // createAccessToken creates an access token using self signed JWT
 func (c *WorkloadIdentityFederationFlow) createAccessToken() error {
-	clientAssertion, err := c.config.FederatedTokenFunction()
+	clientAssertion, err := c.config.FederatedTokenFunction(context.Background())
 	if err != nil {
 		return err
 	}

@@ -1,6 +1,7 @@
 package oidcadapters
 
 import (
+	"context"
 	"os"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -11,7 +12,7 @@ var (
 )
 
 func ReadJWTFromFileSystem(tokenFilePath string) OIDCTokenFunc {
-	return func() (string, error) {
+	return func(context.Context) (string, error) {
 		token, err := os.ReadFile(tokenFilePath)
 		if err != nil {
 			return "", err

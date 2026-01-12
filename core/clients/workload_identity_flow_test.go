@@ -1,6 +1,7 @@
 package clients
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -264,7 +265,7 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 			}
 
 			if tt.injectToken {
-				flowConfig.FederatedTokenFunction = func() (string, error) {
+				flowConfig.FederatedTokenFunction = func(context.Context) (string, error) {
 					return token, nil
 				}
 			} else {

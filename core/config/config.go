@@ -248,7 +248,7 @@ func WithWorkloadIdentityFederationAuth() ConfigurationOption {
 }
 
 // WithWorkloadIdentityFederationFunc returns a ConfigurationOption that sets the function to get the federated token for workload identity federation flow
-func WithWorkloadIdentityFederationFunc(function func() (string, error)) ConfigurationOption {
+func WithWorkloadIdentityFederationFunc(function oidcadapters.OIDCTokenFunc) ConfigurationOption {
 	return func(config *Configuration) error {
 		config.ServiceAccountFederatedTokenFunc = function
 		return nil
@@ -266,7 +266,7 @@ func WithWorkloadIdentityFederationPath(path string) ConfigurationOption {
 // WithWorkloadIdentityFederationFunc returns a ConfigurationOption that sets the id token for workload identity federation flow
 func WithWorkloadIdentityFederationToken(token string) ConfigurationOption {
 	return func(config *Configuration) error {
-		config.ServiceAccountFederatedTokenFunc = func() (string, error) {
+		config.ServiceAccountFederatedTokenFunc = func(context.Context) (string, error) {
 			return token, nil
 		}
 		return nil

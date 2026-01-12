@@ -1,3 +1,5 @@
 package oidcadapters
 
-type OIDCTokenFunc func() (string, error)
+import "context"
+
+type OIDCTokenFunc func(context.Context) (string, error)
