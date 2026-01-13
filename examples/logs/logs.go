@@ -4,7 +4,6 @@ import (
 	"context"
 	"log"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	"github.com/stackitcloud/stackit-sdk-go/services/logs"
 )
@@ -15,9 +14,7 @@ func main() {
 	projectId := "PROJECT_ID" // the uuid of your STACKIT project
 	regionId := "eu01"
 
-	client, err := logs.NewAPIClient(
-		config.WithRegion(regionId),
-	)
+	client, err := logs.NewAPIClient()
 	if err != nil {
 		log.Fatalf("[Logs API] Creating API client: %v\n", err)
 	}
