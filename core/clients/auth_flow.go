@@ -27,7 +27,7 @@ type AuthFlow interface {
 type TokenResponseBody struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int    `json:"expires_in"`
-	// Deprecated : RefreshToken is no longer used and the SDK will not attempt to refresh tokens using it but will instead use the AuthFlow implementation to get new tokens.
+	// Deprecated: RefreshToken is no longer used and the SDK will not attempt to refresh tokens using it but will instead use the AuthFlow implementation to get new tokens.
 	RefreshToken string `json:"refresh_token"`
 	Scope        string `json:"scope"`
 	TokenType    string `json:"token_type"`
