@@ -102,6 +102,26 @@ type InstanceGetIdArgType = string
 type InstanceGetIdRetType = string
 
 /*
+	types and functions for kmsKey
+*/
+
+// isModel
+type InstanceGetKmsKeyAttributeType = *KmsKeyPayload
+type InstanceGetKmsKeyArgType = KmsKeyPayload
+type InstanceGetKmsKeyRetType = KmsKeyPayload
+
+func getInstanceGetKmsKeyAttributeTypeOk(arg InstanceGetKmsKeyAttributeType) (ret InstanceGetKmsKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetKmsKeyAttributeType(arg *InstanceGetKmsKeyAttributeType, val InstanceGetKmsKeyRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -238,7 +258,8 @@ type Instance struct {
 	CreationStartDate InstanceGetCreationStartDateAttributeType `json:"creationStartDate" required:"true"`
 	// A auto generated unique id which identifies the secrets manager instances.
 	// REQUIRED
-	Id InstanceGetIdAttributeType `json:"id" required:"true"`
+	Id     InstanceGetIdAttributeType     `json:"id" required:"true"`
+	KmsKey InstanceGetKmsKeyAttributeType `json:"kmsKey,omitempty"`
 	// A user chosen name to distinguish multiple secrets manager instances.
 	// REQUIRED
 	Name InstanceGetNameAttributeType `json:"name" required:"true"`
@@ -353,6 +374,29 @@ func (o *Instance) GetIdOk() (ret InstanceGetIdRetType, ok bool) {
 // SetId sets field value
 func (o *Instance) SetId(v InstanceGetIdRetType) {
 	setInstanceGetIdAttributeType(&o.Id, v)
+}
+
+// GetKmsKey returns the KmsKey field value if set, zero value otherwise.
+func (o *Instance) GetKmsKey() (res InstanceGetKmsKeyRetType) {
+	res, _ = o.GetKmsKeyOk()
+	return
+}
+
+// GetKmsKeyOk returns a tuple with the KmsKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetKmsKeyOk() (ret InstanceGetKmsKeyRetType, ok bool) {
+	return getInstanceGetKmsKeyAttributeTypeOk(o.KmsKey)
+}
+
+// HasKmsKey returns a boolean if a field has been set.
+func (o *Instance) HasKmsKey() bool {
+	_, ok := o.GetKmsKeyOk()
+	return ok
+}
+
+// SetKmsKey gets a reference to the given KmsKeyPayload and assigns it to the KmsKey field.
+func (o *Instance) SetKmsKey(v InstanceGetKmsKeyRetType) {
+	setInstanceGetKmsKeyAttributeType(&o.KmsKey, v)
 }
 
 // GetName returns the Name field value
@@ -482,6 +526,9 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getInstanceGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getInstanceGetKmsKeyAttributeTypeOk(o.KmsKey); ok {
+		toSerialize["KmsKey"] = val
 	}
 	if val, ok := getInstanceGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val

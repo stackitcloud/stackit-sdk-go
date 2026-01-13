@@ -1,5 +1,8 @@
 ## Release (2026-XX-YY)
-- `edge`: 
+- `secretsmanager` [v0.14.0](services/secretsmanager/CHANGELOG.md#v0140)
+    - **Feature:** added KmsKey model
+    - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
+- `edge`:
   - [v0.2.0](services/edge/CHANGELOG.md#v020)
     - **Feature:** Add waiter methods for the API
   - [v0.1.0](services/edge/CHANGELOG.md#v010)
