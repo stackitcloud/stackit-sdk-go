@@ -64,9 +64,9 @@ type CreateLogsAlertgroupsPayloadGetNameRetType = string
 */
 
 // isArray
-type CreateLogsAlertgroupsPayloadGetRulesAttributeType = *[]UpdateAlertgroupsRequestInnerRulesInner
-type CreateLogsAlertgroupsPayloadGetRulesArgType = []UpdateAlertgroupsRequestInnerRulesInner
-type CreateLogsAlertgroupsPayloadGetRulesRetType = []UpdateAlertgroupsRequestInnerRulesInner
+type CreateLogsAlertgroupsPayloadGetRulesAttributeType = *[]CreateLogsAlertgroupsPayloadRulesInner
+type CreateLogsAlertgroupsPayloadGetRulesArgType = []CreateLogsAlertgroupsPayloadRulesInner
+type CreateLogsAlertgroupsPayloadGetRulesRetType = []CreateLogsAlertgroupsPayloadRulesInner
 
 func getCreateLogsAlertgroupsPayloadGetRulesAttributeTypeOk(arg CreateLogsAlertgroupsPayloadGetRulesAttributeType) (ret CreateLogsAlertgroupsPayloadGetRulesRetType, ok bool) {
 	if arg == nil {
@@ -79,7 +79,7 @@ func setCreateLogsAlertgroupsPayloadGetRulesAttributeType(arg *CreateLogsAlertgr
 	*arg = &val
 }
 
-// CreateLogsAlertgroupsPayload Alert group that should be created or updated `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
+// CreateLogsAlertgroupsPayload Alert group that should be created or updated. `Additional Validators:` * total config should not be bigger than 500000 characters as string since this the limitation of prometheus.
 type CreateLogsAlertgroupsPayload struct {
 	// How often rules in the group are evaluated. `Additional Validators:` * must be a valid time string * should be >=60s
 	Interval CreateLogsAlertgroupsPayloadGetIntervalAttributeType `json:"interval,omitempty"`
