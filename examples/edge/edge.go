@@ -26,12 +26,12 @@ func main() {
 
 	// Create an Edge Instance with default values
 	var (
-		payload  = edge.NewPostInstancesPayloadWithDefaults()
+		payload  = edge.NewCreateInstancePayloadWithDefaults()
 		instance *edge.Instance
 		ctx      = context.Background()
 	)
 	payload.DisplayName = utils.Ptr("example")
-	instance, err = client.PostInstances(ctx, projectId, region).PostInstancesPayload(*payload).Execute()
+	instance, err = client.CreateInstance(ctx, projectId, region).CreateInstancePayload(*payload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Edge API] Failed to create Instance: %v\n", err)
 		os.Exit(1)
