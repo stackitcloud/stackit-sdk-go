@@ -25,6 +25,26 @@ import (
 
 type DefaultApi interface {
 	/*
+		CreateInstance Method for CreateInstance
+		Creates a new instance within the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the instance is part of.
+		@param regionId The STACKIT region the instance is part of.
+		@return ApiCreateInstanceRequest
+	*/
+	CreateInstance(ctx context.Context, projectId string, regionId string) ApiCreateInstanceRequest
+	/*
+		CreateInstanceExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the instance is part of.
+		@param regionId The STACKIT region the instance is part of.
+		@return Instance
+
+	*/
+	CreateInstanceExecute(ctx context.Context, projectId string, regionId string) (*Instance, error)
+	/*
 		DeleteInstance Method for DeleteInstance
 		Deletes the given instance.
 
@@ -100,26 +120,6 @@ type DefaultApi interface {
 
 	*/
 	GetInstanceByNameExecute(ctx context.Context, projectId string, regionId string, displayName string) (*Instance, error)
-	/*
-		GetInstances Method for GetInstances
-		Returns a list of all instances within the project.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the instance is part of.
-		@param regionId The STACKIT region the instance is part of.
-		@return ApiGetInstancesRequest
-	*/
-	GetInstances(ctx context.Context, projectId string, regionId string) ApiGetInstancesRequest
-	/*
-		GetInstancesExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the instance is part of.
-		@param regionId The STACKIT region the instance is part of.
-		@return InstanceList
-
-	*/
-	GetInstancesExecute(ctx context.Context, projectId string, regionId string) (*InstanceList, error)
 	/*
 		GetKubeconfigByInstanceId Method for GetKubeconfigByInstanceId
 		Returns the kubeconfig for the given instance.
@@ -209,6 +209,26 @@ type DefaultApi interface {
 	*/
 	GetTokenByInstanceNameExecute(ctx context.Context, projectId string, regionId string, displayName string) (*Token, error)
 	/*
+		ListInstances Method for ListInstances
+		Returns a list of all instances within the project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the instance is part of.
+		@param regionId The STACKIT region the instance is part of.
+		@return ApiListInstancesRequest
+	*/
+	ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest
+	/*
+		ListInstancesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The STACKIT portal project UUID the instance is part of.
+		@param regionId The STACKIT region the instance is part of.
+		@return InstanceList
+
+	*/
+	ListInstancesExecute(ctx context.Context, projectId string, regionId string) (*InstanceList, error)
+	/*
 		ListPlansGlobal Method for ListPlansGlobal
 		List all global plans.
 
@@ -243,26 +263,6 @@ type DefaultApi interface {
 	*/
 	ListPlansProjectExecute(ctx context.Context, projectId string) (*PlanList, error)
 	/*
-		PostInstances Method for PostInstances
-		Creates a new instance within the project.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the instance is part of.
-		@param regionId The STACKIT region the instance is part of.
-		@return ApiPostInstancesRequest
-	*/
-	PostInstances(ctx context.Context, projectId string, regionId string) ApiPostInstancesRequest
-	/*
-		PostInstancesExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId The STACKIT portal project UUID the instance is part of.
-		@param regionId The STACKIT region the instance is part of.
-		@return Instance
-
-	*/
-	PostInstancesExecute(ctx context.Context, projectId string, regionId string) (*Instance, error)
-	/*
 		UpdateInstance Method for UpdateInstance
 		Updates the given instance.
 
@@ -296,6 +296,11 @@ type DefaultApi interface {
 	UpdateInstanceByNameExecute(ctx context.Context, projectId string, regionId string, displayName string) error
 }
 
+type ApiCreateInstanceRequest interface {
+	CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest
+	Execute() (*Instance, error)
+}
+
 type ApiDeleteInstanceRequest interface {
 	Execute() error
 }
@@ -310,10 +315,6 @@ type ApiGetInstanceRequest interface {
 
 type ApiGetInstanceByNameRequest interface {
 	Execute() (*Instance, error)
-}
-
-type ApiGetInstancesRequest interface {
-	Execute() (*InstanceList, error)
 }
 
 type ApiGetKubeconfigByInstanceIdRequest interface {
@@ -340,17 +341,16 @@ type ApiGetTokenByInstanceNameRequest interface {
 	Execute() (*Token, error)
 }
 
+type ApiListInstancesRequest interface {
+	Execute() (*InstanceList, error)
+}
+
 type ApiListPlansGlobalRequest interface {
 	Execute() (*PlanList, error)
 }
 
 type ApiListPlansProjectRequest interface {
 	Execute() (*PlanList, error)
-}
-
-type ApiPostInstancesRequest interface {
-	PostInstancesPayload(postInstancesPayload PostInstancesPayload) ApiPostInstancesRequest
-	Execute() (*Instance, error)
 }
 
 type ApiUpdateInstanceRequest interface {
@@ -365,6 +365,154 @@ type ApiUpdateInstanceByNameRequest interface {
 
 // DefaultApiService DefaultApi service
 type DefaultApiService service
+
+type CreateInstanceRequest struct {
+	ctx                   context.Context
+	apiService            *DefaultApiService
+	projectId             string
+	regionId              string
+	createInstancePayload *CreateInstancePayload
+}
+
+func (r CreateInstanceRequest) CreateInstancePayload(createInstancePayload CreateInstancePayload) ApiCreateInstanceRequest {
+	r.createInstancePayload = &createInstancePayload
+	return r
+}
+
+func (r CreateInstanceRequest) Execute() (*Instance, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Instance
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateInstance")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createInstancePayload == nil {
+		return localVarReturnValue, fmt.Errorf("createInstancePayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createInstancePayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedRequest
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateInstance: Method for CreateInstance
+
+Creates a new instance within the project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the instance is part of.
+	@param regionId The STACKIT region the instance is part of.
+	@return ApiCreateInstanceRequest
+*/
+func (a *APIClient) CreateInstance(ctx context.Context, projectId string, regionId string) ApiCreateInstanceRequest {
+	return CreateInstanceRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+}
+
+func (a *APIClient) CreateInstanceExecute(ctx context.Context, projectId string, regionId string) (*Instance, error) {
+	r := CreateInstanceRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+	return r.Execute()
+}
 
 type DeleteInstanceRequest struct {
 	ctx        context.Context
@@ -964,154 +1112,6 @@ func (a *APIClient) GetInstanceByNameExecute(ctx context.Context, projectId stri
 		projectId:   projectId,
 		regionId:    regionId,
 		displayName: displayName,
-	}
-	return r.Execute()
-}
-
-type GetInstancesRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	regionId   string
-}
-
-func (r GetInstancesRequest) Execute() (*InstanceList, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InstanceList
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetInstances")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(r.regionId, "regionId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v BadRequest
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v UnauthorizedRequest
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetInstances: Method for GetInstances
-
-Returns a list of all instances within the project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT portal project UUID the instance is part of.
-	@param regionId The STACKIT region the instance is part of.
-	@return ApiGetInstancesRequest
-*/
-func (a *APIClient) GetInstances(ctx context.Context, projectId string, regionId string) ApiGetInstancesRequest {
-	return GetInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		regionId:   regionId,
-	}
-}
-
-func (a *APIClient) GetInstancesExecute(ctx context.Context, projectId string, regionId string) (*InstanceList, error) {
-	r := GetInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		regionId:   regionId,
 	}
 	return r.Execute()
 }
@@ -1784,6 +1784,154 @@ func (a *APIClient) GetTokenByInstanceNameExecute(ctx context.Context, projectId
 	return r.Execute()
 }
 
+type ListInstancesRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	regionId   string
+}
+
+func (r ListInstancesRequest) Execute() (*InstanceList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *InstanceList
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListInstances")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequest
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v UnauthorizedRequest
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListInstances: Method for ListInstances
+
+Returns a list of all instances within the project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The STACKIT portal project UUID the instance is part of.
+	@param regionId The STACKIT region the instance is part of.
+	@return ApiListInstancesRequest
+*/
+func (a *APIClient) ListInstances(ctx context.Context, projectId string, regionId string) ApiListInstancesRequest {
+	return ListInstancesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+}
+
+func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string, regionId string) (*InstanceList, error) {
+	r := ListInstancesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		regionId:   regionId,
+	}
+	return r.Execute()
+}
+
 type ListPlansGlobalRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -2061,154 +2209,6 @@ func (a *APIClient) ListPlansProjectExecute(ctx context.Context, projectId strin
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type PostInstancesRequest struct {
-	ctx                  context.Context
-	apiService           *DefaultApiService
-	projectId            string
-	regionId             string
-	postInstancesPayload *PostInstancesPayload
-}
-
-func (r PostInstancesRequest) PostInstancesPayload(postInstancesPayload PostInstancesPayload) ApiPostInstancesRequest {
-	r.postInstancesPayload = &postInstancesPayload
-	return r
-}
-
-func (r PostInstancesRequest) Execute() (*Instance, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Instance
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PostInstances")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(r.regionId, "regionId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.postInstancesPayload == nil {
-		return localVarReturnValue, fmt.Errorf("postInstancesPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.postInstancesPayload
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v UnauthorizedRequest
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-PostInstances: Method for PostInstances
-
-Creates a new instance within the project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId The STACKIT portal project UUID the instance is part of.
-	@param regionId The STACKIT region the instance is part of.
-	@return ApiPostInstancesRequest
-*/
-func (a *APIClient) PostInstances(ctx context.Context, projectId string, regionId string) ApiPostInstancesRequest {
-	return PostInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		regionId:   regionId,
-	}
-}
-
-func (a *APIClient) PostInstancesExecute(ctx context.Context, projectId string, regionId string) (*Instance, error) {
-	r := PostInstancesRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		projectId:  projectId,
-		regionId:   regionId,
 	}
 	return r.Execute()
 }
