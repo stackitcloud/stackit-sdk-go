@@ -3,6 +3,8 @@
     - **Feature:** added KmsKey model
     - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
 - `edge`:
+  - [v0.3.0](services/edge/CHANGELOG.md#v030)
+    - **Breaking change:** Rename methods: `PostInstances` to `CreateInstance` and `GetInstances` to `ListInstances`
   - [v0.2.0](services/edge/CHANGELOG.md#v020)
     - **Feature:** Add waiter methods for the API
   - [v0.1.0](services/edge/CHANGELOG.md#v010)
