@@ -1,7 +1,19 @@
 ## Release (2026-XX-YY)
-- `secretsmanager` [v0.14.0](services/secretsmanager/CHANGELOG.md#v0140)
-    - **Feature:** added KmsKey model
-    - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
+- `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
+  - **Breaking change:** The `PartialUpdateAlertrules` takes now `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`.
+  - **Breaking change:** The type of `Rules` in `CreateLogsAlertgroupsPayload` and `UpdateLogsAlertgroupPayload` has changed from `[]UpdateAlertgroupsRequestInnerRulesInner` to `[]CreateLogsAlertgroupsPayloadRulesInner`.
+  - **Deprecation:** The `GrafanaAdminPassword` and `GrafanaAdminUser` fields are now deprecated in `InstanceSensitiveData` model
+  - **Feature:** Add `GrafanaAdminEnabled` to `CreateInstancePayload` and `UpdateInstancePayload` models.
+  - **Feature:** Add new field `record` in `UpdateAlertgroupsRequestInnerRulesInner` model
+  - **Feature:** Add `CertCheck` to `CertCheckResponse` model.
+  - **Feature:** Add `HttpCheck` to `HttpCheckResponse` model.
+  - **Feature:** Add new `CreateLogsAlertgroupsPayloadRulesInner` model.
+  - **Feature:** Add `allowAssignGrafanaAdmin` to `GrafanaOauth` and `UpdateGrafanaConfigsPayloadGenericOauth` models.
+  - **Feature:** Add `GrafanaAdminEnabled` to `InstanceSensitiveData` model.
+  - **Feature:** Add new `PartialUpdateAlertrulesRequestInner` model.
+- `secretsmanager`: [v0.14.0](services/secretsmanager/CHANGELOG.md#v0140)
+  - **Feature:** added KmsKey model
+  - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
 - `edge`:
   - [v0.3.0](services/edge/CHANGELOG.md#v030)
     - **Breaking change:** Rename methods: `PostInstances` to `CreateInstance` and `GetInstances` to `ListInstances`
