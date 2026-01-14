@@ -24,6 +24,62 @@ import (
 
 func Test_edge_DefaultApiService(t *testing.T) {
 
+	t.Run("Test DefaultApiService CreateInstance", func(t *testing.T) {
+		_apiUrlPath := "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionIdValue := "regionId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := Instance{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for edge_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		regionId := regionIdValue
+		createInstancePayload := CreateInstancePayload{}
+
+		resp, reqErr := apiClient.CreateInstance(context.Background(), projectId, regionId).CreateInstancePayload(createInstancePayload).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService DeleteInstance", func(t *testing.T) {
 		_apiUrlPath := "/v1beta1/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
 		projectIdValue := uuid.NewString()
@@ -235,61 +291,6 @@ func Test_edge_DefaultApiService(t *testing.T) {
 		displayName := displayNameValue
 
 		resp, reqErr := apiClient.GetInstanceByName(context.Background(), projectId, regionId, displayName).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if IsNil(resp) {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService GetInstances", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
-		projectIdValue := uuid.NewString()
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId-value"
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := InstanceList{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for edge_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := projectIdValue
-		regionId := regionIdValue
-
-		resp, reqErr := apiClient.GetInstances(context.Background(), projectId, regionId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
@@ -531,6 +532,61 @@ func Test_edge_DefaultApiService(t *testing.T) {
 		}
 	})
 
+	t.Run("Test DefaultApiService ListInstances", func(t *testing.T) {
+		_apiUrlPath := "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
+		projectIdValue := uuid.NewString()
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
+		regionIdValue := "regionId-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := InstanceList{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for edge_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		projectId := projectIdValue
+		regionId := regionIdValue
+
+		resp, reqErr := apiClient.ListInstances(context.Background(), projectId, regionId).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
 	t.Run("Test DefaultApiService ListPlansGlobal", func(t *testing.T) {
 		_apiUrlPath := "/v1beta1/plans"
 
@@ -622,62 +678,6 @@ func Test_edge_DefaultApiService(t *testing.T) {
 		projectId := projectIdValue
 
 		resp, reqErr := apiClient.ListPlansProject(context.Background(), projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if IsNil(resp) {
-			t.Fatalf("response not present")
-		}
-	})
-
-	t.Run("Test DefaultApiService PostInstances", func(t *testing.T) {
-		_apiUrlPath := "/v1beta1/projects/{projectId}/regions/{regionId}/instances"
-		projectIdValue := uuid.NewString()
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-		regionIdValue := "regionId-value"
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"regionId"+"}", url.PathEscape(ParameterValueToString(regionIdValue, "regionId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := Instance{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for edge_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := projectIdValue
-		regionId := regionIdValue
-		postInstancesPayload := PostInstancesPayload{}
-
-		resp, reqErr := apiClient.PostInstances(context.Background(), projectId, regionId).PostInstancesPayload(postInstancesPayload).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)
