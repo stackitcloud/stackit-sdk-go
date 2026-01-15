@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.20.1
-	github.com/stackitcloud/stackit-sdk-go/services/edge v0.2.0
+	github.com/stackitcloud/stackit-sdk-go/services/edge v0.3.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
