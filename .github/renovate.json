@@ -13,6 +13,7 @@
   "repositories": [
     "stackitcloud/stackit-sdk-go"
   ],
+  "minimumReleaseAge": "7d",
   "enabledManagers": [
     "gomod",
     "github-actions"
@@ -22,7 +23,8 @@
       "matchSourceUrls": [
         "https://github.com/stackitcloud/stackit-sdk-go"
       ],
-      "groupName": "SDK"
+      "groupName": "SDK",
+      "minimumReleaseAge": "0d"
     }
   ],
   "allowedCommands": [
