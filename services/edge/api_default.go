@@ -230,7 +230,7 @@ type DefaultApi interface {
 	ListInstancesExecute(ctx context.Context, projectId string, regionId string) (*InstanceList, error)
 	/*
 		ListPlansGlobal Method for ListPlansGlobal
-		List all global plans.
+		Deprecated: DEPRECATED: Will be removed at the 28 of february 2026. Use list-plans-project instead.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiListPlansGlobalRequest
@@ -242,6 +242,7 @@ type DefaultApi interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return PlanList
 
+		Deprecated: DEPRECATED: Will be removed at the 28 of february 2026. Use list-plans-project instead.
 	*/
 	ListPlansGlobalExecute(ctx context.Context) (*PlanList, error)
 	/*
@@ -2050,7 +2051,7 @@ func (r ListPlansGlobalRequest) Execute() (*PlanList, error) {
 /*
 ListPlansGlobal: Method for ListPlansGlobal
 
-List all global plans.
+Deprecated: DEPRECATED: Will be removed at the 28 of february 2026. Use list-plans-project instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListPlansGlobalRequest
@@ -2062,6 +2063,9 @@ func (a *APIClient) ListPlansGlobal(ctx context.Context) ApiListPlansGlobalReque
 	}
 }
 
+/*
+Deprecated: DEPRECATED: Will be removed at the 28 of february 2026. Use list-plans-project instead.
+*/
 func (a *APIClient) ListPlansGlobalExecute(ctx context.Context) (*PlanList, error) {
 	r := ListPlansGlobalRequest{
 		apiService: a.defaultApi,

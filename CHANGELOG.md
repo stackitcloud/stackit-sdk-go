@@ -15,6 +15,8 @@
   - **Feature:** added KmsKey model
   - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
 - `edge`:
+  - [v0.4.0](services/edge/CHANGELOG.md#v040)
+    - **Deprecation:** Deprecated API method `ListPlansGlobal`
   - [v0.3.0](services/edge/CHANGELOG.md#v030)
     - **Breaking change:** Rename methods: `PostInstances` to `CreateInstance` and `GetInstances` to `ListInstances`
   - [v0.2.0](services/edge/CHANGELOG.md#v020)
