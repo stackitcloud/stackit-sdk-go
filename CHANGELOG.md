@@ -1,4 +1,6 @@
 ## Release (2026-XX-YY)
+- `ske`: [v1.6.0](services/ske/CHANGELOG.md#v160)
+  - **Feature:** Add field `Identity` to model `ClusterStatus`
 - `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
   - **Breaking change:** The `PartialUpdateAlertrules` takes now `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`.
   - **Breaking change:** The type of `Rules` in `CreateLogsAlertgroupsPayload` and `UpdateLogsAlertgroupPayload` has changed from `[]UpdateAlertgroupsRequestInnerRulesInner` to `[]CreateLogsAlertgroupsPayloadRulesInner`.

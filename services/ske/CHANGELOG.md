@@ -1,3 +1,6 @@
+## v1.6.0
+- **Feature:** Add field `Identity` to model `ClusterStatus`
+
 ## v1.5.1
 - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
