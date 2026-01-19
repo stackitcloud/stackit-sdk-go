@@ -1,4 +1,6 @@
 ## Release (2026-XX-YY)
+- `loadbalancer`: [v1.7.0](services/loadbalancer/CHANGELOG.md#v170)
+  - **Feature:** Add new fields `MaxCredentials`, `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` Model
 - `ske`: [v1.6.0](services/ske/CHANGELOG.md#v160)
   - **Feature:** Add field `Identity` to model `ClusterStatus`
 - `observability`: [v0.16.0](services/observability/CHANGELOG.md#v0160)
