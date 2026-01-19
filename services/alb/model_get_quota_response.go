@@ -99,6 +99,46 @@ func setGetQuotaResponseGetRegionAttributeType(arg *GetQuotaResponseGetRegionAtt
 type GetQuotaResponseGetRegionArgType = string
 type GetQuotaResponseGetRegionRetType = string
 
+/*
+	types and functions for usedCredentials
+*/
+
+// isInteger
+type GetQuotaResponseGetUsedCredentialsAttributeType = *int64
+type GetQuotaResponseGetUsedCredentialsArgType = int64
+type GetQuotaResponseGetUsedCredentialsRetType = int64
+
+func getGetQuotaResponseGetUsedCredentialsAttributeTypeOk(arg GetQuotaResponseGetUsedCredentialsAttributeType) (ret GetQuotaResponseGetUsedCredentialsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetQuotaResponseGetUsedCredentialsAttributeType(arg *GetQuotaResponseGetUsedCredentialsAttributeType, val GetQuotaResponseGetUsedCredentialsRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for usedLoadBalancers
+*/
+
+// isInteger
+type GetQuotaResponseGetUsedLoadBalancersAttributeType = *int64
+type GetQuotaResponseGetUsedLoadBalancersArgType = int64
+type GetQuotaResponseGetUsedLoadBalancersRetType = int64
+
+func getGetQuotaResponseGetUsedLoadBalancersAttributeTypeOk(arg GetQuotaResponseGetUsedLoadBalancersAttributeType) (ret GetQuotaResponseGetUsedLoadBalancersRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setGetQuotaResponseGetUsedLoadBalancersAttributeType(arg *GetQuotaResponseGetUsedLoadBalancersAttributeType, val GetQuotaResponseGetUsedLoadBalancersRetType) {
+	*arg = &val
+}
+
 // GetQuotaResponse struct for GetQuotaResponse
 type GetQuotaResponse struct {
 	// The maximum number of observability credentials that can be stored in this project.
@@ -111,6 +151,12 @@ type GetQuotaResponse struct {
 	ProjectId GetQuotaResponseGetProjectIdAttributeType `json:"projectId,omitempty"`
 	// Region
 	Region GetQuotaResponseGetRegionAttributeType `json:"region,omitempty"`
+	// The number of observability credentials that are currently existing in this project.
+	// Can be cast to int32 without loss of precision.
+	UsedCredentials GetQuotaResponseGetUsedCredentialsAttributeType `json:"usedCredentials,omitempty"`
+	// The number of load balancing servers that are currently existing in this project.
+	// Can be cast to int32 without loss of precision.
+	UsedLoadBalancers GetQuotaResponseGetUsedLoadBalancersAttributeType `json:"usedLoadBalancers,omitempty"`
 }
 
 // NewGetQuotaResponse instantiates a new GetQuotaResponse object
@@ -222,6 +268,52 @@ func (o *GetQuotaResponse) SetRegion(v GetQuotaResponseGetRegionRetType) {
 	setGetQuotaResponseGetRegionAttributeType(&o.Region, v)
 }
 
+// GetUsedCredentials returns the UsedCredentials field value if set, zero value otherwise.
+func (o *GetQuotaResponse) GetUsedCredentials() (res GetQuotaResponseGetUsedCredentialsRetType) {
+	res, _ = o.GetUsedCredentialsOk()
+	return
+}
+
+// GetUsedCredentialsOk returns a tuple with the UsedCredentials field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetQuotaResponse) GetUsedCredentialsOk() (ret GetQuotaResponseGetUsedCredentialsRetType, ok bool) {
+	return getGetQuotaResponseGetUsedCredentialsAttributeTypeOk(o.UsedCredentials)
+}
+
+// HasUsedCredentials returns a boolean if a field has been set.
+func (o *GetQuotaResponse) HasUsedCredentials() bool {
+	_, ok := o.GetUsedCredentialsOk()
+	return ok
+}
+
+// SetUsedCredentials gets a reference to the given int64 and assigns it to the UsedCredentials field.
+func (o *GetQuotaResponse) SetUsedCredentials(v GetQuotaResponseGetUsedCredentialsRetType) {
+	setGetQuotaResponseGetUsedCredentialsAttributeType(&o.UsedCredentials, v)
+}
+
+// GetUsedLoadBalancers returns the UsedLoadBalancers field value if set, zero value otherwise.
+func (o *GetQuotaResponse) GetUsedLoadBalancers() (res GetQuotaResponseGetUsedLoadBalancersRetType) {
+	res, _ = o.GetUsedLoadBalancersOk()
+	return
+}
+
+// GetUsedLoadBalancersOk returns a tuple with the UsedLoadBalancers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetQuotaResponse) GetUsedLoadBalancersOk() (ret GetQuotaResponseGetUsedLoadBalancersRetType, ok bool) {
+	return getGetQuotaResponseGetUsedLoadBalancersAttributeTypeOk(o.UsedLoadBalancers)
+}
+
+// HasUsedLoadBalancers returns a boolean if a field has been set.
+func (o *GetQuotaResponse) HasUsedLoadBalancers() bool {
+	_, ok := o.GetUsedLoadBalancersOk()
+	return ok
+}
+
+// SetUsedLoadBalancers gets a reference to the given int64 and assigns it to the UsedLoadBalancers field.
+func (o *GetQuotaResponse) SetUsedLoadBalancers(v GetQuotaResponseGetUsedLoadBalancersRetType) {
+	setGetQuotaResponseGetUsedLoadBalancersAttributeType(&o.UsedLoadBalancers, v)
+}
+
 func (o GetQuotaResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetQuotaResponseGetMaxCredentialsAttributeTypeOk(o.MaxCredentials); ok {
@@ -235,6 +327,12 @@ func (o GetQuotaResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getGetQuotaResponseGetRegionAttributeTypeOk(o.Region); ok {
 		toSerialize["Region"] = val
+	}
+	if val, ok := getGetQuotaResponseGetUsedCredentialsAttributeTypeOk(o.UsedCredentials); ok {
+		toSerialize["UsedCredentials"] = val
+	}
+	if val, ok := getGetQuotaResponseGetUsedLoadBalancersAttributeTypeOk(o.UsedLoadBalancers); ok {
+		toSerialize["UsedLoadBalancers"] = val
 	}
 	return toSerialize, nil
 }
