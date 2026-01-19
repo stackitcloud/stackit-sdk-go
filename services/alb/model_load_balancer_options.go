@@ -99,7 +99,8 @@ func setLoadBalancerOptionsgetPrivateNetworkOnlyAttributeType(arg *LoadBalancerO
 
 // LoadBalancerOptions Defines any optional functionality you want to have enabled on your Application Load Balancer.
 type LoadBalancerOptions struct {
-	AccessControl    LoadBalancerOptionsGetAccessControlAttributeType    `json:"accessControl,omitempty"`
+	AccessControl LoadBalancerOptionsGetAccessControlAttributeType `json:"accessControl,omitempty"`
+	// This option automates the handling of the external IP address for an Application Load Balancer. If set to true a new IP address will be automatically created. It will also be automatically deleted when the Load Balancer is deleted.
 	EphemeralAddress LoadBalancerOptionsgetEphemeralAddressAttributeType `json:"ephemeralAddress,omitempty"`
 	Observability    LoadBalancerOptionsGetObservabilityAttributeType    `json:"observability,omitempty"`
 	// Application Load Balancer is accessible only via a private network ip address. Not changeable after creation.
