@@ -1,3 +1,6 @@
+## v0.9.0
+- **Feature:** Add new fields `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` model
+
 ## v0.8.0
 - **Feature:** Switch from `v2beta` API version to `v2` version.
 - **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
