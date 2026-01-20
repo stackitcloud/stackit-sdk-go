@@ -82,22 +82,22 @@ type InstanceGetConsumedObjectStorageArgType = string
 type InstanceGetConsumedObjectStorageRetType = string
 
 /*
-	types and functions for created
+	types and functions for created_at
 */
 
 // isDateTime
-type InstanceGetCreatedAttributeType = *time.Time
-type InstanceGetCreatedArgType = time.Time
-type InstanceGetCreatedRetType = time.Time
+type InstanceGetCreatedAtAttributeType = *time.Time
+type InstanceGetCreatedAtArgType = time.Time
+type InstanceGetCreatedAtRetType = time.Time
 
-func getInstanceGetCreatedAttributeTypeOk(arg InstanceGetCreatedAttributeType) (ret InstanceGetCreatedRetType, ok bool) {
+func getInstanceGetCreatedAtAttributeTypeOk(arg InstanceGetCreatedAtAttributeType) (ret InstanceGetCreatedAtRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
 	return *arg, true
 }
 
-func setInstanceGetCreatedAttributeType(arg *InstanceGetCreatedAttributeType, val InstanceGetCreatedRetType) {
+func setInstanceGetCreatedAtAttributeType(arg *InstanceGetCreatedAtAttributeType, val InstanceGetCreatedAtRetType) {
 	*arg = &val
 }
 
@@ -351,8 +351,8 @@ type Instance struct {
 	ConsumedObjectStorage InstanceGetConsumedObjectStorageAttributeType `json:"consumed_object_storage" required:"true"`
 	// The date and time the creation of the STACKIT Git instance was triggered.
 	// REQUIRED
-	Created InstanceGetCreatedAttributeType `json:"created" required:"true"`
-	// Desired instance flavor. Must be one of the defined enum values
+	CreatedAt InstanceGetCreatedAtAttributeType `json:"created_at" required:"true"`
+	// Instance flavor.
 	// REQUIRED
 	Flavor InstanceGetFlavorAttributeType `json:"flavor" required:"true"`
 	// A auto generated unique id which identifies the STACKIT Git instances.
@@ -378,12 +378,12 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(acl InstanceGetAclArgType, consumedDisk InstanceGetConsumedDiskArgType, consumedObjectStorage InstanceGetConsumedObjectStorageArgType, created InstanceGetCreatedArgType, flavor InstanceGetFlavorArgType, id InstanceGetIdArgType, name InstanceGetNameArgType, state InstanceGetStateArgType, url InstanceGetUrlArgType, version InstanceGetVersionArgType) *Instance {
+func NewInstance(acl InstanceGetAclArgType, consumedDisk InstanceGetConsumedDiskArgType, consumedObjectStorage InstanceGetConsumedObjectStorageArgType, createdAt InstanceGetCreatedAtArgType, flavor InstanceGetFlavorArgType, id InstanceGetIdArgType, name InstanceGetNameArgType, state InstanceGetStateArgType, url InstanceGetUrlArgType, version InstanceGetVersionArgType) *Instance {
 	this := Instance{}
 	setInstanceGetAclAttributeType(&this.Acl, acl)
 	setInstanceGetConsumedDiskAttributeType(&this.ConsumedDisk, consumedDisk)
 	setInstanceGetConsumedObjectStorageAttributeType(&this.ConsumedObjectStorage, consumedObjectStorage)
-	setInstanceGetCreatedAttributeType(&this.Created, created)
+	setInstanceGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
 	setInstanceGetFlavorAttributeType(&this.Flavor, flavor)
 	setInstanceGetIdAttributeType(&this.Id, id)
 	setInstanceGetNameAttributeType(&this.Name, name)
@@ -452,21 +452,21 @@ func (o *Instance) SetConsumedObjectStorage(v InstanceGetConsumedObjectStorageRe
 	setInstanceGetConsumedObjectStorageAttributeType(&o.ConsumedObjectStorage, v)
 }
 
-// GetCreated returns the Created field value
-func (o *Instance) GetCreated() (ret InstanceGetCreatedRetType) {
-	ret, _ = o.GetCreatedOk()
+// GetCreatedAt returns the CreatedAt field value
+func (o *Instance) GetCreatedAt() (ret InstanceGetCreatedAtRetType) {
+	ret, _ = o.GetCreatedAtOk()
 	return ret
 }
 
-// GetCreatedOk returns a tuple with the Created field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetCreatedOk() (ret InstanceGetCreatedRetType, ok bool) {
-	return getInstanceGetCreatedAttributeTypeOk(o.Created)
+func (o *Instance) GetCreatedAtOk() (ret InstanceGetCreatedAtRetType, ok bool) {
+	return getInstanceGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
-// SetCreated sets field value
-func (o *Instance) SetCreated(v InstanceGetCreatedRetType) {
-	setInstanceGetCreatedAttributeType(&o.Created, v)
+// SetCreatedAt sets field value
+func (o *Instance) SetCreatedAt(v InstanceGetCreatedAtRetType) {
+	setInstanceGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetFlavor returns the Flavor field value
@@ -582,8 +582,8 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	if val, ok := getInstanceGetConsumedObjectStorageAttributeTypeOk(o.ConsumedObjectStorage); ok {
 		toSerialize["ConsumedObjectStorage"] = val
 	}
-	if val, ok := getInstanceGetCreatedAttributeTypeOk(o.Created); ok {
-		toSerialize["Created"] = val
+	if val, ok := getInstanceGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+		toSerialize["CreatedAt"] = val
 	}
 	if val, ok := getInstanceGetFlavorAttributeTypeOk(o.Flavor); ok {
 		toSerialize["Flavor"] = val
