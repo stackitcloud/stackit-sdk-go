@@ -1,3 +1,6 @@
+## v1.3.5
+- **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
+
 ## v1.3.4
   - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
 
