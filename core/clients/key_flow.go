@@ -28,6 +28,8 @@ const (
 	ServiceAccountKeyPath = "STACKIT_SERVICE_ACCOUNT_KEY_PATH"
 	PrivateKeyPath        = "STACKIT_PRIVATE_KEY_PATH"
 	tokenAPI              = "https://service-account.api.stackit.cloud/token" //nolint:gosec // linter false positive
+	defaultTokenType      = "Bearer"
+	defaultScope          = ""
 )
 
 var _ AuthFlow = &KeyFlow{}
@@ -100,7 +102,9 @@ func (c *KeyFlow) GetServiceAccountEmail() string {
 }
 
 // GetToken returns the token field
-// Deprecated: Use GetAccessToken instead
+//
+// Deprecated: Use GetAccessToken instead.
+// This will be removed after 2026-07-01.
 func (c *KeyFlow) GetToken() TokenResponseBody {
 	c.tokenMutex.RLock()
 	defer c.tokenMutex.RUnlock()
@@ -147,8 +151,10 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 
 // SetToken can be used to set an access and refresh token manually in the client.
 // The other fields in the token field are determined by inspecting the token or setting default values.
-// Deprecated This method will be removed in future versions. Access tokens are now automatically managed by the client.
-func (c *KeyFlow) SetToken(accessToken, _ string) error {
+//
+// Deprecated: This method will be removed in future versions. Access tokens are now automatically managed by the client.
+// This will be removed after 2026-07-01.
+func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 	// We can safely use ParseUnverified because we are not authenticating the user,
 	// We are parsing the token just to get the expiration time claim
 	parsedAccessToken, _, err := jwt.NewParser().ParseUnverified(accessToken, &jwt.RegisteredClaims{})
@@ -162,10 +168,11 @@ func (c *KeyFlow) SetToken(accessToken, _ string) error {
 
 	c.tokenMutex.Lock()
 	c.token = &TokenResponseBody{
-		AccessToken: accessToken,
-		ExpiresIn:   int(exp.Time.Unix()),
-		Scope:       "",
-		TokenType:   "Bearer",
+		AccessToken:  accessToken,
+		ExpiresIn:    int(exp.Time.Unix()),
+		RefreshToken: refreshToken,
+		Scope:        defaultScope,
+		TokenType:    defaultTokenType,
 	}
 	c.tokenMutex.Unlock()
 	return nil
@@ -185,7 +192,7 @@ func (c *KeyFlow) RoundTrip(req *http.Request) (*http.Response, error) {
 	return c.rt.RoundTrip(req)
 }
 
-// GetAccessToken returns a short-lived access token and saves the access token in the token field
+// GetAccessToken returns a short-lived access token and saves the access and refresh tokens in the token field
 func (c *KeyFlow) GetAccessToken() (string, error) {
 	if c.rt == nil {
 		return "", fmt.Errorf("nil http round tripper, please run Init()")
@@ -205,7 +212,7 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	if !accessTokenExpired {
 		return accessToken, nil
 	}
-	if err = c.createAccessToken(); err != nil {
+	if err = c.recreateAccessToken(); err != nil {
 		var oapiErr *oapierror.GenericOpenAPIError
 		if ok := errors.As(err, &oapiErr); ok {
 			reg := regexp.MustCompile("Key with kid .*? was not found")
@@ -221,6 +228,10 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	c.tokenMutex.RUnlock()
 
 	return accessToken, nil
+}
+
+func (c *KeyFlow) RefreshAccessToken() error {
+	return c.recreateAccessToken()
 }
 
 func (c *KeyFlow) GetBackgroundTokenRefreshContext() context.Context {
@@ -259,6 +270,27 @@ func (c *KeyFlow) validate() error {
 
 // Flow auth functions
 
+// recreateAccessToken is used to create a new access token
+// when the existing one isn't valid anymore
+func (c *KeyFlow) recreateAccessToken() error {
+	var refreshToken string
+
+	c.tokenMutex.RLock()
+	if c.token != nil {
+		refreshToken = c.token.RefreshToken
+	}
+	c.tokenMutex.RUnlock()
+
+	refreshTokenExpired, err := tokenExpired(refreshToken, c.tokenExpirationLeeway)
+	if err != nil {
+		return err
+	}
+	if !refreshTokenExpired {
+		return c.createAccessTokenWithRefreshToken()
+	}
+	return c.createAccessToken()
+}
+
 // createAccessToken creates an access token using self signed JWT
 func (c *KeyFlow) createAccessToken() (err error) {
 	grant := "urn:ietf:params:oauth:grant-type:jwt-bearer"
@@ -274,6 +306,33 @@ func (c *KeyFlow) createAccessToken() (err error) {
 		tempErr := res.Body.Close()
 		if tempErr != nil && err == nil {
 			err = fmt.Errorf("close request access token response: %w", tempErr)
+		}
+	}()
+	token, err := parseTokenResponse(res)
+	if err != nil {
+		return err
+	}
+	c.tokenMutex.Lock()
+	c.token = token
+	c.tokenMutex.Unlock()
+	return nil
+}
+
+// createAccessTokenWithRefreshToken creates an access token using
+// an existing pre-validated refresh token
+func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
+	c.tokenMutex.RLock()
+	refreshToken := c.token.RefreshToken
+	c.tokenMutex.RUnlock()
+
+	res, err := c.requestToken("refresh_token", refreshToken)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		tempErr := res.Body.Close()
+		if tempErr != nil && err == nil {
+			err = fmt.Errorf("close request access token with refresh token response: %w", tempErr)
 		}
 	}()
 	token, err := parseTokenResponse(res)
@@ -309,7 +368,11 @@ func (c *KeyFlow) generateSelfSignedJWT() (string, error) {
 func (c *KeyFlow) requestToken(grant, assertion string) (*http.Response, error) {
 	body := url.Values{}
 	body.Set("grant_type", grant)
-	body.Set("assertion", assertion)
+	if grant == "refresh_token" {
+		body.Set("refresh_token", assertion)
+	} else {
+		body.Set("assertion", assertion)
+	}
 
 	payload := strings.NewReader(body.Encode())
 	req, err := http.NewRequest(http.MethodPost, c.config.TokenUrl, payload)

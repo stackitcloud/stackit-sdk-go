@@ -96,6 +96,10 @@ func (c *WorkloadIdentityFederationFlow) GetAccessToken() (string, error) {
 	return accessToken, nil
 }
 
+func (c *WorkloadIdentityFederationFlow) RefreshAccessToken() error {
+	return c.createAccessToken()
+}
+
 // RoundTrip implements the http.RoundTripper interface.
 // It gets a token, adds it to the request's authorization header, and performs the request.
 func (c *WorkloadIdentityFederationFlow) RoundTrip(req *http.Request) (*http.Response, error) {

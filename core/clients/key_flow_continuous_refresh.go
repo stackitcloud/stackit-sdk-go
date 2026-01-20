@@ -116,7 +116,7 @@ func (refresher *continuousTokenRefresher) waitUntilTimestamp(timestamp time.Tim
 //   - (false, nil) if not successful but should be retried.
 //   - (_, err) if not successful and shouldn't be retried.
 func (refresher *continuousTokenRefresher) refreshToken() (bool, error) {
-	_, err := refresher.flow.GetAccessToken()
+	err := refresher.flow.RefreshAccessToken()
 	if err == nil {
 		return true, nil
 	}

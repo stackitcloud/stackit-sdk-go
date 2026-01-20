@@ -175,10 +175,11 @@ func TestSetToken(t *testing.T) {
 			}
 			if err == nil {
 				expectedKeyFlowToken := &TokenResponseBody{
-					AccessToken: accessToken,
-					ExpiresIn:   int(timestamp.Unix()),
-					Scope:       "",
-					TokenType:   "Bearer",
+					AccessToken:  accessToken,
+					ExpiresIn:    int(timestamp.Unix()),
+					RefreshToken: tt.refreshToken,
+					Scope:        "",
+					TokenType:    "Bearer",
 				}
 				if !cmp.Equal(expectedKeyFlowToken, keyFlow.token) {
 					t.Errorf("The returned result is wrong. Expected %+v, got %+v", expectedKeyFlowToken, keyFlow.token)
