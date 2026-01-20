@@ -80,22 +80,22 @@ func setCommandTemplateSchemaGetOsTypeAttributeType(arg *CommandTemplateSchemaGe
 }
 
 /*
-	types and functions for parameterSchema
+	types and functions for parametersSchema
 */
 
 // isModel
-type CommandTemplateSchemaGetParameterSchemaAttributeType = *ParametersSchema
-type CommandTemplateSchemaGetParameterSchemaArgType = ParametersSchema
-type CommandTemplateSchemaGetParameterSchemaRetType = ParametersSchema
+type CommandTemplateSchemaGetParametersSchemaAttributeType = *ParametersSchema
+type CommandTemplateSchemaGetParametersSchemaArgType = ParametersSchema
+type CommandTemplateSchemaGetParametersSchemaRetType = ParametersSchema
 
-func getCommandTemplateSchemaGetParameterSchemaAttributeTypeOk(arg CommandTemplateSchemaGetParameterSchemaAttributeType) (ret CommandTemplateSchemaGetParameterSchemaRetType, ok bool) {
+func getCommandTemplateSchemaGetParametersSchemaAttributeTypeOk(arg CommandTemplateSchemaGetParametersSchemaAttributeType) (ret CommandTemplateSchemaGetParametersSchemaRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
 	return *arg, true
 }
 
-func setCommandTemplateSchemaGetParameterSchemaAttributeType(arg *CommandTemplateSchemaGetParameterSchemaAttributeType, val CommandTemplateSchemaGetParameterSchemaRetType) {
+func setCommandTemplateSchemaGetParametersSchemaAttributeType(arg *CommandTemplateSchemaGetParametersSchemaAttributeType, val CommandTemplateSchemaGetParametersSchemaRetType) {
 	*arg = &val
 }
 
@@ -122,11 +122,11 @@ type CommandTemplateSchemaGetTitleRetType = string
 
 // CommandTemplateSchema struct for CommandTemplateSchema
 type CommandTemplateSchema struct {
-	Description     CommandTemplateSchemaGetDescriptionAttributeType     `json:"description,omitempty"`
-	Name            CommandTemplateSchemaGetNameAttributeType            `json:"name,omitempty"`
-	OsType          CommandTemplateSchemaGetOsTypeAttributeType          `json:"osType,omitempty"`
-	ParameterSchema CommandTemplateSchemaGetParameterSchemaAttributeType `json:"parameterSchema,omitempty"`
-	Title           CommandTemplateSchemaGetTitleAttributeType           `json:"title,omitempty"`
+	Description      CommandTemplateSchemaGetDescriptionAttributeType      `json:"description,omitempty"`
+	Name             CommandTemplateSchemaGetNameAttributeType             `json:"name,omitempty"`
+	OsType           CommandTemplateSchemaGetOsTypeAttributeType           `json:"osType,omitempty"`
+	ParametersSchema CommandTemplateSchemaGetParametersSchemaAttributeType `json:"parametersSchema,omitempty"`
+	Title            CommandTemplateSchemaGetTitleAttributeType            `json:"title,omitempty"`
 }
 
 // NewCommandTemplateSchema instantiates a new CommandTemplateSchema object
@@ -215,27 +215,27 @@ func (o *CommandTemplateSchema) SetOsType(v CommandTemplateSchemaGetOsTypeRetTyp
 	setCommandTemplateSchemaGetOsTypeAttributeType(&o.OsType, v)
 }
 
-// GetParameterSchema returns the ParameterSchema field value if set, zero value otherwise.
-func (o *CommandTemplateSchema) GetParameterSchema() (res CommandTemplateSchemaGetParameterSchemaRetType) {
-	res, _ = o.GetParameterSchemaOk()
+// GetParametersSchema returns the ParametersSchema field value if set, zero value otherwise.
+func (o *CommandTemplateSchema) GetParametersSchema() (res CommandTemplateSchemaGetParametersSchemaRetType) {
+	res, _ = o.GetParametersSchemaOk()
 	return
 }
 
-// GetParameterSchemaOk returns a tuple with the ParameterSchema field value if set, nil otherwise
+// GetParametersSchemaOk returns a tuple with the ParametersSchema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommandTemplateSchema) GetParameterSchemaOk() (ret CommandTemplateSchemaGetParameterSchemaRetType, ok bool) {
-	return getCommandTemplateSchemaGetParameterSchemaAttributeTypeOk(o.ParameterSchema)
+func (o *CommandTemplateSchema) GetParametersSchemaOk() (ret CommandTemplateSchemaGetParametersSchemaRetType, ok bool) {
+	return getCommandTemplateSchemaGetParametersSchemaAttributeTypeOk(o.ParametersSchema)
 }
 
-// HasParameterSchema returns a boolean if a field has been set.
-func (o *CommandTemplateSchema) HasParameterSchema() bool {
-	_, ok := o.GetParameterSchemaOk()
+// HasParametersSchema returns a boolean if a field has been set.
+func (o *CommandTemplateSchema) HasParametersSchema() bool {
+	_, ok := o.GetParametersSchemaOk()
 	return ok
 }
 
-// SetParameterSchema gets a reference to the given ParametersSchema and assigns it to the ParameterSchema field.
-func (o *CommandTemplateSchema) SetParameterSchema(v CommandTemplateSchemaGetParameterSchemaRetType) {
-	setCommandTemplateSchemaGetParameterSchemaAttributeType(&o.ParameterSchema, v)
+// SetParametersSchema gets a reference to the given ParametersSchema and assigns it to the ParametersSchema field.
+func (o *CommandTemplateSchema) SetParametersSchema(v CommandTemplateSchemaGetParametersSchemaRetType) {
+	setCommandTemplateSchemaGetParametersSchemaAttributeType(&o.ParametersSchema, v)
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -272,8 +272,8 @@ func (o CommandTemplateSchema) ToMap() (map[string]interface{}, error) {
 	if val, ok := getCommandTemplateSchemaGetOsTypeAttributeTypeOk(o.OsType); ok {
 		toSerialize["OsType"] = val
 	}
-	if val, ok := getCommandTemplateSchemaGetParameterSchemaAttributeTypeOk(o.ParameterSchema); ok {
-		toSerialize["ParameterSchema"] = val
+	if val, ok := getCommandTemplateSchemaGetParametersSchemaAttributeTypeOk(o.ParametersSchema); ok {
+		toSerialize["ParametersSchema"] = val
 	}
 	if val, ok := getCommandTemplateSchemaGetTitleAttributeTypeOk(o.Title); ok {
 		toSerialize["Title"] = val
