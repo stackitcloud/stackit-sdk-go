@@ -88,6 +88,8 @@
   - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
 - `serverbackup`: [v1.3.5](services/serverbackup/CHANGELOG.md#v135)
   - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
+- `runcommand`: [v1.4.0](services/runcommand/CHANGELOG.md#v140)
+  - **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
 
 ## Release (2025-12-05)
 - `alb`: 
