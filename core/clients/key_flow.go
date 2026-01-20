@@ -152,7 +152,7 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 // SetToken can be used to set an access and refresh token manually in the client.
 // The other fields in the token field are determined by inspecting the token or setting default values.
 //
-// Deprecated: This method will be removed in future versions. Access tokens are now automatically managed by the client.
+// Deprecated: This method will be removed in future versions. Access tokens are going to be automatically managed by the client.
 // This will be removed after 2026-07-01.
 func (c *KeyFlow) SetToken(accessToken, refreshToken string) error {
 	// We can safely use ParseUnverified because we are not authenticating the user,
