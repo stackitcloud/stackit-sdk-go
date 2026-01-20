@@ -86,6 +86,8 @@
   - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 - `authorization`: [v0.11.0](services/authorization/CHANGELOG.md#v0110)
   - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
+- `serverbackup`: [v1.3.5](services/serverbackup/CHANGELOG.md#v135)
+  - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
 
 ## Release (2025-12-05)
 - `alb`: 
