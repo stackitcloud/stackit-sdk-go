@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.20.1
-	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.6.2
+	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.7.0
 )
 
 require (
