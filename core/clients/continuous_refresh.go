@@ -17,9 +17,9 @@ var (
 	defaultTimeBetweenTries               = 5 * time.Minute
 )
 
-// Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Writes to stderr when it terminates.
+// Continuously refreshes the token of an auth flow, retrying if the token API returns 5xx errrors. Writes to stderr when it terminates.
 //
-// To terminate this routine, close the context in keyFlow.config.BackgroundTokenRefreshContext.
+// To terminate this routine, close the context in flow.GetBackgroundTokenRefreshContext().
 func continuousRefreshToken(flow AuthFlow) {
 	refresher := &continuousTokenRefresher{
 		flow:                           flow,
@@ -39,9 +39,9 @@ type continuousTokenRefresher struct {
 	timeBetweenTries               time.Duration
 }
 
-// Continuously refreshes the token of a key flow, retrying if the token API returns 5xx errrors. Always returns with a non-nil error.
+// Continuously refreshes the token of an auth flow, retrying if the token API returns 5xx errrors. Always returns with a non-nil error.
 //
-// To terminate this routine, close the context in refresher.keyFlow.config.BackgroundTokenRefreshContext.
+// To terminate this routine, close the context in refresher.flow.GetBackgroundTokenRefreshContext().
 func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 	// Compute timestamp where we'll refresh token
 	// Access token may be empty at this point, we have to check it
