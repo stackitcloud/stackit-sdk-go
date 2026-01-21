@@ -39,6 +39,10 @@
 - `certificates`: [v1.2.0](services/certificates/CHANGELOG.md#v120)
   - **Feature:** Switch from `v2beta` API version to `v2` version.
   - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
+- `core`: 
+  - [v0.21.0](core/CHANGELOG.md#v0210)
+    - **Deprecation:** KeyFlow `SetToken` and `GetToken` will be removed after 2026-07-01. Use GetAccessToken instead and rely on client refresh.
+    - **Feature:** Support Workload Identity Federation flow
 - `sfs`:
   - [v0.2.0](services/sfs/CHANGELOG.md)
     - **Breaking change:** Remove region configuration in `APIClient`

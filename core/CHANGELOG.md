@@ -1,3 +1,7 @@
+## v0.21.0
+- **Deprecation:** KeyFlow `SetToken` and `GetToken` will be removed after 2026-07-01. Use GetAccessToken instead and rely on client refresh.
+- **Feature:** Support Workload Identity Federation flow
+
 ## v0.20.1
 - **Improvement:** Improve error message when passing a PEM encoded file to as service account key
 

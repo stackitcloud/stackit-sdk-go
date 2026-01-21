@@ -12,7 +12,6 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -22,9 +21,9 @@ func TestContinuousRefreshToken(t *testing.T) {
 	jwt.TimePrecision = time.Millisecond
 
 	// Refresher settings
-	timeStartBeforeTokenExpiration := 500 * time.Millisecond
-	timeBetweenContextCheck := 10 * time.Millisecond
-	timeBetweenTries := 100 * time.Millisecond
+	timeStartBeforeTokenExpiration := 0 * time.Second
+	timeBetweenContextCheck := 50 * time.Millisecond
+	timeBetweenTries := 500 * time.Millisecond
 
 	// All generated acess tokens will have this time to live
 	accessTokensTimeToLive := 1 * time.Second
@@ -34,16 +33,20 @@ func TestContinuousRefreshToken(t *testing.T) {
 		contextClosesIn       time.Duration
 		doError               error
 		expectedNumberDoCalls int
-		expectedCallRange     []int // Optional: for tests that can have variable call counts
 	}{
 		{
+			desc:                  "update access token never",
+			contextClosesIn:       900 * time.Millisecond, // Should allow no refresh
+			expectedNumberDoCalls: 0,
+		},
+		{
 			desc:                  "update access token once",
-			contextClosesIn:       700 * time.Millisecond, // Should allow one refresh
+			contextClosesIn:       1900 * time.Millisecond, // Should allow one refresh
 			expectedNumberDoCalls: 1,
 		},
 		{
 			desc:                  "update access token twice",
-			contextClosesIn:       1300 * time.Millisecond, // Should allow two refreshes
+			contextClosesIn:       2900 * time.Millisecond, // Should allow two refreshes
 			expectedNumberDoCalls: 2,
 		},
 		{
@@ -62,14 +65,14 @@ func TestContinuousRefreshToken(t *testing.T) {
 			expectedNumberDoCalls: 0,
 		},
 		{
-			desc:                  "refresh token fails - non-API error",
-			contextClosesIn:       700 * time.Millisecond,
+			desc:                  "refresh token fails - error",
+			contextClosesIn:       1900 * time.Millisecond,
 			doError:               fmt.Errorf("something went wrong"),
 			expectedNumberDoCalls: 1,
 		},
 		{
 			desc:            "refresh token fails - API non-5xx error",
-			contextClosesIn: 700 * time.Millisecond,
+			contextClosesIn: 1900 * time.Millisecond,
 			doError: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusBadRequest,
 			},
@@ -77,92 +80,35 @@ func TestContinuousRefreshToken(t *testing.T) {
 		},
 		{
 			desc:            "refresh token fails - API 5xx error",
-			contextClosesIn: 800 * time.Millisecond,
+			contextClosesIn: 2900 * time.Millisecond,
 			doError: &oapierror.GenericOpenAPIError{
 				StatusCode: http.StatusInternalServerError,
 			},
-			expectedNumberDoCalls: 3,
-			expectedCallRange:     []int{3, 4}, // Allow 3 or 4 calls due to timing race condition
+			expectedNumberDoCalls: 4,
 		},
 	}
 
 	for _, tt := range tests {
+		tt := tt
 		t.Run(tt.desc, func(t *testing.T) {
-			accessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-				ExpiresAt: jwt.NewNumericDate(time.Now().Add(accessTokensTimeToLive)),
-			}).SignedString([]byte("test"))
+			t.Parallel()
+			accessToken, err := signToken(accessTokensTimeToLive)
 			if err != nil {
-				t.Fatalf("failed to create access token: %v", err)
+				t.Fatalf("failed to sign access token: %v", err)
 			}
-
-			refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-				ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
-			}).SignedString([]byte("test"))
-			if err != nil {
-				t.Fatalf("failed to create refresh token: %v", err)
-			}
-
-			numberDoCalls := 0
-			mockDo := func(_ *http.Request) (resp *http.Response, err error) {
-				numberDoCalls++ // count refresh attempts
-				if tt.doError != nil {
-					return nil, tt.doError
-				}
-				newAccessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-					ExpiresAt: jwt.NewNumericDate(time.Now().Add(accessTokensTimeToLive)),
-				}).SignedString([]byte("test"))
-				if err != nil {
-					t.Fatalf("Do call: failed to create access token: %v", err)
-				}
-				responseBodyStruct := TokenResponseBody{
-					AccessToken:  newAccessToken,
-					RefreshToken: refreshToken,
-				}
-				responseBody, err := json.Marshal(responseBodyStruct)
-				if err != nil {
-					t.Fatalf("Do call: failed to marshal response: %v", err)
-				}
-				response := &http.Response{
-					StatusCode: http.StatusOK,
-					Body:       io.NopCloser(bytes.NewReader(responseBody)),
-				}
-				return response, nil
-			}
-
 			ctx := context.Background()
 			ctx, cancel := context.WithTimeout(ctx, tt.contextClosesIn)
 			defer cancel()
 
-			keyFlow := &KeyFlow{}
-			privateKeyBytes, err := generatePrivateKey()
-			if err != nil {
-				t.Fatalf("Error generating private key: %s", err)
+			authFlow := &fakeAuthFlow{
+				backgroundTokenRefreshContext: ctx,
+				doError:                       tt.doError,
+				accessTokensTimeToLive:        accessTokensTimeToLive,
+				accessToken:                   accessToken,
 			}
-			keyFlowConfig := &KeyFlowConfig{
-				ServiceAccountKey: fixtureServiceAccountKey(),
-				PrivateKey:        string(privateKeyBytes),
-				AuthHTTPClient: &http.Client{
-					Transport: mockTransportFn{mockDo},
-				},
-				HTTPTransport:                 mockTransportFn{mockDo},
-				BackgroundTokenRefreshContext: nil,
-			}
-			err = keyFlow.Init(keyFlowConfig)
-			if err != nil {
-				t.Fatalf("failed to initialize key flow: %v", err)
-			}
-
-			// Set the token after initialization
-			err = keyFlow.SetToken(accessToken, refreshToken)
-			if err != nil {
-				t.Fatalf("failed to set token: %v", err)
-			}
-
-			// Set the context for continuous refresh
-			keyFlow.config.BackgroundTokenRefreshContext = ctx
 
 			refresher := &continuousTokenRefresher{
-				keyFlow:                        keyFlow,
+				flow:                           authFlow,
 				timeStartBeforeTokenExpiration: timeStartBeforeTokenExpiration,
 				timeBetweenContextCheck:        timeBetweenContextCheck,
 				timeBetweenTries:               timeBetweenTries,
@@ -172,13 +118,8 @@ func TestContinuousRefreshToken(t *testing.T) {
 			if err == nil {
 				t.Fatalf("routine finished with non-nil error")
 			}
-
-			// Check if we have a range of expected calls (for timing-sensitive tests)
-			if tt.expectedCallRange != nil {
-				if !contains(tt.expectedCallRange, numberDoCalls) {
-					t.Fatalf("expected %v calls to API to refresh token, got %d", tt.expectedCallRange, numberDoCalls)
-				}
-			} else if numberDoCalls != tt.expectedNumberDoCalls {
+			numberDoCalls := authFlow.getTokenCalls()
+			if numberDoCalls != tt.expectedNumberDoCalls {
 				t.Fatalf("expected %d calls to API to refresh token, got %d", tt.expectedNumberDoCalls, numberDoCalls)
 			}
 		})
@@ -214,18 +155,14 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	chanUnblockContinuousRefreshToken := make(chan bool)
 
 	// The access token at the start
-	accessTokenFirst, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-		ExpiresAt: jwt.NewNumericDate(time.Now().Add(10 * time.Second)),
-	}).SignedString([]byte("token-first"))
+	accessTokenFirst, err := signToken(10 * time.Second)
 	if err != nil {
 		t.Fatalf("failed to create first access token: %v", err)
 	}
 
 	// The access token that will replace accessTokenFirst
 	// Has a much longer expiration timestamp
-	accessTokenSecond, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
-	}).SignedString([]byte("token-second"))
+	accessTokenSecond, err := signToken(time.Hour)
 	if err != nil {
 		t.Fatalf("failed to create second access token: %v", err)
 	}
@@ -235,9 +172,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	}
 
 	// The refresh token used to update the access token
-	refreshToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
-	}).SignedString([]byte("test"))
+	refreshToken, err := signToken(time.Hour)
 	if err != nil {
 		t.Fatalf("failed to create refresh token: %v", err)
 	}
@@ -264,9 +199,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 				// This handles the continuous nature of the refresh routine
 				if currentTestPhase > 1 {
 					// Return a valid response for any additional auth requests
-					newAccessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
-						ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour)),
-					}).SignedString([]byte("additional-token"))
+					newAccessToken, err := signToken(time.Hour)
 					if err != nil {
 						t.Fatalf("Do call: failed to create additional access token: %v", err)
 					}
@@ -419,7 +352,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 
 	// Create a custom refresher with shorter timing for the test
 	refresher := &continuousTokenRefresher{
-		keyFlow:                        keyFlow,
+		flow:                           keyFlow,
 		timeStartBeforeTokenExpiration: 9 * time.Second, // Start 9 seconds before expiration
 		timeBetweenContextCheck:        5 * time.Millisecond,
 		timeBetweenTries:               40 * time.Millisecond,
@@ -476,11 +409,54 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 	}
 }
 
-func contains(arr []int, val int) bool {
-	for _, v := range arr {
-		if v == val {
-			return true
-		}
+func signToken(expiration time.Duration) (string, error) {
+	return jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.RegisteredClaims{
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(expiration)),
+	}).SignedString([]byte("test"))
+}
+
+var _ AuthFlow = &fakeAuthFlow{}
+
+type fakeAuthFlow struct {
+	backgroundTokenRefreshContext context.Context
+	tokenCounter                  int
+	doError                       error
+	accessTokensTimeToLive        time.Duration
+	accessToken                   string
+}
+
+func (f *fakeAuthFlow) RoundTrip(_ *http.Request) (*http.Response, error) {
+	return nil, nil
+}
+func (f *fakeAuthFlow) GetAccessToken() (string, error) {
+	expired, err := tokenExpired(f.accessToken, 0)
+	if err != nil {
+		return "", err
 	}
-	return false
+	if !expired {
+		return f.accessToken, nil
+	}
+	f.tokenCounter++
+	if f.doError != nil {
+		return "", f.doError
+	}
+	accessToken, err := signToken(f.accessTokensTimeToLive)
+	if err != nil {
+		return "", f.doError
+	}
+	f.accessToken = accessToken
+	return accessToken, nil
+}
+
+func (f *fakeAuthFlow) refreshAccessToken() error {
+	_, err := f.GetAccessToken()
+	return err
+}
+
+func (f *fakeAuthFlow) getBackgroundTokenRefreshContext() context.Context {
+	return f.backgroundTokenRefreshContext
+}
+
+func (f *fakeAuthFlow) getTokenCalls() int {
+	return f.tokenCounter
 }
