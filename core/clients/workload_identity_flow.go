@@ -15,9 +15,9 @@ import (
 
 const (
 	clientIDEnv           = "STACKIT_SERVICE_ACCOUNT_EMAIL"
-	FederatedTokenFileEnv = "STACKIT_FEDERATED_TOKEN_FILE"   //nolint:gosec // This is not a secret, just the env variable name
-	wifTokenEndpointEnv   = "STACKIT_IDP_ENDPOINT"           //nolint:gosec // This is not a secret, just the env variable name
-	wifTokenExpirationEnv = "STACKIT_IDP_EXPIRATION_SECONDS" //nolint:gosec // This is not a secret, just the env variable name
+	FederatedTokenFileEnv = "STACKIT_FEDERATED_TOKEN_FILE"         //nolint:gosec // This is not a secret, just the env variable name
+	wifTokenEndpointEnv   = "STACKIT_IDP_TOKEN_ENDPOINT"           //nolint:gosec // This is not a secret, just the env variable name
+	wifTokenExpirationEnv = "STACKIT_IDP_TOKEN_EXPIRATION_SECONDS" //nolint:gosec // This is not a secret, just the env variable name
 
 	wifClientAssertionType    = "urn:schwarz:params:oauth:client-assertion-type:workload-jwt"
 	wifGrantType              = "client_credentials"

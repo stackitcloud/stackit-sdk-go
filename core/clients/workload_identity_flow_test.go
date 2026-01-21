@@ -70,7 +70,7 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 			flowConfig := &WorkloadIdentityFederationFlowConfig{}
 			if tt.customTokenUrl != "" {
 				if tt.customTokenUrlEnv {
-					t.Setenv("STACKIT_IDP_ENDPOINT", tt.customTokenUrl)
+					t.Setenv("STACKIT_IDP_TOKEN_ENDPOINT", tt.customTokenUrl)
 				} else {
 					flowConfig.TokenUrl = tt.customTokenUrl
 				}
