@@ -1,3 +1,6 @@
+## v1.5.6
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v1.5.5
 - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 

@@ -1,3 +1,6 @@
+## v1.2.1
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v1.2.0
 - Set fields `Description` and `ImportOnly` to required in response struct `Key`
   - **Breaking change:** Constructor `NewKey` has new parameters `description` and `importOnly`

@@ -1,3 +1,6 @@
+## v1.7.1
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v1.7.0
 - **Feature:** Add new fields `MaxCredentials`, `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` Model
 

@@ -1,3 +1,6 @@
+## v1.6.1
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v1.6.0
 - **Feature:** Add field `Identity` to model `ClusterStatus`
 

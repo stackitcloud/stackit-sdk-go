@@ -1,3 +1,6 @@
+## v0.14.1
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v0.14.0
 - **Feature:** added KmsKey model
 - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload

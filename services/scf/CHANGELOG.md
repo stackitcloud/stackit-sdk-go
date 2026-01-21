@@ -1,3 +1,6 @@
+## v0.4.1
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v0.4.0
 - **Feature:** Add new model structs `SpaceWithIsolationSegment` and `SpaceWithIsolationSegmentAllOf`
 

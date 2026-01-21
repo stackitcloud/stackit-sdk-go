@@ -1,3 +1,6 @@
+## v1.4.1
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v1.4.0
 - **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
 
