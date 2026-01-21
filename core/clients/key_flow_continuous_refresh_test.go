@@ -448,7 +448,7 @@ func (f *fakeAuthFlow) GetAccessToken() (string, error) {
 	return accessToken, nil
 }
 
-func (f *fakeAuthFlow) RefreshAccessToken() error {
+func (f *fakeAuthFlow) refreshAccessToken() error {
 	_, err := f.GetAccessToken()
 	return err
 }

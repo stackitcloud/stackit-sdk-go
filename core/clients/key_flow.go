@@ -230,7 +230,7 @@ func (c *KeyFlow) GetAccessToken() (string, error) {
 	return accessToken, nil
 }
 
-func (c *KeyFlow) RefreshAccessToken() error {
+func (c *KeyFlow) refreshAccessToken() error {
 	return c.recreateAccessToken()
 }
 
@@ -320,6 +320,8 @@ func (c *KeyFlow) createAccessToken() (err error) {
 
 // createAccessTokenWithRefreshToken creates an access token using
 // an existing pre-validated refresh token
+// Deprecated: This method will be removed in future versions. Access tokens are going to be refreshed without refresh token.
+// This will be removed after 2026-07-01.
 func (c *KeyFlow) createAccessTokenWithRefreshToken() (err error) {
 	c.tokenMutex.RLock()
 	refreshToken := c.token.RefreshToken

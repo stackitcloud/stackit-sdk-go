@@ -41,7 +41,7 @@
   - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
 - `core`: 
   - [v0.21.0](core/CHANGELOG.md#v0210)
-    - **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
+    - **Deprecation:** KeyFlow `SetToken` and `GetToken` will be removed after 2026-07-01. Use GetAccessToken instead and rely on client refresh.
     - **Feature:** Support Workload Identity Federation flow
 - `sfs`:
   - [v0.2.0](services/sfs/CHANGELOG.md)

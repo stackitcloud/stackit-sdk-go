@@ -19,8 +19,8 @@ const (
 type AuthFlow interface {
 	RoundTrip(req *http.Request) (*http.Response, error)
 	GetAccessToken() (string, error)
-	RefreshAccessToken() error
 	GetBackgroundTokenRefreshContext() context.Context
+	refreshAccessToken() error
 }
 
 // TokenResponseBody is the API response

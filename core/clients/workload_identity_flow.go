@@ -96,7 +96,7 @@ func (c *WorkloadIdentityFederationFlow) GetAccessToken() (string, error) {
 	return accessToken, nil
 }
 
-func (c *WorkloadIdentityFederationFlow) RefreshAccessToken() error {
+func (c *WorkloadIdentityFederationFlow) refreshAccessToken() error {
 	return c.createAccessToken()
 }
 

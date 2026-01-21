@@ -1,5 +1,5 @@
 ## v0.21.0
-- **Chore:** Use `jwt-bearer` grant to get a fresh token instead of `refresh_token`
+- **Deprecation:** KeyFlow `SetToken` and `GetToken` will be removed after 2026-07-01. Use GetAccessToken instead and rely on client refresh.
 - **Feature:** Support Workload Identity Federation flow
 
 ## v0.20.1
