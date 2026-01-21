@@ -2,16 +2,19 @@
 - `loadbalancer`: 
   - [v1.7.1](services/loadbalancer/CHANGELOG.md#v171)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.7.0](services/loadbalancer/CHANGELOG.md#v170)
     - **Feature:** Add new fields `MaxCredentials`, `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` Model
 - `ske`: 
   - [v1.6.1](services/ske/CHANGELOG.md#v161)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.6.0](services/ske/CHANGELOG.md#v160)
     - **Feature:** Add field `Identity` to model `ClusterStatus`
 - `observability`: 
   - [v0.16.1](services/observability/CHANGELOG.md#v0161)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v0.16.0](services/observability/CHANGELOG.md#v0160)
     - **Breaking change:** The `PartialUpdateAlertrules` takes now `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`.
     - **Breaking change:** The type of `Rules` in `CreateLogsAlertgroupsPayload` and `UpdateLogsAlertgroupPayload` has changed from `[]UpdateAlertgroupsRequestInnerRulesInner` to `[]CreateLogsAlertgroupsPayloadRulesInner`.
@@ -27,6 +30,7 @@
 - `secretsmanager`: 
   - [v0.14.1](services/secretsmanager/CHANGELOG.md#v0141)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v0.14.0](services/secretsmanager/CHANGELOG.md#v0140)
     - **Feature:** added KmsKey model
     - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
@@ -58,6 +62,7 @@
 - `sfs`:
   - [v0.2.1](services/sfs/CHANGELOG.md#v021)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v0.2.0](services/sfs/CHANGELOG.md)
     - **Breaking change:** Remove region configuration in `APIClient`
   - [v0.1.0](services/sfs/CHANGELOG.md#v010)
@@ -65,6 +70,7 @@
 - `scf`: 
   - [v0.4.1](services/scf/CHANGELOG.md#v041)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v0.4.0](services/scf/CHANGELOG.md#v040)
     - **Feature:** Add new model structs `SpaceWithIsolationSegment` and `SpaceWithIsolationSegmentAllOf`
   - [v0.3.0](services/scf/CHANGELOG.md#v030)
@@ -90,6 +96,7 @@
 - `kms`: 
   - [v1.2.1](services/kms/CHANGELOG.md#v121)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.2.0](services/kms/CHANGELOG.md#v120)
     - Set fields `Description` and `ImportOnly` to required in response struct `Key`
       - **Breaking change:** Constructor `NewKey` has new parameters `description` and `importOnly`
@@ -106,11 +113,13 @@
 - `sqlserverflex`:
   - [v1.4.1](services/sqlserverflex/CHANGELOG.md#v141)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
     - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 - `mongodbflex`:
   - [v1.5.6](services/mongodbflex/CHANGELOG.md#v156)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
     - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 - `authorization`: [v0.11.0](services/authorization/CHANGELOG.md#v0110)
@@ -118,39 +127,54 @@
 - `serverbackup`: 
   - [v1.3.6](services/serverbackup/CHANGELOG.md#v136)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.3.5](services/serverbackup/CHANGELOG.md#v135)
     - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
 - `runcommand`: 
   - [v1.4.1](services/runcommand/CHANGELOG.md#v141)
     - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.4.0](services/runcommand/CHANGELOG.md#v140)
     - **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
 - `serviceenablement`: [v1.2.5](services/serviceenablement/CHANGELOG.md#v125)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `serviceaccount`: [v0.11.4](services/serviceaccount/CHANGELOG.md#v0114)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `serverupdate`: [v1.2.4](services/serverupdate/CHANGELOG.md#v124)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `resourcemanager`: [v0.18.3](services/resourcemanager/CHANGELOG.md#v0183)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `redis`: [v0.25.4](services/redis/CHANGELOG.md#v0254)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `rabbitmq`: [v0.25.4](services/rabbitmq/CHANGELOG.md#v0254)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `postgresflex`: [v1.3.3](services/postgresflex/CHANGELOG.md#v133)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `opensearch`: [v0.24.4](services/opensearch/CHANGELOG.md#v0244)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `objectstorage`: [v1.4.3](services/objectstorage/CHANGELOG.md#v143)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `modelserving`: [v0.6.3](services/modelserving/CHANGELOG.md#v063)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `mariadb`: [v0.25.4](services/mariadb/CHANGELOG.md#v0254)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `logme`: [v0.25.4](services/logme/CHANGELOG.md#v0254)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `intake`: [v0.4.2](services/intake/CHANGELOG.md#v042)
   - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 
 ## Release (2025-12-05)
 - `alb`: 

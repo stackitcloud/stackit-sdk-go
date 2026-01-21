@@ -1,5 +1,6 @@
 ## v1.2.1
 - **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 
 ## v1.2.0
 - Set fields `Description` and `ImportOnly` to required in response struct `Key`

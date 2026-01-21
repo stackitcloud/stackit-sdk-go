@@ -1,5 +1,6 @@
 ## v1.4.1
 - **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 
 ## v1.4.0
 - **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
