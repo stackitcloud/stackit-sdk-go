@@ -1,3 +1,6 @@
+## v1.4.1
+- **Bugfix:** Correctly handle file closing for file uploads
+
 ## v1.4.0
 - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing 
 

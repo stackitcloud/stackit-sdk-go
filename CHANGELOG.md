@@ -80,8 +80,11 @@
   - Set fields `Description` and `PublicKey` to required in response struct `WrappingKey`
     - **Breaking change:** Constructor `NewWrappingKey` has new parameters `description` and `publicKey`
     - **Breaking change:** Remove methods `HasDescription` and `HasPublicKey` in `WrappingKey` model
-- `sqlserverflex`: [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
-  - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
+- `sqlserverflex`:
+  - [v1.4.1](services/sqlserverflex/CHANGELOG.md#v141)
+    - **Bugfix:** Correctly handle file closing for file uploads
+  - [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
+    - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
 - `mongodbflex`: [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
   - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
 - `authorization`: [v0.11.0](services/authorization/CHANGELOG.md#v0110)
