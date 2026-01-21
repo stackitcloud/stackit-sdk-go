@@ -19,7 +19,7 @@ var (
 
 // Continuously refreshes the token of an auth flow, retrying if the token API returns 5xx errrors. Writes to stderr when it terminates.
 //
-// To terminate this routine, close the context in flow.GetBackgroundTokenRefreshContext().
+// To terminate this routine, close the context in flow.getBackgroundTokenRefreshContext().
 func continuousRefreshToken(flow AuthFlow) {
 	refresher := &continuousTokenRefresher{
 		flow:                           flow,
@@ -41,7 +41,7 @@ type continuousTokenRefresher struct {
 
 // Continuously refreshes the token of an auth flow, retrying if the token API returns 5xx errrors. Always returns with a non-nil error.
 //
-// To terminate this routine, close the context in refresher.flow.GetBackgroundTokenRefreshContext().
+// To terminate this routine, close the context in refresher.flow.getBackgroundTokenRefreshContext().
 func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 	// Compute timestamp where we'll refresh token
 	// Access token may be empty at this point, we have to check it
@@ -59,7 +59,7 @@ func (refresher *continuousTokenRefresher) continuousRefreshToken() error {
 			return err
 		}
 
-		err = refresher.flow.GetBackgroundTokenRefreshContext().Err()
+		err = refresher.flow.getBackgroundTokenRefreshContext().Err()
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}
@@ -102,7 +102,7 @@ func (refresher *continuousTokenRefresher) getAccessTokenExpirationTimestamp() (
 
 func (refresher *continuousTokenRefresher) waitUntilTimestamp(timestamp time.Time) error {
 	for time.Now().Before(timestamp) {
-		err := refresher.flow.GetBackgroundTokenRefreshContext().Err()
+		err := refresher.flow.getBackgroundTokenRefreshContext().Err()
 		if err != nil {
 			return fmt.Errorf("check context: %w", err)
 		}

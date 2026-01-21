@@ -115,8 +115,8 @@ func (c *WorkloadIdentityFederationFlow) RoundTrip(req *http.Request) (*http.Res
 	return c.rt.RoundTrip(req)
 }
 
-// GetBackgroundTokenRefreshContext implements AuthFlow.
-func (c *WorkloadIdentityFederationFlow) GetBackgroundTokenRefreshContext() context.Context {
+// getBackgroundTokenRefreshContext implements AuthFlow.
+func (c *WorkloadIdentityFederationFlow) getBackgroundTokenRefreshContext() context.Context {
 	return c.config.BackgroundTokenRefreshContext
 }
 

@@ -234,7 +234,7 @@ func (c *KeyFlow) refreshAccessToken() error {
 	return c.recreateAccessToken()
 }
 
-func (c *KeyFlow) GetBackgroundTokenRefreshContext() context.Context {
+func (c *KeyFlow) getBackgroundTokenRefreshContext() context.Context {
 	return c.config.BackgroundTokenRefreshContext
 }
 

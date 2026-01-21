@@ -453,7 +453,7 @@ func (f *fakeAuthFlow) refreshAccessToken() error {
 	return err
 }
 
-func (f *fakeAuthFlow) GetBackgroundTokenRefreshContext() context.Context {
+func (f *fakeAuthFlow) getBackgroundTokenRefreshContext() context.Context {
 	return f.backgroundTokenRefreshContext
 }
 

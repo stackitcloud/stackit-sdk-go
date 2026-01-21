@@ -19,7 +19,7 @@ const (
 type AuthFlow interface {
 	RoundTrip(req *http.Request) (*http.Response, error)
 	GetAccessToken() (string, error)
-	GetBackgroundTokenRefreshContext() context.Context
+	getBackgroundTokenRefreshContext() context.Context
 	refreshAccessToken() error
 }
 
