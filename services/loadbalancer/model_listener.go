@@ -1,5 +1,5 @@
 /*
-Load Balancer API
+STACKIT Network Load Balancer API
 
 This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -301,7 +301,7 @@ type Listener struct {
 	Port ListenerGetPortAttributeType `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
 	Protocol ListenerGetProtocolAttributeType `json:"protocol,omitempty"`
-	// Server Name Idicators config for domains to be routed to the desired target pool for this listener.
+	// Server Name Indicators config for domains to be routed to the desired target pool for this listener.
 	ServerNameIndicators ListenerGetServerNameIndicatorsAttributeType `json:"serverNameIndicators,omitempty"`
 	// Reference target pool by target pool name.
 	TargetPool ListenerGetTargetPoolAttributeType `json:"targetPool,omitempty"`

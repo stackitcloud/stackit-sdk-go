@@ -113,24 +113,28 @@ type BackupVolumeBackupsInnerStatus string
 
 // List of Status
 const (
-	BACKUPVOLUMEBACKUPSINNERSTATUS_CREATING       BackupVolumeBackupsInnerStatus = "creating"
-	BACKUPVOLUMEBACKUPSINNERSTATUS_AVAILABLE      BackupVolumeBackupsInnerStatus = "available"
-	BACKUPVOLUMEBACKUPSINNERSTATUS_DELETING       BackupVolumeBackupsInnerStatus = "deleting"
-	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR          BackupVolumeBackupsInnerStatus = "error"
-	BACKUPVOLUMEBACKUPSINNERSTATUS_RESTORING      BackupVolumeBackupsInnerStatus = "restoring"
-	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_DELETING BackupVolumeBackupsInnerStatus = "error_deleting"
-	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_CREATING BackupVolumeBackupsInnerStatus = "error-creating"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_AVAILABLE       BackupVolumeBackupsInnerStatus = "available"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_CREATING        BackupVolumeBackupsInnerStatus = "creating"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_DELETING        BackupVolumeBackupsInnerStatus = "deleting"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_DELETING  BackupVolumeBackupsInnerStatus = "error-deleting"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR           BackupVolumeBackupsInnerStatus = "error"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_RESTORING BackupVolumeBackupsInnerStatus = "error-restoring"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_RESTORING       BackupVolumeBackupsInnerStatus = "restoring"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_ERROR_CREATING  BackupVolumeBackupsInnerStatus = "error-creating"
+	BACKUPVOLUMEBACKUPSINNERSTATUS_UNRECOGNIZED    BackupVolumeBackupsInnerStatus = "unrecognized"
 )
 
 // All allowed values of BackupVolumeBackupsInner enum
 var AllowedBackupVolumeBackupsInnerStatusEnumValues = []BackupVolumeBackupsInnerStatus{
-	"creating",
 	"available",
+	"creating",
 	"deleting",
+	"error-deleting",
 	"error",
+	"error-restoring",
 	"restoring",
-	"error_deleting",
 	"error-creating",
+	"unrecognized",
 }
 
 func (v *BackupVolumeBackupsInnerStatus) UnmarshalJSON(src []byte) error {

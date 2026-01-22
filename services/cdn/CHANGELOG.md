@@ -1,10 +1,52 @@
-## v2.1.1
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+## v1.9.2
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 
-## v2.1.0
+## v1.9.1
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
+## v1.9.0
+- **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
+- **Feature:** Add new function `GetLogsSearchFilters`
+- **Feature:** Add `WafAction` method to `ApiGetLogsRequest` struct
+- **Feature:** Add `Reason` field to `WafStatusRuleBlock` model struct
+- **Feature:** Add fields to `WafConfig` and `WafConfigPatch` model struct:
+  - `AllowedHttpMethods`
+  - `AllowedHttpVersions`
+  - `AllowedRequestContentTypes`
+  - `DisabledRuleCollectionIds`
+  - `DisabledRuleGroupIds`
+  - `DisabledRuleIds`
+  - `EnabledRuleCollectionIds`
+  - `EnabledRuleGroupIds`
+  - `EnabledRuleIds`
+  - `LogOnlyRuleCollectionIds`
+  - `LogOnlyRuleGroupIds`
+  - `LogOnlyRuleIds`
+  - `ParanoiaLevel`
+
+## v1.8.1
+- **Note: This release was formerly known as `v2.1.1` and was re-tagged, see statement below.**
+- Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+
+> [!IMPORTANT]
+> The 3 releases, which contained the previously tagged `v2.x.x` changes, are now re-released as `v1.7.0`, `v1.8.0` and `v1.8.1`.
+> We have retagged the releases as `v1.x.x` versions to avoid forcing a module path change on all consumers.
+>
+> **Reason:** According to [Go module conventions](https://go.dev/blog/v2-go-modules), major versions ≥2 require the module path to be updated with a `/v2` suffix (`github.com/stackitcloud/stackit-sdk-go/services/cdn`).
+>
+> **Impact:** By remaining at `v1`, all users can continue to import the module using the original, clean import path (`github.com/stackitcloud/stackit-sdk-go/services/cdn`) without needing to update their import statements.
+>
+> **Note: If you were trying to use any `v2.x.x` tag, please downgrade to `v1.7.0` or higher. There won't be any `v2.x.x` release in the near future of any STACKIT SDK module.**
+>
+> We apologize for any confusion caused by the `v2.x.x` tags. We have a linter in place to prevent this in the future.
+
+## v1.8.0
+- **Note: This release was formerly known as `v2.1.0` and was re-tagged, see statement above.**
 - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 
-## v2.0.0
+## v1.7.0
+- **Note: This release was formerly known as `v2.0.0` and was re-tagged, see statement above.**
 - **Feature:** Switch from `v1beta` CDN API version to `v1beta2` version.
 - **Breaking change:** Changed spelling from `WAF` to `Waf` in model struct names
   - `WAFStatusRuleBlock` -> `WafStatusRuleBlock`

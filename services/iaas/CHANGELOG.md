@@ -1,3 +1,18 @@
+## v1.3.1
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v1.3.0
+- **Feature:** Add `CreateIsolatedNetwork` functionality
+- **Feature:** Add `ImageFromVolumePayload` functionality
+- **Feature:** Add `SystemRoutes` to `UpdateRoutingTableOfAreaPayload`
+
+## v1.2.4
+- Bump STACKIT SDK resourcemanager module from `v0.18.1` to `v0.18.2`
+
+## v1.2.3
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v1.2.2
 - Bump STACKIT SDK resourcemanager module from `v0.18.0` to `v0.18.1`
 

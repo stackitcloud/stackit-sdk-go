@@ -1,5 +1,5 @@
 /*
-Load Balancer API
+STACKIT Network Load Balancer API
 
 This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the Load Balancer API API v2.0.0
+// APIClient manages communication with the STACKIT Network Load Balancer API API v2.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration
@@ -498,10 +498,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	if err != nil {
 		return err
 	}
-	err = file.Close()
-	if err != nil {
-		return err
-	}
+	defer file.Close()
 
 	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
 	if err != nil {

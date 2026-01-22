@@ -155,28 +155,26 @@ type BackupStatus string
 
 // List of Status
 const (
-	BACKUPSTATUS_CREATING       BackupStatus = "creating"
-	BACKUPSTATUS_AVAILABLE      BackupStatus = "available"
-	BACKUPSTATUS_DELETING       BackupStatus = "deleting"
-	BACKUPSTATUS_ERROR          BackupStatus = "error"
-	BACKUPSTATUS_RESTORING      BackupStatus = "restoring"
-	BACKUPSTATUS_ERROR_DELETING BackupStatus = "error_deleting"
-	BACKUPSTATUS_BACKING_UP     BackupStatus = "backing up"
-	BACKUPSTATUS_INCONSISTENT   BackupStatus = "inconsistent"
-	BACKUPSTATUS_ERROR_CREATING BackupStatus = "error-creating"
+	BACKUPSTATUS_IN_PROGRESS     BackupStatus = "in-progress"
+	BACKUPSTATUS_INCONSISTENT    BackupStatus = "inconsistent"
+	BACKUPSTATUS_AVAILABLE       BackupStatus = "available"
+	BACKUPSTATUS_ERROR           BackupStatus = "error"
+	BACKUPSTATUS_ERROR_RESTORING BackupStatus = "error-restoring"
+	BACKUPSTATUS_ERROR_CREATING  BackupStatus = "error-creating"
+	BACKUPSTATUS_ERROR_DELETING  BackupStatus = "error-deleting"
+	BACKUPSTATUS_UNRECOGNIZED    BackupStatus = "unrecognized"
 )
 
 // All allowed values of Backup enum
 var AllowedBackupStatusEnumValues = []BackupStatus{
-	"creating",
-	"available",
-	"deleting",
-	"error",
-	"restoring",
-	"error_deleting",
-	"backing up",
+	"in-progress",
 	"inconsistent",
+	"available",
+	"error",
+	"error-restoring",
 	"error-creating",
+	"error-deleting",
+	"unrecognized",
 }
 
 func (v *BackupStatus) UnmarshalJSON(src []byte) error {

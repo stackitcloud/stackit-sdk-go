@@ -1,5 +1,7 @@
 package utils
 
+import "os"
+
 // Ptr Returns the pointer to any type T
 func Ptr[T any](v T) *T {
 	return &v
@@ -26,4 +28,11 @@ func EnumSliceToStringSlice[T ~string](inputSlice []T) []string {
 	}
 
 	return result
+}
+
+func GetEnvOrDefault(envVar, defaultValue string) string {
+	if value := os.Getenv(envVar); value != "" {
+		return value
+	}
+	return defaultValue
 }

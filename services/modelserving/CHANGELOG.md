@@ -1,3 +1,10 @@
+## v0.6.3
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v0.6.2
+  - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v0.6.1
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 

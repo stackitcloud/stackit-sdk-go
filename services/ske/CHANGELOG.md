@@ -1,5 +1,19 @@
+## v1.6.1
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v1.6.0
+- **Feature:** Add field `Identity` to model `ClusterStatus`
+
+## v1.5.1
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
+## v1.5.0
+- **Feature:** Add `versionState` field to ListProviderOptionsRequest struct
+- **Feature:** Add new enum `GetProviderOptionsRequestVersionState`
+
 ## v1.4.1
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 
 ## v1.4.0
 - **Feature:** Add new field `Kubernetes` to `Nodepool` model
@@ -127,7 +141,7 @@
   - `StartCredentialsRotation`
   - `CompleteCredentialsRotation`
   - `CreateKubeconfig`
-  - These endpoints replace `GetCredentials` and `TriggerRotateCredentials`, which are **deprecated** and will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials#tabs-237293ce-f625-44ea-9d4f-689e31f596d6-1).
+  - These endpoints replace `GetCredentials` and `TriggerRotateCredentials`, which are **deprecated** and will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/products/runtime/kubernetes-engine/how-tos/rotate-ske-credentials/).
 
 ## v0.9.3 (2024-02-02)
 

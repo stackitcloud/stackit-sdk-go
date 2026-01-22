@@ -1,7 +1,7 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
-The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
+The SKE API provides endpoints to create, update or delete clusters within STACKIT projects and to trigger further cluster management tasks.
 
 API version: 2.0
 */
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the SKE-API API v2.0
+// APIClient manages communication with the STACKIT Kubernetes Engine API API v2.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration
@@ -501,10 +501,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	if err != nil {
 		return err
 	}
-	err = file.Close()
-	if err != nil {
-		return err
-	}
+	defer file.Close()
 
 	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
 	if err != nil {

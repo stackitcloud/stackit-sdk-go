@@ -1,3 +1,16 @@
+## v1.4.1
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v1.4.0
+- **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing 
+
+## v1.3.4
+  - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
+## v1.3.3
+- **Bugfix:** Adjust waiters to fail only in `Failure` or `Unknown` state
+
 ## v1.3.2
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 

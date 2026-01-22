@@ -8,12 +8,14 @@ use (
 	./examples/backgroundrefresh
 	./examples/configuration
 	./examples/dns
+	./examples/edge
 	./examples/errorhandling
 	./examples/iaas
 	./examples/intake
 	./examples/kms
 	./examples/loadbalancer
 	./examples/logme
+	./examples/logs
 	./examples/mariadb
 	./examples/middleware
 	./examples/mongodbflex
@@ -28,6 +30,7 @@ use (
 	./examples/secretsmanager
 	./examples/serviceaccount
 	./examples/serviceenablement
+	./examples/sfs
 	./examples/ske
 	./examples/sqlserverflex
 	./examples/waiter
@@ -38,6 +41,7 @@ use (
 	./services/cdn
 	./services/certificates
 	./services/dns
+	./services/edge
 	./services/git
 	./services/iaas
 	./services/iaasalpha
@@ -46,6 +50,7 @@ use (
 	./services/lbapplication
 	./services/loadbalancer
 	./services/logme
+	./services/logs
 	./services/mariadb
 	./services/modelserving
 	./services/mongodbflex
@@ -64,6 +69,7 @@ use (
 	./services/serverupdate
 	./services/serviceaccount
 	./services/serviceenablement
+	./services/sfs
 	./services/ske
 	./services/sqlserverflex
 	./services/stackitmarketplace

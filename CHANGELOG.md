@@ -1,73 +1,402 @@
-## Release (2025-XX-YY)
-- `alb`: [v0.7.2](services/alb/CHANGELOG.md#v072) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+## Release (2026-XX-YY)
+- `loadbalancer`: 
+  - [v1.7.1](services/loadbalancer/CHANGELOG.md#v171)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.7.0](services/loadbalancer/CHANGELOG.md#v170)
+    - **Feature:** Add new fields `MaxCredentials`, `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` Model
+- `ske`: 
+  - [v1.6.1](services/ske/CHANGELOG.md#v161)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.6.0](services/ske/CHANGELOG.md#v160)
+    - **Feature:** Add field `Identity` to model `ClusterStatus`
+- `observability`: 
+  - [v0.16.1](services/observability/CHANGELOG.md#v0161)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.16.0](services/observability/CHANGELOG.md#v0160)
+    - **Breaking change:** The `PartialUpdateAlertrules` takes now `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`.
+    - **Breaking change:** The type of `Rules` in `CreateLogsAlertgroupsPayload` and `UpdateLogsAlertgroupPayload` has changed from `[]UpdateAlertgroupsRequestInnerRulesInner` to `[]CreateLogsAlertgroupsPayloadRulesInner`.
+    - **Deprecation:** The `GrafanaAdminPassword` and `GrafanaAdminUser` fields are now deprecated in `InstanceSensitiveData` model
+    - **Feature:** Add `GrafanaAdminEnabled` to `CreateInstancePayload` and `UpdateInstancePayload` models.
+    - **Feature:** Add new field `record` in `UpdateAlertgroupsRequestInnerRulesInner` model
+    - **Feature:** Add `CertCheck` to `CertCheckResponse` model.
+    - **Feature:** Add `HttpCheck` to `HttpCheckResponse` model.
+    - **Feature:** Add new `CreateLogsAlertgroupsPayloadRulesInner` model.
+    - **Feature:** Add `allowAssignGrafanaAdmin` to `GrafanaOauth` and `UpdateGrafanaConfigsPayloadGenericOauth` models.
+    - **Feature:** Add `GrafanaAdminEnabled` to `InstanceSensitiveData` model.
+    - **Feature:** Add new `PartialUpdateAlertrulesRequestInner` model.
+- `secretsmanager`: 
+  - [v0.14.1](services/secretsmanager/CHANGELOG.md#v0141)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.14.0](services/secretsmanager/CHANGELOG.md#v0140)
+    - **Feature:** added KmsKey model
+    - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
+- `edge`:
+  - [v0.4.1](services/edge/CHANGELOG.md#v041)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.4.0](services/edge/CHANGELOG.md#v040)
+    - **Deprecation:** Deprecated API method `ListPlansGlobal`
+  - [v0.3.0](services/edge/CHANGELOG.md#v030)
+    - **Breaking change:** Rename methods: `PostInstances` to `CreateInstance` and `GetInstances` to `ListInstances`
+  - [v0.2.0](services/edge/CHANGELOG.md#v020)
+    - **Feature:** Add waiter methods for the API
+  - [v0.1.0](services/edge/CHANGELOG.md#v010)
+    - **New:** STACKIT Edge Cloud service
+- `alb`:
+  - [v0.9.1](services/alb/CHANGELOG.md#v091)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.9.0](services/alb/CHANGELOG.md#v090)
+    - **Feature:** Add new fields `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` model
+  - [v0.8.0](services/alb/CHANGELOG.md#v080)
+    - **Feature:** Switch from `v2beta` API version to `v2` version.
+    - **Feature:** `MaxCredentials` field added to `GetQuotaResponse`
+    - **Breaking change:** added `version` to LoadBalancer constructor
+    - **Breaking change:** renamed `exact` to `exactMatch` in Path model
+    - **Breaking change:** removed `pathPrefix` from Rule model
+- `certificates`: 
+  - [v1.2.1](services/certificates/CHANGELOG.md#v121)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.2.0](services/certificates/CHANGELOG.md#v120)
+    - **Feature:** Switch from `v2beta` API version to `v2` version.
+    - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
+- `core`: 
+  - [v0.21.0](core/CHANGELOG.md#v0210)
+    - **Deprecation:** KeyFlow `SetToken` and `GetToken` will be removed after 2026-07-01. Use GetAccessToken instead and rely on client refresh.
+    - **Feature:** Support Workload Identity Federation flow
+- `sfs`:
+  - [v0.2.1](services/sfs/CHANGELOG.md#v021)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.2.0](services/sfs/CHANGELOG.md)
+    - **Breaking change:** Remove region configuration in `APIClient`
+  - [v0.1.0](services/sfs/CHANGELOG.md#v010)
+    - **New**: STACKIT File Storage (SFS) service
+- `scf`: 
+  - [v0.4.1](services/scf/CHANGELOG.md#v041)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.4.0](services/scf/CHANGELOG.md#v040)
+    - **Feature:** Add new model structs `SpaceWithIsolationSegment` and `SpaceWithIsolationSegmentAllOf`
+  - [v0.3.0](services/scf/CHANGELOG.md#v030)
+    - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
+- `iaas`: 
+  - [v1.3.1](services/iaas/CHANGELOG.md#v131)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.3.0](services/iaas/CHANGELOG.md#v130)
+    - **Feature:** Add `CreateIsolatedNetwork` functionality
+    - **Feature:** Add `ImageFromVolumePayload` functionality
+    - **Feature:** Add `SystemRoutes` to `UpdateRoutingTableOfAreaPayload`
+  - [v1.2.4](services/iaas/CHANGELOG.md#v124)
+    - Bump STACKIT SDK resourcemanager module from `v0.18.1` to `v0.18.2`
+- `logs`:
+  - [v0.4.0](services/logs/CHANGELOG.md#v040)
+    - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
+  - [v0.3.0](services/logs/CHANGELOG.md#v030)
+    - **Feature:** Add new wait handlers for instance creation (`CreateLogsInstanceWaitHandler`), and instance deletion (`DeleteLogsInstanceWaitHandler`)
+  - [v0.2.0](services/logs/CHANGELOG.md#v020)
+    - **Feature:** Add support for access token GET endpoint
+  - [v0.1.1](services/logs/CHANGELOG.md#v011)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.1.0](services/logs/CHANGELOG.md#v010)
+    - **New:** API for logs service
+- `kms`: 
+  - [v1.2.1](services/kms/CHANGELOG.md#v121)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.2.0](services/kms/CHANGELOG.md#v120)
+    - Set fields `Description` and `ImportOnly` to required in response struct `Key`
+      - **Breaking change:** Constructor `NewKey` has new parameters `description` and `importOnly`
+      - **Breaking change:** Remove methods `HasDescription` and `GetImportOnly` in `Key` model
+    - Set field `Description` to required in response struct `KeyRing`
+      - **Breaking change:** Constructor `NewKeyRing` has new parameter `description`
+      - **Breaking change:** Remove method `HasDescription` in `KeyRing` model
+    - Set field `Disabled` to required in response struct `Version`
+      - **Breaking change:** Constructor `NewVersion` has new parameter `disabled`
+      - **Breaking change:** Remove method `HasDisabled` in `Version` model
+    - Set fields `Description` and `PublicKey` to required in response struct `WrappingKey`
+      - **Breaking change:** Constructor `NewWrappingKey` has new parameters `description` and `publicKey`
+      - **Breaking change:** Remove methods `HasDescription` and `HasPublicKey` in `WrappingKey` model
+- `sqlserverflex`:
+  - [v1.4.1](services/sqlserverflex/CHANGELOG.md#v141)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.4.0](services/sqlserverflex/CHANGELOG.md#v140)
+    - **Breaking change:** Add region parameter in `ListMetrics` method. Previously the method failed, because the region parameter was missing
+- `mongodbflex`:
+  - [v1.5.6](services/mongodbflex/CHANGELOG.md#v156)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
+    - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
+- `authorization`: 
+  - [v0.11.1](services/authorization/CHANGELOG.md#v0111)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.11.0](services/authorization/CHANGELOG.md#v0110)
+    - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
+- `serverbackup`: 
+  - [v1.3.6](services/serverbackup/CHANGELOG.md#v136)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.3.5](services/serverbackup/CHANGELOG.md#v135)
+    - **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
+- `runcommand`: 
+  - [v1.4.1](services/runcommand/CHANGELOG.md#v141)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.4.0](services/runcommand/CHANGELOG.md#v140)
+    - **Bugfix:** Rename field `ParameterSchema` to `ParametersSchema` in `CommandTemplateSchema` model to match the actually attribute sent by the api
+- `serviceenablement`: [v1.2.5](services/serviceenablement/CHANGELOG.md#v125)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `serviceaccount`: [v0.11.4](services/serviceaccount/CHANGELOG.md#v0114)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `serverupdate`: [v1.2.4](services/serverupdate/CHANGELOG.md#v124)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `resourcemanager`: [v0.18.3](services/resourcemanager/CHANGELOG.md#v0183)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `redis`: [v0.25.4](services/redis/CHANGELOG.md#v0254)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `rabbitmq`: [v0.25.4](services/rabbitmq/CHANGELOG.md#v0254)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `postgresflex`: [v1.3.3](services/postgresflex/CHANGELOG.md#v133)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `opensearch`: [v0.24.4](services/opensearch/CHANGELOG.md#v0244)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `objectstorage`: [v1.4.3](services/objectstorage/CHANGELOG.md#v143)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `modelserving`: [v0.6.3](services/modelserving/CHANGELOG.md#v063)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `mariadb`: [v0.25.4](services/mariadb/CHANGELOG.md#v0254)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `logme`: [v0.25.4](services/logme/CHANGELOG.md#v0254)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `intake`: [v0.4.2](services/intake/CHANGELOG.md#v042)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `dns`: [v0.17.4](services/dns/CHANGELOG.md#v0174)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `cdn`: [v1.9.2](services/cdn/CHANGELOG.md#v192)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `auditlog`: [v0.1.3](services/auditlog/CHANGELOG.md#v013)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## Release (2025-12-05)
+- `alb`: 
+  - [v0.7.3](services/alb/CHANGELOG.md#v073) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.7.2](services/alb/CHANGELOG.md#v072) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `archiving`: [v0.2.2](services/archiving/CHANGELOG.md#v022) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `auditlog`: [v0.1.1](services/auditlog/CHANGELOG.md#v011) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `authorization`: [v0.9.1](services/authorization/CHANGELOG.md#v091) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `cdn`: [v2.1.1](services/cdn/CHANGELOG.md#v211) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `certificates`: [v1.1.2](services/certificates/CHANGELOG.md#v112) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `dns`: [v0.17.2](services/dns/CHANGELOG.md#v0172) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `git`: [v0.9.1](services/git/CHANGELOG.md#v091) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `iaas`: 
+- `auditlog`:
+  - [v0.1.2](services/auditlog/CHANGELOG.md#v012)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.1.1](services/auditlog/CHANGELOG.md#v011)
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `authorization`:
+  - [v0.10.1](services/authorization/CHANGELOG.md#v0101)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.10.0](services/authorization/CHANGELOG.md#v0100) 
+    - Add `Etag` field to `Role` model struct
+  - [v0.9.1](services/authorization/CHANGELOG.md#v091) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `cdn`:
+  - [v1.9.1](services/cdn/CHANGELOG.md#v191)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.9.0](services/cdn/CHANGELOG.md#v190)
+    - **Feature:** Switch from `v1beta2` CDN API version to `v1` version.
+    - **Feature:** Add new function `GetLogsSearchFilters`
+    - **Feature:** Add `WafAction` method to `ApiGetLogsRequest` struct
+    - **Feature:** Add `Reason` field to `WafStatusRuleBlock` model struct
+    - **Feature:** Add fields to `WafConfig` and `WafConfigPatch` model struct:
+      - `AllowedHttpMethods`
+      - `AllowedHttpVersions`
+      - `AllowedRequestContentTypes`
+      - `DisabledRuleCollectionIds`
+      - `DisabledRuleGroupIds`
+      - `DisabledRuleIds`
+      - `EnabledRuleCollectionIds`
+      - `EnabledRuleGroupIds`
+      - `EnabledRuleIds`
+      - `LogOnlyRuleCollectionIds`
+      - `LogOnlyRuleGroupIds`
+      - `LogOnlyRuleIds`
+      - `ParanoiaLevel` 
+  - [v1.8.1](services/cdn/CHANGELOG.md#v181) (formerly `v2.1.1`)
+    - **Note: This release was formerly known as `v2.1.1` and was re-tagged as `v1.8.1`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `certificates`:
+  - [v1.1.3](services/certificates/CHANGELOG.md#v113)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.1.2](services/certificates/CHANGELOG.md#v112) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `dns`:
+  - [v0.17.3](services/dns/CHANGELOG.md#v0173)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.17.2](services/dns/CHANGELOG.md#v0172) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `git`:
+  - [v0.10.1](services/git/CHANGELOG.md#v0101) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.10.0](services/git/CHANGELOG.md#v0100)
+    - **Breaking Change:** Replace `PatchOperation` by `PatchInstancePayload` in `ApiPatchInstanceRequest` struct
+    - **Breaking Change:** Replace `CreateInstancePayloadFlavor` enums by `InstanceFlavor`
+  - [v0.9.1](services/git/CHANGELOG.md#v091) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `iaas`:
+  - [v1.2.3](services/iaas/CHANGELOG.md#v123) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
   - [v1.2.2](services/iaas/CHANGELOG.md#v122) 
     - Bump STACKIT SDK resourcemanager module from `v0.18.0` to `v0.18.1`
   - [v1.2.1](services/iaas/CHANGELOG.md#v121) 
     - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `intake`: [v0.3.1](services/intake/CHANGELOG.md#v031) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `kms`: [v1.1.1](services/kms/CHANGELOG.md#v111) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `lbapplication`: [v0.5.2](services/lbapplication/CHANGELOG.md#v052) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `loadbalancer`: [v1.6.1](services/loadbalancer/CHANGELOG.md#v161) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `logme`: [v0.25.2](services/logme/CHANGELOG.md#v0252) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `mariadb`: [v0.25.2](services/mariadb/CHANGELOG.md#v0252) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `modelserving`: [v0.6.1](services/modelserving/CHANGELOG.md#v061) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `mongodbflex`: [v1.5.3](services/mongodbflex/CHANGELOG.md#v153) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `objectstorage`: [v1.4.1](services/objectstorage/CHANGELOG.md#v141) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `intake`:
+  - [v0.4.1](services/intake/CHANGELOG.md#v041)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.4.0](services/intake/CHANGELOG.md#v040) 
+    - **Feature:** Add new enum type `PartitioningUpdateType`
+    - **Feature:** Add fields `PartitionBy` and `Partitioning` to `IntakeCatalogPatch` model struct
+  - [v0.3.1](services/intake/CHANGELOG.md#v031) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `kms`:
+  - [v1.1.2](services/kms/CHANGELOG.md#v112)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.1.1](services/kms/CHANGELOG.md#v111) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `lbapplication`:
+  - [v0.5.3](services/lbapplication/CHANGELOG.md#v053) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.5.2](services/lbapplication/CHANGELOG.md#v052) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `loadbalancer`:
+  - [v1.6.2](services/loadbalancer/CHANGELOG.md#v162) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.6.1](services/loadbalancer/CHANGELOG.md#v161) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `logme`:
+  - [v0.25.3](services/logme/CHANGELOG.md#v0253) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.25.2](services/logme/CHANGELOG.md#v0252) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `mariadb`:
+  - [v0.25.3](services/mariadb/CHANGELOG.md#v0253)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.25.2](services/mariadb/CHANGELOG.md#v0252) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `modelserving`:
+  - [v0.6.2](services/modelserving/CHANGELOG.md#v062)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.6.1](services/modelserving/CHANGELOG.md#v061) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `mongodbflex`:
+  - [v1.5.4](services/mongodbflex/CHANGELOG.md#v154)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.5.3](services/mongodbflex/CHANGELOG.md#v153) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `objectstorage`:
+  - [v1.4.2](services/objectstorage/CHANGELOG.md#v142)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.4.1](services/objectstorage/CHANGELOG.md#v141) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `observability`: [v0.15.1](services/observability/CHANGELOG.md#v0151) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `opensearch`: [v0.24.2](services/opensearch/CHANGELOG.md#v0242) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `postgresflex`: [v1.3.1](services/postgresflex/CHANGELOG.md#v131) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `rabbitmq`: [v0.25.2](services/rabbitmq/CHANGELOG.md#v0252) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `redis`: [v0.25.2](services/redis/CHANGELOG.md#v0252) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `resourcemanager`: [v0.18.1](services/resourcemanager/CHANGELOG.md#v0181) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `runcommand`: [v1.3.2](services/runcommand/CHANGELOG.md#v132) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `scf`: [v0.2.2](services/scf/CHANGELOG.md#v022) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `secretsmanager`: [v0.13.2](services/secretsmanager/CHANGELOG.md#v0132) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `serverbackup`: [v1.3.3](services/serverbackup/CHANGELOG.md#v133) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `serverupdate`: [v1.2.2](services/serverupdate/CHANGELOG.md#v122) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `serviceaccount`: [v0.11.2](services/serviceaccount/CHANGELOG.md#v0112) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `serviceenablement`: [v1.2.3](services/serviceenablement/CHANGELOG.md#v123) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `ske`: [v1.4.1](services/ske/CHANGELOG.md#v141) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
-- `sqlserverflex`: [v1.3.2](services/sqlserverflex/CHANGELOG.md#v132) 
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `opensearch`:
+  - [v0.24.3](services/opensearch/CHANGELOG.md#v0243) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.24.2](services/opensearch/CHANGELOG.md#v0242) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `postgresflex`:
+  - [v1.3.2](services/postgresflex/CHANGELOG.md#v132)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.3.1](services/postgresflex/CHANGELOG.md#v131) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `rabbitmq`:
+  - [v0.25.3](services/rabbitmq/CHANGELOG.md#v0253)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.25.2](services/rabbitmq/CHANGELOG.md#v0252) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `redis`:
+  - [v0.25.3](services/redis/CHANGELOG.md#v0253)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.25.2](services/redis/CHANGELOG.md#v0252) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `resourcemanager`:
+  - [v0.18.2](services/resourcemanager/CHANGELOG.md#v0182)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.18.1](services/resourcemanager/CHANGELOG.md#v0181) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `runcommand`:
+  - [v1.3.3](services/runcommand/CHANGELOG.md#v133)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.3.2](services/runcommand/CHANGELOG.md#v132) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `scf`:
+  - [v0.2.3](services/scf/CHANGELOG.md#v023)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.2.2](services/scf/CHANGELOG.md#v022) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `secretsmanager`:
+  - [v0.13.3](services/secretsmanager/CHANGELOG.md#v0133)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.13.2](services/secretsmanager/CHANGELOG.md#v0132) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serverbackup`:
+  - [v1.3.4](services/serverbackup/CHANGELOG.md#v134)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.3.3](services/serverbackup/CHANGELOG.md#v133) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serverupdate`:
+  - [v1.2.3](services/serverupdate/CHANGELOG.md#v123)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.2.2](services/serverupdate/CHANGELOG.md#v122) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serviceaccount`:
+  - [v0.11.3](services/serviceaccount/CHANGELOG.md#v0113) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v0.11.2](services/serviceaccount/CHANGELOG.md#v0112) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `serviceenablement`:
+  - [v1.2.4](services/serviceenablement/CHANGELOG.md#v124)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.2.3](services/serviceenablement/CHANGELOG.md#v123) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `ske`:
+  - [v1.5.1](services/ske/CHANGELOG.md#v151) 
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.5.0](services/ske/CHANGELOG.md#v150) 
+    - **Feature:** Add `versionState` field to ListProviderOptionsRequest struct
+    - **Feature:** Add new enum `GetProviderOptionsRequestVersionState`
+  - [v1.4.1](services/ske/CHANGELOG.md#v141) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- `sqlserverflex`:
+  - [v1.3.4](services/sqlserverflex/CHANGELOG.md#v134)
+    - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+  - [v1.3.3](services/sqlserverflex/CHANGELOG.md#v133)
+    - **Bugfix:** Adjust waiters to fail only in `Failure` or `Unknown` state
+  - [v1.3.2](services/sqlserverflex/CHANGELOG.md#v132) 
+    - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `stackitmarketplace`: [v1.17.1](services/stackitmarketplace/CHANGELOG.md#v1171) 
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 - `core`: [v0.20.0](core/CHANGELOG.md#v0200)
@@ -91,7 +420,8 @@
     - **Feature:** Add new field `ImportProgress` to `Image` model, which indicates the import progress of an image
   - [v1.1.0](services/iaas/CHANGELOG.md#v110)
     - **Breaking Change:** Removal of unused model structs: `Area`, `AreaConfig`, `AreaPrefixConfigIPv4`, `UpdateAreaIPv4`, `NetworkAreaIPv4`, `CreateAreaAddressFamily`, `CreateAreaIPv4`, `CreateNetworkAddressFamily`, `CreateNetworkIPv4Body`, `CreateNetworkIPv6Body`, `CreateServerPayloadBootVolume`, `CreateServerPayloadNetworking`, `NullableUpdateAreaAddressFamily`, `CreateServerPayloadNetworking`, `UpdateNetworkAddressFamily`, `CreateServerPayloadNetworking`, `CreateServerPayloadNetworking`
-- `cdn`: [v2.1.0](services/cdn/CHANGELOG.md#v210)
+- `cdn`: [v1.8.0](services/cdn/CHANGELOG.md#v180) (formerly `v2.1.0`)
+  - **Note: This release was formerly known as `v2.1.0` and was re-tagged as `v1.8.0`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
   - **Breaking change:** Removal of unused model structs: `GetLogsSearchFiltersResponse`, `PatchLokiLogSink`
 - `kms`: [v1.1.0](services/kms/CHANGELOG.md#v110)
   - **Bugfix:** Ensure correct state checking in `DisableKeyVersionWaitHandler` and `EnableKeyVersionWaitHandler`
@@ -132,7 +462,8 @@
   - **Feature:** Add support for list runner labels operation
     - new API client methods `ListRunnerLabels` and `ListRunnerLabelsExecute`
     - new model struct `RunnerLabel`
-- `cdn`: [v2.0.0](services/cdn/CHANGELOG.md#v200)
+- `cdn`: [v1.7.0](services/cdn/CHANGELOG.md#v170) (formerly `v2.0.0`)
+  - **Note: This release was formerly known as `v2.0.0` and was re-tagged as `v1.7.0`, see statement in the [changelog of the STACKIT CDN SDK module](services/cdn/CHANGELOG).**
   - **Feature:** Switch from `v1beta` CDN API version to `v1beta2` version.
   - **Breaking change:** Changed spelling from `WAF` to `Waf` in model struct names
     - `WAFStatusRuleBlock` -> `WafStatusRuleBlock`
@@ -1684,7 +2015,7 @@
     - `StartCredentialsRotation`
     - `CompleteCredentialsRotation`
     - `CreateKubeconfig`
-    - These endpoints replace `GetCredentials` and `TriggerRotateCredentials`, which are **deprecated** and will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/display/STACKIT/How+to+rotate+SKE+credentials#tabs-237293ce-f625-44ea-9d4f-689e31f596d6-1).
+    - These endpoints replace `GetCredentials` and `TriggerRotateCredentials`, which are **deprecated** and will not work for clusters with Kubernetes v1.27+, or if the new endpoints for kubeconfig or credentials rotation have already been used. For more information, see [How to rotate SKE credentials](https://docs.stackit.cloud/products/runtime/kubernetes-engine/how-tos/rotate-ske-credentials/).
 
 ## Release (2024-02-05)
 

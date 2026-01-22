@@ -1,5 +1,5 @@
 /*
-IaaS-API
+STACKIT IaaS API
 
 This API allows you to create and modify IaaS resources.
 
@@ -253,7 +253,7 @@ type Network struct {
 	Id   NetworkGetIdAttributeType   `json:"id" required:"true"`
 	Ipv4 NetworkGetIpv4AttributeType `json:"ipv4,omitempty"`
 	Ipv6 NetworkGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels NetworkGetLabelsAttributeType `json:"labels,omitempty"`
 	// REQUIRED
 	Name NetworkGetNameAttributeType `json:"name" required:"true"`

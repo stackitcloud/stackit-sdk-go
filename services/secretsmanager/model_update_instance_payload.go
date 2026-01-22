@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &UpdateInstancePayload{}
 
 /*
+	types and functions for kmsKey
+*/
+
+// isModel
+type UpdateInstancePayloadGetKmsKeyAttributeType = *KmsKeyPayload
+type UpdateInstancePayloadGetKmsKeyArgType = KmsKeyPayload
+type UpdateInstancePayloadGetKmsKeyRetType = KmsKeyPayload
+
+func getUpdateInstancePayloadGetKmsKeyAttributeTypeOk(arg UpdateInstancePayloadGetKmsKeyAttributeType) (ret UpdateInstancePayloadGetKmsKeyRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setUpdateInstancePayloadGetKmsKeyAttributeType(arg *UpdateInstancePayloadGetKmsKeyAttributeType, val UpdateInstancePayloadGetKmsKeyRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -40,6 +60,7 @@ type UpdateInstancePayloadGetNameRetType = string
 
 // UpdateInstancePayload struct for UpdateInstancePayload
 type UpdateInstancePayload struct {
+	KmsKey UpdateInstancePayloadGetKmsKeyAttributeType `json:"kmsKey,omitempty"`
 	// A user chosen name to distinguish multiple secrets manager instances.
 	// REQUIRED
 	Name UpdateInstancePayloadGetNameAttributeType `json:"name" required:"true"`
@@ -65,6 +86,29 @@ func NewUpdateInstancePayloadWithDefaults() *UpdateInstancePayload {
 	return &this
 }
 
+// GetKmsKey returns the KmsKey field value if set, zero value otherwise.
+func (o *UpdateInstancePayload) GetKmsKey() (res UpdateInstancePayloadGetKmsKeyRetType) {
+	res, _ = o.GetKmsKeyOk()
+	return
+}
+
+// GetKmsKeyOk returns a tuple with the KmsKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInstancePayload) GetKmsKeyOk() (ret UpdateInstancePayloadGetKmsKeyRetType, ok bool) {
+	return getUpdateInstancePayloadGetKmsKeyAttributeTypeOk(o.KmsKey)
+}
+
+// HasKmsKey returns a boolean if a field has been set.
+func (o *UpdateInstancePayload) HasKmsKey() bool {
+	_, ok := o.GetKmsKeyOk()
+	return ok
+}
+
+// SetKmsKey gets a reference to the given KmsKeyPayload and assigns it to the KmsKey field.
+func (o *UpdateInstancePayload) SetKmsKey(v UpdateInstancePayloadGetKmsKeyRetType) {
+	setUpdateInstancePayloadGetKmsKeyAttributeType(&o.KmsKey, v)
+}
+
 // GetName returns the Name field value
 func (o *UpdateInstancePayload) GetName() (ret UpdateInstancePayloadGetNameRetType) {
 	ret, _ = o.GetNameOk()
@@ -84,6 +128,9 @@ func (o *UpdateInstancePayload) SetName(v UpdateInstancePayloadGetNameRetType) {
 
 func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getUpdateInstancePayloadGetKmsKeyAttributeTypeOk(o.KmsKey); ok {
+		toSerialize["KmsKey"] = val
+	}
 	if val, ok := getUpdateInstancePayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
 	}

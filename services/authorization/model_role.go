@@ -39,6 +39,27 @@ type RoleGetDescriptionArgType = string
 type RoleGetDescriptionRetType = string
 
 /*
+	types and functions for etag
+*/
+
+// isNotNullableString
+type RoleGetEtagAttributeType = *string
+
+func getRoleGetEtagAttributeTypeOk(arg RoleGetEtagAttributeType) (ret RoleGetEtagRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setRoleGetEtagAttributeType(arg *RoleGetEtagAttributeType, val RoleGetEtagRetType) {
+	*arg = &val
+}
+
+type RoleGetEtagArgType = string
+type RoleGetEtagRetType = string
+
+/*
 	types and functions for id
 */
 
@@ -104,6 +125,7 @@ func setRoleGetPermissionsAttributeType(arg *RoleGetPermissionsAttributeType, va
 type Role struct {
 	// REQUIRED
 	Description RoleGetDescriptionAttributeType `json:"description" required:"true"`
+	Etag        RoleGetEtagAttributeType        `json:"etag,omitempty"`
 	Id          RoleGetIdAttributeType          `json:"id,omitempty"`
 	// REQUIRED
 	Name RoleGetNameAttributeType `json:"name" required:"true"`
@@ -148,6 +170,29 @@ func (o *Role) GetDescriptionOk() (ret RoleGetDescriptionRetType, ok bool) {
 // SetDescription sets field value
 func (o *Role) SetDescription(v RoleGetDescriptionRetType) {
 	setRoleGetDescriptionAttributeType(&o.Description, v)
+}
+
+// GetEtag returns the Etag field value if set, zero value otherwise.
+func (o *Role) GetEtag() (res RoleGetEtagRetType) {
+	res, _ = o.GetEtagOk()
+	return
+}
+
+// GetEtagOk returns a tuple with the Etag field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Role) GetEtagOk() (ret RoleGetEtagRetType, ok bool) {
+	return getRoleGetEtagAttributeTypeOk(o.Etag)
+}
+
+// HasEtag returns a boolean if a field has been set.
+func (o *Role) HasEtag() bool {
+	_, ok := o.GetEtagOk()
+	return ok
+}
+
+// SetEtag gets a reference to the given string and assigns it to the Etag field.
+func (o *Role) SetEtag(v RoleGetEtagRetType) {
+	setRoleGetEtagAttributeType(&o.Etag, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -211,6 +256,9 @@ func (o Role) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getRoleGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
+	}
+	if val, ok := getRoleGetEtagAttributeTypeOk(o.Etag); ok {
+		toSerialize["Etag"] = val
 	}
 	if val, ok := getRoleGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val

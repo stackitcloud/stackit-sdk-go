@@ -1,3 +1,13 @@
+## v1.3.6
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v1.3.5
+- **Bugfix:** Update backup status codes to match the backup status codes actually returned by the server backup API
+
+## v1.3.4
+  - Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v1.3.3
   - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 

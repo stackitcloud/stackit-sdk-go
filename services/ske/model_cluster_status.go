@@ -1,7 +1,7 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
-The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
+The SKE API provides endpoints to create, update or delete clusters within STACKIT projects and to trigger further cluster management tasks.
 
 API version: 2.0
 */
@@ -159,6 +159,27 @@ func setClusterStatusgetHibernatedAttributeType(arg *ClusterStatusgetHibernatedA
 }
 
 /*
+	types and functions for identity
+*/
+
+// isNotNullableString
+type ClusterStatusGetIdentityAttributeType = *string
+
+func getClusterStatusGetIdentityAttributeTypeOk(arg ClusterStatusGetIdentityAttributeType) (ret ClusterStatusGetIdentityRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setClusterStatusGetIdentityAttributeType(arg *ClusterStatusGetIdentityAttributeType, val ClusterStatusGetIdentityRetType) {
+	*arg = &val
+}
+
+type ClusterStatusGetIdentityArgType = string
+type ClusterStatusGetIdentityRetType = string
+
+/*
 	types and functions for podAddressRanges
 */
 
@@ -189,6 +210,7 @@ type ClusterStatus struct {
 	Error               ClusterStatusGetErrorAttributeType               `json:"error,omitempty"`
 	Errors              ClusterStatusGetErrorsAttributeType              `json:"errors,omitempty"`
 	Hibernated          ClusterStatusgetHibernatedAttributeType          `json:"hibernated,omitempty"`
+	Identity            ClusterStatusGetIdentityAttributeType            `json:"identity,omitempty"`
 	// The network ranges (in CIDR notation) used by pods of the cluster.
 	PodAddressRanges ClusterStatusGetPodAddressRangesAttributeType `json:"podAddressRanges,omitempty"`
 }
@@ -373,6 +395,29 @@ func (o *ClusterStatus) SetHibernated(v ClusterStatusgetHibernatedRetType) {
 	setClusterStatusgetHibernatedAttributeType(&o.Hibernated, v)
 }
 
+// GetIdentity returns the Identity field value if set, zero value otherwise.
+func (o *ClusterStatus) GetIdentity() (res ClusterStatusGetIdentityRetType) {
+	res, _ = o.GetIdentityOk()
+	return
+}
+
+// GetIdentityOk returns a tuple with the Identity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetIdentityOk() (ret ClusterStatusGetIdentityRetType, ok bool) {
+	return getClusterStatusGetIdentityAttributeTypeOk(o.Identity)
+}
+
+// HasIdentity returns a boolean if a field has been set.
+func (o *ClusterStatus) HasIdentity() bool {
+	_, ok := o.GetIdentityOk()
+	return ok
+}
+
+// SetIdentity gets a reference to the given string and assigns it to the Identity field.
+func (o *ClusterStatus) SetIdentity(v ClusterStatusGetIdentityRetType) {
+	setClusterStatusGetIdentityAttributeType(&o.Identity, v)
+}
+
 // GetPodAddressRanges returns the PodAddressRanges field value if set, zero value otherwise.
 func (o *ClusterStatus) GetPodAddressRanges() (res ClusterStatusGetPodAddressRangesRetType) {
 	res, _ = o.GetPodAddressRangesOk()
@@ -418,6 +463,9 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getClusterStatusgetHibernatedAttributeTypeOk(o.Hibernated); ok {
 		toSerialize["Hibernated"] = val
+	}
+	if val, ok := getClusterStatusGetIdentityAttributeTypeOk(o.Identity); ok {
+		toSerialize["Identity"] = val
 	}
 	if val, ok := getClusterStatusGetPodAddressRangesAttributeTypeOk(o.PodAddressRanges); ok {
 		toSerialize["PodAddressRanges"] = val

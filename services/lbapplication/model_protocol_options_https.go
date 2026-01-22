@@ -1,5 +1,5 @@
 /*
-Application Load Balancer API
+STACKIT Application Load Balancer API
 
 ### DEPRECATED! This service, lb-application, is no longer maintained. Please use the alb service, version v2beta2 instead  This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each application load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -37,7 +37,7 @@ func setProtocolOptionsHTTPSGetCertificateConfigAttributeType(arg *ProtocolOptio
 	*arg = &val
 }
 
-// ProtocolOptionsHTTPS struct for ProtocolOptionsHTTPS
+// ProtocolOptionsHTTPS ProtocolOptionsHTTPS options to be configured for the PROTOCOL_HTTPS protocol.
 type ProtocolOptionsHTTPS struct {
 	CertificateConfig ProtocolOptionsHTTPSGetCertificateConfigAttributeType `json:"certificateConfig,omitempty"`
 }

@@ -1,5 +1,5 @@
 /*
-IaaS-API
+STACKIT IaaS API
 
 This API allows you to create and modify IaaS resources.
 
@@ -78,6 +78,26 @@ func setAddRoutingTableToAreaPayloadGetDescriptionAttributeType(arg *AddRoutingT
 
 type AddRoutingTableToAreaPayloadGetDescriptionArgType = string
 type AddRoutingTableToAreaPayloadGetDescriptionRetType = string
+
+/*
+	types and functions for dynamicRoutes
+*/
+
+// isBoolean
+type AddRoutingTableToAreaPayloadgetDynamicRoutesAttributeType = *bool
+type AddRoutingTableToAreaPayloadgetDynamicRoutesArgType = bool
+type AddRoutingTableToAreaPayloadgetDynamicRoutesRetType = bool
+
+func getAddRoutingTableToAreaPayloadgetDynamicRoutesAttributeTypeOk(arg AddRoutingTableToAreaPayloadgetDynamicRoutesAttributeType) (ret AddRoutingTableToAreaPayloadgetDynamicRoutesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setAddRoutingTableToAreaPayloadgetDynamicRoutesAttributeType(arg *AddRoutingTableToAreaPayloadgetDynamicRoutesAttributeType, val AddRoutingTableToAreaPayloadgetDynamicRoutesRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for id
@@ -189,13 +209,16 @@ type AddRoutingTableToAreaPayload struct {
 	Default AddRoutingTableToAreaPayloadgetDefaultAttributeType `json:"default,omitempty"`
 	// Description Object. Allows string up to 255 Characters.
 	Description AddRoutingTableToAreaPayloadGetDescriptionAttributeType `json:"description,omitempty"`
+	// A config setting for a routing table which allows propagation of dynamic routes to this routing table.
+	DynamicRoutes AddRoutingTableToAreaPayloadgetDynamicRoutesAttributeType `json:"dynamicRoutes,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id AddRoutingTableToAreaPayloadGetIdAttributeType `json:"id,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^[a-z]((-|_|[a-z0-9])){0,62}$`. Regex for values: `^(-|_|[a-z0-9]){0,63}$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
 	Labels AddRoutingTableToAreaPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
-	Name         AddRoutingTableToAreaPayloadGetNameAttributeType         `json:"name" required:"true"`
+	Name AddRoutingTableToAreaPayloadGetNameAttributeType `json:"name" required:"true"`
+	// A config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.
 	SystemRoutes AddRoutingTableToAreaPayloadgetSystemRoutesAttributeType `json:"systemRoutes,omitempty"`
 	// Date-time when resource was last updated.
 	UpdatedAt AddRoutingTableToAreaPayloadGetUpdatedAtAttributeType `json:"updatedAt,omitempty"`
@@ -218,6 +241,8 @@ func NewAddRoutingTableToAreaPayload(name AddRoutingTableToAreaPayloadGetNameArg
 // but it doesn't guarantee that properties required by API are set
 func NewAddRoutingTableToAreaPayloadWithDefaults() *AddRoutingTableToAreaPayload {
 	this := AddRoutingTableToAreaPayload{}
+	var dynamicRoutes bool = true
+	this.DynamicRoutes = &dynamicRoutes
 	var systemRoutes bool = true
 	this.SystemRoutes = &systemRoutes
 	return &this
@@ -290,6 +315,29 @@ func (o *AddRoutingTableToAreaPayload) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *AddRoutingTableToAreaPayload) SetDescription(v AddRoutingTableToAreaPayloadGetDescriptionRetType) {
 	setAddRoutingTableToAreaPayloadGetDescriptionAttributeType(&o.Description, v)
+}
+
+// GetDynamicRoutes returns the DynamicRoutes field value if set, zero value otherwise.
+func (o *AddRoutingTableToAreaPayload) GetDynamicRoutes() (res AddRoutingTableToAreaPayloadgetDynamicRoutesRetType) {
+	res, _ = o.GetDynamicRoutesOk()
+	return
+}
+
+// GetDynamicRoutesOk returns a tuple with the DynamicRoutes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddRoutingTableToAreaPayload) GetDynamicRoutesOk() (ret AddRoutingTableToAreaPayloadgetDynamicRoutesRetType, ok bool) {
+	return getAddRoutingTableToAreaPayloadgetDynamicRoutesAttributeTypeOk(o.DynamicRoutes)
+}
+
+// HasDynamicRoutes returns a boolean if a field has been set.
+func (o *AddRoutingTableToAreaPayload) HasDynamicRoutes() bool {
+	_, ok := o.GetDynamicRoutesOk()
+	return ok
+}
+
+// SetDynamicRoutes gets a reference to the given bool and assigns it to the DynamicRoutes field.
+func (o *AddRoutingTableToAreaPayload) SetDynamicRoutes(v AddRoutingTableToAreaPayloadgetDynamicRoutesRetType) {
+	setAddRoutingTableToAreaPayloadgetDynamicRoutesAttributeType(&o.DynamicRoutes, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -411,6 +459,9 @@ func (o AddRoutingTableToAreaPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getAddRoutingTableToAreaPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
+	}
+	if val, ok := getAddRoutingTableToAreaPayloadgetDynamicRoutesAttributeTypeOk(o.DynamicRoutes); ok {
+		toSerialize["DynamicRoutes"] = val
 	}
 	if val, ok := getAddRoutingTableToAreaPayloadGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val

@@ -1,7 +1,7 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
-The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
+The SKE API provides endpoints to create, update or delete clusters within STACKIT projects and to trigger further cluster management tasks.
 
 API version: 2.0
 */

@@ -1,7 +1,7 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
-The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
+The SKE API provides endpoints to create, update or delete clusters within STACKIT projects and to trigger further cluster management tasks.
 
 API version: 2.0
 */
@@ -47,8 +47,8 @@ type DefaultApi interface {
 	*/
 	CompleteCredentialsRotationExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error)
 	/*
-		CreateKubeconfig Create a kubeconfig
-		Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months).
+		CreateKubeconfig Create an admin kubeconfig
+		Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -135,8 +135,8 @@ type DefaultApi interface {
 	*/
 	GetClusterExecute(ctx context.Context, projectId string, region string, clusterName string) (*Cluster, error)
 	/*
-		GetLoginKubeconfig Get a kubeconfig for use with the STACKIT CLI
-		A kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
+		GetLoginKubeconfig Get an admin kubeconfig for use with the STACKIT CLI
+		A admin kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -178,7 +178,7 @@ type DefaultApi interface {
 	ListClustersExecute(ctx context.Context, projectId string, region string) (*ListClustersResponse, error)
 	/*
 		ListProviderOptions List provider options
-		Returns a list of supported Kubernetes versions and a list of supported machine types for the cluster nodes.
+		Returns available Kubernetes versions, availability zones, machine types, OS versions and volume types for the cluster nodes.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param region
@@ -218,7 +218,7 @@ type DefaultApi interface {
 	StartCredentialsRotationExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error)
 	/*
 		TriggerHibernate Trigger cluster hibernation
-		Trigger immediate hibernation of the cluster. If the cluster is already in hibernation state, the method does nothing.
+		Trigger immediate hibernation of the cluster. If the cluster is already in hibernation state, this endpoint does nothing.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -284,7 +284,7 @@ type DefaultApi interface {
 	TriggerReconcileExecute(ctx context.Context, projectId string, region string, clusterName string) (map[string]interface{}, error)
 	/*
 		TriggerWakeup Trigger cluster wakeup
-		Trigger immediate wake up of the cluster. If the cluster is already in running state, the method does nothing.
+		Trigger immediate wake up of the cluster. If the cluster is already in running state, this endpoint does nothing.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -337,6 +337,7 @@ type ApiListClustersRequest interface {
 }
 
 type ApiListProviderOptionsRequest interface {
+	VersionState(versionState string) ApiListProviderOptionsRequest
 	Execute() (*ProviderOptions, error)
 }
 
@@ -651,6 +652,17 @@ func (r CreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		var v RuntimeError
 		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
@@ -676,9 +688,9 @@ func (r CreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 }
 
 /*
-CreateKubeconfig: Create a kubeconfig
+CreateKubeconfig: Create an admin kubeconfig
 
-Create a new kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months).
+Create a new admin kubeconfig for the cluster. You can specify the expiration (in seconds) in the request body. Its value must be in the range from 600 (10 min) to 15552000 (6 months). Defaults to 3600.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -995,6 +1007,17 @@ func (r DeleteClusterRequest) Execute() (map[string]interface{}, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		var v RuntimeError
 		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
@@ -1146,6 +1169,17 @@ func (r GetClusterRequest) Execute() (*Cluster, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1317,6 +1351,17 @@ func (r GetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		var v RuntimeError
 		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
@@ -1342,9 +1387,9 @@ func (r GetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 }
 
 /*
-GetLoginKubeconfig: Get a kubeconfig for use with the STACKIT CLI
+GetLoginKubeconfig: Get an admin kubeconfig for use with the STACKIT CLI
 
-A kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
+A admin kubeconfig retrieved using this endpoint does not contain any credentials and instead obtains valid credentials via the STACKIT CLI.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -1541,9 +1586,15 @@ func (a *APIClient) ListClustersExecute(ctx context.Context, projectId string, r
 }
 
 type ListProviderOptionsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	region     string
+	ctx          context.Context
+	apiService   *DefaultApiService
+	region       string
+	versionState *string
+}
+
+func (r ListProviderOptionsRequest) VersionState(versionState string) ApiListProviderOptionsRequest {
+	r.versionState = &versionState
+	return r
 }
 
 func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
@@ -1570,6 +1621,9 @@ func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.versionState != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "versionState", r.versionState, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1619,17 +1673,6 @@ func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v map[string]interface{}
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1668,7 +1711,7 @@ func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 /*
 ListProviderOptions: List provider options
 
-Returns a list of supported Kubernetes versions and a list of supported machine types for the cluster nodes.
+Returns available Kubernetes versions, availability zones, machine types, OS versions and volume types for the cluster nodes.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param region
@@ -2006,7 +2049,7 @@ func (r TriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 /*
 TriggerHibernate: Trigger cluster hibernation
 
-Trigger immediate hibernation of the cluster. If the cluster is already in hibernation state, the method does nothing.
+Trigger immediate hibernation of the cluster. If the cluster is already in hibernation state, this endpoint does nothing.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -2522,7 +2565,7 @@ func (r TriggerWakeupRequest) Execute() (map[string]interface{}, error) {
 /*
 TriggerWakeup: Trigger cluster wakeup
 
-Trigger immediate wake up of the cluster. If the cluster is already in running state, the method does nothing.
+Trigger immediate wake up of the cluster. If the cluster is already in running state, this endpoint does nothing.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId

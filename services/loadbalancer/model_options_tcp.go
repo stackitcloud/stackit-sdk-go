@@ -1,5 +1,5 @@
 /*
-Load Balancer API
+STACKIT Network Load Balancer API
 
 This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -38,7 +38,7 @@ func setOptionsTCPGetIdleTimeoutAttributeType(arg *OptionsTCPGetIdleTimeoutAttri
 type OptionsTCPGetIdleTimeoutArgType = string
 type OptionsTCPGetIdleTimeoutRetType = string
 
-// OptionsTCP struct for OptionsTCP
+// OptionsTCP ProtocolOptionsTCP options to be configured for the PROTOCOL_TCP, PROTOCOL_TCP_PROXY, and PROTOCOL_TLS_PASSTHROUGH protocols. TCP options for the SNI listeners with the same port must be the same.
 type OptionsTCP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 5 minutes, and the maximum value is one hour.
 	IdleTimeout OptionsTCPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty"`

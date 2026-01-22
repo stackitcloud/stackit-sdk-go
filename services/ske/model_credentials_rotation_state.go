@@ -1,7 +1,7 @@
 /*
-SKE-API
+STACKIT Kubernetes Engine API
 
-The SKE API provides endpoints to create, update, delete clusters within STACKIT portal projects and to trigger further cluster management tasks.
+The SKE API provides endpoints to create, update or delete clusters within STACKIT projects and to trigger further cluster management tasks.
 
 API version: 2.0
 */
@@ -65,7 +65,7 @@ func setCredentialsRotationStateGetLastInitiationTimeAttributeType(arg *Credenti
 
 // isEnum
 
-// CredentialsRotationStatePhase Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet. Using the deprecated [rotate-credentials](#tag/Credentials/operation/SkeService_GetClusterCredentials) endpoint will not update this status field.
+// CredentialsRotationStatePhase Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.
 // value type for enums
 type CredentialsRotationStatePhase string
 
@@ -195,7 +195,7 @@ type CredentialsRotationState struct {
 	LastCompletionTime CredentialsRotationStateGetLastCompletionTimeAttributeType `json:"lastCompletionTime,omitempty"`
 	// Format: `2024-02-15T11:06:29Z`
 	LastInitiationTime CredentialsRotationStateGetLastInitiationTimeAttributeType `json:"lastInitiationTime,omitempty"`
-	// Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet. Using the deprecated [rotate-credentials](#tag/Credentials/operation/SkeService_GetClusterCredentials) endpoint will not update this status field.
+	// Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.
 	Phase CredentialsRotationStateGetPhaseAttributeType `json:"phase,omitempty"`
 }
 

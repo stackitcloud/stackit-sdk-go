@@ -1,5 +1,22 @@
+## v0.16.1
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v0.16.0
+- **Breaking change:** The `PartialUpdateAlertrules` takes now `PartialUpdateAlertrulesRequestInner` instead of `UpdateAlertgroupsRequestInnerRulesInner`.
+- **Breaking change:** The type of `Rules` in `CreateLogsAlertgroupsPayload` and `UpdateLogsAlertgroupPayload` has changed from `[]UpdateAlertgroupsRequestInnerRulesInner` to `[]CreateLogsAlertgroupsPayloadRulesInner`.
+- **Deprecation:** The `GrafanaAdminPassword` and `GrafanaAdminUser` fields are now deprecated in `InstanceSensitiveData` model
+- **Feature:** Add `GrafanaAdminEnabled` to `CreateInstancePayload` and `UpdateInstancePayload` models.
+- **Feature:** Add new field `record` in `UpdateAlertgroupsRequestInnerRulesInner` model
+- **Feature:** Add `CertCheck` to `CertCheckResponse` model.
+- **Feature:** Add `HttpCheck` to `HttpCheckResponse` model.
+- **Feature:** Add new `CreateLogsAlertgroupsPayloadRulesInner` model.
+- **Feature:** Add `allowAssignGrafanaAdmin` to `GrafanaOauth` and `UpdateGrafanaConfigsPayloadGenericOauth` models.
+- **Feature:** Add `GrafanaAdminEnabled` to `InstanceSensitiveData` model.
+- **Feature:** Add new `PartialUpdateAlertrulesRequestInner` model.
+
 ## v0.15.1
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 
 # v0.15.0
 - **Deprecation:** The `JaegerHttpTracesUrl` field is now deprecated in all relevant models and will be removed after 9th April 2026. Use the new `JaegerHttpUrl` field instead.

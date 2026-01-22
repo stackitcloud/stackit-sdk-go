@@ -3,8 +3,8 @@ module auditlog
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.20.0
-	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.1.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.20.1
+	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.1.2
 )
 
 require (

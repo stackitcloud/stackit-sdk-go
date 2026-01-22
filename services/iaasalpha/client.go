@@ -1,5 +1,5 @@
 /*
-IaaS-API
+STACKIT IaaS API
 
 This API allows you to create and modify IaaS resources.
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the IaaS-API API v2alpha1
+// APIClient manages communication with the STACKIT IaaS API API v2alpha1
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg        *config.Configuration
@@ -501,10 +501,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	if err != nil {
 		return err
 	}
-	err = file.Close()
-	if err != nil {
-		return err
-	}
+	defer file.Close()
 
 	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
 	if err != nil {

@@ -514,6 +514,17 @@ func (r CreateACLRequest) Execute() (*ACL, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Conflict
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		return localVarReturnValue, newErr
 	}
 
@@ -2575,6 +2586,17 @@ func (r UpdateACLsRequest) Execute() error {
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v NotFound
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Conflict
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()

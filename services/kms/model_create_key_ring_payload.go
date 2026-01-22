@@ -63,7 +63,7 @@ type CreateKeyRingPayloadGetDisplayNameRetType = string
 type CreateKeyRingPayload struct {
 	// A user chosen description to distinguish multiple key rings.
 	Description CreateKeyRingPayloadGetDescriptionAttributeType `json:"description,omitempty"`
-	// The display name to distinguish multiple key rings.
+	// The display name to distinguish multiple key rings. Valid characters: letters, digits, underscores and hyphens.
 	// REQUIRED
 	DisplayName CreateKeyRingPayloadGetDisplayNameAttributeType `json:"displayName" required:"true"`
 }

@@ -1,8 +1,19 @@
+## v0.14.1
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v0.14.0
+- **Feature:** added KmsKey model
+- **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
+
+## v0.13.3
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v0.13.2
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 
 ## v0.13.1
-  - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.2.2` to `v5.2.3`
 
 ## v0.13.0
 - Add `required:"true"` tags to model structs

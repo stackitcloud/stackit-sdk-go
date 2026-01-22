@@ -1,5 +1,5 @@
 /*
-Load Balancer API
+STACKIT Network Load Balancer API
 
 This API offers an interface to provision and manage load balancing servers in your STACKIT project. It also has the possibility of pooling target servers for load balancing purposes.  For each load balancer provided, two VMs are deployed in your OpenStack project subject to a fee.
 
@@ -38,7 +38,7 @@ func setOptionsUDPGetIdleTimeoutAttributeType(arg *OptionsUDPGetIdleTimeoutAttri
 type OptionsUDPGetIdleTimeoutArgType = string
 type OptionsUDPGetIdleTimeoutRetType = string
 
-// OptionsUDP struct for OptionsUDP
+// OptionsUDP ProtocolOptionsUDP options to be configured for the PROTOCOL_UDP protocol.
 type OptionsUDP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 1 minute, and the maximum value is 2 minutes.
 	IdleTimeout OptionsUDPGetIdleTimeoutAttributeType `json:"idleTimeout,omitempty"`

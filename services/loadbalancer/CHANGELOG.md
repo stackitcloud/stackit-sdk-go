@@ -1,5 +1,15 @@
+## v1.7.1
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
+## v1.7.0
+- **Feature:** Add new fields `MaxCredentials`, `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` Model
+
+## v1.6.2
+- Bump STACKIT SDK core module from `v0.20.0` to `v0.20.1`
+
 ## v1.6.1
-  - Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
+- Bump STACKIT SDK core module from `v0.19.0` to `v0.20.0`
 
 ## v1.6.0
 - Add field `Labels` (type `*map[string]string`) to structs `LoadBalancer`, `CreateLoadBalancerPayload`, `UpdateLoadBalancerPayload`

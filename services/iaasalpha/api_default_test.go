@@ -1,5 +1,5 @@
 /*
-IaaS-API
+STACKIT IaaS API
 
 Testing DefaultApiService
 
@@ -594,6 +594,67 @@ func Test_iaasalpha_DefaultApiService(t *testing.T) {
 		region := regionValue
 
 		resp, reqErr := apiClient.ListNetworks(context.Background(), projectId, region).Execute()
+
+		if reqErr != nil {
+			t.Fatalf("error in call: %v", reqErr)
+		}
+		if IsNil(resp) {
+			t.Fatalf("response not present")
+		}
+	})
+
+	t.Run("Test DefaultApiService ListNetworksOfRoutingTable", func(t *testing.T) {
+		_apiUrlPath := "/v2alpha1/organizations/{organizationId}/network-areas/{areaId}/regions/{region}/routing-tables/{routingTableId}/networks"
+		organizationIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"organizationId"+"}", url.PathEscape(ParameterValueToString(organizationIdValue, "organizationId")), -1)
+		areaIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"areaId"+"}", url.PathEscape(ParameterValueToString(areaIdValue, "areaId")), -1)
+		regionValue := "region-value"
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(regionValue, "region")), -1)
+		routingTableIdValue := randString(36)
+		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"routingTableId"+"}", url.PathEscape(ParameterValueToString(routingTableIdValue, "routingTableId")), -1)
+
+		testDefaultApiServeMux := http.NewServeMux()
+		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
+			data := NetworkListResponse{}
+			w.Header().Add("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(data)
+		})
+		testServer := httptest.NewServer(testDefaultApiServeMux)
+		defer testServer.Close()
+
+		configuration := &config.Configuration{
+			DefaultHeader: make(map[string]string),
+			UserAgent:     "OpenAPI-Generator/1.0.0/go",
+			Debug:         false,
+			Region:        "test_region",
+			Servers: config.ServerConfigurations{
+				{
+					URL:         testServer.URL,
+					Description: "Localhost for iaasalpha_DefaultApi",
+					Variables: map[string]config.ServerVariable{
+						"region": {
+							DefaultValue: "test_region.",
+							EnumValues: []string{
+								"test_region.",
+							},
+						},
+					},
+				},
+			},
+			OperationServers: map[string]config.ServerConfigurations{},
+		}
+		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
+		if err != nil {
+			t.Fatalf("creating API client: %v", err)
+		}
+
+		organizationId := organizationIdValue
+		areaId := areaIdValue
+		region := regionValue
+		routingTableId := routingTableIdValue
+
+		resp, reqErr := apiClient.ListNetworksOfRoutingTable(context.Background(), organizationId, areaId, region, routingTableId).Execute()
 
 		if reqErr != nil {
 			t.Fatalf("error in call: %v", reqErr)

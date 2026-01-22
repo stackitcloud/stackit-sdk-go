@@ -28,14 +28,14 @@ func TestBackupVolumeBackupsInnerStatus_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 1`,
 			args: args{
-				src: []byte(`"creating"`),
+				src: []byte(`"available"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 2`,
 			args: args{
-				src: []byte(`"available"`),
+				src: []byte(`"creating"`),
 			},
 			wantErr: false,
 		},
@@ -49,28 +49,42 @@ func TestBackupVolumeBackupsInnerStatus_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 4`,
 			args: args{
-				src: []byte(`"error"`),
+				src: []byte(`"error-deleting"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 5`,
 			args: args{
-				src: []byte(`"restoring"`),
+				src: []byte(`"error"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 6`,
 			args: args{
-				src: []byte(`"error_deleting"`),
+				src: []byte(`"error-restoring"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 7`,
 			args: args{
+				src: []byte(`"restoring"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 8`,
+			args: args{
 				src: []byte(`"error-creating"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 9`,
+			args: args{
+				src: []byte(`"unrecognized"`),
 			},
 			wantErr: false,
 		},
