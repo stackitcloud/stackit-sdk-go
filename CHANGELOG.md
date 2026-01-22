@@ -35,6 +35,9 @@
     - **Feature:** added KmsKey model
     - **Feature:** added KmsKey to Instance, CreateInstancePayload and UpdateInstancePayload
 - `edge`:
+  - [v0.4.1](services/edge/CHANGELOG.md#v041)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v0.4.0](services/edge/CHANGELOG.md#v040)
     - **Deprecation:** Deprecated API method `ListPlansGlobal`
   - [v0.3.0](services/edge/CHANGELOG.md#v030)
@@ -44,6 +47,9 @@
   - [v0.1.0](services/edge/CHANGELOG.md#v010)
     - **New:** STACKIT Edge Cloud service
 - `alb`:
+  - [v0.9.1](services/alb/CHANGELOG.md#v091)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v0.9.0](services/alb/CHANGELOG.md#v090)
     - **Feature:** Add new fields `UsedCredentials` and `UsedLoadBalancers` in `GetQuotaResponse` model
   - [v0.8.0](services/alb/CHANGELOG.md#v080)
@@ -52,9 +58,13 @@
     - **Breaking change:** added `version` to LoadBalancer constructor
     - **Breaking change:** renamed `exact` to `exactMatch` in Path model
     - **Breaking change:** removed `pathPrefix` from Rule model
-- `certificates`: [v1.2.0](services/certificates/CHANGELOG.md#v120)
-  - **Feature:** Switch from `v2beta` API version to `v2` version.
-  - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
+- `certificates`: 
+  - [v1.2.1](services/certificates/CHANGELOG.md#v121)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v1.2.0](services/certificates/CHANGELOG.md#v120)
+    - **Feature:** Switch from `v2beta` API version to `v2` version.
+    - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
 - `core`: 
   - [v0.21.0](core/CHANGELOG.md#v0210)
     - **Deprecation:** KeyFlow `SetToken` and `GetToken` will be removed after 2026-07-01. Use GetAccessToken instead and rely on client refresh.
@@ -76,6 +86,9 @@
   - [v0.3.0](services/scf/CHANGELOG.md#v030)
     - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 - `iaas`: 
+  - [v1.3.1](services/iaas/CHANGELOG.md#v131)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.3.0](services/iaas/CHANGELOG.md#v130)
     - **Feature:** Add `CreateIsolatedNetwork` functionality
     - **Feature:** Add `ImageFromVolumePayload` functionality
@@ -122,8 +135,12 @@
     - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
   - [v1.5.5](services/mongodbflex/CHANGELOG.md#v155)
     - **Docs:** Extend description of `Roles` field in `CreateUserPayload`, `PartialUpdateUserPayload`, `UpdateUserPayload` and `User` model
-- `authorization`: [v0.11.0](services/authorization/CHANGELOG.md#v0110)
-  - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
+- `authorization`: 
+  - [v0.11.1](services/authorization/CHANGELOG.md#v0111)
+    - **Bugfix:** Correctly handle file closing for file uploads
+    - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+  - [v0.11.0](services/authorization/CHANGELOG.md#v0110)
+    - **Feature:** Add new methods for managing roles: `AddRole`, `DeleteRole`, `GetRole`, `UpdateRole`
 - `serverbackup`: 
   - [v1.3.6](services/serverbackup/CHANGELOG.md#v136)
     - **Bugfix:** Correctly handle file closing for file uploads
@@ -173,6 +190,15 @@
   - **Bugfix:** Correctly handle file closing for file uploads
   - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 - `intake`: [v0.4.2](services/intake/CHANGELOG.md#v042)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `dns`: [v0.17.4](services/dns/CHANGELOG.md#v0174)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `cdn`: [v1.9.2](services/cdn/CHANGELOG.md#v192)
+  - **Bugfix:** Correctly handle file closing for file uploads
+  - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- `auditlog`: [v0.1.3](services/auditlog/CHANGELOG.md#v013)
   - **Bugfix:** Correctly handle file closing for file uploads
   - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
 

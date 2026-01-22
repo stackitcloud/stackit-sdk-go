@@ -1,3 +1,7 @@
+## v1.2.1
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
 ## v1.2.0
   - **Feature:** Switch from `v2beta` API version to `v2` version.
   - **Breaking change:** Rename `CreateCertificateResponse` to `GetCertificateResponse`
