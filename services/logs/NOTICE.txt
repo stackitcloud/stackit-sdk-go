@@ -1,2 +1,2 @@
 STACKIT logs SDK for Go
-Copyright 2025 Schwarz IT KG
+Copyright 2025 - 2026 Schwarz IT KG
