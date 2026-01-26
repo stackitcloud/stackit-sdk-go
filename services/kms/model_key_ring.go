@@ -234,8 +234,7 @@ type KeyRing struct {
 	// REQUIRED
 	CreatedAt KeyRingGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// A user chosen description to distinguish multiple key rings.
-	// REQUIRED
-	Description KeyRingGetDescriptionAttributeType `json:"description" required:"true"`
+	Description KeyRingGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple key rings.
 	// REQUIRED
 	DisplayName KeyRingGetDisplayNameAttributeType `json:"displayName" required:"true"`
@@ -253,10 +252,9 @@ type _KeyRing KeyRing
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKeyRing(createdAt KeyRingGetCreatedAtArgType, description KeyRingGetDescriptionArgType, displayName KeyRingGetDisplayNameArgType, id KeyRingGetIdArgType, state KeyRingGetStateArgType) *KeyRing {
+func NewKeyRing(createdAt KeyRingGetCreatedAtArgType, displayName KeyRingGetDisplayNameArgType, id KeyRingGetIdArgType, state KeyRingGetStateArgType) *KeyRing {
 	this := KeyRing{}
 	setKeyRingGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
-	setKeyRingGetDescriptionAttributeType(&this.Description, description)
 	setKeyRingGetDisplayNameAttributeType(&this.DisplayName, displayName)
 	setKeyRingGetIdAttributeType(&this.Id, id)
 	setKeyRingGetStateAttributeType(&this.State, state)
@@ -288,19 +286,25 @@ func (o *KeyRing) SetCreatedAt(v KeyRingGetCreatedAtRetType) {
 	setKeyRingGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
-// GetDescription returns the Description field value
-func (o *KeyRing) GetDescription() (ret KeyRingGetDescriptionRetType) {
-	ret, _ = o.GetDescriptionOk()
-	return ret
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *KeyRing) GetDescription() (res KeyRingGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KeyRing) GetDescriptionOk() (ret KeyRingGetDescriptionRetType, ok bool) {
 	return getKeyRingGetDescriptionAttributeTypeOk(o.Description)
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *KeyRing) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *KeyRing) SetDescription(v KeyRingGetDescriptionRetType) {
 	setKeyRingGetDescriptionAttributeType(&o.Description, v)
 }
