@@ -1,3 +1,6 @@
+## v0.5.0
+- **Feature:** switch from `v1beta` version to `v1` version of the API
+
 ## v0.4.0
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
