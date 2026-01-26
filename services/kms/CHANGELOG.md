@@ -1,3 +1,8 @@
+## v1.3.0
+- Set field `Description` to optional in struct `Key`, `KeyRing` and `WrappingKey`
+  - **Breaking change:** Remove `description` parameter from `NewKey`, `NewKeyRing` and `NewWrappingKey` constructors
+  - **Feature:** Add method `HasDescription`in `Key`, `KeyRing` and `WrappingKey` models
+
 ## v1.2.1
 - **Bugfix:** Correctly handle file closing for file uploads
 - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
