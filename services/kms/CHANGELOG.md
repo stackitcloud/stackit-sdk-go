@@ -1,3 +1,7 @@
+## v1.3.0
+- **Breaking change:** `description` is now optional in `Key`, `KeyRing` and `WrappingKey`.
+  - **Breaking change:** Constructor `NewKey`, `NewKeyRing` and `NewWrappingKey` have removed the `description` parameter.
+
 ## v1.2.1
 - **Bugfix:** Correctly handle file closing for file uploads
 - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
