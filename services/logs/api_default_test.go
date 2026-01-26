@@ -25,7 +25,7 @@ import (
 func Test_logs_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateAccessToken", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -84,7 +84,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateLogsInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -140,7 +140,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteAccessToken", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -195,7 +195,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteAllAccessTokens", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -253,7 +253,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteAllExpiredAccessTokens", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/expired"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/expired"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -311,7 +311,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteLogsInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -363,7 +363,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetAccessToken", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -424,7 +424,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetLogsInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -482,7 +482,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListAccessTokens", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -540,7 +540,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListLogsInstances", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -595,7 +595,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateAccessToken", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}/access-tokens/{tId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"
@@ -651,7 +651,7 @@ func Test_logs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateLogsInstance", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{regionId}/instances/{instanceId}"
 		projectIdValue := uuid.NewString()
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionIdValue := "regionId-value"

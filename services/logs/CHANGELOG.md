@@ -1,3 +1,8 @@
+## v0.5.0
+- **Feature:** switch from `v1beta` version to `v1` version of the API
+- **Bugfix:** Correctly handle file closing for file uploads
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+
 ## v0.4.0
 - **Breaking Change:** The region is no longer specified within the client configuration. Instead, the region must be passed as a parameter to any region-specific request.
 
