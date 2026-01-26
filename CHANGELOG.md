@@ -86,6 +86,8 @@
   - [v0.3.0](services/scf/CHANGELOG.md#v030)
     - **Feature:** Add new model `IsolationSegment` and `IsolationSegmentsList`
 - `iaas`: 
+  - [v1.3.2](services/iaas/CHANGELOG.md#v132)
+    - Bump STACKIT SDK resourcemanager module from `v0.18.2` to `v0.18.3`
   - [v1.3.1](services/iaas/CHANGELOG.md#v131)
     - **Bugfix:** Correctly handle file closing for file uploads
     - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
