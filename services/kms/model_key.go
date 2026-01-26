@@ -387,8 +387,7 @@ type Key struct {
 	// This date is set when a key is pending deletion and refers to the scheduled date of deletion
 	DeletionDate KeyGetDeletionDateAttributeType `json:"deletionDate,omitempty"`
 	// A user chosen description to distinguish multiple keys.
-	// REQUIRED
-	Description KeyGetDescriptionAttributeType `json:"description" required:"true"`
+	Description KeyGetDescriptionAttributeType `json:"description,omitempty"`
 	// The display name to distinguish multiple keys.
 	// REQUIRED
 	DisplayName KeyGetDisplayNameAttributeType `json:"displayName" required:"true"`
@@ -416,12 +415,11 @@ type _Key Key
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKey(accessScope KeyGetAccessScopeArgType, algorithm KeyGetAlgorithmArgType, createdAt KeyGetCreatedAtArgType, description KeyGetDescriptionArgType, displayName KeyGetDisplayNameArgType, id KeyGetIdArgType, importOnly KeygetImportOnlyArgType, keyRingId KeyGetKeyRingIdArgType, protection KeyGetProtectionArgType, purpose KeyGetPurposeArgType, state KeyGetStateArgType) *Key {
+func NewKey(accessScope KeyGetAccessScopeArgType, algorithm KeyGetAlgorithmArgType, createdAt KeyGetCreatedAtArgType, displayName KeyGetDisplayNameArgType, id KeyGetIdArgType, importOnly KeygetImportOnlyArgType, keyRingId KeyGetKeyRingIdArgType, protection KeyGetProtectionArgType, purpose KeyGetPurposeArgType, state KeyGetStateArgType) *Key {
 	this := Key{}
 	setKeyGetAccessScopeAttributeType(&this.AccessScope, accessScope)
 	setKeyGetAlgorithmAttributeType(&this.Algorithm, algorithm)
 	setKeyGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
-	setKeyGetDescriptionAttributeType(&this.Description, description)
 	setKeyGetDisplayNameAttributeType(&this.DisplayName, displayName)
 	setKeyGetIdAttributeType(&this.Id, id)
 	setKeygetImportOnlyAttributeType(&this.ImportOnly, importOnly)
@@ -518,19 +516,25 @@ func (o *Key) SetDeletionDate(v KeyGetDeletionDateRetType) {
 	setKeyGetDeletionDateAttributeType(&o.DeletionDate, v)
 }
 
-// GetDescription returns the Description field value
-func (o *Key) GetDescription() (ret KeyGetDescriptionRetType) {
-	ret, _ = o.GetDescriptionOk()
-	return ret
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Key) GetDescription() (res KeyGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Key) GetDescriptionOk() (ret KeyGetDescriptionRetType, ok bool) {
 	return getKeyGetDescriptionAttributeTypeOk(o.Description)
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *Key) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *Key) SetDescription(v KeyGetDescriptionRetType) {
 	setKeyGetDescriptionAttributeType(&o.Description, v)
 }
