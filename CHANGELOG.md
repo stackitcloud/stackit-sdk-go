@@ -1,4 +1,4 @@
-## Release (2026-XX-YY)
+## Release (2026-01-27)
 - `loadbalancer`: 
   - [v1.7.1](services/loadbalancer/CHANGELOG.md#v171)
     - **Bugfix:** Correctly handle file closing for file uploads
