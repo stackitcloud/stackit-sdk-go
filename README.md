@@ -20,13 +20,13 @@ Requires `Go 1.21` or higher.
 To download the `core` module:
 
 ```
-go mod download github.com/stackitcloud/stackit-sdk-go/core
+go get github.com/stackitcloud/stackit-sdk-go/core
 ```
 
 To download the `services/dns` module:
 
 ```
-go mod download github.com/stackitcloud/stackit-sdk-go/services/dns
+go get github.com/stackitcloud/stackit-sdk-go/services/dns
 ```
 
 ## Examples
