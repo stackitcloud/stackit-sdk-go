@@ -3,8 +3,8 @@ module github.com/stackitcloud/stackit-sdk-go/examples/mongodbflex
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.20.1
-	github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v1.5.5
+	github.com/stackitcloud/stackit-sdk-go/core v0.21.0
+	github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v1.5.6
 )
 
 require (
