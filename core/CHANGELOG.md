@@ -1,3 +1,6 @@
+## v0.21.1
+- **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+
 ## v0.21.0
 - **Deprecation:** KeyFlow `SetToken` and `GetToken` will be removed after 2026-07-01. Use GetAccessToken instead and rely on client refresh.
 - **Feature:** Support Workload Identity Federation flow

@@ -1,3 +1,6 @@
+## v1.3.1
+- **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+
 ## v1.3.0
 - Set field `Description` to optional in struct `Key`, `KeyRing` and `WrappingKey`
   - **Breaking change:** Remove `description` parameter from `NewKey`, `NewKeyRing` and `NewWrappingKey` constructors
