@@ -24,7 +24,7 @@ import (
 func Test_sfs_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CreateResourcePool", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -80,7 +80,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateResourcePoolSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -139,7 +139,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -198,7 +198,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService CreateShareExportPolicy", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/shareExportPolicies"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/shareExportPolicies"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -254,7 +254,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteResourcePool", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -312,7 +312,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteResourcePoolSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots/{snapshotName}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots/{snapshotName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -373,7 +373,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares/{shareId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares/{shareId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -434,7 +434,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService DeleteShareExportPolicy", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/shareExportPolicies/{policyId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/shareExportPolicies/{policyId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -492,7 +492,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetResourcePool", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -550,7 +550,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetResourcePoolSnapshot", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots/{snapshotName}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots/{snapshotName}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -611,7 +611,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares/{shareId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares/{shareId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -672,7 +672,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService GetShareExportPolicy", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/shareExportPolicies/{policyId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/shareExportPolicies/{policyId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -730,7 +730,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListPerformanceClasses", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/resourcePoolPerformanceClasses"
+		_apiUrlPath := "/v1/resourcePoolPerformanceClasses"
 
 		testDefaultApiServeMux := http.NewServeMux()
 		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
@@ -778,7 +778,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListResourcePoolSnapshots", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -836,7 +836,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListResourcePools", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -891,7 +891,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListShareExportPolicies", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/shareExportPolicies"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/shareExportPolicies"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -946,7 +946,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService ListShares", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -1003,60 +1003,8 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test DefaultApiService ListSnapshotSchedules", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/snapshotSchedules"
-		projectIdValue := "projectId-value"
-		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
-
-		testDefaultApiServeMux := http.NewServeMux()
-		testDefaultApiServeMux.HandleFunc(_apiUrlPath, func(w http.ResponseWriter, req *http.Request) {
-			data := ListSnapshotSchedulesResponse{}
-			w.Header().Add("Content-Type", "application/json")
-			json.NewEncoder(w).Encode(data)
-		})
-		testServer := httptest.NewServer(testDefaultApiServeMux)
-		defer testServer.Close()
-
-		configuration := &config.Configuration{
-			DefaultHeader: make(map[string]string),
-			UserAgent:     "OpenAPI-Generator/1.0.0/go",
-			Debug:         false,
-			Region:        "test_region",
-			Servers: config.ServerConfigurations{
-				{
-					URL:         testServer.URL,
-					Description: "Localhost for sfs_DefaultApi",
-					Variables: map[string]config.ServerVariable{
-						"region": {
-							DefaultValue: "test_region.",
-							EnumValues: []string{
-								"test_region.",
-							},
-						},
-					},
-				},
-			},
-			OperationServers: map[string]config.ServerConfigurations{},
-		}
-		apiClient, err := NewAPIClient(config.WithCustomConfiguration(configuration), config.WithoutAuthentication())
-		if err != nil {
-			t.Fatalf("creating API client: %v", err)
-		}
-
-		projectId := projectIdValue
-
-		resp, reqErr := apiClient.ListSnapshotSchedules(context.Background(), projectId).Execute()
-
-		if reqErr != nil {
-			t.Fatalf("error in call: %v", reqErr)
-		}
-		if IsNil(resp) {
-			t.Fatalf("response not present")
-		}
-	})
-
 	t.Run("Test DefaultApiService UpdateResourcePool", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -1115,7 +1063,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateShare", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares/{shareId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/shares/{shareId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
@@ -1177,7 +1125,7 @@ func Test_sfs_DefaultApiService(t *testing.T) {
 	})
 
 	t.Run("Test DefaultApiService UpdateShareExportPolicy", func(t *testing.T) {
-		_apiUrlPath := "/v1beta/projects/{projectId}/regions/{region}/shareExportPolicies/{policyId}"
+		_apiUrlPath := "/v1/projects/{projectId}/regions/{region}/shareExportPolicies/{policyId}"
 		projectIdValue := "projectId-value"
 		_apiUrlPath = strings.Replace(_apiUrlPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(projectIdValue, "projectId")), -1)
 		regionValue := "region-value"
