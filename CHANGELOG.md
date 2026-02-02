@@ -1,3 +1,81 @@
+## Release (2026-mm-dd)
+- `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `alb`: [v0.9.3](services/alb/CHANGELOG.md#v093) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `archiving`: [v0.2.4](services/archiving/CHANGELOG.md#v024) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `auditlog`: [v0.1.5](services/auditlog/CHANGELOG.md#v015) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `authorization`: [v0.11.3](services/authorization/CHANGELOG.md#v0113) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `cdn`: [v1.9.4](services/cdn/CHANGELOG.md#v194) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `certificates`: [v1.2.3](services/certificates/CHANGELOG.md#v123) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `dns`: [v0.17.6](services/dns/CHANGELOG.md#v0176) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `edge`: [v0.4.3](services/edge/CHANGELOG.md#v043) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `git`: [v0.10.3](services/git/CHANGELOG.md#v0103) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `iaas`: [v1.3.4](services/iaas/CHANGELOG.md#v134) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `intake`: [v0.4.4](services/intake/CHANGELOG.md#v044) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `kms`: [v1.3.2](services/kms/CHANGELOG.md#v132) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `lbapplication`: [v0.5.5](services/lbapplication/CHANGELOG.md#v055) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `loadbalancer`: [v1.7.3](services/loadbalancer/CHANGELOG.md#v173) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `logme`: [v0.25.6](services/logme/CHANGELOG.md#v0256) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `logs`: [v0.5.2](services/logs/CHANGELOG.md#v052) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `mariadb`: [v0.25.6](services/mariadb/CHANGELOG.md#v0256) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `modelserving`: [v0.6.5](services/modelserving/CHANGELOG.md#v065) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `mongodbflex`: [v1.5.8](services/mongodbflex/CHANGELOG.md#v158) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `objectstorage`: [v1.4.5](services/objectstorage/CHANGELOG.md#v145) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `observability`: [v0.16.3](services/observability/CHANGELOG.md#v0163) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `opensearch`: [v0.24.6](services/opensearch/CHANGELOG.md#v0246) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `postgresflex`: [v1.3.5](services/postgresflex/CHANGELOG.md#v135) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `rabbitmq`: [v0.25.6](services/rabbitmq/CHANGELOG.md#v0256) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `redis`: [v0.25.6](services/redis/CHANGELOG.md#v0256) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `resourcemanager`: [v0.18.5](services/resourcemanager/CHANGELOG.md#v0185) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `runcommand`: [v1.4.3](services/runcommand/CHANGELOG.md#v143) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `scf`: [v0.4.3](services/scf/CHANGELOG.md#v043) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `secretsmanager`: [v0.14.3](services/secretsmanager/CHANGELOG.md#v0143) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `serverbackup`: [v1.3.8](services/serverbackup/CHANGELOG.md#v138) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `serverupdate`: [v1.2.6](services/serverupdate/CHANGELOG.md#v126) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `serviceaccount`: [v0.11.6](services/serviceaccount/CHANGELOG.md#v0116) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `serviceenablement`: [v1.2.7](services/serviceenablement/CHANGELOG.md#v127) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `sfs`: [v0.2.3](services/sfs/CHANGELOG.md#v023) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `ske`: [v1.6.3](services/ske/CHANGELOG.md#v163) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `sqlserverflex`: [v1.4.3](services/sqlserverflex/CHANGELOG.md#v143) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `stackitmarketplace`: [v1.17.3](services/stackitmarketplace/CHANGELOG.md#v1173) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+
 ## Release (2026-01-27)
 - `loadbalancer`: 
   - [v1.7.1](services/loadbalancer/CHANGELOG.md#v171)
