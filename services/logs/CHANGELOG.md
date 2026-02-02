@@ -1,3 +1,6 @@
+## v0.5.1
+- **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+
 ## v0.5.0
 - **Feature:** switch from `v1beta` version to `v1` version of the API
 - **Bugfix:** Correctly handle file closing for file uploads

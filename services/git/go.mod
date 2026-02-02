@@ -8,4 +8,4 @@ require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.20.1
 )
 
-require github.com/golang-jwt/jwt/v5 v5.3.0 // indirect
+require github.com/golang-jwt/jwt/v5 v5.3.1 // indirect

@@ -1,3 +1,6 @@
+## v0.18.4
+- **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+
 ## v0.18.3
 - **Bugfix:** Correctly handle file closing for file uploads
 - Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
