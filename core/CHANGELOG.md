@@ -1,4 +1,4 @@
-## v0.21.
+## v0.21.1
 - **Dependencies:** Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 
 ## v0.21.0
