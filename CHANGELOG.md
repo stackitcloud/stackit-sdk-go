@@ -47,6 +47,8 @@
   - [v0.10.2](services/git/CHANGELOG.md#v0102) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `iaas`: 
+  - [v1.3.5](services/iaas/CHANGELOG.md#v135)
+    - Bump resource manager from `v0.18.3` to `v0.18.5`
   - [v1.3.4](services/iaas/CHANGELOG.md#v134)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v1.3.3](services/iaas/CHANGELOG.md#v133) 
