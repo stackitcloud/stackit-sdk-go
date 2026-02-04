@@ -3,8 +3,8 @@ module github.com/stackitcloud/stackit-sdk-go/examples/rabbitmq
 go 1.21
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.20.1
-	github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.25.3
+	github.com/stackitcloud/stackit-sdk-go/core v0.21.1
+	github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.25.6
 )
 
 require (
