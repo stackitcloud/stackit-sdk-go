@@ -1,3 +1,17 @@
+## v0.11.0
+- Bump STACKIT SDK core module from `v0.20.1` to `v0.21.0`
+- **Bugfix:** Correctly handle file closing for file uploads
+- **Feature:** Add new methods to manage STACKIT git authentication: `ListAuthentication`, `CreateAuthentication`, `DeleteAuthentication`, `GetAuthentication`, `PatchAuthentication`
+- **Feature:** Add new methods to manage STACKIT git runners: `DeleteRunner`, `GetRunner`, `CreateRunner`
+- **Feature:** Add new methods to manage STACKIT git runner runtimes: `ListRunnerRuntimes`
+- **Breaking Change:** `ListFlavors` renamed to `FlavorsList`
+- **Feature:** Add support for `FeatureToggle`s to `PatchInstancePayload` and `Instance` structs
+- **Breaking Change:** `ListInstances` renamed to `GetInstances`.
+- **Breaking Change:** model `ListInstances` renamed to `InstanceList`.
+- **Breaking Change:** `NewInstance` takes an additional `featureToggle` parameter.
+- **Feature:** `PatchInstancePayload` now allows setting `FeatureToggle`s.
+- **Breaking Change:** `ListRunnerLabels` was removed.
+
 ## v0.10.3
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 
