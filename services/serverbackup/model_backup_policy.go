@@ -169,7 +169,8 @@ type BackupPolicy struct {
 	Enabled          BackupPolicygetEnabledAttributeType          `json:"enabled,omitempty"`
 	Id               BackupPolicyGetIdAttributeType               `json:"id,omitempty"`
 	Name             BackupPolicyGetNameAttributeType             `json:"name,omitempty"`
-	Rrule            BackupPolicyGetRruleAttributeType            `json:"rrule,omitempty"`
+	// An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates
+	Rrule BackupPolicyGetRruleAttributeType `json:"rrule,omitempty"`
 }
 
 // NewBackupPolicy instantiates a new BackupPolicy object
