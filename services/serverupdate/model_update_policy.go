@@ -167,10 +167,12 @@ type UpdatePolicy struct {
 	Description UpdatePolicyGetDescriptionAttributeType `json:"description,omitempty"`
 	Enabled     UpdatePolicygetEnabledAttributeType     `json:"enabled,omitempty"`
 	Id          UpdatePolicyGetIdAttributeType          `json:"id,omitempty"`
+	// Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.
 	// Can be cast to int32 without loss of precision.
 	MaintenanceWindow UpdatePolicyGetMaintenanceWindowAttributeType `json:"maintenanceWindow,omitempty"`
 	Name              UpdatePolicyGetNameAttributeType              `json:"name,omitempty"`
-	Rrule             UpdatePolicyGetRruleAttributeType             `json:"rrule,omitempty"`
+	// An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates
+	Rrule UpdatePolicyGetRruleAttributeType `json:"rrule,omitempty"`
 }
 
 // NewUpdatePolicy instantiates a new UpdatePolicy object
