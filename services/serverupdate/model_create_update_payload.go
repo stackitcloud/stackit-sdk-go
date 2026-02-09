@@ -60,6 +60,7 @@ func setCreateUpdatePayloadGetMaintenanceWindowAttributeType(arg *CreateUpdatePa
 // CreateUpdatePayload struct for CreateUpdatePayload
 type CreateUpdatePayload struct {
 	BackupBeforeUpdate CreateUpdatePayloadgetBackupBeforeUpdateAttributeType `json:"backupBeforeUpdate,omitempty"`
+	// Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	MaintenanceWindow CreateUpdatePayloadGetMaintenanceWindowAttributeType `json:"maintenanceWindow" required:"true"`
