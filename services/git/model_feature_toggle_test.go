@@ -16,7 +16,7 @@ import (
 
 // isEnum
 
-func TestCreateInstancePayloadFlavor_UnmarshalJSON(t *testing.T) {
+func TestFeatureToggleDefaultEmailNotifications_UnmarshalJSON(t *testing.T) {
 	type args struct {
 		src []byte
 	}
@@ -28,14 +28,28 @@ func TestCreateInstancePayloadFlavor_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 1`,
 			args: args{
-				src: []byte(`"git-10"`),
+				src: []byte(`"enabled"`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 2`,
 			args: args{
-				src: []byte(`"git-100"`),
+				src: []byte(`"disabled"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 3`,
+			args: args{
+				src: []byte(`"onmention"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 4`,
+			args: args{
+				src: []byte(`"andyourown"`),
 			},
 			wantErr: false,
 		},
@@ -49,7 +63,7 @@ func TestCreateInstancePayloadFlavor_UnmarshalJSON(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			v := CreateInstancePayloadFlavor("")
+			v := FeatureToggleDefaultEmailNotifications("")
 			if err := v.UnmarshalJSON(tt.args.src); (err != nil) != tt.wantErr {
 				t.Errorf("UnmarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
 			}
