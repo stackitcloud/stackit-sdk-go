@@ -123,11 +123,13 @@ func setUpdateScheduleGetIdAttributeType(arg *UpdateScheduleGetIdAttributeType, 
 type UpdateSchedule struct {
 	// REQUIRED
 	Enabled UpdateSchedulegetEnabledAttributeType `json:"enabled" required:"true"`
+	// Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	MaintenanceWindow UpdateScheduleGetMaintenanceWindowAttributeType `json:"maintenanceWindow" required:"true"`
 	// REQUIRED
 	Name UpdateScheduleGetNameAttributeType `json:"name" required:"true"`
+	// An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates
 	// REQUIRED
 	Rrule UpdateScheduleGetRruleAttributeType `json:"rrule" required:"true"`
 	// Can be cast to int32 without loss of precision.
