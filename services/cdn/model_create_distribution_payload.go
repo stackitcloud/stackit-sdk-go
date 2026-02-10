@@ -180,6 +180,26 @@ func setCreateDistributionPayloadGetOptimizerAttributeType(arg *CreateDistributi
 }
 
 /*
+	types and functions for redirects
+*/
+
+// isModel
+type CreateDistributionPayloadGetRedirectsAttributeType = *RedirectConfig
+type CreateDistributionPayloadGetRedirectsArgType = RedirectConfig
+type CreateDistributionPayloadGetRedirectsRetType = RedirectConfig
+
+func getCreateDistributionPayloadGetRedirectsAttributeTypeOk(arg CreateDistributionPayloadGetRedirectsAttributeType) (ret CreateDistributionPayloadGetRedirectsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setCreateDistributionPayloadGetRedirectsAttributeType(arg *CreateDistributionPayloadGetRedirectsAttributeType, val CreateDistributionPayloadGetRedirectsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for regions
 */
 
@@ -235,6 +255,7 @@ type CreateDistributionPayload struct {
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes CreateDistributionPayloadGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         CreateDistributionPayloadGetOptimizerAttributeType         `json:"optimizer,omitempty"`
+	Redirects         CreateDistributionPayloadGetRedirectsAttributeType         `json:"redirects,omitempty"`
 	// Define in which regions you would like your content to be cached.
 	// REQUIRED
 	Regions CreateDistributionPayloadGetRegionsAttributeType `json:"regions" required:"true"`
@@ -440,6 +461,29 @@ func (o *CreateDistributionPayload) SetOptimizer(v CreateDistributionPayloadGetO
 	setCreateDistributionPayloadGetOptimizerAttributeType(&o.Optimizer, v)
 }
 
+// GetRedirects returns the Redirects field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetRedirects() (res CreateDistributionPayloadGetRedirectsRetType) {
+	res, _ = o.GetRedirectsOk()
+	return
+}
+
+// GetRedirectsOk returns a tuple with the Redirects field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetRedirectsOk() (ret CreateDistributionPayloadGetRedirectsRetType, ok bool) {
+	return getCreateDistributionPayloadGetRedirectsAttributeTypeOk(o.Redirects)
+}
+
+// HasRedirects returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasRedirects() bool {
+	_, ok := o.GetRedirectsOk()
+	return ok
+}
+
+// SetRedirects gets a reference to the given RedirectConfig and assigns it to the Redirects field.
+func (o *CreateDistributionPayload) SetRedirects(v CreateDistributionPayloadGetRedirectsRetType) {
+	setCreateDistributionPayloadGetRedirectsAttributeType(&o.Redirects, v)
+}
+
 // GetRegions returns the Regions field value
 func (o *CreateDistributionPayload) GetRegions() (ret CreateDistributionPayloadGetRegionsRetType) {
 	ret, _ = o.GetRegionsOk()
@@ -505,6 +549,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetOptimizerAttributeTypeOk(o.Optimizer); ok {
 		toSerialize["Optimizer"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetRedirectsAttributeTypeOk(o.Redirects); ok {
+		toSerialize["Redirects"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val
