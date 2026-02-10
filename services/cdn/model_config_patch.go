@@ -163,6 +163,26 @@ func setConfigPatchGetOptimizerAttributeType(arg *ConfigPatchGetOptimizerAttribu
 }
 
 /*
+	types and functions for redirects
+*/
+
+// isModel
+type ConfigPatchGetRedirectsAttributeType = *RedirectConfig
+type ConfigPatchGetRedirectsArgType = RedirectConfig
+type ConfigPatchGetRedirectsRetType = RedirectConfig
+
+func getConfigPatchGetRedirectsAttributeTypeOk(arg ConfigPatchGetRedirectsAttributeType) (ret ConfigPatchGetRedirectsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setConfigPatchGetRedirectsAttributeType(arg *ConfigPatchGetRedirectsAttributeType, val ConfigPatchGetRedirectsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for regions
 */
 
@@ -215,6 +235,7 @@ type ConfigPatch struct {
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigPatchGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         ConfigPatchGetOptimizerAttributeType         `json:"optimizer,omitempty"`
+	Redirects         ConfigPatchGetRedirectsAttributeType         `json:"redirects,omitempty"`
 	Regions           ConfigPatchGetRegionsAttributeType           `json:"regions,omitempty"`
 	Waf               ConfigPatchGetWafAttributeType               `json:"waf,omitempty"`
 }
@@ -430,6 +451,29 @@ func (o *ConfigPatch) SetOptimizer(v ConfigPatchGetOptimizerRetType) {
 	setConfigPatchGetOptimizerAttributeType(&o.Optimizer, v)
 }
 
+// GetRedirects returns the Redirects field value if set, zero value otherwise.
+func (o *ConfigPatch) GetRedirects() (res ConfigPatchGetRedirectsRetType) {
+	res, _ = o.GetRedirectsOk()
+	return
+}
+
+// GetRedirectsOk returns a tuple with the Redirects field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetRedirectsOk() (ret ConfigPatchGetRedirectsRetType, ok bool) {
+	return getConfigPatchGetRedirectsAttributeTypeOk(o.Redirects)
+}
+
+// HasRedirects returns a boolean if a field has been set.
+func (o *ConfigPatch) HasRedirects() bool {
+	_, ok := o.GetRedirectsOk()
+	return ok
+}
+
+// SetRedirects gets a reference to the given RedirectConfig and assigns it to the Redirects field.
+func (o *ConfigPatch) SetRedirects(v ConfigPatchGetRedirectsRetType) {
+	setConfigPatchGetRedirectsAttributeType(&o.Redirects, v)
+}
+
 // GetRegions returns the Regions field value if set, zero value otherwise.
 func (o *ConfigPatch) GetRegions() (res ConfigPatchGetRegionsRetType) {
 	res, _ = o.GetRegionsOk()
@@ -498,6 +542,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigPatchGetOptimizerAttributeTypeOk(o.Optimizer); ok {
 		toSerialize["Optimizer"] = val
+	}
+	if val, ok := getConfigPatchGetRedirectsAttributeTypeOk(o.Redirects); ok {
+		toSerialize["Redirects"] = val
 	}
 	if val, ok := getConfigPatchGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val

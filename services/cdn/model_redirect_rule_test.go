@@ -16,7 +16,7 @@ import (
 
 // isEnum
 
-func TestStatusErrorKey_UnmarshalJSON(t *testing.T) {
+func TestRedirectRuleStatusCode_UnmarshalJSON(t *testing.T) {
 	type args struct {
 		src []byte
 	}
@@ -28,42 +28,35 @@ func TestStatusErrorKey_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 1`,
 			args: args{
-				src: []byte(`"UNKNOWN"`),
+				src: []byte(`301`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 2`,
 			args: args{
-				src: []byte(`"CUSTOM_DOMAIN_CNAME_MISSING"`),
+				src: []byte(`302`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 3`,
 			args: args{
-				src: []byte(`"CUSTOM_DOMAIN_ALREADY_IN_USE"`),
+				src: []byte(`303`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 4`,
 			args: args{
-				src: []byte(`"PUBLIC_BETA_QUOTA_REACHED"`),
+				src: []byte(`307`),
 			},
 			wantErr: false,
 		},
 		{
 			name: `success - possible enum value no. 5`,
 			args: args{
-				src: []byte(`"LOG_SINK_INSTANCE_UNAVAILABLE"`),
-			},
-			wantErr: false,
-		},
-		{
-			name: `success - possible enum value no. 6`,
-			args: args{
-				src: []byte(`"EXTERNAL_QUOTA_REACHED"`),
+				src: []byte(`308`),
 			},
 			wantErr: false,
 		},
@@ -77,7 +70,7 @@ func TestStatusErrorKey_UnmarshalJSON(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			v := StatusErrorKey("")
+			v := RedirectRuleStatusCode(-1)
 			if err := v.UnmarshalJSON(tt.args.src); (err != nil) != tt.wantErr {
 				t.Errorf("UnmarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
 			}
