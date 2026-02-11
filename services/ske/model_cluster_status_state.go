@@ -20,7 +20,6 @@ type ClusterStatusState string
 
 // List of ClusterStatusState
 const (
-	CLUSTERSTATUSSTATE_UNSPECIFIED ClusterStatusState = "STATE_UNSPECIFIED"
 	CLUSTERSTATUSSTATE_HEALTHY     ClusterStatusState = "STATE_HEALTHY"
 	CLUSTERSTATUSSTATE_CREATING    ClusterStatusState = "STATE_CREATING"
 	CLUSTERSTATUSSTATE_DELETING    ClusterStatusState = "STATE_DELETING"
@@ -33,7 +32,6 @@ const (
 
 // All allowed values of ClusterStatusState enum
 var AllowedClusterStatusStateEnumValues = []ClusterStatusState{
-	"STATE_UNSPECIFIED",
 	"STATE_HEALTHY",
 	"STATE_CREATING",
 	"STATE_DELETING",
