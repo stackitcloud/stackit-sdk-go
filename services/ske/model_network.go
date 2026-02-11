@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &Network{}
 
 /*
+	types and functions for controlPlane
+*/
+
+// isModel
+type NetworkGetControlPlaneAttributeType = *V2ControlPlaneNetwork
+type NetworkGetControlPlaneArgType = V2ControlPlaneNetwork
+type NetworkGetControlPlaneRetType = V2ControlPlaneNetwork
+
+func getNetworkGetControlPlaneAttributeTypeOk(arg NetworkGetControlPlaneAttributeType) (ret NetworkGetControlPlaneRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setNetworkGetControlPlaneAttributeType(arg *NetworkGetControlPlaneAttributeType, val NetworkGetControlPlaneRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for id
 */
 
@@ -40,7 +60,8 @@ type NetworkGetIdRetType = string
 
 // Network struct for Network
 type Network struct {
-	Id NetworkGetIdAttributeType `json:"id,omitempty"`
+	ControlPlane NetworkGetControlPlaneAttributeType `json:"controlPlane,omitempty"`
+	Id           NetworkGetIdAttributeType           `json:"id,omitempty"`
 }
 
 // NewNetwork instantiates a new Network object
@@ -58,6 +79,29 @@ func NewNetwork() *Network {
 func NewNetworkWithDefaults() *Network {
 	this := Network{}
 	return &this
+}
+
+// GetControlPlane returns the ControlPlane field value if set, zero value otherwise.
+func (o *Network) GetControlPlane() (res NetworkGetControlPlaneRetType) {
+	res, _ = o.GetControlPlaneOk()
+	return
+}
+
+// GetControlPlaneOk returns a tuple with the ControlPlane field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Network) GetControlPlaneOk() (ret NetworkGetControlPlaneRetType, ok bool) {
+	return getNetworkGetControlPlaneAttributeTypeOk(o.ControlPlane)
+}
+
+// HasControlPlane returns a boolean if a field has been set.
+func (o *Network) HasControlPlane() bool {
+	_, ok := o.GetControlPlaneOk()
+	return ok
+}
+
+// SetControlPlane gets a reference to the given V2ControlPlaneNetwork and assigns it to the ControlPlane field.
+func (o *Network) SetControlPlane(v NetworkGetControlPlaneRetType) {
+	setNetworkGetControlPlaneAttributeType(&o.ControlPlane, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -85,6 +129,9 @@ func (o *Network) SetId(v NetworkGetIdRetType) {
 
 func (o Network) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getNetworkGetControlPlaneAttributeTypeOk(o.ControlPlane); ok {
+		toSerialize["ControlPlane"] = val
+	}
 	if val, ok := getNetworkGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
 	}
