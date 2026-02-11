@@ -20,13 +20,11 @@ type GetProviderOptionsRequestVersionState string
 
 // List of GetProviderOptionsRequestVersionState
 const (
-	GETPROVIDEROPTIONSREQUESTVERSIONSTATE_UNSPECIFIED GetProviderOptionsRequestVersionState = "UNSPECIFIED"
-	GETPROVIDEROPTIONSREQUESTVERSIONSTATE_SUPPORTED   GetProviderOptionsRequestVersionState = "SUPPORTED"
+	GETPROVIDEROPTIONSREQUESTVERSIONSTATE_SUPPORTED GetProviderOptionsRequestVersionState = "SUPPORTED"
 )
 
 // All allowed values of GetProviderOptionsRequestVersionState enum
 var AllowedGetProviderOptionsRequestVersionStateEnumValues = []GetProviderOptionsRequestVersionState{
-	"UNSPECIFIED",
 	"SUPPORTED",
 }
 
