@@ -1,3 +1,50 @@
+## v0.17.0
+- **Feature:** add AlertRecord
+    - new related operations: `CreateAlertrecord`, `DeleteAlertrecord`, `DeleteAlertrecords`, `GetAlertrecord`, `ListAlertrecords`, `PartialUpdateAlertrecords`, `UpdateAlertrecord`
+    - new related models: `UpdateAlertrecordPayload`, `PartialUpdateAlertrecordsRequestInner`, `CreateAlertrecordPayload`, `AlertrecordResponse`, `AlertRecordResponse`, `AlertRecordsResponse`
+- **Feature:** add Backups
+    - new related operations: `CreateBackup`, `CreateBackupSchedule`, `ListBackupRetentions`, `ListBackupSchedules`, `ListBackups`, `RestoreBackup`
+    - new related models: `BackupResponse`, `BackupRetentionResponse`, `BackupSchedule`, `BackupSchedulePostResponse`, `BackupScheduleResponse`, `CreateBackupSchedulePayload`
+- **Feature:** add Elasticsearch checks
+    - new related operations `CreateElasticsearchCheck`, `DeleteElasticsearchCheck`, `ListElasticsearchChecks`
+    - new related models `ElasticsearchCheckChildResponse`, `ElasticsearchCheckResponse` `CreateElasticsearchCheckPayload`
+- **Feature:** add Mongodb checks
+    - new related operations `CreateMongodbCheck`, `ListMongodbChecks`, `DeleteMongodbCheck`
+    - new related models `MongodbCheckChildResponse`, `MongodbCheckResponse`, `CreateMongodbCheckPayload`
+- **Feature:** add Mysql checks
+    - new related operations `CreateMysqlCheck`, `DeleteMysqlCheck`, `ListMysqlChecks`
+    - new related models `MysqlCheckChildResponse`, `MysqlCheckResponse`, `CreateMysqlCheckPayload`
+- **Feature:** add Network checks
+    - new related operations `CreateNetworkCheck`, `DeleteNetworkCheck`, `ListNetworkChecks`
+    - new related models `NetworkCheckChildResponse`, `NetworkCheckResponse`, `CreateNetworkCheckPayload`
+- **Feature:** add Ping checks
+    - new related operations `CreatePingCheck`, `DeletePingCheck`, `ListPingChecks`
+    - new related models `PingCheckChildResponse`, `PingCheckResponse`, `CreatePingCheckPayload`
+- **Feature:** add Postgresql checks
+    - new related operations `CreatePostgresqlCheck`, `DeletePostgresqlCheck`, `ListPostgresqlChecks`
+    - new related models `PostgresqlCheckChildResponse`, `PostgresqlCheckResponse`, `CreatePostgresqlCheckPayload`
+- **Feature:** add Rabbitmq checks
+    - new related operations `CreateRabbitmqCheck`, `DeleteRabbitmqCheck`, `ListRabbitmqChecks`
+    - new related models `RabbitmqCheckChildResponse`, `RabbitmqCheckResponse`, `CreateRabbitmqCheckPayload`
+- **Feature:** add Redis checks
+    - new related operations `CreateRedisCheck`, `ListRedisChecks`, `DeleteRedisCheck`
+    - new related models `RedisCheckChildResponse`, `RedisCheckResponse`, `CreateRedisCheckPayload`
+- **Feature:** extended Alertrules
+    - new related operations `DeleteAlertrule`, `GetAlertrule`, `UpdateAlertrule`
+    - new related models `AlertruleResponse`, `UpdateAlertrulePayload`
+- **Feature:** add Offerings
+    - new related operation `ListOfferings`
+    - new related model `Offerings`
+-  **Feature:** extended Scrape
+- new related operations `DeleteScrapeConfigs`, `PartialUpdateScrapeConfigs`
+- ️**Breaking change:** renamed AlertRule to AlertruleResponse
+- ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInner to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
+- ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
+- ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig
+- ️**Breaking change:** renamed CreateScrapeConfigPayloadMetricsRelabelConfigsInner to PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
+- ️**Breaking change:** renamed CreateScrapeConfigPayloadStaticConfigsInner to PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner
+- ️**Breaking change:** renamed CreateScrapeConfigPayloadBasicAuth to PartialUpdateScrapeConfigsRequestInnerBasicAuth
+
 ## v0.16.3
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 
