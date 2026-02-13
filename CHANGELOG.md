@@ -179,6 +179,10 @@
   - [v0.2.2](services/sfs/CHANGELOG.md#v022) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `ske`: 
+  - [v1.7.0](services/ske/CHANGELOG.md#v170)
+    - **Feature:** new model `AccessScope`
+    - **Feature:** new model `V2ControlPlaneNetwork`
+    - **Feature:** added field `ControlPlane` of type `V2ControlPlaneNetwork` to model `Network`
   - [v1.6.3](services/ske/CHANGELOG.md#v163)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v1.6.2](services/ske/CHANGELOG.md#v162) 
