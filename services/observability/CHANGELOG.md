@@ -1,7 +1,7 @@
 ## v0.17.0
 - **Feature:** add AlertRecord
     - new related operations: `CreateAlertrecord`, `DeleteAlertrecord`, `DeleteAlertrecords`, `GetAlertrecord`, `ListAlertrecords`, `PartialUpdateAlertrecords`, `UpdateAlertrecord`
-    - new related models: `UpdateAlertrecordPayload`, `PartialUpdateAlertrecordsRequestInner`, `CreateAlertrecordPayload`, `AlertrecordResponse`, `AlertRecordResponse`, `AlertRecordsResponse`
+    - new related models: `UpdateAlertrecordPayload`, `PartialUpdateAlertrecordsRequestInner`, `CreateAlertrecordPayload`, `AlertRecord`, `AlertRecordResponse`, `AlertRecordsResponse`
 - **Feature:** add Backups
     - new related operations: `CreateBackup`, `CreateBackupSchedule`, `ListBackupRetentions`, `ListBackupSchedules`, `ListBackups`, `RestoreBackup`
     - new related models: `BackupResponse`, `BackupRetentionResponse`, `BackupSchedule`, `BackupSchedulePostResponse`, `BackupScheduleResponse`, `CreateBackupSchedulePayload`
