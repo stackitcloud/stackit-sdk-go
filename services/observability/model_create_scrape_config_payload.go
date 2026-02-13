@@ -23,9 +23,9 @@ var _ MappedNullable = &CreateScrapeConfigPayload{}
 */
 
 // isModel
-type CreateScrapeConfigPayloadGetBasicAuthAttributeType = *CreateScrapeConfigPayloadBasicAuth
-type CreateScrapeConfigPayloadGetBasicAuthArgType = CreateScrapeConfigPayloadBasicAuth
-type CreateScrapeConfigPayloadGetBasicAuthRetType = CreateScrapeConfigPayloadBasicAuth
+type CreateScrapeConfigPayloadGetBasicAuthAttributeType = *PartialUpdateScrapeConfigsRequestInnerBasicAuth
+type CreateScrapeConfigPayloadGetBasicAuthArgType = PartialUpdateScrapeConfigsRequestInnerBasicAuth
+type CreateScrapeConfigPayloadGetBasicAuthRetType = PartialUpdateScrapeConfigsRequestInnerBasicAuth
 
 func getCreateScrapeConfigPayloadGetBasicAuthAttributeTypeOk(arg CreateScrapeConfigPayloadGetBasicAuthAttributeType) (ret CreateScrapeConfigPayloadGetBasicAuthRetType, ok bool) {
 	if arg == nil {
@@ -104,9 +104,9 @@ func setCreateScrapeConfigPayloadgetHonorTimeStampsAttributeType(arg *CreateScra
 */
 
 // isArray
-type CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType = *[]CreateScrapeConfigPayloadHttpSdConfigsInner
-type CreateScrapeConfigPayloadGetHttpSdConfigsArgType = []CreateScrapeConfigPayloadHttpSdConfigsInner
-type CreateScrapeConfigPayloadGetHttpSdConfigsRetType = []CreateScrapeConfigPayloadHttpSdConfigsInner
+type CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType = *[]PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
+type CreateScrapeConfigPayloadGetHttpSdConfigsArgType = []PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
+type CreateScrapeConfigPayloadGetHttpSdConfigsRetType = []PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
 
 func getCreateScrapeConfigPayloadGetHttpSdConfigsAttributeTypeOk(arg CreateScrapeConfigPayloadGetHttpSdConfigsAttributeType) (ret CreateScrapeConfigPayloadGetHttpSdConfigsRetType, ok bool) {
 	if arg == nil {
@@ -166,9 +166,9 @@ type CreateScrapeConfigPayloadGetMetricsPathRetType = string
 */
 
 // isArray
-type CreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType = *[]CreateScrapeConfigPayloadMetricsRelabelConfigsInner
-type CreateScrapeConfigPayloadGetMetricsRelabelConfigsArgType = []CreateScrapeConfigPayloadMetricsRelabelConfigsInner
-type CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType = []CreateScrapeConfigPayloadMetricsRelabelConfigsInner
+type CreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType = *[]PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
+type CreateScrapeConfigPayloadGetMetricsRelabelConfigsArgType = []PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
+type CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType = []PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
 
 func getCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeTypeOk(arg CreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType) (ret CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType, ok bool) {
 	if arg == nil {
@@ -186,9 +186,9 @@ func setCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType(arg *Crea
 */
 
 // isModel
-type CreateScrapeConfigPayloadGetOauth2AttributeType = *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
-type CreateScrapeConfigPayloadGetOauth2ArgType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
-type CreateScrapeConfigPayloadGetOauth2RetType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2
+type CreateScrapeConfigPayloadGetOauth2AttributeType = *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2
+type CreateScrapeConfigPayloadGetOauth2ArgType = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2
+type CreateScrapeConfigPayloadGetOauth2RetType = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2
 
 func getCreateScrapeConfigPayloadGetOauth2AttributeTypeOk(arg CreateScrapeConfigPayloadGetOauth2AttributeType) (ret CreateScrapeConfigPayloadGetOauth2RetType, ok bool) {
 	if arg == nil {
@@ -412,9 +412,9 @@ type CreateScrapeConfigPayloadGetScrapeTimeoutRetType = string
 */
 
 // isArray
-type CreateScrapeConfigPayloadGetStaticConfigsAttributeType = *[]CreateScrapeConfigPayloadStaticConfigsInner
-type CreateScrapeConfigPayloadGetStaticConfigsArgType = []CreateScrapeConfigPayloadStaticConfigsInner
-type CreateScrapeConfigPayloadGetStaticConfigsRetType = []CreateScrapeConfigPayloadStaticConfigsInner
+type CreateScrapeConfigPayloadGetStaticConfigsAttributeType = *[]PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner
+type CreateScrapeConfigPayloadGetStaticConfigsArgType = []PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner
+type CreateScrapeConfigPayloadGetStaticConfigsRetType = []PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner
 
 func getCreateScrapeConfigPayloadGetStaticConfigsAttributeTypeOk(arg CreateScrapeConfigPayloadGetStaticConfigsAttributeType) (ret CreateScrapeConfigPayloadGetStaticConfigsRetType, ok bool) {
 	if arg == nil {
@@ -432,9 +432,9 @@ func setCreateScrapeConfigPayloadGetStaticConfigsAttributeType(arg *CreateScrape
 */
 
 // isModel
-type CreateScrapeConfigPayloadGetTlsConfigAttributeType = *CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
-type CreateScrapeConfigPayloadGetTlsConfigArgType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
-type CreateScrapeConfigPayloadGetTlsConfigRetType = CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadGetTlsConfigAttributeType = *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadGetTlsConfigArgType = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig
+type CreateScrapeConfigPayloadGetTlsConfigRetType = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig
 
 func getCreateScrapeConfigPayloadGetTlsConfigAttributeTypeOk(arg CreateScrapeConfigPayloadGetTlsConfigAttributeType) (ret CreateScrapeConfigPayloadGetTlsConfigRetType, ok bool) {
 	if arg == nil {
@@ -533,7 +533,7 @@ func (o *CreateScrapeConfigPayload) HasBasicAuth() bool {
 	return ok
 }
 
-// SetBasicAuth gets a reference to the given CreateScrapeConfigPayloadBasicAuth and assigns it to the BasicAuth field.
+// SetBasicAuth gets a reference to the given PartialUpdateScrapeConfigsRequestInnerBasicAuth and assigns it to the BasicAuth field.
 func (o *CreateScrapeConfigPayload) SetBasicAuth(v CreateScrapeConfigPayloadGetBasicAuthRetType) {
 	setCreateScrapeConfigPayloadGetBasicAuthAttributeType(&o.BasicAuth, v)
 }
@@ -625,7 +625,7 @@ func (o *CreateScrapeConfigPayload) HasHttpSdConfigs() bool {
 	return ok
 }
 
-// SetHttpSdConfigs gets a reference to the given []CreateScrapeConfigPayloadHttpSdConfigsInner and assigns it to the HttpSdConfigs field.
+// SetHttpSdConfigs gets a reference to the given []PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner and assigns it to the HttpSdConfigs field.
 func (o *CreateScrapeConfigPayload) SetHttpSdConfigs(v CreateScrapeConfigPayloadGetHttpSdConfigsRetType) {
 	setCreateScrapeConfigPayloadGetHttpSdConfigsAttributeType(&o.HttpSdConfigs, v)
 }
@@ -688,7 +688,7 @@ func (o *CreateScrapeConfigPayload) HasMetricsRelabelConfigs() bool {
 	return ok
 }
 
-// SetMetricsRelabelConfigs gets a reference to the given []CreateScrapeConfigPayloadMetricsRelabelConfigsInner and assigns it to the MetricsRelabelConfigs field.
+// SetMetricsRelabelConfigs gets a reference to the given []PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner and assigns it to the MetricsRelabelConfigs field.
 func (o *CreateScrapeConfigPayload) SetMetricsRelabelConfigs(v CreateScrapeConfigPayloadGetMetricsRelabelConfigsRetType) {
 	setCreateScrapeConfigPayloadGetMetricsRelabelConfigsAttributeType(&o.MetricsRelabelConfigs, v)
 }
@@ -711,7 +711,7 @@ func (o *CreateScrapeConfigPayload) HasOauth2() bool {
 	return ok
 }
 
-// SetOauth2 gets a reference to the given CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 and assigns it to the Oauth2 field.
+// SetOauth2 gets a reference to the given PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2 and assigns it to the Oauth2 field.
 func (o *CreateScrapeConfigPayload) SetOauth2(v CreateScrapeConfigPayloadGetOauth2RetType) {
 	setCreateScrapeConfigPayloadGetOauth2AttributeType(&o.Oauth2, v)
 }
@@ -848,7 +848,7 @@ func (o *CreateScrapeConfigPayload) HasTlsConfig() bool {
 	return ok
 }
 
-// SetTlsConfig gets a reference to the given CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig and assigns it to the TlsConfig field.
+// SetTlsConfig gets a reference to the given PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig and assigns it to the TlsConfig field.
 func (o *CreateScrapeConfigPayload) SetTlsConfig(v CreateScrapeConfigPayloadGetTlsConfigRetType) {
 	setCreateScrapeConfigPayloadGetTlsConfigAttributeType(&o.TlsConfig, v)
 }
