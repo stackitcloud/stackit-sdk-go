@@ -1,3 +1,6 @@
+## v0.26.0
+- **Breaking change:** `InstanceParameters.SetTLSProtocols()` now accepts a slice of strings instead of a single string
+
 ## v0.25.6
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 
