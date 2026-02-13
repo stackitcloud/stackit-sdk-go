@@ -17,6 +17,8 @@
   - [v0.1.4](services/auditlog/CHANGELOG.md#v014) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `authorization`: 
+  - [v0.12.0](services/authorization/CHANGELOG.md#v0120)
+    - **Breaking change:** removed operation `GetAssignableSubjects` and related models `AssignableSubject`, `ListAssignableSubjectsResponse`
   - [v0.11.3](services/authorization/CHANGELOG.md#v0113)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.11.2](services/authorization/CHANGELOG.md#v0112) 
