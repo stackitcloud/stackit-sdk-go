@@ -22,9 +22,9 @@ var _ MappedNullable = &AlertRecordResponse{}
 */
 
 // isModel
-type AlertRecordResponseGetDataAttributeType = *AlertrecordResponse
-type AlertRecordResponseGetDataArgType = AlertrecordResponse
-type AlertRecordResponseGetDataRetType = AlertrecordResponse
+type AlertRecordResponseGetDataAttributeType = *AlertRecord
+type AlertRecordResponseGetDataArgType = AlertRecord
+type AlertRecordResponseGetDataRetType = AlertRecord
 
 func getAlertRecordResponseGetDataAttributeTypeOk(arg AlertRecordResponseGetDataAttributeType) (ret AlertRecordResponseGetDataRetType, ok bool) {
 	if arg == nil {

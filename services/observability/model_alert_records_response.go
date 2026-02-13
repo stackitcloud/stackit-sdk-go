@@ -22,9 +22,9 @@ var _ MappedNullable = &AlertRecordsResponse{}
 */
 
 // isArray
-type AlertRecordsResponseGetDataAttributeType = *[]AlertrecordResponse
-type AlertRecordsResponseGetDataArgType = []AlertrecordResponse
-type AlertRecordsResponseGetDataRetType = []AlertrecordResponse
+type AlertRecordsResponseGetDataAttributeType = *[]AlertRecord
+type AlertRecordsResponseGetDataArgType = []AlertRecord
+type AlertRecordsResponseGetDataRetType = []AlertRecord
 
 func getAlertRecordsResponseGetDataAttributeTypeOk(arg AlertRecordsResponseGetDataAttributeType) (ret AlertRecordsResponseGetDataRetType, ok bool) {
 	if arg == nil {
