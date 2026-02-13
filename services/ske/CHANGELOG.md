@@ -1,4 +1,4 @@
-## v1.6.4
+## v1.7.0
 - **Feature:** new model `AccessScope`
 - **Feature:** new model `V2ControlPlaneNetwork`
 - **Feature:** added field `ControlPlane` of type `V2ControlPlaneNetwork` to model `Network`

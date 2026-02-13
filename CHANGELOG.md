@@ -179,7 +179,7 @@
   - [v0.2.2](services/sfs/CHANGELOG.md#v022) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `ske`: 
-  - [v1.6.4](services/ske/CHANGELOG.md#v164)
+  - [v1.7.0](services/ske/CHANGELOG.md#v170)
     - **Feature:** new model `AccessScope`
     - **Feature:** new model `V2ControlPlaneNetwork`
     - **Feature:** added field `ControlPlane` of type `V2ControlPlaneNetwork` to model `Network`
