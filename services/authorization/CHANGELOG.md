@@ -1,3 +1,6 @@
+## v0.12.0
+- **Breaking change:** removed operation `GetAssignableSubjects` and related models `AssignableSubject`, `ListAssignableSubjectsResponse`
+
 ## v0.11.3
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 
