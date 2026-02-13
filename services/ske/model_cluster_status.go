@@ -229,8 +229,6 @@ func NewClusterStatus() *ClusterStatus {
 // but it doesn't guarantee that properties required by API are set
 func NewClusterStatusWithDefaults() *ClusterStatus {
 	this := ClusterStatus{}
-	var aggregated ClusterStatusState = CLUSTERSTATUSSTATE_UNSPECIFIED
-	this.Aggregated = &aggregated
 	return &this
 }
 
