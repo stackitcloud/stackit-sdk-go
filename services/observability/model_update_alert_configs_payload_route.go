@@ -203,7 +203,7 @@ func setUpdateAlertConfigsPayloadRouteGetRoutesAttributeType(arg *UpdateAlertCon
 
 // UpdateAlertConfigsPayloadRoute The root node of the routing tree.
 type UpdateAlertConfigsPayloadRoute struct {
-	// Whether an alert should continue matching subsequent sibling nodes.
+	// The continue parameter cannot be set to true on the root route because there are no subsequent sibling nodes to match. It must always be false.
 	Continue UpdateAlertConfigsPayloadRoutegetContinueAttributeType `json:"continue,omitempty"`
 	// The labels by which incoming alerts are grouped together. For example, multiple alerts coming in for cluster=A and alertname=LatencyHigh would be batched into a single group. To aggregate by all possible labels use the special value '...' as the sole label name, for example: group_by: ['...']. This effectively disables aggregation entirely, passing through all alerts as-is. This is unlikely to be what you want, unless you have a very low alert volume or your upstream notification system performs its own grouping.
 	GroupBy UpdateAlertConfigsPayloadRouteGetGroupByAttributeType `json:"groupBy,omitempty"`
