@@ -223,7 +223,7 @@ func setUpdateAlertConfigsPayloadRouteRoutesInnerGetRoutesAttributeType(arg *Upd
 
 // UpdateAlertConfigsPayloadRouteRoutesInner As in one level above
 type UpdateAlertConfigsPayloadRouteRoutesInner struct {
-	// As in one level above
+	// Whether an alert should continue matching subsequent sibling nodes.
 	Continue UpdateAlertConfigsPayloadRouteRoutesInnergetContinueAttributeType `json:"continue,omitempty"`
 	GroupBy  UpdateAlertConfigsPayloadRouteRoutesInnerGetGroupByAttributeType  `json:"groupBy,omitempty"`
 	// As in one level above
