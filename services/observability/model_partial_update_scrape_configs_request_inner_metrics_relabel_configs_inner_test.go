@@ -16,7 +16,7 @@ import (
 
 // isEnum
 
-func TestCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction_UnmarshalJSON(t *testing.T) {
+func TestPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction_UnmarshalJSON(t *testing.T) {
 	type args struct {
 		src []byte
 	}
@@ -84,7 +84,7 @@ func TestCreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction_UnmarshalJSON
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			v := CreateScrapeConfigPayloadMetricsRelabelConfigsInnerAction("")
+			v := PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInnerAction("")
 			if err := v.UnmarshalJSON(tt.args.src); (err != nil) != tt.wantErr {
 				t.Errorf("UnmarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
 			}
