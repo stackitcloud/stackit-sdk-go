@@ -269,5 +269,4 @@ See the [release documentation](./RELEASE.md) for further information.
 
 ## License
 
-
 Apache 2.0
