@@ -105,7 +105,7 @@ To authenticate with the SDK, you need a [service account](https://docs.stackit.
 
 The SDK supports three authentication methods:
 
-1. **Workload Identity Federation Flow** (Recommended)
+1. **Workload Identity Federation Flow**
 
    - Uses OIDC trusted tokens
    - Provides best security through short-lived tokens without secrets
@@ -268,5 +268,6 @@ Your contribution is welcome! For more details on how to contribute, refer to ou
 See the [release documentation](./RELEASE.md) for further information.
 
 ## License
+
 
 Apache 2.0
