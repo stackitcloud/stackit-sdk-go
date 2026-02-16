@@ -17,6 +17,8 @@
   - [v0.1.4](services/auditlog/CHANGELOG.md#v014) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `authorization`: 
+  - [v0.12.0](services/authorization/CHANGELOG.md#v0120)
+    - **Breaking change:** removed operation `GetAssignableSubjects` and related models `AssignableSubject`, `ListAssignableSubjectsResponse`
   - [v0.11.3](services/authorization/CHANGELOG.md#v0113)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.11.2](services/authorization/CHANGELOG.md#v0112) 
@@ -122,6 +124,8 @@
   - [v1.3.4](services/postgresflex/CHANGELOG.md#v134) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `rabbitmq`: 
+  - [v0.26.0](services/rabbitmq/CHANGELOG.md#v0260)
+    - **Breaking change:** `SetTLSProtocols` now accepts a slice of strings instead of a single string
   - [v0.25.6](services/rabbitmq/CHANGELOG.md#v0256)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.25.5](services/rabbitmq/CHANGELOG.md#v0255) 
