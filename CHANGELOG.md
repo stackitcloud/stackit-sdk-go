@@ -22,6 +22,9 @@
   - [v0.11.2](services/authorization/CHANGELOG.md#v0112) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `cdn`: 
+  - [v1.10.0](services/cdn/CHANGELOG.md#v1100)
+    - **Feature:** Add support for `RedirectConfig` in `Config`, `ConfigPatch` and `CreateDistributionPayload` models
+      - new related models `RedirectConfig`, `RedirectRule`, `Matcher` and `MatchCondition`
   - [v1.9.4](services/cdn/CHANGELOG.md#v194)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v1.9.3](services/cdn/CHANGELOG.md#v193) 
