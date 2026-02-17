@@ -166,6 +166,10 @@
   - [v1.2.5](services/serverupdate/CHANGELOG.md#v125) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `serviceaccount`: 
+  - [v0.12.0](services/serviceaccount/CHANGELOG.md#v0120)
+    - **Feature:** add support for Federated Identity Providers
+      - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`, `PartialUpdateServiceAccountFederatedIdentityProvider`
+      - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
   - [v0.11.6](services/serviceaccount/CHANGELOG.md#v0116)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.11.5](services/serviceaccount/CHANGELOG.md#v0115) 
