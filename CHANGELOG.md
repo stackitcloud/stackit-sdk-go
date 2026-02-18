@@ -1,4 +1,6 @@
 ## Release (2026-mm-dd)
+- `core`: [v0.22.0](core/CHANGELOG.md#v0220) 
+  - **Feature:** Support Azure DevOps OIDC adapter
 - `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
   - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `alb`: 
