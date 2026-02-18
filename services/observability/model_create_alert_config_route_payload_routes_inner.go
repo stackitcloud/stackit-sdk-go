@@ -223,7 +223,7 @@ func setCreateAlertConfigRoutePayloadRoutesInnerGetRoutesAttributeType(arg *Crea
 
 // CreateAlertConfigRoutePayloadRoutesInner As in one level above
 type CreateAlertConfigRoutePayloadRoutesInner struct {
-	// As in one level above
+	// Whether an alert should continue matching subsequent sibling nodes.
 	Continue CreateAlertConfigRoutePayloadRoutesInnergetContinueAttributeType `json:"continue,omitempty"`
 	GroupBy  CreateAlertConfigRoutePayloadRoutesInnerGetGroupByAttributeType  `json:"groupBy,omitempty"`
 	// As in one level above
