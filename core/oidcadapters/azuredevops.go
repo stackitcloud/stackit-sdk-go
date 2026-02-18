@@ -16,7 +16,7 @@ const (
 
 func RequestAzureDevOpsOIDCToken(oidcRequestUrl, oidcRequestToken, serviceConnectionID string) OIDCTokenFunc {
 	return func(ctx context.Context) (string, error) {
-		req, err := http.NewRequestWithContext(ctx, http.MethodGet, oidcRequestUrl, http.NoBody)
+		req, err := http.NewRequestWithContext(ctx, http.MethodPost, oidcRequestUrl, http.NoBody)
 		if err != nil {
 			return "", fmt.Errorf("azureDevOpsAssertion: failed to build request: %w", err)
 		}
