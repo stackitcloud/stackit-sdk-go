@@ -62,12 +62,12 @@ func RequestAzureDevOpsOIDCToken(oidcRequestUrl, oidcRequestToken, serviceConnec
 		}
 
 		var tokenRes struct {
-			Value string `json:"value"`
+			Value *string `json:"oidcToken"`
 		}
-		if err := json.Unmarshal(body, &tokenRes); err != nil {
+		if err := json.Unmarshal(body, &tokenRes); err != nil || tokenRes.Value == nil {
 			return "", fmt.Errorf("azureDevOpsAssertion: cannot unmarshal response: %w", err)
 		}
 
-		return tokenRes.Value, nil
+		return *tokenRes.Value, nil
 	}
 }
