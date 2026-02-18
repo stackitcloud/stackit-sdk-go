@@ -42,7 +42,7 @@ func RequestAzureDevOpsOIDCToken(oidcRequestUrl, oidcRequestToken, serviceConnec
 
 		req.Header.Set("Accept", "application/json")
 		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", oidcRequestToken))
-		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+		req.Header.Set("Content-Type", "application/json")
 
 		resp, err := http.DefaultClient.Do(req)
 		if err != nil {
