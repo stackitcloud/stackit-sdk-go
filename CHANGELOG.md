@@ -1,8 +1,9 @@
 ## Release (2026-mm-dd)
-- `core`: [v0.22.0](core/CHANGELOG.md#v0220) 
-  - **Feature:** Support Azure DevOps OIDC adapter
-- `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
-  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+- `core`: 
+  - [v0.22.0](core/CHANGELOG.md#v0220) 
+    - **Feature:** Support Azure DevOps OIDC adapter
+  - [v0.21.1](core/CHANGELOG.md#v0211) 
+    - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `alb`: 
   - [v0.9.3](services/alb/CHANGELOG.md#v093)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
