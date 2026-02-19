@@ -102,6 +102,26 @@ func setInstanceGetCreatedAttributeType(arg *InstanceGetCreatedAttributeType, va
 }
 
 /*
+	types and functions for feature_toggle
+*/
+
+// isModel
+type InstanceGetFeatureToggleAttributeType = *FeatureToggle
+type InstanceGetFeatureToggleArgType = FeatureToggle
+type InstanceGetFeatureToggleRetType = FeatureToggle
+
+func getInstanceGetFeatureToggleAttributeTypeOk(arg InstanceGetFeatureToggleAttributeType) (ret InstanceGetFeatureToggleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInstanceGetFeatureToggleAttributeType(arg *InstanceGetFeatureToggleAttributeType, val InstanceGetFeatureToggleRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for flavor
 */
 
@@ -352,7 +372,9 @@ type Instance struct {
 	// The date and time the creation of the STACKIT Git instance was triggered.
 	// REQUIRED
 	Created InstanceGetCreatedAttributeType `json:"created" required:"true"`
-	// Desired instance flavor. Must be one of the defined enum values
+	// REQUIRED
+	FeatureToggle InstanceGetFeatureToggleAttributeType `json:"feature_toggle" required:"true"`
+	// Instance flavor.
 	// REQUIRED
 	Flavor InstanceGetFlavorAttributeType `json:"flavor" required:"true"`
 	// A auto generated unique id which identifies the STACKIT Git instances.
@@ -378,12 +400,13 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(acl InstanceGetAclArgType, consumedDisk InstanceGetConsumedDiskArgType, consumedObjectStorage InstanceGetConsumedObjectStorageArgType, created InstanceGetCreatedArgType, flavor InstanceGetFlavorArgType, id InstanceGetIdArgType, name InstanceGetNameArgType, state InstanceGetStateArgType, url InstanceGetUrlArgType, version InstanceGetVersionArgType) *Instance {
+func NewInstance(acl InstanceGetAclArgType, consumedDisk InstanceGetConsumedDiskArgType, consumedObjectStorage InstanceGetConsumedObjectStorageArgType, created InstanceGetCreatedArgType, featureToggle InstanceGetFeatureToggleArgType, flavor InstanceGetFlavorArgType, id InstanceGetIdArgType, name InstanceGetNameArgType, state InstanceGetStateArgType, url InstanceGetUrlArgType, version InstanceGetVersionArgType) *Instance {
 	this := Instance{}
 	setInstanceGetAclAttributeType(&this.Acl, acl)
 	setInstanceGetConsumedDiskAttributeType(&this.ConsumedDisk, consumedDisk)
 	setInstanceGetConsumedObjectStorageAttributeType(&this.ConsumedObjectStorage, consumedObjectStorage)
 	setInstanceGetCreatedAttributeType(&this.Created, created)
+	setInstanceGetFeatureToggleAttributeType(&this.FeatureToggle, featureToggle)
 	setInstanceGetFlavorAttributeType(&this.Flavor, flavor)
 	setInstanceGetIdAttributeType(&this.Id, id)
 	setInstanceGetNameAttributeType(&this.Name, name)
@@ -467,6 +490,23 @@ func (o *Instance) GetCreatedOk() (ret InstanceGetCreatedRetType, ok bool) {
 // SetCreated sets field value
 func (o *Instance) SetCreated(v InstanceGetCreatedRetType) {
 	setInstanceGetCreatedAttributeType(&o.Created, v)
+}
+
+// GetFeatureToggle returns the FeatureToggle field value
+func (o *Instance) GetFeatureToggle() (ret InstanceGetFeatureToggleRetType) {
+	ret, _ = o.GetFeatureToggleOk()
+	return ret
+}
+
+// GetFeatureToggleOk returns a tuple with the FeatureToggle field value
+// and a boolean to check if the value has been set.
+func (o *Instance) GetFeatureToggleOk() (ret InstanceGetFeatureToggleRetType, ok bool) {
+	return getInstanceGetFeatureToggleAttributeTypeOk(o.FeatureToggle)
+}
+
+// SetFeatureToggle sets field value
+func (o *Instance) SetFeatureToggle(v InstanceGetFeatureToggleRetType) {
+	setInstanceGetFeatureToggleAttributeType(&o.FeatureToggle, v)
 }
 
 // GetFlavor returns the Flavor field value
@@ -584,6 +624,9 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getInstanceGetCreatedAttributeTypeOk(o.Created); ok {
 		toSerialize["Created"] = val
+	}
+	if val, ok := getInstanceGetFeatureToggleAttributeTypeOk(o.FeatureToggle); ok {
+		toSerialize["FeatureToggle"] = val
 	}
 	if val, ok := getInstanceGetFlavorAttributeTypeOk(o.Flavor); ok {
 		toSerialize["Flavor"] = val
