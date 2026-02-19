@@ -110,18 +110,24 @@ type CreateSharePayload struct {
 	// An optional object that represents the labels associated with the share  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
 	Labels CreateSharePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Name of the Share
-	Name CreateSharePayloadGetNameAttributeType `json:"name,omitempty"`
+	// REQUIRED
+	Name CreateSharePayloadGetNameAttributeType `json:"name" required:"true"`
 	// Space hard limit for the Share. If zero, the Share will have access to the full space of the Resource Pool it lives in.   (unit: gibibytes)
 	// Can be cast to int32 without loss of precision.
-	SpaceHardLimitGigabytes CreateSharePayloadGetSpaceHardLimitGigabytesAttributeType `json:"spaceHardLimitGigabytes,omitempty"`
+	// REQUIRED
+	SpaceHardLimitGigabytes CreateSharePayloadGetSpaceHardLimitGigabytesAttributeType `json:"spaceHardLimitGigabytes" required:"true"`
 }
+
+type _CreateSharePayload CreateSharePayload
 
 // NewCreateSharePayload instantiates a new CreateSharePayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSharePayload() *CreateSharePayload {
+func NewCreateSharePayload(name CreateSharePayloadGetNameArgType, spaceHardLimitGigabytes CreateSharePayloadGetSpaceHardLimitGigabytesArgType) *CreateSharePayload {
 	this := CreateSharePayload{}
+	setCreateSharePayloadGetNameAttributeType(&this.Name, name)
+	setCreateSharePayloadGetSpaceHardLimitGigabytesAttributeType(&this.SpaceHardLimitGigabytes, spaceHardLimitGigabytes)
 	return &this
 }
 
@@ -190,48 +196,36 @@ func (o *CreateSharePayload) SetLabels(v CreateSharePayloadGetLabelsRetType) {
 	setCreateSharePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *CreateSharePayload) GetName() (res CreateSharePayloadGetNameRetType) {
-	res, _ = o.GetNameOk()
-	return
+// GetName returns the Name field value
+func (o *CreateSharePayload) GetName() (ret CreateSharePayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CreateSharePayload) GetNameOk() (ret CreateSharePayloadGetNameRetType, ok bool) {
 	return getCreateSharePayloadGetNameAttributeTypeOk(o.Name)
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateSharePayload) HasName() bool {
-	_, ok := o.GetNameOk()
-	return ok
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CreateSharePayload) SetName(v CreateSharePayloadGetNameRetType) {
 	setCreateSharePayloadGetNameAttributeType(&o.Name, v)
 }
 
-// GetSpaceHardLimitGigabytes returns the SpaceHardLimitGigabytes field value if set, zero value otherwise.
-func (o *CreateSharePayload) GetSpaceHardLimitGigabytes() (res CreateSharePayloadGetSpaceHardLimitGigabytesRetType) {
-	res, _ = o.GetSpaceHardLimitGigabytesOk()
-	return
+// GetSpaceHardLimitGigabytes returns the SpaceHardLimitGigabytes field value
+func (o *CreateSharePayload) GetSpaceHardLimitGigabytes() (ret CreateSharePayloadGetSpaceHardLimitGigabytesRetType) {
+	ret, _ = o.GetSpaceHardLimitGigabytesOk()
+	return ret
 }
 
-// GetSpaceHardLimitGigabytesOk returns a tuple with the SpaceHardLimitGigabytes field value if set, nil otherwise
+// GetSpaceHardLimitGigabytesOk returns a tuple with the SpaceHardLimitGigabytes field value
 // and a boolean to check if the value has been set.
 func (o *CreateSharePayload) GetSpaceHardLimitGigabytesOk() (ret CreateSharePayloadGetSpaceHardLimitGigabytesRetType, ok bool) {
 	return getCreateSharePayloadGetSpaceHardLimitGigabytesAttributeTypeOk(o.SpaceHardLimitGigabytes)
 }
 
-// HasSpaceHardLimitGigabytes returns a boolean if a field has been set.
-func (o *CreateSharePayload) HasSpaceHardLimitGigabytes() bool {
-	_, ok := o.GetSpaceHardLimitGigabytesOk()
-	return ok
-}
-
-// SetSpaceHardLimitGigabytes gets a reference to the given int64 and assigns it to the SpaceHardLimitGigabytes field.
+// SetSpaceHardLimitGigabytes sets field value
 func (o *CreateSharePayload) SetSpaceHardLimitGigabytes(v CreateSharePayloadGetSpaceHardLimitGigabytesRetType) {
 	setCreateSharePayloadGetSpaceHardLimitGigabytesAttributeType(&o.SpaceHardLimitGigabytes, v)
 }
