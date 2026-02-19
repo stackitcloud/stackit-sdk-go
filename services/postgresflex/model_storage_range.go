@@ -22,8 +22,13 @@ var _ MappedNullable = &StorageRange{}
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageRangeGetMaxAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageRangeGetMaxArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageRangeGetMaxRetType = int64
 
 func getStorageRangeGetMaxAttributeTypeOk(arg StorageRangeGetMaxAttributeType) (ret StorageRangeGetMaxRetType, ok bool) {
@@ -42,8 +47,13 @@ func setStorageRangeGetMaxAttributeType(arg *StorageRangeGetMaxAttributeType, va
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageRangeGetMinAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageRangeGetMinArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageRangeGetMinRetType = int64
 
 func getStorageRangeGetMinAttributeTypeOk(arg StorageRangeGetMinAttributeType) (ret StorageRangeGetMinRetType, ok bool) {
@@ -58,6 +68,7 @@ func setStorageRangeGetMinAttributeType(arg *StorageRangeGetMinAttributeType, va
 }
 
 // StorageRange struct for StorageRange
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageRange struct {
 	Max StorageRangeGetMaxAttributeType `json:"max,omitempty"`
 	Min StorageRangeGetMinAttributeType `json:"min,omitempty"`
@@ -67,6 +78,7 @@ type StorageRange struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewStorageRange() *StorageRange {
 	this := StorageRange{}
 	return &this
@@ -75,12 +87,14 @@ func NewStorageRange() *StorageRange {
 // NewStorageRangeWithDefaults instantiates a new StorageRange object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewStorageRangeWithDefaults() *StorageRange {
 	this := StorageRange{}
 	return &this
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) GetMax() (res StorageRangeGetMaxRetType) {
 	res, _ = o.GetMaxOk()
 	return
@@ -88,22 +102,26 @@ func (o *StorageRange) GetMax() (res StorageRangeGetMaxRetType) {
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) GetMaxOk() (ret StorageRangeGetMaxRetType, ok bool) {
 	return getStorageRangeGetMaxAttributeTypeOk(o.Max)
 }
 
 // HasMax returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) HasMax() bool {
 	_, ok := o.GetMaxOk()
 	return ok
 }
 
 // SetMax gets a reference to the given int64 and assigns it to the Max field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) SetMax(v StorageRangeGetMaxRetType) {
 	setStorageRangeGetMaxAttributeType(&o.Max, v)
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) GetMin() (res StorageRangeGetMinRetType) {
 	res, _ = o.GetMinOk()
 	return
@@ -111,21 +129,25 @@ func (o *StorageRange) GetMin() (res StorageRangeGetMinRetType) {
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) GetMinOk() (ret StorageRangeGetMinRetType, ok bool) {
 	return getStorageRangeGetMinAttributeTypeOk(o.Min)
 }
 
 // HasMin returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) HasMin() bool {
 	_, ok := o.GetMinOk()
 	return ok
 }
 
 // SetMin gets a reference to the given int64 and assigns it to the Min field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *StorageRange) SetMin(v StorageRangeGetMinRetType) {
 	setStorageRangeGetMinAttributeType(&o.Min, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o StorageRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getStorageRangeGetMaxAttributeTypeOk(o.Max); ok {
@@ -137,37 +159,45 @@ func (o StorageRange) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableStorageRange struct {
 	value *StorageRange
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableStorageRange) Get() *StorageRange {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableStorageRange) Set(val *StorageRange) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableStorageRange) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableStorageRange) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableStorageRange(val *StorageRange) *NullableStorageRange {
 	return &NullableStorageRange{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableStorageRange) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableStorageRange) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

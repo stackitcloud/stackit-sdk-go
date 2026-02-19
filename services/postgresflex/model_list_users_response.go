@@ -22,8 +22,13 @@ var _ MappedNullable = &ListUsersResponse{}
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseGetCountAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseGetCountArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseGetCountRetType = int64
 
 func getListUsersResponseGetCountAttributeTypeOk(arg ListUsersResponseGetCountAttributeType) (ret ListUsersResponseGetCountRetType, ok bool) {
@@ -42,8 +47,13 @@ func setListUsersResponseGetCountAttributeType(arg *ListUsersResponseGetCountAtt
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseGetItemsAttributeType = *[]ListUsersResponseItem
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseGetItemsArgType = []ListUsersResponseItem
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseGetItemsRetType = []ListUsersResponseItem
 
 func getListUsersResponseGetItemsAttributeTypeOk(arg ListUsersResponseGetItemsAttributeType) (ret ListUsersResponseGetItemsRetType, ok bool) {
@@ -58,6 +68,7 @@ func setListUsersResponseGetItemsAttributeType(arg *ListUsersResponseGetItemsAtt
 }
 
 // ListUsersResponse struct for ListUsersResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponse struct {
 	Count ListUsersResponseGetCountAttributeType `json:"count,omitempty"`
 	Items ListUsersResponseGetItemsAttributeType `json:"items,omitempty"`
@@ -67,6 +78,7 @@ type ListUsersResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListUsersResponse() *ListUsersResponse {
 	this := ListUsersResponse{}
 	return &this
@@ -75,12 +87,14 @@ func NewListUsersResponse() *ListUsersResponse {
 // NewListUsersResponseWithDefaults instantiates a new ListUsersResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListUsersResponseWithDefaults() *ListUsersResponse {
 	this := ListUsersResponse{}
 	return &this
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) GetCount() (res ListUsersResponseGetCountRetType) {
 	res, _ = o.GetCountOk()
 	return
@@ -88,22 +102,26 @@ func (o *ListUsersResponse) GetCount() (res ListUsersResponseGetCountRetType) {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) GetCountOk() (ret ListUsersResponseGetCountRetType, ok bool) {
 	return getListUsersResponseGetCountAttributeTypeOk(o.Count)
 }
 
 // HasCount returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) HasCount() bool {
 	_, ok := o.GetCountOk()
 	return ok
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) SetCount(v ListUsersResponseGetCountRetType) {
 	setListUsersResponseGetCountAttributeType(&o.Count, v)
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) GetItems() (res ListUsersResponseGetItemsRetType) {
 	res, _ = o.GetItemsOk()
 	return
@@ -111,21 +129,25 @@ func (o *ListUsersResponse) GetItems() (res ListUsersResponseGetItemsRetType) {
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) GetItemsOk() (ret ListUsersResponseGetItemsRetType, ok bool) {
 	return getListUsersResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) HasItems() bool {
 	_, ok := o.GetItemsOk()
 	return ok
 }
 
 // SetItems gets a reference to the given []ListUsersResponseItem and assigns it to the Items field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponse) SetItems(v ListUsersResponseGetItemsRetType) {
 	setListUsersResponseGetItemsAttributeType(&o.Items, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ListUsersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListUsersResponseGetCountAttributeTypeOk(o.Count); ok {
@@ -137,37 +159,45 @@ func (o ListUsersResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableListUsersResponse struct {
 	value *ListUsersResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListUsersResponse) Get() *ListUsersResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListUsersResponse) Set(val *ListUsersResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListUsersResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListUsersResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableListUsersResponse(val *ListUsersResponse) *NullableListUsersResponse {
 	return &NullableListUsersResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListUsersResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListUsersResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

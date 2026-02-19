@@ -22,8 +22,13 @@ var _ MappedNullable = &PostgresDatabaseParameterResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterResponseGetParameterAttributeType = *[]PostgresDatabaseParameter
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterResponseGetParameterArgType = []PostgresDatabaseParameter
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterResponseGetParameterRetType = []PostgresDatabaseParameter
 
 func getPostgresDatabaseParameterResponseGetParameterAttributeTypeOk(arg PostgresDatabaseParameterResponseGetParameterAttributeType) (ret PostgresDatabaseParameterResponseGetParameterRetType, ok bool) {
@@ -38,6 +43,7 @@ func setPostgresDatabaseParameterResponseGetParameterAttributeType(arg *Postgres
 }
 
 // PostgresDatabaseParameterResponse struct for PostgresDatabaseParameterResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterResponse struct {
 	// List of the parameter
 	Parameter PostgresDatabaseParameterResponseGetParameterAttributeType `json:"parameter,omitempty"`
@@ -47,6 +53,7 @@ type PostgresDatabaseParameterResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPostgresDatabaseParameterResponse() *PostgresDatabaseParameterResponse {
 	this := PostgresDatabaseParameterResponse{}
 	return &this
@@ -55,12 +62,14 @@ func NewPostgresDatabaseParameterResponse() *PostgresDatabaseParameterResponse {
 // NewPostgresDatabaseParameterResponseWithDefaults instantiates a new PostgresDatabaseParameterResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPostgresDatabaseParameterResponseWithDefaults() *PostgresDatabaseParameterResponse {
 	this := PostgresDatabaseParameterResponse{}
 	return &this
 }
 
 // GetParameter returns the Parameter field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameterResponse) GetParameter() (res PostgresDatabaseParameterResponseGetParameterRetType) {
 	res, _ = o.GetParameterOk()
 	return
@@ -68,21 +77,25 @@ func (o *PostgresDatabaseParameterResponse) GetParameter() (res PostgresDatabase
 
 // GetParameterOk returns a tuple with the Parameter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameterResponse) GetParameterOk() (ret PostgresDatabaseParameterResponseGetParameterRetType, ok bool) {
 	return getPostgresDatabaseParameterResponseGetParameterAttributeTypeOk(o.Parameter)
 }
 
 // HasParameter returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameterResponse) HasParameter() bool {
 	_, ok := o.GetParameterOk()
 	return ok
 }
 
 // SetParameter gets a reference to the given []PostgresDatabaseParameter and assigns it to the Parameter field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameterResponse) SetParameter(v PostgresDatabaseParameterResponseGetParameterRetType) {
 	setPostgresDatabaseParameterResponseGetParameterAttributeType(&o.Parameter, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o PostgresDatabaseParameterResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPostgresDatabaseParameterResponseGetParameterAttributeTypeOk(o.Parameter); ok {
@@ -91,37 +104,45 @@ func (o PostgresDatabaseParameterResponse) ToMap() (map[string]interface{}, erro
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullablePostgresDatabaseParameterResponse struct {
 	value *PostgresDatabaseParameterResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePostgresDatabaseParameterResponse) Get() *PostgresDatabaseParameterResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePostgresDatabaseParameterResponse) Set(val *PostgresDatabaseParameterResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePostgresDatabaseParameterResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePostgresDatabaseParameterResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullablePostgresDatabaseParameterResponse(val *PostgresDatabaseParameterResponse) *NullablePostgresDatabaseParameterResponse {
 	return &NullablePostgresDatabaseParameterResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePostgresDatabaseParameterResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePostgresDatabaseParameterResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

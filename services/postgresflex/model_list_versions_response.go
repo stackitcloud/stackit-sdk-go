@@ -22,8 +22,13 @@ var _ MappedNullable = &ListVersionsResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ListVersionsResponseGetVersionsAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListVersionsResponseGetVersionsArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListVersionsResponseGetVersionsRetType = []string
 
 func getListVersionsResponseGetVersionsAttributeTypeOk(arg ListVersionsResponseGetVersionsAttributeType) (ret ListVersionsResponseGetVersionsRetType, ok bool) {
@@ -38,6 +43,7 @@ func setListVersionsResponseGetVersionsAttributeType(arg *ListVersionsResponseGe
 }
 
 // ListVersionsResponse struct for ListVersionsResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ListVersionsResponse struct {
 	Versions ListVersionsResponseGetVersionsAttributeType `json:"versions,omitempty"`
 }
@@ -46,6 +52,7 @@ type ListVersionsResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListVersionsResponse() *ListVersionsResponse {
 	this := ListVersionsResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewListVersionsResponse() *ListVersionsResponse {
 // NewListVersionsResponseWithDefaults instantiates a new ListVersionsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListVersionsResponseWithDefaults() *ListVersionsResponse {
 	this := ListVersionsResponse{}
 	return &this
 }
 
 // GetVersions returns the Versions field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListVersionsResponse) GetVersions() (res ListVersionsResponseGetVersionsRetType) {
 	res, _ = o.GetVersionsOk()
 	return
@@ -67,21 +76,25 @@ func (o *ListVersionsResponse) GetVersions() (res ListVersionsResponseGetVersion
 
 // GetVersionsOk returns a tuple with the Versions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListVersionsResponse) GetVersionsOk() (ret ListVersionsResponseGetVersionsRetType, ok bool) {
 	return getListVersionsResponseGetVersionsAttributeTypeOk(o.Versions)
 }
 
 // HasVersions returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListVersionsResponse) HasVersions() bool {
 	_, ok := o.GetVersionsOk()
 	return ok
 }
 
 // SetVersions gets a reference to the given []string and assigns it to the Versions field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListVersionsResponse) SetVersions(v ListVersionsResponseGetVersionsRetType) {
 	setListVersionsResponseGetVersionsAttributeType(&o.Versions, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ListVersionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListVersionsResponseGetVersionsAttributeTypeOk(o.Versions); ok {
@@ -90,37 +103,45 @@ func (o ListVersionsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableListVersionsResponse struct {
 	value *ListVersionsResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListVersionsResponse) Get() *ListVersionsResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListVersionsResponse) Set(val *ListVersionsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListVersionsResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListVersionsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableListVersionsResponse(val *ListVersionsResponse) *NullableListVersionsResponse {
 	return &NullableListVersionsResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListVersionsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListVersionsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

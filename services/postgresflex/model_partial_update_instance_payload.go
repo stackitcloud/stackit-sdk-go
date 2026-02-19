@@ -22,8 +22,13 @@ var _ MappedNullable = &PartialUpdateInstancePayload{}
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetAclAttributeType = *ACL
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetAclArgType = ACL
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetAclRetType = ACL
 
 func getPartialUpdateInstancePayloadGetAclAttributeTypeOk(arg PartialUpdateInstancePayloadGetAclAttributeType) (ret PartialUpdateInstancePayloadGetAclRetType, ok bool) {
@@ -42,6 +47,7 @@ func setPartialUpdateInstancePayloadGetAclAttributeType(arg *PartialUpdateInstan
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetBackupScheduleAttributeType = *string
 
 func getPartialUpdateInstancePayloadGetBackupScheduleAttributeTypeOk(arg PartialUpdateInstancePayloadGetBackupScheduleAttributeType) (ret PartialUpdateInstancePayloadGetBackupScheduleRetType, ok bool) {
@@ -55,7 +61,10 @@ func setPartialUpdateInstancePayloadGetBackupScheduleAttributeType(arg *PartialU
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetBackupScheduleArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetBackupScheduleRetType = string
 
 /*
@@ -63,6 +72,7 @@ type PartialUpdateInstancePayloadGetBackupScheduleRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetFlavorIdAttributeType = *string
 
 func getPartialUpdateInstancePayloadGetFlavorIdAttributeTypeOk(arg PartialUpdateInstancePayloadGetFlavorIdAttributeType) (ret PartialUpdateInstancePayloadGetFlavorIdRetType, ok bool) {
@@ -76,7 +86,10 @@ func setPartialUpdateInstancePayloadGetFlavorIdAttributeType(arg *PartialUpdateI
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetFlavorIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetFlavorIdRetType = string
 
 /*
@@ -84,8 +97,13 @@ type PartialUpdateInstancePayloadGetFlavorIdRetType = string
 */
 
 // isContainer
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetLabelsArgType = map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetLabelsRetType = map[string]string
 
 func getPartialUpdateInstancePayloadGetLabelsAttributeTypeOk(arg PartialUpdateInstancePayloadGetLabelsAttributeType) (ret PartialUpdateInstancePayloadGetLabelsRetType, ok bool) {
@@ -104,6 +122,7 @@ func setPartialUpdateInstancePayloadGetLabelsAttributeType(arg *PartialUpdateIns
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetNameAttributeType = *string
 
 func getPartialUpdateInstancePayloadGetNameAttributeTypeOk(arg PartialUpdateInstancePayloadGetNameAttributeType) (ret PartialUpdateInstancePayloadGetNameRetType, ok bool) {
@@ -117,7 +136,10 @@ func setPartialUpdateInstancePayloadGetNameAttributeType(arg *PartialUpdateInsta
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetNameRetType = string
 
 /*
@@ -125,8 +147,13 @@ type PartialUpdateInstancePayloadGetNameRetType = string
 */
 
 // isContainer
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetOptionsAttributeType = *map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetOptionsArgType = map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetOptionsRetType = map[string]string
 
 func getPartialUpdateInstancePayloadGetOptionsAttributeTypeOk(arg PartialUpdateInstancePayloadGetOptionsAttributeType) (ret PartialUpdateInstancePayloadGetOptionsRetType, ok bool) {
@@ -145,8 +172,13 @@ func setPartialUpdateInstancePayloadGetOptionsAttributeType(arg *PartialUpdateIn
 */
 
 // isInteger
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetReplicasAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetReplicasArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetReplicasRetType = int64
 
 func getPartialUpdateInstancePayloadGetReplicasAttributeTypeOk(arg PartialUpdateInstancePayloadGetReplicasAttributeType) (ret PartialUpdateInstancePayloadGetReplicasRetType, ok bool) {
@@ -165,8 +197,13 @@ func setPartialUpdateInstancePayloadGetReplicasAttributeType(arg *PartialUpdateI
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetStorageAttributeType = *StorageUpdate
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetStorageArgType = StorageUpdate
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetStorageRetType = StorageUpdate
 
 func getPartialUpdateInstancePayloadGetStorageAttributeTypeOk(arg PartialUpdateInstancePayloadGetStorageAttributeType) (ret PartialUpdateInstancePayloadGetStorageRetType, ok bool) {
@@ -185,6 +222,7 @@ func setPartialUpdateInstancePayloadGetStorageAttributeType(arg *PartialUpdateIn
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetVersionAttributeType = *string
 
 func getPartialUpdateInstancePayloadGetVersionAttributeTypeOk(arg PartialUpdateInstancePayloadGetVersionAttributeType) (ret PartialUpdateInstancePayloadGetVersionRetType, ok bool) {
@@ -198,10 +236,14 @@ func setPartialUpdateInstancePayloadGetVersionAttributeType(arg *PartialUpdateIn
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetVersionArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayloadGetVersionRetType = string
 
 // PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstancePayload struct {
 	Acl            PartialUpdateInstancePayloadGetAclAttributeType            `json:"acl,omitempty"`
 	BackupSchedule PartialUpdateInstancePayloadGetBackupScheduleAttributeType `json:"backupSchedule,omitempty"`
@@ -220,6 +262,7 @@ type PartialUpdateInstancePayload struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPartialUpdateInstancePayload() *PartialUpdateInstancePayload {
 	this := PartialUpdateInstancePayload{}
 	return &this
@@ -228,12 +271,14 @@ func NewPartialUpdateInstancePayload() *PartialUpdateInstancePayload {
 // NewPartialUpdateInstancePayloadWithDefaults instantiates a new PartialUpdateInstancePayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPartialUpdateInstancePayloadWithDefaults() *PartialUpdateInstancePayload {
 	this := PartialUpdateInstancePayload{}
 	return &this
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetAcl() (res PartialUpdateInstancePayloadGetAclRetType) {
 	res, _ = o.GetAclOk()
 	return
@@ -241,22 +286,26 @@ func (o *PartialUpdateInstancePayload) GetAcl() (res PartialUpdateInstancePayloa
 
 // GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetAclOk() (ret PartialUpdateInstancePayloadGetAclRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl)
 }
 
 // HasAcl returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasAcl() bool {
 	_, ok := o.GetAclOk()
 	return ok
 }
 
 // SetAcl gets a reference to the given ACL and assigns it to the Acl field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetAcl(v PartialUpdateInstancePayloadGetAclRetType) {
 	setPartialUpdateInstancePayloadGetAclAttributeType(&o.Acl, v)
 }
 
 // GetBackupSchedule returns the BackupSchedule field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetBackupSchedule() (res PartialUpdateInstancePayloadGetBackupScheduleRetType) {
 	res, _ = o.GetBackupScheduleOk()
 	return
@@ -264,22 +313,26 @@ func (o *PartialUpdateInstancePayload) GetBackupSchedule() (res PartialUpdateIns
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetBackupScheduleOk() (ret PartialUpdateInstancePayloadGetBackupScheduleRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // HasBackupSchedule returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasBackupSchedule() bool {
 	_, ok := o.GetBackupScheduleOk()
 	return ok
 }
 
 // SetBackupSchedule gets a reference to the given string and assigns it to the BackupSchedule field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetBackupSchedule(v PartialUpdateInstancePayloadGetBackupScheduleRetType) {
 	setPartialUpdateInstancePayloadGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
 // GetFlavorId returns the FlavorId field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetFlavorId() (res PartialUpdateInstancePayloadGetFlavorIdRetType) {
 	res, _ = o.GetFlavorIdOk()
 	return
@@ -287,22 +340,26 @@ func (o *PartialUpdateInstancePayload) GetFlavorId() (res PartialUpdateInstanceP
 
 // GetFlavorIdOk returns a tuple with the FlavorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetFlavorIdOk() (ret PartialUpdateInstancePayloadGetFlavorIdRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetFlavorIdAttributeTypeOk(o.FlavorId)
 }
 
 // HasFlavorId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasFlavorId() bool {
 	_, ok := o.GetFlavorIdOk()
 	return ok
 }
 
 // SetFlavorId gets a reference to the given string and assigns it to the FlavorId field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetFlavorId(v PartialUpdateInstancePayloadGetFlavorIdRetType) {
 	setPartialUpdateInstancePayloadGetFlavorIdAttributeType(&o.FlavorId, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetLabels() (res PartialUpdateInstancePayloadGetLabelsRetType) {
 	res, _ = o.GetLabelsOk()
 	return
@@ -310,22 +367,26 @@ func (o *PartialUpdateInstancePayload) GetLabels() (res PartialUpdateInstancePay
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetLabelsOk() (ret PartialUpdateInstancePayloadGetLabelsRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasLabels() bool {
 	_, ok := o.GetLabelsOk()
 	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetLabels(v PartialUpdateInstancePayloadGetLabelsRetType) {
 	setPartialUpdateInstancePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetName() (res PartialUpdateInstancePayloadGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -333,22 +394,26 @@ func (o *PartialUpdateInstancePayload) GetName() (res PartialUpdateInstancePaylo
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetNameOk() (ret PartialUpdateInstancePayloadGetNameRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetName(v PartialUpdateInstancePayloadGetNameRetType) {
 	setPartialUpdateInstancePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetOptions() (res PartialUpdateInstancePayloadGetOptionsRetType) {
 	res, _ = o.GetOptionsOk()
 	return
@@ -356,22 +421,26 @@ func (o *PartialUpdateInstancePayload) GetOptions() (res PartialUpdateInstancePa
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetOptionsOk() (ret PartialUpdateInstancePayloadGetOptionsRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasOptions() bool {
 	_, ok := o.GetOptionsOk()
 	return ok
 }
 
 // SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetOptions(v PartialUpdateInstancePayloadGetOptionsRetType) {
 	setPartialUpdateInstancePayloadGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetReplicas returns the Replicas field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetReplicas() (res PartialUpdateInstancePayloadGetReplicasRetType) {
 	res, _ = o.GetReplicasOk()
 	return
@@ -379,22 +448,26 @@ func (o *PartialUpdateInstancePayload) GetReplicas() (res PartialUpdateInstanceP
 
 // GetReplicasOk returns a tuple with the Replicas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetReplicasOk() (ret PartialUpdateInstancePayloadGetReplicasRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetReplicasAttributeTypeOk(o.Replicas)
 }
 
 // HasReplicas returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasReplicas() bool {
 	_, ok := o.GetReplicasOk()
 	return ok
 }
 
 // SetReplicas gets a reference to the given int64 and assigns it to the Replicas field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetReplicas(v PartialUpdateInstancePayloadGetReplicasRetType) {
 	setPartialUpdateInstancePayloadGetReplicasAttributeType(&o.Replicas, v)
 }
 
 // GetStorage returns the Storage field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetStorage() (res PartialUpdateInstancePayloadGetStorageRetType) {
 	res, _ = o.GetStorageOk()
 	return
@@ -402,22 +475,26 @@ func (o *PartialUpdateInstancePayload) GetStorage() (res PartialUpdateInstancePa
 
 // GetStorageOk returns a tuple with the Storage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetStorageOk() (ret PartialUpdateInstancePayloadGetStorageRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetStorageAttributeTypeOk(o.Storage)
 }
 
 // HasStorage returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasStorage() bool {
 	_, ok := o.GetStorageOk()
 	return ok
 }
 
 // SetStorage gets a reference to the given StorageUpdate and assigns it to the Storage field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetStorage(v PartialUpdateInstancePayloadGetStorageRetType) {
 	setPartialUpdateInstancePayloadGetStorageAttributeType(&o.Storage, v)
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetVersion() (res PartialUpdateInstancePayloadGetVersionRetType) {
 	res, _ = o.GetVersionOk()
 	return
@@ -425,21 +502,25 @@ func (o *PartialUpdateInstancePayload) GetVersion() (res PartialUpdateInstancePa
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) GetVersionOk() (ret PartialUpdateInstancePayloadGetVersionRetType, ok bool) {
 	return getPartialUpdateInstancePayloadGetVersionAttributeTypeOk(o.Version)
 }
 
 // HasVersion returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) HasVersion() bool {
 	_, ok := o.GetVersionOk()
 	return ok
 }
 
 // SetVersion gets a reference to the given string and assigns it to the Version field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstancePayload) SetVersion(v PartialUpdateInstancePayloadGetVersionRetType) {
 	setPartialUpdateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
@@ -472,37 +553,45 @@ func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullablePartialUpdateInstancePayload struct {
 	value *PartialUpdateInstancePayload
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateInstancePayload) Get() *PartialUpdateInstancePayload {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateInstancePayload) Set(val *PartialUpdateInstancePayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateInstancePayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateInstancePayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullablePartialUpdateInstancePayload(val *PartialUpdateInstancePayload) *NullablePartialUpdateInstancePayload {
 	return &NullablePartialUpdateInstancePayload{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateInstancePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateInstancePayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

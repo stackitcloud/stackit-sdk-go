@@ -22,8 +22,13 @@ var _ MappedNullable = &InstanceListDatabasesResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListDatabasesResponseGetDatabasesAttributeType = *[]InstanceDatabase
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListDatabasesResponseGetDatabasesArgType = []InstanceDatabase
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListDatabasesResponseGetDatabasesRetType = []InstanceDatabase
 
 func getInstanceListDatabasesResponseGetDatabasesAttributeTypeOk(arg InstanceListDatabasesResponseGetDatabasesAttributeType) (ret InstanceListDatabasesResponseGetDatabasesRetType, ok bool) {
@@ -38,6 +43,7 @@ func setInstanceListDatabasesResponseGetDatabasesAttributeType(arg *InstanceList
 }
 
 // InstanceListDatabasesResponse struct for InstanceListDatabasesResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListDatabasesResponse struct {
 	Databases InstanceListDatabasesResponseGetDatabasesAttributeType `json:"databases,omitempty"`
 }
@@ -46,6 +52,7 @@ type InstanceListDatabasesResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceListDatabasesResponse() *InstanceListDatabasesResponse {
 	this := InstanceListDatabasesResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewInstanceListDatabasesResponse() *InstanceListDatabasesResponse {
 // NewInstanceListDatabasesResponseWithDefaults instantiates a new InstanceListDatabasesResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceListDatabasesResponseWithDefaults() *InstanceListDatabasesResponse {
 	this := InstanceListDatabasesResponse{}
 	return &this
 }
 
 // GetDatabases returns the Databases field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListDatabasesResponse) GetDatabases() (res InstanceListDatabasesResponseGetDatabasesRetType) {
 	res, _ = o.GetDatabasesOk()
 	return
@@ -67,21 +76,25 @@ func (o *InstanceListDatabasesResponse) GetDatabases() (res InstanceListDatabase
 
 // GetDatabasesOk returns a tuple with the Databases field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListDatabasesResponse) GetDatabasesOk() (ret InstanceListDatabasesResponseGetDatabasesRetType, ok bool) {
 	return getInstanceListDatabasesResponseGetDatabasesAttributeTypeOk(o.Databases)
 }
 
 // HasDatabases returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListDatabasesResponse) HasDatabases() bool {
 	_, ok := o.GetDatabasesOk()
 	return ok
 }
 
 // SetDatabases gets a reference to the given []InstanceDatabase and assigns it to the Databases field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListDatabasesResponse) SetDatabases(v InstanceListDatabasesResponseGetDatabasesRetType) {
 	setInstanceListDatabasesResponseGetDatabasesAttributeType(&o.Databases, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceListDatabasesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceListDatabasesResponseGetDatabasesAttributeTypeOk(o.Databases); ok {
@@ -90,37 +103,45 @@ func (o InstanceListDatabasesResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceListDatabasesResponse struct {
 	value *InstanceListDatabasesResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceListDatabasesResponse) Get() *InstanceListDatabasesResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceListDatabasesResponse) Set(val *InstanceListDatabasesResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceListDatabasesResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceListDatabasesResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceListDatabasesResponse(val *InstanceListDatabasesResponse) *NullableInstanceListDatabasesResponse {
 	return &NullableInstanceListDatabasesResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceListDatabasesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceListDatabasesResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

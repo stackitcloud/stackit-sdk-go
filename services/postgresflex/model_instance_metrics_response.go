@@ -22,8 +22,13 @@ var _ MappedNullable = &InstanceMetricsResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceMetricsResponseGetHostsAttributeType = *[]InstanceHost
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceMetricsResponseGetHostsArgType = []InstanceHost
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceMetricsResponseGetHostsRetType = []InstanceHost
 
 func getInstanceMetricsResponseGetHostsAttributeTypeOk(arg InstanceMetricsResponseGetHostsAttributeType) (ret InstanceMetricsResponseGetHostsRetType, ok bool) {
@@ -38,6 +43,7 @@ func setInstanceMetricsResponseGetHostsAttributeType(arg *InstanceMetricsRespons
 }
 
 // InstanceMetricsResponse struct for InstanceMetricsResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceMetricsResponse struct {
 	Hosts InstanceMetricsResponseGetHostsAttributeType `json:"hosts,omitempty"`
 }
@@ -46,6 +52,7 @@ type InstanceMetricsResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceMetricsResponse() *InstanceMetricsResponse {
 	this := InstanceMetricsResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewInstanceMetricsResponse() *InstanceMetricsResponse {
 // NewInstanceMetricsResponseWithDefaults instantiates a new InstanceMetricsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceMetricsResponseWithDefaults() *InstanceMetricsResponse {
 	this := InstanceMetricsResponse{}
 	return &this
 }
 
 // GetHosts returns the Hosts field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceMetricsResponse) GetHosts() (res InstanceMetricsResponseGetHostsRetType) {
 	res, _ = o.GetHostsOk()
 	return
@@ -67,21 +76,25 @@ func (o *InstanceMetricsResponse) GetHosts() (res InstanceMetricsResponseGetHost
 
 // GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceMetricsResponse) GetHostsOk() (ret InstanceMetricsResponseGetHostsRetType, ok bool) {
 	return getInstanceMetricsResponseGetHostsAttributeTypeOk(o.Hosts)
 }
 
 // HasHosts returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceMetricsResponse) HasHosts() bool {
 	_, ok := o.GetHostsOk()
 	return ok
 }
 
 // SetHosts gets a reference to the given []InstanceHost and assigns it to the Hosts field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceMetricsResponse) SetHosts(v InstanceMetricsResponseGetHostsRetType) {
 	setInstanceMetricsResponseGetHostsAttributeType(&o.Hosts, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceMetricsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceMetricsResponseGetHostsAttributeTypeOk(o.Hosts); ok {
@@ -90,37 +103,45 @@ func (o InstanceMetricsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceMetricsResponse struct {
 	value *InstanceMetricsResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceMetricsResponse) Get() *InstanceMetricsResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceMetricsResponse) Set(val *InstanceMetricsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceMetricsResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceMetricsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceMetricsResponse(val *InstanceMetricsResponse) *NullableInstanceMetricsResponse {
 	return &NullableInstanceMetricsResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceMetricsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceMetricsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

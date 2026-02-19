@@ -22,6 +22,7 @@ var _ MappedNullable = &PartialUpdateUserPayload{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateUserPayloadGetDatabaseAttributeType = *string
 
 func getPartialUpdateUserPayloadGetDatabaseAttributeTypeOk(arg PartialUpdateUserPayloadGetDatabaseAttributeType) (ret PartialUpdateUserPayloadGetDatabaseRetType, ok bool) {
@@ -35,7 +36,10 @@ func setPartialUpdateUserPayloadGetDatabaseAttributeType(arg *PartialUpdateUserP
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateUserPayloadGetDatabaseArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateUserPayloadGetDatabaseRetType = string
 
 /*
@@ -43,8 +47,13 @@ type PartialUpdateUserPayloadGetDatabaseRetType = string
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateUserPayloadGetRolesAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateUserPayloadGetRolesArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateUserPayloadGetRolesRetType = []string
 
 func getPartialUpdateUserPayloadGetRolesAttributeTypeOk(arg PartialUpdateUserPayloadGetRolesAttributeType) (ret PartialUpdateUserPayloadGetRolesRetType, ok bool) {
@@ -59,6 +68,7 @@ func setPartialUpdateUserPayloadGetRolesAttributeType(arg *PartialUpdateUserPayl
 }
 
 // PartialUpdateUserPayload struct for PartialUpdateUserPayload
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateUserPayload struct {
 	Database PartialUpdateUserPayloadGetDatabaseAttributeType `json:"database,omitempty"`
 	Roles    PartialUpdateUserPayloadGetRolesAttributeType    `json:"roles,omitempty"`
@@ -68,6 +78,7 @@ type PartialUpdateUserPayload struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPartialUpdateUserPayload() *PartialUpdateUserPayload {
 	this := PartialUpdateUserPayload{}
 	return &this
@@ -76,12 +87,14 @@ func NewPartialUpdateUserPayload() *PartialUpdateUserPayload {
 // NewPartialUpdateUserPayloadWithDefaults instantiates a new PartialUpdateUserPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPartialUpdateUserPayloadWithDefaults() *PartialUpdateUserPayload {
 	this := PartialUpdateUserPayload{}
 	return &this
 }
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) GetDatabase() (res PartialUpdateUserPayloadGetDatabaseRetType) {
 	res, _ = o.GetDatabaseOk()
 	return
@@ -89,22 +102,26 @@ func (o *PartialUpdateUserPayload) GetDatabase() (res PartialUpdateUserPayloadGe
 
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) GetDatabaseOk() (ret PartialUpdateUserPayloadGetDatabaseRetType, ok bool) {
 	return getPartialUpdateUserPayloadGetDatabaseAttributeTypeOk(o.Database)
 }
 
 // HasDatabase returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) HasDatabase() bool {
 	_, ok := o.GetDatabaseOk()
 	return ok
 }
 
 // SetDatabase gets a reference to the given string and assigns it to the Database field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) SetDatabase(v PartialUpdateUserPayloadGetDatabaseRetType) {
 	setPartialUpdateUserPayloadGetDatabaseAttributeType(&o.Database, v)
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) GetRoles() (res PartialUpdateUserPayloadGetRolesRetType) {
 	res, _ = o.GetRolesOk()
 	return
@@ -112,21 +129,25 @@ func (o *PartialUpdateUserPayload) GetRoles() (res PartialUpdateUserPayloadGetRo
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) GetRolesOk() (ret PartialUpdateUserPayloadGetRolesRetType, ok bool) {
 	return getPartialUpdateUserPayloadGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) HasRoles() bool {
 	_, ok := o.GetRolesOk()
 	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateUserPayload) SetRoles(v PartialUpdateUserPayloadGetRolesRetType) {
 	setPartialUpdateUserPayloadGetRolesAttributeType(&o.Roles, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o PartialUpdateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateUserPayloadGetDatabaseAttributeTypeOk(o.Database); ok {
@@ -138,37 +159,45 @@ func (o PartialUpdateUserPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullablePartialUpdateUserPayload struct {
 	value *PartialUpdateUserPayload
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateUserPayload) Get() *PartialUpdateUserPayload {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateUserPayload) Set(val *PartialUpdateUserPayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateUserPayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateUserPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullablePartialUpdateUserPayload(val *PartialUpdateUserPayload) *NullablePartialUpdateUserPayload {
 	return &NullablePartialUpdateUserPayload{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateUserPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateUserPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

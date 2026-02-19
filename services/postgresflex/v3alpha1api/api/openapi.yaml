@@ -1,0 +1,5046 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@stackit.cloud
+    name: STACKIT Postgres Service Support
+    url: https://www.stackit.de/en/contact
+  description: This is the documentation for the STACKIT Postgres Flex service
+  termsOfService: https://www.stackit.de/en/general-terms-and-conditions/
+  title: PostgreSQL Flex API
+  version: 3alpha1
+servers:
+- url: "https://postgres-flex-service.api.{region}stackit.cloud"
+  variables:
+    region:
+      default: eu01.
+      enum:
+      - eu01.
+security:
+- Authorization: []
+paths:
+  /v3alpha1/projects/{projectId}/regions/{region}/flavors:
+    get:
+      description: Get all available flavors for a project.
+      operationId: getFlavorsRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: Number of the page of items list to be returned.
+        example: 1
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: uint64
+          type: integer
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,page"
+      - description: Number of items to be returned on each page.
+        example: 10
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: uint64
+          type: integer
+        style: form
+      - description: Sorting of the flavors to be returned on each page.
+        example: index desc
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          $ref: "#/components/schemas/flavor.sort"
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetFlavorsResponse"
+          description: "OK: The response contains a list with all available flavors\
+            \ for the project."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+        "501":
+          content:
+            application/json:
+              examples:
+                notImplementedError:
+                  $ref: "#/components/examples/notImplementedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Endpoint not implemented yet
+      summary: Get Flavors
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.flavor.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances:
+    get:
+      description: List all available instances for your project.
+      operationId: listInstancesRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: Number of the page of items list to be returned.
+        example: 1
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: uint64
+          type: integer
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,page"
+      - description: Number of items to be returned on each page.
+        example: 10
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: uint64
+          type: integer
+        style: form
+      - description: Sorting of the items to be returned on each page.
+        example: index desc
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          $ref: "#/components/schemas/instance.sort"
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,list_instance_sort"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListInstancesResponse"
+          description: "OK: contains a list of all project instances"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request.
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later"
+      summary: List Instances
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    post:
+      description: Create a new instance of a postgres database instance.
+      operationId: createInstanceRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createInstanceRequestPayload"
+        description: The request body with the parameters for the instance creation.
+          Every parameter is required.
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateInstanceResponse"
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "422":
+          content:
+            application/json:
+              examples:
+                validationError:
+                  $ref: "#/components/examples/validationError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unprocessable entity
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Create Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.create
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}:
+    delete:
+      description: Delete an available postgres instance.
+      operationId: deleteInstanceRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request.
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: Could not find an instance with the provided Id."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Delete Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.delete
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    get:
+      description: Get information about a specific available instance
+      operationId: getInstanceRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetInstanceResponse"
+          description: "OK: The response contains the properties of the instance."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request.
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: Could not find an instance with the provided Id."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Get Specific Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.get
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    patch:
+      description: Update an available instance of a postgres database. No fields
+        are required.
+      operationId: updateInstancePartiallyRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateInstancePartiallyRequestPayload"
+        description: The request body with the parameters for updating the instance.
+        required: true
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: Could not find an instance with the provided Id."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Update Instance Partially
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    put:
+      description: Updates an available instance of a postgres database
+      operationId: updateInstanceRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateInstanceRequestPayload"
+        description: The request body with the parameters for updating the instance
+        required: true
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: Could not find an instance with the provided Id."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Update Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/backups:
+    get:
+      description: List all backups which are available for a specific instance.
+      operationId: listBackupsRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Number of the page of items list to be returned.
+        example: 1
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: uint64
+          type: integer
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,page"
+      - description: Number of items to be returned on each page.
+        example: 10
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: uint64
+          type: integer
+        style: form
+      - description: Sorting of the backups to be returned on each page.
+        example: index desc
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          $ref: "#/components/schemas/backup.sort"
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,backup_sort"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListBackupResponse"
+          description: "OK: Contains a list with all backups for a specific instance."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+        "501":
+          content:
+            application/json:
+              examples:
+                notImplementedError:
+                  $ref: "#/components/examples/notImplementedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Endpoint not implemented yet
+      summary: List backups
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.backup.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/backups/{backupId}:
+    get:
+      description: Get information about a specific backup for an instance.
+      operationId: getBackupRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the backup.
+        example: 123
+        explode: false
+        in: path
+        name: backupId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetBackupResponse"
+          description: "OK: Contains a backup and its parameters with all backups\
+            \ for a specific instance."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+        "501":
+          content:
+            application/json:
+              examples:
+                notImplementedError:
+                  $ref: "#/components/examples/notImplementedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Endpoint not implemented yet
+      summary: Get specific backup
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.backup.get
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/clone:
+    post:
+      description: Clone Instance
+      operationId: cloneRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/cloneRequestPayload"
+        description: The request body with the parameters for cloning an instance
+          by a point in time into a new instance.
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CloneResponse"
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+        "501":
+          content:
+            application/json:
+              examples:
+                notImplementedError:
+                  $ref: "#/components/examples/notImplementedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Endpoint not implemented yet
+      summary: Clone Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.clone
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/collations:
+    get:
+      description: Get available collations for an instance
+      operationId: getCollationsRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCollationsResponse"
+          description: A list of available Collations for an instance.
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+        "501":
+          content:
+            application/json:
+              examples:
+                notImplementedError:
+                  $ref: "#/components/examples/notImplementedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Endpoint not implemented yet
+      summary: Get Collations for an Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.collation.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/databases:
+    get:
+      description: List available databases for an instance.
+      operationId: listDatabasesRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Number of the page of items list to be returned.
+        example: 1
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: uint64
+          type: integer
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,page"
+      - description: Number of items to be returned on each page.
+        example: 10
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: uint64
+          type: integer
+        style: form
+      - description: Sorting of the databases to be returned on each page.
+        example: index desc
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          $ref: "#/components/schemas/database.sort"
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,database_sort"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListDatabasesResponse"
+          description: "OK: Contains a list of all databases for a specific instance."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: List Databases
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    post:
+      description: "Create database for a user. Note: The name of a valid user must\
+        \ be provided in the 'options' map field using the key 'owner'"
+      operationId: createDatabaseRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createDatabaseRequestPayload"
+        description: The request body containing the information for the new database.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateDatabaseResponse"
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "409":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/alreadyExistsError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Database name already exists
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Create Database
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.create
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/databases/{databaseId}:
+    delete:
+      description: Delete database for an instance.
+      operationId: deleteDatabaseRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the database.
+        example: 16999
+        explode: false
+        in: path
+        name: databaseId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Delete Database
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.delete
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    get:
+      description: Get information about a specific database in an instance.
+      operationId: getDatabaseRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the database.
+        example: 16999
+        explode: false
+        in: path
+        name: databaseId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDatabaseResponse"
+          description: "OK: The response contains the properties of the database."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Get Specific Database
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.get
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    patch:
+      description: Update a database partially in an instance.
+      operationId: updateDatabasePartiallyRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the database.
+        example: 16999
+        explode: false
+        in: path
+        name: databaseId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateDatabasePartiallyRequestPayload"
+        description: The request body containing the information for the database
+          update.
+        required: true
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Update Database partially
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    put:
+      description: Update a database in an instance.
+      operationId: updateDatabaseRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the database.
+        example: 16999
+        explode: false
+        in: path
+        name: databaseId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateDatabaseRequestPayload"
+        description: The request body containing the information for the database
+          update.
+        required: true
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Update Database
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/protections:
+    post:
+      description: Toggle the deletion protection for an instance.
+      operationId: protectInstanceRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/protectInstanceRequestPayload"
+        description: The request body with flag isDeletable. Parameter is required.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProtectInstanceResponse"
+          description: "The instance is now protected / unprotected, depending on\
+            \ field status before the request."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+        "501":
+          content:
+            application/json:
+              examples:
+                notImplementedError:
+                  $ref: "#/components/examples/notImplementedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Endpoint not implemented yet
+      summary: Protect Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.protect
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/roles:
+    get:
+      description: List available roles for an instance.
+      operationId: listRolesRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListRolesResponse"
+          description: "OK: Contains a list of all roles for a specific instance."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: List Roles
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.role.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/users:
+    get:
+      description: List available users for an instance.
+      operationId: listUsersRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Number of the page of items list to be returned.
+        example: 1
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: uint64
+          type: integer
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,page"
+      - description: Number of items to be returned on each page.
+        example: 10
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 10
+          format: uint64
+          type: integer
+        style: form
+      - description: Sorting of the users to be returned on each page.
+        example: index desc
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          $ref: "#/components/schemas/user.sort"
+        style: form
+        x-oapi-codegen-extra-tags:
+          validate: "omitempty,user_sort"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListUserResponse"
+          description: "OK: Contains a list of all users for a specific instance."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: List Users
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    post:
+      description: Create user for an instance.
+      operationId: createUserRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createUserRequestPayload"
+        description: The request body containing the user details.
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateUserResponse"
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Create User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.create
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}:
+    delete:
+      description: Delete an user from a specific instance.
+      operationId: deleteUserRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user.
+        example: 16999
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Delete User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.delete
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    get:
+      description: Get a specific available user for an instance.
+      operationId: getUserRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user.
+        example: 16999
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUserResponse"
+          description: "OK: Contains information of a user for a specific instance."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Get User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.get
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    patch:
+      description: Update an user partially for an instance.
+      operationId: updateUserPartiallyRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user.
+        example: 16999
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateUserPartiallyRequestPayload"
+        description: "The Request body containing the new information for the user.\
+          \ If empty request body is send via patch, then login and createdb roles\
+          \ are removed from user."
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Update User Partially
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    put:
+      description: Update user for an instance.
+      operationId: updateUserRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user.
+        example: 16999
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateUserRequestPayload"
+        description: The Request body containing the updated infos for the user.
+        required: true
+      responses:
+        "202":
+          description: "Accepted: The request was accepted"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Update User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/instances/{instanceId}/users/{userId}/reset:
+    post:
+      description: Reset an user from an specific instance.
+      operationId: resetUserRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      - description: The ID of the instance.
+        example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user.
+        example: 16999
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: uint64
+          type: integer
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResetUserResponse"
+          description: "Accepted: The user reset was succesfull"
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "412":
+          content:
+            application/json:
+              examples:
+                preconditionFailedError:
+                  $ref: "#/components/examples/failedPreconditionError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Precondition Failed: The precondition for this operation was\
+            \ not met."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Request failed due to body validation
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+      summary: Reset User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.reset
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v3alpha1/projects/{projectId}/regions/{region}/versions:
+    get:
+      description: Get available postgres versions for the project.
+      operationId: getVersionsRequest
+      parameters:
+      - description: The STACKIT project ID.
+        example: 19feb036-9b61-11ee-b9d1-0242ac120002
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The region which should be addressed
+        example: eu01
+        explode: false
+        in: path
+        name: region
+        required: true
+        schema:
+          enum:
+          - eu01
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetVersionsResponse"
+          description: "OK: Returns a list of available postgres versions."
+        "400":
+          content:
+            application/json:
+              examples:
+                badRequestError:
+                  $ref: "#/components/examples/badRequestError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request.
+        "401":
+          content:
+            application/json:
+              examples:
+                unauthorizedError:
+                  $ref: "#/components/examples/unauthorizedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Unauthorized: user is not allowed to perform this operation\
+            \ or credentials are not correct"
+        "403":
+          content:
+            application/json:
+              examples:
+                forbiddenError:
+                  $ref: "#/components/examples/forbiddenError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Forbidden: No access for the requested resource."
+        "404":
+          content:
+            application/json:
+              examples:
+                notFoundError:
+                  $ref: "#/components/examples/notFoundError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Not found: The requested resource was not found."
+        "500":
+          content:
+            application/json:
+              examples:
+                internalServerError:
+                  $ref: "#/components/examples/internalServerError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: "Internal Server Error: An internal occurred while processing\
+            \ the request. Please contact the support or try again later."
+        "501":
+          content:
+            application/json:
+              examples:
+                notImplementedError:
+                  $ref: "#/components/examples/notImplementedError"
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Endpoint not implemented yet
+      summary: Get Versions
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.version.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+components:
+  examples:
+    alreadyExistsError:
+      summary: Already Exists
+      value:
+        code: 409
+        message: resource already exists
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: ALREADY_EXISTS_ERROR
+    badRequestError:
+      summary: Bad Request
+      value:
+        code: 400
+        message: request is invalid
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: BAD_REQUEST_ERROR
+    failedPreconditionError:
+      summary: Failed Precondition
+      value:
+        code: 412
+        message: precondition for this operation failed
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: FAILED_PRECONDITION_ERROR
+    forbiddenError:
+      summary: Forbidden
+      value:
+        code: 403
+        message: user is not allowed to perform this operation
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: FORBIDDEN_ERROR
+    internalServerError:
+      summary: Internal Server Error
+      value:
+        code: 500
+        message: internal server error
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: INTERNAL_ERROR
+    notFoundError:
+      summary: Not Found
+      value:
+        code: 404
+        message: resource not found
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: NOT_FOUND_ERROR
+    notImplementedError:
+      summary: Not Implemented
+      value:
+        code: 501
+        message: endpoint not implemented yet
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: NOT_IMPLEMENTED_ERROR
+    unauthorizedError:
+      summary: Unauthorized
+      value:
+        code: 401
+        message: authorization header is missing
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        type: UNAUTHORIZED_ERROR
+    validationError:
+      summary: Validation Error
+      value:
+        code: 422
+        validation:
+        - field: <field>
+          message: this field is required
+  parameters:
+    backup:
+      description: The ID of the backup.
+      example: 123
+      explode: false
+      in: path
+      name: backupId
+      required: true
+      schema:
+        format: uint64
+        type: integer
+      style: simple
+    backup.sort:
+      description: Sorting of the backups to be returned on each page.
+      example: index desc
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        $ref: "#/components/schemas/backup.sort"
+      style: form
+      x-oapi-codegen-extra-tags:
+        validate: "omitempty,backup_sort"
+    database:
+      description: The ID of the database.
+      example: 16999
+      explode: false
+      in: path
+      name: databaseId
+      required: true
+      schema:
+        format: uint64
+        type: integer
+      style: simple
+    database.sort:
+      description: Sorting of the databases to be returned on each page.
+      example: index desc
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        $ref: "#/components/schemas/database.sort"
+      style: form
+      x-oapi-codegen-extra-tags:
+        validate: "omitempty,database_sort"
+    flavor.sort:
+      description: Sorting of the flavors to be returned on each page.
+      example: index desc
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        $ref: "#/components/schemas/flavor.sort"
+      style: form
+    flavorId:
+      description: The ID of the flavor.
+      example: "2.4"
+      explode: false
+      in: path
+      name: flavorId
+      required: true
+      schema:
+        type: string
+      style: simple
+    instance:
+      description: The ID of the instance.
+      example: fb30fa7e-b7d8-4c75-9f04-489e0ba2fe51
+      explode: false
+      in: path
+      name: instanceId
+      required: true
+      schema:
+        type: string
+      style: simple
+    instance.sort:
+      description: Sorting of the items to be returned on each page.
+      example: index desc
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        $ref: "#/components/schemas/instance.sort"
+      style: form
+      x-oapi-codegen-extra-tags:
+        validate: "omitempty,list_instance_sort"
+    page:
+      description: Number of the page of items list to be returned.
+      example: 1
+      explode: true
+      in: query
+      name: page
+      required: false
+      schema:
+        default: 1
+        format: uint64
+        type: integer
+      style: form
+      x-oapi-codegen-extra-tags:
+        validate: "omitempty,page"
+    project:
+      description: The STACKIT project ID.
+      example: 19feb036-9b61-11ee-b9d1-0242ac120002
+      explode: false
+      in: path
+      name: projectId
+      required: true
+      schema:
+        type: string
+      style: simple
+    region:
+      description: The region which should be addressed
+      example: eu01
+      explode: false
+      in: path
+      name: region
+      required: true
+      schema:
+        enum:
+        - eu01
+        type: string
+      style: simple
+    size:
+      description: Number of items to be returned on each page.
+      example: 10
+      explode: true
+      in: query
+      name: size
+      required: false
+      schema:
+        default: 10
+        format: uint64
+        type: integer
+      style: form
+    user:
+      description: The ID of the user.
+      example: 16999
+      explode: false
+      in: path
+      name: userId
+      required: true
+      schema:
+        format: uint64
+        type: integer
+      style: simple
+    user.sort:
+      description: Sorting of the users to be returned on each page.
+      example: index desc
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        $ref: "#/components/schemas/user.sort"
+      style: form
+      x-oapi-codegen-extra-tags:
+        validate: "omitempty,user_sort"
+  schemas:
+    CloneResponse:
+      example:
+        id: df727477-8991-486c-a3ed-d11d9d9beb1c
+      properties:
+        id:
+          description: The ID of the instance.
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+      required:
+      - id
+      type: object
+    CreateDatabaseResponse:
+      example:
+        id: 1
+      properties:
+        id:
+          description: The id of the database.
+          example: 1
+          format: uint64
+          type: integer
+      required:
+      - id
+      type: object
+    CreateInstanceResponse:
+      example:
+        id: df727477-8991-486c-a3ed-d11d9d9beb1c
+      properties:
+        id:
+          description: The ID of the instance.
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+      required:
+      - id
+      type: object
+    CreateUserResponse:
+      example:
+        password: password123
+        name: myUser
+        id: 1
+        status: ACTIVE
+      properties:
+        id:
+          description: The ID of the user.
+          example: 1
+          format: uint64
+          type: integer
+        name:
+          description: The name of the user.
+          example: myUser
+          type: string
+        password:
+          description: The password for the user.
+          example: password123
+          type: string
+        status:
+          description: The current status of the user.
+          example: ACTIVE
+          type: string
+      required:
+      - id
+      - name
+      - password
+      - status
+      type: object
+    Error:
+      example:
+        traceId: 58bab3ea361c37c25d72041afdd8aca2
+        code: 400
+        message: database not found
+        type: INTERNAL_ERROR
+      properties:
+        code:
+          description: The http error code of the error.
+          example: 400
+          format: int32
+          type: integer
+        message:
+          description: More detailed information about the error.
+          example: database not found
+          type: string
+        traceId:
+          description: The trace id of the request.
+          example: 58bab3ea361c37c25d72041afdd8aca2
+          type: string
+        type:
+          description: Describes in which state the api was when the error happened.
+          example: INTERNAL_ERROR
+          type: string
+      required:
+      - code
+      - message
+      - traceId
+      - type
+      type: object
+    GetBackupResponse:
+      example:
+        completionTime: 2023-12-14T23:25:03Z
+        size: 8394655
+        name: 0000002B0000000000000083
+        retainedUntil: 2023-12-30T23:25:05Z
+        id: 123
+        type: AUTOMATED
+      properties:
+        completionTime:
+          description: The time when the backup was completed in RFC3339 format.
+          example: 2023-12-14T23:25:03Z
+          type: string
+        id:
+          description: The ID of the backup.
+          example: 123
+          format: uint64
+          type: integer
+        name:
+          description: The name of the backup.
+          example: 0000002B0000000000000083
+          type: string
+        retainedUntil:
+          description: The time until the backup will be retained.
+          example: 2023-12-30T23:25:05Z
+          type: string
+        size:
+          description: The size of the backup in bytes.
+          example: 8394655
+          format: uint64
+          type: integer
+        type:
+          description: "The type of the backup, which can be automated or manual triggered."
+          example: AUTOMATED
+          type: string
+      required:
+      - completionTime
+      - id
+      - name
+      - retainedUntil
+      - size
+      - type
+      type: object
+    GetCollationsResponse:
+      example:
+        collations:
+        - de-DE
+        - de-DE
+      properties:
+        collations:
+          description: List of collations available for the instance.
+          items:
+            $ref: "#/components/schemas/database.collation"
+          type: array
+      required:
+      - collations
+      type: object
+    GetDatabaseResponse:
+      example:
+        owner: MyUser
+        name: MyDatabase
+        id: 1
+      properties:
+        id:
+          description: The id of the database.
+          example: 1
+          format: uint64
+          type: integer
+        name:
+          description: The name of the database.
+          example: MyDatabase
+          type: string
+        owner:
+          description: The owner of the database.
+          example: MyUser
+          type: string
+      required:
+      - id
+      - name
+      - owner
+      type: object
+    GetFlavorsResponse:
+      example:
+        flavors:
+        - storageClasses:
+          - maxThroughInMb: 100
+            maxIoPerSec: 1000
+            class: premium-perf2-stackit
+          - maxThroughInMb: 100
+            maxIoPerSec: 1000
+            class: premium-perf2-stackit
+          maxGB: 1
+          memory: 1
+          cpu: 1
+          description: "Small, Compute optimized"
+          id: "1.2"
+          minGB: 1
+          nodeType: single
+        - storageClasses:
+          - maxThroughInMb: 100
+            maxIoPerSec: 1000
+            class: premium-perf2-stackit
+          - maxThroughInMb: 100
+            maxIoPerSec: 1000
+            class: premium-perf2-stackit
+          maxGB: 1
+          memory: 1
+          cpu: 1
+          description: "Small, Compute optimized"
+          id: "1.2"
+          minGB: 1
+          nodeType: single
+        pagination:
+          size: 6
+          totalPages: 1
+          page: 0
+          sort: sort
+          totalRows: 5
+      properties:
+        flavors:
+          description: List of flavors available for the project.
+          items:
+            $ref: "#/components/schemas/ListFlavors"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - flavors
+      - pagination
+      type: object
+    GetInstanceResponse:
+      example:
+        backupSchedule: 6 6 * * *
+        replicas: 0
+        flavorId: "1.2"
+        acl:
+        - 198.51.100.0/24
+        storage:
+          size: 10
+          performanceClass: premium-perf12-stackit
+        version: version
+        network:
+          instanceAddress: 10.0.0.2
+          accessScope: PUBLIC
+          routerAddress: 10.0.0.1
+          acl:
+          - 198.51.100.0/24
+        isDeletable: true
+        encryption:
+          kekKeyId: 48e3f816-3e38-44bb-bbff-22e05f0567de
+          kekKeyRingId: 48e3f816-3e38-44bb-bbff-22e05f0567de
+          kekKeyVersion: "1"
+          serviceAccount: example@compute.sa.stackit.cloud
+        retentionDays: 35
+        name: postgres-instance
+        id: df727477-8991-486c-a3ed-d11d9d9beb1c
+        connectionInfo:
+          port: 5432
+          host: postgresql.eu01.onstackit.cloud
+        status: READY
+      properties:
+        acl:
+          description: List of IPV4 cidr.
+          example:
+          - 198.51.100.0/24
+          items:
+            description: A IPV4 cidr.
+            example: 198.51.100.0/24
+            type: string
+          type: array
+        backupSchedule:
+          description: The schedule for on what time and how often the database backup
+            will be created. The schedule is written as a cron schedule.
+          example: 6 6 * * *
+          type: string
+        connectionInfo:
+          $ref: "#/components/schemas/instance.connectionInfo"
+        encryption:
+          $ref: "#/components/schemas/instance.encryption"
+        flavorId:
+          description: The id of the instance flavor.
+          example: "1.2"
+          type: string
+        id:
+          description: The ID of the instance.
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+        isDeletable:
+          description: Whether the instance can be deleted or not.
+          example: true
+          type: boolean
+        name:
+          description: The name of the instance.
+          example: postgres-instance
+          type: string
+        network:
+          $ref: "#/components/schemas/instance.network"
+        replicas:
+          $ref: "#/components/schemas/replicas"
+        retentionDays:
+          description: How long backups are retained. The value can only be between
+            32 and 365 days.
+          example: 35
+          format: uint32
+          type: integer
+        status:
+          $ref: "#/components/schemas/status"
+        storage:
+          $ref: "#/components/schemas/storage"
+        version:
+          description: "The Postgres version used for the instance. See [Versions\
+            \ Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version)\
+            \ for supported version parameters."
+          type: string
+      required:
+      - backupSchedule
+      - connectionInfo
+      - flavorId
+      - id
+      - isDeletable
+      - name
+      - network
+      - replicas
+      - retentionDays
+      - status
+      - storage
+      - version
+      type: object
+    GetUserResponse:
+      example:
+        roles:
+        - createdb
+        - login
+        name: myUser
+        id: 1
+        status: ACTIVE
+      properties:
+        id:
+          description: The ID of the user.
+          example: 1
+          format: uint64
+          type: integer
+        name:
+          description: The name of the user.
+          example: myUser
+          type: string
+        roles:
+          description: A list of user roles.
+          example:
+          - createdb
+          - login
+          items:
+            $ref: "#/components/schemas/user.role"
+          type: array
+        status:
+          description: The current status of the user.
+          example: ACTIVE
+          type: string
+      required:
+      - id
+      - name
+      - roles
+      - status
+      type: object
+    GetVersionsResponse:
+      example:
+        versions:
+        - deprecated: 2023-12-14T23:25:00Z
+          recommend: true
+          version: "15"
+          beta: true
+        - deprecated: 2023-12-14T23:25:00Z
+          recommend: true
+          version: "15"
+          beta: true
+      properties:
+        versions:
+          description: A list containing available postgres versions.
+          items:
+            $ref: "#/components/schemas/version"
+          type: array
+      required:
+      - versions
+      type: object
+    ListBackup:
+      example:
+        completionTime: 2023-12-14T23:25:03Z
+        size: 8394655
+        name: 0000002B0000000000000083
+        retainedUntil: 2023-12-30T23:25:05Z
+        id: 123
+        type: AUTOMATED
+      properties:
+        completionTime:
+          description: The time when the backup was completed in RFC3339 format.
+          example: 2023-12-14T23:25:03Z
+          type: string
+        id:
+          description: The ID of the backup.
+          example: 123
+          format: uint64
+          type: integer
+        name:
+          description: The name of the backup.
+          example: 0000002B0000000000000083
+          type: string
+        retainedUntil:
+          description: The time until the backup will be retained.
+          example: 2023-12-30T23:25:05Z
+          type: string
+        size:
+          description: The size of the backup in bytes.
+          example: 8394655
+          format: uint64
+          type: integer
+        type:
+          description: "The type of the backup, which can be automated or manual triggered."
+          example: AUTOMATED
+          type: string
+      required:
+      - completionTime
+      - id
+      - name
+      - retainedUntil
+      - size
+      - type
+      type: object
+    ListBackupResponse:
+      example:
+        pagination:
+          size: 6
+          totalPages: 1
+          page: 0
+          sort: sort
+          totalRows: 5
+        backups:
+        - completionTime: 2023-12-14T23:25:03Z
+          size: 8394655
+          name: 0000002B0000000000000083
+          retainedUntil: 2023-12-30T23:25:05Z
+          id: 123
+          type: AUTOMATED
+        - completionTime: 2023-12-14T23:25:03Z
+          size: 8394655
+          name: 0000002B0000000000000083
+          retainedUntil: 2023-12-30T23:25:05Z
+          id: 123
+          type: AUTOMATED
+      properties:
+        backups:
+          description: The list containing the information about the backups.
+          items:
+            $ref: "#/components/schemas/ListBackup"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - backups
+      - pagination
+      type: object
+    ListDatabase:
+      example:
+        owner: MyUser
+        name: MyDatabase
+        id: 1
+      properties:
+        id:
+          description: The id of the database.
+          example: 1
+          format: uint64
+          type: integer
+        name:
+          description: The name of the database.
+          example: MyDatabase
+          type: string
+        owner:
+          description: The owner of the database.
+          example: MyUser
+          type: string
+      required:
+      - id
+      - name
+      - owner
+      type: object
+    ListDatabasesResponse:
+      example:
+        databases:
+        - owner: MyUser
+          name: MyDatabase
+          id: 1
+        - owner: MyUser
+          name: MyDatabase
+          id: 1
+        pagination:
+          size: 6
+          totalPages: 1
+          page: 0
+          sort: sort
+          totalRows: 5
+      properties:
+        databases:
+          description: A list containing all databases for the instance.
+          items:
+            $ref: "#/components/schemas/ListDatabase"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - databases
+      - pagination
+      type: object
+    ListFlavors:
+      description: The flavor of the instance containing the technical features.
+      example:
+        storageClasses:
+        - maxThroughInMb: 100
+          maxIoPerSec: 1000
+          class: premium-perf2-stackit
+        - maxThroughInMb: 100
+          maxIoPerSec: 1000
+          class: premium-perf2-stackit
+        maxGB: 1
+        memory: 1
+        cpu: 1
+        description: "Small, Compute optimized"
+        id: "1.2"
+        minGB: 1
+        nodeType: single
+      properties:
+        cpu:
+          description: The cpu count of the instance.
+          example: 1
+          format: uint64
+          type: integer
+        description:
+          description: The flavor description.
+          example: "Small, Compute optimized"
+          type: string
+        id:
+          description: The id of the instance flavor.
+          example: "1.2"
+          type: string
+        maxGB:
+          description: maximum storage which can be ordered for the flavor in Gigabyte.
+          example: 1
+          format: uint32
+          type: integer
+        memory:
+          description: The memory of the instance in Gibibyte.
+          example: 1
+          format: uint64
+          type: integer
+        minGB:
+          description: minimum storage which is required to order in Gigabyte.
+          example: 1
+          format: uint32
+          type: integer
+        nodeType:
+          description: defines the nodeType it can be either single or replica
+          example: single
+          type: string
+        storageClasses:
+          description: maximum storage which can be ordered for the flavor in Gigabyte.
+          items:
+            $ref: "#/components/schemas/flavor.storageClasses.storageClass"
+          type: array
+      required:
+      - cpu
+      - description
+      - id
+      - maxGB
+      - memory
+      - minGB
+      - nodeType
+      - storageClasses
+      type: object
+    ListInstance:
+      example:
+        isDeletable: true
+        name: postgres-instance
+        id: df727477-8991-486c-a3ed-d11d9d9beb1c
+        status: READY
+      properties:
+        id:
+          description: The ID of the instance.
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+        isDeletable:
+          description: Whether the instance can be deleted or not.
+          example: true
+          type: boolean
+        name:
+          description: The name of the instance.
+          example: postgres-instance
+          type: string
+        status:
+          $ref: "#/components/schemas/status"
+      required:
+      - id
+      - isDeletable
+      - name
+      - status
+      type: object
+    ListInstancesResponse:
+      example:
+        pagination:
+          size: 6
+          totalPages: 1
+          page: 0
+          sort: sort
+          totalRows: 5
+        instances:
+        - isDeletable: true
+          name: postgres-instance
+          id: df727477-8991-486c-a3ed-d11d9d9beb1c
+          status: READY
+        - isDeletable: true
+          name: postgres-instance
+          id: df727477-8991-486c-a3ed-d11d9d9beb1c
+          status: READY
+      properties:
+        instances:
+          description: List of owned instances and their current status.
+          items:
+            $ref: "#/components/schemas/ListInstance"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - instances
+      - pagination
+      type: object
+    ListRolesResponse:
+      example:
+        roles:
+        - createdb
+        - nocreatedb
+        - nocreaterole
+        - login
+        - nologin
+        - replication
+      properties:
+        roles:
+          description: List of all role names available in the instance
+          example:
+          - createdb
+          - nocreatedb
+          - nocreaterole
+          - login
+          - nologin
+          - replication
+          items:
+            description: The name of the role
+            example: createdb
+            type: string
+          type: array
+      required:
+      - roles
+      type: object
+    ListUser:
+      example:
+        name: myUser
+        id: 1
+        status: ACTIVE
+      properties:
+        id:
+          description: The ID of the user.
+          example: 1
+          format: uint64
+          type: integer
+        name:
+          description: The name of the user.
+          example: myUser
+          type: string
+        status:
+          description: The current status of the user.
+          example: ACTIVE
+          type: string
+      required:
+      - id
+      - name
+      - status
+      type: object
+    ListUserResponse:
+      example:
+        pagination:
+          size: 6
+          totalPages: 1
+          page: 0
+          sort: sort
+          totalRows: 5
+        users:
+        - name: myUser
+          id: 1
+          status: ACTIVE
+        - name: myUser
+          id: 1
+          status: ACTIVE
+      properties:
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+        users:
+          description: List of all users inside an instance
+          items:
+            $ref: "#/components/schemas/ListUser"
+          type: array
+      required:
+      - pagination
+      - users
+      type: object
+    Pagination:
+      example:
+        size: 6
+        totalPages: 1
+        page: 0
+        sort: sort
+        totalRows: 5
+      properties:
+        page:
+          format: uint64
+          type: integer
+        size:
+          format: uint64
+          type: integer
+        sort:
+          type: string
+        totalPages:
+          format: uint64
+          type: integer
+        totalRows:
+          format: uint64
+          type: integer
+      required:
+      - page
+      - size
+      - sort
+      - totalPages
+      - totalRows
+      type: object
+    ProtectInstanceResponse:
+      example:
+        isDeletable: true
+      properties:
+        isDeletable:
+          description: Protect instance from deletion.
+          example: true
+          type: boolean
+      required:
+      - isDeletable
+      type: object
+    ResetUserResponse:
+      example:
+        password: password123
+        name: myUser
+        status: ACTIVE
+      properties:
+        name:
+          description: The name of the user.
+          example: myUser
+          type: string
+        password:
+          description: The password for the user.
+          example: password123
+          type: string
+        status:
+          description: The current status of the user.
+          example: ACTIVE
+          type: string
+      required:
+      - name
+      - password
+      - status
+      type: object
+    UpdateDatabasePartiallyResponse:
+      properties:
+        database:
+          $ref: "#/components/schemas/ListDatabase"
+      required:
+      - database
+      type: object
+    UpdateDatabaseResponse:
+      properties:
+        database:
+          $ref: "#/components/schemas/ListDatabase"
+      required:
+      - database
+      type: object
+    ValidationError:
+      example:
+        code: 422
+        validation:
+        - field: name
+          message: this field is required
+        - field: name
+          message: this field is required
+      properties:
+        code:
+          description: the http error should be always 422 for validationError
+          example: 422
+          format: int32
+          type: integer
+        validation:
+          description: errors for all fields where the error happened
+          items:
+            $ref: "#/components/schemas/ValidationError_validation_inner"
+          type: array
+      required:
+      - code
+      - validation
+      type: object
+    acl:
+      description: List of IPV4 cidr.
+      example:
+      - 198.51.100.0/24
+      items:
+        description: A IPV4 cidr.
+        example: 198.51.100.0/24
+        type: string
+      type: array
+    acl.opt:
+      description: List of IPV4 cidr.
+      example:
+      - 198.51.100.0/24
+      items:
+        description: A IPV4 cidr.
+        example: 198.51.100.0/24
+        type: string
+      type: array
+    backup.completionTime:
+      description: The time when the backup was completed in RFC3339 format.
+      example: 2023-12-14T23:25:03Z
+      type: string
+    backup.id:
+      description: The ID of the backup.
+      example: 123
+      format: uint64
+      type: integer
+    backup.name:
+      description: The name of the backup.
+      example: 0000002B0000000000000083
+      type: string
+    backup.recoveryTime:
+      description: the time for the point in time recovery it will be calculated between
+        first backup and last backup
+      example: 2023-12-30T23:25:05Z
+      format: date-time
+      type: string
+    backup.retainedUntil:
+      description: The time until the backup will be retained.
+      example: 2023-12-30T23:25:05Z
+      type: string
+    backup.schedule:
+      description: The schedule for on what time and how often the database backup
+        will be created. The schedule is written as a cron schedule.
+      example: 6 6 * * *
+      type: string
+    backup.schedule.opt:
+      description: The schedule for on what time and how often the database backup
+        will be created. The schedule is written as a cron schedule.
+      example: 6 6 * * *
+      type: string
+    backup.size:
+      description: The size of the backup in bytes.
+      example: 8394655
+      format: uint64
+      type: integer
+    backup.sort:
+      enum:
+      - completion_time.desc
+      - completion_time.asc
+      - end_time.desc
+      - end_time.asc
+      - name.desc
+      - name.asc
+      - retained_until.desc
+      - retained_until.asc
+      - size.desc
+      - size.asc
+      - type.desc
+      - type.asc
+      type: string
+    backup.storage.class:
+      description: The storage class for the storage.
+      example: premium-perf12-stackit
+      type: string
+    backup.storage.size:
+      description: The storage size in Gigabytes.
+      example: 10
+      format: uint64
+      type: integer
+    backup.type:
+      description: "The type of the backup, which can be automated or manual triggered."
+      example: AUTOMATED
+      type: string
+    clone.instanceOverrides:
+      properties:
+        performanceClass:
+          description: The storage class for the storage.
+          example: premium-perf12-stackit
+          type: string
+        size:
+          description: The storage size in Gigabytes.
+          example: 10
+          format: uint64
+          type: integer
+      required:
+      - performanceClass
+      - size
+      type: object
+    clone.pointInTime:
+      description: the time for the point in time recovery it will be calculated between
+        first backup and last backup
+      example: 2023-12-30T23:25:05Z
+      format: date-time
+      type: string
+    clone.storage.class:
+      description: The storage class for the storage.
+      example: premium-perf12-stackit
+      type: string
+    clone.storage.size:
+      description: The storage size in Gigabytes.
+      example: 10
+      format: uint64
+      type: integer
+    cloneRequestPayload:
+      properties:
+        instanceOverrides:
+          $ref: "#/components/schemas/clone.instanceOverrides"
+        pointInTime:
+          description: the time for the point in time recovery it will be calculated
+            between first backup and last backup
+          example: 2023-12-30T23:25:05Z
+          format: date-time
+          type: string
+      required:
+      - instanceOverrides
+      - pointInTime
+      type: object
+    createDatabaseRequestPayload:
+      properties:
+        name:
+          description: The name of the database.
+          example: MyDatabase
+          type: string
+        owner:
+          description: The owner of the database.
+          example: MyUser
+          type: string
+      required:
+      - name
+      type: object
+    createInstanceRequestPayload:
+      properties:
+        backupSchedule:
+          description: The schedule for on what time and how often the database backup
+            will be created. The schedule is written as a cron schedule.
+          example: 6 6 * * *
+          type: string
+        encryption:
+          $ref: "#/components/schemas/instance.encryption"
+        flavorId:
+          description: The id of the instance flavor.
+          example: "1.2"
+          type: string
+        name:
+          description: The name of the instance.
+          example: postgres-instance
+          type: string
+        network:
+          $ref: "#/components/schemas/instance.network.create"
+        replicas:
+          $ref: "#/components/schemas/replicas"
+        retentionDays:
+          description: How long backups are retained. The value can only be between
+            32 and 365 days.
+          example: 35
+          format: uint32
+          type: integer
+        storage:
+          $ref: "#/components/schemas/storage.create"
+        version:
+          description: "The Postgres version used for the instance. See [Versions\
+            \ Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version)\
+            \ for supported version parameters."
+          type: string
+      required:
+      - backupSchedule
+      - flavorId
+      - name
+      - network
+      - replicas
+      - retentionDays
+      - storage
+      - version
+      type: object
+    createUserRequestPayload:
+      properties:
+        name:
+          description: The name of the user.
+          example: myUser
+          type: string
+        roles:
+          description: A list containing the user roles for the instance.
+          example:
+          - createdb
+          - login
+          items:
+            $ref: "#/components/schemas/user.role"
+          type: array
+          x-oapi-codegen-extra-tags:
+            validate: "omitempty,unique_user_role"
+      required:
+      - name
+      type: object
+    database.collation:
+      description: The collation of the database
+      example: de-DE
+      type: string
+    database.id:
+      description: The id of the database.
+      example: 1
+      format: uint64
+      type: integer
+    database.name:
+      description: The name of the database.
+      example: MyDatabase
+      type: string
+    database.name.opt:
+      description: The name of the database.
+      example: MyDatabase
+      type: string
+    database.owner:
+      description: The owner of the database.
+      example: MyUser
+      type: string
+    database.owner.opt:
+      description: The owner of the database.
+      example: MyUser
+      type: string
+    database.roles:
+      description: The name and the roles for a database for a user.
+      properties:
+        name:
+          description: The name of the database.
+          example: MyDatabase
+          type: string
+        roles:
+          description: The name and the roles for a database
+          items:
+            description: The name of the role.
+            example: myRole
+            type: string
+          type: array
+      required:
+      - name
+      - roles
+      type: object
+    database.sort:
+      enum:
+      - created_at.desc
+      - created_at.asc
+      - database_id.desc
+      - database_id.asc
+      - database_name.desc
+      - database_name.asc
+      - database_owner.desc
+      - database_owner.asc
+      type: string
+    flavor.cpu:
+      description: The cpu count of the instance.
+      example: 1
+      format: uint64
+      type: integer
+    flavor.description:
+      description: The flavor description.
+      example: "Small, Compute optimized"
+      type: string
+    flavor.flavorId:
+      description: The id of the instance flavor.
+      example: "1.2"
+      type: string
+    flavor.flavorId.opt:
+      description: The id of the instance flavor.
+      example: "1.2"
+      type: string
+    flavor.maxGB:
+      description: maximum storage which can be ordered for the flavor in Gigabyte.
+      example: 1
+      format: uint32
+      type: integer
+    flavor.memory:
+      description: The memory of the instance in Gibibyte.
+      example: 1
+      format: uint64
+      type: integer
+    flavor.minGB:
+      description: minimum storage which is required to order in Gigabyte.
+      example: 1
+      format: uint32
+      type: integer
+    flavor.nodeType:
+      description: defines the nodeType it can be either single or replica
+      example: single
+      type: string
+    flavor.sort:
+      enum:
+      - cpu.desc
+      - cpu.asc
+      - flavor_description.asc
+      - flavor_description.desc
+      - id.desc
+      - id.asc
+      - size_max.desc
+      - size_max.asc
+      - ram.desc
+      - ram.asc
+      - size_min.desc
+      - size_min.asc
+      - storage_class.asc
+      - storage_class.desc
+      - node_type.asc
+      - node_type.desc
+      type: string
+    flavor.storageClasses:
+      description: maximum storage which can be ordered for the flavor in Gigabyte.
+      items:
+        $ref: "#/components/schemas/flavor.storageClasses.storageClass"
+      type: array
+    flavor.storageClasses.storageClass:
+      description: a storageClass defines how efficient the storage can work
+      example:
+        maxThroughInMb: 100
+        maxIoPerSec: 1000
+        class: premium-perf2-stackit
+      properties:
+        class:
+          example: premium-perf2-stackit
+          type: string
+        maxIoPerSec:
+          example: 1000
+          format: uint32
+          type: integer
+        maxThroughInMb:
+          example: 100
+          format: uint32
+          type: integer
+      required:
+      - class
+      - maxIoPerSec
+      - maxThroughInMb
+      type: object
+    instance.connectionInfo:
+      description: The DNS name and port in the instance overview
+      example:
+        port: 5432
+        host: postgresql.eu01.onstackit.cloud
+      properties:
+        host:
+          description: The host of the instance.
+          example: postgresql.eu01.onstackit.cloud
+          type: string
+        port:
+          description: The port of the instance.
+          example: 5432
+          format: uint32
+          type: integer
+      required:
+      - host
+      - port
+      type: object
+    instance.encryption:
+      description: |
+        The configuration for instance's volume and backup storage encryption.
+
+        ⚠︝ **Note:** This feature is in private preview. Supplying this object is only permitted for enabled accounts. If your account does not have access, the request will be rejected.
+      example:
+        kekKeyId: 48e3f816-3e38-44bb-bbff-22e05f0567de
+        kekKeyRingId: 48e3f816-3e38-44bb-bbff-22e05f0567de
+        kekKeyVersion: "1"
+        serviceAccount: example@compute.sa.stackit.cloud
+      properties:
+        kekKeyId:
+          description: The encryption-key key identifier
+          example: 48e3f816-3e38-44bb-bbff-22e05f0567de
+          type: string
+          x-oapi-codegen-extra-tags:
+            validate: "required,uuid_rfc4122"
+        kekKeyRingId:
+          description: The encryption-key keyring identifier
+          example: 48e3f816-3e38-44bb-bbff-22e05f0567de
+          type: string
+          x-oapi-codegen-extra-tags:
+            validate: "required,uuid_rfc4122"
+        kekKeyVersion:
+          description: The encryption-key version
+          example: "1"
+          type: string
+          x-oapi-codegen-extra-tags:
+            validate: required
+        serviceAccount:
+          example: example@compute.sa.stackit.cloud
+          type: string
+          x-oapi-codegen-extra-tags:
+            validate: "required,email"
+      required:
+      - kekKeyId
+      - kekKeyRingId
+      - kekKeyVersion
+      - serviceAccount
+      type: object
+    instance.id:
+      description: The ID of the instance.
+      example: df727477-8991-486c-a3ed-d11d9d9beb1c
+      type: string
+    instance.isDeletable:
+      description: Whether the instance can be deleted or not.
+      example: true
+      type: boolean
+    instance.name:
+      description: The name of the instance.
+      example: postgres-instance
+      type: string
+    instance.name.opt:
+      description: The name of the instance.
+      example: postgres-instance
+      type: string
+    instance.network:
+      description: The access configuration of the instance
+      example:
+        instanceAddress: 10.0.0.2
+        accessScope: PUBLIC
+        routerAddress: 10.0.0.1
+        acl:
+        - 198.51.100.0/24
+      properties:
+        accessScope:
+          $ref: "#/components/schemas/instance.network.accessScope"
+        acl:
+          description: List of IPV4 cidr.
+          example:
+          - 198.51.100.0/24
+          items:
+            description: A IPV4 cidr.
+            example: 198.51.100.0/24
+            type: string
+          type: array
+        instanceAddress:
+          example: 10.0.0.2
+          type: string
+        routerAddress:
+          example: 10.0.0.1
+          type: string
+      required:
+      - acl
+      type: object
+    instance.network.accessScope:
+      default: PUBLIC
+      description: The access scope of the instance. It defines if the instance is
+        public or airgapped.
+      enum:
+      - PUBLIC
+      - SNA
+      type: string
+    instance.network.create:
+      description: The access configuration of the instance
+      properties:
+        accessScope:
+          $ref: "#/components/schemas/instance.network.accessScope"
+        acl:
+          description: List of IPV4 cidr.
+          example:
+          - 198.51.100.0/24
+          items:
+            description: A IPV4 cidr.
+            example: 198.51.100.0/24
+            type: string
+          type: array
+      required:
+      - acl
+      type: object
+    instance.network.opt:
+      description: The access configuration of the instance
+      properties:
+        acl:
+          description: List of IPV4 cidr.
+          example:
+          - 198.51.100.0/24
+          items:
+            description: A IPV4 cidr.
+            example: 198.51.100.0/24
+            type: string
+          type: array
+      type: object
+    instance.network.update:
+      description: The access configuration of the instance
+      properties:
+        acl:
+          description: List of IPV4 cidr.
+          example:
+          - 198.51.100.0/24
+          items:
+            description: A IPV4 cidr.
+            example: 198.51.100.0/24
+            type: string
+          type: array
+      required:
+      - acl
+      type: object
+    instance.sort:
+      enum:
+      - id.desc
+      - id.asc
+      - is_deletable.desc
+      - is_deletable.asc
+      - name.asc
+      - name.desc
+      - status.asc
+      - status.desc
+      type: string
+    instance.storageRange:
+      description: Contains the minimum and maximum storage space.
+      properties:
+        max:
+          description: The maximum available amount of storage.
+          example: 1000
+          format: uint32
+          type: integer
+        min:
+          description: The minimum available amount of storage.
+          example: 10
+          format: uint32
+          type: integer
+      required:
+      - max
+      - min
+      type: object
+    instance.version:
+      description: "The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version)\
+        \ for supported version parameters."
+      type: string
+    instance.version.update:
+      description: "The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version)\
+        \ for supported version parameters."
+      type: string
+    instance.version.update.opt:
+      description: "The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version)\
+        \ for supported version parameters."
+      type: string
+    protect.isDeletable:
+      description: Protect instance from deletion.
+      example: true
+      type: boolean
+    protectInstanceRequestPayload:
+      properties:
+        isDeletable:
+          description: Protect instance from deletion.
+          example: true
+          type: boolean
+      required:
+      - isDeletable
+      type: object
+    replicas:
+      description: How many replicas the instance should have.
+      enum:
+      - 1
+      - 3
+      format: uint32
+      type: integer
+    replicas.opt:
+      description: How many replicas the instance should have.
+      enum:
+      - 1
+      - 3
+      format: uint32
+      type: integer
+    retentionDays:
+      description: How long backups are retained. The value can only be between 32
+        and 365 days.
+      example: 35
+      format: uint32
+      type: integer
+    retentionDays.opt:
+      description: How long backups are retained. The value can only be between 32
+        and 365 days.
+      example: 35
+      format: uint32
+      type: integer
+    status:
+      description: The current status of the instance.
+      enum:
+      - READY
+      - PENDING
+      - PROGRESSING
+      - FAILURE
+      - UNKNOWN
+      - TERMINATING
+      type: string
+    storage:
+      description: The object containing information about the storage size and class.
+      example:
+        size: 10
+        performanceClass: premium-perf12-stackit
+      properties:
+        performanceClass:
+          description: The storage class for the storage.
+          example: premium-perf12-stackit
+          type: string
+        size:
+          description: The storage size in Gigabytes.
+          example: 10
+          format: uint64
+          type: integer
+      type: object
+    storage.class:
+      description: The storage class for the storage.
+      example: premium-perf12-stackit
+      type: string
+    storage.class.create:
+      description: The storage class for the storage.
+      example: premium-perf12-stackit
+      type: string
+    storage.create:
+      description: The object containing information about the storage size and class.
+      properties:
+        performanceClass:
+          description: The storage class for the storage.
+          example: premium-perf12-stackit
+          type: string
+        size:
+          description: The storage size in Gigabytes.
+          example: 10
+          format: uint64
+          type: integer
+      required:
+      - performanceClass
+      - size
+      type: object
+    storage.max:
+      description: The maximum available amount of storage.
+      example: 1000
+      format: uint32
+      type: integer
+    storage.min:
+      description: The minimum available amount of storage.
+      example: 10
+      format: uint32
+      type: integer
+    storage.size:
+      description: The storage size in Gigabytes.
+      example: 10
+      format: uint64
+      type: integer
+    storage.size.create:
+      description: The storage size in Gigabytes.
+      example: 10
+      format: uint64
+      type: integer
+    storage.update:
+      description: The object containing information about the storage size and class.
+      properties:
+        size:
+          description: The storage size in Gigabytes.
+          example: 10
+          format: uint64
+          type: integer
+      type: object
+    timestamp:
+      description: The timestamp should be specified RFC3339 format.
+      example: 2023-12-19T13:18:45.52Z
+      type: string
+    updateDatabasePartiallyRequestPayload:
+      properties:
+        name:
+          description: The name of the database.
+          example: MyDatabase
+          type: string
+        owner:
+          description: The owner of the database.
+          example: MyUser
+          type: string
+      type: object
+    updateDatabaseRequestPayload:
+      properties:
+        name:
+          description: The name of the database.
+          example: MyDatabase
+          type: string
+        owner:
+          description: The owner of the database.
+          example: MyUser
+          type: string
+      required:
+      - name
+      - owner
+      type: object
+    updateInstancePartiallyRequestPayload:
+      properties:
+        backupSchedule:
+          description: The schedule for on what time and how often the database backup
+            will be created. The schedule is written as a cron schedule.
+          example: 6 6 * * *
+          type: string
+        flavorId:
+          description: The id of the instance flavor.
+          example: "1.2"
+          type: string
+        name:
+          description: The name of the instance.
+          example: postgres-instance
+          type: string
+        network:
+          $ref: "#/components/schemas/instance.network.opt"
+        replicas:
+          $ref: "#/components/schemas/replicas.opt"
+        retentionDays:
+          description: How long backups are retained. The value can only be between
+            32 and 365 days.
+          example: 35
+          format: uint32
+          type: integer
+        storage:
+          $ref: "#/components/schemas/storage.update"
+        version:
+          description: "The Postgres version used for the instance. See [Versions\
+            \ Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version)\
+            \ for supported version parameters."
+          type: string
+      type: object
+    updateInstanceRequestPayload:
+      properties:
+        backupSchedule:
+          description: The schedule for on what time and how often the database backup
+            will be created. The schedule is written as a cron schedule.
+          example: 6 6 * * *
+          type: string
+        flavorId:
+          description: The id of the instance flavor.
+          example: "1.2"
+          type: string
+        name:
+          description: The name of the instance.
+          example: postgres-instance
+          type: string
+        network:
+          $ref: "#/components/schemas/instance.network.update"
+        replicas:
+          $ref: "#/components/schemas/replicas"
+        retentionDays:
+          description: How long backups are retained. The value can only be between
+            32 and 365 days.
+          example: 35
+          format: uint32
+          type: integer
+        storage:
+          $ref: "#/components/schemas/storage.update"
+        version:
+          description: "The Postgres version used for the instance. See [Versions\
+            \ Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version)\
+            \ for supported version parameters."
+          type: string
+      required:
+      - backupSchedule
+      - flavorId
+      - name
+      - network
+      - replicas
+      - retentionDays
+      - storage
+      - version
+      type: object
+    updateUserPartiallyRequestPayload:
+      properties:
+        name:
+          description: The name of the user.
+          example: myUser
+          type: string
+        roles:
+          description: A list containing the user roles for the instance.
+          example:
+          - createdb
+          - login
+          items:
+            $ref: "#/components/schemas/user.role"
+          type: array
+          x-oapi-codegen-extra-tags:
+            validate: "omitempty,unique_user_role"
+      type: object
+    updateUserRequestPayload:
+      properties:
+        name:
+          description: The name of the user.
+          example: myUser
+          type: string
+        roles:
+          description: A list containing the user roles for the instance.
+          example:
+          - createdb
+          - login
+          items:
+            $ref: "#/components/schemas/user.role"
+          type: array
+          x-oapi-codegen-extra-tags:
+            validate: "omitempty,unique_user_role"
+      required:
+      - roles
+      type: object
+    user.host:
+      description: The host of the instance in which the user belongs to.
+      example: 19feb036-9b61-11ee-b9d1-0242ac120002.postgresql.eu01.onstackit.cloud
+      type: string
+    user.id:
+      description: The ID of the user.
+      example: 1
+      format: uint64
+      type: integer
+    user.name:
+      description: The name of the user.
+      example: myUser
+      type: string
+    user.name.opt:
+      description: The name of the user.
+      example: myUser
+      type: string
+    user.password:
+      description: The password for the user.
+      example: password123
+      type: string
+    user.port:
+      description: The port of the instance in which the user belongs to.
+      example: 5432
+      format: uint32
+      type: integer
+    user.role:
+      description: The user role for the instance.
+      enum:
+      - createdb
+      - login
+      example: login
+      type: string
+    user.sort:
+      enum:
+      - id.asc
+      - id.desc
+      - name.desc
+      - name.asc
+      - status.desc
+      - status.asc
+      type: string
+    user.status:
+      description: The current status of the user.
+      example: ACTIVE
+      type: string
+    version:
+      description: The version of the postgres instance and more details.
+      example:
+        deprecated: 2023-12-14T23:25:00Z
+        recommend: true
+        version: "15"
+        beta: true
+      properties:
+        beta:
+          description: Flag if the version is a beta version. If set the version may
+            contain bugs and is not fully tested.
+          example: true
+          type: boolean
+        deprecated:
+          description: Timestamp in RFC3339 format which says when the version will
+            no longer be supported by STACKIT.
+          example: 2023-12-14T23:25:00Z
+          type: string
+        recommend:
+          description: Flag if the version is recommend by the STACKIT Team.
+          example: true
+          type: boolean
+        version:
+          description: The postgres version used for the instance.
+          example: "15"
+          type: string
+      required:
+      - beta
+      - deprecated
+      - recommend
+      - version
+      type: object
+    ValidationError_validation_inner:
+      example:
+        field: name
+        message: this field is required
+      properties:
+        field:
+          example: name
+          type: string
+        message:
+          example: this field is required
+          type: string
+      required:
+      - field
+      - message
+      type: object

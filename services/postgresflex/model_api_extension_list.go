@@ -22,8 +22,13 @@ var _ MappedNullable = &ApiExtensionList{}
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetIDAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetIDArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetIDRetType = int64
 
 func getApiExtensionListGetIDAttributeTypeOk(arg ApiExtensionListGetIDAttributeType) (ret ApiExtensionListGetIDRetType, ok bool) {
@@ -42,6 +47,7 @@ func setApiExtensionListGetIDAttributeType(arg *ApiExtensionListGetIDAttributeTy
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetDescriptionAttributeType = *string
 
 func getApiExtensionListGetDescriptionAttributeTypeOk(arg ApiExtensionListGetDescriptionAttributeType) (ret ApiExtensionListGetDescriptionRetType, ok bool) {
@@ -55,7 +61,10 @@ func setApiExtensionListGetDescriptionAttributeType(arg *ApiExtensionListGetDesc
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetDescriptionArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetDescriptionRetType = string
 
 /*
@@ -63,6 +72,7 @@ type ApiExtensionListGetDescriptionRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetNameAttributeType = *string
 
 func getApiExtensionListGetNameAttributeTypeOk(arg ApiExtensionListGetNameAttributeType) (ret ApiExtensionListGetNameRetType, ok bool) {
@@ -76,10 +86,14 @@ func setApiExtensionListGetNameAttributeType(arg *ApiExtensionListGetNameAttribu
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionListGetNameRetType = string
 
 // ApiExtensionList struct for ApiExtensionList
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionList struct {
 	ID          ApiExtensionListGetIDAttributeType          `json:"ID,omitempty"`
 	Description ApiExtensionListGetDescriptionAttributeType `json:"description,omitempty"`
@@ -90,6 +104,7 @@ type ApiExtensionList struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiExtensionList() *ApiExtensionList {
 	this := ApiExtensionList{}
 	return &this
@@ -98,12 +113,14 @@ func NewApiExtensionList() *ApiExtensionList {
 // NewApiExtensionListWithDefaults instantiates a new ApiExtensionList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiExtensionListWithDefaults() *ApiExtensionList {
 	this := ApiExtensionList{}
 	return &this
 }
 
 // GetID returns the ID field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) GetID() (res ApiExtensionListGetIDRetType) {
 	res, _ = o.GetIDOk()
 	return
@@ -111,22 +128,26 @@ func (o *ApiExtensionList) GetID() (res ApiExtensionListGetIDRetType) {
 
 // GetIDOk returns a tuple with the ID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) GetIDOk() (ret ApiExtensionListGetIDRetType, ok bool) {
 	return getApiExtensionListGetIDAttributeTypeOk(o.ID)
 }
 
 // HasID returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) HasID() bool {
 	_, ok := o.GetIDOk()
 	return ok
 }
 
 // SetID gets a reference to the given int64 and assigns it to the ID field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) SetID(v ApiExtensionListGetIDRetType) {
 	setApiExtensionListGetIDAttributeType(&o.ID, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) GetDescription() (res ApiExtensionListGetDescriptionRetType) {
 	res, _ = o.GetDescriptionOk()
 	return
@@ -134,22 +155,26 @@ func (o *ApiExtensionList) GetDescription() (res ApiExtensionListGetDescriptionR
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) GetDescriptionOk() (ret ApiExtensionListGetDescriptionRetType, ok bool) {
 	return getApiExtensionListGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) HasDescription() bool {
 	_, ok := o.GetDescriptionOk()
 	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) SetDescription(v ApiExtensionListGetDescriptionRetType) {
 	setApiExtensionListGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) GetName() (res ApiExtensionListGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -157,21 +182,25 @@ func (o *ApiExtensionList) GetName() (res ApiExtensionListGetNameRetType) {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) GetNameOk() (ret ApiExtensionListGetNameRetType, ok bool) {
 	return getApiExtensionListGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionList) SetName(v ApiExtensionListGetNameRetType) {
 	setApiExtensionListGetNameAttributeType(&o.Name, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ApiExtensionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiExtensionListGetIDAttributeTypeOk(o.ID); ok {
@@ -186,37 +215,45 @@ func (o ApiExtensionList) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableApiExtensionList struct {
 	value *ApiExtensionList
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionList) Get() *ApiExtensionList {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionList) Set(val *ApiExtensionList) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionList) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableApiExtensionList(val *ApiExtensionList) *NullableApiExtensionList {
 	return &NullableApiExtensionList{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

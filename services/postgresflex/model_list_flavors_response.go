@@ -22,8 +22,13 @@ var _ MappedNullable = &ListFlavorsResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ListFlavorsResponseGetFlavorsAttributeType = *[]Flavor
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListFlavorsResponseGetFlavorsArgType = []Flavor
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListFlavorsResponseGetFlavorsRetType = []Flavor
 
 func getListFlavorsResponseGetFlavorsAttributeTypeOk(arg ListFlavorsResponseGetFlavorsAttributeType) (ret ListFlavorsResponseGetFlavorsRetType, ok bool) {
@@ -38,6 +43,7 @@ func setListFlavorsResponseGetFlavorsAttributeType(arg *ListFlavorsResponseGetFl
 }
 
 // ListFlavorsResponse struct for ListFlavorsResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ListFlavorsResponse struct {
 	Flavors ListFlavorsResponseGetFlavorsAttributeType `json:"flavors,omitempty"`
 }
@@ -46,6 +52,7 @@ type ListFlavorsResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListFlavorsResponse() *ListFlavorsResponse {
 	this := ListFlavorsResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewListFlavorsResponse() *ListFlavorsResponse {
 // NewListFlavorsResponseWithDefaults instantiates a new ListFlavorsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListFlavorsResponseWithDefaults() *ListFlavorsResponse {
 	this := ListFlavorsResponse{}
 	return &this
 }
 
 // GetFlavors returns the Flavors field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListFlavorsResponse) GetFlavors() (res ListFlavorsResponseGetFlavorsRetType) {
 	res, _ = o.GetFlavorsOk()
 	return
@@ -67,21 +76,25 @@ func (o *ListFlavorsResponse) GetFlavors() (res ListFlavorsResponseGetFlavorsRet
 
 // GetFlavorsOk returns a tuple with the Flavors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListFlavorsResponse) GetFlavorsOk() (ret ListFlavorsResponseGetFlavorsRetType, ok bool) {
 	return getListFlavorsResponseGetFlavorsAttributeTypeOk(o.Flavors)
 }
 
 // HasFlavors returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListFlavorsResponse) HasFlavors() bool {
 	_, ok := o.GetFlavorsOk()
 	return ok
 }
 
 // SetFlavors gets a reference to the given []Flavor and assigns it to the Flavors field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListFlavorsResponse) SetFlavors(v ListFlavorsResponseGetFlavorsRetType) {
 	setListFlavorsResponseGetFlavorsAttributeType(&o.Flavors, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ListFlavorsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListFlavorsResponseGetFlavorsAttributeTypeOk(o.Flavors); ok {
@@ -90,37 +103,45 @@ func (o ListFlavorsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableListFlavorsResponse struct {
 	value *ListFlavorsResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListFlavorsResponse) Get() *ListFlavorsResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListFlavorsResponse) Set(val *ListFlavorsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListFlavorsResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListFlavorsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableListFlavorsResponse(val *ListFlavorsResponse) *NullableListFlavorsResponse {
 	return &NullableListFlavorsResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListFlavorsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListFlavorsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

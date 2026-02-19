@@ -22,6 +22,7 @@ var _ MappedNullable = &InstanceDataPoint{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDataPointGetTimestampAttributeType = *string
 
 func getInstanceDataPointGetTimestampAttributeTypeOk(arg InstanceDataPointGetTimestampAttributeType) (ret InstanceDataPointGetTimestampRetType, ok bool) {
@@ -35,7 +36,10 @@ func setInstanceDataPointGetTimestampAttributeType(arg *InstanceDataPointGetTime
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDataPointGetTimestampArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDataPointGetTimestampRetType = string
 
 /*
@@ -43,8 +47,13 @@ type InstanceDataPointGetTimestampRetType = string
 */
 
 // isNumber
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDataPointGetValueAttributeType = *float64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDataPointGetValueArgType = float64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDataPointGetValueRetType = float64
 
 func getInstanceDataPointGetValueAttributeTypeOk(arg InstanceDataPointGetValueAttributeType) (ret InstanceDataPointGetValueRetType, ok bool) {
@@ -59,6 +68,7 @@ func setInstanceDataPointGetValueAttributeType(arg *InstanceDataPointGetValueAtt
 }
 
 // InstanceDataPoint struct for InstanceDataPoint
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDataPoint struct {
 	Timestamp InstanceDataPointGetTimestampAttributeType `json:"timestamp,omitempty"`
 	Value     InstanceDataPointGetValueAttributeType     `json:"value,omitempty"`
@@ -68,6 +78,7 @@ type InstanceDataPoint struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceDataPoint() *InstanceDataPoint {
 	this := InstanceDataPoint{}
 	return &this
@@ -76,12 +87,14 @@ func NewInstanceDataPoint() *InstanceDataPoint {
 // NewInstanceDataPointWithDefaults instantiates a new InstanceDataPoint object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceDataPointWithDefaults() *InstanceDataPoint {
 	this := InstanceDataPoint{}
 	return &this
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) GetTimestamp() (res InstanceDataPointGetTimestampRetType) {
 	res, _ = o.GetTimestampOk()
 	return
@@ -89,22 +102,26 @@ func (o *InstanceDataPoint) GetTimestamp() (res InstanceDataPointGetTimestampRet
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) GetTimestampOk() (ret InstanceDataPointGetTimestampRetType, ok bool) {
 	return getInstanceDataPointGetTimestampAttributeTypeOk(o.Timestamp)
 }
 
 // HasTimestamp returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) HasTimestamp() bool {
 	_, ok := o.GetTimestampOk()
 	return ok
 }
 
 // SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) SetTimestamp(v InstanceDataPointGetTimestampRetType) {
 	setInstanceDataPointGetTimestampAttributeType(&o.Timestamp, v)
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) GetValue() (res InstanceDataPointGetValueRetType) {
 	res, _ = o.GetValueOk()
 	return
@@ -112,21 +129,25 @@ func (o *InstanceDataPoint) GetValue() (res InstanceDataPointGetValueRetType) {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) GetValueOk() (ret InstanceDataPointGetValueRetType, ok bool) {
 	return getInstanceDataPointGetValueAttributeTypeOk(o.Value)
 }
 
 // HasValue returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) HasValue() bool {
 	_, ok := o.GetValueOk()
 	return ok
 }
 
 // SetValue gets a reference to the given float64 and assigns it to the Value field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDataPoint) SetValue(v InstanceDataPointGetValueRetType) {
 	setInstanceDataPointGetValueAttributeType(&o.Value, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceDataPoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceDataPointGetTimestampAttributeTypeOk(o.Timestamp); ok {
@@ -138,37 +159,45 @@ func (o InstanceDataPoint) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceDataPoint struct {
 	value *InstanceDataPoint
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceDataPoint) Get() *InstanceDataPoint {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceDataPoint) Set(val *InstanceDataPoint) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceDataPoint) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceDataPoint) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceDataPoint(val *InstanceDataPoint) *NullableInstanceDataPoint {
 	return &NullableInstanceDataPoint{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceDataPoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceDataPoint) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

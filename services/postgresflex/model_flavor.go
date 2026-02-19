@@ -22,8 +22,13 @@ var _ MappedNullable = &Flavor{}
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetCpuAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetCpuArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetCpuRetType = int64
 
 func getFlavorGetCpuAttributeTypeOk(arg FlavorGetCpuAttributeType) (ret FlavorGetCpuRetType, ok bool) {
@@ -42,6 +47,7 @@ func setFlavorGetCpuAttributeType(arg *FlavorGetCpuAttributeType, val FlavorGetC
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetDescriptionAttributeType = *string
 
 func getFlavorGetDescriptionAttributeTypeOk(arg FlavorGetDescriptionAttributeType) (ret FlavorGetDescriptionRetType, ok bool) {
@@ -55,7 +61,10 @@ func setFlavorGetDescriptionAttributeType(arg *FlavorGetDescriptionAttributeType
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetDescriptionArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetDescriptionRetType = string
 
 /*
@@ -63,6 +72,7 @@ type FlavorGetDescriptionRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetIdAttributeType = *string
 
 func getFlavorGetIdAttributeTypeOk(arg FlavorGetIdAttributeType) (ret FlavorGetIdRetType, ok bool) {
@@ -76,7 +86,10 @@ func setFlavorGetIdAttributeType(arg *FlavorGetIdAttributeType, val FlavorGetIdR
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetIdRetType = string
 
 /*
@@ -84,8 +97,13 @@ type FlavorGetIdRetType = string
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetMemoryAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetMemoryArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type FlavorGetMemoryRetType = int64
 
 func getFlavorGetMemoryAttributeTypeOk(arg FlavorGetMemoryAttributeType) (ret FlavorGetMemoryRetType, ok bool) {
@@ -100,6 +118,7 @@ func setFlavorGetMemoryAttributeType(arg *FlavorGetMemoryAttributeType, val Flav
 }
 
 // Flavor struct for Flavor
+// Deprecated: Move to the packages generated for each available API version instead
 type Flavor struct {
 	Cpu         FlavorGetCpuAttributeType         `json:"cpu,omitempty"`
 	Description FlavorGetDescriptionAttributeType `json:"description,omitempty"`
@@ -111,6 +130,7 @@ type Flavor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewFlavor() *Flavor {
 	this := Flavor{}
 	return &this
@@ -119,12 +139,14 @@ func NewFlavor() *Flavor {
 // NewFlavorWithDefaults instantiates a new Flavor object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewFlavorWithDefaults() *Flavor {
 	this := Flavor{}
 	return &this
 }
 
 // GetCpu returns the Cpu field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetCpu() (res FlavorGetCpuRetType) {
 	res, _ = o.GetCpuOk()
 	return
@@ -132,22 +154,26 @@ func (o *Flavor) GetCpu() (res FlavorGetCpuRetType) {
 
 // GetCpuOk returns a tuple with the Cpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetCpuOk() (ret FlavorGetCpuRetType, ok bool) {
 	return getFlavorGetCpuAttributeTypeOk(o.Cpu)
 }
 
 // HasCpu returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) HasCpu() bool {
 	_, ok := o.GetCpuOk()
 	return ok
 }
 
 // SetCpu gets a reference to the given int64 and assigns it to the Cpu field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) SetCpu(v FlavorGetCpuRetType) {
 	setFlavorGetCpuAttributeType(&o.Cpu, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetDescription() (res FlavorGetDescriptionRetType) {
 	res, _ = o.GetDescriptionOk()
 	return
@@ -155,22 +181,26 @@ func (o *Flavor) GetDescription() (res FlavorGetDescriptionRetType) {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetDescriptionOk() (ret FlavorGetDescriptionRetType, ok bool) {
 	return getFlavorGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) HasDescription() bool {
 	_, ok := o.GetDescriptionOk()
 	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) SetDescription(v FlavorGetDescriptionRetType) {
 	setFlavorGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetId() (res FlavorGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -178,22 +208,26 @@ func (o *Flavor) GetId() (res FlavorGetIdRetType) {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetIdOk() (ret FlavorGetIdRetType, ok bool) {
 	return getFlavorGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) SetId(v FlavorGetIdRetType) {
 	setFlavorGetIdAttributeType(&o.Id, v)
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetMemory() (res FlavorGetMemoryRetType) {
 	res, _ = o.GetMemoryOk()
 	return
@@ -201,21 +235,25 @@ func (o *Flavor) GetMemory() (res FlavorGetMemoryRetType) {
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) GetMemoryOk() (ret FlavorGetMemoryRetType, ok bool) {
 	return getFlavorGetMemoryAttributeTypeOk(o.Memory)
 }
 
 // HasMemory returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) HasMemory() bool {
 	_, ok := o.GetMemoryOk()
 	return ok
 }
 
 // SetMemory gets a reference to the given int64 and assigns it to the Memory field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Flavor) SetMemory(v FlavorGetMemoryRetType) {
 	setFlavorGetMemoryAttributeType(&o.Memory, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o Flavor) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getFlavorGetCpuAttributeTypeOk(o.Cpu); ok {
@@ -233,37 +271,45 @@ func (o Flavor) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableFlavor struct {
 	value *Flavor
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableFlavor) Get() *Flavor {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableFlavor) Set(val *Flavor) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableFlavor) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableFlavor) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableFlavor(val *Flavor) *NullableFlavor {
 	return &NullableFlavor{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableFlavor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableFlavor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

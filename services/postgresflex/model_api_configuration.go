@@ -22,6 +22,7 @@ var _ MappedNullable = &ApiConfiguration{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiConfigurationGetNameAttributeType = *string
 
 func getApiConfigurationGetNameAttributeTypeOk(arg ApiConfigurationGetNameAttributeType) (ret ApiConfigurationGetNameRetType, ok bool) {
@@ -35,7 +36,10 @@ func setApiConfigurationGetNameAttributeType(arg *ApiConfigurationGetNameAttribu
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiConfigurationGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiConfigurationGetNameRetType = string
 
 /*
@@ -43,6 +47,7 @@ type ApiConfigurationGetNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiConfigurationGetSettingAttributeType = *string
 
 func getApiConfigurationGetSettingAttributeTypeOk(arg ApiConfigurationGetSettingAttributeType) (ret ApiConfigurationGetSettingRetType, ok bool) {
@@ -56,10 +61,14 @@ func setApiConfigurationGetSettingAttributeType(arg *ApiConfigurationGetSettingA
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiConfigurationGetSettingArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiConfigurationGetSettingRetType = string
 
 // ApiConfiguration struct for ApiConfiguration
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiConfiguration struct {
 	Name    ApiConfigurationGetNameAttributeType    `json:"name,omitempty"`
 	Setting ApiConfigurationGetSettingAttributeType `json:"setting,omitempty"`
@@ -69,6 +78,7 @@ type ApiConfiguration struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiConfiguration() *ApiConfiguration {
 	this := ApiConfiguration{}
 	return &this
@@ -77,12 +87,14 @@ func NewApiConfiguration() *ApiConfiguration {
 // NewApiConfigurationWithDefaults instantiates a new ApiConfiguration object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiConfigurationWithDefaults() *ApiConfiguration {
 	this := ApiConfiguration{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) GetName() (res ApiConfigurationGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -90,22 +102,26 @@ func (o *ApiConfiguration) GetName() (res ApiConfigurationGetNameRetType) {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) GetNameOk() (ret ApiConfigurationGetNameRetType, ok bool) {
 	return getApiConfigurationGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) SetName(v ApiConfigurationGetNameRetType) {
 	setApiConfigurationGetNameAttributeType(&o.Name, v)
 }
 
 // GetSetting returns the Setting field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) GetSetting() (res ApiConfigurationGetSettingRetType) {
 	res, _ = o.GetSettingOk()
 	return
@@ -113,21 +129,25 @@ func (o *ApiConfiguration) GetSetting() (res ApiConfigurationGetSettingRetType) 
 
 // GetSettingOk returns a tuple with the Setting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) GetSettingOk() (ret ApiConfigurationGetSettingRetType, ok bool) {
 	return getApiConfigurationGetSettingAttributeTypeOk(o.Setting)
 }
 
 // HasSetting returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) HasSetting() bool {
 	_, ok := o.GetSettingOk()
 	return ok
 }
 
 // SetSetting gets a reference to the given string and assigns it to the Setting field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiConfiguration) SetSetting(v ApiConfigurationGetSettingRetType) {
 	setApiConfigurationGetSettingAttributeType(&o.Setting, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ApiConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiConfigurationGetNameAttributeTypeOk(o.Name); ok {
@@ -139,37 +159,45 @@ func (o ApiConfiguration) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableApiConfiguration struct {
 	value *ApiConfiguration
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiConfiguration) Get() *ApiConfiguration {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiConfiguration) Set(val *ApiConfiguration) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiConfiguration) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiConfiguration) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableApiConfiguration(val *ApiConfiguration) *NullableApiConfiguration {
 	return &NullableApiConfiguration{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiConfiguration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiConfiguration) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

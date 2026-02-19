@@ -22,6 +22,7 @@ var _ MappedNullable = &CloneInstancePayload{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetClassAttributeType = *string
 
 func getCloneInstancePayloadGetClassAttributeTypeOk(arg CloneInstancePayloadGetClassAttributeType) (ret CloneInstancePayloadGetClassRetType, ok bool) {
@@ -35,7 +36,10 @@ func setCloneInstancePayloadGetClassAttributeType(arg *CloneInstancePayloadGetCl
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetClassArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetClassRetType = string
 
 /*
@@ -43,8 +47,13 @@ type CloneInstancePayloadGetClassRetType = string
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetSizeAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetSizeArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetSizeRetType = int64
 
 func getCloneInstancePayloadGetSizeAttributeTypeOk(arg CloneInstancePayloadGetSizeAttributeType) (ret CloneInstancePayloadGetSizeRetType, ok bool) {
@@ -63,6 +72,7 @@ func setCloneInstancePayloadGetSizeAttributeType(arg *CloneInstancePayloadGetSiz
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetTimestampAttributeType = *string
 
 func getCloneInstancePayloadGetTimestampAttributeTypeOk(arg CloneInstancePayloadGetTimestampAttributeType) (ret CloneInstancePayloadGetTimestampRetType, ok bool) {
@@ -76,10 +86,14 @@ func setCloneInstancePayloadGetTimestampAttributeType(arg *CloneInstancePayloadG
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetTimestampArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayloadGetTimestampRetType = string
 
 // CloneInstancePayload struct for CloneInstancePayload
+// Deprecated: Move to the packages generated for each available API version instead
 type CloneInstancePayload struct {
 	Class CloneInstancePayloadGetClassAttributeType `json:"class,omitempty"`
 	Size  CloneInstancePayloadGetSizeAttributeType  `json:"size,omitempty"`
@@ -91,6 +105,7 @@ type CloneInstancePayload struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCloneInstancePayload() *CloneInstancePayload {
 	this := CloneInstancePayload{}
 	return &this
@@ -99,12 +114,14 @@ func NewCloneInstancePayload() *CloneInstancePayload {
 // NewCloneInstancePayloadWithDefaults instantiates a new CloneInstancePayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCloneInstancePayloadWithDefaults() *CloneInstancePayload {
 	this := CloneInstancePayload{}
 	return &this
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) GetClass() (res CloneInstancePayloadGetClassRetType) {
 	res, _ = o.GetClassOk()
 	return
@@ -112,22 +129,26 @@ func (o *CloneInstancePayload) GetClass() (res CloneInstancePayloadGetClassRetTy
 
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) GetClassOk() (ret CloneInstancePayloadGetClassRetType, ok bool) {
 	return getCloneInstancePayloadGetClassAttributeTypeOk(o.Class)
 }
 
 // HasClass returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) HasClass() bool {
 	_, ok := o.GetClassOk()
 	return ok
 }
 
 // SetClass gets a reference to the given string and assigns it to the Class field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) SetClass(v CloneInstancePayloadGetClassRetType) {
 	setCloneInstancePayloadGetClassAttributeType(&o.Class, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) GetSize() (res CloneInstancePayloadGetSizeRetType) {
 	res, _ = o.GetSizeOk()
 	return
@@ -135,22 +156,26 @@ func (o *CloneInstancePayload) GetSize() (res CloneInstancePayloadGetSizeRetType
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) GetSizeOk() (ret CloneInstancePayloadGetSizeRetType, ok bool) {
 	return getCloneInstancePayloadGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) HasSize() bool {
 	_, ok := o.GetSizeOk()
 	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) SetSize(v CloneInstancePayloadGetSizeRetType) {
 	setCloneInstancePayloadGetSizeAttributeType(&o.Size, v)
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) GetTimestamp() (res CloneInstancePayloadGetTimestampRetType) {
 	res, _ = o.GetTimestampOk()
 	return
@@ -158,21 +183,25 @@ func (o *CloneInstancePayload) GetTimestamp() (res CloneInstancePayloadGetTimest
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) GetTimestampOk() (ret CloneInstancePayloadGetTimestampRetType, ok bool) {
 	return getCloneInstancePayloadGetTimestampAttributeTypeOk(o.Timestamp)
 }
 
 // HasTimestamp returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) HasTimestamp() bool {
 	_, ok := o.GetTimestampOk()
 	return ok
 }
 
 // SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CloneInstancePayload) SetTimestamp(v CloneInstancePayloadGetTimestampRetType) {
 	setCloneInstancePayloadGetTimestampAttributeType(&o.Timestamp, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCloneInstancePayloadGetClassAttributeTypeOk(o.Class); ok {
@@ -187,37 +216,45 @@ func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableCloneInstancePayload struct {
 	value *CloneInstancePayload
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCloneInstancePayload) Get() *CloneInstancePayload {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCloneInstancePayload) Set(val *CloneInstancePayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCloneInstancePayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCloneInstancePayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableCloneInstancePayload(val *CloneInstancePayload) *NullableCloneInstancePayload {
 	return &NullableCloneInstancePayload{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCloneInstancePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCloneInstancePayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

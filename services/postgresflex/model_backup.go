@@ -22,6 +22,7 @@ var _ MappedNullable = &Backup{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetEndTimeAttributeType = *string
 
 func getBackupGetEndTimeAttributeTypeOk(arg BackupGetEndTimeAttributeType) (ret BackupGetEndTimeRetType, ok bool) {
@@ -35,7 +36,10 @@ func setBackupGetEndTimeAttributeType(arg *BackupGetEndTimeAttributeType, val Ba
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetEndTimeArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetEndTimeRetType = string
 
 /*
@@ -43,6 +47,7 @@ type BackupGetEndTimeRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetErrorAttributeType = *string
 
 func getBackupGetErrorAttributeTypeOk(arg BackupGetErrorAttributeType) (ret BackupGetErrorRetType, ok bool) {
@@ -56,7 +61,10 @@ func setBackupGetErrorAttributeType(arg *BackupGetErrorAttributeType, val Backup
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetErrorArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetErrorRetType = string
 
 /*
@@ -64,6 +72,7 @@ type BackupGetErrorRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetIdAttributeType = *string
 
 func getBackupGetIdAttributeTypeOk(arg BackupGetIdAttributeType) (ret BackupGetIdRetType, ok bool) {
@@ -77,7 +86,10 @@ func setBackupGetIdAttributeType(arg *BackupGetIdAttributeType, val BackupGetIdR
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetIdRetType = string
 
 /*
@@ -85,8 +97,13 @@ type BackupGetIdRetType = string
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetLabelsAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetLabelsArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetLabelsRetType = []string
 
 func getBackupGetLabelsAttributeTypeOk(arg BackupGetLabelsAttributeType) (ret BackupGetLabelsRetType, ok bool) {
@@ -105,6 +122,7 @@ func setBackupGetLabelsAttributeType(arg *BackupGetLabelsAttributeType, val Back
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetNameAttributeType = *string
 
 func getBackupGetNameAttributeTypeOk(arg BackupGetNameAttributeType) (ret BackupGetNameRetType, ok bool) {
@@ -118,7 +136,10 @@ func setBackupGetNameAttributeType(arg *BackupGetNameAttributeType, val BackupGe
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetNameRetType = string
 
 /*
@@ -126,8 +147,13 @@ type BackupGetNameRetType = string
 */
 
 // isContainer
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetOptionsAttributeType = *map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetOptionsArgType = map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetOptionsRetType = map[string]string
 
 func getBackupGetOptionsAttributeTypeOk(arg BackupGetOptionsAttributeType) (ret BackupGetOptionsRetType, ok bool) {
@@ -146,8 +172,13 @@ func setBackupGetOptionsAttributeType(arg *BackupGetOptionsAttributeType, val Ba
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetSizeAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetSizeArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetSizeRetType = int64
 
 func getBackupGetSizeAttributeTypeOk(arg BackupGetSizeAttributeType) (ret BackupGetSizeRetType, ok bool) {
@@ -166,6 +197,7 @@ func setBackupGetSizeAttributeType(arg *BackupGetSizeAttributeType, val BackupGe
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetStartTimeAttributeType = *string
 
 func getBackupGetStartTimeAttributeTypeOk(arg BackupGetStartTimeAttributeType) (ret BackupGetStartTimeRetType, ok bool) {
@@ -179,10 +211,14 @@ func setBackupGetStartTimeAttributeType(arg *BackupGetStartTimeAttributeType, va
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetStartTimeArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type BackupGetStartTimeRetType = string
 
 // Backup struct for Backup
+// Deprecated: Move to the packages generated for each available API version instead
 type Backup struct {
 	EndTime   BackupGetEndTimeAttributeType   `json:"endTime,omitempty"`
 	Error     BackupGetErrorAttributeType     `json:"error,omitempty"`
@@ -198,6 +234,7 @@ type Backup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewBackup() *Backup {
 	this := Backup{}
 	return &this
@@ -206,12 +243,14 @@ func NewBackup() *Backup {
 // NewBackupWithDefaults instantiates a new Backup object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewBackupWithDefaults() *Backup {
 	this := Backup{}
 	return &this
 }
 
 // GetEndTime returns the EndTime field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetEndTime() (res BackupGetEndTimeRetType) {
 	res, _ = o.GetEndTimeOk()
 	return
@@ -219,22 +258,26 @@ func (o *Backup) GetEndTime() (res BackupGetEndTimeRetType) {
 
 // GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetEndTimeOk() (ret BackupGetEndTimeRetType, ok bool) {
 	return getBackupGetEndTimeAttributeTypeOk(o.EndTime)
 }
 
 // HasEndTime returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasEndTime() bool {
 	_, ok := o.GetEndTimeOk()
 	return ok
 }
 
 // SetEndTime gets a reference to the given string and assigns it to the EndTime field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetEndTime(v BackupGetEndTimeRetType) {
 	setBackupGetEndTimeAttributeType(&o.EndTime, v)
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetError() (res BackupGetErrorRetType) {
 	res, _ = o.GetErrorOk()
 	return
@@ -242,22 +285,26 @@ func (o *Backup) GetError() (res BackupGetErrorRetType) {
 
 // GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetErrorOk() (ret BackupGetErrorRetType, ok bool) {
 	return getBackupGetErrorAttributeTypeOk(o.Error)
 }
 
 // HasError returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasError() bool {
 	_, ok := o.GetErrorOk()
 	return ok
 }
 
 // SetError gets a reference to the given string and assigns it to the Error field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetError(v BackupGetErrorRetType) {
 	setBackupGetErrorAttributeType(&o.Error, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetId() (res BackupGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -265,22 +312,26 @@ func (o *Backup) GetId() (res BackupGetIdRetType) {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetIdOk() (ret BackupGetIdRetType, ok bool) {
 	return getBackupGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetId(v BackupGetIdRetType) {
 	setBackupGetIdAttributeType(&o.Id, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetLabels() (res BackupGetLabelsRetType) {
 	res, _ = o.GetLabelsOk()
 	return
@@ -288,22 +339,26 @@ func (o *Backup) GetLabels() (res BackupGetLabelsRetType) {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetLabelsOk() (ret BackupGetLabelsRetType, ok bool) {
 	return getBackupGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasLabels() bool {
 	_, ok := o.GetLabelsOk()
 	return ok
 }
 
 // SetLabels gets a reference to the given []string and assigns it to the Labels field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetLabels(v BackupGetLabelsRetType) {
 	setBackupGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetName() (res BackupGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -311,22 +366,26 @@ func (o *Backup) GetName() (res BackupGetNameRetType) {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetNameOk() (ret BackupGetNameRetType, ok bool) {
 	return getBackupGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetName(v BackupGetNameRetType) {
 	setBackupGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetOptions() (res BackupGetOptionsRetType) {
 	res, _ = o.GetOptionsOk()
 	return
@@ -334,22 +393,26 @@ func (o *Backup) GetOptions() (res BackupGetOptionsRetType) {
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetOptionsOk() (ret BackupGetOptionsRetType, ok bool) {
 	return getBackupGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasOptions() bool {
 	_, ok := o.GetOptionsOk()
 	return ok
 }
 
 // SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetOptions(v BackupGetOptionsRetType) {
 	setBackupGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetSize() (res BackupGetSizeRetType) {
 	res, _ = o.GetSizeOk()
 	return
@@ -357,22 +420,26 @@ func (o *Backup) GetSize() (res BackupGetSizeRetType) {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetSizeOk() (ret BackupGetSizeRetType, ok bool) {
 	return getBackupGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasSize() bool {
 	_, ok := o.GetSizeOk()
 	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetSize(v BackupGetSizeRetType) {
 	setBackupGetSizeAttributeType(&o.Size, v)
 }
 
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetStartTime() (res BackupGetStartTimeRetType) {
 	res, _ = o.GetStartTimeOk()
 	return
@@ -380,21 +447,25 @@ func (o *Backup) GetStartTime() (res BackupGetStartTimeRetType) {
 
 // GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) GetStartTimeOk() (ret BackupGetStartTimeRetType, ok bool) {
 	return getBackupGetStartTimeAttributeTypeOk(o.StartTime)
 }
 
 // HasStartTime returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) HasStartTime() bool {
 	_, ok := o.GetStartTimeOk()
 	return ok
 }
 
 // SetStartTime gets a reference to the given string and assigns it to the StartTime field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Backup) SetStartTime(v BackupGetStartTimeRetType) {
 	setBackupGetStartTimeAttributeType(&o.StartTime, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o Backup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBackupGetEndTimeAttributeTypeOk(o.EndTime); ok {
@@ -424,37 +495,45 @@ func (o Backup) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableBackup struct {
 	value *Backup
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableBackup) Get() *Backup {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableBackup) Set(val *Backup) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableBackup) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableBackup) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableBackup(val *Backup) *NullableBackup {
 	return &NullableBackup{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableBackup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableBackup) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

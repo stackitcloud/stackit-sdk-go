@@ -22,8 +22,13 @@ var _ MappedNullable = &PartialUpdateInstanceResponse{}
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstanceResponseGetItemAttributeType = *Instance
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstanceResponseGetItemArgType = Instance
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstanceResponseGetItemRetType = Instance
 
 func getPartialUpdateInstanceResponseGetItemAttributeTypeOk(arg PartialUpdateInstanceResponseGetItemAttributeType) (ret PartialUpdateInstanceResponseGetItemRetType, ok bool) {
@@ -38,6 +43,7 @@ func setPartialUpdateInstanceResponseGetItemAttributeType(arg *PartialUpdateInst
 }
 
 // PartialUpdateInstanceResponse struct for PartialUpdateInstanceResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type PartialUpdateInstanceResponse struct {
 	Item PartialUpdateInstanceResponseGetItemAttributeType `json:"item,omitempty"`
 }
@@ -46,6 +52,7 @@ type PartialUpdateInstanceResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPartialUpdateInstanceResponse() *PartialUpdateInstanceResponse {
 	this := PartialUpdateInstanceResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewPartialUpdateInstanceResponse() *PartialUpdateInstanceResponse {
 // NewPartialUpdateInstanceResponseWithDefaults instantiates a new PartialUpdateInstanceResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPartialUpdateInstanceResponseWithDefaults() *PartialUpdateInstanceResponse {
 	this := PartialUpdateInstanceResponse{}
 	return &this
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstanceResponse) GetItem() (res PartialUpdateInstanceResponseGetItemRetType) {
 	res, _ = o.GetItemOk()
 	return
@@ -67,21 +76,25 @@ func (o *PartialUpdateInstanceResponse) GetItem() (res PartialUpdateInstanceResp
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstanceResponse) GetItemOk() (ret PartialUpdateInstanceResponseGetItemRetType, ok bool) {
 	return getPartialUpdateInstanceResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstanceResponse) HasItem() bool {
 	_, ok := o.GetItemOk()
 	return ok
 }
 
 // SetItem gets a reference to the given Instance and assigns it to the Item field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PartialUpdateInstanceResponse) SetItem(v PartialUpdateInstanceResponseGetItemRetType) {
 	setPartialUpdateInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o PartialUpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPartialUpdateInstanceResponseGetItemAttributeTypeOk(o.Item); ok {
@@ -90,37 +103,45 @@ func (o PartialUpdateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullablePartialUpdateInstanceResponse struct {
 	value *PartialUpdateInstanceResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateInstanceResponse) Get() *PartialUpdateInstanceResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateInstanceResponse) Set(val *PartialUpdateInstanceResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateInstanceResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateInstanceResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullablePartialUpdateInstanceResponse(val *PartialUpdateInstanceResponse) *NullablePartialUpdateInstanceResponse {
 	return &NullablePartialUpdateInstanceResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePartialUpdateInstanceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePartialUpdateInstanceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

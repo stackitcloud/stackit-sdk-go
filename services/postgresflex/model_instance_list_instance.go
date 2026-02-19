@@ -22,6 +22,7 @@ var _ MappedNullable = &InstanceListInstance{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetIdAttributeType = *string
 
 func getInstanceListInstanceGetIdAttributeTypeOk(arg InstanceListInstanceGetIdAttributeType) (ret InstanceListInstanceGetIdRetType, ok bool) {
@@ -35,7 +36,10 @@ func setInstanceListInstanceGetIdAttributeType(arg *InstanceListInstanceGetIdAtt
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetIdRetType = string
 
 /*
@@ -43,6 +47,7 @@ type InstanceListInstanceGetIdRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetNameAttributeType = *string
 
 func getInstanceListInstanceGetNameAttributeTypeOk(arg InstanceListInstanceGetNameAttributeType) (ret InstanceListInstanceGetNameRetType, ok bool) {
@@ -56,7 +61,10 @@ func setInstanceListInstanceGetNameAttributeType(arg *InstanceListInstanceGetNam
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetNameRetType = string
 
 /*
@@ -64,6 +72,7 @@ type InstanceListInstanceGetNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetStatusAttributeType = *string
 
 func getInstanceListInstanceGetStatusAttributeTypeOk(arg InstanceListInstanceGetStatusAttributeType) (ret InstanceListInstanceGetStatusRetType, ok bool) {
@@ -77,10 +86,14 @@ func setInstanceListInstanceGetStatusAttributeType(arg *InstanceListInstanceGetS
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetStatusArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstanceGetStatusRetType = string
 
 // InstanceListInstance struct for InstanceListInstance
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceListInstance struct {
 	Id     InstanceListInstanceGetIdAttributeType     `json:"id,omitempty"`
 	Name   InstanceListInstanceGetNameAttributeType   `json:"name,omitempty"`
@@ -91,6 +104,7 @@ type InstanceListInstance struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceListInstance() *InstanceListInstance {
 	this := InstanceListInstance{}
 	return &this
@@ -99,12 +113,14 @@ func NewInstanceListInstance() *InstanceListInstance {
 // NewInstanceListInstanceWithDefaults instantiates a new InstanceListInstance object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceListInstanceWithDefaults() *InstanceListInstance {
 	this := InstanceListInstance{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) GetId() (res InstanceListInstanceGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -112,22 +128,26 @@ func (o *InstanceListInstance) GetId() (res InstanceListInstanceGetIdRetType) {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) GetIdOk() (ret InstanceListInstanceGetIdRetType, ok bool) {
 	return getInstanceListInstanceGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) SetId(v InstanceListInstanceGetIdRetType) {
 	setInstanceListInstanceGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) GetName() (res InstanceListInstanceGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -135,22 +155,26 @@ func (o *InstanceListInstance) GetName() (res InstanceListInstanceGetNameRetType
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) GetNameOk() (ret InstanceListInstanceGetNameRetType, ok bool) {
 	return getInstanceListInstanceGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) SetName(v InstanceListInstanceGetNameRetType) {
 	setInstanceListInstanceGetNameAttributeType(&o.Name, v)
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) GetStatus() (res InstanceListInstanceGetStatusRetType) {
 	res, _ = o.GetStatusOk()
 	return
@@ -158,21 +182,25 @@ func (o *InstanceListInstance) GetStatus() (res InstanceListInstanceGetStatusRet
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) GetStatusOk() (ret InstanceListInstanceGetStatusRetType, ok bool) {
 	return getInstanceListInstanceGetStatusAttributeTypeOk(o.Status)
 }
 
 // HasStatus returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) HasStatus() bool {
 	_, ok := o.GetStatusOk()
 	return ok
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceListInstance) SetStatus(v InstanceListInstanceGetStatusRetType) {
 	setInstanceListInstanceGetStatusAttributeType(&o.Status, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceListInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceListInstanceGetIdAttributeTypeOk(o.Id); ok {
@@ -187,37 +215,45 @@ func (o InstanceListInstance) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceListInstance struct {
 	value *InstanceListInstance
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceListInstance) Get() *InstanceListInstance {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceListInstance) Set(val *InstanceListInstance) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceListInstance) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceListInstance) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceListInstance(val *InstanceListInstance) *NullableInstanceListInstance {
 	return &NullableInstanceListInstance{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceListInstance) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceListInstance) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,6 +22,7 @@ var _ MappedNullable = &User{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetDatabaseAttributeType = *string
 
 func getUserGetDatabaseAttributeTypeOk(arg UserGetDatabaseAttributeType) (ret UserGetDatabaseRetType, ok bool) {
@@ -35,7 +36,10 @@ func setUserGetDatabaseAttributeType(arg *UserGetDatabaseAttributeType, val User
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetDatabaseArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetDatabaseRetType = string
 
 /*
@@ -43,6 +47,7 @@ type UserGetDatabaseRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetHostAttributeType = *string
 
 func getUserGetHostAttributeTypeOk(arg UserGetHostAttributeType) (ret UserGetHostRetType, ok bool) {
@@ -56,7 +61,10 @@ func setUserGetHostAttributeType(arg *UserGetHostAttributeType, val UserGetHostR
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetHostArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetHostRetType = string
 
 /*
@@ -64,6 +72,7 @@ type UserGetHostRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetIdAttributeType = *string
 
 func getUserGetIdAttributeTypeOk(arg UserGetIdAttributeType) (ret UserGetIdRetType, ok bool) {
@@ -77,7 +86,10 @@ func setUserGetIdAttributeType(arg *UserGetIdAttributeType, val UserGetIdRetType
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetIdRetType = string
 
 /*
@@ -85,6 +97,7 @@ type UserGetIdRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetPasswordAttributeType = *string
 
 func getUserGetPasswordAttributeTypeOk(arg UserGetPasswordAttributeType) (ret UserGetPasswordRetType, ok bool) {
@@ -98,7 +111,10 @@ func setUserGetPasswordAttributeType(arg *UserGetPasswordAttributeType, val User
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetPasswordArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetPasswordRetType = string
 
 /*
@@ -106,8 +122,13 @@ type UserGetPasswordRetType = string
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetPortAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetPortArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetPortRetType = int64
 
 func getUserGetPortAttributeTypeOk(arg UserGetPortAttributeType) (ret UserGetPortRetType, ok bool) {
@@ -126,8 +147,13 @@ func setUserGetPortAttributeType(arg *UserGetPortAttributeType, val UserGetPortR
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetRolesAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetRolesArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetRolesRetType = []string
 
 func getUserGetRolesAttributeTypeOk(arg UserGetRolesAttributeType) (ret UserGetRolesRetType, ok bool) {
@@ -146,6 +172,7 @@ func setUserGetRolesAttributeType(arg *UserGetRolesAttributeType, val UserGetRol
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetUriAttributeType = *string
 
 func getUserGetUriAttributeTypeOk(arg UserGetUriAttributeType) (ret UserGetUriRetType, ok bool) {
@@ -159,7 +186,10 @@ func setUserGetUriAttributeType(arg *UserGetUriAttributeType, val UserGetUriRetT
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetUriArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetUriRetType = string
 
 /*
@@ -167,6 +197,7 @@ type UserGetUriRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetUsernameAttributeType = *string
 
 func getUserGetUsernameAttributeTypeOk(arg UserGetUsernameAttributeType) (ret UserGetUsernameRetType, ok bool) {
@@ -180,10 +211,14 @@ func setUserGetUsernameAttributeType(arg *UserGetUsernameAttributeType, val User
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetUsernameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserGetUsernameRetType = string
 
 // User struct for User
+// Deprecated: Move to the packages generated for each available API version instead
 type User struct {
 	Database UserGetDatabaseAttributeType `json:"database,omitempty"`
 	Host     UserGetHostAttributeType     `json:"host,omitempty"`
@@ -199,6 +234,7 @@ type User struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewUser() *User {
 	this := User{}
 	return &this
@@ -207,12 +243,14 @@ func NewUser() *User {
 // NewUserWithDefaults instantiates a new User object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewUserWithDefaults() *User {
 	this := User{}
 	return &this
 }
 
 // GetDatabase returns the Database field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetDatabase() (res UserGetDatabaseRetType) {
 	res, _ = o.GetDatabaseOk()
 	return
@@ -220,22 +258,26 @@ func (o *User) GetDatabase() (res UserGetDatabaseRetType) {
 
 // GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetDatabaseOk() (ret UserGetDatabaseRetType, ok bool) {
 	return getUserGetDatabaseAttributeTypeOk(o.Database)
 }
 
 // HasDatabase returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasDatabase() bool {
 	_, ok := o.GetDatabaseOk()
 	return ok
 }
 
 // SetDatabase gets a reference to the given string and assigns it to the Database field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetDatabase(v UserGetDatabaseRetType) {
 	setUserGetDatabaseAttributeType(&o.Database, v)
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetHost() (res UserGetHostRetType) {
 	res, _ = o.GetHostOk()
 	return
@@ -243,22 +285,26 @@ func (o *User) GetHost() (res UserGetHostRetType) {
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetHostOk() (ret UserGetHostRetType, ok bool) {
 	return getUserGetHostAttributeTypeOk(o.Host)
 }
 
 // HasHost returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasHost() bool {
 	_, ok := o.GetHostOk()
 	return ok
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetHost(v UserGetHostRetType) {
 	setUserGetHostAttributeType(&o.Host, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetId() (res UserGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -266,22 +312,26 @@ func (o *User) GetId() (res UserGetIdRetType) {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetIdOk() (ret UserGetIdRetType, ok bool) {
 	return getUserGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetId(v UserGetIdRetType) {
 	setUserGetIdAttributeType(&o.Id, v)
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetPassword() (res UserGetPasswordRetType) {
 	res, _ = o.GetPasswordOk()
 	return
@@ -289,22 +339,26 @@ func (o *User) GetPassword() (res UserGetPasswordRetType) {
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetPasswordOk() (ret UserGetPasswordRetType, ok bool) {
 	return getUserGetPasswordAttributeTypeOk(o.Password)
 }
 
 // HasPassword returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasPassword() bool {
 	_, ok := o.GetPasswordOk()
 	return ok
 }
 
 // SetPassword gets a reference to the given string and assigns it to the Password field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetPassword(v UserGetPasswordRetType) {
 	setUserGetPasswordAttributeType(&o.Password, v)
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetPort() (res UserGetPortRetType) {
 	res, _ = o.GetPortOk()
 	return
@@ -312,22 +366,26 @@ func (o *User) GetPort() (res UserGetPortRetType) {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetPortOk() (ret UserGetPortRetType, ok bool) {
 	return getUserGetPortAttributeTypeOk(o.Port)
 }
 
 // HasPort returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasPort() bool {
 	_, ok := o.GetPortOk()
 	return ok
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetPort(v UserGetPortRetType) {
 	setUserGetPortAttributeType(&o.Port, v)
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetRoles() (res UserGetRolesRetType) {
 	res, _ = o.GetRolesOk()
 	return
@@ -335,22 +393,26 @@ func (o *User) GetRoles() (res UserGetRolesRetType) {
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetRolesOk() (ret UserGetRolesRetType, ok bool) {
 	return getUserGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasRoles() bool {
 	_, ok := o.GetRolesOk()
 	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetRoles(v UserGetRolesRetType) {
 	setUserGetRolesAttributeType(&o.Roles, v)
 }
 
 // GetUri returns the Uri field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetUri() (res UserGetUriRetType) {
 	res, _ = o.GetUriOk()
 	return
@@ -358,22 +420,26 @@ func (o *User) GetUri() (res UserGetUriRetType) {
 
 // GetUriOk returns a tuple with the Uri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetUriOk() (ret UserGetUriRetType, ok bool) {
 	return getUserGetUriAttributeTypeOk(o.Uri)
 }
 
 // HasUri returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasUri() bool {
 	_, ok := o.GetUriOk()
 	return ok
 }
 
 // SetUri gets a reference to the given string and assigns it to the Uri field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetUri(v UserGetUriRetType) {
 	setUserGetUriAttributeType(&o.Uri, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetUsername() (res UserGetUsernameRetType) {
 	res, _ = o.GetUsernameOk()
 	return
@@ -381,21 +447,25 @@ func (o *User) GetUsername() (res UserGetUsernameRetType) {
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) GetUsernameOk() (ret UserGetUsernameRetType, ok bool) {
 	return getUserGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) HasUsername() bool {
 	_, ok := o.GetUsernameOk()
 	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *User) SetUsername(v UserGetUsernameRetType) {
 	setUserGetUsernameAttributeType(&o.Username, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUserGetDatabaseAttributeTypeOk(o.Database); ok {
@@ -425,37 +495,45 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableUser struct {
 	value *User
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUser) Get() *User {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUser) Set(val *User) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUser) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUser) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableUser(val *User) *NullableUser {
 	return &NullableUser{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

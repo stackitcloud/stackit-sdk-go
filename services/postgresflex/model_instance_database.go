@@ -22,6 +22,7 @@ var _ MappedNullable = &InstanceDatabase{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetIdAttributeType = *string
 
 func getInstanceDatabaseGetIdAttributeTypeOk(arg InstanceDatabaseGetIdAttributeType) (ret InstanceDatabaseGetIdRetType, ok bool) {
@@ -35,7 +36,10 @@ func setInstanceDatabaseGetIdAttributeType(arg *InstanceDatabaseGetIdAttributeTy
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetIdRetType = string
 
 /*
@@ -43,6 +47,7 @@ type InstanceDatabaseGetIdRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetNameAttributeType = *string
 
 func getInstanceDatabaseGetNameAttributeTypeOk(arg InstanceDatabaseGetNameAttributeType) (ret InstanceDatabaseGetNameRetType, ok bool) {
@@ -56,7 +61,10 @@ func setInstanceDatabaseGetNameAttributeType(arg *InstanceDatabaseGetNameAttribu
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetNameRetType = string
 
 /*
@@ -64,8 +72,13 @@ type InstanceDatabaseGetNameRetType = string
 */
 
 // isFreeform
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetOptionsAttributeType = *map[string]interface{}
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetOptionsArgType = map[string]interface{}
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabaseGetOptionsRetType = map[string]interface{}
 
 func getInstanceDatabaseGetOptionsAttributeTypeOk(arg InstanceDatabaseGetOptionsAttributeType) (ret InstanceDatabaseGetOptionsRetType, ok bool) {
@@ -80,6 +93,7 @@ func setInstanceDatabaseGetOptionsAttributeType(arg *InstanceDatabaseGetOptionsA
 }
 
 // InstanceDatabase struct for InstanceDatabase
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceDatabase struct {
 	Id   InstanceDatabaseGetIdAttributeType   `json:"id,omitempty"`
 	Name InstanceDatabaseGetNameAttributeType `json:"name,omitempty"`
@@ -91,6 +105,7 @@ type InstanceDatabase struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceDatabase() *InstanceDatabase {
 	this := InstanceDatabase{}
 	return &this
@@ -99,12 +114,14 @@ func NewInstanceDatabase() *InstanceDatabase {
 // NewInstanceDatabaseWithDefaults instantiates a new InstanceDatabase object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceDatabaseWithDefaults() *InstanceDatabase {
 	this := InstanceDatabase{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) GetId() (res InstanceDatabaseGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -112,22 +129,26 @@ func (o *InstanceDatabase) GetId() (res InstanceDatabaseGetIdRetType) {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) GetIdOk() (ret InstanceDatabaseGetIdRetType, ok bool) {
 	return getInstanceDatabaseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) SetId(v InstanceDatabaseGetIdRetType) {
 	setInstanceDatabaseGetIdAttributeType(&o.Id, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) GetName() (res InstanceDatabaseGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -135,22 +156,26 @@ func (o *InstanceDatabase) GetName() (res InstanceDatabaseGetNameRetType) {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) GetNameOk() (ret InstanceDatabaseGetNameRetType, ok bool) {
 	return getInstanceDatabaseGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) SetName(v InstanceDatabaseGetNameRetType) {
 	setInstanceDatabaseGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) GetOptions() (res InstanceDatabaseGetOptionsRetType) {
 	res, _ = o.GetOptionsOk()
 	return
@@ -158,21 +183,25 @@ func (o *InstanceDatabase) GetOptions() (res InstanceDatabaseGetOptionsRetType) 
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) GetOptionsOk() (ret InstanceDatabaseGetOptionsRetType, ok bool) {
 	return getInstanceDatabaseGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) HasOptions() bool {
 	_, ok := o.GetOptionsOk()
 	return ok
 }
 
 // SetOptions gets a reference to the given map[string]interface{} and assigns it to the Options field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceDatabase) SetOptions(v InstanceDatabaseGetOptionsRetType) {
 	setInstanceDatabaseGetOptionsAttributeType(&o.Options, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceDatabase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceDatabaseGetIdAttributeTypeOk(o.Id); ok {
@@ -187,37 +216,45 @@ func (o InstanceDatabase) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceDatabase struct {
 	value *InstanceDatabase
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceDatabase) Get() *InstanceDatabase {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceDatabase) Set(val *InstanceDatabase) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceDatabase) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceDatabase) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceDatabase(val *InstanceDatabase) *NullableInstanceDatabase {
 	return &NullableInstanceDatabase{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceDatabase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceDatabase) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,8 +22,13 @@ var _ MappedNullable = &ExtensionsExtensionListResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsExtensionListResponseGetListAttributeType = *[]ApiExtensionList
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsExtensionListResponseGetListArgType = []ApiExtensionList
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsExtensionListResponseGetListRetType = []ApiExtensionList
 
 func getExtensionsExtensionListResponseGetListAttributeTypeOk(arg ExtensionsExtensionListResponseGetListAttributeType) (ret ExtensionsExtensionListResponseGetListRetType, ok bool) {
@@ -38,6 +43,7 @@ func setExtensionsExtensionListResponseGetListAttributeType(arg *ExtensionsExten
 }
 
 // ExtensionsExtensionListResponse struct for ExtensionsExtensionListResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsExtensionListResponse struct {
 	List ExtensionsExtensionListResponseGetListAttributeType `json:"list,omitempty"`
 }
@@ -46,6 +52,7 @@ type ExtensionsExtensionListResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewExtensionsExtensionListResponse() *ExtensionsExtensionListResponse {
 	this := ExtensionsExtensionListResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewExtensionsExtensionListResponse() *ExtensionsExtensionListResponse {
 // NewExtensionsExtensionListResponseWithDefaults instantiates a new ExtensionsExtensionListResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewExtensionsExtensionListResponseWithDefaults() *ExtensionsExtensionListResponse {
 	this := ExtensionsExtensionListResponse{}
 	return &this
 }
 
 // GetList returns the List field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsExtensionListResponse) GetList() (res ExtensionsExtensionListResponseGetListRetType) {
 	res, _ = o.GetListOk()
 	return
@@ -67,21 +76,25 @@ func (o *ExtensionsExtensionListResponse) GetList() (res ExtensionsExtensionList
 
 // GetListOk returns a tuple with the List field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsExtensionListResponse) GetListOk() (ret ExtensionsExtensionListResponseGetListRetType, ok bool) {
 	return getExtensionsExtensionListResponseGetListAttributeTypeOk(o.List)
 }
 
 // HasList returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsExtensionListResponse) HasList() bool {
 	_, ok := o.GetListOk()
 	return ok
 }
 
 // SetList gets a reference to the given []ApiExtensionList and assigns it to the List field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsExtensionListResponse) SetList(v ExtensionsExtensionListResponseGetListRetType) {
 	setExtensionsExtensionListResponseGetListAttributeType(&o.List, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ExtensionsExtensionListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getExtensionsExtensionListResponseGetListAttributeTypeOk(o.List); ok {
@@ -90,37 +103,45 @@ func (o ExtensionsExtensionListResponse) ToMap() (map[string]interface{}, error)
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableExtensionsExtensionListResponse struct {
 	value *ExtensionsExtensionListResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsExtensionListResponse) Get() *ExtensionsExtensionListResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsExtensionListResponse) Set(val *ExtensionsExtensionListResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsExtensionListResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsExtensionListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableExtensionsExtensionListResponse(val *ExtensionsExtensionListResponse) *NullableExtensionsExtensionListResponse {
 	return &NullableExtensionsExtensionListResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsExtensionListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsExtensionListResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

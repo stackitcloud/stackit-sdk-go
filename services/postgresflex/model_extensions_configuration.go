@@ -22,6 +22,7 @@ var _ MappedNullable = &ExtensionsConfiguration{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsConfigurationGetNameAttributeType = *string
 
 func getExtensionsConfigurationGetNameAttributeTypeOk(arg ExtensionsConfigurationGetNameAttributeType) (ret ExtensionsConfigurationGetNameRetType, ok bool) {
@@ -35,7 +36,10 @@ func setExtensionsConfigurationGetNameAttributeType(arg *ExtensionsConfiguration
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsConfigurationGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsConfigurationGetNameRetType = string
 
 /*
@@ -43,6 +47,7 @@ type ExtensionsConfigurationGetNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsConfigurationGetSettingAttributeType = *string
 
 func getExtensionsConfigurationGetSettingAttributeTypeOk(arg ExtensionsConfigurationGetSettingAttributeType) (ret ExtensionsConfigurationGetSettingRetType, ok bool) {
@@ -56,10 +61,14 @@ func setExtensionsConfigurationGetSettingAttributeType(arg *ExtensionsConfigurat
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsConfigurationGetSettingArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsConfigurationGetSettingRetType = string
 
 // ExtensionsConfiguration struct for ExtensionsConfiguration
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsConfiguration struct {
 	Name    ExtensionsConfigurationGetNameAttributeType    `json:"name,omitempty"`
 	Setting ExtensionsConfigurationGetSettingAttributeType `json:"setting,omitempty"`
@@ -69,6 +78,7 @@ type ExtensionsConfiguration struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewExtensionsConfiguration() *ExtensionsConfiguration {
 	this := ExtensionsConfiguration{}
 	return &this
@@ -77,12 +87,14 @@ func NewExtensionsConfiguration() *ExtensionsConfiguration {
 // NewExtensionsConfigurationWithDefaults instantiates a new ExtensionsConfiguration object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewExtensionsConfigurationWithDefaults() *ExtensionsConfiguration {
 	this := ExtensionsConfiguration{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) GetName() (res ExtensionsConfigurationGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -90,22 +102,26 @@ func (o *ExtensionsConfiguration) GetName() (res ExtensionsConfigurationGetNameR
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) GetNameOk() (ret ExtensionsConfigurationGetNameRetType, ok bool) {
 	return getExtensionsConfigurationGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) SetName(v ExtensionsConfigurationGetNameRetType) {
 	setExtensionsConfigurationGetNameAttributeType(&o.Name, v)
 }
 
 // GetSetting returns the Setting field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) GetSetting() (res ExtensionsConfigurationGetSettingRetType) {
 	res, _ = o.GetSettingOk()
 	return
@@ -113,21 +129,25 @@ func (o *ExtensionsConfiguration) GetSetting() (res ExtensionsConfigurationGetSe
 
 // GetSettingOk returns a tuple with the Setting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) GetSettingOk() (ret ExtensionsConfigurationGetSettingRetType, ok bool) {
 	return getExtensionsConfigurationGetSettingAttributeTypeOk(o.Setting)
 }
 
 // HasSetting returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) HasSetting() bool {
 	_, ok := o.GetSettingOk()
 	return ok
 }
 
 // SetSetting gets a reference to the given string and assigns it to the Setting field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsConfiguration) SetSetting(v ExtensionsConfigurationGetSettingRetType) {
 	setExtensionsConfigurationGetSettingAttributeType(&o.Setting, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ExtensionsConfiguration) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getExtensionsConfigurationGetNameAttributeTypeOk(o.Name); ok {
@@ -139,37 +159,45 @@ func (o ExtensionsConfiguration) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableExtensionsConfiguration struct {
 	value *ExtensionsConfiguration
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsConfiguration) Get() *ExtensionsConfiguration {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsConfiguration) Set(val *ExtensionsConfiguration) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsConfiguration) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsConfiguration) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableExtensionsConfiguration(val *ExtensionsConfiguration) *NullableExtensionsConfiguration {
 	return &NullableExtensionsConfiguration{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsConfiguration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsConfiguration) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

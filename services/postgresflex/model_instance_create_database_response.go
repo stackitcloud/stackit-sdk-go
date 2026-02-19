@@ -22,6 +22,7 @@ var _ MappedNullable = &InstanceCreateDatabaseResponse{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceCreateDatabaseResponseGetIdAttributeType = *string
 
 func getInstanceCreateDatabaseResponseGetIdAttributeTypeOk(arg InstanceCreateDatabaseResponseGetIdAttributeType) (ret InstanceCreateDatabaseResponseGetIdRetType, ok bool) {
@@ -35,10 +36,14 @@ func setInstanceCreateDatabaseResponseGetIdAttributeType(arg *InstanceCreateData
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceCreateDatabaseResponseGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceCreateDatabaseResponseGetIdRetType = string
 
 // InstanceCreateDatabaseResponse struct for InstanceCreateDatabaseResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceCreateDatabaseResponse struct {
 	Id InstanceCreateDatabaseResponseGetIdAttributeType `json:"id,omitempty"`
 }
@@ -47,6 +52,7 @@ type InstanceCreateDatabaseResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceCreateDatabaseResponse() *InstanceCreateDatabaseResponse {
 	this := InstanceCreateDatabaseResponse{}
 	return &this
@@ -55,12 +61,14 @@ func NewInstanceCreateDatabaseResponse() *InstanceCreateDatabaseResponse {
 // NewInstanceCreateDatabaseResponseWithDefaults instantiates a new InstanceCreateDatabaseResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceCreateDatabaseResponseWithDefaults() *InstanceCreateDatabaseResponse {
 	this := InstanceCreateDatabaseResponse{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceCreateDatabaseResponse) GetId() (res InstanceCreateDatabaseResponseGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -68,21 +76,25 @@ func (o *InstanceCreateDatabaseResponse) GetId() (res InstanceCreateDatabaseResp
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceCreateDatabaseResponse) GetIdOk() (ret InstanceCreateDatabaseResponseGetIdRetType, ok bool) {
 	return getInstanceCreateDatabaseResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceCreateDatabaseResponse) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceCreateDatabaseResponse) SetId(v InstanceCreateDatabaseResponseGetIdRetType) {
 	setInstanceCreateDatabaseResponseGetIdAttributeType(&o.Id, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceCreateDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceCreateDatabaseResponseGetIdAttributeTypeOk(o.Id); ok {
@@ -91,37 +103,45 @@ func (o InstanceCreateDatabaseResponse) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceCreateDatabaseResponse struct {
 	value *InstanceCreateDatabaseResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceCreateDatabaseResponse) Get() *InstanceCreateDatabaseResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceCreateDatabaseResponse) Set(val *InstanceCreateDatabaseResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceCreateDatabaseResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceCreateDatabaseResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceCreateDatabaseResponse(val *InstanceCreateDatabaseResponse) *NullableInstanceCreateDatabaseResponse {
 	return &NullableInstanceCreateDatabaseResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceCreateDatabaseResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceCreateDatabaseResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

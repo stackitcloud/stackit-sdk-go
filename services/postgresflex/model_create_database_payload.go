@@ -22,6 +22,7 @@ var _ MappedNullable = &CreateDatabasePayload{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateDatabasePayloadGetNameAttributeType = *string
 
 func getCreateDatabasePayloadGetNameAttributeTypeOk(arg CreateDatabasePayloadGetNameAttributeType) (ret CreateDatabasePayloadGetNameRetType, ok bool) {
@@ -35,7 +36,10 @@ func setCreateDatabasePayloadGetNameAttributeType(arg *CreateDatabasePayloadGetN
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateDatabasePayloadGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateDatabasePayloadGetNameRetType = string
 
 /*
@@ -43,8 +47,13 @@ type CreateDatabasePayloadGetNameRetType = string
 */
 
 // isContainer
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateDatabasePayloadGetOptionsAttributeType = *map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateDatabasePayloadGetOptionsArgType = map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateDatabasePayloadGetOptionsRetType = map[string]string
 
 func getCreateDatabasePayloadGetOptionsAttributeTypeOk(arg CreateDatabasePayloadGetOptionsAttributeType) (ret CreateDatabasePayloadGetOptionsRetType, ok bool) {
@@ -59,6 +68,7 @@ func setCreateDatabasePayloadGetOptionsAttributeType(arg *CreateDatabasePayloadG
 }
 
 // CreateDatabasePayload struct for CreateDatabasePayload
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateDatabasePayload struct {
 	Name CreateDatabasePayloadGetNameAttributeType `json:"name,omitempty"`
 	// Database specific options
@@ -69,6 +79,7 @@ type CreateDatabasePayload struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCreateDatabasePayload() *CreateDatabasePayload {
 	this := CreateDatabasePayload{}
 	return &this
@@ -77,12 +88,14 @@ func NewCreateDatabasePayload() *CreateDatabasePayload {
 // NewCreateDatabasePayloadWithDefaults instantiates a new CreateDatabasePayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCreateDatabasePayloadWithDefaults() *CreateDatabasePayload {
 	this := CreateDatabasePayload{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) GetName() (res CreateDatabasePayloadGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -90,22 +103,26 @@ func (o *CreateDatabasePayload) GetName() (res CreateDatabasePayloadGetNameRetTy
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) GetNameOk() (ret CreateDatabasePayloadGetNameRetType, ok bool) {
 	return getCreateDatabasePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) SetName(v CreateDatabasePayloadGetNameRetType) {
 	setCreateDatabasePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) GetOptions() (res CreateDatabasePayloadGetOptionsRetType) {
 	res, _ = o.GetOptionsOk()
 	return
@@ -113,21 +130,25 @@ func (o *CreateDatabasePayload) GetOptions() (res CreateDatabasePayloadGetOption
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) GetOptionsOk() (ret CreateDatabasePayloadGetOptionsRetType, ok bool) {
 	return getCreateDatabasePayloadGetOptionsAttributeTypeOk(o.Options)
 }
 
 // HasOptions returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) HasOptions() bool {
 	_, ok := o.GetOptionsOk()
 	return ok
 }
 
 // SetOptions gets a reference to the given map[string]string and assigns it to the Options field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateDatabasePayload) SetOptions(v CreateDatabasePayloadGetOptionsRetType) {
 	setCreateDatabasePayloadGetOptionsAttributeType(&o.Options, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o CreateDatabasePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateDatabasePayloadGetNameAttributeTypeOk(o.Name); ok {
@@ -139,37 +160,45 @@ func (o CreateDatabasePayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableCreateDatabasePayload struct {
 	value *CreateDatabasePayload
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateDatabasePayload) Get() *CreateDatabasePayload {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateDatabasePayload) Set(val *CreateDatabasePayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateDatabasePayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateDatabasePayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableCreateDatabasePayload(val *CreateDatabasePayload) *NullableCreateDatabasePayload {
 	return &NullableCreateDatabasePayload{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateDatabasePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateDatabasePayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

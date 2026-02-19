@@ -22,8 +22,13 @@ var _ MappedNullable = &ApiExtensionDeleteResponse{}
 */
 
 // isBoolean
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionDeleteResponsegetIsSuccededAttributeType = *bool
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionDeleteResponsegetIsSuccededArgType = bool
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionDeleteResponsegetIsSuccededRetType = bool
 
 func getApiExtensionDeleteResponsegetIsSuccededAttributeTypeOk(arg ApiExtensionDeleteResponsegetIsSuccededAttributeType) (ret ApiExtensionDeleteResponsegetIsSuccededRetType, ok bool) {
@@ -38,6 +43,7 @@ func setApiExtensionDeleteResponsegetIsSuccededAttributeType(arg *ApiExtensionDe
 }
 
 // ApiExtensionDeleteResponse struct for ApiExtensionDeleteResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionDeleteResponse struct {
 	IsSucceded ApiExtensionDeleteResponsegetIsSuccededAttributeType `json:"isSucceded,omitempty"`
 }
@@ -46,6 +52,7 @@ type ApiExtensionDeleteResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiExtensionDeleteResponse() *ApiExtensionDeleteResponse {
 	this := ApiExtensionDeleteResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewApiExtensionDeleteResponse() *ApiExtensionDeleteResponse {
 // NewApiExtensionDeleteResponseWithDefaults instantiates a new ApiExtensionDeleteResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiExtensionDeleteResponseWithDefaults() *ApiExtensionDeleteResponse {
 	this := ApiExtensionDeleteResponse{}
 	return &this
 }
 
 // GetIsSucceded returns the IsSucceded field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionDeleteResponse) GetIsSucceded() (res ApiExtensionDeleteResponsegetIsSuccededRetType) {
 	res, _ = o.GetIsSuccededOk()
 	return
@@ -67,21 +76,25 @@ func (o *ApiExtensionDeleteResponse) GetIsSucceded() (res ApiExtensionDeleteResp
 
 // GetIsSuccededOk returns a tuple with the IsSucceded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionDeleteResponse) GetIsSuccededOk() (ret ApiExtensionDeleteResponsegetIsSuccededRetType, ok bool) {
 	return getApiExtensionDeleteResponsegetIsSuccededAttributeTypeOk(o.IsSucceded)
 }
 
 // HasIsSucceded returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionDeleteResponse) HasIsSucceded() bool {
 	_, ok := o.GetIsSuccededOk()
 	return ok
 }
 
 // SetIsSucceded gets a reference to the given bool and assigns it to the IsSucceded field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionDeleteResponse) SetIsSucceded(v ApiExtensionDeleteResponsegetIsSuccededRetType) {
 	setApiExtensionDeleteResponsegetIsSuccededAttributeType(&o.IsSucceded, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ApiExtensionDeleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiExtensionDeleteResponsegetIsSuccededAttributeTypeOk(o.IsSucceded); ok {
@@ -90,37 +103,45 @@ func (o ApiExtensionDeleteResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableApiExtensionDeleteResponse struct {
 	value *ApiExtensionDeleteResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionDeleteResponse) Get() *ApiExtensionDeleteResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionDeleteResponse) Set(val *ApiExtensionDeleteResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionDeleteResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionDeleteResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableApiExtensionDeleteResponse(val *ApiExtensionDeleteResponse) *NullableApiExtensionDeleteResponse {
 	return &NullableApiExtensionDeleteResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionDeleteResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionDeleteResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,8 +22,13 @@ var _ MappedNullable = &ACL{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ACLGetItemsAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ACLGetItemsArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ACLGetItemsRetType = []string
 
 func getACLGetItemsAttributeTypeOk(arg ACLGetItemsAttributeType) (ret ACLGetItemsRetType, ok bool) {
@@ -38,6 +43,7 @@ func setACLGetItemsAttributeType(arg *ACLGetItemsAttributeType, val ACLGetItemsR
 }
 
 // ACL struct for ACL
+// Deprecated: Move to the packages generated for each available API version instead
 type ACL struct {
 	Items ACLGetItemsAttributeType `json:"items,omitempty"`
 }
@@ -46,6 +52,7 @@ type ACL struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewACL() *ACL {
 	this := ACL{}
 	return &this
@@ -54,12 +61,14 @@ func NewACL() *ACL {
 // NewACLWithDefaults instantiates a new ACL object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewACLWithDefaults() *ACL {
 	this := ACL{}
 	return &this
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ACL) GetItems() (res ACLGetItemsRetType) {
 	res, _ = o.GetItemsOk()
 	return
@@ -67,21 +76,25 @@ func (o *ACL) GetItems() (res ACLGetItemsRetType) {
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ACL) GetItemsOk() (ret ACLGetItemsRetType, ok bool) {
 	return getACLGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ACL) HasItems() bool {
 	_, ok := o.GetItemsOk()
 	return ok
 }
 
 // SetItems gets a reference to the given []string and assigns it to the Items field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ACL) SetItems(v ACLGetItemsRetType) {
 	setACLGetItemsAttributeType(&o.Items, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getACLGetItemsAttributeTypeOk(o.Items); ok {
@@ -90,37 +103,45 @@ func (o ACL) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableACL struct {
 	value *ACL
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableACL) Get() *ACL {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableACL) Set(val *ACL) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableACL) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableACL) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableACL(val *ACL) *NullableACL {
 	return &NullableACL{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableACL) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableACL) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

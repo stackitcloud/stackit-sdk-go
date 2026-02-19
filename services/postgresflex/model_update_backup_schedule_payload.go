@@ -22,6 +22,7 @@ var _ MappedNullable = &UpdateBackupSchedulePayload{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UpdateBackupSchedulePayloadGetBackupScheduleAttributeType = *string
 
 func getUpdateBackupSchedulePayloadGetBackupScheduleAttributeTypeOk(arg UpdateBackupSchedulePayloadGetBackupScheduleAttributeType) (ret UpdateBackupSchedulePayloadGetBackupScheduleRetType, ok bool) {
@@ -35,21 +36,27 @@ func setUpdateBackupSchedulePayloadGetBackupScheduleAttributeType(arg *UpdateBac
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UpdateBackupSchedulePayloadGetBackupScheduleArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UpdateBackupSchedulePayloadGetBackupScheduleRetType = string
 
 // UpdateBackupSchedulePayload struct for UpdateBackupSchedulePayload
+// Deprecated: Move to the packages generated for each available API version instead
 type UpdateBackupSchedulePayload struct {
 	// REQUIRED
 	BackupSchedule UpdateBackupSchedulePayloadGetBackupScheduleAttributeType `json:"backupSchedule" required:"true"`
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type _UpdateBackupSchedulePayload UpdateBackupSchedulePayload
 
 // NewUpdateBackupSchedulePayload instantiates a new UpdateBackupSchedulePayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewUpdateBackupSchedulePayload(backupSchedule UpdateBackupSchedulePayloadGetBackupScheduleArgType) *UpdateBackupSchedulePayload {
 	this := UpdateBackupSchedulePayload{}
 	setUpdateBackupSchedulePayloadGetBackupScheduleAttributeType(&this.BackupSchedule, backupSchedule)
@@ -59,12 +66,14 @@ func NewUpdateBackupSchedulePayload(backupSchedule UpdateBackupSchedulePayloadGe
 // NewUpdateBackupSchedulePayloadWithDefaults instantiates a new UpdateBackupSchedulePayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewUpdateBackupSchedulePayloadWithDefaults() *UpdateBackupSchedulePayload {
 	this := UpdateBackupSchedulePayload{}
 	return &this
 }
 
 // GetBackupSchedule returns the BackupSchedule field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UpdateBackupSchedulePayload) GetBackupSchedule() (ret UpdateBackupSchedulePayloadGetBackupScheduleRetType) {
 	ret, _ = o.GetBackupScheduleOk()
 	return ret
@@ -72,15 +81,18 @@ func (o *UpdateBackupSchedulePayload) GetBackupSchedule() (ret UpdateBackupSched
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UpdateBackupSchedulePayload) GetBackupScheduleOk() (ret UpdateBackupSchedulePayloadGetBackupScheduleRetType, ok bool) {
 	return getUpdateBackupSchedulePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // SetBackupSchedule sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UpdateBackupSchedulePayload) SetBackupSchedule(v UpdateBackupSchedulePayloadGetBackupScheduleRetType) {
 	setUpdateBackupSchedulePayloadGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o UpdateBackupSchedulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUpdateBackupSchedulePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule); ok {
@@ -89,37 +101,45 @@ func (o UpdateBackupSchedulePayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableUpdateBackupSchedulePayload struct {
 	value *UpdateBackupSchedulePayload
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUpdateBackupSchedulePayload) Get() *UpdateBackupSchedulePayload {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUpdateBackupSchedulePayload) Set(val *UpdateBackupSchedulePayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUpdateBackupSchedulePayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUpdateBackupSchedulePayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableUpdateBackupSchedulePayload(val *UpdateBackupSchedulePayload) *NullableUpdateBackupSchedulePayload {
 	return &NullableUpdateBackupSchedulePayload{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUpdateBackupSchedulePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUpdateBackupSchedulePayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

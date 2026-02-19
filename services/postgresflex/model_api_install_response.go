@@ -22,8 +22,13 @@ var _ MappedNullable = &ApiInstallResponse{}
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiInstallResponseGetExtensionAttributeType = *ApiExtensionList
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiInstallResponseGetExtensionArgType = ApiExtensionList
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiInstallResponseGetExtensionRetType = ApiExtensionList
 
 func getApiInstallResponseGetExtensionAttributeTypeOk(arg ApiInstallResponseGetExtensionAttributeType) (ret ApiInstallResponseGetExtensionRetType, ok bool) {
@@ -38,6 +43,7 @@ func setApiInstallResponseGetExtensionAttributeType(arg *ApiInstallResponseGetEx
 }
 
 // ApiInstallResponse struct for ApiInstallResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiInstallResponse struct {
 	Extension ApiInstallResponseGetExtensionAttributeType `json:"extension,omitempty"`
 }
@@ -46,6 +52,7 @@ type ApiInstallResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiInstallResponse() *ApiInstallResponse {
 	this := ApiInstallResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewApiInstallResponse() *ApiInstallResponse {
 // NewApiInstallResponseWithDefaults instantiates a new ApiInstallResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiInstallResponseWithDefaults() *ApiInstallResponse {
 	this := ApiInstallResponse{}
 	return &this
 }
 
 // GetExtension returns the Extension field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiInstallResponse) GetExtension() (res ApiInstallResponseGetExtensionRetType) {
 	res, _ = o.GetExtensionOk()
 	return
@@ -67,21 +76,25 @@ func (o *ApiInstallResponse) GetExtension() (res ApiInstallResponseGetExtensionR
 
 // GetExtensionOk returns a tuple with the Extension field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiInstallResponse) GetExtensionOk() (ret ApiInstallResponseGetExtensionRetType, ok bool) {
 	return getApiInstallResponseGetExtensionAttributeTypeOk(o.Extension)
 }
 
 // HasExtension returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiInstallResponse) HasExtension() bool {
 	_, ok := o.GetExtensionOk()
 	return ok
 }
 
 // SetExtension gets a reference to the given ApiExtensionList and assigns it to the Extension field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiInstallResponse) SetExtension(v ApiInstallResponseGetExtensionRetType) {
 	setApiInstallResponseGetExtensionAttributeType(&o.Extension, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ApiInstallResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiInstallResponseGetExtensionAttributeTypeOk(o.Extension); ok {
@@ -90,37 +103,45 @@ func (o ApiInstallResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableApiInstallResponse struct {
 	value *ApiInstallResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiInstallResponse) Get() *ApiInstallResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiInstallResponse) Set(val *ApiInstallResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiInstallResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiInstallResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableApiInstallResponse(val *ApiInstallResponse) *NullableApiInstallResponse {
 	return &NullableApiInstallResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiInstallResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiInstallResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

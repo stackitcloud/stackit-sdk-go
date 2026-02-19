@@ -22,8 +22,13 @@ var _ MappedNullable = &ListBackupsResponse{}
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type ListBackupsResponseGetCountAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListBackupsResponseGetCountArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListBackupsResponseGetCountRetType = int64
 
 func getListBackupsResponseGetCountAttributeTypeOk(arg ListBackupsResponseGetCountAttributeType) (ret ListBackupsResponseGetCountRetType, ok bool) {
@@ -42,8 +47,13 @@ func setListBackupsResponseGetCountAttributeType(arg *ListBackupsResponseGetCoun
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ListBackupsResponseGetItemsAttributeType = *[]Backup
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListBackupsResponseGetItemsArgType = []Backup
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListBackupsResponseGetItemsRetType = []Backup
 
 func getListBackupsResponseGetItemsAttributeTypeOk(arg ListBackupsResponseGetItemsAttributeType) (ret ListBackupsResponseGetItemsRetType, ok bool) {
@@ -58,6 +68,7 @@ func setListBackupsResponseGetItemsAttributeType(arg *ListBackupsResponseGetItem
 }
 
 // ListBackupsResponse struct for ListBackupsResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ListBackupsResponse struct {
 	Count ListBackupsResponseGetCountAttributeType `json:"count,omitempty"`
 	Items ListBackupsResponseGetItemsAttributeType `json:"items,omitempty"`
@@ -67,6 +78,7 @@ type ListBackupsResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListBackupsResponse() *ListBackupsResponse {
 	this := ListBackupsResponse{}
 	return &this
@@ -75,12 +87,14 @@ func NewListBackupsResponse() *ListBackupsResponse {
 // NewListBackupsResponseWithDefaults instantiates a new ListBackupsResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListBackupsResponseWithDefaults() *ListBackupsResponse {
 	this := ListBackupsResponse{}
 	return &this
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) GetCount() (res ListBackupsResponseGetCountRetType) {
 	res, _ = o.GetCountOk()
 	return
@@ -88,22 +102,26 @@ func (o *ListBackupsResponse) GetCount() (res ListBackupsResponseGetCountRetType
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) GetCountOk() (ret ListBackupsResponseGetCountRetType, ok bool) {
 	return getListBackupsResponseGetCountAttributeTypeOk(o.Count)
 }
 
 // HasCount returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) HasCount() bool {
 	_, ok := o.GetCountOk()
 	return ok
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) SetCount(v ListBackupsResponseGetCountRetType) {
 	setListBackupsResponseGetCountAttributeType(&o.Count, v)
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) GetItems() (res ListBackupsResponseGetItemsRetType) {
 	res, _ = o.GetItemsOk()
 	return
@@ -111,21 +129,25 @@ func (o *ListBackupsResponse) GetItems() (res ListBackupsResponseGetItemsRetType
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) GetItemsOk() (ret ListBackupsResponseGetItemsRetType, ok bool) {
 	return getListBackupsResponseGetItemsAttributeTypeOk(o.Items)
 }
 
 // HasItems returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) HasItems() bool {
 	_, ok := o.GetItemsOk()
 	return ok
 }
 
 // SetItems gets a reference to the given []Backup and assigns it to the Items field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListBackupsResponse) SetItems(v ListBackupsResponseGetItemsRetType) {
 	setListBackupsResponseGetItemsAttributeType(&o.Items, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListBackupsResponseGetCountAttributeTypeOk(o.Count); ok {
@@ -137,37 +159,45 @@ func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableListBackupsResponse struct {
 	value *ListBackupsResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListBackupsResponse) Get() *ListBackupsResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListBackupsResponse) Set(val *ListBackupsResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListBackupsResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListBackupsResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableListBackupsResponse(val *ListBackupsResponse) *NullableListBackupsResponse {
 	return &NullableListBackupsResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListBackupsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListBackupsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

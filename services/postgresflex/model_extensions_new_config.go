@@ -22,8 +22,13 @@ var _ MappedNullable = &ExtensionsNewConfig{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsNewConfigGetConfigurationAttributeType = *[]ExtensionsConfiguration
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsNewConfigGetConfigurationArgType = []ExtensionsConfiguration
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsNewConfigGetConfigurationRetType = []ExtensionsConfiguration
 
 func getExtensionsNewConfigGetConfigurationAttributeTypeOk(arg ExtensionsNewConfigGetConfigurationAttributeType) (ret ExtensionsNewConfigGetConfigurationRetType, ok bool) {
@@ -38,6 +43,7 @@ func setExtensionsNewConfigGetConfigurationAttributeType(arg *ExtensionsNewConfi
 }
 
 // ExtensionsNewConfig struct for ExtensionsNewConfig
+// Deprecated: Move to the packages generated for each available API version instead
 type ExtensionsNewConfig struct {
 	Configuration ExtensionsNewConfigGetConfigurationAttributeType `json:"configuration,omitempty"`
 }
@@ -46,6 +52,7 @@ type ExtensionsNewConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewExtensionsNewConfig() *ExtensionsNewConfig {
 	this := ExtensionsNewConfig{}
 	return &this
@@ -54,12 +61,14 @@ func NewExtensionsNewConfig() *ExtensionsNewConfig {
 // NewExtensionsNewConfigWithDefaults instantiates a new ExtensionsNewConfig object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewExtensionsNewConfigWithDefaults() *ExtensionsNewConfig {
 	this := ExtensionsNewConfig{}
 	return &this
 }
 
 // GetConfiguration returns the Configuration field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsNewConfig) GetConfiguration() (res ExtensionsNewConfigGetConfigurationRetType) {
 	res, _ = o.GetConfigurationOk()
 	return
@@ -67,21 +76,25 @@ func (o *ExtensionsNewConfig) GetConfiguration() (res ExtensionsNewConfigGetConf
 
 // GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsNewConfig) GetConfigurationOk() (ret ExtensionsNewConfigGetConfigurationRetType, ok bool) {
 	return getExtensionsNewConfigGetConfigurationAttributeTypeOk(o.Configuration)
 }
 
 // HasConfiguration returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsNewConfig) HasConfiguration() bool {
 	_, ok := o.GetConfigurationOk()
 	return ok
 }
 
 // SetConfiguration gets a reference to the given []ExtensionsConfiguration and assigns it to the Configuration field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ExtensionsNewConfig) SetConfiguration(v ExtensionsNewConfigGetConfigurationRetType) {
 	setExtensionsNewConfigGetConfigurationAttributeType(&o.Configuration, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ExtensionsNewConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getExtensionsNewConfigGetConfigurationAttributeTypeOk(o.Configuration); ok {
@@ -90,37 +103,45 @@ func (o ExtensionsNewConfig) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableExtensionsNewConfig struct {
 	value *ExtensionsNewConfig
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsNewConfig) Get() *ExtensionsNewConfig {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsNewConfig) Set(val *ExtensionsNewConfig) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsNewConfig) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsNewConfig) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableExtensionsNewConfig(val *ExtensionsNewConfig) *NullableExtensionsNewConfig {
 	return &NullableExtensionsNewConfig{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableExtensionsNewConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableExtensionsNewConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

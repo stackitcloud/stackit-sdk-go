@@ -22,8 +22,13 @@ var _ MappedNullable = &InstanceHost{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostGetHostMetricsAttributeType = *[]InstanceHostMetric
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostGetHostMetricsArgType = []InstanceHostMetric
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostGetHostMetricsRetType = []InstanceHostMetric
 
 func getInstanceHostGetHostMetricsAttributeTypeOk(arg InstanceHostGetHostMetricsAttributeType) (ret InstanceHostGetHostMetricsRetType, ok bool) {
@@ -42,6 +47,7 @@ func setInstanceHostGetHostMetricsAttributeType(arg *InstanceHostGetHostMetricsA
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostGetIdAttributeType = *string
 
 func getInstanceHostGetIdAttributeTypeOk(arg InstanceHostGetIdAttributeType) (ret InstanceHostGetIdRetType, ok bool) {
@@ -55,10 +61,14 @@ func setInstanceHostGetIdAttributeType(arg *InstanceHostGetIdAttributeType, val 
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostGetIdRetType = string
 
 // InstanceHost struct for InstanceHost
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHost struct {
 	HostMetrics InstanceHostGetHostMetricsAttributeType `json:"hostMetrics,omitempty"`
 	Id          InstanceHostGetIdAttributeType          `json:"id,omitempty"`
@@ -68,6 +78,7 @@ type InstanceHost struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceHost() *InstanceHost {
 	this := InstanceHost{}
 	return &this
@@ -76,12 +87,14 @@ func NewInstanceHost() *InstanceHost {
 // NewInstanceHostWithDefaults instantiates a new InstanceHost object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceHostWithDefaults() *InstanceHost {
 	this := InstanceHost{}
 	return &this
 }
 
 // GetHostMetrics returns the HostMetrics field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) GetHostMetrics() (res InstanceHostGetHostMetricsRetType) {
 	res, _ = o.GetHostMetricsOk()
 	return
@@ -89,22 +102,26 @@ func (o *InstanceHost) GetHostMetrics() (res InstanceHostGetHostMetricsRetType) 
 
 // GetHostMetricsOk returns a tuple with the HostMetrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) GetHostMetricsOk() (ret InstanceHostGetHostMetricsRetType, ok bool) {
 	return getInstanceHostGetHostMetricsAttributeTypeOk(o.HostMetrics)
 }
 
 // HasHostMetrics returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) HasHostMetrics() bool {
 	_, ok := o.GetHostMetricsOk()
 	return ok
 }
 
 // SetHostMetrics gets a reference to the given []InstanceHostMetric and assigns it to the HostMetrics field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) SetHostMetrics(v InstanceHostGetHostMetricsRetType) {
 	setInstanceHostGetHostMetricsAttributeType(&o.HostMetrics, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) GetId() (res InstanceHostGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -112,21 +129,25 @@ func (o *InstanceHost) GetId() (res InstanceHostGetIdRetType) {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) GetIdOk() (ret InstanceHostGetIdRetType, ok bool) {
 	return getInstanceHostGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHost) SetId(v InstanceHostGetIdRetType) {
 	setInstanceHostGetIdAttributeType(&o.Id, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceHost) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceHostGetHostMetricsAttributeTypeOk(o.HostMetrics); ok {
@@ -138,37 +159,45 @@ func (o InstanceHost) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceHost struct {
 	value *InstanceHost
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceHost) Get() *InstanceHost {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceHost) Set(val *InstanceHost) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceHost) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceHost) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceHost(val *InstanceHost) *NullableInstanceHost {
 	return &NullableInstanceHost{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceHost) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceHost) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

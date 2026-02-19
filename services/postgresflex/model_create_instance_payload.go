@@ -22,8 +22,13 @@ var _ MappedNullable = &CreateInstancePayload{}
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetAclAttributeType = *ACL
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetAclArgType = ACL
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetAclRetType = ACL
 
 func getCreateInstancePayloadGetAclAttributeTypeOk(arg CreateInstancePayloadGetAclAttributeType) (ret CreateInstancePayloadGetAclRetType, ok bool) {
@@ -42,6 +47,7 @@ func setCreateInstancePayloadGetAclAttributeType(arg *CreateInstancePayloadGetAc
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetBackupScheduleAttributeType = *string
 
 func getCreateInstancePayloadGetBackupScheduleAttributeTypeOk(arg CreateInstancePayloadGetBackupScheduleAttributeType) (ret CreateInstancePayloadGetBackupScheduleRetType, ok bool) {
@@ -55,7 +61,10 @@ func setCreateInstancePayloadGetBackupScheduleAttributeType(arg *CreateInstanceP
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetBackupScheduleArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetBackupScheduleRetType = string
 
 /*
@@ -63,6 +72,7 @@ type CreateInstancePayloadGetBackupScheduleRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetFlavorIdAttributeType = *string
 
 func getCreateInstancePayloadGetFlavorIdAttributeTypeOk(arg CreateInstancePayloadGetFlavorIdAttributeType) (ret CreateInstancePayloadGetFlavorIdRetType, ok bool) {
@@ -76,7 +86,10 @@ func setCreateInstancePayloadGetFlavorIdAttributeType(arg *CreateInstancePayload
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetFlavorIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetFlavorIdRetType = string
 
 /*
@@ -84,8 +97,13 @@ type CreateInstancePayloadGetFlavorIdRetType = string
 */
 
 // isContainer
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetLabelsArgType = map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetLabelsRetType = map[string]string
 
 func getCreateInstancePayloadGetLabelsAttributeTypeOk(arg CreateInstancePayloadGetLabelsAttributeType) (ret CreateInstancePayloadGetLabelsRetType, ok bool) {
@@ -104,6 +122,7 @@ func setCreateInstancePayloadGetLabelsAttributeType(arg *CreateInstancePayloadGe
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetNameAttributeType = *string
 
 func getCreateInstancePayloadGetNameAttributeTypeOk(arg CreateInstancePayloadGetNameAttributeType) (ret CreateInstancePayloadGetNameRetType, ok bool) {
@@ -117,7 +136,10 @@ func setCreateInstancePayloadGetNameAttributeType(arg *CreateInstancePayloadGetN
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetNameRetType = string
 
 /*
@@ -125,8 +147,13 @@ type CreateInstancePayloadGetNameRetType = string
 */
 
 // isContainer
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetOptionsAttributeType = *map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetOptionsArgType = map[string]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetOptionsRetType = map[string]string
 
 func getCreateInstancePayloadGetOptionsAttributeTypeOk(arg CreateInstancePayloadGetOptionsAttributeType) (ret CreateInstancePayloadGetOptionsRetType, ok bool) {
@@ -145,8 +172,13 @@ func setCreateInstancePayloadGetOptionsAttributeType(arg *CreateInstancePayloadG
 */
 
 // isInteger
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetReplicasAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetReplicasArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetReplicasRetType = int64
 
 func getCreateInstancePayloadGetReplicasAttributeTypeOk(arg CreateInstancePayloadGetReplicasAttributeType) (ret CreateInstancePayloadGetReplicasRetType, ok bool) {
@@ -165,8 +197,13 @@ func setCreateInstancePayloadGetReplicasAttributeType(arg *CreateInstancePayload
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetStorageAttributeType = *Storage
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetStorageArgType = Storage
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetStorageRetType = Storage
 
 func getCreateInstancePayloadGetStorageAttributeTypeOk(arg CreateInstancePayloadGetStorageAttributeType) (ret CreateInstancePayloadGetStorageRetType, ok bool) {
@@ -185,6 +222,7 @@ func setCreateInstancePayloadGetStorageAttributeType(arg *CreateInstancePayloadG
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetVersionAttributeType = *string
 
 func getCreateInstancePayloadGetVersionAttributeTypeOk(arg CreateInstancePayloadGetVersionAttributeType) (ret CreateInstancePayloadGetVersionRetType, ok bool) {
@@ -198,10 +236,14 @@ func setCreateInstancePayloadGetVersionAttributeType(arg *CreateInstancePayloadG
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetVersionArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayloadGetVersionRetType = string
 
 // CreateInstancePayload struct for CreateInstancePayload
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateInstancePayload struct {
 	// REQUIRED
 	Acl CreateInstancePayloadGetAclAttributeType `json:"acl" required:"true"`
@@ -224,12 +266,14 @@ type CreateInstancePayload struct {
 	Version CreateInstancePayloadGetVersionAttributeType `json:"version" required:"true"`
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type _CreateInstancePayload CreateInstancePayload
 
 // NewCreateInstancePayload instantiates a new CreateInstancePayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCreateInstancePayload(acl CreateInstancePayloadGetAclArgType, backupSchedule CreateInstancePayloadGetBackupScheduleArgType, flavorId CreateInstancePayloadGetFlavorIdArgType, name CreateInstancePayloadGetNameArgType, options CreateInstancePayloadGetOptionsArgType, replicas CreateInstancePayloadGetReplicasArgType, storage CreateInstancePayloadGetStorageArgType, version CreateInstancePayloadGetVersionArgType) *CreateInstancePayload {
 	this := CreateInstancePayload{}
 	setCreateInstancePayloadGetAclAttributeType(&this.Acl, acl)
@@ -246,12 +290,14 @@ func NewCreateInstancePayload(acl CreateInstancePayloadGetAclArgType, backupSche
 // NewCreateInstancePayloadWithDefaults instantiates a new CreateInstancePayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCreateInstancePayloadWithDefaults() *CreateInstancePayload {
 	this := CreateInstancePayload{}
 	return &this
 }
 
 // GetAcl returns the Acl field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetAcl() (ret CreateInstancePayloadGetAclRetType) {
 	ret, _ = o.GetAclOk()
 	return ret
@@ -259,16 +305,19 @@ func (o *CreateInstancePayload) GetAcl() (ret CreateInstancePayloadGetAclRetType
 
 // GetAclOk returns a tuple with the Acl field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetAclOk() (ret CreateInstancePayloadGetAclRetType, ok bool) {
 	return getCreateInstancePayloadGetAclAttributeTypeOk(o.Acl)
 }
 
 // SetAcl sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetAcl(v CreateInstancePayloadGetAclRetType) {
 	setCreateInstancePayloadGetAclAttributeType(&o.Acl, v)
 }
 
 // GetBackupSchedule returns the BackupSchedule field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetBackupSchedule() (ret CreateInstancePayloadGetBackupScheduleRetType) {
 	ret, _ = o.GetBackupScheduleOk()
 	return ret
@@ -276,16 +325,19 @@ func (o *CreateInstancePayload) GetBackupSchedule() (ret CreateInstancePayloadGe
 
 // GetBackupScheduleOk returns a tuple with the BackupSchedule field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetBackupScheduleOk() (ret CreateInstancePayloadGetBackupScheduleRetType, ok bool) {
 	return getCreateInstancePayloadGetBackupScheduleAttributeTypeOk(o.BackupSchedule)
 }
 
 // SetBackupSchedule sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetBackupSchedule(v CreateInstancePayloadGetBackupScheduleRetType) {
 	setCreateInstancePayloadGetBackupScheduleAttributeType(&o.BackupSchedule, v)
 }
 
 // GetFlavorId returns the FlavorId field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetFlavorId() (ret CreateInstancePayloadGetFlavorIdRetType) {
 	ret, _ = o.GetFlavorIdOk()
 	return ret
@@ -293,16 +345,19 @@ func (o *CreateInstancePayload) GetFlavorId() (ret CreateInstancePayloadGetFlavo
 
 // GetFlavorIdOk returns a tuple with the FlavorId field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetFlavorIdOk() (ret CreateInstancePayloadGetFlavorIdRetType, ok bool) {
 	return getCreateInstancePayloadGetFlavorIdAttributeTypeOk(o.FlavorId)
 }
 
 // SetFlavorId sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetFlavorId(v CreateInstancePayloadGetFlavorIdRetType) {
 	setCreateInstancePayloadGetFlavorIdAttributeType(&o.FlavorId, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetLabels() (res CreateInstancePayloadGetLabelsRetType) {
 	res, _ = o.GetLabelsOk()
 	return
@@ -310,22 +365,26 @@ func (o *CreateInstancePayload) GetLabels() (res CreateInstancePayloadGetLabelsR
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetLabelsOk() (ret CreateInstancePayloadGetLabelsRetType, ok bool) {
 	return getCreateInstancePayloadGetLabelsAttributeTypeOk(o.Labels)
 }
 
 // HasLabels returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) HasLabels() bool {
 	_, ok := o.GetLabelsOk()
 	return ok
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetLabels(v CreateInstancePayloadGetLabelsRetType) {
 	setCreateInstancePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetName() (ret CreateInstancePayloadGetNameRetType) {
 	ret, _ = o.GetNameOk()
 	return ret
@@ -333,16 +392,19 @@ func (o *CreateInstancePayload) GetName() (ret CreateInstancePayloadGetNameRetTy
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetNameOk() (ret CreateInstancePayloadGetNameRetType, ok bool) {
 	return getCreateInstancePayloadGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetName(v CreateInstancePayloadGetNameRetType) {
 	setCreateInstancePayloadGetNameAttributeType(&o.Name, v)
 }
 
 // GetOptions returns the Options field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetOptions() (ret CreateInstancePayloadGetOptionsRetType) {
 	ret, _ = o.GetOptionsOk()
 	return ret
@@ -350,16 +412,19 @@ func (o *CreateInstancePayload) GetOptions() (ret CreateInstancePayloadGetOption
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetOptionsOk() (ret CreateInstancePayloadGetOptionsRetType, ok bool) {
 	return getCreateInstancePayloadGetOptionsAttributeTypeOk(o.Options)
 }
 
 // SetOptions sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetOptions(v CreateInstancePayloadGetOptionsRetType) {
 	setCreateInstancePayloadGetOptionsAttributeType(&o.Options, v)
 }
 
 // GetReplicas returns the Replicas field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetReplicas() (ret CreateInstancePayloadGetReplicasRetType) {
 	ret, _ = o.GetReplicasOk()
 	return ret
@@ -367,16 +432,19 @@ func (o *CreateInstancePayload) GetReplicas() (ret CreateInstancePayloadGetRepli
 
 // GetReplicasOk returns a tuple with the Replicas field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetReplicasOk() (ret CreateInstancePayloadGetReplicasRetType, ok bool) {
 	return getCreateInstancePayloadGetReplicasAttributeTypeOk(o.Replicas)
 }
 
 // SetReplicas sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetReplicas(v CreateInstancePayloadGetReplicasRetType) {
 	setCreateInstancePayloadGetReplicasAttributeType(&o.Replicas, v)
 }
 
 // GetStorage returns the Storage field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetStorage() (ret CreateInstancePayloadGetStorageRetType) {
 	ret, _ = o.GetStorageOk()
 	return ret
@@ -384,16 +452,19 @@ func (o *CreateInstancePayload) GetStorage() (ret CreateInstancePayloadGetStorag
 
 // GetStorageOk returns a tuple with the Storage field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetStorageOk() (ret CreateInstancePayloadGetStorageRetType, ok bool) {
 	return getCreateInstancePayloadGetStorageAttributeTypeOk(o.Storage)
 }
 
 // SetStorage sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetStorage(v CreateInstancePayloadGetStorageRetType) {
 	setCreateInstancePayloadGetStorageAttributeType(&o.Storage, v)
 }
 
 // GetVersion returns the Version field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetVersion() (ret CreateInstancePayloadGetVersionRetType) {
 	ret, _ = o.GetVersionOk()
 	return ret
@@ -401,15 +472,18 @@ func (o *CreateInstancePayload) GetVersion() (ret CreateInstancePayloadGetVersio
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) GetVersionOk() (ret CreateInstancePayloadGetVersionRetType, ok bool) {
 	return getCreateInstancePayloadGetVersionAttributeTypeOk(o.Version)
 }
 
 // SetVersion sets field value
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateInstancePayload) SetVersion(v CreateInstancePayloadGetVersionRetType) {
 	setCreateInstancePayloadGetVersionAttributeType(&o.Version, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
@@ -442,37 +516,45 @@ func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableCreateInstancePayload struct {
 	value *CreateInstancePayload
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateInstancePayload) Get() *CreateInstancePayload {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateInstancePayload) Set(val *CreateInstancePayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateInstancePayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateInstancePayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableCreateInstancePayload(val *CreateInstancePayload) *NullableCreateInstancePayload {
 	return &NullableCreateInstancePayload{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateInstancePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateInstancePayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

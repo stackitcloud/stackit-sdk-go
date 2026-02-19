@@ -22,8 +22,13 @@ var _ MappedNullable = &Error{}
 */
 
 // isInteger
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetCodeAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetCodeArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetCodeRetType = int64
 
 func getErrorGetCodeAttributeTypeOk(arg ErrorGetCodeAttributeType) (ret ErrorGetCodeRetType, ok bool) {
@@ -42,8 +47,13 @@ func setErrorGetCodeAttributeType(arg *ErrorGetCodeAttributeType, val ErrorGetCo
 */
 
 // isContainer
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetFieldsAttributeType = *map[string][]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetFieldsArgType = map[string][]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetFieldsRetType = map[string][]string
 
 func getErrorGetFieldsAttributeTypeOk(arg ErrorGetFieldsAttributeType) (ret ErrorGetFieldsRetType, ok bool) {
@@ -62,6 +72,7 @@ func setErrorGetFieldsAttributeType(arg *ErrorGetFieldsAttributeType, val ErrorG
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetMessageAttributeType = *string
 
 func getErrorGetMessageAttributeTypeOk(arg ErrorGetMessageAttributeType) (ret ErrorGetMessageRetType, ok bool) {
@@ -75,7 +86,10 @@ func setErrorGetMessageAttributeType(arg *ErrorGetMessageAttributeType, val Erro
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetMessageArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetMessageRetType = string
 
 /*
@@ -83,6 +97,7 @@ type ErrorGetMessageRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetTypeAttributeType = *string
 
 func getErrorGetTypeAttributeTypeOk(arg ErrorGetTypeAttributeType) (ret ErrorGetTypeRetType, ok bool) {
@@ -96,10 +111,14 @@ func setErrorGetTypeAttributeType(arg *ErrorGetTypeAttributeType, val ErrorGetTy
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetTypeArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ErrorGetTypeRetType = string
 
 // Error struct for Error
+// Deprecated: Move to the packages generated for each available API version instead
 type Error struct {
 	// Can be cast to int32 without loss of precision.
 	Code    ErrorGetCodeAttributeType    `json:"code,omitempty"`
@@ -112,6 +131,7 @@ type Error struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewError() *Error {
 	this := Error{}
 	return &this
@@ -120,12 +140,14 @@ func NewError() *Error {
 // NewErrorWithDefaults instantiates a new Error object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewErrorWithDefaults() *Error {
 	this := Error{}
 	return &this
 }
 
 // GetCode returns the Code field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetCode() (res ErrorGetCodeRetType) {
 	res, _ = o.GetCodeOk()
 	return
@@ -133,22 +155,26 @@ func (o *Error) GetCode() (res ErrorGetCodeRetType) {
 
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetCodeOk() (ret ErrorGetCodeRetType, ok bool) {
 	return getErrorGetCodeAttributeTypeOk(o.Code)
 }
 
 // HasCode returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) HasCode() bool {
 	_, ok := o.GetCodeOk()
 	return ok
 }
 
 // SetCode gets a reference to the given int64 and assigns it to the Code field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) SetCode(v ErrorGetCodeRetType) {
 	setErrorGetCodeAttributeType(&o.Code, v)
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetFields() (res ErrorGetFieldsRetType) {
 	res, _ = o.GetFieldsOk()
 	return
@@ -156,22 +182,26 @@ func (o *Error) GetFields() (res ErrorGetFieldsRetType) {
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetFieldsOk() (ret ErrorGetFieldsRetType, ok bool) {
 	return getErrorGetFieldsAttributeTypeOk(o.Fields)
 }
 
 // HasFields returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) HasFields() bool {
 	_, ok := o.GetFieldsOk()
 	return ok
 }
 
 // SetFields gets a reference to the given map[string][]string and assigns it to the Fields field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) SetFields(v ErrorGetFieldsRetType) {
 	setErrorGetFieldsAttributeType(&o.Fields, v)
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetMessage() (res ErrorGetMessageRetType) {
 	res, _ = o.GetMessageOk()
 	return
@@ -179,22 +209,26 @@ func (o *Error) GetMessage() (res ErrorGetMessageRetType) {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetMessageOk() (ret ErrorGetMessageRetType, ok bool) {
 	return getErrorGetMessageAttributeTypeOk(o.Message)
 }
 
 // HasMessage returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) HasMessage() bool {
 	_, ok := o.GetMessageOk()
 	return ok
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) SetMessage(v ErrorGetMessageRetType) {
 	setErrorGetMessageAttributeType(&o.Message, v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetType() (res ErrorGetTypeRetType) {
 	res, _ = o.GetTypeOk()
 	return
@@ -202,21 +236,25 @@ func (o *Error) GetType() (res ErrorGetTypeRetType) {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) GetTypeOk() (ret ErrorGetTypeRetType, ok bool) {
 	return getErrorGetTypeAttributeTypeOk(o.Type)
 }
 
 // HasType returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) HasType() bool {
 	_, ok := o.GetTypeOk()
 	return ok
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Error) SetType(v ErrorGetTypeRetType) {
 	setErrorGetTypeAttributeType(&o.Type, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o Error) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getErrorGetCodeAttributeTypeOk(o.Code); ok {
@@ -234,37 +272,45 @@ func (o Error) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableError struct {
 	value *Error
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableError) Get() *Error {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableError) Set(val *Error) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableError) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableError) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableError(val *Error) *NullableError {
 	return &NullableError{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

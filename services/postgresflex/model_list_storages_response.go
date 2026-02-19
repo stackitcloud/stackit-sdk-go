@@ -22,8 +22,13 @@ var _ MappedNullable = &ListStoragesResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ListStoragesResponseGetStorageClassesAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListStoragesResponseGetStorageClassesArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListStoragesResponseGetStorageClassesRetType = []string
 
 func getListStoragesResponseGetStorageClassesAttributeTypeOk(arg ListStoragesResponseGetStorageClassesAttributeType) (ret ListStoragesResponseGetStorageClassesRetType, ok bool) {
@@ -42,8 +47,13 @@ func setListStoragesResponseGetStorageClassesAttributeType(arg *ListStoragesResp
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type ListStoragesResponseGetStorageRangeAttributeType = *StorageRange
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListStoragesResponseGetStorageRangeArgType = StorageRange
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListStoragesResponseGetStorageRangeRetType = StorageRange
 
 func getListStoragesResponseGetStorageRangeAttributeTypeOk(arg ListStoragesResponseGetStorageRangeAttributeType) (ret ListStoragesResponseGetStorageRangeRetType, ok bool) {
@@ -58,6 +68,7 @@ func setListStoragesResponseGetStorageRangeAttributeType(arg *ListStoragesRespon
 }
 
 // ListStoragesResponse struct for ListStoragesResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ListStoragesResponse struct {
 	StorageClasses ListStoragesResponseGetStorageClassesAttributeType `json:"storageClasses,omitempty"`
 	StorageRange   ListStoragesResponseGetStorageRangeAttributeType   `json:"storageRange,omitempty"`
@@ -67,6 +78,7 @@ type ListStoragesResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListStoragesResponse() *ListStoragesResponse {
 	this := ListStoragesResponse{}
 	return &this
@@ -75,12 +87,14 @@ func NewListStoragesResponse() *ListStoragesResponse {
 // NewListStoragesResponseWithDefaults instantiates a new ListStoragesResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListStoragesResponseWithDefaults() *ListStoragesResponse {
 	this := ListStoragesResponse{}
 	return &this
 }
 
 // GetStorageClasses returns the StorageClasses field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) GetStorageClasses() (res ListStoragesResponseGetStorageClassesRetType) {
 	res, _ = o.GetStorageClassesOk()
 	return
@@ -88,22 +102,26 @@ func (o *ListStoragesResponse) GetStorageClasses() (res ListStoragesResponseGetS
 
 // GetStorageClassesOk returns a tuple with the StorageClasses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) GetStorageClassesOk() (ret ListStoragesResponseGetStorageClassesRetType, ok bool) {
 	return getListStoragesResponseGetStorageClassesAttributeTypeOk(o.StorageClasses)
 }
 
 // HasStorageClasses returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) HasStorageClasses() bool {
 	_, ok := o.GetStorageClassesOk()
 	return ok
 }
 
 // SetStorageClasses gets a reference to the given []string and assigns it to the StorageClasses field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) SetStorageClasses(v ListStoragesResponseGetStorageClassesRetType) {
 	setListStoragesResponseGetStorageClassesAttributeType(&o.StorageClasses, v)
 }
 
 // GetStorageRange returns the StorageRange field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) GetStorageRange() (res ListStoragesResponseGetStorageRangeRetType) {
 	res, _ = o.GetStorageRangeOk()
 	return
@@ -111,21 +129,25 @@ func (o *ListStoragesResponse) GetStorageRange() (res ListStoragesResponseGetSto
 
 // GetStorageRangeOk returns a tuple with the StorageRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) GetStorageRangeOk() (ret ListStoragesResponseGetStorageRangeRetType, ok bool) {
 	return getListStoragesResponseGetStorageRangeAttributeTypeOk(o.StorageRange)
 }
 
 // HasStorageRange returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) HasStorageRange() bool {
 	_, ok := o.GetStorageRangeOk()
 	return ok
 }
 
 // SetStorageRange gets a reference to the given StorageRange and assigns it to the StorageRange field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListStoragesResponse) SetStorageRange(v ListStoragesResponseGetStorageRangeRetType) {
 	setListStoragesResponseGetStorageRangeAttributeType(&o.StorageRange, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ListStoragesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListStoragesResponseGetStorageClassesAttributeTypeOk(o.StorageClasses); ok {
@@ -137,37 +159,45 @@ func (o ListStoragesResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableListStoragesResponse struct {
 	value *ListStoragesResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListStoragesResponse) Get() *ListStoragesResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListStoragesResponse) Set(val *ListStoragesResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListStoragesResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListStoragesResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableListStoragesResponse(val *ListStoragesResponse) *NullableListStoragesResponse {
 	return &NullableListStoragesResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListStoragesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListStoragesResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,6 +22,7 @@ var _ MappedNullable = &PostgresDatabaseParameter{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetContextAttributeType = *string
 
 func getPostgresDatabaseParameterGetContextAttributeTypeOk(arg PostgresDatabaseParameterGetContextAttributeType) (ret PostgresDatabaseParameterGetContextRetType, ok bool) {
@@ -35,7 +36,10 @@ func setPostgresDatabaseParameterGetContextAttributeType(arg *PostgresDatabasePa
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetContextArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetContextRetType = string
 
 /*
@@ -43,6 +47,7 @@ type PostgresDatabaseParameterGetContextRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDataTypeAttributeType = *string
 
 func getPostgresDatabaseParameterGetDataTypeAttributeTypeOk(arg PostgresDatabaseParameterGetDataTypeAttributeType) (ret PostgresDatabaseParameterGetDataTypeRetType, ok bool) {
@@ -56,7 +61,10 @@ func setPostgresDatabaseParameterGetDataTypeAttributeType(arg *PostgresDatabaseP
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDataTypeArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDataTypeRetType = string
 
 /*
@@ -64,6 +72,7 @@ type PostgresDatabaseParameterGetDataTypeRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDefaultValueAttributeType = *string
 
 func getPostgresDatabaseParameterGetDefaultValueAttributeTypeOk(arg PostgresDatabaseParameterGetDefaultValueAttributeType) (ret PostgresDatabaseParameterGetDefaultValueRetType, ok bool) {
@@ -77,7 +86,10 @@ func setPostgresDatabaseParameterGetDefaultValueAttributeType(arg *PostgresDatab
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDefaultValueArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDefaultValueRetType = string
 
 /*
@@ -85,6 +97,7 @@ type PostgresDatabaseParameterGetDefaultValueRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDescriptionAttributeType = *string
 
 func getPostgresDatabaseParameterGetDescriptionAttributeTypeOk(arg PostgresDatabaseParameterGetDescriptionAttributeType) (ret PostgresDatabaseParameterGetDescriptionRetType, ok bool) {
@@ -98,7 +111,10 @@ func setPostgresDatabaseParameterGetDescriptionAttributeType(arg *PostgresDataba
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDescriptionArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetDescriptionRetType = string
 
 /*
@@ -106,8 +122,13 @@ type PostgresDatabaseParameterGetDescriptionRetType = string
 */
 
 // isBoolean
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParametergetEditAttributeType = *bool
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParametergetEditArgType = bool
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParametergetEditRetType = bool
 
 func getPostgresDatabaseParametergetEditAttributeTypeOk(arg PostgresDatabaseParametergetEditAttributeType) (ret PostgresDatabaseParametergetEditRetType, ok bool) {
@@ -126,6 +147,7 @@ func setPostgresDatabaseParametergetEditAttributeType(arg *PostgresDatabaseParam
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetMaxValueAttributeType = *string
 
 func getPostgresDatabaseParameterGetMaxValueAttributeTypeOk(arg PostgresDatabaseParameterGetMaxValueAttributeType) (ret PostgresDatabaseParameterGetMaxValueRetType, ok bool) {
@@ -139,7 +161,10 @@ func setPostgresDatabaseParameterGetMaxValueAttributeType(arg *PostgresDatabaseP
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetMaxValueArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetMaxValueRetType = string
 
 /*
@@ -147,6 +172,7 @@ type PostgresDatabaseParameterGetMaxValueRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetMinValueAttributeType = *string
 
 func getPostgresDatabaseParameterGetMinValueAttributeTypeOk(arg PostgresDatabaseParameterGetMinValueAttributeType) (ret PostgresDatabaseParameterGetMinValueRetType, ok bool) {
@@ -160,7 +186,10 @@ func setPostgresDatabaseParameterGetMinValueAttributeType(arg *PostgresDatabaseP
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetMinValueArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetMinValueRetType = string
 
 /*
@@ -168,6 +197,7 @@ type PostgresDatabaseParameterGetMinValueRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetNameAttributeType = *string
 
 func getPostgresDatabaseParameterGetNameAttributeTypeOk(arg PostgresDatabaseParameterGetNameAttributeType) (ret PostgresDatabaseParameterGetNameRetType, ok bool) {
@@ -181,7 +211,10 @@ func setPostgresDatabaseParameterGetNameAttributeType(arg *PostgresDatabaseParam
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetNameRetType = string
 
 /*
@@ -189,8 +222,13 @@ type PostgresDatabaseParameterGetNameRetType = string
 */
 
 // isBoolean
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParametergetPendingRestartAttributeType = *bool
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParametergetPendingRestartArgType = bool
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParametergetPendingRestartRetType = bool
 
 func getPostgresDatabaseParametergetPendingRestartAttributeTypeOk(arg PostgresDatabaseParametergetPendingRestartAttributeType) (ret PostgresDatabaseParametergetPendingRestartRetType, ok bool) {
@@ -209,6 +247,7 @@ func setPostgresDatabaseParametergetPendingRestartAttributeType(arg *PostgresDat
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetResetValueAttributeType = *string
 
 func getPostgresDatabaseParameterGetResetValueAttributeTypeOk(arg PostgresDatabaseParameterGetResetValueAttributeType) (ret PostgresDatabaseParameterGetResetValueRetType, ok bool) {
@@ -222,7 +261,10 @@ func setPostgresDatabaseParameterGetResetValueAttributeType(arg *PostgresDatabas
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetResetValueArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetResetValueRetType = string
 
 /*
@@ -230,6 +272,7 @@ type PostgresDatabaseParameterGetResetValueRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetUnitAttributeType = *string
 
 func getPostgresDatabaseParameterGetUnitAttributeTypeOk(arg PostgresDatabaseParameterGetUnitAttributeType) (ret PostgresDatabaseParameterGetUnitRetType, ok bool) {
@@ -243,7 +286,10 @@ func setPostgresDatabaseParameterGetUnitAttributeType(arg *PostgresDatabaseParam
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetUnitArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetUnitRetType = string
 
 /*
@@ -251,6 +297,7 @@ type PostgresDatabaseParameterGetUnitRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetValueAttributeType = *string
 
 func getPostgresDatabaseParameterGetValueAttributeTypeOk(arg PostgresDatabaseParameterGetValueAttributeType) (ret PostgresDatabaseParameterGetValueRetType, ok bool) {
@@ -264,10 +311,14 @@ func setPostgresDatabaseParameterGetValueAttributeType(arg *PostgresDatabasePara
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetValueArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameterGetValueRetType = string
 
 // PostgresDatabaseParameter struct for PostgresDatabaseParameter
+// Deprecated: Move to the packages generated for each available API version instead
 type PostgresDatabaseParameter struct {
 	// Context of the parameter.
 	Context PostgresDatabaseParameterGetContextAttributeType `json:"context,omitempty"`
@@ -299,6 +350,7 @@ type PostgresDatabaseParameter struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPostgresDatabaseParameter() *PostgresDatabaseParameter {
 	this := PostgresDatabaseParameter{}
 	return &this
@@ -307,12 +359,14 @@ func NewPostgresDatabaseParameter() *PostgresDatabaseParameter {
 // NewPostgresDatabaseParameterWithDefaults instantiates a new PostgresDatabaseParameter object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewPostgresDatabaseParameterWithDefaults() *PostgresDatabaseParameter {
 	this := PostgresDatabaseParameter{}
 	return &this
 }
 
 // GetContext returns the Context field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetContext() (res PostgresDatabaseParameterGetContextRetType) {
 	res, _ = o.GetContextOk()
 	return
@@ -320,22 +374,26 @@ func (o *PostgresDatabaseParameter) GetContext() (res PostgresDatabaseParameterG
 
 // GetContextOk returns a tuple with the Context field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetContextOk() (ret PostgresDatabaseParameterGetContextRetType, ok bool) {
 	return getPostgresDatabaseParameterGetContextAttributeTypeOk(o.Context)
 }
 
 // HasContext returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasContext() bool {
 	_, ok := o.GetContextOk()
 	return ok
 }
 
 // SetContext gets a reference to the given string and assigns it to the Context field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetContext(v PostgresDatabaseParameterGetContextRetType) {
 	setPostgresDatabaseParameterGetContextAttributeType(&o.Context, v)
 }
 
 // GetDataType returns the DataType field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetDataType() (res PostgresDatabaseParameterGetDataTypeRetType) {
 	res, _ = o.GetDataTypeOk()
 	return
@@ -343,22 +401,26 @@ func (o *PostgresDatabaseParameter) GetDataType() (res PostgresDatabaseParameter
 
 // GetDataTypeOk returns a tuple with the DataType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetDataTypeOk() (ret PostgresDatabaseParameterGetDataTypeRetType, ok bool) {
 	return getPostgresDatabaseParameterGetDataTypeAttributeTypeOk(o.DataType)
 }
 
 // HasDataType returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasDataType() bool {
 	_, ok := o.GetDataTypeOk()
 	return ok
 }
 
 // SetDataType gets a reference to the given string and assigns it to the DataType field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetDataType(v PostgresDatabaseParameterGetDataTypeRetType) {
 	setPostgresDatabaseParameterGetDataTypeAttributeType(&o.DataType, v)
 }
 
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetDefaultValue() (res PostgresDatabaseParameterGetDefaultValueRetType) {
 	res, _ = o.GetDefaultValueOk()
 	return
@@ -366,22 +428,26 @@ func (o *PostgresDatabaseParameter) GetDefaultValue() (res PostgresDatabaseParam
 
 // GetDefaultValueOk returns a tuple with the DefaultValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetDefaultValueOk() (ret PostgresDatabaseParameterGetDefaultValueRetType, ok bool) {
 	return getPostgresDatabaseParameterGetDefaultValueAttributeTypeOk(o.DefaultValue)
 }
 
 // HasDefaultValue returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasDefaultValue() bool {
 	_, ok := o.GetDefaultValueOk()
 	return ok
 }
 
 // SetDefaultValue gets a reference to the given string and assigns it to the DefaultValue field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetDefaultValue(v PostgresDatabaseParameterGetDefaultValueRetType) {
 	setPostgresDatabaseParameterGetDefaultValueAttributeType(&o.DefaultValue, v)
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetDescription() (res PostgresDatabaseParameterGetDescriptionRetType) {
 	res, _ = o.GetDescriptionOk()
 	return
@@ -389,22 +455,26 @@ func (o *PostgresDatabaseParameter) GetDescription() (res PostgresDatabaseParame
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetDescriptionOk() (ret PostgresDatabaseParameterGetDescriptionRetType, ok bool) {
 	return getPostgresDatabaseParameterGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // HasDescription returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasDescription() bool {
 	_, ok := o.GetDescriptionOk()
 	return ok
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetDescription(v PostgresDatabaseParameterGetDescriptionRetType) {
 	setPostgresDatabaseParameterGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetEdit returns the Edit field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetEdit() (res PostgresDatabaseParametergetEditRetType) {
 	res, _ = o.GetEditOk()
 	return
@@ -412,22 +482,26 @@ func (o *PostgresDatabaseParameter) GetEdit() (res PostgresDatabaseParametergetE
 
 // GetEditOk returns a tuple with the Edit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetEditOk() (ret PostgresDatabaseParametergetEditRetType, ok bool) {
 	return getPostgresDatabaseParametergetEditAttributeTypeOk(o.Edit)
 }
 
 // HasEdit returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasEdit() bool {
 	_, ok := o.GetEditOk()
 	return ok
 }
 
 // SetEdit gets a reference to the given bool and assigns it to the Edit field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetEdit(v PostgresDatabaseParametergetEditRetType) {
 	setPostgresDatabaseParametergetEditAttributeType(&o.Edit, v)
 }
 
 // GetMaxValue returns the MaxValue field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetMaxValue() (res PostgresDatabaseParameterGetMaxValueRetType) {
 	res, _ = o.GetMaxValueOk()
 	return
@@ -435,22 +509,26 @@ func (o *PostgresDatabaseParameter) GetMaxValue() (res PostgresDatabaseParameter
 
 // GetMaxValueOk returns a tuple with the MaxValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetMaxValueOk() (ret PostgresDatabaseParameterGetMaxValueRetType, ok bool) {
 	return getPostgresDatabaseParameterGetMaxValueAttributeTypeOk(o.MaxValue)
 }
 
 // HasMaxValue returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasMaxValue() bool {
 	_, ok := o.GetMaxValueOk()
 	return ok
 }
 
 // SetMaxValue gets a reference to the given string and assigns it to the MaxValue field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetMaxValue(v PostgresDatabaseParameterGetMaxValueRetType) {
 	setPostgresDatabaseParameterGetMaxValueAttributeType(&o.MaxValue, v)
 }
 
 // GetMinValue returns the MinValue field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetMinValue() (res PostgresDatabaseParameterGetMinValueRetType) {
 	res, _ = o.GetMinValueOk()
 	return
@@ -458,22 +536,26 @@ func (o *PostgresDatabaseParameter) GetMinValue() (res PostgresDatabaseParameter
 
 // GetMinValueOk returns a tuple with the MinValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetMinValueOk() (ret PostgresDatabaseParameterGetMinValueRetType, ok bool) {
 	return getPostgresDatabaseParameterGetMinValueAttributeTypeOk(o.MinValue)
 }
 
 // HasMinValue returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasMinValue() bool {
 	_, ok := o.GetMinValueOk()
 	return ok
 }
 
 // SetMinValue gets a reference to the given string and assigns it to the MinValue field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetMinValue(v PostgresDatabaseParameterGetMinValueRetType) {
 	setPostgresDatabaseParameterGetMinValueAttributeType(&o.MinValue, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetName() (res PostgresDatabaseParameterGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -481,22 +563,26 @@ func (o *PostgresDatabaseParameter) GetName() (res PostgresDatabaseParameterGetN
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetNameOk() (ret PostgresDatabaseParameterGetNameRetType, ok bool) {
 	return getPostgresDatabaseParameterGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetName(v PostgresDatabaseParameterGetNameRetType) {
 	setPostgresDatabaseParameterGetNameAttributeType(&o.Name, v)
 }
 
 // GetPendingRestart returns the PendingRestart field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetPendingRestart() (res PostgresDatabaseParametergetPendingRestartRetType) {
 	res, _ = o.GetPendingRestartOk()
 	return
@@ -504,22 +590,26 @@ func (o *PostgresDatabaseParameter) GetPendingRestart() (res PostgresDatabasePar
 
 // GetPendingRestartOk returns a tuple with the PendingRestart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetPendingRestartOk() (ret PostgresDatabaseParametergetPendingRestartRetType, ok bool) {
 	return getPostgresDatabaseParametergetPendingRestartAttributeTypeOk(o.PendingRestart)
 }
 
 // HasPendingRestart returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasPendingRestart() bool {
 	_, ok := o.GetPendingRestartOk()
 	return ok
 }
 
 // SetPendingRestart gets a reference to the given bool and assigns it to the PendingRestart field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetPendingRestart(v PostgresDatabaseParametergetPendingRestartRetType) {
 	setPostgresDatabaseParametergetPendingRestartAttributeType(&o.PendingRestart, v)
 }
 
 // GetResetValue returns the ResetValue field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetResetValue() (res PostgresDatabaseParameterGetResetValueRetType) {
 	res, _ = o.GetResetValueOk()
 	return
@@ -527,22 +617,26 @@ func (o *PostgresDatabaseParameter) GetResetValue() (res PostgresDatabaseParamet
 
 // GetResetValueOk returns a tuple with the ResetValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetResetValueOk() (ret PostgresDatabaseParameterGetResetValueRetType, ok bool) {
 	return getPostgresDatabaseParameterGetResetValueAttributeTypeOk(o.ResetValue)
 }
 
 // HasResetValue returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasResetValue() bool {
 	_, ok := o.GetResetValueOk()
 	return ok
 }
 
 // SetResetValue gets a reference to the given string and assigns it to the ResetValue field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetResetValue(v PostgresDatabaseParameterGetResetValueRetType) {
 	setPostgresDatabaseParameterGetResetValueAttributeType(&o.ResetValue, v)
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetUnit() (res PostgresDatabaseParameterGetUnitRetType) {
 	res, _ = o.GetUnitOk()
 	return
@@ -550,22 +644,26 @@ func (o *PostgresDatabaseParameter) GetUnit() (res PostgresDatabaseParameterGetU
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetUnitOk() (ret PostgresDatabaseParameterGetUnitRetType, ok bool) {
 	return getPostgresDatabaseParameterGetUnitAttributeTypeOk(o.Unit)
 }
 
 // HasUnit returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasUnit() bool {
 	_, ok := o.GetUnitOk()
 	return ok
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetUnit(v PostgresDatabaseParameterGetUnitRetType) {
 	setPostgresDatabaseParameterGetUnitAttributeType(&o.Unit, v)
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetValue() (res PostgresDatabaseParameterGetValueRetType) {
 	res, _ = o.GetValueOk()
 	return
@@ -573,21 +671,25 @@ func (o *PostgresDatabaseParameter) GetValue() (res PostgresDatabaseParameterGet
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) GetValueOk() (ret PostgresDatabaseParameterGetValueRetType, ok bool) {
 	return getPostgresDatabaseParameterGetValueAttributeTypeOk(o.Value)
 }
 
 // HasValue returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) HasValue() bool {
 	_, ok := o.GetValueOk()
 	return ok
 }
 
 // SetValue gets a reference to the given string and assigns it to the Value field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *PostgresDatabaseParameter) SetValue(v PostgresDatabaseParameterGetValueRetType) {
 	setPostgresDatabaseParameterGetValueAttributeType(&o.Value, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o PostgresDatabaseParameter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPostgresDatabaseParameterGetContextAttributeTypeOk(o.Context); ok {
@@ -629,37 +731,45 @@ func (o PostgresDatabaseParameter) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullablePostgresDatabaseParameter struct {
 	value *PostgresDatabaseParameter
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePostgresDatabaseParameter) Get() *PostgresDatabaseParameter {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePostgresDatabaseParameter) Set(val *PostgresDatabaseParameter) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePostgresDatabaseParameter) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePostgresDatabaseParameter) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullablePostgresDatabaseParameter(val *PostgresDatabaseParameter) *NullablePostgresDatabaseParameter {
 	return &NullablePostgresDatabaseParameter{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullablePostgresDatabaseParameter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullablePostgresDatabaseParameter) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

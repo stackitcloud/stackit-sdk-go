@@ -22,8 +22,13 @@ var _ MappedNullable = &CreateUserPayload{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateUserPayloadGetRolesAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateUserPayloadGetRolesArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateUserPayloadGetRolesRetType = []string
 
 func getCreateUserPayloadGetRolesAttributeTypeOk(arg CreateUserPayloadGetRolesAttributeType) (ret CreateUserPayloadGetRolesRetType, ok bool) {
@@ -42,6 +47,7 @@ func setCreateUserPayloadGetRolesAttributeType(arg *CreateUserPayloadGetRolesAtt
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateUserPayloadGetUsernameAttributeType = *string
 
 func getCreateUserPayloadGetUsernameAttributeTypeOk(arg CreateUserPayloadGetUsernameAttributeType) (ret CreateUserPayloadGetUsernameRetType, ok bool) {
@@ -55,10 +61,14 @@ func setCreateUserPayloadGetUsernameAttributeType(arg *CreateUserPayloadGetUsern
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateUserPayloadGetUsernameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateUserPayloadGetUsernameRetType = string
 
 // CreateUserPayload struct for CreateUserPayload
+// Deprecated: Move to the packages generated for each available API version instead
 type CreateUserPayload struct {
 	Roles    CreateUserPayloadGetRolesAttributeType    `json:"roles,omitempty"`
 	Username CreateUserPayloadGetUsernameAttributeType `json:"username,omitempty"`
@@ -68,6 +78,7 @@ type CreateUserPayload struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCreateUserPayload() *CreateUserPayload {
 	this := CreateUserPayload{}
 	return &this
@@ -76,12 +87,14 @@ func NewCreateUserPayload() *CreateUserPayload {
 // NewCreateUserPayloadWithDefaults instantiates a new CreateUserPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewCreateUserPayloadWithDefaults() *CreateUserPayload {
 	this := CreateUserPayload{}
 	return &this
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) GetRoles() (res CreateUserPayloadGetRolesRetType) {
 	res, _ = o.GetRolesOk()
 	return
@@ -89,22 +102,26 @@ func (o *CreateUserPayload) GetRoles() (res CreateUserPayloadGetRolesRetType) {
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) GetRolesOk() (ret CreateUserPayloadGetRolesRetType, ok bool) {
 	return getCreateUserPayloadGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) HasRoles() bool {
 	_, ok := o.GetRolesOk()
 	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) SetRoles(v CreateUserPayloadGetRolesRetType) {
 	setCreateUserPayloadGetRolesAttributeType(&o.Roles, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) GetUsername() (res CreateUserPayloadGetUsernameRetType) {
 	res, _ = o.GetUsernameOk()
 	return
@@ -112,21 +129,25 @@ func (o *CreateUserPayload) GetUsername() (res CreateUserPayloadGetUsernameRetTy
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) GetUsernameOk() (ret CreateUserPayloadGetUsernameRetType, ok bool) {
 	return getCreateUserPayloadGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) HasUsername() bool {
 	_, ok := o.GetUsernameOk()
 	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *CreateUserPayload) SetUsername(v CreateUserPayloadGetUsernameRetType) {
 	setCreateUserPayloadGetUsernameAttributeType(&o.Username, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateUserPayloadGetRolesAttributeTypeOk(o.Roles); ok {
@@ -138,37 +159,45 @@ func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableCreateUserPayload struct {
 	value *CreateUserPayload
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateUserPayload) Get() *CreateUserPayload {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateUserPayload) Set(val *CreateUserPayload) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateUserPayload) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateUserPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableCreateUserPayload(val *CreateUserPayload) *NullableCreateUserPayload {
 	return &NullableCreateUserPayload{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableCreateUserPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableCreateUserPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,8 +22,13 @@ var _ MappedNullable = &InstanceResponse{}
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceResponseGetItemAttributeType = *Instance
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceResponseGetItemArgType = Instance
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceResponseGetItemRetType = Instance
 
 func getInstanceResponseGetItemAttributeTypeOk(arg InstanceResponseGetItemAttributeType) (ret InstanceResponseGetItemRetType, ok bool) {
@@ -38,6 +43,7 @@ func setInstanceResponseGetItemAttributeType(arg *InstanceResponseGetItemAttribu
 }
 
 // InstanceResponse struct for InstanceResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceResponse struct {
 	Item InstanceResponseGetItemAttributeType `json:"item,omitempty"`
 }
@@ -46,6 +52,7 @@ type InstanceResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceResponse() *InstanceResponse {
 	this := InstanceResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewInstanceResponse() *InstanceResponse {
 // NewInstanceResponseWithDefaults instantiates a new InstanceResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceResponseWithDefaults() *InstanceResponse {
 	this := InstanceResponse{}
 	return &this
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceResponse) GetItem() (res InstanceResponseGetItemRetType) {
 	res, _ = o.GetItemOk()
 	return
@@ -67,21 +76,25 @@ func (o *InstanceResponse) GetItem() (res InstanceResponseGetItemRetType) {
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceResponse) GetItemOk() (ret InstanceResponseGetItemRetType, ok bool) {
 	return getInstanceResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceResponse) HasItem() bool {
 	_, ok := o.GetItemOk()
 	return ok
 }
 
 // SetItem gets a reference to the given Instance and assigns it to the Item field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceResponse) SetItem(v InstanceResponseGetItemRetType) {
 	setInstanceResponseGetItemAttributeType(&o.Item, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceResponseGetItemAttributeTypeOk(o.Item); ok {
@@ -90,37 +103,45 @@ func (o InstanceResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceResponse struct {
 	value *InstanceResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceResponse) Get() *InstanceResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceResponse) Set(val *InstanceResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceResponse(val *InstanceResponse) *NullableInstanceResponse {
 	return &NullableInstanceResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,6 +22,7 @@ var _ MappedNullable = &Storage{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageGetClassAttributeType = *string
 
 func getStorageGetClassAttributeTypeOk(arg StorageGetClassAttributeType) (ret StorageGetClassRetType, ok bool) {
@@ -35,7 +36,10 @@ func setStorageGetClassAttributeType(arg *StorageGetClassAttributeType, val Stor
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageGetClassArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageGetClassRetType = string
 
 /*
@@ -43,8 +47,13 @@ type StorageGetClassRetType = string
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageGetSizeAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageGetSizeArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type StorageGetSizeRetType = int64
 
 func getStorageGetSizeAttributeTypeOk(arg StorageGetSizeAttributeType) (ret StorageGetSizeRetType, ok bool) {
@@ -59,6 +68,7 @@ func setStorageGetSizeAttributeType(arg *StorageGetSizeAttributeType, val Storag
 }
 
 // Storage struct for Storage
+// Deprecated: Move to the packages generated for each available API version instead
 type Storage struct {
 	Class StorageGetClassAttributeType `json:"class,omitempty"`
 	Size  StorageGetSizeAttributeType  `json:"size,omitempty"`
@@ -68,6 +78,7 @@ type Storage struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewStorage() *Storage {
 	this := Storage{}
 	return &this
@@ -76,12 +87,14 @@ func NewStorage() *Storage {
 // NewStorageWithDefaults instantiates a new Storage object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewStorageWithDefaults() *Storage {
 	this := Storage{}
 	return &this
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) GetClass() (res StorageGetClassRetType) {
 	res, _ = o.GetClassOk()
 	return
@@ -89,22 +102,26 @@ func (o *Storage) GetClass() (res StorageGetClassRetType) {
 
 // GetClassOk returns a tuple with the Class field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) GetClassOk() (ret StorageGetClassRetType, ok bool) {
 	return getStorageGetClassAttributeTypeOk(o.Class)
 }
 
 // HasClass returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) HasClass() bool {
 	_, ok := o.GetClassOk()
 	return ok
 }
 
 // SetClass gets a reference to the given string and assigns it to the Class field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) SetClass(v StorageGetClassRetType) {
 	setStorageGetClassAttributeType(&o.Class, v)
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) GetSize() (res StorageGetSizeRetType) {
 	res, _ = o.GetSizeOk()
 	return
@@ -112,21 +129,25 @@ func (o *Storage) GetSize() (res StorageGetSizeRetType) {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) GetSizeOk() (ret StorageGetSizeRetType, ok bool) {
 	return getStorageGetSizeAttributeTypeOk(o.Size)
 }
 
 // HasSize returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) HasSize() bool {
 	_, ok := o.GetSizeOk()
 	return ok
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *Storage) SetSize(v StorageGetSizeRetType) {
 	setStorageGetSizeAttributeType(&o.Size, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o Storage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getStorageGetClassAttributeTypeOk(o.Class); ok {
@@ -138,37 +159,45 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableStorage struct {
 	value *Storage
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableStorage) Get() *Storage {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableStorage) Set(val *Storage) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableStorage) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableStorage) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableStorage(val *Storage) *NullableStorage {
 	return &NullableStorage{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableStorage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableStorage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

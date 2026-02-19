@@ -22,8 +22,13 @@ var _ MappedNullable = &GetBackupResponse{}
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type GetBackupResponseGetItemAttributeType = *Backup
+
+// Deprecated: Move to the packages generated for each available API version instead
 type GetBackupResponseGetItemArgType = Backup
+
+// Deprecated: Move to the packages generated for each available API version instead
 type GetBackupResponseGetItemRetType = Backup
 
 func getGetBackupResponseGetItemAttributeTypeOk(arg GetBackupResponseGetItemAttributeType) (ret GetBackupResponseGetItemRetType, ok bool) {
@@ -38,6 +43,7 @@ func setGetBackupResponseGetItemAttributeType(arg *GetBackupResponseGetItemAttri
 }
 
 // GetBackupResponse struct for GetBackupResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type GetBackupResponse struct {
 	Item GetBackupResponseGetItemAttributeType `json:"item,omitempty"`
 }
@@ -46,6 +52,7 @@ type GetBackupResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewGetBackupResponse() *GetBackupResponse {
 	this := GetBackupResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewGetBackupResponse() *GetBackupResponse {
 // NewGetBackupResponseWithDefaults instantiates a new GetBackupResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewGetBackupResponseWithDefaults() *GetBackupResponse {
 	this := GetBackupResponse{}
 	return &this
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *GetBackupResponse) GetItem() (res GetBackupResponseGetItemRetType) {
 	res, _ = o.GetItemOk()
 	return
@@ -67,21 +76,25 @@ func (o *GetBackupResponse) GetItem() (res GetBackupResponseGetItemRetType) {
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *GetBackupResponse) GetItemOk() (ret GetBackupResponseGetItemRetType, ok bool) {
 	return getGetBackupResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *GetBackupResponse) HasItem() bool {
 	_, ok := o.GetItemOk()
 	return ok
 }
 
 // SetItem gets a reference to the given Backup and assigns it to the Item field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *GetBackupResponse) SetItem(v GetBackupResponseGetItemRetType) {
 	setGetBackupResponseGetItemAttributeType(&o.Item, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o GetBackupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetBackupResponseGetItemAttributeTypeOk(o.Item); ok {
@@ -90,37 +103,45 @@ func (o GetBackupResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableGetBackupResponse struct {
 	value *GetBackupResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableGetBackupResponse) Get() *GetBackupResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableGetBackupResponse) Set(val *GetBackupResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableGetBackupResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableGetBackupResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableGetBackupResponse(val *GetBackupResponse) *NullableGetBackupResponse {
 	return &NullableGetBackupResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableGetBackupResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableGetBackupResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

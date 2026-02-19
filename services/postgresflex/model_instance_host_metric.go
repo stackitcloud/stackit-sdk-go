@@ -22,8 +22,13 @@ var _ MappedNullable = &InstanceHostMetric{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetDatapointsAttributeType = *[]InstanceDataPoint
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetDatapointsArgType = []InstanceDataPoint
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetDatapointsRetType = []InstanceDataPoint
 
 func getInstanceHostMetricGetDatapointsAttributeTypeOk(arg InstanceHostMetricGetDatapointsAttributeType) (ret InstanceHostMetricGetDatapointsRetType, ok bool) {
@@ -42,6 +47,7 @@ func setInstanceHostMetricGetDatapointsAttributeType(arg *InstanceHostMetricGetD
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetNameAttributeType = *string
 
 func getInstanceHostMetricGetNameAttributeTypeOk(arg InstanceHostMetricGetNameAttributeType) (ret InstanceHostMetricGetNameRetType, ok bool) {
@@ -55,7 +61,10 @@ func setInstanceHostMetricGetNameAttributeType(arg *InstanceHostMetricGetNameAtt
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetNameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetNameRetType = string
 
 /*
@@ -63,6 +72,7 @@ type InstanceHostMetricGetNameRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetUnitsAttributeType = *string
 
 func getInstanceHostMetricGetUnitsAttributeTypeOk(arg InstanceHostMetricGetUnitsAttributeType) (ret InstanceHostMetricGetUnitsRetType, ok bool) {
@@ -76,10 +86,14 @@ func setInstanceHostMetricGetUnitsAttributeType(arg *InstanceHostMetricGetUnitsA
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetUnitsArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetricGetUnitsRetType = string
 
 // InstanceHostMetric struct for InstanceHostMetric
+// Deprecated: Move to the packages generated for each available API version instead
 type InstanceHostMetric struct {
 	Datapoints InstanceHostMetricGetDatapointsAttributeType `json:"datapoints,omitempty"`
 	Name       InstanceHostMetricGetNameAttributeType       `json:"name,omitempty"`
@@ -90,6 +104,7 @@ type InstanceHostMetric struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceHostMetric() *InstanceHostMetric {
 	this := InstanceHostMetric{}
 	return &this
@@ -98,12 +113,14 @@ func NewInstanceHostMetric() *InstanceHostMetric {
 // NewInstanceHostMetricWithDefaults instantiates a new InstanceHostMetric object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewInstanceHostMetricWithDefaults() *InstanceHostMetric {
 	this := InstanceHostMetric{}
 	return &this
 }
 
 // GetDatapoints returns the Datapoints field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) GetDatapoints() (res InstanceHostMetricGetDatapointsRetType) {
 	res, _ = o.GetDatapointsOk()
 	return
@@ -111,22 +128,26 @@ func (o *InstanceHostMetric) GetDatapoints() (res InstanceHostMetricGetDatapoint
 
 // GetDatapointsOk returns a tuple with the Datapoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) GetDatapointsOk() (ret InstanceHostMetricGetDatapointsRetType, ok bool) {
 	return getInstanceHostMetricGetDatapointsAttributeTypeOk(o.Datapoints)
 }
 
 // HasDatapoints returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) HasDatapoints() bool {
 	_, ok := o.GetDatapointsOk()
 	return ok
 }
 
 // SetDatapoints gets a reference to the given []InstanceDataPoint and assigns it to the Datapoints field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) SetDatapoints(v InstanceHostMetricGetDatapointsRetType) {
 	setInstanceHostMetricGetDatapointsAttributeType(&o.Datapoints, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) GetName() (res InstanceHostMetricGetNameRetType) {
 	res, _ = o.GetNameOk()
 	return
@@ -134,22 +155,26 @@ func (o *InstanceHostMetric) GetName() (res InstanceHostMetricGetNameRetType) {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) GetNameOk() (ret InstanceHostMetricGetNameRetType, ok bool) {
 	return getInstanceHostMetricGetNameAttributeTypeOk(o.Name)
 }
 
 // HasName returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) HasName() bool {
 	_, ok := o.GetNameOk()
 	return ok
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) SetName(v InstanceHostMetricGetNameRetType) {
 	setInstanceHostMetricGetNameAttributeType(&o.Name, v)
 }
 
 // GetUnits returns the Units field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) GetUnits() (res InstanceHostMetricGetUnitsRetType) {
 	res, _ = o.GetUnitsOk()
 	return
@@ -157,21 +182,25 @@ func (o *InstanceHostMetric) GetUnits() (res InstanceHostMetricGetUnitsRetType) 
 
 // GetUnitsOk returns a tuple with the Units field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) GetUnitsOk() (ret InstanceHostMetricGetUnitsRetType, ok bool) {
 	return getInstanceHostMetricGetUnitsAttributeTypeOk(o.Units)
 }
 
 // HasUnits returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) HasUnits() bool {
 	_, ok := o.GetUnitsOk()
 	return ok
 }
 
 // SetUnits gets a reference to the given string and assigns it to the Units field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *InstanceHostMetric) SetUnits(v InstanceHostMetricGetUnitsRetType) {
 	setInstanceHostMetricGetUnitsAttributeType(&o.Units, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o InstanceHostMetric) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getInstanceHostMetricGetDatapointsAttributeTypeOk(o.Datapoints); ok {
@@ -186,37 +215,45 @@ func (o InstanceHostMetric) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableInstanceHostMetric struct {
 	value *InstanceHostMetric
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceHostMetric) Get() *InstanceHostMetric {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceHostMetric) Set(val *InstanceHostMetric) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceHostMetric) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceHostMetric) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableInstanceHostMetric(val *InstanceHostMetric) *NullableInstanceHostMetric {
 	return &NullableInstanceHostMetric{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableInstanceHostMetric) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableInstanceHostMetric) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

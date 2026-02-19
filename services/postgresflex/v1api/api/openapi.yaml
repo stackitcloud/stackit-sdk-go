@@ -1,0 +1,2460 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@stackit.cloud
+    name: STACKIT Postgres Service Support
+    url: https://www.stackit.de/en/contact
+  description: This is the documentation for the STACKIT postgres service
+  termsOfService: https://www.stackit.de/en/general-terms-and-conditions/
+  title: STACKIT PostgreSQL Flex API
+  version: 1.0.0
+servers:
+- url: "https://postgres-flex-service.api.{region}stackit.cloud"
+  variables:
+    region:
+      default: eu01.
+      enum:
+      - eu01.
+paths:
+  /v1/projects/{projectId}/flavors:
+    get:
+      description: Get available flavors for a specific projectID
+      operationId: ListFlavors
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListFlavorsResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get Flavors
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.flavor.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances:
+    get:
+      description: List available instances
+      operationId: ListInstances
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListInstancesResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: List Instances
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    post:
+      description: Create a new instance of a postgres database
+      operationId: CreateInstance
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateInstancePayload"
+        description: Body
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateInstanceResponse"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Create Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.create
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}:
+    delete:
+      description: Delete available instance
+      operationId: DeleteInstance
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.delete
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    get:
+      description: Get specific available instances
+      operationId: GetInstance
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstanceResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get specific instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.get
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    patch:
+      description: "Update available instance of a postgres database. Supported Versions\
+        \ are 12, 13, 14, 15 -- only upgrades are allowed!"
+      operationId: PartialUpdateInstance
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartialUpdateInstancePayload"
+        description: Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PartialUpdateInstanceResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    put:
+      description: "Update available instance of a postgres database. Supported Versions\
+        \ are 12, 13, 14, 15 -- only upgrades are allowed!"
+      operationId: UpdateInstance
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateInstancePayload"
+        description: Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PartialUpdateInstanceResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/backups:
+    get:
+      description: List all backups which are available for a specific instance
+      operationId: ListBackups
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListBackupsResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: List backups
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.backup.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    put:
+      description: Update backup schedule
+      operationId: UpdateBackupSchedule
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBackupSchedulePayload"
+        description: Body
+        required: true
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update Backup Schedule
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.backup.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/backups/{backupId}:
+    get:
+      description: Get specific available backup
+      operationId: GetBackup
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Backup ID
+        explode: false
+        in: path
+        name: backupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetBackupResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get specific backup
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.backup.get
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/clone:
+    post:
+      description: Clone an existing instance of a postgres database to a new destination
+        instance
+      operationId: CloneInstance
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CloneInstancePayload"
+        description: Body
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CloneInstanceResponse"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Clone Instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.clone
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/databases:
+    get:
+      description: List available databases for an instance
+      operationId: ListDatabases
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/instance.ListDatabasesResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: List Databases
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    post:
+      description: |-
+        Create database for a user
+        Note: The name of a valid user must be provided in the "options" map field using the key "owner"
+      operationId: CreateDatabase
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDatabasePayload"
+        description: body
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/instance.CreateDatabaseResponse"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Create Database
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.create
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/databases/{databaseId}:
+    delete:
+      description: Delete database for an instance
+      operationId: DeleteDatabase
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Database ID
+        explode: false
+        in: path
+        name: databaseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete Database
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.database.delete
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/force:
+    delete:
+      description: Forces the deletion of an delayed deleted instance
+      operationId: ForceDeleteInstance
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          description: Accepted
+        "405":
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Not Acceptable
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Force delete instance
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.instance.force-delete
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/metrics/{metric}:
+    get:
+      description: "Returns a metric for an instance. The metric will only be for\
+        \ the master pod if needed. Granularity parameter is always needed. If start\
+        \ and end time is provided, period is not considered in connections and disk-use.\
+        \ If you provide start time, you have to provide end time as well and vice\
+        \ versa."
+      operationId: ListMetrics
+      parameters:
+      - description: The UUID of the project.
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The UUID of the instance.
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The name of the metric. Valid metrics are 'cpu', 'memory', 'disk-use',\
+          \ 'disk-size' and 'connections'."
+        explode: false
+        in: path
+        name: metric
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The granularity in ISO8601 e.g. 5 minutes are 'PT5M'.
+        explode: true
+        in: query
+        name: granularity
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "The period in ISO8601 format e.g. 5 minutes are 'PT5M'. If no\
+          \ period is provided, the standard value of 5 minutes is used."
+        explode: true
+        in: query
+        name: period
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "The start of the timeframe as timestamp in ISO8601 (RFC3339)\
+          \ e.g. '2023-08-28T07:10:52.536Z'. If no start time is provided, current\
+          \ server time as UTC is used."
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The end of the timeframe as timestamp in ISO8601 (RFC3339) e.g.
+          '2023-08-28T07:10:52.536Z'.
+        explode: true
+        in: query
+        name: end
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/instance.MetricsResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Method Not Allowed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get Metric
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.metric.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/parameter:
+    get:
+      description: List available databases parameter
+      operationId: ListDatabaseParameters
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/postgres.DatabaseParameterResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: List Databases parameter
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.parameter.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/users:
+    get:
+      description: List available users for an instance
+      operationId: ListUsers
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListUsersResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: List Users
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    post:
+      description: Create user for an instance
+      operationId: CreateUser
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserPayload"
+        description: body
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateUserResponse"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Create User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.create
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/users/{userId}:
+    delete:
+      description: Delete user for an instance
+      operationId: DeleteUser
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: User ID
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Delete User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.delete
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    get:
+      description: Get specific available user for an instance
+      operationId: GetUser
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: User ID
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUserResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.get
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    patch:
+      description: Update user for an instance. Only the roles are updatable.
+      operationId: PartialUpdateUser
+      parameters:
+      - description: The ID of the project
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the instance
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user in the database
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartialUpdateUserPayload"
+        description: "The Request body only required in PUT endpoint. If empty request\
+          \ body is send via patch, then login and createdb roles are removed from\
+          \ user. The field "
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+    put:
+      description: Update user for an instance. Only the roles are updatable.
+      operationId: UpdateUser
+      parameters:
+      - description: The ID of the project
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the instance
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the user in the database
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserPayload"
+        description: "The Request body only required in PUT endpoint. If empty request\
+          \ body is send via patch, then login and createdb roles are removed from\
+          \ user. The field "
+      responses:
+        "200":
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Update User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.update
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/instances/{instanceId}/users/{userId}/reset:
+    post:
+      description: Reset user password for a postgres instance
+      operationId: ResetUser
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: false
+        in: path
+        name: instanceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: user ID
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResetUserResponse"
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Not Found
+        "405":
+          description: Method Not Allowed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Reset User
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.user.reset
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/storages/{flavorId}:
+    get:
+      description: Get available storages for a specific flavor
+      operationId: ListStorages
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Flavor ID
+        explode: false
+        in: path
+        name: flavorId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListStoragesResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get Storages
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.storage.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+  /v1/projects/{projectId}/versions:
+    get:
+      description: Get available versions for postgres database
+      operationId: ListVersions
+      parameters:
+      - description: Project ID
+        explode: false
+        in: path
+        name: projectId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instance ID
+        explode: true
+        in: query
+        name: instanceId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListVersionsResponse"
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Bad Request
+        "405":
+          description: Method Not Allowed
+        "500":
+          description: Internal Server Error
+      security:
+      - BearerAuth: []
+      summary: Get Versions
+      x-stackit-authorization:
+        actions:
+        - postgres-flex.version.list
+        resource-id: projectId
+        resource-id-type: dynamic
+        resource-type: project
+components:
+  schemas:
+    ACL:
+      example:
+        items:
+        - 0.0.0.0/0
+      properties:
+        items:
+          example:
+          - 0.0.0.0/0
+          items:
+            type: string
+          type: array
+      type: object
+    Backup:
+      example:
+        size: 6
+        name: name
+        options:
+          key: options
+        startTime: startTime
+        endTime: endTime
+        id: id
+        error: error
+        labels:
+        - labels
+        - labels
+      properties:
+        endTime:
+          type: string
+        error:
+          type: string
+        id:
+          type: string
+        labels:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        options:
+          additionalProperties:
+            type: string
+          type: object
+        size:
+          type: integer
+        startTime:
+          type: string
+      type: object
+    CloneInstancePayload:
+      example:
+        size: 10
+        class: premium-perf6-stackit
+        timestamp: 2023-04-17T09:28:00+00:00
+      properties:
+        class:
+          example: premium-perf6-stackit
+          type: string
+        size:
+          example: 10
+          type: integer
+        timestamp:
+          description: The timestamp should be specified in UTC time following the
+            format provided in the example.
+          example: 2023-04-17T09:28:00+00:00
+          type: string
+      type: object
+    CloneInstanceResponse:
+      example:
+        instanceId: df727477-8991-486c-a3ed-d11d9d9beb1c
+      properties:
+        instanceId:
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+      type: object
+    CreateDatabasePayload:
+      example:
+        name: Test
+        options:
+          key: options
+      properties:
+        name:
+          example: Test
+          type: string
+        options:
+          additionalProperties:
+            type: string
+          description: Database specific options
+          type: object
+      type: object
+    CreateInstancePayload:
+      example:
+        backupSchedule: 6 6 * * *
+        replicas: 3
+        flavorId: "1.1"
+        name: name
+        options:
+          key: options
+        acl:
+          items:
+          - 0.0.0.0/0
+        storage:
+          size: 10
+          class: class
+        version: "1.0"
+        labels:
+          key: labels
+      properties:
+        acl:
+          $ref: "#/components/schemas/ACL"
+        backupSchedule:
+          example: 6 6 * * *
+          type: string
+        flavorId:
+          example: "1.1"
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels field is not certain/clear
+          type: object
+        name:
+          type: string
+        options:
+          additionalProperties:
+            type: string
+          type: object
+        replicas:
+          example: 3
+          type: integer
+        storage:
+          $ref: "#/components/schemas/Storage"
+        version:
+          example: "1.0"
+          type: string
+      required:
+      - acl
+      - backupSchedule
+      - flavorId
+      - name
+      - options
+      - replicas
+      - storage
+      - version
+      type: object
+    CreateInstanceResponse:
+      example:
+        id: df727477-8991-486c-a3ed-d11d9d9beb1c
+      properties:
+        id:
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+      type: object
+    CreateUserPayload:
+      example:
+        roles:
+        - roles
+        - roles
+        username: username
+      properties:
+        roles:
+          items:
+            type: string
+          type: array
+        username:
+          type: string
+      type: object
+    CreateUserResponse:
+      example:
+        item:
+          database: database
+          password: password
+          port: 0
+          roles:
+          - roles
+          - roles
+          host: host
+          id: id
+          uri: uri
+          username: username
+      properties:
+        item:
+          $ref: "#/components/schemas/User"
+      type: object
+    Error:
+      example:
+        code: 404
+        fields:
+          key:
+          - fields
+          - fields
+        message: database not found
+        type: type
+      properties:
+        code:
+          example: 404
+          type: integer
+        fields:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        message:
+          example: database not found
+          type: string
+        type:
+          type: string
+      type: object
+    Flavor:
+      example:
+        memory: 1
+        cpu: 1
+        description: "Small, Compute optimized"
+        id: "1.1"
+      properties:
+        cpu:
+          example: 1
+          type: integer
+        description:
+          example: "Small, Compute optimized"
+          type: string
+        id:
+          example: "1.1"
+          type: string
+        memory:
+          example: 1
+          type: integer
+      type: object
+    GetBackupResponse:
+      example:
+        item:
+          size: 6
+          name: name
+          options:
+            key: options
+          startTime: startTime
+          endTime: endTime
+          id: id
+          error: error
+          labels:
+          - labels
+          - labels
+      properties:
+        item:
+          $ref: "#/components/schemas/Backup"
+      type: object
+    GetUserResponse:
+      example:
+        item:
+          port: 0
+          roles:
+          - roles
+          - roles
+          host: host
+          id: id
+          username: username
+      properties:
+        item:
+          $ref: "#/components/schemas/UserResponse"
+      type: object
+    Instance:
+      example:
+        flavor:
+          memory: 1
+          cpu: 1
+          description: "Small, Compute optimized"
+          id: "1.1"
+        backupSchedule: 6 6 * * *
+        replicas: 3
+        name: name
+        options:
+          key: options
+        acl:
+          items:
+          - 0.0.0.0/0
+        id: df727477-8991-486c-a3ed-d11d9d9beb1c
+        storage:
+          size: 10
+          class: class
+        version: "1.0"
+        status: RUNNING
+      properties:
+        acl:
+          $ref: "#/components/schemas/ACL"
+        backupSchedule:
+          example: 6 6 * * *
+          type: string
+        flavor:
+          $ref: "#/components/schemas/Flavor"
+        id:
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+        name:
+          type: string
+        options:
+          additionalProperties:
+            type: string
+          type: object
+        replicas:
+          example: 3
+          type: integer
+        status:
+          example: RUNNING
+          type: string
+        storage:
+          $ref: "#/components/schemas/Storage"
+        version:
+          example: "1.0"
+          type: string
+      type: object
+    InstanceResponse:
+      example:
+        item:
+          flavor:
+            memory: 1
+            cpu: 1
+            description: "Small, Compute optimized"
+            id: "1.1"
+          backupSchedule: 6 6 * * *
+          replicas: 3
+          name: name
+          options:
+            key: options
+          acl:
+            items:
+            - 0.0.0.0/0
+          id: df727477-8991-486c-a3ed-d11d9d9beb1c
+          storage:
+            size: 10
+            class: class
+          version: "1.0"
+          status: RUNNING
+      properties:
+        item:
+          $ref: "#/components/schemas/Instance"
+      type: object
+    ListBackupsResponse:
+      example:
+        count: 0
+        items:
+        - size: 6
+          name: name
+          options:
+            key: options
+          startTime: startTime
+          endTime: endTime
+          id: id
+          error: error
+          labels:
+          - labels
+          - labels
+        - size: 6
+          name: name
+          options:
+            key: options
+          startTime: startTime
+          endTime: endTime
+          id: id
+          error: error
+          labels:
+          - labels
+          - labels
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: "#/components/schemas/Backup"
+          type: array
+      type: object
+    ListFlavorsResponse:
+      example:
+        flavors:
+        - memory: 1
+          cpu: 1
+          description: "Small, Compute optimized"
+          id: "1.1"
+        - memory: 1
+          cpu: 1
+          description: "Small, Compute optimized"
+          id: "1.1"
+      properties:
+        flavors:
+          items:
+            $ref: "#/components/schemas/Flavor"
+          type: array
+      type: object
+    ListInstancesResponse:
+      example:
+        count: 0
+        items:
+        - name: name
+          id: df727477-8991-486c-a3ed-d11d9d9beb1c
+          status: RUNNING
+        - name: name
+          id: df727477-8991-486c-a3ed-d11d9d9beb1c
+          status: RUNNING
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: "#/components/schemas/instance.ListInstance"
+          type: array
+      type: object
+    ListStoragesResponse:
+      example:
+        storageClasses:
+        - storageClasses
+        - storageClasses
+        storageRange:
+          min: 10
+          max: 1000
+      properties:
+        storageClasses:
+          items:
+            type: string
+          type: array
+        storageRange:
+          $ref: "#/components/schemas/StorageRange"
+      type: object
+    ListUsersResponse:
+      example:
+        count: 0
+        items:
+        - id: id
+          username: username
+        - id: id
+          username: username
+      properties:
+        count:
+          type: integer
+        items:
+          items:
+            $ref: "#/components/schemas/ListUsersResponseItem"
+          type: array
+      type: object
+    ListUsersResponseItem:
+      example:
+        id: id
+        username: username
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+      type: object
+    ListVersionsResponse:
+      example:
+        versions:
+        - "1.0"
+      properties:
+        versions:
+          example:
+          - "1.0"
+          items:
+            type: string
+          type: array
+      type: object
+    PartialUpdateInstancePayload:
+      example:
+        backupSchedule: 6 6 * * *
+        replicas: 3
+        flavorId: "1.1"
+        name: name
+        options:
+          key: options
+        acl:
+          items:
+          - 0.0.0.0/0
+        storage:
+          size: 10
+          class: class
+        version: "1.0"
+        labels:
+          key: labels
+      properties:
+        acl:
+          $ref: "#/components/schemas/ACL"
+        backupSchedule:
+          example: 6 6 * * *
+          type: string
+        flavorId:
+          example: "1.1"
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels field is not certain/clear
+          type: object
+        name:
+          type: string
+        options:
+          additionalProperties:
+            type: string
+          type: object
+        replicas:
+          example: 3
+          type: integer
+        storage:
+          $ref: "#/components/schemas/StorageUpdate"
+        version:
+          example: "1.0"
+          type: string
+      type: object
+    PartialUpdateInstanceResponse:
+      example:
+        item:
+          flavor:
+            memory: 1
+            cpu: 1
+            description: "Small, Compute optimized"
+            id: "1.1"
+          backupSchedule: 6 6 * * *
+          replicas: 3
+          name: name
+          options:
+            key: options
+          acl:
+            items:
+            - 0.0.0.0/0
+          id: df727477-8991-486c-a3ed-d11d9d9beb1c
+          storage:
+            size: 10
+            class: class
+          version: "1.0"
+          status: RUNNING
+      properties:
+        item:
+          $ref: "#/components/schemas/Instance"
+      type: object
+    PartialUpdateUserPayload:
+      example:
+        database: database
+        roles:
+        - roles
+        - roles
+      properties:
+        database:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+      type: object
+    ResetUserResponse:
+      example:
+        item:
+          database: database
+          password: password
+          port: 0
+          roles:
+          - roles
+          - roles
+          host: host
+          id: id
+          uri: uri
+          username: username
+      properties:
+        item:
+          $ref: "#/components/schemas/User"
+      type: object
+    Storage:
+      example:
+        size: 10
+        class: class
+      properties:
+        class:
+          type: string
+        size:
+          example: 10
+          format: int64
+          type: integer
+      type: object
+    StorageRange:
+      example:
+        min: 10
+        max: 1000
+      properties:
+        max:
+          example: 1000
+          type: integer
+        min:
+          example: 10
+          type: integer
+      type: object
+    StorageUpdate:
+      example:
+        size: 10
+        class: class
+      properties:
+        class:
+          deprecated: true
+          description: |2
+
+            ⚠️ **DEPRECATED AND NON-FUNCTIONAL:** Updating the performance class field is not possible.
+          type: string
+          x-deprecation-reason: Never worked correctly
+        size:
+          example: 10
+          format: int64
+          type: integer
+      type: object
+    UpdateBackupSchedulePayload:
+      example:
+        backupSchedule: 6 6 * * *
+      properties:
+        backupSchedule:
+          example: 6 6 * * *
+          type: string
+      required:
+      - backupSchedule
+      type: object
+    UpdateInstancePayload:
+      example:
+        backupSchedule: 6 6 * * *
+        replicas: 3
+        flavorId: "1.1"
+        name: name
+        options:
+          key: options
+        acl:
+          items:
+          - 0.0.0.0/0
+        storage:
+          size: 10
+          class: class
+        version: "1.0"
+        labels:
+          key: labels
+      properties:
+        acl:
+          $ref: "#/components/schemas/ACL"
+        backupSchedule:
+          example: 6 6 * * *
+          type: string
+        flavorId:
+          example: "1.1"
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: Labels field is not certain/clear
+          type: object
+        name:
+          type: string
+        options:
+          additionalProperties:
+            type: string
+          type: object
+        replicas:
+          example: 3
+          type: integer
+        storage:
+          $ref: "#/components/schemas/StorageUpdate"
+        version:
+          example: "1.0"
+          type: string
+      type: object
+    UpdateUserPayload:
+      example:
+        database: database
+        roles:
+        - roles
+        - roles
+      properties:
+        database:
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+      type: object
+    User:
+      example:
+        database: database
+        password: password
+        port: 0
+        roles:
+        - roles
+        - roles
+        host: host
+        id: id
+        uri: uri
+        username: username
+      properties:
+        database:
+          type: string
+        host:
+          type: string
+        id:
+          type: string
+        password:
+          type: string
+        port:
+          type: integer
+        roles:
+          items:
+            type: string
+          type: array
+        uri:
+          type: string
+        username:
+          type: string
+      type: object
+    UserResponse:
+      example:
+        port: 0
+        roles:
+        - roles
+        - roles
+        host: host
+        id: id
+        username: username
+      properties:
+        host:
+          type: string
+        id:
+          type: string
+        port:
+          type: integer
+        roles:
+          items:
+            type: string
+          type: array
+        username:
+          type: string
+      type: object
+    api.Configuration:
+      properties:
+        name:
+          type: string
+        setting:
+          type: string
+      type: object
+    api.ExtensionConfigLoadResponse:
+      properties:
+        configuration:
+          description: Returns marshalled JSON of the new configuration of whatever
+            extension is called
+          items:
+            $ref: "#/components/schemas/api.Configuration"
+          type: array
+      type: object
+    api.ExtensionConfigureResponse:
+      properties:
+        configuration:
+          description: Returns marshalled JSON of the new configuration of whatever
+            extension is called
+          items:
+            $ref: "#/components/schemas/api.Configuration"
+          type: array
+      type: object
+    api.ExtensionDeleteResponse:
+      properties:
+        isSucceded:
+          type: boolean
+      type: object
+    api.ExtensionList:
+      properties:
+        ID:
+          type: integer
+        description:
+          type: string
+        name:
+          type: string
+      type: object
+    api.ExtensionLoadResponse:
+      properties:
+        extension:
+          $ref: "#/components/schemas/api.ExtensionList"
+      type: object
+    api.InstallResponse:
+      properties:
+        extension:
+          $ref: "#/components/schemas/api.ExtensionList"
+      type: object
+    api.InstalledListResponse:
+      properties:
+        installed:
+          items:
+            $ref: "#/components/schemas/api.ExtensionList"
+          type: array
+      type: object
+    extensions.Configuration:
+      properties:
+        name:
+          type: string
+        setting:
+          type: string
+      type: object
+    extensions.ExtensionListResponse:
+      properties:
+        list:
+          items:
+            $ref: "#/components/schemas/api.ExtensionList"
+          type: array
+      type: object
+    extensions.NewConfig:
+      properties:
+        configuration:
+          items:
+            $ref: "#/components/schemas/extensions.Configuration"
+          type: array
+      type: object
+    instance.CreateDatabaseResponse:
+      example:
+        id: id
+      properties:
+        id:
+          type: string
+      type: object
+    instance.DataPoint:
+      example:
+        value: 0.8008281904610115
+        timestamp: timestamp
+      properties:
+        timestamp:
+          type: string
+        value:
+          type: number
+      type: object
+    instance.Database:
+      example:
+        name: Peter_pan
+        options: "{}"
+        id: "1"
+      properties:
+        id:
+          example: "1"
+          type: string
+        name:
+          example: Peter_pan
+          type: string
+        options:
+          description: Database specific options
+          type: object
+      type: object
+    instance.Host:
+      example:
+        hostMetrics:
+        - datapoints:
+          - value: 0.8008281904610115
+            timestamp: timestamp
+          - value: 0.8008281904610115
+            timestamp: timestamp
+          name: name
+          units: units
+        - datapoints:
+          - value: 0.8008281904610115
+            timestamp: timestamp
+          - value: 0.8008281904610115
+            timestamp: timestamp
+          name: name
+          units: units
+        id: id
+      properties:
+        hostMetrics:
+          items:
+            $ref: "#/components/schemas/instance.HostMetric"
+          type: array
+        id:
+          type: string
+      type: object
+    instance.HostMetric:
+      example:
+        datapoints:
+        - value: 0.8008281904610115
+          timestamp: timestamp
+        - value: 0.8008281904610115
+          timestamp: timestamp
+        name: name
+        units: units
+      properties:
+        datapoints:
+          items:
+            $ref: "#/components/schemas/instance.DataPoint"
+          type: array
+        name:
+          type: string
+        units:
+          type: string
+      type: object
+    instance.ListDatabasesResponse:
+      example:
+        databases:
+        - name: Peter_pan
+          options: "{}"
+          id: "1"
+        - name: Peter_pan
+          options: "{}"
+          id: "1"
+      properties:
+        databases:
+          items:
+            $ref: "#/components/schemas/instance.Database"
+          type: array
+      type: object
+    instance.ListInstance:
+      example:
+        name: name
+        id: df727477-8991-486c-a3ed-d11d9d9beb1c
+        status: RUNNING
+      properties:
+        id:
+          example: df727477-8991-486c-a3ed-d11d9d9beb1c
+          type: string
+        name:
+          type: string
+        status:
+          example: RUNNING
+          type: string
+      type: object
+    instance.MetricsResponse:
+      example:
+        hosts:
+        - hostMetrics:
+          - datapoints:
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            name: name
+            units: units
+          - datapoints:
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            name: name
+            units: units
+          id: id
+        - hostMetrics:
+          - datapoints:
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            name: name
+            units: units
+          - datapoints:
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            - value: 0.8008281904610115
+              timestamp: timestamp
+            name: name
+            units: units
+          id: id
+      properties:
+        hosts:
+          items:
+            $ref: "#/components/schemas/instance.Host"
+          type: array
+      type: object
+    instance.StorageSize:
+      example: 10
+      format: int64
+      type: integer
+    postgres.DatabaseParameter:
+      example:
+        pendingRestart: false
+        minValue: "64"
+        unit: kB
+        edit: false
+        defaultValue: "4096"
+        maxValue: "2148473647"
+        dataType: integer
+        context: user
+        name: work_mem
+        description: sets the maximum memory to be used for query workspace
+        value: "102400"
+        resetValue: "102400"
+      properties:
+        context:
+          description: Context of the parameter.
+          example: user
+          type: string
+        dataType:
+          description: Datatype describes the type of data that is used in the Value
+            field.
+          example: integer
+          type: string
+        defaultValue:
+          description: DefaultValue for the value field.
+          example: "4096"
+          type: string
+        description:
+          description: Description of the parameter.
+          example: sets the maximum memory to be used for query workspace
+          type: string
+        edit:
+          description: Edit shows if the user can change this value.
+          example: false
+          type: boolean
+        maxValue:
+          description: MaxValue describes the highest possible value that can be set.
+          example: "2148473647"
+          type: string
+        minValue:
+          description: MinValue describes the lowest possible value that can be set.
+          example: "64"
+          type: string
+        name:
+          description: Name of the parameter.
+          example: work_mem
+          type: string
+        pendingRestart:
+          description: PendingRestart describes if a parameter change requires a restart
+            of the server.
+          example: false
+          type: boolean
+        resetValue:
+          description: ResetValue for the value field af.ter a reset.
+          example: "102400"
+          type: string
+        unit:
+          description: Unit if the parameter has a unit if not empty.
+          example: kB
+          type: string
+        value:
+          description: Value of this parameter.
+          example: "102400"
+          type: string
+      type: object
+    postgres.DatabaseParameterResponse:
+      example:
+        parameter:
+        - pendingRestart: false
+          minValue: "64"
+          unit: kB
+          edit: false
+          defaultValue: "4096"
+          maxValue: "2148473647"
+          dataType: integer
+          context: user
+          name: work_mem
+          description: sets the maximum memory to be used for query workspace
+          value: "102400"
+          resetValue: "102400"
+        - pendingRestart: false
+          minValue: "64"
+          unit: kB
+          edit: false
+          defaultValue: "4096"
+          maxValue: "2148473647"
+          dataType: integer
+          context: user
+          name: work_mem
+          description: sets the maximum memory to be used for query workspace
+          value: "102400"
+          resetValue: "102400"
+      properties:
+        parameter:
+          description: List of the parameter
+          items:
+            $ref: "#/components/schemas/postgres.DatabaseParameter"
+          type: array
+      type: object

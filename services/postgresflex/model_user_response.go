@@ -22,6 +22,7 @@ var _ MappedNullable = &UserResponse{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetHostAttributeType = *string
 
 func getUserResponseGetHostAttributeTypeOk(arg UserResponseGetHostAttributeType) (ret UserResponseGetHostRetType, ok bool) {
@@ -35,7 +36,10 @@ func setUserResponseGetHostAttributeType(arg *UserResponseGetHostAttributeType, 
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetHostArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetHostRetType = string
 
 /*
@@ -43,6 +47,7 @@ type UserResponseGetHostRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetIdAttributeType = *string
 
 func getUserResponseGetIdAttributeTypeOk(arg UserResponseGetIdAttributeType) (ret UserResponseGetIdRetType, ok bool) {
@@ -56,7 +61,10 @@ func setUserResponseGetIdAttributeType(arg *UserResponseGetIdAttributeType, val 
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetIdRetType = string
 
 /*
@@ -64,8 +72,13 @@ type UserResponseGetIdRetType = string
 */
 
 // isLong
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetPortAttributeType = *int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetPortArgType = int64
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetPortRetType = int64
 
 func getUserResponseGetPortAttributeTypeOk(arg UserResponseGetPortAttributeType) (ret UserResponseGetPortRetType, ok bool) {
@@ -84,8 +97,13 @@ func setUserResponseGetPortAttributeType(arg *UserResponseGetPortAttributeType, 
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetRolesAttributeType = *[]string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetRolesArgType = []string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetRolesRetType = []string
 
 func getUserResponseGetRolesAttributeTypeOk(arg UserResponseGetRolesAttributeType) (ret UserResponseGetRolesRetType, ok bool) {
@@ -104,6 +122,7 @@ func setUserResponseGetRolesAttributeType(arg *UserResponseGetRolesAttributeType
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetUsernameAttributeType = *string
 
 func getUserResponseGetUsernameAttributeTypeOk(arg UserResponseGetUsernameAttributeType) (ret UserResponseGetUsernameRetType, ok bool) {
@@ -117,10 +136,14 @@ func setUserResponseGetUsernameAttributeType(arg *UserResponseGetUsernameAttribu
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetUsernameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponseGetUsernameRetType = string
 
 // UserResponse struct for UserResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type UserResponse struct {
 	Host     UserResponseGetHostAttributeType     `json:"host,omitempty"`
 	Id       UserResponseGetIdAttributeType       `json:"id,omitempty"`
@@ -133,6 +156,7 @@ type UserResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewUserResponse() *UserResponse {
 	this := UserResponse{}
 	return &this
@@ -141,12 +165,14 @@ func NewUserResponse() *UserResponse {
 // NewUserResponseWithDefaults instantiates a new UserResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewUserResponseWithDefaults() *UserResponse {
 	this := UserResponse{}
 	return &this
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetHost() (res UserResponseGetHostRetType) {
 	res, _ = o.GetHostOk()
 	return
@@ -154,22 +180,26 @@ func (o *UserResponse) GetHost() (res UserResponseGetHostRetType) {
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetHostOk() (ret UserResponseGetHostRetType, ok bool) {
 	return getUserResponseGetHostAttributeTypeOk(o.Host)
 }
 
 // HasHost returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) HasHost() bool {
 	_, ok := o.GetHostOk()
 	return ok
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) SetHost(v UserResponseGetHostRetType) {
 	setUserResponseGetHostAttributeType(&o.Host, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetId() (res UserResponseGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -177,22 +207,26 @@ func (o *UserResponse) GetId() (res UserResponseGetIdRetType) {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetIdOk() (ret UserResponseGetIdRetType, ok bool) {
 	return getUserResponseGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) SetId(v UserResponseGetIdRetType) {
 	setUserResponseGetIdAttributeType(&o.Id, v)
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetPort() (res UserResponseGetPortRetType) {
 	res, _ = o.GetPortOk()
 	return
@@ -200,22 +234,26 @@ func (o *UserResponse) GetPort() (res UserResponseGetPortRetType) {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetPortOk() (ret UserResponseGetPortRetType, ok bool) {
 	return getUserResponseGetPortAttributeTypeOk(o.Port)
 }
 
 // HasPort returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) HasPort() bool {
 	_, ok := o.GetPortOk()
 	return ok
 }
 
 // SetPort gets a reference to the given int64 and assigns it to the Port field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) SetPort(v UserResponseGetPortRetType) {
 	setUserResponseGetPortAttributeType(&o.Port, v)
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetRoles() (res UserResponseGetRolesRetType) {
 	res, _ = o.GetRolesOk()
 	return
@@ -223,22 +261,26 @@ func (o *UserResponse) GetRoles() (res UserResponseGetRolesRetType) {
 
 // GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetRolesOk() (ret UserResponseGetRolesRetType, ok bool) {
 	return getUserResponseGetRolesAttributeTypeOk(o.Roles)
 }
 
 // HasRoles returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) HasRoles() bool {
 	_, ok := o.GetRolesOk()
 	return ok
 }
 
 // SetRoles gets a reference to the given []string and assigns it to the Roles field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) SetRoles(v UserResponseGetRolesRetType) {
 	setUserResponseGetRolesAttributeType(&o.Roles, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetUsername() (res UserResponseGetUsernameRetType) {
 	res, _ = o.GetUsernameOk()
 	return
@@ -246,21 +288,25 @@ func (o *UserResponse) GetUsername() (res UserResponseGetUsernameRetType) {
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) GetUsernameOk() (ret UserResponseGetUsernameRetType, ok bool) {
 	return getUserResponseGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) HasUsername() bool {
 	_, ok := o.GetUsernameOk()
 	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *UserResponse) SetUsername(v UserResponseGetUsernameRetType) {
 	setUserResponseGetUsernameAttributeType(&o.Username, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o UserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getUserResponseGetHostAttributeTypeOk(o.Host); ok {
@@ -281,37 +327,45 @@ func (o UserResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableUserResponse struct {
 	value *UserResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUserResponse) Get() *UserResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUserResponse) Set(val *UserResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUserResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUserResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableUserResponse(val *UserResponse) *NullableUserResponse {
 	return &NullableUserResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableUserResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableUserResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,8 +22,13 @@ var _ MappedNullable = &ResetUserResponse{}
 */
 
 // isModel
+// Deprecated: Move to the packages generated for each available API version instead
 type ResetUserResponseGetItemAttributeType = *User
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ResetUserResponseGetItemArgType = User
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ResetUserResponseGetItemRetType = User
 
 func getResetUserResponseGetItemAttributeTypeOk(arg ResetUserResponseGetItemAttributeType) (ret ResetUserResponseGetItemRetType, ok bool) {
@@ -38,6 +43,7 @@ func setResetUserResponseGetItemAttributeType(arg *ResetUserResponseGetItemAttri
 }
 
 // ResetUserResponse struct for ResetUserResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ResetUserResponse struct {
 	Item ResetUserResponseGetItemAttributeType `json:"item,omitempty"`
 }
@@ -46,6 +52,7 @@ type ResetUserResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewResetUserResponse() *ResetUserResponse {
 	this := ResetUserResponse{}
 	return &this
@@ -54,12 +61,14 @@ func NewResetUserResponse() *ResetUserResponse {
 // NewResetUserResponseWithDefaults instantiates a new ResetUserResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewResetUserResponseWithDefaults() *ResetUserResponse {
 	this := ResetUserResponse{}
 	return &this
 }
 
 // GetItem returns the Item field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ResetUserResponse) GetItem() (res ResetUserResponseGetItemRetType) {
 	res, _ = o.GetItemOk()
 	return
@@ -67,21 +76,25 @@ func (o *ResetUserResponse) GetItem() (res ResetUserResponseGetItemRetType) {
 
 // GetItemOk returns a tuple with the Item field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ResetUserResponse) GetItemOk() (ret ResetUserResponseGetItemRetType, ok bool) {
 	return getResetUserResponseGetItemAttributeTypeOk(o.Item)
 }
 
 // HasItem returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ResetUserResponse) HasItem() bool {
 	_, ok := o.GetItemOk()
 	return ok
 }
 
 // SetItem gets a reference to the given User and assigns it to the Item field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ResetUserResponse) SetItem(v ResetUserResponseGetItemRetType) {
 	setResetUserResponseGetItemAttributeType(&o.Item, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ResetUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getResetUserResponseGetItemAttributeTypeOk(o.Item); ok {
@@ -90,37 +103,45 @@ func (o ResetUserResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableResetUserResponse struct {
 	value *ResetUserResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableResetUserResponse) Get() *ResetUserResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableResetUserResponse) Set(val *ResetUserResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableResetUserResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableResetUserResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableResetUserResponse(val *ResetUserResponse) *NullableResetUserResponse {
 	return &NullableResetUserResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableResetUserResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableResetUserResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

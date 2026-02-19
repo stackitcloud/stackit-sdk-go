@@ -22,8 +22,13 @@ var _ MappedNullable = &ApiExtensionConfigureResponse{}
 */
 
 // isArray
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionConfigureResponseGetConfigurationAttributeType = *[]ApiConfiguration
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionConfigureResponseGetConfigurationArgType = []ApiConfiguration
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionConfigureResponseGetConfigurationRetType = []ApiConfiguration
 
 func getApiExtensionConfigureResponseGetConfigurationAttributeTypeOk(arg ApiExtensionConfigureResponseGetConfigurationAttributeType) (ret ApiExtensionConfigureResponseGetConfigurationRetType, ok bool) {
@@ -38,6 +43,7 @@ func setApiExtensionConfigureResponseGetConfigurationAttributeType(arg *ApiExten
 }
 
 // ApiExtensionConfigureResponse struct for ApiExtensionConfigureResponse
+// Deprecated: Move to the packages generated for each available API version instead
 type ApiExtensionConfigureResponse struct {
 	// Returns marshalled JSON of the new configuration of whatever extension is called
 	Configuration ApiExtensionConfigureResponseGetConfigurationAttributeType `json:"configuration,omitempty"`
@@ -47,6 +53,7 @@ type ApiExtensionConfigureResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiExtensionConfigureResponse() *ApiExtensionConfigureResponse {
 	this := ApiExtensionConfigureResponse{}
 	return &this
@@ -55,12 +62,14 @@ func NewApiExtensionConfigureResponse() *ApiExtensionConfigureResponse {
 // NewApiExtensionConfigureResponseWithDefaults instantiates a new ApiExtensionConfigureResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewApiExtensionConfigureResponseWithDefaults() *ApiExtensionConfigureResponse {
 	this := ApiExtensionConfigureResponse{}
 	return &this
 }
 
 // GetConfiguration returns the Configuration field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionConfigureResponse) GetConfiguration() (res ApiExtensionConfigureResponseGetConfigurationRetType) {
 	res, _ = o.GetConfigurationOk()
 	return
@@ -68,21 +77,25 @@ func (o *ApiExtensionConfigureResponse) GetConfiguration() (res ApiExtensionConf
 
 // GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionConfigureResponse) GetConfigurationOk() (ret ApiExtensionConfigureResponseGetConfigurationRetType, ok bool) {
 	return getApiExtensionConfigureResponseGetConfigurationAttributeTypeOk(o.Configuration)
 }
 
 // HasConfiguration returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionConfigureResponse) HasConfiguration() bool {
 	_, ok := o.GetConfigurationOk()
 	return ok
 }
 
 // SetConfiguration gets a reference to the given []ApiConfiguration and assigns it to the Configuration field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ApiExtensionConfigureResponse) SetConfiguration(v ApiExtensionConfigureResponseGetConfigurationRetType) {
 	setApiExtensionConfigureResponseGetConfigurationAttributeType(&o.Configuration, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ApiExtensionConfigureResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getApiExtensionConfigureResponseGetConfigurationAttributeTypeOk(o.Configuration); ok {
@@ -91,37 +104,45 @@ func (o ApiExtensionConfigureResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableApiExtensionConfigureResponse struct {
 	value *ApiExtensionConfigureResponse
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionConfigureResponse) Get() *ApiExtensionConfigureResponse {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionConfigureResponse) Set(val *ApiExtensionConfigureResponse) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionConfigureResponse) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionConfigureResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableApiExtensionConfigureResponse(val *ApiExtensionConfigureResponse) *NullableApiExtensionConfigureResponse {
 	return &NullableApiExtensionConfigureResponse{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableApiExtensionConfigureResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableApiExtensionConfigureResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -22,6 +22,7 @@ var _ MappedNullable = &ListUsersResponseItem{}
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseItemGetIdAttributeType = *string
 
 func getListUsersResponseItemGetIdAttributeTypeOk(arg ListUsersResponseItemGetIdAttributeType) (ret ListUsersResponseItemGetIdRetType, ok bool) {
@@ -35,7 +36,10 @@ func setListUsersResponseItemGetIdAttributeType(arg *ListUsersResponseItemGetIdA
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseItemGetIdArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseItemGetIdRetType = string
 
 /*
@@ -43,6 +47,7 @@ type ListUsersResponseItemGetIdRetType = string
 */
 
 // isNotNullableString
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseItemGetUsernameAttributeType = *string
 
 func getListUsersResponseItemGetUsernameAttributeTypeOk(arg ListUsersResponseItemGetUsernameAttributeType) (ret ListUsersResponseItemGetUsernameRetType, ok bool) {
@@ -56,10 +61,14 @@ func setListUsersResponseItemGetUsernameAttributeType(arg *ListUsersResponseItem
 	*arg = &val
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseItemGetUsernameArgType = string
+
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseItemGetUsernameRetType = string
 
 // ListUsersResponseItem struct for ListUsersResponseItem
+// Deprecated: Move to the packages generated for each available API version instead
 type ListUsersResponseItem struct {
 	Id       ListUsersResponseItemGetIdAttributeType       `json:"id,omitempty"`
 	Username ListUsersResponseItemGetUsernameAttributeType `json:"username,omitempty"`
@@ -69,6 +78,7 @@ type ListUsersResponseItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListUsersResponseItem() *ListUsersResponseItem {
 	this := ListUsersResponseItem{}
 	return &this
@@ -77,12 +87,14 @@ func NewListUsersResponseItem() *ListUsersResponseItem {
 // NewListUsersResponseItemWithDefaults instantiates a new ListUsersResponseItem object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
+// Deprecated: Move to the packages generated for each available API version instead
 func NewListUsersResponseItemWithDefaults() *ListUsersResponseItem {
 	this := ListUsersResponseItem{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) GetId() (res ListUsersResponseItemGetIdRetType) {
 	res, _ = o.GetIdOk()
 	return
@@ -90,22 +102,26 @@ func (o *ListUsersResponseItem) GetId() (res ListUsersResponseItemGetIdRetType) 
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) GetIdOk() (ret ListUsersResponseItemGetIdRetType, ok bool) {
 	return getListUsersResponseItemGetIdAttributeTypeOk(o.Id)
 }
 
 // HasId returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) HasId() bool {
 	_, ok := o.GetIdOk()
 	return ok
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) SetId(v ListUsersResponseItemGetIdRetType) {
 	setListUsersResponseItemGetIdAttributeType(&o.Id, v)
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) GetUsername() (res ListUsersResponseItemGetUsernameRetType) {
 	res, _ = o.GetUsernameOk()
 	return
@@ -113,21 +129,25 @@ func (o *ListUsersResponseItem) GetUsername() (res ListUsersResponseItemGetUsern
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) GetUsernameOk() (ret ListUsersResponseItemGetUsernameRetType, ok bool) {
 	return getListUsersResponseItemGetUsernameAttributeTypeOk(o.Username)
 }
 
 // HasUsername returns a boolean if a field has been set.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) HasUsername() bool {
 	_, ok := o.GetUsernameOk()
 	return ok
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
+// Deprecated: Move to the packages generated for each available API version instead
 func (o *ListUsersResponseItem) SetUsername(v ListUsersResponseItemGetUsernameRetType) {
 	setListUsersResponseItemGetUsernameAttributeType(&o.Username, v)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (o ListUsersResponseItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getListUsersResponseItemGetIdAttributeTypeOk(o.Id); ok {
@@ -139,37 +159,45 @@ func (o ListUsersResponseItem) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 type NullableListUsersResponseItem struct {
 	value *ListUsersResponseItem
 	isSet bool
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListUsersResponseItem) Get() *ListUsersResponseItem {
 	return v.value
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListUsersResponseItem) Set(val *ListUsersResponseItem) {
 	v.value = val
 	v.isSet = true
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListUsersResponseItem) IsSet() bool {
 	return v.isSet
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListUsersResponseItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func NewNullableListUsersResponseItem(val *ListUsersResponseItem) *NullableListUsersResponseItem {
 	return &NullableListUsersResponseItem{value: val, isSet: true}
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v NullableListUsersResponseItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// Deprecated: Move to the packages generated for each available API version instead
 func (v *NullableListUsersResponseItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
