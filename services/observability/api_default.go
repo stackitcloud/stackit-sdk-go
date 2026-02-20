@@ -65,6 +65,28 @@ type DefaultApi interface {
 	*/
 	CreateAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error)
 	/*
+		CreateAlertRecord Method for CreateAlertRecord
+		Create alert record.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiCreateAlertRecordRequest
+	*/
+	CreateAlertRecord(ctx context.Context, groupName string, instanceId string, projectId string) ApiCreateAlertRecordRequest
+	/*
+		CreateAlertRecordExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRecordsResponse
+
+	*/
+	CreateAlertRecordExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
+	/*
 		CreateAlertgroups Method for CreateAlertgroups
 		Create alert group.
 
@@ -84,28 +106,6 @@ type DefaultApi interface {
 
 	*/
 	CreateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
-	/*
-		CreateAlertrecord Method for CreateAlertrecord
-		Create alert record.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return ApiCreateAlertrecordRequest
-	*/
-	CreateAlertrecord(ctx context.Context, groupName string, instanceId string, projectId string) ApiCreateAlertrecordRequest
-	/*
-		CreateAlertrecordExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return AlertRecordsResponse
-
-	*/
-	CreateAlertrecordExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
 	/*
 		CreateAlertrules Method for CreateAlertrules
 		Create alert rule.
@@ -491,6 +491,52 @@ type DefaultApi interface {
 	*/
 	DeleteAlertConfigRouteExecute(ctx context.Context, instanceId string, projectId string, receiver string) (*AlertConfigRouteResponse, error)
 	/*
+		DeleteAlertRecord Method for DeleteAlertRecord
+		Delete alert record.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param alertRecord
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiDeleteAlertRecordRequest
+	*/
+	DeleteAlertRecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiDeleteAlertRecordRequest
+	/*
+		DeleteAlertRecordExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param alertRecord
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRecordsResponse
+
+	*/
+	DeleteAlertRecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
+	/*
+		DeleteAlertRecords Method for DeleteAlertRecords
+		Delete alert records.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiDeleteAlertRecordsRequest
+	*/
+	DeleteAlertRecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertRecordsRequest
+	/*
+		DeleteAlertRecordsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRecordsResponse
+
+	*/
+	DeleteAlertRecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
+	/*
 		DeleteAlertgroup Method for DeleteAlertgroup
 		Delete alert group config.
 
@@ -532,52 +578,6 @@ type DefaultApi interface {
 
 	*/
 	DeleteAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
-	/*
-		DeleteAlertrecord Method for DeleteAlertrecord
-		Delete alert record.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param alertRecord
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return ApiDeleteAlertrecordRequest
-	*/
-	DeleteAlertrecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiDeleteAlertrecordRequest
-	/*
-		DeleteAlertrecordExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param alertRecord
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return AlertRecordsResponse
-
-	*/
-	DeleteAlertrecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
-	/*
-		DeleteAlertrecords Method for DeleteAlertrecords
-		Delete alert records.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return ApiDeleteAlertrecordsRequest
-	*/
-	DeleteAlertrecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertrecordsRequest
-	/*
-		DeleteAlertrecordsExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return AlertRecordsResponse
-
-	*/
-	DeleteAlertrecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
 	/*
 		DeleteAlertrule Method for DeleteAlertrule
 		Delete alert rule.
@@ -1037,6 +1037,30 @@ type DefaultApi interface {
 	*/
 	GetAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*GetAlertConfigsResponse, error)
 	/*
+		GetAlertRecord Method for GetAlertRecord
+		Get alert record.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param alertRecord
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiGetAlertRecordRequest
+	*/
+	GetAlertRecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiGetAlertRecordRequest
+	/*
+		GetAlertRecordExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param alertRecord
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRecordResponse
+
+	*/
+	GetAlertRecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordResponse, error)
+	/*
 		GetAlertgroup Method for GetAlertgroup
 		Get alert group.
 
@@ -1058,30 +1082,6 @@ type DefaultApi interface {
 
 	*/
 	GetAlertgroupExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertGroupResponse, error)
-	/*
-		GetAlertrecord Method for GetAlertrecord
-		Get alert record.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param alertRecord
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return ApiGetAlertrecordRequest
-	*/
-	GetAlertrecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiGetAlertrecordRequest
-	/*
-		GetAlertrecordExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param alertRecord
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return AlertRecordResponse
-
-	*/
-	GetAlertrecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordResponse, error)
 	/*
 		GetAlertrule Method for GetAlertrule
 		Get alert rule.
@@ -1355,6 +1355,28 @@ type DefaultApi interface {
 	*/
 	ListAlertConfigRoutesExecute(ctx context.Context, instanceId string, projectId string) (*AlertConfigRouteResponse, error)
 	/*
+		ListAlertRecords Method for ListAlertRecords
+		Get alert records.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiListAlertRecordsRequest
+	*/
+	ListAlertRecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiListAlertRecordsRequest
+	/*
+		ListAlertRecordsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRecordsResponse
+
+	*/
+	ListAlertRecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
+	/*
 		ListAlertgroups Method for ListAlertgroups
 		Get alert groups.
 
@@ -1374,28 +1396,6 @@ type DefaultApi interface {
 
 	*/
 	ListAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
-	/*
-		ListAlertrecords Method for ListAlertrecords
-		Get alert records.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return ApiListAlertrecordsRequest
-	*/
-	ListAlertrecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiListAlertrecordsRequest
-	/*
-		ListAlertrecordsExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return AlertRecordsResponse
-
-	*/
-	ListAlertrecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
 	/*
 		ListAlertrules Method for ListAlertrules
 		Get alert rules.
@@ -1793,6 +1793,28 @@ type DefaultApi interface {
 	*/
 	ListScrapeConfigsExecute(ctx context.Context, instanceId string, projectId string) (*ListScrapeConfigsResponse, error)
 	/*
+		PartialUpdateAlertRecords Method for PartialUpdateAlertRecords
+		Patch alert records.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiPartialUpdateAlertRecordsRequest
+	*/
+	PartialUpdateAlertRecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiPartialUpdateAlertRecordsRequest
+	/*
+		PartialUpdateAlertRecordsExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRecordsResponse
+
+	*/
+	PartialUpdateAlertRecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
+	/*
 		PartialUpdateAlertgroups Method for PartialUpdateAlertgroups
 		Patch alert groups.
 
@@ -1812,28 +1834,6 @@ type DefaultApi interface {
 
 	*/
 	PartialUpdateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
-	/*
-		PartialUpdateAlertrecords Method for PartialUpdateAlertrecords
-		Patch alert records.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return ApiPartialUpdateAlertrecordsRequest
-	*/
-	PartialUpdateAlertrecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiPartialUpdateAlertrecordsRequest
-	/*
-		PartialUpdateAlertrecordsExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return AlertRecordsResponse
-
-	*/
-	PartialUpdateAlertrecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
 	/*
 		PartialUpdateAlertrules Method for PartialUpdateAlertrules
 		Patch alert rules.
@@ -1983,6 +1983,30 @@ type DefaultApi interface {
 	*/
 	UpdateAlertConfigsExecute(ctx context.Context, instanceId string, projectId string) (*UpdateAlertConfigsResponse, error)
 	/*
+		UpdateAlertRecord Method for UpdateAlertRecord
+		Update alert record.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param alertRecord
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return ApiUpdateAlertRecordRequest
+	*/
+	UpdateAlertRecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiUpdateAlertRecordRequest
+	/*
+		UpdateAlertRecordExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param alertRecord
+		@param groupName
+		@param instanceId
+		@param projectId
+		@return AlertRecordsResponse
+
+	*/
+	UpdateAlertRecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
+	/*
 		UpdateAlertgroup Method for UpdateAlertgroup
 		Update alert group config.
 
@@ -2024,30 +2048,6 @@ type DefaultApi interface {
 
 	*/
 	UpdateAlertgroupsExecute(ctx context.Context, instanceId string, projectId string) (*AlertGroupsResponse, error)
-	/*
-		UpdateAlertrecord Method for UpdateAlertrecord
-		Update alert record.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param alertRecord
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return ApiUpdateAlertrecordRequest
-	*/
-	UpdateAlertrecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiUpdateAlertrecordRequest
-	/*
-		UpdateAlertrecordExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param alertRecord
-		@param groupName
-		@param instanceId
-		@param projectId
-		@return AlertRecordsResponse
-
-	*/
-	UpdateAlertrecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error)
 	/*
 		UpdateAlertrule Method for UpdateAlertrule
 		Update alert rule.
@@ -2250,14 +2250,14 @@ type ApiCreateAlertConfigRouteRequest interface {
 	Execute() (*AlertConfigRouteResponse, error)
 }
 
+type ApiCreateAlertRecordRequest interface {
+	CreateAlertRecordPayload(createAlertRecordPayload CreateAlertRecordPayload) ApiCreateAlertRecordRequest
+	Execute() (*AlertRecordsResponse, error)
+}
+
 type ApiCreateAlertgroupsRequest interface {
 	CreateAlertgroupsPayload(createAlertgroupsPayload CreateAlertgroupsPayload) ApiCreateAlertgroupsRequest
 	Execute() (*AlertGroupsResponse, error)
-}
-
-type ApiCreateAlertrecordRequest interface {
-	CreateAlertrecordPayload(createAlertrecordPayload CreateAlertrecordPayload) ApiCreateAlertrecordRequest
-	Execute() (*AlertRecordsResponse, error)
 }
 
 type ApiCreateAlertrulesRequest interface {
@@ -2356,6 +2356,16 @@ type ApiDeleteAlertConfigRouteRequest interface {
 	Execute() (*AlertConfigRouteResponse, error)
 }
 
+type ApiDeleteAlertRecordRequest interface {
+	Execute() (*AlertRecordsResponse, error)
+}
+
+type ApiDeleteAlertRecordsRequest interface {
+	// Name of the records that should be deleted
+	AlertRecord(alertRecord []string) ApiDeleteAlertRecordsRequest
+	Execute() (*AlertRecordsResponse, error)
+}
+
 type ApiDeleteAlertgroupRequest interface {
 	Execute() (*AlertGroupsResponse, error)
 }
@@ -2364,16 +2374,6 @@ type ApiDeleteAlertgroupsRequest interface {
 	// Name of the groups that should be deleted
 	GroupName(groupName []string) ApiDeleteAlertgroupsRequest
 	Execute() (*AlertGroupsResponse, error)
-}
-
-type ApiDeleteAlertrecordRequest interface {
-	Execute() (*AlertRecordsResponse, error)
-}
-
-type ApiDeleteAlertrecordsRequest interface {
-	// Name of the records that should be deleted
-	AlertRecord(alertRecord []string) ApiDeleteAlertrecordsRequest
-	Execute() (*AlertRecordsResponse, error)
 }
 
 type ApiDeleteAlertruleRequest interface {
@@ -2464,12 +2464,12 @@ type ApiGetAlertConfigsRequest interface {
 	Execute() (*GetAlertConfigsResponse, error)
 }
 
-type ApiGetAlertgroupRequest interface {
-	Execute() (*AlertGroupResponse, error)
+type ApiGetAlertRecordRequest interface {
+	Execute() (*AlertRecordResponse, error)
 }
 
-type ApiGetAlertrecordRequest interface {
-	Execute() (*AlertRecordResponse, error)
+type ApiGetAlertgroupRequest interface {
+	Execute() (*AlertGroupResponse, error)
 }
 
 type ApiGetAlertruleRequest interface {
@@ -2524,12 +2524,12 @@ type ApiListAlertConfigRoutesRequest interface {
 	Execute() (*AlertConfigRouteResponse, error)
 }
 
-type ApiListAlertgroupsRequest interface {
-	Execute() (*AlertGroupsResponse, error)
+type ApiListAlertRecordsRequest interface {
+	Execute() (*AlertRecordsResponse, error)
 }
 
-type ApiListAlertrecordsRequest interface {
-	Execute() (*AlertRecordsResponse, error)
+type ApiListAlertgroupsRequest interface {
+	Execute() (*AlertGroupsResponse, error)
 }
 
 type ApiListAlertrulesRequest interface {
@@ -2616,14 +2616,14 @@ type ApiListScrapeConfigsRequest interface {
 	Execute() (*ListScrapeConfigsResponse, error)
 }
 
+type ApiPartialUpdateAlertRecordsRequest interface {
+	PartialUpdateAlertRecordsRequestInner(partialUpdateAlertRecordsRequestInner []PartialUpdateAlertRecordsRequestInner) ApiPartialUpdateAlertRecordsRequest
+	Execute() (*AlertRecordsResponse, error)
+}
+
 type ApiPartialUpdateAlertgroupsRequest interface {
 	UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiPartialUpdateAlertgroupsRequest
 	Execute() (*AlertGroupsResponse, error)
-}
-
-type ApiPartialUpdateAlertrecordsRequest interface {
-	PartialUpdateAlertrecordsRequestInner(partialUpdateAlertrecordsRequestInner []PartialUpdateAlertrecordsRequestInner) ApiPartialUpdateAlertrecordsRequest
-	Execute() (*AlertRecordsResponse, error)
 }
 
 type ApiPartialUpdateAlertrulesRequest interface {
@@ -2662,6 +2662,11 @@ type ApiUpdateAlertConfigsRequest interface {
 	Execute() (*UpdateAlertConfigsResponse, error)
 }
 
+type ApiUpdateAlertRecordRequest interface {
+	UpdateAlertRecordPayload(updateAlertRecordPayload UpdateAlertRecordPayload) ApiUpdateAlertRecordRequest
+	Execute() (*AlertRecordsResponse, error)
+}
+
 type ApiUpdateAlertgroupRequest interface {
 	UpdateAlertgroupPayload(updateAlertgroupPayload UpdateAlertgroupPayload) ApiUpdateAlertgroupRequest
 	Execute() (*AlertGroupsResponse, error)
@@ -2670,11 +2675,6 @@ type ApiUpdateAlertgroupRequest interface {
 type ApiUpdateAlertgroupsRequest interface {
 	UpdateAlertgroupsRequestInner(updateAlertgroupsRequestInner []UpdateAlertgroupsRequestInner) ApiUpdateAlertgroupsRequest
 	Execute() (*AlertGroupsResponse, error)
-}
-
-type ApiUpdateAlertrecordRequest interface {
-	UpdateAlertrecordPayload(updateAlertrecordPayload UpdateAlertrecordPayload) ApiUpdateAlertrecordRequest
-	Execute() (*AlertRecordsResponse, error)
 }
 
 type ApiUpdateAlertruleRequest interface {
@@ -3041,6 +3041,169 @@ func (a *APIClient) CreateAlertConfigRouteExecute(ctx context.Context, instanceI
 	return r.Execute()
 }
 
+type CreateAlertRecordRequest struct {
+	ctx                      context.Context
+	apiService               *DefaultApiService
+	groupName                string
+	instanceId               string
+	projectId                string
+	createAlertRecordPayload *CreateAlertRecordPayload
+}
+
+func (r CreateAlertRecordRequest) CreateAlertRecordPayload(createAlertRecordPayload CreateAlertRecordPayload) ApiCreateAlertRecordRequest {
+	r.createAlertRecordPayload = &createAlertRecordPayload
+	return r
+}
+
+func (r CreateAlertRecordRequest) Execute() (*AlertRecordsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertRecordsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertRecord")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createAlertRecordPayload == nil {
+		return localVarReturnValue, fmt.Errorf("createAlertRecordPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createAlertRecordPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateAlertRecord: Method for CreateAlertRecord
+
+Create alert record.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupName
+	@param instanceId
+	@param projectId
+	@return ApiCreateAlertRecordRequest
+*/
+func (a *APIClient) CreateAlertRecord(ctx context.Context, groupName string, instanceId string, projectId string) ApiCreateAlertRecordRequest {
+	return CreateAlertRecordRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) CreateAlertRecordExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
+	r := CreateAlertRecordRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
 type CreateAlertgroupsRequest struct {
 	ctx                      context.Context
 	apiService               *DefaultApiService
@@ -3193,169 +3356,6 @@ func (a *APIClient) CreateAlertgroupsExecute(ctx context.Context, instanceId str
 	r := CreateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type CreateAlertrecordRequest struct {
-	ctx                      context.Context
-	apiService               *DefaultApiService
-	groupName                string
-	instanceId               string
-	projectId                string
-	createAlertrecordPayload *CreateAlertrecordPayload
-}
-
-func (r CreateAlertrecordRequest) CreateAlertrecordPayload(createAlertrecordPayload CreateAlertrecordPayload) ApiCreateAlertrecordRequest {
-	r.createAlertrecordPayload = &createAlertrecordPayload
-	return r
-}
-
-func (r CreateAlertrecordRequest) Execute() (*AlertRecordsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlertRecordsResponse
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateAlertrecord")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.createAlertrecordPayload == nil {
-		return localVarReturnValue, fmt.Errorf("createAlertrecordPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createAlertrecordPayload
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-CreateAlertrecord: Method for CreateAlertrecord
-
-Create alert record.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupName
-	@param instanceId
-	@param projectId
-	@return ApiCreateAlertrecordRequest
-*/
-func (a *APIClient) CreateAlertrecord(ctx context.Context, groupName string, instanceId string, projectId string) ApiCreateAlertrecordRequest {
-	return CreateAlertrecordRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) CreateAlertrecordExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
-	r := CreateAlertrecordRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
 		instanceId: instanceId,
 		projectId:  projectId,
 	}
@@ -6360,6 +6360,316 @@ func (a *APIClient) DeleteAlertConfigRouteExecute(ctx context.Context, instanceI
 	return r.Execute()
 }
 
+type DeleteAlertRecordRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	alertRecord string
+	groupName   string
+	instanceId  string
+	projectId   string
+}
+
+func (r DeleteAlertRecordRequest) Execute() (*AlertRecordsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertRecordsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertRecord")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records/{alertRecord}"
+	localVarPath = strings.Replace(localVarPath, "{"+"alertRecord"+"}", url.PathEscape(ParameterValueToString(r.alertRecord, "alertRecord")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+DeleteAlertRecord: Method for DeleteAlertRecord
+
+Delete alert record.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertRecord
+	@param groupName
+	@param instanceId
+	@param projectId
+	@return ApiDeleteAlertRecordRequest
+*/
+func (a *APIClient) DeleteAlertRecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiDeleteAlertRecordRequest {
+	return DeleteAlertRecordRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		alertRecord: alertRecord,
+		groupName:   groupName,
+		instanceId:  instanceId,
+		projectId:   projectId,
+	}
+}
+
+func (a *APIClient) DeleteAlertRecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
+	r := DeleteAlertRecordRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		alertRecord: alertRecord,
+		groupName:   groupName,
+		instanceId:  instanceId,
+		projectId:   projectId,
+	}
+	return r.Execute()
+}
+
+type DeleteAlertRecordsRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	groupName   string
+	instanceId  string
+	projectId   string
+	alertRecord *[]string
+}
+
+// Name of the records that should be deleted
+
+func (r DeleteAlertRecordsRequest) AlertRecord(alertRecord []string) ApiDeleteAlertRecordsRequest {
+	r.alertRecord = &alertRecord
+	return r
+}
+
+func (r DeleteAlertRecordsRequest) Execute() (*AlertRecordsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertRecordsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertRecords")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.alertRecord == nil {
+		return localVarReturnValue, fmt.Errorf("alertRecord is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "alertRecord", r.alertRecord, "csv")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+DeleteAlertRecords: Method for DeleteAlertRecords
+
+Delete alert records.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupName
+	@param instanceId
+	@param projectId
+	@return ApiDeleteAlertRecordsRequest
+*/
+func (a *APIClient) DeleteAlertRecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertRecordsRequest {
+	return DeleteAlertRecordsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) DeleteAlertRecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
+	r := DeleteAlertRecordsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
 type DeleteAlertgroupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -6665,316 +6975,6 @@ func (a *APIClient) DeleteAlertgroupsExecute(ctx context.Context, instanceId str
 	r := DeleteAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type DeleteAlertrecordRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	alertRecord string
-	groupName   string
-	instanceId  string
-	projectId   string
-}
-
-func (r DeleteAlertrecordRequest) Execute() (*AlertRecordsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlertRecordsResponse
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertrecord")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records/{alertRecord}"
-	localVarPath = strings.Replace(localVarPath, "{"+"alertRecord"+"}", url.PathEscape(ParameterValueToString(r.alertRecord, "alertRecord")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-DeleteAlertrecord: Method for DeleteAlertrecord
-
-Delete alert record.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertRecord
-	@param groupName
-	@param instanceId
-	@param projectId
-	@return ApiDeleteAlertrecordRequest
-*/
-func (a *APIClient) DeleteAlertrecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiDeleteAlertrecordRequest {
-	return DeleteAlertrecordRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		alertRecord: alertRecord,
-		groupName:   groupName,
-		instanceId:  instanceId,
-		projectId:   projectId,
-	}
-}
-
-func (a *APIClient) DeleteAlertrecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
-	r := DeleteAlertrecordRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		alertRecord: alertRecord,
-		groupName:   groupName,
-		instanceId:  instanceId,
-		projectId:   projectId,
-	}
-	return r.Execute()
-}
-
-type DeleteAlertrecordsRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	groupName   string
-	instanceId  string
-	projectId   string
-	alertRecord *[]string
-}
-
-// Name of the records that should be deleted
-
-func (r DeleteAlertrecordsRequest) AlertRecord(alertRecord []string) ApiDeleteAlertrecordsRequest {
-	r.alertRecord = &alertRecord
-	return r
-}
-
-func (r DeleteAlertrecordsRequest) Execute() (*AlertRecordsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlertRecordsResponse
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteAlertrecords")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.alertRecord == nil {
-		return localVarReturnValue, fmt.Errorf("alertRecord is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "alertRecord", r.alertRecord, "csv")
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-DeleteAlertrecords: Method for DeleteAlertrecords
-
-Delete alert records.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupName
-	@param instanceId
-	@param projectId
-	@return ApiDeleteAlertrecordsRequest
-*/
-func (a *APIClient) DeleteAlertrecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiDeleteAlertrecordsRequest {
-	return DeleteAlertrecordsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) DeleteAlertrecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
-	r := DeleteAlertrecordsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
 		instanceId: instanceId,
 		projectId:  projectId,
 	}
@@ -10187,6 +10187,174 @@ func (a *APIClient) GetAlertConfigsExecute(ctx context.Context, instanceId strin
 	return r.Execute()
 }
 
+type GetAlertRecordRequest struct {
+	ctx         context.Context
+	apiService  *DefaultApiService
+	alertRecord string
+	groupName   string
+	instanceId  string
+	projectId   string
+}
+
+func (r GetAlertRecordRequest) Execute() (*AlertRecordResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertRecordResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertRecord")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records/{alertRecord}"
+	localVarPath = strings.Replace(localVarPath, "{"+"alertRecord"+"}", url.PathEscape(ParameterValueToString(r.alertRecord, "alertRecord")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetAlertRecord: Method for GetAlertRecord
+
+Get alert record.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertRecord
+	@param groupName
+	@param instanceId
+	@param projectId
+	@return ApiGetAlertRecordRequest
+*/
+func (a *APIClient) GetAlertRecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiGetAlertRecordRequest {
+	return GetAlertRecordRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		alertRecord: alertRecord,
+		groupName:   groupName,
+		instanceId:  instanceId,
+		projectId:   projectId,
+	}
+}
+
+func (a *APIClient) GetAlertRecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordResponse, error) {
+	r := GetAlertRecordRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		alertRecord: alertRecord,
+		groupName:   groupName,
+		instanceId:  instanceId,
+		projectId:   projectId,
+	}
+	return r.Execute()
+}
+
 type GetAlertgroupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -10346,174 +10514,6 @@ func (a *APIClient) GetAlertgroupExecute(ctx context.Context, groupName string, 
 		groupName:  groupName,
 		instanceId: instanceId,
 		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type GetAlertrecordRequest struct {
-	ctx         context.Context
-	apiService  *DefaultApiService
-	alertRecord string
-	groupName   string
-	instanceId  string
-	projectId   string
-}
-
-func (r GetAlertrecordRequest) Execute() (*AlertRecordResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlertRecordResponse
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetAlertrecord")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records/{alertRecord}"
-	localVarPath = strings.Replace(localVarPath, "{"+"alertRecord"+"}", url.PathEscape(ParameterValueToString(r.alertRecord, "alertRecord")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-GetAlertrecord: Method for GetAlertrecord
-
-Get alert record.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertRecord
-	@param groupName
-	@param instanceId
-	@param projectId
-	@return ApiGetAlertrecordRequest
-*/
-func (a *APIClient) GetAlertrecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiGetAlertrecordRequest {
-	return GetAlertrecordRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		alertRecord: alertRecord,
-		groupName:   groupName,
-		instanceId:  instanceId,
-		projectId:   projectId,
-	}
-}
-
-func (a *APIClient) GetAlertrecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordResponse, error) {
-	r := GetAlertrecordRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		alertRecord: alertRecord,
-		groupName:   groupName,
-		instanceId:  instanceId,
-		projectId:   projectId,
 	}
 	return r.Execute()
 }
@@ -12382,6 +12382,147 @@ func (a *APIClient) ListAlertConfigRoutesExecute(ctx context.Context, instanceId
 	return r.Execute()
 }
 
+type ListAlertRecordsRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	groupName  string
+	instanceId string
+	projectId  string
+}
+
+func (r ListAlertRecordsRequest) Execute() (*AlertRecordsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertRecordsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertRecords")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListAlertRecords: Method for ListAlertRecords
+
+Get alert records.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupName
+	@param instanceId
+	@param projectId
+	@return ApiListAlertRecordsRequest
+*/
+func (a *APIClient) ListAlertRecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiListAlertRecordsRequest {
+	return ListAlertRecordsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) ListAlertRecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
+	r := ListAlertRecordsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
 type ListAlertgroupsRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -12523,147 +12664,6 @@ func (a *APIClient) ListAlertgroupsExecute(ctx context.Context, instanceId strin
 	r := ListAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type ListAlertrecordsRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	groupName  string
-	instanceId string
-	projectId  string
-}
-
-func (r ListAlertrecordsRequest) Execute() (*AlertRecordsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlertRecordsResponse
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListAlertrecords")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListAlertrecords: Method for ListAlertrecords
-
-Get alert records.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupName
-	@param instanceId
-	@param projectId
-	@return ApiListAlertrecordsRequest
-*/
-func (a *APIClient) ListAlertrecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiListAlertrecordsRequest {
-	return ListAlertrecordsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) ListAlertrecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
-	r := ListAlertrecordsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
 		instanceId: instanceId,
 		projectId:  projectId,
 	}
@@ -15534,6 +15534,169 @@ func (a *APIClient) ListScrapeConfigsExecute(ctx context.Context, instanceId str
 	return r.Execute()
 }
 
+type PartialUpdateAlertRecordsRequest struct {
+	ctx                                   context.Context
+	apiService                            *DefaultApiService
+	groupName                             string
+	instanceId                            string
+	projectId                             string
+	partialUpdateAlertRecordsRequestInner *[]PartialUpdateAlertRecordsRequestInner
+}
+
+func (r PartialUpdateAlertRecordsRequest) PartialUpdateAlertRecordsRequestInner(partialUpdateAlertRecordsRequestInner []PartialUpdateAlertRecordsRequestInner) ApiPartialUpdateAlertRecordsRequest {
+	r.partialUpdateAlertRecordsRequestInner = &partialUpdateAlertRecordsRequestInner
+	return r
+}
+
+func (r PartialUpdateAlertRecordsRequest) Execute() (*AlertRecordsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertRecordsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateAlertRecords")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.partialUpdateAlertRecordsRequestInner == nil {
+		return localVarReturnValue, fmt.Errorf("partialUpdateAlertRecordsRequestInner is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.partialUpdateAlertRecordsRequestInner
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+PartialUpdateAlertRecords: Method for PartialUpdateAlertRecords
+
+Patch alert records.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param groupName
+	@param instanceId
+	@param projectId
+	@return ApiPartialUpdateAlertRecordsRequest
+*/
+func (a *APIClient) PartialUpdateAlertRecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiPartialUpdateAlertRecordsRequest {
+	return PartialUpdateAlertRecordsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+}
+
+func (a *APIClient) PartialUpdateAlertRecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
+	r := PartialUpdateAlertRecordsRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		groupName:  groupName,
+		instanceId: instanceId,
+		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
 type PartialUpdateAlertgroupsRequest struct {
 	ctx                           context.Context
 	apiService                    *DefaultApiService
@@ -15686,169 +15849,6 @@ func (a *APIClient) PartialUpdateAlertgroupsExecute(ctx context.Context, instanc
 	r := PartialUpdateAlertgroupsRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type PartialUpdateAlertrecordsRequest struct {
-	ctx                                   context.Context
-	apiService                            *DefaultApiService
-	groupName                             string
-	instanceId                            string
-	projectId                             string
-	partialUpdateAlertrecordsRequestInner *[]PartialUpdateAlertrecordsRequestInner
-}
-
-func (r PartialUpdateAlertrecordsRequest) PartialUpdateAlertrecordsRequestInner(partialUpdateAlertrecordsRequestInner []PartialUpdateAlertrecordsRequestInner) ApiPartialUpdateAlertrecordsRequest {
-	r.partialUpdateAlertrecordsRequestInner = &partialUpdateAlertrecordsRequestInner
-	return r
-}
-
-func (r PartialUpdateAlertrecordsRequest) Execute() (*AlertRecordsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPatch
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlertRecordsResponse
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateAlertrecords")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records"
-	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.partialUpdateAlertrecordsRequestInner == nil {
-		return localVarReturnValue, fmt.Errorf("partialUpdateAlertrecordsRequestInner is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.partialUpdateAlertrecordsRequestInner
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-PartialUpdateAlertrecords: Method for PartialUpdateAlertrecords
-
-Patch alert records.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param groupName
-	@param instanceId
-	@param projectId
-	@return ApiPartialUpdateAlertrecordsRequest
-*/
-func (a *APIClient) PartialUpdateAlertrecords(ctx context.Context, groupName string, instanceId string, projectId string) ApiPartialUpdateAlertrecordsRequest {
-	return PartialUpdateAlertrecordsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
-		instanceId: instanceId,
-		projectId:  projectId,
-	}
-}
-
-func (a *APIClient) PartialUpdateAlertrecordsExecute(ctx context.Context, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
-	r := PartialUpdateAlertrecordsRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-		groupName:  groupName,
 		instanceId: instanceId,
 		projectId:  projectId,
 	}
@@ -17001,6 +17001,185 @@ func (a *APIClient) UpdateAlertConfigsExecute(ctx context.Context, instanceId st
 	return r.Execute()
 }
 
+type UpdateAlertRecordRequest struct {
+	ctx                      context.Context
+	apiService               *DefaultApiService
+	alertRecord              string
+	groupName                string
+	instanceId               string
+	projectId                string
+	updateAlertRecordPayload *UpdateAlertRecordPayload
+}
+
+func (r UpdateAlertRecordRequest) UpdateAlertRecordPayload(updateAlertRecordPayload UpdateAlertRecordPayload) ApiUpdateAlertRecordRequest {
+	r.updateAlertRecordPayload = &updateAlertRecordPayload
+	return r
+}
+
+func (r UpdateAlertRecordRequest) Execute() (*AlertRecordsResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AlertRecordsResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertRecord")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records/{alertRecord}"
+	localVarPath = strings.Replace(localVarPath, "{"+"alertRecord"+"}", url.PathEscape(ParameterValueToString(r.alertRecord, "alertRecord")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateAlertRecordPayload == nil {
+		return localVarReturnValue, fmt.Errorf("updateAlertRecordPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateAlertRecordPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v PermissionDenied
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Message
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+UpdateAlertRecord: Method for UpdateAlertRecord
+
+Update alert record.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alertRecord
+	@param groupName
+	@param instanceId
+	@param projectId
+	@return ApiUpdateAlertRecordRequest
+*/
+func (a *APIClient) UpdateAlertRecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiUpdateAlertRecordRequest {
+	return UpdateAlertRecordRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		alertRecord: alertRecord,
+		groupName:   groupName,
+		instanceId:  instanceId,
+		projectId:   projectId,
+	}
+}
+
+func (a *APIClient) UpdateAlertRecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
+	r := UpdateAlertRecordRequest{
+		apiService:  a.defaultApi,
+		ctx:         ctx,
+		alertRecord: alertRecord,
+		groupName:   groupName,
+		instanceId:  instanceId,
+		projectId:   projectId,
+	}
+	return r.Execute()
+}
+
 type UpdateAlertgroupRequest struct {
 	ctx                     context.Context
 	apiService              *DefaultApiService
@@ -17329,185 +17508,6 @@ func (a *APIClient) UpdateAlertgroupsExecute(ctx context.Context, instanceId str
 		ctx:        ctx,
 		instanceId: instanceId,
 		projectId:  projectId,
-	}
-	return r.Execute()
-}
-
-type UpdateAlertrecordRequest struct {
-	ctx                      context.Context
-	apiService               *DefaultApiService
-	alertRecord              string
-	groupName                string
-	instanceId               string
-	projectId                string
-	updateAlertrecordPayload *UpdateAlertrecordPayload
-}
-
-func (r UpdateAlertrecordRequest) UpdateAlertrecordPayload(updateAlertrecordPayload UpdateAlertrecordPayload) ApiUpdateAlertrecordRequest {
-	r.updateAlertrecordPayload = &updateAlertrecordPayload
-	return r
-}
-
-func (r UpdateAlertrecordRequest) Execute() (*AlertRecordsResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *AlertRecordsResponse
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.UpdateAlertrecord")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/projects/{projectId}/instances/{instanceId}/alertgroups/{groupName}/records/{alertRecord}"
-	localVarPath = strings.Replace(localVarPath, "{"+"alertRecord"+"}", url.PathEscape(ParameterValueToString(r.alertRecord, "alertRecord")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"groupName"+"}", url.PathEscape(ParameterValueToString(r.groupName, "groupName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"instanceId"+"}", url.PathEscape(ParameterValueToString(r.instanceId, "instanceId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateAlertrecordPayload == nil {
-		return localVarReturnValue, fmt.Errorf("updateAlertrecordPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateAlertrecordPayload
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v PermissionDenied
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Message
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-UpdateAlertrecord: Method for UpdateAlertrecord
-
-Update alert record.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param alertRecord
-	@param groupName
-	@param instanceId
-	@param projectId
-	@return ApiUpdateAlertrecordRequest
-*/
-func (a *APIClient) UpdateAlertrecord(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) ApiUpdateAlertrecordRequest {
-	return UpdateAlertrecordRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		alertRecord: alertRecord,
-		groupName:   groupName,
-		instanceId:  instanceId,
-		projectId:   projectId,
-	}
-}
-
-func (a *APIClient) UpdateAlertrecordExecute(ctx context.Context, alertRecord string, groupName string, instanceId string, projectId string) (*AlertRecordsResponse, error) {
-	r := UpdateAlertrecordRequest{
-		apiService:  a.defaultApi,
-		ctx:         ctx,
-		alertRecord: alertRecord,
-		groupName:   groupName,
-		instanceId:  instanceId,
-		projectId:   projectId,
 	}
 	return r.Execute()
 }
