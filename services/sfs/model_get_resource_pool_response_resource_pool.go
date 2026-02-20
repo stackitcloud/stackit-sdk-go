@@ -346,6 +346,8 @@ func NewGetResourcePoolResponseResourcePool() *GetResourcePoolResponseResourcePo
 // but it doesn't guarantee that properties required by API are set
 func NewGetResourcePoolResponseResourcePoolWithDefaults() *GetResourcePoolResponseResourcePool {
 	this := GetResourcePoolResponseResourcePool{}
+	var snapshotsAreVisible bool = false
+	this.SnapshotsAreVisible = &snapshotsAreVisible
 	return &this
 }
 
