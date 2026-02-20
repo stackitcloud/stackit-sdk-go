@@ -37,10 +37,31 @@ func setPatchInstancePayloadGetAclAttributeType(arg *PatchInstancePayloadGetAclA
 	*arg = val
 }
 
+/*
+	types and functions for feature_toggle
+*/
+
+// isModel
+type PatchInstancePayloadGetFeatureToggleAttributeType = *FeatureToggle
+type PatchInstancePayloadGetFeatureToggleArgType = FeatureToggle
+type PatchInstancePayloadGetFeatureToggleRetType = FeatureToggle
+
+func getPatchInstancePayloadGetFeatureToggleAttributeTypeOk(arg PatchInstancePayloadGetFeatureToggleAttributeType) (ret PatchInstancePayloadGetFeatureToggleRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setPatchInstancePayloadGetFeatureToggleAttributeType(arg *PatchInstancePayloadGetFeatureToggleAttributeType, val PatchInstancePayloadGetFeatureToggleRetType) {
+	*arg = &val
+}
+
 // PatchInstancePayload Properties to patch on an instance. All fields are optional.
 type PatchInstancePayload struct {
 	// A list of CIDR network addresses that are allowed to access the instance.
-	Acl PatchInstancePayloadGetAclAttributeType `json:"acl,omitempty"`
+	Acl           PatchInstancePayloadGetAclAttributeType           `json:"acl,omitempty"`
+	FeatureToggle PatchInstancePayloadGetFeatureToggleAttributeType `json:"feature_toggle,omitempty"`
 }
 
 // NewPatchInstancePayload instantiates a new PatchInstancePayload object
@@ -84,10 +105,36 @@ func (o *PatchInstancePayload) SetAcl(v PatchInstancePayloadGetAclRetType) {
 	setPatchInstancePayloadGetAclAttributeType(&o.Acl, v)
 }
 
+// GetFeatureToggle returns the FeatureToggle field value if set, zero value otherwise.
+func (o *PatchInstancePayload) GetFeatureToggle() (res PatchInstancePayloadGetFeatureToggleRetType) {
+	res, _ = o.GetFeatureToggleOk()
+	return
+}
+
+// GetFeatureToggleOk returns a tuple with the FeatureToggle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchInstancePayload) GetFeatureToggleOk() (ret PatchInstancePayloadGetFeatureToggleRetType, ok bool) {
+	return getPatchInstancePayloadGetFeatureToggleAttributeTypeOk(o.FeatureToggle)
+}
+
+// HasFeatureToggle returns a boolean if a field has been set.
+func (o *PatchInstancePayload) HasFeatureToggle() bool {
+	_, ok := o.GetFeatureToggleOk()
+	return ok
+}
+
+// SetFeatureToggle gets a reference to the given FeatureToggle and assigns it to the FeatureToggle field.
+func (o *PatchInstancePayload) SetFeatureToggle(v PatchInstancePayloadGetFeatureToggleRetType) {
+	setPatchInstancePayloadGetFeatureToggleAttributeType(&o.FeatureToggle, v)
+}
+
 func (o PatchInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getPatchInstancePayloadGetAclAttributeTypeOk(o.Acl); ok {
 		toSerialize["Acl"] = val
+	}
+	if val, ok := getPatchInstancePayloadGetFeatureToggleAttributeTypeOk(o.FeatureToggle); ok {
+		toSerialize["FeatureToggle"] = val
 	}
 	return toSerialize, nil
 }
