@@ -225,7 +225,9 @@
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v1.2.6](services/serviceenablement/CHANGELOG.md#v126) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
-- `sfs`: 
+- `sfs`:
+  - [v0.4.0](services/sfs/CHANGELOG.md#v040)
+    - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
   - [v0.3.0](services/sfs/CHANGELOG.md#v030)
     - **Feature:** Switch from `v1beta` API version to `v1` version.
     - **Breaking change:** Remove `ListSnapshotSchedules` method
