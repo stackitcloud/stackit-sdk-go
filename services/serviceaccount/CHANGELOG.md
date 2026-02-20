@@ -1,3 +1,8 @@
+## v0.12.0
+- **Feature:** add support for Federated Identity Providers
+  - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`, `PartialUpdateServiceAccountFederatedIdentityProvider`
+  - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
+
 ## v0.11.6
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 

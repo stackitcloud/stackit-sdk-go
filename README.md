@@ -103,15 +103,20 @@ To authenticate with the SDK, you need a [service account](https://docs.stackit.
 
 ### Authentication Methods
 
-The SDK supports two authentication methods:
+The SDK supports three authentication methods:
 
-1. **Key Flow** (Recommended)
+1. **Workload Identity Federation Flow**
+
+   - Uses OIDC trusted tokens
+   - Provides best security through short-lived tokens without secrets
+
+2. **Key Flow**
 
    - Uses RSA key-pair based authentication
    - Provides better security through short-lived tokens
    - Supports both STACKIT-generated and custom key pairs
 
-2. **Token Flow**
+3. **Token Flow** (Deprecated)
    - Uses long-lived service account tokens
    - Simpler but less secure
 
@@ -120,10 +125,40 @@ The SDK supports two authentication methods:
 The SDK searches for credentials in the following order:
 
 1. Explicit configuration in code
-2. Environment variables (KEY_PATH for KEY)
+2. Environment variables
 3. Credentials file (`$HOME/.stackit/credentials.json`)
 
-For each authentication method, the key flow is attempted first, followed by the token flow.
+For each authentication method, the try order is:
+1. Workload Identity Federation Flow
+2. Key Flow
+3. Token Flow
+
+### Using the Workload Identity Fedearion Flow
+
+1. Create a service account trusted relation in the STACKIT Portal:
+
+   - Navigate to `Service Accounts` → Select account → `Federated Identity Providers`
+   - [Configure a Federated Identity Provider](https://docs.stackit.cloud/platform/access-and-identity/service-accounts/how-tos/manage-service-account-federations/#create-a-federated-identity-provider) and the required assertions to trust in.
+
+2. Configure authentication using any of these methods:
+
+   **A. Code Configuration**
+
+```go
+// Using wokload identity federation flow
+config.WithWorkloadIdentityFederationAuth()
+// With the custom path for the external OIDC token
+config.WithWorkloadIdentityFederationPath("/path/to/your/federated/token")
+// For the service account
+config.WithServiceAccountEmail("my-sa@sa-stackit.cloud")
+```
+**B. Environment Variables**
+```bash
+# With the custom path for the external OIDC token
+STACKIT_FEDERATED_TOKEN_FILE=/path/to/your/federated/token
+# For the service account
+STACKIT_SERVICE_ACCOUNT_EMAIL=my-sa@sa-stackit.cloud
+```
 
 ### Using the Key Flow
 

@@ -61,6 +61,13 @@ func TestStatusErrorKey_UnmarshalJSON(t *testing.T) {
 			wantErr: false,
 		},
 		{
+			name: `success - possible enum value no. 6`,
+			args: args{
+				src: []byte(`"EXTERNAL_QUOTA_REACHED"`),
+			},
+			wantErr: false,
+		},
+		{
 			name: "fail",
 			args: args{
 				src: []byte("\"FOOBAR\""),
