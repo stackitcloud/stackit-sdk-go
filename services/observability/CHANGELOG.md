@@ -1,7 +1,7 @@
 ## v0.17.0
 - **Feature:** add AlertRecord
-    - new related operations: `CreateAlertrecord`, `DeleteAlertrecord`, `DeleteAlertrecords`, `GetAlertrecord`, `ListAlertrecords`, `PartialUpdateAlertrecords`, `UpdateAlertrecord`
-    - new related models: `UpdateAlertrecordPayload`, `PartialUpdateAlertrecordsRequestInner`, `CreateAlertrecordPayload`, `AlertRecord`, `AlertRecordResponse`, `AlertRecordsResponse`
+    - new related operations: `CreateAlertRecord`, `DeleteAlertRecord`, `DeleteAlertRecords`, `GetAlertRecord`, `ListAlertRecords`, `PartialUpdateAlertRecords`, `UpdateAlertRecord`
+    - new related models: `UpdateAlertRecordPayload`, `PartialUpdateAlertRecordsRequestInner`, `CreateAlertRecordPayload`, `AlertRecord`, `AlertRecordResponse`, `AlertRecordsResponse`
 - **Feature:** add Backups
     - new related operations: `CreateBackup`, `CreateBackupSchedule`, `ListBackupRetentions`, `ListBackupSchedules`, `ListBackups`, `RestoreBackup`
     - new related models: `BackupResponse`, `BackupRetentionResponse`, `BackupSchedule`, `BackupSchedulePostResponse`, `BackupScheduleResponse`, `CreateBackupSchedulePayload`
@@ -29,14 +29,14 @@
 - **Feature:** add Redis checks
     - new related operations `CreateRedisCheck`, `ListRedisChecks`, `DeleteRedisCheck`
     - new related models `RedisCheckChildResponse`, `RedisCheckResponse`, `CreateRedisCheckPayload`
-- **Feature:** extended Alertrules
-    - new related operations `DeleteAlertrule`, `GetAlertrule`, `UpdateAlertrule`
-    - new related models `AlertruleResponse`, `UpdateAlertrulePayload`
+- **Feature:** extended AlertRules
+    - new related operations `DeleteAlertRule`, `GetAlertRule`, `UpdateAlertRule`
+    - new related models `AlertRuleResponse`, `UpdateAlertRulePayload`
 - **Feature:** add Offerings
     - new related operation `ListOfferings`
     - new related model `Offerings`
 -  **Feature:** extended Scrape
-- new related operations `DeleteScrapeConfigs`, `PartialUpdateScrapeConfigs`
+    - new related operations `DeleteScrapeConfigs`, `PartialUpdateScrapeConfigs`
 - ️**Breaking change:** renamed AlertRule to AlertruleResponse
 - ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInner to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
 - ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
