@@ -103,9 +103,9 @@ func setTargetPoolGetTargetsAttributeType(arg *TargetPoolGetTargetsAttributeType
 */
 
 // isModel
-type TargetPoolGetTlsConfigAttributeType = *TargetPoolTlsConfig
-type TargetPoolGetTlsConfigArgType = TargetPoolTlsConfig
-type TargetPoolGetTlsConfigRetType = TargetPoolTlsConfig
+type TargetPoolGetTlsConfigAttributeType = *TlsConfig
+type TargetPoolGetTlsConfigArgType = TlsConfig
+type TargetPoolGetTlsConfigRetType = TlsConfig
 
 func getTargetPoolGetTlsConfigAttributeTypeOk(arg TargetPoolGetTlsConfigAttributeType) (ret TargetPoolGetTlsConfigRetType, ok bool) {
 	if arg == nil {
@@ -258,7 +258,7 @@ func (o *TargetPool) HasTlsConfig() bool {
 	return ok
 }
 
-// SetTlsConfig gets a reference to the given TargetPoolTlsConfig and assigns it to the TlsConfig field.
+// SetTlsConfig gets a reference to the given TlsConfig and assigns it to the TlsConfig field.
 func (o *TargetPool) SetTlsConfig(v TargetPoolGetTlsConfigRetType) {
 	setTargetPoolGetTlsConfigAttributeType(&o.TlsConfig, v)
 }

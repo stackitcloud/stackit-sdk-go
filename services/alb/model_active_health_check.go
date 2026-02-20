@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &ActiveHealthCheck{}
 
 /*
+	types and functions for altPort
+*/
+
+// isInteger
+type ActiveHealthCheckGetAltPortAttributeType = *int64
+type ActiveHealthCheckGetAltPortArgType = int64
+type ActiveHealthCheckGetAltPortRetType = int64
+
+func getActiveHealthCheckGetAltPortAttributeTypeOk(arg ActiveHealthCheckGetAltPortAttributeType) (ret ActiveHealthCheckGetAltPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetAltPortAttributeType(arg *ActiveHealthCheckGetAltPortAttributeType, val ActiveHealthCheckGetAltPortRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for healthyThreshold
 */
 
@@ -142,6 +162,9 @@ func setActiveHealthCheckGetUnhealthyThresholdAttributeType(arg *ActiveHealthChe
 
 // ActiveHealthCheck Set this to customize active health checks for targets in this pool.
 type ActiveHealthCheck struct {
+	// Overrides the default port used for health check probes.
+	// Can be cast to int32 without loss of precision.
+	AltPort ActiveHealthCheckGetAltPortAttributeType `json:"altPort,omitempty"`
 	// Healthy threshold of the health checking
 	// Can be cast to int32 without loss of precision.
 	HealthyThreshold ActiveHealthCheckGetHealthyThresholdAttributeType `json:"healthyThreshold,omitempty"`
@@ -172,6 +195,29 @@ func NewActiveHealthCheck() *ActiveHealthCheck {
 func NewActiveHealthCheckWithDefaults() *ActiveHealthCheck {
 	this := ActiveHealthCheck{}
 	return &this
+}
+
+// GetAltPort returns the AltPort field value if set, zero value otherwise.
+func (o *ActiveHealthCheck) GetAltPort() (res ActiveHealthCheckGetAltPortRetType) {
+	res, _ = o.GetAltPortOk()
+	return
+}
+
+// GetAltPortOk returns a tuple with the AltPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActiveHealthCheck) GetAltPortOk() (ret ActiveHealthCheckGetAltPortRetType, ok bool) {
+	return getActiveHealthCheckGetAltPortAttributeTypeOk(o.AltPort)
+}
+
+// HasAltPort returns a boolean if a field has been set.
+func (o *ActiveHealthCheck) HasAltPort() bool {
+	_, ok := o.GetAltPortOk()
+	return ok
+}
+
+// SetAltPort gets a reference to the given int64 and assigns it to the AltPort field.
+func (o *ActiveHealthCheck) SetAltPort(v ActiveHealthCheckGetAltPortRetType) {
+	setActiveHealthCheckGetAltPortAttributeType(&o.AltPort, v)
 }
 
 // GetHealthyThreshold returns the HealthyThreshold field value if set, zero value otherwise.
@@ -314,6 +360,9 @@ func (o *ActiveHealthCheck) SetUnhealthyThreshold(v ActiveHealthCheckGetUnhealth
 
 func (o ActiveHealthCheck) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getActiveHealthCheckGetAltPortAttributeTypeOk(o.AltPort); ok {
+		toSerialize["AltPort"] = val
+	}
 	if val, ok := getActiveHealthCheckGetHealthyThresholdAttributeTypeOk(o.HealthyThreshold); ok {
 		toSerialize["HealthyThreshold"] = val
 	}
