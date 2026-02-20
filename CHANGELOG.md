@@ -1,4 +1,4 @@
-## Release (2026-mm-dd)
+## Release (2026-02-20)
 - `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
   - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `alb`: 
