@@ -58,12 +58,33 @@ func setHttpHealthChecksGetPathAttributeType(arg *HttpHealthChecksGetPathAttribu
 type HttpHealthChecksGetPathArgType = string
 type HttpHealthChecksGetPathRetType = string
 
+/*
+	types and functions for tls
+*/
+
+// isModel
+type HttpHealthChecksGetTlsAttributeType = *TlsConfig
+type HttpHealthChecksGetTlsArgType = TlsConfig
+type HttpHealthChecksGetTlsRetType = TlsConfig
+
+func getHttpHealthChecksGetTlsAttributeTypeOk(arg HttpHealthChecksGetTlsAttributeType) (ret HttpHealthChecksGetTlsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setHttpHealthChecksGetTlsAttributeType(arg *HttpHealthChecksGetTlsAttributeType, val HttpHealthChecksGetTlsRetType) {
+	*arg = &val
+}
+
 // HttpHealthChecks Options for the HTTP health checking.
 type HttpHealthChecks struct {
 	// List of HTTP status codes that indicate a healthy response
 	OkStatuses HttpHealthChecksGetOkStatusesAttributeType `json:"okStatuses,omitempty"`
 	// Path to send the health check request to
 	Path HttpHealthChecksGetPathAttributeType `json:"path,omitempty"`
+	Tls  HttpHealthChecksGetTlsAttributeType  `json:"tls,omitempty"`
 }
 
 // NewHttpHealthChecks instantiates a new HttpHealthChecks object
@@ -129,6 +150,29 @@ func (o *HttpHealthChecks) SetPath(v HttpHealthChecksGetPathRetType) {
 	setHttpHealthChecksGetPathAttributeType(&o.Path, v)
 }
 
+// GetTls returns the Tls field value if set, zero value otherwise.
+func (o *HttpHealthChecks) GetTls() (res HttpHealthChecksGetTlsRetType) {
+	res, _ = o.GetTlsOk()
+	return
+}
+
+// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HttpHealthChecks) GetTlsOk() (ret HttpHealthChecksGetTlsRetType, ok bool) {
+	return getHttpHealthChecksGetTlsAttributeTypeOk(o.Tls)
+}
+
+// HasTls returns a boolean if a field has been set.
+func (o *HttpHealthChecks) HasTls() bool {
+	_, ok := o.GetTlsOk()
+	return ok
+}
+
+// SetTls gets a reference to the given TlsConfig and assigns it to the Tls field.
+func (o *HttpHealthChecks) SetTls(v HttpHealthChecksGetTlsRetType) {
+	setHttpHealthChecksGetTlsAttributeType(&o.Tls, v)
+}
+
 func (o HttpHealthChecks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getHttpHealthChecksGetOkStatusesAttributeTypeOk(o.OkStatuses); ok {
@@ -136,6 +180,9 @@ func (o HttpHealthChecks) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getHttpHealthChecksGetPathAttributeTypeOk(o.Path); ok {
 		toSerialize["Path"] = val
+	}
+	if val, ok := getHttpHealthChecksGetTlsAttributeTypeOk(o.Tls); ok {
+		toSerialize["Tls"] = val
 	}
 	return toSerialize, nil
 }
