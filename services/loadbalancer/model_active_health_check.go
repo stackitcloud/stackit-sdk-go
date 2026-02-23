@@ -18,6 +18,26 @@ import (
 var _ MappedNullable = &ActiveHealthCheck{}
 
 /*
+	types and functions for altPort
+*/
+
+// isInteger
+type ActiveHealthCheckGetAltPortAttributeType = *int64
+type ActiveHealthCheckGetAltPortArgType = int64
+type ActiveHealthCheckGetAltPortRetType = int64
+
+func getActiveHealthCheckGetAltPortAttributeTypeOk(arg ActiveHealthCheckGetAltPortAttributeType) (ret ActiveHealthCheckGetAltPortRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetAltPortAttributeType(arg *ActiveHealthCheckGetAltPortAttributeType, val ActiveHealthCheckGetAltPortRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for healthyThreshold
 */
 
@@ -34,6 +54,26 @@ func getActiveHealthCheckGetHealthyThresholdAttributeTypeOk(arg ActiveHealthChec
 }
 
 func setActiveHealthCheckGetHealthyThresholdAttributeType(arg *ActiveHealthCheckGetHealthyThresholdAttributeType, val ActiveHealthCheckGetHealthyThresholdRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for httpHealthChecks
+*/
+
+// isModel
+type ActiveHealthCheckGetHttpHealthChecksAttributeType = *HttpHealthChecks
+type ActiveHealthCheckGetHttpHealthChecksArgType = HttpHealthChecks
+type ActiveHealthCheckGetHttpHealthChecksRetType = HttpHealthChecks
+
+func getActiveHealthCheckGetHttpHealthChecksAttributeTypeOk(arg ActiveHealthCheckGetHttpHealthChecksAttributeType) (ret ActiveHealthCheckGetHttpHealthChecksRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setActiveHealthCheckGetHttpHealthChecksAttributeType(arg *ActiveHealthCheckGetHttpHealthChecksAttributeType, val ActiveHealthCheckGetHttpHealthChecksRetType) {
 	*arg = &val
 }
 
@@ -122,9 +162,13 @@ func setActiveHealthCheckGetUnhealthyThresholdAttributeType(arg *ActiveHealthChe
 
 // ActiveHealthCheck struct for ActiveHealthCheck
 type ActiveHealthCheck struct {
+	// Overrides the default port used for health check probes.
+	// Can be cast to int32 without loss of precision.
+	AltPort ActiveHealthCheckGetAltPortAttributeType `json:"altPort,omitempty"`
 	// Healthy threshold of the health checking
 	// Can be cast to int32 without loss of precision.
 	HealthyThreshold ActiveHealthCheckGetHealthyThresholdAttributeType `json:"healthyThreshold,omitempty"`
+	HttpHealthChecks ActiveHealthCheckGetHttpHealthChecksAttributeType `json:"httpHealthChecks,omitempty"`
 	// Interval duration of health checking in seconds
 	Interval ActiveHealthCheckGetIntervalAttributeType `json:"interval,omitempty"`
 	// Interval duration threshold of the health checking in seconds
@@ -153,6 +197,29 @@ func NewActiveHealthCheckWithDefaults() *ActiveHealthCheck {
 	return &this
 }
 
+// GetAltPort returns the AltPort field value if set, zero value otherwise.
+func (o *ActiveHealthCheck) GetAltPort() (res ActiveHealthCheckGetAltPortRetType) {
+	res, _ = o.GetAltPortOk()
+	return
+}
+
+// GetAltPortOk returns a tuple with the AltPort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActiveHealthCheck) GetAltPortOk() (ret ActiveHealthCheckGetAltPortRetType, ok bool) {
+	return getActiveHealthCheckGetAltPortAttributeTypeOk(o.AltPort)
+}
+
+// HasAltPort returns a boolean if a field has been set.
+func (o *ActiveHealthCheck) HasAltPort() bool {
+	_, ok := o.GetAltPortOk()
+	return ok
+}
+
+// SetAltPort gets a reference to the given int64 and assigns it to the AltPort field.
+func (o *ActiveHealthCheck) SetAltPort(v ActiveHealthCheckGetAltPortRetType) {
+	setActiveHealthCheckGetAltPortAttributeType(&o.AltPort, v)
+}
+
 // GetHealthyThreshold returns the HealthyThreshold field value if set, zero value otherwise.
 func (o *ActiveHealthCheck) GetHealthyThreshold() (res ActiveHealthCheckGetHealthyThresholdRetType) {
 	res, _ = o.GetHealthyThresholdOk()
@@ -174,6 +241,29 @@ func (o *ActiveHealthCheck) HasHealthyThreshold() bool {
 // SetHealthyThreshold gets a reference to the given int64 and assigns it to the HealthyThreshold field.
 func (o *ActiveHealthCheck) SetHealthyThreshold(v ActiveHealthCheckGetHealthyThresholdRetType) {
 	setActiveHealthCheckGetHealthyThresholdAttributeType(&o.HealthyThreshold, v)
+}
+
+// GetHttpHealthChecks returns the HttpHealthChecks field value if set, zero value otherwise.
+func (o *ActiveHealthCheck) GetHttpHealthChecks() (res ActiveHealthCheckGetHttpHealthChecksRetType) {
+	res, _ = o.GetHttpHealthChecksOk()
+	return
+}
+
+// GetHttpHealthChecksOk returns a tuple with the HttpHealthChecks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActiveHealthCheck) GetHttpHealthChecksOk() (ret ActiveHealthCheckGetHttpHealthChecksRetType, ok bool) {
+	return getActiveHealthCheckGetHttpHealthChecksAttributeTypeOk(o.HttpHealthChecks)
+}
+
+// HasHttpHealthChecks returns a boolean if a field has been set.
+func (o *ActiveHealthCheck) HasHttpHealthChecks() bool {
+	_, ok := o.GetHttpHealthChecksOk()
+	return ok
+}
+
+// SetHttpHealthChecks gets a reference to the given HttpHealthChecks and assigns it to the HttpHealthChecks field.
+func (o *ActiveHealthCheck) SetHttpHealthChecks(v ActiveHealthCheckGetHttpHealthChecksRetType) {
+	setActiveHealthCheckGetHttpHealthChecksAttributeType(&o.HttpHealthChecks, v)
 }
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
@@ -270,8 +360,14 @@ func (o *ActiveHealthCheck) SetUnhealthyThreshold(v ActiveHealthCheckGetUnhealth
 
 func (o ActiveHealthCheck) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getActiveHealthCheckGetAltPortAttributeTypeOk(o.AltPort); ok {
+		toSerialize["AltPort"] = val
+	}
 	if val, ok := getActiveHealthCheckGetHealthyThresholdAttributeTypeOk(o.HealthyThreshold); ok {
 		toSerialize["HealthyThreshold"] = val
+	}
+	if val, ok := getActiveHealthCheckGetHttpHealthChecksAttributeTypeOk(o.HttpHealthChecks); ok {
+		toSerialize["HttpHealthChecks"] = val
 	}
 	if val, ok := getActiveHealthCheckGetIntervalAttributeTypeOk(o.Interval); ok {
 		toSerialize["Interval"] = val
