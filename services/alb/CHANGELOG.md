@@ -1,3 +1,8 @@
+## v0.10.0
+- **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
+- **Feature:** Add new field `Tls` to `HttpHealthCheck`
+- **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+
 ## v0.9.3
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 

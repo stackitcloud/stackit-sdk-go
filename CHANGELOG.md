@@ -1,9 +1,17 @@
-## Release (2026-mm-dd)
-- `core`: 
-  - [v0.22.0](core/CHANGELOG.md#v0220) 
-    - **Feature:** Support Azure DevOps OIDC adapter
-  - [v0.21.1](core/CHANGELOG.md#v0211) 
-    - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
+## Release (2026-DD-MM)
+
+- `core`: [v0.22.0](core/CHANGELOG.md#v0220) 
+  - **Feature:** Support Azure DevOps OIDC adapter
+- `alb`: [v0.10.0](services/alb/CHANGELOG.md#v0100)
+  - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
+  - **Feature:** Add new field `Tls` to `HttpHealthCheck`
+  - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+- `loadbalancer`: [v1.8.0](services/loadbalancer/CHANGELOG.md#v180)
+  - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+
+## Release (2026-02-20)
+- `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
+  - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `alb`: 
   - [v0.9.3](services/alb/CHANGELOG.md#v093)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
@@ -20,11 +28,16 @@
   - [v0.1.4](services/auditlog/CHANGELOG.md#v014) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `authorization`: 
+  - [v0.12.0](services/authorization/CHANGELOG.md#v0120)
+    - **Breaking change:** removed operation `GetAssignableSubjects` and related models `AssignableSubject`, `ListAssignableSubjectsResponse`
   - [v0.11.3](services/authorization/CHANGELOG.md#v0113)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.11.2](services/authorization/CHANGELOG.md#v0112) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `cdn`: 
+  - [v1.10.0](services/cdn/CHANGELOG.md#v1100)
+    - **Feature:** Add support for `RedirectConfig` in `Config`, `ConfigPatch` and `CreateDistributionPayload` models
+      - new related models `RedirectConfig`, `RedirectRule`, `Matcher` and `MatchCondition`
   - [v1.9.4](services/cdn/CHANGELOG.md#v194)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v1.9.3](services/cdn/CHANGELOG.md#v193) 
@@ -107,6 +120,52 @@
   - [v1.4.4](services/objectstorage/CHANGELOG.md#v144) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `observability`: 
+  - [v0.17.0](services/observability/CHANGELOG.md#v0170)
+    - **Feature:** add AlertRecord
+      - new related operations: `CreateAlertRecord`, `DeleteAlertRecord`, `DeleteAlertRecords`, `GetAlertRecord`, `ListAlertRecords`, `PartialUpdateAlertRecords`, `UpdateAlertRecord`
+      - new related models: `UpdateAlertRecordPayload`, `PartialUpdateAlertRecordsRequestInner`, `CreateAlertRecordPayload`, `AlertRecord`, `AlertRecordResponse`, `AlertRecordsResponse`
+    - **Feature:** add Backups
+      - new related operations: `CreateBackup`, `CreateBackupSchedule`, `ListBackupRetentions`, `ListBackupSchedules`, `ListBackups`, `RestoreBackup`
+      - new related models: `BackupResponse`, `BackupRetentionResponse`, `BackupSchedule`, `BackupSchedulePostResponse`, `BackupScheduleResponse`, `CreateBackupSchedulePayload`
+    - **Feature:** add Elasticsearch checks
+      - new related operations `CreateElasticsearchCheck`, `DeleteElasticsearchCheck`, `ListElasticsearchChecks`
+      - new related models `ElasticsearchCheckChildResponse`, `ElasticsearchCheckResponse` `CreateElasticsearchCheckPayload`
+    - **Feature:** add Mongodb checks
+      - new related operations `CreateMongodbCheck`, `ListMongodbChecks`, `DeleteMongodbCheck`
+      - new related models `MongodbCheckChildResponse`, `MongodbCheckResponse`, `CreateMongodbCheckPayload`
+    - **Feature:** add Mysql checks
+      - new related operations `CreateMysqlCheck`, `DeleteMysqlCheck`, `ListMysqlChecks`
+      - new related models `MysqlCheckChildResponse`, `MysqlCheckResponse`, `CreateMysqlCheckPayload`
+    - **Feature:** add Network checks
+      - new related operations `CreateNetworkCheck`, `DeleteNetworkCheck`, `ListNetworkChecks`
+      - new related models `NetworkCheckChildResponse`, `NetworkCheckResponse`, `CreateNetworkCheckPayload`
+    - **Feature:** add Ping checks
+      - new related operations `CreatePingCheck`, `DeletePingCheck`, `ListPingChecks`
+      - new related models `PingCheckChildResponse`, `PingCheckResponse`, `CreatePingCheckPayload`
+    - **Feature:** add Postgresql checks
+      - new related operations `CreatePostgresqlCheck`, `DeletePostgresqlCheck`, `ListPostgresqlChecks`
+      - new related models `PostgresqlCheckChildResponse`, `PostgresqlCheckResponse`, `CreatePostgresqlCheckPayload`
+    - **Feature:** add Rabbitmq checks
+      - new related operations `CreateRabbitmqCheck`, `DeleteRabbitmqCheck`, `ListRabbitmqChecks`
+      - new related models `RabbitmqCheckChildResponse`, `RabbitmqCheckResponse`, `CreateRabbitmqCheckPayload`
+    - **Feature:** add Redis checks
+      - new related operations `CreateRedisCheck`, `ListRedisChecks`, `DeleteRedisCheck`
+      - new related models `RedisCheckChildResponse`, `RedisCheckResponse`, `CreateRedisCheckPayload`
+    - **Feature:** extended AlertRules
+      - new related operations `DeleteAlertRule`, `GetAlertRule`, `UpdateAlertRule`
+      - new related models `AlertRuleResponse`, `UpdateAlertRulePayload`
+    - **Feature:** add Offerings
+      - new related operation `ListOfferings`
+      - new related model `Offerings`
+    -  **Feature:** extended Scrape
+      - new related operations `DeleteScrapeConfigs`, `PartialUpdateScrapeConfigs`
+    - ️**Breaking change:** renamed AlertRule to AlertruleResponse
+    - ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInner to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
+    - ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2 to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
+    - ️**Breaking change:** renamed CreateScrapeConfigPayloadHttpSdConfigsInnerOauth2TlsConfig to PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig
+    - ️**Breaking change:** renamed CreateScrapeConfigPayloadMetricsRelabelConfigsInner to PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
+    - ️**Breaking change:** renamed CreateScrapeConfigPayloadStaticConfigsInner to PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner
+    - ️**Breaking change:** renamed CreateScrapeConfigPayloadBasicAuth to PartialUpdateScrapeConfigsRequestInnerBasicAuth
   - [v0.16.3](services/observability/CHANGELOG.md#v0163)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.16.2](services/observability/CHANGELOG.md#v0162) 
@@ -122,6 +181,8 @@
   - [v1.3.4](services/postgresflex/CHANGELOG.md#v134) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `rabbitmq`: 
+  - [v0.26.0](services/rabbitmq/CHANGELOG.md#v0260)
+    - **Breaking change:** `SetTLSProtocols` now accepts a slice of strings instead of a single string
   - [v0.25.6](services/rabbitmq/CHANGELOG.md#v0256)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.25.5](services/rabbitmq/CHANGELOG.md#v0255) 
@@ -162,6 +223,10 @@
   - [v1.2.5](services/serverupdate/CHANGELOG.md#v125) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `serviceaccount`: 
+  - [v0.12.0](services/serviceaccount/CHANGELOG.md#v0120)
+    - **Feature:** add support for Federated Identity Providers
+      - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`, `PartialUpdateServiceAccountFederatedIdentityProvider`
+      - new models: `CreateFederatedIdentityProviderPayload`, `CreateFederatedIdentityProviderPayloadAssertionsInner`, `CreateFederatedIdentityProviderResponse`, `CreateFederatedIdentityProviderResponseAssertionsInner`, `FederatedListFederatedIdentityProvidersResponse`, `PartialUpdateServiceAccountFederatedIdentityProviderPayload`
   - [v0.11.6](services/serviceaccount/CHANGELOG.md#v0116)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v0.11.5](services/serviceaccount/CHANGELOG.md#v0115) 
@@ -171,7 +236,9 @@
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v1.2.6](services/serviceenablement/CHANGELOG.md#v126) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
-- `sfs`: 
+- `sfs`:
+  - [v0.4.0](services/sfs/CHANGELOG.md#v040)
+    - **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
   - [v0.3.0](services/sfs/CHANGELOG.md#v030)
     - **Feature:** Switch from `v1beta` API version to `v1` version.
     - **Breaking change:** Remove `ListSnapshotSchedules` method
@@ -182,6 +249,10 @@
   - [v0.2.2](services/sfs/CHANGELOG.md#v022) 
     - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`
 - `ske`: 
+  - [v1.7.0](services/ske/CHANGELOG.md#v170)
+    - **Feature:** new model `AccessScope`
+    - **Feature:** new model `V2ControlPlaneNetwork`
+    - **Feature:** added field `ControlPlane` of type `V2ControlPlaneNetwork` to model `Network`
   - [v1.6.3](services/ske/CHANGELOG.md#v163)
     - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
   - [v1.6.2](services/ske/CHANGELOG.md#v162) 

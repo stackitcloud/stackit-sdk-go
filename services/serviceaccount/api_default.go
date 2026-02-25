@@ -45,6 +45,26 @@ type DefaultApi interface {
 	*/
 	CreateAccessTokenExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*AccessToken, error)
 	/*
+		CreateFederatedIdentityProvider Create a new Federated Identity Provider
+		Federate the service account with an identity provider.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return ApiCreateFederatedIdentityProviderRequest
+	*/
+	CreateFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateFederatedIdentityProviderRequest
+	/*
+		CreateFederatedIdentityProviderExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return CreateFederatedIdentityProviderResponse
+
+	*/
+	CreateFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*CreateFederatedIdentityProviderResponse, error)
+	/*
 		CreateServiceAccount Create a new Service Account
 		Create a new Service Account in a project. The service account only resides in the project, and initially has no roles or permissions on any resources. After creation, the service account can be assigned to this project, other projects in the parent organization or to the parent organization.
 
@@ -147,6 +167,22 @@ type DefaultApi interface {
 	*/
 	DeleteServiceAccountKeyExecute(ctx context.Context, projectId string, serviceAccountEmail string, keyId string) error
 	/*
+		DeleteServiceFederatedIdentityProvider Delete a service account Federated Identity Provider
+		Delete a Federated Identity Provider
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param federationId ID of the Federated Identity Provider.
+		@return ApiDeleteServiceFederatedIdentityProviderRequest
+	*/
+	DeleteServiceFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiDeleteServiceFederatedIdentityProviderRequest
+	/*
+		DeleteServiceFederatedIdentityProviderExecute executes the request
+
+	*/
+	DeleteServiceFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) error
+	/*
 		GetJWKS Get JSON Web Key set of the service account
 		Get JSON Web Key set of the service account
 
@@ -207,6 +243,26 @@ type DefaultApi interface {
 	*/
 	ListAccessTokensExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*ListAccessTokensResponse, error)
 	/*
+		ListFederatedIdentityProviders List all federated identity providers
+		List all the identity providers the service account is federated with.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return ApiListFederatedIdentityProvidersRequest
+	*/
+	ListFederatedIdentityProviders(ctx context.Context, projectId string, serviceAccountEmail string) ApiListFederatedIdentityProvidersRequest
+	/*
+		ListFederatedIdentityProvidersExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@return FederatedListFederatedIdentityProvidersResponse
+
+	*/
+	ListFederatedIdentityProvidersExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*FederatedListFederatedIdentityProvidersResponse, error)
+	/*
 		ListServiceAccountKeys List all keys that belong to the service account
 		List all keys that belong to the service account
 
@@ -245,6 +301,28 @@ type DefaultApi interface {
 	*/
 	ListServiceAccountsExecute(ctx context.Context, projectId string) (*ListServiceAccountsResponse, error)
 	/*
+		PartialUpdateServiceAccountFederatedIdentityProvider Update Service Account Federated Identity Provider
+		Update a Federated Identity Provider.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param federationId ID of the Federated Identity Provider.
+		@return ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest
+	*/
+	PartialUpdateServiceAccountFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest
+	/*
+		PartialUpdateServiceAccountFederatedIdentityProviderExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param federationId ID of the Federated Identity Provider.
+		@return CreateFederatedIdentityProviderResponse
+
+	*/
+	PartialUpdateServiceAccountFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*CreateFederatedIdentityProviderResponse, error)
+	/*
 		PartialUpdateServiceAccountKey Update Service Account key
 		Update a key. You can activate or deactivate a key, or set/delete validUntil. The key cannot be updated using the same service account (authenticated using the short lived token of the key).
 
@@ -272,6 +350,12 @@ type ApiCreateAccessTokenRequest interface {
 	// Token request. Optional. If not specified the access token will be valid for 90days.
 	CreateAccessTokenPayload(createAccessTokenPayload CreateAccessTokenPayload) ApiCreateAccessTokenRequest
 	Execute() (*AccessToken, error)
+}
+
+type ApiCreateFederatedIdentityProviderRequest interface {
+	// Federated identity provider request
+	CreateFederatedIdentityProviderPayload(createFederatedIdentityProviderPayload CreateFederatedIdentityProviderPayload) ApiCreateFederatedIdentityProviderRequest
+	Execute() (*CreateFederatedIdentityProviderResponse, error)
 }
 
 type ApiCreateServiceAccountRequest interface {
@@ -308,6 +392,10 @@ type ApiDeleteServiceAccountKeyRequest interface {
 	Execute() error
 }
 
+type ApiDeleteServiceFederatedIdentityProviderRequest interface {
+	Execute() error
+}
+
 type ApiGetJWKSRequest interface {
 	Execute() (*JWKS, error)
 }
@@ -322,12 +410,22 @@ type ApiListAccessTokensRequest interface {
 	Execute() (*ListAccessTokensResponse, error)
 }
 
+type ApiListFederatedIdentityProvidersRequest interface {
+	Execute() (*FederatedListFederatedIdentityProvidersResponse, error)
+}
+
 type ApiListServiceAccountKeysRequest interface {
 	Execute() (*ListServiceAccountKeysResponse, error)
 }
 
 type ApiListServiceAccountsRequest interface {
 	Execute() (*ListServiceAccountsResponse, error)
+}
+
+type ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest interface {
+	// Delete a Federated Identity Provider
+	PartialUpdateServiceAccountFederatedIdentityProviderPayload(partialUpdateServiceAccountFederatedIdentityProviderPayload PartialUpdateServiceAccountFederatedIdentityProviderPayload) ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest
+	Execute() (*CreateFederatedIdentityProviderResponse, error)
 }
 
 type ApiPartialUpdateServiceAccountKeyRequest interface {
@@ -510,6 +608,196 @@ func (a *APIClient) CreateAccessToken(ctx context.Context, projectId string, ser
 
 func (a *APIClient) CreateAccessTokenExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*AccessToken, error) {
 	r := CreateAccessTokenRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+	}
+	return r.Execute()
+}
+
+type CreateFederatedIdentityProviderRequest struct {
+	ctx                                    context.Context
+	apiService                             *DefaultApiService
+	projectId                              string
+	serviceAccountEmail                    string
+	createFederatedIdentityProviderPayload *CreateFederatedIdentityProviderPayload
+}
+
+// Federated identity provider request
+
+func (r CreateFederatedIdentityProviderRequest) CreateFederatedIdentityProviderPayload(createFederatedIdentityProviderPayload CreateFederatedIdentityProviderPayload) ApiCreateFederatedIdentityProviderRequest {
+	r.createFederatedIdentityProviderPayload = &createFederatedIdentityProviderPayload
+	return r
+}
+
+func (r CreateFederatedIdentityProviderRequest) Execute() (*CreateFederatedIdentityProviderResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateFederatedIdentityProviderResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateFederatedIdentityProvider")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/federations"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createFederatedIdentityProviderPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateFederatedIdentityProvider: Create a new Federated Identity Provider
+
+Federate the service account with an identity provider.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The ID of the project.
+	@param serviceAccountEmail The email of the service account.
+	@return ApiCreateFederatedIdentityProviderRequest
+*/
+func (a *APIClient) CreateFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateFederatedIdentityProviderRequest {
+	return CreateFederatedIdentityProviderRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+	}
+}
+
+func (a *APIClient) CreateFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*CreateFederatedIdentityProviderResponse, error) {
+	r := CreateFederatedIdentityProviderRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,
@@ -1527,6 +1815,169 @@ func (a *APIClient) DeleteServiceAccountKeyExecute(ctx context.Context, projectI
 	return r.Execute()
 }
 
+type DeleteServiceFederatedIdentityProviderRequest struct {
+	ctx                 context.Context
+	apiService          *DefaultApiService
+	projectId           string
+	serviceAccountEmail string
+	federationId        string
+}
+
+func (r DeleteServiceFederatedIdentityProviderRequest) Execute() error {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteServiceFederatedIdentityProvider")
+	if err != nil {
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/federations/{federationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"federationId"+"}", url.PathEscape(ParameterValueToString(r.federationId, "federationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return newErr
+	}
+
+	return nil
+}
+
+/*
+DeleteServiceFederatedIdentityProvider: Delete a service account Federated Identity Provider
+
+Delete a Federated Identity Provider
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The ID of the project.
+	@param serviceAccountEmail The email of the service account.
+	@param federationId ID of the Federated Identity Provider.
+	@return ApiDeleteServiceFederatedIdentityProviderRequest
+*/
+func (a *APIClient) DeleteServiceFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiDeleteServiceFederatedIdentityProviderRequest {
+	return DeleteServiceFederatedIdentityProviderRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
+	}
+}
+
+func (a *APIClient) DeleteServiceFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) error {
+	r := DeleteServiceFederatedIdentityProviderRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
+	}
+	return r.Execute()
+}
+
 type GetJWKSRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
@@ -1991,6 +2442,175 @@ func (a *APIClient) ListAccessTokensExecute(ctx context.Context, projectId strin
 	return r.Execute()
 }
 
+type ListFederatedIdentityProvidersRequest struct {
+	ctx                 context.Context
+	apiService          *DefaultApiService
+	projectId           string
+	serviceAccountEmail string
+}
+
+func (r ListFederatedIdentityProvidersRequest) Execute() (*FederatedListFederatedIdentityProvidersResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FederatedListFederatedIdentityProvidersResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListFederatedIdentityProviders")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/federations"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListFederatedIdentityProviders: List all federated identity providers
+
+List all the identity providers the service account is federated with.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The ID of the project.
+	@param serviceAccountEmail The email of the service account.
+	@return ApiListFederatedIdentityProvidersRequest
+*/
+func (a *APIClient) ListFederatedIdentityProviders(ctx context.Context, projectId string, serviceAccountEmail string) ApiListFederatedIdentityProvidersRequest {
+	return ListFederatedIdentityProvidersRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+	}
+}
+
+func (a *APIClient) ListFederatedIdentityProvidersExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*FederatedListFederatedIdentityProvidersResponse, error) {
+	r := ListFederatedIdentityProvidersRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+	}
+	return r.Execute()
+}
+
 type ListServiceAccountKeysRequest struct {
 	ctx                 context.Context
 	apiService          *DefaultApiService
@@ -2298,6 +2918,201 @@ func (a *APIClient) ListServiceAccountsExecute(ctx context.Context, projectId st
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
+	}
+	return r.Execute()
+}
+
+type PartialUpdateServiceAccountFederatedIdentityProviderRequest struct {
+	ctx                                                         context.Context
+	apiService                                                  *DefaultApiService
+	projectId                                                   string
+	serviceAccountEmail                                         string
+	federationId                                                string
+	partialUpdateServiceAccountFederatedIdentityProviderPayload *PartialUpdateServiceAccountFederatedIdentityProviderPayload
+}
+
+// Delete a Federated Identity Provider
+
+func (r PartialUpdateServiceAccountFederatedIdentityProviderRequest) PartialUpdateServiceAccountFederatedIdentityProviderPayload(partialUpdateServiceAccountFederatedIdentityProviderPayload PartialUpdateServiceAccountFederatedIdentityProviderPayload) ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest {
+	r.partialUpdateServiceAccountFederatedIdentityProviderPayload = &partialUpdateServiceAccountFederatedIdentityProviderPayload
+	return r
+}
+
+func (r PartialUpdateServiceAccountFederatedIdentityProviderRequest) Execute() (*CreateFederatedIdentityProviderResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateFederatedIdentityProviderResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.PartialUpdateServiceAccountFederatedIdentityProvider")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/federations/{federationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"federationId"+"}", url.PathEscape(ParameterValueToString(r.federationId, "federationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.partialUpdateServiceAccountFederatedIdentityProviderPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+PartialUpdateServiceAccountFederatedIdentityProvider: Update Service Account Federated Identity Provider
+
+Update a Federated Identity Provider.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The ID of the project.
+	@param serviceAccountEmail The email of the service account.
+	@param federationId ID of the Federated Identity Provider.
+	@return ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest
+*/
+func (a *APIClient) PartialUpdateServiceAccountFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest {
+	return PartialUpdateServiceAccountFederatedIdentityProviderRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
+	}
+}
+
+func (a *APIClient) PartialUpdateServiceAccountFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*CreateFederatedIdentityProviderResponse, error) {
+	r := PartialUpdateServiceAccountFederatedIdentityProviderRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
 	}
 	return r.Execute()
 }

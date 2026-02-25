@@ -1,3 +1,6 @@
+## v0.4.0
+- **Breaking change:** The `name` and `spaceHardLimitGigabytes` fields are now marked as required for `ShareExportPayload`, `SharePayload`.
+
 ## v0.3.0
 - **Feature:** Switch from `v1beta` API version to `v1` version.
 - **Breaking change:** Remove `ListSnapshotSchedules` method

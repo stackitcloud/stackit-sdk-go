@@ -83,17 +83,21 @@ type CreateShareExportPolicyPayload struct {
 	// An optional object that represents the labels associated with the share export policy  keys are validated using the following regex '^[\\\\p{Ll}][\\\\p{Ll}\\\\p{N}_-]*$' and cannot be empty  values are validated using the following regex '^[\\\\p{Ll}\\\\p{N}_-]*$'
 	Labels CreateShareExportPolicyPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Name of the Share Export Policy
-	Name CreateShareExportPolicyPayloadGetNameAttributeType `json:"name,omitempty"`
+	// REQUIRED
+	Name CreateShareExportPolicyPayloadGetNameAttributeType `json:"name" required:"true"`
 	// List of rules of the Share Export Policy. The order of the rules within the array does not matter - what matters  is the field \"order\" within each rule
 	Rules CreateShareExportPolicyPayloadGetRulesAttributeType `json:"rules,omitempty"`
 }
+
+type _CreateShareExportPolicyPayload CreateShareExportPolicyPayload
 
 // NewCreateShareExportPolicyPayload instantiates a new CreateShareExportPolicyPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateShareExportPolicyPayload() *CreateShareExportPolicyPayload {
+func NewCreateShareExportPolicyPayload(name CreateShareExportPolicyPayloadGetNameArgType) *CreateShareExportPolicyPayload {
 	this := CreateShareExportPolicyPayload{}
+	setCreateShareExportPolicyPayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
 
@@ -128,25 +132,19 @@ func (o *CreateShareExportPolicyPayload) SetLabels(v CreateShareExportPolicyPayl
 	setCreateShareExportPolicyPayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *CreateShareExportPolicyPayload) GetName() (res CreateShareExportPolicyPayloadGetNameRetType) {
-	res, _ = o.GetNameOk()
-	return
+// GetName returns the Name field value
+func (o *CreateShareExportPolicyPayload) GetName() (ret CreateShareExportPolicyPayloadGetNameRetType) {
+	ret, _ = o.GetNameOk()
+	return ret
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CreateShareExportPolicyPayload) GetNameOk() (ret CreateShareExportPolicyPayloadGetNameRetType, ok bool) {
 	return getCreateShareExportPolicyPayloadGetNameAttributeTypeOk(o.Name)
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateShareExportPolicyPayload) HasName() bool {
-	_, ok := o.GetNameOk()
-	return ok
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CreateShareExportPolicyPayload) SetName(v CreateShareExportPolicyPayloadGetNameRetType) {
 	setCreateShareExportPolicyPayloadGetNameAttributeType(&o.Name, v)
 }

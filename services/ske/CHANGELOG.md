@@ -1,3 +1,8 @@
+## v1.7.0
+- **Feature:** new model `AccessScope`
+- **Feature:** new model `V2ControlPlaneNetwork`
+- **Feature:** added field `ControlPlane` of type `V2ControlPlaneNetwork` to model `Network`
+
 ## v1.6.3
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 

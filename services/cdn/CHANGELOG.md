@@ -1,3 +1,7 @@
+## v1.10.0
+- **Feature:** Add support for `RedirectConfig` in `Config`, `ConfigPatch` and `CreateDistributionPayload` models
+  - new related models `RedirectConfig`, `RedirectRule`, `Matcher` and `MatchCondition`
+
 ## v1.9.4
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 
