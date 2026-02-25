@@ -1,3 +1,12 @@
+## Release (2026-DD-MM)
+
+- `alb`: [v0.10.0](services/alb/CHANGELOG.md#v0100)
+  - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
+  - **Feature:** Add new field `Tls` to `HttpHealthCheck`
+  - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+- `loadbalancer`: [v1.8.0](services/loadbalancer/CHANGELOG.md#v180)
+  - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+
 ## Release (2026-02-20)
 - `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
   - **Dependencies**: Bump `github.com/golang-jwt/jwt/v5` from `v5.3.0` to `v5.3.1`

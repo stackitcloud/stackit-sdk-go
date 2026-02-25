@@ -1,3 +1,6 @@
+## v1.8.0
+- **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+
 ## v1.7.3
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 
