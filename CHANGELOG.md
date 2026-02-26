@@ -1,5 +1,7 @@
 ## Release (2026-DD-MM)
 
+- `core`: [v0.22.0](core/CHANGELOG.md#v0220) 
+  - **Feature:** Support Azure DevOps OIDC adapter
 - `alb`: [v0.10.0](services/alb/CHANGELOG.md#v0100)
   - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
   - **Feature:** Add new field `Tls` to `HttpHealthCheck`
