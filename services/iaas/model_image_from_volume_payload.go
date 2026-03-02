@@ -82,7 +82,8 @@ func setImageFromVolumePayloadgetProtectedAttributeType(arg *ImageFromVolumePayl
 // ImageFromVolumePayload Object that represents the upload request of an image to a volume. Used for creating an image from a volume.
 type ImageFromVolumePayload struct {
 	// Object that represents a disk format. Possible values: `raw`, `qcow2`, `iso`.
-	DiskFormat ImageFromVolumePayloadGetDiskFormatAttributeType `json:"diskFormat,omitempty"`
+	// REQUIRED
+	DiskFormat ImageFromVolumePayloadGetDiskFormatAttributeType `json:"diskFormat" required:"true"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	// REQUIRED
 	Name ImageFromVolumePayloadGetNameAttributeType `json:"name" required:"true"`
@@ -96,8 +97,9 @@ type _ImageFromVolumePayload ImageFromVolumePayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImageFromVolumePayload(name ImageFromVolumePayloadGetNameArgType) *ImageFromVolumePayload {
+func NewImageFromVolumePayload(diskFormat ImageFromVolumePayloadGetDiskFormatArgType, name ImageFromVolumePayloadGetNameArgType) *ImageFromVolumePayload {
 	this := ImageFromVolumePayload{}
+	setImageFromVolumePayloadGetDiskFormatAttributeType(&this.DiskFormat, diskFormat)
 	setImageFromVolumePayloadGetNameAttributeType(&this.Name, name)
 	return &this
 }
@@ -112,25 +114,19 @@ func NewImageFromVolumePayloadWithDefaults() *ImageFromVolumePayload {
 	return &this
 }
 
-// GetDiskFormat returns the DiskFormat field value if set, zero value otherwise.
-func (o *ImageFromVolumePayload) GetDiskFormat() (res ImageFromVolumePayloadGetDiskFormatRetType) {
-	res, _ = o.GetDiskFormatOk()
-	return
+// GetDiskFormat returns the DiskFormat field value
+func (o *ImageFromVolumePayload) GetDiskFormat() (ret ImageFromVolumePayloadGetDiskFormatRetType) {
+	ret, _ = o.GetDiskFormatOk()
+	return ret
 }
 
-// GetDiskFormatOk returns a tuple with the DiskFormat field value if set, nil otherwise
+// GetDiskFormatOk returns a tuple with the DiskFormat field value
 // and a boolean to check if the value has been set.
 func (o *ImageFromVolumePayload) GetDiskFormatOk() (ret ImageFromVolumePayloadGetDiskFormatRetType, ok bool) {
 	return getImageFromVolumePayloadGetDiskFormatAttributeTypeOk(o.DiskFormat)
 }
 
-// HasDiskFormat returns a boolean if a field has been set.
-func (o *ImageFromVolumePayload) HasDiskFormat() bool {
-	_, ok := o.GetDiskFormatOk()
-	return ok
-}
-
-// SetDiskFormat gets a reference to the given string and assigns it to the DiskFormat field.
+// SetDiskFormat sets field value
 func (o *ImageFromVolumePayload) SetDiskFormat(v ImageFromVolumePayloadGetDiskFormatRetType) {
 	setImageFromVolumePayloadGetDiskFormatAttributeType(&o.DiskFormat, v)
 }

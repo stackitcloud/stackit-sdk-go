@@ -60,7 +60,7 @@ type PartialUpdateNetworkAreaPayloadGetNameRetType = string
 
 // PartialUpdateNetworkAreaPayload Object that represents the network area update request.
 type PartialUpdateNetworkAreaPayload struct {
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels PartialUpdateNetworkAreaPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	Name   PartialUpdateNetworkAreaPayloadGetNameAttributeType   `json:"name,omitempty"`
 }

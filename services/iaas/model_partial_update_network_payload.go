@@ -165,7 +165,7 @@ type PartialUpdateNetworkPayload struct {
 	Dhcp PartialUpdateNetworkPayloadgetDhcpAttributeType `json:"dhcp,omitempty"`
 	Ipv4 PartialUpdateNetworkPayloadGetIpv4AttributeType `json:"ipv4,omitempty"`
 	Ipv6 PartialUpdateNetworkPayloadGetIpv6AttributeType `json:"ipv6,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels PartialUpdateNetworkPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name PartialUpdateNetworkPayloadGetNameAttributeType `json:"name,omitempty"`

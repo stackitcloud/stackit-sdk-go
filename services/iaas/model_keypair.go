@@ -147,7 +147,7 @@ type Keypair struct {
 	CreatedAt KeypairGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Object that represents an SSH keypair MD5 fingerprint.
 	Fingerprint KeypairGetFingerprintAttributeType `json:"fingerprint,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels KeypairGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name of an SSH keypair. Allowed characters are letters [a-zA-Z], digits [0-9] and the following special characters: [@._-].
 	Name KeypairGetNameAttributeType `json:"name,omitempty"`

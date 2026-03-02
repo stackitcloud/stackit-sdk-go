@@ -378,7 +378,7 @@ type CreateImagePayload struct {
 	Id CreateImagePayloadGetIdAttributeType `json:"id,omitempty"`
 	// Indicates Image Import Progress in percent.
 	ImportProgress CreateImagePayloadGetImportProgressAttributeType `json:"importProgress,omitempty"`
-	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key.
+	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels CreateImagePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// Size in Gigabyte.
 	MinDiskSize CreateImagePayloadGetMinDiskSizeAttributeType `json:"minDiskSize,omitempty"`
