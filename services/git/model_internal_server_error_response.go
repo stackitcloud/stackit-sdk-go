@@ -18,6 +18,27 @@ import (
 var _ MappedNullable = &InternalServerErrorResponse{}
 
 /*
+	types and functions for details
+*/
+
+// isNotNullableString
+type InternalServerErrorResponseGetDetailsAttributeType = *string
+
+func getInternalServerErrorResponseGetDetailsAttributeTypeOk(arg InternalServerErrorResponseGetDetailsAttributeType) (ret InternalServerErrorResponseGetDetailsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+func setInternalServerErrorResponseGetDetailsAttributeType(arg *InternalServerErrorResponseGetDetailsAttributeType, val InternalServerErrorResponseGetDetailsRetType) {
+	*arg = &val
+}
+
+type InternalServerErrorResponseGetDetailsArgType = string
+type InternalServerErrorResponseGetDetailsRetType = string
+
+/*
 	types and functions for error
 */
 
@@ -40,7 +61,8 @@ type InternalServerErrorResponseGetErrorRetType = string
 
 // InternalServerErrorResponse Internal server error.
 type InternalServerErrorResponse struct {
-	Error InternalServerErrorResponseGetErrorAttributeType `json:"error,omitempty"`
+	Details InternalServerErrorResponseGetDetailsAttributeType `json:"details,omitempty"`
+	Error   InternalServerErrorResponseGetErrorAttributeType   `json:"error,omitempty"`
 }
 
 // NewInternalServerErrorResponse instantiates a new InternalServerErrorResponse object
@@ -58,6 +80,29 @@ func NewInternalServerErrorResponse() *InternalServerErrorResponse {
 func NewInternalServerErrorResponseWithDefaults() *InternalServerErrorResponse {
 	this := InternalServerErrorResponse{}
 	return &this
+}
+
+// GetDetails returns the Details field value if set, zero value otherwise.
+func (o *InternalServerErrorResponse) GetDetails() (res InternalServerErrorResponseGetDetailsRetType) {
+	res, _ = o.GetDetailsOk()
+	return
+}
+
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InternalServerErrorResponse) GetDetailsOk() (ret InternalServerErrorResponseGetDetailsRetType, ok bool) {
+	return getInternalServerErrorResponseGetDetailsAttributeTypeOk(o.Details)
+}
+
+// HasDetails returns a boolean if a field has been set.
+func (o *InternalServerErrorResponse) HasDetails() bool {
+	_, ok := o.GetDetailsOk()
+	return ok
+}
+
+// SetDetails gets a reference to the given string and assigns it to the Details field.
+func (o *InternalServerErrorResponse) SetDetails(v InternalServerErrorResponseGetDetailsRetType) {
+	setInternalServerErrorResponseGetDetailsAttributeType(&o.Details, v)
 }
 
 // GetError returns the Error field value if set, zero value otherwise.
@@ -85,6 +130,9 @@ func (o *InternalServerErrorResponse) SetError(v InternalServerErrorResponseGetE
 
 func (o InternalServerErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getInternalServerErrorResponseGetDetailsAttributeTypeOk(o.Details); ok {
+		toSerialize["Details"] = val
+	}
 	if val, ok := getInternalServerErrorResponseGetErrorAttributeTypeOk(o.Error); ok {
 		toSerialize["Error"] = val
 	}
