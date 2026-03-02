@@ -1,3 +1,4 @@
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 package wait
 
 import (
@@ -11,19 +12,14 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/resourcemanager"
 )
 
-const (
-	// Deprecated: ActiveState is deprecated and will be removed after 14th November 2025. Use [resourcemanager.LIFECYCLESTATE_ACTIVE] instead.
-	ActiveState = resourcemanager.LifecycleState("ACTIVE")
-	// Deprecated: CreatingState is deprecated and will be removed after 14th November 2025. Use [resourcemanager.LIFECYCLESTATE_CREATING] instead.
-	CreatingState = resourcemanager.LifecycleState("CREATING")
-)
-
 // Interfaces needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetProjectExecute(ctx context.Context, containerId string) (*resourcemanager.GetProjectResponse, error)
 }
 
 // CreateProjectWaitHandler will wait for project creation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[resourcemanager.GetProjectResponse] {
 	handler := wait.New(func() (waitFinished bool, response *resourcemanager.GetProjectResponse, err error) {
 		p, err := a.GetProjectExecute(ctx, containerId)
@@ -47,6 +43,7 @@ func CreateProjectWaitHandler(ctx context.Context, a APIClientInterface, contain
 }
 
 // DeleteProjectWaitHandler will wait for project deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteProjectWaitHandler(ctx context.Context, a APIClientInterface, containerId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetProjectExecute(ctx, containerId)
