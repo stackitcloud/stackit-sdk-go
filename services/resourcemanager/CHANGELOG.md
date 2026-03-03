@@ -1,3 +1,8 @@
+## v0.19.0
+- **Feature:** Introduction of multi-API-version support for the resourcemanager SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+- `v0api`: New package which should be used for communication with the STACKIT Resourcemanager API in the future
+- **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+
 ## v0.18.5
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 
