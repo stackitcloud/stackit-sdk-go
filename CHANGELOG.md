@@ -8,6 +8,12 @@
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
 - `loadbalancer`: [v1.8.0](services/loadbalancer/CHANGELOG.md#v180)
   - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `resourcemanager`: [v0.19.0](services/resourcemanager/CHANGELOG.md#v0190)
+  - **Feature:** Introduction of multi API version support for the resourcemanager SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+  - `v0api`: New package which should be used for communication with the STACKIT Resourcemanager API in the future
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - **Breaking Change:** Removal of deprecated constants `ActiveState` and `CreatingState` in `wait` package
 
 ## Release (2026-02-20)
 - `core`: [v0.21.1](core/CHANGELOG.md#v0211) 

@@ -93,4 +93,10 @@ linters:
     - unparam # false positives
 issues:
   exclude-use-default: false
+  exclude-rules:
+    # This ignores all deprecation warnings in the old wait packages while we have the compatibilty layer in place
+    - path: ^wait/[^/]+\.go$
+      linters:
+        - staticcheck
+      text: "SA1019:" 
 go: 1.21

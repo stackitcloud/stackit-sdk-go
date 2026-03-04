@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/resourcemanager"
+	resourcemanager "github.com/stackitcloud/stackit-sdk-go/services/resourcemanager/v0api"
 )
 
 func main() {
@@ -21,28 +20,28 @@ func main() {
 	}
 
 	// Get the projects under a specific resource (organization)
-	getProjectsResp, err := client.ListProjects(context.Background()).ContainerParentId(parentOrganizationId).Execute()
+	getProjectsResp, err := client.DefaultAPI.ListProjects(context.Background()).ContainerParentId(parentOrganizationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetProjects`: %v\n", err)
 	} else {
-		fmt.Printf("Number of projects: %v\n", len(*getProjectsResp.Items))
+		fmt.Printf("Number of projects: %v\n", len(getProjectsResp.Items))
 	}
 
 	// Create a project
 	createProjectPayload := resourcemanager.CreateProjectPayload{
-		ContainerParentId: utils.Ptr(parentOrganizationId),
-		Name:              utils.Ptr("my-project"),
-		Members: &[]resourcemanager.Member{
+		ContainerParentId: parentOrganizationId,
+		Name:              "my-project",
+		Members: []resourcemanager.Member{
 			{
-				Role:    utils.Ptr("project.owner"),
-				Subject: utils.Ptr("owner-email@example.com"),
+				Role:    "project.owner",
+				Subject: "owner-email@example.com",
 			},
 		},
 	}
-	createProjectResp, err := client.CreateProject(context.Background()).CreateProjectPayload(createProjectPayload).Execute()
+	createProjectResp, err := client.DefaultAPI.CreateProject(context.Background()).CreateProjectPayload(createProjectPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateProject`: %v\n", err)
 	} else {
-		fmt.Printf("Created project with id \"%s\".\n", *createProjectResp.ProjectId)
+		fmt.Printf("Created project with id \"%s\".\n", createProjectResp.ProjectId)
 	}
 }
