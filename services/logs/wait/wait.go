@@ -1,3 +1,4 @@
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 package wait
 
 import (
@@ -12,10 +13,12 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/logs"
 )
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetLogsInstanceExecute(ctx context.Context, projectId string, regionId string, instanceId string) (*logs.LogsInstance, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateLogsInstanceWaitHandler(ctx context.Context, client APIClientInterface, projectID, region, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
 	handler := wait.New(func() (waitFinished bool, response *logs.LogsInstance, err error) {
 		instance, err := client.GetLogsInstanceExecute(ctx, projectID, region, instanceID)
@@ -37,6 +40,7 @@ func CreateLogsInstanceWaitHandler(ctx context.Context, client APIClientInterfac
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteLogsInstanceWaitHandler(ctx context.Context, client APIClientInterface, projectID, region, instanceID string) *wait.AsyncActionHandler[logs.LogsInstance] {
 	handler := wait.New(func() (waitFinished bool, response *logs.LogsInstance, err error) {
 		_, err = client.GetLogsInstanceExecute(ctx, projectID, region, instanceID)

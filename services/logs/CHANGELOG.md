@@ -1,3 +1,11 @@
+## v0.6.0
+- **Feature:** Introduction of multi API version support for the logs SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+- `v1alphaapi`: New package which can be used for communication with the logs v1 alpha API
+- `v1betaapi`: New package which can be used for communication with the logs v1 beta API
+- `v1api`: New package which can be used for communication with the logs v1 API
+- **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+- **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+
 ## v0.5.2
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 

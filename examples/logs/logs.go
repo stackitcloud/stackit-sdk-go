@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/logs"
+	logs "github.com/stackitcloud/stackit-sdk-go/services/logs/v1api"
 )
 
 func main() {
@@ -22,60 +22,59 @@ func main() {
 	// Create a Logs Instance
 	var createdInstance string
 	createInstancePayload := logs.CreateLogsInstancePayload{
-		DisplayName:   utils.Ptr("my-logs-instance"),
-		RetentionDays: utils.Ptr(int64(1)),
+		DisplayName:   "my-logs-instance",
+		RetentionDays: int32(1),
 	}
-	createResp, err := client.CreateLogsInstance(ctx, projectId, regionId).
+	createResp, err := client.DefaultAPI.CreateLogsInstance(ctx, projectId, regionId).
 		CreateLogsInstancePayload(createInstancePayload).
 		Execute()
 	if err != nil {
 		log.Fatalf("[Logs API] Error when calling `CreateLogsInstance`: %v\n", err)
 	}
-	createdInstance = *createResp.Id
-	log.Printf("[Logs API] Created Logs Instance with ID \"%s\".\n", createdInstance)
+	log.Printf("[Logs API] Created Logs Instance with ID \"%s\".\n", createResp.Id)
 
 	// List Logs Instances
-	listResp, err := client.ListLogsInstances(ctx, projectId, regionId).Execute()
+	listResp, err := client.DefaultAPI.ListLogsInstances(ctx, projectId, regionId).Execute()
 	if err != nil {
 		log.Fatalf("[Logs API] Error when calling `ListLogsInstances`: %v\n", err)
 	}
-	log.Printf("[Logs API] Retrieved %d Logs Instances.\n", len(*listResp.Instances))
+	log.Printf("[Logs API] Retrieved %d Logs Instances.\n", len(listResp.Instances))
 
 	// Get the created Logs Instance
-	getResp, err := client.GetLogsInstance(ctx, projectId, regionId, createdInstance).Execute()
+	getResp, err := client.DefaultAPI.GetLogsInstance(ctx, projectId, regionId, createdInstance).Execute()
 	if err != nil {
 		log.Fatalf("[Logs API] Error when calling `GetLogsInstance`: %v\n", err)
 	}
-	log.Printf("[Logs API] Retrieved Logs Instance with ID \"%s\" and Display Name \"%s\".\n", *getResp.Id, *getResp.DisplayName)
+	log.Printf("[Logs API] Retrieved Logs Instance with ID \"%s\" and Display Name \"%s\".\n", getResp.Id, getResp.DisplayName)
 
 	// Update the created Logs Instance
 	updatePayload := logs.UpdateLogsInstancePayload{
 		DisplayName:   utils.Ptr("my-updated-logs-instance"),
-		RetentionDays: utils.Ptr(int64(7)),
+		RetentionDays: utils.Ptr(int32(7)),
 	}
-	updateResp, err := client.UpdateLogsInstance(ctx, projectId, regionId, createdInstance).
+	updateResp, err := client.DefaultAPI.UpdateLogsInstance(ctx, projectId, regionId, createdInstance).
 		UpdateLogsInstancePayload(updatePayload).
 		Execute()
 	if err != nil {
 		log.Fatalf("[Logs API] Error when calling `UpdateLogsInstance`: %v\n", err)
 	}
-	log.Printf("[Logs API] Updated Logs Instance with ID \"%s\" to Display Name \"%s\".\n", *updateResp.Id, *updateResp.DisplayName)
+	log.Printf("[Logs API] Updated Logs Instance with ID \"%s\" to Display Name \"%s\".\n", updateResp.Id, updateResp.DisplayName)
 
 	// Create an Access Token
 	createTokenPayload := logs.CreateAccessTokenPayload{
-		DisplayName: utils.Ptr("my-access-token"),
-		Permissions: &[]string{"read"},
+		DisplayName: "my-access-token",
+		Permissions: []string{"read"},
 	}
-	createTokenResp, err := client.CreateAccessToken(ctx, projectId, regionId, createdInstance).
+	createTokenResp, err := client.DefaultAPI.CreateAccessToken(ctx, projectId, regionId, createdInstance).
 		CreateAccessTokenPayload(createTokenPayload).
 		Execute()
 	if err != nil {
 		log.Fatalf("[Logs API] Error when calling `CreateAccessToken`: %v\n", err)
 	}
-	log.Printf("[Logs API] Created Access Token with ID \"%s\".\n", *createTokenResp.Id)
+	log.Printf("[Logs API] Created Access Token with ID \"%s\".\n", createTokenResp.Id)
 
 	// Add Access Token to Logs Instance
-	err = client.UpdateAccessToken(ctx, projectId, regionId, createdInstance, *createTokenResp.Id).
+	err = client.DefaultAPI.UpdateAccessToken(ctx, projectId, regionId, createdInstance, createTokenResp.Id).
 		// needs at least an empty payload
 		UpdateAccessTokenPayload(logs.UpdateAccessTokenPayload{}).
 		Execute()
@@ -84,14 +83,14 @@ func main() {
 	}
 
 	// Delete all Access Tokens from Logs Instance
-	tokenList, err := client.DeleteAllAccessTokens(ctx, projectId, regionId, createdInstance).Execute()
+	tokenList, err := client.DefaultAPI.DeleteAllAccessTokens(ctx, projectId, regionId, createdInstance).Execute()
 	if err != nil {
 		log.Fatalf("[Logs API] Error when calling `DeleteAllAccessTokens`: %v\n", err)
 	}
-	log.Printf("[Logs API] Deleted %d Access Tokens from Logs Instance with ID \"%s\".\n", len(*tokenList.Tokens), createdInstance)
+	log.Printf("[Logs API] Deleted %d Access Tokens from Logs Instance with ID \"%s\".\n", len(tokenList.Tokens), createdInstance)
 
 	// Delete the created Logs Instance
-	err = client.DeleteLogsInstance(ctx, projectId, regionId, createdInstance).Execute()
+	err = client.DefaultAPI.DeleteLogsInstance(ctx, projectId, regionId, createdInstance).Execute()
 	if err != nil {
 		log.Fatalf("[Logs API] Error when calling `DeleteLogsInstance`: %v\n", err)
 	}
