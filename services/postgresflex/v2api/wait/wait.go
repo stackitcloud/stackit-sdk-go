@@ -7,44 +7,25 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
-	"github.com/stackitcloud/stackit-sdk-go/services/postgresflex"
+	postgresflex "github.com/stackitcloud/stackit-sdk-go/services/postgresflex/v2api"
 )
 
 const (
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	InstanceStateEmpty = ""
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	InstanceStateEmpty       = ""
 	InstanceStateProgressing = "Progressing"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	InstanceStateSuccess = "Ready"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	InstanceStateFailed = "Failure"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	InstanceStateDeleted = "Deleted"
+	InstanceStateSuccess     = "Ready"
+	InstanceStateFailed      = "Failure"
+	InstanceStateDeleted     = "Deleted"
 )
 
-// Interface needed for tests
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type APIClientInstanceInterface interface {
-	GetInstanceExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.InstanceResponse, error)
-	ListUsersExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.ListUsersResponse, error)
-}
-
-// Interface needed for tests
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type APIClientUserInterface interface {
-	GetUserExecute(ctx context.Context, projectId, region, instanceId, userId string) (*postgresflex.GetUserResponse, error)
-}
-
 // CreateInstanceWaitHandler will wait for instance creation
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+func CreateInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	instanceCreated := false
 	var instanceGetResponse *postgresflex.InstanceResponse
 
 	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		if !instanceCreated {
-			s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
+			s, err := a.GetInstance(ctx, projectId, region, instanceId).Execute()
 			if err != nil {
 				return false, nil, err
 			}
@@ -68,7 +49,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 
 		// User operations aren't available right after an instance is deemed successful
 		// To check if they are, perform a users request
-		_, err = a.ListUsersExecute(ctx, projectId, region, instanceId)
+		_, err = a.ListUsers(ctx, projectId, region, instanceId).Execute()
 		if err == nil {
 			return true, instanceGetResponse, nil
 		}
@@ -87,10 +68,9 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
+func PartialUpdateInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
-		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
+		s, err := a.GetInstance(ctx, projectId, region, instanceId).Execute()
 		if err != nil {
 			return false, nil, err
 		}
@@ -115,10 +95,9 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
+func DeleteInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
+		s, err := a.GetInstance(ctx, projectId, region, instanceId).Execute()
 		if err != nil {
 			return false, nil, err
 		}
@@ -139,10 +118,9 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // ForceDeleteInstanceWaitHandler will wait for instance deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
+func ForceDeleteInstanceWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetInstanceExecute(ctx, projectId, region, instanceId)
+		_, err = a.GetInstance(ctx, projectId, region, instanceId).Execute()
 		if err == nil {
 			return false, nil, nil
 		}
@@ -160,10 +138,9 @@ func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInte
 }
 
 // DeleteUserWaitHandler will wait for delete
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, region, instanceId, userId string) *wait.AsyncActionHandler[struct{}] {
+func DeleteUserWaitHandler(ctx context.Context, a postgresflex.DefaultAPI, projectId, region, instanceId, userId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetUserExecute(ctx, projectId, region, instanceId, userId)
+		_, err = a.GetUser(ctx, projectId, region, instanceId, userId).Execute()
 		if err == nil {
 			return false, nil, nil
 		}
