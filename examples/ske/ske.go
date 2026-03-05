@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/ske"
-	"github.com/stackitcloud/stackit-sdk-go/services/ske/wait"
+	ske "github.com/stackitcloud/stackit-sdk-go/services/ske/v2api"
+	"github.com/stackitcloud/stackit-sdk-go/services/ske/v2api/wait"
 )
 
 func main() {
@@ -32,51 +32,51 @@ func main() {
 	// }
 
 	// Get the ske clusters for your project
-	getClustersResp, err := skeClient.ListClusters(context.Background(), projectId, region).Execute()
+	getClustersResp, err := skeClient.DefaultAPI.ListClusters(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetClusters`: %v\n", err)
 	} else {
-		fmt.Printf("Number of clusters: %v\n", len(*getClustersResp.Items))
+		fmt.Printf("Number of clusters: %v\n", len(getClustersResp.Items))
 	}
 
 	var availableVersion string
 	// Get the ske provider options
-	getOptionsResp, err := skeClient.ListProviderOptions(context.Background(), region).Execute()
+	getOptionsResp, err := skeClient.DefaultAPI.ListProviderOptions(context.Background(), region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOptions`: %v\n", err)
 	} else {
-		availableVersions := *getOptionsResp.KubernetesVersions
+		availableVersions := getOptionsResp.KubernetesVersions
 		availableVersion = *availableVersions[0].Version
 		fmt.Printf("First available version: %v\n", availableVersion)
 	}
 
 	// Create an ske cluster
 	createInstancePayload := ske.CreateOrUpdateClusterPayload{
-		Kubernetes: &ske.Kubernetes{
-			Version: utils.Ptr(availableVersion),
+		Kubernetes: ske.Kubernetes{
+			Version: availableVersion,
 		},
-		Nodepools: &[]ske.Nodepool{
+		Nodepools: []ske.Nodepool{
 			{
-				AvailabilityZones: utils.Ptr([]string{"eu01-3"}),
-				Machine: &ske.Machine{
-					Image: &ske.Image{
-						Name:    utils.Ptr("name"),
-						Version: utils.Ptr("3510.2.5"),
+				AvailabilityZones: []string{"eu01-3"},
+				Machine: ske.Machine{
+					Image: ske.Image{
+						Name:    "name",
+						Version: "3510.2.5",
 					},
-					Type: utils.Ptr("b1.2"),
+					Type: "b1.2",
 				},
-				Maximum: utils.Ptr(int64(3)),
-				Minimum: utils.Ptr(int64(2)),
-				Name:    utils.Ptr("my-nodepool"),
-				Volume: &ske.Volume{
-					Size: utils.Ptr(int64(20)),
+				Maximum: int32(3),
+				Minimum: int32(2),
+				Name:    "my-nodepool",
+				Volume: ske.Volume{
+					Size: int32(20),
 					Type: utils.Ptr("storage_premium_perf0"),
 				},
 			},
 		},
 	}
 	clusterName := "cl-name"
-	createClusterResp, err := skeClient.CreateOrUpdateCluster(context.Background(), projectId, region, clusterName).CreateOrUpdateClusterPayload(createInstancePayload).Execute()
+	createClusterResp, err := skeClient.DefaultAPI.CreateOrUpdateCluster(context.Background(), projectId, region, clusterName).CreateOrUpdateClusterPayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateCluster`: %v\n", err)
 	} else {
@@ -84,7 +84,7 @@ func main() {
 	}
 
 	// Wait for cluster creation to complete
-	_, err = wait.CreateOrUpdateClusterWaitHandler(context.Background(), skeClient, projectId, region, clusterName).WaitWithContext(context.Background())
+	_, err = wait.CreateOrUpdateClusterWaitHandler(context.Background(), skeClient.DefaultAPI, projectId, region, clusterName).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateOrUpdateCluster`: %v\n", err)
 	} else {
@@ -92,7 +92,7 @@ func main() {
 	}
 
 	// Start cluster credential rotation
-	_, err = skeClient.StartCredentialsRotationExecute(context.Background(), projectId, region, clusterName)
+	_, err = skeClient.DefaultAPI.StartCredentialsRotation(context.Background(), projectId, region, clusterName).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StartCredentialsRotation`: %v\n", err)
 	} else {
@@ -100,7 +100,7 @@ func main() {
 	}
 
 	// Wait for cluster credential rotation to be prepared
-	_, err = wait.StartCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, region, clusterName).WaitWithContext(context.Background())
+	_, err = wait.StartCredentialsRotationWaitHandler(context.Background(), skeClient.DefaultAPI, projectId, region, clusterName).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StartRotateCredentials`: %v\n", err)
 	} else {
@@ -108,7 +108,7 @@ func main() {
 	}
 
 	// Complete cluster credential rotation
-	_, err = skeClient.CompleteCredentialsRotationExecute(context.Background(), projectId, region, clusterName)
+	_, err = skeClient.DefaultAPI.CompleteCredentialsRotation(context.Background(), projectId, region, clusterName).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CompleteCredentialsRotation`: %v\n", err)
 	} else {
@@ -116,7 +116,7 @@ func main() {
 	}
 
 	// Wait for cluster credential rotation to be completed
-	_, err = wait.CompleteCredentialsRotationWaitHandler(context.Background(), skeClient, projectId, region, clusterName).WaitWithContext(context.Background())
+	_, err = wait.CompleteCredentialsRotationWaitHandler(context.Background(), skeClient.DefaultAPI, projectId, region, clusterName).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CompleteRotateCredentials`: %v\n", err)
 	} else {
