@@ -75,7 +75,7 @@ type ClusterErrorGetMessageRetType = string
 // ClusterError struct for ClusterError
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ClusterError struct {
-	// Possible values: `\"SKE_INFRA_SNA_NETWORK_NOT_FOUND\"`, `\"SKE_INFRA_SNA_NETWORK_NO_ROUTER\"`, `\"SKE_NODE_NO_VALID_HOST_FOUND\"`, `\"SKE_NODE_MISCONFIGURED_PDB\"`, `\"SKE_NODE_MACHINE_TYPE_NOT_FOUND\"`, `\"SKE_NETWORK_NO_DNS_CONFIGURED\"`, `\"SKE_NETWORK_NO_AVAILABLE_IPS\"`, `\"SKE_NODE_MEMORY_PRESSURE\"`, `\"SKE_NODE_DISK_PRESSURE\"`, `\"SKE_NODE_PID_PRESSURE\"`, `\"SKE_OBSERVABILITY_INSTANCE_NOT_FOUND\"`, `\"SKE_OBSERVABILITY_INSTANCE_NOT_READY\"`, `\"SKE_DNS_ZONE_NOT_FOUND\"`, `\"SKE_FETCHING_ERRORS_NOT_POSSIBLE\"`
+	// Possible values: `\"SKE_OBSERVABILITY_INSTANCE_NOT_FOUND\"`, `\"SKE_DNS_ZONE_NOT_FOUND\"`, `\"SKE_NODE_NO_VALID_HOST_FOUND\"`, `\"SKE_NODE_MISCONFIGURED_PDB\"`, `\"SKE_NODE_MACHINE_TYPE_NOT_FOUND\"`, `\"SKE_INFRA_SNA_NETWORK_NOT_FOUND\"`, `\"SKE_FETCHING_ERRORS_NOT_POSSIBLE\"`
 	Code    ClusterErrorGetCodeAttributeType    `json:"code,omitempty"`
 	Message ClusterErrorGetMessageAttributeType `json:"message,omitempty"`
 }

@@ -19,33 +19,6 @@ import (
 var _ MappedNullable = &Cluster{}
 
 /*
-	types and functions for access
-*/
-
-// isModel
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ClusterGetAccessAttributeType = *Access
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ClusterGetAccessArgType = Access
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ClusterGetAccessRetType = Access
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getClusterGetAccessAttributeTypeOk(arg ClusterGetAccessAttributeType) (ret ClusterGetAccessRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setClusterGetAccessAttributeType(arg *ClusterGetAccessAttributeType, val ClusterGetAccessRetType) {
-	*arg = &val
-}
-
-/*
 	types and functions for extensions
 */
 
@@ -264,7 +237,6 @@ func setClusterGetStatusAttributeType(arg *ClusterGetStatusAttributeType, val Cl
 // Cluster struct for Cluster
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Cluster struct {
-	Access      ClusterGetAccessAttributeType      `json:"access,omitempty"`
 	Extensions  ClusterGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation ClusterGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
@@ -299,33 +271,6 @@ func NewCluster(kubernetes ClusterGetKubernetesArgType, nodepools ClusterGetNode
 func NewClusterWithDefaults() *Cluster {
 	this := Cluster{}
 	return &this
-}
-
-// GetAccess returns the Access field value if set, zero value otherwise.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *Cluster) GetAccess() (res ClusterGetAccessRetType) {
-	res, _ = o.GetAccessOk()
-	return
-}
-
-// GetAccessOk returns a tuple with the Access field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *Cluster) GetAccessOk() (ret ClusterGetAccessRetType, ok bool) {
-	return getClusterGetAccessAttributeTypeOk(o.Access)
-}
-
-// HasAccess returns a boolean if a field has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *Cluster) HasAccess() bool {
-	_, ok := o.GetAccessOk()
-	return ok
-}
-
-// SetAccess gets a reference to the given Access and assigns it to the Access field.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *Cluster) SetAccess(v ClusterGetAccessRetType) {
-	setClusterGetAccessAttributeType(&o.Access, v)
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
@@ -533,9 +478,6 @@ func (o *Cluster) SetStatus(v ClusterGetStatusRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Cluster) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getClusterGetAccessAttributeTypeOk(o.Access); ok {
-		toSerialize["Access"] = val
-	}
 	if val, ok := getClusterGetExtensionsAttributeTypeOk(o.Extensions); ok {
 		toSerialize["Extensions"] = val
 	}
