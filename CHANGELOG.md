@@ -29,6 +29,9 @@
   - `v3beta1api`: New package which can be used for communication with the sqlserverflex v3 beta1 API
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `vpn`: [v0.1.0](services/vpn/CHANGELOG.md#v010)
+  - **New:** SDK module for vpn service
+  - `v1alpha1api`: New package which can be used for communication with the vpn v1 alpha1 API
 
 ## Release (2026-02-20)
 - `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
