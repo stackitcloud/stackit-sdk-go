@@ -11,25 +11,33 @@ import (
 )
 
 const (
-	InstanceStateEmpty       = ""
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	InstanceStateEmpty = ""
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	InstanceStateProgressing = "Progressing"
-	InstanceStateSuccess     = "Ready"
-	InstanceStateFailed      = "Failure"
-	InstanceStateDeleted     = "Deleted"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	InstanceStateSuccess = "Ready"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	InstanceStateFailed = "Failure"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	InstanceStateDeleted = "Deleted"
 )
 
 // Interface needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInstanceInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.InstanceResponse, error)
 	ListUsersExecute(ctx context.Context, projectId, region, instanceId string) (*postgresflex.ListUsersResponse, error)
 }
 
 // Interface needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientUserInterface interface {
 	GetUserExecute(ctx context.Context, projectId, region, instanceId, userId string) (*postgresflex.GetUserResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	instanceCreated := false
 	var instanceGetResponse *postgresflex.InstanceResponse
@@ -79,6 +87,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[postgresflex.InstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *postgresflex.InstanceResponse, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
@@ -106,6 +115,7 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, region, instanceId)
@@ -129,6 +139,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // ForceDeleteInstanceWaitHandler will wait for instance deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetInstanceExecute(ctx, projectId, region, instanceId)
@@ -149,6 +160,7 @@ func ForceDeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInte
 }
 
 // DeleteUserWaitHandler will wait for delete
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteUserWaitHandler(ctx context.Context, a APIClientUserInterface, projectId, region, instanceId, userId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetUserExecute(ctx, projectId, region, instanceId, userId)
