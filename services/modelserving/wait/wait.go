@@ -12,10 +12,12 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/modelserving"
 )
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetTokenExecute(ctx context.Context, region, projectId, tokenId string) (*modelserving.GetTokenResponse, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateModelServingWaitHandler(ctx context.Context, a APIClientInterface, region, projectId, tokenId string) *wait.AsyncActionHandler[modelserving.GetTokenResponse] {
 	handler := wait.New(func() (waitFinished bool, response *modelserving.GetTokenResponse, err error) {
 		getTokenResp, err := a.GetTokenExecute(ctx, region, projectId, tokenId)
@@ -42,10 +44,12 @@ func CreateModelServingWaitHandler(ctx context.Context, a APIClientInterface, re
 
 // UpdateModelServingWaitHandler will wait for the model serving auth token to be updated.
 // Eventually it will have a different implementation, but for now it's the same as the create handler.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateModelServingWaitHandler(ctx context.Context, a APIClientInterface, region, projectId, tokenId string) *wait.AsyncActionHandler[modelserving.GetTokenResponse] {
 	return CreateModelServingWaitHandler(ctx, a, region, projectId, tokenId)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteModelServingWaitHandler(ctx context.Context, a APIClientInterface, region, projectId, tokenId string) *wait.AsyncActionHandler[modelserving.GetTokenResponse] {
 	handler := wait.New(
 		func() (waitFinished bool, response *modelserving.GetTokenResponse, err error) {
