@@ -26,11 +26,13 @@ const (
 )
 
 // Interfaces needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetDistributionExecute(ctx context.Context, projectId string, distributionId string) (*cdn.GetDistributionResponse, error)
 	GetCustomDomainExecute(ctx context.Context, projectId string, distributionId string, domain string) (*cdn.GetCustomDomainResponse, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateDistributionPoolWaitHandler(ctx context.Context, api APIClientInterface, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
 	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
 		distribution, err = api.GetDistributionExecute(ctx, projectId, distributionId)
@@ -63,6 +65,7 @@ func CreateDistributionPoolWaitHandler(ctx context.Context, api APIClientInterfa
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateDistributionWaitHandler(ctx context.Context, api APIClientInterface, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
 	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
 		distribution, err = api.GetDistributionExecute(ctx, projectId, distributionId)
@@ -97,6 +100,7 @@ func UpdateDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteDistributionWaitHandler(ctx context.Context, api APIClientInterface, projectId, distributionId string) *wait.AsyncActionHandler[cdn.GetDistributionResponse] {
 	handler := wait.New(func() (waitFinished bool, distribution *cdn.GetDistributionResponse, err error) {
 		_, err = api.GetDistributionExecute(ctx, projectId, distributionId)
@@ -118,6 +122,7 @@ func DeleteDistributionWaitHandler(ctx context.Context, api APIClientInterface, 
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface, projectId, distributionId, domain string) *wait.AsyncActionHandler[cdn.CustomDomain] {
 	handler := wait.New(func() (waitFinished bool, response *cdn.CustomDomain, err error) {
 		resp, err := a.GetCustomDomainExecute(ctx, projectId, distributionId, domain)
@@ -145,6 +150,7 @@ func CreateCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface,
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteCDNCustomDomainWaitHandler(ctx context.Context, a APIClientInterface, projectId, distributionId, domain string) *wait.AsyncActionHandler[cdn.CustomDomain] {
 	handler := wait.New(func() (waitFinished bool, response *cdn.CustomDomain, err error) {
 		_, err = a.GetCustomDomainExecute(ctx, projectId, distributionId, domain)
