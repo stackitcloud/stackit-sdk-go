@@ -25,12 +25,14 @@ const (
 )
 
 // Interfaces needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetZoneExecute(ctx context.Context, projectId, zoneId string) (*dns.ZoneResponse, error)
 	GetRecordSetExecute(ctx context.Context, projectId, zoneId, rrSetId string) (*dns.RecordSetResponse, error)
 }
 
 // CreateZoneWaitHandler will wait for zone creation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
@@ -53,6 +55,7 @@ func CreateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 }
 
 // PartialUpdateZoneWaitHandler will wait for zone update
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func PartialUpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
@@ -76,6 +79,7 @@ func PartialUpdateZoneWaitHandler(ctx context.Context, a APIClientInterface, pro
 
 // DeleteZoneWaitHandler will wait for zone deletion
 // returned interface is nil or *ZoneResponseZone
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
 		s, err := a.GetZoneExecute(ctx, projectId, instanceId)
@@ -98,6 +102,7 @@ func DeleteZoneWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 }
 
 // CreateRecordWaitHandler will wait for recordset creation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
@@ -120,6 +125,7 @@ func CreateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, proje
 }
 
 // UpdateRecordWaitHandler will wait for recordset update
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func PartialUpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)
@@ -143,6 +149,7 @@ func PartialUpdateRecordSetWaitHandler(ctx context.Context, a APIClientInterface
 
 // DeleteRecordWaitHandler will wait for deletion
 // returned interface is nil or *RecordSetResponse
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteRecordSetWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
 	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
 		s, err := a.GetRecordSetExecute(ctx, projectId, instanceId, rrSetId)

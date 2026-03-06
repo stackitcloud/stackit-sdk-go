@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/dns"
+	dns "github.com/stackitcloud/stackit-sdk-go/services/dns/v1api"
 )
 
 func main() {
@@ -21,7 +20,7 @@ func main() {
 
 	// Get the DNS Zones for your project
 	var getZoneResp *dns.ListZonesResponse //nolint:golint // transparency on data model naming
-	getZoneResp, err = dnsClient.ListZones(context.Background(), projectId).Execute()
+	getZoneResp, err = dnsClient.DefaultAPI.ListZones(context.Background(), projectId).Execute()
 
 	// Get only active DNS Zones for your project by adding the filter "ActiveEq(true)" to the call. More filters are available and can be chained.
 	// dnsRespGetZones, err := dnsClient.ZoneApi.GetZones(context.Background(), projectId).ActiveEq(true).Execute()
@@ -29,29 +28,29 @@ func main() {
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
 	} else {
-		fmt.Printf("[DNS API] Number of zones: %v\n", len(*getZoneResp.Zones))
+		fmt.Printf("[DNS API] Number of zones: %v\n", len(getZoneResp.Zones))
 	}
 
 	// Create a DNS Zone
 	createZonePayload := dns.CreateZonePayload{
-		Name:    utils.Ptr("myZone"),
-		DnsName: utils.Ptr("testZone.com"),
+		Name:    "myZone",
+		DnsName: "testZone.com",
 	}
 	var createZoneResp *dns.ZoneResponse //nolint:golint // transparency on data model naming
-	createZoneResp, err = dnsClient.CreateZone(context.Background(), projectId).CreateZonePayload(createZonePayload).Execute()
+	createZoneResp, err = dnsClient.DefaultAPI.CreateZone(context.Background(), projectId).CreateZonePayload(createZonePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.CreateZone`: %v\n", err)
 	} else {
-		var createdZone = *createZoneResp.Zone //nolint:golint // transparency on data model naming
-		fmt.Printf("[DNS API] Created zone \"%s\" with DNS name \"%s\" and zone id \"%s\".\n", *createdZone.Name, *createdZone.DnsName, *createdZone.Id)
+		var createdZone = createZoneResp.Zone //nolint:golint // transparency on data model naming
+		fmt.Printf("[DNS API] Created zone \"%s\" with DNS name \"%s\" and zone id \"%s\".\n", createdZone.Name, createdZone.DnsName, createdZone.Id)
 	}
 
 	// Get a record set of a DNS zone.
 	var recordSetResp *dns.RecordSetResponse //nolint:golint // transparency on data model naming
-	recordSetResp, err = dnsClient.GetRecordSet(context.Background(), projectId, "zoneId", "recordSetId").Execute()
+	recordSetResp, err = dnsClient.DefaultAPI.GetRecordSet(context.Background(), projectId, "zoneId", "recordSetId").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `GetRecordSet`: %v\n", err)
 	} else {
-		fmt.Printf("[DNS API] Got record set with name \"%s\".\n", *recordSetResp.Rrset.Name)
+		fmt.Printf("[DNS API] Got record set with name \"%s\".\n", recordSetResp.Rrset.Name)
 	}
 }

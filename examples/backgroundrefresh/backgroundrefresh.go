@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/services/dns"
+	dns "github.com/stackitcloud/stackit-sdk-go/services/dns/v1api"
 )
 
 func main() {
@@ -31,11 +31,11 @@ func main() {
 	// Use this for long-running operations (hours)
 	for i := 0; i < 10; i++ {
 		// Get the DNS zones for your project
-		getZoneResp, err := dnsClient.ListZones(context.Background(), projectId).Execute()
+		getZoneResp, err := dnsClient.DefaultAPI.ListZones(context.Background(), projectId).Execute()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error when calling `ListZones`: %v\n", err)
 		}
-		fmt.Printf("Number of DNS zones: %v\n", len(*getZoneResp.Zones))
+		fmt.Printf("Number of DNS zones: %v\n", len(getZoneResp.Zones))
 
 		time.Sleep(time.Hour)
 	}

@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/services/dns"
+	dns "github.com/stackitcloud/stackit-sdk-go/services/dns/v1api"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, err = dnsClient.ListZones(context.Background(), "foo-bar").Execute()
+	_, err = dnsClient.DefaultAPI.ListZones(context.Background(), "foo-bar").Execute()
 	if err == nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Unauthenticated GET request succeeded")
 		os.Exit(1)
