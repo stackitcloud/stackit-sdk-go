@@ -1,2 +1,0 @@
-STACKIT vpn SDK for Go
-Copyright 2026 Schwarz IT KG
