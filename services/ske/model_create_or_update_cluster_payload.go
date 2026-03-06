@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &CreateOrUpdateClusterPayload{}
 
 /*
+	types and functions for access
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetAccessAttributeType = *Access
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetAccessArgType = Access
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateOrUpdateClusterPayloadGetAccessRetType = Access
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateOrUpdateClusterPayloadGetAccessAttributeTypeOk(arg CreateOrUpdateClusterPayloadGetAccessAttributeType) (ret CreateOrUpdateClusterPayloadGetAccessRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateOrUpdateClusterPayloadGetAccessAttributeType(arg *CreateOrUpdateClusterPayloadGetAccessAttributeType, val CreateOrUpdateClusterPayloadGetAccessRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for extensions
 */
 
@@ -210,6 +237,7 @@ func setCreateOrUpdateClusterPayloadGetStatusAttributeType(arg *CreateOrUpdateCl
 // CreateOrUpdateClusterPayload struct for CreateOrUpdateClusterPayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateOrUpdateClusterPayload struct {
+	Access      CreateOrUpdateClusterPayloadGetAccessAttributeType      `json:"access,omitempty"`
 	Extensions  CreateOrUpdateClusterPayloadGetExtensionsAttributeType  `json:"extensions,omitempty"`
 	Hibernation CreateOrUpdateClusterPayloadGetHibernationAttributeType `json:"hibernation,omitempty"`
 	// REQUIRED
@@ -243,6 +271,33 @@ func NewCreateOrUpdateClusterPayload(kubernetes CreateOrUpdateClusterPayloadGetK
 func NewCreateOrUpdateClusterPayloadWithDefaults() *CreateOrUpdateClusterPayload {
 	this := CreateOrUpdateClusterPayload{}
 	return &this
+}
+
+// GetAccess returns the Access field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) GetAccess() (res CreateOrUpdateClusterPayloadGetAccessRetType) {
+	res, _ = o.GetAccessOk()
+	return
+}
+
+// GetAccessOk returns a tuple with the Access field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) GetAccessOk() (ret CreateOrUpdateClusterPayloadGetAccessRetType, ok bool) {
+	return getCreateOrUpdateClusterPayloadGetAccessAttributeTypeOk(o.Access)
+}
+
+// HasAccess returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) HasAccess() bool {
+	_, ok := o.GetAccessOk()
+	return ok
+}
+
+// SetAccess gets a reference to the given Access and assigns it to the Access field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateOrUpdateClusterPayload) SetAccess(v CreateOrUpdateClusterPayloadGetAccessRetType) {
+	setCreateOrUpdateClusterPayloadGetAccessAttributeType(&o.Access, v)
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
@@ -423,6 +478,9 @@ func (o *CreateOrUpdateClusterPayload) SetStatus(v CreateOrUpdateClusterPayloadG
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateOrUpdateClusterPayloadGetAccessAttributeTypeOk(o.Access); ok {
+		toSerialize["Access"] = val
+	}
 	if val, ok := getCreateOrUpdateClusterPayloadGetExtensionsAttributeTypeOk(o.Extensions); ok {
 		toSerialize["Extensions"] = val
 	}
