@@ -12,12 +12,14 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/services/intake"
 )
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetIntakeRunnerExecute(ctx context.Context, projectId, region, intakeRunnerId string) (*intake.IntakeRunnerResponse, error)
 	GetIntakeExecute(ctx context.Context, projectId, region, intakeId string) (*intake.IntakeResponse, error)
 	GetIntakeUserExecute(ctx context.Context, projectId, region, intakeId, intakeUserId string) (*intake.IntakeUserResponse, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeRunnerResponse, err error) {
 		runner, err := a.GetIntakeRunnerExecute(ctx, projectId, region, intakeRunnerId)
@@ -45,6 +47,7 @@ func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a APIClientInter
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteIntakeRunnerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeRunnerResponse, err error) {
 		_, err = a.GetIntakeRunnerExecute(ctx, projectId, region, intakeRunnerId)
@@ -67,6 +70,7 @@ func DeleteIntakeRunnerWaitHandler(ctx context.Context, a APIClientInterface, pr
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeResponse, err error) {
 		ik, err := a.GetIntakeExecute(ctx, projectId, region, intakeId)
@@ -96,6 +100,7 @@ func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a APIClientInterface, 
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteIntakeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeResponse, err error) {
 		_, err = a.GetIntakeExecute(ctx, projectId, region, intakeId)
@@ -115,6 +120,7 @@ func DeleteIntakeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeUserResponse, err error) {
 		user, err := a.GetIntakeUserExecute(ctx, projectId, region, intakeId, intakeUserId)
@@ -142,6 +148,7 @@ func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a APIClientInterfa
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteIntakeUserWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeUserResponse, err error) {
 		_, err = a.GetIntakeUserExecute(ctx, projectId, region, intakeId, intakeUserId)
