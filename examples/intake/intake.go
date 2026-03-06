@@ -7,7 +7,7 @@ import (
 
 	sdkConfig "github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/intake"
+	intake "github.com/stackitcloud/stackit-sdk-go/services/intake/v1betaapi"
 )
 
 func main() {
@@ -33,55 +33,55 @@ func main() {
 
 	// Create an Intake Runner
 	createRunnerPayload := intake.CreateIntakeRunnerPayload{
-		DisplayName:        utils.Ptr("my-example-runner"),
-		MaxMessageSizeKiB:  utils.Ptr(int64(10)),
-		MaxMessagesPerHour: utils.Ptr(int64(1000)),
+		DisplayName:        "my-example-runner",
+		MaxMessageSizeKiB:  int32(10),
+		MaxMessagesPerHour: int32(1000),
 	}
-	createRunnerResp, err := intakeClient.CreateIntakeRunner(ctx, projectId, region).CreateIntakeRunnerPayload(createRunnerPayload).Execute()
+	createRunnerResp, err := intakeClient.DefaultAPI.CreateIntakeRunner(ctx, projectId, region).CreateIntakeRunnerPayload(createRunnerPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating Intake Runner: %v\n", err)
 		os.Exit(1)
 	}
-	intakeRunnerId := *createRunnerResp.Id
+	intakeRunnerId := createRunnerResp.Id
 	fmt.Printf("Triggered creation of Intake Runner with ID: %s. Waiting for it to become active...\n", intakeRunnerId)
 
 	// Create an Intake
 	dremioAuthType := intake.CatalogAuthType("dremio") // can also be set to "none" if the catalog is not authenticated
 	createIntakePayload := intake.CreateIntakePayload{
-		DisplayName:    utils.Ptr("my-example-intake"),
-		IntakeRunnerId: utils.Ptr(intakeRunnerId),
-		Catalog: &intake.IntakeCatalog{
-			Uri:       utils.Ptr(dremioCatalogURI),
-			Warehouse: utils.Ptr(catalogWarehouse),
+		DisplayName:    "my-example-intake",
+		IntakeRunnerId: intakeRunnerId,
+		Catalog: intake.IntakeCatalog{
+			Uri:       dremioCatalogURI,
+			Warehouse: catalogWarehouse,
 			Namespace: utils.Ptr("example_namespace"),
 			TableName: utils.Ptr("example_table"),
 			Auth: &intake.CatalogAuth{
-				Type: &dremioAuthType,
+				Type: dremioAuthType,
 				Dremio: &intake.DremioAuth{
-					TokenEndpoint:       utils.Ptr(dremioTokenEndpoint),
-					PersonalAccessToken: utils.Ptr(dremioPAT),
+					TokenEndpoint:       dremioTokenEndpoint,
+					PersonalAccessToken: dremioPAT,
 				},
 			},
 		},
 	}
-	createIntakeResp, err := intakeClient.CreateIntake(ctx, projectId, region).CreateIntakePayload(createIntakePayload).Execute()
+	createIntakeResp, err := intakeClient.DefaultAPI.CreateIntake(ctx, projectId, region).CreateIntakePayload(createIntakePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating Intake: %v\n", err)
 		os.Exit(1)
 	}
-	intakeId := *createIntakeResp.Id
+	intakeId := createIntakeResp.Id
 	fmt.Printf("Triggered creation of Intake with ID: %s. Waiting for it to become active...\n", intakeRunnerId)
 
 	createIntakeUserPayload := intake.CreateIntakeUserPayload{
-		DisplayName: utils.Ptr("my-example-user"),
-		Password:    utils.Ptr(intakeUserPassword),
+		DisplayName: "my-example-user",
+		Password:    intakeUserPassword,
 	}
 	// Create an Intake user
-	createIntakeUserResp, err := intakeClient.CreateIntakeUser(ctx, projectId, region, intakeId).CreateIntakeUserPayload(createIntakeUserPayload).Execute()
+	createIntakeUserResp, err := intakeClient.DefaultAPI.CreateIntakeUser(ctx, projectId, region, intakeId).CreateIntakeUserPayload(createIntakeUserPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error creating Intake User: %v\n", err)
 		os.Exit(1)
 	}
-	intakeUserId := *createIntakeUserResp.Id
+	intakeUserId := createIntakeUserResp.Id
 	fmt.Printf("Created Intake User with ID: %s\n", intakeUserId)
 }
