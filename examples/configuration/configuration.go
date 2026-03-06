@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/services/dns"
+	dns "github.com/stackitcloud/stackit-sdk-go/services/dns/v1api"
 	"github.com/stackitcloud/stackit-sdk-go/services/postgresql"
 )
 
@@ -43,9 +43,7 @@ func main() {
 	}
 
 	// Create a new API client for a regional API
-	_, err = postgresql.NewAPIClient(
-		config.WithRegion("eu01"),
-	)
+	_, err = postgresql.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[PostgreSQL API] Creating API client: %v\n", err)
 		os.Exit(1)

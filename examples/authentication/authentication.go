@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/services/dns"
+	dns "github.com/stackitcloud/stackit-sdk-go/services/dns/v1api"
 )
 
 func main() {
@@ -55,11 +55,11 @@ func main() {
 	}
 
 	// Check that you can make an authenticated request
-	getZoneResp, err := dnsClient.ListZones(context.Background(), projectId).Execute()
+	getZoneResp, err := dnsClient.DefaultAPI.ListZones(context.Background(), projectId).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[DNS API] Error when calling `ZoneApi.GetZones`: %v\n", err)
 	} else {
-		fmt.Printf("[DNS API] Number of zones: %v\n", len(*getZoneResp.Zones))
+		fmt.Printf("[DNS API] Number of zones: %v\n", len(getZoneResp.Zones))
 	}
 }
