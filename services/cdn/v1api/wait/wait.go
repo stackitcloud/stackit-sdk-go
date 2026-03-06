@@ -27,7 +27,7 @@ func CreateDistributionPoolWaitHandler(ctx context.Context, api cdn.DefaultAPI, 
 			return false, distribution, err
 		}
 		if distribution == nil {
-			return false, distribution, fmt.Errorf("create failed for distribution with id %s, the response is nil", distributionId)
+			return false, nil, fmt.Errorf("create failed for distribution with id %s, the response is nil", distributionId)
 		}
 		if distribution.Distribution.Id == distributionId {
 			switch distribution.Distribution.Status {
@@ -56,7 +56,7 @@ func UpdateDistributionWaitHandler(ctx context.Context, api cdn.DefaultAPI, proj
 			return false, distribution, err
 		}
 		if distribution == nil {
-			return false, distribution, fmt.Errorf("update failed for distribution with id %s, the response is nil", distributionId)
+			return false, nil, fmt.Errorf("update failed for distribution with id %s, the response is nil", distributionId)
 		}
 		if distribution.Distribution.Id == distributionId {
 			switch distribution.Distribution.Status {

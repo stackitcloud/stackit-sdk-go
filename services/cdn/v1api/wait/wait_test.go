@@ -26,7 +26,7 @@ type mockSettings struct {
 
 func newAPIMock(settings *mockSettings) cdn.DefaultAPI {
 	return &cdn.DefaultAPIServiceMock{
-		GetDistributionExecuteMock: utils.Ptr(func(r cdn.ApiGetDistributionRequest) (*cdn.GetDistributionResponse, error) {
+		GetDistributionExecuteMock: utils.Ptr(func(_ cdn.ApiGetDistributionRequest) (*cdn.GetDistributionResponse, error) {
 			if settings.getDistributionError != nil {
 				return nil, settings.getDistributionError
 			}
@@ -41,7 +41,7 @@ func newAPIMock(settings *mockSettings) cdn.DefaultAPI {
 				StatusCode: http.StatusNotFound,
 			}
 		}),
-		GetCustomDomainExecuteMock: utils.Ptr(func(r cdn.ApiGetCustomDomainRequest) (*cdn.GetCustomDomainResponse, error) {
+		GetCustomDomainExecuteMock: utils.Ptr(func(_ cdn.ApiGetCustomDomainRequest) (*cdn.GetCustomDomainResponse, error) {
 			if settings.getCustomDomainError != nil {
 				return nil, settings.getCustomDomainError
 			}
@@ -485,7 +485,6 @@ func TestCreateCustomDomainWaitHandler(t *testing.T) {
 		"statusError": {
 			apiClient: mockClientFixture(func(settings *mockSettings) {
 				settings.customDomain.Status = cdn.DOMAINSTATUS_ERROR
-
 			}),
 			projectId:            projectId,
 			distributionId:       distributionId,
