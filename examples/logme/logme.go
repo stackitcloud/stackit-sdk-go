@@ -6,8 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/logme"
+	logme "github.com/stackitcloud/stackit-sdk-go/services/logme/v1api"
 )
 
 func main() {
@@ -24,15 +23,15 @@ func main() {
 	}
 
 	// Get the logme instances for your project
-	getInstancesResp, err := logmeClient.ListInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := logmeClient.DefaultAPI.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
-		fmt.Printf("Number of instances: %v\n", len(*getInstancesResp.Instances))
+		fmt.Printf("Number of instances: %v\n", len(getInstancesResp.Instances))
 	}
 
 	// Get the logme offerings for your project
-	getOfferingsResp, err := logmeClient.ListOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := logmeClient.DefaultAPI.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {
@@ -41,14 +40,14 @@ func main() {
 
 	// Create a logme Instance
 	createInstancePayload := logme.CreateInstancePayload{
-		InstanceName: utils.Ptr("exampleInstance"),
+		InstanceName: "exampleInstance",
 		Parameters:   &logme.InstanceParameters{},
-		PlanId:       utils.Ptr(planId),
+		PlanId:       planId,
 	}
-	createInstanceResp, err := logmeClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+	createInstanceResp, err := logmeClient.DefaultAPI.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateInstance`: %v\n", err)
 	} else {
-		fmt.Printf("Created instance with instance id \"%s\".\n", *createInstanceResp.InstanceId)
+		fmt.Printf("Created instance with instance id \"%s\".\n", createInstanceResp.InstanceId)
 	}
 }
