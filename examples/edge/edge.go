@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/edge"
-	"github.com/stackitcloud/stackit-sdk-go/services/edge/wait"
+	edge "github.com/stackitcloud/stackit-sdk-go/services/edge/v1beta1api"
+	"github.com/stackitcloud/stackit-sdk-go/services/edge/v1beta1api/wait"
 	"gopkg.in/yaml.v3"
 )
 
@@ -30,8 +30,8 @@ func main() {
 		instance *edge.Instance
 		ctx      = context.Background()
 	)
-	payload.DisplayName = utils.Ptr("example")
-	instance, err = client.CreateInstance(ctx, projectId, region).CreateInstancePayload(*payload).Execute()
+	payload.DisplayName = "example"
+	instance, err = client.DefaultAPI.CreateInstance(ctx, projectId, region).CreateInstancePayload(*payload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Edge API] Failed to create Instance: %v\n", err)
 		os.Exit(1)
@@ -41,7 +41,7 @@ func main() {
 	// Wait for Edge Instance to become active
 	waitResult, err := wait.CreateOrUpdateInstanceWaitHandler(
 		ctx,
-		client,
+		client.DefaultAPI,
 		projectId,
 		region,
 		instance.GetId(),
@@ -55,7 +55,7 @@ func main() {
 	// Create a service token to login to the instance UI and wait for the instance to become ready
 	token, err := wait.TokenWaitHandler(
 		ctx,
-		client,
+		client.DefaultAPI,
 		projectId,
 		region,
 		instance.GetId(),
@@ -65,14 +65,14 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[Edge API] Failed wait for token creation: %v\n", err)
 		os.Exit(1)
 	}
-	if token != nil && token.Token != nil {
-		fmt.Printf("Token: %s\n", *token.Token)
+	if token != nil {
+		fmt.Printf("Token: %s\n", token.Token)
 	}
 
 	// Create a kubeconfig to interact with the instances kubernetes API and wait for the instance to become ready
 	kubeconfig, err := wait.KubeconfigWaitHandler(
 		ctx,
-		client,
+		client.DefaultAPI,
 		projectId,
 		region,
 		instance.GetId(),
@@ -94,7 +94,7 @@ func main() {
 	}
 
 	// Delete Edge Instance
-	err = client.DeleteInstance(ctx, projectId, region, instance.GetId()).Execute()
+	err = client.DefaultAPI.DeleteInstance(ctx, projectId, region, instance.GetId()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Edge API] Failed to delete instance: %v\n", err)
 		os.Exit(1)
@@ -102,7 +102,7 @@ func main() {
 	fmt.Printf("[Edge API] Instance deletion started, Id: %s\n", instance.GetId())
 
 	// Wait for Edge instance deletion
-	_, err = wait.DeleteInstanceWaitHandler(ctx, client, projectId, region, instance.GetId()).SetTimeout(10 * time.Minute).WaitWithContext(ctx)
+	_, err = wait.DeleteInstanceWaitHandler(ctx, client.DefaultAPI, projectId, region, instance.GetId()).SetTimeout(10 * time.Minute).WaitWithContext(ctx)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Edge API] Failed wait for Instance deletion: %v\n", err)
 		os.Exit(1)
