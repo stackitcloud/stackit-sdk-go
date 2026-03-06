@@ -35,12 +35,14 @@ const (
 	InvalidArgusInstanceErrorCode = "SKE_ARGUS_INSTANCE_NOT_FOUND"
 )
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientClusterInterface interface {
 	GetClusterExecute(ctx context.Context, projectId, region, name string) (*ske.Cluster, error)
 	ListClustersExecute(ctx context.Context, projectId, region string) (*ske.ListClustersResponse, error)
 }
 
 // CreateOrUpdateClusterWaitHandler will wait for cluster creation or update
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, name string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, region, name)
@@ -71,6 +73,7 @@ func CreateOrUpdateClusterWaitHandler(ctx context.Context, a APIClientClusterInt
 }
 
 // DeleteClusterWaitHandler will wait for cluster deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, name string) *wait.AsyncActionHandler[ske.ListClustersResponse] {
 	handler := wait.New(func() (waitFinished bool, response *ske.ListClustersResponse, err error) {
 		s, err := a.ListClustersExecute(ctx, projectId, region)
@@ -90,6 +93,7 @@ func DeleteClusterWaitHandler(ctx context.Context, a APIClientClusterInterface, 
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func TriggerClusterHibernationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
@@ -108,6 +112,7 @@ func TriggerClusterHibernationWaitHandler(ctx context.Context, a APIClientCluste
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func TriggerClusterMaintenanceWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
@@ -126,6 +131,7 @@ func TriggerClusterMaintenanceWaitHandler(ctx context.Context, a APIClientCluste
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func TriggerClusterReconciliationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
@@ -144,6 +150,7 @@ func TriggerClusterReconciliationWaitHandler(ctx context.Context, a APIClientClu
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func TriggerClusterWakeupWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		cluster, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
@@ -163,6 +170,7 @@ func TriggerClusterWakeupWaitHandler(ctx context.Context, a APIClientClusterInte
 }
 
 // RotateCredentialsWaitHandler will wait for credentials rotation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
@@ -191,6 +199,7 @@ func RotateCredentialsWaitHandler(ctx context.Context, a APIClientClusterInterfa
 }
 
 // StartCredentialsRotationWaitHandler will wait for credentials rotation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, region, clusterName)
@@ -215,6 +224,7 @@ func StartCredentialsRotationWaitHandler(ctx context.Context, a APIClientCluster
 }
 
 // CompleteCredentialsRotationWaitHandler will wait for credentials rotation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CompleteCredentialsRotationWaitHandler(ctx context.Context, a APIClientClusterInterface, projectId, region, clusterName string) *wait.AsyncActionHandler[ske.Cluster] {
 	handler := wait.New(func() (waitFinished bool, response *ske.Cluster, err error) {
 		s, err := a.GetClusterExecute(ctx, projectId, region, clusterName)

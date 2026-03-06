@@ -24,7 +24,7 @@
 - `sqlserverflex`: [v1.5.0](services/sqlserverflex/CHANGELOG.md#v150)
   - **Feature:** Introduction of multi API version support for the sqlserverflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which can be used for communication with the sqlserverflex v1 API
-  - `v2api`: New package which can be used for communication with the sqlserverflex v1 API
+  - `v2api`: New package which can be used for communication with the sqlserverflex v2 API
   - `v3alpha1api`: New package which can be used for communication with the sqlserverflex v3 alpha1 API
   - `v3beta1api`: New package which can be used for communication with the sqlserverflex v3 beta1 API
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
@@ -49,6 +49,12 @@
   - `v2api`: New package which can be used for communication with the certificates v2 API
   - `v2betaapi`: New package which can be used for communication with the certificates v2 API
   - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `ske`: [v1.8.0](services/ske/CHANGELOG.md#v180)
+  - **Feature:** Introduction of multi API version support for the ske SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+  - `v1api`: New package which can be used for communication with the ske v1 API
+  - `v2api`: New package which can be used for communication with the ske v2 API
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 
 ## Release (2026-02-20)
