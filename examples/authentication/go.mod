@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/dns => ../../services/dn
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.22.0
-	github.com/stackitcloud/stackit-sdk-go/services/dns v0.17.6
+	github.com/stackitcloud/stackit-sdk-go/services/dns v0.18.0
 )
 
 require (
