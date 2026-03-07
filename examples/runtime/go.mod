@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/postgresflex => ../../se
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.22.0
-	github.com/stackitcloud/stackit-sdk-go/services/postgresflex v1.3.5
+	github.com/stackitcloud/stackit-sdk-go/services/postgresflex v1.4.0
 )
 
 require (

@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/ske => ../../services/sk
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.22.0
-	github.com/stackitcloud/stackit-sdk-go/services/ske v1.7.0
+	github.com/stackitcloud/stackit-sdk-go/services/ske v1.8.0
 )
 
 require (
