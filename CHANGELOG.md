@@ -2,10 +2,17 @@
 
 - `core`: [v0.22.0](core/CHANGELOG.md#v0220) 
   - **Feature:** Support Azure DevOps OIDC adapter
-- `alb`: [v0.10.0](services/alb/CHANGELOG.md#v0100)
-  - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
-  - **Feature:** Add new field `Tls` to `HttpHealthCheck`
-  - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+- `alb`: 
+  - [v0.10.0](services/alb/CHANGELOG.md#v0100)
+    - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
+    - **Feature:** Add new field `Tls` to `HttpHealthCheck`
+    - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
+  - [v0.11.0](services/alb/CHANGELOG.md#v0110)
+    - **Feature:** Introduction of multi API version support for the alb SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v2api`: New package which can be used for communication with the alb v2 API
+    - `v2beta2api`: New package which can be used for communication with the alb v2 beta2 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `loadbalancer`: 
   - [v1.8.0](services/loadbalancer/CHANGELOG.md#v180)
     - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`

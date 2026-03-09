@@ -25,10 +25,12 @@ const (
 	StatusTerminating = "STATUS_TERMINATING"
 )
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientLoadbalancerInterface interface {
 	GetLoadBalancerExecute(ctx context.Context, projectId string, region string, name string) (*alb.LoadBalancer, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client APIClientLoadbalancerInterface, projectId, region, name string) *wait.AsyncActionHandler[alb.LoadBalancer] {
 	handler := wait.New(func() (bool, *alb.LoadBalancer, error) {
 		response, err := client.GetLoadBalancerExecute(ctx, projectId, region, name)
@@ -54,6 +56,7 @@ func CreateOrUpdateLoadbalancerWaitHandler(ctx context.Context, client APIClient
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteLoadbalancerWaitHandler(ctx context.Context, client APIClientLoadbalancerInterface, projectId, region, name string) *wait.AsyncActionHandler[alb.LoadBalancer] {
 	handler := wait.New(func() (bool, *alb.LoadBalancer, error) {
 		_, err := client.GetLoadBalancerExecute(ctx, projectId, region, name)
