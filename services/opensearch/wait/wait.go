@@ -52,16 +52,19 @@ const (
 )
 
 // Interface needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInstanceInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId, instanceId string) (*opensearch.Instance, error)
 }
 
 // Interface needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientCredentialsInterface interface {
 	GetCredentialsExecute(ctx context.Context, projectId, instanceId, credentialsId string) (*opensearch.CredentialsResponse, error)
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[opensearch.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *opensearch.Instance, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
@@ -88,6 +91,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[opensearch.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *opensearch.Instance, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
@@ -114,6 +118,7 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a APIClientInstanceIn
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		s, err := a.GetInstanceExecute(ctx, projectId, instanceId)
@@ -146,6 +151,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInstanceInterface
 }
 
 // CreateCredentialsWaitHandler will wait for credentials creation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.AsyncActionHandler[opensearch.CredentialsResponse] {
 	handler := wait.New(func() (waitFinished bool, response *opensearch.CredentialsResponse, err error) {
 		s, err := a.GetCredentialsExecute(ctx, projectId, instanceId, credentialsId)
@@ -170,6 +176,7 @@ func CreateCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInt
 }
 
 // DeleteCredentialsWaitHandler will wait for credentials deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteCredentialsWaitHandler(ctx context.Context, a APIClientCredentialsInterface, projectId, instanceId, credentialsId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetCredentialsExecute(ctx, projectId, instanceId, credentialsId)
