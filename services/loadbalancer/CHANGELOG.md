@@ -1,3 +1,10 @@
+## v1.9.0
+- **Feature:** Introduction of multi API version support for the loadbalancer SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+- `v1api`: New package which can be used for communication with the loadbalancer v1 API
+- `v2api`: New package which can be used for communication with the loadbalancer v2 API
+- **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+- **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+
 ## v1.8.0
 - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
 

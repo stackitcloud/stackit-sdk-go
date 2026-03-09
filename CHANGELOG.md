@@ -6,8 +6,15 @@
   - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`
   - **Feature:** Add new field `Tls` to `HttpHealthCheck`
   - **Breaking change:** Renamed `TargetPoolTlsConfig` to `TlsConfig`
-- `loadbalancer`: [v1.8.0](services/loadbalancer/CHANGELOG.md#v180)
-  - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+- `loadbalancer`: 
+  - [v1.8.0](services/loadbalancer/CHANGELOG.md#v180)
+    - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
+  - [v1.9.0](services/loadbalancer/CHANGELOG.md#v190)
+    - **Feature:** Introduction of multi API version support for the loadbalancer SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the loadbalancer v1 API
+    - `v2api`: New package which can be used for communication with the loadbalancer v2 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `resourcemanager`: [v0.19.0](services/resourcemanager/CHANGELOG.md#v0190)
   - **Feature:** Introduction of multi API version support for the resourcemanager SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v0api`: New package which should be used for communication with the STACKIT Resourcemanager API in the future

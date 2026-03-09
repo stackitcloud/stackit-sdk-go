@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/loadbalancer"
+	loadbalancer "github.com/stackitcloud/stackit-sdk-go/services/loadbalancer/v2api"
 )
 
 func main() {
@@ -23,7 +23,7 @@ func main() {
 	}
 
 	// List the load balancer instances for your project
-	listInstancesResp, err := loadbalancerClient.ListLoadBalancers(context.Background(), projectId, region).Execute()
+	listInstancesResp, err := loadbalancerClient.DefaultAPI.ListLoadBalancers(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListLoadBalancers`: %v\n", err)
 		os.Exit(1)
@@ -31,7 +31,7 @@ func main() {
 	if listInstancesResp.LoadBalancers == nil {
 		fmt.Printf("Current project does not have any load balancer instances.\n")
 	} else {
-		lbs := *listInstancesResp.LoadBalancers
+		lbs := listInstancesResp.LoadBalancers
 		fmt.Printf("Number of instances: %v\n", len(lbs))
 	}
 
@@ -41,25 +41,25 @@ func main() {
 		Options: &loadbalancer.LoadBalancerOptions{
 			PrivateNetworkOnly: utils.Ptr(true),
 		},
-		Networks: &[]loadbalancer.Network{
+		Networks: []loadbalancer.Network{
 			{
 				NetworkId: utils.Ptr("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
-				Role:      utils.Ptr(loadbalancer.NETWORKROLE_LISTENERS_AND_TARGETS),
+				Role:      utils.Ptr("ROLE_LISTENERS_AND_TARGETS"),
 			},
 		},
-		Listeners: &[]loadbalancer.Listener{
+		Listeners: []loadbalancer.Listener{
 			{
 				DisplayName: utils.Ptr("example-listener"),
-				Port:        utils.Ptr(int64(1)),
-				Protocol:    utils.Ptr(loadbalancer.LISTENERPROTOCOL_TCP),
+				Port:        utils.Ptr(int32(1)),
+				Protocol:    utils.Ptr("PROTOCOL_TCP"),
 				TargetPool:  utils.Ptr("example-target-pool"),
 			},
 		},
-		TargetPools: &[]loadbalancer.TargetPool{
+		TargetPools: []loadbalancer.TargetPool{
 			{
 				Name:       utils.Ptr("example-target-pool"),
-				TargetPort: utils.Ptr(int64(1)),
-				Targets: &[]loadbalancer.Target{
+				TargetPort: utils.Ptr(int32(1)),
+				Targets: []loadbalancer.Target{
 					{
 						DisplayName: utils.Ptr("example-target"),
 						Ip:          utils.Ptr("x.x.x.x"),
@@ -68,7 +68,7 @@ func main() {
 			},
 		},
 	}
-	createLoadBalancerRes, err := loadbalancerClient.CreateLoadBalancer(context.Background(), projectId, region).CreateLoadBalancerPayload(createLoadBalancerPayload).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
+	createLoadBalancerRes, err := loadbalancerClient.DefaultAPI.CreateLoadBalancer(context.Background(), projectId, region).CreateLoadBalancerPayload(createLoadBalancerPayload).XRequestID("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateLoadBalancer`: %v\n", err)
 		os.Exit(1)
