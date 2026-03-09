@@ -6,8 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/opensearch"
+	opensearch "github.com/stackitcloud/stackit-sdk-go/services/opensearch/v1api"
 )
 
 func main() {
@@ -24,15 +23,15 @@ func main() {
 	}
 
 	// Get the opensearch instances for your project
-	getInstancesResp, err := opensearchClient.ListInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := opensearchClient.DefaultAPI.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
-		fmt.Printf("Number of instances: %v\n", len(*getInstancesResp.Instances))
+		fmt.Printf("Number of instances: %v\n", len(getInstancesResp.Instances))
 	}
 
 	// Get the opensearch offerings for your project
-	getOfferingsResp, err := opensearchClient.ListOfferings(context.Background(), projectId).Execute()
+	getOfferingsResp, err := opensearchClient.DefaultAPI.ListOfferings(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetOfferings`: %v\n", err)
 	} else {
@@ -41,14 +40,14 @@ func main() {
 
 	// Create a opensearch Instance
 	createInstancePayload := opensearch.CreateInstancePayload{
-		InstanceName: utils.Ptr("exampleInstance"),
+		InstanceName: "exampleInstance",
 		Parameters:   &opensearch.InstanceParameters{},
-		PlanId:       utils.Ptr(planId),
+		PlanId:       planId,
 	}
-	createInstanceResp, err := opensearchClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+	createInstanceResp, err := opensearchClient.DefaultAPI.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateInstance`: %v\n", err)
 	} else {
-		fmt.Printf("Created instance with instance id \"%s\".\n", *createInstanceResp.InstanceId)
+		fmt.Printf("Created instance with instance id \"%s\".\n", createInstanceResp.InstanceId)
 	}
 }

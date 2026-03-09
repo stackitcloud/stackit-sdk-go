@@ -2,8 +2,11 @@ module github.com/stackitcloud/stackit-sdk-go/examples/opensearch
 
 go 1.21
 
+// This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
+replace github.com/stackitcloud/stackit-sdk-go/services/opensearch => ../../services/opensearch
+
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.21.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.22.0
 	github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.24.6
 )
 
