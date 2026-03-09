@@ -35,6 +35,7 @@ use (
 	./examples/sqlserverflex
 	./examples/waiter
 	./services/alb
+	./services/albwaf
 	./services/archiving
 	./services/auditlog
 	./services/authorization
