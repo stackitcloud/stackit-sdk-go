@@ -15,25 +15,19 @@ import (
 	"encoding/json"
 )
 
-// checks if the ListInstancesResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListInstancesResponse{}
+// checks if the CreateApproleSecretPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateApproleSecretPayload{}
 
 /*
-	types and functions for instances
+	types and functions for description
 */
 
-// isArray
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListInstancesResponseGetInstancesAttributeType = *[]Instance
+type CreateApproleSecretPayloadGetDescriptionAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListInstancesResponseGetInstancesArgType = []Instance
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListInstancesResponseGetInstancesRetType = []Instance
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getListInstancesResponseGetInstancesAttributeTypeOk(arg ListInstancesResponseGetInstancesAttributeType) (ret ListInstancesResponseGetInstancesRetType, ok bool) {
+func getCreateApproleSecretPayloadGetDescriptionAttributeTypeOk(arg CreateApproleSecretPayloadGetDescriptionAttributeType) (ret CreateApproleSecretPayloadGetDescriptionRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -41,109 +35,116 @@ func getListInstancesResponseGetInstancesAttributeTypeOk(arg ListInstancesRespon
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setListInstancesResponseGetInstancesAttributeType(arg *ListInstancesResponseGetInstancesAttributeType, val ListInstancesResponseGetInstancesRetType) {
+func setCreateApproleSecretPayloadGetDescriptionAttributeType(arg *CreateApproleSecretPayloadGetDescriptionAttributeType, val CreateApproleSecretPayloadGetDescriptionRetType) {
 	*arg = &val
 }
 
-// ListInstancesResponse struct for ListInstancesResponse
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListInstancesResponse struct {
+type CreateApproleSecretPayloadGetDescriptionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateApproleSecretPayloadGetDescriptionRetType = string
+
+// CreateApproleSecretPayload struct for CreateApproleSecretPayload
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateApproleSecretPayload struct {
+	// A user chosen description to differentiate between multiple approle secrets.
 	// REQUIRED
-	Instances ListInstancesResponseGetInstancesAttributeType `json:"instances" required:"true"`
+	Description CreateApproleSecretPayloadGetDescriptionAttributeType `json:"description" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _ListInstancesResponse ListInstancesResponse
+type _CreateApproleSecretPayload CreateApproleSecretPayload
 
-// NewListInstancesResponse instantiates a new ListInstancesResponse object
+// NewCreateApproleSecretPayload instantiates a new CreateApproleSecretPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewListInstancesResponse(instances ListInstancesResponseGetInstancesArgType) *ListInstancesResponse {
-	this := ListInstancesResponse{}
-	setListInstancesResponseGetInstancesAttributeType(&this.Instances, instances)
+func NewCreateApproleSecretPayload(description CreateApproleSecretPayloadGetDescriptionArgType) *CreateApproleSecretPayload {
+	this := CreateApproleSecretPayload{}
+	setCreateApproleSecretPayloadGetDescriptionAttributeType(&this.Description, description)
 	return &this
 }
 
-// NewListInstancesResponseWithDefaults instantiates a new ListInstancesResponse object
+// NewCreateApproleSecretPayloadWithDefaults instantiates a new CreateApproleSecretPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewListInstancesResponseWithDefaults() *ListInstancesResponse {
-	this := ListInstancesResponse{}
+func NewCreateApproleSecretPayloadWithDefaults() *CreateApproleSecretPayload {
+	this := CreateApproleSecretPayload{}
 	return &this
 }
 
-// GetInstances returns the Instances field value
+// GetDescription returns the Description field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListInstancesResponse) GetInstances() (ret ListInstancesResponseGetInstancesRetType) {
-	ret, _ = o.GetInstancesOk()
+func (o *CreateApproleSecretPayload) GetDescription() (ret CreateApproleSecretPayloadGetDescriptionRetType) {
+	ret, _ = o.GetDescriptionOk()
 	return ret
 }
 
-// GetInstancesOk returns a tuple with the Instances field value
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListInstancesResponse) GetInstancesOk() (ret ListInstancesResponseGetInstancesRetType, ok bool) {
-	return getListInstancesResponseGetInstancesAttributeTypeOk(o.Instances)
+func (o *CreateApproleSecretPayload) GetDescriptionOk() (ret CreateApproleSecretPayloadGetDescriptionRetType, ok bool) {
+	return getCreateApproleSecretPayloadGetDescriptionAttributeTypeOk(o.Description)
 }
 
-// SetInstances sets field value
+// SetDescription sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListInstancesResponse) SetInstances(v ListInstancesResponseGetInstancesRetType) {
-	setListInstancesResponseGetInstancesAttributeType(&o.Instances, v)
+func (o *CreateApproleSecretPayload) SetDescription(v CreateApproleSecretPayloadGetDescriptionRetType) {
+	setCreateApproleSecretPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o ListInstancesResponse) ToMap() (map[string]interface{}, error) {
+func (o CreateApproleSecretPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getListInstancesResponseGetInstancesAttributeTypeOk(o.Instances); ok {
-		toSerialize["Instances"] = val
+	if val, ok := getCreateApproleSecretPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableListInstancesResponse struct {
-	value *ListInstancesResponse
+type NullableCreateApproleSecretPayload struct {
+	value *CreateApproleSecretPayload
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListInstancesResponse) Get() *ListInstancesResponse {
+func (v NullableCreateApproleSecretPayload) Get() *CreateApproleSecretPayload {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListInstancesResponse) Set(val *ListInstancesResponse) {
+func (v *NullableCreateApproleSecretPayload) Set(val *CreateApproleSecretPayload) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListInstancesResponse) IsSet() bool {
+func (v NullableCreateApproleSecretPayload) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListInstancesResponse) Unset() {
+func (v *NullableCreateApproleSecretPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableListInstancesResponse(val *ListInstancesResponse) *NullableListInstancesResponse {
-	return &NullableListInstancesResponse{value: val, isSet: true}
+func NewNullableCreateApproleSecretPayload(val *CreateApproleSecretPayload) *NullableCreateApproleSecretPayload {
+	return &NullableCreateApproleSecretPayload{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListInstancesResponse) MarshalJSON() ([]byte, error) {
+func (v NullableCreateApproleSecretPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListInstancesResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateApproleSecretPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

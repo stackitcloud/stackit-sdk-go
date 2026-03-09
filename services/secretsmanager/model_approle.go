@@ -15,8 +15,8 @@ import (
 	"encoding/json"
 )
 
-// checks if the User type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &User{}
+// checks if the Approle type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Approle{}
 
 /*
 	types and functions for description
@@ -24,10 +24,10 @@ var _ MappedNullable = &User{}
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetDescriptionAttributeType = *string
+type ApproleGetDescriptionAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getUserGetDescriptionAttributeTypeOk(arg UserGetDescriptionAttributeType) (ret UserGetDescriptionRetType, ok bool) {
+func getApproleGetDescriptionAttributeTypeOk(arg ApproleGetDescriptionAttributeType) (ret ApproleGetDescriptionRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -35,26 +35,26 @@ func getUserGetDescriptionAttributeTypeOk(arg UserGetDescriptionAttributeType) (
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setUserGetDescriptionAttributeType(arg *UserGetDescriptionAttributeType, val UserGetDescriptionRetType) {
+func setApproleGetDescriptionAttributeType(arg *ApproleGetDescriptionAttributeType, val ApproleGetDescriptionRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetDescriptionArgType = string
+type ApproleGetDescriptionArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetDescriptionRetType = string
+type ApproleGetDescriptionRetType = string
 
 /*
-	types and functions for id
+	types and functions for role_id
 */
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetIdAttributeType = *string
+type ApproleGetRoleIdAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getUserGetIdAttributeTypeOk(arg UserGetIdAttributeType) (ret UserGetIdRetType, ok bool) {
+func getApproleGetRoleIdAttributeTypeOk(arg ApproleGetRoleIdAttributeType) (ret ApproleGetRoleIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -62,26 +62,53 @@ func getUserGetIdAttributeTypeOk(arg UserGetIdAttributeType) (ret UserGetIdRetTy
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setUserGetIdAttributeType(arg *UserGetIdAttributeType, val UserGetIdRetType) {
+func setApproleGetRoleIdAttributeType(arg *ApproleGetRoleIdAttributeType, val ApproleGetRoleIdRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetIdArgType = string
+type ApproleGetRoleIdArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetIdRetType = string
+type ApproleGetRoleIdRetType = string
 
 /*
-	types and functions for password
+	types and functions for secret_id_num_uses
+*/
+
+// isInteger
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApproleGetSecretIdNumUsesAttributeType = *int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApproleGetSecretIdNumUsesArgType = int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApproleGetSecretIdNumUsesRetType = int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getApproleGetSecretIdNumUsesAttributeTypeOk(arg ApproleGetSecretIdNumUsesAttributeType) (ret ApproleGetSecretIdNumUsesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setApproleGetSecretIdNumUsesAttributeType(arg *ApproleGetSecretIdNumUsesAttributeType, val ApproleGetSecretIdNumUsesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for secret_id_ttl
 */
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetPasswordAttributeType = *string
+type ApproleGetSecretIdTtlAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getUserGetPasswordAttributeTypeOk(arg UserGetPasswordAttributeType) (ret UserGetPasswordRetType, ok bool) {
+func getApproleGetSecretIdTtlAttributeTypeOk(arg ApproleGetSecretIdTtlAttributeType) (ret ApproleGetSecretIdTtlRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -89,42 +116,15 @@ func getUserGetPasswordAttributeTypeOk(arg UserGetPasswordAttributeType) (ret Us
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setUserGetPasswordAttributeType(arg *UserGetPasswordAttributeType, val UserGetPasswordRetType) {
+func setApproleGetSecretIdTtlAttributeType(arg *ApproleGetSecretIdTtlAttributeType, val ApproleGetSecretIdTtlRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetPasswordArgType = string
+type ApproleGetSecretIdTtlArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetPasswordRetType = string
-
-/*
-	types and functions for username
-*/
-
-// isNotNullableString
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetUsernameAttributeType = *string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getUserGetUsernameAttributeTypeOk(arg UserGetUsernameAttributeType) (ret UserGetUsernameRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setUserGetUsernameAttributeType(arg *UserGetUsernameAttributeType, val UserGetUsernameRetType) {
-	*arg = &val
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetUsernameArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UserGetUsernameRetType = string
+type ApproleGetSecretIdTtlRetType = string
 
 /*
 	types and functions for write
@@ -132,16 +132,16 @@ type UserGetUsernameRetType = string
 
 // isBoolean
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UsergetWriteAttributeType = *bool
+type ApprolegetWriteAttributeType = *bool
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UsergetWriteArgType = bool
+type ApprolegetWriteArgType = bool
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UsergetWriteRetType = bool
+type ApprolegetWriteRetType = bool
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getUsergetWriteAttributeTypeOk(arg UsergetWriteAttributeType) (ret UsergetWriteRetType, ok bool) {
+func getApprolegetWriteAttributeTypeOk(arg ApprolegetWriteAttributeType) (ret ApprolegetWriteRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -149,60 +149,59 @@ func getUsergetWriteAttributeTypeOk(arg UsergetWriteAttributeType) (ret UsergetW
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setUsergetWriteAttributeType(arg *UsergetWriteAttributeType, val UsergetWriteRetType) {
+func setApprolegetWriteAttributeType(arg *ApprolegetWriteAttributeType, val ApprolegetWriteRetType) {
 	*arg = &val
 }
 
-// User struct for User
+// Approle struct for Approle
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type User struct {
-	// A user chosen description to differentiate between multiple users.
+type Approle struct {
+	// A user chosen description to differentiate between multiple approles.
 	// REQUIRED
-	Description UserGetDescriptionAttributeType `json:"description" required:"true"`
-	// A auto generated unique id which identifies the users.
+	Description ApproleGetDescriptionAttributeType `json:"description" required:"true"`
+	// Identifier used for authentication
 	// REQUIRED
-	Id UserGetIdAttributeType `json:"id" required:"true"`
-	// A auto generated password for logging in with the user.
+	RoleId ApproleGetRoleIdAttributeType `json:"role_id" required:"true"`
 	// REQUIRED
-	Password UserGetPasswordAttributeType `json:"password" required:"true"`
-	// A auto generated username for logging in with the user.
+	SecretIdNumUses ApproleGetSecretIdNumUsesAttributeType `json:"secret_id_num_uses" required:"true"`
+	// Token TTL in time.Duration format (eg 15m for 15 minutes, 1h for 1 hour).
 	// REQUIRED
-	Username UserGetUsernameAttributeType `json:"username" required:"true"`
-	// Is true if the user has write access to the secrets engine. Is false for a read-only user.
+	SecretIdTtl ApproleGetSecretIdTtlAttributeType `json:"secret_id_ttl" required:"true"`
+	// Is true if the approle has write access to the secrets engine. Is false for a read-only approle.
 	// REQUIRED
-	Write UsergetWriteAttributeType `json:"write" required:"true"`
+	Write ApprolegetWriteAttributeType `json:"write" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _User User
+type _Approle Approle
 
-// NewUser instantiates a new User object
+// NewApprole instantiates a new Approle object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewUser(description UserGetDescriptionArgType, id UserGetIdArgType, password UserGetPasswordArgType, username UserGetUsernameArgType, write UsergetWriteArgType) *User {
-	this := User{}
-	setUserGetDescriptionAttributeType(&this.Description, description)
-	setUserGetIdAttributeType(&this.Id, id)
-	setUserGetPasswordAttributeType(&this.Password, password)
-	setUserGetUsernameAttributeType(&this.Username, username)
-	setUsergetWriteAttributeType(&this.Write, write)
+func NewApprole(description ApproleGetDescriptionArgType, roleId ApproleGetRoleIdArgType, secretIdNumUses ApproleGetSecretIdNumUsesArgType, secretIdTtl ApproleGetSecretIdTtlArgType, write ApprolegetWriteArgType) *Approle {
+	this := Approle{}
+	setApproleGetDescriptionAttributeType(&this.Description, description)
+	setApproleGetRoleIdAttributeType(&this.RoleId, roleId)
+	setApproleGetSecretIdNumUsesAttributeType(&this.SecretIdNumUses, secretIdNumUses)
+	setApproleGetSecretIdTtlAttributeType(&this.SecretIdTtl, secretIdTtl)
+	setApprolegetWriteAttributeType(&this.Write, write)
 	return &this
 }
 
-// NewUserWithDefaults instantiates a new User object
+// NewApproleWithDefaults instantiates a new Approle object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewUserWithDefaults() *User {
-	this := User{}
+func NewApproleWithDefaults() *Approle {
+	this := Approle{}
 	return &this
 }
 
 // GetDescription returns the Description field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetDescription() (ret UserGetDescriptionRetType) {
+func (o *Approle) GetDescription() (ret ApproleGetDescriptionRetType) {
 	ret, _ = o.GetDescriptionOk()
 	return ret
 }
@@ -210,79 +209,79 @@ func (o *User) GetDescription() (ret UserGetDescriptionRetType) {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetDescriptionOk() (ret UserGetDescriptionRetType, ok bool) {
-	return getUserGetDescriptionAttributeTypeOk(o.Description)
+func (o *Approle) GetDescriptionOk() (ret ApproleGetDescriptionRetType, ok bool) {
+	return getApproleGetDescriptionAttributeTypeOk(o.Description)
 }
 
 // SetDescription sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) SetDescription(v UserGetDescriptionRetType) {
-	setUserGetDescriptionAttributeType(&o.Description, v)
+func (o *Approle) SetDescription(v ApproleGetDescriptionRetType) {
+	setApproleGetDescriptionAttributeType(&o.Description, v)
 }
 
-// GetId returns the Id field value
+// GetRoleId returns the RoleId field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetId() (ret UserGetIdRetType) {
-	ret, _ = o.GetIdOk()
+func (o *Approle) GetRoleId() (ret ApproleGetRoleIdRetType) {
+	ret, _ = o.GetRoleIdOk()
 	return ret
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetRoleIdOk returns a tuple with the RoleId field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetIdOk() (ret UserGetIdRetType, ok bool) {
-	return getUserGetIdAttributeTypeOk(o.Id)
+func (o *Approle) GetRoleIdOk() (ret ApproleGetRoleIdRetType, ok bool) {
+	return getApproleGetRoleIdAttributeTypeOk(o.RoleId)
 }
 
-// SetId sets field value
+// SetRoleId sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) SetId(v UserGetIdRetType) {
-	setUserGetIdAttributeType(&o.Id, v)
+func (o *Approle) SetRoleId(v ApproleGetRoleIdRetType) {
+	setApproleGetRoleIdAttributeType(&o.RoleId, v)
 }
 
-// GetPassword returns the Password field value
+// GetSecretIdNumUses returns the SecretIdNumUses field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetPassword() (ret UserGetPasswordRetType) {
-	ret, _ = o.GetPasswordOk()
+func (o *Approle) GetSecretIdNumUses() (ret ApproleGetSecretIdNumUsesRetType) {
+	ret, _ = o.GetSecretIdNumUsesOk()
 	return ret
 }
 
-// GetPasswordOk returns a tuple with the Password field value
+// GetSecretIdNumUsesOk returns a tuple with the SecretIdNumUses field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetPasswordOk() (ret UserGetPasswordRetType, ok bool) {
-	return getUserGetPasswordAttributeTypeOk(o.Password)
+func (o *Approle) GetSecretIdNumUsesOk() (ret ApproleGetSecretIdNumUsesRetType, ok bool) {
+	return getApproleGetSecretIdNumUsesAttributeTypeOk(o.SecretIdNumUses)
 }
 
-// SetPassword sets field value
+// SetSecretIdNumUses sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) SetPassword(v UserGetPasswordRetType) {
-	setUserGetPasswordAttributeType(&o.Password, v)
+func (o *Approle) SetSecretIdNumUses(v ApproleGetSecretIdNumUsesRetType) {
+	setApproleGetSecretIdNumUsesAttributeType(&o.SecretIdNumUses, v)
 }
 
-// GetUsername returns the Username field value
+// GetSecretIdTtl returns the SecretIdTtl field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetUsername() (ret UserGetUsernameRetType) {
-	ret, _ = o.GetUsernameOk()
+func (o *Approle) GetSecretIdTtl() (ret ApproleGetSecretIdTtlRetType) {
+	ret, _ = o.GetSecretIdTtlOk()
 	return ret
 }
 
-// GetUsernameOk returns a tuple with the Username field value
+// GetSecretIdTtlOk returns a tuple with the SecretIdTtl field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetUsernameOk() (ret UserGetUsernameRetType, ok bool) {
-	return getUserGetUsernameAttributeTypeOk(o.Username)
+func (o *Approle) GetSecretIdTtlOk() (ret ApproleGetSecretIdTtlRetType, ok bool) {
+	return getApproleGetSecretIdTtlAttributeTypeOk(o.SecretIdTtl)
 }
 
-// SetUsername sets field value
+// SetSecretIdTtl sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) SetUsername(v UserGetUsernameRetType) {
-	setUserGetUsernameAttributeType(&o.Username, v)
+func (o *Approle) SetSecretIdTtl(v ApproleGetSecretIdTtlRetType) {
+	setApproleGetSecretIdTtlAttributeType(&o.SecretIdTtl, v)
 }
 
 // GetWrite returns the Write field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetWrite() (ret UsergetWriteRetType) {
+func (o *Approle) GetWrite() (ret ApprolegetWriteRetType) {
 	ret, _ = o.GetWriteOk()
 	return ret
 }
@@ -290,77 +289,77 @@ func (o *User) GetWrite() (ret UsergetWriteRetType) {
 // GetWriteOk returns a tuple with the Write field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) GetWriteOk() (ret UsergetWriteRetType, ok bool) {
-	return getUsergetWriteAttributeTypeOk(o.Write)
+func (o *Approle) GetWriteOk() (ret ApprolegetWriteRetType, ok bool) {
+	return getApprolegetWriteAttributeTypeOk(o.Write)
 }
 
 // SetWrite sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *User) SetWrite(v UsergetWriteRetType) {
-	setUsergetWriteAttributeType(&o.Write, v)
+func (o *Approle) SetWrite(v ApprolegetWriteRetType) {
+	setApprolegetWriteAttributeType(&o.Write, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o User) ToMap() (map[string]interface{}, error) {
+func (o Approle) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getUserGetDescriptionAttributeTypeOk(o.Description); ok {
+	if val, ok := getApproleGetDescriptionAttributeTypeOk(o.Description); ok {
 		toSerialize["Description"] = val
 	}
-	if val, ok := getUserGetIdAttributeTypeOk(o.Id); ok {
-		toSerialize["Id"] = val
+	if val, ok := getApproleGetRoleIdAttributeTypeOk(o.RoleId); ok {
+		toSerialize["RoleId"] = val
 	}
-	if val, ok := getUserGetPasswordAttributeTypeOk(o.Password); ok {
-		toSerialize["Password"] = val
+	if val, ok := getApproleGetSecretIdNumUsesAttributeTypeOk(o.SecretIdNumUses); ok {
+		toSerialize["SecretIdNumUses"] = val
 	}
-	if val, ok := getUserGetUsernameAttributeTypeOk(o.Username); ok {
-		toSerialize["Username"] = val
+	if val, ok := getApproleGetSecretIdTtlAttributeTypeOk(o.SecretIdTtl); ok {
+		toSerialize["SecretIdTtl"] = val
 	}
-	if val, ok := getUsergetWriteAttributeTypeOk(o.Write); ok {
+	if val, ok := getApprolegetWriteAttributeTypeOk(o.Write); ok {
 		toSerialize["Write"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableUser struct {
-	value *User
+type NullableApprole struct {
+	value *Approle
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableUser) Get() *User {
+func (v NullableApprole) Get() *Approle {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableUser) Set(val *User) {
+func (v *NullableApprole) Set(val *Approle) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableUser) IsSet() bool {
+func (v NullableApprole) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableUser) Unset() {
+func (v *NullableApprole) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableUser(val *User) *NullableUser {
-	return &NullableUser{value: val, isSet: true}
+func NewNullableApprole(val *Approle) *NullableApprole {
+	return &NullableApprole{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableUser) MarshalJSON() ([]byte, error) {
+func (v NullableApprole) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableUser) UnmarshalJSON(src []byte) error {
+func (v *NullableApprole) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
