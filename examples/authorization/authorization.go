@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/authorization"
+	authorization "github.com/stackitcloud/stackit-sdk-go/services/authorization/v2api"
 )
 
 func main() {
@@ -22,53 +21,53 @@ func main() {
 	}
 
 	// Get the available permissions for the project resource type
-	getPermissionsResp, err := client.ListPermissions(context.Background()).ResourceType("project").Execute()
+	getPermissionsResp, err := client.DefaultAPI.ListPermissions(context.Background()).ResourceType("project").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetPermissions`: %v\n", err)
 	} else {
-		availablePermissions := *getPermissionsResp.Permissions
+		availablePermissions := getPermissionsResp.Permissions
 		if len(availablePermissions) > 0 {
-			fmt.Printf("Example of available permission: %v\n", *availablePermissions[0].Name)
+			fmt.Printf("Example of available permission: %v\n", availablePermissions[0].Name)
 		}
 	}
 
 	// Get the memberships of your user
-	getMembershipsResp, err := client.ListUserMemberships(context.Background(), yourEmail).Execute()
+	getMembershipsResp, err := client.DefaultAPI.ListUserMemberships(context.Background(), yourEmail).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ListUserMemberships`: %v\n", err)
 	} else {
-		userMemberships := *getMembershipsResp.Items
+		userMemberships := getMembershipsResp.Items
 		fmt.Printf("Number of memberships: %v\n", len(userMemberships))
 
 		if len(userMemberships) > 0 {
 			fmt.Printf("Example of a membership of user %s: \nResource type - %s\nResource id - %s\nRole - %s\n",
-				*userMemberships[0].Subject,
-				*userMemberships[0].ResourceType,
-				*userMemberships[0].ResourceId,
-				*userMemberships[0].Role,
+				userMemberships[0].Subject,
+				userMemberships[0].ResourceType,
+				userMemberships[0].ResourceId,
+				userMemberships[0].Role,
 			)
 		}
 	}
 
 	// Get the members of your project
-	getMembersResp, err := client.ListMembers(context.Background(), "project", projectId).Execute()
+	getMembersResp, err := client.DefaultAPI.ListMembers(context.Background(), "project", projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetMembers`: %v\n", err)
 	} else {
-		fmt.Printf("Number of members: %v\n", len(*getMembersResp.Members))
+		fmt.Printf("Number of members: %v\n", len(getMembersResp.Members))
 	}
 
 	// Add a member to your project or add an additional role to an existing member
 	updateMemberPayload := authorization.AddMembersPayload{
-		Members: &[]authorization.Member{
+		Members: []authorization.Member{
 			{
-				Role:    utils.Ptr("project.member"),
-				Subject: utils.Ptr(emailToBeAdded),
+				Role:    "project.member",
+				Subject: emailToBeAdded,
 			},
 		},
-		ResourceType: utils.Ptr("project"),
+		ResourceType: "project",
 	}
-	_, err = client.AddMembers(context.Background(), projectId).AddMembersPayload(updateMemberPayload).Execute()
+	_, err = client.DefaultAPI.AddMembers(context.Background(), projectId).AddMembersPayload(updateMemberPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UpdateMembers`: %v\n", err)
 	} else {
@@ -77,15 +76,15 @@ func main() {
 
 	// Remove a role from a member of your project
 	deleteMemberPayload := authorization.RemoveMembersPayload{
-		Members: &[]authorization.Member{
+		Members: []authorization.Member{
 			{
-				Role:    utils.Ptr("project.member"),
-				Subject: utils.Ptr(emailToBeAdded),
+				Role:    "project.member",
+				Subject: emailToBeAdded,
 			},
 		},
-		ResourceType: utils.Ptr("project"),
+		ResourceType: "project",
 	}
-	_, err = client.RemoveMembers(context.Background(), projectId).RemoveMembersPayload(deleteMemberPayload).Execute()
+	_, err = client.DefaultAPI.RemoveMembers(context.Background(), projectId).RemoveMembersPayload(deleteMemberPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeleteMembers`: %v\n", err)
 	} else {
