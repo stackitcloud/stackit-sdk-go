@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
-	"github.com/stackitcloud/stackit-sdk-go/services/auditlog"
+	auditlog "github.com/stackitcloud/stackit-sdk-go/services/auditlog/v2api"
 )
 
 func main() {
@@ -26,7 +26,7 @@ func main() {
 	}
 
 	// List all audit logs of a project
-	listProjectLogsReq := auditlogClient.ListProjectAuditLogEntries(context.Background(), projectId).
+	listProjectLogsReq := auditlogClient.DefaultAPI.ListProjectAuditLogEntries(context.Background(), projectId).
 		StartTimeRange(startTime).
 		EndTimeRange(endTime).
 		Limit(limit)
@@ -54,12 +54,12 @@ func main() {
 			os.Exit(1)
 		}
 		// Break loop when response has no items
-		if result == nil || result.Items == nil || len(*result.Items) == 0 {
+		if result == nil || result.Items == nil || len(result.Items) == 0 {
 			break
 		}
 
 		// Append items to allItems
-		allItems = append(allItems, *result.Items...)
+		allItems = append(allItems, result.Items...)
 
 		// If cursor is not set, end of logs is reached
 		if result.Cursor == nil {

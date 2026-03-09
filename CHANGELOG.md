@@ -73,7 +73,7 @@
 - `dns`: [v0.18.0](services/dns/CHANGELOG.md#v0180)
   - **Feature:** Introduction of multi API version support for the dns SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT dns API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `intake`: [v0.5.0](services/intake/CHANGELOG.md#v050)
   - **Feature:** Introduction of multi API version support for the intake SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
@@ -90,22 +90,22 @@
 - `logme`: [v0.26.0](services/logme/CHANGELOG.md#v0260)
   - **Feature:** Introduction of multi API version support for the logme SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT logme API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `modelserving`: [v0.7.0](services/modelserving/CHANGELOG.md#v070)
   - **Feature:** Introduction of multi API version support for the modelserving SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT modelserving API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `rabbitmq`: [v0.27.0](services/rabbitmq/CHANGELOG.md#v0270)
   - **Feature:** Introduction of multi API version support for the rabbitmq SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT rabbitmq API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `redis`: [v0.26.0](services/redis/CHANGELOG.md#v0260)
   - **Feature:** Introduction of multi API version support for the redis SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT redis API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `kms`: [v1.4.0](services/kms/CHANGELOG.md#v140)
   - **Feature:** Introduction of multi API version support for the kms SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
@@ -116,7 +116,7 @@
 - `mariadb`: [v0.26.0](services/mariadb/CHANGELOG.md#v0260)
   - **Feature:** Introduction of multi API version support for the mariadb SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT mariadb API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 - `authorization`: [v0.13.0](services/authorization/CHANGELOG.md#v0130)
   - **Feature:** Introduction of multi API version support for the authorization SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
@@ -127,6 +127,11 @@
   - **Feature:** Introduction of multi API version support for the opensearch SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT opensearch API in the future
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `auditlog`: [v0.2.0](services/auditlog/CHANGELOG.md#v020)
+  - **Feature:** Introduction of multi API version support for the auditlog SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+  - `v2api`: New package which should be used for communication with the STACKIT auditlog API in the future
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v2api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
 
 ## Release (2026-02-20)
