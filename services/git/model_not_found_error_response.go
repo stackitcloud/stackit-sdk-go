@@ -15,25 +15,19 @@ import (
 	"encoding/json"
 )
 
-// checks if the GenericErrorResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GenericErrorResponse{}
+// checks if the NotFoundErrorResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NotFoundErrorResponse{}
 
 /*
 	types and functions for details
 */
 
-// isArray
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetDetailsAttributeType = *[]string
+type NotFoundErrorResponseGetDetailsAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetDetailsArgType = []string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetDetailsRetType = []string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getGenericErrorResponseGetDetailsAttributeTypeOk(arg GenericErrorResponseGetDetailsAttributeType) (ret GenericErrorResponseGetDetailsRetType, ok bool) {
+func getNotFoundErrorResponseGetDetailsAttributeTypeOk(arg NotFoundErrorResponseGetDetailsAttributeType) (ret NotFoundErrorResponseGetDetailsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -41,20 +35,26 @@ func getGenericErrorResponseGetDetailsAttributeTypeOk(arg GenericErrorResponseGe
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setGenericErrorResponseGetDetailsAttributeType(arg *GenericErrorResponseGetDetailsAttributeType, val GenericErrorResponseGetDetailsRetType) {
+func setNotFoundErrorResponseGetDetailsAttributeType(arg *NotFoundErrorResponseGetDetailsAttributeType, val NotFoundErrorResponseGetDetailsRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NotFoundErrorResponseGetDetailsArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NotFoundErrorResponseGetDetailsRetType = string
+
 /*
-	types and functions for message
+	types and functions for error
 */
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetMessageAttributeType = *string
+type NotFoundErrorResponseGetErrorAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getGenericErrorResponseGetMessageAttributeTypeOk(arg GenericErrorResponseGetMessageAttributeType) (ret GenericErrorResponseGetMessageRetType, ok bool) {
+func getNotFoundErrorResponseGetErrorAttributeTypeOk(arg NotFoundErrorResponseGetErrorAttributeType) (ret NotFoundErrorResponseGetErrorRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -62,50 +62,45 @@ func getGenericErrorResponseGetMessageAttributeTypeOk(arg GenericErrorResponseGe
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setGenericErrorResponseGetMessageAttributeType(arg *GenericErrorResponseGetMessageAttributeType, val GenericErrorResponseGetMessageRetType) {
+func setNotFoundErrorResponseGetErrorAttributeType(arg *NotFoundErrorResponseGetErrorAttributeType, val NotFoundErrorResponseGetErrorRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetMessageArgType = string
+type NotFoundErrorResponseGetErrorArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetMessageRetType = string
+type NotFoundErrorResponseGetErrorRetType = string
 
-// GenericErrorResponse Generic Error Response.
+// NotFoundErrorResponse 404 Error Response.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponse struct {
-	Details GenericErrorResponseGetDetailsAttributeType `json:"details,omitempty"`
-	// REQUIRED
-	Message GenericErrorResponseGetMessageAttributeType `json:"message" required:"true"`
+type NotFoundErrorResponse struct {
+	Details NotFoundErrorResponseGetDetailsAttributeType `json:"details,omitempty"`
+	Error   NotFoundErrorResponseGetErrorAttributeType   `json:"error,omitempty"`
 }
 
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _GenericErrorResponse GenericErrorResponse
-
-// NewGenericErrorResponse instantiates a new GenericErrorResponse object
+// NewNotFoundErrorResponse instantiates a new NotFoundErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewGenericErrorResponse(message GenericErrorResponseGetMessageArgType) *GenericErrorResponse {
-	this := GenericErrorResponse{}
-	setGenericErrorResponseGetMessageAttributeType(&this.Message, message)
+func NewNotFoundErrorResponse() *NotFoundErrorResponse {
+	this := NotFoundErrorResponse{}
 	return &this
 }
 
-// NewGenericErrorResponseWithDefaults instantiates a new GenericErrorResponse object
+// NewNotFoundErrorResponseWithDefaults instantiates a new NotFoundErrorResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewGenericErrorResponseWithDefaults() *GenericErrorResponse {
-	this := GenericErrorResponse{}
+func NewNotFoundErrorResponseWithDefaults() *NotFoundErrorResponse {
+	this := NotFoundErrorResponse{}
 	return &this
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetDetails() (res GenericErrorResponseGetDetailsRetType) {
+func (o *NotFoundErrorResponse) GetDetails() (res NotFoundErrorResponseGetDetailsRetType) {
 	res, _ = o.GetDetailsOk()
 	return
 }
@@ -113,95 +108,102 @@ func (o *GenericErrorResponse) GetDetails() (res GenericErrorResponseGetDetailsR
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetDetailsOk() (ret GenericErrorResponseGetDetailsRetType, ok bool) {
-	return getGenericErrorResponseGetDetailsAttributeTypeOk(o.Details)
+func (o *NotFoundErrorResponse) GetDetailsOk() (ret NotFoundErrorResponseGetDetailsRetType, ok bool) {
+	return getNotFoundErrorResponseGetDetailsAttributeTypeOk(o.Details)
 }
 
 // HasDetails returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) HasDetails() bool {
+func (o *NotFoundErrorResponse) HasDetails() bool {
 	_, ok := o.GetDetailsOk()
 	return ok
 }
 
-// SetDetails gets a reference to the given []string and assigns it to the Details field.
+// SetDetails gets a reference to the given string and assigns it to the Details field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) SetDetails(v GenericErrorResponseGetDetailsRetType) {
-	setGenericErrorResponseGetDetailsAttributeType(&o.Details, v)
+func (o *NotFoundErrorResponse) SetDetails(v NotFoundErrorResponseGetDetailsRetType) {
+	setNotFoundErrorResponseGetDetailsAttributeType(&o.Details, v)
 }
 
-// GetMessage returns the Message field value
+// GetError returns the Error field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetMessage() (ret GenericErrorResponseGetMessageRetType) {
-	ret, _ = o.GetMessageOk()
-	return ret
+func (o *NotFoundErrorResponse) GetError() (res NotFoundErrorResponseGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetMessageOk() (ret GenericErrorResponseGetMessageRetType, ok bool) {
-	return getGenericErrorResponseGetMessageAttributeTypeOk(o.Message)
+func (o *NotFoundErrorResponse) GetErrorOk() (ret NotFoundErrorResponseGetErrorRetType, ok bool) {
+	return getNotFoundErrorResponseGetErrorAttributeTypeOk(o.Error)
 }
 
-// SetMessage sets field value
+// HasError returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) SetMessage(v GenericErrorResponseGetMessageRetType) {
-	setGenericErrorResponseGetMessageAttributeType(&o.Message, v)
+func (o *NotFoundErrorResponse) HasError() bool {
+	_, ok := o.GetErrorOk()
+	return ok
+}
+
+// SetError gets a reference to the given string and assigns it to the Error field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *NotFoundErrorResponse) SetError(v NotFoundErrorResponseGetErrorRetType) {
+	setNotFoundErrorResponseGetErrorAttributeType(&o.Error, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o GenericErrorResponse) ToMap() (map[string]interface{}, error) {
+func (o NotFoundErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getGenericErrorResponseGetDetailsAttributeTypeOk(o.Details); ok {
+	if val, ok := getNotFoundErrorResponseGetDetailsAttributeTypeOk(o.Details); ok {
 		toSerialize["Details"] = val
 	}
-	if val, ok := getGenericErrorResponseGetMessageAttributeTypeOk(o.Message); ok {
-		toSerialize["Message"] = val
+	if val, ok := getNotFoundErrorResponseGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableGenericErrorResponse struct {
-	value *GenericErrorResponse
+type NullableNotFoundErrorResponse struct {
+	value *NotFoundErrorResponse
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableGenericErrorResponse) Get() *GenericErrorResponse {
+func (v NullableNotFoundErrorResponse) Get() *NotFoundErrorResponse {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableGenericErrorResponse) Set(val *GenericErrorResponse) {
+func (v *NullableNotFoundErrorResponse) Set(val *NotFoundErrorResponse) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableGenericErrorResponse) IsSet() bool {
+func (v NullableNotFoundErrorResponse) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableGenericErrorResponse) Unset() {
+func (v *NullableNotFoundErrorResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableGenericErrorResponse(val *GenericErrorResponse) *NullableGenericErrorResponse {
-	return &NullableGenericErrorResponse{value: val, isSet: true}
+func NewNullableNotFoundErrorResponse(val *NotFoundErrorResponse) *NullableNotFoundErrorResponse {
+	return &NullableNotFoundErrorResponse{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableGenericErrorResponse) MarshalJSON() ([]byte, error) {
+func (v NullableNotFoundErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableGenericErrorResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableNotFoundErrorResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
