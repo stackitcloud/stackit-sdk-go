@@ -45,6 +45,7 @@ const (
 	StatusWrappingKeyDeleting = "deleting"
 )
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiKmsClient interface {
 	GetKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, keyId string) (*kms.Key, error)
 	GetKeyRingExecute(ctx context.Context, projectId string, regionId string, keyRingId string) (*kms.KeyRing, error)
@@ -52,6 +53,7 @@ type ApiKmsClient interface {
 	GetWrappingKeyExecute(ctx context.Context, projectId string, regionId string, keyRingId string, wrappingKeyId string) (*kms.WrappingKey, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateKeyRingWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId string) *wait.AsyncActionHandler[kms.KeyRing] {
 	handler := wait.New(func() (bool, *kms.KeyRing, error) {
 		response, err := client.GetKeyRingExecute(ctx, projectId, region, keyRingId)
@@ -74,6 +76,7 @@ func CreateKeyRingWaitHandler(ctx context.Context, client ApiKmsClient, projectI
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
 	handler := wait.New(func() (bool, *kms.Key, error) {
 		response, err := client.GetKeyExecute(ctx, projectId, region, keyRingId, keyId)
@@ -96,6 +99,7 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
 	handler := wait.New(func() (bool, *kms.Key, error) {
 		_, err := client.GetKeyExecute(ctx, projectId, region, keyRingId, keyId)
@@ -114,6 +118,7 @@ func DeleteKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, r
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func EnableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
 	handler := wait.New(func() (bool, *kms.Version, error) {
 		response, err := client.GetVersionExecute(ctx, projectId, region, keyRingId, keyId, version)
@@ -146,6 +151,7 @@ func EnableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proje
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DisableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
 	handler := wait.New(func() (bool, *kms.Version, error) {
 		response, err := client.GetVersionExecute(ctx, projectId, region, keyRingId, keyId, version)
@@ -178,6 +184,7 @@ func DisableKeyVersionWaitHandler(ctx context.Context, client ApiKmsClient, proj
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateWrappingKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, region, keyRingId, wrappingKeyId string) *wait.AsyncActionHandler[kms.WrappingKey] {
 	handler := wait.New(func() (bool, *kms.WrappingKey, error) {
 		response, err := client.GetWrappingKeyExecute(ctx, projectId, region, keyRingId, wrappingKeyId)
