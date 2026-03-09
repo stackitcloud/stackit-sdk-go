@@ -29,11 +29,13 @@ const (
 var _ APIClientInterface = &loadbalancer.APIClient{}
 
 // Interface needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetLoadBalancerExecute(ctx context.Context, projectId, region, name string) (*loadbalancer.LoadBalancer, error)
 }
 
 // CreateLoadBalancerWaitHandler will wait for load balancer creation
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, instanceName string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
 	handler := wait.New(func() (waitFinished bool, response *loadbalancer.LoadBalancer, err error) {
 		s, err := a.GetLoadBalancerExecute(ctx, projectId, region, instanceName)
@@ -72,6 +74,7 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 }
 
 // DeleteLoadBalancerWaitHandler will wait for load balancer deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
 		_, err = a.GetLoadBalancerExecute(ctx, projectId, region, instanceId)
