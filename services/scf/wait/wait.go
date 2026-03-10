@@ -15,11 +15,13 @@ import (
 const statusDeletingFailed = "deleting_failed"
 
 // Interfaces needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetOrganizationExecute(ctx context.Context, projectId, region, orgId string) (*scf.Organization, error)
 }
 
 // DeleteOrganizationWaitHandler will wait for Organization deletion
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteOrganizationWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, orgId string) *wait.AsyncActionHandler[scf.Organization] {
 	handler := wait.New(func() (waitFinished bool, response *scf.Organization, err error) {
 		s, err := a.GetOrganizationExecute(ctx, projectId, region, orgId)
