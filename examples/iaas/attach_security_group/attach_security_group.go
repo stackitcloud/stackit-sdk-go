@@ -7,8 +7,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/runtime"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
+	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api"
+	"github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api/wait"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 	// Attach an existing network interface to an existing server
 	var httpResp *http.Response
 	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	err = iaasClient.AddSecurityGroupToServer(ctxWithHTTPResp, projectId, region, serverId, securityGroupId).Execute()
+	err = iaasClient.DefaultAPI.AddSecurityGroupToServer(ctxWithHTTPResp, projectId, region, serverId, securityGroupId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `AddSecurityGroupToServer`: %v\n", err)
 	} else {
@@ -37,7 +37,7 @@ func main() {
 	requestId := httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for attachment of the security group
-	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, region, requestId).WaitWithContext(context.Background())
+	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, requestId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for attachment: %v\n", err)
 		os.Exit(1)
@@ -45,7 +45,7 @@ func main() {
 
 	fmt.Printf("[iaas API] Security group %q has been successfully attached to the server %s.\n", securityGroupId, serverId)
 
-	err = iaasClient.RemoveSecurityGroupFromServer(ctxWithHTTPResp, projectId, region, serverId, securityGroupId).Execute()
+	err = iaasClient.DefaultAPI.RemoveSecurityGroupFromServer(ctxWithHTTPResp, projectId, region, serverId, securityGroupId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `RemoveSecurityGroupFromServer`: %v\n", err)
 	} else {
@@ -55,7 +55,7 @@ func main() {
 	requestId = httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for dettachment of the security group
-	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, region, requestId).WaitWithContext(context.Background())
+	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, requestId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for removal of attachment of SecurityGroup: %v\n", err)
 		os.Exit(1)

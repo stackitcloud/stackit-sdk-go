@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
+	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api"
+	"github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api/wait"
 )
 
 func main() {
@@ -24,26 +24,26 @@ func main() {
 
 	// Create a network
 	createNetworkPayload := iaas.CreateNetworkPayload{
-		Name: utils.Ptr("example-network"),
+		Name: "example-network",
 		Ipv4: &iaas.CreateNetworkIPv4{
 			CreateNetworkIPv4WithPrefixLength: &iaas.CreateNetworkIPv4WithPrefixLength{
-				Nameservers:  &[]string{"1.2.3.4"},
-				PrefixLength: utils.Ptr(int64(24)),
+				Nameservers:  []string{"1.2.3.4"},
+				PrefixLength: int64(24),
 			},
 		},
 	}
 
-	network, err := iaasClient.CreateNetwork(context.Background(), projectId, region).CreateNetworkPayload(createNetworkPayload).Execute()
+	network, err := iaasClient.DefaultAPI.CreateNetwork(context.Background(), projectId, region).CreateNetworkPayload(createNetworkPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `CreateNetwork`: %v\n", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("[IaaS API] Triggered creation of network with ID %q.\n", *network.Id)
-	fmt.Printf("[Iaas API] Current state of the network: %q\n", *network.Status)
+	fmt.Printf("[IaaS API] Triggered creation of network with ID %q.\n", network.Id)
+	fmt.Printf("[Iaas API] Current state of the network: %q\n", network.Status)
 	fmt.Println("[Iaas API] Waiting for network to be created...")
 
-	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, region, *network.Id).WaitWithContext(context.Background())
+	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, network.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)
@@ -56,13 +56,13 @@ func main() {
 		Name: utils.Ptr("example-network-test-renamed"),
 	}
 
-	err = iaasClient.PartialUpdateNetwork(context.Background(), projectId, region, *network.Id).PartialUpdateNetworkPayload(updateNetworkPayload).Execute()
+	err = iaasClient.DefaultAPI.PartialUpdateNetwork(context.Background(), projectId, region, network.Id).PartialUpdateNetworkPayload(updateNetworkPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `PartialUpdateNetwork`: %v\n", err)
 		os.Exit(1)
 	}
 
-	_, err = wait.UpdateNetworkWaitHandler(context.Background(), iaasClient, projectId, region, *network.Id).WaitWithContext(context.Background())
+	_, err = wait.UpdateNetworkWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, network.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for update: %v\n", err)
 		os.Exit(1)
@@ -71,13 +71,13 @@ func main() {
 	fmt.Printf("[IaaS API] Network has been successfully updated.\n")
 
 	// Delete a network
-	err = iaasClient.DeleteNetwork(context.Background(), projectId, region, *network.Id).Execute()
+	err = iaasClient.DefaultAPI.DeleteNetwork(context.Background(), projectId, region, network.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `DeleteNetwork`: %v\n", err)
 		os.Exit(1)
 	}
 
-	_, err = wait.DeleteNetworkWaitHandler(context.Background(), iaasClient, projectId, region, *network.Id).WaitWithContext(context.Background())
+	_, err = wait.DeleteNetworkWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, network.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for deletion: %v\n", err)
 		os.Exit(1)

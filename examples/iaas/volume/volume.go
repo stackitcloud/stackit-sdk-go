@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
+	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api"
+	"github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api/wait"
 )
 
 func main() {
@@ -22,21 +22,21 @@ func main() {
 		os.Exit(1)
 	}
 
-	volumes, err := iaasClient.ListVolumes(context.Background(), projectId, region).Execute()
+	volumes, err := iaasClient.DefaultAPI.ListVolumes(context.Background(), projectId, region).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `ListVolumes`: %v\n", err)
 	} else {
-		fmt.Printf("[iaas API] Number of volumes: %v\n", len(*volumes.Items))
+		fmt.Printf("[iaas API] Number of volumes: %v\n", len(volumes.Items))
 	}
 
 	// Create a volume
 	createVolumePayload := iaas.CreateVolumePayload{
 		Name:             utils.Ptr("example-volume"),
-		AvailabilityZone: utils.Ptr("eu01-1"),
+		AvailabilityZone: "eu01-1",
 		Size:             utils.Ptr(int64(10)),
 	}
-	volume, err := iaasClient.CreateVolume(context.Background(), projectId, region).CreateVolumePayload(createVolumePayload).Execute()
+	volume, err := iaasClient.DefaultAPI.CreateVolume(context.Background(), projectId, region).CreateVolumePayload(createVolumePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `CreateVolume`: %v\n", err)
 	} else {
@@ -44,7 +44,7 @@ func main() {
 	}
 
 	// Wait for creation of the volume
-	volume, err = wait.CreateVolumeWaitHandler(context.Background(), iaasClient, projectId, region, *volume.Id).WaitWithContext(context.Background())
+	volume, err = wait.CreateVolumeWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, *volume.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)
@@ -56,7 +56,7 @@ func main() {
 	updateVolumePayload := iaas.UpdateVolumePayload{
 		Name: utils.Ptr("renamed"),
 	}
-	volume, err = iaasClient.UpdateVolume(context.Background(), projectId, region, *volume.Id).UpdateVolumePayload(updateVolumePayload).Execute()
+	volume, err = iaasClient.DefaultAPI.UpdateVolume(context.Background(), projectId, region, *volume.Id).UpdateVolumePayload(updateVolumePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `UpdateVolume`: %v\n", err)
 	}
@@ -65,9 +65,9 @@ func main() {
 
 	// Resize a volume
 	resizeVolumePayload := iaas.ResizeVolumePayload{
-		Size: utils.Ptr(int64(130)),
+		Size: int64(130),
 	}
-	err = iaasClient.ResizeVolume(context.Background(), projectId, region, *volume.Id).ResizeVolumePayload(resizeVolumePayload).Execute()
+	err = iaasClient.DefaultAPI.ResizeVolume(context.Background(), projectId, region, *volume.Id).ResizeVolumePayload(resizeVolumePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `ResizeVolume`: %v\n", err)
 	}
@@ -75,7 +75,7 @@ func main() {
 	fmt.Printf("[iaas API] Volume %q has been successfully resized.\n", *volume.Id)
 
 	// Delete a volume
-	err = iaasClient.DeleteVolume(context.Background(), projectId, region, *volume.Id).Execute()
+	err = iaasClient.DefaultAPI.DeleteVolume(context.Background(), projectId, region, *volume.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `DeleteVolume`: %v\n", err)
 	} else {
@@ -83,7 +83,7 @@ func main() {
 	}
 
 	// Wait for deletion of the volume
-	_, err = wait.DeleteVolumeWaitHandler(context.Background(), iaasClient, projectId, region, *volume.Id).WaitWithContext(context.Background())
+	_, err = wait.DeleteVolumeWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, *volume.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for deletion: %v\n", err)
 		os.Exit(1)
