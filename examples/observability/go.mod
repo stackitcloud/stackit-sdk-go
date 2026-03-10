@@ -1,9 +1,12 @@
-module github.com/stackitcloud/stackit-sdk-go/examples/argus
+module github.com/stackitcloud/stackit-sdk-go/examples/observability
 
 go 1.21
 
+// This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
+replace github.com/stackitcloud/stackit-sdk-go/services/observability => ../../services/observability
+
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.21.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.22.0
 	github.com/stackitcloud/stackit-sdk-go/services/observability v0.17.0
 )
 

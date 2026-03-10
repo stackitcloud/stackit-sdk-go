@@ -7,7 +7,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/observability"
+	observability "github.com/stackitcloud/stackit-sdk-go/services/observability/v1api"
 )
 
 func main() {
@@ -23,25 +23,25 @@ func main() {
 	}
 
 	// Get the observability instances for your project
-	getInstanceResp, err := observabilityClient.ListInstances(context.Background(), projectId).Execute()
+	getInstanceResp, err := observabilityClient.DefaultAPI.ListInstances(context.Background(), projectId).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Observability API] Error when calling `GetInstances`: %v\n", err)
 	} else {
-		fmt.Printf("[Observability API] Number of instances: %v\n", len(*getInstanceResp.Instances))
+		fmt.Printf("[Observability API] Number of instances: %v\n", len(getInstanceResp.Instances))
 	}
 
 	// Create an observability instance
 	createInstancePayload := observability.CreateInstancePayload{
 		Name:   utils.Ptr("myInstance"),
-		PlanId: utils.Ptr("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+		PlanId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 	}
 
-	createInstanceResp, err := observabilityClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+	createInstanceResp, err := observabilityClient.DefaultAPI.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Observability API] Error when calling `CreateInstance`: %v\n", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("[Observability API] Created instance with id \"%s\" and dashboard url \"%s\".\n", *createInstanceResp.InstanceId, *createInstanceResp.DashboardUrl)
+	fmt.Printf("[Observability API] Created instance with id \"%s\" and dashboard url \"%s\".\n", createInstanceResp.InstanceId, createInstanceResp.DashboardUrl)
 }
