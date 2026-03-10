@@ -1,3 +1,4 @@
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 package wait
 
 import (
@@ -13,28 +14,41 @@ import (
 )
 
 const (
-	ResourcePoolStatePending  = "pending"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ResourcePoolStatePending = "pending"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	ResourcePoolStateCreating = "creating"
-	ResourcePoolStateCreated  = "created"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ResourcePoolStateCreated = "created"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	ResourcePoolStateUpdating = "updating"
-	ResourcePoolStateError    = "error"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ResourcePoolStateError = "error"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	ResourcePoolStateDeleting = "deleting"
 )
 
 const (
-	ShareStatePending  = "pending"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ShareStatePending = "pending"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	ShareStateCreating = "creating"
-	ShareStateCreated  = "created"
-	ShareStateError    = "error"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ShareStateCreated = "created"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ShareStateError = "error"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	ShareStateDeleting = "deleting"
 )
 
 // Interfaces needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetResourcePoolExecute(ctx context.Context, projectId string, region string, resourcePoolId string) (*sfs.GetResourcePoolResponse, error)
 	GetShareExecute(ctx context.Context, projectId string, region string, resourcePoolId string, shareId string) (*sfs.GetShareResponse, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateResourcePoolWaitHandler(ctx context.Context, api APIClientInterface, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
 	handler := wait.New(func() (waitFinished bool, resourcePool *sfs.GetResourcePoolResponse, err error) {
 		resourcePool, err = api.GetResourcePoolExecute(ctx, projectId, region, resourcePoolId)
@@ -63,6 +77,7 @@ func CreateResourcePoolWaitHandler(ctx context.Context, api APIClientInterface, 
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateResourcePoolWaitHandler(ctx context.Context, api APIClientInterface, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
 	handler := wait.New(func() (waitFinished bool, resourcePool *sfs.GetResourcePoolResponse, err error) {
 		resourcePool, err = api.GetResourcePoolExecute(ctx, projectId, region, resourcePoolId)
@@ -91,6 +106,7 @@ func UpdateResourcePoolWaitHandler(ctx context.Context, api APIClientInterface, 
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteResourcePoolWaitHandler(ctx context.Context, api APIClientInterface, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
 	handler := wait.New(func() (waitFinished bool, resourcePool *sfs.GetResourcePoolResponse, err error) {
 		resourcePool, err = api.GetResourcePoolExecute(ctx, projectId, region, resourcePoolId)
@@ -109,6 +125,7 @@ func DeleteResourcePoolWaitHandler(ctx context.Context, api APIClientInterface, 
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateShareWaitHandler(ctx context.Context, api APIClientInterface, projectId, region, resourcePoolId, shareId string) *wait.AsyncActionHandler[sfs.GetShareResponse] {
 	handler := wait.New(func() (waitFinished bool, share *sfs.GetShareResponse, err error) {
 		share, err = api.GetShareExecute(ctx, projectId, region, resourcePoolId, shareId)
@@ -137,6 +154,7 @@ func CreateShareWaitHandler(ctx context.Context, api APIClientInterface, project
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateShareWaitHandler(ctx context.Context, api APIClientInterface, projectId, region, resourcePoolId, shareId string) *wait.AsyncActionHandler[sfs.GetShareResponse] {
 	handler := wait.New(func() (waitFinished bool, share *sfs.GetShareResponse, err error) {
 		share, err = api.GetShareExecute(ctx, projectId, region, resourcePoolId, shareId)
@@ -165,6 +183,7 @@ func UpdateShareWaitHandler(ctx context.Context, api APIClientInterface, project
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteShareWaitHandler(ctx context.Context, api APIClientInterface, projectId, region, resourcePoolId, shareId string) *wait.AsyncActionHandler[sfs.GetShareResponse] {
 	handler := wait.New(func() (waitFinished bool, share *sfs.GetShareResponse, err error) {
 		share, err = api.GetShareExecute(ctx, projectId, region, resourcePoolId, shareId)

@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/sfs"
-	"github.com/stackitcloud/stackit-sdk-go/services/sfs/wait"
+	sfs "github.com/stackitcloud/stackit-sdk-go/services/sfs/v1api"
+	"github.com/stackitcloud/stackit-sdk-go/services/sfs/v1api/wait"
 )
 
 func main() {
@@ -24,14 +24,17 @@ func main() {
 
 	// Create a resource pool
 	createResourcePoolPayload := sfs.CreateResourcePoolPayload{
-		AvailabilityZone: utils.Ptr("eu01-m"),
-		Name:             utils.Ptr("example-resourcepool-test"),
-		PerformanceClass: utils.Ptr("Standard"),
-		IpAcl:            &[]string{"192.168.42.1/32", "192.168.42.2/32"},
-		SizeGigabytes:    utils.Ptr(int64(512)),
+		AvailabilityZone: "eu01-m",
+		Name:             "example-resourcepool-test",
+		PerformanceClass: "Standard",
+		IpAcl: []string{
+			"192.168.42.1/32",
+			"192.168.42.2/32",
+		},
+		SizeGigabytes: int32(512),
 	}
 
-	resourcePool, err := sfsClient.CreateResourcePool(context.Background(), projectId, region).CreateResourcePoolPayload(createResourcePoolPayload).Execute()
+	resourcePool, err := sfsClient.DefaultAPI.CreateResourcePool(context.Background(), projectId, region).CreateResourcePoolPayload(createResourcePoolPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[sfs API] Error when calling `CreateResourcePool`: %v\n", err)
 		os.Exit(1)
@@ -45,7 +48,7 @@ func main() {
 	fmt.Printf("[sfs API] Current state of the resource pool: %q\n", *resourcePool.ResourcePool.State)
 	fmt.Println("[sfs API] Waiting for resource pool to be created...")
 
-	resourcePoolResp, err := wait.CreateResourcePoolWaitHandler(context.Background(), sfsClient, projectId, region, *resourcePool.ResourcePool.Id).WaitWithContext(context.Background())
+	resourcePoolResp, err := wait.CreateResourcePoolWaitHandler(context.Background(), sfsClient.DefaultAPI, projectId, region, *resourcePool.ResourcePool.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[sfs API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)
@@ -54,7 +57,7 @@ func main() {
 	fmt.Printf("[sfs API] Resource pool has been successfully created.\n")
 
 	// Describe the resource pool
-	getResourcePoolResp, err := sfsClient.GetResourcePool(context.Background(), projectId, region, *resourcePoolResp.ResourcePool.Id).Execute()
+	getResourcePoolResp, err := sfsClient.DefaultAPI.GetResourcePool(context.Background(), projectId, region, *resourcePoolResp.ResourcePool.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[sfs API] Error when calling `GetResoucePool`: %v\n", err)
 		os.Exit(1)
@@ -64,16 +67,16 @@ func main() {
 
 	// Update the resource pool
 	updateResourcePoolPayload := sfs.UpdateResourcePoolPayload{
-		SizeGigabytes: utils.Ptr(int64(600)),
+		SizeGigabytes: *sfs.NewNullableInt32(utils.Ptr(int32(600))),
 	}
 
-	updateResourcePool, err := sfsClient.UpdateResourcePool(context.Background(), projectId, region, *resourcePoolResp.ResourcePool.Id).UpdateResourcePoolPayload(updateResourcePoolPayload).Execute()
+	updateResourcePool, err := sfsClient.DefaultAPI.UpdateResourcePool(context.Background(), projectId, region, *resourcePoolResp.ResourcePool.Id).UpdateResourcePoolPayload(updateResourcePoolPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[sfs API] Error when calling `UpdateResourcePool`: %v\n", err)
 		os.Exit(1)
 	}
 
-	_, err = wait.UpdateResourcePoolWaitHandler(context.Background(), sfsClient, projectId, region, *resourcePoolResp.ResourcePool.Id).WaitWithContext(context.Background())
+	_, err = wait.UpdateResourcePoolWaitHandler(context.Background(), sfsClient.DefaultAPI, projectId, region, *resourcePoolResp.ResourcePool.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[sfs API] Error when waiting for update: %v\n", err)
 		os.Exit(1)
@@ -82,13 +85,13 @@ func main() {
 	fmt.Printf("[sfs API] Resource pool has been successfully updated to new size %d.\n", *updateResourcePool.ResourcePool.Space.SizeGigabytes)
 
 	// Delete the resource pool
-	_, err = sfsClient.DeleteResourcePool(context.Background(), projectId, region, *resourcePoolResp.ResourcePool.Id).Execute()
+	_, err = sfsClient.DefaultAPI.DeleteResourcePool(context.Background(), projectId, region, *resourcePoolResp.ResourcePool.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[sfs API] Error when calling `DeleteResourcePool`: %v\n", err)
 		os.Exit(1)
 	}
 
-	_, err = wait.DeleteResourcePoolWaitHandler(context.Background(), sfsClient, projectId, region, *resourcePoolResp.ResourcePool.Id).WaitWithContext(context.Background())
+	_, err = wait.DeleteResourcePoolWaitHandler(context.Background(), sfsClient.DefaultAPI, projectId, region, *resourcePoolResp.ResourcePool.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[sfs API] Error when waiting for deletion: %v\n", err)
 		os.Exit(1)
