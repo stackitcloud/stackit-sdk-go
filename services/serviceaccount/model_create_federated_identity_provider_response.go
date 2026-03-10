@@ -16,8 +16,8 @@ import (
 	"time"
 )
 
-// checks if the FederatedIdentityProvider type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FederatedIdentityProvider{}
+// checks if the CreateFederatedIdentityProviderResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateFederatedIdentityProviderResponse{}
 
 /*
 	types and functions for assertions
@@ -25,16 +25,16 @@ var _ MappedNullable = &FederatedIdentityProvider{}
 
 // isArray
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetAssertionsAttributeType = *[]FederatedIdentityProviderAssertionsInner
+type CreateFederatedIdentityProviderResponseGetAssertionsAttributeType = *[]CreateFederatedIdentityProviderResponseAssertionsInner
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetAssertionsArgType = []FederatedIdentityProviderAssertionsInner
+type CreateFederatedIdentityProviderResponseGetAssertionsArgType = []CreateFederatedIdentityProviderResponseAssertionsInner
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetAssertionsRetType = []FederatedIdentityProviderAssertionsInner
+type CreateFederatedIdentityProviderResponseGetAssertionsRetType = []CreateFederatedIdentityProviderResponseAssertionsInner
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getFederatedIdentityProviderGetAssertionsAttributeTypeOk(arg FederatedIdentityProviderGetAssertionsAttributeType) (ret FederatedIdentityProviderGetAssertionsRetType, ok bool) {
+func getCreateFederatedIdentityProviderResponseGetAssertionsAttributeTypeOk(arg CreateFederatedIdentityProviderResponseGetAssertionsAttributeType) (ret CreateFederatedIdentityProviderResponseGetAssertionsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -42,7 +42,7 @@ func getFederatedIdentityProviderGetAssertionsAttributeTypeOk(arg FederatedIdent
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setFederatedIdentityProviderGetAssertionsAttributeType(arg *FederatedIdentityProviderGetAssertionsAttributeType, val FederatedIdentityProviderGetAssertionsRetType) {
+func setCreateFederatedIdentityProviderResponseGetAssertionsAttributeType(arg *CreateFederatedIdentityProviderResponseGetAssertionsAttributeType, val CreateFederatedIdentityProviderResponseGetAssertionsRetType) {
 	*arg = &val
 }
 
@@ -52,16 +52,16 @@ func setFederatedIdentityProviderGetAssertionsAttributeType(arg *FederatedIdenti
 
 // isDateTime
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetCreatedAtAttributeType = *time.Time
+type CreateFederatedIdentityProviderResponseGetCreatedAtAttributeType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetCreatedAtArgType = time.Time
+type CreateFederatedIdentityProviderResponseGetCreatedAtArgType = time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetCreatedAtRetType = time.Time
+type CreateFederatedIdentityProviderResponseGetCreatedAtRetType = time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getFederatedIdentityProviderGetCreatedAtAttributeTypeOk(arg FederatedIdentityProviderGetCreatedAtAttributeType) (ret FederatedIdentityProviderGetCreatedAtRetType, ok bool) {
+func getCreateFederatedIdentityProviderResponseGetCreatedAtAttributeTypeOk(arg CreateFederatedIdentityProviderResponseGetCreatedAtAttributeType) (ret CreateFederatedIdentityProviderResponseGetCreatedAtRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -69,36 +69,9 @@ func getFederatedIdentityProviderGetCreatedAtAttributeTypeOk(arg FederatedIdenti
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setFederatedIdentityProviderGetCreatedAtAttributeType(arg *FederatedIdentityProviderGetCreatedAtAttributeType, val FederatedIdentityProviderGetCreatedAtRetType) {
+func setCreateFederatedIdentityProviderResponseGetCreatedAtAttributeType(arg *CreateFederatedIdentityProviderResponseGetCreatedAtAttributeType, val CreateFederatedIdentityProviderResponseGetCreatedAtRetType) {
 	*arg = &val
 }
-
-/*
-	types and functions for id
-*/
-
-// isNotNullableString
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetIdAttributeType = *string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getFederatedIdentityProviderGetIdAttributeTypeOk(arg FederatedIdentityProviderGetIdAttributeType) (ret FederatedIdentityProviderGetIdRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setFederatedIdentityProviderGetIdAttributeType(arg *FederatedIdentityProviderGetIdAttributeType, val FederatedIdentityProviderGetIdRetType) {
-	*arg = &val
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetIdArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetIdRetType = string
 
 /*
 	types and functions for issuer
@@ -106,10 +79,10 @@ type FederatedIdentityProviderGetIdRetType = string
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetIssuerAttributeType = *string
+type CreateFederatedIdentityProviderResponseGetIssuerAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getFederatedIdentityProviderGetIssuerAttributeTypeOk(arg FederatedIdentityProviderGetIssuerAttributeType) (ret FederatedIdentityProviderGetIssuerRetType, ok bool) {
+func getCreateFederatedIdentityProviderResponseGetIssuerAttributeTypeOk(arg CreateFederatedIdentityProviderResponseGetIssuerAttributeType) (ret CreateFederatedIdentityProviderResponseGetIssuerRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -117,15 +90,15 @@ func getFederatedIdentityProviderGetIssuerAttributeTypeOk(arg FederatedIdentityP
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setFederatedIdentityProviderGetIssuerAttributeType(arg *FederatedIdentityProviderGetIssuerAttributeType, val FederatedIdentityProviderGetIssuerRetType) {
+func setCreateFederatedIdentityProviderResponseGetIssuerAttributeType(arg *CreateFederatedIdentityProviderResponseGetIssuerAttributeType, val CreateFederatedIdentityProviderResponseGetIssuerRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetIssuerArgType = string
+type CreateFederatedIdentityProviderResponseGetIssuerArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetIssuerRetType = string
+type CreateFederatedIdentityProviderResponseGetIssuerRetType = string
 
 /*
 	types and functions for name
@@ -133,10 +106,10 @@ type FederatedIdentityProviderGetIssuerRetType = string
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetNameAttributeType = *string
+type CreateFederatedIdentityProviderResponseGetNameAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getFederatedIdentityProviderGetNameAttributeTypeOk(arg FederatedIdentityProviderGetNameAttributeType) (ret FederatedIdentityProviderGetNameRetType, ok bool) {
+func getCreateFederatedIdentityProviderResponseGetNameAttributeTypeOk(arg CreateFederatedIdentityProviderResponseGetNameAttributeType) (ret CreateFederatedIdentityProviderResponseGetNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -144,15 +117,15 @@ func getFederatedIdentityProviderGetNameAttributeTypeOk(arg FederatedIdentityPro
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setFederatedIdentityProviderGetNameAttributeType(arg *FederatedIdentityProviderGetNameAttributeType, val FederatedIdentityProviderGetNameRetType) {
+func setCreateFederatedIdentityProviderResponseGetNameAttributeType(arg *CreateFederatedIdentityProviderResponseGetNameAttributeType, val CreateFederatedIdentityProviderResponseGetNameRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetNameArgType = string
+type CreateFederatedIdentityProviderResponseGetNameArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetNameRetType = string
+type CreateFederatedIdentityProviderResponseGetNameRetType = string
 
 /*
 	types and functions for updatedAt
@@ -160,16 +133,16 @@ type FederatedIdentityProviderGetNameRetType = string
 
 // isDateTime
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetUpdatedAtAttributeType = *time.Time
+type CreateFederatedIdentityProviderResponseGetUpdatedAtAttributeType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetUpdatedAtArgType = time.Time
+type CreateFederatedIdentityProviderResponseGetUpdatedAtArgType = time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProviderGetUpdatedAtRetType = time.Time
+type CreateFederatedIdentityProviderResponseGetUpdatedAtRetType = time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getFederatedIdentityProviderGetUpdatedAtAttributeTypeOk(arg FederatedIdentityProviderGetUpdatedAtAttributeType) (ret FederatedIdentityProviderGetUpdatedAtRetType, ok bool) {
+func getCreateFederatedIdentityProviderResponseGetUpdatedAtAttributeTypeOk(arg CreateFederatedIdentityProviderResponseGetUpdatedAtAttributeType) (ret CreateFederatedIdentityProviderResponseGetUpdatedAtRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -177,62 +150,60 @@ func getFederatedIdentityProviderGetUpdatedAtAttributeTypeOk(arg FederatedIdenti
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setFederatedIdentityProviderGetUpdatedAtAttributeType(arg *FederatedIdentityProviderGetUpdatedAtAttributeType, val FederatedIdentityProviderGetUpdatedAtRetType) {
+func setCreateFederatedIdentityProviderResponseGetUpdatedAtAttributeType(arg *CreateFederatedIdentityProviderResponseGetUpdatedAtAttributeType, val CreateFederatedIdentityProviderResponseGetUpdatedAtRetType) {
 	*arg = &val
 }
 
-// FederatedIdentityProvider struct for FederatedIdentityProvider
+// CreateFederatedIdentityProviderResponse struct for CreateFederatedIdentityProviderResponse
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type FederatedIdentityProvider struct {
+type CreateFederatedIdentityProviderResponse struct {
 	// list of assertions of the federated identity provider
 	// REQUIRED
-	Assertions FederatedIdentityProviderGetAssertionsAttributeType `json:"assertions" required:"true"`
+	Assertions CreateFederatedIdentityProviderResponseGetAssertionsAttributeType `json:"assertions" required:"true"`
 	// Creation time of the federated identity provider.
 	// REQUIRED
-	CreatedAt FederatedIdentityProviderGetCreatedAtAttributeType `json:"createdAt" required:"true"`
-	// Unique ID of the federated identity provider.
-	Id FederatedIdentityProviderGetIdAttributeType `json:"id,omitempty"`
+	CreatedAt CreateFederatedIdentityProviderResponseGetCreatedAtAttributeType `json:"createdAt" required:"true"`
 	// Issuer of the federated identity provider.
 	// REQUIRED
-	Issuer FederatedIdentityProviderGetIssuerAttributeType `json:"issuer" required:"true"`
+	Issuer CreateFederatedIdentityProviderResponseGetIssuerAttributeType `json:"issuer" required:"true"`
 	// Unique name of the federated identity provider.
 	// REQUIRED
-	Name FederatedIdentityProviderGetNameAttributeType `json:"name" required:"true"`
+	Name CreateFederatedIdentityProviderResponseGetNameAttributeType `json:"name" required:"true"`
 	// Last update time of the federated identity provider.
 	// REQUIRED
-	UpdatedAt FederatedIdentityProviderGetUpdatedAtAttributeType `json:"updatedAt" required:"true"`
+	UpdatedAt CreateFederatedIdentityProviderResponseGetUpdatedAtAttributeType `json:"updatedAt" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _FederatedIdentityProvider FederatedIdentityProvider
+type _CreateFederatedIdentityProviderResponse CreateFederatedIdentityProviderResponse
 
-// NewFederatedIdentityProvider instantiates a new FederatedIdentityProvider object
+// NewCreateFederatedIdentityProviderResponse instantiates a new CreateFederatedIdentityProviderResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewFederatedIdentityProvider(assertions FederatedIdentityProviderGetAssertionsArgType, createdAt FederatedIdentityProviderGetCreatedAtArgType, issuer FederatedIdentityProviderGetIssuerArgType, name FederatedIdentityProviderGetNameArgType, updatedAt FederatedIdentityProviderGetUpdatedAtArgType) *FederatedIdentityProvider {
-	this := FederatedIdentityProvider{}
-	setFederatedIdentityProviderGetAssertionsAttributeType(&this.Assertions, assertions)
-	setFederatedIdentityProviderGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
-	setFederatedIdentityProviderGetIssuerAttributeType(&this.Issuer, issuer)
-	setFederatedIdentityProviderGetNameAttributeType(&this.Name, name)
-	setFederatedIdentityProviderGetUpdatedAtAttributeType(&this.UpdatedAt, updatedAt)
+func NewCreateFederatedIdentityProviderResponse(assertions CreateFederatedIdentityProviderResponseGetAssertionsArgType, createdAt CreateFederatedIdentityProviderResponseGetCreatedAtArgType, issuer CreateFederatedIdentityProviderResponseGetIssuerArgType, name CreateFederatedIdentityProviderResponseGetNameArgType, updatedAt CreateFederatedIdentityProviderResponseGetUpdatedAtArgType) *CreateFederatedIdentityProviderResponse {
+	this := CreateFederatedIdentityProviderResponse{}
+	setCreateFederatedIdentityProviderResponseGetAssertionsAttributeType(&this.Assertions, assertions)
+	setCreateFederatedIdentityProviderResponseGetCreatedAtAttributeType(&this.CreatedAt, createdAt)
+	setCreateFederatedIdentityProviderResponseGetIssuerAttributeType(&this.Issuer, issuer)
+	setCreateFederatedIdentityProviderResponseGetNameAttributeType(&this.Name, name)
+	setCreateFederatedIdentityProviderResponseGetUpdatedAtAttributeType(&this.UpdatedAt, updatedAt)
 	return &this
 }
 
-// NewFederatedIdentityProviderWithDefaults instantiates a new FederatedIdentityProvider object
+// NewCreateFederatedIdentityProviderResponseWithDefaults instantiates a new CreateFederatedIdentityProviderResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewFederatedIdentityProviderWithDefaults() *FederatedIdentityProvider {
-	this := FederatedIdentityProvider{}
+func NewCreateFederatedIdentityProviderResponseWithDefaults() *CreateFederatedIdentityProviderResponse {
+	this := CreateFederatedIdentityProviderResponse{}
 	return &this
 }
 
 // GetAssertions returns the Assertions field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetAssertions() (ret FederatedIdentityProviderGetAssertionsRetType) {
+func (o *CreateFederatedIdentityProviderResponse) GetAssertions() (ret CreateFederatedIdentityProviderResponseGetAssertionsRetType) {
 	ret, _ = o.GetAssertionsOk()
 	return ret
 }
@@ -240,19 +211,19 @@ func (o *FederatedIdentityProvider) GetAssertions() (ret FederatedIdentityProvid
 // GetAssertionsOk returns a tuple with the Assertions field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetAssertionsOk() (ret FederatedIdentityProviderGetAssertionsRetType, ok bool) {
-	return getFederatedIdentityProviderGetAssertionsAttributeTypeOk(o.Assertions)
+func (o *CreateFederatedIdentityProviderResponse) GetAssertionsOk() (ret CreateFederatedIdentityProviderResponseGetAssertionsRetType, ok bool) {
+	return getCreateFederatedIdentityProviderResponseGetAssertionsAttributeTypeOk(o.Assertions)
 }
 
 // SetAssertions sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) SetAssertions(v FederatedIdentityProviderGetAssertionsRetType) {
-	setFederatedIdentityProviderGetAssertionsAttributeType(&o.Assertions, v)
+func (o *CreateFederatedIdentityProviderResponse) SetAssertions(v CreateFederatedIdentityProviderResponseGetAssertionsRetType) {
+	setCreateFederatedIdentityProviderResponseGetAssertionsAttributeType(&o.Assertions, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetCreatedAt() (ret FederatedIdentityProviderGetCreatedAtRetType) {
+func (o *CreateFederatedIdentityProviderResponse) GetCreatedAt() (ret CreateFederatedIdentityProviderResponseGetCreatedAtRetType) {
 	ret, _ = o.GetCreatedAtOk()
 	return ret
 }
@@ -260,46 +231,19 @@ func (o *FederatedIdentityProvider) GetCreatedAt() (ret FederatedIdentityProvide
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetCreatedAtOk() (ret FederatedIdentityProviderGetCreatedAtRetType, ok bool) {
-	return getFederatedIdentityProviderGetCreatedAtAttributeTypeOk(o.CreatedAt)
+func (o *CreateFederatedIdentityProviderResponse) GetCreatedAtOk() (ret CreateFederatedIdentityProviderResponseGetCreatedAtRetType, ok bool) {
+	return getCreateFederatedIdentityProviderResponseGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // SetCreatedAt sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) SetCreatedAt(v FederatedIdentityProviderGetCreatedAtRetType) {
-	setFederatedIdentityProviderGetCreatedAtAttributeType(&o.CreatedAt, v)
-}
-
-// GetId returns the Id field value if set, zero value otherwise.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetId() (res FederatedIdentityProviderGetIdRetType) {
-	res, _ = o.GetIdOk()
-	return
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetIdOk() (ret FederatedIdentityProviderGetIdRetType, ok bool) {
-	return getFederatedIdentityProviderGetIdAttributeTypeOk(o.Id)
-}
-
-// HasId returns a boolean if a field has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) HasId() bool {
-	_, ok := o.GetIdOk()
-	return ok
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) SetId(v FederatedIdentityProviderGetIdRetType) {
-	setFederatedIdentityProviderGetIdAttributeType(&o.Id, v)
+func (o *CreateFederatedIdentityProviderResponse) SetCreatedAt(v CreateFederatedIdentityProviderResponseGetCreatedAtRetType) {
+	setCreateFederatedIdentityProviderResponseGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetIssuer returns the Issuer field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetIssuer() (ret FederatedIdentityProviderGetIssuerRetType) {
+func (o *CreateFederatedIdentityProviderResponse) GetIssuer() (ret CreateFederatedIdentityProviderResponseGetIssuerRetType) {
 	ret, _ = o.GetIssuerOk()
 	return ret
 }
@@ -307,19 +251,19 @@ func (o *FederatedIdentityProvider) GetIssuer() (ret FederatedIdentityProviderGe
 // GetIssuerOk returns a tuple with the Issuer field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetIssuerOk() (ret FederatedIdentityProviderGetIssuerRetType, ok bool) {
-	return getFederatedIdentityProviderGetIssuerAttributeTypeOk(o.Issuer)
+func (o *CreateFederatedIdentityProviderResponse) GetIssuerOk() (ret CreateFederatedIdentityProviderResponseGetIssuerRetType, ok bool) {
+	return getCreateFederatedIdentityProviderResponseGetIssuerAttributeTypeOk(o.Issuer)
 }
 
 // SetIssuer sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) SetIssuer(v FederatedIdentityProviderGetIssuerRetType) {
-	setFederatedIdentityProviderGetIssuerAttributeType(&o.Issuer, v)
+func (o *CreateFederatedIdentityProviderResponse) SetIssuer(v CreateFederatedIdentityProviderResponseGetIssuerRetType) {
+	setCreateFederatedIdentityProviderResponseGetIssuerAttributeType(&o.Issuer, v)
 }
 
 // GetName returns the Name field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetName() (ret FederatedIdentityProviderGetNameRetType) {
+func (o *CreateFederatedIdentityProviderResponse) GetName() (ret CreateFederatedIdentityProviderResponseGetNameRetType) {
 	ret, _ = o.GetNameOk()
 	return ret
 }
@@ -327,19 +271,19 @@ func (o *FederatedIdentityProvider) GetName() (ret FederatedIdentityProviderGetN
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetNameOk() (ret FederatedIdentityProviderGetNameRetType, ok bool) {
-	return getFederatedIdentityProviderGetNameAttributeTypeOk(o.Name)
+func (o *CreateFederatedIdentityProviderResponse) GetNameOk() (ret CreateFederatedIdentityProviderResponseGetNameRetType, ok bool) {
+	return getCreateFederatedIdentityProviderResponseGetNameAttributeTypeOk(o.Name)
 }
 
 // SetName sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) SetName(v FederatedIdentityProviderGetNameRetType) {
-	setFederatedIdentityProviderGetNameAttributeType(&o.Name, v)
+func (o *CreateFederatedIdentityProviderResponse) SetName(v CreateFederatedIdentityProviderResponseGetNameRetType) {
+	setCreateFederatedIdentityProviderResponseGetNameAttributeType(&o.Name, v)
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetUpdatedAt() (ret FederatedIdentityProviderGetUpdatedAtRetType) {
+func (o *CreateFederatedIdentityProviderResponse) GetUpdatedAt() (ret CreateFederatedIdentityProviderResponseGetUpdatedAtRetType) {
 	ret, _ = o.GetUpdatedAtOk()
 	return ret
 }
@@ -347,80 +291,77 @@ func (o *FederatedIdentityProvider) GetUpdatedAt() (ret FederatedIdentityProvide
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) GetUpdatedAtOk() (ret FederatedIdentityProviderGetUpdatedAtRetType, ok bool) {
-	return getFederatedIdentityProviderGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
+func (o *CreateFederatedIdentityProviderResponse) GetUpdatedAtOk() (ret CreateFederatedIdentityProviderResponseGetUpdatedAtRetType, ok bool) {
+	return getCreateFederatedIdentityProviderResponseGetUpdatedAtAttributeTypeOk(o.UpdatedAt)
 }
 
 // SetUpdatedAt sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *FederatedIdentityProvider) SetUpdatedAt(v FederatedIdentityProviderGetUpdatedAtRetType) {
-	setFederatedIdentityProviderGetUpdatedAtAttributeType(&o.UpdatedAt, v)
+func (o *CreateFederatedIdentityProviderResponse) SetUpdatedAt(v CreateFederatedIdentityProviderResponseGetUpdatedAtRetType) {
+	setCreateFederatedIdentityProviderResponseGetUpdatedAtAttributeType(&o.UpdatedAt, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o FederatedIdentityProvider) ToMap() (map[string]interface{}, error) {
+func (o CreateFederatedIdentityProviderResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getFederatedIdentityProviderGetAssertionsAttributeTypeOk(o.Assertions); ok {
+	if val, ok := getCreateFederatedIdentityProviderResponseGetAssertionsAttributeTypeOk(o.Assertions); ok {
 		toSerialize["Assertions"] = val
 	}
-	if val, ok := getFederatedIdentityProviderGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+	if val, ok := getCreateFederatedIdentityProviderResponseGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
 	}
-	if val, ok := getFederatedIdentityProviderGetIdAttributeTypeOk(o.Id); ok {
-		toSerialize["Id"] = val
-	}
-	if val, ok := getFederatedIdentityProviderGetIssuerAttributeTypeOk(o.Issuer); ok {
+	if val, ok := getCreateFederatedIdentityProviderResponseGetIssuerAttributeTypeOk(o.Issuer); ok {
 		toSerialize["Issuer"] = val
 	}
-	if val, ok := getFederatedIdentityProviderGetNameAttributeTypeOk(o.Name); ok {
+	if val, ok := getCreateFederatedIdentityProviderResponseGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
 	}
-	if val, ok := getFederatedIdentityProviderGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
+	if val, ok := getCreateFederatedIdentityProviderResponseGetUpdatedAtAttributeTypeOk(o.UpdatedAt); ok {
 		toSerialize["UpdatedAt"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableFederatedIdentityProvider struct {
-	value *FederatedIdentityProvider
+type NullableCreateFederatedIdentityProviderResponse struct {
+	value *CreateFederatedIdentityProviderResponse
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableFederatedIdentityProvider) Get() *FederatedIdentityProvider {
+func (v NullableCreateFederatedIdentityProviderResponse) Get() *CreateFederatedIdentityProviderResponse {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableFederatedIdentityProvider) Set(val *FederatedIdentityProvider) {
+func (v *NullableCreateFederatedIdentityProviderResponse) Set(val *CreateFederatedIdentityProviderResponse) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableFederatedIdentityProvider) IsSet() bool {
+func (v NullableCreateFederatedIdentityProviderResponse) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableFederatedIdentityProvider) Unset() {
+func (v *NullableCreateFederatedIdentityProviderResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableFederatedIdentityProvider(val *FederatedIdentityProvider) *NullableFederatedIdentityProvider {
-	return &NullableFederatedIdentityProvider{value: val, isSet: true}
+func NewNullableCreateFederatedIdentityProviderResponse(val *CreateFederatedIdentityProviderResponse) *NullableCreateFederatedIdentityProviderResponse {
+	return &NullableCreateFederatedIdentityProviderResponse{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableFederatedIdentityProvider) MarshalJSON() ([]byte, error) {
+func (v NullableCreateFederatedIdentityProviderResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableFederatedIdentityProvider) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateFederatedIdentityProviderResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
