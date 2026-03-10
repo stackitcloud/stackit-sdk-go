@@ -10,89 +10,46 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/resourcemanager"
+	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api"
+	resourcemanager "github.com/stackitcloud/stackit-sdk-go/services/resourcemanager/v0api"
 )
 
 const (
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	CreateSuccess = "CREATED"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	CreateSuccess         = "CREATED"
 	VolumeAvailableStatus = "AVAILABLE"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	DeleteSuccess = "DELETED"
+	DeleteSuccess         = "DELETED"
 
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	ErrorStatus = "ERROR"
 
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	ServerActiveStatus = "ACTIVE"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	ServerResizingStatus = "RESIZING"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	ServerInactiveStatus = "INACTIVE"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ServerActiveStatus      = "ACTIVE"
+	ServerResizingStatus    = "RESIZING"
+	ServerInactiveStatus    = "INACTIVE"
 	ServerDeallocatedStatus = "DEALLOCATED"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	ServerRescueStatus = "RESCUE"
+	ServerRescueStatus      = "RESCUE"
 
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	ImageAvailableStatus = "AVAILABLE"
 
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	RequestCreateAction = "CREATE"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	RequestUpdateAction = "UPDATE"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	RequestDeleteAction = "DELETE"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	RequestCreateAction  = "CREATE"
+	RequestUpdateAction  = "UPDATE"
+	RequestDeleteAction  = "DELETE"
 	RequestCreatedStatus = "CREATED"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	RequestUpdatedStatus = "UPDATED"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	RequestDeletedStatus = "DELETED"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	RequestFailedStatus = "FAILED"
+	RequestFailedStatus  = "FAILED"
 
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	XRequestIDHeader = "X-Request-Id"
 
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	BackupAvailableStatus = "AVAILABLE"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	BackupRestoringStatus = "RESTORING"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	BackupDeletingStatus = "DELETING"
+	BackupDeletingStatus  = "DELETING"
 
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	SnapshotAvailableStatus = "AVAILABLE"
 )
 
-// Interfaces needed for tests
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type APIClientInterface interface {
-	GetNetworkAreaExecute(ctx context.Context, organizationId, areaId string) (*iaas.NetworkArea, error)
-	GetNetworkAreaRegionExecute(ctx context.Context, organizationId string, areaId string, region string) (*iaas.RegionalArea, error)
-	ListNetworkAreaProjectsExecute(ctx context.Context, organizationId, areaId string) (*iaas.ProjectListResponse, error)
-	GetProjectRequestExecute(ctx context.Context, projectId, region, requestId string) (*iaas.Request, error)
-	GetNetworkExecute(ctx context.Context, projectId, region, networkId string) (*iaas.Network, error)
-	GetVolumeExecute(ctx context.Context, projectId, region, volumeId string) (*iaas.Volume, error)
-	GetServerExecute(ctx context.Context, projectId, region, serverId string) (*iaas.Server, error)
-	GetAttachedVolumeExecute(ctx context.Context, projectId, region, serverId, volumeId string) (*iaas.VolumeAttachment, error)
-	GetImageExecute(ctx context.Context, projectId, region, imageId string) (*iaas.Image, error)
-	GetBackupExecute(ctx context.Context, projectId, region, backupId string) (*iaas.Backup, error)
-	GetSnapshotExecute(ctx context.Context, projectId, region, snapshotId string) (*iaas.Snapshot, error)
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourceManagerAPIClientInterface interface {
-	GetProjectExecute(ctx context.Context, id string) (*resourcemanager.GetProjectResponse, error)
-}
-
 // Deprecated: CreateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. CreateNetworkAreaWaitHandler will wait for network area creation
-func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
+func CreateNetworkAreaWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
+		area, err := a.GetNetworkArea(ctx, organizationId, areaId).Execute()
 		if err != nil {
 			return false, area, err
 		}
@@ -109,9 +66,9 @@ func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 }
 
 // Deprecated: UpdateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. UpdateNetworkAreaWaitHandler will wait for network area update
-func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
+func UpdateNetworkAreaWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
+		area, err := a.GetNetworkArea(ctx, organizationId, areaId).Execute()
 		if err != nil {
 			return false, area, err
 		}
@@ -130,10 +87,9 @@ func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 }
 
 // CreateNetworkAreaRegionWaitHandler will wait for network area region creation
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
+func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
-		area, err := a.GetNetworkAreaRegionExecute(ctx, organizationId, areaId, region)
+		area, err := a.GetNetworkAreaRegion(ctx, organizationId, areaId, region).Execute()
 		if err != nil {
 			return false, area, err
 		}
@@ -152,10 +108,9 @@ func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterfac
 }
 
 // DeleteNetworkAreaRegionWaitHandler will wait for network area region deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
+func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
-		area, err := a.GetNetworkAreaRegionExecute(ctx, organizationId, areaId, region)
+		area, err := a.GetNetworkAreaRegion(ctx, organizationId, areaId, region).Execute()
 		if err == nil {
 			return false, nil, nil
 		}
@@ -181,22 +136,21 @@ func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterfac
 // When the deletion for a project is triggered, the backend starts a workflow in the background which cleans up all resources
 // within a project and deletes the project in each service. When the project is attached to an SNA, the SNA can't be
 // deleted until the workflow inform the IaaS-API that the project is deleted.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a APIClientInterface, r ResourceManagerAPIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.ProjectListResponse] {
+func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a iaas.DefaultAPI, r resourcemanager.DefaultAPI, organizationId, areaId string) *wait.AsyncActionHandler[iaas.ProjectListResponse] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.ProjectListResponse, err error) {
-		projectList, err := a.ListNetworkAreaProjectsExecute(ctx, organizationId, areaId)
+		projectList, err := a.ListNetworkAreaProjects(ctx, organizationId, areaId).Execute()
 		if err != nil {
 			return false, projectList, err
 		}
 		if projectList == nil || projectList.Items == nil {
 			return false, nil, fmt.Errorf("read failed for projects in network area with id %s, the response is not valid: the items are missing", areaId)
 		}
-		if len(*projectList.Items) == 0 {
+		if len(projectList.Items) == 0 {
 			return true, projectList, nil
 		}
 		var activeProjects, forbiddenProjects []string
-		for _, projectId := range *projectList.Items {
-			_, err := r.GetProjectExecute(ctx, projectId)
+		for _, projectId := range projectList.Items {
+			_, err := r.GetProject(ctx, projectId).Execute()
 			if err == nil {
 				activeProjects = append(activeProjects, projectId)
 				continue
@@ -224,9 +178,9 @@ func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a APIClientInte
 }
 
 // Deprecated: DeleteNetworkAreaWaitHandler is no longer required and will be removed in April 2026. DeleteNetworkAreaWaitHandler will wait for network area deletion
-func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
+func DeleteNetworkAreaWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
+		area, err := a.GetNetworkArea(ctx, organizationId, areaId).Execute()
 		if err == nil {
 			return false, nil, nil
 		}
@@ -245,18 +199,14 @@ func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, org
 }
 
 // CreateNetworkWaitHandler will wait for network creation using network id
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+func CreateNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetworkExecute(ctx, projectId, region, networkId)
+		network, err := a.GetNetwork(ctx, projectId, region, networkId).Execute()
 		if err != nil {
 			return false, network, err
 		}
-		if network.Id == nil || network.Status == nil {
-			return false, network, fmt.Errorf("crate failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
-		}
 		// The state returns to "CREATED" after a successful creation is completed
-		if *network.Id == networkId && *network.Status == CreateSuccess {
+		if network.Id == networkId && network.Status == CreateSuccess {
 			return true, network, nil
 		}
 		return false, network, nil
@@ -267,18 +217,14 @@ func CreateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // UpdateNetworkWaitHandler will wait for network update
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+func UpdateNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetworkExecute(ctx, projectId, region, networkId)
+		network, err := a.GetNetwork(ctx, projectId, region, networkId).Execute()
 		if err != nil {
 			return false, network, err
 		}
-		if network.Id == nil || network.Status == nil {
-			return false, network, fmt.Errorf("update failed for network with id %s, the response is not valid: the id or the state are missing", networkId)
-		}
 		// The state returns to "CREATED" after a successful update is completed
-		if *network.Id == networkId && *network.Status == CreateSuccess {
+		if network.Id == networkId && network.Status == CreateSuccess {
 			return true, network, nil
 		}
 		return false, network, nil
@@ -289,10 +235,9 @@ func UpdateNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // DeleteNetworkWaitHandler will wait for network deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
+func DeleteNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetworkExecute(ctx, projectId, region, networkId)
+		network, err := a.GetNetwork(ctx, projectId, region, networkId).Execute()
 		if err == nil {
 			return false, nil, nil
 		}
@@ -310,10 +255,9 @@ func DeleteNetworkWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
+func CreateVolumeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
-		volume, err := a.GetVolumeExecute(ctx, projectId, region, volumeId)
+		volume, err := a.GetVolume(ctx, projectId, region, volumeId).Execute()
 		if err != nil {
 			return false, volume, err
 		}
@@ -333,10 +277,9 @@ func CreateVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteVolumeWaitHandler will wait for volume deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
+func DeleteVolumeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
-		volume, err := a.GetVolumeExecute(ctx, projectId, region, volumeId)
+		volume, err := a.GetVolume(ctx, projectId, region, volumeId).Execute()
 		if err == nil {
 			if volume != nil {
 				if volume.Id == nil || volume.Status == nil {
@@ -362,10 +305,9 @@ func DeleteVolumeWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // CreateServerWaitHandler will wait for server creation
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func CreateServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
 			return false, server, err
 		}
@@ -389,10 +331,9 @@ func CreateServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 
 // ResizeServerWaitHandler will wait for server resize
 // It checks for an intermediate resizing status and only then waits for the server to become active
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) (h *wait.AsyncActionHandler[iaas.Server]) {
+func ResizeServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) (h *wait.AsyncActionHandler[iaas.Server]) {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
 			return false, server, err
 		}
@@ -427,10 +368,9 @@ func ResizeServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteServerWaitHandler will wait for volume deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func DeleteServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err == nil {
 			if server != nil {
 				if server.Id == nil || server.Status == nil {
@@ -456,10 +396,9 @@ func DeleteServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // StartServerWaitHandler will wait for server start
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func StartServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
 			return false, server, err
 		}
@@ -482,10 +421,9 @@ func StartServerWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // StopServerWaitHandler will wait for server stop
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func StopServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
 			return false, server, err
 		}
@@ -508,10 +446,9 @@ func StopServerWaitHandler(ctx context.Context, a APIClientInterface, projectId,
 }
 
 // DeallocateServerWaitHandler will wait for server deallocation
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func DeallocateServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
 			return false, server, err
 		}
@@ -534,10 +471,9 @@ func DeallocateServerWaitHandler(ctx context.Context, a APIClientInterface, proj
 }
 
 // RescueServerWaitHandler will wait for server rescue
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func RescueServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
 			return false, server, err
 		}
@@ -560,10 +496,9 @@ func RescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // UnrescueServerWaitHandler will wait for server unrescue
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
+func UnrescueServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServerExecute(ctx, projectId, region, serverId)
+		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
 		if err != nil {
 			return false, server, err
 		}
@@ -600,11 +535,9 @@ func UnrescueServerWaitHandler(ctx context.Context, a APIClientInterface, projec
 //
 //	requestId := httpResp.Header[wait.XRequestIDHeader][0]
 //	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, requestId).WaitWithContext(context.Background())
-//
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, requestId string) *wait.AsyncActionHandler[iaas.Request] {
+func ProjectRequestWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, requestId string) *wait.AsyncActionHandler[iaas.Request] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Request, err error) {
-		request, err := a.GetProjectRequestExecute(ctx, projectId, region, requestId)
+		request, err := a.GetProjectRequest(ctx, projectId, region, requestId).Execute()
 		if err != nil {
 			return false, request, err
 		}
@@ -613,32 +546,28 @@ func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projec
 			return false, nil, fmt.Errorf("request failed for request with id %s: nil response from GetProjectRequestExecute", requestId)
 		}
 
-		if request.RequestId == nil || request.RequestAction == nil || request.Status == nil {
-			return false, request, fmt.Errorf("request failed for request with id %s, the response is not valid: the id, the request action or the status are missing", requestId)
-		}
-
-		if *request.RequestId != requestId {
+		if request.RequestId != requestId {
 			return false, request, fmt.Errorf("request failed for request with id %s: the response id doesn't match the request id", requestId)
 		}
 
-		switch *request.RequestAction {
+		switch request.RequestAction {
 		case RequestCreateAction:
-			if *request.Status == RequestCreatedStatus {
+			if request.Status == RequestCreatedStatus {
 				return true, request, nil
 			}
 		case RequestUpdateAction:
-			if *request.Status == RequestUpdatedStatus {
+			if request.Status == RequestUpdatedStatus {
 				return true, request, nil
 			}
 		case RequestDeleteAction:
-			if *request.Status == RequestDeletedStatus {
+			if request.Status == RequestDeletedStatus {
 				return true, request, nil
 			}
 		default:
-			return false, request, fmt.Errorf("request failed for request with id %s, the request action %s is not supported", requestId, *request.RequestAction)
+			return false, request, fmt.Errorf("request failed for request with id %s, the request action %s is not supported", requestId, request.RequestAction)
 		}
 
-		if *request.Status == RequestFailedStatus {
+		if request.Status == RequestFailedStatus {
 			return true, request, fmt.Errorf("request failed for request with id %s", requestId)
 		}
 
@@ -649,10 +578,9 @@ func ProjectRequestWaitHandler(ctx context.Context, a APIClientInterface, projec
 }
 
 // AddVolumeToServerWaitHandler will wait for a volume to be attached to a server
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
+func AddVolumeToServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
-		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, region, serverId, volumeId)
+		volumeAttachment, err := a.GetAttachedVolume(ctx, projectId, region, serverId, volumeId).Execute()
 		if err == nil {
 			if volumeAttachment != nil {
 				if volumeAttachment.VolumeId == nil {
@@ -678,10 +606,9 @@ func AddVolumeToServerWaitHandler(ctx context.Context, a APIClientInterface, pro
 }
 
 // RemoveVolumeFromServerWaitHandler will wait for a volume to be attached to a server
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
+func RemoveVolumeFromServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
-		volumeAttachment, err := a.GetAttachedVolumeExecute(ctx, projectId, region, serverId, volumeId)
+		volumeAttachment, err := a.GetAttachedVolume(ctx, projectId, region, serverId, volumeId).Execute()
 		if err == nil {
 			if volumeAttachment != nil {
 				if volumeAttachment.VolumeId == nil {
@@ -704,10 +631,9 @@ func RemoveVolumeFromServerWaitHandler(ctx context.Context, a APIClientInterface
 }
 
 // UploadImageWaitHandler will wait for the status image to become AVAILABLE, which indicates the upload of the image has been completed successfully
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
+func UploadImageWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
-		image, err := a.GetImageExecute(ctx, projectId, region, imageId)
+		image, err := a.GetImage(ctx, projectId, region, imageId).Execute()
 		if err != nil {
 			return false, image, err
 		}
@@ -727,10 +653,9 @@ func UploadImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // DeleteImageWaitHandler will wait for image deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
+func DeleteImageWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
-		image, err := a.GetImageExecute(ctx, projectId, region, imageId)
+		image, err := a.GetImage(ctx, projectId, region, imageId).Execute()
 		if err == nil {
 			if image != nil {
 				if image.Id == nil || image.Status == nil {
@@ -756,10 +681,9 @@ func DeleteImageWaitHandler(ctx context.Context, a APIClientInterface, projectId
 }
 
 // CreateBackupWaitHandler will wait for backup creation
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+func CreateBackupWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackupExecute(ctx, projectId, region, backupId)
+		backup, err := a.GetBackup(ctx, projectId, region, backupId).Execute()
 		if err == nil {
 			if backup != nil {
 				if backup.Id == nil || backup.Status == nil {
@@ -781,10 +705,9 @@ func CreateBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // DeleteBackupWaitHandler will wait for backup deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+func DeleteBackupWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackupExecute(ctx, projectId, region, backupId)
+		backup, err := a.GetBackup(ctx, projectId, region, backupId).Execute()
 		if err == nil {
 			if backup != nil {
 				if backup.Id == nil || backup.Status == nil {
@@ -809,10 +732,9 @@ func DeleteBackupWaitHandler(ctx context.Context, a APIClientInterface, projectI
 }
 
 // RestoreBackupWaitHandler will wait for backup restoration
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
+func RestoreBackupWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackupExecute(ctx, projectId, region, backupId)
+		backup, err := a.GetBackup(ctx, projectId, region, backupId).Execute()
 		if err == nil {
 			if backup != nil {
 				if backup.Id == nil || backup.Status == nil {
@@ -834,10 +756,9 @@ func RestoreBackupWaitHandler(ctx context.Context, a APIClientInterface, project
 }
 
 // CreateSnapshotWaitHandler will wait for snapshot creation
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+func CreateSnapshotWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
-		snapshot, err := a.GetSnapshotExecute(ctx, projectId, region, snapshotId)
+		snapshot, err := a.GetSnapshot(ctx, projectId, region, snapshotId).Execute()
 		if err == nil {
 			if snapshot != nil {
 				if snapshot.Id == nil || snapshot.Status == nil {
@@ -859,10 +780,9 @@ func CreateSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projec
 }
 
 // DeleteSnapshotWaitHandler will wait for snapshot deletion
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func DeleteSnapshotWaitHandler(ctx context.Context, a APIClientInterface, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
+func DeleteSnapshotWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
 	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
-		snapshot, err := a.GetSnapshotExecute(ctx, projectId, region, snapshotId)
+		snapshot, err := a.GetSnapshot(ctx, projectId, region, snapshotId).Execute()
 		if err == nil {
 			if snapshot != nil {
 				if snapshot.Id == nil || snapshot.Status == nil {

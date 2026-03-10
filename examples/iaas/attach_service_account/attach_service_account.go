@@ -7,8 +7,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/runtime"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
+	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api"
+	"github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api/wait"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 	// Attach an existing service account to an existing server
 	var httpResp *http.Response
 	ctxWithHTTPResp := runtime.WithCaptureHTTPResponse(context.Background(), &httpResp)
-	_, err = iaasClient.AddServiceAccountToServer(ctxWithHTTPResp, projectId, region, serverId, serviceAccountMail).Execute()
+	_, err = iaasClient.DefaultAPI.AddServiceAccountToServer(ctxWithHTTPResp, projectId, region, serverId, serviceAccountMail).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `AddServiceAccountToServer`: %v\n", err)
 	} else {
@@ -37,7 +37,7 @@ func main() {
 	requestId := httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for attachment of the service account
-	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, region, requestId).WaitWithContext(context.Background())
+	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, requestId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for attachment: %v\n", err)
 		os.Exit(1)
@@ -45,7 +45,7 @@ func main() {
 
 	fmt.Printf("[iaas API] Service account %q has been successfully attached to the server %s.\n", serviceAccountMail, serverId)
 
-	_, err = iaasClient.RemoveServiceAccountFromServer(ctxWithHTTPResp, projectId, region, serverId, serviceAccountMail).Execute()
+	_, err = iaasClient.DefaultAPI.RemoveServiceAccountFromServer(ctxWithHTTPResp, projectId, region, serverId, serviceAccountMail).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `RemoveServiceAccountFromServer`: %v\n", err)
 	} else {
@@ -55,7 +55,7 @@ func main() {
 	requestId = httpResp.Header[wait.XRequestIDHeader][0]
 
 	// Wait for dettachment of the service account
-	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient, projectId, region, requestId).WaitWithContext(context.Background())
+	_, err = wait.ProjectRequestWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, requestId).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for removal of attachment of service account: %v\n", err)
 		os.Exit(1)

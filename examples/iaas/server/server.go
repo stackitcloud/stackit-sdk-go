@@ -6,8 +6,8 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas/wait"
+	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api"
+	"github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api/wait"
 )
 
 func main() {
@@ -23,25 +23,25 @@ func main() {
 		os.Exit(1)
 	}
 
-	servers, err := iaasClient.ListServers(context.Background(), projectId, region).Execute()
+	servers, err := iaasClient.DefaultAPI.ListServers(context.Background(), projectId, region).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `ListServers`: %v\n", err)
 	} else {
-		fmt.Printf("[iaas API] Number of servers: %v\n", len(*servers.Items))
+		fmt.Printf("[iaas API] Number of servers: %v\n", len(servers.Items))
 	}
 
 	// Create a network
 	createNetworkPayload := iaas.CreateNetworkPayload{
-		Name: utils.Ptr("example-network"),
+		Name: "example-network",
 		Ipv4: &iaas.CreateNetworkIPv4{
 			CreateNetworkIPv4WithPrefixLength: &iaas.CreateNetworkIPv4WithPrefixLength{
-				PrefixLength: utils.Ptr(int64(24)),
+				PrefixLength: int64(24),
 			},
 		},
 	}
 
-	network, err := iaasClient.CreateNetwork(context.Background(), projectId, region).CreateNetworkPayload(createNetworkPayload).Execute()
+	network, err := iaasClient.DefaultAPI.CreateNetwork(context.Background(), projectId, region).CreateNetworkPayload(createNetworkPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `CreateNetwork`: %v\n", err)
 		os.Exit(1)
@@ -49,7 +49,7 @@ func main() {
 
 	fmt.Println("[Iaas API] Waiting for network to be created...")
 
-	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient, projectId, region, *network.Id).WaitWithContext(context.Background())
+	network, err = wait.CreateNetworkWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, network.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)
@@ -57,23 +57,23 @@ func main() {
 
 	// Create a server
 	createServerPayload := iaas.CreateServerPayload{
-		Name:             utils.Ptr("example-server"),
+		Name:             "example-server",
 		AvailabilityZone: utils.Ptr("eu01-1"),
-		MachineType:      utils.Ptr("g1.1"),
-		BootVolume: &iaas.ServerBootVolume{
+		MachineType:      "g1.1",
+		BootVolume: &iaas.BootVolume{
 			Size: utils.Ptr(int64(64)),
 			Source: &iaas.BootVolumeSource{
-				Id:   utils.Ptr(imageId),
-				Type: utils.Ptr("image"),
+				Id:   imageId,
+				Type: "image",
 			},
 		},
-		Networking: &iaas.CreateServerPayloadAllOfNetworking{
+		Networking: iaas.CreateServerPayloadAllOfNetworking{
 			CreateServerNetworking: &iaas.CreateServerNetworking{
-				NetworkId: network.Id,
+				NetworkId: utils.Ptr(network.Id),
 			},
 		},
 	}
-	server, err := iaasClient.CreateServer(context.Background(), projectId, region).CreateServerPayload(createServerPayload).Execute()
+	server, err := iaasClient.DefaultAPI.CreateServer(context.Background(), projectId, region).CreateServerPayload(createServerPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `CreateServer`: %v\n", err)
 		os.Exit(1)
@@ -81,7 +81,7 @@ func main() {
 	fmt.Printf("[iaas API] Triggered creation of server with ID %q.\n", *server.Id)
 
 	// Wait for creation of the server
-	server, err = wait.CreateServerWaitHandler(context.Background(), iaasClient, projectId, region, *server.Id).WaitWithContext(context.Background())
+	server, err = wait.CreateServerWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, *server.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for creation: %v\n", err)
 		os.Exit(1)
@@ -90,7 +90,7 @@ func main() {
 	fmt.Printf("[iaas API] Server %q has been successfully created.\n", *server.Id)
 
 	// Stop a server
-	err = iaasClient.StopServer(context.Background(), projectId, region, *server.Id).Execute()
+	err = iaasClient.DefaultAPI.StopServer(context.Background(), projectId, region, *server.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `StopServer`: %v\n", err)
 	} else {
@@ -98,7 +98,7 @@ func main() {
 	}
 
 	// Wait for stop of the server
-	server, err = wait.StopServerWaitHandler(context.Background(), iaasClient, projectId, region, *server.Id).WaitWithContext(context.Background())
+	server, err = wait.StopServerWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, *server.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for stop: %v\n", err)
 		os.Exit(1)
@@ -107,7 +107,7 @@ func main() {
 	fmt.Printf("[iaas API] Server %q has been successfully stopped.\n", *server.Id)
 
 	// Start a server
-	err = iaasClient.StartServer(context.Background(), projectId, region, *server.Id).Execute()
+	err = iaasClient.DefaultAPI.StartServer(context.Background(), projectId, region, *server.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `StartServer`: %v\n", err)
 	} else {
@@ -115,7 +115,7 @@ func main() {
 	}
 
 	// Wait for start of the server
-	server, err = wait.StartServerWaitHandler(context.Background(), iaasClient, projectId, region, *server.Id).WaitWithContext(context.Background())
+	server, err = wait.StartServerWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, *server.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for start: %v\n", err)
 		os.Exit(1)
@@ -127,7 +127,7 @@ func main() {
 	updateServerPayload := iaas.UpdateServerPayload{
 		Name: utils.Ptr("renamed"),
 	}
-	server, err = iaasClient.UpdateServer(context.Background(), projectId, region, *server.Id).UpdateServerPayload(updateServerPayload).Execute()
+	server, err = iaasClient.DefaultAPI.UpdateServer(context.Background(), projectId, region, *server.Id).UpdateServerPayload(updateServerPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `UpdateServer`: %v\n", err)
 	}
@@ -136,17 +136,17 @@ func main() {
 
 	// Resize a server
 	resizeServerPayload := iaas.ResizeServerPayload{
-		MachineType: utils.Ptr("c1.2"),
+		MachineType: "c1.2",
 	}
 
-	err = iaasClient.ResizeServer(context.Background(), projectId, region, *server.Id).ResizeServerPayload(resizeServerPayload).Execute()
+	err = iaasClient.DefaultAPI.ResizeServer(context.Background(), projectId, region, *server.Id).ResizeServerPayload(resizeServerPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `ResizeServer`: %v\n", err)
 	} else {
 		fmt.Printf("[iaas API] Triggered resize of server with ID %q.\n", *server.Id)
 	}
 
-	server, err = wait.ResizeServerWaitHandler(context.Background(), iaasClient, projectId, region, *server.Id).WaitWithContext(context.Background())
+	server, err = wait.ResizeServerWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, *server.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for resize: %v\n", err)
 		os.Exit(1)
@@ -155,7 +155,7 @@ func main() {
 	fmt.Printf("[iaas API] Server %q has been successfully resized.\n", *server.Id)
 
 	// Delete a server
-	err = iaasClient.DeleteServer(context.Background(), projectId, region, *server.Id).Execute()
+	err = iaasClient.DefaultAPI.DeleteServer(context.Background(), projectId, region, *server.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `DeleteServer`: %v\n", err)
 	} else {
@@ -163,7 +163,7 @@ func main() {
 	}
 
 	// Wait for deletion of the server
-	_, err = wait.DeleteServerWaitHandler(context.Background(), iaasClient, projectId, region, *server.Id).WaitWithContext(context.Background())
+	_, err = wait.DeleteServerWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, *server.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when waiting for deletion: %v\n", err)
 		os.Exit(1)
@@ -172,13 +172,13 @@ func main() {
 	fmt.Printf("[iaas API] Server %q has been successfully deleted.\n", *server.Id)
 
 	// Delete a network
-	err = iaasClient.DeleteNetwork(context.Background(), projectId, region, *network.Id).Execute()
+	err = iaasClient.DefaultAPI.DeleteNetwork(context.Background(), projectId, region, network.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when calling `DeleteNetwork`: %v\n", err)
 		os.Exit(1)
 	}
 
-	_, err = wait.DeleteNetworkWaitHandler(context.Background(), iaasClient, projectId, region, *network.Id).WaitWithContext(context.Background())
+	_, err = wait.DeleteNetworkWaitHandler(context.Background(), iaasClient.DefaultAPI, projectId, region, network.Id).WaitWithContext(context.Background())
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[IaaS API] Error when waiting for deletion: %v\n", err)
 		os.Exit(1)

@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/iaas"
+	iaas "github.com/stackitcloud/stackit-sdk-go/services/iaas/v2api"
 )
 
 func main() {
@@ -22,19 +22,19 @@ func main() {
 		os.Exit(1)
 	}
 
-	publicIps, err := iaasClient.ListPublicIPs(context.Background(), projectId, region).Execute()
+	publicIps, err := iaasClient.DefaultAPI.ListPublicIPs(context.Background(), projectId, region).Execute()
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `ListPublicIPs`: %v\n", err)
 	} else {
-		fmt.Printf("[iaas API] Number of Public IPs: %v\n", len(*publicIps.Items))
+		fmt.Printf("[iaas API] Number of Public IPs: %v\n", len(publicIps.Items))
 	}
 
 	// Create a publicIp
 	createpublicIpPayload := iaas.CreatePublicIPPayload{
-		NetworkInterface: iaas.NewNullableString(utils.Ptr(networkInterfaceId)),
+		NetworkInterface: *iaas.NewNullableString(utils.Ptr(networkInterfaceId)),
 	}
-	publicIp, err := iaasClient.CreatePublicIP(context.Background(), projectId, region).CreatePublicIPPayload(createpublicIpPayload).Execute()
+	publicIp, err := iaasClient.DefaultAPI.CreatePublicIP(context.Background(), projectId, region).CreatePublicIPPayload(createpublicIpPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `CreatePublicIP`: %v\n", err)
 	} else {
@@ -43,22 +43,22 @@ func main() {
 
 	// Update a publicIp
 	updatepublicIpPayload := iaas.UpdatePublicIPPayload{
-		NetworkInterface: iaas.NewNullableString(nil),
+		NetworkInterface: *iaas.NewNullableString(nil),
 	}
-	publicIp, err = iaasClient.UpdatePublicIP(context.Background(), projectId, region, *publicIp.Id).UpdatePublicIPPayload(updatepublicIpPayload).Execute()
+	publicIp, err = iaasClient.DefaultAPI.UpdatePublicIP(context.Background(), projectId, region, *publicIp.Id).UpdatePublicIPPayload(updatepublicIpPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `UpdatePublicIP`: %v\n", err)
 	}
 
 	fmt.Printf("[iaas API] public IP %q has been successfully updated.\n", *publicIp.Id)
-	if publicIp.NetworkInterface == nil {
-		fmt.Printf("[iaas API] Public IP network interface has been successfully removed.\n")
-	} else {
+	if publicIp.NetworkInterface.IsSet() {
 		fmt.Fprintf(os.Stderr, "[iaas API] Public IP network interface has not been removed.\n")
+	} else {
+		fmt.Printf("[iaas API] Public IP network interface has been successfully removed.\n")
 	}
 
 	// Delete a public IP
-	err = iaasClient.DeletePublicIP(context.Background(), projectId, region, *publicIp.Id).Execute()
+	err = iaasClient.DefaultAPI.DeletePublicIP(context.Background(), projectId, region, *publicIp.Id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[iaas API] Error when calling `DeletepublicIp`: %v\n", err)
 	} else {
