@@ -1,3 +1,9 @@
+## v0.13.0
+- **Feature:** Introduction of multi API version support for the serviceaccount SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+- `v2api`: New package which should be used for communication with the STACKIT serviceaccount API in the future
+- **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v2api` package instead.
+- **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+
 ## v0.12.0
 - **Feature:** add support for Federated Identity Providers
   - new operations: `CreateFederatedIdentityProvider`, `DeleteServiceFederatedIdentityProvider`, `ListFederatedIdentityProviders`, `PartialUpdateServiceAccountFederatedIdentityProvider`
