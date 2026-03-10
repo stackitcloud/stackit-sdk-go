@@ -30,6 +30,8 @@ type DefaultAPIServiceMock struct {
 	DeleteClusterExecuteMock *func(r ApiDeleteClusterRequest) (map[string]interface{}, error)
 	// GetClusterExecuteMock can be populated to implement the behavior of the GetClusterExecute function of this mock
 	GetClusterExecuteMock *func(r ApiGetClusterRequest) (*Cluster, error)
+	// GetIDPKubeconfigExecuteMock can be populated to implement the behavior of the GetIDPKubeconfigExecute function of this mock
+	GetIDPKubeconfigExecuteMock *func(r ApiGetIDPKubeconfigRequest) (*IDPKubeconfig, error)
 	// GetLoginKubeconfigExecuteMock can be populated to implement the behavior of the GetLoginKubeconfigExecute function of this mock
 	GetLoginKubeconfigExecuteMock *func(r ApiGetLoginKubeconfigRequest) (*LoginKubeconfig, error)
 	// ListClustersExecuteMock can be populated to implement the behavior of the ListClustersExecute function of this mock
@@ -146,6 +148,26 @@ func (a DefaultAPIServiceMock) GetClusterExecute(r ApiGetClusterRequest) (*Clust
 	}
 
 	return (*a.GetClusterExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetIDPKubeconfig(ctx context.Context, projectId string, region string, clusterName string) ApiGetIDPKubeconfigRequest {
+	return ApiGetIDPKubeconfigRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		projectId:   projectId,
+		region:      region,
+		clusterName: clusterName,
+	}
+}
+
+// GetIDPKubeconfigExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetIDPKubeconfigExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetIDPKubeconfigExecute(r ApiGetIDPKubeconfigRequest) (*IDPKubeconfig, error) {
+	if a.GetIDPKubeconfigExecuteMock == nil {
+		var localVarReturnValue *IDPKubeconfig
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetIDPKubeconfigExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetLoginKubeconfig(ctx context.Context, projectId string, region string, clusterName string) ApiGetLoginKubeconfigRequest {
