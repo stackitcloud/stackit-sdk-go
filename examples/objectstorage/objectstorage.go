@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/stackitcloud/stackit-sdk-go/services/objectstorage"
+	objectstorage "github.com/stackitcloud/stackit-sdk-go/services/objectstorage/v2api"
 )
 
 func main() {
@@ -20,18 +20,18 @@ func main() {
 	}
 
 	// Get the object storage buckets for your project
-	getBucketsResp, err := objectStorageClient.ListBuckets(context.Background(), projectId, region).Execute()
+	getBucketsResp, err := objectStorageClient.DefaultAPI.ListBuckets(context.Background(), projectId, region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetBuckets`: %v\n", err)
 	} else {
-		fmt.Printf("Number of buckets: %v\n", len(*getBucketsResp.Buckets))
+		fmt.Printf("Number of buckets: %v\n", len(getBucketsResp.Buckets))
 	}
 
 	// Create an object storage bucket
-	createBucketResp, err := objectStorageClient.CreateBucket(context.Background(), projectId, region, "example-bucket").Execute()
+	createBucketResp, err := objectStorageClient.DefaultAPI.CreateBucket(context.Background(), projectId, region, "example-bucket").Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateBucket`: %v\n", err)
 	} else {
-		fmt.Printf("Created bucket with name \"%s\".\n", *createBucketResp.Bucket)
+		fmt.Printf("Created bucket with name \"%s\".\n", createBucketResp.Bucket)
 	}
 }
