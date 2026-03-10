@@ -6,8 +6,7 @@ import (
 	"os"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
-	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	"github.com/stackitcloud/stackit-sdk-go/services/secretsmanager"
+	secretsmanager "github.com/stackitcloud/stackit-sdk-go/services/secretsmanager/v1api"
 )
 
 func main() {
@@ -23,21 +22,21 @@ func main() {
 	}
 
 	// Get the secrets manager instances for your project
-	getInstancesResp, err := secretsmanagerClient.ListInstances(context.Background(), projectId).Execute()
+	getInstancesResp, err := secretsmanagerClient.DefaultAPI.ListInstances(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `GetInstances`: %v\n", err)
 	} else {
-		fmt.Printf("Number of instances: %v\n", len(*getInstancesResp.Instances))
+		fmt.Printf("Number of instances: %v\n", len(getInstancesResp.Instances))
 	}
 
 	// Create a secrets manager instance
 	createInstancePayload := secretsmanager.CreateInstancePayload{
-		Name: utils.Ptr("my-secrets-manager"),
+		Name: "my-secrets-manager",
 	}
-	createInstanceResp, err := secretsmanagerClient.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
+	createInstanceResp, err := secretsmanagerClient.DefaultAPI.CreateInstance(context.Background(), projectId).CreateInstancePayload(createInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreateInstance`: %v\n", err)
 	} else {
-		fmt.Printf("Created instance with instance id \"%s\".\n", *createInstanceResp.Id)
+		fmt.Printf("Created instance with instance id \"%s\".\n", createInstanceResp.Id)
 	}
 }
