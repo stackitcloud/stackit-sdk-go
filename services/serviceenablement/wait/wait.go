@@ -21,10 +21,12 @@ const (
 )
 
 // Interface needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInstanceInterface interface {
 	GetServiceStatusRegionalExecute(ctx context.Context, region, projectId, serviceId string) (*serviceenablement.ServiceStatus, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func EnableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
 	handler := wait.New(func() (waitFinished bool, response *serviceenablement.ServiceStatus, err error) {
 		s, err := a.GetServiceStatusRegionalExecute(ctx, region, projectId, serviceId)
@@ -52,6 +54,7 @@ func EnableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface,
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DisableServiceWaitHandler(ctx context.Context, a APIClientInstanceInterface, region, projectId, serviceId string) *wait.AsyncActionHandler[serviceenablement.ServiceStatus] {
 	handler := wait.New(func() (waitFinished bool, response *serviceenablement.ServiceStatus, err error) {
 		s, err := a.GetServiceStatusRegionalExecute(ctx, region, projectId, serviceId)
