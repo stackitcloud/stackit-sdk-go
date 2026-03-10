@@ -1,3 +1,15 @@
+## 1.9.0
+- Package `v2api`:
+  - **Feature:** New model structs: `Access`, `IDPKubeconfig`
+  - **Feature:** New field `Access` in `Cluster` and `CreateOrUpdateClusterPayload` model structs
+  - **Feature:** New API client method: `GetIDPKubeconfig`
+  - Added new possible values to description of `Code` field in the `ClusterError` model struct
+- Deprecated SDK layer in root of the module:
+  - **Feature:** New model structs: `Access`, `IDPKubeconfig`
+  - **Feature:** New field `Access` in `Cluster` and `CreateOrUpdateClusterPayload` model structs
+  - **Feature:** New API client method: `GetIDPKubeconfig`
+  - Added new possible values to description of `Code` field in the `ClusterError` model struct
+
 ## v1.8.0
 - **Feature:** Introduction of multi API version support for the ske SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1api`: New package which can be used for communication with the ske v1 API

@@ -21,6 +21,7 @@ var _ MappedNullable = &CreateOrUpdateClusterPayload{}
 
 // CreateOrUpdateClusterPayload struct for CreateOrUpdateClusterPayload
 type CreateOrUpdateClusterPayload struct {
+	Access      *Access        `json:"access,omitempty"`
 	Extensions  *Extension     `json:"extensions,omitempty"`
 	Hibernation *Hibernation   `json:"hibernation,omitempty"`
 	Kubernetes  Kubernetes     `json:"kubernetes"`
@@ -49,6 +50,38 @@ func NewCreateOrUpdateClusterPayload(kubernetes Kubernetes, nodepools []Nodepool
 func NewCreateOrUpdateClusterPayloadWithDefaults() *CreateOrUpdateClusterPayload {
 	this := CreateOrUpdateClusterPayload{}
 	return &this
+}
+
+// GetAccess returns the Access field value if set, zero value otherwise.
+func (o *CreateOrUpdateClusterPayload) GetAccess() Access {
+	if o == nil || IsNil(o.Access) {
+		var ret Access
+		return ret
+	}
+	return *o.Access
+}
+
+// GetAccessOk returns a tuple with the Access field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateClusterPayload) GetAccessOk() (*Access, bool) {
+	if o == nil || IsNil(o.Access) {
+		return nil, false
+	}
+	return o.Access, true
+}
+
+// HasAccess returns a boolean if a field has been set.
+func (o *CreateOrUpdateClusterPayload) HasAccess() bool {
+	if o != nil && !IsNil(o.Access) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccess gets a reference to the given Access and assigns it to the Access field.
+func (o *CreateOrUpdateClusterPayload) SetAccess(v Access) {
+	o.Access = &v
 }
 
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
@@ -269,6 +302,9 @@ func (o CreateOrUpdateClusterPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Access) {
+		toSerialize["access"] = o.Access
+	}
 	if !IsNil(o.Extensions) {
 		toSerialize["extensions"] = o.Extensions
 	}
