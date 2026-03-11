@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &UpdateSnapshotPayload{}
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type UpdateSnapshotPayloadGetDescriptionAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getUpdateSnapshotPayloadGetDescriptionAttributeTypeOk(arg UpdateSnapshotPayloadGetDescriptionAttributeType) (ret UpdateSnapshotPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setUpdateSnapshotPayloadGetDescriptionAttributeType(arg *UpdateSnapshotPayloadGetDescriptionAttributeType, val UpdateSnapshotPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type UpdateSnapshotPayloadGetDescriptionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type UpdateSnapshotPayloadGetDescriptionRetType = string
+
+/*
 	types and functions for labels
 */
 
@@ -75,6 +102,8 @@ type UpdateSnapshotPayloadGetNameRetType = string
 // UpdateSnapshotPayload Object that represents an update request body of a snapshot.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type UpdateSnapshotPayload struct {
+	// Description Object. Allows string up to 255 Characters.
+	Description UpdateSnapshotPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels UpdateSnapshotPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -98,6 +127,33 @@ func NewUpdateSnapshotPayload() *UpdateSnapshotPayload {
 func NewUpdateSnapshotPayloadWithDefaults() *UpdateSnapshotPayload {
 	this := UpdateSnapshotPayload{}
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateSnapshotPayload) GetDescription() (res UpdateSnapshotPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateSnapshotPayload) GetDescriptionOk() (ret UpdateSnapshotPayloadGetDescriptionRetType, ok bool) {
+	return getUpdateSnapshotPayloadGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateSnapshotPayload) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateSnapshotPayload) SetDescription(v UpdateSnapshotPayloadGetDescriptionRetType) {
+	setUpdateSnapshotPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -157,6 +213,9 @@ func (o *UpdateSnapshotPayload) SetName(v UpdateSnapshotPayloadGetNameRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o UpdateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getUpdateSnapshotPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
 	if val, ok := getUpdateSnapshotPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
 	}

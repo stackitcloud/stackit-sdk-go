@@ -47,6 +47,33 @@ func setCreateSnapshotPayloadGetCreatedAtAttributeType(arg *CreateSnapshotPayloa
 }
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateSnapshotPayloadGetDescriptionAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateSnapshotPayloadGetDescriptionAttributeTypeOk(arg CreateSnapshotPayloadGetDescriptionAttributeType) (ret CreateSnapshotPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateSnapshotPayloadGetDescriptionAttributeType(arg *CreateSnapshotPayloadGetDescriptionAttributeType, val CreateSnapshotPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateSnapshotPayloadGetDescriptionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateSnapshotPayloadGetDescriptionRetType = string
+
+/*
 	types and functions for id
 */
 
@@ -240,6 +267,8 @@ type CreateSnapshotPayloadGetVolumeIdRetType = string
 type CreateSnapshotPayload struct {
 	// Date-time when resource was created.
 	CreatedAt CreateSnapshotPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description CreateSnapshotPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id CreateSnapshotPayloadGetIdAttributeType `json:"id,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
@@ -305,6 +334,33 @@ func (o *CreateSnapshotPayload) HasCreatedAt() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateSnapshotPayload) SetCreatedAt(v CreateSnapshotPayloadGetCreatedAtRetType) {
 	setCreateSnapshotPayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) GetDescription() (res CreateSnapshotPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) GetDescriptionOk() (ret CreateSnapshotPayloadGetDescriptionRetType, ok bool) {
+	return getCreateSnapshotPayloadGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateSnapshotPayload) SetDescription(v CreateSnapshotPayloadGetDescriptionRetType) {
+	setCreateSnapshotPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -494,6 +550,9 @@ func (o CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getCreateSnapshotPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getCreateSnapshotPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	if val, ok := getCreateSnapshotPayloadGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
