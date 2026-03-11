@@ -21,10 +21,10 @@ var _ MappedNullable = &FederatedListFederatedIdentityProvidersResponse{}
 
 // FederatedListFederatedIdentityProvidersResponse struct for FederatedListFederatedIdentityProvidersResponse
 type FederatedListFederatedIdentityProvidersResponse struct {
-	ItemsPerPage float32                                   `json:"itemsPerPage"`
-	Resources    []CreateFederatedIdentityProviderResponse `json:"resources"`
-	StartIndex   float32                                   `json:"startIndex"`
-	TotalResults float32                                   `json:"totalResults"`
+	ItemsPerPage float32                     `json:"itemsPerPage"`
+	Resources    []FederatedIdentityProvider `json:"resources"`
+	StartIndex   float32                     `json:"startIndex"`
+	TotalResults float32                     `json:"totalResults"`
 }
 
 type _FederatedListFederatedIdentityProvidersResponse FederatedListFederatedIdentityProvidersResponse
@@ -33,7 +33,7 @@ type _FederatedListFederatedIdentityProvidersResponse FederatedListFederatedIden
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFederatedListFederatedIdentityProvidersResponse(itemsPerPage float32, resources []CreateFederatedIdentityProviderResponse, startIndex float32, totalResults float32) *FederatedListFederatedIdentityProvidersResponse {
+func NewFederatedListFederatedIdentityProvidersResponse(itemsPerPage float32, resources []FederatedIdentityProvider, startIndex float32, totalResults float32) *FederatedListFederatedIdentityProvidersResponse {
 	this := FederatedListFederatedIdentityProvidersResponse{}
 	this.ItemsPerPage = itemsPerPage
 	this.Resources = resources
@@ -81,9 +81,9 @@ func (o *FederatedListFederatedIdentityProvidersResponse) SetItemsPerPage(v floa
 }
 
 // GetResources returns the Resources field value
-func (o *FederatedListFederatedIdentityProvidersResponse) GetResources() []CreateFederatedIdentityProviderResponse {
+func (o *FederatedListFederatedIdentityProvidersResponse) GetResources() []FederatedIdentityProvider {
 	if o == nil {
-		var ret []CreateFederatedIdentityProviderResponse
+		var ret []FederatedIdentityProvider
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *FederatedListFederatedIdentityProvidersResponse) GetResources() []Creat
 
 // GetResourcesOk returns a tuple with the Resources field value
 // and a boolean to check if the value has been set.
-func (o *FederatedListFederatedIdentityProvidersResponse) GetResourcesOk() ([]CreateFederatedIdentityProviderResponse, bool) {
+func (o *FederatedListFederatedIdentityProvidersResponse) GetResourcesOk() ([]FederatedIdentityProvider, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *FederatedListFederatedIdentityProvidersResponse) GetResourcesOk() ([]Cr
 }
 
 // SetResources sets field value
-func (o *FederatedListFederatedIdentityProvidersResponse) SetResources(v []CreateFederatedIdentityProviderResponse) {
+func (o *FederatedListFederatedIdentityProvidersResponse) SetResources(v []FederatedIdentityProvider) {
 	o.Resources = v
 }
 

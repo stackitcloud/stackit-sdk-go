@@ -67,11 +67,11 @@ type DefaultApi interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId The ID of the project.
 		@param serviceAccountEmail The email of the service account.
-		@return CreateFederatedIdentityProviderResponse
+		@return FederatedIdentityProvider
 
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
-	CreateFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*CreateFederatedIdentityProviderResponse, error)
+	CreateFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*FederatedIdentityProvider, error)
 	/*
 		CreateServiceAccount Create a new Service Account
 		Create a new Service Account in a project. The service account only resides in the project, and initially has no roles or permissions on any resources. After creation, the service account can be assigned to this project, other projects in the parent organization or to the parent organization.
@@ -367,11 +367,11 @@ type DefaultApi interface {
 		@param projectId The ID of the project.
 		@param serviceAccountEmail The email of the service account.
 		@param federationId ID of the Federated Identity Provider.
-		@return CreateFederatedIdentityProviderResponse
+		@return FederatedIdentityProvider
 
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
-	PartialUpdateServiceAccountFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*CreateFederatedIdentityProviderResponse, error)
+	PartialUpdateServiceAccountFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*FederatedIdentityProvider, error)
 	/*
 		PartialUpdateServiceAccountKey Update Service Account key
 		Update a key. You can activate or deactivate a key, or set/delete validUntil. The key cannot be updated using the same service account (authenticated using the short lived token of the key).
@@ -414,7 +414,7 @@ type ApiCreateFederatedIdentityProviderRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	CreateFederatedIdentityProviderPayload(createFederatedIdentityProviderPayload CreateFederatedIdentityProviderPayload) ApiCreateFederatedIdentityProviderRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	Execute() (*CreateFederatedIdentityProviderResponse, error)
+	Execute() (*FederatedIdentityProvider, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -519,7 +519,7 @@ type ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	PartialUpdateServiceAccountFederatedIdentityProviderPayload(partialUpdateServiceAccountFederatedIdentityProviderPayload PartialUpdateServiceAccountFederatedIdentityProviderPayload) ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	Execute() (*CreateFederatedIdentityProviderResponse, error)
+	Execute() (*FederatedIdentityProvider, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -734,12 +734,12 @@ func (r CreateFederatedIdentityProviderRequest) CreateFederatedIdentityProviderP
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (r CreateFederatedIdentityProviderRequest) Execute() (*CreateFederatedIdentityProviderResponse, error) {
+func (r CreateFederatedIdentityProviderRequest) Execute() (*FederatedIdentityProvider, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateFederatedIdentityProviderResponse
+		localVarReturnValue *FederatedIdentityProvider
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -900,7 +900,7 @@ func (a *APIClient) CreateFederatedIdentityProvider(ctx context.Context, project
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (a *APIClient) CreateFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*CreateFederatedIdentityProviderResponse, error) {
+func (a *APIClient) CreateFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string) (*FederatedIdentityProvider, error) {
 	r := CreateFederatedIdentityProviderRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
@@ -3082,12 +3082,12 @@ func (r PartialUpdateServiceAccountFederatedIdentityProviderRequest) PartialUpda
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (r PartialUpdateServiceAccountFederatedIdentityProviderRequest) Execute() (*CreateFederatedIdentityProviderResponse, error) {
+func (r PartialUpdateServiceAccountFederatedIdentityProviderRequest) Execute() (*FederatedIdentityProvider, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateFederatedIdentityProviderResponse
+		localVarReturnValue *FederatedIdentityProvider
 	)
 	a := r.apiService
 	client, ok := a.client.(*APIClient)
@@ -3251,7 +3251,7 @@ func (a *APIClient) PartialUpdateServiceAccountFederatedIdentityProvider(ctx con
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (a *APIClient) PartialUpdateServiceAccountFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*CreateFederatedIdentityProviderResponse, error) {
+func (a *APIClient) PartialUpdateServiceAccountFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*FederatedIdentityProvider, error) {
 	r := PartialUpdateServiceAccountFederatedIdentityProviderRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,

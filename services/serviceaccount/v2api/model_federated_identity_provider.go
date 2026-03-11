@@ -17,15 +17,17 @@ import (
 	"time"
 )
 
-// checks if the CreateFederatedIdentityProviderResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateFederatedIdentityProviderResponse{}
+// checks if the FederatedIdentityProvider type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FederatedIdentityProvider{}
 
-// CreateFederatedIdentityProviderResponse struct for CreateFederatedIdentityProviderResponse
-type CreateFederatedIdentityProviderResponse struct {
+// FederatedIdentityProvider struct for FederatedIdentityProvider
+type FederatedIdentityProvider struct {
 	// list of assertions of the federated identity provider
-	Assertions []CreateFederatedIdentityProviderResponseAssertionsInner `json:"assertions"`
+	Assertions []FederatedIdentityProviderAssertionsInner `json:"assertions"`
 	// Creation time of the federated identity provider.
 	CreatedAt time.Time `json:"createdAt"`
+	// Unique ID of the federated identity provider.
+	Id *string `json:"id,omitempty"`
 	// Issuer of the federated identity provider.
 	Issuer string `json:"issuer"`
 	// Unique name of the federated identity provider.
@@ -34,14 +36,14 @@ type CreateFederatedIdentityProviderResponse struct {
 	UpdatedAt time.Time `json:"updatedAt"`
 }
 
-type _CreateFederatedIdentityProviderResponse CreateFederatedIdentityProviderResponse
+type _FederatedIdentityProvider FederatedIdentityProvider
 
-// NewCreateFederatedIdentityProviderResponse instantiates a new CreateFederatedIdentityProviderResponse object
+// NewFederatedIdentityProvider instantiates a new FederatedIdentityProvider object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateFederatedIdentityProviderResponse(assertions []CreateFederatedIdentityProviderResponseAssertionsInner, createdAt time.Time, issuer string, name string, updatedAt time.Time) *CreateFederatedIdentityProviderResponse {
-	this := CreateFederatedIdentityProviderResponse{}
+func NewFederatedIdentityProvider(assertions []FederatedIdentityProviderAssertionsInner, createdAt time.Time, issuer string, name string, updatedAt time.Time) *FederatedIdentityProvider {
+	this := FederatedIdentityProvider{}
 	this.Assertions = assertions
 	this.CreatedAt = createdAt
 	this.Issuer = issuer
@@ -50,18 +52,18 @@ func NewCreateFederatedIdentityProviderResponse(assertions []CreateFederatedIden
 	return &this
 }
 
-// NewCreateFederatedIdentityProviderResponseWithDefaults instantiates a new CreateFederatedIdentityProviderResponse object
+// NewFederatedIdentityProviderWithDefaults instantiates a new FederatedIdentityProvider object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateFederatedIdentityProviderResponseWithDefaults() *CreateFederatedIdentityProviderResponse {
-	this := CreateFederatedIdentityProviderResponse{}
+func NewFederatedIdentityProviderWithDefaults() *FederatedIdentityProvider {
+	this := FederatedIdentityProvider{}
 	return &this
 }
 
 // GetAssertions returns the Assertions field value
-func (o *CreateFederatedIdentityProviderResponse) GetAssertions() []CreateFederatedIdentityProviderResponseAssertionsInner {
+func (o *FederatedIdentityProvider) GetAssertions() []FederatedIdentityProviderAssertionsInner {
 	if o == nil {
-		var ret []CreateFederatedIdentityProviderResponseAssertionsInner
+		var ret []FederatedIdentityProviderAssertionsInner
 		return ret
 	}
 
@@ -70,7 +72,7 @@ func (o *CreateFederatedIdentityProviderResponse) GetAssertions() []CreateFedera
 
 // GetAssertionsOk returns a tuple with the Assertions field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponse) GetAssertionsOk() ([]CreateFederatedIdentityProviderResponseAssertionsInner, bool) {
+func (o *FederatedIdentityProvider) GetAssertionsOk() ([]FederatedIdentityProviderAssertionsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,12 +80,12 @@ func (o *CreateFederatedIdentityProviderResponse) GetAssertionsOk() ([]CreateFed
 }
 
 // SetAssertions sets field value
-func (o *CreateFederatedIdentityProviderResponse) SetAssertions(v []CreateFederatedIdentityProviderResponseAssertionsInner) {
+func (o *FederatedIdentityProvider) SetAssertions(v []FederatedIdentityProviderAssertionsInner) {
 	o.Assertions = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *CreateFederatedIdentityProviderResponse) GetCreatedAt() time.Time {
+func (o *FederatedIdentityProvider) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -94,7 +96,7 @@ func (o *CreateFederatedIdentityProviderResponse) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponse) GetCreatedAtOk() (*time.Time, bool) {
+func (o *FederatedIdentityProvider) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -102,12 +104,44 @@ func (o *CreateFederatedIdentityProviderResponse) GetCreatedAtOk() (*time.Time, 
 }
 
 // SetCreatedAt sets field value
-func (o *CreateFederatedIdentityProviderResponse) SetCreatedAt(v time.Time) {
+func (o *FederatedIdentityProvider) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *FederatedIdentityProvider) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FederatedIdentityProvider) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *FederatedIdentityProvider) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *FederatedIdentityProvider) SetId(v string) {
+	o.Id = &v
+}
+
 // GetIssuer returns the Issuer field value
-func (o *CreateFederatedIdentityProviderResponse) GetIssuer() string {
+func (o *FederatedIdentityProvider) GetIssuer() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -118,7 +152,7 @@ func (o *CreateFederatedIdentityProviderResponse) GetIssuer() string {
 
 // GetIssuerOk returns a tuple with the Issuer field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponse) GetIssuerOk() (*string, bool) {
+func (o *FederatedIdentityProvider) GetIssuerOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,12 +160,12 @@ func (o *CreateFederatedIdentityProviderResponse) GetIssuerOk() (*string, bool) 
 }
 
 // SetIssuer sets field value
-func (o *CreateFederatedIdentityProviderResponse) SetIssuer(v string) {
+func (o *FederatedIdentityProvider) SetIssuer(v string) {
 	o.Issuer = v
 }
 
 // GetName returns the Name field value
-func (o *CreateFederatedIdentityProviderResponse) GetName() string {
+func (o *FederatedIdentityProvider) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -142,7 +176,7 @@ func (o *CreateFederatedIdentityProviderResponse) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponse) GetNameOk() (*string, bool) {
+func (o *FederatedIdentityProvider) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -150,12 +184,12 @@ func (o *CreateFederatedIdentityProviderResponse) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *CreateFederatedIdentityProviderResponse) SetName(v string) {
+func (o *FederatedIdentityProvider) SetName(v string) {
 	o.Name = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
-func (o *CreateFederatedIdentityProviderResponse) GetUpdatedAt() time.Time {
+func (o *FederatedIdentityProvider) GetUpdatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -166,7 +200,7 @@ func (o *CreateFederatedIdentityProviderResponse) GetUpdatedAt() time.Time {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponse) GetUpdatedAtOk() (*time.Time, bool) {
+func (o *FederatedIdentityProvider) GetUpdatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -174,11 +208,11 @@ func (o *CreateFederatedIdentityProviderResponse) GetUpdatedAtOk() (*time.Time, 
 }
 
 // SetUpdatedAt sets field value
-func (o *CreateFederatedIdentityProviderResponse) SetUpdatedAt(v time.Time) {
+func (o *FederatedIdentityProvider) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-func (o CreateFederatedIdentityProviderResponse) MarshalJSON() ([]byte, error) {
+func (o FederatedIdentityProvider) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -186,17 +220,20 @@ func (o CreateFederatedIdentityProviderResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateFederatedIdentityProviderResponse) ToMap() (map[string]interface{}, error) {
+func (o FederatedIdentityProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["assertions"] = o.Assertions
 	toSerialize["createdAt"] = o.CreatedAt
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["issuer"] = o.Issuer
 	toSerialize["name"] = o.Name
 	toSerialize["updatedAt"] = o.UpdatedAt
 	return toSerialize, nil
 }
 
-func (o *CreateFederatedIdentityProviderResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *FederatedIdentityProvider) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -222,53 +259,53 @@ func (o *CreateFederatedIdentityProviderResponse) UnmarshalJSON(data []byte) (er
 		}
 	}
 
-	varCreateFederatedIdentityProviderResponse := _CreateFederatedIdentityProviderResponse{}
+	varFederatedIdentityProvider := _FederatedIdentityProvider{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateFederatedIdentityProviderResponse)
+	err = decoder.Decode(&varFederatedIdentityProvider)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateFederatedIdentityProviderResponse(varCreateFederatedIdentityProviderResponse)
+	*o = FederatedIdentityProvider(varFederatedIdentityProvider)
 
 	return err
 }
 
-type NullableCreateFederatedIdentityProviderResponse struct {
-	value *CreateFederatedIdentityProviderResponse
+type NullableFederatedIdentityProvider struct {
+	value *FederatedIdentityProvider
 	isSet bool
 }
 
-func (v NullableCreateFederatedIdentityProviderResponse) Get() *CreateFederatedIdentityProviderResponse {
+func (v NullableFederatedIdentityProvider) Get() *FederatedIdentityProvider {
 	return v.value
 }
 
-func (v *NullableCreateFederatedIdentityProviderResponse) Set(val *CreateFederatedIdentityProviderResponse) {
+func (v *NullableFederatedIdentityProvider) Set(val *FederatedIdentityProvider) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateFederatedIdentityProviderResponse) IsSet() bool {
+func (v NullableFederatedIdentityProvider) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateFederatedIdentityProviderResponse) Unset() {
+func (v *NullableFederatedIdentityProvider) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateFederatedIdentityProviderResponse(val *CreateFederatedIdentityProviderResponse) *NullableCreateFederatedIdentityProviderResponse {
-	return &NullableCreateFederatedIdentityProviderResponse{value: val, isSet: true}
+func NewNullableFederatedIdentityProvider(val *FederatedIdentityProvider) *NullableFederatedIdentityProvider {
+	return &NullableFederatedIdentityProvider{value: val, isSet: true}
 }
 
-func (v NullableCreateFederatedIdentityProviderResponse) MarshalJSON() ([]byte, error) {
+func (v NullableFederatedIdentityProvider) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateFederatedIdentityProviderResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableFederatedIdentityProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
