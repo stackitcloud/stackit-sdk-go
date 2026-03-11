@@ -74,6 +74,33 @@ func setUpdateBackupPayloadGetCreatedAtAttributeType(arg *UpdateBackupPayloadGet
 }
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type UpdateBackupPayloadGetDescriptionAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getUpdateBackupPayloadGetDescriptionAttributeTypeOk(arg UpdateBackupPayloadGetDescriptionAttributeType) (ret UpdateBackupPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setUpdateBackupPayloadGetDescriptionAttributeType(arg *UpdateBackupPayloadGetDescriptionAttributeType, val UpdateBackupPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type UpdateBackupPayloadGetDescriptionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type UpdateBackupPayloadGetDescriptionRetType = string
+
+/*
 	types and functions for encrypted
 */
 
@@ -323,6 +350,8 @@ type UpdateBackupPayload struct {
 	AvailabilityZone UpdateBackupPayloadGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt UpdateBackupPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description UpdateBackupPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Indicates if a volume is encrypted.
 	Encrypted UpdateBackupPayloadgetEncryptedAttributeType `json:"encrypted,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -414,6 +443,33 @@ func (o *UpdateBackupPayload) HasCreatedAt() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *UpdateBackupPayload) SetCreatedAt(v UpdateBackupPayloadGetCreatedAtRetType) {
 	setUpdateBackupPayloadGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateBackupPayload) GetDescription() (res UpdateBackupPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateBackupPayload) GetDescriptionOk() (ret UpdateBackupPayloadGetDescriptionRetType, ok bool) {
+	return getUpdateBackupPayloadGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateBackupPayload) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateBackupPayload) SetDescription(v UpdateBackupPayloadGetDescriptionRetType) {
+	setUpdateBackupPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetEncrypted returns the Encrypted field value if set, zero value otherwise.
@@ -667,6 +723,9 @@ func (o UpdateBackupPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getUpdateBackupPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getUpdateBackupPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	if val, ok := getUpdateBackupPayloadgetEncryptedAttributeTypeOk(o.Encrypted); ok {
 		toSerialize["Encrypted"] = val
