@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &CreateBackupPayload{}
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateBackupPayloadGetDescriptionAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateBackupPayloadGetDescriptionAttributeTypeOk(arg CreateBackupPayloadGetDescriptionAttributeType) (ret CreateBackupPayloadGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateBackupPayloadGetDescriptionAttributeType(arg *CreateBackupPayloadGetDescriptionAttributeType, val CreateBackupPayloadGetDescriptionRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateBackupPayloadGetDescriptionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateBackupPayloadGetDescriptionRetType = string
+
+/*
 	types and functions for labels
 */
 
@@ -102,6 +129,8 @@ func setCreateBackupPayloadGetSourceAttributeType(arg *CreateBackupPayloadGetSou
 // CreateBackupPayload Object that represents a backup create request body.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateBackupPayload struct {
+	// Description Object. Allows string up to 255 Characters.
+	Description CreateBackupPayloadGetDescriptionAttributeType `json:"description,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels CreateBackupPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -131,6 +160,33 @@ func NewCreateBackupPayload(source CreateBackupPayloadGetSourceArgType) *CreateB
 func NewCreateBackupPayloadWithDefaults() *CreateBackupPayload {
 	this := CreateBackupPayload{}
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateBackupPayload) GetDescription() (res CreateBackupPayloadGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateBackupPayload) GetDescriptionOk() (ret CreateBackupPayloadGetDescriptionRetType, ok bool) {
+	return getCreateBackupPayloadGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateBackupPayload) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateBackupPayload) SetDescription(v CreateBackupPayloadGetDescriptionRetType) {
+	setCreateBackupPayloadGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -210,6 +266,9 @@ func (o *CreateBackupPayload) SetSource(v CreateBackupPayloadGetSourceRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateBackupPayloadGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
+	}
 	if val, ok := getCreateBackupPayloadGetLabelsAttributeTypeOk(o.Labels); ok {
 		toSerialize["Labels"] = val
 	}
