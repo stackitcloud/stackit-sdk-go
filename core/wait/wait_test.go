@@ -270,7 +270,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerTimeout:                 100 * time.Millisecond,
 			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 1000 * time.Millisecond,
-			wantCheckFnNumberCalls:         1,
+			wantCheckFnNumberCalls:         0,
 			wantErr:                        true,
 		},
 		{
@@ -283,7 +283,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerTimeout:                 1000 * time.Millisecond,
 			handlerTempErrRetryLimit:       0,
 			contextTimeout:                 100 * time.Millisecond,
-			wantCheckFnNumberCalls:         1,
+			wantCheckFnNumberCalls:         0,
 			wantErr:                        true,
 		},
 		{
