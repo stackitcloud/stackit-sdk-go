@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// GatewayStatus Describes the status of the surrounding infrastructure.
+// GatewayStatus The current lifecycle state of the gateway infrastructure. - `PENDING`: Provisioning or update is in progress. - `READY`: The gateway is fully operational. - `ERROR`: A failure occurred. - `DELETING`: The resource is being removed.
 type GatewayStatus string
 
 // List of GatewayStatus

@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -21,7 +21,7 @@ var _ MappedNullable = &QuotaList{}
 
 // QuotaList struct for QuotaList
 type QuotaList struct {
-	// The number of gateways.
+	// Current limit and usage for VPN gateways.
 	Gateways Quota `json:"gateways"`
 }
 

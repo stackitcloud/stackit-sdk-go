@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -17,12 +17,13 @@ import (
 // checks if the VPNTunnels type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VPNTunnels{}
 
-// VPNTunnels List all available tunnels with public IP and status
+// VPNTunnels Status of the underlying tunnel instances.
 type VPNTunnels struct {
 	BgpStatus     NullableBGPStatus `json:"bgpStatus,omitempty"`
 	InstanceState *GatewayStatus    `json:"instanceState,omitempty"`
 	Name          *string           `json:"name,omitempty"`
-	PublicIP      *string           `json:"publicIP,omitempty"`
+	// The public IPv4 address of this endpoint.
+	PublicIP *string `json:"publicIP,omitempty"`
 }
 
 // NewVPNTunnels instantiates a new VPNTunnels object

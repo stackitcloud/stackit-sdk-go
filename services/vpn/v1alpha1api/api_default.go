@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -24,26 +24,26 @@ import (
 type DefaultAPI interface {
 
 	/*
-		CreateGatewayConnection Create a connection for an existing VPN gateway.
+		CreateGatewayConnection Create a new connection on an existing VPN gateway.
 
-		Create a connection for an existing VPN gateway.
+		Create a new connection on an existing VPN gateway.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
+		@param gatewayId
 		@return ApiCreateGatewayConnectionRequest
 	*/
-	CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string) ApiCreateGatewayConnectionRequest
+	CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string) ApiCreateGatewayConnectionRequest
 
 	// CreateGatewayConnectionExecute executes the request
-	//  @return Connection
-	CreateGatewayConnectionExecute(r ApiCreateGatewayConnectionRequest) (*Connection, error)
+	//  @return ConnectionResponse
+	CreateGatewayConnectionExecute(r ApiCreateGatewayConnectionRequest) (*ConnectionResponse, error)
 
 	/*
 		CreateVPNGateway Create a VPN gateway in a project.
 
-		Create a VPN gateway in a project.
+		Provision a new VPN gateway.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -64,27 +64,29 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
-		@param connectionName
+		@param gatewayId
+		@param connectionId
 		@return ApiDeleteGatewayConnectionRequest
 	*/
-	DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiDeleteGatewayConnectionRequest
+	DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest
 
 	// DeleteGatewayConnectionExecute executes the request
 	DeleteGatewayConnectionExecute(r ApiDeleteGatewayConnectionRequest) error
 
 	/*
-		DeleteVPNGateway Delete a existing VPN gateway in a project.
+			DeleteVPNGateway Delete a existing VPN gateway in a project.
 
-		Delete a existing VPN gateway and all it's connections in a project.
+			Permanently remove a VPN gateway and all its associated connections.
+		This operation is irreversible.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId
-		@param region
-		@param gatewayName
-		@return ApiDeleteVPNGatewayRequest
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId
+			@param region
+			@param gatewayId
+			@return ApiDeleteVPNGatewayRequest
 	*/
-	DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiDeleteVPNGatewayRequest
+	DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteVPNGatewayRequest
 
 	// DeleteVPNGatewayExecute executes the request
 	DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest) error
@@ -97,29 +99,29 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
-		@param connectionName
+		@param gatewayId
+		@param connectionId
 		@return ApiGetGatewayConnectionRequest
 	*/
-	GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiGetGatewayConnectionRequest
+	GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest
 
 	// GetGatewayConnectionExecute executes the request
-	//  @return Connection
-	GetGatewayConnectionExecute(r ApiGetGatewayConnectionRequest) (*Connection, error)
+	//  @return ConnectionResponse
+	GetGatewayConnectionExecute(r ApiGetGatewayConnectionRequest) (*ConnectionResponse, error)
 
 	/*
-		GetGatewayConnectionStatus Gets the status for a specific connection in an existing VPN gateway.
+		GetGatewayConnectionStatus Gets the status for a specific connection.
 
-		Gets the status for a specific connection in an existing VPN gateway.
+		Get the status for a specific connection.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
-		@param connectionName
+		@param gatewayId
+		@param connectionId
 		@return ApiGetGatewayConnectionStatusRequest
 	*/
-	GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiGetGatewayConnectionStatusRequest
+	GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest
 
 	// GetGatewayConnectionStatusExecute executes the request
 	//  @return ConnectionStatusResponse
@@ -133,10 +135,10 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
+		@param gatewayId
 		@return ApiGetVPNGatewayRequest
 	*/
-	GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiGetVPNGatewayRequest
+	GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayRequest
 
 	// GetVPNGatewayExecute executes the request
 	//  @return GatewayResponse
@@ -150,10 +152,10 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
+		@param gatewayId
 		@return ApiGetVPNGatewayStatusRequest
 	*/
-	GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayName string) ApiGetVPNGatewayStatusRequest
+	GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayStatusRequest
 
 	// GetVPNGatewayStatusExecute executes the request
 	//  @return GatewayStatusResponse
@@ -167,23 +169,25 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
+		@param gatewayId
 		@return ApiListGatewayConnectionsRequest
 	*/
-	ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayName string) ApiListGatewayConnectionsRequest
+	ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayId string) ApiListGatewayConnectionsRequest
 
 	// ListGatewayConnectionsExecute executes the request
 	//  @return ConnectionList
 	ListGatewayConnectionsExecute(r ApiListGatewayConnectionsRequest) (*ConnectionList, error)
 
 	/*
-		ListPlans List available service plans for a project.
+			ListPlans List available service plans for a project.
 
-		List available service plans for a project.
+			Retrieve a list of available service plans available for provisioning a VPN in a specific `region`.
+		Use this to identify the `planId` required for gateway creation.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param region
-		@return ApiListPlansRequest
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param region
+			@return ApiListPlansRequest
 	*/
 	ListPlans(ctx context.Context, region Region) ApiListPlansRequest
 
@@ -194,7 +198,8 @@ type DefaultAPI interface {
 	/*
 		ListQuotas List project quotas.
 
-		List project quotas.
+		Retrieve the resource quotas and current usage for STACKIT VPN within a specific project and region.
+
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
@@ -208,14 +213,16 @@ type DefaultAPI interface {
 	ListQuotasExecute(r ApiListQuotasRequest) (*QuotaListResponse, error)
 
 	/*
-		ListVPNGateways List VPN gateways in a project with label filtering
+			ListVPNGateways List VPN gateways in a project with label filtering
 
-		Retrieve VPN gateways in a project filtered by a custom label selector format.
+			Retrieve a list of all VPN gateways in a project.
+		Filter the results using the `label_selector` query parameter.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId
-		@param region
-		@return ApiListVPNGatewaysRequest
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId
+			@param region
+			@return ApiListVPNGatewaysRequest
 	*/
 	ListVPNGateways(ctx context.Context, projectId string, region Region) ApiListVPNGatewaysRequest
 
@@ -224,35 +231,37 @@ type DefaultAPI interface {
 	ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) (*GatewayList, error)
 
 	/*
-		UpdateGatewayConnection Update a connection for an existing VPN gateway.
+		UpdateGatewayConnection Update a connection on an existing VPN gateway.
 
-		Update a connection for an existing VPN gateway.
+		Updating the configuration of an existing connection.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@param region
-		@param gatewayName
-		@param connectionName
+		@param gatewayId
+		@param connectionId
 		@return ApiUpdateGatewayConnectionRequest
 	*/
-	UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiUpdateGatewayConnectionRequest
+	UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest
 
 	// UpdateGatewayConnectionExecute executes the request
-	//  @return Connection
-	UpdateGatewayConnectionExecute(r ApiUpdateGatewayConnectionRequest) (*Connection, error)
+	//  @return ConnectionResponse
+	UpdateGatewayConnectionExecute(r ApiUpdateGatewayConnectionRequest) (*ConnectionResponse, error)
 
 	/*
-		UpdateVPNGateway Update a VPN gateway in a project.
+			UpdateVPNGateway Update a VPN gateway in a project.
 
-		Update a VPN gateway in a project.
+			Modify the configuration of an existing VPN gateway.
+		Certain changes may trigger infrastructure updates or temporary connection re-negotiations.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId
-		@param region
-		@param gatewayName
-		@return ApiUpdateVPNGatewayRequest
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId
+			@param region
+			@param gatewayId
+			@return ApiUpdateVPNGatewayRequest
 	*/
-	UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiUpdateVPNGatewayRequest
+	UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateVPNGatewayRequest
 
 	// UpdateVPNGatewayExecute executes the request
 	//  @return GatewayResponse
@@ -267,7 +276,7 @@ type ApiCreateGatewayConnectionRequest struct {
 	ApiService                     DefaultAPI
 	projectId                      string
 	region                         Region
-	gatewayName                    string
+	gatewayId                      string
 	createGatewayConnectionPayload *CreateGatewayConnectionPayload
 }
 
@@ -276,40 +285,40 @@ func (r ApiCreateGatewayConnectionRequest) CreateGatewayConnectionPayload(create
 	return r
 }
 
-func (r ApiCreateGatewayConnectionRequest) Execute() (*Connection, error) {
+func (r ApiCreateGatewayConnectionRequest) Execute() (*ConnectionResponse, error) {
 	return r.ApiService.CreateGatewayConnectionExecute(r)
 }
 
 /*
-CreateGatewayConnection Create a connection for an existing VPN gateway.
+CreateGatewayConnection Create a new connection on an existing VPN gateway.
 
-Create a connection for an existing VPN gateway.
+Create a new connection on an existing VPN gateway.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
+	@param gatewayId
 	@return ApiCreateGatewayConnectionRequest
 */
-func (a *DefaultAPIService) CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string) ApiCreateGatewayConnectionRequest {
+func (a *DefaultAPIService) CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string) ApiCreateGatewayConnectionRequest {
 	return ApiCreateGatewayConnectionRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return Connection
-func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayConnectionRequest) (*Connection, error) {
+//	@return ConnectionResponse
+func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayConnectionRequest) (*ConnectionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Connection
+		localVarReturnValue *ConnectionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateGatewayConnection")
@@ -317,10 +326,10 @@ func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayCon
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}/connections"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/connections"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -472,7 +481,7 @@ func (r ApiCreateVPNGatewayRequest) Execute() (*GatewayResponse, error) {
 /*
 CreateVPNGateway Create a VPN gateway in a project.
 
-Create a VPN gateway in a project.
+Provision a new VPN gateway.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -642,12 +651,12 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 }
 
 type ApiDeleteGatewayConnectionRequest struct {
-	ctx            context.Context
-	ApiService     DefaultAPI
-	projectId      string
-	region         Region
-	gatewayName    string
-	connectionName string
+	ctx          context.Context
+	ApiService   DefaultAPI
+	projectId    string
+	region       Region
+	gatewayId    string
+	connectionId string
 }
 
 func (r ApiDeleteGatewayConnectionRequest) Execute() error {
@@ -662,18 +671,18 @@ Delete a certain connection from an existing VPN gateway.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
-	@param connectionName
+	@param gatewayId
+	@param connectionId
 	@return ApiDeleteGatewayConnectionRequest
 */
-func (a *DefaultAPIService) DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiDeleteGatewayConnectionRequest {
+func (a *DefaultAPIService) DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest {
 	return ApiDeleteGatewayConnectionRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
@@ -690,11 +699,11 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}/connections/{connectionName}"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/connections/{connectionId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"connectionName"+"}", url.PathEscape(parameterValueToString(r.connectionName, "connectionName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -815,11 +824,11 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 }
 
 type ApiDeleteVPNGatewayRequest struct {
-	ctx         context.Context
-	ApiService  DefaultAPI
-	projectId   string
-	region      Region
-	gatewayName string
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     Region
+	gatewayId  string
 }
 
 func (r ApiDeleteVPNGatewayRequest) Execute() error {
@@ -829,21 +838,22 @@ func (r ApiDeleteVPNGatewayRequest) Execute() error {
 /*
 DeleteVPNGateway Delete a existing VPN gateway in a project.
 
-Delete a existing VPN gateway and all it's connections in a project.
+Permanently remove a VPN gateway and all its associated connections.
+This operation is irreversible.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
+	@param gatewayId
 	@return ApiDeleteVPNGatewayRequest
 */
-func (a *DefaultAPIService) DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiDeleteVPNGatewayRequest {
+func (a *DefaultAPIService) DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteVPNGatewayRequest {
 	return ApiDeleteVPNGatewayRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -860,10 +870,10 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -972,15 +982,15 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 }
 
 type ApiGetGatewayConnectionRequest struct {
-	ctx            context.Context
-	ApiService     DefaultAPI
-	projectId      string
-	region         Region
-	gatewayName    string
-	connectionName string
+	ctx          context.Context
+	ApiService   DefaultAPI
+	projectId    string
+	region       Region
+	gatewayId    string
+	connectionId string
 }
 
-func (r ApiGetGatewayConnectionRequest) Execute() (*Connection, error) {
+func (r ApiGetGatewayConnectionRequest) Execute() (*ConnectionResponse, error) {
 	return r.ApiService.GetGatewayConnectionExecute(r)
 }
 
@@ -992,30 +1002,30 @@ Get a certain connection for an existing VPN gateway.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
-	@param connectionName
+	@param gatewayId
+	@param connectionId
 	@return ApiGetGatewayConnectionRequest
 */
-func (a *DefaultAPIService) GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiGetGatewayConnectionRequest {
+func (a *DefaultAPIService) GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest {
 	return ApiGetGatewayConnectionRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return Connection
-func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectionRequest) (*Connection, error) {
+//	@return ConnectionResponse
+func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectionRequest) (*ConnectionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Connection
+		localVarReturnValue *ConnectionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetGatewayConnection")
@@ -1023,11 +1033,11 @@ func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectio
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}/connections/{connectionName}"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/connections/{connectionId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"connectionName"+"}", url.PathEscape(parameterValueToString(r.connectionName, "connectionName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1158,12 +1168,12 @@ func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectio
 }
 
 type ApiGetGatewayConnectionStatusRequest struct {
-	ctx            context.Context
-	ApiService     DefaultAPI
-	projectId      string
-	region         Region
-	gatewayName    string
-	connectionName string
+	ctx          context.Context
+	ApiService   DefaultAPI
+	projectId    string
+	region       Region
+	gatewayId    string
+	connectionId string
 }
 
 func (r ApiGetGatewayConnectionStatusRequest) Execute() (*ConnectionStatusResponse, error) {
@@ -1171,25 +1181,25 @@ func (r ApiGetGatewayConnectionStatusRequest) Execute() (*ConnectionStatusRespon
 }
 
 /*
-GetGatewayConnectionStatus Gets the status for a specific connection in an existing VPN gateway.
+GetGatewayConnectionStatus Gets the status for a specific connection.
 
-Gets the status for a specific connection in an existing VPN gateway.
+Get the status for a specific connection.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
-	@param connectionName
+	@param gatewayId
+	@param connectionId
 	@return ApiGetGatewayConnectionStatusRequest
 */
-func (a *DefaultAPIService) GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiGetGatewayConnectionStatusRequest {
+func (a *DefaultAPIService) GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest {
 	return ApiGetGatewayConnectionStatusRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
@@ -1209,11 +1219,11 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}/connections/{connectionName}/status"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/connections/{connectionId}/status"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"connectionName"+"}", url.PathEscape(parameterValueToString(r.connectionName, "connectionName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1344,11 +1354,11 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 }
 
 type ApiGetVPNGatewayRequest struct {
-	ctx         context.Context
-	ApiService  DefaultAPI
-	projectId   string
-	region      Region
-	gatewayName string
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     Region
+	gatewayId  string
 }
 
 func (r ApiGetVPNGatewayRequest) Execute() (*GatewayResponse, error) {
@@ -1363,16 +1373,16 @@ Get details of a VPN Gateway in a project.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
+	@param gatewayId
 	@return ApiGetVPNGatewayRequest
 */
-func (a *DefaultAPIService) GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiGetVPNGatewayRequest {
+func (a *DefaultAPIService) GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayRequest {
 	return ApiGetVPNGatewayRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -1392,10 +1402,10 @@ func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*Ga
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1526,11 +1536,11 @@ func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*Ga
 }
 
 type ApiGetVPNGatewayStatusRequest struct {
-	ctx         context.Context
-	ApiService  DefaultAPI
-	projectId   string
-	region      Region
-	gatewayName string
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     Region
+	gatewayId  string
 }
 
 func (r ApiGetVPNGatewayStatusRequest) Execute() (*GatewayStatusResponse, error) {
@@ -1545,16 +1555,16 @@ Get the status of a VPN gateway in a project.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
+	@param gatewayId
 	@return ApiGetVPNGatewayStatusRequest
 */
-func (a *DefaultAPIService) GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayName string) ApiGetVPNGatewayStatusRequest {
+func (a *DefaultAPIService) GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayStatusRequest {
 	return ApiGetVPNGatewayStatusRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -1574,10 +1584,10 @@ func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusR
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}/status"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/status"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1712,10 +1722,11 @@ type ApiListGatewayConnectionsRequest struct {
 	ApiService    DefaultAPI
 	projectId     string
 	region        Region
-	gatewayName   string
+	gatewayId     string
 	labelSelector *map[string]string
 }
 
+// Filter resources by labels.
 func (r ApiListGatewayConnectionsRequest) LabelSelector(labelSelector map[string]string) ApiListGatewayConnectionsRequest {
 	r.labelSelector = &labelSelector
 	return r
@@ -1733,16 +1744,16 @@ List connections for an existing VPN gateway.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
+	@param gatewayId
 	@return ApiListGatewayConnectionsRequest
 */
-func (a *DefaultAPIService) ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayName string) ApiListGatewayConnectionsRequest {
+func (a *DefaultAPIService) ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayId string) ApiListGatewayConnectionsRequest {
 	return ApiListGatewayConnectionsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -1762,10 +1773,10 @@ func (a *DefaultAPIService) ListGatewayConnectionsExecute(r ApiListGatewayConnec
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}/connections"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/connections"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1911,7 +1922,8 @@ func (r ApiListPlansRequest) Execute() (*PlanList, error) {
 /*
 ListPlans List available service plans for a project.
 
-List available service plans for a project.
+Retrieve a list of available service plans available for provisioning a VPN in a specific `region`.
+Use this to identify the `planId` required for gateway creation.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param region
@@ -2050,7 +2062,7 @@ func (r ApiListQuotasRequest) Execute() (*QuotaListResponse, error) {
 /*
 ListQuotas List project quotas.
 
-List project quotas.
+Retrieve the resource quotas and current usage for STACKIT VPN within a specific project and region.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -2186,6 +2198,7 @@ type ApiListVPNGatewaysRequest struct {
 	labelSelector *map[string]string
 }
 
+// Filter resources by labels.
 func (r ApiListVPNGatewaysRequest) LabelSelector(labelSelector map[string]string) ApiListVPNGatewaysRequest {
 	r.labelSelector = &labelSelector
 	return r
@@ -2198,7 +2211,8 @@ func (r ApiListVPNGatewaysRequest) Execute() (*GatewayList, error) {
 /*
 ListVPNGateways List VPN gateways in a project with label filtering
 
-Retrieve VPN gateways in a project filtered by a custom label selector format.
+Retrieve a list of all VPN gateways in a project.
+Filter the results using the `label_selector` query parameter.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
@@ -2358,8 +2372,8 @@ type ApiUpdateGatewayConnectionRequest struct {
 	ApiService                     DefaultAPI
 	projectId                      string
 	region                         Region
-	gatewayName                    string
-	connectionName                 string
+	gatewayId                      string
+	connectionId                   string
 	updateGatewayConnectionPayload *UpdateGatewayConnectionPayload
 }
 
@@ -2368,42 +2382,42 @@ func (r ApiUpdateGatewayConnectionRequest) UpdateGatewayConnectionPayload(update
 	return r
 }
 
-func (r ApiUpdateGatewayConnectionRequest) Execute() (*Connection, error) {
+func (r ApiUpdateGatewayConnectionRequest) Execute() (*ConnectionResponse, error) {
 	return r.ApiService.UpdateGatewayConnectionExecute(r)
 }
 
 /*
-UpdateGatewayConnection Update a connection for an existing VPN gateway.
+UpdateGatewayConnection Update a connection on an existing VPN gateway.
 
-Update a connection for an existing VPN gateway.
+Updating the configuration of an existing connection.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
-	@param connectionName
+	@param gatewayId
+	@param connectionId
 	@return ApiUpdateGatewayConnectionRequest
 */
-func (a *DefaultAPIService) UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiUpdateGatewayConnectionRequest {
+func (a *DefaultAPIService) UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest {
 	return ApiUpdateGatewayConnectionRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return Connection
-func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayConnectionRequest) (*Connection, error) {
+//	@return ConnectionResponse
+func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayConnectionRequest) (*ConnectionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *Connection
+		localVarReturnValue *ConnectionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateGatewayConnection")
@@ -2411,11 +2425,11 @@ func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayCon
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}/connections/{connectionName}"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}/connections/{connectionId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"connectionName"+"}", url.PathEscape(parameterValueToString(r.connectionName, "connectionName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"connectionId"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2552,7 +2566,7 @@ type ApiUpdateVPNGatewayRequest struct {
 	ApiService              DefaultAPI
 	projectId               string
 	region                  Region
-	gatewayName             string
+	gatewayId               string
 	updateVPNGatewayPayload *UpdateVPNGatewayPayload
 }
 
@@ -2568,21 +2582,22 @@ func (r ApiUpdateVPNGatewayRequest) Execute() (*GatewayResponse, error) {
 /*
 UpdateVPNGateway Update a VPN gateway in a project.
 
-Update a VPN gateway in a project.
+Modify the configuration of an existing VPN gateway.
+Certain changes may trigger infrastructure updates or temporary connection re-negotiations.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@param gatewayName
+	@param gatewayId
 	@return ApiUpdateVPNGatewayRequest
 */
-func (a *DefaultAPIService) UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiUpdateVPNGatewayRequest {
+func (a *DefaultAPIService) UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateVPNGatewayRequest {
 	return ApiUpdateVPNGatewayRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -2602,10 +2617,10 @@ func (a *DefaultAPIService) UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayName}"
+	localVarPath := localBasePath + "/v1alpha1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayName"+"}", url.PathEscape(parameterValueToString(r.gatewayName, "gatewayName")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

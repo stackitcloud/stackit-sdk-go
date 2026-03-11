@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -19,10 +19,13 @@ var _ MappedNullable = &GatewayStatusResponse{}
 
 // GatewayStatusResponse struct for GatewayStatusResponse
 type GatewayStatusResponse struct {
+	Connections []ConnectionStatusResponse `json:"connections,omitempty"`
 	// Name of the Gateway instance.
-	GatewayName   *string        `json:"gatewayName,omitempty"`
+	DisplayName   *string        `json:"displayName,omitempty"`
 	GatewayStatus *GatewayStatus `json:"gatewayStatus,omitempty"`
-	Tunnels       []VPNTunnels   `json:"tunnels,omitempty"`
+	// UUID of the Gateway instance.
+	Id      *string      `json:"id,omitempty"`
+	Tunnels []VPNTunnels `json:"tunnels,omitempty"`
 }
 
 // NewGatewayStatusResponse instantiates a new GatewayStatusResponse object
@@ -42,36 +45,68 @@ func NewGatewayStatusResponseWithDefaults() *GatewayStatusResponse {
 	return &this
 }
 
-// GetGatewayName returns the GatewayName field value if set, zero value otherwise.
-func (o *GatewayStatusResponse) GetGatewayName() string {
-	if o == nil || IsNil(o.GatewayName) {
-		var ret string
+// GetConnections returns the Connections field value if set, zero value otherwise.
+func (o *GatewayStatusResponse) GetConnections() []ConnectionStatusResponse {
+	if o == nil || IsNil(o.Connections) {
+		var ret []ConnectionStatusResponse
 		return ret
 	}
-	return *o.GatewayName
+	return o.Connections
 }
 
-// GetGatewayNameOk returns a tuple with the GatewayName field value if set, nil otherwise
+// GetConnectionsOk returns a tuple with the Connections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GatewayStatusResponse) GetGatewayNameOk() (*string, bool) {
-	if o == nil || IsNil(o.GatewayName) {
+func (o *GatewayStatusResponse) GetConnectionsOk() ([]ConnectionStatusResponse, bool) {
+	if o == nil || IsNil(o.Connections) {
 		return nil, false
 	}
-	return o.GatewayName, true
+	return o.Connections, true
 }
 
-// HasGatewayName returns a boolean if a field has been set.
-func (o *GatewayStatusResponse) HasGatewayName() bool {
-	if o != nil && !IsNil(o.GatewayName) {
+// HasConnections returns a boolean if a field has been set.
+func (o *GatewayStatusResponse) HasConnections() bool {
+	if o != nil && !IsNil(o.Connections) {
 		return true
 	}
 
 	return false
 }
 
-// SetGatewayName gets a reference to the given string and assigns it to the GatewayName field.
-func (o *GatewayStatusResponse) SetGatewayName(v string) {
-	o.GatewayName = &v
+// SetConnections gets a reference to the given []ConnectionStatusResponse and assigns it to the Connections field.
+func (o *GatewayStatusResponse) SetConnections(v []ConnectionStatusResponse) {
+	o.Connections = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *GatewayStatusResponse) GetDisplayName() string {
+	if o == nil || IsNil(o.DisplayName) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GatewayStatusResponse) GetDisplayNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *GatewayStatusResponse) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *GatewayStatusResponse) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetGatewayStatus returns the GatewayStatus field value if set, zero value otherwise.
@@ -104,6 +139,38 @@ func (o *GatewayStatusResponse) HasGatewayStatus() bool {
 // SetGatewayStatus gets a reference to the given GatewayStatus and assigns it to the GatewayStatus field.
 func (o *GatewayStatusResponse) SetGatewayStatus(v GatewayStatus) {
 	o.GatewayStatus = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *GatewayStatusResponse) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GatewayStatusResponse) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *GatewayStatusResponse) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *GatewayStatusResponse) SetId(v string) {
+	o.Id = &v
 }
 
 // GetTunnels returns the Tunnels field value if set, zero value otherwise.
@@ -148,11 +215,17 @@ func (o GatewayStatusResponse) MarshalJSON() ([]byte, error) {
 
 func (o GatewayStatusResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.GatewayName) {
-		toSerialize["gatewayName"] = o.GatewayName
+	if !IsNil(o.Connections) {
+		toSerialize["connections"] = o.Connections
+	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
 	}
 	if !IsNil(o.GatewayStatus) {
 		toSerialize["gatewayStatus"] = o.GatewayStatus
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.Tunnels) {
 		toSerialize["tunnels"] = o.Tunnels

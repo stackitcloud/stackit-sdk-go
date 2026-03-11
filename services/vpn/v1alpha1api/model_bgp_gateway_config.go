@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -19,9 +19,9 @@ var _ MappedNullable = &BGPGatewayConfig{}
 
 // BGPGatewayConfig BGP configuration effects all connections. (only for routingMode=BGP_ROUTE_BASED)
 type BGPGatewayConfig struct {
-	// ASN for private use (reserved by IANA). Allowed values are 64512-65534 (16-bit range) and 4200000000-4294967294 (32-bit range).
+	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
 	LocalAsn *int32 `json:"localAsn,omitempty"`
-	// List of routes (IPv4 CIDR).
+	// A list of IPv4 Prefixes to advertise via BGP.  If omitted, the SNA network ranges will be advertised.
 	OverrideAdvertisedRoutes []string `json:"overrideAdvertisedRoutes,omitempty"`
 }
 

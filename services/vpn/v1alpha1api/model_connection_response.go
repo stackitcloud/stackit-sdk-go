@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -16,50 +16,77 @@ import (
 	"fmt"
 )
 
-// checks if the Connection type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Connection{}
+// checks if the ConnectionResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConnectionResponse{}
 
-// Connection struct for Connection
-type Connection struct {
+// ConnectionResponse struct for ConnectionResponse
+type ConnectionResponse struct {
+	// A user-friendly name for the connection.
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
 	// This flag decides whether this connection should be enabled or disabled
 	Enabled *bool `json:"enabled,omitempty"`
-	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the LabelValue except that it cannot be empty.
+	// UUID of the Gateway instance.
+	Id *string `json:"id,omitempty"`
+	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// Optional. Defaults to 0.0.0.0/0 for Route-based VPN configurations. Mandatory for Policy-based.
 	LocalSubnets []string `json:"localSubnets,omitempty"`
-	// The name of the connection.  Maximum 20 characters (only alphanumeric and hyphens allowed). The name bust be unique within the parent Gateway.  Currently renaming is not possible therefore deleting and re-creating the connection is necessary.
-	Name string `json:"name" validate:"regexp=^[a-z0-9]([a-z0-9-]{0,18}[a-z0-9])?$"`
 	// Optional. Defaults to 0.0.0.0/0 for Route-based VPN configurations. Mandatory for Policy-based.
-	RemoteSubnets []string            `json:"remoteSubnets,omitempty"`
-	StaticRoutes  []string            `json:"staticRoutes,omitempty"`
-	Tunnel1       TunnelConfiguration `json:"tunnel1"`
-	Tunnel2       TunnelConfiguration `json:"tunnel2"`
+	RemoteSubnets []string `json:"remoteSubnets,omitempty"`
+	// Optional. Use this for route-based VPN.
+	StaticRoutes []string            `json:"staticRoutes,omitempty"`
+	Tunnel1      TunnelConfiguration `json:"tunnel1"`
+	Tunnel2      TunnelConfiguration `json:"tunnel2"`
 }
 
-type _Connection Connection
+type _ConnectionResponse ConnectionResponse
 
-// NewConnection instantiates a new Connection object
+// NewConnectionResponse instantiates a new ConnectionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnection(name string, tunnel1 TunnelConfiguration, tunnel2 TunnelConfiguration) *Connection {
-	this := Connection{}
-	this.Name = name
+func NewConnectionResponse(displayName string, tunnel1 TunnelConfiguration, tunnel2 TunnelConfiguration) *ConnectionResponse {
+	this := ConnectionResponse{}
+	this.DisplayName = displayName
 	this.Tunnel1 = tunnel1
 	this.Tunnel2 = tunnel2
 	return &this
 }
 
-// NewConnectionWithDefaults instantiates a new Connection object
+// NewConnectionResponseWithDefaults instantiates a new ConnectionResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewConnectionWithDefaults() *Connection {
-	this := Connection{}
+func NewConnectionResponseWithDefaults() *ConnectionResponse {
+	this := ConnectionResponse{}
 	return &this
 }
 
+// GetDisplayName returns the DisplayName field value
+func (o *ConnectionResponse) GetDisplayName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value
+// and a boolean to check if the value has been set.
+func (o *ConnectionResponse) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DisplayName, true
+}
+
+// SetDisplayName sets field value
+func (o *ConnectionResponse) SetDisplayName(v string) {
+	o.DisplayName = v
+}
+
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *Connection) GetEnabled() bool {
+func (o *ConnectionResponse) GetEnabled() bool {
 	if o == nil || IsNil(o.Enabled) {
 		var ret bool
 		return ret
@@ -69,7 +96,7 @@ func (o *Connection) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Connection) GetEnabledOk() (*bool, bool) {
+func (o *ConnectionResponse) GetEnabledOk() (*bool, bool) {
 	if o == nil || IsNil(o.Enabled) {
 		return nil, false
 	}
@@ -77,7 +104,7 @@ func (o *Connection) GetEnabledOk() (*bool, bool) {
 }
 
 // HasEnabled returns a boolean if a field has been set.
-func (o *Connection) HasEnabled() bool {
+func (o *ConnectionResponse) HasEnabled() bool {
 	if o != nil && !IsNil(o.Enabled) {
 		return true
 	}
@@ -86,12 +113,44 @@ func (o *Connection) HasEnabled() bool {
 }
 
 // SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *Connection) SetEnabled(v bool) {
+func (o *ConnectionResponse) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ConnectionResponse) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConnectionResponse) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ConnectionResponse) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ConnectionResponse) SetId(v string) {
+	o.Id = &v
+}
+
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Connection) GetLabels() map[string]string {
+func (o *ConnectionResponse) GetLabels() map[string]string {
 	if o == nil || IsNil(o.Labels) {
 		var ret map[string]string
 		return ret
@@ -101,7 +160,7 @@ func (o *Connection) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Connection) GetLabelsOk() (*map[string]string, bool) {
+func (o *ConnectionResponse) GetLabelsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -109,7 +168,7 @@ func (o *Connection) GetLabelsOk() (*map[string]string, bool) {
 }
 
 // HasLabels returns a boolean if a field has been set.
-func (o *Connection) HasLabels() bool {
+func (o *ConnectionResponse) HasLabels() bool {
 	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
@@ -118,12 +177,12 @@ func (o *Connection) HasLabels() bool {
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *Connection) SetLabels(v map[string]string) {
+func (o *ConnectionResponse) SetLabels(v map[string]string) {
 	o.Labels = &v
 }
 
 // GetLocalSubnets returns the LocalSubnets field value if set, zero value otherwise.
-func (o *Connection) GetLocalSubnets() []string {
+func (o *ConnectionResponse) GetLocalSubnets() []string {
 	if o == nil || IsNil(o.LocalSubnets) {
 		var ret []string
 		return ret
@@ -133,7 +192,7 @@ func (o *Connection) GetLocalSubnets() []string {
 
 // GetLocalSubnetsOk returns a tuple with the LocalSubnets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Connection) GetLocalSubnetsOk() ([]string, bool) {
+func (o *ConnectionResponse) GetLocalSubnetsOk() ([]string, bool) {
 	if o == nil || IsNil(o.LocalSubnets) {
 		return nil, false
 	}
@@ -141,7 +200,7 @@ func (o *Connection) GetLocalSubnetsOk() ([]string, bool) {
 }
 
 // HasLocalSubnets returns a boolean if a field has been set.
-func (o *Connection) HasLocalSubnets() bool {
+func (o *ConnectionResponse) HasLocalSubnets() bool {
 	if o != nil && !IsNil(o.LocalSubnets) {
 		return true
 	}
@@ -150,36 +209,12 @@ func (o *Connection) HasLocalSubnets() bool {
 }
 
 // SetLocalSubnets gets a reference to the given []string and assigns it to the LocalSubnets field.
-func (o *Connection) SetLocalSubnets(v []string) {
+func (o *ConnectionResponse) SetLocalSubnets(v []string) {
 	o.LocalSubnets = v
 }
 
-// GetName returns the Name field value
-func (o *Connection) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *Connection) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *Connection) SetName(v string) {
-	o.Name = v
-}
-
 // GetRemoteSubnets returns the RemoteSubnets field value if set, zero value otherwise.
-func (o *Connection) GetRemoteSubnets() []string {
+func (o *ConnectionResponse) GetRemoteSubnets() []string {
 	if o == nil || IsNil(o.RemoteSubnets) {
 		var ret []string
 		return ret
@@ -189,7 +224,7 @@ func (o *Connection) GetRemoteSubnets() []string {
 
 // GetRemoteSubnetsOk returns a tuple with the RemoteSubnets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Connection) GetRemoteSubnetsOk() ([]string, bool) {
+func (o *ConnectionResponse) GetRemoteSubnetsOk() ([]string, bool) {
 	if o == nil || IsNil(o.RemoteSubnets) {
 		return nil, false
 	}
@@ -197,7 +232,7 @@ func (o *Connection) GetRemoteSubnetsOk() ([]string, bool) {
 }
 
 // HasRemoteSubnets returns a boolean if a field has been set.
-func (o *Connection) HasRemoteSubnets() bool {
+func (o *ConnectionResponse) HasRemoteSubnets() bool {
 	if o != nil && !IsNil(o.RemoteSubnets) {
 		return true
 	}
@@ -206,12 +241,12 @@ func (o *Connection) HasRemoteSubnets() bool {
 }
 
 // SetRemoteSubnets gets a reference to the given []string and assigns it to the RemoteSubnets field.
-func (o *Connection) SetRemoteSubnets(v []string) {
+func (o *ConnectionResponse) SetRemoteSubnets(v []string) {
 	o.RemoteSubnets = v
 }
 
 // GetStaticRoutes returns the StaticRoutes field value if set, zero value otherwise.
-func (o *Connection) GetStaticRoutes() []string {
+func (o *ConnectionResponse) GetStaticRoutes() []string {
 	if o == nil || IsNil(o.StaticRoutes) {
 		var ret []string
 		return ret
@@ -221,7 +256,7 @@ func (o *Connection) GetStaticRoutes() []string {
 
 // GetStaticRoutesOk returns a tuple with the StaticRoutes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Connection) GetStaticRoutesOk() ([]string, bool) {
+func (o *ConnectionResponse) GetStaticRoutesOk() ([]string, bool) {
 	if o == nil || IsNil(o.StaticRoutes) {
 		return nil, false
 	}
@@ -229,7 +264,7 @@ func (o *Connection) GetStaticRoutesOk() ([]string, bool) {
 }
 
 // HasStaticRoutes returns a boolean if a field has been set.
-func (o *Connection) HasStaticRoutes() bool {
+func (o *ConnectionResponse) HasStaticRoutes() bool {
 	if o != nil && !IsNil(o.StaticRoutes) {
 		return true
 	}
@@ -238,12 +273,12 @@ func (o *Connection) HasStaticRoutes() bool {
 }
 
 // SetStaticRoutes gets a reference to the given []string and assigns it to the StaticRoutes field.
-func (o *Connection) SetStaticRoutes(v []string) {
+func (o *ConnectionResponse) SetStaticRoutes(v []string) {
 	o.StaticRoutes = v
 }
 
 // GetTunnel1 returns the Tunnel1 field value
-func (o *Connection) GetTunnel1() TunnelConfiguration {
+func (o *ConnectionResponse) GetTunnel1() TunnelConfiguration {
 	if o == nil {
 		var ret TunnelConfiguration
 		return ret
@@ -254,7 +289,7 @@ func (o *Connection) GetTunnel1() TunnelConfiguration {
 
 // GetTunnel1Ok returns a tuple with the Tunnel1 field value
 // and a boolean to check if the value has been set.
-func (o *Connection) GetTunnel1Ok() (*TunnelConfiguration, bool) {
+func (o *ConnectionResponse) GetTunnel1Ok() (*TunnelConfiguration, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -262,12 +297,12 @@ func (o *Connection) GetTunnel1Ok() (*TunnelConfiguration, bool) {
 }
 
 // SetTunnel1 sets field value
-func (o *Connection) SetTunnel1(v TunnelConfiguration) {
+func (o *ConnectionResponse) SetTunnel1(v TunnelConfiguration) {
 	o.Tunnel1 = v
 }
 
 // GetTunnel2 returns the Tunnel2 field value
-func (o *Connection) GetTunnel2() TunnelConfiguration {
+func (o *ConnectionResponse) GetTunnel2() TunnelConfiguration {
 	if o == nil {
 		var ret TunnelConfiguration
 		return ret
@@ -278,7 +313,7 @@ func (o *Connection) GetTunnel2() TunnelConfiguration {
 
 // GetTunnel2Ok returns a tuple with the Tunnel2 field value
 // and a boolean to check if the value has been set.
-func (o *Connection) GetTunnel2Ok() (*TunnelConfiguration, bool) {
+func (o *ConnectionResponse) GetTunnel2Ok() (*TunnelConfiguration, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -286,11 +321,11 @@ func (o *Connection) GetTunnel2Ok() (*TunnelConfiguration, bool) {
 }
 
 // SetTunnel2 sets field value
-func (o *Connection) SetTunnel2(v TunnelConfiguration) {
+func (o *ConnectionResponse) SetTunnel2(v TunnelConfiguration) {
 	o.Tunnel2 = v
 }
 
-func (o Connection) MarshalJSON() ([]byte, error) {
+func (o ConnectionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -298,10 +333,14 @@ func (o Connection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Connection) ToMap() (map[string]interface{}, error) {
+func (o ConnectionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["displayName"] = o.DisplayName
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
@@ -309,7 +348,6 @@ func (o Connection) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LocalSubnets) {
 		toSerialize["localSubnets"] = o.LocalSubnets
 	}
-	toSerialize["name"] = o.Name
 	if !IsNil(o.RemoteSubnets) {
 		toSerialize["remoteSubnets"] = o.RemoteSubnets
 	}
@@ -321,12 +359,12 @@ func (o Connection) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *Connection) UnmarshalJSON(data []byte) (err error) {
+func (o *ConnectionResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
+		"displayName",
 		"tunnel1",
 		"tunnel2",
 	}
@@ -345,53 +383,53 @@ func (o *Connection) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varConnection := _Connection{}
+	varConnectionResponse := _ConnectionResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnection)
+	err = decoder.Decode(&varConnectionResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Connection(varConnection)
+	*o = ConnectionResponse(varConnectionResponse)
 
 	return err
 }
 
-type NullableConnection struct {
-	value *Connection
+type NullableConnectionResponse struct {
+	value *ConnectionResponse
 	isSet bool
 }
 
-func (v NullableConnection) Get() *Connection {
+func (v NullableConnectionResponse) Get() *ConnectionResponse {
 	return v.value
 }
 
-func (v *NullableConnection) Set(val *Connection) {
+func (v *NullableConnectionResponse) Set(val *ConnectionResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableConnection) IsSet() bool {
+func (v NullableConnectionResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableConnection) Unset() {
+func (v *NullableConnectionResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableConnection(val *Connection) *NullableConnection {
-	return &NullableConnection{value: val, isSet: true}
+func NewNullableConnectionResponse(val *ConnectionResponse) *NullableConnectionResponse {
+	return &NullableConnectionResponse{value: val, isSet: true}
 }
 
-func (v NullableConnection) MarshalJSON() ([]byte, error) {
+func (v NullableConnectionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableConnection) UnmarshalJSON(src []byte) error {
+func (v *NullableConnectionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

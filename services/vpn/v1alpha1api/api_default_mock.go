@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -21,7 +21,7 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
 	// CreateGatewayConnectionExecuteMock can be populated to implement the behavior of the CreateGatewayConnectionExecute function of this mock
-	CreateGatewayConnectionExecuteMock *func(r ApiCreateGatewayConnectionRequest) (*Connection, error)
+	CreateGatewayConnectionExecuteMock *func(r ApiCreateGatewayConnectionRequest) (*ConnectionResponse, error)
 	// CreateVPNGatewayExecuteMock can be populated to implement the behavior of the CreateVPNGatewayExecute function of this mock
 	CreateVPNGatewayExecuteMock *func(r ApiCreateVPNGatewayRequest) (*GatewayResponse, error)
 	// DeleteGatewayConnectionExecuteMock can be populated to implement the behavior of the DeleteGatewayConnectionExecute function of this mock
@@ -29,7 +29,7 @@ type DefaultAPIServiceMock struct {
 	// DeleteVPNGatewayExecuteMock can be populated to implement the behavior of the DeleteVPNGatewayExecute function of this mock
 	DeleteVPNGatewayExecuteMock *func(r ApiDeleteVPNGatewayRequest) error
 	// GetGatewayConnectionExecuteMock can be populated to implement the behavior of the GetGatewayConnectionExecute function of this mock
-	GetGatewayConnectionExecuteMock *func(r ApiGetGatewayConnectionRequest) (*Connection, error)
+	GetGatewayConnectionExecuteMock *func(r ApiGetGatewayConnectionRequest) (*ConnectionResponse, error)
 	// GetGatewayConnectionStatusExecuteMock can be populated to implement the behavior of the GetGatewayConnectionStatusExecute function of this mock
 	GetGatewayConnectionStatusExecuteMock *func(r ApiGetGatewayConnectionStatusRequest) (*ConnectionStatusResponse, error)
 	// GetVPNGatewayExecuteMock can be populated to implement the behavior of the GetVPNGatewayExecute function of this mock
@@ -45,25 +45,25 @@ type DefaultAPIServiceMock struct {
 	// ListVPNGatewaysExecuteMock can be populated to implement the behavior of the ListVPNGatewaysExecute function of this mock
 	ListVPNGatewaysExecuteMock *func(r ApiListVPNGatewaysRequest) (*GatewayList, error)
 	// UpdateGatewayConnectionExecuteMock can be populated to implement the behavior of the UpdateGatewayConnectionExecute function of this mock
-	UpdateGatewayConnectionExecuteMock *func(r ApiUpdateGatewayConnectionRequest) (*Connection, error)
+	UpdateGatewayConnectionExecuteMock *func(r ApiUpdateGatewayConnectionRequest) (*ConnectionResponse, error)
 	// UpdateVPNGatewayExecuteMock can be populated to implement the behavior of the UpdateVPNGatewayExecute function of this mock
 	UpdateVPNGatewayExecuteMock *func(r ApiUpdateVPNGatewayRequest) (*GatewayResponse, error)
 }
 
-func (a DefaultAPIServiceMock) CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string) ApiCreateGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) CreateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string) ApiCreateGatewayConnectionRequest {
 	return ApiCreateGatewayConnectionRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
 // CreateGatewayConnectionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateGatewayConnectionExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateGatewayConnectionExecute(r ApiCreateGatewayConnectionRequest) (*Connection, error) {
+func (a DefaultAPIServiceMock) CreateGatewayConnectionExecute(r ApiCreateGatewayConnectionRequest) (*ConnectionResponse, error) {
 	if a.CreateGatewayConnectionExecuteMock == nil {
-		var localVarReturnValue *Connection
+		var localVarReturnValue *ConnectionResponse
 		return localVarReturnValue, nil
 	}
 
@@ -89,14 +89,14 @@ func (a DefaultAPIServiceMock) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequ
 	return (*a.CreateVPNGatewayExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiDeleteGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) DeleteGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiDeleteGatewayConnectionRequest {
 	return ApiDeleteGatewayConnectionRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
@@ -109,13 +109,13 @@ func (a DefaultAPIServiceMock) DeleteGatewayConnectionExecute(r ApiDeleteGateway
 	return (*a.DeleteGatewayConnectionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiDeleteVPNGatewayRequest {
+func (a DefaultAPIServiceMock) DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteVPNGatewayRequest {
 	return ApiDeleteVPNGatewayRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -128,35 +128,35 @@ func (a DefaultAPIServiceMock) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequ
 	return (*a.DeleteVPNGatewayExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiGetGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) GetGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionRequest {
 	return ApiGetGatewayConnectionRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
 // GetGatewayConnectionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetGatewayConnectionExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) GetGatewayConnectionExecute(r ApiGetGatewayConnectionRequest) (*Connection, error) {
+func (a DefaultAPIServiceMock) GetGatewayConnectionExecute(r ApiGetGatewayConnectionRequest) (*ConnectionResponse, error) {
 	if a.GetGatewayConnectionExecuteMock == nil {
-		var localVarReturnValue *Connection
+		var localVarReturnValue *ConnectionResponse
 		return localVarReturnValue, nil
 	}
 
 	return (*a.GetGatewayConnectionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiGetGatewayConnectionStatusRequest {
+func (a DefaultAPIServiceMock) GetGatewayConnectionStatus(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiGetGatewayConnectionStatusRequest {
 	return ApiGetGatewayConnectionStatusRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
@@ -170,13 +170,13 @@ func (a DefaultAPIServiceMock) GetGatewayConnectionStatusExecute(r ApiGetGateway
 	return (*a.GetGatewayConnectionStatusExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiGetVPNGatewayRequest {
+func (a DefaultAPIServiceMock) GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayRequest {
 	return ApiGetVPNGatewayRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -190,13 +190,13 @@ func (a DefaultAPIServiceMock) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (
 	return (*a.GetVPNGatewayExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayName string) ApiGetVPNGatewayStatusRequest {
+func (a DefaultAPIServiceMock) GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayStatusRequest {
 	return ApiGetVPNGatewayStatusRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -210,13 +210,13 @@ func (a DefaultAPIServiceMock) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStat
 	return (*a.GetVPNGatewayStatusExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayName string) ApiListGatewayConnectionsRequest {
+func (a DefaultAPIServiceMock) ListGatewayConnections(ctx context.Context, projectId string, region Region, gatewayId string) ApiListGatewayConnectionsRequest {
 	return ApiListGatewayConnectionsRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
@@ -286,34 +286,34 @@ func (a DefaultAPIServiceMock) ListVPNGatewaysExecute(r ApiListVPNGatewaysReques
 	return (*a.ListVPNGatewaysExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayName string, connectionName string) ApiUpdateGatewayConnectionRequest {
+func (a DefaultAPIServiceMock) UpdateGatewayConnection(ctx context.Context, projectId string, region Region, gatewayId string, connectionId string) ApiUpdateGatewayConnectionRequest {
 	return ApiUpdateGatewayConnectionRequest{
-		ApiService:     a,
-		ctx:            ctx,
-		projectId:      projectId,
-		region:         region,
-		gatewayName:    gatewayName,
-		connectionName: connectionName,
+		ApiService:   a,
+		ctx:          ctx,
+		projectId:    projectId,
+		region:       region,
+		gatewayId:    gatewayId,
+		connectionId: connectionId,
 	}
 }
 
 // UpdateGatewayConnectionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateGatewayConnectionExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) UpdateGatewayConnectionExecute(r ApiUpdateGatewayConnectionRequest) (*Connection, error) {
+func (a DefaultAPIServiceMock) UpdateGatewayConnectionExecute(r ApiUpdateGatewayConnectionRequest) (*ConnectionResponse, error) {
 	if a.UpdateGatewayConnectionExecuteMock == nil {
-		var localVarReturnValue *Connection
+		var localVarReturnValue *ConnectionResponse
 		return localVarReturnValue, nil
 	}
 
 	return (*a.UpdateGatewayConnectionExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayName string) ApiUpdateVPNGatewayRequest {
+func (a DefaultAPIServiceMock) UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateVPNGatewayRequest {
 	return ApiUpdateVPNGatewayRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		projectId:   projectId,
-		region:      region,
-		gatewayName: gatewayName,
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
