@@ -25,8 +25,11 @@ type MongodbatlasOperation struct {
 	// Raw log line produced by the query.
 	Raw *string `json:"raw,omitempty"`
 	// Query statistics.
-	Stats *MongodbatlasStats `json:"stats,omitempty"`
+	Stats                *MongodbatlasStats `json:"stats,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MongodbatlasOperation MongodbatlasOperation
 
 // NewMongodbatlasOperation instantiates a new MongodbatlasOperation object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o MongodbatlasOperation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Stats) {
 		toSerialize["stats"] = o.Stats
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MongodbatlasOperation) UnmarshalJSON(data []byte) (err error) {
+	varMongodbatlasOperation := _MongodbatlasOperation{}
+
+	err = json.Unmarshal(data, &varMongodbatlasOperation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MongodbatlasOperation(varMongodbatlasOperation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "predicates")
+		delete(additionalProperties, "raw")
+		delete(additionalProperties, "stats")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMongodbatlasOperation struct {

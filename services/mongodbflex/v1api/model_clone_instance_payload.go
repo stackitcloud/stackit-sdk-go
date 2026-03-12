@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &CloneInstancePayload{}
 
 // CloneInstancePayload struct for CloneInstancePayload
 type CloneInstancePayload struct {
-	InstanceId string  `json:"instanceId"`
-	Timestamp  *string `json:"timestamp,omitempty"`
+	InstanceId           string  `json:"instanceId"`
+	Timestamp            *string `json:"timestamp,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CloneInstancePayload CloneInstancePayload
@@ -116,6 +116,11 @@ func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Timestamp) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *CloneInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCloneInstancePayload := _CloneInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCloneInstancePayload)
+	err = json.Unmarshal(data, &varCloneInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CloneInstancePayload(varCloneInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceId")
+		delete(additionalProperties, "timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

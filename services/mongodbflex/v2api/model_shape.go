@@ -31,8 +31,11 @@ type Shape struct {
 	// The namespace in which the slow query ran.
 	Namespace *string `json:"namespace,omitempty"`
 	// It represents documents with specific information and log lines for individual queries.
-	Operations []MongodbatlasOperation `json:"operations,omitempty"`
+	Operations           []MongodbatlasOperation `json:"operations,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Shape Shape
 
 // NewShape instantiates a new Shape object
 // This constructor will assign default values to properties that have it defined,
@@ -271,7 +274,38 @@ func (o Shape) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Operations) {
 		toSerialize["operations"] = o.Operations
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Shape) UnmarshalJSON(data []byte) (err error) {
+	varShape := _Shape{}
+
+	err = json.Unmarshal(data, &varShape)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Shape(varShape)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "avgMs")
+		delete(additionalProperties, "count")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "inefficiencyScore")
+		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "operations")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableShape struct {

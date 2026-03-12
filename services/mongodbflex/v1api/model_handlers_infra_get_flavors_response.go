@@ -20,8 +20,11 @@ var _ MappedNullable = &HandlersInfraGetFlavorsResponse{}
 
 // HandlersInfraGetFlavorsResponse struct for HandlersInfraGetFlavorsResponse
 type HandlersInfraGetFlavorsResponse struct {
-	Flavors []HandlersInfraFlavor `json:"flavors,omitempty"`
+	Flavors              []HandlersInfraFlavor `json:"flavors,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HandlersInfraGetFlavorsResponse HandlersInfraGetFlavorsResponse
 
 // NewHandlersInfraGetFlavorsResponse instantiates a new HandlersInfraGetFlavorsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o HandlersInfraGetFlavorsResponse) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Flavors) {
 		toSerialize["flavors"] = o.Flavors
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HandlersInfraGetFlavorsResponse) UnmarshalJSON(data []byte) (err error) {
+	varHandlersInfraGetFlavorsResponse := _HandlersInfraGetFlavorsResponse{}
+
+	err = json.Unmarshal(data, &varHandlersInfraGetFlavorsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HandlersInfraGetFlavorsResponse(varHandlersInfraGetFlavorsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "flavors")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHandlersInfraGetFlavorsResponse struct {

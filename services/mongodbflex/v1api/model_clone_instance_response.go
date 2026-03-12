@@ -20,8 +20,11 @@ var _ MappedNullable = &CloneInstanceResponse{}
 
 // CloneInstanceResponse struct for CloneInstanceResponse
 type CloneInstanceResponse struct {
-	InstanceId *string `json:"instanceId,omitempty"`
+	InstanceId           *string `json:"instanceId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CloneInstanceResponse CloneInstanceResponse
 
 // NewCloneInstanceResponse instantiates a new CloneInstanceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o CloneInstanceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InstanceId) {
 		toSerialize["instanceId"] = o.InstanceId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CloneInstanceResponse) UnmarshalJSON(data []byte) (err error) {
+	varCloneInstanceResponse := _CloneInstanceResponse{}
+
+	err = json.Unmarshal(data, &varCloneInstanceResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CloneInstanceResponse(varCloneInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCloneInstanceResponse struct {

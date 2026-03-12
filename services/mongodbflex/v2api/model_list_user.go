@@ -20,9 +20,12 @@ var _ MappedNullable = &ListUser{}
 
 // ListUser struct for ListUser
 type ListUser struct {
-	Id       *string `json:"id,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListUser ListUser
 
 // NewListUser instantiates a new ListUser object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ListUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListUser) UnmarshalJSON(data []byte) (err error) {
+	varListUser := _ListUser{}
+
+	err = json.Unmarshal(data, &varListUser)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListUser(varListUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListUser struct {
