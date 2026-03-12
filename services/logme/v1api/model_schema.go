@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &Schema{}
 
 // Schema struct for Schema
 type Schema struct {
-	Parameters map[string]interface{} `json:"parameters"`
+	Parameters           map[string]interface{} `json:"parameters"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Schema Schema
@@ -79,6 +79,11 @@ func (o Schema) MarshalJSON() ([]byte, error) {
 func (o Schema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["parameters"] = o.Parameters
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *Schema) UnmarshalJSON(data []byte) (err error) {
 
 	varSchema := _Schema{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSchema)
+	err = json.Unmarshal(data, &varSchema)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Schema(varSchema)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "parameters")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &CreateInstanceResponse{}
 
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
-	InstanceId string `json:"instanceId"`
+	InstanceId           string `json:"instanceId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstanceResponse CreateInstanceResponse
@@ -79,6 +79,11 @@ func (o CreateInstanceResponse) MarshalJSON() ([]byte, error) {
 func (o CreateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instanceId"] = o.InstanceId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *CreateInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstanceResponse := _CreateInstanceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstanceResponse)
+	err = json.Unmarshal(data, &varCreateInstanceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstanceResponse(varCreateInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

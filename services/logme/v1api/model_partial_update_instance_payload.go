@@ -19,10 +19,13 @@ var _ MappedNullable = &PartialUpdateInstancePayload{}
 
 // PartialUpdateInstancePayload struct for PartialUpdateInstancePayload
 type PartialUpdateInstancePayload struct {
-	InstanceName *string             `json:"instanceName,omitempty"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
-	PlanId       *string             `json:"planId,omitempty"`
+	InstanceName         *string             `json:"instanceName,omitempty"`
+	Parameters           *InstanceParameters `json:"parameters,omitempty"`
+	PlanId               *string             `json:"planId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateInstancePayload PartialUpdateInstancePayload
 
 // NewPartialUpdateInstancePayload instantiates a new PartialUpdateInstancePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -156,7 +159,35 @@ func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PlanId) {
 		toSerialize["planId"] = o.PlanId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateInstancePayload := _PartialUpdateInstancePayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateInstancePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateInstancePayload(varPartialUpdateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceName")
+		delete(additionalProperties, "parameters")
+		delete(additionalProperties, "planId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateInstancePayload struct {
