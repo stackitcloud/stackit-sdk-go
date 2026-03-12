@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -21,11 +21,14 @@ var _ MappedNullable = &BGPStatusRoutes{}
 
 // BGPStatusRoutes struct for BGPStatusRoutes
 type BGPStatusRoutes struct {
-	Network string  `json:"network"`
-	Origin  string  `json:"origin"`
-	Path    string  `json:"path"`
-	PeerId  string  `json:"peerId"`
-	Weight  float32 `json:"weight"`
+	// The destination network
+	Network string `json:"network"`
+	Origin  string `json:"origin"`
+	// The AS-PATH
+	Path string `json:"path"`
+	// BGP Router ID of the neighbor that advertised this route
+	PeerId string `json:"peerId"`
+	Weight int32  `json:"weight"`
 }
 
 type _BGPStatusRoutes BGPStatusRoutes
@@ -34,7 +37,7 @@ type _BGPStatusRoutes BGPStatusRoutes
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPStatusRoutes(network string, origin string, path string, peerId string, weight float32) *BGPStatusRoutes {
+func NewBGPStatusRoutes(network string, origin string, path string, peerId string, weight int32) *BGPStatusRoutes {
 	this := BGPStatusRoutes{}
 	this.Network = network
 	this.Origin = origin
@@ -149,9 +152,9 @@ func (o *BGPStatusRoutes) SetPeerId(v string) {
 }
 
 // GetWeight returns the Weight field value
-func (o *BGPStatusRoutes) GetWeight() float32 {
+func (o *BGPStatusRoutes) GetWeight() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -160,7 +163,7 @@ func (o *BGPStatusRoutes) GetWeight() float32 {
 
 // GetWeightOk returns a tuple with the Weight field value
 // and a boolean to check if the value has been set.
-func (o *BGPStatusRoutes) GetWeightOk() (*float32, bool) {
+func (o *BGPStatusRoutes) GetWeightOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -168,7 +171,7 @@ func (o *BGPStatusRoutes) GetWeightOk() (*float32, bool) {
 }
 
 // SetWeight sets field value
-func (o *BGPStatusRoutes) SetWeight(v float32) {
+func (o *BGPStatusRoutes) SetWeight(v int32) {
 	o.Weight = v
 }
 

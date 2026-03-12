@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -28,7 +28,7 @@ type APIError struct {
 	// A message describing the error.
 	Message string `json:"message"`
 	// The HTTP status code text.
-	Status *string `json:"status,omitempty"`
+	Status string `json:"status"`
 }
 
 type _APIError APIError
@@ -37,10 +37,11 @@ type _APIError APIError
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAPIError(code int32, message string) *APIError {
+func NewAPIError(code int32, message string, status string) *APIError {
 	this := APIError{}
 	this.Code = code
 	this.Message = message
+	this.Status = status
 	return &this
 }
 
@@ -132,36 +133,28 @@ func (o *APIError) SetMessage(v string) {
 	o.Message = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
 func (o *APIError) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *APIError) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *APIError) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
 func (o *APIError) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
 func (o APIError) MarshalJSON() ([]byte, error) {
@@ -179,9 +172,7 @@ func (o APIError) ToMap() (map[string]interface{}, error) {
 		toSerialize["details"] = o.Details
 	}
 	toSerialize["message"] = o.Message
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
+	toSerialize["status"] = o.Status
 	return toSerialize, nil
 }
 
@@ -192,6 +183,7 @@ func (o *APIError) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"code",
 		"message",
+		"status",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -21,13 +21,20 @@ var _ MappedNullable = &BGPStatusPeers{}
 
 // BGPStatusPeers struct for BGPStatusPeers
 type BGPStatusPeers struct {
-	LocalAs    float32 `json:"localAs"`
-	PeerUptime string  `json:"peerUptime"`
-	PfxRcd     float32 `json:"pfxRcd"`
-	PfxSnt     float32 `json:"pfxSnt"`
-	RemoteAs   float32 `json:"remoteAs"`
-	RemoteIP   string  `json:"remoteIP"`
-	State      string  `json:"state"`
+	// The ASN of the local STACKIT gateway.
+	LocalAs int32 `json:"localAs"`
+	// Duration the session has been established
+	PeerUptime string `json:"peerUptime"`
+	// Count of prefixes received from the neighbor.
+	PfxRcd int32 `json:"pfxRcd"`
+	// Count of prefixes advertised to the neighbor.
+	PfxSnt int32 `json:"pfxSnt"`
+	// The ASN of the remote neighbor.
+	RemoteAs int32 `json:"remoteAs"`
+	// The IP address of the remote BGP neighbor.
+	RemoteIP string `json:"remoteIP"`
+	// The current BGP session state.
+	State string `json:"state"`
 }
 
 type _BGPStatusPeers BGPStatusPeers
@@ -36,7 +43,7 @@ type _BGPStatusPeers BGPStatusPeers
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPStatusPeers(localAs float32, peerUptime string, pfxRcd float32, pfxSnt float32, remoteAs float32, remoteIP string, state string) *BGPStatusPeers {
+func NewBGPStatusPeers(localAs int32, peerUptime string, pfxRcd int32, pfxSnt int32, remoteAs int32, remoteIP string, state string) *BGPStatusPeers {
 	this := BGPStatusPeers{}
 	this.LocalAs = localAs
 	this.PeerUptime = peerUptime
@@ -57,9 +64,9 @@ func NewBGPStatusPeersWithDefaults() *BGPStatusPeers {
 }
 
 // GetLocalAs returns the LocalAs field value
-func (o *BGPStatusPeers) GetLocalAs() float32 {
+func (o *BGPStatusPeers) GetLocalAs() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -68,7 +75,7 @@ func (o *BGPStatusPeers) GetLocalAs() float32 {
 
 // GetLocalAsOk returns a tuple with the LocalAs field value
 // and a boolean to check if the value has been set.
-func (o *BGPStatusPeers) GetLocalAsOk() (*float32, bool) {
+func (o *BGPStatusPeers) GetLocalAsOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +83,7 @@ func (o *BGPStatusPeers) GetLocalAsOk() (*float32, bool) {
 }
 
 // SetLocalAs sets field value
-func (o *BGPStatusPeers) SetLocalAs(v float32) {
+func (o *BGPStatusPeers) SetLocalAs(v int32) {
 	o.LocalAs = v
 }
 
@@ -105,9 +112,9 @@ func (o *BGPStatusPeers) SetPeerUptime(v string) {
 }
 
 // GetPfxRcd returns the PfxRcd field value
-func (o *BGPStatusPeers) GetPfxRcd() float32 {
+func (o *BGPStatusPeers) GetPfxRcd() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -116,7 +123,7 @@ func (o *BGPStatusPeers) GetPfxRcd() float32 {
 
 // GetPfxRcdOk returns a tuple with the PfxRcd field value
 // and a boolean to check if the value has been set.
-func (o *BGPStatusPeers) GetPfxRcdOk() (*float32, bool) {
+func (o *BGPStatusPeers) GetPfxRcdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,14 +131,14 @@ func (o *BGPStatusPeers) GetPfxRcdOk() (*float32, bool) {
 }
 
 // SetPfxRcd sets field value
-func (o *BGPStatusPeers) SetPfxRcd(v float32) {
+func (o *BGPStatusPeers) SetPfxRcd(v int32) {
 	o.PfxRcd = v
 }
 
 // GetPfxSnt returns the PfxSnt field value
-func (o *BGPStatusPeers) GetPfxSnt() float32 {
+func (o *BGPStatusPeers) GetPfxSnt() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -140,7 +147,7 @@ func (o *BGPStatusPeers) GetPfxSnt() float32 {
 
 // GetPfxSntOk returns a tuple with the PfxSnt field value
 // and a boolean to check if the value has been set.
-func (o *BGPStatusPeers) GetPfxSntOk() (*float32, bool) {
+func (o *BGPStatusPeers) GetPfxSntOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -148,14 +155,14 @@ func (o *BGPStatusPeers) GetPfxSntOk() (*float32, bool) {
 }
 
 // SetPfxSnt sets field value
-func (o *BGPStatusPeers) SetPfxSnt(v float32) {
+func (o *BGPStatusPeers) SetPfxSnt(v int32) {
 	o.PfxSnt = v
 }
 
 // GetRemoteAs returns the RemoteAs field value
-func (o *BGPStatusPeers) GetRemoteAs() float32 {
+func (o *BGPStatusPeers) GetRemoteAs() int32 {
 	if o == nil {
-		var ret float32
+		var ret int32
 		return ret
 	}
 
@@ -164,7 +171,7 @@ func (o *BGPStatusPeers) GetRemoteAs() float32 {
 
 // GetRemoteAsOk returns a tuple with the RemoteAs field value
 // and a boolean to check if the value has been set.
-func (o *BGPStatusPeers) GetRemoteAsOk() (*float32, bool) {
+func (o *BGPStatusPeers) GetRemoteAsOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -172,7 +179,7 @@ func (o *BGPStatusPeers) GetRemoteAsOk() (*float32, bool) {
 }
 
 // SetRemoteAs sets field value
-func (o *BGPStatusPeers) SetRemoteAs(v float32) {
+func (o *BGPStatusPeers) SetRemoteAs(v int32) {
 	o.RemoteAs = v
 }
 
