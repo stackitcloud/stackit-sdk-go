@@ -22,8 +22,11 @@ type Path struct {
 	// Exact path match. Only a request path exactly equal to the value will match, e.g. '/foo' matches only '/foo', not '/foo/bar' or '/foobar'.
 	Exact *string `json:"exact,omitempty"`
 	// Prefix path match. Only matches on full segment boundaries, e.g. '/foo' matches '/foo' and '/foo/bar' but NOT '/foobar'.
-	Prefix *string `json:"prefix,omitempty"`
+	Prefix               *string `json:"prefix,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Path Path
 
 // NewPath instantiates a new Path object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o Path) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Prefix) {
 		toSerialize["prefix"] = o.Prefix
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Path) UnmarshalJSON(data []byte) (err error) {
+	varPath := _Path{}
+
+	err = json.Unmarshal(data, &varPath)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Path(varPath)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exact")
+		delete(additionalProperties, "prefix")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePath struct {
