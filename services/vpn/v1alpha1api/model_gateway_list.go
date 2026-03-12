@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &GatewayList{}
 
 // GatewayList struct for GatewayList
 type GatewayList struct {
-	Gateways []GatewayResponse `json:"gateways"`
+	Gateways             []GatewayResponse `json:"gateways"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GatewayList GatewayList
@@ -79,6 +79,11 @@ func (o GatewayList) MarshalJSON() ([]byte, error) {
 func (o GatewayList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["gateways"] = o.Gateways
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *GatewayList) UnmarshalJSON(data []byte) (err error) {
 
 	varGatewayList := _GatewayList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGatewayList)
+	err = json.Unmarshal(data, &varGatewayList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GatewayList(varGatewayList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "gateways")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

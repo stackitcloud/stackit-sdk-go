@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &QuotaList{}
 // QuotaList struct for QuotaList
 type QuotaList struct {
 	// Current limit and usage for VPN gateways.
-	Gateways Quota `json:"gateways"`
+	Gateways             Quota `json:"gateways"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QuotaList QuotaList
@@ -80,6 +80,11 @@ func (o QuotaList) MarshalJSON() ([]byte, error) {
 func (o QuotaList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["gateways"] = o.Gateways
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *QuotaList) UnmarshalJSON(data []byte) (err error) {
 
 	varQuotaList := _QuotaList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuotaList)
+	err = json.Unmarshal(data, &varQuotaList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = QuotaList(varQuotaList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "gateways")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

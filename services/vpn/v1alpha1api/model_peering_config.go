@@ -19,9 +19,12 @@ var _ MappedNullable = &PeeringConfig{}
 
 // PeeringConfig The peering object defines the point-to-point IP configuration for the Tunnel Interface.  These addresses serve as next-hop identifiers and are used for BGP peering sessions and can be used in Static Route-Based connectivity.
 type PeeringConfig struct {
-	LocalAddress  *string `json:"localAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
-	RemoteAddress *string `json:"remoteAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	LocalAddress         *string `json:"localAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	RemoteAddress        *string `json:"remoteAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PeeringConfig PeeringConfig
 
 // NewPeeringConfig instantiates a new PeeringConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o PeeringConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RemoteAddress) {
 		toSerialize["remoteAddress"] = o.RemoteAddress
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PeeringConfig) UnmarshalJSON(data []byte) (err error) {
+	varPeeringConfig := _PeeringConfig{}
+
+	err = json.Unmarshal(data, &varPeeringConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PeeringConfig(varPeeringConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "localAddress")
+		delete(additionalProperties, "remoteAddress")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePeeringConfig struct {

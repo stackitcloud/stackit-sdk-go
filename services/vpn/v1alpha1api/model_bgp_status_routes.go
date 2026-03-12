@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +26,9 @@ type BGPStatusRoutes struct {
 	// The AS-PATH
 	Path string `json:"path"`
 	// BGP Router ID of the neighbor that advertised this route
-	PeerId string `json:"peerId"`
-	Weight int32  `json:"weight"`
+	PeerId               string `json:"peerId"`
+	Weight               int32  `json:"weight"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BGPStatusRoutes BGPStatusRoutes
@@ -190,6 +190,11 @@ func (o BGPStatusRoutes) ToMap() (map[string]interface{}, error) {
 	toSerialize["path"] = o.Path
 	toSerialize["peerId"] = o.PeerId
 	toSerialize["weight"] = o.Weight
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -221,15 +226,24 @@ func (o *BGPStatusRoutes) UnmarshalJSON(data []byte) (err error) {
 
 	varBGPStatusRoutes := _BGPStatusRoutes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBGPStatusRoutes)
+	err = json.Unmarshal(data, &varBGPStatusRoutes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BGPStatusRoutes(varBGPStatusRoutes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "origin")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "peerId")
+		delete(additionalProperties, "weight")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

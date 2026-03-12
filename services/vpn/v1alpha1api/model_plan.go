@@ -28,8 +28,11 @@ type Plan struct {
 	// The service plan identifier.
 	PlanId *string `json:"planId,omitempty"`
 	// The SKU identifier used for billing.
-	Sku *string `json:"sku,omitempty"`
+	Sku                  *string `json:"sku,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Plan Plan
 
 // NewPlan instantiates a new Plan object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Sku) {
 		toSerialize["sku"] = o.Sku
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Plan) UnmarshalJSON(data []byte) (err error) {
+	varPlan := _Plan{}
+
+	err = json.Unmarshal(data, &varPlan)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Plan(varPlan)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "maxBandwidth")
+		delete(additionalProperties, "maxConnections")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "sku")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlan struct {

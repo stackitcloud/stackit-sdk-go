@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,8 +27,9 @@ type Gateway struct {
 	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The service plan identifier.
-	PlanId      string      `json:"planId"`
-	RoutingType RoutingType `json:"routingType"`
+	PlanId               string      `json:"planId"`
+	RoutingType          RoutingType `json:"routingType"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Gateway Gateway
@@ -235,6 +235,11 @@ func (o Gateway) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["planId"] = o.PlanId
 	toSerialize["routingType"] = o.RoutingType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -265,15 +270,25 @@ func (o *Gateway) UnmarshalJSON(data []byte) (err error) {
 
 	varGateway := _Gateway{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGateway)
+	err = json.Unmarshal(data, &varGateway)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Gateway(varGateway)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "availabilityZones")
+		delete(additionalProperties, "bgp")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "routingType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

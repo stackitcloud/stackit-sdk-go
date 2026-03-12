@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type APIError struct {
 	// A message describing the error.
 	Message string `json:"message"`
 	// The HTTP status code text.
-	Status string `json:"status"`
+	Status               string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _APIError APIError
@@ -173,6 +173,11 @@ func (o APIError) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["message"] = o.Message
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -202,15 +207,23 @@ func (o *APIError) UnmarshalJSON(data []byte) (err error) {
 
 	varAPIError := _APIError{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAPIError)
+	err = json.Unmarshal(data, &varAPIError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = APIError(varAPIError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

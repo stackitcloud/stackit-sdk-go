@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type GatewayAvailabilityZones struct {
 	// Object that represents an availability zone.
 	Tunnel1 string `json:"tunnel1"`
 	// Object that represents an availability zone.
-	Tunnel2 string `json:"tunnel2"`
+	Tunnel2              string `json:"tunnel2"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GatewayAvailabilityZones GatewayAvailabilityZones
@@ -108,6 +108,11 @@ func (o GatewayAvailabilityZones) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tunnel1"] = o.Tunnel1
 	toSerialize["tunnel2"] = o.Tunnel2
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *GatewayAvailabilityZones) UnmarshalJSON(data []byte) (err error) {
 
 	varGatewayAvailabilityZones := _GatewayAvailabilityZones{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGatewayAvailabilityZones)
+	err = json.Unmarshal(data, &varGatewayAvailabilityZones)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GatewayAvailabilityZones(varGatewayAvailabilityZones)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "tunnel1")
+		delete(additionalProperties, "tunnel2")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
