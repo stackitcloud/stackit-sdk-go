@@ -16,11 +16,11 @@ import (
 	"fmt"
 )
 
-// checks if the CreateFederatedIdentityProviderResponseAssertionsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateFederatedIdentityProviderResponseAssertionsInner{}
+// checks if the FederatedIdentityProviderAssertionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FederatedIdentityProviderAssertionsInner{}
 
-// CreateFederatedIdentityProviderResponseAssertionsInner struct for CreateFederatedIdentityProviderResponseAssertionsInner
-type CreateFederatedIdentityProviderResponseAssertionsInner struct {
+// FederatedIdentityProviderAssertionsInner struct for FederatedIdentityProviderAssertionsInner
+type FederatedIdentityProviderAssertionsInner struct {
 	// Item to compare
 	Item string `json:"item"`
 	// Operator for the comparison
@@ -29,30 +29,30 @@ type CreateFederatedIdentityProviderResponseAssertionsInner struct {
 	Value string `json:"value"`
 }
 
-type _CreateFederatedIdentityProviderResponseAssertionsInner CreateFederatedIdentityProviderResponseAssertionsInner
+type _FederatedIdentityProviderAssertionsInner FederatedIdentityProviderAssertionsInner
 
-// NewCreateFederatedIdentityProviderResponseAssertionsInner instantiates a new CreateFederatedIdentityProviderResponseAssertionsInner object
+// NewFederatedIdentityProviderAssertionsInner instantiates a new FederatedIdentityProviderAssertionsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateFederatedIdentityProviderResponseAssertionsInner(item string, operator string, value string) *CreateFederatedIdentityProviderResponseAssertionsInner {
-	this := CreateFederatedIdentityProviderResponseAssertionsInner{}
+func NewFederatedIdentityProviderAssertionsInner(item string, operator string, value string) *FederatedIdentityProviderAssertionsInner {
+	this := FederatedIdentityProviderAssertionsInner{}
 	this.Item = item
 	this.Operator = operator
 	this.Value = value
 	return &this
 }
 
-// NewCreateFederatedIdentityProviderResponseAssertionsInnerWithDefaults instantiates a new CreateFederatedIdentityProviderResponseAssertionsInner object
+// NewFederatedIdentityProviderAssertionsInnerWithDefaults instantiates a new FederatedIdentityProviderAssertionsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCreateFederatedIdentityProviderResponseAssertionsInnerWithDefaults() *CreateFederatedIdentityProviderResponseAssertionsInner {
-	this := CreateFederatedIdentityProviderResponseAssertionsInner{}
+func NewFederatedIdentityProviderAssertionsInnerWithDefaults() *FederatedIdentityProviderAssertionsInner {
+	this := FederatedIdentityProviderAssertionsInner{}
 	return &this
 }
 
 // GetItem returns the Item field value
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetItem() string {
+func (o *FederatedIdentityProviderAssertionsInner) GetItem() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -63,7 +63,7 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetItem() strin
 
 // GetItemOk returns a tuple with the Item field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetItemOk() (*string, bool) {
+func (o *FederatedIdentityProviderAssertionsInner) GetItemOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,12 +71,12 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetItemOk() (*s
 }
 
 // SetItem sets field value
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) SetItem(v string) {
+func (o *FederatedIdentityProviderAssertionsInner) SetItem(v string) {
 	o.Item = v
 }
 
 // GetOperator returns the Operator field value
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetOperator() string {
+func (o *FederatedIdentityProviderAssertionsInner) GetOperator() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetOperator() s
 
 // GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetOperatorOk() (*string, bool) {
+func (o *FederatedIdentityProviderAssertionsInner) GetOperatorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,12 +95,12 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetOperatorOk()
 }
 
 // SetOperator sets field value
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) SetOperator(v string) {
+func (o *FederatedIdentityProviderAssertionsInner) SetOperator(v string) {
 	o.Operator = v
 }
 
 // GetValue returns the Value field value
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetValue() string {
+func (o *FederatedIdentityProviderAssertionsInner) GetValue() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -111,7 +111,7 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetValue() stri
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetValueOk() (*string, bool) {
+func (o *FederatedIdentityProviderAssertionsInner) GetValueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,11 +119,11 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetValueOk() (*
 }
 
 // SetValue sets field value
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) SetValue(v string) {
+func (o *FederatedIdentityProviderAssertionsInner) SetValue(v string) {
 	o.Value = v
 }
 
-func (o CreateFederatedIdentityProviderResponseAssertionsInner) MarshalJSON() ([]byte, error) {
+func (o FederatedIdentityProviderAssertionsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -131,7 +131,7 @@ func (o CreateFederatedIdentityProviderResponseAssertionsInner) MarshalJSON() ([
 	return json.Marshal(toSerialize)
 }
 
-func (o CreateFederatedIdentityProviderResponseAssertionsInner) ToMap() (map[string]interface{}, error) {
+func (o FederatedIdentityProviderAssertionsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["item"] = o.Item
 	toSerialize["operator"] = o.Operator
@@ -139,7 +139,7 @@ func (o CreateFederatedIdentityProviderResponseAssertionsInner) ToMap() (map[str
 	return toSerialize, nil
 }
 
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) UnmarshalJSON(data []byte) (err error) {
+func (o *FederatedIdentityProviderAssertionsInner) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -163,53 +163,53 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) UnmarshalJSON(d
 		}
 	}
 
-	varCreateFederatedIdentityProviderResponseAssertionsInner := _CreateFederatedIdentityProviderResponseAssertionsInner{}
+	varFederatedIdentityProviderAssertionsInner := _FederatedIdentityProviderAssertionsInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateFederatedIdentityProviderResponseAssertionsInner)
+	err = decoder.Decode(&varFederatedIdentityProviderAssertionsInner)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CreateFederatedIdentityProviderResponseAssertionsInner(varCreateFederatedIdentityProviderResponseAssertionsInner)
+	*o = FederatedIdentityProviderAssertionsInner(varFederatedIdentityProviderAssertionsInner)
 
 	return err
 }
 
-type NullableCreateFederatedIdentityProviderResponseAssertionsInner struct {
-	value *CreateFederatedIdentityProviderResponseAssertionsInner
+type NullableFederatedIdentityProviderAssertionsInner struct {
+	value *FederatedIdentityProviderAssertionsInner
 	isSet bool
 }
 
-func (v NullableCreateFederatedIdentityProviderResponseAssertionsInner) Get() *CreateFederatedIdentityProviderResponseAssertionsInner {
+func (v NullableFederatedIdentityProviderAssertionsInner) Get() *FederatedIdentityProviderAssertionsInner {
 	return v.value
 }
 
-func (v *NullableCreateFederatedIdentityProviderResponseAssertionsInner) Set(val *CreateFederatedIdentityProviderResponseAssertionsInner) {
+func (v *NullableFederatedIdentityProviderAssertionsInner) Set(val *FederatedIdentityProviderAssertionsInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCreateFederatedIdentityProviderResponseAssertionsInner) IsSet() bool {
+func (v NullableFederatedIdentityProviderAssertionsInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCreateFederatedIdentityProviderResponseAssertionsInner) Unset() {
+func (v *NullableFederatedIdentityProviderAssertionsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCreateFederatedIdentityProviderResponseAssertionsInner(val *CreateFederatedIdentityProviderResponseAssertionsInner) *NullableCreateFederatedIdentityProviderResponseAssertionsInner {
-	return &NullableCreateFederatedIdentityProviderResponseAssertionsInner{value: val, isSet: true}
+func NewNullableFederatedIdentityProviderAssertionsInner(val *FederatedIdentityProviderAssertionsInner) *NullableFederatedIdentityProviderAssertionsInner {
+	return &NullableFederatedIdentityProviderAssertionsInner{value: val, isSet: true}
 }
 
-func (v NullableCreateFederatedIdentityProviderResponseAssertionsInner) MarshalJSON() ([]byte, error) {
+func (v NullableFederatedIdentityProviderAssertionsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCreateFederatedIdentityProviderResponseAssertionsInner) UnmarshalJSON(src []byte) error {
+func (v *NullableFederatedIdentityProviderAssertionsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
