@@ -334,7 +334,7 @@ func TestRestoreInstanceWaitHandler(t *testing.T) {
 
 			handler := RestoreInstanceWaitHandler(context.Background(), apiClient, "", "", backupId, testRegion)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			gotRes, err := handler.SetSleepBeforeWait(0).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
