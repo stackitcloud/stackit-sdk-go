@@ -23,8 +23,11 @@ type ListAuditLogEntriesResponse struct {
 	Cursor *string                 `json:"cursor,omitempty"`
 	Items  []AuditLogEntryResponse `json:"items,omitempty"`
 	// Maximum amount of entries requested.
-	Limit *float32 `json:"limit,omitempty"`
+	Limit                *float32 `json:"limit,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListAuditLogEntriesResponse ListAuditLogEntriesResponse
 
 // NewListAuditLogEntriesResponse instantiates a new ListAuditLogEntriesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -162,7 +165,35 @@ func (o ListAuditLogEntriesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Limit) {
 		toSerialize["limit"] = o.Limit
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListAuditLogEntriesResponse) UnmarshalJSON(data []byte) (err error) {
+	varListAuditLogEntriesResponse := _ListAuditLogEntriesResponse{}
+
+	err = json.Unmarshal(data, &varListAuditLogEntriesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListAuditLogEntriesResponse(varListAuditLogEntriesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cursor")
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "limit")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListAuditLogEntriesResponse struct {

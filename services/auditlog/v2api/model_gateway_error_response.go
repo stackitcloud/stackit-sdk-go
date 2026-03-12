@@ -22,8 +22,11 @@ type GatewayErrorResponse struct {
 	// Description of the error.
 	Message *string `json:"message,omitempty"`
 	// Http status code.
-	Status *float32 `json:"status,omitempty"`
+	Status               *float32 `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GatewayErrorResponse GatewayErrorResponse
 
 // NewGatewayErrorResponse instantiates a new GatewayErrorResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o GatewayErrorResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GatewayErrorResponse) UnmarshalJSON(data []byte) (err error) {
+	varGatewayErrorResponse := _GatewayErrorResponse{}
+
+	err = json.Unmarshal(data, &varGatewayErrorResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GatewayErrorResponse(varGatewayErrorResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGatewayErrorResponse struct {

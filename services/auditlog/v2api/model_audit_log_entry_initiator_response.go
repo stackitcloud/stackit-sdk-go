@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type AuditLogEntryInitiatorResponse struct {
 	// E-Mail of the user or service account who triggered the request
 	Email *string `json:"email,omitempty"`
 	// Unique identifier of the user
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AuditLogEntryInitiatorResponse AuditLogEntryInitiatorResponse
@@ -117,6 +117,11 @@ func (o AuditLogEntryInitiatorResponse) ToMap() (map[string]interface{}, error) 
 		toSerialize["email"] = o.Email
 	}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *AuditLogEntryInitiatorResponse) UnmarshalJSON(data []byte) (err error) 
 
 	varAuditLogEntryInitiatorResponse := _AuditLogEntryInitiatorResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAuditLogEntryInitiatorResponse)
+	err = json.Unmarshal(data, &varAuditLogEntryInitiatorResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AuditLogEntryInitiatorResponse(varAuditLogEntryInitiatorResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
