@@ -200,14 +200,18 @@
   - [v1.4.0](services/serverupdate/CHANGELOG.md#v140)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `runcommand`: [v1.5.0](services/runcommand/CHANGELOG.md#v150)
-  - **Feature:** Introduction of multi API version support for the runcommand SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which can be used for communication with the runcommand v1 API
-  - `v1betaapi`: New package which can be used for communication with the runcommand v1 beta API
-  - `v2api`: New package which can be used for communication with the runcommand v2 API
-  - `v2betaapi`: New package which can be used for communication with the runcommand v2 beta API
-  - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `runcommand`:
+  - [v1.5.0](services/runcommand/CHANGELOG.md#v150)
+    - **Feature:** Introduction of multi API version support for the runcommand SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the runcommand v1 API
+    - `v1betaapi`: New package which can be used for communication with the runcommand v1 beta API
+    - `v2api`: New package which can be used for communication with the runcommand v2 API
+    - `v2betaapi`: New package which can be used for communication with the runcommand v2 beta API
+    - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v1.6.0](services/runcommand/CHANGELOG.md#v160)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `secretsmanager`: [v0.15.0](services/secretsmanager/CHANGELOG.md#v0150)
   - **Feature:** Introduction of multi API version support for the secretsmanager SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT secretsmanager API in the future

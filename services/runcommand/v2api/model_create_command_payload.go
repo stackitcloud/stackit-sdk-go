@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &CreateCommandPayload{}
 
 // CreateCommandPayload struct for CreateCommandPayload
 type CreateCommandPayload struct {
-	CommandTemplateName string             `json:"commandTemplateName"`
-	Parameters          *map[string]string `json:"parameters,omitempty"`
+	CommandTemplateName  string             `json:"commandTemplateName"`
+	Parameters           *map[string]string `json:"parameters,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateCommandPayload CreateCommandPayload
@@ -116,6 +116,11 @@ func (o CreateCommandPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Parameters) {
 		toSerialize["parameters"] = o.Parameters
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *CreateCommandPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateCommandPayload := _CreateCommandPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateCommandPayload)
+	err = json.Unmarshal(data, &varCreateCommandPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateCommandPayload(varCreateCommandPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "commandTemplateName")
+		delete(additionalProperties, "parameters")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
