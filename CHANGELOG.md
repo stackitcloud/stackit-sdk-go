@@ -35,14 +35,18 @@
   - `v1api`: New package which can be used for communication with the logs v1 API
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `sqlserverflex`: [v1.5.0](services/sqlserverflex/CHANGELOG.md#v150)
-  - **Feature:** Introduction of multi API version support for the sqlserverflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which can be used for communication with the sqlserverflex v1 API
-  - `v2api`: New package which can be used for communication with the sqlserverflex v2 API
-  - `v3alpha1api`: New package which can be used for communication with the sqlserverflex v3 alpha1 API
-  - `v3beta1api`: New package which can be used for communication with the sqlserverflex v3 beta1 API
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `sqlserverflex`: 
+  - [v1.5.0](services/sqlserverflex/CHANGELOG.md#v150)
+    - **Feature:** Introduction of multi API version support for the sqlserverflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the sqlserverflex v1 API
+    - `v2api`: New package which can be used for communication with the sqlserverflex v2 API
+    - `v3alpha1api`: New package which can be used for communication with the sqlserverflex v3 alpha1 API
+    - `v3beta1api`: New package which can be used for communication with the sqlserverflex v3 beta1 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v1.6.0](services/sqlserverflex/CHANGELOG.md#v160)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `vpn`: 
   - [v0.1.0](services/vpn/CHANGELOG.md#v010)
     - **New:** SDK module for vpn service

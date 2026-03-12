@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &CreateUserPayload{}
 
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
-	DefaultDatabase *string  `json:"default_database,omitempty"`
-	Roles           []string `json:"roles"`
-	Username        string   `json:"username"`
+	DefaultDatabase      *string  `json:"default_database,omitempty"`
+	Roles                []string `json:"roles"`
+	Username             string   `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateUserPayload CreateUserPayload
@@ -143,6 +143,11 @@ func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["roles"] = o.Roles
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *CreateUserPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateUserPayload := _CreateUserPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateUserPayload)
+	err = json.Unmarshal(data, &varCreateUserPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateUserPayload(varCreateUserPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default_database")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

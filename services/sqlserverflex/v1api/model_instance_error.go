@@ -20,11 +20,14 @@ var _ MappedNullable = &InstanceError{}
 
 // InstanceError struct for InstanceError
 type InstanceError struct {
-	Code    *int32               `json:"code,omitempty"`
-	Fields  *map[string][]string `json:"fields,omitempty"`
-	Message *string              `json:"message,omitempty"`
-	Type    *Type                `json:"type,omitempty"`
+	Code                 *int32               `json:"code,omitempty"`
+	Fields               *map[string][]string `json:"fields,omitempty"`
+	Message              *string              `json:"message,omitempty"`
+	Type                 *Type                `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceError InstanceError
 
 // NewInstanceError instantiates a new InstanceError object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,36 @@ func (o InstanceError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceError) UnmarshalJSON(data []byte) (err error) {
+	varInstanceError := _InstanceError{}
+
+	err = json.Unmarshal(data, &varInstanceError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceError(varInstanceError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "fields")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceError struct {

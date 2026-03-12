@@ -35,8 +35,11 @@ type GetBackupResponse struct {
 	// Backup size in byte
 	Size *int32 `json:"size,omitempty"`
 	// Backup start time in UTC
-	StartTime *string `json:"startTime,omitempty"`
+	StartTime            *string `json:"startTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetBackupResponse GetBackupResponse
 
 // NewGetBackupResponse instantiates a new GetBackupResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -345,7 +348,40 @@ func (o GetBackupResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StartTime) {
 		toSerialize["startTime"] = o.StartTime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetBackupResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetBackupResponse := _GetBackupResponse{}
+
+	err = json.Unmarshal(data, &varGetBackupResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetBackupResponse(varGetBackupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "endTime")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "startTime")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetBackupResponse struct {

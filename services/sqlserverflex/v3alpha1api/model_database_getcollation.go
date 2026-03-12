@@ -20,9 +20,12 @@ var _ MappedNullable = &DatabaseGetcollation{}
 
 // DatabaseGetcollation struct for DatabaseGetcollation
 type DatabaseGetcollation struct {
-	CollationName *string `json:"collation_name,omitempty"`
-	Description   *string `json:"description,omitempty"`
+	CollationName        *string `json:"collation_name,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DatabaseGetcollation DatabaseGetcollation
 
 // NewDatabaseGetcollation instantiates a new DatabaseGetcollation object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o DatabaseGetcollation) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DatabaseGetcollation) UnmarshalJSON(data []byte) (err error) {
+	varDatabaseGetcollation := _DatabaseGetcollation{}
+
+	err = json.Unmarshal(data, &varDatabaseGetcollation)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DatabaseGetcollation(varDatabaseGetcollation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collation_name")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDatabaseGetcollation struct {

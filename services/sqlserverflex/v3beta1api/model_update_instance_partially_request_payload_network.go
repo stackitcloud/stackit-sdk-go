@@ -21,8 +21,11 @@ var _ MappedNullable = &UpdateInstancePartiallyRequestPayloadNetwork{}
 // UpdateInstancePartiallyRequestPayloadNetwork the network configuration of the instance.
 type UpdateInstancePartiallyRequestPayloadNetwork struct {
 	// List of IPV4 cidr.
-	Acl []string `json:"acl,omitempty"`
+	Acl                  []string `json:"acl,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateInstancePartiallyRequestPayloadNetwork UpdateInstancePartiallyRequestPayloadNetwork
 
 // NewUpdateInstancePartiallyRequestPayloadNetwork instantiates a new UpdateInstancePartiallyRequestPayloadNetwork object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o UpdateInstancePartiallyRequestPayloadNetwork) ToMap() (map[string]interf
 	if !IsNil(o.Acl) {
 		toSerialize["acl"] = o.Acl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateInstancePartiallyRequestPayloadNetwork) UnmarshalJSON(data []byte) (err error) {
+	varUpdateInstancePartiallyRequestPayloadNetwork := _UpdateInstancePartiallyRequestPayloadNetwork{}
+
+	err = json.Unmarshal(data, &varUpdateInstancePartiallyRequestPayloadNetwork)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateInstancePartiallyRequestPayloadNetwork(varUpdateInstancePartiallyRequestPayloadNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateInstancePartiallyRequestPayloadNetwork struct {

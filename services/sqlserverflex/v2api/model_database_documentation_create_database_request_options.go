@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type DatabaseDocumentationCreateDatabaseRequestOptions struct {
 	// CompatibilityLevel of the Database.
 	CompatibilityLevel *string `json:"compatibilityLevel,omitempty"`
 	// Name of the owner of the database.
-	Owner string `json:"owner"`
+	Owner                string `json:"owner"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DatabaseDocumentationCreateDatabaseRequestOptions DatabaseDocumentationCreateDatabaseRequestOptions
@@ -155,6 +155,11 @@ func (o DatabaseDocumentationCreateDatabaseRequestOptions) ToMap() (map[string]i
 		toSerialize["compatibilityLevel"] = o.CompatibilityLevel
 	}
 	toSerialize["owner"] = o.Owner
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -182,15 +187,22 @@ func (o *DatabaseDocumentationCreateDatabaseRequestOptions) UnmarshalJSON(data [
 
 	varDatabaseDocumentationCreateDatabaseRequestOptions := _DatabaseDocumentationCreateDatabaseRequestOptions{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDatabaseDocumentationCreateDatabaseRequestOptions)
+	err = json.Unmarshal(data, &varDatabaseDocumentationCreateDatabaseRequestOptions)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DatabaseDocumentationCreateDatabaseRequestOptions(varDatabaseDocumentationCreateDatabaseRequestOptions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collation")
+		delete(additionalProperties, "compatibilityLevel")
+		delete(additionalProperties, "owner")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &GetStoragesResponse{}
 // GetStoragesResponse struct for GetStoragesResponse
 type GetStoragesResponse struct {
 	// maximum storage which can be ordered for the flavor in Gigabyte.
-	StorageClasses []FlavorStorageClassesStorageClass `json:"storageClasses"`
-	StorageRange   FlavorStorageRange                 `json:"storageRange"`
+	StorageClasses       []FlavorStorageClassesStorageClass `json:"storageClasses"`
+	StorageRange         FlavorStorageRange                 `json:"storageRange"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetStoragesResponse GetStoragesResponse
@@ -108,6 +108,11 @@ func (o GetStoragesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["storageClasses"] = o.StorageClasses
 	toSerialize["storageRange"] = o.StorageRange
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *GetStoragesResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetStoragesResponse := _GetStoragesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetStoragesResponse)
+	err = json.Unmarshal(data, &varGetStoragesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetStoragesResponse(varGetStoragesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "storageClasses")
+		delete(additionalProperties, "storageRange")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

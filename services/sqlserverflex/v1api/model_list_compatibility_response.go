@@ -20,8 +20,11 @@ var _ MappedNullable = &ListCompatibilityResponse{}
 
 // ListCompatibilityResponse struct for ListCompatibilityResponse
 type ListCompatibilityResponse struct {
-	Compatibilities []MssqlDatabaseCompatibility `json:"compatibilities,omitempty"`
+	Compatibilities      []MssqlDatabaseCompatibility `json:"compatibilities,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListCompatibilityResponse ListCompatibilityResponse
 
 // NewListCompatibilityResponse instantiates a new ListCompatibilityResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ListCompatibilityResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Compatibilities) {
 		toSerialize["compatibilities"] = o.Compatibilities
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListCompatibilityResponse) UnmarshalJSON(data []byte) (err error) {
+	varListCompatibilityResponse := _ListCompatibilityResponse{}
+
+	err = json.Unmarshal(data, &varListCompatibilityResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListCompatibilityResponse(varListCompatibilityResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "compatibilities")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListCompatibilityResponse struct {
