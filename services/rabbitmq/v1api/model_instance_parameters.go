@@ -34,11 +34,14 @@ type InstanceParameters struct {
 	Plugins              []string `json:"plugins,omitempty"`
 	Roles                []string `json:"roles,omitempty"`
 	// Comma separated list of IP networks in CIDR notation which are allowed to access this instance.
-	SgwAcl       *string  `json:"sgw_acl,omitempty"`
-	Syslog       []string `json:"syslog,omitempty"`
-	TlsCiphers   []string `json:"tls-ciphers,omitempty"`
-	TlsProtocols []string `json:"tls-protocols,omitempty"`
+	SgwAcl               *string  `json:"sgw_acl,omitempty"`
+	Syslog               []string `json:"syslog,omitempty"`
+	TlsCiphers           []string `json:"tls-ciphers,omitempty"`
+	TlsProtocols         []string `json:"tls-protocols,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceParameters InstanceParameters
 
 // NewInstanceParameters instantiates a new InstanceParameters object
 // This constructor will assign default values to properties that have it defined,
@@ -538,7 +541,45 @@ func (o InstanceParameters) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TlsProtocols) {
 		toSerialize["tls-protocols"] = o.TlsProtocols
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceParameters) UnmarshalJSON(data []byte) (err error) {
+	varInstanceParameters := _InstanceParameters{}
+
+	err = json.Unmarshal(data, &varInstanceParameters)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceParameters(varInstanceParameters)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "consumer_timeout")
+		delete(additionalProperties, "enable_monitoring")
+		delete(additionalProperties, "graphite")
+		delete(additionalProperties, "max_disk_threshold")
+		delete(additionalProperties, "metrics_frequency")
+		delete(additionalProperties, "metrics_prefix")
+		delete(additionalProperties, "monitoring_instance_id")
+		delete(additionalProperties, "plugins")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "sgw_acl")
+		delete(additionalProperties, "syslog")
+		delete(additionalProperties, "tls-ciphers")
+		delete(additionalProperties, "tls-protocols")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceParameters struct {
