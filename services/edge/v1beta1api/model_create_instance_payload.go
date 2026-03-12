@@ -11,7 +11,6 @@ API version: 1beta1
 package v1beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type CreateInstancePayload struct {
 	// The displayed name to distinguish multiple instances.
 	DisplayName string `json:"displayName"`
 	// Service Plan configures the size of the Instance.
-	PlanId string `json:"planId"`
+	PlanId               string `json:"planId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstancePayload CreateInstancePayload
@@ -145,6 +145,11 @@ func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["displayName"] = o.DisplayName
 	toSerialize["planId"] = o.PlanId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -173,15 +178,22 @@ func (o *CreateInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstancePayload := _CreateInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstancePayload)
+	err = json.Unmarshal(data, &varCreateInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstancePayload(varCreateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "planId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

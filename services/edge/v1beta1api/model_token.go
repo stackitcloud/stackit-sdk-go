@@ -11,7 +11,6 @@ API version: 1beta1
 package v1beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &Token{}
 // Token struct for Token
 type Token struct {
 	// The token for the instance.
-	Token string `json:"token"`
+	Token                string `json:"token"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Token Token
@@ -80,6 +80,11 @@ func (o Token) MarshalJSON() ([]byte, error) {
 func (o Token) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["token"] = o.Token
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *Token) UnmarshalJSON(data []byte) (err error) {
 
 	varToken := _Token{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varToken)
+	err = json.Unmarshal(data, &varToken)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Token(varToken)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "token")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

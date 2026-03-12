@@ -11,7 +11,6 @@ API version: 1beta1
 package v1beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type Instance struct {
 	// Service Plan configures the size of the Instance.
 	PlanId string `json:"planId"`
 	// The current status of the instance.
-	Status string `json:"status"`
+	Status               string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Instance Instance
@@ -258,6 +258,11 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["planId"] = o.PlanId
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -290,15 +295,26 @@ func (o *Instance) UnmarshalJSON(data []byte) (err error) {
 
 	varInstance := _Instance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstance)
+	err = json.Unmarshal(data, &varInstance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Instance(varInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "created")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "frontendUrl")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

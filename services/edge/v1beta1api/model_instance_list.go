@@ -11,7 +11,6 @@ API version: 1beta1
 package v1beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &InstanceList{}
 
 // InstanceList struct for InstanceList
 type InstanceList struct {
-	Instances []Instance `json:"instances"`
+	Instances            []Instance `json:"instances"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceList InstanceList
@@ -79,6 +79,11 @@ func (o InstanceList) MarshalJSON() ([]byte, error) {
 func (o InstanceList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instances"] = o.Instances
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *InstanceList) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceList := _InstanceList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceList)
+	err = json.Unmarshal(data, &varInstanceList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceList(varInstanceList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instances")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

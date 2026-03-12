@@ -22,8 +22,11 @@ type UpdateInstanceByNamePayload struct {
 	// A user chosen description to distinguish multiple instances.
 	Description *string `json:"description,omitempty"`
 	// Service Plan configures the size of the Instance.
-	PlanId *string `json:"planId,omitempty"`
+	PlanId               *string `json:"planId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateInstanceByNamePayload UpdateInstanceByNamePayload
 
 // NewUpdateInstanceByNamePayload instantiates a new UpdateInstanceByNamePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o UpdateInstanceByNamePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PlanId) {
 		toSerialize["planId"] = o.PlanId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateInstanceByNamePayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateInstanceByNamePayload := _UpdateInstanceByNamePayload{}
+
+	err = json.Unmarshal(data, &varUpdateInstanceByNamePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateInstanceByNamePayload(varUpdateInstanceByNamePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "planId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateInstanceByNamePayload struct {
