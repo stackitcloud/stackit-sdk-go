@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &CreateOrganizationPayload{}
 
 // CreateOrganizationPayload struct for CreateOrganizationPayload
 type CreateOrganizationPayload struct {
-	Name       string  `json:"name"`
-	PlatformId *string `json:"platformId,omitempty"`
+	Name                 string  `json:"name"`
+	PlatformId           *string `json:"platformId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateOrganizationPayload CreateOrganizationPayload
@@ -116,6 +116,11 @@ func (o CreateOrganizationPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PlatformId) {
 		toSerialize["platformId"] = o.PlatformId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *CreateOrganizationPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateOrganizationPayload := _CreateOrganizationPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateOrganizationPayload)
+	err = json.Unmarshal(data, &varCreateOrganizationPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateOrganizationPayload(varCreateOrganizationPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "platformId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
