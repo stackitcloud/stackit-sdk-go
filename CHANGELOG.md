@@ -198,14 +198,23 @@
   - `v1api`: New package which should be used for communication with the STACKIT scf API in the future
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `iaas`: [v1.4.0](services/iaas/CHANGELOG.md#v140)
-  - **Feature:** Introduction of multi API version support for the iaas SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which can be used for communication with the iaas v1 API
-  - `v2api`: New package which can be used for communication with the iaas v2 API
-  - `v2alpha1api`: New package which can be used for communication with the iaas v2 alpha1 API
-  - `v2beta1api`: New package which can be used for communication with the iaas v2 beta1 API
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `iaas`:
+  - [v1.4.0](services/iaas/CHANGELOG.md#v140)
+    - **Feature:** Introduction of multi API version support for the iaas SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the iaas v1 API
+    - `v2api`: New package which can be used for communication with the iaas v2 API
+    - `v2alpha1api`: New package which can be used for communication with the iaas v2 alpha1 API
+    - `v2beta1api`: New package which can be used for communication with the iaas v2 beta1 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v1.5.0](services/iaas/CHANGELOG.md#v150)
+    - `v1api`:
+      - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct
+    - `v2api`:
+      - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct
+    - `v2beta1api`: Align package to latest API specification
 - `mongodbflex`: [v1.6.0](services/mongodbflex/CHANGELOG.md#v160)
   - **Feature:** Introduction of multi API version support for the mongodbflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which can be used for communication with the mongodbflex v1 API

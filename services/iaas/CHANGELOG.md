@@ -1,3 +1,12 @@
+## v1.5.0
+- `v1api`:
+  - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct
+- `v2api`:
+  - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct
+- Deprecated SDK layer in root of the module:
+  - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct
+- `v2beta1api`: Align package to latest API specification
+
 ## v1.4.0
 - **Feature:** Introduction of multi API version support for the iaas SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1api`: New package which can be used for communication with the iaas v1 API

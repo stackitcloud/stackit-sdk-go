@@ -74,6 +74,33 @@ func setBackupGetCreatedAtAttributeType(arg *BackupGetCreatedAtAttributeType, va
 }
 
 /*
+	types and functions for description
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BackupGetDescriptionAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getBackupGetDescriptionAttributeTypeOk(arg BackupGetDescriptionAttributeType) (ret BackupGetDescriptionRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setBackupGetDescriptionAttributeType(arg *BackupGetDescriptionAttributeType, val BackupGetDescriptionRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BackupGetDescriptionArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BackupGetDescriptionRetType = string
+
+/*
 	types and functions for encrypted
 */
 
@@ -323,6 +350,8 @@ type Backup struct {
 	AvailabilityZone BackupGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt BackupGetCreatedAtAttributeType `json:"createdAt,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description BackupGetDescriptionAttributeType `json:"description,omitempty"`
 	// Indicates if a volume is encrypted.
 	Encrypted BackupgetEncryptedAttributeType `json:"encrypted,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -414,6 +443,33 @@ func (o *Backup) HasCreatedAt() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Backup) SetCreatedAt(v BackupGetCreatedAtRetType) {
 	setBackupGetCreatedAtAttributeType(&o.CreatedAt, v)
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Backup) GetDescription() (res BackupGetDescriptionRetType) {
+	res, _ = o.GetDescriptionOk()
+	return
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Backup) GetDescriptionOk() (ret BackupGetDescriptionRetType, ok bool) {
+	return getBackupGetDescriptionAttributeTypeOk(o.Description)
+}
+
+// HasDescription returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Backup) HasDescription() bool {
+	_, ok := o.GetDescriptionOk()
+	return ok
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Backup) SetDescription(v BackupGetDescriptionRetType) {
+	setBackupGetDescriptionAttributeType(&o.Description, v)
 }
 
 // GetEncrypted returns the Encrypted field value if set, zero value otherwise.
@@ -667,6 +723,9 @@ func (o Backup) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getBackupGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
+	}
+	if val, ok := getBackupGetDescriptionAttributeTypeOk(o.Description); ok {
+		toSerialize["Description"] = val
 	}
 	if val, ok := getBackupgetEncryptedAttributeTypeOk(o.Encrypted); ok {
 		toSerialize["Encrypted"] = val
