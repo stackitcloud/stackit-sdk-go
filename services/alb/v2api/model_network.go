@@ -22,8 +22,11 @@ type Network struct {
 	// STACKIT network ID the Application Load Balancer and/or targets are in.
 	NetworkId *string `json:"networkId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// The role defines how the Application Load Balancer is using the network. Currently only ROLE_LISTENERS_AND_TARGETS is supported.
-	Role *string `json:"role,omitempty"`
+	Role                 *string `json:"role,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Network Network
 
 // NewNetwork instantiates a new Network object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Role) {
 		toSerialize["role"] = o.Role
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Network) UnmarshalJSON(data []byte) (err error) {
+	varNetwork := _Network{}
+
+	err = json.Unmarshal(data, &varNetwork)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Network(varNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "networkId")
+		delete(additionalProperties, "role")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNetwork struct {

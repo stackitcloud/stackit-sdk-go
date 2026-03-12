@@ -19,9 +19,12 @@ var _ MappedNullable = &LoadbalancerOptionObservability{}
 
 // LoadbalancerOptionObservability We offer Load Balancer observability via STACKIT Observability or external solutions.
 type LoadbalancerOptionObservability struct {
-	Logs    *LoadbalancerOptionLogs    `json:"logs,omitempty"`
-	Metrics *LoadbalancerOptionMetrics `json:"metrics,omitempty"`
+	Logs                 *LoadbalancerOptionLogs    `json:"logs,omitempty"`
+	Metrics              *LoadbalancerOptionMetrics `json:"metrics,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoadbalancerOptionObservability LoadbalancerOptionObservability
 
 // NewLoadbalancerOptionObservability instantiates a new LoadbalancerOptionObservability object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o LoadbalancerOptionObservability) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Metrics) {
 		toSerialize["metrics"] = o.Metrics
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoadbalancerOptionObservability) UnmarshalJSON(data []byte) (err error) {
+	varLoadbalancerOptionObservability := _LoadbalancerOptionObservability{}
+
+	err = json.Unmarshal(data, &varLoadbalancerOptionObservability)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoadbalancerOptionObservability(varLoadbalancerOptionObservability)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "logs")
+		delete(additionalProperties, "metrics")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoadbalancerOptionObservability struct {

@@ -28,8 +28,11 @@ type Listener struct {
 	// Protocol is the highest network protocol we understand to load balance. Currently PROTOCOL_HTTP and PROTOCOL_HTTPS are supported.
 	Protocol *string `json:"protocol,omitempty"`
 	// Enable Web Application Firewall (WAF), referenced by name. See \"Application Load Balancer - Web Application Firewall API\" for more information.
-	WafConfigName *string `json:"wafConfigName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	WafConfigName        *string `json:"wafConfigName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Listener Listener
 
 // NewListener instantiates a new Listener object
 // This constructor will assign default values to properties that have it defined,
@@ -268,7 +271,38 @@ func (o Listener) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WafConfigName) {
 		toSerialize["wafConfigName"] = o.WafConfigName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Listener) UnmarshalJSON(data []byte) (err error) {
+	varListener := _Listener{}
+
+	err = json.Unmarshal(data, &varListener)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Listener(varListener)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "http")
+		delete(additionalProperties, "https")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "wafConfigName")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListener struct {
