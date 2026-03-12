@@ -11,7 +11,6 @@ API version: 1alpha.0.3
 package v1alphaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &LogsInstancesList{}
 
 // LogsInstancesList struct for LogsInstancesList
 type LogsInstancesList struct {
-	Instances []LogsInstance `json:"instances"`
+	Instances            []LogsInstance `json:"instances"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LogsInstancesList LogsInstancesList
@@ -79,6 +79,11 @@ func (o LogsInstancesList) MarshalJSON() ([]byte, error) {
 func (o LogsInstancesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instances"] = o.Instances
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *LogsInstancesList) UnmarshalJSON(data []byte) (err error) {
 
 	varLogsInstancesList := _LogsInstancesList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLogsInstancesList)
+	err = json.Unmarshal(data, &varLogsInstancesList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LogsInstancesList(varLogsInstancesList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instances")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
