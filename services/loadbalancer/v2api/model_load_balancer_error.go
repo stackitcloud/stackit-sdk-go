@@ -22,8 +22,11 @@ type LoadBalancerError struct {
 	// The error description contains additional helpful user information to fix the error state of the load balancer. For example the IP 45.135.247.139 does not exist in the project, then the description will report: Floating IP \"45.135.247.139\" could not be found or if the IP was deleted then you will get a proper error message.
 	Description *string `json:"description,omitempty"`
 	// The error type specifies which part of the load balancer encountered the error. I.e. the API will not check if a provided public IP is actually available in the project. Instead the load balancer with try to use the provided IP and if not available reports TYPE_FIP_NOT_CONFIGURED error or TYPE_FIP_NOT_FOUND if the IP was deleted.
-	Type *string `json:"type,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoadBalancerError LoadBalancerError
 
 // NewLoadBalancerError instantiates a new LoadBalancerError object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o LoadBalancerError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoadBalancerError) UnmarshalJSON(data []byte) (err error) {
+	varLoadBalancerError := _LoadBalancerError{}
+
+	err = json.Unmarshal(data, &varLoadBalancerError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoadBalancerError(varLoadBalancerError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoadBalancerError struct {

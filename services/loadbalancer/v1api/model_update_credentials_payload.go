@@ -24,8 +24,11 @@ type UpdateCredentialsPayload struct {
 	// A valid password used for an existing ARGUS instance, which is used during basic auth.
 	Password *string `json:"password,omitempty"`
 	// A valid username used for an existing ARGUS instance, which is used during basic auth.
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateCredentialsPayload UpdateCredentialsPayload
 
 // NewUpdateCredentialsPayload instantiates a new UpdateCredentialsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o UpdateCredentialsPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateCredentialsPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateCredentialsPayload := _UpdateCredentialsPayload{}
+
+	err = json.Unmarshal(data, &varUpdateCredentialsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateCredentialsPayload(varUpdateCredentialsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateCredentialsPayload struct {

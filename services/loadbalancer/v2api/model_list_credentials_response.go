@@ -19,8 +19,11 @@ var _ MappedNullable = &ListCredentialsResponse{}
 
 // ListCredentialsResponse struct for ListCredentialsResponse
 type ListCredentialsResponse struct {
-	Credentials []CredentialsResponse `json:"credentials,omitempty"`
+	Credentials          []CredentialsResponse `json:"credentials,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListCredentialsResponse ListCredentialsResponse
 
 // NewListCredentialsResponse instantiates a new ListCredentialsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o ListCredentialsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Credentials) {
 		toSerialize["credentials"] = o.Credentials
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListCredentialsResponse) UnmarshalJSON(data []byte) (err error) {
+	varListCredentialsResponse := _ListCredentialsResponse{}
+
+	err = json.Unmarshal(data, &varListCredentialsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListCredentialsResponse(varListCredentialsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentials")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListCredentialsResponse struct {

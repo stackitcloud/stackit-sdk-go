@@ -29,10 +29,13 @@ type Listener struct {
 	// Server Name Idicators config for domains to be routed to the desired target pool for this listener.
 	ServerNameIndicators []ServerNameIndicator `json:"serverNameIndicators,omitempty"`
 	// Reference target pool by target pool name.
-	TargetPool *string     `json:"targetPool,omitempty"`
-	Tcp        *OptionsTCP `json:"tcp,omitempty"`
-	Udp        *OptionsUDP `json:"udp,omitempty"`
+	TargetPool           *string     `json:"targetPool,omitempty"`
+	Tcp                  *OptionsTCP `json:"tcp,omitempty"`
+	Udp                  *OptionsUDP `json:"udp,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Listener Listener
 
 // NewListener instantiates a new Listener object
 // This constructor will assign default values to properties that have it defined,
@@ -341,7 +344,40 @@ func (o Listener) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Udp) {
 		toSerialize["udp"] = o.Udp
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Listener) UnmarshalJSON(data []byte) (err error) {
+	varListener := _Listener{}
+
+	err = json.Unmarshal(data, &varListener)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Listener(varListener)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "serverNameIndicators")
+		delete(additionalProperties, "targetPool")
+		delete(additionalProperties, "tcp")
+		delete(additionalProperties, "udp")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListener struct {
