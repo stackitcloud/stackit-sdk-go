@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +26,9 @@ type ListInstance struct {
 	// Whether the instance can be deleted or not.
 	IsDeletable bool `json:"isDeletable"`
 	// The name of the instance.
-	Name   string `json:"name"`
-	Status Status `json:"status"`
+	Name                 string `json:"name"`
+	Status               Status `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListInstance ListInstance
@@ -164,6 +164,11 @@ func (o ListInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize["isDeletable"] = o.IsDeletable
 	toSerialize["name"] = o.Name
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *ListInstance) UnmarshalJSON(data []byte) (err error) {
 
 	varListInstance := _ListInstance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListInstance)
+	err = json.Unmarshal(data, &varListInstance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListInstance(varListInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "isDeletable")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

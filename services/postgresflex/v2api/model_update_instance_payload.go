@@ -24,13 +24,16 @@ type UpdateInstancePayload struct {
 	BackupSchedule *string `json:"backupSchedule,omitempty"`
 	FlavorId       *string `json:"flavorId,omitempty"`
 	// Labels field is not certain/clear
-	Labels   *map[string]string `json:"labels,omitempty"`
-	Name     *string            `json:"name,omitempty"`
-	Options  *map[string]string `json:"options,omitempty"`
-	Replicas *int32             `json:"replicas,omitempty"`
-	Storage  *StorageUpdate     `json:"storage,omitempty"`
-	Version  *string            `json:"version,omitempty"`
+	Labels               *map[string]string `json:"labels,omitempty"`
+	Name                 *string            `json:"name,omitempty"`
+	Options              *map[string]string `json:"options,omitempty"`
+	Replicas             *int32             `json:"replicas,omitempty"`
+	Storage              *StorageUpdate     `json:"storage,omitempty"`
+	Version              *string            `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateInstancePayload UpdateInstancePayload
 
 // NewUpdateInstancePayload instantiates a new UpdateInstancePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -374,7 +377,41 @@ func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateInstancePayload := _UpdateInstancePayload{}
+
+	err = json.Unmarshal(data, &varUpdateInstancePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateInstancePayload(varUpdateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "replicas")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateInstancePayload struct {

@@ -20,8 +20,11 @@ var _ MappedNullable = &ResetUserResponse{}
 
 // ResetUserResponse struct for ResetUserResponse
 type ResetUserResponse struct {
-	Item *User `json:"item,omitempty"`
+	Item                 *User `json:"item,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ResetUserResponse ResetUserResponse
 
 // NewResetUserResponse instantiates a new ResetUserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ResetUserResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ResetUserResponse) UnmarshalJSON(data []byte) (err error) {
+	varResetUserResponse := _ResetUserResponse{}
+
+	err = json.Unmarshal(data, &varResetUserResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResetUserResponse(varResetUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableResetUserResponse struct {
