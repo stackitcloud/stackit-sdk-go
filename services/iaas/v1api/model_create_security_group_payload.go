@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -38,7 +37,8 @@ type CreateSecurityGroupPayload struct {
 	// Shows if a security group is stateful or stateless. You can only have one type of security groups per network interface/server.
 	Stateful *bool `json:"stateful,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateSecurityGroupPayload CreateSecurityGroupPayload
@@ -345,6 +345,11 @@ func (o CreateSecurityGroupPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -372,15 +377,27 @@ func (o *CreateSecurityGroupPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateSecurityGroupPayload := _CreateSecurityGroupPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateSecurityGroupPayload)
+	err = json.Unmarshal(data, &varCreateSecurityGroupPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateSecurityGroupPayload(varCreateSecurityGroupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rules")
+		delete(additionalProperties, "stateful")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

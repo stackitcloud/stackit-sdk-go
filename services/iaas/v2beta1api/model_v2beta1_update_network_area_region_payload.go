@@ -20,8 +20,11 @@ var _ MappedNullable = &V2beta1UpdateNetworkAreaRegionPayload{}
 
 // V2beta1UpdateNetworkAreaRegionPayload Object that represents the request body for a regional network area update.
 type V2beta1UpdateNetworkAreaRegionPayload struct {
-	Ipv4 *UpdateRegionalAreaIPv4 `json:"ipv4,omitempty"`
+	Ipv4                 *UpdateRegionalAreaIPv4 `json:"ipv4,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _V2beta1UpdateNetworkAreaRegionPayload V2beta1UpdateNetworkAreaRegionPayload
 
 // NewV2beta1UpdateNetworkAreaRegionPayload instantiates a new V2beta1UpdateNetworkAreaRegionPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o V2beta1UpdateNetworkAreaRegionPayload) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *V2beta1UpdateNetworkAreaRegionPayload) UnmarshalJSON(data []byte) (err error) {
+	varV2beta1UpdateNetworkAreaRegionPayload := _V2beta1UpdateNetworkAreaRegionPayload{}
+
+	err = json.Unmarshal(data, &varV2beta1UpdateNetworkAreaRegionPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = V2beta1UpdateNetworkAreaRegionPayload(varV2beta1UpdateNetworkAreaRegionPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ipv4")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableV2beta1UpdateNetworkAreaRegionPayload struct {

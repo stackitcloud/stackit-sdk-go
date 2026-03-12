@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &RouteListResponse{}
 // RouteListResponse Route list response.
 type RouteListResponse struct {
 	// A list of routes.
-	Items []Route `json:"items"`
+	Items                []Route `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RouteListResponse RouteListResponse
@@ -81,6 +81,11 @@ func (o RouteListResponse) MarshalJSON() ([]byte, error) {
 func (o RouteListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *RouteListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRouteListResponse := _RouteListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRouteListResponse)
+	err = json.Unmarshal(data, &varRouteListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RouteListResponse(varRouteListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &SecurityGroupListResponse{}
 // SecurityGroupListResponse Security group list response.
 type SecurityGroupListResponse struct {
 	// A list containing security group objects.
-	Items []SecurityGroup `json:"items"`
+	Items                []SecurityGroup `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SecurityGroupListResponse SecurityGroupListResponse
@@ -81,6 +81,11 @@ func (o SecurityGroupListResponse) MarshalJSON() ([]byte, error) {
 func (o SecurityGroupListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *SecurityGroupListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varSecurityGroupListResponse := _SecurityGroupListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSecurityGroupListResponse)
+	err = json.Unmarshal(data, &varSecurityGroupListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SecurityGroupListResponse(varSecurityGroupListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

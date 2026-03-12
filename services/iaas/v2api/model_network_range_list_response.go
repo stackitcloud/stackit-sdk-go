@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &NetworkRangeListResponse{}
 // NetworkRangeListResponse Network Range list response.
 type NetworkRangeListResponse struct {
 	// A list of network ranges.
-	Items []NetworkRange `json:"items"`
+	Items                []NetworkRange `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NetworkRangeListResponse NetworkRangeListResponse
@@ -81,6 +81,11 @@ func (o NetworkRangeListResponse) MarshalJSON() ([]byte, error) {
 func (o NetworkRangeListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *NetworkRangeListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varNetworkRangeListResponse := _NetworkRangeListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetworkRangeListResponse)
+	err = json.Unmarshal(data, &varNetworkRangeListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NetworkRangeListResponse(varNetworkRangeListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

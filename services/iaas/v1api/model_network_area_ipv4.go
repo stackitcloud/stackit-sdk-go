@@ -33,8 +33,11 @@ type NetworkAreaIPv4 struct {
 	// The maximal prefix length for networks in the network area.
 	MaxPrefixLen *int32 `json:"maxPrefixLen,omitempty"`
 	// The minimal prefix length for networks in the network area.
-	MinPrefixLen *int32 `json:"minPrefixLen,omitempty"`
+	MinPrefixLen         *int32 `json:"minPrefixLen,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NetworkAreaIPv4 NetworkAreaIPv4
 
 // NewNetworkAreaIPv4 instantiates a new NetworkAreaIPv4 object
 // This constructor will assign default values to properties that have it defined,
@@ -320,7 +323,39 @@ func (o NetworkAreaIPv4) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MinPrefixLen) {
 		toSerialize["minPrefixLen"] = o.MinPrefixLen
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *NetworkAreaIPv4) UnmarshalJSON(data []byte) (err error) {
+	varNetworkAreaIPv4 := _NetworkAreaIPv4{}
+
+	err = json.Unmarshal(data, &varNetworkAreaIPv4)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NetworkAreaIPv4(varNetworkAreaIPv4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "defaultNameservers")
+		delete(additionalProperties, "networkRanges")
+		delete(additionalProperties, "routes")
+		delete(additionalProperties, "transferNetwork")
+		delete(additionalProperties, "defaultPrefixLen")
+		delete(additionalProperties, "maxPrefixLen")
+		delete(additionalProperties, "minPrefixLen")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNetworkAreaIPv4 struct {

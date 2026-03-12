@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type ICMPParameters struct {
 	// ICMP code. Can be set if the protocol is ICMP.
 	Code int64 `json:"code"`
 	// ICMP type. Can be set if the protocol is ICMP.
-	Type int64 `json:"type"`
+	Type                 int64 `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ICMPParameters ICMPParameters
@@ -109,6 +109,11 @@ func (o ICMPParameters) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["code"] = o.Code
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *ICMPParameters) UnmarshalJSON(data []byte) (err error) {
 
 	varICMPParameters := _ICMPParameters{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varICMPParameters)
+	err = json.Unmarshal(data, &varICMPParameters)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ICMPParameters(varICMPParameters)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,8 +20,11 @@ var _ MappedNullable = &UpdateAreaAddressFamily{}
 
 // UpdateAreaAddressFamily The addressFamily object for a area update request.
 type UpdateAreaAddressFamily struct {
-	Ipv4 *UpdateAreaIPv4 `json:"ipv4,omitempty"`
+	Ipv4                 *UpdateAreaIPv4 `json:"ipv4,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAreaAddressFamily UpdateAreaAddressFamily
 
 // NewUpdateAreaAddressFamily instantiates a new UpdateAreaAddressFamily object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o UpdateAreaAddressFamily) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAreaAddressFamily) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAreaAddressFamily := _UpdateAreaAddressFamily{}
+
+	err = json.Unmarshal(data, &varUpdateAreaAddressFamily)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAreaAddressFamily(varUpdateAreaAddressFamily)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ipv4")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAreaAddressFamily struct {

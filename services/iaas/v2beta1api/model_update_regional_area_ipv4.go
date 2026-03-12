@@ -26,8 +26,11 @@ type UpdateRegionalAreaIPv4 struct {
 	// The maximal prefix length for networks in the network area.
 	MaxPrefixLen *int64 `json:"maxPrefixLen,omitempty"`
 	// The minimal prefix length for networks in the network area.
-	MinPrefixLen *int64 `json:"minPrefixLen,omitempty"`
+	MinPrefixLen         *int64 `json:"minPrefixLen,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRegionalAreaIPv4 UpdateRegionalAreaIPv4
 
 // NewUpdateRegionalAreaIPv4 instantiates a new UpdateRegionalAreaIPv4 object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,36 @@ func (o UpdateRegionalAreaIPv4) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MinPrefixLen) {
 		toSerialize["minPrefixLen"] = o.MinPrefixLen
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateRegionalAreaIPv4) UnmarshalJSON(data []byte) (err error) {
+	varUpdateRegionalAreaIPv4 := _UpdateRegionalAreaIPv4{}
+
+	err = json.Unmarshal(data, &varUpdateRegionalAreaIPv4)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateRegionalAreaIPv4(varUpdateRegionalAreaIPv4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "defaultNameservers")
+		delete(additionalProperties, "defaultPrefixLen")
+		delete(additionalProperties, "maxPrefixLen")
+		delete(additionalProperties, "minPrefixLen")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRegionalAreaIPv4 struct {

@@ -25,9 +25,12 @@ type CreateNetworkIPv6Body struct {
 	// A list containing DNS Servers/Nameservers for IPv6.
 	Nameservers []string `json:"nameservers,omitempty"`
 	// Classless Inter-Domain Routing (CIDR) for IPv6.
-	Prefix       *string `json:"prefix,omitempty" validate:"regexp=^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\\/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$"`
-	PrefixLength *int32  `json:"prefixLength,omitempty"`
+	Prefix               *string `json:"prefix,omitempty" validate:"regexp=^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(\\/((1(1[0-9]|2[0-8]))|([0-9][0-9])|([0-9])))?$"`
+	PrefixLength         *int32  `json:"prefixLength,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateNetworkIPv6Body CreateNetworkIPv6Body
 
 // NewCreateNetworkIPv6Body instantiates a new CreateNetworkIPv6Body object
 // This constructor will assign default values to properties that have it defined,
@@ -207,7 +210,36 @@ func (o CreateNetworkIPv6Body) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PrefixLength) {
 		toSerialize["prefixLength"] = o.PrefixLength
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateNetworkIPv6Body) UnmarshalJSON(data []byte) (err error) {
+	varCreateNetworkIPv6Body := _CreateNetworkIPv6Body{}
+
+	err = json.Unmarshal(data, &varCreateNetworkIPv6Body)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateNetworkIPv6Body(varCreateNetworkIPv6Body)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "nameservers")
+		delete(additionalProperties, "prefix")
+		delete(additionalProperties, "prefixLength")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateNetworkIPv6Body struct {

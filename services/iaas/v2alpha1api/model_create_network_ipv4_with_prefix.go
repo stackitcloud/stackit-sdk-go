@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type CreateNetworkIPv4WithPrefix struct {
 	// A list containing DNS Servers/Nameservers for IPv4.
 	Nameservers []string `json:"nameservers,omitempty"`
 	// IPv4 Classless Inter-Domain Routing (CIDR).
-	Prefix string `json:"prefix" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	Prefix               string `json:"prefix" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateNetworkIPv4WithPrefix CreateNetworkIPv4WithPrefix
@@ -166,6 +166,11 @@ func (o CreateNetworkIPv4WithPrefix) ToMap() (map[string]interface{}, error) {
 		toSerialize["nameservers"] = o.Nameservers
 	}
 	toSerialize["prefix"] = o.Prefix
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -193,15 +198,22 @@ func (o *CreateNetworkIPv4WithPrefix) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateNetworkIPv4WithPrefix := _CreateNetworkIPv4WithPrefix{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateNetworkIPv4WithPrefix)
+	err = json.Unmarshal(data, &varCreateNetworkIPv4WithPrefix)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateNetworkIPv4WithPrefix(varCreateNetworkIPv4WithPrefix)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "nameservers")
+		delete(additionalProperties, "prefix")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
