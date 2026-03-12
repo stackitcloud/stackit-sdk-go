@@ -124,11 +124,15 @@
   - `v1api`: New package which should be used for communication with the STACKIT modelserving API in the future
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `rabbitmq`: [v0.27.0](services/rabbitmq/CHANGELOG.md#v0270)
-  - **Feature:** Introduction of multi API version support for the rabbitmq SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which should be used for communication with the STACKIT rabbitmq API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `rabbitmq`:
+  - [v0.27.0](services/rabbitmq/CHANGELOG.md#v0270)
+    - **Feature:** Introduction of multi API version support for the rabbitmq SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT rabbitmq API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.28.0](services/rabbitmq/CHANGELOG.md#v0280)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `redis`: [v0.26.0](services/redis/CHANGELOG.md#v0260)
   - **Feature:** Introduction of multi API version support for the redis SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT redis API in the future
