@@ -1,3 +1,9 @@
+## v0.6.0
+- Deprecated SDK layer in root of the module: 
+  - **Breaking Change**: Switch from regional to global API server URL (`config.WithRegion(...)` must not be used anymore).
+- `v1betaapi`: 
+  - **Breaking Change**: Switch from regional to global API server URL (`config.WithRegion(...)` must not be used anymore).
+
 ## v0.5.0
 - **Feature:** Introduction of multi API version support for the intake SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1betaapi`: New package which can be used for communication with the intake v1 beta API
