@@ -1,3 +1,6 @@
+## v1.5.0
+- `v3alpha1api`: Align package to latest API specification
+
 ## v1.4.0
 - **Feature:** Introduction of multi API version support for the postgresflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1api`: New package which can be used for communication with the postgresflex v1 API

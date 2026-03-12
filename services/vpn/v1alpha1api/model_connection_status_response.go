@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -19,9 +19,11 @@ var _ MappedNullable = &ConnectionStatusResponse{}
 
 // ConnectionStatusResponse struct for ConnectionStatusResponse
 type ConnectionStatusResponse struct {
-	Enabled *bool `json:"enabled,omitempty"`
 	// The name of the connection.
-	Name    *string        `json:"name,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	Enabled     *bool   `json:"enabled,omitempty"`
+	// UUID of the connection.
+	Id      *string        `json:"id,omitempty"`
 	Tunnels []TunnelStatus `json:"tunnels,omitempty"`
 }
 
@@ -40,6 +42,38 @@ func NewConnectionStatusResponse() *ConnectionStatusResponse {
 func NewConnectionStatusResponseWithDefaults() *ConnectionStatusResponse {
 	this := ConnectionStatusResponse{}
 	return &this
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *ConnectionStatusResponse) GetDisplayName() string {
+	if o == nil || IsNil(o.DisplayName) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConnectionStatusResponse) GetDisplayNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *ConnectionStatusResponse) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *ConnectionStatusResponse) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -74,36 +108,36 @@ func (o *ConnectionStatusResponse) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *ConnectionStatusResponse) GetName() string {
-	if o == nil || IsNil(o.Name) {
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ConnectionStatusResponse) GetId() string {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return *o.Id
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConnectionStatusResponse) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+func (o *ConnectionStatusResponse) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Id, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *ConnectionStatusResponse) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+// HasId returns a boolean if a field has been set.
+func (o *ConnectionStatusResponse) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ConnectionStatusResponse) SetName(v string) {
-	o.Name = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *ConnectionStatusResponse) SetId(v string) {
+	o.Id = &v
 }
 
 // GetTunnels returns the Tunnels field value if set, zero value otherwise.
@@ -148,11 +182,14 @@ func (o ConnectionStatusResponse) MarshalJSON() ([]byte, error) {
 
 func (o ConnectionStatusResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DisplayName) {
+		toSerialize["displayName"] = o.DisplayName
+	}
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.Tunnels) {
 		toSerialize["tunnels"] = o.Tunnels

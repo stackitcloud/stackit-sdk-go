@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -23,15 +23,16 @@ var _ MappedNullable = &GatewayResponse{}
 type GatewayResponse struct {
 	AvailabilityZones GatewayAvailabilityZones `json:"availabilityZones"`
 	Bgp               *BGPGatewayConfig        `json:"bgp,omitempty"`
-	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the LabelValue except that it cannot be empty.
+	// A user-friendly name for the VPN gateway.
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
+	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
 	Labels *map[string]string `json:"labels,omitempty"`
-	// The name of the VPN gateway.  Maximum 20 characters (only alphanumeric and hyphens allowed). Not changeable after creation.
-	Name string `json:"name" validate:"regexp=^[a-z0-9]([a-z0-9-]{0,18}[a-z0-9])?$"`
-	// Service Plan to configure the limits of the VPN. Currently supported plans are p50, p100, p200. This list can change in the future where plan ids will be removed and new plans by added. That is the reason this is not an enum.
-	PlanId      string         `json:"planId"`
-	RoutingType RoutingType    `json:"routingType"`
-	Region      *Region        `json:"region,omitempty"`
-	State       *GatewayStatus `json:"state,omitempty"`
+	// The service plan identifier.
+	PlanId      string      `json:"planId"`
+	RoutingType RoutingType `json:"routingType"`
+	// The server-generated UUID of the VPN gateway.
+	Id    *string        `json:"id,omitempty"`
+	State *GatewayStatus `json:"state,omitempty"`
 }
 
 type _GatewayResponse GatewayResponse
@@ -40,14 +41,12 @@ type _GatewayResponse GatewayResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGatewayResponse(availabilityZones GatewayAvailabilityZones, name string, planId string, routingType RoutingType) *GatewayResponse {
+func NewGatewayResponse(availabilityZones GatewayAvailabilityZones, displayName string, planId string, routingType RoutingType) *GatewayResponse {
 	this := GatewayResponse{}
 	this.AvailabilityZones = availabilityZones
-	this.Name = name
+	this.DisplayName = displayName
 	this.PlanId = planId
 	this.RoutingType = routingType
-	var region Region = REGION_EU01
-	this.Region = &region
 	return &this
 }
 
@@ -56,8 +55,6 @@ func NewGatewayResponse(availabilityZones GatewayAvailabilityZones, name string,
 // but it doesn't guarantee that properties required by API are set
 func NewGatewayResponseWithDefaults() *GatewayResponse {
 	this := GatewayResponse{}
-	var region Region = REGION_EU01
-	this.Region = &region
 	return &this
 }
 
@@ -117,6 +114,30 @@ func (o *GatewayResponse) SetBgp(v BGPGatewayConfig) {
 	o.Bgp = &v
 }
 
+// GetDisplayName returns the DisplayName field value
+func (o *GatewayResponse) GetDisplayName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value
+// and a boolean to check if the value has been set.
+func (o *GatewayResponse) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DisplayName, true
+}
+
+// SetDisplayName sets field value
+func (o *GatewayResponse) SetDisplayName(v string) {
+	o.DisplayName = v
+}
+
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *GatewayResponse) GetLabels() map[string]string {
 	if o == nil || IsNil(o.Labels) {
@@ -147,30 +168,6 @@ func (o *GatewayResponse) HasLabels() bool {
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
 func (o *GatewayResponse) SetLabels(v map[string]string) {
 	o.Labels = &v
-}
-
-// GetName returns the Name field value
-func (o *GatewayResponse) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *GatewayResponse) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *GatewayResponse) SetName(v string) {
-	o.Name = v
 }
 
 // GetPlanId returns the PlanId field value
@@ -221,36 +218,36 @@ func (o *GatewayResponse) SetRoutingType(v RoutingType) {
 	o.RoutingType = v
 }
 
-// GetRegion returns the Region field value if set, zero value otherwise.
-func (o *GatewayResponse) GetRegion() Region {
-	if o == nil || IsNil(o.Region) {
-		var ret Region
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *GatewayResponse) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
 		return ret
 	}
-	return *o.Region
+	return *o.Id
 }
 
-// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GatewayResponse) GetRegionOk() (*Region, bool) {
-	if o == nil || IsNil(o.Region) {
+func (o *GatewayResponse) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Region, true
+	return o.Id, true
 }
 
-// HasRegion returns a boolean if a field has been set.
-func (o *GatewayResponse) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
+// HasId returns a boolean if a field has been set.
+func (o *GatewayResponse) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetRegion gets a reference to the given Region and assigns it to the Region field.
-func (o *GatewayResponse) SetRegion(v Region) {
-	o.Region = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *GatewayResponse) SetId(v string) {
+	o.Id = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -299,14 +296,14 @@ func (o GatewayResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Bgp) {
 		toSerialize["bgp"] = o.Bgp
 	}
+	toSerialize["displayName"] = o.DisplayName
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
-	toSerialize["name"] = o.Name
 	toSerialize["planId"] = o.PlanId
 	toSerialize["routingType"] = o.RoutingType
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
@@ -320,7 +317,7 @@ func (o *GatewayResponse) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"availabilityZones",
-		"name",
+		"displayName",
 		"planId",
 		"routingType",
 	}

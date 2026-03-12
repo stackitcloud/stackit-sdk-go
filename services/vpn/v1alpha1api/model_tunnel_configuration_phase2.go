@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -25,11 +25,11 @@ type TunnelConfigurationPhase2 struct {
 	DhGroups             []string `json:"dhGroups,omitempty"`
 	EncryptionAlgorithms []string `json:"encryptionAlgorithms"`
 	IntegrityAlgorithms  []string `json:"integrityAlgorithms"`
-	// Action to perform for this CHILD_SA on DPD timeout. \"clear\": Closes the CHILD_SA and does not take further action. \"trap\": installs a trap policy which will catch matching traffic and tries to re-negotiate the tunnel on-demand). \"restart\": immediately tries to re-negotiate the CILD_SA under a fresh IKE_SA.
+	// Action to perform for this CHILD_SA on DPD timeout. \"clear\": Closes the CHILD_SA and does not take further action. \"restart\": immediately tries to re-negotiate the CILD_SA under a fresh IKE_SA.
 	DpdAction *string `json:"dpdAction,omitempty"`
 	// Time to schedule a Child SA re-keying (in seconds).
 	RekeyTime *int32 `json:"rekeyTime,omitempty"`
-	// Action to perform after loading the connection configuration. \"none\": The connection will be loaded but needs to be manually initiated. \"trap\": installs a trap policy which triggers the tunnel as soon as matching traffic has been detected. \"start\": initiates the connection actively. \"start|stop\": Immediately initiate a connection for which trap policies have been installed.
+	// Action to perform after loading the connection configuration. \"none\": The connection will be loaded but needs to be manually initiated. \"start\": initiates the connection actively.
 	StartAction *string `json:"startAction,omitempty"`
 }
 

@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -23,11 +23,11 @@ var _ MappedNullable = &Gateway{}
 type Gateway struct {
 	AvailabilityZones GatewayAvailabilityZones `json:"availabilityZones"`
 	Bgp               *BGPGatewayConfig        `json:"bgp,omitempty"`
-	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the LabelValue except that it cannot be empty.
+	// A user-friendly name for the VPN gateway.
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
+	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
 	Labels *map[string]string `json:"labels,omitempty"`
-	// The name of the VPN gateway.  Maximum 20 characters (only alphanumeric and hyphens allowed). Not changeable after creation.
-	Name string `json:"name" validate:"regexp=^[a-z0-9]([a-z0-9-]{0,18}[a-z0-9])?$"`
-	// Service Plan to configure the limits of the VPN. Currently supported plans are p50, p100, p200. This list can change in the future where plan ids will be removed and new plans by added. That is the reason this is not an enum.
+	// The service plan identifier.
 	PlanId      string      `json:"planId"`
 	RoutingType RoutingType `json:"routingType"`
 }
@@ -38,10 +38,10 @@ type _Gateway Gateway
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGateway(availabilityZones GatewayAvailabilityZones, name string, planId string, routingType RoutingType) *Gateway {
+func NewGateway(availabilityZones GatewayAvailabilityZones, displayName string, planId string, routingType RoutingType) *Gateway {
 	this := Gateway{}
 	this.AvailabilityZones = availabilityZones
-	this.Name = name
+	this.DisplayName = displayName
 	this.PlanId = planId
 	this.RoutingType = routingType
 	return &this
@@ -111,6 +111,30 @@ func (o *Gateway) SetBgp(v BGPGatewayConfig) {
 	o.Bgp = &v
 }
 
+// GetDisplayName returns the DisplayName field value
+func (o *Gateway) GetDisplayName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value
+// and a boolean to check if the value has been set.
+func (o *Gateway) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DisplayName, true
+}
+
+// SetDisplayName sets field value
+func (o *Gateway) SetDisplayName(v string) {
+	o.DisplayName = v
+}
+
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *Gateway) GetLabels() map[string]string {
 	if o == nil || IsNil(o.Labels) {
@@ -141,30 +165,6 @@ func (o *Gateway) HasLabels() bool {
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
 func (o *Gateway) SetLabels(v map[string]string) {
 	o.Labels = &v
-}
-
-// GetName returns the Name field value
-func (o *Gateway) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *Gateway) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *Gateway) SetName(v string) {
-	o.Name = v
 }
 
 // GetPlanId returns the PlanId field value
@@ -229,10 +229,10 @@ func (o Gateway) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Bgp) {
 		toSerialize["bgp"] = o.Bgp
 	}
+	toSerialize["displayName"] = o.DisplayName
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
-	toSerialize["name"] = o.Name
 	toSerialize["planId"] = o.PlanId
 	toSerialize["routingType"] = o.RoutingType
 	return toSerialize, nil
@@ -244,7 +244,7 @@ func (o *Gateway) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"availabilityZones",
-		"name",
+		"displayName",
 		"planId",
 		"routingType",
 	}

@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -21,7 +21,7 @@ var _ MappedNullable = &ConnectionList{}
 
 // ConnectionList struct for ConnectionList
 type ConnectionList struct {
-	Connections []Connection `json:"connections"`
+	Connections []ConnectionResponse `json:"connections"`
 }
 
 type _ConnectionList ConnectionList
@@ -30,7 +30,7 @@ type _ConnectionList ConnectionList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectionList(connections []Connection) *ConnectionList {
+func NewConnectionList(connections []ConnectionResponse) *ConnectionList {
 	this := ConnectionList{}
 	this.Connections = connections
 	return &this
@@ -45,9 +45,9 @@ func NewConnectionListWithDefaults() *ConnectionList {
 }
 
 // GetConnections returns the Connections field value
-func (o *ConnectionList) GetConnections() []Connection {
+func (o *ConnectionList) GetConnections() []ConnectionResponse {
 	if o == nil {
-		var ret []Connection
+		var ret []ConnectionResponse
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *ConnectionList) GetConnections() []Connection {
 
 // GetConnectionsOk returns a tuple with the Connections field value
 // and a boolean to check if the value has been set.
-func (o *ConnectionList) GetConnectionsOk() ([]Connection, bool) {
+func (o *ConnectionList) GetConnectionsOk() ([]ConnectionResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ConnectionList) GetConnectionsOk() ([]Connection, bool) {
 }
 
 // SetConnections sets field value
-func (o *ConnectionList) SetConnections(v []Connection) {
+func (o *ConnectionList) SetConnections(v []ConnectionResponse) {
 	o.Connections = v
 }
 

@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -19,10 +19,9 @@ var _ MappedNullable = &PlanList{}
 
 // PlanList struct for PlanList
 type PlanList struct {
-	// Default Plan ID for the current region
-	DefaultPlanId *string        `json:"defaultPlanId,omitempty"`
-	Plans         []Plan         `json:"plans,omitempty"`
-	Tunnel        *VPNTunnelPlan `json:"tunnel,omitempty"`
+	// The service plan identifier.
+	DefaultPlanId *string `json:"defaultPlanId,omitempty"`
+	Plans         []Plan  `json:"plans,omitempty"`
 }
 
 // NewPlanList instantiates a new PlanList object
@@ -106,38 +105,6 @@ func (o *PlanList) SetPlans(v []Plan) {
 	o.Plans = v
 }
 
-// GetTunnel returns the Tunnel field value if set, zero value otherwise.
-func (o *PlanList) GetTunnel() VPNTunnelPlan {
-	if o == nil || IsNil(o.Tunnel) {
-		var ret VPNTunnelPlan
-		return ret
-	}
-	return *o.Tunnel
-}
-
-// GetTunnelOk returns a tuple with the Tunnel field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PlanList) GetTunnelOk() (*VPNTunnelPlan, bool) {
-	if o == nil || IsNil(o.Tunnel) {
-		return nil, false
-	}
-	return o.Tunnel, true
-}
-
-// HasTunnel returns a boolean if a field has been set.
-func (o *PlanList) HasTunnel() bool {
-	if o != nil && !IsNil(o.Tunnel) {
-		return true
-	}
-
-	return false
-}
-
-// SetTunnel gets a reference to the given VPNTunnelPlan and assigns it to the Tunnel field.
-func (o *PlanList) SetTunnel(v VPNTunnelPlan) {
-	o.Tunnel = &v
-}
-
 func (o PlanList) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -153,9 +120,6 @@ func (o PlanList) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Plans) {
 		toSerialize["plans"] = o.Plans
-	}
-	if !IsNil(o.Tunnel) {
-		toSerialize["tunnel"] = o.Tunnel
 	}
 	return toSerialize, nil
 }
