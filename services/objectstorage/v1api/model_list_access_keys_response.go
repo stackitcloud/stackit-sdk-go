@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ListAccessKeysResponse{}
 type ListAccessKeysResponse struct {
 	AccessKeys []AccessKey `json:"accessKeys"`
 	// Project ID
-	Project string `json:"project"`
+	Project              string `json:"project"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListAccessKeysResponse ListAccessKeysResponse
@@ -107,6 +107,11 @@ func (o ListAccessKeysResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["accessKeys"] = o.AccessKeys
 	toSerialize["project"] = o.Project
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *ListAccessKeysResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListAccessKeysResponse := _ListAccessKeysResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListAccessKeysResponse)
+	err = json.Unmarshal(data, &varListAccessKeysResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListAccessKeysResponse(varListAccessKeysResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessKeys")
+		delete(additionalProperties, "project")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

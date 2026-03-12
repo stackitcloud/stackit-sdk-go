@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ErrorMessage{}
 
 // ErrorMessage struct for ErrorMessage
 type ErrorMessage struct {
-	Detail []DetailedError `json:"detail"`
+	Detail               []DetailedError `json:"detail"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ErrorMessage ErrorMessage
@@ -79,6 +79,11 @@ func (o ErrorMessage) MarshalJSON() ([]byte, error) {
 func (o ErrorMessage) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["detail"] = o.Detail
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ErrorMessage) UnmarshalJSON(data []byte) (err error) {
 
 	varErrorMessage := _ErrorMessage{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varErrorMessage)
+	err = json.Unmarshal(data, &varErrorMessage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ErrorMessage(varErrorMessage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "detail")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

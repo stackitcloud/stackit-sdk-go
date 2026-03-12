@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type AccessKey struct {
 	DisplayName string `json:"displayName"`
 	Expires     string `json:"expires"`
 	// Identifies the pair of access key and secret access key for deletion
-	KeyId string `json:"keyId"`
+	KeyId                string `json:"keyId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessKey AccessKey
@@ -134,6 +134,11 @@ func (o AccessKey) ToMap() (map[string]interface{}, error) {
 	toSerialize["displayName"] = o.DisplayName
 	toSerialize["expires"] = o.Expires
 	toSerialize["keyId"] = o.KeyId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *AccessKey) UnmarshalJSON(data []byte) (err error) {
 
 	varAccessKey := _AccessKey{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessKey)
+	err = json.Unmarshal(data, &varAccessKey)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessKey(varAccessKey)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "expires")
+		delete(additionalProperties, "keyId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

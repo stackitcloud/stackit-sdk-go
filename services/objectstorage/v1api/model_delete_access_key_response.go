@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type DeleteAccessKeyResponse struct {
 	// Identifies the pair of access key and secret access key for deletion
 	KeyId string `json:"keyId"`
 	// Project ID
-	Project string `json:"project"`
+	Project              string `json:"project"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeleteAccessKeyResponse DeleteAccessKeyResponse
@@ -108,6 +108,11 @@ func (o DeleteAccessKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["keyId"] = o.KeyId
 	toSerialize["project"] = o.Project
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *DeleteAccessKeyResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varDeleteAccessKeyResponse := _DeleteAccessKeyResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeleteAccessKeyResponse)
+	err = json.Unmarshal(data, &varDeleteAccessKeyResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeleteAccessKeyResponse(varDeleteAccessKeyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "keyId")
+		delete(additionalProperties, "project")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
