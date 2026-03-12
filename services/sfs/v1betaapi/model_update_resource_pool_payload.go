@@ -30,8 +30,11 @@ type UpdateResourcePoolPayload struct {
 	// (optional) Name of the Snapshot Schedule to use  If not set, the Snapshot Schedule is not updated  If set to an empty string, the Snapshot Schedule is removed
 	SnapshotScheduleName *string `json:"snapshotScheduleName,omitempty"`
 	// Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.
-	SnapshotsAreVisible *bool `json:"snapshotsAreVisible,omitempty"`
+	SnapshotsAreVisible  *bool `json:"snapshotsAreVisible,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateResourcePoolPayload UpdateResourcePoolPayload
 
 // NewUpdateResourcePoolPayload instantiates a new UpdateResourcePoolPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -281,7 +284,38 @@ func (o UpdateResourcePoolPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SnapshotsAreVisible) {
 		toSerialize["snapshotsAreVisible"] = o.SnapshotsAreVisible
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateResourcePoolPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateResourcePoolPayload := _UpdateResourcePoolPayload{}
+
+	err = json.Unmarshal(data, &varUpdateResourcePoolPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateResourcePoolPayload(varUpdateResourcePoolPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ipAcl")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "performanceClass")
+		delete(additionalProperties, "sizeGigabytes")
+		delete(additionalProperties, "snapshotScheduleName")
+		delete(additionalProperties, "snapshotsAreVisible")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateResourcePoolPayload struct {

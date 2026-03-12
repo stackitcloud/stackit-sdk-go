@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type CreateShareExportPolicyPayload struct {
 	// Name of the Share Export Policy
 	Name string `json:"name"`
 	// List of rules of the Share Export Policy. The order of the rules within the array does not matter - what matters  is the field \"order\" within each rule
-	Rules []CreateShareExportPolicyRequestRule `json:"rules,omitempty"`
+	Rules                []CreateShareExportPolicyRequestRule `json:"rules,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateShareExportPolicyPayload CreateShareExportPolicyPayload
@@ -154,6 +154,11 @@ func (o CreateShareExportPolicyPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -181,15 +186,22 @@ func (o *CreateShareExportPolicyPayload) UnmarshalJSON(data []byte) (err error) 
 
 	varCreateShareExportPolicyPayload := _CreateShareExportPolicyPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateShareExportPolicyPayload)
+	err = json.Unmarshal(data, &varCreateShareExportPolicyPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateShareExportPolicyPayload(varCreateShareExportPolicyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

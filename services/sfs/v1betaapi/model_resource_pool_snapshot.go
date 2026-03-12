@@ -30,8 +30,11 @@ type ResourcePoolSnapshot struct {
 	// Reflects the actual storage footprint in the backend at snapshot time in Gibibytes (e.g. how much storage from the Resource Pool  does it use).
 	SizeGigabytes *int32 `json:"sizeGigabytes,omitempty"`
 	// Name of the Resource Pool Snapshot
-	SnapshotName *string `json:"snapshotName,omitempty"`
+	SnapshotName         *string `json:"snapshotName,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ResourcePoolSnapshot ResourcePoolSnapshot
 
 // NewResourcePoolSnapshot instantiates a new ResourcePoolSnapshot object
 // This constructor will assign default values to properties that have it defined,
@@ -281,7 +284,38 @@ func (o ResourcePoolSnapshot) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SnapshotName) {
 		toSerialize["snapshotName"] = o.SnapshotName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ResourcePoolSnapshot) UnmarshalJSON(data []byte) (err error) {
+	varResourcePoolSnapshot := _ResourcePoolSnapshot{}
+
+	err = json.Unmarshal(data, &varResourcePoolSnapshot)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResourcePoolSnapshot(varResourcePoolSnapshot)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "logicalSizeGigabytes")
+		delete(additionalProperties, "resourcePoolId")
+		delete(additionalProperties, "sizeGigabytes")
+		delete(additionalProperties, "snapshotName")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableResourcePoolSnapshot struct {

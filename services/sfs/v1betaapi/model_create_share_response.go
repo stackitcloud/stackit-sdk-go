@@ -20,8 +20,11 @@ var _ MappedNullable = &CreateShareResponse{}
 // CreateShareResponse struct for CreateShareResponse
 type CreateShareResponse struct {
 	// Created Share
-	Share *Share `json:"share,omitempty"`
+	Share                *Share `json:"share,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateShareResponse CreateShareResponse
 
 // NewCreateShareResponse instantiates a new CreateShareResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o CreateShareResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Share) {
 		toSerialize["share"] = o.Share
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateShareResponse) UnmarshalJSON(data []byte) (err error) {
+	varCreateShareResponse := _CreateShareResponse{}
+
+	err = json.Unmarshal(data, &varCreateShareResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateShareResponse(varCreateShareResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "share")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateShareResponse struct {

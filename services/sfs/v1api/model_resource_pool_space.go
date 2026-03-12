@@ -24,8 +24,11 @@ type ResourcePoolSpace struct {
 	// Size of the Resource Pool in Gibibytes.
 	SizeGigabytes *int32 `json:"sizeGigabytes,omitempty"`
 	// Used space of the Resource Pool   (only available when retrieving a single Resource Pool by ID)
-	UsedGigabytes NullableFloat64 `json:"usedGigabytes,omitempty"`
+	UsedGigabytes        NullableFloat64 `json:"usedGigabytes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ResourcePoolSpace ResourcePoolSpace
 
 // NewResourcePoolSpace instantiates a new ResourcePoolSpace object
 // This constructor will assign default values to properties that have it defined,
@@ -181,7 +184,35 @@ func (o ResourcePoolSpace) ToMap() (map[string]interface{}, error) {
 	if o.UsedGigabytes.IsSet() {
 		toSerialize["usedGigabytes"] = o.UsedGigabytes.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ResourcePoolSpace) UnmarshalJSON(data []byte) (err error) {
+	varResourcePoolSpace := _ResourcePoolSpace{}
+
+	err = json.Unmarshal(data, &varResourcePoolSpace)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResourcePoolSpace(varResourcePoolSpace)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "availableGigabytes")
+		delete(additionalProperties, "sizeGigabytes")
+		delete(additionalProperties, "usedGigabytes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableResourcePoolSpace struct {

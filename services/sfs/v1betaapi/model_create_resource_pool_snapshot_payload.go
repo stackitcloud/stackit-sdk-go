@@ -22,8 +22,11 @@ type CreateResourcePoolSnapshotPayload struct {
 	// (optional) A comment to add more information about a snapshot
 	Comment NullableString `json:"comment,omitempty"`
 	// Name of the Resource Pool Snapshot
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateResourcePoolSnapshotPayload CreateResourcePoolSnapshotPayload
 
 // NewCreateResourcePoolSnapshotPayload instantiates a new CreateResourcePoolSnapshotPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -133,7 +136,34 @@ func (o CreateResourcePoolSnapshotPayload) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateResourcePoolSnapshotPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateResourcePoolSnapshotPayload := _CreateResourcePoolSnapshotPayload{}
+
+	err = json.Unmarshal(data, &varCreateResourcePoolSnapshotPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateResourcePoolSnapshotPayload(varCreateResourcePoolSnapshotPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateResourcePoolSnapshotPayload struct {

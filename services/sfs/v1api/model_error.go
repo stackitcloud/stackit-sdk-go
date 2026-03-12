@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type Error struct {
 	// Human-readable description of the error that occurred.
 	Title string `json:"title"`
 	// URI Uniquely identifies the error type. It will be in the format of storage.stackit.cloud/<error-type> e.g. storage.stackit.cloud/validation-error
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Error Error
@@ -150,6 +150,11 @@ func (o Error) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["title"] = o.Title
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *Error) UnmarshalJSON(data []byte) (err error) {
 
 	varError := _Error{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varError)
+	err = json.Unmarshal(data, &varError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Error(varError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "error_description")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

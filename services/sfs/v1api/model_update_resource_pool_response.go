@@ -20,8 +20,11 @@ var _ MappedNullable = &UpdateResourcePoolResponse{}
 // UpdateResourcePoolResponse struct for UpdateResourcePoolResponse
 type UpdateResourcePoolResponse struct {
 	// Updated Resource Pool
-	ResourcePool *ResourcePool `json:"resourcePool,omitempty"`
+	ResourcePool         *ResourcePool `json:"resourcePool,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateResourcePoolResponse UpdateResourcePoolResponse
 
 // NewUpdateResourcePoolResponse instantiates a new UpdateResourcePoolResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o UpdateResourcePoolResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ResourcePool) {
 		toSerialize["resourcePool"] = o.ResourcePool
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateResourcePoolResponse) UnmarshalJSON(data []byte) (err error) {
+	varUpdateResourcePoolResponse := _UpdateResourcePoolResponse{}
+
+	err = json.Unmarshal(data, &varUpdateResourcePoolResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateResourcePoolResponse(varUpdateResourcePoolResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resourcePool")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateResourcePoolResponse struct {

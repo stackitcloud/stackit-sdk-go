@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type ValidationErrorField struct {
 	// The name of the field in the request that has failed the validation
 	Field string `json:"field"`
 	// The reason why the validation failed
-	Reason string `json:"reason"`
+	Reason               string `json:"reason"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidationErrorField ValidationErrorField
@@ -108,6 +108,11 @@ func (o ValidationErrorField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["field"] = o.Field
 	toSerialize["reason"] = o.Reason
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ValidationErrorField) UnmarshalJSON(data []byte) (err error) {
 
 	varValidationErrorField := _ValidationErrorField{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidationErrorField)
+	err = json.Unmarshal(data, &varValidationErrorField)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidationErrorField(varValidationErrorField)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "field")
+		delete(additionalProperties, "reason")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
