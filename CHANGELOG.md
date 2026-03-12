@@ -188,11 +188,19 @@
   - `v1betaapi`: New package which can be used for communication with the SFS v1 beta API
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `serviceaccount`: [v0.13.0](services/serviceaccount/CHANGELOG.md#v0130)
-  - **Feature:** Introduction of multi API version support for the serviceaccount SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v2api`: New package which should be used for communication with the STACKIT serviceaccount API in the future
-  - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v2api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `serviceaccount`: 
+  - [v0.13.0](services/serviceaccount/CHANGELOG.md#v0130)
+    - **Feature:** Introduction of multi API version support for the serviceaccount SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v2api`: New package which should be used for communication with the STACKIT serviceaccount API in the future
+    - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v2api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.14.0](services/serviceaccount/CHANGELOG.md#v0140)
+    - `v2api`: 
+      - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider`
+      - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner`
+    - Deprecated SDK layer in root of the module:
+      - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider`
+      - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner`
 - `serviceenablement`: [v1.3.0](services/serviceenablement/CHANGELOG.md#v130)
   - **Feature:** Introduction of multi API version support for the serviceenablement SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which can be used for communication with the serviceenablement v1 API
