@@ -19,8 +19,11 @@ var _ MappedNullable = &AvailabilityZone{}
 
 // AvailabilityZone struct for AvailabilityZone
 type AvailabilityZone struct {
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AvailabilityZone AvailabilityZone
 
 // NewAvailabilityZone instantiates a new AvailabilityZone object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o AvailabilityZone) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AvailabilityZone) UnmarshalJSON(data []byte) (err error) {
+	varAvailabilityZone := _AvailabilityZone{}
+
+	err = json.Unmarshal(data, &varAvailabilityZone)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AvailabilityZone(varAvailabilityZone)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAvailabilityZone struct {

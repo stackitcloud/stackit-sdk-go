@@ -19,8 +19,11 @@ var _ MappedNullable = &CRI{}
 
 // CRI struct for CRI
 type CRI struct {
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CRI CRI
 
 // NewCRI instantiates a new CRI object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o CRI) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CRI) UnmarshalJSON(data []byte) (err error) {
+	varCRI := _CRI{}
+
+	err = json.Unmarshal(data, &varCRI)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CRI(varCRI)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCRI struct {

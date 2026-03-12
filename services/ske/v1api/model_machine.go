@@ -11,7 +11,6 @@ API version: 1.1
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &Machine{}
 type Machine struct {
 	Image Image `json:"image"`
 	// For valid types please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `machineTypes`.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Machine Machine
@@ -107,6 +107,11 @@ func (o Machine) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["image"] = o.Image
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *Machine) UnmarshalJSON(data []byte) (err error) {
 
 	varMachine := _Machine{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMachine)
+	err = json.Unmarshal(data, &varMachine)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Machine(varMachine)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "image")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,11 +20,14 @@ var _ MappedNullable = &KubernetesVersion{}
 
 // KubernetesVersion struct for KubernetesVersion
 type KubernetesVersion struct {
-	ExpirationDate *time.Time         `json:"expirationDate,omitempty"`
-	FeatureGates   *map[string]string `json:"featureGates,omitempty"`
-	State          *string            `json:"state,omitempty"`
-	Version        *string            `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	ExpirationDate       *time.Time         `json:"expirationDate,omitempty"`
+	FeatureGates         *map[string]string `json:"featureGates,omitempty"`
+	State                *string            `json:"state,omitempty"`
+	Version              *string            `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _KubernetesVersion KubernetesVersion
 
 // NewKubernetesVersion instantiates a new KubernetesVersion object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,36 @@ func (o KubernetesVersion) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *KubernetesVersion) UnmarshalJSON(data []byte) (err error) {
+	varKubernetesVersion := _KubernetesVersion{}
+
+	err = json.Unmarshal(data, &varKubernetesVersion)
+
+	if err != nil {
+		return err
+	}
+
+	*o = KubernetesVersion(varKubernetesVersion)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "featureGates")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableKubernetesVersion struct {

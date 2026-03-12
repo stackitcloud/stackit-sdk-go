@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &Taint{}
 
 // Taint struct for Taint
 type Taint struct {
-	Effect string  `json:"effect"`
-	Key    string  `json:"key"`
-	Value  *string `json:"value,omitempty"`
+	Effect               string  `json:"effect"`
+	Key                  string  `json:"key"`
+	Value                *string `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Taint Taint
@@ -142,6 +142,11 @@ func (o Taint) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -170,15 +175,22 @@ func (o *Taint) UnmarshalJSON(data []byte) (err error) {
 
 	varTaint := _Taint{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTaint)
+	err = json.Unmarshal(data, &varTaint)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Taint(varTaint)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "effect")
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

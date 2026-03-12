@@ -11,7 +11,6 @@ API version: 1.1
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &HibernationSchedule{}
 
 // HibernationSchedule struct for HibernationSchedule
 type HibernationSchedule struct {
-	End      string  `json:"end" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
-	Start    string  `json:"start" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
-	Timezone *string `json:"timezone,omitempty"`
+	End                  string  `json:"end" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
+	Start                string  `json:"start" validate:"regexp=(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\\\\\\\\d+(ns|us|µs|ms|s|m|h))+)|((((\\\\\\\\d+,)+\\\\\\\\d+|(\\\\\\\\d+(\\\\\\/|-)\\\\\\\\d+)|\\\\\\\\d+|\\\\\\\\*) ?){5,7})"`
+	Timezone             *string `json:"timezone,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HibernationSchedule HibernationSchedule
@@ -142,6 +142,11 @@ func (o HibernationSchedule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Timezone) {
 		toSerialize["timezone"] = o.Timezone
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -170,15 +175,22 @@ func (o *HibernationSchedule) UnmarshalJSON(data []byte) (err error) {
 
 	varHibernationSchedule := _HibernationSchedule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHibernationSchedule)
+	err = json.Unmarshal(data, &varHibernationSchedule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HibernationSchedule(varHibernationSchedule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "end")
+		delete(additionalProperties, "start")
+		delete(additionalProperties, "timezone")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

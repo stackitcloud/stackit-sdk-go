@@ -20,10 +20,13 @@ var _ MappedNullable = &RuntimeError{}
 // RuntimeError struct for RuntimeError
 type RuntimeError struct {
 	// - Code:    `SKE_UNSPECIFIED`   Message: \"An error occurred. Please open a support ticket if this error persists.\" - Code:    `SKE_TMP_AUTH_ERROR`   Message: \"Authentication failed. This is a temporary error. Please wait while the system recovers.\" - Code:    `SKE_QUOTA_EXCEEDED`   Message: \"Your project's resource quotas are exhausted. Please make sure your quota is sufficient for the ordered cluster.\" - Code:    `SKE_ARGUS_INSTANCE_NOT_FOUND`   Message: \"The provided Argus instance could not be found.\" - Code:    `SKE_RATE_LIMITS`   Message: \"While provisioning your cluster, request rate limits where incurred. Please wait while the system recovers.\" - Code:    `SKE_INFRA_ERROR`   Message: \"An error occurred with the underlying infrastructure. Please open a support ticket if this error persists.\" - Code:    `SKE_REMAINING_RESOURCES`   Message: \"There are remaining Kubernetes resources in your cluster that prevent deletion. Please make sure to remove them.\" - Code:    `SKE_CONFIGURATION_PROBLEM`   Message: \"A configuration error occurred. Please open a support ticket if this error persists.\" - Code:    `SKE_UNREADY_NODES`   Message: \"Not all worker nodes are ready. Please open a support ticket if this error persists.\" - Code:    `SKE_API_SERVER_ERROR`   Message: \"The Kubernetes API server is not reporting readiness. Please open a support ticket if this error persists.\" - Code:    `SKE_DNS_ZONE_NOT_FOUND`   Message: \"The provided DNS zone for the STACKIT DNS extension could not be found. Please ensure you defined a valid domain that belongs to a STACKIT DNS zone.\"
-	Code    *string `json:"code,omitempty"`
-	Details *string `json:"details,omitempty"`
-	Message *string `json:"message,omitempty"`
+	Code                 *string `json:"code,omitempty"`
+	Details              *string `json:"details,omitempty"`
+	Message              *string `json:"message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RuntimeError RuntimeError
 
 // NewRuntimeError instantiates a new RuntimeError object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o RuntimeError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RuntimeError) UnmarshalJSON(data []byte) (err error) {
+	varRuntimeError := _RuntimeError{}
+
+	err = json.Unmarshal(data, &varRuntimeError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RuntimeError(varRuntimeError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRuntimeError struct {

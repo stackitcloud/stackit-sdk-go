@@ -11,7 +11,6 @@ API version: 1.1
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -34,9 +33,10 @@ type Nodepool struct {
 	// Minimum number of nodes in the pool. The sum of all minima must not exceed 1000.
 	Minimum int32 `json:"minimum"`
 	// Maximum 15 chars
-	Name   string  `json:"name"`
-	Taints []Taint `json:"taints,omitempty"`
-	Volume Volume  `json:"volume"`
+	Name                 string  `json:"name"`
+	Taints               []Taint `json:"taints,omitempty"`
+	Volume               Volume  `json:"volume"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Nodepool Nodepool
@@ -434,6 +434,11 @@ func (o Nodepool) ToMap() (map[string]interface{}, error) {
 		toSerialize["taints"] = o.Taints
 	}
 	toSerialize["volume"] = o.Volume
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -466,15 +471,31 @@ func (o *Nodepool) UnmarshalJSON(data []byte) (err error) {
 
 	varNodepool := _Nodepool{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNodepool)
+	err = json.Unmarshal(data, &varNodepool)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Nodepool(varNodepool)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowSystemComponents")
+		delete(additionalProperties, "availabilityZones")
+		delete(additionalProperties, "cri")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "machine")
+		delete(additionalProperties, "maxSurge")
+		delete(additionalProperties, "maxUnavailable")
+		delete(additionalProperties, "maximum")
+		delete(additionalProperties, "minimum")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "taints")
+		delete(additionalProperties, "volume")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

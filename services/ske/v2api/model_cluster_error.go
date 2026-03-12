@@ -20,9 +20,12 @@ var _ MappedNullable = &ClusterError{}
 // ClusterError struct for ClusterError
 type ClusterError struct {
 	// Possible values: `\"SKE_INFRA_SNA_NETWORK_NOT_FOUND\"`, `\"SKE_INFRA_SNA_NETWORK_NO_ROUTER\"`, `\"SKE_NODE_NO_VALID_HOST_FOUND\"`, `\"SKE_NODE_MISCONFIGURED_PDB\"`, `\"SKE_NODE_MACHINE_TYPE_NOT_FOUND\"`, `\"SKE_NETWORK_NO_DNS_CONFIGURED\"`, `\"SKE_NETWORK_NO_AVAILABLE_IPS\"`, `\"SKE_NODE_MEMORY_PRESSURE\"`, `\"SKE_NODE_DISK_PRESSURE\"`, `\"SKE_NODE_PID_PRESSURE\"`, `\"SKE_OBSERVABILITY_INSTANCE_NOT_FOUND\"`, `\"SKE_OBSERVABILITY_INSTANCE_NOT_READY\"`, `\"SKE_DNS_ZONE_NOT_FOUND\"`, `\"SKE_FETCHING_ERRORS_NOT_POSSIBLE\"`
-	Code    *string `json:"code,omitempty"`
-	Message *string `json:"message,omitempty"`
+	Code                 *string `json:"code,omitempty"`
+	Message              *string `json:"message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ClusterError ClusterError
 
 // NewClusterError instantiates a new ClusterError object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ClusterError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ClusterError) UnmarshalJSON(data []byte) (err error) {
+	varClusterError := _ClusterError{}
+
+	err = json.Unmarshal(data, &varClusterError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ClusterError(varClusterError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableClusterError struct {

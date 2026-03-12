@@ -19,9 +19,12 @@ var _ MappedNullable = &Network{}
 
 // Network struct for Network
 type Network struct {
-	ControlPlane *V2ControlPlaneNetwork `json:"controlPlane,omitempty"`
-	Id           *string                `json:"id,omitempty"`
+	ControlPlane         *V2ControlPlaneNetwork `json:"controlPlane,omitempty"`
+	Id                   *string                `json:"id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Network Network
 
 // NewNetwork instantiates a new Network object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Network) UnmarshalJSON(data []byte) (err error) {
+	varNetwork := _Network{}
+
+	err = json.Unmarshal(data, &varNetwork)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Network(varNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "controlPlane")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNetwork struct {

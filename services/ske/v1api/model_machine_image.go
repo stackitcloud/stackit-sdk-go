@@ -19,9 +19,12 @@ var _ MappedNullable = &MachineImage{}
 
 // MachineImage struct for MachineImage
 type MachineImage struct {
-	Name     *string               `json:"name,omitempty"`
-	Versions []MachineImageVersion `json:"versions,omitempty"`
+	Name                 *string               `json:"name,omitempty"`
+	Versions             []MachineImageVersion `json:"versions,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MachineImage MachineImage
 
 // NewMachineImage instantiates a new MachineImage object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o MachineImage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Versions) {
 		toSerialize["versions"] = o.Versions
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MachineImage) UnmarshalJSON(data []byte) (err error) {
+	varMachineImage := _MachineImage{}
+
+	err = json.Unmarshal(data, &varMachineImage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MachineImage(varMachineImage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "versions")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMachineImage struct {

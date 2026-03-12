@@ -19,10 +19,13 @@ var _ MappedNullable = &Extension{}
 
 // Extension struct for Extension
 type Extension struct {
-	Acl   *ACL   `json:"acl,omitempty"`
-	Argus *Argus `json:"argus,omitempty"`
-	Dns   *DNS   `json:"dns,omitempty"`
+	Acl                  *ACL   `json:"acl,omitempty"`
+	Argus                *Argus `json:"argus,omitempty"`
+	Dns                  *DNS   `json:"dns,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Extension Extension
 
 // NewExtension instantiates a new Extension object
 // This constructor will assign default values to properties that have it defined,
@@ -156,7 +159,35 @@ func (o Extension) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Dns) {
 		toSerialize["dns"] = o.Dns
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Extension) UnmarshalJSON(data []byte) (err error) {
+	varExtension := _Extension{}
+
+	err = json.Unmarshal(data, &varExtension)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Extension(varExtension)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "argus")
+		delete(additionalProperties, "dns")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableExtension struct {

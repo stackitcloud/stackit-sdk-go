@@ -19,8 +19,11 @@ var _ MappedNullable = &V2ControlPlaneNetwork{}
 
 // V2ControlPlaneNetwork struct for V2ControlPlaneNetwork
 type V2ControlPlaneNetwork struct {
-	AccessScope *AccessScope `json:"accessScope,omitempty"`
+	AccessScope          *AccessScope `json:"accessScope,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _V2ControlPlaneNetwork V2ControlPlaneNetwork
 
 // NewV2ControlPlaneNetwork instantiates a new V2ControlPlaneNetwork object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o V2ControlPlaneNetwork) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccessScope) {
 		toSerialize["accessScope"] = o.AccessScope
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *V2ControlPlaneNetwork) UnmarshalJSON(data []byte) (err error) {
+	varV2ControlPlaneNetwork := _V2ControlPlaneNetwork{}
+
+	err = json.Unmarshal(data, &varV2ControlPlaneNetwork)
+
+	if err != nil {
+		return err
+	}
+
+	*o = V2ControlPlaneNetwork(varV2ControlPlaneNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessScope")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableV2ControlPlaneNetwork struct {

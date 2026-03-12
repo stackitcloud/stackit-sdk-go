@@ -20,8 +20,11 @@ var _ MappedNullable = &NodepoolKubernetes{}
 // NodepoolKubernetes struct for NodepoolKubernetes
 type NodepoolKubernetes struct {
 	// Override the Kubernetes version for the Kubelet of this Nodepool. Version must be equal or lower than the version of the cluster. Only one minor version difference to the version of the cluster is allowed. Downgrade of existing Nodepools is prohibited.
-	Version *string `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              *string `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NodepoolKubernetes NodepoolKubernetes
 
 // NewNodepoolKubernetes instantiates a new NodepoolKubernetes object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o NodepoolKubernetes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *NodepoolKubernetes) UnmarshalJSON(data []byte) (err error) {
+	varNodepoolKubernetes := _NodepoolKubernetes{}
+
+	err = json.Unmarshal(data, &varNodepoolKubernetes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NodepoolKubernetes(varNodepoolKubernetes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNodepoolKubernetes struct {

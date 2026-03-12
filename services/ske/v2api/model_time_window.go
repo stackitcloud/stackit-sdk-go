@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -22,8 +21,9 @@ var _ MappedNullable = &TimeWindow{}
 
 // TimeWindow struct for TimeWindow
 type TimeWindow struct {
-	End   time.Time `json:"end"`
-	Start time.Time `json:"start"`
+	End                  time.Time `json:"end"`
+	Start                time.Time `json:"start"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TimeWindow TimeWindow
@@ -107,6 +107,11 @@ func (o TimeWindow) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["end"] = o.End
 	toSerialize["start"] = o.Start
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *TimeWindow) UnmarshalJSON(data []byte) (err error) {
 
 	varTimeWindow := _TimeWindow{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTimeWindow)
+	err = json.Unmarshal(data, &varTimeWindow)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TimeWindow(varTimeWindow)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "end")
+		delete(additionalProperties, "start")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

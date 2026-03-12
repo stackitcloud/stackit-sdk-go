@@ -20,11 +20,14 @@ var _ MappedNullable = &MachineImageVersion{}
 
 // MachineImageVersion struct for MachineImageVersion
 type MachineImageVersion struct {
-	Cri            []CRI      `json:"cri,omitempty"`
-	ExpirationDate *time.Time `json:"expirationDate,omitempty"`
-	State          *string    `json:"state,omitempty"`
-	Version        *string    `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Cri                  []CRI      `json:"cri,omitempty"`
+	ExpirationDate       *time.Time `json:"expirationDate,omitempty"`
+	State                *string    `json:"state,omitempty"`
+	Version              *string    `json:"version,omitempty" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MachineImageVersion MachineImageVersion
 
 // NewMachineImageVersion instantiates a new MachineImageVersion object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,36 @@ func (o MachineImageVersion) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MachineImageVersion) UnmarshalJSON(data []byte) (err error) {
+	varMachineImageVersion := _MachineImageVersion{}
+
+	err = json.Unmarshal(data, &varMachineImageVersion)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MachineImageVersion(varMachineImageVersion)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cri")
+		delete(additionalProperties, "expirationDate")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMachineImageVersion struct {
