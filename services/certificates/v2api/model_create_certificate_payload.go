@@ -28,8 +28,11 @@ type CreateCertificatePayload struct {
 	// The PEM encoded public key part
 	PublicKey *string `json:"publicKey,omitempty"`
 	// Region
-	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateCertificatePayload CreateCertificatePayload
 
 // NewCreateCertificatePayload instantiates a new CreateCertificatePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o CreateCertificatePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateCertificatePayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateCertificatePayload := _CreateCertificatePayload{}
+
+	err = json.Unmarshal(data, &varCreateCertificatePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateCertificatePayload(varCreateCertificatePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "privateKey")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "publicKey")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateCertificatePayload struct {
