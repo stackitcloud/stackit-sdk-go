@@ -20,8 +20,11 @@ var _ MappedNullable = &ParametersSchema{}
 
 // ParametersSchema struct for ParametersSchema
 type ParametersSchema struct {
-	Properties *Properties `json:"properties,omitempty"`
+	Properties           *Properties `json:"properties,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ParametersSchema ParametersSchema
 
 // NewParametersSchema instantiates a new ParametersSchema object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ParametersSchema) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Properties) {
 		toSerialize["properties"] = o.Properties
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ParametersSchema) UnmarshalJSON(data []byte) (err error) {
+	varParametersSchema := _ParametersSchema{}
+
+	err = json.Unmarshal(data, &varParametersSchema)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ParametersSchema(varParametersSchema)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "properties")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableParametersSchema struct {

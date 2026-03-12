@@ -20,10 +20,13 @@ var _ MappedNullable = &CommandTemplate{}
 
 // CommandTemplate struct for CommandTemplate
 type CommandTemplate struct {
-	Name   *string  `json:"name,omitempty"`
-	OsType []string `json:"osType,omitempty"`
-	Title  *string  `json:"title,omitempty"`
+	Name                 *string  `json:"name,omitempty"`
+	OsType               []string `json:"osType,omitempty"`
+	Title                *string  `json:"title,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CommandTemplate CommandTemplate
 
 // NewCommandTemplate instantiates a new CommandTemplate object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o CommandTemplate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CommandTemplate) UnmarshalJSON(data []byte) (err error) {
+	varCommandTemplate := _CommandTemplate{}
+
+	err = json.Unmarshal(data, &varCommandTemplate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CommandTemplate(varCommandTemplate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "osType")
+		delete(additionalProperties, "title")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCommandTemplate struct {

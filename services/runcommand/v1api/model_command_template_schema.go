@@ -20,12 +20,15 @@ var _ MappedNullable = &CommandTemplateSchema{}
 
 // CommandTemplateSchema struct for CommandTemplateSchema
 type CommandTemplateSchema struct {
-	Description     *string           `json:"description,omitempty"`
-	Name            *string           `json:"name,omitempty"`
-	OsType          []string          `json:"osType,omitempty"`
-	ParameterSchema *ParametersSchema `json:"parameterSchema,omitempty"`
-	Title           *string           `json:"title,omitempty"`
+	Description          *string           `json:"description,omitempty"`
+	Name                 *string           `json:"name,omitempty"`
+	OsType               []string          `json:"osType,omitempty"`
+	ParameterSchema      *ParametersSchema `json:"parameterSchema,omitempty"`
+	Title                *string           `json:"title,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CommandTemplateSchema CommandTemplateSchema
 
 // NewCommandTemplateSchema instantiates a new CommandTemplateSchema object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o CommandTemplateSchema) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CommandTemplateSchema) UnmarshalJSON(data []byte) (err error) {
+	varCommandTemplateSchema := _CommandTemplateSchema{}
+
+	err = json.Unmarshal(data, &varCommandTemplateSchema)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CommandTemplateSchema(varCommandTemplateSchema)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "osType")
+		delete(additionalProperties, "parameterSchema")
+		delete(additionalProperties, "title")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCommandTemplateSchema struct {
