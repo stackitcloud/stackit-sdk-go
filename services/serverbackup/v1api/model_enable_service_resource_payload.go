@@ -20,8 +20,11 @@ var _ MappedNullable = &EnableServiceResourcePayload{}
 
 // EnableServiceResourcePayload struct for EnableServiceResourcePayload
 type EnableServiceResourcePayload struct {
-	BackupPolicyId *string `json:"backupPolicyId,omitempty"`
+	BackupPolicyId       *string `json:"backupPolicyId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EnableServiceResourcePayload EnableServiceResourcePayload
 
 // NewEnableServiceResourcePayload instantiates a new EnableServiceResourcePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o EnableServiceResourcePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BackupPolicyId) {
 		toSerialize["backupPolicyId"] = o.BackupPolicyId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *EnableServiceResourcePayload) UnmarshalJSON(data []byte) (err error) {
+	varEnableServiceResourcePayload := _EnableServiceResourcePayload{}
+
+	err = json.Unmarshal(data, &varEnableServiceResourcePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EnableServiceResourcePayload(varEnableServiceResourcePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupPolicyId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableEnableServiceResourcePayload struct {

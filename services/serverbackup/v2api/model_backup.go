@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,14 +21,15 @@ var _ MappedNullable = &Backup{}
 
 // Backup struct for Backup
 type Backup struct {
-	CreatedAt      string                     `json:"createdAt"`
-	ExpireAt       string                     `json:"expireAt"`
-	Id             string                     `json:"id"`
-	LastRestoredAt *string                    `json:"lastRestoredAt,omitempty"`
-	Name           string                     `json:"name"`
-	Size           *int32                     `json:"size,omitempty"`
-	Status         string                     `json:"status"`
-	VolumeBackups  []BackupVolumeBackupsInner `json:"volumeBackups,omitempty"`
+	CreatedAt            string                     `json:"createdAt"`
+	ExpireAt             string                     `json:"expireAt"`
+	Id                   string                     `json:"id"`
+	LastRestoredAt       *string                    `json:"lastRestoredAt,omitempty"`
+	Name                 string                     `json:"name"`
+	Size                 *int32                     `json:"size,omitempty"`
+	Status               string                     `json:"status"`
+	VolumeBackups        []BackupVolumeBackupsInner `json:"volumeBackups,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Backup Backup
@@ -296,6 +296,11 @@ func (o Backup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VolumeBackups) {
 		toSerialize["volumeBackups"] = o.VolumeBackups
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -327,15 +332,27 @@ func (o *Backup) UnmarshalJSON(data []byte) (err error) {
 
 	varBackup := _Backup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackup)
+	err = json.Unmarshal(data, &varBackup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Backup(varBackup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "expireAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "lastRestoredAt")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "volumeBackups")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
