@@ -223,6 +223,9 @@
   - `v1api`: New package which should be used for communication with the STACKIT observability API in the future
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `albwaf`: [v0.1.0](services/albwaf/CHANGELOG.md#v010)
+  - **New:** SDK module for albwaf service
+  - `v1alphaapi`: New package which can be used for communication with the albwaf v1 alpha API
 
 ## Release (2026-02-20)
 - `core`: [v0.21.1](core/CHANGELOG.md#v0211) 
