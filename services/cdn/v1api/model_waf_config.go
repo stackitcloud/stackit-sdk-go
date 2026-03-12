@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -43,10 +42,11 @@ type WafConfig struct {
 	// Ids of WAF Rule Groups to mark as log Only.
 	LogOnlyRuleGroupIds []string `json:"logOnlyRuleGroupIds,omitempty"`
 	// Ids of WAF Rules that are **explicitly** marked as Log Only for this distribution.
-	LogOnlyRuleIds []string          `json:"logOnlyRuleIds,omitempty"`
-	Mode           WafMode           `json:"mode"`
-	ParanoiaLevel  *WafParanoiaLevel `json:"paranoiaLevel,omitempty"`
-	Type           WafType           `json:"type"`
+	LogOnlyRuleIds       []string          `json:"logOnlyRuleIds,omitempty"`
+	Mode                 WafMode           `json:"mode"`
+	ParanoiaLevel        *WafParanoiaLevel `json:"paranoiaLevel,omitempty"`
+	Type                 WafType           `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafConfig WafConfig
@@ -576,6 +576,11 @@ func (o WafConfig) ToMap() (map[string]interface{}, error) {
 		toSerialize["paranoiaLevel"] = o.ParanoiaLevel
 	}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -605,15 +610,34 @@ func (o *WafConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varWafConfig := _WafConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafConfig)
+	err = json.Unmarshal(data, &varWafConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafConfig(varWafConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedHttpMethods")
+		delete(additionalProperties, "allowedHttpVersions")
+		delete(additionalProperties, "allowedRequestContentTypes")
+		delete(additionalProperties, "disabledRuleCollectionIds")
+		delete(additionalProperties, "disabledRuleGroupIds")
+		delete(additionalProperties, "disabledRuleIds")
+		delete(additionalProperties, "enabledRuleCollectionIds")
+		delete(additionalProperties, "enabledRuleGroupIds")
+		delete(additionalProperties, "enabledRuleIds")
+		delete(additionalProperties, "logOnlyRuleCollectionIds")
+		delete(additionalProperties, "logOnlyRuleGroupIds")
+		delete(additionalProperties, "logOnlyRuleIds")
+		delete(additionalProperties, "mode")
+		delete(additionalProperties, "paranoiaLevel")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

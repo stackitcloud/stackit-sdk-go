@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type GetLogsSearchFiltersResponse struct {
 	// List of ISO-3166 Alpha2 Country Codes matching the input filter. Response is ordered in ascending order.   For more Info about the country codes, see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 	RemoteCountry []string `json:"remoteCountry"`
 	// List of Status Codes matching the input filter. Response is ordered in ascending order.
-	Status []int32 `json:"status"`
+	Status               []int32 `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetLogsSearchFiltersResponse GetLogsSearchFiltersResponse
@@ -162,6 +162,11 @@ func (o GetLogsSearchFiltersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["dataCenter"] = o.DataCenter
 	toSerialize["remoteCountry"] = o.RemoteCountry
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *GetLogsSearchFiltersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetLogsSearchFiltersResponse := _GetLogsSearchFiltersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetLogsSearchFiltersResponse)
+	err = json.Unmarshal(data, &varGetLogsSearchFiltersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetLogsSearchFiltersResponse(varGetLogsSearchFiltersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cache")
+		delete(additionalProperties, "dataCenter")
+		delete(additionalProperties, "remoteCountry")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

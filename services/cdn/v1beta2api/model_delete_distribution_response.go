@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -19,8 +19,11 @@ var _ MappedNullable = &DeleteDistributionResponse{}
 
 // DeleteDistributionResponse struct for DeleteDistributionResponse
 type DeleteDistributionResponse struct {
-	Distribution *Distribution `json:"distribution,omitempty"`
+	Distribution         *Distribution `json:"distribution,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeleteDistributionResponse DeleteDistributionResponse
 
 // NewDeleteDistributionResponse instantiates a new DeleteDistributionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o DeleteDistributionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Distribution) {
 		toSerialize["distribution"] = o.Distribution
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeleteDistributionResponse) UnmarshalJSON(data []byte) (err error) {
+	varDeleteDistributionResponse := _DeleteDistributionResponse{}
+
+	err = json.Unmarshal(data, &varDeleteDistributionResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DeleteDistributionResponse(varDeleteDistributionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "distribution")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeleteDistributionResponse struct {

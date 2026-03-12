@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &GenericJSONResponse{}
 // GenericJSONResponse struct for GenericJSONResponse
 type GenericJSONResponse struct {
 	// Listing of issues with your request
-	Details []ErrorDetails `json:"details,omitempty"`
-	Message string         `json:"message"`
+	Details              []ErrorDetails `json:"details,omitempty"`
+	Message              string         `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GenericJSONResponse GenericJSONResponse
@@ -116,6 +116,11 @@ func (o GenericJSONResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["details"] = o.Details
 	}
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *GenericJSONResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGenericJSONResponse := _GenericJSONResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGenericJSONResponse)
+	err = json.Unmarshal(data, &varGenericJSONResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GenericJSONResponse(varGenericJSONResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

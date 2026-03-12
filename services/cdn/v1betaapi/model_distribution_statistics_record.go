@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -32,7 +31,8 @@ type DistributionStatisticsRecord struct {
 	End     time.Time                           `json:"end"`
 	Regions DistributionStatisticsRecordRegions `json:"regions"`
 	// Start of the time interval the statistics refer to
-	Start time.Time `json:"start"`
+	Start                time.Time `json:"start"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DistributionStatisticsRecord DistributionStatisticsRecord
@@ -220,6 +220,11 @@ func (o DistributionStatisticsRecord) ToMap() (map[string]interface{}, error) {
 	toSerialize["end"] = o.End
 	toSerialize["regions"] = o.Regions
 	toSerialize["start"] = o.Start
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -252,15 +257,25 @@ func (o *DistributionStatisticsRecord) UnmarshalJSON(data []byte) (err error) {
 
 	varDistributionStatisticsRecord := _DistributionStatisticsRecord{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDistributionStatisticsRecord)
+	err = json.Unmarshal(data, &varDistributionStatisticsRecord)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DistributionStatisticsRecord(varDistributionStatisticsRecord)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cachedRequests")
+		delete(additionalProperties, "totalRequests")
+		delete(additionalProperties, "totalTrafficBytes")
+		delete(additionalProperties, "end")
+		delete(additionalProperties, "regions")
+		delete(additionalProperties, "start")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

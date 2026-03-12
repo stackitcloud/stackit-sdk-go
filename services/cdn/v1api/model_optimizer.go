@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &Optimizer{}
 // Optimizer Optimizer is paid feature, a real-time on the fly image manipulation and optimization service that automatically optimizes your images for faster image delivery.
 type Optimizer struct {
 	// Determines if the optimizer should be enabled for this distribution and incurs a monthly fee
-	Enabled bool `json:"enabled"`
+	Enabled              bool `json:"enabled"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Optimizer Optimizer
@@ -80,6 +80,11 @@ func (o Optimizer) MarshalJSON() ([]byte, error) {
 func (o Optimizer) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *Optimizer) UnmarshalJSON(data []byte) (err error) {
 
 	varOptimizer := _Optimizer{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOptimizer)
+	err = json.Unmarshal(data, &varOptimizer)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Optimizer(varOptimizer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,13 +20,15 @@ var _ MappedNullable = &Domain{}
 
 // Domain Definition of a custom or managed domain without any certificates or keys
 type Domain struct {
+	CertificateType string `json:"certificateType"`
 	// This object is present if the custom domain has errors.
 	Errors []StatusError `json:"errors,omitempty"`
 	// The domain. If this is a custom domain, you can call the GetCustomDomain Endpoint
 	Name   string       `json:"name"`
 	Status DomainStatus `json:"status"`
 	// Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Domain Domain
@@ -36,8 +37,9 @@ type _Domain Domain
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDomain(name string, status DomainStatus, types string) *Domain {
+func NewDomain(certificateType string, name string, status DomainStatus, types string) *Domain {
 	this := Domain{}
+	this.CertificateType = certificateType
 	this.Name = name
 	this.Status = status
 	this.Type = types
@@ -50,6 +52,30 @@ func NewDomain(name string, status DomainStatus, types string) *Domain {
 func NewDomainWithDefaults() *Domain {
 	this := Domain{}
 	return &this
+}
+
+// GetCertificateType returns the CertificateType field value
+func (o *Domain) GetCertificateType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CertificateType
+}
+
+// GetCertificateTypeOk returns a tuple with the CertificateType field value
+// and a boolean to check if the value has been set.
+func (o *Domain) GetCertificateTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CertificateType, true
+}
+
+// SetCertificateType sets field value
+func (o *Domain) SetCertificateType(v string) {
+	o.CertificateType = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -166,12 +192,18 @@ func (o Domain) MarshalJSON() ([]byte, error) {
 
 func (o Domain) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["certificateType"] = o.CertificateType
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["status"] = o.Status
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -180,6 +212,7 @@ func (o *Domain) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"certificateType",
 		"name",
 		"status",
 		"type",
@@ -201,15 +234,24 @@ func (o *Domain) UnmarshalJSON(data []byte) (err error) {
 
 	varDomain := _Domain{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDomain)
+	err = json.Unmarshal(data, &varDomain)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Domain(varDomain)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificateType")
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

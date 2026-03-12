@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &ListDistributionsResponse{}
 
 // ListDistributionsResponse struct for ListDistributionsResponse
 type ListDistributionsResponse struct {
-	Distributions      []Distribution `json:"distributions"`
-	NextPageIdentifier *string        `json:"nextPageIdentifier,omitempty"`
+	Distributions        []Distribution `json:"distributions"`
+	NextPageIdentifier   *string        `json:"nextPageIdentifier,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListDistributionsResponse ListDistributionsResponse
@@ -115,6 +115,11 @@ func (o ListDistributionsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageIdentifier) {
 		toSerialize["nextPageIdentifier"] = o.NextPageIdentifier
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -142,15 +147,21 @@ func (o *ListDistributionsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListDistributionsResponse := _ListDistributionsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListDistributionsResponse)
+	err = json.Unmarshal(data, &varListDistributionsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListDistributionsResponse(varListDistributionsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "distributions")
+		delete(additionalProperties, "nextPageIdentifier")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

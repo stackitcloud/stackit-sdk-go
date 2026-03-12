@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type HttpBackendPatch struct {
 	OriginRequestHeaders *map[string]string `json:"originRequestHeaders,omitempty"`
 	OriginUrl            *string            `json:"originUrl,omitempty"`
 	// This property is required to determine the used backend type.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HttpBackendPatch HttpBackendPatch
@@ -190,6 +190,11 @@ func (o HttpBackendPatch) ToMap() (map[string]interface{}, error) {
 		toSerialize["originUrl"] = o.OriginUrl
 	}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -217,15 +222,23 @@ func (o *HttpBackendPatch) UnmarshalJSON(data []byte) (err error) {
 
 	varHttpBackendPatch := _HttpBackendPatch{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHttpBackendPatch)
+	err = json.Unmarshal(data, &varHttpBackendPatch)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HttpBackendPatch(varHttpBackendPatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "geofencing")
+		delete(additionalProperties, "originRequestHeaders")
+		delete(additionalProperties, "originUrl")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

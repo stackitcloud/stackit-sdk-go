@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &LokiLogSinkCredentials{}
 
 // LokiLogSinkCredentials struct for LokiLogSinkCredentials
 type LokiLogSinkCredentials struct {
-	Password string `json:"password"`
-	Username string `json:"username"`
+	Password             string `json:"password"`
+	Username             string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LokiLogSinkCredentials LokiLogSinkCredentials
@@ -106,6 +106,11 @@ func (o LokiLogSinkCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["password"] = o.Password
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *LokiLogSinkCredentials) UnmarshalJSON(data []byte) (err error) {
 
 	varLokiLogSinkCredentials := _LokiLogSinkCredentials{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLokiLogSinkCredentials)
+	err = json.Unmarshal(data, &varLokiLogSinkCredentials)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LokiLogSinkCredentials(varLokiLogSinkCredentials)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -40,8 +39,9 @@ type CreateDistributionPayload struct {
 	// The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
 	OriginUrl string `json:"originUrl"`
 	// Define in which regions you would like your content to be cached.
-	Regions []Region   `json:"regions"`
-	Waf     *WafConfig `json:"waf,omitempty"`
+	Regions              []Region   `json:"regions"`
+	Waf                  *WafConfig `json:"waf,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateDistributionPayload CreateDistributionPayload
@@ -475,6 +475,11 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Waf) {
 		toSerialize["waf"] = o.Waf
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -503,15 +508,31 @@ func (o *CreateDistributionPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateDistributionPayload := _CreateDistributionPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateDistributionPayload)
+	err = json.Unmarshal(data, &varCreateDistributionPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateDistributionPayload(varCreateDistributionPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "blockedCountries")
+		delete(additionalProperties, "blockedIPs")
+		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "geofencing")
+		delete(additionalProperties, "intentId")
+		delete(additionalProperties, "logSink")
+		delete(additionalProperties, "monthlyLimitBytes")
+		delete(additionalProperties, "optimizer")
+		delete(additionalProperties, "originRequestHeaders")
+		delete(additionalProperties, "originUrl")
+		delete(additionalProperties, "regions")
+		delete(additionalProperties, "waf")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

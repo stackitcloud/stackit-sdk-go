@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &LokiLogSinkCreate{}
 
 // LokiLogSinkCreate struct for LokiLogSinkCreate
 type LokiLogSinkCreate struct {
-	Credentials LokiLogSinkCredentials `json:"credentials"`
-	PushUrl     string                 `json:"pushUrl"`
-	Type        string                 `json:"type"`
+	Credentials          LokiLogSinkCredentials `json:"credentials"`
+	PushUrl              string                 `json:"pushUrl"`
+	Type                 string                 `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LokiLogSinkCreate LokiLogSinkCreate
@@ -133,6 +133,11 @@ func (o LokiLogSinkCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize["credentials"] = o.Credentials
 	toSerialize["pushUrl"] = o.PushUrl
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *LokiLogSinkCreate) UnmarshalJSON(data []byte) (err error) {
 
 	varLokiLogSinkCreate := _LokiLogSinkCreate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLokiLogSinkCreate)
+	err = json.Unmarshal(data, &varLokiLogSinkCreate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LokiLogSinkCreate(varLokiLogSinkCreate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "pushUrl")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

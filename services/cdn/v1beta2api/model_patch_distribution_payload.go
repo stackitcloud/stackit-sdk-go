@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -21,8 +21,11 @@ var _ MappedNullable = &PatchDistributionPayload{}
 type PatchDistributionPayload struct {
 	Config *ConfigPatch `json:"config,omitempty"`
 	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
-	IntentId *string `json:"intentId,omitempty"`
+	IntentId             *string `json:"intentId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PatchDistributionPayload PatchDistributionPayload
 
 // NewPatchDistributionPayload instantiates a new PatchDistributionPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o PatchDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IntentId) {
 		toSerialize["intentId"] = o.IntentId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PatchDistributionPayload) UnmarshalJSON(data []byte) (err error) {
+	varPatchDistributionPayload := _PatchDistributionPayload{}
+
+	err = json.Unmarshal(data, &varPatchDistributionPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchDistributionPayload(varPatchDistributionPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "intentId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePatchDistributionPayload struct {

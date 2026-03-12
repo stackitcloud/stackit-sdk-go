@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &PutCustomDomainResponse{}
 
 // PutCustomDomainResponse struct for PutCustomDomainResponse
 type PutCustomDomainResponse struct {
-	Certificate  *PutCustomDomainResponseCertificate `json:"certificate,omitempty"`
-	CustomDomain CustomDomain                        `json:"customDomain"`
+	Certificate          *PutCustomDomainResponseCertificate `json:"certificate,omitempty"`
+	CustomDomain         CustomDomain                        `json:"customDomain"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PutCustomDomainResponse PutCustomDomainResponse
@@ -115,6 +115,11 @@ func (o PutCustomDomainResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["certificate"] = o.Certificate
 	}
 	toSerialize["customDomain"] = o.CustomDomain
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -142,15 +147,21 @@ func (o *PutCustomDomainResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPutCustomDomainResponse := _PutCustomDomainResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPutCustomDomainResponse)
+	err = json.Unmarshal(data, &varPutCustomDomainResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PutCustomDomainResponse(varPutCustomDomainResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "customDomain")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

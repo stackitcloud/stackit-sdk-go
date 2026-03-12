@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &WafStatusRuleBlockReasonDirectlyDefined{}
 // WafStatusRuleBlockReasonDirectlyDefined struct for WafStatusRuleBlockReasonDirectlyDefined
 type WafStatusRuleBlockReasonDirectlyDefined struct {
 	// This is always `directlyDefined`
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafStatusRuleBlockReasonDirectlyDefined WafStatusRuleBlockReasonDirectlyDefined
@@ -80,6 +80,11 @@ func (o WafStatusRuleBlockReasonDirectlyDefined) MarshalJSON() ([]byte, error) {
 func (o WafStatusRuleBlockReasonDirectlyDefined) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *WafStatusRuleBlockReasonDirectlyDefined) UnmarshalJSON(data []byte) (er
 
 	varWafStatusRuleBlockReasonDirectlyDefined := _WafStatusRuleBlockReasonDirectlyDefined{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafStatusRuleBlockReasonDirectlyDefined)
+	err = json.Unmarshal(data, &varWafStatusRuleBlockReasonDirectlyDefined)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafStatusRuleBlockReasonDirectlyDefined(varWafStatusRuleBlockReasonDirectlyDefined)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

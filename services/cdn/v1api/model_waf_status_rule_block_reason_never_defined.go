@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &WafStatusRuleBlockReasonNeverDefined{}
 // WafStatusRuleBlockReasonNeverDefined This object only ever shows up in the disabled rules section.  If rules are never defined (e.g. no collection, rule group, or the rule itself is ever mentioned), they are implicitly disabled
 type WafStatusRuleBlockReasonNeverDefined struct {
 	// This is always `neverDefined`
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafStatusRuleBlockReasonNeverDefined WafStatusRuleBlockReasonNeverDefined
@@ -80,6 +80,11 @@ func (o WafStatusRuleBlockReasonNeverDefined) MarshalJSON() ([]byte, error) {
 func (o WafStatusRuleBlockReasonNeverDefined) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *WafStatusRuleBlockReasonNeverDefined) UnmarshalJSON(data []byte) (err e
 
 	varWafStatusRuleBlockReasonNeverDefined := _WafStatusRuleBlockReasonNeverDefined{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafStatusRuleBlockReasonNeverDefined)
+	err = json.Unmarshal(data, &varWafStatusRuleBlockReasonNeverDefined)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafStatusRuleBlockReasonNeverDefined(varWafStatusRuleBlockReasonNeverDefined)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &GetCustomDomainCustomCertificate{}
 type GetCustomDomainCustomCertificate struct {
 	Type string `json:"type"`
 	// Whenever a new custom certificate is added the version is increased by 1.
-	Version int32 `json:"version"`
+	Version              int32 `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetCustomDomainCustomCertificate GetCustomDomainCustomCertificate
@@ -107,6 +107,11 @@ func (o GetCustomDomainCustomCertificate) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *GetCustomDomainCustomCertificate) UnmarshalJSON(data []byte) (err error
 
 	varGetCustomDomainCustomCertificate := _GetCustomDomainCustomCertificate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetCustomDomainCustomCertificate)
+	err = json.Unmarshal(data, &varGetCustomDomainCustomCertificate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetCustomDomainCustomCertificate(varGetCustomDomainCustomCertificate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

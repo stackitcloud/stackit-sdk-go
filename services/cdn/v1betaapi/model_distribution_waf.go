@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &DistributionWaf{}
 
 // DistributionWaf For this property to be present two pre-conditions must be met:   - the WAF was enabled at least once - the query parameter ?withWafStatus is truthy  This property contains the waf Status. At this point in time, this contains all resolved rules. Rules are split into 3 groups:  - enabledRules - logOnlyRules  - disabledRules  **Do note that the global waf mode (Disabled, LogOnly, Enabled) is *NOT* reflected in this list!**
 type DistributionWaf struct {
-	DisabledRules []WAFStatusRuleBlock `json:"disabledRules"`
-	EnabledRules  []WAFStatusRuleBlock `json:"enabledRules"`
-	LogOnlyRules  []WAFStatusRuleBlock `json:"logOnlyRules"`
+	DisabledRules        []WAFStatusRuleBlock `json:"disabledRules"`
+	EnabledRules         []WAFStatusRuleBlock `json:"enabledRules"`
+	LogOnlyRules         []WAFStatusRuleBlock `json:"logOnlyRules"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DistributionWaf DistributionWaf
@@ -133,6 +133,11 @@ func (o DistributionWaf) ToMap() (map[string]interface{}, error) {
 	toSerialize["disabledRules"] = o.DisabledRules
 	toSerialize["enabledRules"] = o.EnabledRules
 	toSerialize["logOnlyRules"] = o.LogOnlyRules
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *DistributionWaf) UnmarshalJSON(data []byte) (err error) {
 
 	varDistributionWaf := _DistributionWaf{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDistributionWaf)
+	err = json.Unmarshal(data, &varDistributionWaf)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DistributionWaf(varDistributionWaf)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "disabledRules")
+		delete(additionalProperties, "enabledRules")
+		delete(additionalProperties, "logOnlyRules")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

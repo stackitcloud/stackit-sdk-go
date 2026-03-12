@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,11 +29,12 @@ type Config struct {
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
 	LogSink              *LokiLogSink   `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
-	MonthlyLimitBytes NullableInt64   `json:"monthlyLimitBytes,omitempty"`
-	Optimizer         *Optimizer      `json:"optimizer,omitempty"`
-	Redirects         *RedirectConfig `json:"redirects,omitempty"`
-	Regions           []Region        `json:"regions"`
-	Waf               WafConfig       `json:"waf"`
+	MonthlyLimitBytes    NullableInt64   `json:"monthlyLimitBytes,omitempty"`
+	Optimizer            *Optimizer      `json:"optimizer,omitempty"`
+	Redirects            *RedirectConfig `json:"redirects,omitempty"`
+	Regions              []Region        `json:"regions"`
+	Waf                  WafConfig       `json:"waf"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Config Config
@@ -393,6 +393,11 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["regions"] = o.Regions
 	toSerialize["waf"] = o.Waf
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -424,15 +429,29 @@ func (o *Config) UnmarshalJSON(data []byte) (err error) {
 
 	varConfig := _Config{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConfig)
+	err = json.Unmarshal(data, &varConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Config(varConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backend")
+		delete(additionalProperties, "blockedCountries")
+		delete(additionalProperties, "blockedIps")
+		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "logSink")
+		delete(additionalProperties, "monthlyLimitBytes")
+		delete(additionalProperties, "optimizer")
+		delete(additionalProperties, "redirects")
+		delete(additionalProperties, "regions")
+		delete(additionalProperties, "waf")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

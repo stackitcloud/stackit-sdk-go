@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type GetCustomDomainResponse struct {
 	Certificate  GetCustomDomainResponseCertificate `json:"certificate"`
 	CustomDomain CustomDomain                       `json:"customDomain"`
 	// Deprecated
-	Domain string `json:"domain" validate:"regexp=^[.\\\\-A-Za-z0-9]*$"`
+	Domain               string `json:"domain" validate:"regexp=^[.\\\\-A-Za-z0-9]*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetCustomDomainResponse GetCustomDomainResponse
@@ -137,6 +137,11 @@ func (o GetCustomDomainResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["certificate"] = o.Certificate
 	toSerialize["customDomain"] = o.CustomDomain
 	toSerialize["domain"] = o.Domain
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *GetCustomDomainResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetCustomDomainResponse := _GetCustomDomainResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetCustomDomainResponse)
+	err = json.Unmarshal(data, &varGetCustomDomainResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetCustomDomainResponse(varGetCustomDomainResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "customDomain")
+		delete(additionalProperties, "domain")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
