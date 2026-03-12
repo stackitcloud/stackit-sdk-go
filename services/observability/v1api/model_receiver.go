@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &Receiver{}
 
 // Receiver struct for Receiver
 type Receiver struct {
-	Data    Receivers `json:"data"`
-	Message string    `json:"message"`
+	Data                 Receivers `json:"data"`
+	Message              string    `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Receiver Receiver
@@ -107,6 +107,11 @@ func (o Receiver) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *Receiver) UnmarshalJSON(data []byte) (err error) {
 
 	varReceiver := _Receiver{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReceiver)
+	err = json.Unmarshal(data, &varReceiver)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Receiver(varReceiver)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

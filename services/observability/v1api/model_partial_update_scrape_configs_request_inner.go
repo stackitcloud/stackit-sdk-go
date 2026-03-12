@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -49,8 +48,9 @@ type PartialUpdateScrapeConfigsRequestInner struct {
 	// Per-scrape timeout when scraping this job. `Additional Validators:` * must be a valid time format* must be smaller than scrapeInterval
 	ScrapeTimeout string `json:"scrapeTimeout"`
 	// A list of scrape configurations.
-	StaticConfigs []PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner `json:"staticConfigs"`
-	TlsConfig     *PartialUpdateScrapeConfigsRequestInnerTlsConfig           `json:"tlsConfig,omitempty"`
+	StaticConfigs        []PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner `json:"staticConfigs"`
+	TlsConfig            *PartialUpdateScrapeConfigsRequestInnerTlsConfig           `json:"tlsConfig,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateScrapeConfigsRequestInner PartialUpdateScrapeConfigsRequestInner
@@ -609,6 +609,11 @@ func (o PartialUpdateScrapeConfigsRequestInner) ToMap() (map[string]interface{},
 	if !IsNil(o.TlsConfig) {
 		toSerialize["tlsConfig"] = o.TlsConfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -640,15 +645,35 @@ func (o *PartialUpdateScrapeConfigsRequestInner) UnmarshalJSON(data []byte) (err
 
 	varPartialUpdateScrapeConfigsRequestInner := _PartialUpdateScrapeConfigsRequestInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateScrapeConfigsRequestInner)
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateScrapeConfigsRequestInner(varPartialUpdateScrapeConfigsRequestInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "basicAuth")
+		delete(additionalProperties, "bearerToken")
+		delete(additionalProperties, "honorLabels")
+		delete(additionalProperties, "honorTimeStamps")
+		delete(additionalProperties, "httpSdConfigs")
+		delete(additionalProperties, "jobName")
+		delete(additionalProperties, "metricsPath")
+		delete(additionalProperties, "metricsRelabelConfigs")
+		delete(additionalProperties, "oauth2")
+		delete(additionalProperties, "params")
+		delete(additionalProperties, "sampleLimit")
+		delete(additionalProperties, "scheme")
+		delete(additionalProperties, "scrapeInterval")
+		delete(additionalProperties, "scrapeTimeout")
+		delete(additionalProperties, "staticConfigs")
+		delete(additionalProperties, "tlsConfig")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

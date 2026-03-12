@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &BackupResponse{}
 
 // BackupResponse struct for BackupResponse
 type BackupResponse struct {
-	AlertConfigBackups  []string `json:"alertConfigBackups"`
-	AlertRulesBackups   []string `json:"alertRulesBackups"`
-	GrafanaBackups      []string `json:"grafanaBackups"`
-	Message             string   `json:"message"`
-	ScrapeConfigBackups []string `json:"scrapeConfigBackups"`
+	AlertConfigBackups   []string `json:"alertConfigBackups"`
+	AlertRulesBackups    []string `json:"alertRulesBackups"`
+	GrafanaBackups       []string `json:"grafanaBackups"`
+	Message              string   `json:"message"`
+	ScrapeConfigBackups  []string `json:"scrapeConfigBackups"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BackupResponse BackupResponse
@@ -188,6 +188,11 @@ func (o BackupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["grafanaBackups"] = o.GrafanaBackups
 	toSerialize["message"] = o.Message
 	toSerialize["scrapeConfigBackups"] = o.ScrapeConfigBackups
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *BackupResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varBackupResponse := _BackupResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackupResponse)
+	err = json.Unmarshal(data, &varBackupResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BackupResponse(varBackupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alertConfigBackups")
+		delete(additionalProperties, "alertRulesBackups")
+		delete(additionalProperties, "grafanaBackups")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "scrapeConfigBackups")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

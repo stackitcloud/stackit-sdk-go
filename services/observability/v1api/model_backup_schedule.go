@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &BackupSchedule{}
 
 // BackupSchedule struct for BackupSchedule
 type BackupSchedule struct {
-	Schedule   string `json:"schedule"`
-	ScheduleId string `json:"scheduleId"`
+	Schedule             string `json:"schedule"`
+	ScheduleId           string `json:"scheduleId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BackupSchedule BackupSchedule
@@ -107,6 +107,11 @@ func (o BackupSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["schedule"] = o.Schedule
 	toSerialize["scheduleId"] = o.ScheduleId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *BackupSchedule) UnmarshalJSON(data []byte) (err error) {
 
 	varBackupSchedule := _BackupSchedule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackupSchedule)
+	err = json.Unmarshal(data, &varBackupSchedule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BackupSchedule(varBackupSchedule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "schedule")
+		delete(additionalProperties, "scheduleId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

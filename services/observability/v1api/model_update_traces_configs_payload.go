@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &UpdateTracesConfigsPayload{}
 // UpdateTracesConfigsPayload struct for UpdateTracesConfigsPayload
 type UpdateTracesConfigsPayload struct {
 	// How long to keep the traces `Additional Validators:` * Should be a valid time string * Should not be bigger than 30 days
-	Retention string `json:"retention"`
+	Retention            string `json:"retention"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateTracesConfigsPayload UpdateTracesConfigsPayload
@@ -81,6 +81,11 @@ func (o UpdateTracesConfigsPayload) MarshalJSON() ([]byte, error) {
 func (o UpdateTracesConfigsPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["retention"] = o.Retention
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *UpdateTracesConfigsPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateTracesConfigsPayload := _UpdateTracesConfigsPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateTracesConfigsPayload)
+	err = json.Unmarshal(data, &varUpdateTracesConfigsPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateTracesConfigsPayload(varUpdateTracesConfigsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "retention")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

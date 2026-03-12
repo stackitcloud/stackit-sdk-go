@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &PingCheckResponse{}
 
 // PingCheckResponse struct for PingCheckResponse
 type PingCheckResponse struct {
-	Message    string                   `json:"message"`
-	PingCheck  *PingCheckChildResponse  `json:"pingCheck,omitempty"`
-	PingChecks []PingCheckChildResponse `json:"pingChecks"`
+	Message              string                   `json:"message"`
+	PingCheck            *PingCheckChildResponse  `json:"pingCheck,omitempty"`
+	PingChecks           []PingCheckChildResponse `json:"pingChecks"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PingCheckResponse PingCheckResponse
@@ -143,6 +143,11 @@ func (o PingCheckResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["pingCheck"] = o.PingCheck
 	}
 	toSerialize["pingChecks"] = o.PingChecks
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *PingCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPingCheckResponse := _PingCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPingCheckResponse)
+	err = json.Unmarshal(data, &varPingCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PingCheckResponse(varPingCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "pingCheck")
+		delete(additionalProperties, "pingChecks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

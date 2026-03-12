@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,13 +21,14 @@ var _ MappedNullable = &ProjectInstanceFull{}
 
 // ProjectInstanceFull struct for ProjectInstanceFull
 type ProjectInstanceFull struct {
-	Error       NullableString `json:"error,omitempty"`
-	Id          string         `json:"id"`
-	Instance    string         `json:"instance"`
-	Name        *string        `json:"name,omitempty"`
-	PlanName    string         `json:"planName"`
-	ServiceName string         `json:"serviceName"`
-	Status      string         `json:"status"`
+	Error                NullableString `json:"error,omitempty"`
+	Id                   string         `json:"id"`
+	Instance             string         `json:"instance"`
+	Name                 *string        `json:"name,omitempty"`
+	PlanName             string         `json:"planName"`
+	ServiceName          string         `json:"serviceName"`
+	Status               string         `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProjectInstanceFull ProjectInstanceFull
@@ -271,6 +271,11 @@ func (o ProjectInstanceFull) ToMap() (map[string]interface{}, error) {
 	toSerialize["planName"] = o.PlanName
 	toSerialize["serviceName"] = o.ServiceName
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -302,15 +307,26 @@ func (o *ProjectInstanceFull) UnmarshalJSON(data []byte) (err error) {
 
 	varProjectInstanceFull := _ProjectInstanceFull{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProjectInstanceFull)
+	err = json.Unmarshal(data, &varProjectInstanceFull)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProjectInstanceFull(varProjectInstanceFull)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "instance")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "planName")
+		delete(additionalProperties, "serviceName")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

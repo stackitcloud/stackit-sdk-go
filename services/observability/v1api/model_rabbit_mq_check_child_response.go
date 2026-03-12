@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &RabbitMQCheckChildResponse{}
 
 // RabbitMQCheckChildResponse struct for RabbitMQCheckChildResponse
 type RabbitMQCheckChildResponse struct {
-	Id       string  `json:"id"`
-	Password *string `json:"password,omitempty"`
-	Url      string  `json:"url"`
-	Username *string `json:"username,omitempty"`
+	Id                   string  `json:"id"`
+	Password             *string `json:"password,omitempty"`
+	Url                  string  `json:"url"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RabbitMQCheckChildResponse RabbitMQCheckChildResponse
@@ -179,6 +179,11 @@ func (o RabbitMQCheckChildResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -207,15 +212,23 @@ func (o *RabbitMQCheckChildResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRabbitMQCheckChildResponse := _RabbitMQCheckChildResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRabbitMQCheckChildResponse)
+	err = json.Unmarshal(data, &varRabbitMQCheckChildResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RabbitMQCheckChildResponse(varRabbitMQCheckChildResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

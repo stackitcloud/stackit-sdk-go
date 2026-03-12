@@ -20,15 +20,18 @@ var _ MappedNullable = &Global{}
 
 // Global struct for Global
 type Global struct {
-	OpsgenieApiKey   *string `json:"opsgenieApiKey,omitempty"`
-	OpsgenieApiUrl   *string `json:"opsgenieApiUrl,omitempty"`
-	ResolveTimeout   *string `json:"resolveTimeout,omitempty"`
-	SmtpAuthIdentity *string `json:"smtpAuthIdentity,omitempty"`
-	SmtpAuthPassword *string `json:"smtpAuthPassword,omitempty"`
-	SmtpAuthUsername *string `json:"smtpAuthUsername,omitempty"`
-	SmtpFrom         *string `json:"smtpFrom,omitempty"`
-	SmtpSmarthost    *string `json:"smtpSmarthost,omitempty"`
+	OpsgenieApiKey       *string `json:"opsgenieApiKey,omitempty"`
+	OpsgenieApiUrl       *string `json:"opsgenieApiUrl,omitempty"`
+	ResolveTimeout       *string `json:"resolveTimeout,omitempty"`
+	SmtpAuthIdentity     *string `json:"smtpAuthIdentity,omitempty"`
+	SmtpAuthPassword     *string `json:"smtpAuthPassword,omitempty"`
+	SmtpAuthUsername     *string `json:"smtpAuthUsername,omitempty"`
+	SmtpFrom             *string `json:"smtpFrom,omitempty"`
+	SmtpSmarthost        *string `json:"smtpSmarthost,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Global Global
 
 // NewGlobal instantiates a new Global object
 // This constructor will assign default values to properties that have it defined,
@@ -341,7 +344,40 @@ func (o Global) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SmtpSmarthost) {
 		toSerialize["smtpSmarthost"] = o.SmtpSmarthost
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Global) UnmarshalJSON(data []byte) (err error) {
+	varGlobal := _Global{}
+
+	err = json.Unmarshal(data, &varGlobal)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Global(varGlobal)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "opsgenieApiKey")
+		delete(additionalProperties, "opsgenieApiUrl")
+		delete(additionalProperties, "resolveTimeout")
+		delete(additionalProperties, "smtpAuthIdentity")
+		delete(additionalProperties, "smtpAuthPassword")
+		delete(additionalProperties, "smtpAuthUsername")
+		delete(additionalProperties, "smtpFrom")
+		delete(additionalProperties, "smtpSmarthost")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGlobal struct {

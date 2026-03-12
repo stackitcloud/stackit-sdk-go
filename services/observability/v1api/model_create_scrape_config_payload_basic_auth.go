@@ -23,8 +23,11 @@ type CreateScrapeConfigPayloadBasicAuth struct {
 	// password
 	Password *string `json:"password,omitempty"`
 	// username
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateScrapeConfigPayloadBasicAuth CreateScrapeConfigPayloadBasicAuth
 
 // NewCreateScrapeConfigPayloadBasicAuth instantiates a new CreateScrapeConfigPayloadBasicAuth object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o CreateScrapeConfigPayloadBasicAuth) ToMap() (map[string]interface{}, err
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateScrapeConfigPayloadBasicAuth) UnmarshalJSON(data []byte) (err error) {
+	varCreateScrapeConfigPayloadBasicAuth := _CreateScrapeConfigPayloadBasicAuth{}
+
+	err = json.Unmarshal(data, &varCreateScrapeConfigPayloadBasicAuth)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateScrapeConfigPayloadBasicAuth(varCreateScrapeConfigPayloadBasicAuth)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateScrapeConfigPayloadBasicAuth struct {

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,16 +21,17 @@ var _ MappedNullable = &Route{}
 
 // Route struct for Route
 type Route struct {
-	Continue       *bool              `json:"continue,omitempty"`
-	GroupBy        []string           `json:"groupBy,omitempty"`
-	GroupInterval  *string            `json:"groupInterval,omitempty"`
-	GroupWait      *string            `json:"groupWait,omitempty"`
-	Match          *map[string]string `json:"match,omitempty"`
-	MatchRe        *map[string]string `json:"matchRe,omitempty"`
-	Matchers       []string           `json:"matchers,omitempty"`
-	Receiver       string             `json:"receiver"`
-	RepeatInterval *string            `json:"repeatInterval,omitempty"`
-	Routes         []RouteSerializer  `json:"routes,omitempty"`
+	Continue             *bool              `json:"continue,omitempty"`
+	GroupBy              []string           `json:"groupBy,omitempty"`
+	GroupInterval        *string            `json:"groupInterval,omitempty"`
+	GroupWait            *string            `json:"groupWait,omitempty"`
+	Match                *map[string]string `json:"match,omitempty"`
+	MatchRe              *map[string]string `json:"matchRe,omitempty"`
+	Matchers             []string           `json:"matchers,omitempty"`
+	Receiver             string             `json:"receiver"`
+	RepeatInterval       *string            `json:"repeatInterval,omitempty"`
+	Routes               []RouteSerializer  `json:"routes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Route Route
@@ -420,6 +420,11 @@ func (o Route) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Routes) {
 		toSerialize["routes"] = o.Routes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -447,15 +452,29 @@ func (o *Route) UnmarshalJSON(data []byte) (err error) {
 
 	varRoute := _Route{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRoute)
+	err = json.Unmarshal(data, &varRoute)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Route(varRoute)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "continue")
+		delete(additionalProperties, "groupBy")
+		delete(additionalProperties, "groupInterval")
+		delete(additionalProperties, "groupWait")
+		delete(additionalProperties, "match")
+		delete(additionalProperties, "matchRe")
+		delete(additionalProperties, "matchers")
+		delete(additionalProperties, "receiver")
+		delete(additionalProperties, "repeatInterval")
+		delete(additionalProperties, "routes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
