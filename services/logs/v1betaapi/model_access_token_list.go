@@ -11,7 +11,6 @@ API version: 1beta.0.3
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &AccessTokenList{}
 
 // AccessTokenList struct for AccessTokenList
 type AccessTokenList struct {
-	Tokens []AccessToken `json:"tokens"`
+	Tokens               []AccessToken `json:"tokens"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessTokenList AccessTokenList
@@ -79,6 +79,11 @@ func (o AccessTokenList) MarshalJSON() ([]byte, error) {
 func (o AccessTokenList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tokens"] = o.Tokens
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *AccessTokenList) UnmarshalJSON(data []byte) (err error) {
 
 	varAccessTokenList := _AccessTokenList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessTokenList)
+	err = json.Unmarshal(data, &varAccessTokenList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessTokenList(varAccessTokenList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "tokens")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
