@@ -22,8 +22,11 @@ type Dependencies struct {
 	// a list of service IDs which this service depend on. If the service is enabled, those service are enabled as well automatically.
 	Hard []string `json:"hard,omitempty"`
 	// a list of service IDs which this service depend on. When they are disabled a notification is sent.
-	Soft []string `json:"soft,omitempty"`
+	Soft                 []string `json:"soft,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Dependencies Dependencies
 
 // NewDependencies instantiates a new Dependencies object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o Dependencies) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Soft) {
 		toSerialize["soft"] = o.Soft
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Dependencies) UnmarshalJSON(data []byte) (err error) {
+	varDependencies := _Dependencies{}
+
+	err = json.Unmarshal(data, &varDependencies)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Dependencies(varDependencies)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hard")
+		delete(additionalProperties, "soft")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDependencies struct {
