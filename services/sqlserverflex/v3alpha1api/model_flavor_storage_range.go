@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type FlavorStorageRange struct {
 	// maximum storage which can be ordered for the flavor in Gigabyte.
 	Max int32 `json:"max"`
 	// minimum storage which is required to order in Gigabyte.
-	Min int32 `json:"min"`
+	Min                  int32 `json:"min"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FlavorStorageRange FlavorStorageRange
@@ -109,6 +109,11 @@ func (o FlavorStorageRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["max"] = o.Max
 	toSerialize["min"] = o.Min
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *FlavorStorageRange) UnmarshalJSON(data []byte) (err error) {
 
 	varFlavorStorageRange := _FlavorStorageRange{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFlavorStorageRange)
+	err = json.Unmarshal(data, &varFlavorStorageRange)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FlavorStorageRange(varFlavorStorageRange)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "max")
+		delete(additionalProperties, "min")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

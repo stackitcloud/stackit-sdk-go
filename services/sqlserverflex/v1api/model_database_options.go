@@ -25,8 +25,11 @@ type DatabaseOptions struct {
 	// CompatibilityLevel of the Database.
 	CompatibilityLevel *int32 `json:"compatibilityLevel,omitempty"`
 	// Name of the owner of the database.
-	Owner *string `json:"owner,omitempty"`
+	Owner                *string `json:"owner,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DatabaseOptions DatabaseOptions
 
 // NewDatabaseOptions instantiates a new DatabaseOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o DatabaseOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Owner) {
 		toSerialize["owner"] = o.Owner
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DatabaseOptions) UnmarshalJSON(data []byte) (err error) {
+	varDatabaseOptions := _DatabaseOptions{}
+
+	err = json.Unmarshal(data, &varDatabaseOptions)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DatabaseOptions(varDatabaseOptions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collationName")
+		delete(additionalProperties, "compatibilityLevel")
+		delete(additionalProperties, "owner")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDatabaseOptions struct {

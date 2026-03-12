@@ -25,8 +25,11 @@ type SingleDatabase struct {
 	// Database name
 	Name *string `json:"name,omitempty"`
 	// Database specific options
-	Options *DatabaseOptions `json:"options,omitempty"`
+	Options              *DatabaseOptions `json:"options,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SingleDatabase SingleDatabase
 
 // NewSingleDatabase instantiates a new SingleDatabase object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o SingleDatabase) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SingleDatabase) UnmarshalJSON(data []byte) (err error) {
+	varSingleDatabase := _SingleDatabase{}
+
+	err = json.Unmarshal(data, &varSingleDatabase)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SingleDatabase(varSingleDatabase)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSingleDatabase struct {

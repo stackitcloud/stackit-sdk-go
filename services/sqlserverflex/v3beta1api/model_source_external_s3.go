@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,9 +24,10 @@ type SourceExternalS3 struct {
 	// The owner of the database.
 	DatabaseOwner string `json:"database_owner"`
 	// Logging guid to have a complete activity log over all sub stored procedures.
-	LoggingGuid *string    `json:"logging_guid,omitempty"`
-	S3Details   ExternalS3 `json:"s3_details"`
-	Type        string     `json:"type"`
+	LoggingGuid          *string    `json:"logging_guid,omitempty"`
+	S3Details            ExternalS3 `json:"s3_details"`
+	Type                 string     `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceExternalS3 SourceExternalS3
@@ -172,6 +172,11 @@ func (o SourceExternalS3) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["s3_details"] = o.S3Details
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -201,15 +206,23 @@ func (o *SourceExternalS3) UnmarshalJSON(data []byte) (err error) {
 
 	varSourceExternalS3 := _SourceExternalS3{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceExternalS3)
+	err = json.Unmarshal(data, &varSourceExternalS3)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceExternalS3(varSourceExternalS3)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "database_owner")
+		delete(additionalProperties, "logging_guid")
+		delete(additionalProperties, "s3_details")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

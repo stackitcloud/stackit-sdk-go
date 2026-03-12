@@ -20,15 +20,18 @@ var _ MappedNullable = &Backup{}
 
 // Backup struct for Backup
 type Backup struct {
-	EndTime   *string            `json:"endTime,omitempty"`
-	Error     *string            `json:"error,omitempty"`
-	Id        *string            `json:"id,omitempty"`
-	Labels    []string           `json:"labels,omitempty"`
-	Name      *string            `json:"name,omitempty"`
-	Options   *map[string]string `json:"options,omitempty"`
-	Size      *int32             `json:"size,omitempty"`
-	StartTime *string            `json:"startTime,omitempty"`
+	EndTime              *string            `json:"endTime,omitempty"`
+	Error                *string            `json:"error,omitempty"`
+	Id                   *string            `json:"id,omitempty"`
+	Labels               []string           `json:"labels,omitempty"`
+	Name                 *string            `json:"name,omitempty"`
+	Options              *map[string]string `json:"options,omitempty"`
+	Size                 *int32             `json:"size,omitempty"`
+	StartTime            *string            `json:"startTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Backup Backup
 
 // NewBackup instantiates a new Backup object
 // This constructor will assign default values to properties that have it defined,
@@ -337,7 +340,40 @@ func (o Backup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StartTime) {
 		toSerialize["startTime"] = o.StartTime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Backup) UnmarshalJSON(data []byte) (err error) {
+	varBackup := _Backup{}
+
+	err = json.Unmarshal(data, &varBackup)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Backup(varBackup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "endTime")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "startTime")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBackup struct {

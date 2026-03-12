@@ -20,9 +20,12 @@ var _ MappedNullable = &ListStoragesResponse{}
 
 // ListStoragesResponse struct for ListStoragesResponse
 type ListStoragesResponse struct {
-	StorageClasses []string      `json:"storageClasses,omitempty"`
-	StorageRange   *StorageRange `json:"storageRange,omitempty"`
+	StorageClasses       []string      `json:"storageClasses,omitempty"`
+	StorageRange         *StorageRange `json:"storageRange,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListStoragesResponse ListStoragesResponse
 
 // NewListStoragesResponse instantiates a new ListStoragesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ListStoragesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StorageRange) {
 		toSerialize["storageRange"] = o.StorageRange
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListStoragesResponse) UnmarshalJSON(data []byte) (err error) {
+	varListStoragesResponse := _ListStoragesResponse{}
+
+	err = json.Unmarshal(data, &varListStoragesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListStoragesResponse(varListStoragesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "storageClasses")
+		delete(additionalProperties, "storageRange")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListStoragesResponse struct {

@@ -22,10 +22,13 @@ var _ MappedNullable = &InstanceNetwork{}
 type InstanceNetwork struct {
 	AccessScope *InstanceNetworkAccessScope `json:"accessScope,omitempty"`
 	// List of IPV4 cidr.
-	Acl             []string `json:"acl,omitempty"`
-	InstanceAddress *string  `json:"instanceAddress,omitempty"`
-	RouterAddress   *string  `json:"routerAddress,omitempty"`
+	Acl                  []string `json:"acl,omitempty"`
+	InstanceAddress      *string  `json:"instanceAddress,omitempty"`
+	RouterAddress        *string  `json:"routerAddress,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceNetwork InstanceNetwork
 
 // NewInstanceNetwork instantiates a new InstanceNetwork object
 // This constructor will assign default values to properties that have it defined,
@@ -198,7 +201,36 @@ func (o InstanceNetwork) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RouterAddress) {
 		toSerialize["routerAddress"] = o.RouterAddress
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceNetwork) UnmarshalJSON(data []byte) (err error) {
+	varInstanceNetwork := _InstanceNetwork{}
+
+	err = json.Unmarshal(data, &varInstanceNetwork)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceNetwork(varInstanceNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessScope")
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "instanceAddress")
+		delete(additionalProperties, "routerAddress")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceNetwork struct {

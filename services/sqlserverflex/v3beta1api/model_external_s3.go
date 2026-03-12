@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type ExternalS3 struct {
 	// The s3 bucket address
 	S3Bucket string `json:"s3_bucket"`
 	// The backup files from which the database should be restored
-	S3Files []S3fileInfo `json:"s3_files"`
+	S3Files              []S3fileInfo `json:"s3_files"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ExternalS3 ExternalS3
@@ -165,6 +165,11 @@ func (o ExternalS3) ToMap() (map[string]interface{}, error) {
 	toSerialize["s3_access_secret"] = o.S3AccessSecret
 	toSerialize["s3_bucket"] = o.S3Bucket
 	toSerialize["s3_files"] = o.S3Files
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -195,15 +200,23 @@ func (o *ExternalS3) UnmarshalJSON(data []byte) (err error) {
 
 	varExternalS3 := _ExternalS3{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varExternalS3)
+	err = json.Unmarshal(data, &varExternalS3)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ExternalS3(varExternalS3)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "s3_access_key")
+		delete(additionalProperties, "s3_access_secret")
+		delete(additionalProperties, "s3_bucket")
+		delete(additionalProperties, "s3_files")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

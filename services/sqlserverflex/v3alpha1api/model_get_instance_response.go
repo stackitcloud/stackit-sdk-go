@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -37,10 +36,11 @@ type GetInstanceResponse struct {
 	Network  InstanceNetwork `json:"network"`
 	Replicas Replicas        `json:"replicas"`
 	// The days for how long the backup files should be stored before cleaned up. 30 to 365
-	RetentionDays int32           `json:"retentionDays"`
-	Status        Status          `json:"status"`
-	Storage       Storage         `json:"storage"`
-	Version       InstanceVersion `json:"version"`
+	RetentionDays        int32           `json:"retentionDays"`
+	Status               Status          `json:"status"`
+	Storage              Storage         `json:"storage"`
+	Version              InstanceVersion `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetInstanceResponse GetInstanceResponse
@@ -419,6 +419,11 @@ func (o GetInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["status"] = o.Status
 	toSerialize["storage"] = o.Storage
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -457,15 +462,32 @@ func (o *GetInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetInstanceResponse := _GetInstanceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetInstanceResponse)
+	err = json.Unmarshal(data, &varGetInstanceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetInstanceResponse(varGetInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "edition")
+		delete(additionalProperties, "encryption")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "isDeletable")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "replicas")
+		delete(additionalProperties, "retentionDays")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

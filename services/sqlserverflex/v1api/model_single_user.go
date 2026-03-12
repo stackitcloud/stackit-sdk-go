@@ -20,15 +20,18 @@ var _ MappedNullable = &SingleUser{}
 
 // SingleUser struct for SingleUser
 type SingleUser struct {
-	DefaultDatabase *string  `json:"default_database,omitempty"`
-	Host            *string  `json:"host,omitempty"`
-	Id              *string  `json:"id,omitempty"`
-	Password        *string  `json:"password,omitempty"`
-	Port            *int32   `json:"port,omitempty"`
-	Roles           []string `json:"roles,omitempty"`
-	Uri             *string  `json:"uri,omitempty"`
-	Username        *string  `json:"username,omitempty"`
+	DefaultDatabase      *string  `json:"default_database,omitempty"`
+	Host                 *string  `json:"host,omitempty"`
+	Id                   *string  `json:"id,omitempty"`
+	Password             *string  `json:"password,omitempty"`
+	Port                 *int32   `json:"port,omitempty"`
+	Roles                []string `json:"roles,omitempty"`
+	Uri                  *string  `json:"uri,omitempty"`
+	Username             *string  `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SingleUser SingleUser
 
 // NewSingleUser instantiates a new SingleUser object
 // This constructor will assign default values to properties that have it defined,
@@ -337,7 +340,40 @@ func (o SingleUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SingleUser) UnmarshalJSON(data []byte) (err error) {
+	varSingleUser := _SingleUser{}
+
+	err = json.Unmarshal(data, &varSingleUser)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SingleUser(varSingleUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default_database")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "uri")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSingleUser struct {
