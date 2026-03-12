@@ -52,8 +52,8 @@ type DefaultAPI interface {
 	CreateFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string) ApiCreateFederatedIdentityProviderRequest
 
 	// CreateFederatedIdentityProviderExecute executes the request
-	//  @return CreateFederatedIdentityProviderResponse
-	CreateFederatedIdentityProviderExecute(r ApiCreateFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error)
+	//  @return FederatedIdentityProvider
+	CreateFederatedIdentityProviderExecute(r ApiCreateFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
 
 	/*
 		CreateServiceAccount Create a new Service Account
@@ -273,8 +273,8 @@ type DefaultAPI interface {
 	PartialUpdateServiceAccountFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest
 
 	// PartialUpdateServiceAccountFederatedIdentityProviderExecute executes the request
-	//  @return CreateFederatedIdentityProviderResponse
-	PartialUpdateServiceAccountFederatedIdentityProviderExecute(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error)
+	//  @return FederatedIdentityProvider
+	PartialUpdateServiceAccountFederatedIdentityProviderExecute(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
 
 	/*
 		PartialUpdateServiceAccountKey Update Service Account key
@@ -486,7 +486,7 @@ func (r ApiCreateFederatedIdentityProviderRequest) CreateFederatedIdentityProvid
 	return r
 }
 
-func (r ApiCreateFederatedIdentityProviderRequest) Execute() (*CreateFederatedIdentityProviderResponse, error) {
+func (r ApiCreateFederatedIdentityProviderRequest) Execute() (*FederatedIdentityProvider, error) {
 	return r.ApiService.CreateFederatedIdentityProviderExecute(r)
 }
 
@@ -511,13 +511,13 @@ func (a *DefaultAPIService) CreateFederatedIdentityProvider(ctx context.Context,
 
 // Execute executes the request
 //
-//	@return CreateFederatedIdentityProviderResponse
-func (a *DefaultAPIService) CreateFederatedIdentityProviderExecute(r ApiCreateFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error) {
+//	@return FederatedIdentityProvider
+func (a *DefaultAPIService) CreateFederatedIdentityProviderExecute(r ApiCreateFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateFederatedIdentityProviderResponse
+		localVarReturnValue *FederatedIdentityProvider
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateFederatedIdentityProvider")
@@ -2733,7 +2733,7 @@ func (r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) PartialU
 	return r
 }
 
-func (r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) Execute() (*CreateFederatedIdentityProviderResponse, error) {
+func (r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) Execute() (*FederatedIdentityProvider, error) {
 	return r.ApiService.PartialUpdateServiceAccountFederatedIdentityProviderExecute(r)
 }
 
@@ -2760,13 +2760,13 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProvider
 
 // Execute executes the request
 //
-//	@return CreateFederatedIdentityProviderResponse
-func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProviderExecute(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error) {
+//	@return FederatedIdentityProvider
+func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProviderExecute(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *CreateFederatedIdentityProviderResponse
+		localVarReturnValue *FederatedIdentityProvider
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.PartialUpdateServiceAccountFederatedIdentityProvider")
