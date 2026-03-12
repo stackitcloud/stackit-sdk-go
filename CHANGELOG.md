@@ -66,6 +66,9 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
   - [v1.5.0](services/postgresflex/CHANGELOG.md#v150)
     - `v3alpha1api`: Align package to latest API specification
+  - [v1.6.0](services/postgresflex/CHANGELOG.md#v160)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `edge`: 
   - [v0.5.0](services/edge/CHANGELOG.md#v050)
     - **Feature:** Introduction of multi API version support for the edge SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062

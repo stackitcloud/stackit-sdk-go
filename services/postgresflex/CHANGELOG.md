@@ -1,3 +1,7 @@
+## v1.6.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v1.5.0
 - `v3alpha1api`: Align package to latest API specification
 
