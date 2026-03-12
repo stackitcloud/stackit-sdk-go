@@ -23,8 +23,11 @@ type PartialUpdateServiceAccountKeyPayload struct {
 	// Active keys are valid, while inactive keys are temporarily deactivated.
 	Active *bool `json:"active,omitempty"`
 	// Optional, date of key expiration. To disable, set time to \"9999-01-01T01:01:01Z\"
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil           *time.Time `json:"validUntil,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateServiceAccountKeyPayload PartialUpdateServiceAccountKeyPayload
 
 // NewPartialUpdateServiceAccountKeyPayload instantiates a new PartialUpdateServiceAccountKeyPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o PartialUpdateServiceAccountKeyPayload) ToMap() (map[string]interface{}, 
 	if !IsNil(o.ValidUntil) {
 		toSerialize["validUntil"] = o.ValidUntil
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateServiceAccountKeyPayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateServiceAccountKeyPayload := _PartialUpdateServiceAccountKeyPayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateServiceAccountKeyPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateServiceAccountKeyPayload(varPartialUpdateServiceAccountKeyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateServiceAccountKeyPayload struct {

@@ -24,8 +24,11 @@ type PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner 
 	// Operator for the comparison
 	Operator *string `json:"operator,omitempty"`
 	// Value which the item is compared to
-	Value *string `json:"value,omitempty"`
+	Value                *string `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner
 
 // NewPartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner instantiates a new PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInn
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner := _PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner{}
+
+	err = json.Unmarshal(data, &varPartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner(varPartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		delete(additionalProperties, "operator")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateServiceAccountFederatedIdentityProviderPayloadAssertionsInner struct {

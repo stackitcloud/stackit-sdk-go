@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type ServiceAccount struct {
 	// Flag indicating internal service accounts
 	Internal bool `json:"internal"`
 	// ID of the related project
-	ProjectId string `json:"projectId"`
+	ProjectId            string `json:"projectId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServiceAccount ServiceAccount
@@ -164,6 +164,11 @@ func (o ServiceAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["internal"] = o.Internal
 	toSerialize["projectId"] = o.ProjectId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *ServiceAccount) UnmarshalJSON(data []byte) (err error) {
 
 	varServiceAccount := _ServiceAccount{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServiceAccount)
+	err = json.Unmarshal(data, &varServiceAccount)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServiceAccount(varServiceAccount)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "internal")
+		delete(additionalProperties, "projectId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

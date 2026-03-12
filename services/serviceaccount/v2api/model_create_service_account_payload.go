@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &CreateServiceAccountPayload{}
 // CreateServiceAccountPayload struct for CreateServiceAccountPayload
 type CreateServiceAccountPayload struct {
 	// The requested name of the service account. The service will generate a unique email from this name.
-	Name string `json:"name" validate:"regexp=^[a-z](?:-?[a-z0-9]+)*$"`
+	Name                 string `json:"name" validate:"regexp=^[a-z](?:-?[a-z0-9]+)*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateServiceAccountPayload CreateServiceAccountPayload
@@ -80,6 +80,11 @@ func (o CreateServiceAccountPayload) MarshalJSON() ([]byte, error) {
 func (o CreateServiceAccountPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *CreateServiceAccountPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateServiceAccountPayload := _CreateServiceAccountPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateServiceAccountPayload)
+	err = json.Unmarshal(data, &varCreateServiceAccountPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateServiceAccountPayload(varCreateServiceAccountPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
