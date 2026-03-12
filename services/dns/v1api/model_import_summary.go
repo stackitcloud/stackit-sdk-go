@@ -20,13 +20,16 @@ var _ MappedNullable = &ImportSummary{}
 
 // ImportSummary ImportSummary is the summary of the import.
 type ImportSummary struct {
-	CreatedRRSets  *int32 `json:"createdRRSets,omitempty"`
-	CreatedRecords *int32 `json:"createdRecords,omitempty"`
-	DeletedRRSets  *int32 `json:"deletedRRSets,omitempty"`
-	DeletedRecords *int32 `json:"deletedRecords,omitempty"`
-	UpdatedRRSets  *int32 `json:"updatedRRSets,omitempty"`
-	UpdatedRecords *int32 `json:"updatedRecords,omitempty"`
+	CreatedRRSets        *int32 `json:"createdRRSets,omitempty"`
+	CreatedRecords       *int32 `json:"createdRecords,omitempty"`
+	DeletedRRSets        *int32 `json:"deletedRRSets,omitempty"`
+	DeletedRecords       *int32 `json:"deletedRecords,omitempty"`
+	UpdatedRRSets        *int32 `json:"updatedRRSets,omitempty"`
+	UpdatedRecords       *int32 `json:"updatedRecords,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ImportSummary ImportSummary
 
 // NewImportSummary instantiates a new ImportSummary object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,38 @@ func (o ImportSummary) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedRecords) {
 		toSerialize["updatedRecords"] = o.UpdatedRecords
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ImportSummary) UnmarshalJSON(data []byte) (err error) {
+	varImportSummary := _ImportSummary{}
+
+	err = json.Unmarshal(data, &varImportSummary)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImportSummary(varImportSummary)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdRRSets")
+		delete(additionalProperties, "createdRecords")
+		delete(additionalProperties, "deletedRRSets")
+		delete(additionalProperties, "deletedRecords")
+		delete(additionalProperties, "updatedRRSets")
+		delete(additionalProperties, "updatedRecords")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableImportSummary struct {

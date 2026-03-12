@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -72,7 +71,8 @@ type Zone struct {
 	// when zone update/deletion started
 	UpdateStarted string `json:"updateStarted"`
 	// visibility of the zone
-	Visibility string `json:"visibility"`
+	Visibility           string `json:"visibility"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Zone Zone
@@ -887,6 +887,11 @@ func (o Zone) ToMap() (map[string]interface{}, error) {
 	toSerialize["updateFinished"] = o.UpdateFinished
 	toSerialize["updateStarted"] = o.UpdateStarted
 	toSerialize["visibility"] = o.Visibility
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -931,15 +936,46 @@ func (o *Zone) UnmarshalJSON(data []byte) (err error) {
 
 	varZone := _Zone{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varZone)
+	err = json.Unmarshal(data, &varZone)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Zone(varZone)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "contactEmail")
+		delete(additionalProperties, "creationFinished")
+		delete(additionalProperties, "creationStarted")
+		delete(additionalProperties, "defaultTTL")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "dnsName")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "expireTime")
+		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "isReverseZone")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "negativeCache")
+		delete(additionalProperties, "primaries")
+		delete(additionalProperties, "primaryNameServer")
+		delete(additionalProperties, "recordCount")
+		delete(additionalProperties, "refreshTime")
+		delete(additionalProperties, "retryTime")
+		delete(additionalProperties, "serialNumber")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "updateFinished")
+		delete(additionalProperties, "updateStarted")
+		delete(additionalProperties, "visibility")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,12 +20,15 @@ var _ MappedNullable = &RecordDataExchange{}
 
 // RecordDataExchange struct for RecordDataExchange
 type RecordDataExchange struct {
-	Comment *string  `json:"comment,omitempty"`
-	Content []string `json:"content,omitempty"`
-	Name    *string  `json:"name,omitempty"`
-	Ttl     *int32   `json:"ttl,omitempty"`
-	Type    *string  `json:"type,omitempty"`
+	Comment              *string  `json:"comment,omitempty"`
+	Content              []string `json:"content,omitempty"`
+	Name                 *string  `json:"name,omitempty"`
+	Ttl                  *int32   `json:"ttl,omitempty"`
+	Type                 *string  `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RecordDataExchange RecordDataExchange
 
 // NewRecordDataExchange instantiates a new RecordDataExchange object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o RecordDataExchange) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RecordDataExchange) UnmarshalJSON(data []byte) (err error) {
+	varRecordDataExchange := _RecordDataExchange{}
+
+	err = json.Unmarshal(data, &varRecordDataExchange)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RecordDataExchange(varRecordDataExchange)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "content")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "ttl")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRecordDataExchange struct {

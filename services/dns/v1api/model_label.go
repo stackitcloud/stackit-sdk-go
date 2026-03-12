@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &Label{}
 
 // Label struct for Label
 type Label struct {
-	Key   string `json:"key"`
-	Value string `json:"value"`
+	Key                  string `json:"key"`
+	Value                string `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Label Label
@@ -107,6 +107,11 @@ func (o Label) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["key"] = o.Key
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *Label) UnmarshalJSON(data []byte) (err error) {
 
 	varLabel := _Label{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLabel)
+	err = json.Unmarshal(data, &varLabel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Label(varLabel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

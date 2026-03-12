@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type MoveZonePayload struct {
 	// Code to move the zone. It must be valid, not expired and belong
 	Code string `json:"code"`
 	// ZoneDnsName is the dns name of the zone to move
-	ZoneDnsName string `json:"zoneDnsName"`
+	ZoneDnsName          string `json:"zoneDnsName"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MoveZonePayload MoveZonePayload
@@ -109,6 +109,11 @@ func (o MoveZonePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["code"] = o.Code
 	toSerialize["zoneDnsName"] = o.ZoneDnsName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *MoveZonePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varMoveZonePayload := _MoveZonePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMoveZonePayload)
+	err = json.Unmarshal(data, &varMoveZonePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MoveZonePayload(varMoveZonePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "zoneDnsName")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
