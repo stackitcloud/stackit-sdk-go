@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &CreateUpdateSchedulePayload{}
 
 // CreateUpdateSchedulePayload struct for CreateUpdateSchedulePayload
 type CreateUpdateSchedulePayload struct {
-	Enabled           bool   `json:"enabled"`
-	MaintenanceWindow int32  `json:"maintenanceWindow"`
-	Name              string `json:"name"`
-	Rrule             string `json:"rrule"`
+	Enabled              bool   `json:"enabled"`
+	MaintenanceWindow    int32  `json:"maintenanceWindow"`
+	Name                 string `json:"name"`
+	Rrule                string `json:"rrule"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateUpdateSchedulePayload CreateUpdateSchedulePayload
@@ -161,6 +161,11 @@ func (o CreateUpdateSchedulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["maintenanceWindow"] = o.MaintenanceWindow
 	toSerialize["name"] = o.Name
 	toSerialize["rrule"] = o.Rrule
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -191,15 +196,23 @@ func (o *CreateUpdateSchedulePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateUpdateSchedulePayload := _CreateUpdateSchedulePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateUpdateSchedulePayload)
+	err = json.Unmarshal(data, &varCreateUpdateSchedulePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateUpdateSchedulePayload(varCreateUpdateSchedulePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "maintenanceWindow")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rrule")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

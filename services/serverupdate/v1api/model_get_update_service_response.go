@@ -20,8 +20,11 @@ var _ MappedNullable = &GetUpdateServiceResponse{}
 
 // GetUpdateServiceResponse struct for GetUpdateServiceResponse
 type GetUpdateServiceResponse struct {
-	Enabled *bool `json:"enabled,omitempty"`
+	Enabled              *bool `json:"enabled,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetUpdateServiceResponse GetUpdateServiceResponse
 
 // NewGetUpdateServiceResponse instantiates a new GetUpdateServiceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o GetUpdateServiceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetUpdateServiceResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetUpdateServiceResponse := _GetUpdateServiceResponse{}
+
+	err = json.Unmarshal(data, &varGetUpdateServiceResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetUpdateServiceResponse(varGetUpdateServiceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetUpdateServiceResponse struct {

@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,13 +21,14 @@ var _ MappedNullable = &Update{}
 
 // Update struct for Update
 type Update struct {
-	EndDate          *string `json:"endDate,omitempty"`
-	FailReason       *string `json:"failReason,omitempty"`
-	FailedUpdates    *int32  `json:"failedUpdates,omitempty"`
-	Id               int32   `json:"id"`
-	InstalledUpdates *int32  `json:"installedUpdates,omitempty"`
-	StartDate        string  `json:"startDate"`
-	Status           string  `json:"status"`
+	EndDate              *string `json:"endDate,omitempty"`
+	FailReason           *string `json:"failReason,omitempty"`
+	FailedUpdates        *int32  `json:"failedUpdates,omitempty"`
+	Id                   int32   `json:"id"`
+	InstalledUpdates     *int32  `json:"installedUpdates,omitempty"`
+	StartDate            string  `json:"startDate"`
+	Status               string  `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Update Update
@@ -278,6 +278,11 @@ func (o Update) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["startDate"] = o.StartDate
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -307,15 +312,26 @@ func (o *Update) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdate := _Update{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdate)
+	err = json.Unmarshal(data, &varUpdate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Update(varUpdate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "endDate")
+		delete(additionalProperties, "failReason")
+		delete(additionalProperties, "failedUpdates")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "installedUpdates")
+		delete(additionalProperties, "startDate")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

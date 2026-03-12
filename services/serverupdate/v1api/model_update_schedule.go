@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &UpdateSchedule{}
 
 // UpdateSchedule struct for UpdateSchedule
 type UpdateSchedule struct {
-	Enabled           bool   `json:"enabled"`
-	MaintenanceWindow int32  `json:"maintenanceWindow"`
-	Name              string `json:"name"`
-	Rrule             string `json:"rrule"`
-	Id                int32  `json:"id"`
+	Enabled              bool   `json:"enabled"`
+	MaintenanceWindow    int32  `json:"maintenanceWindow"`
+	Name                 string `json:"name"`
+	Rrule                string `json:"rrule"`
+	Id                   int32  `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateSchedule UpdateSchedule
@@ -188,6 +188,11 @@ func (o UpdateSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["rrule"] = o.Rrule
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *UpdateSchedule) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateSchedule := _UpdateSchedule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateSchedule)
+	err = json.Unmarshal(data, &varUpdateSchedule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateSchedule(varUpdateSchedule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "maintenanceWindow")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rrule")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

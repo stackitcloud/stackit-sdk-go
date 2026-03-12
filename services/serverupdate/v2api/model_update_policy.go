@@ -28,8 +28,11 @@ type UpdatePolicy struct {
 	MaintenanceWindow *int32  `json:"maintenanceWindow,omitempty"`
 	Name              *string `json:"name,omitempty"`
 	// An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates
-	Rrule *string `json:"rrule,omitempty"`
+	Rrule                *string `json:"rrule,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdatePolicy UpdatePolicy
 
 // NewUpdatePolicy instantiates a new UpdatePolicy object
 // This constructor will assign default values to properties that have it defined,
@@ -303,7 +306,39 @@ func (o UpdatePolicy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Rrule) {
 		toSerialize["rrule"] = o.Rrule
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdatePolicy) UnmarshalJSON(data []byte) (err error) {
+	varUpdatePolicy := _UpdatePolicy{}
+
+	err = json.Unmarshal(data, &varUpdatePolicy)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdatePolicy(varUpdatePolicy)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "maintenanceWindow")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rrule")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdatePolicy struct {

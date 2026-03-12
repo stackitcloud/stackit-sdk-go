@@ -20,8 +20,11 @@ var _ MappedNullable = &GetUpdateSchedulesResponse{}
 
 // GetUpdateSchedulesResponse struct for GetUpdateSchedulesResponse
 type GetUpdateSchedulesResponse struct {
-	Items []UpdateSchedule `json:"items,omitempty"`
+	Items                []UpdateSchedule `json:"items,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetUpdateSchedulesResponse GetUpdateSchedulesResponse
 
 // NewGetUpdateSchedulesResponse instantiates a new GetUpdateSchedulesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o GetUpdateSchedulesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetUpdateSchedulesResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetUpdateSchedulesResponse := _GetUpdateSchedulesResponse{}
+
+	err = json.Unmarshal(data, &varGetUpdateSchedulesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetUpdateSchedulesResponse(varGetUpdateSchedulesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetUpdateSchedulesResponse struct {
