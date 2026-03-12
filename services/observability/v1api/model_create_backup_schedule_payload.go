@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateBackupSchedulePayload{}
 // CreateBackupSchedulePayload struct for CreateBackupSchedulePayload
 type CreateBackupSchedulePayload struct {
 	// The schedule for how often to create a backup. `Additional Validators:` * must be a valid cronjob format * must run less than hourly
-	Schedule string `json:"schedule"`
+	Schedule             string `json:"schedule"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateBackupSchedulePayload CreateBackupSchedulePayload
@@ -81,6 +81,11 @@ func (o CreateBackupSchedulePayload) MarshalJSON() ([]byte, error) {
 func (o CreateBackupSchedulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["schedule"] = o.Schedule
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateBackupSchedulePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateBackupSchedulePayload := _CreateBackupSchedulePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateBackupSchedulePayload)
+	err = json.Unmarshal(data, &varCreateBackupSchedulePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateBackupSchedulePayload(varCreateBackupSchedulePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "schedule")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

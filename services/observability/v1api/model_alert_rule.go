@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &AlertRule{}
 
 // AlertRule struct for AlertRule
 type AlertRule struct {
-	Alert       string             `json:"alert"`
-	Annotations *map[string]string `json:"annotations,omitempty"`
-	Expr        string             `json:"expr"`
-	For         *string            `json:"for,omitempty"`
-	Labels      *map[string]string `json:"labels,omitempty"`
+	Alert                string             `json:"alert"`
+	Annotations          *map[string]string `json:"annotations,omitempty"`
+	Expr                 string             `json:"expr"`
+	For                  *string            `json:"for,omitempty"`
+	Labels               *map[string]string `json:"labels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AlertRule AlertRule
@@ -219,6 +219,11 @@ func (o AlertRule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -247,15 +252,24 @@ func (o *AlertRule) UnmarshalJSON(data []byte) (err error) {
 
 	varAlertRule := _AlertRule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAlertRule)
+	err = json.Unmarshal(data, &varAlertRule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AlertRule(varAlertRule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alert")
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "expr")
+		delete(additionalProperties, "for")
+		delete(additionalProperties, "labels")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

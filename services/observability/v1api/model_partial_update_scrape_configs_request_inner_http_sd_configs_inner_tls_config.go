@@ -21,8 +21,11 @@ var _ MappedNullable = &PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
 // PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig Configures the scrape request's TLS settings.
 type PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig struct {
 	// Disable validation of the server certificate.
-	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+	InsecureSkipVerify   *bool `json:"insecureSkipVerify,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig
 
 // NewPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig instantiates a new PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -90,7 +93,33 @@ func (o PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig) ToMap
 	if !IsNil(o.InsecureSkipVerify) {
 		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig := _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig{}
+
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig(varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "insecureSkipVerify")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig struct {

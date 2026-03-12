@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &BasicAuth{}
 
 // BasicAuth struct for BasicAuth
 type BasicAuth struct {
-	Password string `json:"password"`
-	Username string `json:"username"`
+	Password             string `json:"password"`
+	Username             string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BasicAuth BasicAuth
@@ -107,6 +107,11 @@ func (o BasicAuth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["password"] = o.Password
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *BasicAuth) UnmarshalJSON(data []byte) (err error) {
 
 	varBasicAuth := _BasicAuth{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBasicAuth)
+	err = json.Unmarshal(data, &varBasicAuth)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BasicAuth(varBasicAuth)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

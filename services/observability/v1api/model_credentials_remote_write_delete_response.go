@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &CredentialsRemoteWriteDeleteResponse{}
 
 // CredentialsRemoteWriteDeleteResponse struct for CredentialsRemoteWriteDeleteResponse
 type CredentialsRemoteWriteDeleteResponse struct {
-	MaxLimit int32  `json:"maxLimit"`
-	Message  string `json:"message"`
+	MaxLimit             int32  `json:"maxLimit"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CredentialsRemoteWriteDeleteResponse CredentialsRemoteWriteDeleteResponse
@@ -107,6 +107,11 @@ func (o CredentialsRemoteWriteDeleteResponse) ToMap() (map[string]interface{}, e
 	toSerialize := map[string]interface{}{}
 	toSerialize["maxLimit"] = o.MaxLimit
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *CredentialsRemoteWriteDeleteResponse) UnmarshalJSON(data []byte) (err e
 
 	varCredentialsRemoteWriteDeleteResponse := _CredentialsRemoteWriteDeleteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentialsRemoteWriteDeleteResponse)
+	err = json.Unmarshal(data, &varCredentialsRemoteWriteDeleteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CredentialsRemoteWriteDeleteResponse(varCredentialsRemoteWriteDeleteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "maxLimit")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

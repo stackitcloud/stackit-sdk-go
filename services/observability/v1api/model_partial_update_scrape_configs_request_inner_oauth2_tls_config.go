@@ -21,8 +21,11 @@ var _ MappedNullable = &PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig{}
 // PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig Configures the scrape request's TLS settings.
 type PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig struct {
 	// Disable validation of the server certificate.
-	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+	InsecureSkipVerify   *bool `json:"insecureSkipVerify,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig
 
 // NewPartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig instantiates a new PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -90,7 +93,33 @@ func (o PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig) ToMap() (map[stri
 	if !IsNil(o.InsecureSkipVerify) {
 		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig := _PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig{}
+
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig(varPartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "insecureSkipVerify")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateScrapeConfigsRequestInnerOauth2TlsConfig struct {

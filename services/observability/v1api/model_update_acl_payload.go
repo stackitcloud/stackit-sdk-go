@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &UpdateACLPayload{}
 // UpdateACLPayload List of cidr. Send empty string to remove acl.
 type UpdateACLPayload struct {
 	// list of cidr
-	Acl []string `json:"acl"`
+	Acl                  []string `json:"acl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateACLPayload UpdateACLPayload
@@ -81,6 +81,11 @@ func (o UpdateACLPayload) MarshalJSON() ([]byte, error) {
 func (o UpdateACLPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["acl"] = o.Acl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *UpdateACLPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateACLPayload := _UpdateACLPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateACLPayload)
+	err = json.Unmarshal(data, &varUpdateACLPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateACLPayload(varUpdateACLPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

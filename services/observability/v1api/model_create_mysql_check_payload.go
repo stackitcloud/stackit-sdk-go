@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateMysqlCheckPayload{}
 // CreateMysqlCheckPayload MySQL check body.
 type CreateMysqlCheckPayload struct {
 	// url to check
-	Server string `json:"server"`
+	Server               string `json:"server"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateMysqlCheckPayload CreateMysqlCheckPayload
@@ -81,6 +81,11 @@ func (o CreateMysqlCheckPayload) MarshalJSON() ([]byte, error) {
 func (o CreateMysqlCheckPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["server"] = o.Server
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateMysqlCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateMysqlCheckPayload := _CreateMysqlCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateMysqlCheckPayload)
+	err = json.Unmarshal(data, &varCreateMysqlCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateMysqlCheckPayload(varCreateMysqlCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "server")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

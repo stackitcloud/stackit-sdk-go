@@ -29,8 +29,11 @@ type UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner struct {
 	// Whether to notify about resolved alerts.
 	SendResolved *bool `json:"sendResolved,omitempty"`
 	// Comma separated list of tags attached to the notifications.
-	Tags *string `json:"tags,omitempty"`
+	Tags                 *string `json:"tags,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner
 
 // NewUpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner instantiates a new UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -238,7 +241,37 @@ func (o UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner) ToMap() (ma
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner := _UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner{}
+
+	err = json.Unmarshal(data, &varUpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner(varUpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apiKey")
+		delete(additionalProperties, "apiUrl")
+		delete(additionalProperties, "priority")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "tags")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner struct {

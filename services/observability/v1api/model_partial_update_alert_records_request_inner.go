@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type PartialUpdateAlertRecordsRequestInner struct {
 	// map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name of the record. `Additional Validators:` * is the identifier and so unique in the group
-	Record string `json:"record"`
+	Record               string `json:"record"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateAlertRecordsRequestInner PartialUpdateAlertRecordsRequestInner
@@ -146,6 +146,11 @@ func (o PartialUpdateAlertRecordsRequestInner) ToMap() (map[string]interface{}, 
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["record"] = o.Record
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -174,15 +179,22 @@ func (o *PartialUpdateAlertRecordsRequestInner) UnmarshalJSON(data []byte) (err 
 
 	varPartialUpdateAlertRecordsRequestInner := _PartialUpdateAlertRecordsRequestInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateAlertRecordsRequestInner)
+	err = json.Unmarshal(data, &varPartialUpdateAlertRecordsRequestInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateAlertRecordsRequestInner(varPartialUpdateAlertRecordsRequestInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expr")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "record")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

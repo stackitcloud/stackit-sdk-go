@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &Credentials{}
 
 // Credentials struct for Credentials
 type Credentials struct {
-	Description *string `json:"description,omitempty"`
-	Password    string  `json:"password"`
-	Username    string  `json:"username"`
+	Description          *string `json:"description,omitempty"`
+	Password             string  `json:"password"`
+	Username             string  `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Credentials Credentials
@@ -143,6 +143,11 @@ func (o Credentials) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["password"] = o.Password
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *Credentials) UnmarshalJSON(data []byte) (err error) {
 
 	varCredentials := _Credentials{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentials)
+	err = json.Unmarshal(data, &varCredentials)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Credentials(varCredentials)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

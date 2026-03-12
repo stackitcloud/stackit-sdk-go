@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -34,6 +33,7 @@ type GrafanaOauth struct {
 	Scopes                  *string `json:"scopes,omitempty"`
 	TokenUrl                string  `json:"tokenUrl"`
 	UsePkce                 *bool   `json:"usePkce,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _GrafanaOauth GrafanaOauth
@@ -434,6 +434,11 @@ func (o GrafanaOauth) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UsePkce) {
 		toSerialize["usePkce"] = o.UsePkce
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -467,15 +472,31 @@ func (o *GrafanaOauth) UnmarshalJSON(data []byte) (err error) {
 
 	varGrafanaOauth := _GrafanaOauth{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGrafanaOauth)
+	err = json.Unmarshal(data, &varGrafanaOauth)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GrafanaOauth(varGrafanaOauth)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowAssignGrafanaAdmin")
+		delete(additionalProperties, "apiUrl")
+		delete(additionalProperties, "authUrl")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "oauthClientId")
+		delete(additionalProperties, "oauthClientSecret")
+		delete(additionalProperties, "roleAttributePath")
+		delete(additionalProperties, "roleAttributeStrict")
+		delete(additionalProperties, "scopes")
+		delete(additionalProperties, "tokenUrl")
+		delete(additionalProperties, "usePkce")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

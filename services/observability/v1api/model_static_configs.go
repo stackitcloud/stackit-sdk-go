@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &StaticConfigs{}
 
 // StaticConfigs struct for StaticConfigs
 type StaticConfigs struct {
-	Labels  *map[string]string `json:"labels,omitempty"`
-	Targets []string           `json:"targets"`
+	Labels               *map[string]string `json:"labels,omitempty"`
+	Targets              []string           `json:"targets"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StaticConfigs StaticConfigs
@@ -116,6 +116,11 @@ func (o StaticConfigs) ToMap() (map[string]interface{}, error) {
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["targets"] = o.Targets
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *StaticConfigs) UnmarshalJSON(data []byte) (err error) {
 
 	varStaticConfigs := _StaticConfigs{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStaticConfigs)
+	err = json.Unmarshal(data, &varStaticConfigs)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StaticConfigs(varStaticConfigs)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "targets")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

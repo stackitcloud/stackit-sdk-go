@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &GetScrapeConfigResponse{}
 
 // GetScrapeConfigResponse struct for GetScrapeConfigResponse
 type GetScrapeConfigResponse struct {
-	Data    Job    `json:"data"`
-	Message string `json:"message"`
+	Data                 Job    `json:"data"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetScrapeConfigResponse GetScrapeConfigResponse
@@ -107,6 +107,11 @@ func (o GetScrapeConfigResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *GetScrapeConfigResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetScrapeConfigResponse := _GetScrapeConfigResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetScrapeConfigResponse)
+	err = json.Unmarshal(data, &varGetScrapeConfigResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetScrapeConfigResponse(varGetScrapeConfigResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -29,8 +29,11 @@ type UpdateAlertConfigsPayloadInhibitRules struct {
 	// map of key:value. Matchers that have to be fulfilled in the alerts to be muted. `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters * each key and value should only include the characters: a-zA-Z0-9_./@&?:-
 	TargetMatch map[string]interface{} `json:"targetMatch,omitempty"`
 	// map of key:value. Matchers that have to be fulfilled in the alerts to be muted. Regex. `Additional Validators:` * should not contain more than 5 keys * each key and value should not have more than 200 characters
-	TargetMatchRe map[string]interface{} `json:"targetMatchRe,omitempty"`
+	TargetMatchRe        map[string]interface{} `json:"targetMatchRe,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAlertConfigsPayloadInhibitRules UpdateAlertConfigsPayloadInhibitRules
 
 // NewUpdateAlertConfigsPayloadInhibitRules instantiates a new UpdateAlertConfigsPayloadInhibitRules object
 // This constructor will assign default values to properties that have it defined,
@@ -234,7 +237,37 @@ func (o UpdateAlertConfigsPayloadInhibitRules) ToMap() (map[string]interface{}, 
 	if !IsNil(o.TargetMatchRe) {
 		toSerialize["targetMatchRe"] = o.TargetMatchRe
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigsPayloadInhibitRules) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAlertConfigsPayloadInhibitRules := _UpdateAlertConfigsPayloadInhibitRules{}
+
+	err = json.Unmarshal(data, &varUpdateAlertConfigsPayloadInhibitRules)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigsPayloadInhibitRules(varUpdateAlertConfigsPayloadInhibitRules)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "equal")
+		delete(additionalProperties, "sourceMatch")
+		delete(additionalProperties, "sourceMatchRe")
+		delete(additionalProperties, "targetMatch")
+		delete(additionalProperties, "targetMatchRe")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAlertConfigsPayloadInhibitRules struct {
