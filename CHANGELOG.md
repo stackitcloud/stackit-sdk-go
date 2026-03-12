@@ -49,6 +49,9 @@
     - `v1alpha1api`: New package which can be used for communication with the vpn v1 alpha1 API
   - [v0.2.0](services/vpn/CHANGELOG.md#v020)
     - `v1alpha1api`: Align package to latest API specification
+  - [v0.3.0](services/vpn/CHANGELOG.md#v030)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `postgresflex`: 
   - [v1.4.0](services/postgresflex/CHANGELOG.md#v140)
     - **Feature:** Introduction of multi API version support for the postgresflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
