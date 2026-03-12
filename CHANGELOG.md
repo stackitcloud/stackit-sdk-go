@@ -99,11 +99,15 @@
       - **Feature:** New field `Access` in `Cluster` and `CreateOrUpdateClusterPayload` model structs
       - **Feature:** New API client method: `GetIDPKubeconfig`
       - Added new possible values to description of `Code` field in the `ClusterError` model struct
-- `dns`: [v0.18.0](services/dns/CHANGELOG.md#v0180)
-  - **Feature:** Introduction of multi API version support for the dns SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which should be used for communication with the STACKIT dns API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `dns`:
+  - [v0.18.0](services/dns/CHANGELOG.md#v0180)
+    - **Feature:** Introduction of multi API version support for the dns SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT dns API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.19.0](services/dns/CHANGELOG.md#v0190)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `intake`: 
   - [v0.5.0](services/intake/CHANGELOG.md#v050)
     - **Feature:** Introduction of multi API version support for the intake SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
