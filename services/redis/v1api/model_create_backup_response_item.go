@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &CreateBackupResponseItem{}
 
 // CreateBackupResponseItem struct for CreateBackupResponseItem
 type CreateBackupResponseItem struct {
-	Id      int32  `json:"id"`
-	Message string `json:"message"`
+	Id                   int32  `json:"id"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateBackupResponseItem CreateBackupResponseItem
@@ -106,6 +106,11 @@ func (o CreateBackupResponseItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *CreateBackupResponseItem) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateBackupResponseItem := _CreateBackupResponseItem{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateBackupResponseItem)
+	err = json.Unmarshal(data, &varCreateBackupResponseItem)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateBackupResponseItem(varCreateBackupResponseItem)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
