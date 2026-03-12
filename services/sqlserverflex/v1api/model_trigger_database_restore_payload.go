@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type TriggerDatabaseRestorePayload struct {
 	// Name for the restored database no overwrite allowed at the moment
 	Name string `json:"name"`
 	// Time of the restore point formate RFC3339
-	RestoreDateTime string `json:"restoreDateTime"`
+	RestoreDateTime      string `json:"restoreDateTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TriggerDatabaseRestorePayload TriggerDatabaseRestorePayload
@@ -109,6 +109,11 @@ func (o TriggerDatabaseRestorePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["restoreDateTime"] = o.RestoreDateTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *TriggerDatabaseRestorePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varTriggerDatabaseRestorePayload := _TriggerDatabaseRestorePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTriggerDatabaseRestorePayload)
+	err = json.Unmarshal(data, &varTriggerDatabaseRestorePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TriggerDatabaseRestorePayload(varTriggerDatabaseRestorePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "restoreDateTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

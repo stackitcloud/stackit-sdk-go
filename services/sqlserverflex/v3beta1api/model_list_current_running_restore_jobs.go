@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ListCurrentRunningRestoreJobs{}
 // ListCurrentRunningRestoreJobs struct for ListCurrentRunningRestoreJobs
 type ListCurrentRunningRestoreJobs struct {
 	// List of the currently running Restore jobs
-	RunningRestores []BackupRunningRestore `json:"runningRestores"`
+	RunningRestores      []BackupRunningRestore `json:"runningRestores"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListCurrentRunningRestoreJobs ListCurrentRunningRestoreJobs
@@ -81,6 +81,11 @@ func (o ListCurrentRunningRestoreJobs) MarshalJSON() ([]byte, error) {
 func (o ListCurrentRunningRestoreJobs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["runningRestores"] = o.RunningRestores
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ListCurrentRunningRestoreJobs) UnmarshalJSON(data []byte) (err error) {
 
 	varListCurrentRunningRestoreJobs := _ListCurrentRunningRestoreJobs{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListCurrentRunningRestoreJobs)
+	err = json.Unmarshal(data, &varListCurrentRunningRestoreJobs)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListCurrentRunningRestoreJobs(varListCurrentRunningRestoreJobs)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "runningRestores")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

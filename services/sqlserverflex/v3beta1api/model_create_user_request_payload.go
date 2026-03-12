@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type CreateUserRequestPayload struct {
 	// A list containing the user roles for the instance. A list with the valid user roles can be retrieved using the List Roles endpoint.
 	Roles []string `json:"roles"`
 	// The name of the user.
-	Username string `json:"username"`
+	Username             string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateUserRequestPayload CreateUserRequestPayload
@@ -146,6 +146,11 @@ func (o CreateUserRequestPayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["roles"] = o.Roles
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -174,15 +179,22 @@ func (o *CreateUserRequestPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateUserRequestPayload := _CreateUserRequestPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateUserRequestPayload)
+	err = json.Unmarshal(data, &varCreateUserRequestPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateUserRequestPayload(varCreateUserRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default_database")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &CreateDatabasePayload{}
 
 // CreateDatabasePayload struct for CreateDatabasePayload
 type CreateDatabasePayload struct {
-	Name    string                                            `json:"name"`
-	Options DatabaseDocumentationCreateDatabaseRequestOptions `json:"options"`
+	Name                 string                                            `json:"name"`
+	Options              DatabaseDocumentationCreateDatabaseRequestOptions `json:"options"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateDatabasePayload CreateDatabasePayload
@@ -107,6 +107,11 @@ func (o CreateDatabasePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["options"] = o.Options
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *CreateDatabasePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateDatabasePayload := _CreateDatabasePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateDatabasePayload)
+	err = json.Unmarshal(data, &varCreateDatabasePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateDatabasePayload(varCreateDatabasePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

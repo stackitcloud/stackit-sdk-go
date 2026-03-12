@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &SourceBackup{}
 
 // SourceBackup Restore from an existing managed backup.
 type SourceBackup struct {
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SourceBackup SourceBackup
@@ -80,6 +80,11 @@ func (o SourceBackup) MarshalJSON() ([]byte, error) {
 func (o SourceBackup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *SourceBackup) UnmarshalJSON(data []byte) (err error) {
 
 	varSourceBackup := _SourceBackup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSourceBackup)
+	err = json.Unmarshal(data, &varSourceBackup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SourceBackup(varSourceBackup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

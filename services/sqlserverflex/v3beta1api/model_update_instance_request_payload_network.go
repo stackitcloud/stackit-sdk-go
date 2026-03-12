@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &UpdateInstanceRequestPayloadNetwork{}
 // UpdateInstanceRequestPayloadNetwork the network configuration of the instance.
 type UpdateInstanceRequestPayloadNetwork struct {
 	// List of IPV4 cidr.
-	Acl []string `json:"acl"`
+	Acl                  []string `json:"acl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateInstanceRequestPayloadNetwork UpdateInstanceRequestPayloadNetwork
@@ -81,6 +81,11 @@ func (o UpdateInstanceRequestPayloadNetwork) MarshalJSON() ([]byte, error) {
 func (o UpdateInstanceRequestPayloadNetwork) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["acl"] = o.Acl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *UpdateInstanceRequestPayloadNetwork) UnmarshalJSON(data []byte) (err er
 
 	varUpdateInstanceRequestPayloadNetwork := _UpdateInstanceRequestPayloadNetwork{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateInstanceRequestPayloadNetwork)
+	err = json.Unmarshal(data, &varUpdateInstanceRequestPayloadNetwork)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateInstanceRequestPayloadNetwork(varUpdateInstanceRequestPayloadNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

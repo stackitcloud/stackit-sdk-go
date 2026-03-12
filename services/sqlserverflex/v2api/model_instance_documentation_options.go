@@ -23,8 +23,11 @@ type InstanceDocumentationOptions struct {
 	// Edition of the MSSQL server instance
 	Edition *string `json:"edition,omitempty"`
 	// The days for how long the backup files should be stored before cleaned up. 30 to 365
-	RetentionDays *string `json:"retentionDays,omitempty"`
+	RetentionDays        *string `json:"retentionDays,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceDocumentationOptions InstanceDocumentationOptions
 
 // NewInstanceDocumentationOptions instantiates a new InstanceDocumentationOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -131,7 +134,34 @@ func (o InstanceDocumentationOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RetentionDays) {
 		toSerialize["retentionDays"] = o.RetentionDays
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceDocumentationOptions) UnmarshalJSON(data []byte) (err error) {
+	varInstanceDocumentationOptions := _InstanceDocumentationOptions{}
+
+	err = json.Unmarshal(data, &varInstanceDocumentationOptions)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceDocumentationOptions(varInstanceDocumentationOptions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "edition")
+		delete(additionalProperties, "retentionDays")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceDocumentationOptions struct {

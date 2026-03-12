@@ -20,10 +20,13 @@ var _ MappedNullable = &HostMetric{}
 
 // HostMetric struct for HostMetric
 type HostMetric struct {
-	Datapoints []DataPoint `json:"datapoints,omitempty"`
-	Name       *string     `json:"name,omitempty"`
-	Units      *string     `json:"units,omitempty"`
+	Datapoints           []DataPoint `json:"datapoints,omitempty"`
+	Name                 *string     `json:"name,omitempty"`
+	Units                *string     `json:"units,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HostMetric HostMetric
 
 // NewHostMetric instantiates a new HostMetric object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o HostMetric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Units) {
 		toSerialize["units"] = o.Units
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HostMetric) UnmarshalJSON(data []byte) (err error) {
+	varHostMetric := _HostMetric{}
+
+	err = json.Unmarshal(data, &varHostMetric)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HostMetric(varHostMetric)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "datapoints")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "units")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHostMetric struct {

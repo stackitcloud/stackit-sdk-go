@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type GetDatabaseResponse struct {
 	// The name of the database.
 	Name string `json:"name"`
 	// The owner of the database.
-	Owner string `json:"owner"`
+	Owner                string `json:"owner"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetDatabaseResponse GetDatabaseResponse
@@ -193,6 +193,11 @@ func (o GetDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["owner"] = o.Owner
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *GetDatabaseResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetDatabaseResponse := _GetDatabaseResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetDatabaseResponse)
+	err = json.Unmarshal(data, &varGetDatabaseResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetDatabaseResponse(varGetDatabaseResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collationName")
+		delete(additionalProperties, "compatibilityLevel")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "owner")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

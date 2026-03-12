@@ -23,8 +23,11 @@ type InstanceDocumentationStorage struct {
 	// Class of the instance.
 	Class *string `json:"class,omitempty"`
 	// Size of the instance storage in GB
-	Size *int32 `json:"size,omitempty"`
+	Size                 *int32 `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceDocumentationStorage InstanceDocumentationStorage
 
 // NewInstanceDocumentationStorage instantiates a new InstanceDocumentationStorage object
 // This constructor will assign default values to properties that have it defined,
@@ -127,7 +130,34 @@ func (o InstanceDocumentationStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceDocumentationStorage) UnmarshalJSON(data []byte) (err error) {
+	varInstanceDocumentationStorage := _InstanceDocumentationStorage{}
+
+	err = json.Unmarshal(data, &varInstanceDocumentationStorage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceDocumentationStorage(varInstanceDocumentationStorage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "class")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceDocumentationStorage struct {

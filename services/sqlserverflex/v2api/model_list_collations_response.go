@@ -20,8 +20,11 @@ var _ MappedNullable = &ListCollationsResponse{}
 
 // ListCollationsResponse struct for ListCollationsResponse
 type ListCollationsResponse struct {
-	Collations []MssqlDatabaseCollation `json:"collations,omitempty"`
+	Collations           []MssqlDatabaseCollation `json:"collations,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListCollationsResponse ListCollationsResponse
 
 // NewListCollationsResponse instantiates a new ListCollationsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ListCollationsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Collations) {
 		toSerialize["collations"] = o.Collations
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListCollationsResponse) UnmarshalJSON(data []byte) (err error) {
+	varListCollationsResponse := _ListCollationsResponse{}
+
+	err = json.Unmarshal(data, &varListCollationsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListCollationsResponse(varListCollationsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collations")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListCollationsResponse struct {

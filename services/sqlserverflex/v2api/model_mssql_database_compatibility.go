@@ -20,9 +20,12 @@ var _ MappedNullable = &MssqlDatabaseCompatibility{}
 
 // MssqlDatabaseCompatibility struct for MssqlDatabaseCompatibility
 type MssqlDatabaseCompatibility struct {
-	CompatibilityLevel *int64  `json:"compatibility_level,omitempty"`
-	Description        *string `json:"description,omitempty"`
+	CompatibilityLevel   *int64  `json:"compatibility_level,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MssqlDatabaseCompatibility MssqlDatabaseCompatibility
 
 // NewMssqlDatabaseCompatibility instantiates a new MssqlDatabaseCompatibility object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o MssqlDatabaseCompatibility) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MssqlDatabaseCompatibility) UnmarshalJSON(data []byte) (err error) {
+	varMssqlDatabaseCompatibility := _MssqlDatabaseCompatibility{}
+
+	err = json.Unmarshal(data, &varMssqlDatabaseCompatibility)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MssqlDatabaseCompatibility(varMssqlDatabaseCompatibility)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "compatibility_level")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMssqlDatabaseCompatibility struct {
