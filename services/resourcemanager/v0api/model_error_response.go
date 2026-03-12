@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type ErrorResponse struct {
 	// Http Status Code.
 	Status float32 `json:"status"`
 	// Timestamp at which the error occurred.
-	TimeStamp time.Time `json:"timeStamp"`
+	TimeStamp            time.Time `json:"timeStamp"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ErrorResponse ErrorResponse
@@ -193,6 +193,11 @@ func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["path"] = o.Path
 	toSerialize["status"] = o.Status
 	toSerialize["timeStamp"] = o.TimeStamp
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varErrorResponse := _ErrorResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varErrorResponse)
+	err = json.Unmarshal(data, &varErrorResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ErrorResponse(varErrorResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeStamp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

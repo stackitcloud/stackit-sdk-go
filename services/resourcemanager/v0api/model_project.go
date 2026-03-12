@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type Project struct {
 	// Globally unique, project identifier.
 	ProjectId string `json:"projectId"`
 	// Timestamp at which the project was last modified.
-	UpdateTime time.Time `json:"updateTime"`
+	UpdateTime           time.Time `json:"updateTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Project Project
@@ -284,6 +284,11 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize["parent"] = o.Parent
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["updateTime"] = o.UpdateTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -317,15 +322,27 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 
 	varProject := _Project{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProject)
+	err = json.Unmarshal(data, &varProject)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Project(varProject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "creationTime")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "lifecycleState")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "parent")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "updateTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

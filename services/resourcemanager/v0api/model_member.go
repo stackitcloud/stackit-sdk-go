@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type Member struct {
 	// A valid role defined for the resource.
 	Role string `json:"role"`
 	// Unique identifier of the user, service account or client.
-	Subject string `json:"subject"`
+	Subject              string `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Member Member
@@ -108,6 +108,11 @@ func (o Member) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["role"] = o.Role
 	toSerialize["subject"] = o.Subject
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *Member) UnmarshalJSON(data []byte) (err error) {
 
 	varMember := _Member{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMember)
+	err = json.Unmarshal(data, &varMember)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Member(varMember)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
