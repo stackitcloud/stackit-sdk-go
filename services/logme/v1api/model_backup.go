@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,12 +20,13 @@ var _ MappedNullable = &Backup{}
 
 // Backup struct for Backup
 type Backup struct {
-	Downloadable *bool   `json:"downloadable,omitempty"`
-	FinishedAt   string  `json:"finished_at"`
-	Id           int32   `json:"id"`
-	Size         *int32  `json:"size,omitempty"`
-	Status       string  `json:"status"`
-	TriggeredAt  *string `json:"triggered_at,omitempty"`
+	Downloadable         *bool   `json:"downloadable,omitempty"`
+	FinishedAt           string  `json:"finished_at"`
+	Id                   int32   `json:"id"`
+	Size                 *int32  `json:"size,omitempty"`
+	Status               string  `json:"status"`
+	TriggeredAt          *string `json:"triggered_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Backup Backup
@@ -241,6 +241,11 @@ func (o Backup) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TriggeredAt) {
 		toSerialize["triggered_at"] = o.TriggeredAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -270,15 +275,25 @@ func (o *Backup) UnmarshalJSON(data []byte) (err error) {
 
 	varBackup := _Backup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackup)
+	err = json.Unmarshal(data, &varBackup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Backup(varBackup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "downloadable")
+		delete(additionalProperties, "finished_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "triggered_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

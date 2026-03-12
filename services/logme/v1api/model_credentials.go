@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,12 +20,13 @@ var _ MappedNullable = &Credentials{}
 
 // Credentials struct for Credentials
 type Credentials struct {
-	Host           string  `json:"host"`
-	Password       string  `json:"password"`
-	Port           *int32  `json:"port,omitempty"`
-	SyslogDrainUrl *string `json:"syslog_drain_url,omitempty"`
-	Uri            *string `json:"uri,omitempty"`
-	Username       string  `json:"username"`
+	Host                 string  `json:"host"`
+	Password             string  `json:"password"`
+	Port                 *int32  `json:"port,omitempty"`
+	SyslogDrainUrl       *string `json:"syslog_drain_url,omitempty"`
+	Uri                  *string `json:"uri,omitempty"`
+	Username             string  `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Credentials Credentials
@@ -241,6 +241,11 @@ func (o Credentials) ToMap() (map[string]interface{}, error) {
 		toSerialize["uri"] = o.Uri
 	}
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -270,15 +275,25 @@ func (o *Credentials) UnmarshalJSON(data []byte) (err error) {
 
 	varCredentials := _Credentials{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentials)
+	err = json.Unmarshal(data, &varCredentials)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Credentials(varCredentials)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "syslog_drain_url")
+		delete(additionalProperties, "uri")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

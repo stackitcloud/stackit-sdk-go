@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ListRestoresResponse{}
 
 // ListRestoresResponse struct for ListRestoresResponse
 type ListRestoresResponse struct {
-	InstanceRestores []Restore `json:"instanceRestores"`
+	InstanceRestores     []Restore `json:"instanceRestores"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListRestoresResponse ListRestoresResponse
@@ -79,6 +79,11 @@ func (o ListRestoresResponse) MarshalJSON() ([]byte, error) {
 func (o ListRestoresResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instanceRestores"] = o.InstanceRestores
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ListRestoresResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListRestoresResponse := _ListRestoresResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListRestoresResponse)
+	err = json.Unmarshal(data, &varListRestoresResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListRestoresResponse(varListRestoresResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceRestores")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
