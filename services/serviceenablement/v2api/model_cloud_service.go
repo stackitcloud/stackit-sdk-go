@@ -23,8 +23,11 @@ type CloudService struct {
 	Labels       *map[string]string `json:"labels,omitempty"`
 	Scope        *string            `json:"scope,omitempty"`
 	// the id of the service
-	ServiceId *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
+	ServiceId            *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CloudService CloudService
 
 // NewCloudService instantiates a new CloudService object
 // This constructor will assign default values to properties that have it defined,
@@ -197,7 +200,36 @@ func (o CloudService) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServiceId) {
 		toSerialize["serviceId"] = o.ServiceId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CloudService) UnmarshalJSON(data []byte) (err error) {
+	varCloudService := _CloudService{}
+
+	err = json.Unmarshal(data, &varCloudService)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CloudService(varCloudService)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dependencies")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "serviceId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCloudService struct {
