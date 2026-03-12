@@ -23,7 +23,7 @@ type DefaultAPIServiceMock struct {
 	// CreateAccessTokenExecuteMock can be populated to implement the behavior of the CreateAccessTokenExecute function of this mock
 	CreateAccessTokenExecuteMock *func(r ApiCreateAccessTokenRequest) (*AccessToken, error)
 	// CreateFederatedIdentityProviderExecuteMock can be populated to implement the behavior of the CreateFederatedIdentityProviderExecute function of this mock
-	CreateFederatedIdentityProviderExecuteMock *func(r ApiCreateFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error)
+	CreateFederatedIdentityProviderExecuteMock *func(r ApiCreateFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
 	// CreateServiceAccountExecuteMock can be populated to implement the behavior of the CreateServiceAccountExecute function of this mock
 	CreateServiceAccountExecuteMock *func(r ApiCreateServiceAccountRequest) (*ServiceAccount, error)
 	// CreateServiceAccountKeyExecuteMock can be populated to implement the behavior of the CreateServiceAccountKeyExecute function of this mock
@@ -51,7 +51,7 @@ type DefaultAPIServiceMock struct {
 	// ListServiceAccountsExecuteMock can be populated to implement the behavior of the ListServiceAccountsExecute function of this mock
 	ListServiceAccountsExecuteMock *func(r ApiListServiceAccountsRequest) (*ListServiceAccountsResponse, error)
 	// PartialUpdateServiceAccountFederatedIdentityProviderExecuteMock can be populated to implement the behavior of the PartialUpdateServiceAccountFederatedIdentityProviderExecute function of this mock
-	PartialUpdateServiceAccountFederatedIdentityProviderExecuteMock *func(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error)
+	PartialUpdateServiceAccountFederatedIdentityProviderExecuteMock *func(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
 	// PartialUpdateServiceAccountKeyExecuteMock can be populated to implement the behavior of the PartialUpdateServiceAccountKeyExecute function of this mock
 	PartialUpdateServiceAccountKeyExecuteMock *func(r ApiPartialUpdateServiceAccountKeyRequest) (*PartialUpdateServiceAccountKeyResponse, error)
 }
@@ -85,9 +85,9 @@ func (a DefaultAPIServiceMock) CreateFederatedIdentityProvider(ctx context.Conte
 }
 
 // CreateFederatedIdentityProviderExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateFederatedIdentityProviderExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateFederatedIdentityProviderExecute(r ApiCreateFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error) {
+func (a DefaultAPIServiceMock) CreateFederatedIdentityProviderExecute(r ApiCreateFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error) {
 	if a.CreateFederatedIdentityProviderExecuteMock == nil {
-		var localVarReturnValue *CreateFederatedIdentityProviderResponse
+		var localVarReturnValue *FederatedIdentityProvider
 		return localVarReturnValue, nil
 	}
 
@@ -347,9 +347,9 @@ func (a DefaultAPIServiceMock) PartialUpdateServiceAccountFederatedIdentityProvi
 }
 
 // PartialUpdateServiceAccountFederatedIdentityProviderExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PartialUpdateServiceAccountFederatedIdentityProviderExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) PartialUpdateServiceAccountFederatedIdentityProviderExecute(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*CreateFederatedIdentityProviderResponse, error) {
+func (a DefaultAPIServiceMock) PartialUpdateServiceAccountFederatedIdentityProviderExecute(r ApiPartialUpdateServiceAccountFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error) {
 	if a.PartialUpdateServiceAccountFederatedIdentityProviderExecuteMock == nil {
-		var localVarReturnValue *CreateFederatedIdentityProviderResponse
+		var localVarReturnValue *FederatedIdentityProvider
 		return localVarReturnValue, nil
 	}
 
