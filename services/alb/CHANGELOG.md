@@ -1,3 +1,7 @@
+## v0.12.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v0.11.0
 - **Feature:** Introduction of multi API version support for the alb SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v2api`: New package which can be used for communication with the alb v2 API
