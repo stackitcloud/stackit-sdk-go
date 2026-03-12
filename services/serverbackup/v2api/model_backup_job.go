@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &BackupJob{}
 
 // BackupJob struct for BackupJob
 type BackupJob struct {
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BackupJob BackupJob
@@ -80,6 +80,11 @@ func (o BackupJob) MarshalJSON() ([]byte, error) {
 func (o BackupJob) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *BackupJob) UnmarshalJSON(data []byte) (err error) {
 
 	varBackupJob := _BackupJob{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackupJob)
+	err = json.Unmarshal(data, &varBackupJob)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BackupJob(varBackupJob)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
