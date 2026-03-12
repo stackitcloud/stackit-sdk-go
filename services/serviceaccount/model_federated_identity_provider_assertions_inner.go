@@ -15,8 +15,8 @@ import (
 	"encoding/json"
 )
 
-// checks if the CreateFederatedIdentityProviderResponseAssertionsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CreateFederatedIdentityProviderResponseAssertionsInner{}
+// checks if the FederatedIdentityProviderAssertionsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FederatedIdentityProviderAssertionsInner{}
 
 /*
 	types and functions for item
@@ -24,10 +24,10 @@ var _ MappedNullable = &CreateFederatedIdentityProviderResponseAssertionsInner{}
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeType = *string
+type FederatedIdentityProviderAssertionsInnerGetItemAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getCreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeTypeOk(arg CreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeType) (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetItemRetType, ok bool) {
+func getFederatedIdentityProviderAssertionsInnerGetItemAttributeTypeOk(arg FederatedIdentityProviderAssertionsInnerGetItemAttributeType) (ret FederatedIdentityProviderAssertionsInnerGetItemRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -35,15 +35,15 @@ func getCreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeTy
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setCreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeType(arg *CreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeType, val CreateFederatedIdentityProviderResponseAssertionsInnerGetItemRetType) {
+func setFederatedIdentityProviderAssertionsInnerGetItemAttributeType(arg *FederatedIdentityProviderAssertionsInnerGetItemAttributeType, val FederatedIdentityProviderAssertionsInnerGetItemRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetItemArgType = string
+type FederatedIdentityProviderAssertionsInnerGetItemArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetItemRetType = string
+type FederatedIdentityProviderAssertionsInnerGetItemRetType = string
 
 /*
 	types and functions for operator
@@ -51,10 +51,10 @@ type CreateFederatedIdentityProviderResponseAssertionsInnerGetItemRetType = stri
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeType = *string
+type FederatedIdentityProviderAssertionsInnerGetOperatorAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getCreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeTypeOk(arg CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeType) (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorRetType, ok bool) {
+func getFederatedIdentityProviderAssertionsInnerGetOperatorAttributeTypeOk(arg FederatedIdentityProviderAssertionsInnerGetOperatorAttributeType) (ret FederatedIdentityProviderAssertionsInnerGetOperatorRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -62,15 +62,15 @@ func getCreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttribu
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setCreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeType(arg *CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeType, val CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorRetType) {
+func setFederatedIdentityProviderAssertionsInnerGetOperatorAttributeType(arg *FederatedIdentityProviderAssertionsInnerGetOperatorAttributeType, val FederatedIdentityProviderAssertionsInnerGetOperatorRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorArgType = string
+type FederatedIdentityProviderAssertionsInnerGetOperatorArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorRetType = string
+type FederatedIdentityProviderAssertionsInnerGetOperatorRetType = string
 
 /*
 	types and functions for value
@@ -78,10 +78,10 @@ type CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorRetType = 
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeType = *string
+type FederatedIdentityProviderAssertionsInnerGetValueAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getCreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeTypeOk(arg CreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeType) (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetValueRetType, ok bool) {
+func getFederatedIdentityProviderAssertionsInnerGetValueAttributeTypeOk(arg FederatedIdentityProviderAssertionsInnerGetValueAttributeType) (ret FederatedIdentityProviderAssertionsInnerGetValueRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -89,58 +89,58 @@ func getCreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeT
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setCreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeType(arg *CreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeType, val CreateFederatedIdentityProviderResponseAssertionsInnerGetValueRetType) {
+func setFederatedIdentityProviderAssertionsInnerGetValueAttributeType(arg *FederatedIdentityProviderAssertionsInnerGetValueAttributeType, val FederatedIdentityProviderAssertionsInnerGetValueRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetValueArgType = string
+type FederatedIdentityProviderAssertionsInnerGetValueArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInnerGetValueRetType = string
+type FederatedIdentityProviderAssertionsInnerGetValueRetType = string
 
-// CreateFederatedIdentityProviderResponseAssertionsInner struct for CreateFederatedIdentityProviderResponseAssertionsInner
+// FederatedIdentityProviderAssertionsInner struct for FederatedIdentityProviderAssertionsInner
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type CreateFederatedIdentityProviderResponseAssertionsInner struct {
+type FederatedIdentityProviderAssertionsInner struct {
 	// Item to compare
 	// REQUIRED
-	Item CreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeType `json:"item" required:"true"`
+	Item FederatedIdentityProviderAssertionsInnerGetItemAttributeType `json:"item" required:"true"`
 	// Operator for the comparison
 	// REQUIRED
-	Operator CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeType `json:"operator" required:"true"`
+	Operator FederatedIdentityProviderAssertionsInnerGetOperatorAttributeType `json:"operator" required:"true"`
 	// Value which the item is compared to
 	// REQUIRED
-	Value CreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeType `json:"value" required:"true"`
+	Value FederatedIdentityProviderAssertionsInnerGetValueAttributeType `json:"value" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _CreateFederatedIdentityProviderResponseAssertionsInner CreateFederatedIdentityProviderResponseAssertionsInner
+type _FederatedIdentityProviderAssertionsInner FederatedIdentityProviderAssertionsInner
 
-// NewCreateFederatedIdentityProviderResponseAssertionsInner instantiates a new CreateFederatedIdentityProviderResponseAssertionsInner object
+// NewFederatedIdentityProviderAssertionsInner instantiates a new FederatedIdentityProviderAssertionsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewCreateFederatedIdentityProviderResponseAssertionsInner(item CreateFederatedIdentityProviderResponseAssertionsInnerGetItemArgType, operator CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorArgType, value CreateFederatedIdentityProviderResponseAssertionsInnerGetValueArgType) *CreateFederatedIdentityProviderResponseAssertionsInner {
-	this := CreateFederatedIdentityProviderResponseAssertionsInner{}
-	setCreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeType(&this.Item, item)
-	setCreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeType(&this.Operator, operator)
-	setCreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeType(&this.Value, value)
+func NewFederatedIdentityProviderAssertionsInner(item FederatedIdentityProviderAssertionsInnerGetItemArgType, operator FederatedIdentityProviderAssertionsInnerGetOperatorArgType, value FederatedIdentityProviderAssertionsInnerGetValueArgType) *FederatedIdentityProviderAssertionsInner {
+	this := FederatedIdentityProviderAssertionsInner{}
+	setFederatedIdentityProviderAssertionsInnerGetItemAttributeType(&this.Item, item)
+	setFederatedIdentityProviderAssertionsInnerGetOperatorAttributeType(&this.Operator, operator)
+	setFederatedIdentityProviderAssertionsInnerGetValueAttributeType(&this.Value, value)
 	return &this
 }
 
-// NewCreateFederatedIdentityProviderResponseAssertionsInnerWithDefaults instantiates a new CreateFederatedIdentityProviderResponseAssertionsInner object
+// NewFederatedIdentityProviderAssertionsInnerWithDefaults instantiates a new FederatedIdentityProviderAssertionsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewCreateFederatedIdentityProviderResponseAssertionsInnerWithDefaults() *CreateFederatedIdentityProviderResponseAssertionsInner {
-	this := CreateFederatedIdentityProviderResponseAssertionsInner{}
+func NewFederatedIdentityProviderAssertionsInnerWithDefaults() *FederatedIdentityProviderAssertionsInner {
+	this := FederatedIdentityProviderAssertionsInner{}
 	return &this
 }
 
 // GetItem returns the Item field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetItem() (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetItemRetType) {
+func (o *FederatedIdentityProviderAssertionsInner) GetItem() (ret FederatedIdentityProviderAssertionsInnerGetItemRetType) {
 	ret, _ = o.GetItemOk()
 	return ret
 }
@@ -148,19 +148,19 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetItem() (ret 
 // GetItemOk returns a tuple with the Item field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetItemOk() (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetItemRetType, ok bool) {
-	return getCreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeTypeOk(o.Item)
+func (o *FederatedIdentityProviderAssertionsInner) GetItemOk() (ret FederatedIdentityProviderAssertionsInnerGetItemRetType, ok bool) {
+	return getFederatedIdentityProviderAssertionsInnerGetItemAttributeTypeOk(o.Item)
 }
 
 // SetItem sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) SetItem(v CreateFederatedIdentityProviderResponseAssertionsInnerGetItemRetType) {
-	setCreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeType(&o.Item, v)
+func (o *FederatedIdentityProviderAssertionsInner) SetItem(v FederatedIdentityProviderAssertionsInnerGetItemRetType) {
+	setFederatedIdentityProviderAssertionsInnerGetItemAttributeType(&o.Item, v)
 }
 
 // GetOperator returns the Operator field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetOperator() (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorRetType) {
+func (o *FederatedIdentityProviderAssertionsInner) GetOperator() (ret FederatedIdentityProviderAssertionsInnerGetOperatorRetType) {
 	ret, _ = o.GetOperatorOk()
 	return ret
 }
@@ -168,19 +168,19 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetOperator() (
 // GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetOperatorOk() (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorRetType, ok bool) {
-	return getCreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeTypeOk(o.Operator)
+func (o *FederatedIdentityProviderAssertionsInner) GetOperatorOk() (ret FederatedIdentityProviderAssertionsInnerGetOperatorRetType, ok bool) {
+	return getFederatedIdentityProviderAssertionsInnerGetOperatorAttributeTypeOk(o.Operator)
 }
 
 // SetOperator sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) SetOperator(v CreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorRetType) {
-	setCreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeType(&o.Operator, v)
+func (o *FederatedIdentityProviderAssertionsInner) SetOperator(v FederatedIdentityProviderAssertionsInnerGetOperatorRetType) {
+	setFederatedIdentityProviderAssertionsInnerGetOperatorAttributeType(&o.Operator, v)
 }
 
 // GetValue returns the Value field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetValue() (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetValueRetType) {
+func (o *FederatedIdentityProviderAssertionsInner) GetValue() (ret FederatedIdentityProviderAssertionsInnerGetValueRetType) {
 	ret, _ = o.GetValueOk()
 	return ret
 }
@@ -188,71 +188,71 @@ func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetValue() (ret
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) GetValueOk() (ret CreateFederatedIdentityProviderResponseAssertionsInnerGetValueRetType, ok bool) {
-	return getCreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeTypeOk(o.Value)
+func (o *FederatedIdentityProviderAssertionsInner) GetValueOk() (ret FederatedIdentityProviderAssertionsInnerGetValueRetType, ok bool) {
+	return getFederatedIdentityProviderAssertionsInnerGetValueAttributeTypeOk(o.Value)
 }
 
 // SetValue sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *CreateFederatedIdentityProviderResponseAssertionsInner) SetValue(v CreateFederatedIdentityProviderResponseAssertionsInnerGetValueRetType) {
-	setCreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeType(&o.Value, v)
+func (o *FederatedIdentityProviderAssertionsInner) SetValue(v FederatedIdentityProviderAssertionsInnerGetValueRetType) {
+	setFederatedIdentityProviderAssertionsInnerGetValueAttributeType(&o.Value, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o CreateFederatedIdentityProviderResponseAssertionsInner) ToMap() (map[string]interface{}, error) {
+func (o FederatedIdentityProviderAssertionsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getCreateFederatedIdentityProviderResponseAssertionsInnerGetItemAttributeTypeOk(o.Item); ok {
+	if val, ok := getFederatedIdentityProviderAssertionsInnerGetItemAttributeTypeOk(o.Item); ok {
 		toSerialize["Item"] = val
 	}
-	if val, ok := getCreateFederatedIdentityProviderResponseAssertionsInnerGetOperatorAttributeTypeOk(o.Operator); ok {
+	if val, ok := getFederatedIdentityProviderAssertionsInnerGetOperatorAttributeTypeOk(o.Operator); ok {
 		toSerialize["Operator"] = val
 	}
-	if val, ok := getCreateFederatedIdentityProviderResponseAssertionsInnerGetValueAttributeTypeOk(o.Value); ok {
+	if val, ok := getFederatedIdentityProviderAssertionsInnerGetValueAttributeTypeOk(o.Value); ok {
 		toSerialize["Value"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableCreateFederatedIdentityProviderResponseAssertionsInner struct {
-	value *CreateFederatedIdentityProviderResponseAssertionsInner
+type NullableFederatedIdentityProviderAssertionsInner struct {
+	value *FederatedIdentityProviderAssertionsInner
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableCreateFederatedIdentityProviderResponseAssertionsInner) Get() *CreateFederatedIdentityProviderResponseAssertionsInner {
+func (v NullableFederatedIdentityProviderAssertionsInner) Get() *FederatedIdentityProviderAssertionsInner {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableCreateFederatedIdentityProviderResponseAssertionsInner) Set(val *CreateFederatedIdentityProviderResponseAssertionsInner) {
+func (v *NullableFederatedIdentityProviderAssertionsInner) Set(val *FederatedIdentityProviderAssertionsInner) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableCreateFederatedIdentityProviderResponseAssertionsInner) IsSet() bool {
+func (v NullableFederatedIdentityProviderAssertionsInner) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableCreateFederatedIdentityProviderResponseAssertionsInner) Unset() {
+func (v *NullableFederatedIdentityProviderAssertionsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableCreateFederatedIdentityProviderResponseAssertionsInner(val *CreateFederatedIdentityProviderResponseAssertionsInner) *NullableCreateFederatedIdentityProviderResponseAssertionsInner {
-	return &NullableCreateFederatedIdentityProviderResponseAssertionsInner{value: val, isSet: true}
+func NewNullableFederatedIdentityProviderAssertionsInner(val *FederatedIdentityProviderAssertionsInner) *NullableFederatedIdentityProviderAssertionsInner {
+	return &NullableFederatedIdentityProviderAssertionsInner{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableCreateFederatedIdentityProviderResponseAssertionsInner) MarshalJSON() ([]byte, error) {
+func (v NullableFederatedIdentityProviderAssertionsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableCreateFederatedIdentityProviderResponseAssertionsInner) UnmarshalJSON(src []byte) error {
+func (v *NullableFederatedIdentityProviderAssertionsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
