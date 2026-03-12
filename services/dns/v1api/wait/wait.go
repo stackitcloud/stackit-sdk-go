@@ -2,7 +2,8 @@ package wait
 
 import (
 	"context"
-	"fmt"
+	"errors"
+	"net/http"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -33,38 +34,38 @@ const (
 
 // CreateZoneWaitHandler will wait for zone creation
 func CreateZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
-		s, err := a.GetZone(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Zone.Id == instanceId && s.Zone.State == ZONESTATE_CREATE_SUCCEEDED {
-			return true, s, nil
-		}
-		if s.Zone.Id == instanceId && s.Zone.State == ZONESTATE_CREATE_FAILED {
-			return true, s, fmt.Errorf("create failed for zone with id %s", instanceId)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[dns.ZoneResponse, string]{
+		FetchInstance: a.GetZone(ctx, projectId, instanceId).Execute,
+		GetState: func(d *dns.ZoneResponse) (string, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Zone.State, nil
+		},
+		ActiveState: []string{ZONESTATE_CREATE_SUCCEEDED},
+		ErrorState:  []string{ZONESTATE_CREATE_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 // PartialUpdateZoneWaitHandler will wait for zone update
 func PartialUpdateZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
-		s, err := a.GetZone(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Zone.Id == instanceId && s.Zone.State == ZONESTATE_UPDATE_SUCCEEDED {
-			return true, s, nil
-		}
-		if s.Zone.Id == instanceId && s.Zone.State == ZONESTATE_UPDATE_FAILED {
-			return true, s, fmt.Errorf("update failed for zone with id %s", instanceId)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[dns.ZoneResponse, string]{
+		FetchInstance: a.GetZone(ctx, projectId, instanceId).Execute,
+		GetState: func(d *dns.ZoneResponse) (string, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Zone.State, nil
+		},
+		ActiveState: []string{ZONESTATE_UPDATE_SUCCEEDED},
+		ErrorState:  []string{ZONESTATE_UPDATE_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
@@ -72,77 +73,78 @@ func PartialUpdateZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, project
 // DeleteZoneWaitHandler will wait for zone deletion
 // returned interface is nil or *ZoneResponseZone
 func DeleteZoneWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[dns.ZoneResponse] {
-	handler := wait.New(func() (waitFinished bool, response *dns.ZoneResponse, err error) {
-		s, err := a.GetZone(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Zone.Id == instanceId && s.Zone.State == ZONESTATE_DELETE_SUCCEEDED {
-			return true, s, nil
-		}
-		if s.Zone.Id == instanceId && s.Zone.State == ZONESTATE_DELETE_FAILED {
-			return true, s, fmt.Errorf("delete failed for zone with id %s", instanceId)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[dns.ZoneResponse, string]{
+		FetchInstance: a.GetZone(ctx, projectId, instanceId).Execute,
+		GetState: func(d *dns.ZoneResponse) (string, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Zone.State, nil
+		},
+		ActiveState: []string{ZONESTATE_DELETE_SUCCEEDED},
+		ErrorState:  []string{ZONESTATE_DELETE_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
-// CreateRecordWaitHandler will wait for recordset creation
+// CreateRecordSetWaitHandler will wait for recordset creation
 func CreateRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
-		s, err := a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Rrset.Id == rrSetId && s.Rrset.State == RECORDSETSTATE_CREATE_SUCCEEDED {
-			return true, s, nil
-		}
-		if s.Rrset.Id == rrSetId && s.Rrset.State == RECORDSETSTATE_CREATE_FAILED {
-			return true, s, fmt.Errorf("create failed for record with id %s", rrSetId)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, string]{
+		FetchInstance: a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute,
+		GetState: func(d *dns.RecordSetResponse) (string, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Rrset.State, nil
+		},
+		ActiveState: []string{RECORDSETSTATE_CREATE_SUCCEEDED},
+		ErrorState:  []string{RECORDSETSTATE_CREATE_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(1 * time.Minute)
 	return handler
 }
 
-// UpdateRecordWaitHandler will wait for recordset update
+// PartialUpdateRecordSetWaitHandler will wait for recordset update
 func PartialUpdateRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
-		s, err := a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Rrset.Id == rrSetId && s.Rrset.State == RECORDSETSTATE_UPDATE_SUCCEEDED {
-			return true, s, nil
-		}
-		if s.Rrset.Id == rrSetId && s.Rrset.State == RECORDSETSTATE_UPDATE_FAILED {
-			return true, s, fmt.Errorf("update failed for record with id %s", rrSetId)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, string]{
+		FetchInstance: a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute,
+		GetState: func(d *dns.RecordSetResponse) (string, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Rrset.State, nil
+		},
+		ActiveState: []string{RECORDSETSTATE_UPDATE_SUCCEEDED},
+		ErrorState:  []string{RECORDSETSTATE_UPDATE_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(1 * time.Minute)
 	return handler
 }
 
-// DeleteRecordWaitHandler will wait for deletion
+// DeleteRecordSetWaitHandler will wait for deletion
 // returned interface is nil or *RecordSetResponse
 func DeleteRecordSetWaitHandler(ctx context.Context, a dns.DefaultAPI, projectId, instanceId, rrSetId string) *wait.AsyncActionHandler[dns.RecordSetResponse] {
-	handler := wait.New(func() (waitFinished bool, response *dns.RecordSetResponse, err error) {
-		s, err := a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Rrset.Id == rrSetId && s.Rrset.State == RECORDSETSTATE_DELETE_SUCCEEDED {
-			return true, s, nil
-		}
-		if s.Rrset.Id == rrSetId && s.Rrset.State == RECORDSETSTATE_DELETE_FAILED {
-			return true, s, fmt.Errorf("delete failed for record with id %s", rrSetId)
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[dns.RecordSetResponse, string]{
+		FetchInstance: a.GetRecordSet(ctx, projectId, instanceId, rrSetId).Execute,
+		GetState: func(d *dns.RecordSetResponse) (string, error) {
+			if d == nil {
+				return "", errors.New("empty response")
+			}
+			return d.Rrset.State, nil
+		},
+		ActiveState:                []string{RECORDSETSTATE_DELETE_SUCCEEDED},
+		ErrorState:                 []string{RECORDSETSTATE_DELETE_FAILED},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(2 * time.Minute)
 	return handler
 }
