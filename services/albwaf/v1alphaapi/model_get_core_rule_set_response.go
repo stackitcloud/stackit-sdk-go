@@ -24,8 +24,11 @@ type GetCoreRuleSetResponse struct {
 	// Core rule set configuration name.
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Region
-	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetCoreRuleSetResponse GetCoreRuleSetResponse
 
 // NewGetCoreRuleSetResponse instantiates a new GetCoreRuleSetResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o GetCoreRuleSetResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetCoreRuleSetResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetCoreRuleSetResponse := _GetCoreRuleSetResponse{}
+
+	err = json.Unmarshal(data, &varGetCoreRuleSetResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetCoreRuleSetResponse(varGetCoreRuleSetResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetCoreRuleSetResponse struct {

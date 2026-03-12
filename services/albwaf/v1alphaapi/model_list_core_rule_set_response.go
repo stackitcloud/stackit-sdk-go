@@ -21,8 +21,11 @@ var _ MappedNullable = &ListCoreRuleSetResponse{}
 type ListCoreRuleSetResponse struct {
 	Items []GetCoreRuleSetResponse `json:"items,omitempty"`
 	// Continue token from the ListCoreRuleSetResponse with Limit option
-	NextPageId *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListCoreRuleSetResponse ListCoreRuleSetResponse
 
 // NewListCoreRuleSetResponse instantiates a new ListCoreRuleSetResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ListCoreRuleSetResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageId) {
 		toSerialize["nextPageId"] = o.NextPageId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListCoreRuleSetResponse) UnmarshalJSON(data []byte) (err error) {
+	varListCoreRuleSetResponse := _ListCoreRuleSetResponse{}
+
+	err = json.Unmarshal(data, &varListCoreRuleSetResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListCoreRuleSetResponse(varListCoreRuleSetResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "nextPageId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListCoreRuleSetResponse struct {
