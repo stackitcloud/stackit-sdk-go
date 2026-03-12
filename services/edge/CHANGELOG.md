@@ -1,3 +1,7 @@
+## v0.6.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v0.5.0
 - **Feature:** Introduction of multi API version support for the edge SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1beta1api`: New package which can be used for communication with the edge v1 beta1 API

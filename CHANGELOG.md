@@ -66,11 +66,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
   - [v1.5.0](services/postgresflex/CHANGELOG.md#v150)
     - `v3alpha1api`: Align package to latest API specification
-- `edge`: [v0.5.0](services/edge/CHANGELOG.md#v050)
-  - **Feature:** Introduction of multi API version support for the edge SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1beta1api`: New package which can be used for communication with the edge v1 beta1 API
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `edge`: 
+  - [v0.5.0](services/edge/CHANGELOG.md#v050)
+    - **Feature:** Introduction of multi API version support for the edge SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1beta1api`: New package which can be used for communication with the edge v1 beta1 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.6.0](services/edge/CHANGELOG.md#v060)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `certificates`: [v1.3.0](services/certificates/CHANGELOG.md#v130)
   - **Feature:** Introduction of multi API version support for the certificates SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v2api`: New package which can be used for communication with the certificates v2 API
@@ -152,11 +156,15 @@
   - `v1betaapi`: New package which can be used for communication with the kms v1 beta API
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `mariadb`: [v0.26.0](services/mariadb/CHANGELOG.md#v0260)
-  - **Feature:** Introduction of multi API version support for the mariadb SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which should be used for communication with the STACKIT mariadb API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `mariadb`: 
+  - [v0.26.0](services/mariadb/CHANGELOG.md#v0260)
+    - **Feature:** Introduction of multi API version support for the mariadb SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT mariadb API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.27.0](services/mariadb/CHANGELOG.md#v0270)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `authorization`: [v0.13.0](services/authorization/CHANGELOG.md#v0130)
   - **Feature:** Introduction of multi API version support for the authorization SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v2api`: New package which should be used for communication with the STACKIT authorization API in the future
@@ -224,12 +232,16 @@
     - Deprecated SDK layer in root of the module:
       - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider`
       - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner`
-- `serviceenablement`: [v1.3.0](services/serviceenablement/CHANGELOG.md#v130)
-  - **Feature:** Introduction of multi API version support for the serviceenablement SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which can be used for communication with the serviceenablement v1 API
-  - `v2api`: New package which can be used for communication with the serviceenablement v2 API
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `serviceenablement`: 
+  - [v1.3.0](services/serviceenablement/CHANGELOG.md#v130)
+    - **Feature:** Introduction of multi API version support for the serviceenablement SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the serviceenablement v1 API
+    - `v2api`: New package which can be used for communication with the serviceenablement v2 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v1.4.0](services/serviceenablement/CHANGELOG.md#v140)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `scf`: [v0.5.0](services/scf/CHANGELOG.md#v050)
   - **Feature:** Introduction of multi API version support for the scf SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT scf API in the future

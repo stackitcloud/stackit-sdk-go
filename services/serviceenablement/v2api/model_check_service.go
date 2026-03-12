@@ -23,8 +23,11 @@ type CheckService struct {
 	Resource     *string `json:"resource,omitempty"`
 	ResourceType *string `json:"resourceType,omitempty"`
 	// the id of the service
-	ServiceId *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
+	ServiceId            *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CheckService CheckService
 
 // NewCheckService instantiates a new CheckService object
 // This constructor will assign default values to properties that have it defined,
@@ -162,7 +165,35 @@ func (o CheckService) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServiceId) {
 		toSerialize["serviceId"] = o.ServiceId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CheckService) UnmarshalJSON(data []byte) (err error) {
+	varCheckService := _CheckService{}
+
+	err = json.Unmarshal(data, &varCheckService)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CheckService(varCheckService)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resource")
+		delete(additionalProperties, "resourceType")
+		delete(additionalProperties, "serviceId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCheckService struct {
