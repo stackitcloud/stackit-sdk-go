@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,10 +20,11 @@ var _ MappedNullable = &UpdateRolePayload{}
 
 // UpdateRolePayload struct for UpdateRolePayload
 type UpdateRolePayload struct {
-	Description string              `json:"description"`
-	Etag        *string             `json:"etag,omitempty"`
-	Name        string              `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
-	Permissions []PermissionRequest `json:"permissions"`
+	Description          string              `json:"description"`
+	Etag                 *string             `json:"etag,omitempty"`
+	Name                 string              `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Permissions          []PermissionRequest `json:"permissions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateRolePayload UpdateRolePayload
@@ -169,6 +169,11 @@ func (o UpdateRolePayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["permissions"] = o.Permissions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -198,15 +203,23 @@ func (o *UpdateRolePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateRolePayload := _UpdateRolePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateRolePayload)
+	err = json.Unmarshal(data, &varUpdateRolePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateRolePayload(varUpdateRolePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "etag")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "permissions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

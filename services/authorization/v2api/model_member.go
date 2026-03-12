@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &Member{}
 
 // Member struct for Member
 type Member struct {
-	Role    string `json:"role" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
-	Subject string `json:"subject"`
+	Role                 string `json:"role" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Subject              string `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Member Member
@@ -106,6 +106,11 @@ func (o Member) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["role"] = o.Role
 	toSerialize["subject"] = o.Subject
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *Member) UnmarshalJSON(data []byte) (err error) {
 
 	varMember := _Member{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMember)
+	err = json.Unmarshal(data, &varMember)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Member(varMember)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
