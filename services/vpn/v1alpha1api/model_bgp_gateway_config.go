@@ -23,7 +23,10 @@ type BGPGatewayConfig struct {
 	LocalAsn *int32 `json:"localAsn,omitempty"`
 	// A list of IPv4 Prefixes to advertise via BGP.  If omitted, the SNA network ranges will be advertised.
 	OverrideAdvertisedRoutes []string `json:"overrideAdvertisedRoutes,omitempty"`
+	AdditionalProperties     map[string]interface{}
 }
+
+type _BGPGatewayConfig BGPGatewayConfig
 
 // NewBGPGatewayConfig instantiates a new BGPGatewayConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o BGPGatewayConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OverrideAdvertisedRoutes) {
 		toSerialize["overrideAdvertisedRoutes"] = o.OverrideAdvertisedRoutes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BGPGatewayConfig) UnmarshalJSON(data []byte) (err error) {
+	varBGPGatewayConfig := _BGPGatewayConfig{}
+
+	err = json.Unmarshal(data, &varBGPGatewayConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BGPGatewayConfig(varBGPGatewayConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "localAsn")
+		delete(additionalProperties, "overrideAdvertisedRoutes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBGPGatewayConfig struct {

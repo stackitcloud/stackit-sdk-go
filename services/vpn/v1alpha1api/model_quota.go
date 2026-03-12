@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &Quota{}
 
 // Quota struct for Quota
 type Quota struct {
-	Limit int32 `json:"limit"`
-	Usage int32 `json:"usage"`
+	Limit                int32 `json:"limit"`
+	Usage                int32 `json:"usage"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Quota Quota
@@ -106,6 +106,11 @@ func (o Quota) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["limit"] = o.Limit
 	toSerialize["usage"] = o.Usage
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *Quota) UnmarshalJSON(data []byte) (err error) {
 
 	varQuota := _Quota{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuota)
+	err = json.Unmarshal(data, &varQuota)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Quota(varQuota)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "limit")
+		delete(additionalProperties, "usage")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

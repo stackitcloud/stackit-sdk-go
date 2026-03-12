@@ -20,9 +20,12 @@ var _ MappedNullable = &PlanList{}
 // PlanList struct for PlanList
 type PlanList struct {
 	// The service plan identifier.
-	DefaultPlanId *string `json:"defaultPlanId,omitempty"`
-	Plans         []Plan  `json:"plans,omitempty"`
+	DefaultPlanId        *string `json:"defaultPlanId,omitempty"`
+	Plans                []Plan  `json:"plans,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanList PlanList
 
 // NewPlanList instantiates a new PlanList object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o PlanList) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Plans) {
 		toSerialize["plans"] = o.Plans
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanList) UnmarshalJSON(data []byte) (err error) {
+	varPlanList := _PlanList{}
+
+	err = json.Unmarshal(data, &varPlanList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PlanList(varPlanList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "defaultPlanId")
+		delete(additionalProperties, "plans")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanList struct {

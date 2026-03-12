@@ -24,9 +24,12 @@ type Phase1Status struct {
 	// The negotiated encryption algorithm.
 	EncryptionAlgorithm *string `json:"encryptionAlgorithm,omitempty"`
 	// The negotiated integrity algorithm or pseudo-random-function.
-	IntegrityAlgorithm *string `json:"integrityAlgorithm,omitempty"`
-	State              *string `json:"state,omitempty"`
+	IntegrityAlgorithm   *string `json:"integrityAlgorithm,omitempty"`
+	State                *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Phase1Status Phase1Status
 
 // NewPhase1Status instantiates a new Phase1Status object
 // This constructor will assign default values to properties that have it defined,
@@ -195,7 +198,36 @@ func (o Phase1Status) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Phase1Status) UnmarshalJSON(data []byte) (err error) {
+	varPhase1Status := _Phase1Status{}
+
+	err = json.Unmarshal(data, &varPhase1Status)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Phase1Status(varPhase1Status)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dhGroup")
+		delete(additionalProperties, "encryptionAlgorithm")
+		delete(additionalProperties, "integrityAlgorithm")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePhase1Status struct {

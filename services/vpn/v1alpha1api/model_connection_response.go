@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -34,9 +33,10 @@ type ConnectionResponse struct {
 	// Optional. Defaults to 0.0.0.0/0 for Route-based VPN configurations. Mandatory for Policy-based.
 	RemoteSubnets []string `json:"remoteSubnets,omitempty"`
 	// Optional. Use this for route-based VPN.
-	StaticRoutes []string            `json:"staticRoutes,omitempty"`
-	Tunnel1      TunnelConfiguration `json:"tunnel1"`
-	Tunnel2      TunnelConfiguration `json:"tunnel2"`
+	StaticRoutes         []string            `json:"staticRoutes,omitempty"`
+	Tunnel1              TunnelConfiguration `json:"tunnel1"`
+	Tunnel2              TunnelConfiguration `json:"tunnel2"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConnectionResponse ConnectionResponse
@@ -356,6 +356,11 @@ func (o ConnectionResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["tunnel1"] = o.Tunnel1
 	toSerialize["tunnel2"] = o.Tunnel2
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -385,15 +390,28 @@ func (o *ConnectionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varConnectionResponse := _ConnectionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnectionResponse)
+	err = json.Unmarshal(data, &varConnectionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConnectionResponse(varConnectionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "localSubnets")
+		delete(additionalProperties, "remoteSubnets")
+		delete(additionalProperties, "staticRoutes")
+		delete(additionalProperties, "tunnel1")
+		delete(additionalProperties, "tunnel2")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

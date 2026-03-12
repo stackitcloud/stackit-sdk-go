@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &BGPTunnelConfig{}
 // BGPTunnelConfig struct for BGPTunnelConfig
 type BGPTunnelConfig struct {
 	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
-	RemoteAsn int32 `json:"remoteAsn"`
+	RemoteAsn            int32 `json:"remoteAsn"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BGPTunnelConfig BGPTunnelConfig
@@ -80,6 +80,11 @@ func (o BGPTunnelConfig) MarshalJSON() ([]byte, error) {
 func (o BGPTunnelConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["remoteAsn"] = o.RemoteAsn
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *BGPTunnelConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varBGPTunnelConfig := _BGPTunnelConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBGPTunnelConfig)
+	err = json.Unmarshal(data, &varBGPTunnelConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BGPTunnelConfig(varBGPTunnelConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "remoteAsn")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

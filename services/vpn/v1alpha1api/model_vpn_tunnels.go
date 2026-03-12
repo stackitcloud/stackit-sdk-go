@@ -23,8 +23,11 @@ type VPNTunnels struct {
 	InstanceState *GatewayStatus    `json:"instanceState,omitempty"`
 	Name          *string           `json:"name,omitempty"`
 	// The public IPv4 address of this endpoint.
-	PublicIP *string `json:"publicIP,omitempty"`
+	PublicIP             *string `json:"publicIP,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _VPNTunnels VPNTunnels
 
 // NewVPNTunnels instantiates a new VPNTunnels object
 // This constructor will assign default values to properties that have it defined,
@@ -204,7 +207,36 @@ func (o VPNTunnels) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PublicIP) {
 		toSerialize["publicIP"] = o.PublicIP
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *VPNTunnels) UnmarshalJSON(data []byte) (err error) {
+	varVPNTunnels := _VPNTunnels{}
+
+	err = json.Unmarshal(data, &varVPNTunnels)
+
+	if err != nil {
+		return err
+	}
+
+	*o = VPNTunnels(varVPNTunnels)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bgpStatus")
+		delete(additionalProperties, "instanceState")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "publicIP")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableVPNTunnels struct {

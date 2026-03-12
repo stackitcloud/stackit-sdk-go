@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &APIErrorResponse{}
 
 // APIErrorResponse struct for APIErrorResponse
 type APIErrorResponse struct {
-	Error APIError `json:"error"`
+	Error                APIError `json:"error"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _APIErrorResponse APIErrorResponse
@@ -79,6 +79,11 @@ func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
 func (o APIErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["error"] = o.Error
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *APIErrorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAPIErrorResponse := _APIErrorResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAPIErrorResponse)
+	err = json.Unmarshal(data, &varAPIErrorResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = APIErrorResponse(varAPIErrorResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

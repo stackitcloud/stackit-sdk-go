@@ -23,9 +23,12 @@ type ConnectionStatusResponse struct {
 	DisplayName *string `json:"displayName,omitempty"`
 	Enabled     *bool   `json:"enabled,omitempty"`
 	// UUID of the connection.
-	Id      *string        `json:"id,omitempty"`
-	Tunnels []TunnelStatus `json:"tunnels,omitempty"`
+	Id                   *string        `json:"id,omitempty"`
+	Tunnels              []TunnelStatus `json:"tunnels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ConnectionStatusResponse ConnectionStatusResponse
 
 // NewConnectionStatusResponse instantiates a new ConnectionStatusResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -194,7 +197,36 @@ func (o ConnectionStatusResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tunnels) {
 		toSerialize["tunnels"] = o.Tunnels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ConnectionStatusResponse) UnmarshalJSON(data []byte) (err error) {
+	varConnectionStatusResponse := _ConnectionStatusResponse{}
+
+	err = json.Unmarshal(data, &varConnectionStatusResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ConnectionStatusResponse(varConnectionStatusResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "tunnels")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableConnectionStatusResponse struct {

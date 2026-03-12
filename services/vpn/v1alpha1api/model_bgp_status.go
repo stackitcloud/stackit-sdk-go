@@ -19,9 +19,12 @@ var _ MappedNullable = &BGPStatus{}
 
 // BGPStatus struct for BGPStatus
 type BGPStatus struct {
-	Peers  []BGPStatusPeers  `json:"peers,omitempty"`
-	Routes []BGPStatusRoutes `json:"routes,omitempty"`
+	Peers                []BGPStatusPeers  `json:"peers,omitempty"`
+	Routes               []BGPStatusRoutes `json:"routes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BGPStatus BGPStatus
 
 // NewBGPStatus instantiates a new BGPStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o BGPStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Routes) {
 		toSerialize["routes"] = o.Routes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BGPStatus) UnmarshalJSON(data []byte) (err error) {
+	varBGPStatus := _BGPStatus{}
+
+	err = json.Unmarshal(data, &varBGPStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BGPStatus(varBGPStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "peers")
+		delete(additionalProperties, "routes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBGPStatus struct {

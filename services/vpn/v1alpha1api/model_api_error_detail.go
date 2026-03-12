@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type APIErrorDetail struct {
 	// Metadata contains more information. For bad requests this would be field information.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The reason why the error occurs.
-	Reason string `json:"reason"`
+	Reason               string `json:"reason"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _APIErrorDetail APIErrorDetail
@@ -147,6 +147,11 @@ func (o APIErrorDetail) ToMap() (map[string]interface{}, error) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	toSerialize["reason"] = o.Reason
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -175,15 +180,22 @@ func (o *APIErrorDetail) UnmarshalJSON(data []byte) (err error) {
 
 	varAPIErrorDetail := _APIErrorDetail{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAPIErrorDetail)
+	err = json.Unmarshal(data, &varAPIErrorDetail)
 
 	if err != nil {
 		return err
 	}
 
 	*o = APIErrorDetail(varAPIErrorDetail)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "domain")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "reason")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

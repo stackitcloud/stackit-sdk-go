@@ -19,11 +19,14 @@ var _ MappedNullable = &TunnelStatus{}
 
 // TunnelStatus Describes the status of the VPN itself.
 type TunnelStatus struct {
-	Established *bool         `json:"established,omitempty"`
-	Name        *string       `json:"name,omitempty"`
-	Phase1      *Phase1Status `json:"phase1,omitempty"`
-	Phase2      *Phase2Status `json:"phase2,omitempty"`
+	Established          *bool         `json:"established,omitempty"`
+	Name                 *string       `json:"name,omitempty"`
+	Phase1               *Phase1Status `json:"phase1,omitempty"`
+	Phase2               *Phase2Status `json:"phase2,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TunnelStatus TunnelStatus
 
 // NewTunnelStatus instantiates a new TunnelStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -192,7 +195,36 @@ func (o TunnelStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Phase2) {
 		toSerialize["phase2"] = o.Phase2
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TunnelStatus) UnmarshalJSON(data []byte) (err error) {
+	varTunnelStatus := _TunnelStatus{}
+
+	err = json.Unmarshal(data, &varTunnelStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TunnelStatus(varTunnelStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "established")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "phase1")
+		delete(additionalProperties, "phase2")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTunnelStatus struct {
