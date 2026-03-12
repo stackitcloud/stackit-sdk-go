@@ -15,25 +15,25 @@ import (
 	"encoding/json"
 )
 
-// checks if the ListFlavors type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListFlavors{}
+// checks if the RunnerRuntimeList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RunnerRuntimeList{}
 
 /*
-	types and functions for flavors
+	types and functions for items
 */
 
 // isArray
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavorsGetFlavorsAttributeType = *[]Flavor
+type RunnerRuntimeListGetItemsAttributeType = *[]RunnerRuntime
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavorsGetFlavorsArgType = []Flavor
+type RunnerRuntimeListGetItemsArgType = []RunnerRuntime
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavorsGetFlavorsRetType = []Flavor
+type RunnerRuntimeListGetItemsRetType = []RunnerRuntime
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getListFlavorsGetFlavorsAttributeTypeOk(arg ListFlavorsGetFlavorsAttributeType) (ret ListFlavorsGetFlavorsRetType, ok bool) {
+func getRunnerRuntimeListGetItemsAttributeTypeOk(arg RunnerRuntimeListGetItemsAttributeType) (ret RunnerRuntimeListGetItemsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -41,109 +41,109 @@ func getListFlavorsGetFlavorsAttributeTypeOk(arg ListFlavorsGetFlavorsAttributeT
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setListFlavorsGetFlavorsAttributeType(arg *ListFlavorsGetFlavorsAttributeType, val ListFlavorsGetFlavorsRetType) {
+func setRunnerRuntimeListGetItemsAttributeType(arg *RunnerRuntimeListGetItemsAttributeType, val RunnerRuntimeListGetItemsRetType) {
 	*arg = &val
 }
 
-// ListFlavors A list of STACKIT Git Flavors.
+// RunnerRuntimeList A list of STACKIT Git RunnerLabels.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavors struct {
+type RunnerRuntimeList struct {
 	// REQUIRED
-	Flavors ListFlavorsGetFlavorsAttributeType `json:"flavors" required:"true"`
+	Items RunnerRuntimeListGetItemsAttributeType `json:"items" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _ListFlavors ListFlavors
+type _RunnerRuntimeList RunnerRuntimeList
 
-// NewListFlavors instantiates a new ListFlavors object
+// NewRunnerRuntimeList instantiates a new RunnerRuntimeList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewListFlavors(flavors ListFlavorsGetFlavorsArgType) *ListFlavors {
-	this := ListFlavors{}
-	setListFlavorsGetFlavorsAttributeType(&this.Flavors, flavors)
+func NewRunnerRuntimeList(items RunnerRuntimeListGetItemsArgType) *RunnerRuntimeList {
+	this := RunnerRuntimeList{}
+	setRunnerRuntimeListGetItemsAttributeType(&this.Items, items)
 	return &this
 }
 
-// NewListFlavorsWithDefaults instantiates a new ListFlavors object
+// NewRunnerRuntimeListWithDefaults instantiates a new RunnerRuntimeList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewListFlavorsWithDefaults() *ListFlavors {
-	this := ListFlavors{}
+func NewRunnerRuntimeListWithDefaults() *RunnerRuntimeList {
+	this := RunnerRuntimeList{}
 	return &this
 }
 
-// GetFlavors returns the Flavors field value
+// GetItems returns the Items field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListFlavors) GetFlavors() (ret ListFlavorsGetFlavorsRetType) {
-	ret, _ = o.GetFlavorsOk()
+func (o *RunnerRuntimeList) GetItems() (ret RunnerRuntimeListGetItemsRetType) {
+	ret, _ = o.GetItemsOk()
 	return ret
 }
 
-// GetFlavorsOk returns a tuple with the Flavors field value
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListFlavors) GetFlavorsOk() (ret ListFlavorsGetFlavorsRetType, ok bool) {
-	return getListFlavorsGetFlavorsAttributeTypeOk(o.Flavors)
+func (o *RunnerRuntimeList) GetItemsOk() (ret RunnerRuntimeListGetItemsRetType, ok bool) {
+	return getRunnerRuntimeListGetItemsAttributeTypeOk(o.Items)
 }
 
-// SetFlavors sets field value
+// SetItems sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListFlavors) SetFlavors(v ListFlavorsGetFlavorsRetType) {
-	setListFlavorsGetFlavorsAttributeType(&o.Flavors, v)
+func (o *RunnerRuntimeList) SetItems(v RunnerRuntimeListGetItemsRetType) {
+	setRunnerRuntimeListGetItemsAttributeType(&o.Items, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o ListFlavors) ToMap() (map[string]interface{}, error) {
+func (o RunnerRuntimeList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getListFlavorsGetFlavorsAttributeTypeOk(o.Flavors); ok {
-		toSerialize["Flavors"] = val
+	if val, ok := getRunnerRuntimeListGetItemsAttributeTypeOk(o.Items); ok {
+		toSerialize["Items"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableListFlavors struct {
-	value *ListFlavors
+type NullableRunnerRuntimeList struct {
+	value *RunnerRuntimeList
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListFlavors) Get() *ListFlavors {
+func (v NullableRunnerRuntimeList) Get() *RunnerRuntimeList {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListFlavors) Set(val *ListFlavors) {
+func (v *NullableRunnerRuntimeList) Set(val *RunnerRuntimeList) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListFlavors) IsSet() bool {
+func (v NullableRunnerRuntimeList) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListFlavors) Unset() {
+func (v *NullableRunnerRuntimeList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableListFlavors(val *ListFlavors) *NullableListFlavors {
-	return &NullableListFlavors{value: val, isSet: true}
+func NewNullableRunnerRuntimeList(val *RunnerRuntimeList) *NullableRunnerRuntimeList {
+	return &NullableRunnerRuntimeList{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListFlavors) MarshalJSON() ([]byte, error) {
+func (v NullableRunnerRuntimeList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListFlavors) UnmarshalJSON(src []byte) error {
+func (v *NullableRunnerRuntimeList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
