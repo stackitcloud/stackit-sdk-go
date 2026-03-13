@@ -61,8 +61,12 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `sfs`: [v0.6.1](services/sfs/CHANGELOG.md#v061) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `ske`: [v1.9.1](services/ske/CHANGELOG.md#v191) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `ske`:
+  - [v1.9.1](services/ske/CHANGELOG.md#v191)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.10.0](services/ske/CHANGELOG.md#v1100)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `sqlserverflex`: [v1.6.1](services/sqlserverflex/CHANGELOG.md#v161) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `vpn`: [v0.3.1](services/vpn/CHANGELOG.md#v031) 
