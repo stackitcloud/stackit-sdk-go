@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type RedirectRule struct {
 	// The HTTP status code for the redirect. Must be one of 301, 302, 303, 307, or 308.
 	StatusCode int32 `json:"statusCode"`
 	// The target URL to redirect to. Must be a valid URI.
-	TargetUrl string `json:"targetUrl"`
+	TargetUrl            string `json:"targetUrl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RedirectRule RedirectRule
@@ -254,6 +254,11 @@ func (o RedirectRule) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["statusCode"] = o.StatusCode
 	toSerialize["targetUrl"] = o.TargetUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -283,15 +288,25 @@ func (o *RedirectRule) UnmarshalJSON(data []byte) (err error) {
 
 	varRedirectRule := _RedirectRule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRedirectRule)
+	err = json.Unmarshal(data, &varRedirectRule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RedirectRule(varRedirectRule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "matchers")
+		delete(additionalProperties, "ruleMatchCondition")
+		delete(additionalProperties, "statusCode")
+		delete(additionalProperties, "targetUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

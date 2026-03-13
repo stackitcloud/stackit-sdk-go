@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -19,8 +19,11 @@ var _ MappedNullable = &OptimizerPatch{}
 
 // OptimizerPatch struct for OptimizerPatch
 type OptimizerPatch struct {
-	Enabled *bool `json:"enabled,omitempty"`
+	Enabled              *bool `json:"enabled,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OptimizerPatch OptimizerPatch
 
 // NewOptimizerPatch instantiates a new OptimizerPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o OptimizerPatch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OptimizerPatch) UnmarshalJSON(data []byte) (err error) {
+	varOptimizerPatch := _OptimizerPatch{}
+
+	err = json.Unmarshal(data, &varOptimizerPatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OptimizerPatch(varOptimizerPatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOptimizerPatch struct {

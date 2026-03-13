@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &PutCustomDomainManagedCertificate{}
 
 // PutCustomDomainManagedCertificate This is returned when no custom certificate is used. We provision and manage a Let's Encrypt Certificate for you
 type PutCustomDomainManagedCertificate struct {
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PutCustomDomainManagedCertificate PutCustomDomainManagedCertificate
@@ -79,6 +79,11 @@ func (o PutCustomDomainManagedCertificate) MarshalJSON() ([]byte, error) {
 func (o PutCustomDomainManagedCertificate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *PutCustomDomainManagedCertificate) UnmarshalJSON(data []byte) (err erro
 
 	varPutCustomDomainManagedCertificate := _PutCustomDomainManagedCertificate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPutCustomDomainManagedCertificate)
+	err = json.Unmarshal(data, &varPutCustomDomainManagedCertificate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PutCustomDomainManagedCertificate(varPutCustomDomainManagedCertificate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

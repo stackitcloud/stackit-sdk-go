@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -28,11 +28,14 @@ type ConfigPatch struct {
 	DefaultCacheDuration NullableString           `json:"defaultCacheDuration,omitempty"`
 	LogSink              NullablePatchLokiLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
-	MonthlyLimitBytes NullableInt64   `json:"monthlyLimitBytes,omitempty"`
-	Optimizer         *OptimizerPatch `json:"optimizer,omitempty"`
-	Regions           []Region        `json:"regions,omitempty"`
-	Waf               *WafConfigPatch `json:"waf,omitempty"`
+	MonthlyLimitBytes    NullableInt64   `json:"monthlyLimitBytes,omitempty"`
+	Optimizer            *OptimizerPatch `json:"optimizer,omitempty"`
+	Regions              []Region        `json:"regions,omitempty"`
+	Waf                  *WafConfigPatch `json:"waf,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ConfigPatch ConfigPatch
 
 // NewConfigPatch instantiates a new ConfigPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -409,7 +412,41 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Waf) {
 		toSerialize["waf"] = o.Waf
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ConfigPatch) UnmarshalJSON(data []byte) (err error) {
+	varConfigPatch := _ConfigPatch{}
+
+	err = json.Unmarshal(data, &varConfigPatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ConfigPatch(varConfigPatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backend")
+		delete(additionalProperties, "blockedCountries")
+		delete(additionalProperties, "blockedIPs")
+		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "logSink")
+		delete(additionalProperties, "monthlyLimitBytes")
+		delete(additionalProperties, "optimizer")
+		delete(additionalProperties, "regions")
+		delete(additionalProperties, "waf")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableConfigPatch struct {

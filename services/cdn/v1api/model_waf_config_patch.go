@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -39,11 +39,14 @@ type WafConfigPatch struct {
 	// Ids of WAF Rule Groups to mark as log Only.
 	LogOnlyRuleGroupIds []string `json:"logOnlyRuleGroupIds,omitempty"`
 	// Ids of WAF Rules that are **explicitly** marked as Log Only for this distribution.
-	LogOnlyRuleIds []string          `json:"logOnlyRuleIds,omitempty"`
-	Mode           *WafMode          `json:"mode,omitempty"`
-	ParanoiaLevel  *WafParanoiaLevel `json:"paranoiaLevel,omitempty"`
-	Type           *WafType          `json:"type,omitempty"`
+	LogOnlyRuleIds       []string          `json:"logOnlyRuleIds,omitempty"`
+	Mode                 *WafMode          `json:"mode,omitempty"`
+	ParanoiaLevel        *WafParanoiaLevel `json:"paranoiaLevel,omitempty"`
+	Type                 *WafType          `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WafConfigPatch WafConfigPatch
 
 // NewWafConfigPatch instantiates a new WafConfigPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -597,7 +600,47 @@ func (o WafConfigPatch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *WafConfigPatch) UnmarshalJSON(data []byte) (err error) {
+	varWafConfigPatch := _WafConfigPatch{}
+
+	err = json.Unmarshal(data, &varWafConfigPatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WafConfigPatch(varWafConfigPatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedHttpMethods")
+		delete(additionalProperties, "allowedHttpVersions")
+		delete(additionalProperties, "allowedRequestContentTypes")
+		delete(additionalProperties, "disabledRuleCollectionIds")
+		delete(additionalProperties, "disabledRuleGroupIds")
+		delete(additionalProperties, "disabledRuleIds")
+		delete(additionalProperties, "enabledRuleCollectionIds")
+		delete(additionalProperties, "enabledRuleGroupIds")
+		delete(additionalProperties, "enabledRuleIds")
+		delete(additionalProperties, "logOnlyRuleCollectionIds")
+		delete(additionalProperties, "logOnlyRuleGroupIds")
+		delete(additionalProperties, "logOnlyRuleIds")
+		delete(additionalProperties, "mode")
+		delete(additionalProperties, "paranoiaLevel")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableWafConfigPatch struct {

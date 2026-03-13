@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,8 +23,9 @@ type PutCustomDomainCustomCertificate struct {
 	// base64-encoded PEM-encoded certificate
 	Certificate string `json:"certificate"`
 	// base64-encoded PEM encoded key
-	Key  string `json:"key"`
-	Type string `json:"type"`
+	Key                  string `json:"key"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PutCustomDomainCustomCertificate PutCustomDomainCustomCertificate
@@ -135,6 +135,11 @@ func (o PutCustomDomainCustomCertificate) ToMap() (map[string]interface{}, error
 	toSerialize["certificate"] = o.Certificate
 	toSerialize["key"] = o.Key
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -164,15 +169,22 @@ func (o *PutCustomDomainCustomCertificate) UnmarshalJSON(data []byte) (err error
 
 	varPutCustomDomainCustomCertificate := _PutCustomDomainCustomCertificate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPutCustomDomainCustomCertificate)
+	err = json.Unmarshal(data, &varPutCustomDomainCustomCertificate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PutCustomDomainCustomCertificate(varPutCustomDomainCustomCertificate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

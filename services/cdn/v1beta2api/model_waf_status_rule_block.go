@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &WafStatusRuleBlock{}
 // WafStatusRuleBlock struct for WafStatusRuleBlock
 type WafStatusRuleBlock struct {
 	// Specifies the Id of the Rule.
-	Id     string                   `json:"id"`
-	Reason WafStatusRuleBlockReason `json:"reason"`
+	Id                   string                   `json:"id"`
+	Reason               WafStatusRuleBlockReason `json:"reason"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafStatusRuleBlock WafStatusRuleBlock
@@ -107,6 +107,11 @@ func (o WafStatusRuleBlock) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["reason"] = o.Reason
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *WafStatusRuleBlock) UnmarshalJSON(data []byte) (err error) {
 
 	varWafStatusRuleBlock := _WafStatusRuleBlock{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafStatusRuleBlock)
+	err = json.Unmarshal(data, &varWafStatusRuleBlock)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafStatusRuleBlock(varWafStatusRuleBlock)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "reason")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

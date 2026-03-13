@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &FindCachePathsResponseEntry{}
 // FindCachePathsResponseEntry struct for FindCachePathsResponseEntry
 type FindCachePathsResponseEntry struct {
 	// Defines one path that was previously used as part of a granular purge
-	Path string `json:"path"`
+	Path                 string `json:"path"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FindCachePathsResponseEntry FindCachePathsResponseEntry
@@ -80,6 +80,11 @@ func (o FindCachePathsResponseEntry) MarshalJSON() ([]byte, error) {
 func (o FindCachePathsResponseEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["path"] = o.Path
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *FindCachePathsResponseEntry) UnmarshalJSON(data []byte) (err error) {
 
 	varFindCachePathsResponseEntry := _FindCachePathsResponseEntry{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFindCachePathsResponseEntry)
+	err = json.Unmarshal(data, &varFindCachePathsResponseEntry)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FindCachePathsResponseEntry(varFindCachePathsResponseEntry)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "path")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

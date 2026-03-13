@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -28,11 +27,12 @@ type DistributionLogsRecord struct {
 	Host             string `json:"host"`
 	Path             string `json:"path"`
 	// ISO 3166-1 A2 compliant country code
-	RequestCountryCode string        `json:"requestCountryCode"`
-	Size               int64         `json:"size"`
-	StatusCode         int32         `json:"statusCode"`
-	Timestamp          time.Time     `json:"timestamp"`
-	WafViolation       *WAFViolation `json:"wafViolation,omitempty"`
+	RequestCountryCode   string        `json:"requestCountryCode"`
+	Size                 int64         `json:"size"`
+	StatusCode           int32         `json:"statusCode"`
+	Timestamp            time.Time     `json:"timestamp"`
+	WafViolation         *WAFViolation `json:"wafViolation,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DistributionLogsRecord DistributionLogsRecord
@@ -333,6 +333,11 @@ func (o DistributionLogsRecord) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WafViolation) {
 		toSerialize["wafViolation"] = o.WafViolation
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -368,15 +373,29 @@ func (o *DistributionLogsRecord) UnmarshalJSON(data []byte) (err error) {
 
 	varDistributionLogsRecord := _DistributionLogsRecord{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDistributionLogsRecord)
+	err = json.Unmarshal(data, &varDistributionLogsRecord)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DistributionLogsRecord(varDistributionLogsRecord)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cacheHit")
+		delete(additionalProperties, "dataCenterRegion")
+		delete(additionalProperties, "distributionId")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "requestCountryCode")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "statusCode")
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "wafViolation")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

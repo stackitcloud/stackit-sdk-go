@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ListWAFCollectionsResponse{}
 
 // ListWAFCollectionsResponse struct for ListWAFCollectionsResponse
 type ListWAFCollectionsResponse struct {
-	Collections []WAFRuleCollection `json:"collections"`
+	Collections          []WAFRuleCollection `json:"collections"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListWAFCollectionsResponse ListWAFCollectionsResponse
@@ -79,6 +79,11 @@ func (o ListWAFCollectionsResponse) MarshalJSON() ([]byte, error) {
 func (o ListWAFCollectionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["collections"] = o.Collections
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ListWAFCollectionsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListWAFCollectionsResponse := _ListWAFCollectionsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListWAFCollectionsResponse)
+	err = json.Unmarshal(data, &varListWAFCollectionsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListWAFCollectionsResponse(varListWAFCollectionsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collections")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

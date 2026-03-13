@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -24,7 +23,8 @@ var _ MappedNullable = &GetCacheInfoResponse{}
 type GetCacheInfoResponse struct {
 	History []GetCacheInfoResponseHistoryEntry `json:"history"`
 	// Returns the last time the cache was purged by calling the PurgeCache endpoint.  Time represented as RFC3339 compliant string. If the cache was never purged, this returns `null`
-	LastPurgeTime NullableTime `json:"lastPurgeTime"`
+	LastPurgeTime        NullableTime `json:"lastPurgeTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetCacheInfoResponse GetCacheInfoResponse
@@ -110,6 +110,11 @@ func (o GetCacheInfoResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["history"] = o.History
 	toSerialize["lastPurgeTime"] = o.LastPurgeTime.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -138,15 +143,21 @@ func (o *GetCacheInfoResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetCacheInfoResponse := _GetCacheInfoResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetCacheInfoResponse)
+	err = json.Unmarshal(data, &varGetCacheInfoResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetCacheInfoResponse(varGetCacheInfoResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "history")
+		delete(additionalProperties, "lastPurgeTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type Domain struct {
 	Name   string       `json:"name"`
 	Status DomainStatus `json:"status"`
 	// Specifies the type of this Domain. Custom Domain can be further queries using the GetCustomDomain Endpoint
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Domain Domain
@@ -172,6 +172,11 @@ func (o Domain) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["status"] = o.Status
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -201,15 +206,23 @@ func (o *Domain) UnmarshalJSON(data []byte) (err error) {
 
 	varDomain := _Domain{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDomain)
+	err = json.Unmarshal(data, &varDomain)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Domain(varDomain)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

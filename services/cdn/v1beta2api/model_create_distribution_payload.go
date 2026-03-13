@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -35,8 +34,9 @@ type CreateDistributionPayload struct {
 	MonthlyLimitBytes *int64     `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         *Optimizer `json:"optimizer,omitempty"`
 	// Define in which regions you would like your content to be cached.
-	Regions []Region   `json:"regions"`
-	Waf     *WafConfig `json:"waf,omitempty"`
+	Regions              []Region   `json:"regions"`
+	Waf                  *WafConfig `json:"waf,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateDistributionPayload CreateDistributionPayload
@@ -400,6 +400,11 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Waf) {
 		toSerialize["waf"] = o.Waf
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -428,15 +433,29 @@ func (o *CreateDistributionPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateDistributionPayload := _CreateDistributionPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateDistributionPayload)
+	err = json.Unmarshal(data, &varCreateDistributionPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateDistributionPayload(varCreateDistributionPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backend")
+		delete(additionalProperties, "blockedCountries")
+		delete(additionalProperties, "blockedIps")
+		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "intentId")
+		delete(additionalProperties, "logSink")
+		delete(additionalProperties, "monthlyLimitBytes")
+		delete(additionalProperties, "optimizer")
+		delete(additionalProperties, "regions")
+		delete(additionalProperties, "waf")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

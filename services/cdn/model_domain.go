@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -18,6 +18,153 @@ import (
 
 // checks if the Domain type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Domain{}
+
+/*
+	types and functions for certificateType
+*/
+
+// isEnum
+
+// DomainCertificateType the model 'Domain'
+// value type for enums
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DomainCertificateType string
+
+// List of CertificateType
+const (
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	DOMAINCERTIFICATE_TYPE_MANAGED DomainCertificateType = "managed"
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	DOMAINCERTIFICATE_TYPE_CUSTOM DomainCertificateType = "custom"
+)
+
+// All allowed values of Domain enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+var AllowedDomainCertificateTypeEnumValues = []DomainCertificateType{
+	"managed",
+	"custom",
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *DomainCertificateType) UnmarshalJSON(src []byte) error {
+	// use a type alias to prevent infinite recursion during unmarshal,
+	// see https://biscuit.ninja/posts/go-avoid-an-infitine-loop-with-custom-json-unmarshallers
+	type TmpJson DomainCertificateType
+	var value TmpJson
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	// Allow unmarshalling zero value for testing purposes
+	var zeroValue TmpJson
+	if value == zeroValue {
+		return nil
+	}
+	enumTypeValue := DomainCertificateType(value)
+	for _, existing := range AllowedDomainCertificateTypeEnumValues {
+		if existing == enumTypeValue {
+			*v = enumTypeValue
+			return nil
+		}
+	}
+
+	return fmt.Errorf("%+v is not a valid Domain", value)
+}
+
+// NewDomainCertificateTypeFromValue returns a pointer to a valid DomainCertificateType
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewDomainCertificateTypeFromValue(v DomainCertificateType) (*DomainCertificateType, error) {
+	ev := DomainCertificateType(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for DomainCertificateType: valid values are %v", v, AllowedDomainCertificateTypeEnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v DomainCertificateType) IsValid() bool {
+	for _, existing := range AllowedDomainCertificateTypeEnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to CertificateTypeCertificateType value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v DomainCertificateType) Ptr() *DomainCertificateType {
+	return &v
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type NullableDomainCertificateType struct {
+	value *DomainCertificateType
+	isSet bool
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDomainCertificateType) Get() *DomainCertificateType {
+	return v.value
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDomainCertificateType) Set(val *DomainCertificateType) {
+	v.value = val
+	v.isSet = true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDomainCertificateType) IsSet() bool {
+	return v.isSet
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDomainCertificateType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func NewNullableDomainCertificateType(val *DomainCertificateType) *NullableDomainCertificateType {
+	return &NullableDomainCertificateType{value: val, isSet: true}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v NullableDomainCertificateType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (v *NullableDomainCertificateType) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DomainGetCertificateTypeAttributeType = *DomainCertificateType
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DomainGetCertificateTypeArgType = DomainCertificateType
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DomainGetCertificateTypeRetType = DomainCertificateType
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getDomainGetCertificateTypeAttributeTypeOk(arg DomainGetCertificateTypeAttributeType) (ret DomainGetCertificateTypeRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setDomainGetCertificateTypeAttributeType(arg *DomainGetCertificateTypeAttributeType, val DomainGetCertificateTypeRetType) {
+	*arg = &val
+}
 
 /*
 	types and functions for errors
@@ -250,6 +397,8 @@ func setDomainGetTypeAttributeType(arg *DomainGetTypeAttributeType, val DomainGe
 // Domain Definition of a custom or managed domain without any certificates or keys
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type Domain struct {
+	// REQUIRED
+	CertificateType DomainGetCertificateTypeAttributeType `json:"certificateType" required:"true"`
 	// This object is present if the custom domain has errors.
 	Errors DomainGetErrorsAttributeType `json:"errors,omitempty"`
 	// The domain. If this is a custom domain, you can call the GetCustomDomain Endpoint
@@ -270,8 +419,9 @@ type _Domain Domain
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewDomain(name DomainGetNameArgType, status DomainGetStatusArgType, types DomainGetTypeArgType) *Domain {
+func NewDomain(certificateType DomainGetCertificateTypeArgType, name DomainGetNameArgType, status DomainGetStatusArgType, types DomainGetTypeArgType) *Domain {
 	this := Domain{}
+	setDomainGetCertificateTypeAttributeType(&this.CertificateType, certificateType)
 	setDomainGetNameAttributeType(&this.Name, name)
 	setDomainGetStatusAttributeType(&this.Status, status)
 	setDomainGetTypeAttributeType(&this.Type, types)
@@ -285,6 +435,26 @@ func NewDomain(name DomainGetNameArgType, status DomainGetStatusArgType, types D
 func NewDomainWithDefaults() *Domain {
 	this := Domain{}
 	return &this
+}
+
+// GetCertificateType returns the CertificateType field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Domain) GetCertificateType() (ret DomainGetCertificateTypeRetType) {
+	ret, _ = o.GetCertificateTypeOk()
+	return ret
+}
+
+// GetCertificateTypeOk returns a tuple with the CertificateType field value
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Domain) GetCertificateTypeOk() (ret DomainGetCertificateTypeRetType, ok bool) {
+	return getDomainGetCertificateTypeAttributeTypeOk(o.CertificateType)
+}
+
+// SetCertificateType sets field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Domain) SetCertificateType(v DomainGetCertificateTypeRetType) {
+	setDomainGetCertificateTypeAttributeType(&o.CertificateType, v)
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -377,6 +547,9 @@ func (o *Domain) SetType(v DomainGetTypeRetType) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o Domain) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getDomainGetCertificateTypeAttributeTypeOk(o.CertificateType); ok {
+		toSerialize["CertificateType"] = val
+	}
 	if val, ok := getDomainGetErrorsAttributeTypeOk(o.Errors); ok {
 		toSerialize["Errors"] = val
 	}

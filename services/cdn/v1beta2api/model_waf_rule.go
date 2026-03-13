@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,8 +23,9 @@ type WafRule struct {
 	// Optional CoreRuleSet rule Id in case this is a CRS rule
 	Code *string `json:"code,omitempty"`
 	// LocalizedString is a map from language to string value
-	Description map[string]string `json:"description"`
-	Id          string            `json:"id"`
+	Description          map[string]string `json:"description"`
+	Id                   string            `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafRule WafRule
@@ -144,6 +144,11 @@ func (o WafRule) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["description"] = o.Description
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -172,15 +177,22 @@ func (o *WafRule) UnmarshalJSON(data []byte) (err error) {
 
 	varWafRule := _WafRule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafRule)
+	err = json.Unmarshal(data, &varWafRule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafRule(varWafRule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
