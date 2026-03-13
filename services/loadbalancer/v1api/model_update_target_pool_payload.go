@@ -26,8 +26,11 @@ type UpdateTargetPoolPayload struct {
 	// The number identifying the port where each target listens for traffic.
 	TargetPort *int32 `json:"targetPort,omitempty"`
 	// List of all targets which will be used in the pool. Limited to 250.
-	Targets []Target `json:"targets,omitempty"`
+	Targets              []Target `json:"targets,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateTargetPoolPayload UpdateTargetPoolPayload
 
 // NewUpdateTargetPoolPayload instantiates a new UpdateTargetPoolPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -231,7 +234,37 @@ func (o UpdateTargetPoolPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Targets) {
 		toSerialize["targets"] = o.Targets
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateTargetPoolPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateTargetPoolPayload := _UpdateTargetPoolPayload{}
+
+	err = json.Unmarshal(data, &varUpdateTargetPoolPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateTargetPoolPayload(varUpdateTargetPoolPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "activeHealthCheck")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "sessionPersistence")
+		delete(additionalProperties, "targetPort")
+		delete(additionalProperties, "targets")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateTargetPoolPayload struct {

@@ -26,7 +26,10 @@ type BackupVolumeBackupsInner struct {
 	Size                 *int32  `json:"size,omitempty"`
 	Status               *string `json:"status,omitempty"`
 	VolumeId             *string `json:"volumeId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BackupVolumeBackupsInner BackupVolumeBackupsInner
 
 // NewBackupVolumeBackupsInner instantiates a new BackupVolumeBackupsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,38 @@ func (o BackupVolumeBackupsInner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VolumeId) {
 		toSerialize["volumeId"] = o.VolumeId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BackupVolumeBackupsInner) UnmarshalJSON(data []byte) (err error) {
+	varBackupVolumeBackupsInner := _BackupVolumeBackupsInner{}
+
+	err = json.Unmarshal(data, &varBackupVolumeBackupsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BackupVolumeBackupsInner(varBackupVolumeBackupsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "lastRestoredAt")
+		delete(additionalProperties, "lastRestoredVolumeId")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "volumeId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBackupVolumeBackupsInner struct {

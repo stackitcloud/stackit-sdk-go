@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -49,7 +48,8 @@ type CreateZonePayload struct {
 	// retry time
 	RetryTime *int32 `json:"retryTime,omitempty"`
 	// zone type
-	Type *string `json:"type,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateZonePayload CreateZonePayload
@@ -585,6 +585,11 @@ func (o CreateZonePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -613,15 +618,33 @@ func (o *CreateZonePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateZonePayload := _CreateZonePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateZonePayload)
+	err = json.Unmarshal(data, &varCreateZonePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateZonePayload(varCreateZonePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "contactEmail")
+		delete(additionalProperties, "defaultTTL")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "dnsName")
+		delete(additionalProperties, "expireTime")
+		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "isReverseZone")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "negativeCache")
+		delete(additionalProperties, "primaries")
+		delete(additionalProperties, "refreshTime")
+		delete(additionalProperties, "retryTime")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

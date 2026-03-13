@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &ServiceKeysList{}
 
 // ServiceKeysList struct for ServiceKeysList
 type ServiceKeysList struct {
-	CredentialsInfo *map[string]string `json:"credentialsInfo,omitempty"`
-	Description     *string            `json:"description,omitempty"`
-	Id              string             `json:"id"`
-	Name            string             `json:"name"`
+	CredentialsInfo      *map[string]string `json:"credentialsInfo,omitempty"`
+	Description          *string            `json:"description,omitempty"`
+	Id                   string             `json:"id"`
+	Name                 string             `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServiceKeysList ServiceKeysList
@@ -179,6 +179,11 @@ func (o ServiceKeysList) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -207,15 +212,23 @@ func (o *ServiceKeysList) UnmarshalJSON(data []byte) (err error) {
 
 	varServiceKeysList := _ServiceKeysList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServiceKeysList)
+	err = json.Unmarshal(data, &varServiceKeysList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServiceKeysList(varServiceKeysList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentialsInfo")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -24,8 +24,11 @@ type ActionError struct {
 	// the error code if provided by the service
 	Code *string `json:"code,omitempty"`
 	// the error reason provided by the service
-	Reason *string `json:"reason,omitempty"`
+	Reason               *string `json:"reason,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ActionError ActionError
 
 // NewActionError instantiates a new ActionError object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o ActionError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Reason) {
 		toSerialize["reason"] = o.Reason
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ActionError) UnmarshalJSON(data []byte) (err error) {
+	varActionError := _ActionError{}
+
+	err = json.Unmarshal(data, &varActionError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ActionError(varActionError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "reason")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableActionError struct {

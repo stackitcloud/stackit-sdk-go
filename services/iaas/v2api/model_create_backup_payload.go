@@ -22,6 +22,8 @@ var _ MappedNullable = &CreateBackupPayload{}
 
 // CreateBackupPayload Object that represents a backup create request body.
 type CreateBackupPayload struct {
+	// Description Object. Allows string up to 255 Characters.
+	Description *string `json:"description,omitempty"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
@@ -47,6 +49,38 @@ func NewCreateBackupPayload(source BackupSource) *CreateBackupPayload {
 func NewCreateBackupPayloadWithDefaults() *CreateBackupPayload {
 	this := CreateBackupPayload{}
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *CreateBackupPayload) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateBackupPayload) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *CreateBackupPayload) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *CreateBackupPayload) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -147,6 +181,9 @@ func (o CreateBackupPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}

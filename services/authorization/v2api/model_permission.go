@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &Permission{}
 
 // Permission struct for Permission
 type Permission struct {
-	Description string `json:"description"`
-	Name        string `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Description          string `json:"description"`
+	Name                 string `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Permission Permission
@@ -106,6 +106,11 @@ func (o Permission) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["description"] = o.Description
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *Permission) UnmarshalJSON(data []byte) (err error) {
 
 	varPermission := _Permission{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPermission)
+	err = json.Unmarshal(data, &varPermission)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Permission(varPermission)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -19,24 +19,29 @@ var _ MappedNullable = &Phase2Status{}
 
 // Phase2Status struct for Phase2Status
 type Phase2Status struct {
-	// Bytes received.
+	// The total data volume received through this Security Association, measured in bytes.
 	BytesIn *string `json:"bytesIn,omitempty"`
-	// Bytes sent.
+	// The total data volume sent through this Security Association, measured in bytes.
 	BytesOut *string `json:"bytesOut,omitempty"`
-	// Negotiated Diffie-Hellman Group
+	// The negotiated Diffie-Hellman Group
 	DhGroup *string `json:"dhGroup,omitempty"`
-	Encap   *string `json:"encap,omitempty"`
-	// Negotiated encryption algorithm.
+	// Indicates whether NAT traversal encapsulation is active for the connection.
+	Encap *string `json:"encap,omitempty"`
+	// The negotiated encryption algorithm.
 	EncryptionAlgorithm *string `json:"encryptionAlgorithm,omitempty"`
-	// Negotiated integrity algorithm or pseudo-random-function.
+	// The negotiated integrity algorithm or pseudo-random-function.
 	IntegrityAlgorithm *string `json:"integrityAlgorithm,omitempty"`
-	// Packets received.
+	// The total number of packets received through this IPsec Security Association.
 	PacketsIn *string `json:"packetsIn,omitempty"`
-	// Packets sent.
+	// The total number of packets sent through this IPsec Security Association
 	PacketsOut *string `json:"packetsOut,omitempty"`
-	Protocol   *string `json:"protocol,omitempty"`
-	State      *string `json:"state,omitempty"`
+	// The security protocol used for the tunnel, typically `ESP` (Encapsulating Security Payload).
+	Protocol             *string `json:"protocol,omitempty"`
+	State                *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Phase2Status Phase2Status
 
 // NewPhase2Status instantiates a new Phase2Status object
 // This constructor will assign default values to properties that have it defined,
@@ -415,7 +420,42 @@ func (o Phase2Status) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Phase2Status) UnmarshalJSON(data []byte) (err error) {
+	varPhase2Status := _Phase2Status{}
+
+	err = json.Unmarshal(data, &varPhase2Status)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Phase2Status(varPhase2Status)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bytesIn")
+		delete(additionalProperties, "bytesOut")
+		delete(additionalProperties, "dhGroup")
+		delete(additionalProperties, "encap")
+		delete(additionalProperties, "encryptionAlgorithm")
+		delete(additionalProperties, "integrityAlgorithm")
+		delete(additionalProperties, "packetsIn")
+		delete(additionalProperties, "packetsOut")
+		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePhase2Status struct {

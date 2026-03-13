@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &QuotaListResponse{}
 
 // QuotaListResponse struct for QuotaListResponse
 type QuotaListResponse struct {
-	Quotas QuotaList `json:"quotas"`
+	Quotas               QuotaList `json:"quotas"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QuotaListResponse QuotaListResponse
@@ -79,6 +79,11 @@ func (o QuotaListResponse) MarshalJSON() ([]byte, error) {
 func (o QuotaListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["quotas"] = o.Quotas
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *QuotaListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varQuotaListResponse := _QuotaListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuotaListResponse)
+	err = json.Unmarshal(data, &varQuotaListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = QuotaListResponse(varQuotaListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "quotas")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

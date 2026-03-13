@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type CreateRedisCheckPayload struct {
 	// url to check
 	Server string `json:"server"`
 	// username
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateRedisCheckPayload CreateRedisCheckPayload
@@ -155,6 +155,11 @@ func (o CreateRedisCheckPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -182,15 +187,22 @@ func (o *CreateRedisCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateRedisCheckPayload := _CreateRedisCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateRedisCheckPayload)
+	err = json.Unmarshal(data, &varCreateRedisCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateRedisCheckPayload(varCreateRedisCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "server")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

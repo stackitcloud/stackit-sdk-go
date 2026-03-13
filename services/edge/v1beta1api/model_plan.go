@@ -26,8 +26,11 @@ type Plan struct {
 	// Maximum number of EdgeHosts
 	MaxEdgeHosts *int32 `json:"maxEdgeHosts,omitempty"`
 	// Service Plan Name
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Plan Plan
 
 // NewPlan instantiates a new Plan object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,36 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Plan) UnmarshalJSON(data []byte) (err error) {
+	varPlan := _Plan{}
+
+	err = json.Unmarshal(data, &varPlan)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Plan(varPlan)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "maxEdgeHosts")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlan struct {

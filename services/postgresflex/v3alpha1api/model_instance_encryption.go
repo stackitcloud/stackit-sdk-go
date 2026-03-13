@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +26,9 @@ type InstanceEncryption struct {
 	// The encryption-key keyring identifier
 	KekKeyRingId string `json:"kekKeyRingId"`
 	// The encryption-key version
-	KekKeyVersion  string `json:"kekKeyVersion"`
-	ServiceAccount string `json:"serviceAccount"`
+	KekKeyVersion        string `json:"kekKeyVersion"`
+	ServiceAccount       string `json:"serviceAccount"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceEncryption InstanceEncryption
@@ -164,6 +164,11 @@ func (o InstanceEncryption) ToMap() (map[string]interface{}, error) {
 	toSerialize["kekKeyRingId"] = o.KekKeyRingId
 	toSerialize["kekKeyVersion"] = o.KekKeyVersion
 	toSerialize["serviceAccount"] = o.ServiceAccount
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -194,15 +199,23 @@ func (o *InstanceEncryption) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceEncryption := _InstanceEncryption{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceEncryption)
+	err = json.Unmarshal(data, &varInstanceEncryption)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceEncryption(varInstanceEncryption)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kekKeyId")
+		delete(additionalProperties, "kekKeyRingId")
+		delete(additionalProperties, "kekKeyVersion")
+		delete(additionalProperties, "serviceAccount")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

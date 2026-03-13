@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,12 +21,13 @@ var _ MappedNullable = &Offerings{}
 
 // Offerings struct for Offerings
 type Offerings struct {
-	Description      string   `json:"description"`
-	DocumentationUrl string   `json:"documentationUrl"`
-	ImageUrl         string   `json:"imageUrl"`
-	Name             string   `json:"name"`
-	Plans            []Plan   `json:"plans"`
-	Tags             []string `json:"tags"`
+	Description          string   `json:"description"`
+	DocumentationUrl     string   `json:"documentationUrl"`
+	ImageUrl             string   `json:"imageUrl"`
+	Name                 string   `json:"name"`
+	Plans                []Plan   `json:"plans"`
+	Tags                 []string `json:"tags"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Offerings Offerings
@@ -215,6 +215,11 @@ func (o Offerings) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["plans"] = o.Plans
 	toSerialize["tags"] = o.Tags
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -247,15 +252,25 @@ func (o *Offerings) UnmarshalJSON(data []byte) (err error) {
 
 	varOfferings := _Offerings{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOfferings)
+	err = json.Unmarshal(data, &varOfferings)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Offerings(varOfferings)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "documentationUrl")
+		delete(additionalProperties, "imageUrl")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "plans")
+		delete(additionalProperties, "tags")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

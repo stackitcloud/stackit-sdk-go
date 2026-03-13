@@ -26,8 +26,11 @@ type CredentialsResponse struct {
 	// Region of the Credential
 	Region *string `json:"region,omitempty"`
 	// The username used for the STACKIT Observability instance
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CredentialsResponse CredentialsResponse
 
 // NewCredentialsResponse instantiates a new CredentialsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,36 @@ func (o CredentialsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CredentialsResponse) UnmarshalJSON(data []byte) (err error) {
+	varCredentialsResponse := _CredentialsResponse{}
+
+	err = json.Unmarshal(data, &varCredentialsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CredentialsResponse(varCredentialsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentialsRef")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCredentialsResponse struct {

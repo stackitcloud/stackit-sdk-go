@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &InstanceSchema{}
 
 // InstanceSchema struct for InstanceSchema
 type InstanceSchema struct {
-	Create Schema `json:"create"`
-	Update Schema `json:"update"`
+	Create               Schema `json:"create"`
+	Update               Schema `json:"update"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceSchema InstanceSchema
@@ -106,6 +106,11 @@ func (o InstanceSchema) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["create"] = o.Create
 	toSerialize["update"] = o.Update
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *InstanceSchema) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceSchema := _InstanceSchema{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceSchema)
+	err = json.Unmarshal(data, &varInstanceSchema)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceSchema(varInstanceSchema)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "create")
+		delete(additionalProperties, "update")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

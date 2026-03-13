@@ -11,7 +11,6 @@ API version: 1beta1
 package v1beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &Kubeconfig{}
 // Kubeconfig struct for Kubeconfig
 type Kubeconfig struct {
 	// The kubeconfig for the instance.
-	Kubeconfig map[string]interface{} `json:"kubeconfig"`
+	Kubeconfig           map[string]interface{} `json:"kubeconfig"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Kubeconfig Kubeconfig
@@ -80,6 +80,11 @@ func (o Kubeconfig) MarshalJSON() ([]byte, error) {
 func (o Kubeconfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["kubeconfig"] = o.Kubeconfig
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *Kubeconfig) UnmarshalJSON(data []byte) (err error) {
 
 	varKubeconfig := _Kubeconfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKubeconfig)
+	err = json.Unmarshal(data, &varKubeconfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Kubeconfig(varKubeconfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kubeconfig")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

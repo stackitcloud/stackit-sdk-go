@@ -21,7 +21,10 @@ var _ MappedNullable = &CreateResourcePoolSnapshotResponse{}
 type CreateResourcePoolSnapshotResponse struct {
 	// Created Resource Pool Snapshot
 	ResourcePoolSnapshot *ResourcePoolSnapshot `json:"resourcePoolSnapshot,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateResourcePoolSnapshotResponse CreateResourcePoolSnapshotResponse
 
 // NewCreateResourcePoolSnapshotResponse instantiates a new CreateResourcePoolSnapshotResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o CreateResourcePoolSnapshotResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.ResourcePoolSnapshot) {
 		toSerialize["resourcePoolSnapshot"] = o.ResourcePoolSnapshot
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateResourcePoolSnapshotResponse) UnmarshalJSON(data []byte) (err error) {
+	varCreateResourcePoolSnapshotResponse := _CreateResourcePoolSnapshotResponse{}
+
+	err = json.Unmarshal(data, &varCreateResourcePoolSnapshotResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateResourcePoolSnapshotResponse(varCreateResourcePoolSnapshotResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resourcePoolSnapshot")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateResourcePoolSnapshotResponse struct {

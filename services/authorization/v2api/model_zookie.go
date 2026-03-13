@@ -19,8 +19,11 @@ var _ MappedNullable = &Zookie{}
 
 // Zookie struct for Zookie
 type Zookie struct {
-	Zookie *string `json:"zookie,omitempty"`
+	Zookie               *string `json:"zookie,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Zookie Zookie
 
 // NewZookie instantiates a new Zookie object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o Zookie) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Zookie) {
 		toSerialize["zookie"] = o.Zookie
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Zookie) UnmarshalJSON(data []byte) (err error) {
+	varZookie := _Zookie{}
+
+	err = json.Unmarshal(data, &varZookie)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Zookie(varZookie)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "zookie")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableZookie struct {

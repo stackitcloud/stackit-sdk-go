@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &PlansResponse{}
 
 // PlansResponse struct for PlansResponse
 type PlansResponse struct {
-	Message string `json:"message"`
-	Plans   []Plan `json:"plans"`
+	Message              string `json:"message"`
+	Plans                []Plan `json:"plans"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PlansResponse PlansResponse
@@ -107,6 +107,11 @@ func (o PlansResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
 	toSerialize["plans"] = o.Plans
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *PlansResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPlansResponse := _PlansResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPlansResponse)
+	err = json.Unmarshal(data, &varPlansResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PlansResponse(varPlansResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "plans")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

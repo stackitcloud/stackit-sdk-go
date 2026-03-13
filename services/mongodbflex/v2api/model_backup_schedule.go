@@ -26,7 +26,10 @@ type BackupSchedule struct {
 	PointInTimeWindowHours         *int32  `json:"pointInTimeWindowHours,omitempty"`
 	SnapshotRetentionDays          *int32  `json:"snapshotRetentionDays,omitempty"`
 	WeeklySnapshotRetentionWeeks   *int32  `json:"weeklySnapshotRetentionWeeks,omitempty"`
+	AdditionalProperties           map[string]interface{}
 }
+
+type _BackupSchedule BackupSchedule
 
 // NewBackupSchedule instantiates a new BackupSchedule object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,38 @@ func (o BackupSchedule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WeeklySnapshotRetentionWeeks) {
 		toSerialize["weeklySnapshotRetentionWeeks"] = o.WeeklySnapshotRetentionWeeks
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BackupSchedule) UnmarshalJSON(data []byte) (err error) {
+	varBackupSchedule := _BackupSchedule{}
+
+	err = json.Unmarshal(data, &varBackupSchedule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BackupSchedule(varBackupSchedule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "dailySnapshotRetentionDays")
+		delete(additionalProperties, "monthlySnapshotRetentionMonths")
+		delete(additionalProperties, "pointInTimeWindowHours")
+		delete(additionalProperties, "snapshotRetentionDays")
+		delete(additionalProperties, "weeklySnapshotRetentionWeeks")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBackupSchedule struct {

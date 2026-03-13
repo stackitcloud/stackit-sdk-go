@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &TraceConfig{}
 
 // TraceConfig struct for TraceConfig
 type TraceConfig struct {
-	Retention string `json:"retention"`
+	Retention            string `json:"retention"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TraceConfig TraceConfig
@@ -80,6 +80,11 @@ func (o TraceConfig) MarshalJSON() ([]byte, error) {
 func (o TraceConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["retention"] = o.Retention
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *TraceConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varTraceConfig := _TraceConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTraceConfig)
+	err = json.Unmarshal(data, &varTraceConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TraceConfig(varTraceConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "retention")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

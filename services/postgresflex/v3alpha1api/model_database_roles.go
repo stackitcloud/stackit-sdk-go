@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type DatabaseRoles struct {
 	// The name of the database.
 	Name string `json:"name"`
 	// The name and the roles for a database
-	Roles []string `json:"roles"`
+	Roles                []string `json:"roles"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DatabaseRoles DatabaseRoles
@@ -109,6 +109,11 @@ func (o DatabaseRoles) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["roles"] = o.Roles
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *DatabaseRoles) UnmarshalJSON(data []byte) (err error) {
 
 	varDatabaseRoles := _DatabaseRoles{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDatabaseRoles)
+	err = json.Unmarshal(data, &varDatabaseRoles)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DatabaseRoles(varDatabaseRoles)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "roles")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

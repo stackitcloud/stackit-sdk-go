@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -25,7 +24,8 @@ var _ MappedNullable = &CloneRequestPayload{}
 type CloneRequestPayload struct {
 	InstanceOverrides CloneInstanceOverrides `json:"instanceOverrides"`
 	// the time for the point in time recovery it will be calculated between first backup and last backup
-	PointInTime time.Time `json:"pointInTime"`
+	PointInTime          time.Time `json:"pointInTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CloneRequestPayload CloneRequestPayload
@@ -109,6 +109,11 @@ func (o CloneRequestPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instanceOverrides"] = o.InstanceOverrides
 	toSerialize["pointInTime"] = o.PointInTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *CloneRequestPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCloneRequestPayload := _CloneRequestPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCloneRequestPayload)
+	err = json.Unmarshal(data, &varCloneRequestPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CloneRequestPayload(varCloneRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceOverrides")
+		delete(additionalProperties, "pointInTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

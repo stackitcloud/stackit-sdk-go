@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,12 +21,13 @@ var _ MappedNullable = &AlertRuleRecord{}
 
 // AlertRuleRecord struct for AlertRuleRecord
 type AlertRuleRecord struct {
-	Alert       *string            `json:"alert,omitempty"`
-	Annotations *map[string]string `json:"annotations,omitempty"`
-	Expr        string             `json:"expr"`
-	For         *string            `json:"for,omitempty"`
-	Labels      *map[string]string `json:"labels,omitempty"`
-	Record      *string            `json:"record,omitempty"`
+	Alert                *string            `json:"alert,omitempty"`
+	Annotations          *map[string]string `json:"annotations,omitempty"`
+	Expr                 string             `json:"expr"`
+	For                  *string            `json:"for,omitempty"`
+	Labels               *map[string]string `json:"labels,omitempty"`
+	Record               *string            `json:"record,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AlertRuleRecord AlertRuleRecord
@@ -260,6 +260,11 @@ func (o AlertRuleRecord) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Record) {
 		toSerialize["record"] = o.Record
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -287,15 +292,25 @@ func (o *AlertRuleRecord) UnmarshalJSON(data []byte) (err error) {
 
 	varAlertRuleRecord := _AlertRuleRecord{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAlertRuleRecord)
+	err = json.Unmarshal(data, &varAlertRuleRecord)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AlertRuleRecord(varAlertRuleRecord)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alert")
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "expr")
+		delete(additionalProperties, "for")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "record")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

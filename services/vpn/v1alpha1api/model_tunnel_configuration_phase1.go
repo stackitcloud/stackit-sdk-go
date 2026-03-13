@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type TunnelConfigurationPhase1 struct {
 	EncryptionAlgorithms []string `json:"encryptionAlgorithms"`
 	IntegrityAlgorithms  []string `json:"integrityAlgorithms"`
 	// Time to schedule a IKE re-keying (in seconds).
-	RekeyTime *int32 `json:"rekeyTime,omitempty"`
+	RekeyTime            *int32 `json:"rekeyTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TunnelConfigurationPhase1 TunnelConfigurationPhase1
@@ -184,6 +184,11 @@ func (o TunnelConfigurationPhase1) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RekeyTime) {
 		toSerialize["rekeyTime"] = o.RekeyTime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -212,15 +217,23 @@ func (o *TunnelConfigurationPhase1) UnmarshalJSON(data []byte) (err error) {
 
 	varTunnelConfigurationPhase1 := _TunnelConfigurationPhase1{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTunnelConfigurationPhase1)
+	err = json.Unmarshal(data, &varTunnelConfigurationPhase1)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TunnelConfigurationPhase1(varTunnelConfigurationPhase1)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dhGroups")
+		delete(additionalProperties, "encryptionAlgorithms")
+		delete(additionalProperties, "integrityAlgorithms")
+		delete(additionalProperties, "rekeyTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

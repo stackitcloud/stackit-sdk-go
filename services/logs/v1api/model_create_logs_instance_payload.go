@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type CreateLogsInstancePayload struct {
 	// The displayed name to distinguish multiple Logs instances.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
 	// The log retention time in days.
-	RetentionDays int32 `json:"retentionDays"`
+	RetentionDays        int32 `json:"retentionDays"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateLogsInstancePayload CreateLogsInstancePayload
@@ -182,6 +182,11 @@ func (o CreateLogsInstancePayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["displayName"] = o.DisplayName
 	toSerialize["retentionDays"] = o.RetentionDays
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -210,15 +215,23 @@ func (o *CreateLogsInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateLogsInstancePayload := _CreateLogsInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateLogsInstancePayload)
+	err = json.Unmarshal(data, &varCreateLogsInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateLogsInstancePayload(varCreateLogsInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "retentionDays")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

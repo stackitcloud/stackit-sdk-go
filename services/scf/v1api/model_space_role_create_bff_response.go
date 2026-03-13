@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &SpaceRoleCreateBffResponse{}
 
 // SpaceRoleCreateBffResponse struct for SpaceRoleCreateBffResponse
 type SpaceRoleCreateBffResponse struct {
-	OrgRole   *OrgRoleResponse        `json:"orgRole,omitempty"`
-	SpaceRole SpaceRoleCreateResponse `json:"spaceRole"`
+	OrgRole              *OrgRoleResponse        `json:"orgRole,omitempty"`
+	SpaceRole            SpaceRoleCreateResponse `json:"spaceRole"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpaceRoleCreateBffResponse SpaceRoleCreateBffResponse
@@ -116,6 +116,11 @@ func (o SpaceRoleCreateBffResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["orgRole"] = o.OrgRole
 	}
 	toSerialize["spaceRole"] = o.SpaceRole
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *SpaceRoleCreateBffResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varSpaceRoleCreateBffResponse := _SpaceRoleCreateBffResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpaceRoleCreateBffResponse)
+	err = json.Unmarshal(data, &varSpaceRoleCreateBffResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpaceRoleCreateBffResponse(varSpaceRoleCreateBffResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "orgRole")
+		delete(additionalProperties, "spaceRole")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

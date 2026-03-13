@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &UserPermission{}
 
 // UserPermission struct for UserPermission
 type UserPermission struct {
-	Permissions  []ExistingPermission `json:"permissions"`
-	ResourceId   string               `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
-	ResourceType string               `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	Permissions          []ExistingPermission `json:"permissions"`
+	ResourceId           string               `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
+	ResourceType         string               `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserPermission UserPermission
@@ -133,6 +133,11 @@ func (o UserPermission) ToMap() (map[string]interface{}, error) {
 	toSerialize["permissions"] = o.Permissions
 	toSerialize["resourceId"] = o.ResourceId
 	toSerialize["resourceType"] = o.ResourceType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *UserPermission) UnmarshalJSON(data []byte) (err error) {
 
 	varUserPermission := _UserPermission{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserPermission)
+	err = json.Unmarshal(data, &varUserPermission)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserPermission(varUserPermission)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "resourceId")
+		delete(additionalProperties, "resourceType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

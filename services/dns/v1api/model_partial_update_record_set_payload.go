@@ -27,8 +27,11 @@ type PartialUpdateRecordSetPayload struct {
 	// records
 	Records []RecordPayload `json:"records,omitempty"`
 	// time to live
-	Ttl *int32 `json:"ttl,omitempty"`
+	Ttl                  *int32 `json:"ttl,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateRecordSetPayload PartialUpdateRecordSetPayload
 
 // NewPartialUpdateRecordSetPayload instantiates a new PartialUpdateRecordSetPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -197,7 +200,36 @@ func (o PartialUpdateRecordSetPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ttl) {
 		toSerialize["ttl"] = o.Ttl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateRecordSetPayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateRecordSetPayload := _PartialUpdateRecordSetPayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateRecordSetPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateRecordSetPayload(varPartialUpdateRecordSetPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "records")
+		delete(additionalProperties, "ttl")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateRecordSetPayload struct {

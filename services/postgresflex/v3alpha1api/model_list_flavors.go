@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -37,7 +36,8 @@ type ListFlavors struct {
 	// defines the nodeType it can be either single or replica
 	NodeType string `json:"nodeType"`
 	// maximum storage which can be ordered for the flavor in Gigabyte.
-	StorageClasses []FlavorStorageClassesStorageClass `json:"storageClasses"`
+	StorageClasses       []FlavorStorageClassesStorageClass `json:"storageClasses"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListFlavors ListFlavors
@@ -277,6 +277,11 @@ func (o ListFlavors) ToMap() (map[string]interface{}, error) {
 	toSerialize["minGB"] = o.MinGB
 	toSerialize["nodeType"] = o.NodeType
 	toSerialize["storageClasses"] = o.StorageClasses
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -311,15 +316,27 @@ func (o *ListFlavors) UnmarshalJSON(data []byte) (err error) {
 
 	varListFlavors := _ListFlavors{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListFlavors)
+	err = json.Unmarshal(data, &varListFlavors)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListFlavors(varListFlavors)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cpu")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "maxGB")
+		delete(additionalProperties, "memory")
+		delete(additionalProperties, "minGB")
+		delete(additionalProperties, "nodeType")
+		delete(additionalProperties, "storageClasses")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

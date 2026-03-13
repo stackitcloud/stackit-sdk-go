@@ -20,8 +20,11 @@ var _ MappedNullable = &ExtensionsNewConfig{}
 
 // ExtensionsNewConfig struct for ExtensionsNewConfig
 type ExtensionsNewConfig struct {
-	Configuration []ExtensionsConfiguration `json:"configuration,omitempty"`
+	Configuration        []ExtensionsConfiguration `json:"configuration,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ExtensionsNewConfig ExtensionsNewConfig
 
 // NewExtensionsNewConfig instantiates a new ExtensionsNewConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ExtensionsNewConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Configuration) {
 		toSerialize["configuration"] = o.Configuration
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ExtensionsNewConfig) UnmarshalJSON(data []byte) (err error) {
+	varExtensionsNewConfig := _ExtensionsNewConfig{}
+
+	err = json.Unmarshal(data, &varExtensionsNewConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ExtensionsNewConfig(varExtensionsNewConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "configuration")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableExtensionsNewConfig struct {

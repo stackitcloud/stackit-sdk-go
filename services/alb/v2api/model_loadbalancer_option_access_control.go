@@ -20,8 +20,11 @@ var _ MappedNullable = &LoadbalancerOptionAccessControl{}
 // LoadbalancerOptionAccessControl Use this option to limit the IP ranges that can use the Application Load Balancer.
 type LoadbalancerOptionAccessControl struct {
 	// Application Load Balancer is accessible only from an IP address in this range
-	AllowedSourceRanges []string `json:"allowedSourceRanges,omitempty"`
+	AllowedSourceRanges  []string `json:"allowedSourceRanges,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoadbalancerOptionAccessControl LoadbalancerOptionAccessControl
 
 // NewLoadbalancerOptionAccessControl instantiates a new LoadbalancerOptionAccessControl object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o LoadbalancerOptionAccessControl) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.AllowedSourceRanges) {
 		toSerialize["allowedSourceRanges"] = o.AllowedSourceRanges
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoadbalancerOptionAccessControl) UnmarshalJSON(data []byte) (err error) {
+	varLoadbalancerOptionAccessControl := _LoadbalancerOptionAccessControl{}
+
+	err = json.Unmarshal(data, &varLoadbalancerOptionAccessControl)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoadbalancerOptionAccessControl(varLoadbalancerOptionAccessControl)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedSourceRanges")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoadbalancerOptionAccessControl struct {

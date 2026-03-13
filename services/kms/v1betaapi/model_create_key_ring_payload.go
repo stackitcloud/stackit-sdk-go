@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type CreateKeyRingPayload struct {
 	// A user chosen description to distinguish multiple key rings.
 	Description *string `json:"description,omitempty"`
 	// The display name to distinguish multiple key rings. Valid characters: letters, digits, underscores and hyphens.
-	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
+	DisplayName          string `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateKeyRingPayload CreateKeyRingPayload
@@ -117,6 +117,11 @@ func (o CreateKeyRingPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["displayName"] = o.DisplayName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *CreateKeyRingPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateKeyRingPayload := _CreateKeyRingPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateKeyRingPayload)
+	err = json.Unmarshal(data, &varCreateKeyRingPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateKeyRingPayload(varCreateKeyRingPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

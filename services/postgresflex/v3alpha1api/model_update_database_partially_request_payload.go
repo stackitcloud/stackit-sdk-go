@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -23,8 +23,11 @@ type UpdateDatabasePartiallyRequestPayload struct {
 	// The name of the database.
 	Name *string `json:"name,omitempty"`
 	// The owner of the database.
-	Owner *string `json:"owner,omitempty"`
+	Owner                *string `json:"owner,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateDatabasePartiallyRequestPayload UpdateDatabasePartiallyRequestPayload
 
 // NewUpdateDatabasePartiallyRequestPayload instantiates a new UpdateDatabasePartiallyRequestPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o UpdateDatabasePartiallyRequestPayload) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Owner) {
 		toSerialize["owner"] = o.Owner
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateDatabasePartiallyRequestPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateDatabasePartiallyRequestPayload := _UpdateDatabasePartiallyRequestPayload{}
+
+	err = json.Unmarshal(data, &varUpdateDatabasePartiallyRequestPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateDatabasePartiallyRequestPayload(varUpdateDatabasePartiallyRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "owner")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateDatabasePartiallyRequestPayload struct {

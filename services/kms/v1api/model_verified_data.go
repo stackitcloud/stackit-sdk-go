@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &VerifiedData{}
 // VerifiedData struct for VerifiedData
 type VerifiedData struct {
 	// Whether or not the data has a valid signature.
-	Valid bool `json:"valid"`
+	Valid                bool `json:"valid"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerifiedData VerifiedData
@@ -80,6 +80,11 @@ func (o VerifiedData) MarshalJSON() ([]byte, error) {
 func (o VerifiedData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["valid"] = o.Valid
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *VerifiedData) UnmarshalJSON(data []byte) (err error) {
 
 	varVerifiedData := _VerifiedData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerifiedData)
+	err = json.Unmarshal(data, &varVerifiedData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerifiedData(varVerifiedData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "valid")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type CreateFolderPayload struct {
 	// The initial members assigned to the project. At least one subject needs to be a user, and not a client or service account.
 	Members []Member `json:"members,omitempty"`
 	// The name of the folder matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`
+	Name                 string `json:"name" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateFolderPayload CreateFolderPayload
@@ -182,6 +182,11 @@ func (o CreateFolderPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["members"] = o.Members
 	}
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -210,15 +215,23 @@ func (o *CreateFolderPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateFolderPayload := _CreateFolderPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateFolderPayload)
+	err = json.Unmarshal(data, &varCreateFolderPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateFolderPayload(varCreateFolderPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerParentId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

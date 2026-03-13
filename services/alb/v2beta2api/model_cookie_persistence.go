@@ -22,8 +22,11 @@ type CookiePersistence struct {
 	// Cookie is the name of the cookie to use.
 	Name *string `json:"name,omitempty"`
 	// TTL specifies the time-to-live for the cookie. The default value is 0s, and it acts as a session cookie, expiring when the client session ends.
-	Ttl *string `json:"ttl,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	Ttl                  *string `json:"ttl,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CookiePersistence CookiePersistence
 
 // NewCookiePersistence instantiates a new CookiePersistence object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o CookiePersistence) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ttl) {
 		toSerialize["ttl"] = o.Ttl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CookiePersistence) UnmarshalJSON(data []byte) (err error) {
+	varCookiePersistence := _CookiePersistence{}
+
+	err = json.Unmarshal(data, &varCookiePersistence)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CookiePersistence(varCookiePersistence)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "ttl")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCookiePersistence struct {

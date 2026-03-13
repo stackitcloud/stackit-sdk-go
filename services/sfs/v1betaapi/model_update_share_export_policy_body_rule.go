@@ -30,8 +30,11 @@ type UpdateShareExportPolicyBodyRule struct {
 	// Flag to honor set UUID   Default: false
 	SetUuid *bool `json:"setUuid,omitempty"`
 	// Flag to indicate if client IPs matching this rule have root access on the Share   Default: true
-	SuperUser *bool `json:"superUser,omitempty"`
+	SuperUser            *bool `json:"superUser,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateShareExportPolicyBodyRule UpdateShareExportPolicyBodyRule
 
 // NewUpdateShareExportPolicyBodyRule instantiates a new UpdateShareExportPolicyBodyRule object
 // This constructor will assign default values to properties that have it defined,
@@ -293,7 +296,38 @@ func (o UpdateShareExportPolicyBodyRule) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.SuperUser) {
 		toSerialize["superUser"] = o.SuperUser
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateShareExportPolicyBodyRule) UnmarshalJSON(data []byte) (err error) {
+	varUpdateShareExportPolicyBodyRule := _UpdateShareExportPolicyBodyRule{}
+
+	err = json.Unmarshal(data, &varUpdateShareExportPolicyBodyRule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateShareExportPolicyBodyRule(varUpdateShareExportPolicyBodyRule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "ipAcl")
+		delete(additionalProperties, "order")
+		delete(additionalProperties, "readOnly")
+		delete(additionalProperties, "setUuid")
+		delete(additionalProperties, "superUser")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateShareExportPolicyBodyRule struct {

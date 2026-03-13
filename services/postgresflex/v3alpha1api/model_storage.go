@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -23,8 +23,11 @@ type Storage struct {
 	// The storage class for the storage.
 	PerformanceClass *string `json:"performanceClass,omitempty"`
 	// The storage size in Gigabytes.
-	Size *int32 `json:"size,omitempty"`
+	Size                 *int32 `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Storage Storage
 
 // NewStorage instantiates a new Storage object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Storage) UnmarshalJSON(data []byte) (err error) {
+	varStorage := _Storage{}
+
+	err = json.Unmarshal(data, &varStorage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Storage(varStorage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "performanceClass")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableStorage struct {

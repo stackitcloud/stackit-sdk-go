@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	sdkConfig "github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	intake "github.com/stackitcloud/stackit-sdk-go/services/intake/v1betaapi"
 )
@@ -23,9 +22,7 @@ func main() {
 
 	ctx := context.Background()
 
-	intakeClient, err := intake.NewAPIClient(
-		sdkConfig.WithRegion(region),
-	)
+	intakeClient, err := intake.NewAPIClient()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Creating API client: %v\n", err)
 		os.Exit(1)

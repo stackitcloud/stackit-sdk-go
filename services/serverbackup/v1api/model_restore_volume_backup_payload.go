@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &RestoreVolumeBackupPayload{}
 
 // RestoreVolumeBackupPayload struct for RestoreVolumeBackupPayload
 type RestoreVolumeBackupPayload struct {
-	RestoreVolumeId string `json:"restoreVolumeId"`
+	RestoreVolumeId      string `json:"restoreVolumeId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RestoreVolumeBackupPayload RestoreVolumeBackupPayload
@@ -80,6 +80,11 @@ func (o RestoreVolumeBackupPayload) MarshalJSON() ([]byte, error) {
 func (o RestoreVolumeBackupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["restoreVolumeId"] = o.RestoreVolumeId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *RestoreVolumeBackupPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varRestoreVolumeBackupPayload := _RestoreVolumeBackupPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRestoreVolumeBackupPayload)
+	err = json.Unmarshal(data, &varRestoreVolumeBackupPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RestoreVolumeBackupPayload(varRestoreVolumeBackupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "restoreVolumeId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

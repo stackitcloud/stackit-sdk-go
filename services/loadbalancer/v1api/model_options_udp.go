@@ -20,8 +20,11 @@ var _ MappedNullable = &OptionsUDP{}
 // OptionsUDP ProtocolOptionsUDP options to be configured for the PROTOCOL_UDP protocol.
 type OptionsUDP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 1 minute, and the maximum value is 2 minutes.
-	IdleTimeout *string `json:"idleTimeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	IdleTimeout          *string `json:"idleTimeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OptionsUDP OptionsUDP
 
 // NewOptionsUDP instantiates a new OptionsUDP object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o OptionsUDP) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IdleTimeout) {
 		toSerialize["idleTimeout"] = o.IdleTimeout
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OptionsUDP) UnmarshalJSON(data []byte) (err error) {
+	varOptionsUDP := _OptionsUDP{}
+
+	err = json.Unmarshal(data, &varOptionsUDP)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OptionsUDP(varOptionsUDP)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idleTimeout")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOptionsUDP struct {

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &GetFlavorsResponse{}
 // GetFlavorsResponse struct for GetFlavorsResponse
 type GetFlavorsResponse struct {
 	// List of flavors available for the project.
-	Flavors    []ListFlavors `json:"flavors"`
-	Pagination Pagination    `json:"pagination"`
+	Flavors              []ListFlavors `json:"flavors"`
+	Pagination           Pagination    `json:"pagination"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetFlavorsResponse GetFlavorsResponse
@@ -108,6 +108,11 @@ func (o GetFlavorsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["flavors"] = o.Flavors
 	toSerialize["pagination"] = o.Pagination
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *GetFlavorsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetFlavorsResponse := _GetFlavorsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetFlavorsResponse)
+	err = json.Unmarshal(data, &varGetFlavorsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetFlavorsResponse(varGetFlavorsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "flavors")
+		delete(additionalProperties, "pagination")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

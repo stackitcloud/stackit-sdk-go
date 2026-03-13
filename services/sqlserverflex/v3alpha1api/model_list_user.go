@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type ListUser struct {
 	// The current status of the user.
 	Status string `json:"status"`
 	// The name of the user.
-	Username string `json:"username"`
+	Username             string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListUser ListUser
@@ -137,6 +137,11 @@ func (o ListUser) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["status"] = o.Status
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *ListUser) UnmarshalJSON(data []byte) (err error) {
 
 	varListUser := _ListUser{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListUser)
+	err = json.Unmarshal(data, &varListUser)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListUser(varListUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

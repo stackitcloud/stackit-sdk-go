@@ -20,8 +20,11 @@ var _ MappedNullable = &ListShareExportPoliciesResponse{}
 // ListShareExportPoliciesResponse struct for ListShareExportPoliciesResponse
 type ListShareExportPoliciesResponse struct {
 	// List of Share Export Policies
-	ShareExportPolicies []ShareExportPolicy `json:"shareExportPolicies,omitempty"`
+	ShareExportPolicies  []ShareExportPolicy `json:"shareExportPolicies,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListShareExportPoliciesResponse ListShareExportPoliciesResponse
 
 // NewListShareExportPoliciesResponse instantiates a new ListShareExportPoliciesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ListShareExportPoliciesResponse) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.ShareExportPolicies) {
 		toSerialize["shareExportPolicies"] = o.ShareExportPolicies
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListShareExportPoliciesResponse) UnmarshalJSON(data []byte) (err error) {
+	varListShareExportPoliciesResponse := _ListShareExportPoliciesResponse{}
+
+	err = json.Unmarshal(data, &varListShareExportPoliciesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListShareExportPoliciesResponse(varListShareExportPoliciesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "shareExportPolicies")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListShareExportPoliciesResponse struct {

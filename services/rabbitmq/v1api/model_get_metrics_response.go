@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -44,6 +43,7 @@ type GetMetricsResponse struct {
 	ParachuteDiskPersistentUsed          int64   `json:"parachuteDiskPersistentUsed"`
 	ParachuteDiskPersistentUsedPercent   int64   `json:"parachuteDiskPersistentUsedPercent"`
 	ParachuteDiskPersistentUsedThreshold int64   `json:"parachuteDiskPersistentUsedThreshold"`
+	AdditionalProperties                 map[string]interface{}
 }
 
 type _GetMetricsResponse GetMetricsResponse
@@ -700,6 +700,11 @@ func (o GetMetricsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["parachuteDiskPersistentUsed"] = o.ParachuteDiskPersistentUsed
 	toSerialize["parachuteDiskPersistentUsedPercent"] = o.ParachuteDiskPersistentUsedPercent
 	toSerialize["parachuteDiskPersistentUsedThreshold"] = o.ParachuteDiskPersistentUsedThreshold
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -746,15 +751,42 @@ func (o *GetMetricsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetMetricsResponse := _GetMetricsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetMetricsResponse)
+	err = json.Unmarshal(data, &varGetMetricsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetMetricsResponse(varGetMetricsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cpuIdleTime")
+		delete(additionalProperties, "cpuLoadPercent")
+		delete(additionalProperties, "cpuSystemTime")
+		delete(additionalProperties, "cpuUserTime")
+		delete(additionalProperties, "diskEphemeralTotal")
+		delete(additionalProperties, "diskEphemeralUsed")
+		delete(additionalProperties, "diskPersistentTotal")
+		delete(additionalProperties, "diskPersistentUsed")
+		delete(additionalProperties, "load1")
+		delete(additionalProperties, "load15")
+		delete(additionalProperties, "load5")
+		delete(additionalProperties, "memoryTotal")
+		delete(additionalProperties, "memoryUsed")
+		delete(additionalProperties, "parachuteDiskEphemeralActivated")
+		delete(additionalProperties, "parachuteDiskEphemeralTotal")
+		delete(additionalProperties, "parachuteDiskEphemeralUsed")
+		delete(additionalProperties, "parachuteDiskEphemeralUsedPercent")
+		delete(additionalProperties, "parachuteDiskEphemeralUsedThreshold")
+		delete(additionalProperties, "parachuteDiskPersistentActivated")
+		delete(additionalProperties, "parachuteDiskPersistentTotal")
+		delete(additionalProperties, "parachuteDiskPersistentUsed")
+		delete(additionalProperties, "parachuteDiskPersistentUsedPercent")
+		delete(additionalProperties, "parachuteDiskPersistentUsedThreshold")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

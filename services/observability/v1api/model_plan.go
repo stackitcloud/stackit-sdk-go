@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -44,6 +43,7 @@ type Plan struct {
 	TargetNumber            int32    `json:"targetNumber"`
 	TotalMetricSamples      int32    `json:"totalMetricSamples"`
 	TracesStorage           int32    `json:"tracesStorage"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _Plan Plan
@@ -713,6 +713,11 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize["targetNumber"] = o.TargetNumber
 	toSerialize["totalMetricSamples"] = o.TotalMetricSamples
 	toSerialize["tracesStorage"] = o.TracesStorage
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -755,15 +760,41 @@ func (o *Plan) UnmarshalJSON(data []byte) (err error) {
 
 	varPlan := _Plan{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPlan)
+	err = json.Unmarshal(data, &varPlan)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Plan(varPlan)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alertMatchers")
+		delete(additionalProperties, "alertReceivers")
+		delete(additionalProperties, "alertRules")
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "bucketSize")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "grafanaGlobalDashboards")
+		delete(additionalProperties, "grafanaGlobalOrgs")
+		delete(additionalProperties, "grafanaGlobalSessions")
+		delete(additionalProperties, "grafanaGlobalUsers")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "isFree")
+		delete(additionalProperties, "isPublic")
+		delete(additionalProperties, "logsAlert")
+		delete(additionalProperties, "logsStorage")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "samplesPerScrape")
+		delete(additionalProperties, "schema")
+		delete(additionalProperties, "targetNumber")
+		delete(additionalProperties, "totalMetricSamples")
+		delete(additionalProperties, "tracesStorage")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

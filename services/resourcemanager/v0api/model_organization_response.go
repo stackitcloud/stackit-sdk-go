@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -34,7 +33,8 @@ type OrganizationResponse struct {
 	// Globally unique, organization identifier.
 	OrganizationId string `json:"organizationId"`
 	// Timestamp at which the organization was last modified.
-	UpdateTime time.Time `json:"updateTime"`
+	UpdateTime           time.Time `json:"updateTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrganizationResponse OrganizationResponse
@@ -257,6 +257,11 @@ func (o OrganizationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["organizationId"] = o.OrganizationId
 	toSerialize["updateTime"] = o.UpdateTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -289,15 +294,26 @@ func (o *OrganizationResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varOrganizationResponse := _OrganizationResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrganizationResponse)
+	err = json.Unmarshal(data, &varOrganizationResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrganizationResponse(varOrganizationResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "creationTime")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "lifecycleState")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "updateTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

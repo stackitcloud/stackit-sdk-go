@@ -19,9 +19,12 @@ var _ MappedNullable = &UnauthorizedRequest{}
 
 // UnauthorizedRequest struct for UnauthorizedRequest
 type UnauthorizedRequest struct {
-	Code    *string `json:"code,omitempty"`
-	Message *string `json:"message,omitempty"`
+	Code                 *string `json:"code,omitempty"`
+	Message              *string `json:"message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UnauthorizedRequest UnauthorizedRequest
 
 // NewUnauthorizedRequest instantiates a new UnauthorizedRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o UnauthorizedRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UnauthorizedRequest) UnmarshalJSON(data []byte) (err error) {
+	varUnauthorizedRequest := _UnauthorizedRequest{}
+
+	err = json.Unmarshal(data, &varUnauthorizedRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UnauthorizedRequest(varUnauthorizedRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUnauthorizedRequest struct {

@@ -22,8 +22,11 @@ type LoadbalancerOptionMetrics struct {
 	// Credentials reference for metrics. This reference is created via the observability create endpoint and the credential needs to contain the basic auth username and password for the metrics solution the push URL points to. Then this enables monitoring via remote write for the Load Balancer.
 	CredentialsRef *string `json:"credentialsRef,omitempty"`
 	// The ARGUS/Prometheus remote write Push URL you want the metrics to be shipped to.
-	PushUrl *string `json:"pushUrl,omitempty"`
+	PushUrl              *string `json:"pushUrl,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoadbalancerOptionMetrics LoadbalancerOptionMetrics
 
 // NewLoadbalancerOptionMetrics instantiates a new LoadbalancerOptionMetrics object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o LoadbalancerOptionMetrics) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PushUrl) {
 		toSerialize["pushUrl"] = o.PushUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoadbalancerOptionMetrics) UnmarshalJSON(data []byte) (err error) {
+	varLoadbalancerOptionMetrics := _LoadbalancerOptionMetrics{}
+
+	err = json.Unmarshal(data, &varLoadbalancerOptionMetrics)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoadbalancerOptionMetrics(varLoadbalancerOptionMetrics)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentialsRef")
+		delete(additionalProperties, "pushUrl")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoadbalancerOptionMetrics struct {

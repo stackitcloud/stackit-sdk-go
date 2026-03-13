@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &UpdateDatabasePartiallyResponse{}
 
 // UpdateDatabasePartiallyResponse struct for UpdateDatabasePartiallyResponse
 type UpdateDatabasePartiallyResponse struct {
-	Database ListDatabase `json:"database"`
+	Database             ListDatabase `json:"database"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateDatabasePartiallyResponse UpdateDatabasePartiallyResponse
@@ -80,6 +80,11 @@ func (o UpdateDatabasePartiallyResponse) MarshalJSON() ([]byte, error) {
 func (o UpdateDatabasePartiallyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["database"] = o.Database
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UpdateDatabasePartiallyResponse) UnmarshalJSON(data []byte) (err error)
 
 	varUpdateDatabasePartiallyResponse := _UpdateDatabasePartiallyResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateDatabasePartiallyResponse)
+	err = json.Unmarshal(data, &varUpdateDatabasePartiallyResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateDatabasePartiallyResponse(varUpdateDatabasePartiallyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "database")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

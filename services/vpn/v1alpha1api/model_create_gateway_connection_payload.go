@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,19 +20,19 @@ var _ MappedNullable = &CreateGatewayConnectionPayload{}
 
 // CreateGatewayConnectionPayload struct for CreateGatewayConnectionPayload
 type CreateGatewayConnectionPayload struct {
+	// A user-friendly name for the connection.
+	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
 	// This flag decides whether this connection should be enabled or disabled
 	Enabled *bool `json:"enabled,omitempty"`
-	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the LabelValue except that it cannot be empty.
-	Labels *map[string]string `json:"labels,omitempty"`
 	// Optional. Defaults to 0.0.0.0/0 for Route-based VPN configurations. Mandatory for Policy-based.
 	LocalSubnets []string `json:"localSubnets,omitempty"`
-	// The name of the connection.  Maximum 20 characters (only alphanumeric and hyphens allowed). The name bust be unique within the parent Gateway.  Currently renaming is not possible therefore deleting and re-creating the connection is necessary.
-	Name string `json:"name" validate:"regexp=^[a-z0-9]([a-z0-9-]{0,18}[a-z0-9])?$"`
 	// Optional. Defaults to 0.0.0.0/0 for Route-based VPN configurations. Mandatory for Policy-based.
-	RemoteSubnets []string            `json:"remoteSubnets,omitempty"`
-	StaticRoutes  []string            `json:"staticRoutes,omitempty"`
-	Tunnel1       TunnelConfiguration `json:"tunnel1"`
-	Tunnel2       TunnelConfiguration `json:"tunnel2"`
+	RemoteSubnets []string `json:"remoteSubnets,omitempty"`
+	// Optional. Use this for route-based VPN.
+	StaticRoutes         []string            `json:"staticRoutes,omitempty"`
+	Tunnel1              TunnelConfiguration `json:"tunnel1"`
+	Tunnel2              TunnelConfiguration `json:"tunnel2"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateGatewayConnectionPayload CreateGatewayConnectionPayload
@@ -42,9 +41,9 @@ type _CreateGatewayConnectionPayload CreateGatewayConnectionPayload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateGatewayConnectionPayload(name string, tunnel1 TunnelConfiguration, tunnel2 TunnelConfiguration) *CreateGatewayConnectionPayload {
+func NewCreateGatewayConnectionPayload(displayName string, tunnel1 TunnelConfiguration, tunnel2 TunnelConfiguration) *CreateGatewayConnectionPayload {
 	this := CreateGatewayConnectionPayload{}
-	this.Name = name
+	this.DisplayName = displayName
 	this.Tunnel1 = tunnel1
 	this.Tunnel2 = tunnel2
 	return &this
@@ -56,6 +55,30 @@ func NewCreateGatewayConnectionPayload(name string, tunnel1 TunnelConfiguration,
 func NewCreateGatewayConnectionPayloadWithDefaults() *CreateGatewayConnectionPayload {
 	this := CreateGatewayConnectionPayload{}
 	return &this
+}
+
+// GetDisplayName returns the DisplayName field value
+func (o *CreateGatewayConnectionPayload) GetDisplayName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value
+// and a boolean to check if the value has been set.
+func (o *CreateGatewayConnectionPayload) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DisplayName, true
+}
+
+// SetDisplayName sets field value
+func (o *CreateGatewayConnectionPayload) SetDisplayName(v string) {
+	o.DisplayName = v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -90,38 +113,6 @@ func (o *CreateGatewayConnectionPayload) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *CreateGatewayConnectionPayload) GetLabels() map[string]string {
-	if o == nil || IsNil(o.Labels) {
-		var ret map[string]string
-		return ret
-	}
-	return *o.Labels
-}
-
-// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateGatewayConnectionPayload) GetLabelsOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Labels) {
-		return nil, false
-	}
-	return o.Labels, true
-}
-
-// HasLabels returns a boolean if a field has been set.
-func (o *CreateGatewayConnectionPayload) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
-		return true
-	}
-
-	return false
-}
-
-// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *CreateGatewayConnectionPayload) SetLabels(v map[string]string) {
-	o.Labels = &v
-}
-
 // GetLocalSubnets returns the LocalSubnets field value if set, zero value otherwise.
 func (o *CreateGatewayConnectionPayload) GetLocalSubnets() []string {
 	if o == nil || IsNil(o.LocalSubnets) {
@@ -152,30 +143,6 @@ func (o *CreateGatewayConnectionPayload) HasLocalSubnets() bool {
 // SetLocalSubnets gets a reference to the given []string and assigns it to the LocalSubnets field.
 func (o *CreateGatewayConnectionPayload) SetLocalSubnets(v []string) {
 	o.LocalSubnets = v
-}
-
-// GetName returns the Name field value
-func (o *CreateGatewayConnectionPayload) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *CreateGatewayConnectionPayload) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *CreateGatewayConnectionPayload) SetName(v string) {
-	o.Name = v
 }
 
 // GetRemoteSubnets returns the RemoteSubnets field value if set, zero value otherwise.
@@ -300,16 +267,13 @@ func (o CreateGatewayConnectionPayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateGatewayConnectionPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["displayName"] = o.DisplayName
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
-	}
-	if !IsNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
 	}
 	if !IsNil(o.LocalSubnets) {
 		toSerialize["localSubnets"] = o.LocalSubnets
 	}
-	toSerialize["name"] = o.Name
 	if !IsNil(o.RemoteSubnets) {
 		toSerialize["remoteSubnets"] = o.RemoteSubnets
 	}
@@ -318,6 +282,11 @@ func (o CreateGatewayConnectionPayload) ToMap() (map[string]interface{}, error) 
 	}
 	toSerialize["tunnel1"] = o.Tunnel1
 	toSerialize["tunnel2"] = o.Tunnel2
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -326,7 +295,7 @@ func (o *CreateGatewayConnectionPayload) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"name",
+		"displayName",
 		"tunnel1",
 		"tunnel2",
 	}
@@ -347,15 +316,26 @@ func (o *CreateGatewayConnectionPayload) UnmarshalJSON(data []byte) (err error) 
 
 	varCreateGatewayConnectionPayload := _CreateGatewayConnectionPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateGatewayConnectionPayload)
+	err = json.Unmarshal(data, &varCreateGatewayConnectionPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateGatewayConnectionPayload(varCreateGatewayConnectionPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "localSubnets")
+		delete(additionalProperties, "remoteSubnets")
+		delete(additionalProperties, "staticRoutes")
+		delete(additionalProperties, "tunnel1")
+		delete(additionalProperties, "tunnel2")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

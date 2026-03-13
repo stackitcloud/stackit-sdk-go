@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +26,9 @@ type UpdateSchedule struct {
 	MaintenanceWindow int32  `json:"maintenanceWindow"`
 	Name              string `json:"name"`
 	// An rrule (Recurrence Rule) is a standardized string format used in iCalendar (RFC 5545) to define repeating events, and you can generate one by using a dedicated library or by using online generator tools to specify parameters like frequency, interval, and end dates
-	Rrule string `json:"rrule"`
-	Id    int32  `json:"id"`
+	Rrule                string `json:"rrule"`
+	Id                   int32  `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateSchedule UpdateSchedule
@@ -190,6 +190,11 @@ func (o UpdateSchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["rrule"] = o.Rrule
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -221,15 +226,24 @@ func (o *UpdateSchedule) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateSchedule := _UpdateSchedule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateSchedule)
+	err = json.Unmarshal(data, &varUpdateSchedule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateSchedule(varUpdateSchedule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "maintenanceWindow")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rrule")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

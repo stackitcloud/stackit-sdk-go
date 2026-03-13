@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type Version struct {
 	// Flag if the version is recommend by the STACKIT Team.
 	Recommend bool `json:"recommend"`
 	// The postgres version used for the instance.
-	Version string `json:"version"`
+	Version              string `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Version Version
@@ -165,6 +165,11 @@ func (o Version) ToMap() (map[string]interface{}, error) {
 	toSerialize["deprecated"] = o.Deprecated
 	toSerialize["recommend"] = o.Recommend
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -195,15 +200,23 @@ func (o *Version) UnmarshalJSON(data []byte) (err error) {
 
 	varVersion := _Version{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVersion)
+	err = json.Unmarshal(data, &varVersion)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Version(varVersion)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "beta")
+		delete(additionalProperties, "deprecated")
+		delete(additionalProperties, "recommend")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

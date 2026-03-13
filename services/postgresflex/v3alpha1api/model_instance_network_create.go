@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ var _ MappedNullable = &InstanceNetworkCreate{}
 type InstanceNetworkCreate struct {
 	AccessScope *InstanceNetworkAccessScope `json:"accessScope,omitempty"`
 	// List of IPV4 cidr.
-	Acl []string `json:"acl"`
+	Acl                  []string `json:"acl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceNetworkCreate InstanceNetworkCreate
@@ -121,6 +121,11 @@ func (o InstanceNetworkCreate) ToMap() (map[string]interface{}, error) {
 		toSerialize["accessScope"] = o.AccessScope
 	}
 	toSerialize["acl"] = o.Acl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -148,15 +153,21 @@ func (o *InstanceNetworkCreate) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceNetworkCreate := _InstanceNetworkCreate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceNetworkCreate)
+	err = json.Unmarshal(data, &varInstanceNetworkCreate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceNetworkCreate(varInstanceNetworkCreate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessScope")
+		delete(additionalProperties, "acl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

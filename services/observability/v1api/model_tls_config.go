@@ -20,8 +20,11 @@ var _ MappedNullable = &TLSConfig{}
 
 // TLSConfig struct for TLSConfig
 type TLSConfig struct {
-	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+	InsecureSkipVerify   *bool `json:"insecureSkipVerify,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TLSConfig TLSConfig
 
 // NewTLSConfig instantiates a new TLSConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -89,7 +92,33 @@ func (o TLSConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.InsecureSkipVerify) {
 		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TLSConfig) UnmarshalJSON(data []byte) (err error) {
+	varTLSConfig := _TLSConfig{}
+
+	err = json.Unmarshal(data, &varTLSConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TLSConfig(varTLSConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "insecureSkipVerify")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTLSConfig struct {

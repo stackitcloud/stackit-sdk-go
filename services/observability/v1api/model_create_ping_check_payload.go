@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreatePingCheckPayload{}
 // CreatePingCheckPayload Ping check body.
 type CreatePingCheckPayload struct {
 	// domain to check
-	Url string `json:"url"`
+	Url                  string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreatePingCheckPayload CreatePingCheckPayload
@@ -81,6 +81,11 @@ func (o CreatePingCheckPayload) MarshalJSON() ([]byte, error) {
 func (o CreatePingCheckPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreatePingCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreatePingCheckPayload := _CreatePingCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreatePingCheckPayload)
+	err = json.Unmarshal(data, &varCreatePingCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreatePingCheckPayload(varCreatePingCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -41,8 +41,11 @@ type PartialUpdateZonePayload struct {
 	// refresh time
 	RefreshTime *int32 `json:"refreshTime,omitempty"`
 	// retry time
-	RetryTime *int32 `json:"retryTime,omitempty"`
+	RetryTime            *int32 `json:"retryTime,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateZonePayload PartialUpdateZonePayload
 
 // NewPartialUpdateZonePayload instantiates a new PartialUpdateZonePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -480,7 +483,43 @@ func (o PartialUpdateZonePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RetryTime) {
 		toSerialize["retryTime"] = o.RetryTime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateZonePayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateZonePayload := _PartialUpdateZonePayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateZonePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateZonePayload(varPartialUpdateZonePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "contactEmail")
+		delete(additionalProperties, "defaultTTL")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "expireTime")
+		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "negativeCache")
+		delete(additionalProperties, "primaries")
+		delete(additionalProperties, "refreshTime")
+		delete(additionalProperties, "retryTime")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateZonePayload struct {

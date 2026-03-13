@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,16 +20,17 @@ var _ MappedNullable = &Offering{}
 
 // Offering struct for Offering
 type Offering struct {
-	Description      string          `json:"description"`
-	DocumentationUrl string          `json:"documentationUrl"`
-	ImageUrl         string          `json:"imageUrl"`
-	Latest           bool            `json:"latest"`
-	Lifecycle        *string         `json:"lifecycle,omitempty"`
-	Name             string          `json:"name"`
-	Plans            []Plan          `json:"plans"`
-	QuotaCount       int32           `json:"quotaCount"`
-	Schema           *InstanceSchema `json:"schema,omitempty"`
-	Version          string          `json:"version"`
+	Description          string          `json:"description"`
+	DocumentationUrl     string          `json:"documentationUrl"`
+	ImageUrl             string          `json:"imageUrl"`
+	Latest               bool            `json:"latest"`
+	Lifecycle            *string         `json:"lifecycle,omitempty"`
+	Name                 string          `json:"name"`
+	Plans                []Plan          `json:"plans"`
+	QuotaCount           int32           `json:"quotaCount"`
+	Schema               *InstanceSchema `json:"schema,omitempty"`
+	Version              string          `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Offering Offering
@@ -340,6 +340,11 @@ func (o Offering) ToMap() (map[string]interface{}, error) {
 		toSerialize["schema"] = o.Schema
 	}
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -374,15 +379,29 @@ func (o *Offering) UnmarshalJSON(data []byte) (err error) {
 
 	varOffering := _Offering{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOffering)
+	err = json.Unmarshal(data, &varOffering)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Offering(varOffering)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "documentationUrl")
+		delete(additionalProperties, "imageUrl")
+		delete(additionalProperties, "latest")
+		delete(additionalProperties, "lifecycle")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "plans")
+		delete(additionalProperties, "quotaCount")
+		delete(additionalProperties, "schema")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

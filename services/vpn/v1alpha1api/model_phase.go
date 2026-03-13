@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,6 +24,7 @@ type Phase struct {
 	DhGroups             []string `json:"dhGroups,omitempty"`
 	EncryptionAlgorithms []string `json:"encryptionAlgorithms"`
 	IntegrityAlgorithms  []string `json:"integrityAlgorithms"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Phase Phase
@@ -143,6 +143,11 @@ func (o Phase) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["encryptionAlgorithms"] = o.EncryptionAlgorithms
 	toSerialize["integrityAlgorithms"] = o.IntegrityAlgorithms
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *Phase) UnmarshalJSON(data []byte) (err error) {
 
 	varPhase := _Phase{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPhase)
+	err = json.Unmarshal(data, &varPhase)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Phase(varPhase)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dhGroups")
+		delete(additionalProperties, "encryptionAlgorithms")
+		delete(additionalProperties, "integrityAlgorithms")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &ApplyOrganizationQuotaPayload{}
 
 // ApplyOrganizationQuotaPayload struct for ApplyOrganizationQuotaPayload
 type ApplyOrganizationQuotaPayload struct {
-	QuotaId string `json:"quotaId"`
+	QuotaId              string `json:"quotaId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ApplyOrganizationQuotaPayload ApplyOrganizationQuotaPayload
@@ -80,6 +80,11 @@ func (o ApplyOrganizationQuotaPayload) MarshalJSON() ([]byte, error) {
 func (o ApplyOrganizationQuotaPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["quotaId"] = o.QuotaId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ApplyOrganizationQuotaPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varApplyOrganizationQuotaPayload := _ApplyOrganizationQuotaPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varApplyOrganizationQuotaPayload)
+	err = json.Unmarshal(data, &varApplyOrganizationQuotaPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ApplyOrganizationQuotaPayload(varApplyOrganizationQuotaPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "quotaId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

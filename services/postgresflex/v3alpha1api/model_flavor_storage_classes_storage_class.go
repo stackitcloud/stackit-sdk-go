@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &FlavorStorageClassesStorageClass{}
 
 // FlavorStorageClassesStorageClass a storageClass defines how efficient the storage can work
 type FlavorStorageClassesStorageClass struct {
-	Class          string `json:"class"`
-	MaxIoPerSec    int32  `json:"maxIoPerSec"`
-	MaxThroughInMb int32  `json:"maxThroughInMb"`
+	Class                string `json:"class"`
+	MaxIoPerSec          int32  `json:"maxIoPerSec"`
+	MaxThroughInMb       int32  `json:"maxThroughInMb"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FlavorStorageClassesStorageClass FlavorStorageClassesStorageClass
@@ -134,6 +134,11 @@ func (o FlavorStorageClassesStorageClass) ToMap() (map[string]interface{}, error
 	toSerialize["class"] = o.Class
 	toSerialize["maxIoPerSec"] = o.MaxIoPerSec
 	toSerialize["maxThroughInMb"] = o.MaxThroughInMb
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *FlavorStorageClassesStorageClass) UnmarshalJSON(data []byte) (err error
 
 	varFlavorStorageClassesStorageClass := _FlavorStorageClassesStorageClass{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFlavorStorageClassesStorageClass)
+	err = json.Unmarshal(data, &varFlavorStorageClassesStorageClass)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FlavorStorageClassesStorageClass(varFlavorStorageClassesStorageClass)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "class")
+		delete(additionalProperties, "maxIoPerSec")
+		delete(additionalProperties, "maxThroughInMb")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,12 +20,15 @@ var _ MappedNullable = &OpsgenieConfig{}
 
 // OpsgenieConfig struct for OpsgenieConfig
 type OpsgenieConfig struct {
-	ApiKey       *string `json:"apiKey,omitempty"`
-	ApiUrl       *string `json:"apiUrl,omitempty"`
-	Priority     *string `json:"priority,omitempty"`
-	SendResolved *bool   `json:"sendResolved,omitempty"`
-	Tags         *string `json:"tags,omitempty"`
+	ApiKey               *string `json:"apiKey,omitempty"`
+	ApiUrl               *string `json:"apiUrl,omitempty"`
+	Priority             *string `json:"priority,omitempty"`
+	SendResolved         *bool   `json:"sendResolved,omitempty"`
+	Tags                 *string `json:"tags,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OpsgenieConfig OpsgenieConfig
 
 // NewOpsgenieConfig instantiates a new OpsgenieConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o OpsgenieConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OpsgenieConfig) UnmarshalJSON(data []byte) (err error) {
+	varOpsgenieConfig := _OpsgenieConfig{}
+
+	err = json.Unmarshal(data, &varOpsgenieConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OpsgenieConfig(varOpsgenieConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apiKey")
+		delete(additionalProperties, "apiUrl")
+		delete(additionalProperties, "priority")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "tags")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOpsgenieConfig struct {

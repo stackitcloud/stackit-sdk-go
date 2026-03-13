@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -38,7 +37,8 @@ type CreateUserResponse struct {
 	// The connection string for the user to the instance.
 	Uri string `json:"uri"`
 	// The name of the user.
-	Username string `json:"username"`
+	Username             string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateUserResponse CreateUserResponse
@@ -304,6 +304,11 @@ func (o CreateUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["status"] = o.Status
 	toSerialize["uri"] = o.Uri
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -339,15 +344,28 @@ func (o *CreateUserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateUserResponse := _CreateUserResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateUserResponse)
+	err = json.Unmarshal(data, &varCreateUserResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateUserResponse(varCreateUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default_database")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "uri")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

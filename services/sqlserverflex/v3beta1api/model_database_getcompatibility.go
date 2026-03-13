@@ -20,9 +20,12 @@ var _ MappedNullable = &DatabaseGetcompatibility{}
 
 // DatabaseGetcompatibility struct for DatabaseGetcompatibility
 type DatabaseGetcompatibility struct {
-	CompatibilityLevel *int32  `json:"compatibility_level,omitempty"`
-	Description        *string `json:"description,omitempty"`
+	CompatibilityLevel   *int32  `json:"compatibility_level,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DatabaseGetcompatibility DatabaseGetcompatibility
 
 // NewDatabaseGetcompatibility instantiates a new DatabaseGetcompatibility object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o DatabaseGetcompatibility) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DatabaseGetcompatibility) UnmarshalJSON(data []byte) (err error) {
+	varDatabaseGetcompatibility := _DatabaseGetcompatibility{}
+
+	err = json.Unmarshal(data, &varDatabaseGetcompatibility)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DatabaseGetcompatibility(varDatabaseGetcompatibility)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "compatibility_level")
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDatabaseGetcompatibility struct {

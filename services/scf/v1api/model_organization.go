@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,9 +30,10 @@ type Organization struct {
 	QuotaId    string    `json:"quotaId"`
 	Region     string    `json:"region"`
 	// The organization's status. The status value starts with `deleting` when a deleting request is in progress. The status value starts with `delete_failed` when the deletion failed. The status value can be different from `deleting` and `delete_failed`. Additional details can be provided in the future.
-	Status    string    `json:"status"`
-	Suspended bool      `json:"suspended"`
-	UpdatedAt time.Time `json:"updatedAt"`
+	Status               string    `json:"status"`
+	Suspended            bool      `json:"suspended"`
+	UpdatedAt            time.Time `json:"updatedAt"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Organization Organization
@@ -325,6 +325,11 @@ func (o Organization) ToMap() (map[string]interface{}, error) {
 	toSerialize["status"] = o.Status
 	toSerialize["suspended"] = o.Suspended
 	toSerialize["updatedAt"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -361,15 +366,29 @@ func (o *Organization) UnmarshalJSON(data []byte) (err error) {
 
 	varOrganization := _Organization{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrganization)
+	err = json.Unmarshal(data, &varOrganization)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Organization(varOrganization)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "quotaId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "suspended")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

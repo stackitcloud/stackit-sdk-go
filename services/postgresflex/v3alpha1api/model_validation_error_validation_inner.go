@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &ValidationErrorValidationInner{}
 
 // ValidationErrorValidationInner struct for ValidationErrorValidationInner
 type ValidationErrorValidationInner struct {
-	Field   string `json:"field"`
-	Message string `json:"message"`
+	Field                string `json:"field"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidationErrorValidationInner ValidationErrorValidationInner
@@ -107,6 +107,11 @@ func (o ValidationErrorValidationInner) ToMap() (map[string]interface{}, error) 
 	toSerialize := map[string]interface{}{}
 	toSerialize["field"] = o.Field
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *ValidationErrorValidationInner) UnmarshalJSON(data []byte) (err error) 
 
 	varValidationErrorValidationInner := _ValidationErrorValidationInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidationErrorValidationInner)
+	err = json.Unmarshal(data, &varValidationErrorValidationInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidationErrorValidationInner(varValidationErrorValidationInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "field")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

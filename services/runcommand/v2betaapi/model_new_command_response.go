@@ -20,8 +20,11 @@ var _ MappedNullable = &NewCommandResponse{}
 
 // NewCommandResponse struct for NewCommandResponse
 type NewCommandResponse struct {
-	Id *int32 `json:"id,omitempty"`
+	Id                   *int32 `json:"id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NewCommandResponse NewCommandResponse
 
 // NewNewCommandResponse instantiates a new NewCommandResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o NewCommandResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *NewCommandResponse) UnmarshalJSON(data []byte) (err error) {
+	varNewCommandResponse := _NewCommandResponse{}
+
+	err = json.Unmarshal(data, &varNewCommandResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NewCommandResponse(varNewCommandResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNewCommandResponse struct {

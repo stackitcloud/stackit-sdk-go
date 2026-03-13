@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,8 +25,9 @@ type TunnelConfiguration struct {
 	Phase1  TunnelConfigurationPhase1 `json:"phase1"`
 	Phase2  TunnelConfigurationPhase2 `json:"phase2"`
 	// A Pre-Shared Key for authentication.  Required in create-requests, optional in update-requests and omitted in every response.
-	PreSharedKey  *string `json:"preSharedKey,omitempty"`
-	RemoteAddress string  `json:"remoteAddress" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	PreSharedKey         *string `json:"preSharedKey,omitempty"`
+	RemoteAddress        string  `json:"remoteAddress" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TunnelConfiguration TunnelConfiguration
@@ -242,6 +242,11 @@ func (o TunnelConfiguration) ToMap() (map[string]interface{}, error) {
 		toSerialize["preSharedKey"] = o.PreSharedKey
 	}
 	toSerialize["remoteAddress"] = o.RemoteAddress
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -271,15 +276,25 @@ func (o *TunnelConfiguration) UnmarshalJSON(data []byte) (err error) {
 
 	varTunnelConfiguration := _TunnelConfiguration{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTunnelConfiguration)
+	err = json.Unmarshal(data, &varTunnelConfiguration)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TunnelConfiguration(varTunnelConfiguration)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bgp")
+		delete(additionalProperties, "peering")
+		delete(additionalProperties, "phase1")
+		delete(additionalProperties, "phase2")
+		delete(additionalProperties, "preSharedKey")
+		delete(additionalProperties, "remoteAddress")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

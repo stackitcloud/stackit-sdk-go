@@ -25,7 +25,10 @@ type TargetPoolTlsConfig struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// Bypass certificate validation for TLS connections to the target pool. This option is insecure.
 	SkipCertificateValidation *bool `json:"skipCertificateValidation,omitempty"`
+	AdditionalProperties      map[string]interface{}
 }
+
+type _TargetPoolTlsConfig TargetPoolTlsConfig
 
 // NewTargetPoolTlsConfig instantiates a new TargetPoolTlsConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o TargetPoolTlsConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SkipCertificateValidation) {
 		toSerialize["skipCertificateValidation"] = o.SkipCertificateValidation
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TargetPoolTlsConfig) UnmarshalJSON(data []byte) (err error) {
+	varTargetPoolTlsConfig := _TargetPoolTlsConfig{}
+
+	err = json.Unmarshal(data, &varTargetPoolTlsConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TargetPoolTlsConfig(varTargetPoolTlsConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customCa")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "skipCertificateValidation")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTargetPoolTlsConfig struct {

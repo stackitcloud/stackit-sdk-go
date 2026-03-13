@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type QuotaApps struct {
 	// The value `null` means `unlimited`.
 	TotalInstances NullableInt64 `json:"totalInstances"`
 	// The value `null` means `unlimited`.
-	TotalMemoryInMb NullableInt64 `json:"totalMemoryInMb"`
+	TotalMemoryInMb      NullableInt64 `json:"totalMemoryInMb"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QuotaApps QuotaApps
@@ -203,6 +203,11 @@ func (o QuotaApps) ToMap() (map[string]interface{}, error) {
 	toSerialize["perProcessMemoryInMb"] = o.PerProcessMemoryInMb.Get()
 	toSerialize["totalInstances"] = o.TotalInstances.Get()
 	toSerialize["totalMemoryInMb"] = o.TotalMemoryInMb.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -234,15 +239,24 @@ func (o *QuotaApps) UnmarshalJSON(data []byte) (err error) {
 
 	varQuotaApps := _QuotaApps{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuotaApps)
+	err = json.Unmarshal(data, &varQuotaApps)
 
 	if err != nil {
 		return err
 	}
 
 	*o = QuotaApps(varQuotaApps)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "logRateLimitInBytesPerSecond")
+		delete(additionalProperties, "perAppTasks")
+		delete(additionalProperties, "perProcessMemoryInMb")
+		delete(additionalProperties, "totalInstances")
+		delete(additionalProperties, "totalMemoryInMb")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

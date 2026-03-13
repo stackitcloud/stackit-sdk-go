@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,6 +26,7 @@ type BackupScheduleResponse struct {
 	GrafanaBackupSchedules      []BackupSchedule `json:"grafanaBackupSchedules,omitempty"`
 	Message                     string           `json:"message"`
 	ScrapeConfigBackupSchedules []BackupSchedule `json:"scrapeConfigBackupSchedules,omitempty"`
+	AdditionalProperties        map[string]interface{}
 }
 
 type _BackupScheduleResponse BackupScheduleResponse
@@ -224,6 +224,11 @@ func (o BackupScheduleResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ScrapeConfigBackupSchedules) {
 		toSerialize["scrapeConfigBackupSchedules"] = o.ScrapeConfigBackupSchedules
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -251,15 +256,24 @@ func (o *BackupScheduleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varBackupScheduleResponse := _BackupScheduleResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackupScheduleResponse)
+	err = json.Unmarshal(data, &varBackupScheduleResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BackupScheduleResponse(varBackupScheduleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alertConfigBackupSchedules")
+		delete(additionalProperties, "alertRulesBackupSchedules")
+		delete(additionalProperties, "grafanaBackupSchedules")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "scrapeConfigBackupSchedules")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

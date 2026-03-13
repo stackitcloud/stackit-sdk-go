@@ -22,8 +22,11 @@ type QueryParameter struct {
 	// Exact match for the parameter value.
 	ExactMatch *string `json:"exactMatch,omitempty"`
 	// Parameter name.
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _QueryParameter QueryParameter
 
 // NewQueryParameter instantiates a new QueryParameter object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o QueryParameter) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *QueryParameter) UnmarshalJSON(data []byte) (err error) {
+	varQueryParameter := _QueryParameter{}
+
+	err = json.Unmarshal(data, &varQueryParameter)
+
+	if err != nil {
+		return err
+	}
+
+	*o = QueryParameter(varQueryParameter)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exactMatch")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableQueryParameter struct {

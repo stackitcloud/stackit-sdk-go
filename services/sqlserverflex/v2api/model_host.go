@@ -20,9 +20,12 @@ var _ MappedNullable = &Host{}
 
 // Host struct for Host
 type Host struct {
-	HostMetrics []HostMetric `json:"hostMetrics,omitempty"`
-	Id          *string      `json:"id,omitempty"`
+	HostMetrics          []HostMetric `json:"hostMetrics,omitempty"`
+	Id                   *string      `json:"id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Host Host
 
 // NewHost instantiates a new Host object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o Host) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Host) UnmarshalJSON(data []byte) (err error) {
+	varHost := _Host{}
+
+	err = json.Unmarshal(data, &varHost)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Host(varHost)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hostMetrics")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHost struct {

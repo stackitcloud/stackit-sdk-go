@@ -25,6 +25,8 @@ type V2beta1UpdateBackupPayload struct {
 	AvailabilityZone *string `json:"availabilityZone,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description *string `json:"description,omitempty"`
 	// Indicates if a volume is encrypted.
 	Encrypted *bool `json:"encrypted,omitempty"`
 	// Universally Unique Identifier (UUID).
@@ -124,6 +126,38 @@ func (o *V2beta1UpdateBackupPayload) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *V2beta1UpdateBackupPayload) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *V2beta1UpdateBackupPayload) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *V2beta1UpdateBackupPayload) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *V2beta1UpdateBackupPayload) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *V2beta1UpdateBackupPayload) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetEncrypted returns the Encrypted field value if set, zero value otherwise.
@@ -429,6 +463,9 @@ func (o V2beta1UpdateBackupPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	if !IsNil(o.Encrypted) {
 		toSerialize["encrypted"] = o.Encrypted

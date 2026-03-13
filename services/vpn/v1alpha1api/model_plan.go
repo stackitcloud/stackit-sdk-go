@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -19,21 +19,20 @@ var _ MappedNullable = &Plan{}
 
 // Plan struct for Plan
 type Plan struct {
-	// Maximum bandwidth of a VPN instance.
+	// The maximum throughput supported by the gateway in each direction, measured in MBit/s
 	MaxBandwidth *int32 `json:"maxBandwidth,omitempty"`
-	// Maximum concurrent connections of a VPN Gateway.
+	// The maximum number of connections supported by the VPN Gateway.
 	MaxConnections *int32 `json:"maxConnections,omitempty"`
-	// Service plan name
+	// The name of the service plan.
 	Name *string `json:"name,omitempty"`
-	// Service plan identifier
+	// The service plan identifier.
 	PlanId *string `json:"planId,omitempty"`
-	// Region (read-only)
-	Region *string `json:"region,omitempty"`
-	// Plan SKU
-	Sku *string `json:"sku,omitempty"`
-	// Service plan type
-	Type *string `json:"type,omitempty"`
+	// The SKU identifier used for billing.
+	Sku                  *string `json:"sku,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Plan Plan
 
 // NewPlan instantiates a new Plan object
 // This constructor will assign default values to properties that have it defined,
@@ -180,38 +179,6 @@ func (o *Plan) SetPlanId(v string) {
 	o.PlanId = &v
 }
 
-// GetRegion returns the Region field value if set, zero value otherwise.
-func (o *Plan) GetRegion() string {
-	if o == nil || IsNil(o.Region) {
-		var ret string
-		return ret
-	}
-	return *o.Region
-}
-
-// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetRegionOk() (*string, bool) {
-	if o == nil || IsNil(o.Region) {
-		return nil, false
-	}
-	return o.Region, true
-}
-
-// HasRegion returns a boolean if a field has been set.
-func (o *Plan) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
-		return true
-	}
-
-	return false
-}
-
-// SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *Plan) SetRegion(v string) {
-	o.Region = &v
-}
-
 // GetSku returns the Sku field value if set, zero value otherwise.
 func (o *Plan) GetSku() string {
 	if o == nil || IsNil(o.Sku) {
@@ -244,38 +211,6 @@ func (o *Plan) SetSku(v string) {
 	o.Sku = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *Plan) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Plan) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *Plan) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Plan) SetType(v string) {
-	o.Type = &v
-}
-
 func (o Plan) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -298,16 +233,40 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PlanId) {
 		toSerialize["planId"] = o.PlanId
 	}
-	if !IsNil(o.Region) {
-		toSerialize["region"] = o.Region
-	}
 	if !IsNil(o.Sku) {
 		toSerialize["sku"] = o.Sku
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
+
 	return toSerialize, nil
+}
+
+func (o *Plan) UnmarshalJSON(data []byte) (err error) {
+	varPlan := _Plan{}
+
+	err = json.Unmarshal(data, &varPlan)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Plan(varPlan)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "maxBandwidth")
+		delete(additionalProperties, "maxConnections")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "sku")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlan struct {

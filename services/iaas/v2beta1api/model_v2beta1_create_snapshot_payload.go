@@ -25,6 +25,8 @@ var _ MappedNullable = &V2beta1CreateSnapshotPayload{}
 type V2beta1CreateSnapshotPayload struct {
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	// Description Object. Allows string up to 255 Characters.
+	Description *string `json:"description,omitempty"`
 	// Universally Unique Identifier (UUID).
 	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
@@ -91,6 +93,38 @@ func (o *V2beta1CreateSnapshotPayload) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *V2beta1CreateSnapshotPayload) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *V2beta1CreateSnapshotPayload) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *V2beta1CreateSnapshotPayload) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *V2beta1CreateSnapshotPayload) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *V2beta1CreateSnapshotPayload) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -321,6 +355,9 @@ func (o V2beta1CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id

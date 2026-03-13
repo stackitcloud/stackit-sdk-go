@@ -20,8 +20,11 @@ var _ MappedNullable = &ProtocolOptionsHTTP{}
 // ProtocolOptionsHTTP Configuration for handling HTTP traffic on this listener.
 type ProtocolOptionsHTTP struct {
 	// Defines routing rules grouped by hostname.
-	Hosts []HostConfig `json:"hosts,omitempty"`
+	Hosts                []HostConfig `json:"hosts,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProtocolOptionsHTTP ProtocolOptionsHTTP
 
 // NewProtocolOptionsHTTP instantiates a new ProtocolOptionsHTTP object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ProtocolOptionsHTTP) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Hosts) {
 		toSerialize["hosts"] = o.Hosts
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProtocolOptionsHTTP) UnmarshalJSON(data []byte) (err error) {
+	varProtocolOptionsHTTP := _ProtocolOptionsHTTP{}
+
+	err = json.Unmarshal(data, &varProtocolOptionsHTTP)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProtocolOptionsHTTP(varProtocolOptionsHTTP)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hosts")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProtocolOptionsHTTP struct {

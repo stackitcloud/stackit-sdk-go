@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -21,8 +21,11 @@ var _ MappedNullable = &InstanceNetworkOpt{}
 // InstanceNetworkOpt The access configuration of the instance
 type InstanceNetworkOpt struct {
 	// List of IPV4 cidr.
-	Acl []string `json:"acl,omitempty"`
+	Acl                  []string `json:"acl,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceNetworkOpt InstanceNetworkOpt
 
 // NewInstanceNetworkOpt instantiates a new InstanceNetworkOpt object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o InstanceNetworkOpt) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Acl) {
 		toSerialize["acl"] = o.Acl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceNetworkOpt) UnmarshalJSON(data []byte) (err error) {
+	varInstanceNetworkOpt := _InstanceNetworkOpt{}
+
+	err = json.Unmarshal(data, &varInstanceNetworkOpt)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceNetworkOpt(varInstanceNetworkOpt)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceNetworkOpt struct {

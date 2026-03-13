@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &ListRecordSetsResponse{}
 
 // ListRecordSetsResponse ResponseRRSetAll.
 type ListRecordSetsResponse struct {
-	ItemsPerPage int32       `json:"itemsPerPage"`
-	Message      *string     `json:"message,omitempty"`
-	RrSets       []RecordSet `json:"rrSets"`
-	TotalItems   int32       `json:"totalItems"`
-	TotalPages   int32       `json:"totalPages"`
+	ItemsPerPage         int32       `json:"itemsPerPage"`
+	Message              *string     `json:"message,omitempty"`
+	RrSets               []RecordSet `json:"rrSets"`
+	TotalItems           int32       `json:"totalItems"`
+	TotalPages           int32       `json:"totalPages"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListRecordSetsResponse ListRecordSetsResponse
@@ -197,6 +197,11 @@ func (o ListRecordSetsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["rrSets"] = o.RrSets
 	toSerialize["totalItems"] = o.TotalItems
 	toSerialize["totalPages"] = o.TotalPages
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -227,15 +232,24 @@ func (o *ListRecordSetsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListRecordSetsResponse := _ListRecordSetsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListRecordSetsResponse)
+	err = json.Unmarshal(data, &varListRecordSetsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListRecordSetsResponse(varListRecordSetsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "itemsPerPage")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "rrSets")
+		delete(additionalProperties, "totalItems")
+		delete(additionalProperties, "totalPages")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

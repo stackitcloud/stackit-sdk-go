@@ -23,8 +23,11 @@ type PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth struct {
 	// password
 	Password *string `json:"password,omitempty"`
 	// username
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth
 
 // NewPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth instantiates a new PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth) ToMap
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth := _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth{}
+
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth(varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerBasicAuth struct {

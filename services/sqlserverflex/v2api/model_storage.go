@@ -20,9 +20,12 @@ var _ MappedNullable = &Storage{}
 
 // Storage struct for Storage
 type Storage struct {
-	Class *string `json:"class,omitempty"`
-	Size  *int64  `json:"size,omitempty"`
+	Class                *string `json:"class,omitempty"`
+	Size                 *int64  `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Storage Storage
 
 // NewStorage instantiates a new Storage object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o Storage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Storage) UnmarshalJSON(data []byte) (err error) {
+	varStorage := _Storage{}
+
+	err = json.Unmarshal(data, &varStorage)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Storage(varStorage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "class")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableStorage struct {

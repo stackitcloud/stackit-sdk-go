@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &OrganizationCreateResponse{}
 
 // OrganizationCreateResponse struct for OrganizationCreateResponse
 type OrganizationCreateResponse struct {
-	Guid       string `json:"guid"`
-	PlatformId string `json:"platformId"`
-	ProjectId  string `json:"projectId"`
-	Region     string `json:"region"`
+	Guid                 string `json:"guid"`
+	PlatformId           string `json:"platformId"`
+	ProjectId            string `json:"projectId"`
+	Region               string `json:"region"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrganizationCreateResponse OrganizationCreateResponse
@@ -161,6 +161,11 @@ func (o OrganizationCreateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["platformId"] = o.PlatformId
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["region"] = o.Region
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -191,15 +196,23 @@ func (o *OrganizationCreateResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varOrganizationCreateResponse := _OrganizationCreateResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrganizationCreateResponse)
+	err = json.Unmarshal(data, &varOrganizationCreateResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrganizationCreateResponse(varOrganizationCreateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

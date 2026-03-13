@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -23,8 +23,11 @@ type UpdateUserPartiallyRequestPayload struct {
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
 	// A list containing the user roles for the instance.
-	Roles []UserRole `json:"roles,omitempty"`
+	Roles                []UserRole `json:"roles,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateUserPartiallyRequestPayload UpdateUserPartiallyRequestPayload
 
 // NewUpdateUserPartiallyRequestPayload instantiates a new UpdateUserPartiallyRequestPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o UpdateUserPartiallyRequestPayload) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateUserPartiallyRequestPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateUserPartiallyRequestPayload := _UpdateUserPartiallyRequestPayload{}
+
+	err = json.Unmarshal(data, &varUpdateUserPartiallyRequestPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateUserPartiallyRequestPayload(varUpdateUserPartiallyRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "roles")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateUserPartiallyRequestPayload struct {

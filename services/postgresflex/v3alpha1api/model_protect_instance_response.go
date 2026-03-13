@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ProtectInstanceResponse{}
 // ProtectInstanceResponse struct for ProtectInstanceResponse
 type ProtectInstanceResponse struct {
 	// Protect instance from deletion.
-	IsDeletable bool `json:"isDeletable"`
+	IsDeletable          bool `json:"isDeletable"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProtectInstanceResponse ProtectInstanceResponse
@@ -81,6 +81,11 @@ func (o ProtectInstanceResponse) MarshalJSON() ([]byte, error) {
 func (o ProtectInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["isDeletable"] = o.IsDeletable
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ProtectInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varProtectInstanceResponse := _ProtectInstanceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProtectInstanceResponse)
+	err = json.Unmarshal(data, &varProtectInstanceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProtectInstanceResponse(varProtectInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "isDeletable")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

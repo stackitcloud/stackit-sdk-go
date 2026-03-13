@@ -19,9 +19,12 @@ var _ MappedNullable = &ListServiceStatusRegional200Response{}
 
 // ListServiceStatusRegional200Response struct for ListServiceStatusRegional200Response
 type ListServiceStatusRegional200Response struct {
-	Items      []ServiceStatus `json:"items,omitempty"`
-	NextCursor *string         `json:"nextCursor,omitempty"`
+	Items                []ServiceStatus `json:"items,omitempty"`
+	NextCursor           *string         `json:"nextCursor,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListServiceStatusRegional200Response ListServiceStatusRegional200Response
 
 // NewListServiceStatusRegional200Response instantiates a new ListServiceStatusRegional200Response object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o ListServiceStatusRegional200Response) ToMap() (map[string]interface{}, e
 	if !IsNil(o.NextCursor) {
 		toSerialize["nextCursor"] = o.NextCursor
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListServiceStatusRegional200Response) UnmarshalJSON(data []byte) (err error) {
+	varListServiceStatusRegional200Response := _ListServiceStatusRegional200Response{}
+
+	err = json.Unmarshal(data, &varListServiceStatusRegional200Response)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListServiceStatusRegional200Response(varListServiceStatusRegional200Response)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "nextCursor")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListServiceStatusRegional200Response struct {

@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type ServiceAccountDelegationInfoPrincipalResponse struct {
 	// E-Mail of the subject
 	Email *string `json:"email,omitempty"`
 	// Unique identifier of the subject
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServiceAccountDelegationInfoPrincipalResponse ServiceAccountDelegationInfoPrincipalResponse
@@ -117,6 +117,11 @@ func (o ServiceAccountDelegationInfoPrincipalResponse) ToMap() (map[string]inter
 		toSerialize["email"] = o.Email
 	}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *ServiceAccountDelegationInfoPrincipalResponse) UnmarshalJSON(data []byt
 
 	varServiceAccountDelegationInfoPrincipalResponse := _ServiceAccountDelegationInfoPrincipalResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServiceAccountDelegationInfoPrincipalResponse)
+	err = json.Unmarshal(data, &varServiceAccountDelegationInfoPrincipalResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServiceAccountDelegationInfoPrincipalResponse(varServiceAccountDelegationInfoPrincipalResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

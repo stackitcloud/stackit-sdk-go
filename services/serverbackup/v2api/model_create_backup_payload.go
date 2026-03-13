@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,8 +24,9 @@ type CreateBackupPayload struct {
 	// Max 255 characters
 	Name string `json:"name"`
 	// Values are set in days (1-36500)
-	RetentionPeriod int32    `json:"retentionPeriod"`
-	VolumeIds       []string `json:"volumeIds,omitempty"`
+	RetentionPeriod      int32    `json:"retentionPeriod"`
+	VolumeIds            []string `json:"volumeIds,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateBackupPayload CreateBackupPayload
@@ -145,6 +145,11 @@ func (o CreateBackupPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VolumeIds) {
 		toSerialize["volumeIds"] = o.VolumeIds
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -173,15 +178,22 @@ func (o *CreateBackupPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateBackupPayload := _CreateBackupPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateBackupPayload)
+	err = json.Unmarshal(data, &varCreateBackupPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateBackupPayload(varCreateBackupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "retentionPeriod")
+		delete(additionalProperties, "volumeIds")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

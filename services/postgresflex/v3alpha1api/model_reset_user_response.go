@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type ResetUserResponse struct {
 	// The password for the user.
 	Password string `json:"password"`
 	// The current status of the user.
-	Status string `json:"status"`
+	Status               string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ResetUserResponse ResetUserResponse
@@ -137,6 +137,11 @@ func (o ResetUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["password"] = o.Password
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *ResetUserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varResetUserResponse := _ResetUserResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varResetUserResponse)
+	err = json.Unmarshal(data, &varResetUserResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ResetUserResponse(varResetUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

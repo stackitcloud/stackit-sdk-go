@@ -21,8 +21,11 @@ var _ MappedNullable = &ListLoadBalancersResponse{}
 type ListLoadBalancersResponse struct {
 	LoadBalancers []LoadBalancer `json:"loadBalancers,omitempty"`
 	// Continue token from the ListLoadBalancerResponse with Limit option
-	NextPageId *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListLoadBalancersResponse ListLoadBalancersResponse
 
 // NewListLoadBalancersResponse instantiates a new ListLoadBalancersResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ListLoadBalancersResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageId) {
 		toSerialize["nextPageId"] = o.NextPageId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListLoadBalancersResponse) UnmarshalJSON(data []byte) (err error) {
+	varListLoadBalancersResponse := _ListLoadBalancersResponse{}
+
+	err = json.Unmarshal(data, &varListLoadBalancersResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListLoadBalancersResponse(varListLoadBalancersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "loadBalancers")
+		delete(additionalProperties, "nextPageId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListLoadBalancersResponse struct {

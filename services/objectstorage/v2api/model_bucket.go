@@ -11,7 +11,6 @@ API version: 2.0.1
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,6 +26,7 @@ type Bucket struct {
 	UrlPathStyle string `json:"urlPathStyle"`
 	// URL in virtual hosted style
 	UrlVirtualHostedStyle string `json:"urlVirtualHostedStyle"`
+	AdditionalProperties  map[string]interface{}
 }
 
 type _Bucket Bucket
@@ -162,6 +162,11 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 	toSerialize["region"] = o.Region
 	toSerialize["urlPathStyle"] = o.UrlPathStyle
 	toSerialize["urlVirtualHostedStyle"] = o.UrlVirtualHostedStyle
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 
 	varBucket := _Bucket{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBucket)
+	err = json.Unmarshal(data, &varBucket)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Bucket(varBucket)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "urlPathStyle")
+		delete(additionalProperties, "urlVirtualHostedStyle")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

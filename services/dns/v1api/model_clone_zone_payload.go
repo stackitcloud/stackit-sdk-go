@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type CloneZonePayload struct {
 	// DnsName is the dns name of the zone to clone
 	DnsName string `json:"dnsName"`
 	// New Name for the cloned zone. Leave empty to use the same name as the original zone
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CloneZonePayload CloneZonePayload
@@ -192,6 +192,11 @@ func (o CloneZonePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,23 @@ func (o *CloneZonePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCloneZonePayload := _CloneZonePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCloneZonePayload)
+	err = json.Unmarshal(data, &varCloneZonePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CloneZonePayload(varCloneZonePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "adjustRecords")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "dnsName")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

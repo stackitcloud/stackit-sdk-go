@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &Pagination{}
 
 // Pagination struct for Pagination
 type Pagination struct {
-	Page       int32  `json:"page"`
-	Size       int32  `json:"size"`
-	Sort       string `json:"sort"`
-	TotalPages int32  `json:"totalPages"`
-	TotalRows  int32  `json:"totalRows"`
+	Page                 int32  `json:"page"`
+	Size                 int32  `json:"size"`
+	Sort                 string `json:"sort"`
+	TotalPages           int32  `json:"totalPages"`
+	TotalRows            int32  `json:"totalRows"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Pagination Pagination
@@ -188,6 +188,11 @@ func (o Pagination) ToMap() (map[string]interface{}, error) {
 	toSerialize["sort"] = o.Sort
 	toSerialize["totalPages"] = o.TotalPages
 	toSerialize["totalRows"] = o.TotalRows
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *Pagination) UnmarshalJSON(data []byte) (err error) {
 
 	varPagination := _Pagination{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPagination)
+	err = json.Unmarshal(data, &varPagination)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Pagination(varPagination)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "page")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "sort")
+		delete(additionalProperties, "totalPages")
+		delete(additionalProperties, "totalRows")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

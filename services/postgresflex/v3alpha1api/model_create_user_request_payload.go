@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type CreateUserRequestPayload struct {
 	// The name of the user.
 	Name string `json:"name"`
 	// A list containing the user roles for the instance.
-	Roles []UserRole `json:"roles,omitempty"`
+	Roles                []UserRole `json:"roles,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateUserRequestPayload CreateUserRequestPayload
@@ -118,6 +118,11 @@ func (o CreateUserRequestPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Roles) {
 		toSerialize["roles"] = o.Roles
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -145,15 +150,21 @@ func (o *CreateUserRequestPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateUserRequestPayload := _CreateUserRequestPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateUserRequestPayload)
+	err = json.Unmarshal(data, &varCreateUserRequestPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateUserRequestPayload(varCreateUserRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "roles")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

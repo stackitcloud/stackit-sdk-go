@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -37,7 +36,8 @@ type Version struct {
 	// The public key of the key version. Only present in asymmetric keys.
 	PublicKey *string `json:"publicKey,omitempty"`
 	// The current state of the key.
-	State string `json:"state"`
+	State                string `json:"state"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Version Version
@@ -297,6 +297,11 @@ func (o Version) ToMap() (map[string]interface{}, error) {
 		toSerialize["publicKey"] = o.PublicKey
 	}
 	toSerialize["state"] = o.State
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -329,15 +334,27 @@ func (o *Version) UnmarshalJSON(data []byte) (err error) {
 
 	varVersion := _Version{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVersion)
+	err = json.Unmarshal(data, &varVersion)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Version(varVersion)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "destroyDate")
+		delete(additionalProperties, "disabled")
+		delete(additionalProperties, "keyId")
+		delete(additionalProperties, "keyRingId")
+		delete(additionalProperties, "number")
+		delete(additionalProperties, "publicKey")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

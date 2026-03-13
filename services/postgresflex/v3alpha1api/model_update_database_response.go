@@ -1,5 +1,5 @@
 /*
-PostgreSQL Flex API
+STACKIT PostgreSQL Flex API
 
 This is the documentation for the STACKIT Postgres Flex service
 
@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &UpdateDatabaseResponse{}
 
 // UpdateDatabaseResponse struct for UpdateDatabaseResponse
 type UpdateDatabaseResponse struct {
-	Database ListDatabase `json:"database"`
+	Database             ListDatabase `json:"database"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateDatabaseResponse UpdateDatabaseResponse
@@ -80,6 +80,11 @@ func (o UpdateDatabaseResponse) MarshalJSON() ([]byte, error) {
 func (o UpdateDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["database"] = o.Database
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UpdateDatabaseResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateDatabaseResponse := _UpdateDatabaseResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateDatabaseResponse)
+	err = json.Unmarshal(data, &varUpdateDatabaseResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateDatabaseResponse(varUpdateDatabaseResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "database")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

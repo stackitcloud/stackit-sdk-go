@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,9 +30,10 @@ type OrganizationsListItem struct {
 	QuotaId    *string    `json:"quotaId,omitempty"`
 	Region     string     `json:"region"`
 	// The organization's status. The status value starts with `deleting` when a deleting request is in progress. The status value starts with `delete_failed` when the deletion failed. The status value can be different from `deleting` and `delete_failed`. Additional details can be provided in the future.
-	Status    string     `json:"status"`
-	Suspended *bool      `json:"suspended,omitempty"`
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	Status               string     `json:"status"`
+	Suspended            *bool      `json:"suspended,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrganizationsListItem OrganizationsListItem
@@ -370,6 +370,11 @@ func (o OrganizationsListItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -401,15 +406,29 @@ func (o *OrganizationsListItem) UnmarshalJSON(data []byte) (err error) {
 
 	varOrganizationsListItem := _OrganizationsListItem{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrganizationsListItem)
+	err = json.Unmarshal(data, &varOrganizationsListItem)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrganizationsListItem(varOrganizationsListItem)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "quotaId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "suspended")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,9 +20,12 @@ var _ MappedNullable = &ApiConfiguration{}
 
 // ApiConfiguration struct for ApiConfiguration
 type ApiConfiguration struct {
-	Name    *string `json:"name,omitempty"`
-	Setting *string `json:"setting,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	Setting              *string `json:"setting,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiConfiguration ApiConfiguration
 
 // NewApiConfiguration instantiates a new ApiConfiguration object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ApiConfiguration) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Setting) {
 		toSerialize["setting"] = o.Setting
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiConfiguration) UnmarshalJSON(data []byte) (err error) {
+	varApiConfiguration := _ApiConfiguration{}
+
+	err = json.Unmarshal(data, &varApiConfiguration)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiConfiguration(varApiConfiguration)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "setting")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiConfiguration struct {

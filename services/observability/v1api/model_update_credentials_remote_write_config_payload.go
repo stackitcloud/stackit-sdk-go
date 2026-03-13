@@ -21,8 +21,11 @@ var _ MappedNullable = &UpdateCredentialsRemoteWriteConfigPayload{}
 // UpdateCredentialsRemoteWriteConfigPayload Remote write limit config.
 type UpdateCredentialsRemoteWriteConfigPayload struct {
 	// Remote write metric sample limit for credential to push in a single minute.
-	MaxLimit *float32 `json:"maxLimit,omitempty"`
+	MaxLimit             *float32 `json:"maxLimit,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateCredentialsRemoteWriteConfigPayload UpdateCredentialsRemoteWriteConfigPayload
 
 // NewUpdateCredentialsRemoteWriteConfigPayload instantiates a new UpdateCredentialsRemoteWriteConfigPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o UpdateCredentialsRemoteWriteConfigPayload) ToMap() (map[string]interface
 	if !IsNil(o.MaxLimit) {
 		toSerialize["maxLimit"] = o.MaxLimit
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateCredentialsRemoteWriteConfigPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateCredentialsRemoteWriteConfigPayload := _UpdateCredentialsRemoteWriteConfigPayload{}
+
+	err = json.Unmarshal(data, &varUpdateCredentialsRemoteWriteConfigPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateCredentialsRemoteWriteConfigPayload(varUpdateCredentialsRemoteWriteConfigPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "maxLimit")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateCredentialsRemoteWriteConfigPayload struct {

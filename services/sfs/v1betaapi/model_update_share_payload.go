@@ -25,7 +25,10 @@ type UpdateSharePayload struct {
 	Labels *map[string]string `json:"labels,omitempty"`
 	// Space hard limit for the Share. If zero, the Share will have access to the full space of the Resource Pool it lives in.   (unit: gibibytes)
 	SpaceHardLimitGigabytes NullableInt32 `json:"spaceHardLimitGigabytes,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
+
+type _UpdateSharePayload UpdateSharePayload
 
 // NewUpdateSharePayload instantiates a new UpdateSharePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -181,7 +184,35 @@ func (o UpdateSharePayload) ToMap() (map[string]interface{}, error) {
 	if o.SpaceHardLimitGigabytes.IsSet() {
 		toSerialize["spaceHardLimitGigabytes"] = o.SpaceHardLimitGigabytes.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateSharePayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateSharePayload := _UpdateSharePayload{}
+
+	err = json.Unmarshal(data, &varUpdateSharePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateSharePayload(varUpdateSharePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exportPolicyName")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "spaceHardLimitGigabytes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSharePayload struct {

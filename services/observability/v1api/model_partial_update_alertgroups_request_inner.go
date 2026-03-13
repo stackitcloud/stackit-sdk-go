@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type PartialUpdateAlertgroupsRequestInner struct {
 	// The name of the group. Must be unique. `Additional Validators:` * is the identifier and so unique * should only include the characters: a-zA-Z0-9-
 	Name string `json:"name"`
 	// rules for the alert group
-	Rules []PartialUpdateAlertgroupsRequestInnerRulesInner `json:"rules"`
+	Rules                []PartialUpdateAlertgroupsRequestInnerRulesInner `json:"rules"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateAlertgroupsRequestInner PartialUpdateAlertgroupsRequestInner
@@ -150,6 +150,11 @@ func (o PartialUpdateAlertgroupsRequestInner) ToMap() (map[string]interface{}, e
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["rules"] = o.Rules
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *PartialUpdateAlertgroupsRequestInner) UnmarshalJSON(data []byte) (err e
 
 	varPartialUpdateAlertgroupsRequestInner := _PartialUpdateAlertgroupsRequestInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateAlertgroupsRequestInner)
+	err = json.Unmarshal(data, &varPartialUpdateAlertgroupsRequestInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateAlertgroupsRequestInner(varPartialUpdateAlertgroupsRequestInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

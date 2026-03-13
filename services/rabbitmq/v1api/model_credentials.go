@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,16 +23,17 @@ type Credentials struct {
 	Host  string   `json:"host"`
 	Hosts []string `json:"hosts,omitempty"`
 	// for rabbitmq only
-	HttpApiUri  *string  `json:"http_api_uri,omitempty"`
-	HttpApiUris []string `json:"http_api_uris,omitempty"`
-	Management  *string  `json:"management,omitempty"`
-	Mqtt        *string  `json:"mqtt,omitempty"`
-	Password    string   `json:"password"`
-	Port        *int32   `json:"port,omitempty"`
-	Stomp       *string  `json:"stomp,omitempty"`
-	Uri         *string  `json:"uri,omitempty"`
-	Uris        []string `json:"uris,omitempty"`
-	Username    string   `json:"username"`
+	HttpApiUri           *string  `json:"http_api_uri,omitempty"`
+	HttpApiUris          []string `json:"http_api_uris,omitempty"`
+	Management           *string  `json:"management,omitempty"`
+	Mqtt                 *string  `json:"mqtt,omitempty"`
+	Password             string   `json:"password"`
+	Port                 *int32   `json:"port,omitempty"`
+	Stomp                *string  `json:"stomp,omitempty"`
+	Uri                  *string  `json:"uri,omitempty"`
+	Uris                 []string `json:"uris,omitempty"`
+	Username             string   `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Credentials Credentials
@@ -458,6 +458,11 @@ func (o Credentials) ToMap() (map[string]interface{}, error) {
 		toSerialize["uris"] = o.Uris
 	}
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -487,15 +492,31 @@ func (o *Credentials) UnmarshalJSON(data []byte) (err error) {
 
 	varCredentials := _Credentials{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentials)
+	err = json.Unmarshal(data, &varCredentials)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Credentials(varCredentials)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "hosts")
+		delete(additionalProperties, "http_api_uri")
+		delete(additionalProperties, "http_api_uris")
+		delete(additionalProperties, "management")
+		delete(additionalProperties, "mqtt")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "stomp")
+		delete(additionalProperties, "uri")
+		delete(additionalProperties, "uris")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

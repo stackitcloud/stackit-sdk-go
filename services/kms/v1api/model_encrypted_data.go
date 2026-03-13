@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &EncryptedData{}
 // EncryptedData struct for EncryptedData
 type EncryptedData struct {
 	// The encrypted data. Encoded in base64.
-	Data string `json:"data"`
+	Data                 string `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EncryptedData EncryptedData
@@ -80,6 +80,11 @@ func (o EncryptedData) MarshalJSON() ([]byte, error) {
 func (o EncryptedData) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *EncryptedData) UnmarshalJSON(data []byte) (err error) {
 
 	varEncryptedData := _EncryptedData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEncryptedData)
+	err = json.Unmarshal(data, &varEncryptedData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EncryptedData(varEncryptedData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,8 +20,11 @@ var _ MappedNullable = &ListBackupsResponse{}
 
 // ListBackupsResponse struct for ListBackupsResponse
 type ListBackupsResponse struct {
-	Databases []BackupListBackupsResponseGrouped `json:"databases,omitempty"`
+	Databases            []BackupListBackupsResponseGrouped `json:"databases,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListBackupsResponse ListBackupsResponse
 
 // NewListBackupsResponse instantiates a new ListBackupsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Databases) {
 		toSerialize["databases"] = o.Databases
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListBackupsResponse) UnmarshalJSON(data []byte) (err error) {
+	varListBackupsResponse := _ListBackupsResponse{}
+
+	err = json.Unmarshal(data, &varListBackupsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListBackupsResponse(varListBackupsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "databases")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListBackupsResponse struct {

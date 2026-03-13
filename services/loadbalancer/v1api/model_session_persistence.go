@@ -20,8 +20,11 @@ var _ MappedNullable = &SessionPersistence{}
 // SessionPersistence struct for SessionPersistence
 type SessionPersistence struct {
 	// If enabled then all connections from one source IP address are redirected to the same target. This setting changes the load balancing algorithm to Maglev.
-	UseSourceIpAddress *bool `json:"useSourceIpAddress,omitempty"`
+	UseSourceIpAddress   *bool `json:"useSourceIpAddress,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SessionPersistence SessionPersistence
 
 // NewSessionPersistence instantiates a new SessionPersistence object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o SessionPersistence) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UseSourceIpAddress) {
 		toSerialize["useSourceIpAddress"] = o.UseSourceIpAddress
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SessionPersistence) UnmarshalJSON(data []byte) (err error) {
+	varSessionPersistence := _SessionPersistence{}
+
+	err = json.Unmarshal(data, &varSessionPersistence)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SessionPersistence(varSessionPersistence)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "useSourceIpAddress")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSessionPersistence struct {

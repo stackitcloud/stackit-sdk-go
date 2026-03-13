@@ -19,8 +19,11 @@ var _ MappedNullable = &HTTPValidationError{}
 
 // HTTPValidationError struct for HTTPValidationError
 type HTTPValidationError struct {
-	Detail []ValidationError `json:"detail,omitempty"`
+	Detail               []ValidationError `json:"detail,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HTTPValidationError HTTPValidationError
 
 // NewHTTPValidationError instantiates a new HTTPValidationError object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o HTTPValidationError) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HTTPValidationError) UnmarshalJSON(data []byte) (err error) {
+	varHTTPValidationError := _HTTPValidationError{}
+
+	err = json.Unmarshal(data, &varHTTPValidationError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HTTPValidationError(varHTTPValidationError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "detail")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHTTPValidationError struct {

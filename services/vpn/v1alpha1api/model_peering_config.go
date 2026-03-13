@@ -1,7 +1,7 @@
 /*
 STACKIT VPN API
 
-The STACKIT VPN API provides endpoints to provision and manage VPN instances in your STACKIT project.
+Provision and manage STACKIT VPN gateways.  Use this API to establish secure, encrypted IPsec tunnels between your STACKIT Network Area (SNA) and external networks. The service supports the following routing architectures: - Policy-based IPsec - Static route-based IPsec - Dynamic BGP IPsec
 
 API version: 1alpha1
 */
@@ -19,9 +19,12 @@ var _ MappedNullable = &PeeringConfig{}
 
 // PeeringConfig The peering object defines the point-to-point IP configuration for the Tunnel Interface.  These addresses serve as next-hop identifiers and are used for BGP peering sessions and can be used in Static Route-Based connectivity.
 type PeeringConfig struct {
-	LocalAddress  *string `json:"localAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
-	RemoteAddress *string `json:"remoteAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	LocalAddress         *string `json:"localAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	RemoteAddress        *string `json:"remoteAddress,omitempty" validate:"regexp=^((25[0-5]|(2[0-4]|1\\\\d|[1-9]|)\\\\d)\\\\.?\\\\b){4}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PeeringConfig PeeringConfig
 
 // NewPeeringConfig instantiates a new PeeringConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o PeeringConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RemoteAddress) {
 		toSerialize["remoteAddress"] = o.RemoteAddress
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PeeringConfig) UnmarshalJSON(data []byte) (err error) {
+	varPeeringConfig := _PeeringConfig{}
+
+	err = json.Unmarshal(data, &varPeeringConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PeeringConfig(varPeeringConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "localAddress")
+		delete(additionalProperties, "remoteAddress")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePeeringConfig struct {
