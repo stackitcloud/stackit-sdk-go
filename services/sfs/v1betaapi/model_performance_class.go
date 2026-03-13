@@ -24,8 +24,11 @@ type PerformanceClass struct {
 	// Name of the Performance Class
 	Name *string `json:"name,omitempty"`
 	// Throughput of the Performance Class
-	Throughput *int32 `json:"throughput,omitempty"`
+	Throughput           *int32 `json:"throughput,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PerformanceClass PerformanceClass
 
 // NewPerformanceClass instantiates a new PerformanceClass object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o PerformanceClass) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Throughput) {
 		toSerialize["throughput"] = o.Throughput
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PerformanceClass) UnmarshalJSON(data []byte) (err error) {
+	varPerformanceClass := _PerformanceClass{}
+
+	err = json.Unmarshal(data, &varPerformanceClass)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PerformanceClass(varPerformanceClass)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "iops")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "throughput")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePerformanceClass struct {

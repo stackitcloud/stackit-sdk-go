@@ -34,8 +34,11 @@ type Share struct {
 	// Space hard limit for the Share. If zero, the Share will have access to the full space of the Resource Pool it lives in.   (unit: gibibytes)
 	SpaceHardLimitGigabytes *int32 `json:"spaceHardLimitGigabytes,omitempty"`
 	// State of the Resource Pool Snapshot   (possible values: [\"pending\", \"creating\", \"created\", \"error\", \"deleting\"])
-	State *string `json:"state,omitempty"`
+	State                *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Share Share
 
 // NewShare instantiates a new Share object
 // This constructor will assign default values to properties that have it defined,
@@ -355,7 +358,40 @@ func (o Share) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Share) UnmarshalJSON(data []byte) (err error) {
+	varShare := _Share{}
+
+	err = json.Unmarshal(data, &varShare)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Share(varShare)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "exportPolicy")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "mountPath")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "spaceHardLimitGigabytes")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableShare struct {

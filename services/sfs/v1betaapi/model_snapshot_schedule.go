@@ -22,8 +22,11 @@ type SnapshotSchedule struct {
 	// Cron of the Snapshot Schedule (follows the cron schedule expression in Unix-like systems)
 	Cron *string `json:"cron,omitempty"`
 	// Name of the Snapshot Schedule
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SnapshotSchedule SnapshotSchedule
 
 // NewSnapshotSchedule instantiates a new SnapshotSchedule object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o SnapshotSchedule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SnapshotSchedule) UnmarshalJSON(data []byte) (err error) {
+	varSnapshotSchedule := _SnapshotSchedule{}
+
+	err = json.Unmarshal(data, &varSnapshotSchedule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SnapshotSchedule(varSnapshotSchedule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cron")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSnapshotSchedule struct {

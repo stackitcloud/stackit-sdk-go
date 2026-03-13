@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,6 +28,7 @@ type CreateSharePayload struct {
 	Name string `json:"name"`
 	// Space hard limit for the Share. If zero, the Share will have access to the full space of the Resource Pool it lives in.   (unit: gibibytes)
 	SpaceHardLimitGigabytes int32 `json:"spaceHardLimitGigabytes"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _CreateSharePayload CreateSharePayload
@@ -193,6 +193,11 @@ func (o CreateSharePayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["spaceHardLimitGigabytes"] = o.SpaceHardLimitGigabytes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -221,15 +226,23 @@ func (o *CreateSharePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateSharePayload := _CreateSharePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateSharePayload)
+	err = json.Unmarshal(data, &varCreateSharePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateSharePayload(varCreateSharePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exportPolicyName")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "spaceHardLimitGigabytes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
