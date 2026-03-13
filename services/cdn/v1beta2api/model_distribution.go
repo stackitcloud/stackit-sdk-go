@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -33,8 +32,9 @@ type Distribution struct {
 	// - `CREATING`: The distribution was just created.    All the relevant resources are created in the background. Once fully reconciled,   this switches to `ACTIVE`. If there are any issues, the status changes to    `ERROR`. You can look at the `errors` array to get more infos. - `ACTIVE`: The usual state. The desired configuration is synced, there are no errors - `UPDATING`: The state when there is a discrepancy between the desired and    actual configuration state. This occurs right after an update. Will switch to    `ACTIVE` or `ERROR`, depending on if synchronizing succeeds or not. - `DELETING`: The state right after a delete request was received. The distribution will stay in this status   until all resources have been successfully removed, or until we encounter an `ERROR` state.    **NOTE:** You can keep fetching the distribution while it is deleting.    After successful deletion, trying to get a distribution will return a 404 Not Found response - `ERROR`: The error state. Look at the `errors` array for more info.
 	Status string `json:"status"`
 	// RFC3339 string which returns the last time the distribution configuration was modified.
-	UpdatedAt time.Time        `json:"updatedAt"`
-	Waf       *DistributionWaf `json:"waf,omitempty"`
+	UpdatedAt            time.Time        `json:"updatedAt"`
+	Waf                  *DistributionWaf `json:"waf,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Distribution Distribution
@@ -318,6 +318,11 @@ func (o Distribution) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Waf) {
 		toSerialize["waf"] = o.Waf
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -351,15 +356,28 @@ func (o *Distribution) UnmarshalJSON(data []byte) (err error) {
 
 	varDistribution := _Distribution{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDistribution)
+	err = json.Unmarshal(data, &varDistribution)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Distribution(varDistribution)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "domains")
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "waf")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

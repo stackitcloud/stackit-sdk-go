@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &GetLogsSearchFiltersResponse{}
 
 // GetLogsSearchFiltersResponse struct for GetLogsSearchFiltersResponse
 type GetLogsSearchFiltersResponse struct {
-	Filters []string `json:"filters"`
+	Filters              []string `json:"filters"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetLogsSearchFiltersResponse GetLogsSearchFiltersResponse
@@ -79,6 +79,11 @@ func (o GetLogsSearchFiltersResponse) MarshalJSON() ([]byte, error) {
 func (o GetLogsSearchFiltersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["filters"] = o.Filters
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *GetLogsSearchFiltersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetLogsSearchFiltersResponse := _GetLogsSearchFiltersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetLogsSearchFiltersResponse)
+	err = json.Unmarshal(data, &varGetLogsSearchFiltersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetLogsSearchFiltersResponse(varGetLogsSearchFiltersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "filters")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

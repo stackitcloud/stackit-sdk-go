@@ -20,8 +20,11 @@ var _ MappedNullable = &RedirectConfig{}
 // RedirectConfig A wrapper for a list of redirect rules that allows for redirect settings on a distribution.
 type RedirectConfig struct {
 	// A list of redirect rules. The order of rules matters for evaluation.
-	Rules []RedirectRule `json:"rules,omitempty"`
+	Rules                []RedirectRule `json:"rules,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RedirectConfig RedirectConfig
 
 // NewRedirectConfig instantiates a new RedirectConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o RedirectConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RedirectConfig) UnmarshalJSON(data []byte) (err error) {
+	varRedirectConfig := _RedirectConfig{}
+
+	err = json.Unmarshal(data, &varRedirectConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RedirectConfig(varRedirectConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRedirectConfig struct {

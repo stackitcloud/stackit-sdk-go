@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type WafStatusRuleBlockReasonInheritedFromGroup struct {
 	// The Group that caused this rule to be in its current state.
 	GroupId string `json:"groupId"`
 	// This is always `inheritedFromGroup`
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafStatusRuleBlockReasonInheritedFromGroup WafStatusRuleBlockReasonInheritedFromGroup
@@ -108,6 +108,11 @@ func (o WafStatusRuleBlockReasonInheritedFromGroup) ToMap() (map[string]interfac
 	toSerialize := map[string]interface{}{}
 	toSerialize["groupId"] = o.GroupId
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *WafStatusRuleBlockReasonInheritedFromGroup) UnmarshalJSON(data []byte) 
 
 	varWafStatusRuleBlockReasonInheritedFromGroup := _WafStatusRuleBlockReasonInheritedFromGroup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafStatusRuleBlockReasonInheritedFromGroup)
+	err = json.Unmarshal(data, &varWafStatusRuleBlockReasonInheritedFromGroup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafStatusRuleBlockReasonInheritedFromGroup(varWafStatusRuleBlockReasonInheritedFromGroup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "groupId")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

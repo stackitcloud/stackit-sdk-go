@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,10 +20,11 @@ var _ MappedNullable = &PatchLokiLogSink{}
 
 // PatchLokiLogSink struct for PatchLokiLogSink
 type PatchLokiLogSink struct {
-	Password string `json:"password"`
-	PushUrl  string `json:"pushUrl"`
-	Type     string `json:"type"`
-	Username string `json:"username"`
+	Password             string `json:"password"`
+	PushUrl              string `json:"pushUrl"`
+	Type                 string `json:"type"`
+	Username             string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PatchLokiLogSink PatchLokiLogSink
@@ -160,6 +160,11 @@ func (o PatchLokiLogSink) ToMap() (map[string]interface{}, error) {
 	toSerialize["pushUrl"] = o.PushUrl
 	toSerialize["type"] = o.Type
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -190,15 +195,23 @@ func (o *PatchLokiLogSink) UnmarshalJSON(data []byte) (err error) {
 
 	varPatchLokiLogSink := _PatchLokiLogSink{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPatchLokiLogSink)
+	err = json.Unmarshal(data, &varPatchLokiLogSink)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PatchLokiLogSink(varPatchLokiLogSink)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "pushUrl")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

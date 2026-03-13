@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type StatusError struct {
 	// An english translation string corresponding to the error key. An english translation key is always present.
 	En string `json:"en"`
 	// An enum value that describes a Status Error.
-	Key string `json:"key"`
+	Key                  string `json:"key"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StatusError StatusError
@@ -145,6 +145,11 @@ func (o StatusError) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["en"] = o.En
 	toSerialize["key"] = o.Key
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -173,15 +178,22 @@ func (o *StatusError) UnmarshalJSON(data []byte) (err error) {
 
 	varStatusError := _StatusError{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStatusError)
+	err = json.Unmarshal(data, &varStatusError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StatusError(varStatusError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "de")
+		delete(additionalProperties, "en")
+		delete(additionalProperties, "key")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

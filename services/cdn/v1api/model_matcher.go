@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &Matcher{}
 type Matcher struct {
 	ValueMatchCondition *MatchCondition `json:"valueMatchCondition,omitempty"`
 	// A list of glob patterns to match against the request path. At least one value is required. Examples: \"/shop/_*\" or \"*_/img/_*\"
-	Values []string `json:"values"`
+	Values               []string `json:"values"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Matcher Matcher
@@ -120,6 +120,11 @@ func (o Matcher) ToMap() (map[string]interface{}, error) {
 		toSerialize["valueMatchCondition"] = o.ValueMatchCondition
 	}
 	toSerialize["values"] = o.Values
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -147,15 +152,21 @@ func (o *Matcher) UnmarshalJSON(data []byte) (err error) {
 
 	varMatcher := _Matcher{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMatcher)
+	err = json.Unmarshal(data, &varMatcher)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Matcher(varMatcher)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "valueMatchCondition")
+		delete(additionalProperties, "values")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,10 +24,11 @@ type WafConfig struct {
 	AllowedHttpVersions        []string `json:"allowedHttpVersions,omitempty"`
 	AllowedRequestContentTypes []string `json:"allowedRequestContentTypes,omitempty"`
 	// IDs of the WAF rules that are **explicitly** enabled for this distribution.  If this rule is in a disabled / log Only RuleGroup or Collection, it will be enabled regardless as `enabledRuleIds` overrides those in specificity.  Do note that rules can also be enabled because a Rulegroup or Collection is enabled.  **DO NOT** use this property to find all active rules. Instead, pass `?withWafStatus=true` as a query parameter to `GetDistribution` or `ListDistributions`. This will expose the `waf` Property on distribution Level.  From there you can `$.waf.enabledRules.map(e => e.id)` to get a list of all enabled rules.
-	EnabledRuleIds []string          `json:"enabledRuleIds"`
-	Mode           WafMode           `json:"mode"`
-	ParanoiaLevel  *WafParanoiaLevel `json:"paranoiaLevel,omitempty"`
-	Type           WafType           `json:"type"`
+	EnabledRuleIds       []string          `json:"enabledRuleIds"`
+	Mode                 WafMode           `json:"mode"`
+	ParanoiaLevel        *WafParanoiaLevel `json:"paranoiaLevel,omitempty"`
+	Type                 WafType           `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafConfig WafConfig
@@ -278,6 +278,11 @@ func (o WafConfig) ToMap() (map[string]interface{}, error) {
 		toSerialize["paranoiaLevel"] = o.ParanoiaLevel
 	}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -307,15 +312,26 @@ func (o *WafConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varWafConfig := _WafConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafConfig)
+	err = json.Unmarshal(data, &varWafConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafConfig(varWafConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedHttpMethods")
+		delete(additionalProperties, "allowedHttpVersions")
+		delete(additionalProperties, "allowedRequestContentTypes")
+		delete(additionalProperties, "enabledRuleIds")
+		delete(additionalProperties, "mode")
+		delete(additionalProperties, "paranoiaLevel")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

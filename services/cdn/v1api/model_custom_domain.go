@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,8 +23,9 @@ type CustomDomain struct {
 	// This object is present if the custom domain has errors.
 	Errors []StatusError `json:"errors,omitempty"`
 	// The domain. Can be used as input for the GetCustomDomain endpoint
-	Name   string       `json:"name"`
-	Status DomainStatus `json:"status"`
+	Name                 string       `json:"name"`
+	Status               DomainStatus `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomDomain CustomDomain
@@ -144,6 +144,11 @@ func (o CustomDomain) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -172,15 +177,22 @@ func (o *CustomDomain) UnmarshalJSON(data []byte) (err error) {
 
 	varCustomDomain := _CustomDomain{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomDomain)
+	err = json.Unmarshal(data, &varCustomDomain)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomDomain(varCustomDomain)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

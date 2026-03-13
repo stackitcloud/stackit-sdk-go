@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &CreateDistributionResponse{}
 
 // CreateDistributionResponse struct for CreateDistributionResponse
 type CreateDistributionResponse struct {
-	Distribution Distribution `json:"distribution"`
+	Distribution         Distribution `json:"distribution"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateDistributionResponse CreateDistributionResponse
@@ -79,6 +79,11 @@ func (o CreateDistributionResponse) MarshalJSON() ([]byte, error) {
 func (o CreateDistributionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["distribution"] = o.Distribution
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *CreateDistributionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateDistributionResponse := _CreateDistributionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateDistributionResponse)
+	err = json.Unmarshal(data, &varCreateDistributionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateDistributionResponse(varCreateDistributionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "distribution")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

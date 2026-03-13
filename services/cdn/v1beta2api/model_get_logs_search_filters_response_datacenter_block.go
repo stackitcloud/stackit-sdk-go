@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,11 +20,12 @@ var _ MappedNullable = &GetLogsSearchFiltersResponseDatacenterBlock{}
 
 // GetLogsSearchFiltersResponseDatacenterBlock Object containing Datacenters to filter for. Each datacenter is grouped to the respective region.
 type GetLogsSearchFiltersResponseDatacenterBlock struct {
-	AF   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"AF"`
-	ASIA []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"ASIA"`
-	EU   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"EU"`
-	NA   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"NA"`
-	SA   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"SA"`
+	AF                   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"AF"`
+	ASIA                 []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"ASIA"`
+	EU                   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"EU"`
+	NA                   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"NA"`
+	SA                   []GetLogsSearchFiltersResponseDatacenterBlockItem `json:"SA"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetLogsSearchFiltersResponseDatacenterBlock GetLogsSearchFiltersResponseDatacenterBlock
@@ -187,6 +187,11 @@ func (o GetLogsSearchFiltersResponseDatacenterBlock) ToMap() (map[string]interfa
 	toSerialize["EU"] = o.EU
 	toSerialize["NA"] = o.NA
 	toSerialize["SA"] = o.SA
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,24 @@ func (o *GetLogsSearchFiltersResponseDatacenterBlock) UnmarshalJSON(data []byte)
 
 	varGetLogsSearchFiltersResponseDatacenterBlock := _GetLogsSearchFiltersResponseDatacenterBlock{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetLogsSearchFiltersResponseDatacenterBlock)
+	err = json.Unmarshal(data, &varGetLogsSearchFiltersResponseDatacenterBlock)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetLogsSearchFiltersResponseDatacenterBlock(varGetLogsSearchFiltersResponseDatacenterBlock)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "AF")
+		delete(additionalProperties, "ASIA")
+		delete(additionalProperties, "EU")
+		delete(additionalProperties, "NA")
+		delete(additionalProperties, "SA")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

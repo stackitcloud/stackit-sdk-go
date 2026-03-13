@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &WAFStatusRuleBlock{}
 // WAFStatusRuleBlock struct for WAFStatusRuleBlock
 type WAFStatusRuleBlock struct {
 	// Specifies the ID of the Rule.
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WAFStatusRuleBlock WAFStatusRuleBlock
@@ -80,6 +80,11 @@ func (o WAFStatusRuleBlock) MarshalJSON() ([]byte, error) {
 func (o WAFStatusRuleBlock) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *WAFStatusRuleBlock) UnmarshalJSON(data []byte) (err error) {
 
 	varWAFStatusRuleBlock := _WAFStatusRuleBlock{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAFStatusRuleBlock)
+	err = json.Unmarshal(data, &varWAFStatusRuleBlock)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WAFStatusRuleBlock(varWAFStatusRuleBlock)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type DistributionStatisticsRecordEntry struct {
 	// Total number of requests that were served
 	TotalRequests int64 `json:"totalRequests"`
 	// Total traffic in bytes that occurred during the time interval
-	TotalTrafficBytes int64 `json:"totalTrafficBytes"`
+	TotalTrafficBytes    int64 `json:"totalTrafficBytes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DistributionStatisticsRecordEntry DistributionStatisticsRecordEntry
@@ -136,6 +136,11 @@ func (o DistributionStatisticsRecordEntry) ToMap() (map[string]interface{}, erro
 	toSerialize["cachedRequests"] = o.CachedRequests
 	toSerialize["totalRequests"] = o.TotalRequests
 	toSerialize["totalTrafficBytes"] = o.TotalTrafficBytes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *DistributionStatisticsRecordEntry) UnmarshalJSON(data []byte) (err erro
 
 	varDistributionStatisticsRecordEntry := _DistributionStatisticsRecordEntry{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDistributionStatisticsRecordEntry)
+	err = json.Unmarshal(data, &varDistributionStatisticsRecordEntry)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DistributionStatisticsRecordEntry(varDistributionStatisticsRecordEntry)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cachedRequests")
+		delete(additionalProperties, "totalRequests")
+		delete(additionalProperties, "totalTrafficBytes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

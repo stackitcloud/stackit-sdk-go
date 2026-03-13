@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,8 +25,9 @@ type HttpBackendCreate struct {
 	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
 	OriginRequestHeaders *map[string]string `json:"originRequestHeaders,omitempty"`
 	// The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
-	OriginUrl string `json:"originUrl"`
-	Type      string `json:"type"`
+	OriginUrl            string `json:"originUrl"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HttpBackendCreate HttpBackendCreate
@@ -181,6 +181,11 @@ func (o HttpBackendCreate) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["originUrl"] = o.OriginUrl
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -209,15 +214,23 @@ func (o *HttpBackendCreate) UnmarshalJSON(data []byte) (err error) {
 
 	varHttpBackendCreate := _HttpBackendCreate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHttpBackendCreate)
+	err = json.Unmarshal(data, &varHttpBackendCreate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HttpBackendCreate(varHttpBackendCreate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "geofencing")
+		delete(additionalProperties, "originRequestHeaders")
+		delete(additionalProperties, "originUrl")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

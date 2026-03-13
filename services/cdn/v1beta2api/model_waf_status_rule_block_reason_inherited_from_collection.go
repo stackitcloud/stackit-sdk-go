@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type WafStatusRuleBlockReasonInheritedFromCollection struct {
 	// The Collection that caused this rule to be in its current state.
 	CollectionId string `json:"collectionId"`
 	// This is always `inheritedFromCollection`
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafStatusRuleBlockReasonInheritedFromCollection WafStatusRuleBlockReasonInheritedFromCollection
@@ -108,6 +108,11 @@ func (o WafStatusRuleBlockReasonInheritedFromCollection) ToMap() (map[string]int
 	toSerialize := map[string]interface{}{}
 	toSerialize["collectionId"] = o.CollectionId
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *WafStatusRuleBlockReasonInheritedFromCollection) UnmarshalJSON(data []b
 
 	varWafStatusRuleBlockReasonInheritedFromCollection := _WafStatusRuleBlockReasonInheritedFromCollection{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafStatusRuleBlockReasonInheritedFromCollection)
+	err = json.Unmarshal(data, &varWafStatusRuleBlockReasonInheritedFromCollection)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafStatusRuleBlockReasonInheritedFromCollection(varWafStatusRuleBlockReasonInheritedFromCollection)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collectionId")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

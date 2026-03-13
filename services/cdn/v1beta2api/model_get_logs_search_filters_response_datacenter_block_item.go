@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &GetLogsSearchFiltersResponseDatacenterBlockItem{}
 
 // GetLogsSearchFiltersResponseDatacenterBlockItem A datacenter. The `id` defines the key needed to filter against the logs endpoint, while the `displayName` defines a human-readable Name.
 type GetLogsSearchFiltersResponseDatacenterBlockItem struct {
-	DisplayName string `json:"displayName"`
-	Id          string `json:"id"`
+	DisplayName          string `json:"displayName"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetLogsSearchFiltersResponseDatacenterBlockItem GetLogsSearchFiltersResponseDatacenterBlockItem
@@ -106,6 +106,11 @@ func (o GetLogsSearchFiltersResponseDatacenterBlockItem) ToMap() (map[string]int
 	toSerialize := map[string]interface{}{}
 	toSerialize["displayName"] = o.DisplayName
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *GetLogsSearchFiltersResponseDatacenterBlockItem) UnmarshalJSON(data []b
 
 	varGetLogsSearchFiltersResponseDatacenterBlockItem := _GetLogsSearchFiltersResponseDatacenterBlockItem{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetLogsSearchFiltersResponseDatacenterBlockItem)
+	err = json.Unmarshal(data, &varGetLogsSearchFiltersResponseDatacenterBlockItem)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetLogsSearchFiltersResponseDatacenterBlockItem(varGetLogsSearchFiltersResponseDatacenterBlockItem)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

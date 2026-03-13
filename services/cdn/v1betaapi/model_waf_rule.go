@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,8 +23,9 @@ type WAFRule struct {
 	// Optional CoreRuleSet rule ID in case this is a CRS rule
 	Code *string `json:"code,omitempty"`
 	// LocalizedString is a map from language to string value
-	Description map[string]string `json:"description"`
-	Id          string            `json:"id"`
+	Description          map[string]string `json:"description"`
+	Id                   string            `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WAFRule WAFRule
@@ -144,6 +144,11 @@ func (o WAFRule) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["description"] = o.Description
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -172,15 +177,22 @@ func (o *WAFRule) UnmarshalJSON(data []byte) (err error) {
 
 	varWAFRule := _WAFRule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAFRule)
+	err = json.Unmarshal(data, &varWAFRule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WAFRule(varWAFRule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -23,9 +22,10 @@ var _ MappedNullable = &GetCacheInfoResponseHistoryEntry{}
 // GetCacheInfoResponseHistoryEntry struct for GetCacheInfoResponseHistoryEntry
 type GetCacheInfoResponseHistoryEntry struct {
 	// Deprecated
-	OccuredAt  time.Time `json:"occuredAt"`
-	OccurredAt time.Time `json:"occurredAt"`
-	Type       string    `json:"type"`
+	OccuredAt            time.Time `json:"occuredAt"`
+	OccurredAt           time.Time `json:"occurredAt"`
+	Type                 string    `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetCacheInfoResponseHistoryEntry GetCacheInfoResponseHistoryEntry
@@ -138,6 +138,11 @@ func (o GetCacheInfoResponseHistoryEntry) ToMap() (map[string]interface{}, error
 	toSerialize["occuredAt"] = o.OccuredAt
 	toSerialize["occurredAt"] = o.OccurredAt
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -167,15 +172,22 @@ func (o *GetCacheInfoResponseHistoryEntry) UnmarshalJSON(data []byte) (err error
 
 	varGetCacheInfoResponseHistoryEntry := _GetCacheInfoResponseHistoryEntry{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetCacheInfoResponseHistoryEntry)
+	err = json.Unmarshal(data, &varGetCacheInfoResponseHistoryEntry)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetCacheInfoResponseHistoryEntry(varGetCacheInfoResponseHistoryEntry)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "occuredAt")
+		delete(additionalProperties, "occurredAt")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

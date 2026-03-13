@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type WAFRuleCollection struct {
 	Groups []WAFRuleGroup `json:"groups"`
 	Id     string         `json:"id"`
 	// LocalizedString is a map from language to string value
-	Name map[string]string `json:"name"`
+	Name                 map[string]string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WAFRuleCollection WAFRuleCollection
@@ -134,6 +134,11 @@ func (o WAFRuleCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize["groups"] = o.Groups
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *WAFRuleCollection) UnmarshalJSON(data []byte) (err error) {
 
 	varWAFRuleCollection := _WAFRuleCollection{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAFRuleCollection)
+	err = json.Unmarshal(data, &varWAFRuleCollection)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WAFRuleCollection(varWAFRuleCollection)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "groups")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

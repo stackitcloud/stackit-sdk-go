@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type WafStatusRuleBlockReasonInvalidWafType struct {
 	// A list containing all WAF Types which can use this Rule. You must patch you WAF to one of these WAF Types to make use of this rule. Rules show up with this state if they would have been enabled or logOnly otherwise.
 	AllowedWafTypes []WafType `json:"allowedWafTypes"`
 	// This is always `invalidWafType`
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafStatusRuleBlockReasonInvalidWafType WafStatusRuleBlockReasonInvalidWafType
@@ -108,6 +108,11 @@ func (o WafStatusRuleBlockReasonInvalidWafType) ToMap() (map[string]interface{},
 	toSerialize := map[string]interface{}{}
 	toSerialize["allowedWafTypes"] = o.AllowedWafTypes
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *WafStatusRuleBlockReasonInvalidWafType) UnmarshalJSON(data []byte) (err
 
 	varWafStatusRuleBlockReasonInvalidWafType := _WafStatusRuleBlockReasonInvalidWafType{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafStatusRuleBlockReasonInvalidWafType)
+	err = json.Unmarshal(data, &varWafStatusRuleBlockReasonInvalidWafType)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafStatusRuleBlockReasonInvalidWafType(varWafStatusRuleBlockReasonInvalidWafType)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedWafTypes")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

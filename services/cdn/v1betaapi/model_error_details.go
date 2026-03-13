@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,8 +27,9 @@ type ErrorDetails struct {
 	// English description of the error
 	En string `json:"en"`
 	// Optional field in the request this error detail refers to
-	Field *string `json:"field,omitempty"`
-	Key   string  `json:"key"`
+	Field                *string `json:"field,omitempty"`
+	Key                  string  `json:"key"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ErrorDetails ErrorDetails
@@ -212,6 +212,11 @@ func (o ErrorDetails) ToMap() (map[string]interface{}, error) {
 		toSerialize["field"] = o.Field
 	}
 	toSerialize["key"] = o.Key
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -241,15 +246,24 @@ func (o *ErrorDetails) UnmarshalJSON(data []byte) (err error) {
 
 	varErrorDetails := _ErrorDetails{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varErrorDetails)
+	err = json.Unmarshal(data, &varErrorDetails)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ErrorDetails(varErrorDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "de")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "en")
+		delete(additionalProperties, "field")
+		delete(additionalProperties, "key")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

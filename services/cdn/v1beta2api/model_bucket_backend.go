@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &BucketBackend{}
 
 // BucketBackend struct for BucketBackend
 type BucketBackend struct {
-	BucketUrl string `json:"bucketUrl"`
-	Region    string `json:"region"`
-	Type      string `json:"type"`
+	BucketUrl            string `json:"bucketUrl"`
+	Region               string `json:"region"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BucketBackend BucketBackend
@@ -133,6 +133,11 @@ func (o BucketBackend) ToMap() (map[string]interface{}, error) {
 	toSerialize["bucketUrl"] = o.BucketUrl
 	toSerialize["region"] = o.Region
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *BucketBackend) UnmarshalJSON(data []byte) (err error) {
 
 	varBucketBackend := _BucketBackend{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBucketBackend)
+	err = json.Unmarshal(data, &varBucketBackend)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BucketBackend(varBucketBackend)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bucketUrl")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
