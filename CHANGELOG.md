@@ -177,11 +177,15 @@
   - `v2api`: New package which should be used for communication with the STACKIT authorization API in the future
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v2api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `opensearch`: [v0.25.0](services/opensearch/CHANGELOG.md#v0250)
-  - **Feature:** Introduction of multi API version support for the opensearch SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which should be used for communication with the STACKIT opensearch API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `opensearch`:
+  - [v0.25.0](services/opensearch/CHANGELOG.md#v0250)
+    - **Feature:** Introduction of multi API version support for the opensearch SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT opensearch API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.26.0](services/opensearch/CHANGELOG.md#v0260)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `auditlog`: [v0.2.0](services/auditlog/CHANGELOG.md#v020)
   - **Feature:** Introduction of multi API version support for the auditlog SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v2api`: New package which should be used for communication with the STACKIT auditlog API in the future
