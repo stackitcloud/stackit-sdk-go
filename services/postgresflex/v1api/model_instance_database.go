@@ -23,8 +23,11 @@ type InstanceDatabase struct {
 	Id   *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	// Database specific options
-	Options map[string]interface{} `json:"options,omitempty"`
+	Options              map[string]interface{} `json:"options,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceDatabase InstanceDatabase
 
 // NewInstanceDatabase instantiates a new InstanceDatabase object
 // This constructor will assign default values to properties that have it defined,
@@ -158,7 +161,35 @@ func (o InstanceDatabase) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceDatabase) UnmarshalJSON(data []byte) (err error) {
+	varInstanceDatabase := _InstanceDatabase{}
+
+	err = json.Unmarshal(data, &varInstanceDatabase)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceDatabase(varInstanceDatabase)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceDatabase struct {

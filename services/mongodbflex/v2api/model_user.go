@@ -26,10 +26,13 @@ type User struct {
 	Password *string `json:"password,omitempty"`
 	Port     *int64  `json:"port,omitempty"`
 	// The roles defined for a user. Currently only one role in the list is supported, therefore only the first role from this list is used. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
-	Roles    []string `json:"roles,omitempty"`
-	Uri      *string  `json:"uri,omitempty"`
-	Username *string  `json:"username,omitempty"`
+	Roles                []string `json:"roles,omitempty"`
+	Uri                  *string  `json:"uri,omitempty"`
+	Username             *string  `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _User User
 
 // NewUser instantiates a new User object
 // This constructor will assign default values to properties that have it defined,
@@ -338,7 +341,40 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *User) UnmarshalJSON(data []byte) (err error) {
+	varUser := _User{}
+
+	err = json.Unmarshal(data, &varUser)
+
+	if err != nil {
+		return err
+	}
+
+	*o = User(varUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "database")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "uri")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUser struct {

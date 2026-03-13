@@ -20,8 +20,11 @@ var _ MappedNullable = &ApiInstallResponse{}
 
 // ApiInstallResponse struct for ApiInstallResponse
 type ApiInstallResponse struct {
-	Extension *ApiExtensionList `json:"extension,omitempty"`
+	Extension            *ApiExtensionList `json:"extension,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiInstallResponse ApiInstallResponse
 
 // NewApiInstallResponse instantiates a new ApiInstallResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ApiInstallResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Extension) {
 		toSerialize["extension"] = o.Extension
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiInstallResponse) UnmarshalJSON(data []byte) (err error) {
+	varApiInstallResponse := _ApiInstallResponse{}
+
+	err = json.Unmarshal(data, &varApiInstallResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiInstallResponse(varApiInstallResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "extension")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiInstallResponse struct {

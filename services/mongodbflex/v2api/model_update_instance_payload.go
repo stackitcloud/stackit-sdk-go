@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,12 +25,13 @@ type UpdateInstancePayload struct {
 	BackupSchedule string `json:"backupSchedule"`
 	FlavorId       string `json:"flavorId"`
 	// Labels field is not certain/clear
-	Labels   *map[string]string `json:"labels,omitempty"`
-	Name     string             `json:"name"`
-	Options  map[string]string  `json:"options"`
-	Replicas int64              `json:"replicas"`
-	Storage  Storage            `json:"storage"`
-	Version  string             `json:"version"`
+	Labels               *map[string]string `json:"labels,omitempty"`
+	Name                 string             `json:"name"`
+	Options              map[string]string  `json:"options"`
+	Replicas             int64              `json:"replicas"`
+	Storage              Storage            `json:"storage"`
+	Version              string             `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateInstancePayload UpdateInstancePayload
@@ -306,6 +306,11 @@ func (o UpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["replicas"] = o.Replicas
 	toSerialize["storage"] = o.Storage
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -340,15 +345,28 @@ func (o *UpdateInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateInstancePayload := _UpdateInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateInstancePayload)
+	err = json.Unmarshal(data, &varUpdateInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateInstancePayload(varUpdateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "replicas")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

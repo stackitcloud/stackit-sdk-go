@@ -11,7 +11,6 @@ API version: 1.4.3
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &NotFound{}
 // NotFound struct for NotFound
 type NotFound struct {
 	// The error message for not found resources
-	Message string `json:"message"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NotFound NotFound
@@ -80,6 +80,11 @@ func (o NotFound) MarshalJSON() ([]byte, error) {
 func (o NotFound) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *NotFound) UnmarshalJSON(data []byte) (err error) {
 
 	varNotFound := _NotFound{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNotFound)
+	err = json.Unmarshal(data, &varNotFound)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NotFound(varNotFound)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

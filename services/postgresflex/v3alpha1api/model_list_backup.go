@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -33,7 +32,8 @@ type ListBackup struct {
 	// The size of the backup in bytes.
 	Size int32 `json:"size"`
 	// The type of the backup, which can be automated or manual triggered.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListBackup ListBackup
@@ -221,6 +221,11 @@ func (o ListBackup) ToMap() (map[string]interface{}, error) {
 	toSerialize["retainedUntil"] = o.RetainedUntil
 	toSerialize["size"] = o.Size
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -253,15 +258,25 @@ func (o *ListBackup) UnmarshalJSON(data []byte) (err error) {
 
 	varListBackup := _ListBackup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListBackup)
+	err = json.Unmarshal(data, &varListBackup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListBackup(varListBackup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "completionTime")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "retainedUntil")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -35,7 +34,8 @@ type CreateInstanceRequestPayload struct {
 	RetentionDays int32         `json:"retentionDays"`
 	Storage       StorageCreate `json:"storage"`
 	// The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version) for supported version parameters.
-	Version string `json:"version"`
+	Version              string `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstanceRequestPayload CreateInstanceRequestPayload
@@ -310,6 +310,11 @@ func (o CreateInstanceRequestPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["retentionDays"] = o.RetentionDays
 	toSerialize["storage"] = o.Storage
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -344,15 +349,28 @@ func (o *CreateInstanceRequestPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstanceRequestPayload := _CreateInstanceRequestPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstanceRequestPayload)
+	err = json.Unmarshal(data, &varCreateInstanceRequestPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstanceRequestPayload(varCreateInstanceRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "encryption")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "replicas")
+		delete(additionalProperties, "retentionDays")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

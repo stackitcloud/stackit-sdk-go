@@ -21,8 +21,11 @@ var _ MappedNullable = &PostgresDatabaseParameterResponse{}
 // PostgresDatabaseParameterResponse struct for PostgresDatabaseParameterResponse
 type PostgresDatabaseParameterResponse struct {
 	// List of the parameter
-	Parameter []PostgresDatabaseParameter `json:"parameter,omitempty"`
+	Parameter            []PostgresDatabaseParameter `json:"parameter,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PostgresDatabaseParameterResponse PostgresDatabaseParameterResponse
 
 // NewPostgresDatabaseParameterResponse instantiates a new PostgresDatabaseParameterResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o PostgresDatabaseParameterResponse) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Parameter) {
 		toSerialize["parameter"] = o.Parameter
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PostgresDatabaseParameterResponse) UnmarshalJSON(data []byte) (err error) {
+	varPostgresDatabaseParameterResponse := _PostgresDatabaseParameterResponse{}
+
+	err = json.Unmarshal(data, &varPostgresDatabaseParameterResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostgresDatabaseParameterResponse(varPostgresDatabaseParameterResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "parameter")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePostgresDatabaseParameterResponse struct {

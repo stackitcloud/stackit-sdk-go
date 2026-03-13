@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type InstanceConnectionInfoWrite struct {
 	// The host of the instance.
 	Host string `json:"host"`
 	// The port of the instance.
-	Port int32 `json:"port"`
+	Port                 int32 `json:"port"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceConnectionInfoWrite InstanceConnectionInfoWrite
@@ -109,6 +109,11 @@ func (o InstanceConnectionInfoWrite) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["host"] = o.Host
 	toSerialize["port"] = o.Port
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *InstanceConnectionInfoWrite) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceConnectionInfoWrite := _InstanceConnectionInfoWrite{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceConnectionInfoWrite)
+	err = json.Unmarshal(data, &varInstanceConnectionInfoWrite)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceConnectionInfoWrite(varInstanceConnectionInfoWrite)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

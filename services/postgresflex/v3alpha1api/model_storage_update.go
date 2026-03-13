@@ -21,8 +21,11 @@ var _ MappedNullable = &StorageUpdate{}
 // StorageUpdate The object containing information about the storage size and class.
 type StorageUpdate struct {
 	// The storage size in Gigabytes.
-	Size *int32 `json:"size,omitempty"`
+	Size                 *int32 `json:"size,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _StorageUpdate StorageUpdate
 
 // NewStorageUpdate instantiates a new StorageUpdate object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o StorageUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Size) {
 		toSerialize["size"] = o.Size
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *StorageUpdate) UnmarshalJSON(data []byte) (err error) {
+	varStorageUpdate := _StorageUpdate{}
+
+	err = json.Unmarshal(data, &varStorageUpdate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = StorageUpdate(varStorageUpdate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableStorageUpdate struct {

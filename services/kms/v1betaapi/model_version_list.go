@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &VersionList{}
 
 // VersionList struct for VersionList
 type VersionList struct {
-	Versions []Version `json:"versions"`
+	Versions             []Version `json:"versions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VersionList VersionList
@@ -79,6 +79,11 @@ func (o VersionList) MarshalJSON() ([]byte, error) {
 func (o VersionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["versions"] = o.Versions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *VersionList) UnmarshalJSON(data []byte) (err error) {
 
 	varVersionList := _VersionList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVersionList)
+	err = json.Unmarshal(data, &varVersionList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VersionList(varVersionList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "versions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -25,9 +25,12 @@ type InstanceResponseUser struct {
 	Id       *string `json:"id,omitempty"`
 	Port     *int32  `json:"port,omitempty"`
 	// The roles defined for a user. The *roles* attribute can contain the following values: 'read', 'readWrite', 'readAnyDatabase', 'readWriteAnyDatabase', 'stackitAdmin'. **The 'readAnyDatabase', 'readWriteAnyDatabase' and 'stackitAdmin' roles will always be created in the admin database.**
-	Roles    []string `json:"roles,omitempty"`
-	Username *string  `json:"username,omitempty"`
+	Roles                []string `json:"roles,omitempty"`
+	Username             *string  `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceResponseUser InstanceResponseUser
 
 // NewInstanceResponseUser instantiates a new InstanceResponseUser object
 // This constructor will assign default values to properties that have it defined,
@@ -266,7 +269,38 @@ func (o InstanceResponseUser) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceResponseUser) UnmarshalJSON(data []byte) (err error) {
+	varInstanceResponseUser := _InstanceResponseUser{}
+
+	err = json.Unmarshal(data, &varInstanceResponseUser)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceResponseUser(varInstanceResponseUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "database")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceResponseUser struct {

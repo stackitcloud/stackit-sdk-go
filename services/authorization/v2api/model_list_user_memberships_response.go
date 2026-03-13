@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ListUserMembershipsResponse{}
 
 // ListUserMembershipsResponse struct for ListUserMembershipsResponse
 type ListUserMembershipsResponse struct {
-	Items []UserMembership `json:"items"`
+	Items                []UserMembership `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListUserMembershipsResponse ListUserMembershipsResponse
@@ -79,6 +79,11 @@ func (o ListUserMembershipsResponse) MarshalJSON() ([]byte, error) {
 func (o ListUserMembershipsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ListUserMembershipsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListUserMembershipsResponse := _ListUserMembershipsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListUserMembershipsResponse)
+	err = json.Unmarshal(data, &varListUserMembershipsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListUserMembershipsResponse(varListUserMembershipsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

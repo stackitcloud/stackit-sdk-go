@@ -21,8 +21,11 @@ var _ MappedNullable = &HandlersInstancesSlowQueriesResponse{}
 // HandlersInstancesSlowQueriesResponse struct for HandlersInstancesSlowQueriesResponse
 type HandlersInstancesSlowQueriesResponse struct {
 	// A list of documents with information about slow queries as detected by the Performance Advisor.
-	SlowQueries []SlowQuery `json:"slowQueries,omitempty"`
+	SlowQueries          []SlowQuery `json:"slowQueries,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HandlersInstancesSlowQueriesResponse HandlersInstancesSlowQueriesResponse
 
 // NewHandlersInstancesSlowQueriesResponse instantiates a new HandlersInstancesSlowQueriesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o HandlersInstancesSlowQueriesResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.SlowQueries) {
 		toSerialize["slowQueries"] = o.SlowQueries
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HandlersInstancesSlowQueriesResponse) UnmarshalJSON(data []byte) (err error) {
+	varHandlersInstancesSlowQueriesResponse := _HandlersInstancesSlowQueriesResponse{}
+
+	err = json.Unmarshal(data, &varHandlersInstancesSlowQueriesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HandlersInstancesSlowQueriesResponse(varHandlersInstancesSlowQueriesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "slowQueries")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHandlersInstancesSlowQueriesResponse struct {

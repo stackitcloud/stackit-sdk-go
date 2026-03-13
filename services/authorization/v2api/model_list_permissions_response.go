@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ListPermissionsResponse{}
 
 // ListPermissionsResponse struct for ListPermissionsResponse
 type ListPermissionsResponse struct {
-	Permissions []Permission `json:"permissions"`
+	Permissions          []Permission `json:"permissions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListPermissionsResponse ListPermissionsResponse
@@ -79,6 +79,11 @@ func (o ListPermissionsResponse) MarshalJSON() ([]byte, error) {
 func (o ListPermissionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["permissions"] = o.Permissions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ListPermissionsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListPermissionsResponse := _ListPermissionsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListPermissionsResponse)
+	err = json.Unmarshal(data, &varListPermissionsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListPermissionsResponse(varListPermissionsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "permissions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

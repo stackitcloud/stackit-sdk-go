@@ -22,8 +22,11 @@ type DremioAuthPatch struct {
 	// A Dremio personal access token for authentication
 	PersonalAccessToken *string `json:"personalAccessToken,omitempty"`
 	// The URL to the Dremio instance's OAuth 2.0 token endpoint
-	TokenEndpoint *string `json:"tokenEndpoint,omitempty"`
+	TokenEndpoint        *string `json:"tokenEndpoint,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DremioAuthPatch DremioAuthPatch
 
 // NewDremioAuthPatch instantiates a new DremioAuthPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o DremioAuthPatch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TokenEndpoint) {
 		toSerialize["tokenEndpoint"] = o.TokenEndpoint
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DremioAuthPatch) UnmarshalJSON(data []byte) (err error) {
+	varDremioAuthPatch := _DremioAuthPatch{}
+
+	err = json.Unmarshal(data, &varDremioAuthPatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DremioAuthPatch(varDremioAuthPatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "personalAccessToken")
+		delete(additionalProperties, "tokenEndpoint")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDremioAuthPatch struct {

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &UpdateBackupSchedulePayload{}
 
 // UpdateBackupSchedulePayload struct for UpdateBackupSchedulePayload
 type UpdateBackupSchedulePayload struct {
-	BackupSchedule string `json:"backupSchedule"`
+	BackupSchedule       string `json:"backupSchedule"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateBackupSchedulePayload UpdateBackupSchedulePayload
@@ -80,6 +80,11 @@ func (o UpdateBackupSchedulePayload) MarshalJSON() ([]byte, error) {
 func (o UpdateBackupSchedulePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["backupSchedule"] = o.BackupSchedule
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *UpdateBackupSchedulePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateBackupSchedulePayload := _UpdateBackupSchedulePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateBackupSchedulePayload)
+	err = json.Unmarshal(data, &varUpdateBackupSchedulePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateBackupSchedulePayload(varUpdateBackupSchedulePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupSchedule")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

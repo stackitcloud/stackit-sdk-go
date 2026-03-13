@@ -43,8 +43,11 @@ type PostgresDatabaseParameter struct {
 	// Unit if the parameter has a unit if not empty.
 	Unit *string `json:"unit,omitempty"`
 	// Value of this parameter.
-	Value *string `json:"value,omitempty"`
+	Value                *string `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PostgresDatabaseParameter PostgresDatabaseParameter
 
 // NewPostgresDatabaseParameter instantiates a new PostgresDatabaseParameter object
 // This constructor will assign default values to properties that have it defined,
@@ -493,7 +496,44 @@ func (o PostgresDatabaseParameter) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PostgresDatabaseParameter) UnmarshalJSON(data []byte) (err error) {
+	varPostgresDatabaseParameter := _PostgresDatabaseParameter{}
+
+	err = json.Unmarshal(data, &varPostgresDatabaseParameter)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostgresDatabaseParameter(varPostgresDatabaseParameter)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "dataType")
+		delete(additionalProperties, "defaultValue")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "edit")
+		delete(additionalProperties, "maxValue")
+		delete(additionalProperties, "minValue")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "pendingRestart")
+		delete(additionalProperties, "resetValue")
+		delete(additionalProperties, "unit")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePostgresDatabaseParameter struct {

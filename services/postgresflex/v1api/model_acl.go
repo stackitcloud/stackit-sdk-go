@@ -20,8 +20,11 @@ var _ MappedNullable = &ACL{}
 
 // ACL struct for ACL
 type ACL struct {
-	Items []string `json:"items,omitempty"`
+	Items                []string `json:"items,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ACL ACL
 
 // NewACL instantiates a new ACL object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ACL) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ACL) UnmarshalJSON(data []byte) (err error) {
+	varACL := _ACL{}
+
+	err = json.Unmarshal(data, &varACL)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ACL(varACL)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableACL struct {

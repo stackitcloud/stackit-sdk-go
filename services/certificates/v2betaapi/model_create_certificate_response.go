@@ -22,8 +22,11 @@ type CreateCertificateResponse struct {
 	// The certificates resource id
 	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// Region
-	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateCertificateResponse CreateCertificateResponse
 
 // NewCreateCertificateResponse instantiates a new CreateCertificateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o CreateCertificateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateCertificateResponse) UnmarshalJSON(data []byte) (err error) {
+	varCreateCertificateResponse := _CreateCertificateResponse{}
+
+	err = json.Unmarshal(data, &varCreateCertificateResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateCertificateResponse(varCreateCertificateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateCertificateResponse struct {
