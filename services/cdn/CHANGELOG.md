@@ -1,3 +1,11 @@
+## v1.12.0
+- `v1api`: 
+  - **Feature:** Add field `SkipDnsCheck` to model struct `PutCustomDomainCustomCertificate`, `GetCustomDomainCustomCertificate`
+  - **Feature:** Add field `CertificateType` to model struct `Domain`
+- Deprecated SDK layer in root of the module:
+  - **Feature:** Add field `SkipDnsCheck` to model struct `PutCustomDomainCustomCertificate`, `GetCustomDomainCustomCertificate`
+  - **Feature:** Add field `CertificateType` to model struct `Domain`
+
 ## v1.11.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 
