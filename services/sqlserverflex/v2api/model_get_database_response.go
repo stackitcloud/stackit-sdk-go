@@ -20,8 +20,11 @@ var _ MappedNullable = &GetDatabaseResponse{}
 
 // GetDatabaseResponse struct for GetDatabaseResponse
 type GetDatabaseResponse struct {
-	Database *SingleDatabase `json:"database,omitempty"`
+	Database             *SingleDatabase `json:"database,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetDatabaseResponse GetDatabaseResponse
 
 // NewGetDatabaseResponse instantiates a new GetDatabaseResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o GetDatabaseResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Database) {
 		toSerialize["database"] = o.Database
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetDatabaseResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetDatabaseResponse := _GetDatabaseResponse{}
+
+	err = json.Unmarshal(data, &varGetDatabaseResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetDatabaseResponse(varGetDatabaseResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "database")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetDatabaseResponse struct {

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -33,7 +32,8 @@ type GetBackupResponse struct {
 	// The size of the backup in bytes.
 	Size int64 `json:"size"`
 	// The type of the backup, which can be automated or manual triggered.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetBackupResponse GetBackupResponse
@@ -221,6 +221,11 @@ func (o GetBackupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["retainedUntil"] = o.RetainedUntil
 	toSerialize["size"] = o.Size
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -253,15 +258,25 @@ func (o *GetBackupResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetBackupResponse := _GetBackupResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetBackupResponse)
+	err = json.Unmarshal(data, &varGetBackupResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetBackupResponse(varGetBackupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "completionTime")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "retainedUntil")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

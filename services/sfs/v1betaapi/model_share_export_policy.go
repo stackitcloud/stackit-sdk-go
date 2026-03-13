@@ -31,7 +31,10 @@ type ShareExportPolicy struct {
 	Rules []ShareExportPolicyRule `json:"rules,omitempty"`
 	// Number of Shares using this Share Export Policy
 	SharesUsingExportPolicy *int32 `json:"sharesUsingExportPolicy,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
+
+type _ShareExportPolicy ShareExportPolicy
 
 // NewShareExportPolicy instantiates a new ShareExportPolicy object
 // This constructor will assign default values to properties that have it defined,
@@ -270,7 +273,38 @@ func (o ShareExportPolicy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SharesUsingExportPolicy) {
 		toSerialize["sharesUsingExportPolicy"] = o.SharesUsingExportPolicy
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ShareExportPolicy) UnmarshalJSON(data []byte) (err error) {
+	varShareExportPolicy := _ShareExportPolicy{}
+
+	err = json.Unmarshal(data, &varShareExportPolicy)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ShareExportPolicy(varShareExportPolicy)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rules")
+		delete(additionalProperties, "sharesUsingExportPolicy")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableShareExportPolicy struct {

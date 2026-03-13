@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,6 +23,7 @@ var _ MappedNullable = &ZoneObservabilityExtension{}
 type ZoneObservabilityExtension struct {
 	ObservabilityInstanceId string  `json:"observabilityInstanceId"`
 	State                   *string `json:"state,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _ZoneObservabilityExtension ZoneObservabilityExtension
@@ -116,6 +116,11 @@ func (o ZoneObservabilityExtension) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *ZoneObservabilityExtension) UnmarshalJSON(data []byte) (err error) {
 
 	varZoneObservabilityExtension := _ZoneObservabilityExtension{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varZoneObservabilityExtension)
+	err = json.Unmarshal(data, &varZoneObservabilityExtension)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ZoneObservabilityExtension(varZoneObservabilityExtension)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "observabilityInstanceId")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

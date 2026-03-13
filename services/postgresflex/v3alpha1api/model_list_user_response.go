@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ var _ MappedNullable = &ListUserResponse{}
 type ListUserResponse struct {
 	Pagination Pagination `json:"pagination"`
 	// List of all users inside an instance
-	Users []ListUser `json:"users"`
+	Users                []ListUser `json:"users"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListUserResponse ListUserResponse
@@ -108,6 +108,11 @@ func (o ListUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["pagination"] = o.Pagination
 	toSerialize["users"] = o.Users
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ListUserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListUserResponse := _ListUserResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListUserResponse)
+	err = json.Unmarshal(data, &varListUserResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListUserResponse(varListUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pagination")
+		delete(additionalProperties, "users")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

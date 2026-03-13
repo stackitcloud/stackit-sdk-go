@@ -26,8 +26,11 @@ type UpdateCoreRuleSetPayload struct {
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
 	// Region
-	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateCoreRuleSetPayload UpdateCoreRuleSetPayload
 
 // NewUpdateCoreRuleSetPayload instantiates a new UpdateCoreRuleSetPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,36 @@ func (o UpdateCoreRuleSetPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateCoreRuleSetPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateCoreRuleSetPayload := _UpdateCoreRuleSetPayload{}
+
+	err = json.Unmarshal(data, &varUpdateCoreRuleSetPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateCoreRuleSetPayload(varUpdateCoreRuleSetPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateCoreRuleSetPayload struct {

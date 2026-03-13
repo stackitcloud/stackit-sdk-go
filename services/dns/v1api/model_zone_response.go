@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &ZoneResponse{}
 
 // ZoneResponse ResponseZone for user info.
 type ZoneResponse struct {
-	Message *string `json:"message,omitempty"`
-	Zone    Zone    `json:"zone"`
+	Message              *string `json:"message,omitempty"`
+	Zone                 Zone    `json:"zone"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ZoneResponse ZoneResponse
@@ -116,6 +116,11 @@ func (o ZoneResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["message"] = o.Message
 	}
 	toSerialize["zone"] = o.Zone
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *ZoneResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varZoneResponse := _ZoneResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varZoneResponse)
+	err = json.Unmarshal(data, &varZoneResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ZoneResponse(varZoneResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "zone")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

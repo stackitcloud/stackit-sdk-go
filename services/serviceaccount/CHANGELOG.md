@@ -1,3 +1,18 @@
+## v0.15.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
+## v0.14.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+
+## v0.14.0
+- `v2api`: 
+  - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider`
+  - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner`
+- Deprecated SDK layer in root of the module:
+  - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponse` to `FederatedIdentityProvider`
+  - **Breaking Change:** Rename model struct `CreateFederatedIdentityProviderResponseAssertionsInner` to `FederatedIdentityProviderAssertionsInner`
+
 ## v0.13.0
 - **Feature:** Introduction of multi API version support for the serviceaccount SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v2api`: New package which should be used for communication with the STACKIT serviceaccount API in the future

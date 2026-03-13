@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &UpdateScheduleCreateRequest{}
 
 // UpdateScheduleCreateRequest struct for UpdateScheduleCreateRequest
 type UpdateScheduleCreateRequest struct {
-	Enabled           bool   `json:"enabled"`
-	MaintenanceWindow int32  `json:"maintenanceWindow"`
-	Name              string `json:"name"`
-	Rrule             string `json:"rrule"`
+	Enabled              bool   `json:"enabled"`
+	MaintenanceWindow    int32  `json:"maintenanceWindow"`
+	Name                 string `json:"name"`
+	Rrule                string `json:"rrule"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateScheduleCreateRequest UpdateScheduleCreateRequest
@@ -161,6 +161,11 @@ func (o UpdateScheduleCreateRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["maintenanceWindow"] = o.MaintenanceWindow
 	toSerialize["name"] = o.Name
 	toSerialize["rrule"] = o.Rrule
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -191,15 +196,23 @@ func (o *UpdateScheduleCreateRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateScheduleCreateRequest := _UpdateScheduleCreateRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateScheduleCreateRequest)
+	err = json.Unmarshal(data, &varUpdateScheduleCreateRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateScheduleCreateRequest(varUpdateScheduleCreateRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "maintenanceWindow")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rrule")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

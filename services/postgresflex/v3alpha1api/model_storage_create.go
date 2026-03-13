@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type StorageCreate struct {
 	// The storage class for the storage.
 	PerformanceClass string `json:"performanceClass"`
 	// The storage size in Gigabytes.
-	Size int32 `json:"size"`
+	Size                 int32 `json:"size"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StorageCreate StorageCreate
@@ -109,6 +109,11 @@ func (o StorageCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["performanceClass"] = o.PerformanceClass
 	toSerialize["size"] = o.Size
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *StorageCreate) UnmarshalJSON(data []byte) (err error) {
 
 	varStorageCreate := _StorageCreate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStorageCreate)
+	err = json.Unmarshal(data, &varStorageCreate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StorageCreate(varStorageCreate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "performanceClass")
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

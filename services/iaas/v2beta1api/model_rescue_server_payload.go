@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &RescueServerPayload{}
 // RescueServerPayload struct for RescueServerPayload
 type RescueServerPayload struct {
 	// Universally Unique Identifier (UUID).
-	Image string `json:"image" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	Image                string `json:"image" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RescueServerPayload RescueServerPayload
@@ -81,6 +81,11 @@ func (o RescueServerPayload) MarshalJSON() ([]byte, error) {
 func (o RescueServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["image"] = o.Image
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *RescueServerPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varRescueServerPayload := _RescueServerPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRescueServerPayload)
+	err = json.Unmarshal(data, &varRescueServerPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RescueServerPayload(varRescueServerPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "image")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,7 +29,8 @@ type TunnelConfigurationPhase2 struct {
 	// Time to schedule a Child SA re-keying (in seconds).
 	RekeyTime *int32 `json:"rekeyTime,omitempty"`
 	// Action to perform after loading the connection configuration. \"none\": The connection will be loaded but needs to be manually initiated. \"start\": initiates the connection actively.
-	StartAction *string `json:"startAction,omitempty"`
+	StartAction          *string `json:"startAction,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TunnelConfigurationPhase2 TunnelConfigurationPhase2
@@ -266,6 +266,11 @@ func (o TunnelConfigurationPhase2) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StartAction) {
 		toSerialize["startAction"] = o.StartAction
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -294,15 +299,25 @@ func (o *TunnelConfigurationPhase2) UnmarshalJSON(data []byte) (err error) {
 
 	varTunnelConfigurationPhase2 := _TunnelConfigurationPhase2{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTunnelConfigurationPhase2)
+	err = json.Unmarshal(data, &varTunnelConfigurationPhase2)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TunnelConfigurationPhase2(varTunnelConfigurationPhase2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dhGroups")
+		delete(additionalProperties, "encryptionAlgorithms")
+		delete(additionalProperties, "integrityAlgorithms")
+		delete(additionalProperties, "dpdAction")
+		delete(additionalProperties, "rekeyTime")
+		delete(additionalProperties, "startAction")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,12 +20,15 @@ var _ MappedNullable = &ErrorResponse{}
 
 // ErrorResponse struct for ErrorResponse
 type ErrorResponse struct {
-	Error     *string    `json:"error,omitempty"`
-	Message   *string    `json:"message,omitempty"`
-	Path      *string    `json:"path,omitempty"`
-	Status    *int32     `json:"status,omitempty"`
-	Timestamp *time.Time `json:"timestamp,omitempty"`
+	Error                *string    `json:"error,omitempty"`
+	Message              *string    `json:"message,omitempty"`
+	Path                 *string    `json:"path,omitempty"`
+	Status               *int32     `json:"status,omitempty"`
+	Timestamp            *time.Time `json:"timestamp,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ErrorResponse ErrorResponse
 
 // NewErrorResponse instantiates a new ErrorResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Timestamp) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
+	varErrorResponse := _ErrorResponse{}
+
+	err = json.Unmarshal(data, &varErrorResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ErrorResponse(varErrorResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableErrorResponse struct {

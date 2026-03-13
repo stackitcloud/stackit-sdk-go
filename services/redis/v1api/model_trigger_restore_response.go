@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &TriggerRestoreResponse{}
 
 // TriggerRestoreResponse struct for TriggerRestoreResponse
 type TriggerRestoreResponse struct {
-	Id int32 `json:"id"`
+	Id                   int32 `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TriggerRestoreResponse TriggerRestoreResponse
@@ -79,6 +79,11 @@ func (o TriggerRestoreResponse) MarshalJSON() ([]byte, error) {
 func (o TriggerRestoreResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *TriggerRestoreResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varTriggerRestoreResponse := _TriggerRestoreResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTriggerRestoreResponse)
+	err = json.Unmarshal(data, &varTriggerRestoreResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TriggerRestoreResponse(varTriggerRestoreResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

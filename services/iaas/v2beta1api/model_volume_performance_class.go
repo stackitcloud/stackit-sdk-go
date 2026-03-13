@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type VolumePerformanceClass struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
 	// Throughput in Megabyte per second.
-	Throughput *int64 `json:"throughput,omitempty"`
+	Throughput           *int64 `json:"throughput,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VolumePerformanceClass VolumePerformanceClass
@@ -229,6 +229,11 @@ func (o VolumePerformanceClass) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Throughput) {
 		toSerialize["throughput"] = o.Throughput
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -256,15 +261,24 @@ func (o *VolumePerformanceClass) UnmarshalJSON(data []byte) (err error) {
 
 	varVolumePerformanceClass := _VolumePerformanceClass{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVolumePerformanceClass)
+	err = json.Unmarshal(data, &varVolumePerformanceClass)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VolumePerformanceClass(varVolumePerformanceClass)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "iops")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "throughput")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &SecurityGroupRuleListResponse{}
 // SecurityGroupRuleListResponse Security group rule list response.
 type SecurityGroupRuleListResponse struct {
 	// A list containing security group rule objects.
-	Items []SecurityGroupRule `json:"items"`
+	Items                []SecurityGroupRule `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SecurityGroupRuleListResponse SecurityGroupRuleListResponse
@@ -81,6 +81,11 @@ func (o SecurityGroupRuleListResponse) MarshalJSON() ([]byte, error) {
 func (o SecurityGroupRuleListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *SecurityGroupRuleListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varSecurityGroupRuleListResponse := _SecurityGroupRuleListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSecurityGroupRuleListResponse)
+	err = json.Unmarshal(data, &varSecurityGroupRuleListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SecurityGroupRuleListResponse(varSecurityGroupRuleListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,14 +20,17 @@ var _ MappedNullable = &InhibitRules{}
 
 // InhibitRules struct for InhibitRules
 type InhibitRules struct {
-	Equal          []string           `json:"equal,omitempty"`
-	SourceMatch    *map[string]string `json:"sourceMatch,omitempty"`
-	SourceMatchRe  *map[string]string `json:"sourceMatchRe,omitempty"`
-	SourceMatchers []string           `json:"sourceMatchers,omitempty"`
-	TargetMatch    *map[string]string `json:"targetMatch,omitempty"`
-	TargetMatchRe  *map[string]string `json:"targetMatchRe,omitempty"`
-	TargetMatchers []string           `json:"targetMatchers,omitempty"`
+	Equal                []string           `json:"equal,omitempty"`
+	SourceMatch          *map[string]string `json:"sourceMatch,omitempty"`
+	SourceMatchRe        *map[string]string `json:"sourceMatchRe,omitempty"`
+	SourceMatchers       []string           `json:"sourceMatchers,omitempty"`
+	TargetMatch          *map[string]string `json:"targetMatch,omitempty"`
+	TargetMatchRe        *map[string]string `json:"targetMatchRe,omitempty"`
+	TargetMatchers       []string           `json:"targetMatchers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InhibitRules InhibitRules
 
 // NewInhibitRules instantiates a new InhibitRules object
 // This constructor will assign default values to properties that have it defined,
@@ -301,7 +304,39 @@ func (o InhibitRules) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TargetMatchers) {
 		toSerialize["targetMatchers"] = o.TargetMatchers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InhibitRules) UnmarshalJSON(data []byte) (err error) {
+	varInhibitRules := _InhibitRules{}
+
+	err = json.Unmarshal(data, &varInhibitRules)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InhibitRules(varInhibitRules)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "equal")
+		delete(additionalProperties, "sourceMatch")
+		delete(additionalProperties, "sourceMatchRe")
+		delete(additionalProperties, "sourceMatchers")
+		delete(additionalProperties, "targetMatch")
+		delete(additionalProperties, "targetMatchRe")
+		delete(additionalProperties, "targetMatchers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInhibitRules struct {

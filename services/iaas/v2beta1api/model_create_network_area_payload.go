@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &CreateNetworkAreaPayload{}
 // CreateNetworkAreaPayload Object that represents the network area create request.
 type CreateNetworkAreaPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
-	Labels map[string]interface{} `json:"labels,omitempty"`
-	Name   string                 `json:"name"`
+	Labels               map[string]interface{} `json:"labels,omitempty"`
+	Name                 string                 `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateNetworkAreaPayload CreateNetworkAreaPayload
@@ -117,6 +117,11 @@ func (o CreateNetworkAreaPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *CreateNetworkAreaPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateNetworkAreaPayload := _CreateNetworkAreaPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateNetworkAreaPayload)
+	err = json.Unmarshal(data, &varCreateNetworkAreaPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateNetworkAreaPayload(varCreateNetworkAreaPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

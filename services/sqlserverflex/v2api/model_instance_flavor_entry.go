@@ -20,12 +20,15 @@ var _ MappedNullable = &InstanceFlavorEntry{}
 
 // InstanceFlavorEntry struct for InstanceFlavorEntry
 type InstanceFlavorEntry struct {
-	Categories  *string `json:"categories,omitempty"`
-	Cpu         *int32  `json:"cpu,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id          *string `json:"id,omitempty"`
-	Memory      *int32  `json:"memory,omitempty"`
+	Categories           *string `json:"categories,omitempty"`
+	Cpu                  *int32  `json:"cpu,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Memory               *int32  `json:"memory,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceFlavorEntry InstanceFlavorEntry
 
 // NewInstanceFlavorEntry instantiates a new InstanceFlavorEntry object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o InstanceFlavorEntry) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Memory) {
 		toSerialize["memory"] = o.Memory
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceFlavorEntry) UnmarshalJSON(data []byte) (err error) {
+	varInstanceFlavorEntry := _InstanceFlavorEntry{}
+
+	err = json.Unmarshal(data, &varInstanceFlavorEntry)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceFlavorEntry(varInstanceFlavorEntry)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "categories")
+		delete(additionalProperties, "cpu")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "memory")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceFlavorEntry struct {

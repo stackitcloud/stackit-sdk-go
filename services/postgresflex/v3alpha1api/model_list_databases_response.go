@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &ListDatabasesResponse{}
 // ListDatabasesResponse struct for ListDatabasesResponse
 type ListDatabasesResponse struct {
 	// A list containing all databases for the instance.
-	Databases  []ListDatabase `json:"databases"`
-	Pagination Pagination     `json:"pagination"`
+	Databases            []ListDatabase `json:"databases"`
+	Pagination           Pagination     `json:"pagination"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListDatabasesResponse ListDatabasesResponse
@@ -108,6 +108,11 @@ func (o ListDatabasesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["databases"] = o.Databases
 	toSerialize["pagination"] = o.Pagination
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ListDatabasesResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListDatabasesResponse := _ListDatabasesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListDatabasesResponse)
+	err = json.Unmarshal(data, &varListDatabasesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListDatabasesResponse(varListDatabasesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "databases")
+		delete(additionalProperties, "pagination")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

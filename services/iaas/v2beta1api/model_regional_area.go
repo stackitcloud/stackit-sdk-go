@@ -22,8 +22,11 @@ var _ MappedNullable = &RegionalArea{}
 type RegionalArea struct {
 	Ipv4 *RegionalAreaIPv4 `json:"ipv4,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
-	Status *string `json:"status,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RegionalArea RegionalArea
 
 // NewRegionalArea instantiates a new RegionalArea object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o RegionalArea) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RegionalArea) UnmarshalJSON(data []byte) (err error) {
+	varRegionalArea := _RegionalArea{}
+
+	err = json.Unmarshal(data, &varRegionalArea)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RegionalArea(varRegionalArea)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRegionalArea struct {

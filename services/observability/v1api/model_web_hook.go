@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &WebHook{}
 
 // WebHook struct for WebHook
 type WebHook struct {
-	GoogleChat   *bool  `json:"googleChat,omitempty"`
-	MsTeams      *bool  `json:"msTeams,omitempty"`
-	SendResolved *bool  `json:"sendResolved,omitempty"`
-	Url          string `json:"url"`
+	GoogleChat           *bool  `json:"googleChat,omitempty"`
+	MsTeams              *bool  `json:"msTeams,omitempty"`
+	SendResolved         *bool  `json:"sendResolved,omitempty"`
+	Url                  string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WebHook WebHook
@@ -200,6 +200,11 @@ func (o WebHook) ToMap() (map[string]interface{}, error) {
 		toSerialize["sendResolved"] = o.SendResolved
 	}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -227,15 +232,23 @@ func (o *WebHook) UnmarshalJSON(data []byte) (err error) {
 
 	varWebHook := _WebHook{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWebHook)
+	err = json.Unmarshal(data, &varWebHook)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WebHook(varWebHook)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "googleChat")
+		delete(additionalProperties, "msTeams")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

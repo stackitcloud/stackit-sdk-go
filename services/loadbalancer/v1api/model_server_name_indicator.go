@@ -20,8 +20,11 @@ var _ MappedNullable = &ServerNameIndicator{}
 // ServerNameIndicator struct for ServerNameIndicator
 type ServerNameIndicator struct {
 	// The domain name for this SNI config.
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServerNameIndicator ServerNameIndicator
 
 // NewServerNameIndicator instantiates a new ServerNameIndicator object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ServerNameIndicator) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ServerNameIndicator) UnmarshalJSON(data []byte) (err error) {
+	varServerNameIndicator := _ServerNameIndicator{}
+
+	err = json.Unmarshal(data, &varServerNameIndicator)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ServerNameIndicator(varServerNameIndicator)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableServerNameIndicator struct {

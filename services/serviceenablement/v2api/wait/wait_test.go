@@ -100,7 +100,7 @@ func TestEnableServiceWaitHandler(t *testing.T) {
 
 			handler := EnableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(10 * time.Millisecond).WaitWithContext(ctx)
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).WaitWithContext(ctx)
 
 			if err != nil {
 				if !tt.wantErr {
@@ -182,7 +182,7 @@ func TestDisableServiceWaitHandler(t *testing.T) {
 
 			handler := DisableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(10 * time.Millisecond).WaitWithContext(ctx)
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).WaitWithContext(ctx)
 
 			if err != nil {
 				if !tt.wantErr {

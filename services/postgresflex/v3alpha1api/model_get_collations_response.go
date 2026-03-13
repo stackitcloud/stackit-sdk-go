@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &GetCollationsResponse{}
 // GetCollationsResponse struct for GetCollationsResponse
 type GetCollationsResponse struct {
 	// List of collations available for the instance.
-	Collations []string `json:"collations"`
+	Collations           []string `json:"collations"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetCollationsResponse GetCollationsResponse
@@ -81,6 +81,11 @@ func (o GetCollationsResponse) MarshalJSON() ([]byte, error) {
 func (o GetCollationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["collations"] = o.Collations
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *GetCollationsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetCollationsResponse := _GetCollationsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetCollationsResponse)
+	err = json.Unmarshal(data, &varGetCollationsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetCollationsResponse(varGetCollationsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "collations")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

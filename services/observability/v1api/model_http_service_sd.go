@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &HTTPServiceSD{}
 
 // HTTPServiceSD struct for HTTPServiceSD
 type HTTPServiceSD struct {
-	BasicAuth       *BasicAuth `json:"basicAuth,omitempty"`
-	Oauth2          *OAuth2    `json:"oauth2,omitempty"`
-	RefreshInterval *string    `json:"refreshInterval,omitempty"`
-	TlsConfig       *TLSConfig `json:"tlsConfig,omitempty"`
-	Url             string     `json:"url"`
+	BasicAuth            *BasicAuth `json:"basicAuth,omitempty"`
+	Oauth2               *OAuth2    `json:"oauth2,omitempty"`
+	RefreshInterval      *string    `json:"refreshInterval,omitempty"`
+	TlsConfig            *TLSConfig `json:"tlsConfig,omitempty"`
+	Url                  string     `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HTTPServiceSD HTTPServiceSD
@@ -228,6 +228,11 @@ func (o HTTPServiceSD) ToMap() (map[string]interface{}, error) {
 		toSerialize["tlsConfig"] = o.TlsConfig
 	}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -255,15 +260,24 @@ func (o *HTTPServiceSD) UnmarshalJSON(data []byte) (err error) {
 
 	varHTTPServiceSD := _HTTPServiceSD{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHTTPServiceSD)
+	err = json.Unmarshal(data, &varHTTPServiceSD)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HTTPServiceSD(varHTTPServiceSD)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "basicAuth")
+		delete(additionalProperties, "oauth2")
+		delete(additionalProperties, "refreshInterval")
+		delete(additionalProperties, "tlsConfig")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

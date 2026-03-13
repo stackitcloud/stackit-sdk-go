@@ -74,7 +74,14 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 	defer cancel()
 
 	// Wait some seconds for the API to process the request
-	time.Sleep(h.sleepBeforeWait)
+	if h.sleepBeforeWait > 0 {
+		select {
+		case <-ctx.Done():
+			return nil, fmt.Errorf("context canceled during initial sleep: %w", ctx.Err())
+		case <-time.After(h.sleepBeforeWait):
+			// continue within the WaitForContext() function
+		}
+	}
 
 	ticker := time.NewTicker(h.throttle)
 	defer ticker.Stop()

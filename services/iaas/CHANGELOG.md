@@ -1,3 +1,10 @@
+## v1.6.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
+## v1.5.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+
 ## v1.5.0
 - `v1api`:
   - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct

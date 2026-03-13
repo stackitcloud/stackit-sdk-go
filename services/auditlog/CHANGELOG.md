@@ -1,3 +1,10 @@
+## v0.3.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+
+## v0.3.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v0.2.0
 - **Feature:** Introduction of multi API version support for the auditlog SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v2api`: New package which should be used for communication with the STACKIT auditlog API in the future

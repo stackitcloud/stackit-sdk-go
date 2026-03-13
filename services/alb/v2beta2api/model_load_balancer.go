@@ -48,8 +48,11 @@ type LoadBalancer struct {
 	// Security Group that allows the targets to receive traffic from the LoadBalancer. Useful when disableTargetSecurityGroupAssignment=true to manually assign target security groups to targets.
 	TargetSecurityGroup *SecurityGroup `json:"targetSecurityGroup,omitempty"`
 	// Application Load Balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this application load balancer resource that changes during updates of the load balancers. On updates this field specified the application load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a application load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of application load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.
-	Version *string `json:"version,omitempty"`
+	Version              *string `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoadBalancer LoadBalancer
 
 // NewLoadBalancer instantiates a new LoadBalancer object
 // This constructor will assign default values to properties that have it defined,
@@ -638,7 +641,48 @@ func (o LoadBalancer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoadBalancer) UnmarshalJSON(data []byte) (err error) {
+	varLoadBalancer := _LoadBalancer{}
+
+	err = json.Unmarshal(data, &varLoadBalancer)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoadBalancer(varLoadBalancer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "disableTargetSecurityGroupAssignment")
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "externalAddress")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "listeners")
+		delete(additionalProperties, "loadBalancerSecurityGroup")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "networks")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "privateAddress")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "targetPools")
+		delete(additionalProperties, "targetSecurityGroup")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoadBalancer struct {

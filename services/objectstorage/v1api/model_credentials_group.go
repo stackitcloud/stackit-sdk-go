@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type CredentialsGroup struct {
 	// Name of the group holding credentials
 	DisplayName string `json:"displayName"`
 	// Credentials group URN
-	Urn string `json:"urn"`
+	Urn                  string `json:"urn"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CredentialsGroup CredentialsGroup
@@ -136,6 +136,11 @@ func (o CredentialsGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["credentialsGroupId"] = o.CredentialsGroupId
 	toSerialize["displayName"] = o.DisplayName
 	toSerialize["urn"] = o.Urn
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *CredentialsGroup) UnmarshalJSON(data []byte) (err error) {
 
 	varCredentialsGroup := _CredentialsGroup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentialsGroup)
+	err = json.Unmarshal(data, &varCredentialsGroup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CredentialsGroup(varCredentialsGroup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentialsGroupId")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "urn")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

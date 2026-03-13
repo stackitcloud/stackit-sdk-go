@@ -46,8 +46,11 @@ type ResourcePool struct {
 	// Space information
 	Space *ResourcePoolSpace `json:"space,omitempty"`
 	// State of the Resource Pool   (possible values: [\"pending\", \"creating\", \"created\", \"updating\", \"error\", \"deleting\"])
-	State *string `json:"state,omitempty"`
+	State                *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ResourcePool ResourcePool
 
 // NewResourcePool instantiates a new ResourcePool object
 // This constructor will assign default values to properties that have it defined,
@@ -601,7 +604,47 @@ func (o ResourcePool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ResourcePool) UnmarshalJSON(data []byte) (err error) {
+	varResourcePool := _ResourcePool{}
+
+	err = json.Unmarshal(data, &varResourcePool)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResourcePool(varResourcePool)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "availabilityZone")
+		delete(additionalProperties, "countShares")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ipAcl")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "mountPath")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "performanceClass")
+		delete(additionalProperties, "performanceClassDowngradableAt")
+		delete(additionalProperties, "sizeReducibleAt")
+		delete(additionalProperties, "snapshotSchedule")
+		delete(additionalProperties, "snapshotsAreVisible")
+		delete(additionalProperties, "space")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableResourcePool struct {

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreatePostgresqlCheckPayload{}
 // CreatePostgresqlCheckPayload Postgresql check body.
 type CreatePostgresqlCheckPayload struct {
 	// url to check
-	Address string `json:"address"`
+	Address              string `json:"address"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreatePostgresqlCheckPayload CreatePostgresqlCheckPayload
@@ -81,6 +81,11 @@ func (o CreatePostgresqlCheckPayload) MarshalJSON() ([]byte, error) {
 func (o CreatePostgresqlCheckPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreatePostgresqlCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreatePostgresqlCheckPayload := _CreatePostgresqlCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreatePostgresqlCheckPayload)
+	err = json.Unmarshal(data, &varCreatePostgresqlCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreatePostgresqlCheckPayload(varCreatePostgresqlCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

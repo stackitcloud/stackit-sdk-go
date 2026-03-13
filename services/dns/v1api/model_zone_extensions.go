@@ -21,7 +21,10 @@ var _ MappedNullable = &ZoneExtensions{}
 // ZoneExtensions struct for ZoneExtensions
 type ZoneExtensions struct {
 	ObservabilityExtension *ZoneObservabilityExtension `json:"observabilityExtension,omitempty"`
+	AdditionalProperties   map[string]interface{}
 }
+
+type _ZoneExtensions ZoneExtensions
 
 // NewZoneExtensions instantiates a new ZoneExtensions object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ZoneExtensions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ObservabilityExtension) {
 		toSerialize["observabilityExtension"] = o.ObservabilityExtension
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ZoneExtensions) UnmarshalJSON(data []byte) (err error) {
+	varZoneExtensions := _ZoneExtensions{}
+
+	err = json.Unmarshal(data, &varZoneExtensions)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ZoneExtensions(varZoneExtensions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "observabilityExtension")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableZoneExtensions struct {

@@ -22,9 +22,12 @@ type HttpHealthChecks struct {
 	// List of HTTP status codes that indicate a healthy response
 	OkStatuses []string `json:"okStatuses,omitempty"`
 	// Path to send the health check request to
-	Path *string    `json:"path,omitempty"`
-	Tls  *TlsConfig `json:"tls,omitempty"`
+	Path                 *string    `json:"path,omitempty"`
+	Tls                  *TlsConfig `json:"tls,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HttpHealthChecks HttpHealthChecks
 
 // NewHttpHealthChecks instantiates a new HttpHealthChecks object
 // This constructor will assign default values to properties that have it defined,
@@ -158,7 +161,35 @@ func (o HttpHealthChecks) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tls) {
 		toSerialize["tls"] = o.Tls
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HttpHealthChecks) UnmarshalJSON(data []byte) (err error) {
+	varHttpHealthChecks := _HttpHealthChecks{}
+
+	err = json.Unmarshal(data, &varHttpHealthChecks)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HttpHealthChecks(varHttpHealthChecks)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "okStatuses")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "tls")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHttpHealthChecks struct {

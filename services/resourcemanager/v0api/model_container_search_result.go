@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type ContainerSearchResult struct {
 	// Resource container name.
 	Name string `json:"name"`
 	// Id of the organization the container is in.
-	OrganizationId *string `json:"organizationId,omitempty"`
+	OrganizationId       *string `json:"organizationId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ContainerSearchResult ContainerSearchResult
@@ -237,6 +237,11 @@ func (o ContainerSearchResult) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OrganizationId) {
 		toSerialize["organizationId"] = o.OrganizationId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -267,15 +272,25 @@ func (o *ContainerSearchResult) UnmarshalJSON(data []byte) (err error) {
 
 	varContainerSearchResult := _ContainerSearchResult{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varContainerSearchResult)
+	err = json.Unmarshal(data, &varContainerSearchResult)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ContainerSearchResult(varContainerSearchResult)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "containerType")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "lifecycleState")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organizationId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

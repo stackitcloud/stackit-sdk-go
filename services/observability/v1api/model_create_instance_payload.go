@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type CreateInstancePayload struct {
 	// Additional parameters
 	Parameter map[string]interface{} `json:"parameter,omitempty"`
 	// UUID of the plan to create/update
-	PlanId string `json:"planId"`
+	PlanId               string `json:"planId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstancePayload CreateInstancePayload
@@ -196,6 +196,11 @@ func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["parameter"] = o.Parameter
 	}
 	toSerialize["planId"] = o.PlanId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -223,15 +228,23 @@ func (o *CreateInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstancePayload := _CreateInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstancePayload)
+	err = json.Unmarshal(data, &varCreateInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstancePayload(varCreateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "grafanaAdminEnabled")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "parameter")
+		delete(additionalProperties, "planId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

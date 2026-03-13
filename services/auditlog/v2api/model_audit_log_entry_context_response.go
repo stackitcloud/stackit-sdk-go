@@ -24,8 +24,11 @@ type AuditLogEntryContextResponse struct {
 	// Organization id
 	OrganizationId *string `json:"organizationId,omitempty"`
 	// Project id
-	ProjectId *string `json:"projectId,omitempty"`
+	ProjectId            *string `json:"projectId,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuditLogEntryContextResponse AuditLogEntryContextResponse
 
 // NewAuditLogEntryContextResponse instantiates a new AuditLogEntryContextResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o AuditLogEntryContextResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AuditLogEntryContextResponse) UnmarshalJSON(data []byte) (err error) {
+	varAuditLogEntryContextResponse := _AuditLogEntryContextResponse{}
+
+	err = json.Unmarshal(data, &varAuditLogEntryContextResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AuditLogEntryContextResponse(varAuditLogEntryContextResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "folderId")
+		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "projectId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAuditLogEntryContextResponse struct {

@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -21,7 +21,9 @@ var _ MappedNullable = &GetCustomDomainCustomCertificate{}
 
 // GetCustomDomainCustomCertificate Returned if a custom certificate is used. Response does not contain the certificate or key.
 type GetCustomDomainCustomCertificate struct {
-	Type string `json:"type"`
+	// Returns if the CNAME Check has been disabled for this Custom Domain. This is usually set for migrations to allow for no downtime.
+	SkipDnsCheck bool   `json:"skipDnsCheck"`
+	Type         string `json:"type"`
 	// Whenever a new custom certificate is added the version is increased by 1.
 	Version int32 `json:"version"`
 }
@@ -32,8 +34,9 @@ type _GetCustomDomainCustomCertificate GetCustomDomainCustomCertificate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetCustomDomainCustomCertificate(types string, version int32) *GetCustomDomainCustomCertificate {
+func NewGetCustomDomainCustomCertificate(skipDnsCheck bool, types string, version int32) *GetCustomDomainCustomCertificate {
 	this := GetCustomDomainCustomCertificate{}
+	this.SkipDnsCheck = skipDnsCheck
 	this.Type = types
 	this.Version = version
 	return &this
@@ -44,7 +47,33 @@ func NewGetCustomDomainCustomCertificate(types string, version int32) *GetCustom
 // but it doesn't guarantee that properties required by API are set
 func NewGetCustomDomainCustomCertificateWithDefaults() *GetCustomDomainCustomCertificate {
 	this := GetCustomDomainCustomCertificate{}
+	var skipDnsCheck bool = false
+	this.SkipDnsCheck = skipDnsCheck
 	return &this
+}
+
+// GetSkipDnsCheck returns the SkipDnsCheck field value
+func (o *GetCustomDomainCustomCertificate) GetSkipDnsCheck() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.SkipDnsCheck
+}
+
+// GetSkipDnsCheckOk returns a tuple with the SkipDnsCheck field value
+// and a boolean to check if the value has been set.
+func (o *GetCustomDomainCustomCertificate) GetSkipDnsCheckOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SkipDnsCheck, true
+}
+
+// SetSkipDnsCheck sets field value
+func (o *GetCustomDomainCustomCertificate) SetSkipDnsCheck(v bool) {
+	o.SkipDnsCheck = v
 }
 
 // GetType returns the Type field value
@@ -105,6 +134,7 @@ func (o GetCustomDomainCustomCertificate) MarshalJSON() ([]byte, error) {
 
 func (o GetCustomDomainCustomCertificate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["skipDnsCheck"] = o.SkipDnsCheck
 	toSerialize["type"] = o.Type
 	toSerialize["version"] = o.Version
 	return toSerialize, nil
@@ -115,6 +145,7 @@ func (o *GetCustomDomainCustomCertificate) UnmarshalJSON(data []byte) (err error
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"skipDnsCheck",
 		"type",
 		"version",
 	}

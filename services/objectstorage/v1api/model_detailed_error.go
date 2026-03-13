@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &DetailedError{}
 
 // DetailedError struct for DetailedError
 type DetailedError struct {
-	Key string `json:"key"`
-	Msg string `json:"msg"`
+	Key                  string `json:"key"`
+	Msg                  string `json:"msg"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DetailedError DetailedError
@@ -106,6 +106,11 @@ func (o DetailedError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["key"] = o.Key
 	toSerialize["msg"] = o.Msg
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *DetailedError) UnmarshalJSON(data []byte) (err error) {
 
 	varDetailedError := _DetailedError{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDetailedError)
+	err = json.Unmarshal(data, &varDetailedError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DetailedError(varDetailedError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "msg")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

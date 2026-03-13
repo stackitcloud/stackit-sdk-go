@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type ClientConfig struct {
 	// Configuration for Java Kafka clients.
 	Java string `json:"java"`
 	// Configuration for Kafka clients using librdkafka
-	Librdkafka string `json:"librdkafka"`
+	Librdkafka           string `json:"librdkafka"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ClientConfig ClientConfig
@@ -108,6 +108,11 @@ func (o ClientConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["java"] = o.Java
 	toSerialize["librdkafka"] = o.Librdkafka
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ClientConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varClientConfig := _ClientConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varClientConfig)
+	err = json.Unmarshal(data, &varClientConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ClientConfig(varClientConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "java")
+		delete(additionalProperties, "librdkafka")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

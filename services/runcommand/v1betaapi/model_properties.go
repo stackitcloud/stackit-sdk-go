@@ -20,13 +20,16 @@ var _ MappedNullable = &Properties{}
 
 // Properties struct for Properties
 type Properties struct {
-	ConfirmPassword *Field   `json:"ConfirmPassword,omitempty"`
-	Password        *Field   `json:"Password,omitempty"`
-	Script          *Field   `json:"Script,omitempty"`
-	Username        *Field   `json:"Username,omitempty"`
-	Required        []string `json:"required,omitempty"`
-	Type            *string  `json:"type,omitempty"`
+	ConfirmPassword      *Field   `json:"ConfirmPassword,omitempty"`
+	Password             *Field   `json:"Password,omitempty"`
+	Script               *Field   `json:"Script,omitempty"`
+	Username             *Field   `json:"Username,omitempty"`
+	Required             []string `json:"required,omitempty"`
+	Type                 *string  `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Properties Properties
 
 // NewProperties instantiates a new Properties object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,38 @@ func (o Properties) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Properties) UnmarshalJSON(data []byte) (err error) {
+	varProperties := _Properties{}
+
+	err = json.Unmarshal(data, &varProperties)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Properties(varProperties)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ConfirmPassword")
+		delete(additionalProperties, "Password")
+		delete(additionalProperties, "Script")
+		delete(additionalProperties, "Username")
+		delete(additionalProperties, "required")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProperties struct {

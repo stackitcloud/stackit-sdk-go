@@ -20,14 +20,17 @@ var _ MappedNullable = &Field{}
 
 // Field struct for Field
 type Field struct {
-	Default     *string `json:"default,omitempty"`
-	Description *string `json:"description,omitempty"`
-	MaxLen      *int32  `json:"maxLen,omitempty"`
-	MinLen      *int32  `json:"minLen,omitempty"`
-	ReadOnly    *bool   `json:"readOnly,omitempty"`
-	Title       *string `json:"title,omitempty"`
-	Type        *string `json:"type,omitempty"`
+	Default              *string `json:"default,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	MaxLen               *int32  `json:"maxLen,omitempty"`
+	MinLen               *int32  `json:"minLen,omitempty"`
+	ReadOnly             *bool   `json:"readOnly,omitempty"`
+	Title                *string `json:"title,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Field Field
 
 // NewField instantiates a new Field object
 // This constructor will assign default values to properties that have it defined,
@@ -301,7 +304,39 @@ func (o Field) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Field) UnmarshalJSON(data []byte) (err error) {
+	varField := _Field{}
+
+	err = json.Unmarshal(data, &varField)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Field(varField)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "maxLen")
+		delete(additionalProperties, "minLen")
+		delete(additionalProperties, "readOnly")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableField struct {

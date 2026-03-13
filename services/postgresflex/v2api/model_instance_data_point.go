@@ -20,9 +20,12 @@ var _ MappedNullable = &InstanceDataPoint{}
 
 // InstanceDataPoint struct for InstanceDataPoint
 type InstanceDataPoint struct {
-	Timestamp *string  `json:"timestamp,omitempty"`
-	Value     *float32 `json:"value,omitempty"`
+	Timestamp            *string  `json:"timestamp,omitempty"`
+	Value                *float32 `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceDataPoint InstanceDataPoint
 
 // NewInstanceDataPoint instantiates a new InstanceDataPoint object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o InstanceDataPoint) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceDataPoint) UnmarshalJSON(data []byte) (err error) {
+	varInstanceDataPoint := _InstanceDataPoint{}
+
+	err = json.Unmarshal(data, &varInstanceDataPoint)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceDataPoint(varInstanceDataPoint)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "timestamp")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceDataPoint struct {

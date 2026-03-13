@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type CreateElasticsearchCheckPayload struct {
 	// url to check
 	Server string `json:"server"`
 	// username
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateElasticsearchCheckPayload CreateElasticsearchCheckPayload
@@ -155,6 +155,11 @@ func (o CreateElasticsearchCheckPayload) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -182,15 +187,22 @@ func (o *CreateElasticsearchCheckPayload) UnmarshalJSON(data []byte) (err error)
 
 	varCreateElasticsearchCheckPayload := _CreateElasticsearchCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateElasticsearchCheckPayload)
+	err = json.Unmarshal(data, &varCreateElasticsearchCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateElasticsearchCheckPayload(varCreateElasticsearchCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "server")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

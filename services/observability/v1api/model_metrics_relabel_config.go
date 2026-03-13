@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,13 +21,14 @@ var _ MappedNullable = &MetricsRelabelConfig{}
 
 // MetricsRelabelConfig struct for MetricsRelabelConfig
 type MetricsRelabelConfig struct {
-	Action       *string  `json:"action,omitempty"`
-	Modulus      *int32   `json:"modulus,omitempty"`
-	Regex        *string  `json:"regex,omitempty"`
-	Replacement  *string  `json:"replacement,omitempty"`
-	Separator    *string  `json:"separator,omitempty"`
-	SourceLabels []string `json:"sourceLabels"`
-	TargetLabel  *string  `json:"targetLabel,omitempty"`
+	Action               *string  `json:"action,omitempty"`
+	Modulus              *int32   `json:"modulus,omitempty"`
+	Regex                *string  `json:"regex,omitempty"`
+	Replacement          *string  `json:"replacement,omitempty"`
+	Separator            *string  `json:"separator,omitempty"`
+	SourceLabels         []string `json:"sourceLabels"`
+	TargetLabel          *string  `json:"targetLabel,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MetricsRelabelConfig MetricsRelabelConfig
@@ -312,6 +312,11 @@ func (o MetricsRelabelConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TargetLabel) {
 		toSerialize["targetLabel"] = o.TargetLabel
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -339,15 +344,26 @@ func (o *MetricsRelabelConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varMetricsRelabelConfig := _MetricsRelabelConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMetricsRelabelConfig)
+	err = json.Unmarshal(data, &varMetricsRelabelConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MetricsRelabelConfig(varMetricsRelabelConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "modulus")
+		delete(additionalProperties, "regex")
+		delete(additionalProperties, "replacement")
+		delete(additionalProperties, "separator")
+		delete(additionalProperties, "sourceLabels")
+		delete(additionalProperties, "targetLabel")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

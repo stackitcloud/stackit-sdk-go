@@ -21,8 +21,11 @@ var _ MappedNullable = &CreateCredentialsPayload{}
 // CreateCredentialsPayload Create new credentials with (optional) description
 type CreateCredentialsPayload struct {
 	// description
-	Description *string `json:"description,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateCredentialsPayload CreateCredentialsPayload
 
 // NewCreateCredentialsPayload instantiates a new CreateCredentialsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o CreateCredentialsPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateCredentialsPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateCredentialsPayload := _CreateCredentialsPayload{}
+
+	err = json.Unmarshal(data, &varCreateCredentialsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateCredentialsPayload(varCreateCredentialsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateCredentialsPayload struct {

@@ -23,8 +23,11 @@ type S3fileInfo struct {
 	// The sequence number of the file
 	FileNumber *int32 `json:"file_number,omitempty"`
 	// The path to the file on the S3 bucket
-	FilePath *string `json:"file_path,omitempty"`
+	FilePath             *string `json:"file_path,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _S3fileInfo S3fileInfo
 
 // NewS3fileInfo instantiates a new S3fileInfo object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o S3fileInfo) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FilePath) {
 		toSerialize["file_path"] = o.FilePath
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *S3fileInfo) UnmarshalJSON(data []byte) (err error) {
+	varS3fileInfo := _S3fileInfo{}
+
+	err = json.Unmarshal(data, &varS3fileInfo)
+
+	if err != nil {
+		return err
+	}
+
+	*o = S3fileInfo(varS3fileInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "file_number")
+		delete(additionalProperties, "file_path")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableS3fileInfo struct {

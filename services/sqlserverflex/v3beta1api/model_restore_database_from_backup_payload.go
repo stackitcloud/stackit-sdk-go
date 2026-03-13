@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &RestoreDatabaseFromBackupPayload{}
 // RestoreDatabaseFromBackupPayload Request to restore a database.
 type RestoreDatabaseFromBackupPayload struct {
 	// The name of the database on the instance to be restore.
-	DatabaseName string                                 `json:"database_name"`
-	Source       RestoreDatabaseFromBackupPayloadSource `json:"source"`
+	DatabaseName         string                                 `json:"database_name"`
+	Source               RestoreDatabaseFromBackupPayloadSource `json:"source"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RestoreDatabaseFromBackupPayload RestoreDatabaseFromBackupPayload
@@ -108,6 +108,11 @@ func (o RestoreDatabaseFromBackupPayload) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["database_name"] = o.DatabaseName
 	toSerialize["source"] = o.Source
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *RestoreDatabaseFromBackupPayload) UnmarshalJSON(data []byte) (err error
 
 	varRestoreDatabaseFromBackupPayload := _RestoreDatabaseFromBackupPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRestoreDatabaseFromBackupPayload)
+	err = json.Unmarshal(data, &varRestoreDatabaseFromBackupPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RestoreDatabaseFromBackupPayload(varRestoreDatabaseFromBackupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "database_name")
+		delete(additionalProperties, "source")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

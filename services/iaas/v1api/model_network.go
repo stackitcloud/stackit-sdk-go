@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -49,7 +48,8 @@ type Network struct {
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	State string `json:"state"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Network Network
@@ -601,6 +601,11 @@ func (o Network) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -630,15 +635,34 @@ func (o *Network) UnmarshalJSON(data []byte) (err error) {
 
 	varNetwork := _Network{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetwork)
+	err = json.Unmarshal(data, &varNetwork)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Network(varNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "dhcp")
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "gatewayv6")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "nameservers")
+		delete(additionalProperties, "nameserversV6")
+		delete(additionalProperties, "networkId")
+		delete(additionalProperties, "prefixes")
+		delete(additionalProperties, "prefixesV6")
+		delete(additionalProperties, "publicIp")
+		delete(additionalProperties, "routed")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

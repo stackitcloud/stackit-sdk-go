@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &ServerConsoleUrl{}
 
 // ServerConsoleUrl Object that represents a server console URL.
 type ServerConsoleUrl struct {
-	Url string `json:"url"`
+	Url                  string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServerConsoleUrl ServerConsoleUrl
@@ -80,6 +80,11 @@ func (o ServerConsoleUrl) MarshalJSON() ([]byte, error) {
 func (o ServerConsoleUrl) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *ServerConsoleUrl) UnmarshalJSON(data []byte) (err error) {
 
 	varServerConsoleUrl := _ServerConsoleUrl{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServerConsoleUrl)
+	err = json.Unmarshal(data, &varServerConsoleUrl)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServerConsoleUrl(varServerConsoleUrl)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

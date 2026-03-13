@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &ListBackupResponse{}
 // ListBackupResponse struct for ListBackupResponse
 type ListBackupResponse struct {
 	// The list containing the information about the backups.
-	Backups    []ListBackupsResponse `json:"backups"`
-	Pagination Pagination            `json:"pagination"`
+	Backups              []ListBackupsResponse `json:"backups"`
+	Pagination           Pagination            `json:"pagination"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListBackupResponse ListBackupResponse
@@ -108,6 +108,11 @@ func (o ListBackupResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["backups"] = o.Backups
 	toSerialize["pagination"] = o.Pagination
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ListBackupResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListBackupResponse := _ListBackupResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListBackupResponse)
+	err = json.Unmarshal(data, &varListBackupResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListBackupResponse(varListBackupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backups")
+		delete(additionalProperties, "pagination")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

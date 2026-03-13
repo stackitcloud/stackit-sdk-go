@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type ListOrganizationsResponse struct {
 	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	Limit float32 `json:"limit"`
 	// The offset of the first item in the collection to return.
-	Offset float32 `json:"offset"`
+	Offset               float32 `json:"offset"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListOrganizationsResponse ListOrganizationsResponse
@@ -139,6 +139,11 @@ func (o ListOrganizationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["items"] = o.Items
 	toSerialize["limit"] = o.Limit
 	toSerialize["offset"] = o.Offset
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -168,15 +173,22 @@ func (o *ListOrganizationsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListOrganizationsResponse := _ListOrganizationsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListOrganizationsResponse)
+	err = json.Unmarshal(data, &varListOrganizationsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListOrganizationsResponse(varListOrganizationsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "limit")
+		delete(additionalProperties, "offset")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

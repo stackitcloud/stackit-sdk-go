@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -59,7 +58,8 @@ type AuditLogEntryResponse struct {
 	// Agent through which the request was made from (e.g. Portal, CLI, SDK, ...)
 	UserAgent string `json:"userAgent"`
 	// PUBLIC for entries that are intended for end users, while PRIVATE entries can only be viewed with system privileges.
-	Visibility string `json:"visibility"`
+	Visibility           string `json:"visibility"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AuditLogEntryResponse AuditLogEntryResponse
@@ -700,6 +700,11 @@ func (o AuditLogEntryResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["sourceIpAddress"] = o.SourceIpAddress
 	toSerialize["userAgent"] = o.UserAgent
 	toSerialize["visibility"] = o.Visibility
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -740,15 +745,40 @@ func (o *AuditLogEntryResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAuditLogEntryResponse := _AuditLogEntryResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAuditLogEntryResponse)
+	err = json.Unmarshal(data, &varAuditLogEntryResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AuditLogEntryResponse(varAuditLogEntryResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "context")
+		delete(additionalProperties, "correlationId")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "eventName")
+		delete(additionalProperties, "eventSource")
+		delete(additionalProperties, "eventTimeStamp")
+		delete(additionalProperties, "eventType")
+		delete(additionalProperties, "eventVersion")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "initiator")
+		delete(additionalProperties, "receivedTimeStamp")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "request")
+		delete(additionalProperties, "resourceId")
+		delete(additionalProperties, "resourceName")
+		delete(additionalProperties, "result")
+		delete(additionalProperties, "serviceAccountDelegationInfo")
+		delete(additionalProperties, "severity")
+		delete(additionalProperties, "sourceIpAddress")
+		delete(additionalProperties, "userAgent")
+		delete(additionalProperties, "visibility")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

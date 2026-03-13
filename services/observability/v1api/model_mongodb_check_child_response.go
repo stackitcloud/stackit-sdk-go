@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &MongodbCheckChildResponse{}
 
 // MongodbCheckChildResponse struct for MongodbCheckChildResponse
 type MongodbCheckChildResponse struct {
-	Id     string `json:"id"`
-	Server string `json:"server"`
+	Id                   string `json:"id"`
+	Server               string `json:"server"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MongodbCheckChildResponse MongodbCheckChildResponse
@@ -107,6 +107,11 @@ func (o MongodbCheckChildResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["server"] = o.Server
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *MongodbCheckChildResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMongodbCheckChildResponse := _MongodbCheckChildResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMongodbCheckChildResponse)
+	err = json.Unmarshal(data, &varMongodbCheckChildResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MongodbCheckChildResponse(varMongodbCheckChildResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "server")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

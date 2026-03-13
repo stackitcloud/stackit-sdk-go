@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &Alert{}
 
 // Alert struct for Alert
 type Alert struct {
-	Global       *Global        `json:"global,omitempty"`
-	InhibitRules []InhibitRules `json:"inhibitRules,omitempty"`
-	Receivers    []Receivers    `json:"receivers"`
-	Route        Route          `json:"route"`
+	Global               *Global        `json:"global,omitempty"`
+	InhibitRules         []InhibitRules `json:"inhibitRules,omitempty"`
+	Receivers            []Receivers    `json:"receivers"`
+	Route                Route          `json:"route"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Alert Alert
@@ -179,6 +179,11 @@ func (o Alert) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["receivers"] = o.Receivers
 	toSerialize["route"] = o.Route
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -207,15 +212,23 @@ func (o *Alert) UnmarshalJSON(data []byte) (err error) {
 
 	varAlert := _Alert{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAlert)
+	err = json.Unmarshal(data, &varAlert)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Alert(varAlert)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "global")
+		delete(additionalProperties, "inhibitRules")
+		delete(additionalProperties, "receivers")
+		delete(additionalProperties, "route")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

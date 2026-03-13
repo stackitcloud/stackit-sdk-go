@@ -31,8 +31,11 @@ type PartialUpdateInstancePayload struct {
 	// Name of the instance
 	Name *string `json:"name,omitempty"`
 	// Version of the MSSQL Server
-	Version *string `json:"version,omitempty"`
+	Version              *string `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateInstancePayload PartialUpdateInstancePayload
 
 // NewPartialUpdateInstancePayload instantiates a new PartialUpdateInstancePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -275,7 +278,38 @@ func (o PartialUpdateInstancePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateInstancePayload := _PartialUpdateInstancePayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateInstancePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateInstancePayload(varPartialUpdateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateInstancePayload struct {

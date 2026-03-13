@@ -26,8 +26,11 @@ type GetCertificateResponse struct {
 	// The PEM encoded public key part
 	PublicKey *string `json:"publicKey,omitempty"`
 	// Region of the LoadBalancer
-	Region *string `json:"region,omitempty"`
+	Region               *string `json:"region,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetCertificateResponse GetCertificateResponse
 
 // NewGetCertificateResponse instantiates a new GetCertificateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,36 @@ func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetCertificateResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetCertificateResponse := _GetCertificateResponse{}
+
+	err = json.Unmarshal(data, &varGetCertificateResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetCertificateResponse(varGetCertificateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "publicKey")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetCertificateResponse struct {

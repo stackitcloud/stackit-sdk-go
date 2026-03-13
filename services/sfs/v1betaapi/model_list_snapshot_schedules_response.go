@@ -20,8 +20,11 @@ var _ MappedNullable = &ListSnapshotSchedulesResponse{}
 // ListSnapshotSchedulesResponse struct for ListSnapshotSchedulesResponse
 type ListSnapshotSchedulesResponse struct {
 	// List of Snapshot Schedules
-	SnapshotSchedules []SnapshotSchedule `json:"snapshotSchedules,omitempty"`
+	SnapshotSchedules    []SnapshotSchedule `json:"snapshotSchedules,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListSnapshotSchedulesResponse ListSnapshotSchedulesResponse
 
 // NewListSnapshotSchedulesResponse instantiates a new ListSnapshotSchedulesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ListSnapshotSchedulesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SnapshotSchedules) {
 		toSerialize["snapshotSchedules"] = o.SnapshotSchedules
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListSnapshotSchedulesResponse) UnmarshalJSON(data []byte) (err error) {
+	varListSnapshotSchedulesResponse := _ListSnapshotSchedulesResponse{}
+
+	err = json.Unmarshal(data, &varListSnapshotSchedulesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListSnapshotSchedulesResponse(varListSnapshotSchedulesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "snapshotSchedules")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListSnapshotSchedulesResponse struct {

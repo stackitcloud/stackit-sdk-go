@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,9 +30,10 @@ type CreateInstanceRequestPayload struct {
 	Name    string                              `json:"name"`
 	Network CreateInstanceRequestPayloadNetwork `json:"network"`
 	// The days for how long the backup files should be stored before cleaned up. 30 to 365
-	RetentionDays int32           `json:"retentionDays"`
-	Storage       StorageCreate   `json:"storage"`
-	Version       InstanceVersion `json:"version"`
+	RetentionDays        int32           `json:"retentionDays"`
+	Storage              StorageCreate   `json:"storage"`
+	Version              InstanceVersion `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstanceRequestPayload CreateInstanceRequestPayload
@@ -282,6 +282,11 @@ func (o CreateInstanceRequestPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["retentionDays"] = o.RetentionDays
 	toSerialize["storage"] = o.Storage
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -315,15 +320,27 @@ func (o *CreateInstanceRequestPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstanceRequestPayload := _CreateInstanceRequestPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstanceRequestPayload)
+	err = json.Unmarshal(data, &varCreateInstanceRequestPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstanceRequestPayload(varCreateInstanceRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "encryption")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "retentionDays")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

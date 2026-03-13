@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type CreateTokenPayload struct {
 	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
 	Name        string  `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
 	// time to live duration. Must be valid duration string. If not set the token will never expire.
-	TtlDuration *string `json:"ttlDuration,omitempty"`
+	TtlDuration          *string `json:"ttlDuration,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateTokenPayload CreateTokenPayload
@@ -153,6 +153,11 @@ func (o CreateTokenPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TtlDuration) {
 		toSerialize["ttlDuration"] = o.TtlDuration
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -180,15 +185,22 @@ func (o *CreateTokenPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateTokenPayload := _CreateTokenPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateTokenPayload)
+	err = json.Unmarshal(data, &varCreateTokenPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateTokenPayload(varCreateTokenPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "ttlDuration")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

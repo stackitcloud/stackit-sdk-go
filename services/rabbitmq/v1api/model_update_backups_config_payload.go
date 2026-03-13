@@ -19,8 +19,11 @@ var _ MappedNullable = &UpdateBackupsConfigPayload{}
 
 // UpdateBackupsConfigPayload struct for UpdateBackupsConfigPayload
 type UpdateBackupsConfigPayload struct {
-	EncryptionKey *string `json:"encryption_key,omitempty"`
+	EncryptionKey        *string `json:"encryption_key,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateBackupsConfigPayload UpdateBackupsConfigPayload
 
 // NewUpdateBackupsConfigPayload instantiates a new UpdateBackupsConfigPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o UpdateBackupsConfigPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EncryptionKey) {
 		toSerialize["encryption_key"] = o.EncryptionKey
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateBackupsConfigPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateBackupsConfigPayload := _UpdateBackupsConfigPayload{}
+
+	err = json.Unmarshal(data, &varUpdateBackupsConfigPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateBackupsConfigPayload(varUpdateBackupsConfigPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "encryption_key")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateBackupsConfigPayload struct {

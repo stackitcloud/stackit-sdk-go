@@ -19,9 +19,12 @@ var _ MappedNullable = &CatalogAuthPatch{}
 
 // CatalogAuthPatch Configures authentication for the Iceberg catalog
 type CatalogAuthPatch struct {
-	Dremio *DremioAuthPatch `json:"dremio,omitempty"`
-	Type   *CatalogAuthType `json:"type,omitempty"`
+	Dremio               *DremioAuthPatch `json:"dremio,omitempty"`
+	Type                 *CatalogAuthType `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CatalogAuthPatch CatalogAuthPatch
 
 // NewCatalogAuthPatch instantiates a new CatalogAuthPatch object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o CatalogAuthPatch) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CatalogAuthPatch) UnmarshalJSON(data []byte) (err error) {
+	varCatalogAuthPatch := _CatalogAuthPatch{}
+
+	err = json.Unmarshal(data, &varCatalogAuthPatch)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CatalogAuthPatch(varCatalogAuthPatch)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dremio")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCatalogAuthPatch struct {

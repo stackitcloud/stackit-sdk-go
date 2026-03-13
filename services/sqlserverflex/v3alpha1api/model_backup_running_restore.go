@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type BackupRunningRestore struct {
 	// the percentage of the current running restore job
 	PercentComplete int32 `json:"percent_complete" validate:"required,min=0,max=100"`
 	// the start time of the current running restore job
-	StartTime string `json:"start_time" validate:"required,time"`
+	StartTime            string `json:"start_time" validate:"required,time"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BackupRunningRestore BackupRunningRestore
@@ -193,6 +193,11 @@ func (o BackupRunningRestore) ToMap() (map[string]interface{}, error) {
 	toSerialize["estimated_completion_time"] = o.EstimatedCompletionTime
 	toSerialize["percent_complete"] = o.PercentComplete
 	toSerialize["start_time"] = o.StartTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *BackupRunningRestore) UnmarshalJSON(data []byte) (err error) {
 
 	varBackupRunningRestore := _BackupRunningRestore{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackupRunningRestore)
+	err = json.Unmarshal(data, &varBackupRunningRestore)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BackupRunningRestore(varBackupRunningRestore)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "command")
+		delete(additionalProperties, "database_name")
+		delete(additionalProperties, "estimated_completion_time")
+		delete(additionalProperties, "percent_complete")
+		delete(additionalProperties, "start_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

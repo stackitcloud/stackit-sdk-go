@@ -23,8 +23,11 @@ type Database struct {
 	Id   *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	// Database specific options
-	Options map[string]interface{} `json:"options,omitempty"`
+	Options              map[string]interface{} `json:"options,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Database Database
 
 // NewDatabase instantiates a new Database object
 // This constructor will assign default values to properties that have it defined,
@@ -158,7 +161,35 @@ func (o Database) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Database) UnmarshalJSON(data []byte) (err error) {
+	varDatabase := _Database{}
+
+	err = json.Unmarshal(data, &varDatabase)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Database(varDatabase)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDatabase struct {

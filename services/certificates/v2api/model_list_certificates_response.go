@@ -21,8 +21,11 @@ var _ MappedNullable = &ListCertificatesResponse{}
 type ListCertificatesResponse struct {
 	Items []GetCertificateResponse `json:"items,omitempty"`
 	// Continue token from the ListCertificatesResponse with Limit option
-	NextPageId *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListCertificatesResponse ListCertificatesResponse
 
 // NewListCertificatesResponse instantiates a new ListCertificatesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ListCertificatesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageId) {
 		toSerialize["nextPageId"] = o.NextPageId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListCertificatesResponse) UnmarshalJSON(data []byte) (err error) {
+	varListCertificatesResponse := _ListCertificatesResponse{}
+
+	err = json.Unmarshal(data, &varListCertificatesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListCertificatesResponse(varListCertificatesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "nextPageId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListCertificatesResponse struct {

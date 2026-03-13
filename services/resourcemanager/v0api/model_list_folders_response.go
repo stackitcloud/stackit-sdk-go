@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type ListFoldersResponse struct {
 	// The maximum number of projects to return in the response. If not present, an appropriate default will be used.
 	Limit float32 `json:"limit"`
 	// The offset of the first item in the collection to return.
-	Offset float32 `json:"offset"`
+	Offset               float32 `json:"offset"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListFoldersResponse ListFoldersResponse
@@ -139,6 +139,11 @@ func (o ListFoldersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["items"] = o.Items
 	toSerialize["limit"] = o.Limit
 	toSerialize["offset"] = o.Offset
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -168,15 +173,22 @@ func (o *ListFoldersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListFoldersResponse := _ListFoldersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListFoldersResponse)
+	err = json.Unmarshal(data, &varListFoldersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListFoldersResponse(varListFoldersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "limit")
+		delete(additionalProperties, "offset")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

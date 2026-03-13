@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &AlertGroup{}
 
 // AlertGroup struct for AlertGroup
 type AlertGroup struct {
-	Interval *string           `json:"interval,omitempty"`
-	Name     string            `json:"name"`
-	Rules    []AlertRuleRecord `json:"rules"`
+	Interval             *string           `json:"interval,omitempty"`
+	Name                 string            `json:"name"`
+	Rules                []AlertRuleRecord `json:"rules"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AlertGroup AlertGroup
@@ -147,6 +147,11 @@ func (o AlertGroup) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["rules"] = o.Rules
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -175,15 +180,22 @@ func (o *AlertGroup) UnmarshalJSON(data []byte) (err error) {
 
 	varAlertGroup := _AlertGroup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAlertGroup)
+	err = json.Unmarshal(data, &varAlertGroup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AlertGroup(varAlertGroup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

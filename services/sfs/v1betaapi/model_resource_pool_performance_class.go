@@ -24,8 +24,11 @@ type ResourcePoolPerformanceClass struct {
 	// Max. IOPS of the Resource Pool. This is shared between every Share in the Resource Pool.
 	PeakIops *int32 `json:"peakIops,omitempty"`
 	// Throughput of the Resource Pool.
-	Throughput *int32 `json:"throughput,omitempty"`
+	Throughput           *int32 `json:"throughput,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ResourcePoolPerformanceClass ResourcePoolPerformanceClass
 
 // NewResourcePoolPerformanceClass instantiates a new ResourcePoolPerformanceClass object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o ResourcePoolPerformanceClass) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Throughput) {
 		toSerialize["throughput"] = o.Throughput
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ResourcePoolPerformanceClass) UnmarshalJSON(data []byte) (err error) {
+	varResourcePoolPerformanceClass := _ResourcePoolPerformanceClass{}
+
+	err = json.Unmarshal(data, &varResourcePoolPerformanceClass)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResourcePoolPerformanceClass(varResourcePoolPerformanceClass)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "peakIops")
+		delete(additionalProperties, "throughput")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableResourcePoolPerformanceClass struct {

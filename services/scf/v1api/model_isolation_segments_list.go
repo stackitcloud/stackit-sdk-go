@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &IsolationSegmentsList{}
 
 // IsolationSegmentsList struct for IsolationSegmentsList
 type IsolationSegmentsList struct {
-	Pagination Pagination         `json:"pagination"`
-	Resources  []IsolationSegment `json:"resources"`
+	Pagination           Pagination         `json:"pagination"`
+	Resources            []IsolationSegment `json:"resources"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IsolationSegmentsList IsolationSegmentsList
@@ -107,6 +107,11 @@ func (o IsolationSegmentsList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["pagination"] = o.Pagination
 	toSerialize["resources"] = o.Resources
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *IsolationSegmentsList) UnmarshalJSON(data []byte) (err error) {
 
 	varIsolationSegmentsList := _IsolationSegmentsList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIsolationSegmentsList)
+	err = json.Unmarshal(data, &varIsolationSegmentsList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IsolationSegmentsList(varIsolationSegmentsList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pagination")
+		delete(additionalProperties, "resources")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

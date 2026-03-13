@@ -12,7 +12,6 @@ Contact: support@stackit.de
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ var _ MappedNullable = &CreateUpdatePayload{}
 type CreateUpdatePayload struct {
 	BackupBeforeUpdate *bool `json:"backupBeforeUpdate,omitempty"`
 	// Updates start within the defined hourly window. Depending on the updates, the process may exceed this timeframe and require an automatic restart.
-	MaintenanceWindow int32 `json:"maintenanceWindow"`
+	MaintenanceWindow    int32 `json:"maintenanceWindow"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateUpdatePayload CreateUpdatePayload
@@ -117,6 +117,11 @@ func (o CreateUpdatePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["backupBeforeUpdate"] = o.BackupBeforeUpdate
 	}
 	toSerialize["maintenanceWindow"] = o.MaintenanceWindow
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *CreateUpdatePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateUpdatePayload := _CreateUpdatePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateUpdatePayload)
+	err = json.Unmarshal(data, &varCreateUpdatePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateUpdatePayload(varCreateUpdatePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupBeforeUpdate")
+		delete(additionalProperties, "maintenanceWindow")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

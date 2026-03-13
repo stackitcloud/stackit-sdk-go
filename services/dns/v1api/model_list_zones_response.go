@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &ListZonesResponse{}
 
 // ListZonesResponse ResponseZoneAll for filtered zones.
 type ListZonesResponse struct {
-	ItemsPerPage int32   `json:"itemsPerPage"`
-	Message      *string `json:"message,omitempty"`
-	TotalItems   int32   `json:"totalItems"`
-	TotalPages   int32   `json:"totalPages"`
-	Zones        []Zone  `json:"zones"`
+	ItemsPerPage         int32   `json:"itemsPerPage"`
+	Message              *string `json:"message,omitempty"`
+	TotalItems           int32   `json:"totalItems"`
+	TotalPages           int32   `json:"totalPages"`
+	Zones                []Zone  `json:"zones"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListZonesResponse ListZonesResponse
@@ -197,6 +197,11 @@ func (o ListZonesResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["totalItems"] = o.TotalItems
 	toSerialize["totalPages"] = o.TotalPages
 	toSerialize["zones"] = o.Zones
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -227,15 +232,24 @@ func (o *ListZonesResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListZonesResponse := _ListZonesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListZonesResponse)
+	err = json.Unmarshal(data, &varListZonesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListZonesResponse(varListZonesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "itemsPerPage")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "totalItems")
+		delete(additionalProperties, "totalPages")
+		delete(additionalProperties, "zones")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -24,9 +24,12 @@ type GatewayStatusResponse struct {
 	DisplayName   *string        `json:"displayName,omitempty"`
 	GatewayStatus *GatewayStatus `json:"gatewayStatus,omitempty"`
 	// UUID of the Gateway instance.
-	Id      *string      `json:"id,omitempty"`
-	Tunnels []VPNTunnels `json:"tunnels,omitempty"`
+	Id                   *string      `json:"id,omitempty"`
+	Tunnels              []VPNTunnels `json:"tunnels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GatewayStatusResponse GatewayStatusResponse
 
 // NewGatewayStatusResponse instantiates a new GatewayStatusResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -230,7 +233,37 @@ func (o GatewayStatusResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Tunnels) {
 		toSerialize["tunnels"] = o.Tunnels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GatewayStatusResponse) UnmarshalJSON(data []byte) (err error) {
+	varGatewayStatusResponse := _GatewayStatusResponse{}
+
+	err = json.Unmarshal(data, &varGatewayStatusResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GatewayStatusResponse(varGatewayStatusResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "connections")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "gatewayStatus")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "tunnels")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGatewayStatusResponse struct {

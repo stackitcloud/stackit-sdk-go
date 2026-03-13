@@ -19,10 +19,13 @@ var _ MappedNullable = &ParametersGeneral{}
 
 // ParametersGeneral struct for ParametersGeneral
 type ParametersGeneral struct {
-	OrganizationId *string `json:"organizationId,omitempty"`
-	ProjectName    *string `json:"projectName,omitempty"`
-	ProjectScope   *string `json:"projectScope,omitempty"`
+	OrganizationId       *string `json:"organizationId,omitempty"`
+	ProjectName          *string `json:"projectName,omitempty"`
+	ProjectScope         *string `json:"projectScope,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ParametersGeneral ParametersGeneral
 
 // NewParametersGeneral instantiates a new ParametersGeneral object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o ParametersGeneral) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProjectScope) {
 		toSerialize["projectScope"] = o.ProjectScope
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ParametersGeneral) UnmarshalJSON(data []byte) (err error) {
+	varParametersGeneral := _ParametersGeneral{}
+
+	err = json.Unmarshal(data, &varParametersGeneral)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ParametersGeneral(varParametersGeneral)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "projectName")
+		delete(additionalProperties, "projectScope")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableParametersGeneral struct {

@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,11 +20,12 @@ var _ MappedNullable = &Plan{}
 
 // Plan struct for Plan
 type Plan struct {
-	Description string `json:"description"`
-	Free        bool   `json:"free"`
-	Id          string `json:"id"`
-	Name        string `json:"name"`
-	SkuName     string `json:"skuName"`
+	Description          string `json:"description"`
+	Free                 bool   `json:"free"`
+	Id                   string `json:"id"`
+	Name                 string `json:"name"`
+	SkuName              string `json:"skuName"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Plan Plan
@@ -187,6 +187,11 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["skuName"] = o.SkuName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,24 @@ func (o *Plan) UnmarshalJSON(data []byte) (err error) {
 
 	varPlan := _Plan{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPlan)
+	err = json.Unmarshal(data, &varPlan)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Plan(varPlan)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "free")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "skuName")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

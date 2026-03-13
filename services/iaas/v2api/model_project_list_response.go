@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ProjectListResponse{}
 // ProjectListResponse Project list response.
 type ProjectListResponse struct {
 	// A list of STACKIT projects.
-	Items []string `json:"items"`
+	Items                []string `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProjectListResponse ProjectListResponse
@@ -81,6 +81,11 @@ func (o ProjectListResponse) MarshalJSON() ([]byte, error) {
 func (o ProjectListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ProjectListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varProjectListResponse := _ProjectListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProjectListResponse)
+	err = json.Unmarshal(data, &varProjectListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProjectListResponse(varProjectListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

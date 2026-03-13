@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,12 +21,13 @@ var _ MappedNullable = &OrgRoleResponse{}
 
 // OrgRoleResponse struct for OrgRoleResponse
 type OrgRoleResponse struct {
-	Guid       string      `json:"guid"`
-	OrgId      string      `json:"orgId"`
-	PlatformId string      `json:"platformId"`
-	ProjectId  string      `json:"projectId"`
-	Region     string      `json:"region"`
-	Type       OrgRoleType `json:"type"`
+	Guid                 string      `json:"guid"`
+	OrgId                string      `json:"orgId"`
+	PlatformId           string      `json:"platformId"`
+	ProjectId            string      `json:"projectId"`
+	Region               string      `json:"region"`
+	Type                 OrgRoleType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrgRoleResponse OrgRoleResponse
@@ -215,6 +215,11 @@ func (o OrgRoleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["region"] = o.Region
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -247,15 +252,25 @@ func (o *OrgRoleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varOrgRoleResponse := _OrgRoleResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrgRoleResponse)
+	err = json.Unmarshal(data, &varOrgRoleResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrgRoleResponse(varOrgRoleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

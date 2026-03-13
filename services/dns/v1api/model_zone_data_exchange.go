@@ -20,8 +20,11 @@ var _ MappedNullable = &ZoneDataExchange{}
 
 // ZoneDataExchange struct for ZoneDataExchange
 type ZoneDataExchange struct {
-	RrSets []RecordDataExchange `json:"rrSets,omitempty"`
+	RrSets               []RecordDataExchange `json:"rrSets,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ZoneDataExchange ZoneDataExchange
 
 // NewZoneDataExchange instantiates a new ZoneDataExchange object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ZoneDataExchange) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RrSets) {
 		toSerialize["rrSets"] = o.RrSets
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ZoneDataExchange) UnmarshalJSON(data []byte) (err error) {
+	varZoneDataExchange := _ZoneDataExchange{}
+
+	err = json.Unmarshal(data, &varZoneDataExchange)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ZoneDataExchange(varZoneDataExchange)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rrSets")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableZoneDataExchange struct {

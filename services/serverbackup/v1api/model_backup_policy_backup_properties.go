@@ -20,9 +20,12 @@ var _ MappedNullable = &BackupPolicyBackupProperties{}
 
 // BackupPolicyBackupProperties struct for BackupPolicyBackupProperties
 type BackupPolicyBackupProperties struct {
-	Name            *string `json:"name,omitempty"`
-	RetentionPeriod *int32  `json:"retentionPeriod,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	RetentionPeriod      *int32  `json:"retentionPeriod,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BackupPolicyBackupProperties BackupPolicyBackupProperties
 
 // NewBackupPolicyBackupProperties instantiates a new BackupPolicyBackupProperties object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o BackupPolicyBackupProperties) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RetentionPeriod) {
 		toSerialize["retentionPeriod"] = o.RetentionPeriod
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BackupPolicyBackupProperties) UnmarshalJSON(data []byte) (err error) {
+	varBackupPolicyBackupProperties := _BackupPolicyBackupProperties{}
+
+	err = json.Unmarshal(data, &varBackupPolicyBackupProperties)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BackupPolicyBackupProperties(varBackupPolicyBackupProperties)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "retentionPeriod")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBackupPolicyBackupProperties struct {

@@ -29,8 +29,11 @@ type UpdateRoutingTableOfAreaPayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
 	// The update config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.
-	SystemRoutes *bool `json:"systemRoutes,omitempty"`
+	SystemRoutes         *bool `json:"systemRoutes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRoutingTableOfAreaPayload UpdateRoutingTableOfAreaPayload
 
 // NewUpdateRoutingTableOfAreaPayload instantiates a new UpdateRoutingTableOfAreaPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -234,7 +237,37 @@ func (o UpdateRoutingTableOfAreaPayload) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.SystemRoutes) {
 		toSerialize["systemRoutes"] = o.SystemRoutes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateRoutingTableOfAreaPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateRoutingTableOfAreaPayload := _UpdateRoutingTableOfAreaPayload{}
+
+	err = json.Unmarshal(data, &varUpdateRoutingTableOfAreaPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateRoutingTableOfAreaPayload(varUpdateRoutingTableOfAreaPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "dynamicRoutes")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "systemRoutes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRoutingTableOfAreaPayload struct {

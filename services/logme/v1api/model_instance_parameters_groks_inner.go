@@ -19,8 +19,11 @@ var _ MappedNullable = &InstanceParametersGroksInner{}
 
 // InstanceParametersGroksInner struct for InstanceParametersGroksInner
 type InstanceParametersGroksInner struct {
-	Pattern *string `json:"pattern,omitempty"`
+	Pattern              *string `json:"pattern,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceParametersGroksInner InstanceParametersGroksInner
 
 // NewInstanceParametersGroksInner instantiates a new InstanceParametersGroksInner object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o InstanceParametersGroksInner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Pattern) {
 		toSerialize["pattern"] = o.Pattern
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceParametersGroksInner) UnmarshalJSON(data []byte) (err error) {
+	varInstanceParametersGroksInner := _InstanceParametersGroksInner{}
+
+	err = json.Unmarshal(data, &varInstanceParametersGroksInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceParametersGroksInner(varInstanceParametersGroksInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pattern")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceParametersGroksInner struct {

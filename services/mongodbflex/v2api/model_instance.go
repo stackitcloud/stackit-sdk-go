@@ -28,10 +28,13 @@ type Instance struct {
 	Options        *map[string]string `json:"options,omitempty"`
 	Replicas       *int32             `json:"replicas,omitempty"`
 	// The current status of the instance.
-	Status  *string  `json:"status,omitempty"`
-	Storage *Storage `json:"storage,omitempty"`
-	Version *string  `json:"version,omitempty"`
+	Status               *string  `json:"status,omitempty"`
+	Storage              *Storage `json:"storage,omitempty"`
+	Version              *string  `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Instance Instance
 
 // NewInstance instantiates a new Instance object
 // This constructor will assign default values to properties that have it defined,
@@ -410,7 +413,42 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Instance) UnmarshalJSON(data []byte) (err error) {
+	varInstance := _Instance{}
+
+	err = json.Unmarshal(data, &varInstance)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Instance(varInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "flavor")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "replicas")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstance struct {

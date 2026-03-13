@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ConnectionList{}
 
 // ConnectionList struct for ConnectionList
 type ConnectionList struct {
-	Connections []ConnectionResponse `json:"connections"`
+	Connections          []ConnectionResponse `json:"connections"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConnectionList ConnectionList
@@ -79,6 +79,11 @@ func (o ConnectionList) MarshalJSON() ([]byte, error) {
 func (o ConnectionList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["connections"] = o.Connections
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ConnectionList) UnmarshalJSON(data []byte) (err error) {
 
 	varConnectionList := _ConnectionList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnectionList)
+	err = json.Unmarshal(data, &varConnectionList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConnectionList(varConnectionList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "connections")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

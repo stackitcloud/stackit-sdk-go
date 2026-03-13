@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &SignPayload{}
 // SignPayload struct for SignPayload
 type SignPayload struct {
 	// The data that has to be signed. Encoded in base64.
-	Data string `json:"data"`
+	Data                 string `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SignPayload SignPayload
@@ -80,6 +80,11 @@ func (o SignPayload) MarshalJSON() ([]byte, error) {
 func (o SignPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *SignPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varSignPayload := _SignPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSignPayload)
+	err = json.Unmarshal(data, &varSignPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SignPayload(varSignPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

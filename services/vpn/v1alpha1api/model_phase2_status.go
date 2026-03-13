@@ -36,9 +36,12 @@ type Phase2Status struct {
 	// The total number of packets sent through this IPsec Security Association
 	PacketsOut *string `json:"packetsOut,omitempty"`
 	// The security protocol used for the tunnel, typically `ESP` (Encapsulating Security Payload).
-	Protocol *string `json:"protocol,omitempty"`
-	State    *string `json:"state,omitempty"`
+	Protocol             *string `json:"protocol,omitempty"`
+	State                *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Phase2Status Phase2Status
 
 // NewPhase2Status instantiates a new Phase2Status object
 // This constructor will assign default values to properties that have it defined,
@@ -417,7 +420,42 @@ func (o Phase2Status) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Phase2Status) UnmarshalJSON(data []byte) (err error) {
+	varPhase2Status := _Phase2Status{}
+
+	err = json.Unmarshal(data, &varPhase2Status)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Phase2Status(varPhase2Status)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bytesIn")
+		delete(additionalProperties, "bytesOut")
+		delete(additionalProperties, "dhGroup")
+		delete(additionalProperties, "encap")
+		delete(additionalProperties, "encryptionAlgorithm")
+		delete(additionalProperties, "integrityAlgorithm")
+		delete(additionalProperties, "packetsIn")
+		delete(additionalProperties, "packetsOut")
+		delete(additionalProperties, "protocol")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePhase2Status struct {

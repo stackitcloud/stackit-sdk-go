@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -38,7 +37,8 @@ type ChatModelDetails struct {
 	Skus []SKU    `json:"skus"`
 	Tags []string `json:"tags"`
 	// url of the model
-	Url string `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Url                  string `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ChatModelDetails ChatModelDetails
@@ -426,6 +426,11 @@ func (o ChatModelDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize["skus"] = o.Skus
 	toSerialize["tags"] = o.Tags
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -463,15 +468,32 @@ func (o *ChatModelDetails) UnmarshalJSON(data []byte) (err error) {
 
 	varChatModelDetails := _ChatModelDetails{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varChatModelDetails)
+	err = json.Unmarshal(data, &varChatModelDetails)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ChatModelDetails(varChatModelDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bits")
+		delete(additionalProperties, "category")
+		delete(additionalProperties, "contextLength")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayedName")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "quantizationMethod")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "skus")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

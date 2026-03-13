@@ -1,3 +1,10 @@
+## v0.7.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+
+## v0.7.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v0.6.0
 - Deprecated SDK layer in root of the module: 
   - **Breaking Change**: Switch from regional to global API server URL (`config.WithRegion(...)` must not be used anymore).

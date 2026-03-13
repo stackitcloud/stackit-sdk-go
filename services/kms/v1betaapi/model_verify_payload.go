@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type VerifyPayload struct {
 	// The data to be verified. Encoded in base64.
 	Data string `json:"data"`
 	// The signature of the data. Encoded in base64.
-	Signature string `json:"signature"`
+	Signature            string `json:"signature"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VerifyPayload VerifyPayload
@@ -108,6 +108,11 @@ func (o VerifyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
 	toSerialize["signature"] = o.Signature
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *VerifyPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varVerifyPayload := _VerifyPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVerifyPayload)
+	err = json.Unmarshal(data, &varVerifyPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VerifyPayload(varVerifyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		delete(additionalProperties, "signature")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

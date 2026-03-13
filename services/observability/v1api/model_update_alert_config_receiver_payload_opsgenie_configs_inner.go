@@ -29,8 +29,11 @@ type UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {
 	// Whether to notify about resolved alerts.
 	SendResolved *bool `json:"sendResolved,omitempty"`
 	// Comma separated list of tags attached to the notifications.
-	Tags *string `json:"tags,omitempty"`
+	Tags                 *string `json:"tags,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner
 
 // NewUpdateAlertConfigReceiverPayloadOpsgenieConfigsInner instantiates a new UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -238,7 +241,37 @@ func (o UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner) ToMap() (map[strin
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAlertConfigReceiverPayloadOpsgenieConfigsInner := _UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner{}
+
+	err = json.Unmarshal(data, &varUpdateAlertConfigReceiverPayloadOpsgenieConfigsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner(varUpdateAlertConfigReceiverPayloadOpsgenieConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apiKey")
+		delete(additionalProperties, "apiUrl")
+		delete(additionalProperties, "priority")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "tags")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAlertConfigReceiverPayloadOpsgenieConfigsInner struct {

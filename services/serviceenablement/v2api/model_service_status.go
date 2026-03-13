@@ -29,8 +29,11 @@ type ServiceStatus struct {
 	// the id of the service
 	ServiceId *string `json:"serviceId,omitempty" validate:"regexp=^[a-zA-Z0-9][a-zA-Z0-9._-]{1,254}$"`
 	// the state of a service within a project
-	State *string `json:"state,omitempty"`
+	State                *string `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServiceStatus ServiceStatus
 
 // NewServiceStatus instantiates a new ServiceStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -390,7 +393,41 @@ func (o ServiceStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ServiceStatus) UnmarshalJSON(data []byte) (err error) {
+	varServiceStatus := _ServiceStatus{}
+
+	err = json.Unmarshal(data, &varServiceStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ServiceStatus(varServiceStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dependencies")
+		delete(additionalProperties, "enablement")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "lifecycle")
+		delete(additionalProperties, "parameters")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "serviceId")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableServiceStatus struct {

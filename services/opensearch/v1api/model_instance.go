@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,12 +29,13 @@ type Instance struct {
 	LastOperation      InstanceLastOperation `json:"lastOperation"`
 	Name               string                `json:"name"`
 	// Deprecated
-	OfferingName    string                 `json:"offeringName"`
-	OfferingVersion string                 `json:"offeringVersion"`
-	Parameters      map[string]interface{} `json:"parameters"`
-	PlanId          string                 `json:"planId"`
-	PlanName        string                 `json:"planName"`
-	Status          *string                `json:"status,omitempty"`
+	OfferingName         string                 `json:"offeringName"`
+	OfferingVersion      string                 `json:"offeringVersion"`
+	Parameters           map[string]interface{} `json:"parameters"`
+	PlanId               string                 `json:"planId"`
+	PlanName             string                 `json:"planName"`
+	Status               *string                `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Instance Instance
@@ -452,6 +452,11 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -490,15 +495,33 @@ func (o *Instance) UnmarshalJSON(data []byte) (err error) {
 
 	varInstance := _Instance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstance)
+	err = json.Unmarshal(data, &varInstance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Instance(varInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cfGuid")
+		delete(additionalProperties, "cfOrganizationGuid")
+		delete(additionalProperties, "cfSpaceGuid")
+		delete(additionalProperties, "dashboardUrl")
+		delete(additionalProperties, "imageUrl")
+		delete(additionalProperties, "instanceId")
+		delete(additionalProperties, "lastOperation")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "offeringName")
+		delete(additionalProperties, "offeringVersion")
+		delete(additionalProperties, "parameters")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "planName")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

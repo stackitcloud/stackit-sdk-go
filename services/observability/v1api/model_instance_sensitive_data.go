@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -54,6 +53,7 @@ type InstanceSensitiveData struct {
 	PushMetricsUrl          string    `json:"pushMetricsUrl"`
 	TargetsUrl              string    `json:"targetsUrl"`
 	ZipkinSpansUrl          string    `json:"zipkinSpansUrl"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _InstanceSensitiveData InstanceSensitiveData
@@ -872,6 +872,11 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	toSerialize["pushMetricsUrl"] = o.PushMetricsUrl
 	toSerialize["targetsUrl"] = o.TargetsUrl
 	toSerialize["zipkinSpansUrl"] = o.ZipkinSpansUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -925,15 +930,48 @@ func (o *InstanceSensitiveData) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceSensitiveData := _InstanceSensitiveData{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceSensitiveData)
+	err = json.Unmarshal(data, &varInstanceSensitiveData)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceSensitiveData(varInstanceSensitiveData)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alertingUrl")
+		delete(additionalProperties, "cluster")
+		delete(additionalProperties, "dashboardUrl")
+		delete(additionalProperties, "grafanaAdminEnabled")
+		delete(additionalProperties, "grafanaAdminPassword")
+		delete(additionalProperties, "grafanaAdminUser")
+		delete(additionalProperties, "grafanaPublicReadAccess")
+		delete(additionalProperties, "grafanaUrl")
+		delete(additionalProperties, "grafanaUseStackitSso")
+		delete(additionalProperties, "instance")
+		delete(additionalProperties, "jaegerHttpTracesUrl")
+		delete(additionalProperties, "jaegerHttpUrl")
+		delete(additionalProperties, "jaegerTracesUrl")
+		delete(additionalProperties, "jaegerUiUrl")
+		delete(additionalProperties, "logsPushUrl")
+		delete(additionalProperties, "logsUrl")
+		delete(additionalProperties, "metricsEndpointUrl")
+		delete(additionalProperties, "metricsRetentionTime1h")
+		delete(additionalProperties, "metricsRetentionTime5m")
+		delete(additionalProperties, "metricsRetentionTimeRaw")
+		delete(additionalProperties, "metricsUrl")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "otlpGrpcTracesUrl")
+		delete(additionalProperties, "otlpHttpTracesUrl")
+		delete(additionalProperties, "otlpTracesUrl")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "pushMetricsUrl")
+		delete(additionalProperties, "targetsUrl")
+		delete(additionalProperties, "zipkinSpansUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

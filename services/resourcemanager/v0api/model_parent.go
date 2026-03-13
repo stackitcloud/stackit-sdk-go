@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type Parent struct {
 	// Identifier of either organization or folder.
 	Id string `json:"id"`
 	// Container type of parent container.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Parent Parent
@@ -136,6 +136,11 @@ func (o Parent) ToMap() (map[string]interface{}, error) {
 	toSerialize["containerId"] = o.ContainerId
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *Parent) UnmarshalJSON(data []byte) (err error) {
 
 	varParent := _Parent{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varParent)
+	err = json.Unmarshal(data, &varParent)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Parent(varParent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

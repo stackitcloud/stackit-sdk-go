@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type MoveCodeResponse struct {
 	// when the code expires
 	ExpiresAt string `json:"expiresAt"`
 	// human readable message
-	Message *string `json:"message,omitempty"`
+	Message              *string `json:"message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MoveCodeResponse MoveCodeResponse
@@ -146,6 +146,11 @@ func (o MoveCodeResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -174,15 +179,22 @@ func (o *MoveCodeResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMoveCodeResponse := _MoveCodeResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMoveCodeResponse)
+	err = json.Unmarshal(data, &varMoveCodeResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MoveCodeResponse(varMoveCodeResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "expiresAt")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -34,7 +33,8 @@ type BGPStatusPeers struct {
 	// The IP address of the remote BGP neighbor.
 	RemoteIP string `json:"remoteIP"`
 	// The current BGP session state.
-	State string `json:"state"`
+	State                string `json:"state"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BGPStatusPeers BGPStatusPeers
@@ -248,6 +248,11 @@ func (o BGPStatusPeers) ToMap() (map[string]interface{}, error) {
 	toSerialize["remoteAs"] = o.RemoteAs
 	toSerialize["remoteIP"] = o.RemoteIP
 	toSerialize["state"] = o.State
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -281,15 +286,26 @@ func (o *BGPStatusPeers) UnmarshalJSON(data []byte) (err error) {
 
 	varBGPStatusPeers := _BGPStatusPeers{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBGPStatusPeers)
+	err = json.Unmarshal(data, &varBGPStatusPeers)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BGPStatusPeers(varBGPStatusPeers)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "localAs")
+		delete(additionalProperties, "peerUptime")
+		delete(additionalProperties, "pfxRcd")
+		delete(additionalProperties, "pfxSnt")
+		delete(additionalProperties, "remoteAs")
+		delete(additionalProperties, "remoteIP")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

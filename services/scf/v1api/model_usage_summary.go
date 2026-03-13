@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,14 +21,15 @@ var _ MappedNullable = &UsageSummary{}
 
 // UsageSummary struct for UsageSummary
 type UsageSummary struct {
-	Domains          int64 `json:"domains"`
-	MemoryInMb       int64 `json:"memoryInMb"`
-	PerAppTasks      int64 `json:"perAppTasks"`
-	ReservedPorts    int64 `json:"reservedPorts"`
-	Routes           int64 `json:"routes"`
-	ServiceInstances int64 `json:"serviceInstances"`
-	ServiceKeys      int64 `json:"serviceKeys"`
-	StartedInstances int64 `json:"startedInstances"`
+	Domains              int64 `json:"domains"`
+	MemoryInMb           int64 `json:"memoryInMb"`
+	PerAppTasks          int64 `json:"perAppTasks"`
+	ReservedPorts        int64 `json:"reservedPorts"`
+	Routes               int64 `json:"routes"`
+	ServiceInstances     int64 `json:"serviceInstances"`
+	ServiceKeys          int64 `json:"serviceKeys"`
+	StartedInstances     int64 `json:"startedInstances"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UsageSummary UsageSummary
@@ -269,6 +269,11 @@ func (o UsageSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize["serviceInstances"] = o.ServiceInstances
 	toSerialize["serviceKeys"] = o.ServiceKeys
 	toSerialize["startedInstances"] = o.StartedInstances
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -303,15 +308,27 @@ func (o *UsageSummary) UnmarshalJSON(data []byte) (err error) {
 
 	varUsageSummary := _UsageSummary{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUsageSummary)
+	err = json.Unmarshal(data, &varUsageSummary)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UsageSummary(varUsageSummary)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "domains")
+		delete(additionalProperties, "memoryInMb")
+		delete(additionalProperties, "perAppTasks")
+		delete(additionalProperties, "reservedPorts")
+		delete(additionalProperties, "routes")
+		delete(additionalProperties, "serviceInstances")
+		delete(additionalProperties, "serviceKeys")
+		delete(additionalProperties, "startedInstances")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

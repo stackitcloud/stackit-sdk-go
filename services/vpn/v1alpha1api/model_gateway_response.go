@@ -11,7 +11,6 @@ API version: 1alpha1
 package v1alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,8 +30,9 @@ type GatewayResponse struct {
 	PlanId      string      `json:"planId"`
 	RoutingType RoutingType `json:"routingType"`
 	// The server-generated UUID of the VPN gateway.
-	Id    *string        `json:"id,omitempty"`
-	State *GatewayStatus `json:"state,omitempty"`
+	Id                   *string        `json:"id,omitempty"`
+	State                *GatewayStatus `json:"state,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GatewayResponse GatewayResponse
@@ -308,6 +308,11 @@ func (o GatewayResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -338,15 +343,27 @@ func (o *GatewayResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGatewayResponse := _GatewayResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGatewayResponse)
+	err = json.Unmarshal(data, &varGatewayResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GatewayResponse(varGatewayResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "availabilityZones")
+		delete(additionalProperties, "bgp")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "routingType")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

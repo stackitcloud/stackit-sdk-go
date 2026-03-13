@@ -20,8 +20,11 @@ var _ MappedNullable = &OptionsTCP{}
 // OptionsTCP ProtocolOptionsTCP options to be configured for the PROTOCOL_TCP, PROTOCOL_TCP_PROXY, and PROTOCOL_TLS_PASSTHROUGH protocols. TCP options for the SNI listeners with the same port must be the same.
 type OptionsTCP struct {
 	// The connection idle timeout to be used with the protocol. The default value is set to 5 minutes, and the maximum value is one hour.
-	IdleTimeout *string `json:"idleTimeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	IdleTimeout          *string `json:"idleTimeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OptionsTCP OptionsTCP
 
 // NewOptionsTCP instantiates a new OptionsTCP object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o OptionsTCP) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IdleTimeout) {
 		toSerialize["idleTimeout"] = o.IdleTimeout
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *OptionsTCP) UnmarshalJSON(data []byte) (err error) {
+	varOptionsTCP := _OptionsTCP{}
+
+	err = json.Unmarshal(data, &varOptionsTCP)
+
+	if err != nil {
+		return err
+	}
+
+	*o = OptionsTCP(varOptionsTCP)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idleTimeout")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableOptionsTCP struct {

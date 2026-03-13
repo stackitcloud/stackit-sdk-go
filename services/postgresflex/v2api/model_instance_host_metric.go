@@ -20,10 +20,13 @@ var _ MappedNullable = &InstanceHostMetric{}
 
 // InstanceHostMetric struct for InstanceHostMetric
 type InstanceHostMetric struct {
-	Datapoints []InstanceDataPoint `json:"datapoints,omitempty"`
-	Name       *string             `json:"name,omitempty"`
-	Units      *string             `json:"units,omitempty"`
+	Datapoints           []InstanceDataPoint `json:"datapoints,omitempty"`
+	Name                 *string             `json:"name,omitempty"`
+	Units                *string             `json:"units,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceHostMetric InstanceHostMetric
 
 // NewInstanceHostMetric instantiates a new InstanceHostMetric object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o InstanceHostMetric) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Units) {
 		toSerialize["units"] = o.Units
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceHostMetric) UnmarshalJSON(data []byte) (err error) {
+	varInstanceHostMetric := _InstanceHostMetric{}
+
+	err = json.Unmarshal(data, &varInstanceHostMetric)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceHostMetric(varInstanceHostMetric)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "datapoints")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "units")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceHostMetric struct {

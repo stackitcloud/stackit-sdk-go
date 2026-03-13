@@ -22,8 +22,11 @@ type PartialUpdateOrganizationPayload struct {
 	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
-	Name *string `json:"name,omitempty" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`
+	Name                 *string `json:"name,omitempty" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateOrganizationPayload PartialUpdateOrganizationPayload
 
 // NewPartialUpdateOrganizationPayload instantiates a new PartialUpdateOrganizationPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o PartialUpdateOrganizationPayload) ToMap() (map[string]interface{}, error
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateOrganizationPayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateOrganizationPayload := _PartialUpdateOrganizationPayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateOrganizationPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateOrganizationPayload(varPartialUpdateOrganizationPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateOrganizationPayload struct {

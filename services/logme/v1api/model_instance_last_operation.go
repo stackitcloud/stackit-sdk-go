@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &InstanceLastOperation{}
 
 // InstanceLastOperation struct for InstanceLastOperation
 type InstanceLastOperation struct {
-	Description string `json:"description"`
-	State       string `json:"state"`
-	Type        string `json:"type"`
+	Description          string `json:"description"`
+	State                string `json:"state"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceLastOperation InstanceLastOperation
@@ -133,6 +133,11 @@ func (o InstanceLastOperation) ToMap() (map[string]interface{}, error) {
 	toSerialize["description"] = o.Description
 	toSerialize["state"] = o.State
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *InstanceLastOperation) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceLastOperation := _InstanceLastOperation{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceLastOperation)
+	err = json.Unmarshal(data, &varInstanceLastOperation)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceLastOperation(varInstanceLastOperation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

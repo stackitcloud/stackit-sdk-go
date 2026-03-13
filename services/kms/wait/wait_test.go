@@ -203,8 +203,8 @@ func TestCreateKeyRingWaitHandler(t *testing.T) {
 			}
 
 			handler := CreateKeyRingWaitHandler(ctx, client, testProject, testRegion, testKeyRingId)
-			got, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
+			got, err := handler.SetTimeout(250 * time.Millisecond).
+				SetThrottle(1).
 				WaitWithContext(ctx)
 
 			if (err != nil) != tt.wantErr {
@@ -281,8 +281,8 @@ func TestCreateOrUpdateKeyWaitHandler(t *testing.T) {
 			}
 
 			handler := CreateOrUpdateKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
-			got, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
+			got, err := handler.SetTimeout(250 * time.Millisecond).
+				SetThrottle(1).
 				WaitWithContext(ctx)
 
 			if (err != nil) != tt.wantErr {
@@ -365,8 +365,8 @@ func TestDeleteKeyWaitHandler(t *testing.T) {
 				keyResponses: tt.responses,
 			}
 			handler := DeleteKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
-			_, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
+			_, err := handler.SetTimeout(250 * time.Millisecond).
+				SetThrottle(1).
 				WaitWithContext(ctx)
 
 			if tt.wantErr != (err != nil) {
@@ -493,8 +493,8 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			}
 
 			handler := EnableKeyVersionWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId, 1)
-			got, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
+			got, err := handler.SetTimeout(250 * time.Millisecond).
+				SetThrottle(1).
 				WaitWithContext(ctx)
 
 			if (err != nil) != tt.wantErr {
@@ -600,8 +600,8 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 				versionResponses: tt.responses,
 			}
 			handler := DisableKeyVersionWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId, 1)
-			got, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
+			got, err := handler.SetTimeout(250 * time.Millisecond).
+				SetThrottle(1).
 				WaitWithContext(ctx)
 
 			if (err != nil) != tt.wantErr {
@@ -678,8 +678,8 @@ func TestCreateWrappingWaitHandler(t *testing.T) {
 			}
 
 			handler := CreateWrappingKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
-			got, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
+			got, err := handler.SetTimeout(250 * time.Millisecond).
+				SetThrottle(1).
 				WaitWithContext(ctx)
 
 			if (err != nil) != tt.wantErr {

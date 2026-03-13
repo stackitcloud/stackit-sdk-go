@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &CredentialsListItem{}
 
 // CredentialsListItem struct for CredentialsListItem
 type CredentialsListItem struct {
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CredentialsListItem CredentialsListItem
@@ -79,6 +79,11 @@ func (o CredentialsListItem) MarshalJSON() ([]byte, error) {
 func (o CredentialsListItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *CredentialsListItem) UnmarshalJSON(data []byte) (err error) {
 
 	varCredentialsListItem := _CredentialsListItem{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentialsListItem)
+	err = json.Unmarshal(data, &varCredentialsListItem)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CredentialsListItem(varCredentialsListItem)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
