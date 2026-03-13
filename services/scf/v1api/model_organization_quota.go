@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &OrganizationQuota{}
 
 // OrganizationQuota struct for OrganizationQuota
 type OrganizationQuota struct {
-	OrgId      string `json:"orgId"`
-	PlatformId string `json:"platformId"`
-	ProjectId  string `json:"projectId"`
-	QuotaId    string `json:"quotaId"`
-	Region     string `json:"region"`
+	OrgId                string `json:"orgId"`
+	PlatformId           string `json:"platformId"`
+	ProjectId            string `json:"projectId"`
+	QuotaId              string `json:"quotaId"`
+	Region               string `json:"region"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrganizationQuota OrganizationQuota
@@ -188,6 +188,11 @@ func (o OrganizationQuota) ToMap() (map[string]interface{}, error) {
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["quotaId"] = o.QuotaId
 	toSerialize["region"] = o.Region
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *OrganizationQuota) UnmarshalJSON(data []byte) (err error) {
 
 	varOrganizationQuota := _OrganizationQuota{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrganizationQuota)
+	err = json.Unmarshal(data, &varOrganizationQuota)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrganizationQuota(varOrganizationQuota)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "quotaId")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

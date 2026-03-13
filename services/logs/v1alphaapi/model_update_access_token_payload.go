@@ -22,8 +22,11 @@ type UpdateAccessTokenPayload struct {
 	// The description of the access token.
 	Description *string `json:"description,omitempty"`
 	// The displayed name of the access token.
-	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	DisplayName          *string `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAccessTokenPayload UpdateAccessTokenPayload
 
 // NewUpdateAccessTokenPayload instantiates a new UpdateAccessTokenPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o UpdateAccessTokenPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisplayName) {
 		toSerialize["displayName"] = o.DisplayName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAccessTokenPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAccessTokenPayload := _UpdateAccessTokenPayload{}
+
+	err = json.Unmarshal(data, &varUpdateAccessTokenPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAccessTokenPayload(varUpdateAccessTokenPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAccessTokenPayload struct {

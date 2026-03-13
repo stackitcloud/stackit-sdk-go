@@ -20,8 +20,11 @@ var _ MappedNullable = &ImportRecordSetsPayload{}
 
 // ImportRecordSetsPayload struct for ImportRecordSetsPayload
 type ImportRecordSetsPayload struct {
-	RrSets []ZoneModelsImportRecordModel `json:"rrSets,omitempty"`
+	RrSets               []ZoneModelsImportRecordModel `json:"rrSets,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ImportRecordSetsPayload ImportRecordSetsPayload
 
 // NewImportRecordSetsPayload instantiates a new ImportRecordSetsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ImportRecordSetsPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RrSets) {
 		toSerialize["rrSets"] = o.RrSets
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ImportRecordSetsPayload) UnmarshalJSON(data []byte) (err error) {
+	varImportRecordSetsPayload := _ImportRecordSetsPayload{}
+
+	err = json.Unmarshal(data, &varImportRecordSetsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImportRecordSetsPayload(varImportRecordSetsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "rrSets")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableImportRecordSetsPayload struct {

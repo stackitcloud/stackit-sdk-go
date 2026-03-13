@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &RecordPayload{}
 // RecordPayload RecordPost for rr set info.
 type RecordPayload struct {
 	// content of the record
-	Content string `json:"content"`
+	Content              string `json:"content"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecordPayload RecordPayload
@@ -81,6 +81,11 @@ func (o RecordPayload) MarshalJSON() ([]byte, error) {
 func (o RecordPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["content"] = o.Content
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *RecordPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varRecordPayload := _RecordPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecordPayload)
+	err = json.Unmarshal(data, &varRecordPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecordPayload(varRecordPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "content")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,8 +20,11 @@ var _ MappedNullable = &CertificateConfig{}
 // CertificateConfig TLS termination certificate configuration.
 type CertificateConfig struct {
 	// Certificate IDs for TLS termination.
-	CertificateIds []string `json:"certificateIds,omitempty"`
+	CertificateIds       []string `json:"certificateIds,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CertificateConfig CertificateConfig
 
 // NewCertificateConfig instantiates a new CertificateConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o CertificateConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CertificateIds) {
 		toSerialize["certificateIds"] = o.CertificateIds
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CertificateConfig) UnmarshalJSON(data []byte) (err error) {
+	varCertificateConfig := _CertificateConfig{}
+
+	err = json.Unmarshal(data, &varCertificateConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CertificateConfig(varCertificateConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificateIds")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCertificateConfig struct {

@@ -20,9 +20,12 @@ var _ MappedNullable = &Pagination{}
 
 // Pagination struct for Pagination
 type Pagination struct {
-	TotalPages   *int64 `json:"totalPages,omitempty"`
-	TotalResults *int64 `json:"totalResults,omitempty"`
+	TotalPages           *int64 `json:"totalPages,omitempty"`
+	TotalResults         *int64 `json:"totalResults,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Pagination Pagination
 
 // NewPagination instantiates a new Pagination object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o Pagination) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TotalResults) {
 		toSerialize["totalResults"] = o.TotalResults
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Pagination) UnmarshalJSON(data []byte) (err error) {
+	varPagination := _Pagination{}
+
+	err = json.Unmarshal(data, &varPagination)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Pagination(varPagination)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "totalPages")
+		delete(additionalProperties, "totalResults")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePagination struct {

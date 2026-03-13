@@ -11,7 +11,6 @@ API version: 1alpha.0.3
 package v1alphaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -38,7 +37,8 @@ type AccessToken struct {
 	Permissions []string `json:"permissions"`
 	Status      string   `json:"status"`
 	// The date and time util an access token is valid to (inclusively).
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil           *time.Time `json:"validUntil,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessToken AccessToken
@@ -331,6 +331,11 @@ func (o AccessToken) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ValidUntil) {
 		toSerialize["validUntil"] = o.ValidUntil
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -363,15 +368,28 @@ func (o *AccessToken) UnmarshalJSON(data []byte) (err error) {
 
 	varAccessToken := _AccessToken{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessToken)
+	err = json.Unmarshal(data, &varAccessToken)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessToken(varAccessToken)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessToken")
+		delete(additionalProperties, "creator")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "expires")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "permissions")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -34,7 +33,8 @@ type EmbeddingModelDetails struct {
 	Skus            []SKU    `json:"skus"`
 	Tags            []string `json:"tags,omitempty"`
 	// url of the model
-	Url string `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Url                  string `json:"url" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EmbeddingModelDetails EmbeddingModelDetails
@@ -335,6 +335,11 @@ func (o EmbeddingModelDetails) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -370,15 +375,29 @@ func (o *EmbeddingModelDetails) UnmarshalJSON(data []byte) (err error) {
 
 	varEmbeddingModelDetails := _EmbeddingModelDetails{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEmbeddingModelDetails)
+	err = json.Unmarshal(data, &varEmbeddingModelDetails)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EmbeddingModelDetails(varEmbeddingModelDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "category")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayedName")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "outputDimension")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "skus")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

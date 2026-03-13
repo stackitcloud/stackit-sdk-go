@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -47,7 +46,8 @@ type RecordSet struct {
 	// when record set update/deletion finished
 	UpdateFinished string `json:"updateFinished"`
 	// when record set update/deletion started
-	UpdateStarted string `json:"updateStarted"`
+	UpdateStarted        string `json:"updateStarted"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecordSet RecordSet
@@ -444,6 +444,11 @@ func (o RecordSet) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["updateFinished"] = o.UpdateFinished
 	toSerialize["updateStarted"] = o.UpdateStarted
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -480,15 +485,32 @@ func (o *RecordSet) UnmarshalJSON(data []byte) (err error) {
 
 	varRecordSet := _RecordSet{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecordSet)
+	err = json.Unmarshal(data, &varRecordSet)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecordSet(varRecordSet)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "creationFinished")
+		delete(additionalProperties, "creationStarted")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "records")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "ttl")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "updateFinished")
+		delete(additionalProperties, "updateStarted")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

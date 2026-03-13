@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &ImportRecordSetsResponse{}
 
 // ImportRecordSetsResponse ImportSummaryResponse is the response of the import.
 type ImportRecordSetsResponse struct {
-	Message *string       `json:"message,omitempty"`
-	Summary ImportSummary `json:"summary"`
+	Message              *string       `json:"message,omitempty"`
+	Summary              ImportSummary `json:"summary"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImportRecordSetsResponse ImportRecordSetsResponse
@@ -116,6 +116,11 @@ func (o ImportRecordSetsResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["message"] = o.Message
 	}
 	toSerialize["summary"] = o.Summary
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *ImportRecordSetsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varImportRecordSetsResponse := _ImportRecordSetsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImportRecordSetsResponse)
+	err = json.Unmarshal(data, &varImportRecordSetsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImportRecordSetsResponse(varImportRecordSetsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "summary")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

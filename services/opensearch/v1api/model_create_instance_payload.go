@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &CreateInstancePayload{}
 
 // CreateInstancePayload struct for CreateInstancePayload
 type CreateInstancePayload struct {
-	InstanceName string              `json:"instanceName"`
-	Parameters   *InstanceParameters `json:"parameters,omitempty"`
-	PlanId       string              `json:"planId"`
+	InstanceName         string              `json:"instanceName"`
+	Parameters           *InstanceParameters `json:"parameters,omitempty"`
+	PlanId               string              `json:"planId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstancePayload CreateInstancePayload
@@ -142,6 +142,11 @@ func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["parameters"] = o.Parameters
 	}
 	toSerialize["planId"] = o.PlanId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -170,15 +175,22 @@ func (o *CreateInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstancePayload := _CreateInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstancePayload)
+	err = json.Unmarshal(data, &varCreateInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstancePayload(varCreateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceName")
+		delete(additionalProperties, "parameters")
+		delete(additionalProperties, "planId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

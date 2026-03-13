@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &CreateLabelPayload{}
 
 // CreateLabelPayload struct for CreateLabelPayload
 type CreateLabelPayload struct {
-	Key   string `json:"key"`
-	Value string `json:"value"`
+	Key                  string `json:"key"`
+	Value                string `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateLabelPayload CreateLabelPayload
@@ -107,6 +107,11 @@ func (o CreateLabelPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["key"] = o.Key
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *CreateLabelPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateLabelPayload := _CreateLabelPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateLabelPayload)
+	err = json.Unmarshal(data, &varCreateLabelPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateLabelPayload(varCreateLabelPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
