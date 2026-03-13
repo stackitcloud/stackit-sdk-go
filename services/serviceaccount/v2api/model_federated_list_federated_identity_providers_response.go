@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,10 +20,11 @@ var _ MappedNullable = &FederatedListFederatedIdentityProvidersResponse{}
 
 // FederatedListFederatedIdentityProvidersResponse struct for FederatedListFederatedIdentityProvidersResponse
 type FederatedListFederatedIdentityProvidersResponse struct {
-	ItemsPerPage float32                     `json:"itemsPerPage"`
-	Resources    []FederatedIdentityProvider `json:"resources"`
-	StartIndex   float32                     `json:"startIndex"`
-	TotalResults float32                     `json:"totalResults"`
+	ItemsPerPage         float32                     `json:"itemsPerPage"`
+	Resources            []FederatedIdentityProvider `json:"resources"`
+	StartIndex           float32                     `json:"startIndex"`
+	TotalResults         float32                     `json:"totalResults"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FederatedListFederatedIdentityProvidersResponse FederatedListFederatedIdentityProvidersResponse
@@ -166,6 +166,11 @@ func (o FederatedListFederatedIdentityProvidersResponse) ToMap() (map[string]int
 	toSerialize["resources"] = o.Resources
 	toSerialize["startIndex"] = o.StartIndex
 	toSerialize["totalResults"] = o.TotalResults
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -196,15 +201,23 @@ func (o *FederatedListFederatedIdentityProvidersResponse) UnmarshalJSON(data []b
 
 	varFederatedListFederatedIdentityProvidersResponse := _FederatedListFederatedIdentityProvidersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFederatedListFederatedIdentityProvidersResponse)
+	err = json.Unmarshal(data, &varFederatedListFederatedIdentityProvidersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FederatedListFederatedIdentityProvidersResponse(varFederatedListFederatedIdentityProvidersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "itemsPerPage")
+		delete(additionalProperties, "resources")
+		delete(additionalProperties, "startIndex")
+		delete(additionalProperties, "totalResults")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

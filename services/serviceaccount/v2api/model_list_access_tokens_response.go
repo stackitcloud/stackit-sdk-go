@@ -19,8 +19,11 @@ var _ MappedNullable = &ListAccessTokensResponse{}
 
 // ListAccessTokensResponse struct for ListAccessTokensResponse
 type ListAccessTokensResponse struct {
-	Items []AccessTokenMetadata `json:"items,omitempty"`
+	Items                []AccessTokenMetadata `json:"items,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListAccessTokensResponse ListAccessTokensResponse
 
 // NewListAccessTokensResponse instantiates a new ListAccessTokensResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o ListAccessTokensResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListAccessTokensResponse) UnmarshalJSON(data []byte) (err error) {
+	varListAccessTokensResponse := _ListAccessTokensResponse{}
+
+	err = json.Unmarshal(data, &varListAccessTokensResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListAccessTokensResponse(varListAccessTokensResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListAccessTokensResponse struct {

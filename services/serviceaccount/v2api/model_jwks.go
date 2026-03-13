@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &JWKS{}
 
 // JWKS struct for JWKS
 type JWKS struct {
-	Keys []JWK `json:"keys"`
+	Keys                 []JWK `json:"keys"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _JWKS JWKS
@@ -79,6 +79,11 @@ func (o JWKS) MarshalJSON() ([]byte, error) {
 func (o JWKS) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["keys"] = o.Keys
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *JWKS) UnmarshalJSON(data []byte) (err error) {
 
 	varJWKS := _JWKS{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varJWKS)
+	err = json.Unmarshal(data, &varJWKS)
 
 	if err != nil {
 		return err
 	}
 
 	*o = JWKS(varJWKS)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "keys")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -24,8 +24,11 @@ type CreateFederatedIdentityProviderPayloadAssertionsInner struct {
 	// Operator for the comparison
 	Operator *string `json:"operator,omitempty"`
 	// Value which the item is compared to
-	Value *string `json:"value,omitempty"`
+	Value                *string `json:"value,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateFederatedIdentityProviderPayloadAssertionsInner CreateFederatedIdentityProviderPayloadAssertionsInner
 
 // NewCreateFederatedIdentityProviderPayloadAssertionsInner instantiates a new CreateFederatedIdentityProviderPayloadAssertionsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o CreateFederatedIdentityProviderPayloadAssertionsInner) ToMap() (map[stri
 	if !IsNil(o.Value) {
 		toSerialize["value"] = o.Value
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateFederatedIdentityProviderPayloadAssertionsInner) UnmarshalJSON(data []byte) (err error) {
+	varCreateFederatedIdentityProviderPayloadAssertionsInner := _CreateFederatedIdentityProviderPayloadAssertionsInner{}
+
+	err = json.Unmarshal(data, &varCreateFederatedIdentityProviderPayloadAssertionsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateFederatedIdentityProviderPayloadAssertionsInner(varCreateFederatedIdentityProviderPayloadAssertionsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		delete(additionalProperties, "operator")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateFederatedIdentityProviderPayloadAssertionsInner struct {

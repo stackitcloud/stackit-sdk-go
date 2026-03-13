@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,7 +29,8 @@ type CreateServiceAccountKeyResponseCredentials struct {
 	// Private key. Only present, if the service account API was generating the key. Not recoverable later.
 	PrivateKey *string `json:"privateKey,omitempty"`
 	// Service account id
-	Sub string `json:"sub"`
+	Sub                  string `json:"sub"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateServiceAccountKeyResponseCredentials CreateServiceAccountKeyResponseCredentials
@@ -201,6 +201,11 @@ func (o CreateServiceAccountKeyResponseCredentials) ToMap() (map[string]interfac
 		toSerialize["privateKey"] = o.PrivateKey
 	}
 	toSerialize["sub"] = o.Sub
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -231,15 +236,24 @@ func (o *CreateServiceAccountKeyResponseCredentials) UnmarshalJSON(data []byte) 
 
 	varCreateServiceAccountKeyResponseCredentials := _CreateServiceAccountKeyResponseCredentials{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateServiceAccountKeyResponseCredentials)
+	err = json.Unmarshal(data, &varCreateServiceAccountKeyResponseCredentials)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateServiceAccountKeyResponseCredentials(varCreateServiceAccountKeyResponseCredentials)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "aud")
+		delete(additionalProperties, "iss")
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "privateKey")
+		delete(additionalProperties, "sub")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

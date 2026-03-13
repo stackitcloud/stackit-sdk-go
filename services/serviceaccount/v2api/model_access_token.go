@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type AccessToken struct {
 	// The access token in JWT format. Use this with `Bearer` prefix for API calls. Store it, as it is not recoverable later.
 	Token string `json:"token"`
 	// Approximate expiration time of the access token. Check the JWT for actual validity date.
-	ValidUntil time.Time `json:"validUntil"`
+	ValidUntil           time.Time `json:"validUntil"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AccessToken AccessToken
@@ -193,6 +193,11 @@ func (o AccessToken) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["token"] = o.Token
 	toSerialize["validUntil"] = o.ValidUntil
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *AccessToken) UnmarshalJSON(data []byte) (err error) {
 
 	varAccessToken := _AccessToken{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAccessToken)
+	err = json.Unmarshal(data, &varAccessToken)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AccessToken(varAccessToken)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "token")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
