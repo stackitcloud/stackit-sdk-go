@@ -1,4 +1,4 @@
-## Release (2026-DD-MM)
+## Release (2026-03-13)
 - `core`:
   - [v0.23.0](core/CHANGELOG.md#v0230)
     - **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration
