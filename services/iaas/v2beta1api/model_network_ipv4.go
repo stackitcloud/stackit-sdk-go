@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type NetworkIPv4 struct {
 	Nameservers []string `json:"nameservers,omitempty"`
 	Prefixes    []string `json:"prefixes"`
 	// String that represents an IPv4 address.
-	PublicIp *string `json:"publicIp,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	PublicIp             *string `json:"publicIp,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NetworkIPv4 NetworkIPv4
@@ -202,6 +202,11 @@ func (o NetworkIPv4) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PublicIp) {
 		toSerialize["publicIp"] = o.PublicIp
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -229,15 +234,23 @@ func (o *NetworkIPv4) UnmarshalJSON(data []byte) (err error) {
 
 	varNetworkIPv4 := _NetworkIPv4{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetworkIPv4)
+	err = json.Unmarshal(data, &varNetworkIPv4)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NetworkIPv4(varNetworkIPv4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "nameservers")
+		delete(additionalProperties, "prefixes")
+		delete(additionalProperties, "publicIp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -25,8 +25,11 @@ type V2beta1UpdateSecurityGroupPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name                 *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _V2beta1UpdateSecurityGroupPayload V2beta1UpdateSecurityGroupPayload
 
 // NewV2beta1UpdateSecurityGroupPayload instantiates a new V2beta1UpdateSecurityGroupPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o V2beta1UpdateSecurityGroupPayload) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *V2beta1UpdateSecurityGroupPayload) UnmarshalJSON(data []byte) (err error) {
+	varV2beta1UpdateSecurityGroupPayload := _V2beta1UpdateSecurityGroupPayload{}
+
+	err = json.Unmarshal(data, &varV2beta1UpdateSecurityGroupPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = V2beta1UpdateSecurityGroupPayload(varV2beta1UpdateSecurityGroupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableV2beta1UpdateSecurityGroupPayload struct {

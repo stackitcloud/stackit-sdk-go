@@ -25,8 +25,11 @@ type UpdateServerPayload struct {
 	// Object that represents the metadata of an object. Regex for keys: `^[a-zA-Z0-9-_:. ]{1,255}$`. Regex for values: `^.{0,255}$`. Providing a `null` value for a key will remove that key.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The name for a Server.
-	Name *string `json:"name,omitempty" validate:"regexp=^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\\\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$"`
+	Name                 *string `json:"name,omitempty" validate:"regexp=^(([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])\\\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9-]*[A-Za-z0-9])$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateServerPayload UpdateServerPayload
 
 // NewUpdateServerPayload instantiates a new UpdateServerPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o UpdateServerPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateServerPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateServerPayload := _UpdateServerPayload{}
+
+	err = json.Unmarshal(data, &varUpdateServerPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateServerPayload(varUpdateServerPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateServerPayload struct {

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -66,7 +65,8 @@ type Server struct {
 	// User Data that is provided to the server. Must be base64 encoded and is passed via cloud-init to the server. Only shown when detailed information is requested.
 	UserData *string `json:"userData,omitempty"`
 	// The list of volumes attached to the server.
-	Volumes []string `json:"volumes,omitempty"`
+	Volumes              []string `json:"volumes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Server Server
@@ -920,6 +920,11 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -948,15 +953,43 @@ func (o *Server) UnmarshalJSON(data []byte) (err error) {
 
 	varServer := _Server{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServer)
+	err = json.Unmarshal(data, &varServer)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Server(varServer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "affinityGroup")
+		delete(additionalProperties, "agent")
+		delete(additionalProperties, "availabilityZone")
+		delete(additionalProperties, "bootVolume")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "errorMessage")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "imageId")
+		delete(additionalProperties, "keypairName")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "launchedAt")
+		delete(additionalProperties, "machineType")
+		delete(additionalProperties, "maintenanceWindow")
+		delete(additionalProperties, "metadata")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "networking")
+		delete(additionalProperties, "nics")
+		delete(additionalProperties, "powerStatus")
+		delete(additionalProperties, "securityGroups")
+		delete(additionalProperties, "serviceAccountMails")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "userData")
+		delete(additionalProperties, "volumes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

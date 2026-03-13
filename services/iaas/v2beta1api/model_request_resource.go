@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type RequestResource struct {
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	Status string `json:"status"`
 	// Object that represents a resource type. Possible values: `BACKUP`, `IMAGE`, `NETWORK`, `NETWORKAREA`, `NIC`, `PROJECT`, `ROUTE`, `SERVER`, `SERVICEACCOUNT`, `SNAPSHOT`, `VIRTUALIP`, `VOLUME`.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RequestResource RequestResource
@@ -137,6 +137,11 @@ func (o RequestResource) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["status"] = o.Status
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *RequestResource) UnmarshalJSON(data []byte) (err error) {
 
 	varRequestResource := _RequestResource{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRequestResource)
+	err = json.Unmarshal(data, &varRequestResource)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RequestResource(varRequestResource)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

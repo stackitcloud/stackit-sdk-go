@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -53,7 +52,8 @@ type Image struct {
 	// The status of an image object. Possible values: `AVAILABLE`, `CREATING`, `DEACTIVATED`, `DELETED`, `DELETING`, `ERROR`.
 	Status *string `json:"status,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Image Image
@@ -662,6 +662,11 @@ func (o Image) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -690,15 +695,36 @@ func (o *Image) UnmarshalJSON(data []byte) (err error) {
 
 	varImage := _Image{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImage)
+	err = json.Unmarshal(data, &varImage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Image(varImage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "agent")
+		delete(additionalProperties, "checksum")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "diskFormat")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "importProgress")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "minDiskSize")
+		delete(additionalProperties, "minRam")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "owner")
+		delete(additionalProperties, "protected")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

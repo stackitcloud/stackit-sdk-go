@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -42,8 +41,9 @@ type CreateSecurityGroupRulePayload struct {
 	// Universally Unique Identifier (UUID).
 	SecurityGroupId *string `json:"securityGroupId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time      `json:"updatedAt,omitempty"`
-	Protocol  *CreateProtocol `json:"protocol,omitempty"`
+	UpdatedAt            *time.Time      `json:"updatedAt,omitempty"`
+	Protocol             *CreateProtocol `json:"protocol,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateSecurityGroupRulePayload CreateSecurityGroupRulePayload
@@ -490,6 +490,11 @@ func (o CreateSecurityGroupRulePayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -517,15 +522,31 @@ func (o *CreateSecurityGroupRulePayload) UnmarshalJSON(data []byte) (err error) 
 
 	varCreateSecurityGroupRulePayload := _CreateSecurityGroupRulePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateSecurityGroupRulePayload)
+	err = json.Unmarshal(data, &varCreateSecurityGroupRulePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateSecurityGroupRulePayload(varCreateSecurityGroupRulePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "direction")
+		delete(additionalProperties, "ethertype")
+		delete(additionalProperties, "icmpParameters")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ipRange")
+		delete(additionalProperties, "portRange")
+		delete(additionalProperties, "remoteSecurityGroupId")
+		delete(additionalProperties, "securityGroupId")
+		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "protocol")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

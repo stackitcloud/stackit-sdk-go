@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -42,7 +41,8 @@ type BaseSecurityGroupRule struct {
 	// Universally Unique Identifier (UUID).
 	SecurityGroupId *string `json:"securityGroupId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BaseSecurityGroupRule BaseSecurityGroupRule
@@ -454,6 +454,11 @@ func (o BaseSecurityGroupRule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -481,15 +486,30 @@ func (o *BaseSecurityGroupRule) UnmarshalJSON(data []byte) (err error) {
 
 	varBaseSecurityGroupRule := _BaseSecurityGroupRule{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBaseSecurityGroupRule)
+	err = json.Unmarshal(data, &varBaseSecurityGroupRule)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BaseSecurityGroupRule(varBaseSecurityGroupRule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "direction")
+		delete(additionalProperties, "ethertype")
+		delete(additionalProperties, "icmpParameters")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ipRange")
+		delete(additionalProperties, "portRange")
+		delete(additionalProperties, "remoteSecurityGroupId")
+		delete(additionalProperties, "securityGroupId")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

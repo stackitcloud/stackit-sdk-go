@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &MachineTypeListResponse{}
 // MachineTypeListResponse Machine type list response.
 type MachineTypeListResponse struct {
 	// Machine type list.
-	Items []MachineType `json:"items"`
+	Items                []MachineType `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MachineTypeListResponse MachineTypeListResponse
@@ -81,6 +81,11 @@ func (o MachineTypeListResponse) MarshalJSON() ([]byte, error) {
 func (o MachineTypeListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *MachineTypeListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMachineTypeListResponse := _MachineTypeListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMachineTypeListResponse)
+	err = json.Unmarshal(data, &varMachineTypeListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MachineTypeListResponse(varMachineTypeListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ResizeVolumePayload{}
 // ResizeVolumePayload struct for ResizeVolumePayload
 type ResizeVolumePayload struct {
 	// Size in Gigabyte.
-	Size int64 `json:"size"`
+	Size                 int64 `json:"size"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ResizeVolumePayload ResizeVolumePayload
@@ -81,6 +81,11 @@ func (o ResizeVolumePayload) MarshalJSON() ([]byte, error) {
 func (o ResizeVolumePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["size"] = o.Size
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ResizeVolumePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varResizeVolumePayload := _ResizeVolumePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varResizeVolumePayload)
+	err = json.Unmarshal(data, &varResizeVolumePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ResizeVolumePayload(varResizeVolumePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "size")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
