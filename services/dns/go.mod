@@ -4,8 +4,7 @@ go 1.21
 
 require (
 	github.com/google/go-cmp v0.7.0
-	// TODO: core module needs to be bumped to v0.23.0 before merging the PR
-	github.com/stackitcloud/stackit-sdk-go/core v0.22.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.23.0
 )
 
 require (
