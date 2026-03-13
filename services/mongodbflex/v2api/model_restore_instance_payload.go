@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &RestoreInstancePayload{}
 
 // RestoreInstancePayload struct for RestoreInstancePayload
 type RestoreInstancePayload struct {
-	BackupId   string `json:"backupId"`
-	InstanceId string `json:"instanceId"`
+	BackupId             string `json:"backupId"`
+	InstanceId           string `json:"instanceId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RestoreInstancePayload RestoreInstancePayload
@@ -107,6 +107,11 @@ func (o RestoreInstancePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["backupId"] = o.BackupId
 	toSerialize["instanceId"] = o.InstanceId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *RestoreInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varRestoreInstancePayload := _RestoreInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRestoreInstancePayload)
+	err = json.Unmarshal(data, &varRestoreInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RestoreInstancePayload(varRestoreInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupId")
+		delete(additionalProperties, "instanceId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

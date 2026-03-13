@@ -20,12 +20,15 @@ var _ MappedNullable = &RestoreInstanceStatus{}
 
 // RestoreInstanceStatus struct for RestoreInstanceStatus
 type RestoreInstanceStatus struct {
-	BackupID   *string `json:"backupID,omitempty"`
-	Date       *string `json:"date,omitempty"`
-	Id         *string `json:"id,omitempty"`
-	InstanceId *string `json:"instanceId,omitempty"`
-	Status     *string `json:"status,omitempty"`
+	BackupID             *string `json:"backupID,omitempty"`
+	Date                 *string `json:"date,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	InstanceId           *string `json:"instanceId,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RestoreInstanceStatus RestoreInstanceStatus
 
 // NewRestoreInstanceStatus instantiates a new RestoreInstanceStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o RestoreInstanceStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RestoreInstanceStatus) UnmarshalJSON(data []byte) (err error) {
+	varRestoreInstanceStatus := _RestoreInstanceStatus{}
+
+	err = json.Unmarshal(data, &varRestoreInstanceStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RestoreInstanceStatus(varRestoreInstanceStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupID")
+		delete(additionalProperties, "date")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "instanceId")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRestoreInstanceStatus struct {

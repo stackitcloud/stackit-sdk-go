@@ -29,8 +29,11 @@ type SuggestedIndex struct {
 	// Namespace of the suggested index.
 	Namespace *string `json:"namespace,omitempty"`
 	// Estimated percentage performance improvement that the suggested index would provide.
-	Weight *float32 `json:"weight,omitempty"`
+	Weight               *float32 `json:"weight,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SuggestedIndex SuggestedIndex
 
 // NewSuggestedIndex instantiates a new SuggestedIndex object
 // This constructor will assign default values to properties that have it defined,
@@ -234,7 +237,37 @@ func (o SuggestedIndex) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Weight) {
 		toSerialize["weight"] = o.Weight
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SuggestedIndex) UnmarshalJSON(data []byte) (err error) {
+	varSuggestedIndex := _SuggestedIndex{}
+
+	err = json.Unmarshal(data, &varSuggestedIndex)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SuggestedIndex(varSuggestedIndex)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "impact")
+		delete(additionalProperties, "index")
+		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "weight")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSuggestedIndex struct {

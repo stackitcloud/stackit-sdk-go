@@ -27,8 +27,11 @@ type MongodbatlasStats struct {
 	// Number of documents read by the query.
 	NScanned *int64 `json:"nScanned,omitempty"`
 	// Query timestamp, in seconds since epoch.
-	Ts *int64 `json:"ts,omitempty"`
+	Ts                   *int64 `json:"ts,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MongodbatlasStats MongodbatlasStats
 
 // NewMongodbatlasStats instantiates a new MongodbatlasStats object
 // This constructor will assign default values to properties that have it defined,
@@ -197,7 +200,36 @@ func (o MongodbatlasStats) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ts) {
 		toSerialize["ts"] = o.Ts
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MongodbatlasStats) UnmarshalJSON(data []byte) (err error) {
+	varMongodbatlasStats := _MongodbatlasStats{}
+
+	err = json.Unmarshal(data, &varMongodbatlasStats)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MongodbatlasStats(varMongodbatlasStats)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ms")
+		delete(additionalProperties, "nReturned")
+		delete(additionalProperties, "nScanned")
+		delete(additionalProperties, "ts")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMongodbatlasStats struct {

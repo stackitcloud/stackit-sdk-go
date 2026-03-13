@@ -309,12 +309,16 @@
     - Deprecated SDK layer in root of the module:
       - **Feature:** Add new field `Description` in `Backup`, `CreateBackupPayload`, `UpdateBackupPayload`, `Snapshot`, `CreateSnapshotPayload`, `UpdateSnapshotPayload` model struct
     - `v2beta1api`: Align package to latest API specification
-- `mongodbflex`: [v1.6.0](services/mongodbflex/CHANGELOG.md#v160)
-  - **Feature:** Introduction of multi API version support for the mongodbflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which can be used for communication with the mongodbflex v1 API
-  - `v2api`: New package which can be used for communication with the mongodbflex v2 API
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `mongodbflex`:
+  - [v1.6.0](services/mongodbflex/CHANGELOG.md#v160)
+    - **Feature:** Introduction of multi API version support for the mongodbflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the mongodbflex v1 API
+    - `v2api`: New package which can be used for communication with the mongodbflex v2 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v1.7.0](services/mongodbflex/CHANGELOG.md#v170)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `objectstorage`: [v1.5.0](services/objectstorage/CHANGELOG.md#v150)
   - **Feature:** Introduction of multi API version support for the objectstorage SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which can be used for communication with the objectstorage v1 API
