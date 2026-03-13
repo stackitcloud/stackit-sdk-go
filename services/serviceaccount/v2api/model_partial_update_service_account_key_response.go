@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type PartialUpdateServiceAccountKeyResponse struct {
 	KeyOrigin    string `json:"keyOrigin"`
 	KeyType      string `json:"keyType"`
 	// If specified, the timestamp until the key is active. May be null
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil           *time.Time `json:"validUntil,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateServiceAccountKeyResponse PartialUpdateServiceAccountKeyResponse
@@ -254,6 +254,11 @@ func (o PartialUpdateServiceAccountKeyResponse) ToMap() (map[string]interface{},
 	if !IsNil(o.ValidUntil) {
 		toSerialize["validUntil"] = o.ValidUntil
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -286,15 +291,26 @@ func (o *PartialUpdateServiceAccountKeyResponse) UnmarshalJSON(data []byte) (err
 
 	varPartialUpdateServiceAccountKeyResponse := _PartialUpdateServiceAccountKeyResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateServiceAccountKeyResponse)
+	err = json.Unmarshal(data, &varPartialUpdateServiceAccountKeyResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateServiceAccountKeyResponse(varPartialUpdateServiceAccountKeyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "keyAlgorithm")
+		delete(additionalProperties, "keyOrigin")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

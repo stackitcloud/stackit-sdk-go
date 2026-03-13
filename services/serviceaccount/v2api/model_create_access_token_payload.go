@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &CreateAccessTokenPayload{}
 // CreateAccessTokenPayload struct for CreateAccessTokenPayload
 type CreateAccessTokenPayload struct {
 	// The duration in days for how long the new Access Token should be valid.
-	TtlDays int32 `json:"ttlDays"`
+	TtlDays              int32 `json:"ttlDays"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateAccessTokenPayload CreateAccessTokenPayload
@@ -80,6 +80,11 @@ func (o CreateAccessTokenPayload) MarshalJSON() ([]byte, error) {
 func (o CreateAccessTokenPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["ttlDays"] = o.TtlDays
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *CreateAccessTokenPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateAccessTokenPayload := _CreateAccessTokenPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAccessTokenPayload)
+	err = json.Unmarshal(data, &varCreateAccessTokenPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateAccessTokenPayload(varCreateAccessTokenPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ttlDays")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

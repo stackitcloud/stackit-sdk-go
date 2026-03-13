@@ -67,8 +67,12 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `serverupdate`: [v1.4.1](services/serverupdate/CHANGELOG.md#v141) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `serviceaccount`: [v0.14.1](services/serviceaccount/CHANGELOG.md#v0141) 
+- `serviceaccount`:
+  - [v0.14.1](services/serviceaccount/CHANGELOG.md#v0141)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.15.0](services/serviceaccount/CHANGELOG.md#v0150)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `serviceenablement`: [v1.4.1](services/serviceenablement/CHANGELOG.md#v141) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `sfs`: [v0.6.1](services/sfs/CHANGELOG.md#v061) 

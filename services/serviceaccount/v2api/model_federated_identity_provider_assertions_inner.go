@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,7 +25,8 @@ type FederatedIdentityProviderAssertionsInner struct {
 	// Operator for the comparison
 	Operator string `json:"operator"`
 	// Value which the item is compared to
-	Value string `json:"value"`
+	Value                string `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FederatedIdentityProviderAssertionsInner FederatedIdentityProviderAssertionsInner
@@ -136,6 +136,11 @@ func (o FederatedIdentityProviderAssertionsInner) ToMap() (map[string]interface{
 	toSerialize["item"] = o.Item
 	toSerialize["operator"] = o.Operator
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -165,15 +170,22 @@ func (o *FederatedIdentityProviderAssertionsInner) UnmarshalJSON(data []byte) (e
 
 	varFederatedIdentityProviderAssertionsInner := _FederatedIdentityProviderAssertionsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFederatedIdentityProviderAssertionsInner)
+	err = json.Unmarshal(data, &varFederatedIdentityProviderAssertionsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FederatedIdentityProviderAssertionsInner(varFederatedIdentityProviderAssertionsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		delete(additionalProperties, "operator")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
