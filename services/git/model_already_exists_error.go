@@ -15,25 +15,19 @@ import (
 	"encoding/json"
 )
 
-// checks if the ListFlavors type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListFlavors{}
+// checks if the AlreadyExistsError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AlreadyExistsError{}
 
 /*
-	types and functions for flavors
+	types and functions for message
 */
 
-// isArray
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavorsGetFlavorsAttributeType = *[]Flavor
+type AlreadyExistsErrorGetMessageAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavorsGetFlavorsArgType = []Flavor
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavorsGetFlavorsRetType = []Flavor
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getListFlavorsGetFlavorsAttributeTypeOk(arg ListFlavorsGetFlavorsAttributeType) (ret ListFlavorsGetFlavorsRetType, ok bool) {
+func getAlreadyExistsErrorGetMessageAttributeTypeOk(arg AlreadyExistsErrorGetMessageAttributeType) (ret AlreadyExistsErrorGetMessageRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -41,109 +35,115 @@ func getListFlavorsGetFlavorsAttributeTypeOk(arg ListFlavorsGetFlavorsAttributeT
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setListFlavorsGetFlavorsAttributeType(arg *ListFlavorsGetFlavorsAttributeType, val ListFlavorsGetFlavorsRetType) {
+func setAlreadyExistsErrorGetMessageAttributeType(arg *AlreadyExistsErrorGetMessageAttributeType, val AlreadyExistsErrorGetMessageRetType) {
 	*arg = &val
 }
 
-// ListFlavors A list of STACKIT Git Flavors.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListFlavors struct {
+type AlreadyExistsErrorGetMessageArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type AlreadyExistsErrorGetMessageRetType = string
+
+// AlreadyExistsError Error response when a resource already exists.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type AlreadyExistsError struct {
 	// REQUIRED
-	Flavors ListFlavorsGetFlavorsAttributeType `json:"flavors" required:"true"`
+	Message AlreadyExistsErrorGetMessageAttributeType `json:"message" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _ListFlavors ListFlavors
+type _AlreadyExistsError AlreadyExistsError
 
-// NewListFlavors instantiates a new ListFlavors object
+// NewAlreadyExistsError instantiates a new AlreadyExistsError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewListFlavors(flavors ListFlavorsGetFlavorsArgType) *ListFlavors {
-	this := ListFlavors{}
-	setListFlavorsGetFlavorsAttributeType(&this.Flavors, flavors)
+func NewAlreadyExistsError(message AlreadyExistsErrorGetMessageArgType) *AlreadyExistsError {
+	this := AlreadyExistsError{}
+	setAlreadyExistsErrorGetMessageAttributeType(&this.Message, message)
 	return &this
 }
 
-// NewListFlavorsWithDefaults instantiates a new ListFlavors object
+// NewAlreadyExistsErrorWithDefaults instantiates a new AlreadyExistsError object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewListFlavorsWithDefaults() *ListFlavors {
-	this := ListFlavors{}
+func NewAlreadyExistsErrorWithDefaults() *AlreadyExistsError {
+	this := AlreadyExistsError{}
 	return &this
 }
 
-// GetFlavors returns the Flavors field value
+// GetMessage returns the Message field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListFlavors) GetFlavors() (ret ListFlavorsGetFlavorsRetType) {
-	ret, _ = o.GetFlavorsOk()
+func (o *AlreadyExistsError) GetMessage() (ret AlreadyExistsErrorGetMessageRetType) {
+	ret, _ = o.GetMessageOk()
 	return ret
 }
 
-// GetFlavorsOk returns a tuple with the Flavors field value
+// GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListFlavors) GetFlavorsOk() (ret ListFlavorsGetFlavorsRetType, ok bool) {
-	return getListFlavorsGetFlavorsAttributeTypeOk(o.Flavors)
+func (o *AlreadyExistsError) GetMessageOk() (ret AlreadyExistsErrorGetMessageRetType, ok bool) {
+	return getAlreadyExistsErrorGetMessageAttributeTypeOk(o.Message)
 }
 
-// SetFlavors sets field value
+// SetMessage sets field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ListFlavors) SetFlavors(v ListFlavorsGetFlavorsRetType) {
-	setListFlavorsGetFlavorsAttributeType(&o.Flavors, v)
+func (o *AlreadyExistsError) SetMessage(v AlreadyExistsErrorGetMessageRetType) {
+	setAlreadyExistsErrorGetMessageAttributeType(&o.Message, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o ListFlavors) ToMap() (map[string]interface{}, error) {
+func (o AlreadyExistsError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getListFlavorsGetFlavorsAttributeTypeOk(o.Flavors); ok {
-		toSerialize["Flavors"] = val
+	if val, ok := getAlreadyExistsErrorGetMessageAttributeTypeOk(o.Message); ok {
+		toSerialize["Message"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableListFlavors struct {
-	value *ListFlavors
+type NullableAlreadyExistsError struct {
+	value *AlreadyExistsError
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListFlavors) Get() *ListFlavors {
+func (v NullableAlreadyExistsError) Get() *AlreadyExistsError {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListFlavors) Set(val *ListFlavors) {
+func (v *NullableAlreadyExistsError) Set(val *AlreadyExistsError) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListFlavors) IsSet() bool {
+func (v NullableAlreadyExistsError) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListFlavors) Unset() {
+func (v *NullableAlreadyExistsError) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableListFlavors(val *ListFlavors) *NullableListFlavors {
-	return &NullableListFlavors{value: val, isSet: true}
+func NewNullableAlreadyExistsError(val *AlreadyExistsError) *NullableAlreadyExistsError {
+	return &NullableAlreadyExistsError{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableListFlavors) MarshalJSON() ([]byte, error) {
+func (v NullableAlreadyExistsError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableListFlavors) UnmarshalJSON(src []byte) error {
+func (v *NullableAlreadyExistsError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
