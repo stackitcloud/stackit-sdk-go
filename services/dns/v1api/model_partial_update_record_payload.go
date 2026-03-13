@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ var _ MappedNullable = &PartialUpdateRecordPayload{}
 type PartialUpdateRecordPayload struct {
 	Action string `json:"action"`
 	// records
-	Records []RecordPayload `json:"records"`
+	Records              []RecordPayload `json:"records"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateRecordPayload PartialUpdateRecordPayload
@@ -108,6 +108,11 @@ func (o PartialUpdateRecordPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["action"] = o.Action
 	toSerialize["records"] = o.Records
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *PartialUpdateRecordPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varPartialUpdateRecordPayload := _PartialUpdateRecordPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateRecordPayload)
+	err = json.Unmarshal(data, &varPartialUpdateRecordPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateRecordPayload(varPartialUpdateRecordPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "records")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

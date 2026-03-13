@@ -20,9 +20,12 @@ var _ MappedNullable = &ExportRecordSetsPayload{}
 
 // ExportRecordSetsPayload struct for ExportRecordSetsPayload
 type ExportRecordSetsPayload struct {
-	ExportAsFQDN *bool   `json:"exportAsFQDN,omitempty"`
-	Format       *string `json:"format,omitempty"`
+	ExportAsFQDN         *bool   `json:"exportAsFQDN,omitempty"`
+	Format               *string `json:"format,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ExportRecordSetsPayload ExportRecordSetsPayload
 
 // NewExportRecordSetsPayload instantiates a new ExportRecordSetsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -129,7 +132,34 @@ func (o ExportRecordSetsPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Format) {
 		toSerialize["format"] = o.Format
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ExportRecordSetsPayload) UnmarshalJSON(data []byte) (err error) {
+	varExportRecordSetsPayload := _ExportRecordSetsPayload{}
+
+	err = json.Unmarshal(data, &varExportRecordSetsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ExportRecordSetsPayload(varExportRecordSetsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exportAsFQDN")
+		delete(additionalProperties, "format")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableExportRecordSetsPayload struct {

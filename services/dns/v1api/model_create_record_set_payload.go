@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type CreateRecordSetPayload struct {
 	// time to live. If nothing provided we will set the zone ttl.
 	Ttl *int32 `json:"ttl,omitempty"`
 	// record set type
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateRecordSetPayload CreateRecordSetPayload
@@ -211,6 +211,11 @@ func (o CreateRecordSetPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["ttl"] = o.Ttl
 	}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -240,15 +245,24 @@ func (o *CreateRecordSetPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateRecordSetPayload := _CreateRecordSetPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateRecordSetPayload)
+	err = json.Unmarshal(data, &varCreateRecordSetPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateRecordSetPayload(varCreateRecordSetPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "records")
+		delete(additionalProperties, "ttl")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ValidateMoveCodePayload{}
 // ValidateMoveCodePayload PostValidateMoveCodeRequest body to validate move code request.
 type ValidateMoveCodePayload struct {
 	// code that should be validated. It validates if it is valid, not expired and belongs to the zone.
-	Code string `json:"code"`
+	Code                 string `json:"code"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidateMoveCodePayload ValidateMoveCodePayload
@@ -81,6 +81,11 @@ func (o ValidateMoveCodePayload) MarshalJSON() ([]byte, error) {
 func (o ValidateMoveCodePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["code"] = o.Code
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ValidateMoveCodePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varValidateMoveCodePayload := _ValidateMoveCodePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidateMoveCodePayload)
+	err = json.Unmarshal(data, &varValidateMoveCodePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidateMoveCodePayload(varValidateMoveCodePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

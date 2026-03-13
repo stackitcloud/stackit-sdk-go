@@ -12,7 +12,6 @@ Contact: dns@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &RecordSetResponse{}
 
 // RecordSetResponse ResponseRRSet for rr set info.
 type RecordSetResponse struct {
-	Message *string   `json:"message,omitempty"`
-	Rrset   RecordSet `json:"rrset"`
+	Message              *string   `json:"message,omitempty"`
+	Rrset                RecordSet `json:"rrset"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RecordSetResponse RecordSetResponse
@@ -116,6 +116,11 @@ func (o RecordSetResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["message"] = o.Message
 	}
 	toSerialize["rrset"] = o.Rrset
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *RecordSetResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRecordSetResponse := _RecordSetResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRecordSetResponse)
+	err = json.Unmarshal(data, &varRecordSetResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RecordSetResponse(varRecordSetResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "rrset")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
