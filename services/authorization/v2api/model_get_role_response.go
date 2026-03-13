@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &GetRoleResponse{}
 
 // GetRoleResponse struct for GetRoleResponse
 type GetRoleResponse struct {
-	ResourceId   string `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
-	ResourceType string `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
-	Role         Role   `json:"role"`
+	ResourceId           string `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
+	ResourceType         string `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	Role                 Role   `json:"role"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetRoleResponse GetRoleResponse
@@ -133,6 +133,11 @@ func (o GetRoleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["resourceId"] = o.ResourceId
 	toSerialize["resourceType"] = o.ResourceType
 	toSerialize["role"] = o.Role
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *GetRoleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetRoleResponse := _GetRoleResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetRoleResponse)
+	err = json.Unmarshal(data, &varGetRoleResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetRoleResponse(varGetRoleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resourceId")
+		delete(additionalProperties, "resourceType")
+		delete(additionalProperties, "role")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

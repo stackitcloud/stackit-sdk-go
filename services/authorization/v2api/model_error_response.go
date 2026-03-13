@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -22,11 +21,12 @@ var _ MappedNullable = &ErrorResponse{}
 
 // ErrorResponse struct for ErrorResponse
 type ErrorResponse struct {
-	Error     string    `json:"error"`
-	Message   string    `json:"message"`
-	Path      string    `json:"path"`
-	Status    int32     `json:"status"`
-	TimeStamp time.Time `json:"timeStamp"`
+	Error                string    `json:"error"`
+	Message              string    `json:"message"`
+	Path                 string    `json:"path"`
+	Status               int32     `json:"status"`
+	TimeStamp            time.Time `json:"timeStamp"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ErrorResponse ErrorResponse
@@ -188,6 +188,11 @@ func (o ErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["path"] = o.Path
 	toSerialize["status"] = o.Status
 	toSerialize["timeStamp"] = o.TimeStamp
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *ErrorResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varErrorResponse := _ErrorResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varErrorResponse)
+	err = json.Unmarshal(data, &varErrorResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ErrorResponse(varErrorResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "timeStamp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

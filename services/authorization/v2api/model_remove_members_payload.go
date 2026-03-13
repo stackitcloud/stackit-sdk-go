@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &RemoveMembersPayload{}
 
 // RemoveMembersPayload struct for RemoveMembersPayload
 type RemoveMembersPayload struct {
-	ForceRemove  *bool    `json:"forceRemove,omitempty"`
-	Members      []Member `json:"members"`
-	ResourceType string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	ForceRemove          *bool    `json:"forceRemove,omitempty"`
+	Members              []Member `json:"members"`
+	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RemoveMembersPayload RemoveMembersPayload
@@ -142,6 +142,11 @@ func (o RemoveMembersPayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["members"] = o.Members
 	toSerialize["resourceType"] = o.ResourceType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -170,15 +175,22 @@ func (o *RemoveMembersPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varRemoveMembersPayload := _RemoveMembersPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRemoveMembersPayload)
+	err = json.Unmarshal(data, &varRemoveMembersPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RemoveMembersPayload(varRemoveMembersPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "forceRemove")
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "resourceType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

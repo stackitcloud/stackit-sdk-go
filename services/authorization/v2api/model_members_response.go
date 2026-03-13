@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,10 +20,11 @@ var _ MappedNullable = &MembersResponse{}
 
 // MembersResponse struct for MembersResponse
 type MembersResponse struct {
-	Members      []Member `json:"members"`
-	ResourceId   string   `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
-	ResourceType string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
-	WrittenAt    *Zookie  `json:"writtenAt,omitempty"`
+	Members              []Member `json:"members"`
+	ResourceId           string   `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
+	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	WrittenAt            *Zookie  `json:"writtenAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MembersResponse MembersResponse
@@ -169,6 +169,11 @@ func (o MembersResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WrittenAt) {
 		toSerialize["writtenAt"] = o.WrittenAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -198,15 +203,23 @@ func (o *MembersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMembersResponse := _MembersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMembersResponse)
+	err = json.Unmarshal(data, &varMembersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MembersResponse(varMembersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "resourceId")
+		delete(additionalProperties, "resourceType")
+		delete(additionalProperties, "writtenAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

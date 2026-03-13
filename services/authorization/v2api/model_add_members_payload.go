@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &AddMembersPayload{}
 
 // AddMembersPayload struct for AddMembersPayload
 type AddMembersPayload struct {
-	Members      []Member `json:"members"`
-	ResourceType string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	Members              []Member `json:"members"`
+	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AddMembersPayload AddMembersPayload
@@ -106,6 +106,11 @@ func (o AddMembersPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["members"] = o.Members
 	toSerialize["resourceType"] = o.ResourceType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *AddMembersPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varAddMembersPayload := _AddMembersPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAddMembersPayload)
+	err = json.Unmarshal(data, &varAddMembersPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AddMembersPayload(varAddMembersPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "resourceType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

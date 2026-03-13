@@ -1,3 +1,7 @@
+## v0.14.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v0.13.0
 - **Feature:** Introduction of multi API version support for the authorization SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v2api`: New package which should be used for communication with the STACKIT authorization API in the future
