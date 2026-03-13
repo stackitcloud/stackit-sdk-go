@@ -30,8 +30,11 @@ type Rule struct {
 	// Reference target pool by target pool name.
 	TargetPool *string `json:"targetPool,omitempty"`
 	// If enabled, when client sends an HTTP request with and Upgrade header, indicating the desire to establish a Websocket connection,  if backend server supports WebSocket, it responds with HTTP 101 status code, switching protocols from HTTP to WebSocket. Hence the client and the server can exchange data in real-time using one long-lived TCP connection.
-	WebSocket *bool `json:"webSocket,omitempty"`
+	WebSocket            *bool `json:"webSocket,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Rule Rule
 
 // NewRule instantiates a new Rule object
 // This constructor will assign default values to properties that have it defined,
@@ -305,7 +308,39 @@ func (o Rule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WebSocket) {
 		toSerialize["webSocket"] = o.WebSocket
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Rule) UnmarshalJSON(data []byte) (err error) {
+	varRule := _Rule{}
+
+	err = json.Unmarshal(data, &varRule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Rule(varRule)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cookiePersistence")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "path")
+		delete(additionalProperties, "pathPrefix")
+		delete(additionalProperties, "queryParameters")
+		delete(additionalProperties, "targetPool")
+		delete(additionalProperties, "webSocket")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRule struct {

@@ -11,7 +11,6 @@ API version: 1beta.0.3
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -45,7 +44,8 @@ type LogsInstance struct {
 	// The log retention time in days.
 	RetentionDays int32 `json:"retentionDays"`
 	// The current status of the Logs instance.
-	Status string `json:"status"`
+	Status               string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LogsInstance LogsInstance
@@ -452,6 +452,11 @@ func (o LogsInstance) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["retentionDays"] = o.RetentionDays
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -483,15 +488,31 @@ func (o *LogsInstance) UnmarshalJSON(data []byte) (err error) {
 
 	varLogsInstance := _LogsInstance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLogsInstance)
+	err = json.Unmarshal(data, &varLogsInstance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LogsInstance(varLogsInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "created")
+		delete(additionalProperties, "datasourceUrl")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ingestOtlpUrl")
+		delete(additionalProperties, "ingestUrl")
+		delete(additionalProperties, "queryRangeUrl")
+		delete(additionalProperties, "queryUrl")
+		delete(additionalProperties, "retentionDays")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -28,8 +28,11 @@ type CreateWAFPayload struct {
 	// Region
 	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
 	// Name of the rule configuration for that WAF.
-	RulesConfigName *string `json:"rulesConfigName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	RulesConfigName      *string `json:"rulesConfigName,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateWAFPayload CreateWAFPayload
 
 // NewCreateWAFPayload instantiates a new CreateWAFPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o CreateWAFPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RulesConfigName) {
 		toSerialize["rulesConfigName"] = o.RulesConfigName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateWAFPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateWAFPayload := _CreateWAFPayload{}
+
+	err = json.Unmarshal(data, &varCreateWAFPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateWAFPayload(varCreateWAFPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "coreRuleSetName")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "rulesConfigName")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateWAFPayload struct {

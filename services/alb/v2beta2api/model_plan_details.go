@@ -30,8 +30,11 @@ type PlanDetails struct {
 	// Service Plan Identifier
 	PlanId *string `json:"planId,omitempty"`
 	// Region this Plan is available in
-	Region *string `json:"region,omitempty"`
+	Region               *string `json:"region,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PlanDetails PlanDetails
 
 // NewPlanDetails instantiates a new PlanDetails object
 // This constructor will assign default values to properties that have it defined,
@@ -270,7 +273,38 @@ func (o PlanDetails) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PlanDetails) UnmarshalJSON(data []byte) (err error) {
+	varPlanDetails := _PlanDetails{}
+
+	err = json.Unmarshal(data, &varPlanDetails)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PlanDetails(varPlanDetails)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "flavorName")
+		delete(additionalProperties, "maxConnections")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "region")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePlanDetails struct {

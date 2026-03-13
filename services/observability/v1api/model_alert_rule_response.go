@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &AlertRuleResponse{}
 
 // AlertRuleResponse struct for AlertRuleResponse
 type AlertRuleResponse struct {
-	Data    AlertRule `json:"data"`
-	Message string    `json:"message"`
+	Data                 AlertRule `json:"data"`
+	Message              string    `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AlertRuleResponse AlertRuleResponse
@@ -107,6 +107,11 @@ func (o AlertRuleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *AlertRuleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAlertRuleResponse := _AlertRuleResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAlertRuleResponse)
+	err = json.Unmarshal(data, &varAlertRuleResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AlertRuleResponse(varAlertRuleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

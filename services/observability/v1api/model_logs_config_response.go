@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &LogsConfigResponse{}
 
 // LogsConfigResponse struct for LogsConfigResponse
 type LogsConfigResponse struct {
-	Config  LogsConfig `json:"config"`
-	Message string     `json:"message"`
+	Config               LogsConfig `json:"config"`
+	Message              string     `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LogsConfigResponse LogsConfigResponse
@@ -107,6 +107,11 @@ func (o LogsConfigResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["config"] = o.Config
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *LogsConfigResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varLogsConfigResponse := _LogsConfigResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLogsConfigResponse)
+	err = json.Unmarshal(data, &varLogsConfigResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LogsConfigResponse(varLogsConfigResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

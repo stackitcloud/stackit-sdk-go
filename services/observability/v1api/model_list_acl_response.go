@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &ListACLResponse{}
 
 // ListACLResponse struct for ListACLResponse
 type ListACLResponse struct {
-	Acl     []string `json:"acl"`
-	Message string   `json:"message"`
+	Acl                  []string `json:"acl"`
+	Message              string   `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListACLResponse ListACLResponse
@@ -107,6 +107,11 @@ func (o ListACLResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["acl"] = o.Acl
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *ListACLResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListACLResponse := _ListACLResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListACLResponse)
+	err = json.Unmarshal(data, &varListACLResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListACLResponse(varListACLResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

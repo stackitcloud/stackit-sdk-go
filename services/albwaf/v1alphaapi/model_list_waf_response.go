@@ -21,8 +21,11 @@ var _ MappedNullable = &ListWAFResponse{}
 type ListWAFResponse struct {
 	Items []GetWAFResponse `json:"items,omitempty"`
 	// Continue token from the ListWAFResponse with Limit option
-	NextPageId *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListWAFResponse ListWAFResponse
 
 // NewListWAFResponse instantiates a new ListWAFResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ListWAFResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageId) {
 		toSerialize["nextPageId"] = o.NextPageId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListWAFResponse) UnmarshalJSON(data []byte) (err error) {
+	varListWAFResponse := _ListWAFResponse{}
+
+	err = json.Unmarshal(data, &varListWAFResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListWAFResponse(varListWAFResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "nextPageId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListWAFResponse struct {

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,7 +29,8 @@ type PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2 struct {
 	Scopes    []string                                                                 `json:"scopes,omitempty"`
 	TlsConfig *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig `json:"tlsConfig,omitempty"`
 	// The URL to fetch the token from.
-	TokenUrl string `json:"tokenUrl"`
+	TokenUrl             string `json:"tokenUrl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2 PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2
@@ -210,6 +210,11 @@ func (o PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2) ToMap() 
 		toSerialize["tlsConfig"] = o.TlsConfig
 	}
 	toSerialize["tokenUrl"] = o.TokenUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -239,15 +244,24 @@ func (o *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2) Unmarsh
 
 	varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2 := _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2)
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2(varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "clientId")
+		delete(additionalProperties, "clientSecret")
+		delete(additionalProperties, "scopes")
+		delete(additionalProperties, "tlsConfig")
+		delete(additionalProperties, "tokenUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

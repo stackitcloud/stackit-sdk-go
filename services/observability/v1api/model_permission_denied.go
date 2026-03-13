@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &PermissionDenied{}
 
 // PermissionDenied struct for PermissionDenied
 type PermissionDenied struct {
-	Detail string `json:"detail"`
+	Detail               string `json:"detail"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PermissionDenied PermissionDenied
@@ -80,6 +80,11 @@ func (o PermissionDenied) MarshalJSON() ([]byte, error) {
 func (o PermissionDenied) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["detail"] = o.Detail
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *PermissionDenied) UnmarshalJSON(data []byte) (err error) {
 
 	varPermissionDenied := _PermissionDenied{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPermissionDenied)
+	err = json.Unmarshal(data, &varPermissionDenied)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PermissionDenied(varPermissionDenied)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "detail")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

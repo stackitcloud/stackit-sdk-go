@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner struct {
 	RefreshInterval *string                                                            `json:"refreshInterval,omitempty"`
 	TlsConfig       *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerTlsConfig `json:"tlsConfig,omitempty"`
 	// URL from which the targets are fetched.
-	Url string `json:"url"`
+	Url                  string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
@@ -230,6 +230,11 @@ func (o PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner) ToMap() (map[s
 		toSerialize["tlsConfig"] = o.TlsConfig
 	}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -257,15 +262,24 @@ func (o *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner) UnmarshalJSON
 
 	varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner := _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner)
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner(varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "basicAuth")
+		delete(additionalProperties, "oauth2")
+		delete(additionalProperties, "refreshInterval")
+		delete(additionalProperties, "tlsConfig")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

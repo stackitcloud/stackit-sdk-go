@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -33,7 +32,8 @@ type CreateLogsAlertgroupsPayloadRulesInner struct {
 	// Map of key:value. Labels to add or overwrite for each alert or metric. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name of the metric. When this attribute is used, an Recording Rule will be  created. `Additional Validators:` * is the identifier and so unique in the group * should only include the characters: a-zA-Z0-9:_ * required when 'alert' is not used in this rule, otherwise not allowed
-	Record *string `json:"record,omitempty"`
+	Record               *string `json:"record,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateLogsAlertgroupsPayloadRulesInner CreateLogsAlertgroupsPayloadRulesInner
@@ -270,6 +270,11 @@ func (o CreateLogsAlertgroupsPayloadRulesInner) ToMap() (map[string]interface{},
 	if !IsNil(o.Record) {
 		toSerialize["record"] = o.Record
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -297,15 +302,25 @@ func (o *CreateLogsAlertgroupsPayloadRulesInner) UnmarshalJSON(data []byte) (err
 
 	varCreateLogsAlertgroupsPayloadRulesInner := _CreateLogsAlertgroupsPayloadRulesInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateLogsAlertgroupsPayloadRulesInner)
+	err = json.Unmarshal(data, &varCreateLogsAlertgroupsPayloadRulesInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateLogsAlertgroupsPayloadRulesInner(varCreateLogsAlertgroupsPayloadRulesInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alert")
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "expr")
+		delete(additionalProperties, "for")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "record")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateHttpCheckPayload{}
 // CreateHttpCheckPayload Http check body.
 type CreateHttpCheckPayload struct {
 	// url to check
-	Url string `json:"url"`
+	Url                  string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateHttpCheckPayload CreateHttpCheckPayload
@@ -81,6 +81,11 @@ func (o CreateHttpCheckPayload) MarshalJSON() ([]byte, error) {
 func (o CreateHttpCheckPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateHttpCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateHttpCheckPayload := _CreateHttpCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateHttpCheckPayload)
+	err = json.Unmarshal(data, &varCreateHttpCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateHttpCheckPayload(varCreateHttpCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

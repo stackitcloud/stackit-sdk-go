@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &GrafanaConfigs{}
 
 // GrafanaConfigs struct for GrafanaConfigs
 type GrafanaConfigs struct {
-	GenericOauth     *GrafanaOauth `json:"genericOauth,omitempty"`
-	Message          string        `json:"message"`
-	PublicReadAccess *bool         `json:"publicReadAccess,omitempty"`
-	UseStackitSso    *bool         `json:"useStackitSso,omitempty"`
+	GenericOauth         *GrafanaOauth `json:"genericOauth,omitempty"`
+	Message              string        `json:"message"`
+	PublicReadAccess     *bool         `json:"publicReadAccess,omitempty"`
+	UseStackitSso        *bool         `json:"useStackitSso,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GrafanaConfigs GrafanaConfigs
@@ -188,6 +188,11 @@ func (o GrafanaConfigs) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UseStackitSso) {
 		toSerialize["useStackitSso"] = o.UseStackitSso
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -215,15 +220,23 @@ func (o *GrafanaConfigs) UnmarshalJSON(data []byte) (err error) {
 
 	varGrafanaConfigs := _GrafanaConfigs{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGrafanaConfigs)
+	err = json.Unmarshal(data, &varGrafanaConfigs)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GrafanaConfigs(varGrafanaConfigs)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "genericOauth")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "publicReadAccess")
+		delete(additionalProperties, "useStackitSso")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

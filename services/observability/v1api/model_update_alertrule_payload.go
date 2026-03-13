@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type UpdateAlertrulePayload struct {
 	// Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string
 	For *string `json:"for,omitempty"`
 	// map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 5 keys * each key and value should not be longer than 200 characters
-	Labels map[string]interface{} `json:"labels,omitempty"`
+	Labels               map[string]interface{} `json:"labels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateAlertrulePayload UpdateAlertrulePayload
@@ -196,6 +196,11 @@ func (o UpdateAlertrulePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -223,15 +228,23 @@ func (o *UpdateAlertrulePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateAlertrulePayload := _UpdateAlertrulePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateAlertrulePayload)
+	err = json.Unmarshal(data, &varUpdateAlertrulePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateAlertrulePayload(varUpdateAlertrulePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "expr")
+		delete(additionalProperties, "for")
+		delete(additionalProperties, "labels")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

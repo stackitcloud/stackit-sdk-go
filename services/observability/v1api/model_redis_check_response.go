@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &RedisCheckResponse{}
 
 // RedisCheckResponse struct for RedisCheckResponse
 type RedisCheckResponse struct {
-	Message     string                    `json:"message"`
-	RedisCheck  *RedisCheckChildResponse  `json:"redisCheck,omitempty"`
-	RedisChecks []RedisCheckChildResponse `json:"redisChecks"`
+	Message              string                    `json:"message"`
+	RedisCheck           *RedisCheckChildResponse  `json:"redisCheck,omitempty"`
+	RedisChecks          []RedisCheckChildResponse `json:"redisChecks"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RedisCheckResponse RedisCheckResponse
@@ -143,6 +143,11 @@ func (o RedisCheckResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["redisCheck"] = o.RedisCheck
 	}
 	toSerialize["redisChecks"] = o.RedisChecks
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *RedisCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRedisCheckResponse := _RedisCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRedisCheckResponse)
+	err = json.Unmarshal(data, &varRedisCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RedisCheckResponse(varRedisCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "redisCheck")
+		delete(additionalProperties, "redisChecks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

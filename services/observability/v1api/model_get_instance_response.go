@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,19 +21,20 @@ var _ MappedNullable = &GetInstanceResponse{}
 
 // GetInstanceResponse struct for GetInstanceResponse
 type GetInstanceResponse struct {
-	DashboardUrl string                `json:"dashboardUrl"`
-	Error        NullableString        `json:"error,omitempty"`
-	Id           string                `json:"id"`
-	Instance     InstanceSensitiveData `json:"instance"`
-	IsUpdatable  *bool                 `json:"isUpdatable,omitempty"`
-	Message      string                `json:"message"`
-	Name         *string               `json:"name,omitempty"`
-	Parameters   *map[string]string    `json:"parameters,omitempty"`
-	PlanId       string                `json:"planId"`
-	PlanName     string                `json:"planName"`
-	PlanSchema   *string               `json:"planSchema,omitempty"`
-	ServiceName  string                `json:"serviceName"`
-	Status       string                `json:"status"`
+	DashboardUrl         string                `json:"dashboardUrl"`
+	Error                NullableString        `json:"error,omitempty"`
+	Id                   string                `json:"id"`
+	Instance             InstanceSensitiveData `json:"instance"`
+	IsUpdatable          *bool                 `json:"isUpdatable,omitempty"`
+	Message              string                `json:"message"`
+	Name                 *string               `json:"name,omitempty"`
+	Parameters           *map[string]string    `json:"parameters,omitempty"`
+	PlanId               string                `json:"planId"`
+	PlanName             string                `json:"planName"`
+	PlanSchema           *string               `json:"planSchema,omitempty"`
+	ServiceName          string                `json:"serviceName"`
+	Status               string                `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetInstanceResponse GetInstanceResponse
@@ -468,6 +468,11 @@ func (o GetInstanceResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["serviceName"] = o.ServiceName
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -502,15 +507,32 @@ func (o *GetInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetInstanceResponse := _GetInstanceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetInstanceResponse)
+	err = json.Unmarshal(data, &varGetInstanceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetInstanceResponse(varGetInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dashboardUrl")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "instance")
+		delete(additionalProperties, "isUpdatable")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "parameters")
+		delete(additionalProperties, "planId")
+		delete(additionalProperties, "planName")
+		delete(additionalProperties, "planSchema")
+		delete(additionalProperties, "serviceName")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

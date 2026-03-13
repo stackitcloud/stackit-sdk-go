@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &RabbitmqCheckResponse{}
 
 // RabbitmqCheckResponse struct for RabbitmqCheckResponse
 type RabbitmqCheckResponse struct {
-	Message        string                       `json:"message"`
-	RabbitmqCheck  *RabbitMQCheckChildResponse  `json:"rabbitmqCheck,omitempty"`
-	RabbitmqChecks []RabbitMQCheckChildResponse `json:"rabbitmqChecks"`
+	Message              string                       `json:"message"`
+	RabbitmqCheck        *RabbitMQCheckChildResponse  `json:"rabbitmqCheck,omitempty"`
+	RabbitmqChecks       []RabbitMQCheckChildResponse `json:"rabbitmqChecks"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RabbitmqCheckResponse RabbitmqCheckResponse
@@ -143,6 +143,11 @@ func (o RabbitmqCheckResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["rabbitmqCheck"] = o.RabbitmqCheck
 	}
 	toSerialize["rabbitmqChecks"] = o.RabbitmqChecks
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *RabbitmqCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRabbitmqCheckResponse := _RabbitmqCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRabbitmqCheckResponse)
+	err = json.Unmarshal(data, &varRabbitmqCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RabbitmqCheckResponse(varRabbitmqCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "rabbitmqCheck")
+		delete(additionalProperties, "rabbitmqChecks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -22,8 +22,11 @@ type Target struct {
 	// Target display name.
 	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[0-9a-zA-Z](?:(?:[0-9a-zA-Z]|-){0,61}[0-9a-zA-Z])?$"`
 	// Private target IP, which must by unique within a target pool.
-	Ip *string `json:"ip,omitempty"`
+	Ip                   *string `json:"ip,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Target Target
 
 // NewTarget instantiates a new Target object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o Target) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ip) {
 		toSerialize["ip"] = o.Ip
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Target) UnmarshalJSON(data []byte) (err error) {
+	varTarget := _Target{}
+
+	err = json.Unmarshal(data, &varTarget)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Target(varTarget)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "ip")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTarget struct {
