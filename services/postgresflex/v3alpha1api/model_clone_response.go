@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CloneResponse{}
 // CloneResponse struct for CloneResponse
 type CloneResponse struct {
 	// The ID of the instance.
-	Id string `json:"id"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CloneResponse CloneResponse
@@ -81,6 +81,11 @@ func (o CloneResponse) MarshalJSON() ([]byte, error) {
 func (o CloneResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CloneResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCloneResponse := _CloneResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCloneResponse)
+	err = json.Unmarshal(data, &varCloneResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CloneResponse(varCloneResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type ListDatabase struct {
 	// The name of the database.
 	Name string `json:"name"`
 	// The owner of the database.
-	Owner string `json:"owner"`
+	Owner                string `json:"owner"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListDatabase ListDatabase
@@ -137,6 +137,11 @@ func (o ListDatabase) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["owner"] = o.Owner
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *ListDatabase) UnmarshalJSON(data []byte) (err error) {
 
 	varListDatabase := _ListDatabase{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListDatabase)
+	err = json.Unmarshal(data, &varListDatabase)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListDatabase(varListDatabase)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "owner")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

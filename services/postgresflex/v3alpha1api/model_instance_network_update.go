@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &InstanceNetworkUpdate{}
 // InstanceNetworkUpdate The access configuration of the instance
 type InstanceNetworkUpdate struct {
 	// List of IPV4 cidr.
-	Acl []string `json:"acl"`
+	Acl                  []string `json:"acl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceNetworkUpdate InstanceNetworkUpdate
@@ -81,6 +81,11 @@ func (o InstanceNetworkUpdate) MarshalJSON() ([]byte, error) {
 func (o InstanceNetworkUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["acl"] = o.Acl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *InstanceNetworkUpdate) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceNetworkUpdate := _InstanceNetworkUpdate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceNetworkUpdate)
+	err = json.Unmarshal(data, &varInstanceNetworkUpdate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceNetworkUpdate(varInstanceNetworkUpdate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

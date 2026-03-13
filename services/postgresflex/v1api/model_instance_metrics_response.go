@@ -20,8 +20,11 @@ var _ MappedNullable = &InstanceMetricsResponse{}
 
 // InstanceMetricsResponse struct for InstanceMetricsResponse
 type InstanceMetricsResponse struct {
-	Hosts []InstanceHost `json:"hosts,omitempty"`
+	Hosts                []InstanceHost `json:"hosts,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceMetricsResponse InstanceMetricsResponse
 
 // NewInstanceMetricsResponse instantiates a new InstanceMetricsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o InstanceMetricsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Hosts) {
 		toSerialize["hosts"] = o.Hosts
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceMetricsResponse) UnmarshalJSON(data []byte) (err error) {
+	varInstanceMetricsResponse := _InstanceMetricsResponse{}
+
+	err = json.Unmarshal(data, &varInstanceMetricsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceMetricsResponse(varInstanceMetricsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hosts")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceMetricsResponse struct {

@@ -20,10 +20,13 @@ var _ MappedNullable = &ApiExtensionList{}
 
 // ApiExtensionList struct for ApiExtensionList
 type ApiExtensionList struct {
-	ID          *int64  `json:"ID,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Name        *string `json:"name,omitempty"`
+	ID                   *int64  `json:"ID,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiExtensionList ApiExtensionList
 
 // NewApiExtensionList instantiates a new ApiExtensionList object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o ApiExtensionList) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiExtensionList) UnmarshalJSON(data []byte) (err error) {
+	varApiExtensionList := _ApiExtensionList{}
+
+	err = json.Unmarshal(data, &varApiExtensionList)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiExtensionList(varApiExtensionList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ID")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiExtensionList struct {

@@ -21,8 +21,11 @@ var _ MappedNullable = &ApiExtensionConfigLoadResponse{}
 // ApiExtensionConfigLoadResponse struct for ApiExtensionConfigLoadResponse
 type ApiExtensionConfigLoadResponse struct {
 	// Returns marshalled JSON of the new configuration of whatever extension is called
-	Configuration []ApiConfiguration `json:"configuration,omitempty"`
+	Configuration        []ApiConfiguration `json:"configuration,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiExtensionConfigLoadResponse ApiExtensionConfigLoadResponse
 
 // NewApiExtensionConfigLoadResponse instantiates a new ApiExtensionConfigLoadResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o ApiExtensionConfigLoadResponse) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Configuration) {
 		toSerialize["configuration"] = o.Configuration
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiExtensionConfigLoadResponse) UnmarshalJSON(data []byte) (err error) {
+	varApiExtensionConfigLoadResponse := _ApiExtensionConfigLoadResponse{}
+
+	err = json.Unmarshal(data, &varApiExtensionConfigLoadResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiExtensionConfigLoadResponse(varApiExtensionConfigLoadResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "configuration")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiExtensionConfigLoadResponse struct {
