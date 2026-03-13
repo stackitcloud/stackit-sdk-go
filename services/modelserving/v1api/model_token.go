@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -23,12 +22,13 @@ var _ MappedNullable = &Token{}
 
 // Token struct for Token
 type Token struct {
-	Description *string   `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	Id          string    `json:"id"`
-	Name        string    `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
-	Region      string    `json:"region"`
-	State       string    `json:"state"`
-	ValidUntil  time.Time `json:"validUntil"`
+	Description          *string   `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Id                   string    `json:"id"`
+	Name                 string    `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Region               string    `json:"region"`
+	State                string    `json:"state"`
+	ValidUntil           time.Time `json:"validUntil"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Token Token
@@ -225,6 +225,11 @@ func (o Token) ToMap() (map[string]interface{}, error) {
 	toSerialize["region"] = o.Region
 	toSerialize["state"] = o.State
 	toSerialize["validUntil"] = o.ValidUntil
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -256,15 +261,25 @@ func (o *Token) UnmarshalJSON(data []byte) (err error) {
 
 	varToken := _Token{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varToken)
+	err = json.Unmarshal(data, &varToken)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Token(varToken)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,9 +20,12 @@ var _ MappedNullable = &PartialUpdateTokenPayload{}
 
 // PartialUpdateTokenPayload struct for PartialUpdateTokenPayload
 type PartialUpdateTokenPayload struct {
-	Description *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	Name        *string `json:"name,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Description          *string `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Name                 *string `json:"name,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateTokenPayload PartialUpdateTokenPayload
 
 // NewPartialUpdateTokenPayload instantiates a new PartialUpdateTokenPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o PartialUpdateTokenPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateTokenPayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateTokenPayload := _PartialUpdateTokenPayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateTokenPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateTokenPayload(varPartialUpdateTokenPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateTokenPayload struct {

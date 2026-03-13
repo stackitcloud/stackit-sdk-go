@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -23,13 +22,14 @@ var _ MappedNullable = &TokenCreated{}
 
 // TokenCreated struct for TokenCreated
 type TokenCreated struct {
-	Content     string    `json:"content" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
-	Description *string   `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
-	Id          string    `json:"id"`
-	Name        string    `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
-	Region      string    `json:"region"`
-	State       string    `json:"state"`
-	ValidUntil  time.Time `json:"validUntil"`
+	Content              string    `json:"content" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Description          *string   `json:"description,omitempty" validate:"regexp=^[0-9a-zA-Z\\\\s.:\\/\\\\-]+$"`
+	Id                   string    `json:"id"`
+	Name                 string    `json:"name" validate:"regexp=^[0-9a-zA-Z\\\\s_-]+$"`
+	Region               string    `json:"region"`
+	State                string    `json:"state"`
+	ValidUntil           time.Time `json:"validUntil"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TokenCreated TokenCreated
@@ -252,6 +252,11 @@ func (o TokenCreated) ToMap() (map[string]interface{}, error) {
 	toSerialize["region"] = o.Region
 	toSerialize["state"] = o.State
 	toSerialize["validUntil"] = o.ValidUntil
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -284,15 +289,26 @@ func (o *TokenCreated) UnmarshalJSON(data []byte) (err error) {
 
 	varTokenCreated := _TokenCreated{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTokenCreated)
+	err = json.Unmarshal(data, &varTokenCreated)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TokenCreated(varTokenCreated)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "content")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

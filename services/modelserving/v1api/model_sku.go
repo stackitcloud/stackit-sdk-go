@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &SKU{}
 
 // SKU struct for SKU
 type SKU struct {
-	Description *string `json:"description,omitempty"`
-	Id          string  `json:"id"`
-	Type        *string `json:"type,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	Id                   string  `json:"id"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SKU SKU
@@ -152,6 +152,11 @@ func (o SKU) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -179,15 +184,22 @@ func (o *SKU) UnmarshalJSON(data []byte) (err error) {
 
 	varSKU := _SKU{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSKU)
+	err = json.Unmarshal(data, &varSKU)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SKU(varSKU)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &GetChatModelResponse{}
 
 // GetChatModelResponse struct for GetChatModelResponse
 type GetChatModelResponse struct {
-	Message *string          `json:"message,omitempty"`
-	Model   ChatModelDetails `json:"model"`
+	Message              *string          `json:"message,omitempty"`
+	Model                ChatModelDetails `json:"model"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetChatModelResponse GetChatModelResponse
@@ -116,6 +116,11 @@ func (o GetChatModelResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["message"] = o.Message
 	}
 	toSerialize["model"] = o.Model
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *GetChatModelResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetChatModelResponse := _GetChatModelResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetChatModelResponse)
+	err = json.Unmarshal(data, &varGetChatModelResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetChatModelResponse(varGetChatModelResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "model")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

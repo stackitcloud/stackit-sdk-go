@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &CreateTokenResponse{}
 
 // CreateTokenResponse struct for CreateTokenResponse
 type CreateTokenResponse struct {
-	Message *string      `json:"message,omitempty"`
-	Token   TokenCreated `json:"token"`
+	Message              *string      `json:"message,omitempty"`
+	Token                TokenCreated `json:"token"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateTokenResponse CreateTokenResponse
@@ -116,6 +116,11 @@ func (o CreateTokenResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["message"] = o.Message
 	}
 	toSerialize["token"] = o.Token
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *CreateTokenResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateTokenResponse := _CreateTokenResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateTokenResponse)
+	err = json.Unmarshal(data, &varCreateTokenResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateTokenResponse(varCreateTokenResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "token")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
