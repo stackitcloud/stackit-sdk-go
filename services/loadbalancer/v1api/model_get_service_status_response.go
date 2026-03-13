@@ -20,8 +20,11 @@ var _ MappedNullable = &GetServiceStatusResponse{}
 // GetServiceStatusResponse Response with customer project status.
 type GetServiceStatusResponse struct {
 	// status of the project
-	Status *string `json:"status,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetServiceStatusResponse GetServiceStatusResponse
 
 // NewGetServiceStatusResponse instantiates a new GetServiceStatusResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o GetServiceStatusResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetServiceStatusResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetServiceStatusResponse := _GetServiceStatusResponse{}
+
+	err = json.Unmarshal(data, &varGetServiceStatusResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetServiceStatusResponse(varGetServiceStatusResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetServiceStatusResponse struct {

@@ -1,3 +1,7 @@
+## v1.10.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v1.9.0
 - **Feature:** Introduction of multi API version support for the loadbalancer SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1api`: New package which can be used for communication with the loadbalancer v1 API

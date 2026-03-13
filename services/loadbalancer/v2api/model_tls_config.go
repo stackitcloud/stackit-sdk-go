@@ -25,7 +25,10 @@ type TlsConfig struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// Bypass certificate validation for TLS bridging in this target pool. This option is insecure and can only be used with public CAs by setting enabled true. Meant to be used for testing purposes only!
 	SkipCertificateValidation *bool `json:"skipCertificateValidation,omitempty"`
+	AdditionalProperties      map[string]interface{}
 }
+
+type _TlsConfig TlsConfig
 
 // NewTlsConfig instantiates a new TlsConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o TlsConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SkipCertificateValidation) {
 		toSerialize["skipCertificateValidation"] = o.SkipCertificateValidation
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *TlsConfig) UnmarshalJSON(data []byte) (err error) {
+	varTlsConfig := _TlsConfig{}
+
+	err = json.Unmarshal(data, &varTlsConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TlsConfig(varTlsConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customCa")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "skipCertificateValidation")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableTlsConfig struct {

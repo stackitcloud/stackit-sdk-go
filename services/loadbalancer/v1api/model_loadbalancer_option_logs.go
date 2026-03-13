@@ -22,8 +22,11 @@ type LoadbalancerOptionLogs struct {
 	// Credentials reference for logging. This reference is created via the observability create endpoint and the credential needs to contain the basic auth username and password for the logging solution the push URL points to. Then this enables monitoring via remote write for the Load Balancer.
 	CredentialsRef *string `json:"credentialsRef,omitempty"`
 	// The ARGUS/Loki remote write Push URL you want the logs to be shipped to.
-	PushUrl *string `json:"pushUrl,omitempty"`
+	PushUrl              *string `json:"pushUrl,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoadbalancerOptionLogs LoadbalancerOptionLogs
 
 // NewLoadbalancerOptionLogs instantiates a new LoadbalancerOptionLogs object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o LoadbalancerOptionLogs) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PushUrl) {
 		toSerialize["pushUrl"] = o.PushUrl
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoadbalancerOptionLogs) UnmarshalJSON(data []byte) (err error) {
+	varLoadbalancerOptionLogs := _LoadbalancerOptionLogs{}
+
+	err = json.Unmarshal(data, &varLoadbalancerOptionLogs)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoadbalancerOptionLogs(varLoadbalancerOptionLogs)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentialsRef")
+		delete(additionalProperties, "pushUrl")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoadbalancerOptionLogs struct {

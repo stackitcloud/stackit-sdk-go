@@ -22,8 +22,11 @@ type GetQuotaResponse struct {
 	// The maximum number of load balancing servers in this project. Unlimited if set to -1.
 	MaxLoadBalancers *int32 `json:"maxLoadBalancers,omitempty"`
 	// Project identifier
-	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
+	ProjectId            *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetQuotaResponse GetQuotaResponse
 
 // NewGetQuotaResponse instantiates a new GetQuotaResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o GetQuotaResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProjectId) {
 		toSerialize["projectId"] = o.ProjectId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetQuotaResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetQuotaResponse := _GetQuotaResponse{}
+
+	err = json.Unmarshal(data, &varGetQuotaResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetQuotaResponse(varGetQuotaResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "maxLoadBalancers")
+		delete(additionalProperties, "projectId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetQuotaResponse struct {
