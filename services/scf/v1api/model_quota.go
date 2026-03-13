@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -23,18 +22,19 @@ var _ MappedNullable = &Quota{}
 
 // Quota struct for Quota
 type Quota struct {
-	Apps       QuotaApps     `json:"apps"`
-	CreatedAt  time.Time     `json:"createdAt"`
-	Domains    QuotaDomains  `json:"domains"`
-	Guid       string        `json:"guid"`
-	Name       string        `json:"name"`
-	OrgId      *string       `json:"orgId,omitempty"`
-	PlatformId string        `json:"platformId"`
-	ProjectId  string        `json:"projectId"`
-	Region     string        `json:"region"`
-	Routes     QuotaRoutes   `json:"routes"`
-	Services   QuotaServices `json:"services"`
-	UpdatedAt  time.Time     `json:"updatedAt"`
+	Apps                 QuotaApps     `json:"apps"`
+	CreatedAt            time.Time     `json:"createdAt"`
+	Domains              QuotaDomains  `json:"domains"`
+	Guid                 string        `json:"guid"`
+	Name                 string        `json:"name"`
+	OrgId                *string       `json:"orgId,omitempty"`
+	PlatformId           string        `json:"platformId"`
+	ProjectId            string        `json:"projectId"`
+	Region               string        `json:"region"`
+	Routes               QuotaRoutes   `json:"routes"`
+	Services             QuotaServices `json:"services"`
+	UpdatedAt            time.Time     `json:"updatedAt"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Quota Quota
@@ -387,6 +387,11 @@ func (o Quota) ToMap() (map[string]interface{}, error) {
 	toSerialize["routes"] = o.Routes
 	toSerialize["services"] = o.Services
 	toSerialize["updatedAt"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -424,15 +429,31 @@ func (o *Quota) UnmarshalJSON(data []byte) (err error) {
 
 	varQuota := _Quota{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuota)
+	err = json.Unmarshal(data, &varQuota)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Quota(varQuota)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apps")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "domains")
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "routes")
+		delete(additionalProperties, "services")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

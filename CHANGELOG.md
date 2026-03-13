@@ -253,11 +253,15 @@
   - [v1.4.0](services/serviceenablement/CHANGELOG.md#v140)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `scf`: [v0.5.0](services/scf/CHANGELOG.md#v050)
-  - **Feature:** Introduction of multi API version support for the scf SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which should be used for communication with the STACKIT scf API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `scf`:
+  - [v0.5.0](services/scf/CHANGELOG.md#v050)
+    - **Feature:** Introduction of multi API version support for the scf SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT scf API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.6.0](services/scf/CHANGELOG.md#v060)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `iaas`:
   - [v1.4.0](services/iaas/CHANGELOG.md#v140)
     - **Feature:** Introduction of multi API version support for the iaas SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &CreateSpaceRolePayload{}
 
 // CreateSpaceRolePayload struct for CreateSpaceRolePayload
 type CreateSpaceRolePayload struct {
-	Type     SpaceRoleType `json:"type"`
-	UserGuid *string       `json:"userGuid,omitempty"`
-	UserName *string       `json:"userName,omitempty"`
+	Type                 SpaceRoleType `json:"type"`
+	UserGuid             *string       `json:"userGuid,omitempty"`
+	UserName             *string       `json:"userName,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateSpaceRolePayload CreateSpaceRolePayload
@@ -152,6 +152,11 @@ func (o CreateSpaceRolePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UserName) {
 		toSerialize["userName"] = o.UserName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -179,15 +184,22 @@ func (o *CreateSpaceRolePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateSpaceRolePayload := _CreateSpaceRolePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateSpaceRolePayload)
+	err = json.Unmarshal(data, &varCreateSpaceRolePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateSpaceRolePayload(varCreateSpaceRolePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "userGuid")
+		delete(additionalProperties, "userName")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
