@@ -180,11 +180,15 @@
   - [v0.27.0](services/mariadb/CHANGELOG.md#v0270)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `authorization`: [v0.13.0](services/authorization/CHANGELOG.md#v0130)
-  - **Feature:** Introduction of multi API version support for the authorization SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v2api`: New package which should be used for communication with the STACKIT authorization API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v2api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `authorization`:
+  - [v0.13.0](services/authorization/CHANGELOG.md#v0130)
+    - **Feature:** Introduction of multi API version support for the authorization SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v2api`: New package which should be used for communication with the STACKIT authorization API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v2api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.14.0](services/authorization/CHANGELOG.md#v0140)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `opensearch`:
   - [v0.25.0](services/opensearch/CHANGELOG.md#v0250)
     - **Feature:** Introduction of multi API version support for the opensearch SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
