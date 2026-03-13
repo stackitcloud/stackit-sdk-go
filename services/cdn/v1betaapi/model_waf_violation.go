@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,7 +29,8 @@ type WAFViolation struct {
 	Method         string            `json:"method"`
 	RequestHeaders map[string]string `json:"requestHeaders"`
 	// ID of the WAF rule that was triggered
-	RuleId string `json:"ruleId"`
+	RuleId               string `json:"ruleId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WAFViolation WAFViolation
@@ -218,6 +218,11 @@ func (o WAFViolation) ToMap() (map[string]interface{}, error) {
 	toSerialize["method"] = o.Method
 	toSerialize["requestHeaders"] = o.RequestHeaders
 	toSerialize["ruleId"] = o.RuleId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -250,15 +255,25 @@ func (o *WAFViolation) UnmarshalJSON(data []byte) (err error) {
 
 	varWAFViolation := _WAFViolation{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAFViolation)
+	err = json.Unmarshal(data, &varWAFViolation)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WAFViolation(varWAFViolation)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "asn")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "method")
+		delete(additionalProperties, "requestHeaders")
+		delete(additionalProperties, "ruleId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

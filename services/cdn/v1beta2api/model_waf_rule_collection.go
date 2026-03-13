@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type WafRuleCollection struct {
 	Groups []WafRuleGroup `json:"groups"`
 	Id     string         `json:"id"`
 	// LocalizedString is a map from language to string value
-	Name map[string]string `json:"name"`
+	Name                 map[string]string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WafRuleCollection WafRuleCollection
@@ -134,6 +134,11 @@ func (o WafRuleCollection) ToMap() (map[string]interface{}, error) {
 	toSerialize["groups"] = o.Groups
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *WafRuleCollection) UnmarshalJSON(data []byte) (err error) {
 
 	varWafRuleCollection := _WafRuleCollection{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWafRuleCollection)
+	err = json.Unmarshal(data, &varWafRuleCollection)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WafRuleCollection(varWafRuleCollection)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "groups")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

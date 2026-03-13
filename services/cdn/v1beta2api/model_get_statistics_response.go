@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &GetStatisticsResponse{}
 
 // GetStatisticsResponse struct for GetStatisticsResponse
 type GetStatisticsResponse struct {
-	Records []DistributionStatisticsRecord `json:"records"`
+	Records              []DistributionStatisticsRecord `json:"records"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetStatisticsResponse GetStatisticsResponse
@@ -79,6 +79,11 @@ func (o GetStatisticsResponse) MarshalJSON() ([]byte, error) {
 func (o GetStatisticsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["records"] = o.Records
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *GetStatisticsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetStatisticsResponse := _GetStatisticsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetStatisticsResponse)
+	err = json.Unmarshal(data, &varGetStatisticsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetStatisticsResponse(varGetStatisticsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "records")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

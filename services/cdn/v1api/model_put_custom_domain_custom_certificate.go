@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,8 +25,9 @@ type PutCustomDomainCustomCertificate struct {
 	// base64-encoded PEM encoded key
 	Key string `json:"key"`
 	// When adding a new custom domain, we do a check to verify that your Domain points to the managed domain via a CNAME or ALIAS. If this is not the case, the call would usually reject.   This additional property is an escape hatch to this functionality. It's useful for when you are migrating onto STACKIT CDN. It allows you to migrate without  downtime.  By providing a custom certificate with `skipDnsCheck` set to `true`, we will  not check the Record for correctness. Then, once the CDN is set up, you can change the CNAME Record on your DNS and update the Custom Domain entry to  disable this check, or switch to a managed certificate.  This field is optional. If not set, the check is **not** skipped.
-	SkipDnsCheck *bool  `json:"skipDnsCheck,omitempty"`
-	Type         string `json:"type"`
+	SkipDnsCheck         *bool  `json:"skipDnsCheck,omitempty"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PutCustomDomainCustomCertificate PutCustomDomainCustomCertificate
@@ -172,6 +172,11 @@ func (o PutCustomDomainCustomCertificate) ToMap() (map[string]interface{}, error
 		toSerialize["skipDnsCheck"] = o.SkipDnsCheck
 	}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -201,15 +206,23 @@ func (o *PutCustomDomainCustomCertificate) UnmarshalJSON(data []byte) (err error
 
 	varPutCustomDomainCustomCertificate := _PutCustomDomainCustomCertificate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPutCustomDomainCustomCertificate)
+	err = json.Unmarshal(data, &varPutCustomDomainCustomCertificate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PutCustomDomainCustomCertificate(varPutCustomDomainCustomCertificate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificate")
+		delete(additionalProperties, "key")
+		delete(additionalProperties, "skipDnsCheck")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

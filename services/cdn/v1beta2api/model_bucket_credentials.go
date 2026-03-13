@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &BucketCredentials{}
 
 // BucketCredentials struct for BucketCredentials
 type BucketCredentials struct {
-	AccessKeyId     string `json:"accessKeyId"`
-	SecretAccessKey string `json:"secretAccessKey"`
+	AccessKeyId          string `json:"accessKeyId"`
+	SecretAccessKey      string `json:"secretAccessKey"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BucketCredentials BucketCredentials
@@ -106,6 +106,11 @@ func (o BucketCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["accessKeyId"] = o.AccessKeyId
 	toSerialize["secretAccessKey"] = o.SecretAccessKey
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *BucketCredentials) UnmarshalJSON(data []byte) (err error) {
 
 	varBucketCredentials := _BucketCredentials{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBucketCredentials)
+	err = json.Unmarshal(data, &varBucketCredentials)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BucketCredentials(varBucketCredentials)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessKeyId")
+		delete(additionalProperties, "secretAccessKey")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

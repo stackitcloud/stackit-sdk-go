@@ -20,8 +20,11 @@ var _ MappedNullable = &PurgeCachePayload{}
 // PurgeCachePayload struct for PurgeCachePayload
 type PurgeCachePayload struct {
 	// Defines an optional path. If this is set, a granular purge is done. If missing, the entire cache is invalidated.  During a granular cache purge, only the provided path is purged.   Please do not that for example `/some/path` and `/some/path.txt` are considered different paths.
-	Path *string `json:"path,omitempty"`
+	Path                 *string `json:"path,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PurgeCachePayload PurgeCachePayload
 
 // NewPurgeCachePayload instantiates a new PurgeCachePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o PurgeCachePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Path) {
 		toSerialize["path"] = o.Path
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PurgeCachePayload) UnmarshalJSON(data []byte) (err error) {
+	varPurgeCachePayload := _PurgeCachePayload{}
+
+	err = json.Unmarshal(data, &varPurgeCachePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PurgeCachePayload(varPurgeCachePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "path")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePurgeCachePayload struct {

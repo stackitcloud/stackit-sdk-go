@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &GetLogsResponse{}
 
 // GetLogsResponse struct for GetLogsResponse
 type GetLogsResponse struct {
-	Logs               []DistributionLogsRecord `json:"logs"`
-	NextPageIdentifier *string                  `json:"nextPageIdentifier,omitempty"`
+	Logs                 []DistributionLogsRecord `json:"logs"`
+	NextPageIdentifier   *string                  `json:"nextPageIdentifier,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetLogsResponse GetLogsResponse
@@ -115,6 +115,11 @@ func (o GetLogsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageIdentifier) {
 		toSerialize["nextPageIdentifier"] = o.NextPageIdentifier
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -142,15 +147,21 @@ func (o *GetLogsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetLogsResponse := _GetLogsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetLogsResponse)
+	err = json.Unmarshal(data, &varGetLogsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetLogsResponse(varGetLogsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "logs")
+		delete(additionalProperties, "nextPageIdentifier")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

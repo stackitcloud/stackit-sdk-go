@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,8 +25,9 @@ type HttpBackend struct {
 	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
 	OriginRequestHeaders map[string]string `json:"originRequestHeaders"`
 	// The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
-	OriginUrl string `json:"originUrl"`
-	Type      string `json:"type"`
+	OriginUrl            string `json:"originUrl"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HttpBackend HttpBackend
@@ -163,6 +163,11 @@ func (o HttpBackend) ToMap() (map[string]interface{}, error) {
 	toSerialize["originRequestHeaders"] = o.OriginRequestHeaders
 	toSerialize["originUrl"] = o.OriginUrl
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -193,15 +198,23 @@ func (o *HttpBackend) UnmarshalJSON(data []byte) (err error) {
 
 	varHttpBackend := _HttpBackend{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHttpBackend)
+	err = json.Unmarshal(data, &varHttpBackend)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HttpBackend(varHttpBackend)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "geofencing")
+		delete(additionalProperties, "originRequestHeaders")
+		delete(additionalProperties, "originUrl")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

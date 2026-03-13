@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,10 +20,11 @@ var _ MappedNullable = &BucketBackendCreate{}
 
 // BucketBackendCreate struct for BucketBackendCreate
 type BucketBackendCreate struct {
-	BucketUrl   string            `json:"bucketUrl"`
-	Credentials BucketCredentials `json:"credentials"`
-	Region      string            `json:"region"`
-	Type        string            `json:"type"`
+	BucketUrl            string            `json:"bucketUrl"`
+	Credentials          BucketCredentials `json:"credentials"`
+	Region               string            `json:"region"`
+	Type                 string            `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BucketBackendCreate BucketBackendCreate
@@ -160,6 +160,11 @@ func (o BucketBackendCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize["credentials"] = o.Credentials
 	toSerialize["region"] = o.Region
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -190,15 +195,23 @@ func (o *BucketBackendCreate) UnmarshalJSON(data []byte) (err error) {
 
 	varBucketBackendCreate := _BucketBackendCreate{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBucketBackendCreate)
+	err = json.Unmarshal(data, &varBucketBackendCreate)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BucketBackendCreate(varBucketBackendCreate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bucketUrl")
+		delete(additionalProperties, "credentials")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

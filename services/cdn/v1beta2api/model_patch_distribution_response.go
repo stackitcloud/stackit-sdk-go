@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &PatchDistributionResponse{}
 
 // PatchDistributionResponse struct for PatchDistributionResponse
 type PatchDistributionResponse struct {
-	Distribution Distribution `json:"distribution"`
+	Distribution         Distribution `json:"distribution"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PatchDistributionResponse PatchDistributionResponse
@@ -79,6 +79,11 @@ func (o PatchDistributionResponse) MarshalJSON() ([]byte, error) {
 func (o PatchDistributionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["distribution"] = o.Distribution
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *PatchDistributionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPatchDistributionResponse := _PatchDistributionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPatchDistributionResponse)
+	err = json.Unmarshal(data, &varPatchDistributionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PatchDistributionResponse(varPatchDistributionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "distribution")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

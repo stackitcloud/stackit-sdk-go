@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,6 +26,7 @@ type HttpBackend struct {
 	OriginRequestHeaders map[string]string `json:"originRequestHeaders"`
 	OriginUrl            string            `json:"originUrl"`
 	Type                 string            `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HttpBackend HttpBackend
@@ -162,6 +162,11 @@ func (o HttpBackend) ToMap() (map[string]interface{}, error) {
 	toSerialize["originRequestHeaders"] = o.OriginRequestHeaders
 	toSerialize["originUrl"] = o.OriginUrl
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -192,15 +197,23 @@ func (o *HttpBackend) UnmarshalJSON(data []byte) (err error) {
 
 	varHttpBackend := _HttpBackend{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHttpBackend)
+	err = json.Unmarshal(data, &varHttpBackend)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HttpBackend(varHttpBackend)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "geofencing")
+		delete(additionalProperties, "originRequestHeaders")
+		delete(additionalProperties, "originUrl")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

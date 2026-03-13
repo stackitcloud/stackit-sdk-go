@@ -19,8 +19,11 @@ var _ MappedNullable = &DeleteCustomDomainResponse{}
 
 // DeleteCustomDomainResponse Returns the custom domain that was deleted while the deletion has not completed yet. After the deletion was successful the response will be empty.
 type DeleteCustomDomainResponse struct {
-	CustomDomain *CustomDomain `json:"customDomain,omitempty"`
+	CustomDomain         *CustomDomain `json:"customDomain,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeleteCustomDomainResponse DeleteCustomDomainResponse
 
 // NewDeleteCustomDomainResponse instantiates a new DeleteCustomDomainResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o DeleteCustomDomainResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomDomain) {
 		toSerialize["customDomain"] = o.CustomDomain
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *DeleteCustomDomainResponse) UnmarshalJSON(data []byte) (err error) {
+	varDeleteCustomDomainResponse := _DeleteCustomDomainResponse{}
+
+	err = json.Unmarshal(data, &varDeleteCustomDomainResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DeleteCustomDomainResponse(varDeleteCustomDomainResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "customDomain")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableDeleteCustomDomainResponse struct {

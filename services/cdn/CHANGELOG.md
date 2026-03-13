@@ -1,3 +1,7 @@
+## v1.13.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v1.12.0
 - `v1api`: 
   - **Feature:** Add field `SkipDnsCheck` to model struct `PutCustomDomainCustomCertificate`, `GetCustomDomainCustomCertificate`

@@ -11,7 +11,6 @@ API version: 1beta2.0.0
 package v1beta2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,11 +20,12 @@ var _ MappedNullable = &DistributionStatisticsRecordRegions{}
 
 // DistributionStatisticsRecordRegions Mapping of regions to the metrics for this region for the defined time interval All regions are always present. If no traffic was reported for a region, it will  still contain 0-filled properties
 type DistributionStatisticsRecordRegions struct {
-	AF   DistributionStatisticsRecordEntry `json:"AF"`
-	ASIA DistributionStatisticsRecordEntry `json:"ASIA"`
-	EU   DistributionStatisticsRecordEntry `json:"EU"`
-	SA   DistributionStatisticsRecordEntry `json:"SA"`
-	US   DistributionStatisticsRecordEntry `json:"US"`
+	AF                   DistributionStatisticsRecordEntry `json:"AF"`
+	ASIA                 DistributionStatisticsRecordEntry `json:"ASIA"`
+	EU                   DistributionStatisticsRecordEntry `json:"EU"`
+	SA                   DistributionStatisticsRecordEntry `json:"SA"`
+	US                   DistributionStatisticsRecordEntry `json:"US"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DistributionStatisticsRecordRegions DistributionStatisticsRecordRegions
@@ -187,6 +187,11 @@ func (o DistributionStatisticsRecordRegions) ToMap() (map[string]interface{}, er
 	toSerialize["EU"] = o.EU
 	toSerialize["SA"] = o.SA
 	toSerialize["US"] = o.US
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,24 @@ func (o *DistributionStatisticsRecordRegions) UnmarshalJSON(data []byte) (err er
 
 	varDistributionStatisticsRecordRegions := _DistributionStatisticsRecordRegions{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDistributionStatisticsRecordRegions)
+	err = json.Unmarshal(data, &varDistributionStatisticsRecordRegions)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DistributionStatisticsRecordRegions(varDistributionStatisticsRecordRegions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "AF")
+		delete(additionalProperties, "ASIA")
+		delete(additionalProperties, "EU")
+		delete(additionalProperties, "SA")
+		delete(additionalProperties, "US")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
