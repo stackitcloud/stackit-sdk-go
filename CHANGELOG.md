@@ -7,8 +7,16 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `authorization`: [v0.14.1](services/authorization/CHANGELOG.md#v0141) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `cdn`: [v1.11.1](services/cdn/CHANGELOG.md#v1111) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `cdn`:
+  - [v1.11.1](services/cdn/CHANGELOG.md#v1111)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.12.0](services/cdn/CHANGELOG.md#v1120)
+    - `v1api`: 
+      - **Feature:** Add field `SkipDnsCheck` to model struct `PutCustomDomainCustomCertificate`, `GetCustomDomainCustomCertificate`
+      - **Feature:** Add field `CertificateType` to model struct `Domain`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** Add field `SkipDnsCheck` to model struct `PutCustomDomainCustomCertificate`, `GetCustomDomainCustomCertificate`
+      - **Feature:** Add field `CertificateType` to model struct `Domain`
 - `certificates`: [v1.4.1](services/certificates/CHANGELOG.md#v141) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `edge`: [v0.6.1](services/edge/CHANGELOG.md#v061) 

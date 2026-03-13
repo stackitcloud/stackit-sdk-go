@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -73,6 +73,33 @@ type PutCustomDomainCustomCertificateGetKeyArgType = string
 type PutCustomDomainCustomCertificateGetKeyRetType = string
 
 /*
+	types and functions for skipDnsCheck
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PutCustomDomainCustomCertificategetSkipDnsCheckAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PutCustomDomainCustomCertificategetSkipDnsCheckArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PutCustomDomainCustomCertificategetSkipDnsCheckRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getPutCustomDomainCustomCertificategetSkipDnsCheckAttributeTypeOk(arg PutCustomDomainCustomCertificategetSkipDnsCheckAttributeType) (ret PutCustomDomainCustomCertificategetSkipDnsCheckRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setPutCustomDomainCustomCertificategetSkipDnsCheckAttributeType(arg *PutCustomDomainCustomCertificategetSkipDnsCheckAttributeType, val PutCustomDomainCustomCertificategetSkipDnsCheckRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for type
 */
 
@@ -108,6 +135,8 @@ type PutCustomDomainCustomCertificate struct {
 	// base64-encoded PEM encoded key
 	// REQUIRED
 	Key PutCustomDomainCustomCertificateGetKeyAttributeType `json:"key" required:"true"`
+	// When adding a new custom domain, we do a check to verify that your Domain points to the managed domain via a CNAME or ALIAS. If this is not the case, the call would usually reject.   This additional property is an escape hatch to this functionality. It's useful for when you are migrating onto STACKIT CDN. It allows you to migrate without  downtime.  By providing a custom certificate with `skipDnsCheck` set to `true`, we will  not check the Record for correctness. Then, once the CDN is set up, you can change the CNAME Record on your DNS and update the Custom Domain entry to  disable this check, or switch to a managed certificate.  This field is optional. If not set, the check is **not** skipped.
+	SkipDnsCheck PutCustomDomainCustomCertificategetSkipDnsCheckAttributeType `json:"skipDnsCheck,omitempty"`
 	// REQUIRED
 	Type PutCustomDomainCustomCertificateGetTypeAttributeType `json:"type" required:"true"`
 }
@@ -177,6 +206,33 @@ func (o *PutCustomDomainCustomCertificate) SetKey(v PutCustomDomainCustomCertifi
 	setPutCustomDomainCustomCertificateGetKeyAttributeType(&o.Key, v)
 }
 
+// GetSkipDnsCheck returns the SkipDnsCheck field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PutCustomDomainCustomCertificate) GetSkipDnsCheck() (res PutCustomDomainCustomCertificategetSkipDnsCheckRetType) {
+	res, _ = o.GetSkipDnsCheckOk()
+	return
+}
+
+// GetSkipDnsCheckOk returns a tuple with the SkipDnsCheck field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PutCustomDomainCustomCertificate) GetSkipDnsCheckOk() (ret PutCustomDomainCustomCertificategetSkipDnsCheckRetType, ok bool) {
+	return getPutCustomDomainCustomCertificategetSkipDnsCheckAttributeTypeOk(o.SkipDnsCheck)
+}
+
+// HasSkipDnsCheck returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PutCustomDomainCustomCertificate) HasSkipDnsCheck() bool {
+	_, ok := o.GetSkipDnsCheckOk()
+	return ok
+}
+
+// SetSkipDnsCheck gets a reference to the given bool and assigns it to the SkipDnsCheck field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *PutCustomDomainCustomCertificate) SetSkipDnsCheck(v PutCustomDomainCustomCertificategetSkipDnsCheckRetType) {
+	setPutCustomDomainCustomCertificategetSkipDnsCheckAttributeType(&o.SkipDnsCheck, v)
+}
+
 // GetType returns the Type field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *PutCustomDomainCustomCertificate) GetType() (ret PutCustomDomainCustomCertificateGetTypeRetType) {
@@ -205,6 +261,9 @@ func (o PutCustomDomainCustomCertificate) ToMap() (map[string]interface{}, error
 	}
 	if val, ok := getPutCustomDomainCustomCertificateGetKeyAttributeTypeOk(o.Key); ok {
 		toSerialize["Key"] = val
+	}
+	if val, ok := getPutCustomDomainCustomCertificategetSkipDnsCheckAttributeTypeOk(o.SkipDnsCheck); ok {
+		toSerialize["SkipDnsCheck"] = val
 	}
 	if val, ok := getPutCustomDomainCustomCertificateGetTypeAttributeTypeOk(o.Type); ok {
 		toSerialize["Type"] = val

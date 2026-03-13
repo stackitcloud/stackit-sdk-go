@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -13,6 +13,49 @@ package cdn
 import (
 	"testing"
 )
+
+// isEnum
+
+func TestDomainCertificateType_UnmarshalJSON(t *testing.T) {
+	type args struct {
+		src []byte
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantErr bool
+	}{
+		{
+			name: `success - possible enum value no. 1`,
+			args: args{
+				src: []byte(`"managed"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: `success - possible enum value no. 2`,
+			args: args{
+				src: []byte(`"custom"`),
+			},
+			wantErr: false,
+		},
+		{
+			name: "fail",
+			args: args{
+				src: []byte("\"FOOBAR\""),
+			},
+			wantErr: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			v := DomainCertificateType("")
+			if err := v.UnmarshalJSON(tt.args.src); (err != nil) != tt.wantErr {
+				t.Errorf("UnmarshalJSON() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
 
 // isEnum
 
