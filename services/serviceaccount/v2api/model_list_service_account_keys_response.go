@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ListServiceAccountKeysResponse{}
 
 // ListServiceAccountKeysResponse struct for ListServiceAccountKeysResponse
 type ListServiceAccountKeysResponse struct {
-	Items []ServiceAccountKeyListResponse `json:"items"`
+	Items                []ServiceAccountKeyListResponse `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListServiceAccountKeysResponse ListServiceAccountKeysResponse
@@ -79,6 +79,11 @@ func (o ListServiceAccountKeysResponse) MarshalJSON() ([]byte, error) {
 func (o ListServiceAccountKeysResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ListServiceAccountKeysResponse) UnmarshalJSON(data []byte) (err error) 
 
 	varListServiceAccountKeysResponse := _ListServiceAccountKeysResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListServiceAccountKeysResponse)
+	err = json.Unmarshal(data, &varListServiceAccountKeysResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListServiceAccountKeysResponse(varListServiceAccountKeysResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
