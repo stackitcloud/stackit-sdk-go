@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -34,7 +33,8 @@ type ListOrganizationsResponseItemsInner struct {
 	// Globally unique, organization identifier.
 	OrganizationId string `json:"organizationId"`
 	// Timestamp at which the organization was last modified.
-	UpdateTime time.Time `json:"updateTime"`
+	UpdateTime           time.Time `json:"updateTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListOrganizationsResponseItemsInner ListOrganizationsResponseItemsInner
@@ -257,6 +257,11 @@ func (o ListOrganizationsResponseItemsInner) ToMap() (map[string]interface{}, er
 	toSerialize["name"] = o.Name
 	toSerialize["organizationId"] = o.OrganizationId
 	toSerialize["updateTime"] = o.UpdateTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -289,15 +294,26 @@ func (o *ListOrganizationsResponseItemsInner) UnmarshalJSON(data []byte) (err er
 
 	varListOrganizationsResponseItemsInner := _ListOrganizationsResponseItemsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListOrganizationsResponseItemsInner)
+	err = json.Unmarshal(data, &varListOrganizationsResponseItemsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListOrganizationsResponseItemsInner(varListOrganizationsResponseItemsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "creationTime")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "lifecycleState")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "organizationId")
+		delete(additionalProperties, "updateTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

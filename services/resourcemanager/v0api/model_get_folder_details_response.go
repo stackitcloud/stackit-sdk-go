@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type GetFolderDetailsResponse struct {
 	Parent  Parent            `json:"parent"`
 	Parents []ParentListInner `json:"parents,omitempty"`
 	// Timestamp at which the folder was last modified.
-	UpdateTime time.Time `json:"updateTime"`
+	UpdateTime           time.Time `json:"updateTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetFolderDetailsResponse GetFolderDetailsResponse
@@ -293,6 +293,11 @@ func (o GetFolderDetailsResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["parents"] = o.Parents
 	}
 	toSerialize["updateTime"] = o.UpdateTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -325,15 +330,27 @@ func (o *GetFolderDetailsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetFolderDetailsResponse := _GetFolderDetailsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetFolderDetailsResponse)
+	err = json.Unmarshal(data, &varGetFolderDetailsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetFolderDetailsResponse(varGetFolderDetailsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "creationTime")
+		delete(additionalProperties, "folderId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "parent")
+		delete(additionalProperties, "parents")
+		delete(additionalProperties, "updateTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

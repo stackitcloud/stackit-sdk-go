@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -32,7 +31,8 @@ type ParentListInner struct {
 	// Identifier of the parent resource container.
 	ParentId *string `json:"parentId,omitempty"`
 	// Parent container type.
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ParentListInner ParentListInner
@@ -238,6 +238,11 @@ func (o ParentListInner) ToMap() (map[string]interface{}, error) {
 		toSerialize["parentId"] = o.ParentId
 	}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -268,15 +273,25 @@ func (o *ParentListInner) UnmarshalJSON(data []byte) (err error) {
 
 	varParentListInner := _ParentListInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varParentListInner)
+	err = json.Unmarshal(data, &varParentListInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ParentListInner(varParentListInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "containerParentId")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "parentId")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

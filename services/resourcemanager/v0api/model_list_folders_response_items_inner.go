@@ -11,7 +11,6 @@ API version: 2.0
 package v0api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -34,7 +33,8 @@ type ListFoldersResponseItemsInner struct {
 	Name   string `json:"name"`
 	Parent Parent `json:"parent"`
 	// Timestamp at which the folder was created.
-	UpdateTime time.Time `json:"updateTime"`
+	UpdateTime           time.Time `json:"updateTime"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListFoldersResponseItemsInner ListFoldersResponseItemsInner
@@ -257,6 +257,11 @@ func (o ListFoldersResponseItemsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["parent"] = o.Parent
 	toSerialize["updateTime"] = o.UpdateTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -289,15 +294,26 @@ func (o *ListFoldersResponseItemsInner) UnmarshalJSON(data []byte) (err error) {
 
 	varListFoldersResponseItemsInner := _ListFoldersResponseItemsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListFoldersResponseItemsInner)
+	err = json.Unmarshal(data, &varListFoldersResponseItemsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListFoldersResponseItemsInner(varListFoldersResponseItemsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "containerId")
+		delete(additionalProperties, "creationTime")
+		delete(additionalProperties, "folderId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "parent")
+		delete(additionalProperties, "updateTime")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
