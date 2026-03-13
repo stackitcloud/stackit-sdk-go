@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type AuditLogEntryRequestResponse struct {
 	// Headers used to make the request. May only contain (string -> string) key-value pairs.
 	Headers map[string]interface{} `json:"headers,omitempty"`
 	// Parameters used to make the request.
-	Parameters map[string]interface{} `json:"parameters,omitempty"`
+	Parameters           map[string]interface{} `json:"parameters,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AuditLogEntryRequestResponse AuditLogEntryRequestResponse
@@ -191,6 +191,11 @@ func (o AuditLogEntryRequestResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Parameters) {
 		toSerialize["parameters"] = o.Parameters
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *AuditLogEntryRequestResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAuditLogEntryRequestResponse := _AuditLogEntryRequestResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAuditLogEntryRequestResponse)
+	err = json.Unmarshal(data, &varAuditLogEntryRequestResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AuditLogEntryRequestResponse(varAuditLogEntryRequestResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "body")
+		delete(additionalProperties, "endpoint")
+		delete(additionalProperties, "headers")
+		delete(additionalProperties, "parameters")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

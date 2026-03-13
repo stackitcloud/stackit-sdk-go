@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &AuditLogEntryServiceAccountDelegationInfoResponse{}
 // AuditLogEntryServiceAccountDelegationInfoResponse Information about service account delegation
 type AuditLogEntryServiceAccountDelegationInfoResponse struct {
 	// Delegation chain for the service account
-	Principals []ServiceAccountDelegationInfoPrincipalResponse `json:"principals"`
+	Principals           []ServiceAccountDelegationInfoPrincipalResponse `json:"principals"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AuditLogEntryServiceAccountDelegationInfoResponse AuditLogEntryServiceAccountDelegationInfoResponse
@@ -80,6 +80,11 @@ func (o AuditLogEntryServiceAccountDelegationInfoResponse) MarshalJSON() ([]byte
 func (o AuditLogEntryServiceAccountDelegationInfoResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["principals"] = o.Principals
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *AuditLogEntryServiceAccountDelegationInfoResponse) UnmarshalJSON(data [
 
 	varAuditLogEntryServiceAccountDelegationInfoResponse := _AuditLogEntryServiceAccountDelegationInfoResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAuditLogEntryServiceAccountDelegationInfoResponse)
+	err = json.Unmarshal(data, &varAuditLogEntryServiceAccountDelegationInfoResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AuditLogEntryServiceAccountDelegationInfoResponse(varAuditLogEntryServiceAccountDelegationInfoResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "principals")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
