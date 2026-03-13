@@ -1,4 +1,74 @@
-## Release (2026-DD-MM)
+## Release (2026-MM-DD)
+- `alb`: [v0.12.1](services/alb/CHANGELOG.md#v0121) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `albwaf`: [v0.2.1](services/albwaf/CHANGELOG.md#v021) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `auditlog`: [v0.3.1](services/auditlog/CHANGELOG.md#v031) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `authorization`: [v0.14.1](services/authorization/CHANGELOG.md#v0141) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `cdn`: [v1.11.1](services/cdn/CHANGELOG.md#v1111) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `certificates`: [v1.4.1](services/certificates/CHANGELOG.md#v141) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `edge`: [v0.6.1](services/edge/CHANGELOG.md#v061) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `iaas`: [v1.5.1](services/iaas/CHANGELOG.md#v151) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `intake`: [v0.7.1](services/intake/CHANGELOG.md#v071) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `kms`: [v1.5.1](services/kms/CHANGELOG.md#v151) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `loadbalancer`: [v1.10.1](services/loadbalancer/CHANGELOG.md#v1101) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `logme`: [v0.27.1](services/logme/CHANGELOG.md#v0271) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `logs`: [v0.7.1](services/logs/CHANGELOG.md#v071) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `mariadb`: [v0.27.1](services/mariadb/CHANGELOG.md#v0271) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `modelserving`: [v0.8.1](services/modelserving/CHANGELOG.md#v081) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `mongodbflex`: [v1.7.1](services/mongodbflex/CHANGELOG.md#v171) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `objectstorage`: [v1.6.1](services/objectstorage/CHANGELOG.md#v161) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `observability`: [v0.19.1](services/observability/CHANGELOG.md#v0191) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `opensearch`: [v0.26.1](services/opensearch/CHANGELOG.md#v0261) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `postgresflex`: [v1.6.1](services/postgresflex/CHANGELOG.md#v161) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `rabbitmq`: [v0.28.1](services/rabbitmq/CHANGELOG.md#v0281) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `redis`: [v0.27.1](services/redis/CHANGELOG.md#v0271) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `resourcemanager`: [v0.20.1](services/resourcemanager/CHANGELOG.md#v0201) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `runcommand`: [v1.6.1](services/runcommand/CHANGELOG.md#v161) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `scf`: [v0.6.1](services/scf/CHANGELOG.md#v061) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `secretsmanager`: [v0.16.1](services/secretsmanager/CHANGELOG.md#v0161) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `serverbackup`: [v1.5.1](services/serverbackup/CHANGELOG.md#v151) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `serverupdate`: [v1.4.1](services/serverupdate/CHANGELOG.md#v141) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `serviceaccount`: [v0.14.1](services/serviceaccount/CHANGELOG.md#v0141) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `serviceenablement`: [v1.4.1](services/serviceenablement/CHANGELOG.md#v141) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `sfs`: [v0.6.1](services/sfs/CHANGELOG.md#v061) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `ske`: [v1.9.1](services/ske/CHANGELOG.md#v191) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `sqlserverflex`: [v1.6.1](services/sqlserverflex/CHANGELOG.md#v161) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `vpn`: [v0.3.1](services/vpn/CHANGELOG.md#v031) 
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+
+## Release (2026-03-13)
 - `core`:
   - [v0.23.0](core/CHANGELOG.md#v0230)
     - **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration
@@ -131,6 +201,9 @@
   - [v0.19.0](services/dns/CHANGELOG.md#v0190)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
+  - [v0.19.1](services/dns/CHANGELOG.md#v0191)
+      - Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+      - **Improvement**: Use new `WaiterHandler` struct in the DNS WaitHandler
 - `intake`: 
   - [v0.5.0](services/intake/CHANGELOG.md#v050)
     - **Feature:** Introduction of multi API version support for the intake SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
