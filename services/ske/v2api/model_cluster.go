@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,15 +20,16 @@ var _ MappedNullable = &Cluster{}
 
 // Cluster struct for Cluster
 type Cluster struct {
-	Access      *Access        `json:"access,omitempty"`
-	Extensions  *Extension     `json:"extensions,omitempty"`
-	Hibernation *Hibernation   `json:"hibernation,omitempty"`
-	Kubernetes  Kubernetes     `json:"kubernetes"`
-	Maintenance *Maintenance   `json:"maintenance,omitempty"`
-	Name        *string        `json:"name,omitempty"`
-	Network     *Network       `json:"network,omitempty"`
-	Nodepools   []Nodepool     `json:"nodepools"`
-	Status      *ClusterStatus `json:"status,omitempty"`
+	Access               *Access        `json:"access,omitempty"`
+	Extensions           *Extension     `json:"extensions,omitempty"`
+	Hibernation          *Hibernation   `json:"hibernation,omitempty"`
+	Kubernetes           Kubernetes     `json:"kubernetes"`
+	Maintenance          *Maintenance   `json:"maintenance,omitempty"`
+	Name                 *string        `json:"name,omitempty"`
+	Network              *Network       `json:"network,omitempty"`
+	Nodepools            []Nodepool     `json:"nodepools"`
+	Status               *ClusterStatus `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Cluster Cluster
@@ -358,6 +358,11 @@ func (o Cluster) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -386,15 +391,28 @@ func (o *Cluster) UnmarshalJSON(data []byte) (err error) {
 
 	varCluster := _Cluster{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCluster)
+	err = json.Unmarshal(data, &varCluster)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Cluster(varCluster)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access")
+		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "hibernation")
+		delete(additionalProperties, "kubernetes")
+		delete(additionalProperties, "maintenance")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "nodepools")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

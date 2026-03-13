@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type ACL struct {
 	// Array of CIDRs to allow access to the kubernetes API.
 	AllowedCidrs []string `json:"allowedCidrs"`
 	// Enables the acl extension.
-	Enabled bool `json:"enabled"`
+	Enabled              bool `json:"enabled"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ACL ACL
@@ -108,6 +108,11 @@ func (o ACL) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["allowedCidrs"] = o.AllowedCidrs
 	toSerialize["enabled"] = o.Enabled
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ACL) UnmarshalJSON(data []byte) (err error) {
 
 	varACL := _ACL{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varACL)
+	err = json.Unmarshal(data, &varACL)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ACL(varACL)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedCidrs")
+		delete(additionalProperties, "enabled")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

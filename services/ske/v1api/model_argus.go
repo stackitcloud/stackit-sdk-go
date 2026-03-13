@@ -11,7 +11,6 @@ API version: 1.1
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type Argus struct {
 	// Argus instance ID to choose which Argus instance is used.
 	ArgusInstanceId string `json:"argusInstanceId"`
 	// Enables the argus extension.
-	Enabled bool `json:"enabled"`
+	Enabled              bool `json:"enabled"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Argus Argus
@@ -108,6 +108,11 @@ func (o Argus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["argusInstanceId"] = o.ArgusInstanceId
 	toSerialize["enabled"] = o.Enabled
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *Argus) UnmarshalJSON(data []byte) (err error) {
 
 	varArgus := _Argus{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varArgus)
+	err = json.Unmarshal(data, &varArgus)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Argus(varArgus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "argusInstanceId")
+		delete(additionalProperties, "enabled")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

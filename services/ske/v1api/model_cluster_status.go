@@ -30,8 +30,11 @@ type ClusterStatus struct {
 	Errors              []ClusterError `json:"errors,omitempty"`
 	Hibernated          *bool          `json:"hibernated,omitempty"`
 	// The network ranges (in CIDR notation) used by pods of the cluster.
-	PodAddressRanges []string `json:"podAddressRanges,omitempty"`
+	PodAddressRanges     []string `json:"podAddressRanges,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ClusterStatus ClusterStatus
 
 // NewClusterStatus instantiates a new ClusterStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -340,7 +343,40 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PodAddressRanges) {
 		toSerialize["podAddressRanges"] = o.PodAddressRanges
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ClusterStatus) UnmarshalJSON(data []byte) (err error) {
+	varClusterStatus := _ClusterStatus{}
+
+	err = json.Unmarshal(data, &varClusterStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ClusterStatus(varClusterStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "aggregated")
+		delete(additionalProperties, "creationTime")
+		delete(additionalProperties, "credentialsRotation")
+		delete(additionalProperties, "egressAddressRanges")
+		delete(additionalProperties, "error")
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "hibernated")
+		delete(additionalProperties, "podAddressRanges")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableClusterStatus struct {

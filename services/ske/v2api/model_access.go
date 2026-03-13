@@ -19,8 +19,11 @@ var _ MappedNullable = &Access{}
 
 // Access struct for Access
 type Access struct {
-	Idp *IDP `json:"idp,omitempty"`
+	Idp                  *IDP `json:"idp,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Access Access
 
 // NewAccess instantiates a new Access object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o Access) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Idp) {
 		toSerialize["idp"] = o.Idp
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Access) UnmarshalJSON(data []byte) (err error) {
+	varAccess := _Access{}
+
+	err = json.Unmarshal(data, &varAccess)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Access(varAccess)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "idp")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAccess struct {

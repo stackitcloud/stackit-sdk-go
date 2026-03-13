@@ -19,9 +19,12 @@ var _ MappedNullable = &MaintenanceAutoUpdate{}
 
 // MaintenanceAutoUpdate struct for MaintenanceAutoUpdate
 type MaintenanceAutoUpdate struct {
-	KubernetesVersion   *bool `json:"kubernetesVersion,omitempty"`
-	MachineImageVersion *bool `json:"machineImageVersion,omitempty"`
+	KubernetesVersion    *bool `json:"kubernetesVersion,omitempty"`
+	MachineImageVersion  *bool `json:"machineImageVersion,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MaintenanceAutoUpdate MaintenanceAutoUpdate
 
 // NewMaintenanceAutoUpdate instantiates a new MaintenanceAutoUpdate object
 // This constructor will assign default values to properties that have it defined,
@@ -120,7 +123,34 @@ func (o MaintenanceAutoUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MachineImageVersion) {
 		toSerialize["machineImageVersion"] = o.MachineImageVersion
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MaintenanceAutoUpdate) UnmarshalJSON(data []byte) (err error) {
+	varMaintenanceAutoUpdate := _MaintenanceAutoUpdate{}
+
+	err = json.Unmarshal(data, &varMaintenanceAutoUpdate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MaintenanceAutoUpdate(varMaintenanceAutoUpdate)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kubernetesVersion")
+		delete(additionalProperties, "machineImageVersion")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMaintenanceAutoUpdate struct {

@@ -11,7 +11,6 @@ API version: 1.1
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,6 +23,7 @@ type Kubernetes struct {
 	// DEPRECATED as of Kubernetes 1.25+ Flag to specify if privileged mode for containers is enabled or not. This should be used with care since it also disables a couple of other features like the use of some volume type (e.g. PVCs). By default this is set to true.
 	AllowPrivilegedContainers *bool  `json:"allowPrivilegedContainers,omitempty"`
 	Version                   string `json:"version" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	AdditionalProperties      map[string]interface{}
 }
 
 type _Kubernetes Kubernetes
@@ -116,6 +116,11 @@ func (o Kubernetes) ToMap() (map[string]interface{}, error) {
 		toSerialize["allowPrivilegedContainers"] = o.AllowPrivilegedContainers
 	}
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *Kubernetes) UnmarshalJSON(data []byte) (err error) {
 
 	varKubernetes := _Kubernetes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKubernetes)
+	err = json.Unmarshal(data, &varKubernetes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Kubernetes(varKubernetes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowPrivilegedContainers")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

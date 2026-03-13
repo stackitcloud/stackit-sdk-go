@@ -19,12 +19,15 @@ var _ MappedNullable = &MachineType{}
 
 // MachineType struct for MachineType
 type MachineType struct {
-	Architecture *string `json:"architecture,omitempty"`
-	Cpu          *int32  `json:"cpu,omitempty"`
-	Gpu          *int32  `json:"gpu,omitempty"`
-	Memory       *int32  `json:"memory,omitempty"`
-	Name         *string `json:"name,omitempty"`
+	Architecture         *string `json:"architecture,omitempty"`
+	Cpu                  *int32  `json:"cpu,omitempty"`
+	Gpu                  *int32  `json:"gpu,omitempty"`
+	Memory               *int32  `json:"memory,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MachineType MachineType
 
 // NewMachineType instantiates a new MachineType object
 // This constructor will assign default values to properties that have it defined,
@@ -228,7 +231,37 @@ func (o MachineType) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *MachineType) UnmarshalJSON(data []byte) (err error) {
+	varMachineType := _MachineType{}
+
+	err = json.Unmarshal(data, &varMachineType)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MachineType(varMachineType)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "architecture")
+		delete(additionalProperties, "cpu")
+		delete(additionalProperties, "gpu")
+		delete(additionalProperties, "memory")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableMachineType struct {
