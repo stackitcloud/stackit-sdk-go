@@ -131,6 +131,9 @@
   - [v0.19.0](services/dns/CHANGELOG.md#v0190)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
+  - [v0.19.1](services/dns/CHANGELOG.md#v0191)
+      - Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+      - **Improvement**: Use new `WaiterHandler` struct in the DNS WaitHandler
 - `intake`: 
   - [v0.5.0](services/intake/CHANGELOG.md#v050)
     - **Feature:** Introduction of multi API version support for the intake SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
