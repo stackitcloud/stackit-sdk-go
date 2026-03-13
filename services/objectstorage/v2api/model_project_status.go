@@ -11,7 +11,6 @@ API version: 2.0.1
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type ProjectStatus struct {
 	// Project ID
 	Project string `json:"project"`
 	// Project Scope
-	Scope ProjectScope `json:"scope"`
+	Scope                ProjectScope `json:"scope"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProjectStatus ProjectStatus
@@ -108,6 +108,11 @@ func (o ProjectStatus) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["project"] = o.Project
 	toSerialize["scope"] = o.Scope
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ProjectStatus) UnmarshalJSON(data []byte) (err error) {
 
 	varProjectStatus := _ProjectStatus{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProjectStatus)
+	err = json.Unmarshal(data, &varProjectStatus)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProjectStatus(varProjectStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "scope")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

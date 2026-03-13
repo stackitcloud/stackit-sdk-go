@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &CreateCredentialsGroupPayload{}
 // CreateCredentialsGroupPayload struct for CreateCredentialsGroupPayload
 type CreateCredentialsGroupPayload struct {
 	// Name of the group holding credentials
-	DisplayName string `json:"displayName"`
+	DisplayName          string `json:"displayName"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateCredentialsGroupPayload CreateCredentialsGroupPayload
@@ -80,6 +80,11 @@ func (o CreateCredentialsGroupPayload) MarshalJSON() ([]byte, error) {
 func (o CreateCredentialsGroupPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["displayName"] = o.DisplayName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *CreateCredentialsGroupPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateCredentialsGroupPayload := _CreateCredentialsGroupPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateCredentialsGroupPayload)
+	err = json.Unmarshal(data, &varCreateCredentialsGroupPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateCredentialsGroupPayload(varCreateCredentialsGroupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

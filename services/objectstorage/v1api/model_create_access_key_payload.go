@@ -21,8 +21,11 @@ var _ MappedNullable = &CreateAccessKeyPayload{}
 // CreateAccessKeyPayload struct for CreateAccessKeyPayload
 type CreateAccessKeyPayload struct {
 	// Expiration date. Null means never expires.
-	Expires *time.Time `json:"expires,omitempty"`
+	Expires              *time.Time `json:"expires,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateAccessKeyPayload CreateAccessKeyPayload
 
 // NewCreateAccessKeyPayload instantiates a new CreateAccessKeyPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o CreateAccessKeyPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Expires) {
 		toSerialize["expires"] = o.Expires
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateAccessKeyPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateAccessKeyPayload := _CreateAccessKeyPayload{}
+
+	err = json.Unmarshal(data, &varCreateAccessKeyPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateAccessKeyPayload(varCreateAccessKeyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expires")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateAccessKeyPayload struct {

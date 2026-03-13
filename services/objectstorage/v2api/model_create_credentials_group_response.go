@@ -11,7 +11,6 @@ API version: 2.0.1
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateCredentialsGroupResponse{}
 type CreateCredentialsGroupResponse struct {
 	CredentialsGroup CredentialsGroup `json:"credentialsGroup"`
 	// Project ID
-	Project string `json:"project"`
+	Project              string `json:"project"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateCredentialsGroupResponse CreateCredentialsGroupResponse
@@ -107,6 +107,11 @@ func (o CreateCredentialsGroupResponse) ToMap() (map[string]interface{}, error) 
 	toSerialize := map[string]interface{}{}
 	toSerialize["credentialsGroup"] = o.CredentialsGroup
 	toSerialize["project"] = o.Project
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *CreateCredentialsGroupResponse) UnmarshalJSON(data []byte) (err error) 
 
 	varCreateCredentialsGroupResponse := _CreateCredentialsGroupResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateCredentialsGroupResponse)
+	err = json.Unmarshal(data, &varCreateCredentialsGroupResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateCredentialsGroupResponse(varCreateCredentialsGroupResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentialsGroup")
+		delete(additionalProperties, "project")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
