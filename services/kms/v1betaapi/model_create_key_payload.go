@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,9 +29,10 @@ type CreateKeyPayload struct {
 	// The display name to distinguish multiple keys. Valid characters: letters, digits, underscores and hyphens.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
 	// States whether versions can be created or only imported.
-	ImportOnly *bool       `json:"importOnly,omitempty"`
-	Protection *Protection `json:"protection,omitempty"`
-	Purpose    Purpose     `json:"purpose"`
+	ImportOnly           *bool       `json:"importOnly,omitempty"`
+	Protection           *Protection `json:"protection,omitempty"`
+	Purpose              Purpose     `json:"purpose"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateKeyPayload CreateKeyPayload
@@ -319,6 +319,11 @@ func (o CreateKeyPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["protection"] = o.Protection
 	}
 	toSerialize["purpose"] = o.Purpose
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -349,15 +354,27 @@ func (o *CreateKeyPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateKeyPayload := _CreateKeyPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateKeyPayload)
+	err = json.Unmarshal(data, &varCreateKeyPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateKeyPayload(varCreateKeyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_scope")
+		delete(additionalProperties, "algorithm")
+		delete(additionalProperties, "backend")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "importOnly")
+		delete(additionalProperties, "protection")
+		delete(additionalProperties, "purpose")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

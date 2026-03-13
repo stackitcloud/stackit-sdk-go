@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &KeyRingList{}
 
 // KeyRingList struct for KeyRingList
 type KeyRingList struct {
-	KeyRings []KeyRing `json:"keyRings"`
+	KeyRings             []KeyRing `json:"keyRings"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _KeyRingList KeyRingList
@@ -79,6 +79,11 @@ func (o KeyRingList) MarshalJSON() ([]byte, error) {
 func (o KeyRingList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["keyRings"] = o.KeyRings
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *KeyRingList) UnmarshalJSON(data []byte) (err error) {
 
 	varKeyRingList := _KeyRingList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKeyRingList)
+	err = json.Unmarshal(data, &varKeyRingList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = KeyRingList(varKeyRingList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "keyRings")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -41,7 +40,8 @@ type WrappingKey struct {
 	PublicKey string          `json:"publicKey"`
 	Purpose   WrappingPurpose `json:"purpose"`
 	// The current state of the wrapping key.
-	State string `json:"state"`
+	State                string `json:"state"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WrappingKey WrappingKey
@@ -396,6 +396,11 @@ func (o WrappingKey) ToMap() (map[string]interface{}, error) {
 	toSerialize["publicKey"] = o.PublicKey
 	toSerialize["purpose"] = o.Purpose
 	toSerialize["state"] = o.State
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -433,15 +438,31 @@ func (o *WrappingKey) UnmarshalJSON(data []byte) (err error) {
 
 	varWrappingKey := _WrappingKey{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWrappingKey)
+	err = json.Unmarshal(data, &varWrappingKey)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WrappingKey(varWrappingKey)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_scope")
+		delete(additionalProperties, "algorithm")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "expiresAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "keyRingId")
+		delete(additionalProperties, "protection")
+		delete(additionalProperties, "publicKey")
+		delete(additionalProperties, "purpose")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
