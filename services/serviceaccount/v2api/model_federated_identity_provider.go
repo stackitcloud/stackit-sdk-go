@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -33,7 +32,8 @@ type FederatedIdentityProvider struct {
 	// Unique name of the federated identity provider.
 	Name string `json:"name"`
 	// Last update time of the federated identity provider.
-	UpdatedAt time.Time `json:"updatedAt"`
+	UpdatedAt            time.Time `json:"updatedAt"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FederatedIdentityProvider FederatedIdentityProvider
@@ -230,6 +230,11 @@ func (o FederatedIdentityProvider) ToMap() (map[string]interface{}, error) {
 	toSerialize["issuer"] = o.Issuer
 	toSerialize["name"] = o.Name
 	toSerialize["updatedAt"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -261,15 +266,25 @@ func (o *FederatedIdentityProvider) UnmarshalJSON(data []byte) (err error) {
 
 	varFederatedIdentityProvider := _FederatedIdentityProvider{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFederatedIdentityProvider)
+	err = json.Unmarshal(data, &varFederatedIdentityProvider)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FederatedIdentityProvider(varFederatedIdentityProvider)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "assertions")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "issuer")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

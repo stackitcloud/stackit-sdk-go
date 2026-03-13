@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +26,9 @@ type CreateShortLivedAccessTokenResponse struct {
 	// Refresh token that can be used to request a new access token when it expires (and before refresh token expires). Tokens are rotated.
 	RefreshToken string `json:"refresh_token"`
 	// scope field of the self signed token
-	Scope     string `json:"scope"`
-	TokenType string `json:"token_type"`
+	Scope                string `json:"scope"`
+	TokenType            string `json:"token_type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateShortLivedAccessTokenResponse CreateShortLivedAccessTokenResponse
@@ -190,6 +190,11 @@ func (o CreateShortLivedAccessTokenResponse) ToMap() (map[string]interface{}, er
 	toSerialize["refresh_token"] = o.RefreshToken
 	toSerialize["scope"] = o.Scope
 	toSerialize["token_type"] = o.TokenType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -221,15 +226,24 @@ func (o *CreateShortLivedAccessTokenResponse) UnmarshalJSON(data []byte) (err er
 
 	varCreateShortLivedAccessTokenResponse := _CreateShortLivedAccessTokenResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateShortLivedAccessTokenResponse)
+	err = json.Unmarshal(data, &varCreateShortLivedAccessTokenResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateShortLivedAccessTokenResponse(varCreateShortLivedAccessTokenResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_token")
+		delete(additionalProperties, "expires_in")
+		delete(additionalProperties, "refresh_token")
+		delete(additionalProperties, "scope")
+		delete(additionalProperties, "token_type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

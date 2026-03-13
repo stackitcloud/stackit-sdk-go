@@ -25,8 +25,11 @@ type CreateServiceAccountKeyPayload struct {
 	// Optional, public key part of the user generated RSA key-pair wrapped in a [X.509 v3 certificate](https://www.rfc-editor.org/rfc/rfc5280)
 	PublicKey *string `json:"publicKey,omitempty"`
 	// Optional, date of key expiration. When omitted, key is valid until deleted
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil           *time.Time `json:"validUntil,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateServiceAccountKeyPayload CreateServiceAccountKeyPayload
 
 // NewCreateServiceAccountKeyPayload instantiates a new CreateServiceAccountKeyPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o CreateServiceAccountKeyPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.ValidUntil) {
 		toSerialize["validUntil"] = o.ValidUntil
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateServiceAccountKeyPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateServiceAccountKeyPayload := _CreateServiceAccountKeyPayload{}
+
+	err = json.Unmarshal(data, &varCreateServiceAccountKeyPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateServiceAccountKeyPayload(varCreateServiceAccountKeyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "algorithm")
+		delete(additionalProperties, "publicKey")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateServiceAccountKeyPayload struct {

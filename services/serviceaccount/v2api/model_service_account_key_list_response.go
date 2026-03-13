@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type ServiceAccountKeyListResponse struct {
 	KeyOrigin    string `json:"keyOrigin"`
 	KeyType      string `json:"keyType"`
 	// If specified, the timestamp until the key is active. May be null
-	ValidUntil *time.Time `json:"validUntil,omitempty"`
+	ValidUntil           *time.Time `json:"validUntil,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServiceAccountKeyListResponse ServiceAccountKeyListResponse
@@ -254,6 +254,11 @@ func (o ServiceAccountKeyListResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ValidUntil) {
 		toSerialize["validUntil"] = o.ValidUntil
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -286,15 +291,26 @@ func (o *ServiceAccountKeyListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varServiceAccountKeyListResponse := _ServiceAccountKeyListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServiceAccountKeyListResponse)
+	err = json.Unmarshal(data, &varServiceAccountKeyListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServiceAccountKeyListResponse(varServiceAccountKeyListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "keyAlgorithm")
+		delete(additionalProperties, "keyOrigin")
+		delete(additionalProperties, "keyType")
+		delete(additionalProperties, "validUntil")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

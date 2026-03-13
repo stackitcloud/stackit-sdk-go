@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,17 +20,18 @@ var _ MappedNullable = &JWK{}
 
 // JWK JSON Web Key according to https://datatracker.ietf.org/doc/html/rfc7517#section-4
 type JWK struct {
-	Alg    *string `json:"alg,omitempty"`
-	E      string  `json:"e"`
-	Kid    *string `json:"kid,omitempty"`
-	Ks     *string `json:"ks,omitempty"`
-	N      string  `json:"n"`
-	Ops    *string `json:"ops,omitempty"`
-	Use    *string `json:"use,omitempty"`
-	X5c    *string `json:"x5c,omitempty"`
-	X5t    *string `json:"x5t,omitempty"`
-	X5t256 *string `json:"x5t256,omitempty"`
-	X5u    *string `json:"x5u,omitempty"`
+	Alg                  *string `json:"alg,omitempty"`
+	E                    string  `json:"e"`
+	Kid                  *string `json:"kid,omitempty"`
+	Ks                   *string `json:"ks,omitempty"`
+	N                    string  `json:"n"`
+	Ops                  *string `json:"ops,omitempty"`
+	Use                  *string `json:"use,omitempty"`
+	X5c                  *string `json:"x5c,omitempty"`
+	X5t                  *string `json:"x5t,omitempty"`
+	X5t256               *string `json:"x5t256,omitempty"`
+	X5u                  *string `json:"x5u,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _JWK JWK
@@ -430,6 +430,11 @@ func (o JWK) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.X5u) {
 		toSerialize["x5u"] = o.X5u
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -458,15 +463,30 @@ func (o *JWK) UnmarshalJSON(data []byte) (err error) {
 
 	varJWK := _JWK{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varJWK)
+	err = json.Unmarshal(data, &varJWK)
 
 	if err != nil {
 		return err
 	}
 
 	*o = JWK(varJWK)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alg")
+		delete(additionalProperties, "e")
+		delete(additionalProperties, "kid")
+		delete(additionalProperties, "ks")
+		delete(additionalProperties, "n")
+		delete(additionalProperties, "ops")
+		delete(additionalProperties, "use")
+		delete(additionalProperties, "x5c")
+		delete(additionalProperties, "x5t")
+		delete(additionalProperties, "x5t256")
+		delete(additionalProperties, "x5u")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

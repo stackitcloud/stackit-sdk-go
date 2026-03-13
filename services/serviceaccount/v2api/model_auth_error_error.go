@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &AuthErrorError{}
 
 // AuthErrorError struct for AuthErrorError
 type AuthErrorError struct {
-	Code    int32  `json:"code"`
-	Message string `json:"message"`
-	Status  string `json:"status"`
+	Code                 int32  `json:"code"`
+	Message              string `json:"message"`
+	Status               string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AuthErrorError AuthErrorError
@@ -133,6 +133,11 @@ func (o AuthErrorError) ToMap() (map[string]interface{}, error) {
 	toSerialize["code"] = o.Code
 	toSerialize["message"] = o.Message
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *AuthErrorError) UnmarshalJSON(data []byte) (err error) {
 
 	varAuthErrorError := _AuthErrorError{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAuthErrorError)
+	err = json.Unmarshal(data, &varAuthErrorError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AuthErrorError(varAuthErrorError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
