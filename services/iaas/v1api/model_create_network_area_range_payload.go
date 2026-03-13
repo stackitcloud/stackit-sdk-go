@@ -21,8 +21,11 @@ var _ MappedNullable = &CreateNetworkAreaRangePayload{}
 // CreateNetworkAreaRangePayload struct for CreateNetworkAreaRangePayload
 type CreateNetworkAreaRangePayload struct {
 	// A list of network ranges.
-	Ipv4 []NetworkRange `json:"ipv4,omitempty"`
+	Ipv4                 []NetworkRange `json:"ipv4,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateNetworkAreaRangePayload CreateNetworkAreaRangePayload
 
 // NewCreateNetworkAreaRangePayload instantiates a new CreateNetworkAreaRangePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o CreateNetworkAreaRangePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ipv4) {
 		toSerialize["ipv4"] = o.Ipv4
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateNetworkAreaRangePayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateNetworkAreaRangePayload := _CreateNetworkAreaRangePayload{}
+
+	err = json.Unmarshal(data, &varCreateNetworkAreaRangePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateNetworkAreaRangePayload(varCreateNetworkAreaRangePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ipv4")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateNetworkAreaRangePayload struct {

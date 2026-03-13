@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &VolumeAttachmentListResponse{}
 // VolumeAttachmentListResponse Volume attachment list response.
 type VolumeAttachmentListResponse struct {
 	// A list containing Volume attachments of a server.
-	Items []VolumeAttachment `json:"items"`
+	Items                []VolumeAttachment `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VolumeAttachmentListResponse VolumeAttachmentListResponse
@@ -81,6 +81,11 @@ func (o VolumeAttachmentListResponse) MarshalJSON() ([]byte, error) {
 func (o VolumeAttachmentListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *VolumeAttachmentListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varVolumeAttachmentListResponse := _VolumeAttachmentListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVolumeAttachmentListResponse)
+	err = json.Unmarshal(data, &varVolumeAttachmentListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VolumeAttachmentListResponse(varVolumeAttachmentListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -23,8 +23,11 @@ type ImageShare struct {
 	// Image is shared with all projects inside the image owners organization.
 	ParentOrganization *bool `json:"parentOrganization,omitempty"`
 	// List of all projects the Image is shared with.
-	Projects []string `json:"projects,omitempty"`
+	Projects             []string `json:"projects,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ImageShare ImageShare
 
 // NewImageShare instantiates a new ImageShare object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o ImageShare) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Projects) {
 		toSerialize["projects"] = o.Projects
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ImageShare) UnmarshalJSON(data []byte) (err error) {
+	varImageShare := _ImageShare{}
+
+	err = json.Unmarshal(data, &varImageShare)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImageShare(varImageShare)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "parentOrganization")
+		delete(additionalProperties, "projects")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableImageShare struct {

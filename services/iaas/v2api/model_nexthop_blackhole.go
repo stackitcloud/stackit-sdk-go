@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &NexthopBlackhole{}
 
 // NexthopBlackhole Object that represents a blackhole route.
 type NexthopBlackhole struct {
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NexthopBlackhole NexthopBlackhole
@@ -80,6 +80,11 @@ func (o NexthopBlackhole) MarshalJSON() ([]byte, error) {
 func (o NexthopBlackhole) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *NexthopBlackhole) UnmarshalJSON(data []byte) (err error) {
 
 	varNexthopBlackhole := _NexthopBlackhole{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNexthopBlackhole)
+	err = json.Unmarshal(data, &varNexthopBlackhole)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NexthopBlackhole(varNexthopBlackhole)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

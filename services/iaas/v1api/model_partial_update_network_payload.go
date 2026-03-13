@@ -28,8 +28,11 @@ type PartialUpdateNetworkPayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
 	// Shows if the network is routed and therefore accessible from other networks.
-	Routed *bool `json:"routed,omitempty"`
+	Routed               *bool `json:"routed,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateNetworkPayload PartialUpdateNetworkPayload
 
 // NewPartialUpdateNetworkPayload instantiates a new PartialUpdateNetworkPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o PartialUpdateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Routed) {
 		toSerialize["routed"] = o.Routed
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateNetworkPayload) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateNetworkPayload := _PartialUpdateNetworkPayload{}
+
+	err = json.Unmarshal(data, &varPartialUpdateNetworkPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateNetworkPayload(varPartialUpdateNetworkPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "addressFamily")
+		delete(additionalProperties, "dhcp")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "routed")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateNetworkPayload struct {

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateNetworkAreaRoutePayload{}
 // CreateNetworkAreaRoutePayload Object represents a request to add network routes.
 type CreateNetworkAreaRoutePayload struct {
 	// A list of routes.
-	Items []Route `json:"items"`
+	Items                []Route `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateNetworkAreaRoutePayload CreateNetworkAreaRoutePayload
@@ -81,6 +81,11 @@ func (o CreateNetworkAreaRoutePayload) MarshalJSON() ([]byte, error) {
 func (o CreateNetworkAreaRoutePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateNetworkAreaRoutePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateNetworkAreaRoutePayload := _CreateNetworkAreaRoutePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateNetworkAreaRoutePayload)
+	err = json.Unmarshal(data, &varCreateNetworkAreaRoutePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateNetworkAreaRoutePayload(varCreateNetworkAreaRoutePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

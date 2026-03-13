@@ -47,8 +47,11 @@ type ImageConfig struct {
 	// Sets Graphic device model. Possible values: `vga`, `cirrus`, `vmvga`, `qxl`, `virtio`, `none`.
 	VideoModel NullableString `json:"videoModel,omitempty"`
 	// Enables the use of VirtIO SCSI to provide block device access. By default servers use VirtIO Block.
-	VirtioScsi *bool `json:"virtioScsi,omitempty"`
+	VirtioScsi           *bool `json:"virtioScsi,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ImageConfig ImageConfig
 
 // NewImageConfig instantiates a new ImageConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -655,7 +658,46 @@ func (o ImageConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VirtioScsi) {
 		toSerialize["virtioScsi"] = o.VirtioScsi
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ImageConfig) UnmarshalJSON(data []byte) (err error) {
+	varImageConfig := _ImageConfig{}
+
+	err = json.Unmarshal(data, &varImageConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImageConfig(varImageConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "architecture")
+		delete(additionalProperties, "bootMenu")
+		delete(additionalProperties, "cdromBus")
+		delete(additionalProperties, "diskBus")
+		delete(additionalProperties, "nicModel")
+		delete(additionalProperties, "operatingSystem")
+		delete(additionalProperties, "operatingSystemDistro")
+		delete(additionalProperties, "operatingSystemVersion")
+		delete(additionalProperties, "rescueBus")
+		delete(additionalProperties, "rescueDevice")
+		delete(additionalProperties, "secureBoot")
+		delete(additionalProperties, "uefi")
+		delete(additionalProperties, "videoModel")
+		delete(additionalProperties, "virtioScsi")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableImageConfig struct {
