@@ -1,5 +1,5 @@
 ## v0.23.0
-- **New:** Add new `WaiterHelper` struct which creates an `AsyncActionCheck` function based on the configuration 
+- **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration 
 
 ## v0.22.0
 - **Feature:** Support Azure DevOps OIDC adapter

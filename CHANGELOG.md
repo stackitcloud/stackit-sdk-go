@@ -1,7 +1,7 @@
 ## Release (2026-DD-MM)
 - `core`:
   - [v0.23.0](core/CHANGELOG.md#v0230)
-    - **New:** Add new `WaiterHelper` struct which creates an `AsyncActionCheck` function based on the configuration
+    - **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration
   - [v0.22.0](core/CHANGELOG.md#v0220) 
     - **Feature:** Support Azure DevOps OIDC adapter
 - `alb`: 

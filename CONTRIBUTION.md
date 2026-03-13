@@ -137,7 +137,7 @@ func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, proj
   ```go
   // DeleteBarWaitHandler will wait for Bar deletion
   func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, barId, projectId string) *wait.AsyncActionHandler[foo.ListBarsResponse] {
-	  waitConfig := wait.WaiterHelper[dns.GetBarResponse, string]{
+	  waitConfig := wait.WaiterHelper[foo.GetBarResponse, string]{
         FetchInstance: a.GetBar(ctx, projectId, barId).Execute,
         GetState: func(d *foo.GetBarResponse) (string, error) {
           if d == nil {
