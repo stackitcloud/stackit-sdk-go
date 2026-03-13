@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -34,7 +33,8 @@ type CreateAreaIPv4 struct {
 	// The maximal prefix length for networks in the network area.
 	MaxPrefixLen *int32 `json:"maxPrefixLen,omitempty"`
 	// The minimal prefix length for networks in the network area.
-	MinPrefixLen *int32 `json:"minPrefixLen,omitempty"`
+	MinPrefixLen         *int32 `json:"minPrefixLen,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateAreaIPv4 CreateAreaIPv4
@@ -305,6 +305,11 @@ func (o CreateAreaIPv4) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MinPrefixLen) {
 		toSerialize["minPrefixLen"] = o.MinPrefixLen
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -333,15 +338,26 @@ func (o *CreateAreaIPv4) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateAreaIPv4 := _CreateAreaIPv4{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAreaIPv4)
+	err = json.Unmarshal(data, &varCreateAreaIPv4)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateAreaIPv4(varCreateAreaIPv4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "defaultNameservers")
+		delete(additionalProperties, "networkRanges")
+		delete(additionalProperties, "routes")
+		delete(additionalProperties, "transferNetwork")
+		delete(additionalProperties, "defaultPrefixLen")
+		delete(additionalProperties, "maxPrefixLen")
+		delete(additionalProperties, "minPrefixLen")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

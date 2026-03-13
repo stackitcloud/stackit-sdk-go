@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &AffinityGroupListResponse{}
 // AffinityGroupListResponse Response object for affinity group list request.
 type AffinityGroupListResponse struct {
 	// A list of affinity groups.
-	Items []AffinityGroup `json:"items"`
+	Items                []AffinityGroup `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AffinityGroupListResponse AffinityGroupListResponse
@@ -81,6 +81,11 @@ func (o AffinityGroupListResponse) MarshalJSON() ([]byte, error) {
 func (o AffinityGroupListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *AffinityGroupListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAffinityGroupListResponse := _AffinityGroupListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAffinityGroupListResponse)
+	err = json.Unmarshal(data, &varAffinityGroupListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AffinityGroupListResponse(varAffinityGroupListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

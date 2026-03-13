@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -34,7 +33,8 @@ type Keypair struct {
 	// Object that represents a public SSH key.
 	PublicKey string `json:"publicKey" validate:"regexp=^(ssh-rsa|ssh-ed25519|ecdsa-sha2-nistp(256|384|521))\\\\s+[A-Za-z0-9+\\/]+[=]{0,3}(\\\\s+.+)?\\\\s*$"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Keypair Keypair
@@ -267,6 +267,11 @@ func (o Keypair) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -294,15 +299,25 @@ func (o *Keypair) UnmarshalJSON(data []byte) (err error) {
 
 	varKeypair := _Keypair{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKeypair)
+	err = json.Unmarshal(data, &varKeypair)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Keypair(varKeypair)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "fingerprint")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "publicKey")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

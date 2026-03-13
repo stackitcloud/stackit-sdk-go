@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &CreateNetworkIPv4WithPrefixLength{}
 // CreateNetworkIPv4WithPrefixLength The create request for an IPv4 network with a wanted prefix length.
 type CreateNetworkIPv4WithPrefixLength struct {
 	// A list containing DNS Servers/Nameservers for IPv4.
-	Nameservers  []string `json:"nameservers,omitempty"`
-	PrefixLength int64    `json:"prefixLength"`
+	Nameservers          []string `json:"nameservers,omitempty"`
+	PrefixLength         int64    `json:"prefixLength"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateNetworkIPv4WithPrefixLength CreateNetworkIPv4WithPrefixLength
@@ -117,6 +117,11 @@ func (o CreateNetworkIPv4WithPrefixLength) ToMap() (map[string]interface{}, erro
 		toSerialize["nameservers"] = o.Nameservers
 	}
 	toSerialize["prefixLength"] = o.PrefixLength
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *CreateNetworkIPv4WithPrefixLength) UnmarshalJSON(data []byte) (err erro
 
 	varCreateNetworkIPv4WithPrefixLength := _CreateNetworkIPv4WithPrefixLength{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateNetworkIPv4WithPrefixLength)
+	err = json.Unmarshal(data, &varCreateNetworkIPv4WithPrefixLength)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateNetworkIPv4WithPrefixLength(varCreateNetworkIPv4WithPrefixLength)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "nameservers")
+		delete(additionalProperties, "prefixLength")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ResizeServerPayload{}
 // ResizeServerPayload struct for ResizeServerPayload
 type ResizeServerPayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
-	MachineType string `json:"machineType" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	MachineType          string `json:"machineType" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ResizeServerPayload ResizeServerPayload
@@ -81,6 +81,11 @@ func (o ResizeServerPayload) MarshalJSON() ([]byte, error) {
 func (o ResizeServerPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["machineType"] = o.MachineType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ResizeServerPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varResizeServerPayload := _ResizeServerPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varResizeServerPayload)
+	err = json.Unmarshal(data, &varResizeServerPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ResizeServerPayload(varResizeServerPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "machineType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

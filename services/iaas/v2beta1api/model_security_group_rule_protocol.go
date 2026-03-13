@@ -20,8 +20,11 @@ var _ MappedNullable = &SecurityGroupRuleProtocol{}
 
 // SecurityGroupRuleProtocol The internet protocol which the rule matches.
 type SecurityGroupRuleProtocol struct {
-	Protocol *Protocol `json:"protocol,omitempty"`
+	Protocol             *Protocol `json:"protocol,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityGroupRuleProtocol SecurityGroupRuleProtocol
 
 // NewSecurityGroupRuleProtocol instantiates a new SecurityGroupRuleProtocol object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o SecurityGroupRuleProtocol) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Protocol) {
 		toSerialize["protocol"] = o.Protocol
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SecurityGroupRuleProtocol) UnmarshalJSON(data []byte) (err error) {
+	varSecurityGroupRuleProtocol := _SecurityGroupRuleProtocol{}
+
+	err = json.Unmarshal(data, &varSecurityGroupRuleProtocol)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SecurityGroupRuleProtocol(varSecurityGroupRuleProtocol)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "protocol")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSecurityGroupRuleProtocol struct {

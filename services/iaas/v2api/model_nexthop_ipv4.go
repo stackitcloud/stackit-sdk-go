@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ var _ MappedNullable = &NexthopIPv4{}
 type NexthopIPv4 struct {
 	Type string `json:"type"`
 	// An IPv4 address.
-	Value string `json:"value" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	Value                string `json:"value" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NexthopIPv4 NexthopIPv4
@@ -108,6 +108,11 @@ func (o NexthopIPv4) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *NexthopIPv4) UnmarshalJSON(data []byte) (err error) {
 
 	varNexthopIPv4 := _NexthopIPv4{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNexthopIPv4)
+	err = json.Unmarshal(data, &varNexthopIPv4)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NexthopIPv4(varNexthopIPv4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

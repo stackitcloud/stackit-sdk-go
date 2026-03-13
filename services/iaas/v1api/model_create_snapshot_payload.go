@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -40,7 +39,8 @@ type CreateSnapshotPayload struct {
 	// Date-time when resource was last updated.
 	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 	// Universally Unique Identifier (UUID).
-	VolumeId string `json:"volumeId" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	VolumeId             string `json:"volumeId" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateSnapshotPayload CreateSnapshotPayload
@@ -378,6 +378,11 @@ func (o CreateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
 	toSerialize["volumeId"] = o.VolumeId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -405,15 +410,28 @@ func (o *CreateSnapshotPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateSnapshotPayload := _CreateSnapshotPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateSnapshotPayload)
+	err = json.Unmarshal(data, &varCreateSnapshotPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateSnapshotPayload(varCreateSnapshotPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "volumeId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

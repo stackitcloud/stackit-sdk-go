@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -32,7 +31,8 @@ type RegionalAreaIPv4 struct {
 	// A list of network ranges.
 	NetworkRanges []NetworkRange `json:"networkRanges"`
 	// IPv4 Classless Inter-Domain Routing (CIDR).
-	TransferNetwork string `json:"transferNetwork" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	TransferNetwork      string `json:"transferNetwork" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RegionalAreaIPv4 RegionalAreaIPv4
@@ -235,6 +235,11 @@ func (o RegionalAreaIPv4) ToMap() (map[string]interface{}, error) {
 	toSerialize["minPrefixLen"] = o.MinPrefixLen
 	toSerialize["networkRanges"] = o.NetworkRanges
 	toSerialize["transferNetwork"] = o.TransferNetwork
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -266,15 +271,25 @@ func (o *RegionalAreaIPv4) UnmarshalJSON(data []byte) (err error) {
 
 	varRegionalAreaIPv4 := _RegionalAreaIPv4{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRegionalAreaIPv4)
+	err = json.Unmarshal(data, &varRegionalAreaIPv4)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RegionalAreaIPv4(varRegionalAreaIPv4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "defaultNameservers")
+		delete(additionalProperties, "defaultPrefixLen")
+		delete(additionalProperties, "maxPrefixLen")
+		delete(additionalProperties, "minPrefixLen")
+		delete(additionalProperties, "networkRanges")
+		delete(additionalProperties, "transferNetwork")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -33,8 +33,11 @@ type UpdateImagePayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
 	// When true the image is prevented from being deleted.
-	Protected *bool `json:"protected,omitempty"`
+	Protected            *bool `json:"protected,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateImagePayload UpdateImagePayload
 
 // NewUpdateImagePayload instantiates a new UpdateImagePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -343,7 +346,40 @@ func (o UpdateImagePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Protected) {
 		toSerialize["protected"] = o.Protected
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateImagePayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateImagePayload := _UpdateImagePayload{}
+
+	err = json.Unmarshal(data, &varUpdateImagePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateImagePayload(varUpdateImagePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "agent")
+		delete(additionalProperties, "config")
+		delete(additionalProperties, "diskFormat")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "minDiskSize")
+		delete(additionalProperties, "minRam")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "protected")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateImagePayload struct {

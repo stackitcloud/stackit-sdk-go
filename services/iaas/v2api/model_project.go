@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -32,7 +31,8 @@ type Project struct {
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
 	Status string `json:"status"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Project Project
@@ -247,6 +247,11 @@ func (o Project) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -276,15 +281,25 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 
 	varProject := _Project{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProject)
+	err = json.Unmarshal(data, &varProject)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Project(varProject)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "areaId")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "internetAccess")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -22,8 +22,11 @@ var _ MappedNullable = &CreateNetworkAreaRegionPayload{}
 type CreateNetworkAreaRegionPayload struct {
 	Ipv4 *RegionalAreaIPv4 `json:"ipv4,omitempty"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
-	Status *string `json:"status,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateNetworkAreaRegionPayload CreateNetworkAreaRegionPayload
 
 // NewCreateNetworkAreaRegionPayload instantiates a new CreateNetworkAreaRegionPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o CreateNetworkAreaRegionPayload) ToMap() (map[string]interface{}, error) 
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateNetworkAreaRegionPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateNetworkAreaRegionPayload := _CreateNetworkAreaRegionPayload{}
+
+	err = json.Unmarshal(data, &varCreateNetworkAreaRegionPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateNetworkAreaRegionPayload(varCreateNetworkAreaRegionPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateNetworkAreaRegionPayload struct {
