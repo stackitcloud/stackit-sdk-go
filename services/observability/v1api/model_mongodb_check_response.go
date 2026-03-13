@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &MongodbCheckResponse{}
 
 // MongodbCheckResponse struct for MongodbCheckResponse
 type MongodbCheckResponse struct {
-	Message       string                      `json:"message"`
-	MongodbCheck  *MongodbCheckChildResponse  `json:"mongodbCheck,omitempty"`
-	MongodbChecks []MongodbCheckChildResponse `json:"mongodbChecks"`
+	Message              string                      `json:"message"`
+	MongodbCheck         *MongodbCheckChildResponse  `json:"mongodbCheck,omitempty"`
+	MongodbChecks        []MongodbCheckChildResponse `json:"mongodbChecks"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MongodbCheckResponse MongodbCheckResponse
@@ -143,6 +143,11 @@ func (o MongodbCheckResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["mongodbCheck"] = o.MongodbCheck
 	}
 	toSerialize["mongodbChecks"] = o.MongodbChecks
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *MongodbCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMongodbCheckResponse := _MongodbCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMongodbCheckResponse)
+	err = json.Unmarshal(data, &varMongodbCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MongodbCheckResponse(varMongodbCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "mongodbCheck")
+		delete(additionalProperties, "mongodbChecks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

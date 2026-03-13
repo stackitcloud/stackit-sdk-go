@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -44,8 +43,9 @@ type UpdateScrapeConfigPayload struct {
 	// Per-scrape timeout when scraping this job. `Additional Validators:` * must be a valid time format* must be smaller than scrapeInterval
 	ScrapeTimeout string `json:"scrapeTimeout"`
 	// A list of scrape configurations.
-	StaticConfigs []UpdateScrapeConfigPayloadStaticConfigsInner `json:"staticConfigs"`
-	TlsConfig     *UpdateScrapeConfigPayloadTlsConfig           `json:"tlsConfig,omitempty"`
+	StaticConfigs        []UpdateScrapeConfigPayloadStaticConfigsInner `json:"staticConfigs"`
+	TlsConfig            *UpdateScrapeConfigPayloadTlsConfig           `json:"tlsConfig,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateScrapeConfigPayload UpdateScrapeConfigPayload
@@ -497,6 +497,11 @@ func (o UpdateScrapeConfigPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TlsConfig) {
 		toSerialize["tlsConfig"] = o.TlsConfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -528,15 +533,32 @@ func (o *UpdateScrapeConfigPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateScrapeConfigPayload := _UpdateScrapeConfigPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateScrapeConfigPayload)
+	err = json.Unmarshal(data, &varUpdateScrapeConfigPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateScrapeConfigPayload(varUpdateScrapeConfigPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "basicAuth")
+		delete(additionalProperties, "bearerToken")
+		delete(additionalProperties, "honorLabels")
+		delete(additionalProperties, "honorTimeStamps")
+		delete(additionalProperties, "metricsPath")
+		delete(additionalProperties, "metricsRelabelConfigs")
+		delete(additionalProperties, "params")
+		delete(additionalProperties, "sampleLimit")
+		delete(additionalProperties, "scheme")
+		delete(additionalProperties, "scrapeInterval")
+		delete(additionalProperties, "scrapeTimeout")
+		delete(additionalProperties, "staticConfigs")
+		delete(additionalProperties, "tlsConfig")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

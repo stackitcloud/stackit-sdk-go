@@ -33,8 +33,11 @@ type CreateAlertConfigReceiverPayloadEmailConfigsInner struct {
 	// The SMTP host through which emails are sent. `Additional Validators:` * should only include the characters: a-zA-Z0-9_./@&?:-
 	Smarthost *string `json:"smarthost,omitempty"`
 	// The email address to send notifications to. `Additional Validators:` * must be a syntactically valid email address
-	To *string `json:"to,omitempty"`
+	To                   *string `json:"to,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateAlertConfigReceiverPayloadEmailConfigsInner CreateAlertConfigReceiverPayloadEmailConfigsInner
 
 // NewCreateAlertConfigReceiverPayloadEmailConfigsInner instantiates a new CreateAlertConfigReceiverPayloadEmailConfigsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -312,7 +315,39 @@ func (o CreateAlertConfigReceiverPayloadEmailConfigsInner) ToMap() (map[string]i
 	if !IsNil(o.To) {
 		toSerialize["to"] = o.To
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateAlertConfigReceiverPayloadEmailConfigsInner) UnmarshalJSON(data []byte) (err error) {
+	varCreateAlertConfigReceiverPayloadEmailConfigsInner := _CreateAlertConfigReceiverPayloadEmailConfigsInner{}
+
+	err = json.Unmarshal(data, &varCreateAlertConfigReceiverPayloadEmailConfigsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateAlertConfigReceiverPayloadEmailConfigsInner(varCreateAlertConfigReceiverPayloadEmailConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authIdentity")
+		delete(additionalProperties, "authPassword")
+		delete(additionalProperties, "authUsername")
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "smarthost")
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateAlertConfigReceiverPayloadEmailConfigsInner struct {

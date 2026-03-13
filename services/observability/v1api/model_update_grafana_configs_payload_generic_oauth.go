@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -45,7 +44,8 @@ type UpdateGrafanaConfigsPayloadGenericOauth struct {
 	// Token endpoint of the idp.
 	TokenUrl string `json:"tokenUrl"`
 	// Enable or disable Proof Key for Code Exchange
-	UsePkce *bool `json:"usePkce,omitempty"`
+	UsePkce              *bool `json:"usePkce,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateGrafanaConfigsPayloadGenericOauth UpdateGrafanaConfigsPayloadGenericOauth
@@ -446,6 +446,11 @@ func (o UpdateGrafanaConfigsPayloadGenericOauth) ToMap() (map[string]interface{}
 	if !IsNil(o.UsePkce) {
 		toSerialize["usePkce"] = o.UsePkce
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -479,15 +484,31 @@ func (o *UpdateGrafanaConfigsPayloadGenericOauth) UnmarshalJSON(data []byte) (er
 
 	varUpdateGrafanaConfigsPayloadGenericOauth := _UpdateGrafanaConfigsPayloadGenericOauth{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateGrafanaConfigsPayloadGenericOauth)
+	err = json.Unmarshal(data, &varUpdateGrafanaConfigsPayloadGenericOauth)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateGrafanaConfigsPayloadGenericOauth(varUpdateGrafanaConfigsPayloadGenericOauth)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowAssignGrafanaAdmin")
+		delete(additionalProperties, "apiUrl")
+		delete(additionalProperties, "authUrl")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "oauthClientId")
+		delete(additionalProperties, "oauthClientSecret")
+		delete(additionalProperties, "roleAttributePath")
+		delete(additionalProperties, "roleAttributeStrict")
+		delete(additionalProperties, "scopes")
+		delete(additionalProperties, "tokenUrl")
+		delete(additionalProperties, "usePkce")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

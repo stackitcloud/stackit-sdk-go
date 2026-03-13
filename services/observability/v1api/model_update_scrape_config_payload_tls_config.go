@@ -21,8 +21,11 @@ var _ MappedNullable = &UpdateScrapeConfigPayloadTlsConfig{}
 // UpdateScrapeConfigPayloadTlsConfig Configures the scrape request's TLS settings.
 type UpdateScrapeConfigPayloadTlsConfig struct {
 	// Disable validation of the server certificate.
-	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+	InsecureSkipVerify   *bool `json:"insecureSkipVerify,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateScrapeConfigPayloadTlsConfig UpdateScrapeConfigPayloadTlsConfig
 
 // NewUpdateScrapeConfigPayloadTlsConfig instantiates a new UpdateScrapeConfigPayloadTlsConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -90,7 +93,33 @@ func (o UpdateScrapeConfigPayloadTlsConfig) ToMap() (map[string]interface{}, err
 	if !IsNil(o.InsecureSkipVerify) {
 		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateScrapeConfigPayloadTlsConfig) UnmarshalJSON(data []byte) (err error) {
+	varUpdateScrapeConfigPayloadTlsConfig := _UpdateScrapeConfigPayloadTlsConfig{}
+
+	err = json.Unmarshal(data, &varUpdateScrapeConfigPayloadTlsConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateScrapeConfigPayloadTlsConfig(varUpdateScrapeConfigPayloadTlsConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "insecureSkipVerify")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateScrapeConfigPayloadTlsConfig struct {

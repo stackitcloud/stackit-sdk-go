@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,13 +21,14 @@ var _ MappedNullable = &EmailConfig{}
 
 // EmailConfig struct for EmailConfig
 type EmailConfig struct {
-	AuthIdentity *string `json:"authIdentity,omitempty"`
-	AuthPassword *string `json:"authPassword,omitempty"`
-	AuthUsername *string `json:"authUsername,omitempty"`
-	From         *string `json:"from,omitempty"`
-	SendResolved *bool   `json:"sendResolved,omitempty"`
-	Smarthost    *string `json:"smarthost,omitempty"`
-	To           string  `json:"to"`
+	AuthIdentity         *string `json:"authIdentity,omitempty"`
+	AuthPassword         *string `json:"authPassword,omitempty"`
+	AuthUsername         *string `json:"authUsername,omitempty"`
+	From                 *string `json:"from,omitempty"`
+	SendResolved         *bool   `json:"sendResolved,omitempty"`
+	Smarthost            *string `json:"smarthost,omitempty"`
+	To                   string  `json:"to"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EmailConfig EmailConfig
@@ -300,6 +300,11 @@ func (o EmailConfig) ToMap() (map[string]interface{}, error) {
 		toSerialize["smarthost"] = o.Smarthost
 	}
 	toSerialize["to"] = o.To
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -327,15 +332,26 @@ func (o *EmailConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varEmailConfig := _EmailConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEmailConfig)
+	err = json.Unmarshal(data, &varEmailConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EmailConfig(varEmailConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authIdentity")
+		delete(additionalProperties, "authPassword")
+		delete(additionalProperties, "authUsername")
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "smarthost")
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

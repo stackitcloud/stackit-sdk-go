@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +26,9 @@ type UpdateAlertConfigsPayloadReceiversInner struct {
 	// `Additional Validators:` * must be unique * should only include the characters: a-zA-Z0-9-
 	Name string `json:"name"`
 	// Configuration for ops genie.
-	OpsgenieConfigs []UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner `json:"opsgenieConfigs,omitempty"`
-	WebHookConfigs  []UpdateAlertConfigsPayloadReceiversInnerWebHookConfigsInner  `json:"webHookConfigs,omitempty"`
+	OpsgenieConfigs      []UpdateAlertConfigsPayloadReceiversInnerOpsgenieConfigsInner `json:"opsgenieConfigs,omitempty"`
+	WebHookConfigs       []UpdateAlertConfigsPayloadReceiversInnerWebHookConfigsInner  `json:"webHookConfigs,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateAlertConfigsPayloadReceiversInner UpdateAlertConfigsPayloadReceiversInner
@@ -191,6 +191,11 @@ func (o UpdateAlertConfigsPayloadReceiversInner) ToMap() (map[string]interface{}
 	if !IsNil(o.WebHookConfigs) {
 		toSerialize["webHookConfigs"] = o.WebHookConfigs
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *UpdateAlertConfigsPayloadReceiversInner) UnmarshalJSON(data []byte) (er
 
 	varUpdateAlertConfigsPayloadReceiversInner := _UpdateAlertConfigsPayloadReceiversInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateAlertConfigsPayloadReceiversInner)
+	err = json.Unmarshal(data, &varUpdateAlertConfigsPayloadReceiversInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateAlertConfigsPayloadReceiversInner(varUpdateAlertConfigsPayloadReceiversInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "emailConfigs")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "opsgenieConfigs")
+		delete(additionalProperties, "webHookConfigs")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

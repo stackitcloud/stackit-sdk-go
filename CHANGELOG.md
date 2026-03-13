@@ -13,6 +13,9 @@
     - `v2beta2api`: New package which can be used for communication with the alb v2 beta2 API
     - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
     - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.12.0](services/alb/CHANGELOG.md#v0120)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `loadbalancer`: 
   - [v1.8.0](services/loadbalancer/CHANGELOG.md#v180)
     - **Feature:** Add new fields `AltPort` and `HttpHealthCheck` to `ActiveHealthCheck`
@@ -28,13 +31,17 @@
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v0api` package instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
   - **Breaking Change:** Removal of deprecated constants `ActiveState` and `CreatingState` in `wait` package
-- `logs`: [v0.6.0](services/logs/CHANGELOG.md#v060)
-  - **Feature:** Introduction of multi API version support for the logs SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1alphaapi`: New package which can be used for communication with the logs v1 alpha API
-  - `v1betaapi`: New package which can be used for communication with the logs v1 beta API
-  - `v1api`: New package which can be used for communication with the logs v1 API
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `logs`:
+  - [v0.6.0](services/logs/CHANGELOG.md#v060)
+    - **Feature:** Introduction of multi API version support for the logs SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1alphaapi`: New package which can be used for communication with the logs v1 alpha API
+    - `v1betaapi`: New package which can be used for communication with the logs v1 beta API
+    - `v1api`: New package which can be used for communication with the logs v1 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.7.0](services/logs/CHANGELOG.md#v070)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `sqlserverflex`: 
   - [v1.5.0](services/sqlserverflex/CHANGELOG.md#v150)
     - **Feature:** Introduction of multi API version support for the sqlserverflex SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
@@ -204,14 +211,18 @@
   - [v1.4.0](services/serverupdate/CHANGELOG.md#v140)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `runcommand`: [v1.5.0](services/runcommand/CHANGELOG.md#v150)
-  - **Feature:** Introduction of multi API version support for the runcommand SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which can be used for communication with the runcommand v1 API
-  - `v1betaapi`: New package which can be used for communication with the runcommand v1 beta API
-  - `v2api`: New package which can be used for communication with the runcommand v2 API
-  - `v2betaapi`: New package which can be used for communication with the runcommand v2 beta API
-  - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `runcommand`:
+  - [v1.5.0](services/runcommand/CHANGELOG.md#v150)
+    - **Feature:** Introduction of multi API version support for the runcommand SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the runcommand v1 API
+    - `v1betaapi`: New package which can be used for communication with the runcommand v1 beta API
+    - `v2api`: New package which can be used for communication with the runcommand v2 API
+    - `v2betaapi`: New package which can be used for communication with the runcommand v2 beta API
+    - **Deprecation:** The contents in the root of this SDK module are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v1.6.0](services/runcommand/CHANGELOG.md#v160)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `secretsmanager`: [v0.15.0](services/secretsmanager/CHANGELOG.md#v0150)
   - **Feature:** Introduction of multi API version support for the secretsmanager SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which should be used for communication with the STACKIT secretsmanager API in the future
@@ -246,11 +257,15 @@
   - [v1.4.0](services/serviceenablement/CHANGELOG.md#v140)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `scf`: [v0.5.0](services/scf/CHANGELOG.md#v050)
-  - **Feature:** Introduction of multi API version support for the scf SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which should be used for communication with the STACKIT scf API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `scf`:
+  - [v0.5.0](services/scf/CHANGELOG.md#v050)
+    - **Feature:** Introduction of multi API version support for the scf SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT scf API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.6.0](services/scf/CHANGELOG.md#v060)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `iaas`:
   - [v1.4.0](services/iaas/CHANGELOG.md#v140)
     - **Feature:** Introduction of multi API version support for the iaas SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
@@ -280,14 +295,22 @@
   - `v2api`: New package which can be used for communication with the objectstorage v2 API
   - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `observability`: [v0.18.0](services/observability/CHANGELOG.md#v0180)
-  - **Feature:** Introduction of multi API version support for the observability SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which should be used for communication with the STACKIT observability API in the future
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
-- `albwaf`: [v0.1.0](services/albwaf/CHANGELOG.md#v010)
-  - **New:** SDK module for albwaf service
-  - `v1alphaapi`: New package which can be used for communication with the albwaf v1 alpha API
+- `observability`:
+  - [v0.18.0](services/observability/CHANGELOG.md#v0180)
+    - **Feature:** Introduction of multi API version support for the observability SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which should be used for communication with the STACKIT observability API in the future
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v0.19.0](services/observability/CHANGELOG.md#v0190)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
+- `albwaf`:
+  - [v0.1.0](services/albwaf/CHANGELOG.md#v010)
+    - **New:** SDK module for albwaf service
+    - `v1alphaapi`: New package which can be used for communication with the albwaf v1 alpha API
+  - [v0.2.0](services/albwaf/CHANGELOG.md#v020)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 
 ## Release (2026-02-20)
 - `core`: [v0.21.1](core/CHANGELOG.md#v0211) 

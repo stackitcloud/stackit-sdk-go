@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &ElasticsearchCheckChildResponse{}
 
 // ElasticsearchCheckChildResponse struct for ElasticsearchCheckChildResponse
 type ElasticsearchCheckChildResponse struct {
-	Id       string  `json:"id"`
-	Password *string `json:"password,omitempty"`
-	Server   string  `json:"server"`
-	Username *string `json:"username,omitempty"`
+	Id                   string  `json:"id"`
+	Password             *string `json:"password,omitempty"`
+	Server               string  `json:"server"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ElasticsearchCheckChildResponse ElasticsearchCheckChildResponse
@@ -179,6 +179,11 @@ func (o ElasticsearchCheckChildResponse) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -207,15 +212,23 @@ func (o *ElasticsearchCheckChildResponse) UnmarshalJSON(data []byte) (err error)
 
 	varElasticsearchCheckChildResponse := _ElasticsearchCheckChildResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varElasticsearchCheckChildResponse)
+	err = json.Unmarshal(data, &varElasticsearchCheckChildResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ElasticsearchCheckChildResponse(varElasticsearchCheckChildResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "server")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

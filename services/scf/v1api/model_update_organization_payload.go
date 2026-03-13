@@ -21,9 +21,12 @@ var _ MappedNullable = &UpdateOrganizationPayload{}
 // UpdateOrganizationPayload struct for UpdateOrganizationPayload
 type UpdateOrganizationPayload struct {
 	// Name of the organization
-	Name      *string `json:"name,omitempty"`
-	Suspended *bool   `json:"suspended,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	Suspended            *bool   `json:"suspended,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateOrganizationPayload UpdateOrganizationPayload
 
 // NewUpdateOrganizationPayload instantiates a new UpdateOrganizationPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o UpdateOrganizationPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Suspended) {
 		toSerialize["suspended"] = o.Suspended
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateOrganizationPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateOrganizationPayload := _UpdateOrganizationPayload{}
+
+	err = json.Unmarshal(data, &varUpdateOrganizationPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateOrganizationPayload(varUpdateOrganizationPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "suspended")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateOrganizationPayload struct {

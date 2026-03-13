@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type UpdateAlertgroupsRequestInner struct {
 	// The name of the group. Must be unique. `Additional Validators:` * is the identifier and so unique * should only include the characters: a-zA-Z0-9-
 	Name string `json:"name"`
 	// rules for the alert group
-	Rules []UpdateAlertgroupsRequestInnerRulesInner `json:"rules"`
+	Rules                []UpdateAlertgroupsRequestInnerRulesInner `json:"rules"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateAlertgroupsRequestInner UpdateAlertgroupsRequestInner
@@ -150,6 +150,11 @@ func (o UpdateAlertgroupsRequestInner) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["rules"] = o.Rules
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *UpdateAlertgroupsRequestInner) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateAlertgroupsRequestInner := _UpdateAlertgroupsRequestInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateAlertgroupsRequestInner)
+	err = json.Unmarshal(data, &varUpdateAlertgroupsRequestInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateAlertgroupsRequestInner(varUpdateAlertgroupsRequestInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

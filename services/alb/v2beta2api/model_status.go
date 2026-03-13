@@ -24,8 +24,11 @@ type Status struct {
 	// A list of messages that carry the error details.  There is a common set of message types for APIs to use.
 	Details []GoogleProtobufAny `json:"details,omitempty"`
 	// A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
-	Message *string `json:"message,omitempty"`
+	Message              *string `json:"message,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Status Status
 
 // NewStatus instantiates a new Status object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o Status) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Status) UnmarshalJSON(data []byte) (err error) {
+	varStatus := _Status{}
+
+	err = json.Unmarshal(data, &varStatus)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Status(varStatus)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableStatus struct {

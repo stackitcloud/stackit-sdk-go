@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type PartialUpdateAlertrulesRequestInner struct {
 	// Alerts are considered firing once they have been returned for this long. Alerts which have not yet fired for long enough are considered pending. `Additional Validators:` * must be a valid time string
 	For *string `json:"for,omitempty"`
 	// map of key:value. Labels to add or overwrite for each alert. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
-	Labels map[string]interface{} `json:"labels,omitempty"`
+	Labels               map[string]interface{} `json:"labels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateAlertrulesRequestInner PartialUpdateAlertrulesRequestInner
@@ -224,6 +224,11 @@ func (o PartialUpdateAlertrulesRequestInner) ToMap() (map[string]interface{}, er
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -252,15 +257,24 @@ func (o *PartialUpdateAlertrulesRequestInner) UnmarshalJSON(data []byte) (err er
 
 	varPartialUpdateAlertrulesRequestInner := _PartialUpdateAlertrulesRequestInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateAlertrulesRequestInner)
+	err = json.Unmarshal(data, &varPartialUpdateAlertrulesRequestInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateAlertrulesRequestInner(varPartialUpdateAlertrulesRequestInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alert")
+		delete(additionalProperties, "annotations")
+		delete(additionalProperties, "expr")
+		delete(additionalProperties, "for")
+		delete(additionalProperties, "labels")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

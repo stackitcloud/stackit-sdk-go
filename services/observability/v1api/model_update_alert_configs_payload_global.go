@@ -35,8 +35,11 @@ type UpdateAlertConfigsPayloadGlobal struct {
 	// The default SMTP From header field.  `Additional Validators:` * must be a syntactically valid email address
 	SmtpFrom *string `json:"smtpFrom,omitempty"`
 	// The default SMTP smarthost used for sending emails, including port number. Port number usually is 25, or 587 for SMTP over TLS (sometimes referred to as STARTTLS). Example: smtp.example.org:587  `Additional Validators:` * should only include the characters: a-zA-Z0-9_./@&?:-
-	SmtpSmarthost *string `json:"smtpSmarthost,omitempty"`
+	SmtpSmarthost        *string `json:"smtpSmarthost,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAlertConfigsPayloadGlobal UpdateAlertConfigsPayloadGlobal
 
 // NewUpdateAlertConfigsPayloadGlobal instantiates a new UpdateAlertConfigsPayloadGlobal object
 // This constructor will assign default values to properties that have it defined,
@@ -349,7 +352,40 @@ func (o UpdateAlertConfigsPayloadGlobal) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.SmtpSmarthost) {
 		toSerialize["smtpSmarthost"] = o.SmtpSmarthost
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigsPayloadGlobal) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAlertConfigsPayloadGlobal := _UpdateAlertConfigsPayloadGlobal{}
+
+	err = json.Unmarshal(data, &varUpdateAlertConfigsPayloadGlobal)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigsPayloadGlobal(varUpdateAlertConfigsPayloadGlobal)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "opsgenieApiKey")
+		delete(additionalProperties, "opsgenieApiUrl")
+		delete(additionalProperties, "resolveTimeout")
+		delete(additionalProperties, "smtpAuthIdentity")
+		delete(additionalProperties, "smtpAuthPassword")
+		delete(additionalProperties, "smtpAuthUsername")
+		delete(additionalProperties, "smtpFrom")
+		delete(additionalProperties, "smtpSmarthost")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAlertConfigsPayloadGlobal struct {

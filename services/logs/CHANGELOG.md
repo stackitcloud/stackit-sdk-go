@@ -1,3 +1,7 @@
+## v0.7.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v0.6.0
 - **Feature:** Introduction of multi API version support for the logs SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1alphaapi`: New package which can be used for communication with the logs v1 alpha API

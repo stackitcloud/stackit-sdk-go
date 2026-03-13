@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,6 +26,7 @@ type BackupRetentionResponse struct {
 	GrafanaBackupRetention      string `json:"grafanaBackupRetention"`
 	Message                     string `json:"message"`
 	ScrapeConfigBackupRetention string `json:"scrapeConfigBackupRetention"`
+	AdditionalProperties        map[string]interface{}
 }
 
 type _BackupRetentionResponse BackupRetentionResponse
@@ -188,6 +188,11 @@ func (o BackupRetentionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["grafanaBackupRetention"] = o.GrafanaBackupRetention
 	toSerialize["message"] = o.Message
 	toSerialize["scrapeConfigBackupRetention"] = o.ScrapeConfigBackupRetention
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *BackupRetentionResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varBackupRetentionResponse := _BackupRetentionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackupRetentionResponse)
+	err = json.Unmarshal(data, &varBackupRetentionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BackupRetentionResponse(varBackupRetentionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "alertConfigBackupRetention")
+		delete(additionalProperties, "alertRulesBackupRetention")
+		delete(additionalProperties, "grafanaBackupRetention")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "scrapeConfigBackupRetention")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

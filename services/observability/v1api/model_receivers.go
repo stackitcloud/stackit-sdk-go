@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &Receivers{}
 
 // Receivers struct for Receivers
 type Receivers struct {
-	EmailConfigs    []EmailConfig    `json:"emailConfigs,omitempty"`
-	Name            string           `json:"name"`
-	OpsgenieConfigs []OpsgenieConfig `json:"opsgenieConfigs,omitempty"`
-	WebHookConfigs  []WebHook        `json:"webHookConfigs,omitempty"`
+	EmailConfigs         []EmailConfig    `json:"emailConfigs,omitempty"`
+	Name                 string           `json:"name"`
+	OpsgenieConfigs      []OpsgenieConfig `json:"opsgenieConfigs,omitempty"`
+	WebHookConfigs       []WebHook        `json:"webHookConfigs,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Receivers Receivers
@@ -188,6 +188,11 @@ func (o Receivers) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WebHookConfigs) {
 		toSerialize["webHookConfigs"] = o.WebHookConfigs
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -215,15 +220,23 @@ func (o *Receivers) UnmarshalJSON(data []byte) (err error) {
 
 	varReceivers := _Receivers{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varReceivers)
+	err = json.Unmarshal(data, &varReceivers)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Receivers(varReceivers)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "emailConfigs")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "opsgenieConfigs")
+		delete(additionalProperties, "webHookConfigs")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

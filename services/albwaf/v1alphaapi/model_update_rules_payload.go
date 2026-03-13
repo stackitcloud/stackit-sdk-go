@@ -26,8 +26,11 @@ type UpdateRulesPayload struct {
 	// Region
 	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
 	// Custom rules for WAF written in Seclang syntax.
-	Rules *string `json:"rules,omitempty"`
+	Rules                *string `json:"rules,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateRulesPayload UpdateRulesPayload
 
 // NewUpdateRulesPayload instantiates a new UpdateRulesPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,36 @@ func (o UpdateRulesPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateRulesPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateRulesPayload := _UpdateRulesPayload{}
+
+	err = json.Unmarshal(data, &varUpdateRulesPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateRulesPayload(varUpdateRulesPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateRulesPayload struct {

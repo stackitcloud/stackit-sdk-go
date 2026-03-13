@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &CreateInstanceResponse{}
 
 // CreateInstanceResponse struct for CreateInstanceResponse
 type CreateInstanceResponse struct {
-	DashboardUrl string `json:"dashboardUrl"`
-	InstanceId   string `json:"instanceId"`
-	Message      string `json:"message"`
+	DashboardUrl         string `json:"dashboardUrl"`
+	InstanceId           string `json:"instanceId"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstanceResponse CreateInstanceResponse
@@ -134,6 +134,11 @@ func (o CreateInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["dashboardUrl"] = o.DashboardUrl
 	toSerialize["instanceId"] = o.InstanceId
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *CreateInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstanceResponse := _CreateInstanceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstanceResponse)
+	err = json.Unmarshal(data, &varCreateInstanceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstanceResponse(varCreateInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dashboardUrl")
+		delete(additionalProperties, "instanceId")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
