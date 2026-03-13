@@ -1,3 +1,6 @@
+## v1.9.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+
 ## 1.9.0
 - Package `v2api`:
   - **Feature:** New model structs: `Access`, `IDPKubeconfig`
