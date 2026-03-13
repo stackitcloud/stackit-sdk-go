@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type UpdateIntakePayload struct {
 	// The unique id of the intake runner this intake should run on.
 	IntakeRunnerId string `json:"intakeRunnerId"`
 	// Labels are key-value pairs associated with the resource. To update labels:   - Provide a new set of key-value pairs to replace the existing labels.   - Send empty object `{}` to remove all labels.   - Omit this field to leave the labels unchanged.
-	Labels map[string]string `json:"labels,omitempty"`
+	Labels               map[string]string `json:"labels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateIntakePayload UpdateIntakePayload
@@ -228,6 +228,11 @@ func (o UpdateIntakePayload) ToMap() (map[string]interface{}, error) {
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -255,15 +260,24 @@ func (o *UpdateIntakePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateIntakePayload := _UpdateIntakePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateIntakePayload)
+	err = json.Unmarshal(data, &varUpdateIntakePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateIntakePayload(varUpdateIntakePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "catalog")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "intakeRunnerId")
+		delete(additionalProperties, "labels")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

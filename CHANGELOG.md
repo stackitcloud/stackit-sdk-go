@@ -129,6 +129,9 @@
       - **Breaking Change**: Switch from regional to global API server URL (`config.WithRegion(...)` must not be used anymore).
     - `v1betaapi`: 
       - **Breaking Change**: Switch from regional to global API server URL (`config.WithRegion(...)` must not be used anymore).
+  - [v0.7.0](services/intake/CHANGELOG.md#v070)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `cdn`: [v1.11.0](services/cdn/CHANGELOG.md#v1110)
   - **Feature:** Introduction of multi API version support for the cdn SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1api`: New package which can be used for communication with the cdn v1 API
