@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &QuotaDomains{}
 // QuotaDomains struct for QuotaDomains
 type QuotaDomains struct {
 	// The value `null` means `unlimited`.
-	TotalDomains NullableInt64 `json:"totalDomains"`
+	TotalDomains         NullableInt64 `json:"totalDomains"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QuotaDomains QuotaDomains
@@ -83,6 +83,11 @@ func (o QuotaDomains) MarshalJSON() ([]byte, error) {
 func (o QuotaDomains) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["totalDomains"] = o.TotalDomains.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -110,15 +115,20 @@ func (o *QuotaDomains) UnmarshalJSON(data []byte) (err error) {
 
 	varQuotaDomains := _QuotaDomains{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuotaDomains)
+	err = json.Unmarshal(data, &varQuotaDomains)
 
 	if err != nil {
 		return err
 	}
 
 	*o = QuotaDomains(varQuotaDomains)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "totalDomains")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

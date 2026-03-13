@@ -24,8 +24,11 @@ type UpdateGrafanaConfigsPayload struct {
 	// If it's true, anyone can access the Grafana dashboards without logging in.  If it is wrong, a login is required.
 	PublicReadAccess *bool `json:"publicReadAccess,omitempty"`
 	// If it's true, it overwrites the current genericOauth config and configures  STACKIT SSO for this instance.
-	UseStackitSso *bool `json:"useStackitSso,omitempty"`
+	UseStackitSso        *bool `json:"useStackitSso,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateGrafanaConfigsPayload UpdateGrafanaConfigsPayload
 
 // NewUpdateGrafanaConfigsPayload instantiates a new UpdateGrafanaConfigsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o UpdateGrafanaConfigsPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UseStackitSso) {
 		toSerialize["useStackitSso"] = o.UseStackitSso
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateGrafanaConfigsPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateGrafanaConfigsPayload := _UpdateGrafanaConfigsPayload{}
+
+	err = json.Unmarshal(data, &varUpdateGrafanaConfigsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateGrafanaConfigsPayload(varUpdateGrafanaConfigsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "genericOauth")
+		delete(additionalProperties, "publicReadAccess")
+		delete(additionalProperties, "useStackitSso")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateGrafanaConfigsPayload struct {

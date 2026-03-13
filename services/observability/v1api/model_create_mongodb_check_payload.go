@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateMongodbCheckPayload{}
 // CreateMongodbCheckPayload Mongodb check body.
 type CreateMongodbCheckPayload struct {
 	// url to check
-	Server string `json:"server"`
+	Server               string `json:"server"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateMongodbCheckPayload CreateMongodbCheckPayload
@@ -81,6 +81,11 @@ func (o CreateMongodbCheckPayload) MarshalJSON() ([]byte, error) {
 func (o CreateMongodbCheckPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["server"] = o.Server
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateMongodbCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateMongodbCheckPayload := _CreateMongodbCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateMongodbCheckPayload)
+	err = json.Unmarshal(data, &varCreateMongodbCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateMongodbCheckPayload(varCreateMongodbCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "server")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

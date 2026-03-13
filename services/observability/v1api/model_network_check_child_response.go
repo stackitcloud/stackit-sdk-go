@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &NetworkCheckChildResponse{}
 
 // NetworkCheckChildResponse struct for NetworkCheckChildResponse
 type NetworkCheckChildResponse struct {
-	Address string `json:"address"`
-	Id      string `json:"id"`
+	Address              string `json:"address"`
+	Id                   string `json:"id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NetworkCheckChildResponse NetworkCheckChildResponse
@@ -107,6 +107,11 @@ func (o NetworkCheckChildResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
 	toSerialize["id"] = o.Id
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *NetworkCheckChildResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varNetworkCheckChildResponse := _NetworkCheckChildResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetworkCheckChildResponse)
+	err = json.Unmarshal(data, &varNetworkCheckChildResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NetworkCheckChildResponse(varNetworkCheckChildResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

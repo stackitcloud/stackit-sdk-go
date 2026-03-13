@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &LogsConfig{}
 
 // LogsConfig struct for LogsConfig
 type LogsConfig struct {
-	Retention string `json:"retention"`
+	Retention            string `json:"retention"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LogsConfig LogsConfig
@@ -80,6 +80,11 @@ func (o LogsConfig) MarshalJSON() ([]byte, error) {
 func (o LogsConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["retention"] = o.Retention
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *LogsConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varLogsConfig := _LogsConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLogsConfig)
+	err = json.Unmarshal(data, &varLogsConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LogsConfig(varLogsConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "retention")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

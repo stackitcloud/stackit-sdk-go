@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,10 +21,11 @@ var _ MappedNullable = &RedisCheckChildResponse{}
 
 // RedisCheckChildResponse struct for RedisCheckChildResponse
 type RedisCheckChildResponse struct {
-	Id       string  `json:"id"`
-	Password *string `json:"password,omitempty"`
-	Server   string  `json:"server"`
-	Username *string `json:"username,omitempty"`
+	Id                   string  `json:"id"`
+	Password             *string `json:"password,omitempty"`
+	Server               string  `json:"server"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RedisCheckChildResponse RedisCheckChildResponse
@@ -179,6 +179,11 @@ func (o RedisCheckChildResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -207,15 +212,23 @@ func (o *RedisCheckChildResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRedisCheckChildResponse := _RedisCheckChildResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRedisCheckChildResponse)
+	err = json.Unmarshal(data, &varRedisCheckChildResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RedisCheckChildResponse(varRedisCheckChildResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "server")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

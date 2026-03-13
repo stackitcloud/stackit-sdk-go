@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -23,14 +22,15 @@ var _ MappedNullable = &IsolationSegment{}
 
 // IsolationSegment struct for IsolationSegment
 type IsolationSegment struct {
-	CreatedAt  time.Time `json:"createdAt"`
-	Guid       string    `json:"guid"`
-	Name       string    `json:"name"`
-	OrgId      string    `json:"orgId"`
-	PlatformId string    `json:"platformId"`
-	ProjectId  string    `json:"projectId"`
-	Region     string    `json:"region"`
-	UpdatedAt  time.Time `json:"updatedAt"`
+	CreatedAt            time.Time `json:"createdAt"`
+	Guid                 string    `json:"guid"`
+	Name                 string    `json:"name"`
+	OrgId                string    `json:"orgId"`
+	PlatformId           string    `json:"platformId"`
+	ProjectId            string    `json:"projectId"`
+	Region               string    `json:"region"`
+	UpdatedAt            time.Time `json:"updatedAt"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IsolationSegment IsolationSegment
@@ -270,6 +270,11 @@ func (o IsolationSegment) ToMap() (map[string]interface{}, error) {
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["region"] = o.Region
 	toSerialize["updatedAt"] = o.UpdatedAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -304,15 +309,27 @@ func (o *IsolationSegment) UnmarshalJSON(data []byte) (err error) {
 
 	varIsolationSegment := _IsolationSegment{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIsolationSegment)
+	err = json.Unmarshal(data, &varIsolationSegment)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IsolationSegment(varIsolationSegment)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

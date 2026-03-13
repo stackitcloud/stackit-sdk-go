@@ -33,8 +33,11 @@ type PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner struct {
 	// The source labels select values from existing labels. Their content is concatenated using the configured separator and matched against the configured regular expression for the replace, keep, and drop actions.
 	SourceLabels []string `json:"sourceLabels,omitempty"`
 	// Label to which the resulting value is written in a replace action. It is mandatory for replace actions. Regex capture groups are available.
-	TargetLabel *string `json:"targetLabel,omitempty"`
+	TargetLabel          *string `json:"targetLabel,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner
 
 // NewPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner instantiates a new PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -324,7 +327,39 @@ func (o PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) ToMap(
 	if !IsNil(o.TargetLabel) {
 		toSerialize["targetLabel"] = o.TargetLabel
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner := _PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner{}
+
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner(varPartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "action")
+		delete(additionalProperties, "modulus")
+		delete(additionalProperties, "regex")
+		delete(additionalProperties, "replacement")
+		delete(additionalProperties, "separator")
+		delete(additionalProperties, "sourceLabels")
+		delete(additionalProperties, "targetLabel")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateScrapeConfigsRequestInnerMetricsRelabelConfigsInner struct {

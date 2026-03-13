@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -43,7 +42,8 @@ type CreateAlertConfigRoutePayload struct {
 	// How long to wait before sending a notification again if it has already been sent successfully for an alert. (Usually ~3h or more). `Additional Validators:` * must be a valid time format
 	RepeatInterval *string `json:"repeatInterval,omitempty"`
 	// Zero or more child routes.
-	Routes []CreateAlertConfigRoutePayloadRoutesInner `json:"routes,omitempty"`
+	Routes               []CreateAlertConfigRoutePayloadRoutesInner `json:"routes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateAlertConfigRoutePayload CreateAlertConfigRoutePayload
@@ -438,6 +438,11 @@ func (o CreateAlertConfigRoutePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Routes) {
 		toSerialize["routes"] = o.Routes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -465,15 +470,29 @@ func (o *CreateAlertConfigRoutePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateAlertConfigRoutePayload := _CreateAlertConfigRoutePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAlertConfigRoutePayload)
+	err = json.Unmarshal(data, &varCreateAlertConfigRoutePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateAlertConfigRoutePayload(varCreateAlertConfigRoutePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "continue")
+		delete(additionalProperties, "groupBy")
+		delete(additionalProperties, "groupInterval")
+		delete(additionalProperties, "groupWait")
+		delete(additionalProperties, "match")
+		delete(additionalProperties, "matchRe")
+		delete(additionalProperties, "matchers")
+		delete(additionalProperties, "receiver")
+		delete(additionalProperties, "repeatInterval")
+		delete(additionalProperties, "routes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

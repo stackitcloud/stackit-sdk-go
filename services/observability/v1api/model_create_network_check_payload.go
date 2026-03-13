@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateNetworkCheckPayload{}
 // CreateNetworkCheckPayload Network check body.
 type CreateNetworkCheckPayload struct {
 	// network to check
-	Address string `json:"address"`
+	Address              string `json:"address"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateNetworkCheckPayload CreateNetworkCheckPayload
@@ -81,6 +81,11 @@ func (o CreateNetworkCheckPayload) MarshalJSON() ([]byte, error) {
 func (o CreateNetworkCheckPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["address"] = o.Address
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateNetworkCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateNetworkCheckPayload := _CreateNetworkCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateNetworkCheckPayload)
+	err = json.Unmarshal(data, &varCreateNetworkCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateNetworkCheckPayload(varCreateNetworkCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "address")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

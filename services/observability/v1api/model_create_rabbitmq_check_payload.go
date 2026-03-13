@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type CreateRabbitmqCheckPayload struct {
 	// url to check
 	Url string `json:"url"`
 	// username
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateRabbitmqCheckPayload CreateRabbitmqCheckPayload
@@ -155,6 +155,11 @@ func (o CreateRabbitmqCheckPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -182,15 +187,22 @@ func (o *CreateRabbitmqCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateRabbitmqCheckPayload := _CreateRabbitmqCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateRabbitmqCheckPayload)
+	err = json.Unmarshal(data, &varCreateRabbitmqCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateRabbitmqCheckPayload(varCreateRabbitmqCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "url")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

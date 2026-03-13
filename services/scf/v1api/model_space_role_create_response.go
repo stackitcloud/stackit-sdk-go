@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,13 +21,14 @@ var _ MappedNullable = &SpaceRoleCreateResponse{}
 
 // SpaceRoleCreateResponse struct for SpaceRoleCreateResponse
 type SpaceRoleCreateResponse struct {
-	Guid       string        `json:"guid"`
-	OrgId      string        `json:"orgId"`
-	PlatformId string        `json:"platformId"`
-	ProjectId  string        `json:"projectId"`
-	Region     string        `json:"region"`
-	SpaceId    string        `json:"spaceId"`
-	Type       SpaceRoleType `json:"type"`
+	Guid                 string        `json:"guid"`
+	OrgId                string        `json:"orgId"`
+	PlatformId           string        `json:"platformId"`
+	ProjectId            string        `json:"projectId"`
+	Region               string        `json:"region"`
+	SpaceId              string        `json:"spaceId"`
+	Type                 SpaceRoleType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpaceRoleCreateResponse SpaceRoleCreateResponse
@@ -242,6 +242,11 @@ func (o SpaceRoleCreateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["region"] = o.Region
 	toSerialize["spaceId"] = o.SpaceId
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -275,15 +280,26 @@ func (o *SpaceRoleCreateResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varSpaceRoleCreateResponse := _SpaceRoleCreateResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpaceRoleCreateResponse)
+	err = json.Unmarshal(data, &varSpaceRoleCreateResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpaceRoleCreateResponse(varSpaceRoleCreateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "spaceId")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

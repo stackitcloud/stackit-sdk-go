@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &ListBackupsResponse{}
 
 // ListBackupsResponse struct for ListBackupsResponse
 type ListBackupsResponse struct {
-	InstanceBackups []Backup `json:"instanceBackups"`
+	InstanceBackups      []Backup `json:"instanceBackups"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListBackupsResponse ListBackupsResponse
@@ -79,6 +79,11 @@ func (o ListBackupsResponse) MarshalJSON() ([]byte, error) {
 func (o ListBackupsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["instanceBackups"] = o.InstanceBackups
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *ListBackupsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListBackupsResponse := _ListBackupsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListBackupsResponse)
+	err = json.Unmarshal(data, &varListBackupsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListBackupsResponse(varListBackupsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "instanceBackups")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

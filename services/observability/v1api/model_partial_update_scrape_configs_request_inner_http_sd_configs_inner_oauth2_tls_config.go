@@ -21,8 +21,11 @@ var _ MappedNullable = &PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInner
 // PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig Configures the scrape request's TLS settings.
 type PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig struct {
 	// Disable validation of the server certificate.
-	InsecureSkipVerify *bool `json:"insecureSkipVerify,omitempty"`
+	InsecureSkipVerify   *bool `json:"insecureSkipVerify,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig
 
 // NewPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig instantiates a new PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -90,7 +93,33 @@ func (o PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig)
 	if !IsNil(o.InsecureSkipVerify) {
 		toSerialize["insecureSkipVerify"] = o.InsecureSkipVerify
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig) UnmarshalJSON(data []byte) (err error) {
+	varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig := _PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig{}
+
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig(varPartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "insecureSkipVerify")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullablePartialUpdateScrapeConfigsRequestInnerHttpSdConfigsInnerOauth2TlsConfig struct {

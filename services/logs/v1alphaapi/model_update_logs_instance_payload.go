@@ -26,8 +26,11 @@ type UpdateLogsInstancePayload struct {
 	// The displayed name to distinguish multiple Logs instances.
 	DisplayName *string `json:"displayName,omitempty" validate:"regexp=^[a-zA-Z][\\\\w -]*$"`
 	// The log retention time in days.
-	RetentionDays *int32 `json:"retentionDays,omitempty"`
+	RetentionDays        *int32 `json:"retentionDays,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateLogsInstancePayload UpdateLogsInstancePayload
 
 // NewUpdateLogsInstancePayload instantiates a new UpdateLogsInstancePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -196,7 +199,36 @@ func (o UpdateLogsInstancePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RetentionDays) {
 		toSerialize["retentionDays"] = o.RetentionDays
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateLogsInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateLogsInstancePayload := _UpdateLogsInstancePayload{}
+
+	err = json.Unmarshal(data, &varUpdateLogsInstancePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateLogsInstancePayload(varUpdateLogsInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "retentionDays")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateLogsInstancePayload struct {

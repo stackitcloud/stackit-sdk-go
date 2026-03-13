@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -38,6 +37,7 @@ type Job struct {
 	ScrapeTimeout         string                 `json:"scrapeTimeout"`
 	StaticConfigs         []StaticConfigs        `json:"staticConfigs"`
 	TlsConfig             *TLSConfig             `json:"tlsConfig,omitempty"`
+	AdditionalProperties  map[string]interface{}
 }
 
 type _Job Job
@@ -609,6 +609,11 @@ func (o Job) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TlsConfig) {
 		toSerialize["tlsConfig"] = o.TlsConfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -639,15 +644,35 @@ func (o *Job) UnmarshalJSON(data []byte) (err error) {
 
 	varJob := _Job{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varJob)
+	err = json.Unmarshal(data, &varJob)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Job(varJob)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "basicAuth")
+		delete(additionalProperties, "bearerToken")
+		delete(additionalProperties, "honorLabels")
+		delete(additionalProperties, "honorTimeStamps")
+		delete(additionalProperties, "httpSdConfigs")
+		delete(additionalProperties, "jobName")
+		delete(additionalProperties, "metricsPath")
+		delete(additionalProperties, "metricsRelabelConfigs")
+		delete(additionalProperties, "oauth2")
+		delete(additionalProperties, "params")
+		delete(additionalProperties, "sampleLimit")
+		delete(additionalProperties, "scheme")
+		delete(additionalProperties, "scrapeInterval")
+		delete(additionalProperties, "scrapeTimeout")
+		delete(additionalProperties, "staticConfigs")
+		delete(additionalProperties, "tlsConfig")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

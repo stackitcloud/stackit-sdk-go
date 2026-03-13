@@ -24,8 +24,11 @@ type CreateCredentialsPayload struct {
 	// A valid password used for an existing STACKIT Observability instance, which is used during basic auth.
 	Password *string `json:"password,omitempty"`
 	// A valid username used for an existing STACKIT Observability instance, which is used during basic auth.
-	Username *string `json:"username,omitempty"`
+	Username             *string `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateCredentialsPayload CreateCredentialsPayload
 
 // NewCreateCredentialsPayload instantiates a new CreateCredentialsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o CreateCredentialsPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateCredentialsPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateCredentialsPayload := _CreateCredentialsPayload{}
+
+	err = json.Unmarshal(data, &varCreateCredentialsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateCredentialsPayload(varCreateCredentialsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateCredentialsPayload struct {

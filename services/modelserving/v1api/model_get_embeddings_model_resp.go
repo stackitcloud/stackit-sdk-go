@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &GetEmbeddingsModelResp{}
 
 // GetEmbeddingsModelResp struct for GetEmbeddingsModelResp
 type GetEmbeddingsModelResp struct {
-	Message *string               `json:"message,omitempty"`
-	Model   EmbeddingModelDetails `json:"model"`
+	Message              *string               `json:"message,omitempty"`
+	Model                EmbeddingModelDetails `json:"model"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetEmbeddingsModelResp GetEmbeddingsModelResp
@@ -116,6 +116,11 @@ func (o GetEmbeddingsModelResp) ToMap() (map[string]interface{}, error) {
 		toSerialize["message"] = o.Message
 	}
 	toSerialize["model"] = o.Model
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *GetEmbeddingsModelResp) UnmarshalJSON(data []byte) (err error) {
 
 	varGetEmbeddingsModelResp := _GetEmbeddingsModelResp{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetEmbeddingsModelResp)
+	err = json.Unmarshal(data, &varGetEmbeddingsModelResp)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetEmbeddingsModelResp(varGetEmbeddingsModelResp)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "model")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
