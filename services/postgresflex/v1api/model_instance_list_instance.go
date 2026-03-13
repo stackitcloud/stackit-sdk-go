@@ -20,10 +20,13 @@ var _ MappedNullable = &InstanceListInstance{}
 
 // InstanceListInstance struct for InstanceListInstance
 type InstanceListInstance struct {
-	Id     *string `json:"id,omitempty"`
-	Name   *string `json:"name,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceListInstance InstanceListInstance
 
 // NewInstanceListInstance instantiates a new InstanceListInstance object
 // This constructor will assign default values to properties that have it defined,
@@ -157,7 +160,35 @@ func (o InstanceListInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceListInstance) UnmarshalJSON(data []byte) (err error) {
+	varInstanceListInstance := _InstanceListInstance{}
+
+	err = json.Unmarshal(data, &varInstanceListInstance)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceListInstance(varInstanceListInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceListInstance struct {

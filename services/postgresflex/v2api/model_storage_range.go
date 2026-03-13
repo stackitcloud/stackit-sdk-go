@@ -20,9 +20,12 @@ var _ MappedNullable = &StorageRange{}
 
 // StorageRange struct for StorageRange
 type StorageRange struct {
-	Max *int64 `json:"max,omitempty"`
-	Min *int64 `json:"min,omitempty"`
+	Max                  *int64 `json:"max,omitempty"`
+	Min                  *int64 `json:"min,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _StorageRange StorageRange
 
 // NewStorageRange instantiates a new StorageRange object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o StorageRange) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Min) {
 		toSerialize["min"] = o.Min
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *StorageRange) UnmarshalJSON(data []byte) (err error) {
+	varStorageRange := _StorageRange{}
+
+	err = json.Unmarshal(data, &varStorageRange)
+
+	if err != nil {
+		return err
+	}
+
+	*o = StorageRange(varStorageRange)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "max")
+		delete(additionalProperties, "min")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableStorageRange struct {

@@ -32,8 +32,11 @@ type UpdateInstancePartiallyRequestPayload struct {
 	RetentionDays *int32         `json:"retentionDays,omitempty"`
 	Storage       *StorageUpdate `json:"storage,omitempty"`
 	// The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version) for supported version parameters.
-	Version *string `json:"version,omitempty"`
+	Version              *string `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateInstancePartiallyRequestPayload UpdateInstancePartiallyRequestPayload
 
 // NewUpdateInstancePartiallyRequestPayload instantiates a new UpdateInstancePartiallyRequestPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -342,7 +345,40 @@ func (o UpdateInstancePartiallyRequestPayload) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateInstancePartiallyRequestPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateInstancePartiallyRequestPayload := _UpdateInstancePartiallyRequestPayload{}
+
+	err = json.Unmarshal(data, &varUpdateInstancePartiallyRequestPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateInstancePartiallyRequestPayload(varUpdateInstancePartiallyRequestPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "replicas")
+		delete(additionalProperties, "retentionDays")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateInstancePartiallyRequestPayload struct {

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &InstanceConnectionInfo{}
 
 // InstanceConnectionInfo The connection information of the instance
 type InstanceConnectionInfo struct {
-	Write InstanceConnectionInfoWrite `json:"write"`
+	Write                InstanceConnectionInfoWrite `json:"write"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceConnectionInfo InstanceConnectionInfo
@@ -80,6 +80,11 @@ func (o InstanceConnectionInfo) MarshalJSON() ([]byte, error) {
 func (o InstanceConnectionInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["write"] = o.Write
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *InstanceConnectionInfo) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceConnectionInfo := _InstanceConnectionInfo{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceConnectionInfo)
+	err = json.Unmarshal(data, &varInstanceConnectionInfo)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceConnectionInfo(varInstanceConnectionInfo)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "write")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

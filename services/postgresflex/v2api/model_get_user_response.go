@@ -20,8 +20,11 @@ var _ MappedNullable = &GetUserResponse{}
 
 // GetUserResponse struct for GetUserResponse
 type GetUserResponse struct {
-	Item *UserResponse `json:"item,omitempty"`
+	Item                 *UserResponse `json:"item,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GetUserResponse GetUserResponse
 
 // NewGetUserResponse instantiates a new GetUserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o GetUserResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *GetUserResponse) UnmarshalJSON(data []byte) (err error) {
+	varGetUserResponse := _GetUserResponse{}
+
+	err = json.Unmarshal(data, &varGetUserResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetUserResponse(varGetUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableGetUserResponse struct {

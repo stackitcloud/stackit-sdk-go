@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &GetVersionsResponse{}
 // GetVersionsResponse struct for GetVersionsResponse
 type GetVersionsResponse struct {
 	// A list containing available postgres versions.
-	Versions []Version `json:"versions"`
+	Versions             []Version `json:"versions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetVersionsResponse GetVersionsResponse
@@ -81,6 +81,11 @@ func (o GetVersionsResponse) MarshalJSON() ([]byte, error) {
 func (o GetVersionsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["versions"] = o.Versions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *GetVersionsResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetVersionsResponse := _GetVersionsResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetVersionsResponse)
+	err = json.Unmarshal(data, &varGetVersionsResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetVersionsResponse(varGetVersionsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "versions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -20,8 +20,11 @@ var _ MappedNullable = &InstanceResponse{}
 
 // InstanceResponse struct for InstanceResponse
 type InstanceResponse struct {
-	Item *Instance `json:"item,omitempty"`
+	Item                 *Instance `json:"item,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceResponse InstanceResponse
 
 // NewInstanceResponse instantiates a new InstanceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o InstanceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceResponse) UnmarshalJSON(data []byte) (err error) {
+	varInstanceResponse := _InstanceResponse{}
+
+	err = json.Unmarshal(data, &varInstanceResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceResponse(varInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceResponse struct {

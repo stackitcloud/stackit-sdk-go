@@ -20,12 +20,15 @@ var _ MappedNullable = &UserResponse{}
 
 // UserResponse struct for UserResponse
 type UserResponse struct {
-	Host     *string  `json:"host,omitempty"`
-	Id       *string  `json:"id,omitempty"`
-	Port     *int64   `json:"port,omitempty"`
-	Roles    []string `json:"roles,omitempty"`
-	Username *string  `json:"username,omitempty"`
+	Host                 *string  `json:"host,omitempty"`
+	Id                   *string  `json:"id,omitempty"`
+	Port                 *int64   `json:"port,omitempty"`
+	Roles                []string `json:"roles,omitempty"`
+	Username             *string  `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserResponse UserResponse
 
 // NewUserResponse instantiates a new UserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o UserResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UserResponse) UnmarshalJSON(data []byte) (err error) {
+	varUserResponse := _UserResponse{}
+
+	err = json.Unmarshal(data, &varUserResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UserResponse(varUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUserResponse struct {
