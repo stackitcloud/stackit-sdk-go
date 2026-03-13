@@ -23,8 +23,11 @@ type SetImageSharePayload struct {
 	// Image is shared with all projects inside the image owners organization.
 	ParentOrganization *bool `json:"parentOrganization,omitempty"`
 	// List of all projects the Image is shared with.
-	Projects []string `json:"projects,omitempty"`
+	Projects             []string `json:"projects,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SetImageSharePayload SetImageSharePayload
 
 // NewSetImageSharePayload instantiates a new SetImageSharePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o SetImageSharePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Projects) {
 		toSerialize["projects"] = o.Projects
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SetImageSharePayload) UnmarshalJSON(data []byte) (err error) {
+	varSetImageSharePayload := _SetImageSharePayload{}
+
+	err = json.Unmarshal(data, &varSetImageSharePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SetImageSharePayload(varSetImageSharePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "parentOrganization")
+		delete(additionalProperties, "projects")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSetImageSharePayload struct {

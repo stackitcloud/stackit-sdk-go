@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &BackupListResponse{}
 // BackupListResponse Backup list response.
 type BackupListResponse struct {
 	// A list containing backup objects.
-	Items []Backup `json:"items"`
+	Items                []Backup `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BackupListResponse BackupListResponse
@@ -81,6 +81,11 @@ func (o BackupListResponse) MarshalJSON() ([]byte, error) {
 func (o BackupListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *BackupListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varBackupListResponse := _BackupListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBackupListResponse)
+	err = json.Unmarshal(data, &varBackupListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BackupListResponse(varBackupListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

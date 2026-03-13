@@ -25,8 +25,11 @@ type UpdateSecurityGroupPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name                 *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateSecurityGroupPayload UpdateSecurityGroupPayload
 
 // NewUpdateSecurityGroupPayload instantiates a new UpdateSecurityGroupPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o UpdateSecurityGroupPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateSecurityGroupPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateSecurityGroupPayload := _UpdateSecurityGroupPayload{}
+
+	err = json.Unmarshal(data, &varUpdateSecurityGroupPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateSecurityGroupPayload(varUpdateSecurityGroupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateSecurityGroupPayload struct {

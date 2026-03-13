@@ -20,9 +20,12 @@ var _ MappedNullable = &CreateNetworkAddressFamily{}
 
 // CreateNetworkAddressFamily The addressFamily object for a network create request.
 type CreateNetworkAddressFamily struct {
-	Ipv4 *CreateNetworkIPv4Body `json:"ipv4,omitempty"`
-	Ipv6 *CreateNetworkIPv6Body `json:"ipv6,omitempty"`
+	Ipv4                 *CreateNetworkIPv4Body `json:"ipv4,omitempty"`
+	Ipv6                 *CreateNetworkIPv6Body `json:"ipv6,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateNetworkAddressFamily CreateNetworkAddressFamily
 
 // NewCreateNetworkAddressFamily instantiates a new CreateNetworkAddressFamily object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o CreateNetworkAddressFamily) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Ipv6) {
 		toSerialize["ipv6"] = o.Ipv6
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateNetworkAddressFamily) UnmarshalJSON(data []byte) (err error) {
+	varCreateNetworkAddressFamily := _CreateNetworkAddressFamily{}
+
+	err = json.Unmarshal(data, &varCreateNetworkAddressFamily)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateNetworkAddressFamily(varCreateNetworkAddressFamily)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "ipv6")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateNetworkAddressFamily struct {

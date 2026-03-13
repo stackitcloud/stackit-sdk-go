@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,8 +22,9 @@ var _ MappedNullable = &ImageCreateResponse{}
 // ImageCreateResponse Image creation response.
 type ImageCreateResponse struct {
 	// Universally Unique Identifier (UUID).
-	Id        string `json:"id" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
-	UploadUrl string `json:"uploadUrl"`
+	Id                   string `json:"id" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	UploadUrl            string `json:"uploadUrl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImageCreateResponse ImageCreateResponse
@@ -108,6 +108,11 @@ func (o ImageCreateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["uploadUrl"] = o.UploadUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ImageCreateResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varImageCreateResponse := _ImageCreateResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImageCreateResponse)
+	err = json.Unmarshal(data, &varImageCreateResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImageCreateResponse(varImageCreateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "uploadUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

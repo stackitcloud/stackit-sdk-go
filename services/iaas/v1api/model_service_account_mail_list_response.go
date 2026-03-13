@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ServiceAccountMailListResponse{}
 // ServiceAccountMailListResponse Service account mail list response.
 type ServiceAccountMailListResponse struct {
 	// A list of service account mails.
-	Items []string `json:"items"`
+	Items                []string `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServiceAccountMailListResponse ServiceAccountMailListResponse
@@ -81,6 +81,11 @@ func (o ServiceAccountMailListResponse) MarshalJSON() ([]byte, error) {
 func (o ServiceAccountMailListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ServiceAccountMailListResponse) UnmarshalJSON(data []byte) (err error) 
 
 	varServiceAccountMailListResponse := _ServiceAccountMailListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServiceAccountMailListResponse)
+	err = json.Unmarshal(data, &varServiceAccountMailListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServiceAccountMailListResponse(varServiceAccountMailListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

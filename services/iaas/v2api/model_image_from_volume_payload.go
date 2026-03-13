@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,7 +26,8 @@ type ImageFromVolumePayload struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
 	// When true the created image is prevented from being deleted.
-	Protected *bool `json:"protected,omitempty"`
+	Protected            *bool `json:"protected,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImageFromVolumePayload ImageFromVolumePayload
@@ -150,6 +150,11 @@ func (o ImageFromVolumePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Protected) {
 		toSerialize["protected"] = o.Protected
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *ImageFromVolumePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varImageFromVolumePayload := _ImageFromVolumePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImageFromVolumePayload)
+	err = json.Unmarshal(data, &varImageFromVolumePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImageFromVolumePayload(varImageFromVolumePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "diskFormat")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "protected")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

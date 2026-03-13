@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -24,8 +24,10 @@ type PutCustomDomainCustomCertificate struct {
 	// base64-encoded PEM-encoded certificate
 	Certificate string `json:"certificate"`
 	// base64-encoded PEM encoded key
-	Key  string `json:"key"`
-	Type string `json:"type"`
+	Key string `json:"key"`
+	// When adding a new custom domain, we do a check to verify that your Domain points to the managed domain via a CNAME or ALIAS. If this is not the case, the call would usually reject.   This additional property is an escape hatch to this functionality. It's useful for when you are migrating onto STACKIT CDN. It allows you to migrate without  downtime.  By providing a custom certificate with `skipDnsCheck` set to `true`, we will  not check the Record for correctness. Then, once the CDN is set up, you can change the CNAME Record on your DNS and update the Custom Domain entry to  disable this check, or switch to a managed certificate.  This field is optional. If not set, the check is **not** skipped.
+	SkipDnsCheck *bool  `json:"skipDnsCheck,omitempty"`
+	Type         string `json:"type"`
 }
 
 type _PutCustomDomainCustomCertificate PutCustomDomainCustomCertificate
@@ -98,6 +100,38 @@ func (o *PutCustomDomainCustomCertificate) SetKey(v string) {
 	o.Key = v
 }
 
+// GetSkipDnsCheck returns the SkipDnsCheck field value if set, zero value otherwise.
+func (o *PutCustomDomainCustomCertificate) GetSkipDnsCheck() bool {
+	if o == nil || IsNil(o.SkipDnsCheck) {
+		var ret bool
+		return ret
+	}
+	return *o.SkipDnsCheck
+}
+
+// GetSkipDnsCheckOk returns a tuple with the SkipDnsCheck field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutCustomDomainCustomCertificate) GetSkipDnsCheckOk() (*bool, bool) {
+	if o == nil || IsNil(o.SkipDnsCheck) {
+		return nil, false
+	}
+	return o.SkipDnsCheck, true
+}
+
+// HasSkipDnsCheck returns a boolean if a field has been set.
+func (o *PutCustomDomainCustomCertificate) HasSkipDnsCheck() bool {
+	if o != nil && !IsNil(o.SkipDnsCheck) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkipDnsCheck gets a reference to the given bool and assigns it to the SkipDnsCheck field.
+func (o *PutCustomDomainCustomCertificate) SetSkipDnsCheck(v bool) {
+	o.SkipDnsCheck = &v
+}
+
 // GetType returns the Type field value
 func (o *PutCustomDomainCustomCertificate) GetType() string {
 	if o == nil {
@@ -134,6 +168,9 @@ func (o PutCustomDomainCustomCertificate) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["certificate"] = o.Certificate
 	toSerialize["key"] = o.Key
+	if !IsNil(o.SkipDnsCheck) {
+		toSerialize["skipDnsCheck"] = o.SkipDnsCheck
+	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }

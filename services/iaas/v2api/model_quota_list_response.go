@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &QuotaListResponse{}
 
 // QuotaListResponse Quotas list response.
 type QuotaListResponse struct {
-	Quotas QuotaList `json:"quotas"`
+	Quotas               QuotaList `json:"quotas"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QuotaListResponse QuotaListResponse
@@ -80,6 +80,11 @@ func (o QuotaListResponse) MarshalJSON() ([]byte, error) {
 func (o QuotaListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["quotas"] = o.Quotas
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *QuotaListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varQuotaListResponse := _QuotaListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuotaListResponse)
+	err = json.Unmarshal(data, &varQuotaListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = QuotaListResponse(varQuotaListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "quotas")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &PublicNetworkListResponse{}
 // PublicNetworkListResponse Public network list response.
 type PublicNetworkListResponse struct {
 	// A list of public networks.
-	Items []PublicNetwork `json:"items"`
+	Items                []PublicNetwork `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PublicNetworkListResponse PublicNetworkListResponse
@@ -81,6 +81,11 @@ func (o PublicNetworkListResponse) MarshalJSON() ([]byte, error) {
 func (o PublicNetworkListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *PublicNetworkListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPublicNetworkListResponse := _PublicNetworkListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPublicNetworkListResponse)
+	err = json.Unmarshal(data, &varPublicNetworkListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PublicNetworkListResponse(varPublicNetworkListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

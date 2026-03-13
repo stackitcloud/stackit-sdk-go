@@ -27,8 +27,11 @@ type UpdatePublicIPPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// Associate the public IP with a network interface (ID).
-	NetworkInterface NullableString `json:"networkInterface,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	NetworkInterface     NullableString `json:"networkInterface,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdatePublicIPPayload UpdatePublicIPPayload
 
 // NewUpdatePublicIPPayload instantiates a new UpdatePublicIPPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -208,7 +211,36 @@ func (o UpdatePublicIPPayload) ToMap() (map[string]interface{}, error) {
 	if o.NetworkInterface.IsSet() {
 		toSerialize["networkInterface"] = o.NetworkInterface.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdatePublicIPPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdatePublicIPPayload := _UpdatePublicIPPayload{}
+
+	err = json.Unmarshal(data, &varUpdatePublicIPPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdatePublicIPPayload(varUpdatePublicIPPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ip")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "networkInterface")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdatePublicIPPayload struct {

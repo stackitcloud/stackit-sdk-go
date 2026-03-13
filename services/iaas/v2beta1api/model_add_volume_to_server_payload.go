@@ -25,8 +25,11 @@ type AddVolumeToServerPayload struct {
 	// Universally Unique Identifier (UUID).
 	ServerId *string `json:"serverId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Universally Unique Identifier (UUID).
-	VolumeId *string `json:"volumeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	VolumeId             *string `json:"volumeId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AddVolumeToServerPayload AddVolumeToServerPayload
 
 // NewAddVolumeToServerPayload instantiates a new AddVolumeToServerPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o AddVolumeToServerPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VolumeId) {
 		toSerialize["volumeId"] = o.VolumeId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *AddVolumeToServerPayload) UnmarshalJSON(data []byte) (err error) {
+	varAddVolumeToServerPayload := _AddVolumeToServerPayload{}
+
+	err = json.Unmarshal(data, &varAddVolumeToServerPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AddVolumeToServerPayload(varAddVolumeToServerPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "deleteOnTermination")
+		delete(additionalProperties, "serverId")
+		delete(additionalProperties, "volumeId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableAddVolumeToServerPayload struct {

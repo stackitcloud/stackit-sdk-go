@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &NexthopInternet{}
 
 // NexthopInternet Object that represents a route to the internet.
 type NexthopInternet struct {
-	Type string `json:"type"`
+	Type                 string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NexthopInternet NexthopInternet
@@ -80,6 +80,11 @@ func (o NexthopInternet) MarshalJSON() ([]byte, error) {
 func (o NexthopInternet) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *NexthopInternet) UnmarshalJSON(data []byte) (err error) {
 
 	varNexthopInternet := _NexthopInternet{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNexthopInternet)
+	err = json.Unmarshal(data, &varNexthopInternet)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NexthopInternet(varNexthopInternet)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

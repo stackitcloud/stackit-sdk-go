@@ -31,8 +31,11 @@ type UpdateNicPayload struct {
 	// If this is set to false, then no security groups will apply to this network interface.
 	NicSecurity *bool `json:"nicSecurity,omitempty"`
 	// A list of UUIDs.
-	SecurityGroups []string `json:"securityGroups,omitempty"`
+	SecurityGroups       []string `json:"securityGroups,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateNicPayload UpdateNicPayload
 
 // NewUpdateNicPayload instantiates a new UpdateNicPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -271,7 +274,38 @@ func (o UpdateNicPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SecurityGroups) {
 		toSerialize["securityGroups"] = o.SecurityGroups
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateNicPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateNicPayload := _UpdateNicPayload{}
+
+	err = json.Unmarshal(data, &varUpdateNicPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateNicPayload(varUpdateNicPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedAddresses")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "nicSecurity")
+		delete(additionalProperties, "securityGroups")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateNicPayload struct {

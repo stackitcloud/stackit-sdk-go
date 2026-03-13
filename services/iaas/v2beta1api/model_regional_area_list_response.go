@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &RegionalAreaListResponse{}
 
 // RegionalAreaListResponse Regional area list response.
 type RegionalAreaListResponse struct {
-	Regions map[string]RegionalArea `json:"regions"`
+	Regions              map[string]RegionalArea `json:"regions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RegionalAreaListResponse RegionalAreaListResponse
@@ -80,6 +80,11 @@ func (o RegionalAreaListResponse) MarshalJSON() ([]byte, error) {
 func (o RegionalAreaListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["regions"] = o.Regions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *RegionalAreaListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRegionalAreaListResponse := _RegionalAreaListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRegionalAreaListResponse)
+	err = json.Unmarshal(data, &varRegionalAreaListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RegionalAreaListResponse(varRegionalAreaListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "regions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

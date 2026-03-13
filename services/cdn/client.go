@@ -1,5 +1,5 @@
 /*
-CDN API
+STACKIT CDN API
 
 API used to create and manage your CDN distributions.
 
@@ -43,7 +43,7 @@ var (
 	queryDescape    = strings.NewReplacer("%5B", "[", "%5D", "]")
 )
 
-// APIClient manages communication with the CDN API API v1.0.0
+// APIClient manages communication with the STACKIT CDN API API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClient struct {

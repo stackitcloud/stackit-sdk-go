@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &AvailabilityZoneListResponse{}
 // AvailabilityZoneListResponse Availability Zone list response.
 type AvailabilityZoneListResponse struct {
 	// A list of availability zones.
-	Items []string `json:"items"`
+	Items                []string `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AvailabilityZoneListResponse AvailabilityZoneListResponse
@@ -81,6 +81,11 @@ func (o AvailabilityZoneListResponse) MarshalJSON() ([]byte, error) {
 func (o AvailabilityZoneListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *AvailabilityZoneListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varAvailabilityZoneListResponse := _AvailabilityZoneListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAvailabilityZoneListResponse)
+	err = json.Unmarshal(data, &varAvailabilityZoneListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AvailabilityZoneListResponse(varAvailabilityZoneListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
