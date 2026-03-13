@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &KeyList{}
 
 // KeyList struct for KeyList
 type KeyList struct {
-	Keys []Key `json:"keys"`
+	Keys                 []Key `json:"keys"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _KeyList KeyList
@@ -79,6 +79,11 @@ func (o KeyList) MarshalJSON() ([]byte, error) {
 func (o KeyList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["keys"] = o.Keys
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *KeyList) UnmarshalJSON(data []byte) (err error) {
 
 	varKeyList := _KeyList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKeyList)
+	err = json.Unmarshal(data, &varKeyList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = KeyList(varKeyList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "keys")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

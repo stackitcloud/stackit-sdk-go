@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateCertCheckPayload{}
 // CreateCertCheckPayload Cert check body.
 type CreateCertCheckPayload struct {
 	// cert to check
-	Source string `json:"source"`
+	Source               string `json:"source"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateCertCheckPayload CreateCertCheckPayload
@@ -81,6 +81,11 @@ func (o CreateCertCheckPayload) MarshalJSON() ([]byte, error) {
 func (o CreateCertCheckPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["source"] = o.Source
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateCertCheckPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateCertCheckPayload := _CreateCertCheckPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateCertCheckPayload)
+	err = json.Unmarshal(data, &varCreateCertCheckPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateCertCheckPayload(varCreateCertCheckPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "source")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

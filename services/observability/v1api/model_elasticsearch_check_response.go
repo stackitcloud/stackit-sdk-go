@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &ElasticsearchCheckResponse{}
 
 // ElasticsearchCheckResponse struct for ElasticsearchCheckResponse
 type ElasticsearchCheckResponse struct {
-	ElasticsearchCheck  *ElasticsearchCheckChildResponse  `json:"elasticsearchCheck,omitempty"`
-	ElasticsearchChecks []ElasticsearchCheckChildResponse `json:"elasticsearchChecks"`
-	Message             string                            `json:"message"`
+	ElasticsearchCheck   *ElasticsearchCheckChildResponse  `json:"elasticsearchCheck,omitempty"`
+	ElasticsearchChecks  []ElasticsearchCheckChildResponse `json:"elasticsearchChecks"`
+	Message              string                            `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ElasticsearchCheckResponse ElasticsearchCheckResponse
@@ -143,6 +143,11 @@ func (o ElasticsearchCheckResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["elasticsearchChecks"] = o.ElasticsearchChecks
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *ElasticsearchCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varElasticsearchCheckResponse := _ElasticsearchCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varElasticsearchCheckResponse)
+	err = json.Unmarshal(data, &varElasticsearchCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ElasticsearchCheckResponse(varElasticsearchCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "elasticsearchCheck")
+		delete(additionalProperties, "elasticsearchChecks")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

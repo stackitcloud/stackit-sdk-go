@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -43,7 +42,8 @@ type Key struct {
 	Protection Protection `json:"protection"`
 	Purpose    Purpose    `json:"purpose"`
 	// The current state of the key.
-	State string `json:"state"`
+	State                string `json:"state"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Key Key
@@ -438,6 +438,11 @@ func (o Key) ToMap() (map[string]interface{}, error) {
 	toSerialize["protection"] = o.Protection
 	toSerialize["purpose"] = o.Purpose
 	toSerialize["state"] = o.State
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -475,15 +480,32 @@ func (o *Key) UnmarshalJSON(data []byte) (err error) {
 
 	varKey := _Key{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKey)
+	err = json.Unmarshal(data, &varKey)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Key(varKey)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_scope")
+		delete(additionalProperties, "algorithm")
+		delete(additionalProperties, "backend")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "deletionDate")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "importOnly")
+		delete(additionalProperties, "keyRingId")
+		delete(additionalProperties, "protection")
+		delete(additionalProperties, "purpose")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

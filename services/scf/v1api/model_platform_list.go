@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &PlatformList{}
 
 // PlatformList struct for PlatformList
 type PlatformList struct {
-	Pagination Pagination  `json:"pagination"`
-	Resources  []Platforms `json:"resources"`
+	Pagination           Pagination  `json:"pagination"`
+	Resources            []Platforms `json:"resources"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PlatformList PlatformList
@@ -107,6 +107,11 @@ func (o PlatformList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["pagination"] = o.Pagination
 	toSerialize["resources"] = o.Resources
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *PlatformList) UnmarshalJSON(data []byte) (err error) {
 
 	varPlatformList := _PlatformList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPlatformList)
+	err = json.Unmarshal(data, &varPlatformList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PlatformList(varPlatformList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pagination")
+		delete(additionalProperties, "resources")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type UpdateLogsAlertgroupPayload struct {
 	// How often rules in the group are evaluated. `Additional Validators:` * must be a valid time string * should be >=60s
 	Interval *string `json:"interval,omitempty"`
 	// rules for the alert group
-	Rules []UpdateLogsAlertgroupPayloadRulesInner `json:"rules"`
+	Rules                []UpdateLogsAlertgroupPayloadRulesInner `json:"rules"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateLogsAlertgroupPayload UpdateLogsAlertgroupPayload
@@ -122,6 +122,11 @@ func (o UpdateLogsAlertgroupPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["interval"] = o.Interval
 	}
 	toSerialize["rules"] = o.Rules
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -149,15 +154,21 @@ func (o *UpdateLogsAlertgroupPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateLogsAlertgroupPayload := _UpdateLogsAlertgroupPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateLogsAlertgroupPayload)
+	err = json.Unmarshal(data, &varUpdateLogsAlertgroupPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateLogsAlertgroupPayload(varUpdateLogsAlertgroupPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

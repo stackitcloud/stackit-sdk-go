@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &HttpError{}
 // HttpError struct for HttpError
 type HttpError struct {
 	// A string that gives a short information about what went wrong.
-	Message string `json:"message"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _HttpError HttpError
@@ -80,6 +80,11 @@ func (o HttpError) MarshalJSON() ([]byte, error) {
 func (o HttpError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *HttpError) UnmarshalJSON(data []byte) (err error) {
 
 	varHttpError := _HttpError{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varHttpError)
+	err = json.Unmarshal(data, &varHttpError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = HttpError(varHttpError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

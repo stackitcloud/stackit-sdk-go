@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &SpaceRoleCreateBffRequest{}
 
 // SpaceRoleCreateBffRequest struct for SpaceRoleCreateBffRequest
 type SpaceRoleCreateBffRequest struct {
-	Type SpaceRoleType `json:"type"`
+	Type                 SpaceRoleType `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpaceRoleCreateBffRequest SpaceRoleCreateBffRequest
@@ -80,6 +80,11 @@ func (o SpaceRoleCreateBffRequest) MarshalJSON() ([]byte, error) {
 func (o SpaceRoleCreateBffRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *SpaceRoleCreateBffRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varSpaceRoleCreateBffRequest := _SpaceRoleCreateBffRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpaceRoleCreateBffRequest)
+	err = json.Unmarshal(data, &varSpaceRoleCreateBffRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpaceRoleCreateBffRequest(varSpaceRoleCreateBffRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

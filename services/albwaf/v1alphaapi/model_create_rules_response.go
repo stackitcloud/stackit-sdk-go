@@ -24,8 +24,11 @@ type CreateRulesResponse struct {
 	// Region
 	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
 	// Custom rules written in Seclang syntax.
-	Rules *string `json:"rules,omitempty"`
+	Rules                *string `json:"rules,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateRulesResponse CreateRulesResponse
 
 // NewCreateRulesResponse instantiates a new CreateRulesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -159,7 +162,35 @@ func (o CreateRulesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateRulesResponse) UnmarshalJSON(data []byte) (err error) {
+	varCreateRulesResponse := _CreateRulesResponse{}
+
+	err = json.Unmarshal(data, &varCreateRulesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateRulesResponse(varCreateRulesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateRulesResponse struct {

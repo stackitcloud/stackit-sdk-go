@@ -23,8 +23,11 @@ type HandlersInstancesSuggestedIndexesResponse struct {
 	// Documents with information about the query shapes that are served by the suggested indexes.
 	Shapes []Shape `json:"shapes,omitempty"`
 	// Documents with information about the indexes suggested by the Performance Advisor.
-	SuggestedIndexes []SuggestedIndex `json:"suggestedIndexes,omitempty"`
+	SuggestedIndexes     []SuggestedIndex `json:"suggestedIndexes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HandlersInstancesSuggestedIndexesResponse HandlersInstancesSuggestedIndexesResponse
 
 // NewHandlersInstancesSuggestedIndexesResponse instantiates a new HandlersInstancesSuggestedIndexesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o HandlersInstancesSuggestedIndexesResponse) ToMap() (map[string]interface
 	if !IsNil(o.SuggestedIndexes) {
 		toSerialize["suggestedIndexes"] = o.SuggestedIndexes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HandlersInstancesSuggestedIndexesResponse) UnmarshalJSON(data []byte) (err error) {
+	varHandlersInstancesSuggestedIndexesResponse := _HandlersInstancesSuggestedIndexesResponse{}
+
+	err = json.Unmarshal(data, &varHandlersInstancesSuggestedIndexesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HandlersInstancesSuggestedIndexesResponse(varHandlersInstancesSuggestedIndexesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "shapes")
+		delete(additionalProperties, "suggestedIndexes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHandlersInstancesSuggestedIndexesResponse struct {

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &AlertRecord{}
 
 // AlertRecord struct for AlertRecord
 type AlertRecord struct {
-	Expr   string             `json:"expr"`
-	Labels *map[string]string `json:"labels,omitempty"`
-	Record string             `json:"record"`
+	Expr                 string             `json:"expr"`
+	Labels               *map[string]string `json:"labels,omitempty"`
+	Record               string             `json:"record"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AlertRecord AlertRecord
@@ -143,6 +143,11 @@ func (o AlertRecord) ToMap() (map[string]interface{}, error) {
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["record"] = o.Record
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *AlertRecord) UnmarshalJSON(data []byte) (err error) {
 
 	varAlertRecord := _AlertRecord{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAlertRecord)
+	err = json.Unmarshal(data, &varAlertRecord)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AlertRecord(varAlertRecord)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expr")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "record")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

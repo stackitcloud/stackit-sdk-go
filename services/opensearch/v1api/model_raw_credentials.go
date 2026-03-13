@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &RawCredentials{}
 
 // RawCredentials struct for RawCredentials
 type RawCredentials struct {
-	Credentials Credentials `json:"credentials"`
+	Credentials          Credentials `json:"credentials"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RawCredentials RawCredentials
@@ -79,6 +79,11 @@ func (o RawCredentials) MarshalJSON() ([]byte, error) {
 func (o RawCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["credentials"] = o.Credentials
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *RawCredentials) UnmarshalJSON(data []byte) (err error) {
 
 	varRawCredentials := _RawCredentials{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRawCredentials)
+	err = json.Unmarshal(data, &varRawCredentials)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RawCredentials(varRawCredentials)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentials")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

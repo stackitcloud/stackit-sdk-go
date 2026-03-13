@@ -40,8 +40,11 @@ type UpdateAlertConfigsPayloadRouteRoutesInner struct {
 	// As in one level above
 	RepeatInterval *string `json:"repeatInterval,omitempty"`
 	// Another child routes
-	Routes []map[string]interface{} `json:"routes,omitempty"`
+	Routes               []map[string]interface{} `json:"routes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAlertConfigsPayloadRouteRoutesInner UpdateAlertConfigsPayloadRouteRoutesInner
 
 // NewUpdateAlertConfigsPayloadRouteRoutesInner instantiates a new UpdateAlertConfigsPayloadRouteRoutesInner object
 // This constructor will assign default values to properties that have it defined,
@@ -430,7 +433,42 @@ func (o UpdateAlertConfigsPayloadRouteRoutesInner) ToMap() (map[string]interface
 	if !IsNil(o.Routes) {
 		toSerialize["routes"] = o.Routes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigsPayloadRouteRoutesInner) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAlertConfigsPayloadRouteRoutesInner := _UpdateAlertConfigsPayloadRouteRoutesInner{}
+
+	err = json.Unmarshal(data, &varUpdateAlertConfigsPayloadRouteRoutesInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigsPayloadRouteRoutesInner(varUpdateAlertConfigsPayloadRouteRoutesInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "continue")
+		delete(additionalProperties, "groupBy")
+		delete(additionalProperties, "groupInterval")
+		delete(additionalProperties, "groupWait")
+		delete(additionalProperties, "match")
+		delete(additionalProperties, "matchRe")
+		delete(additionalProperties, "matchers")
+		delete(additionalProperties, "receiver")
+		delete(additionalProperties, "repeatInterval")
+		delete(additionalProperties, "routes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAlertConfigsPayloadRouteRoutesInner struct {

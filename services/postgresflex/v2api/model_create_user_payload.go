@@ -20,9 +20,12 @@ var _ MappedNullable = &CreateUserPayload{}
 
 // CreateUserPayload struct for CreateUserPayload
 type CreateUserPayload struct {
-	Roles    []string `json:"roles,omitempty"`
-	Username *string  `json:"username,omitempty"`
+	Roles                []string `json:"roles,omitempty"`
+	Username             *string  `json:"username,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateUserPayload CreateUserPayload
 
 // NewCreateUserPayload instantiates a new CreateUserPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Username) {
 		toSerialize["username"] = o.Username
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateUserPayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateUserPayload := _CreateUserPayload{}
+
+	err = json.Unmarshal(data, &varCreateUserPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateUserPayload(varCreateUserPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateUserPayload struct {

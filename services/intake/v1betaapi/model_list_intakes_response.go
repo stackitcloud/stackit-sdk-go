@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ListIntakesResponse{}
 type ListIntakesResponse struct {
 	Intakes []IntakeResponse `json:"intakes"`
 	// A token to retrieve the next page of results.
-	NextPageToken *string `json:"nextPageToken,omitempty"`
+	NextPageToken        *string `json:"nextPageToken,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListIntakesResponse ListIntakesResponse
@@ -116,6 +116,11 @@ func (o ListIntakesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageToken) {
 		toSerialize["nextPageToken"] = o.NextPageToken
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *ListIntakesResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListIntakesResponse := _ListIntakesResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListIntakesResponse)
+	err = json.Unmarshal(data, &varListIntakesResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListIntakesResponse(varListIntakesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "intakes")
+		delete(additionalProperties, "nextPageToken")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

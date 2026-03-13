@@ -20,8 +20,11 @@ var _ MappedNullable = &RestoreInstanceResponse{}
 
 // RestoreInstanceResponse struct for RestoreInstanceResponse
 type RestoreInstanceResponse struct {
-	Item *RestoreInstanceStatus `json:"item,omitempty"`
+	Item                 *RestoreInstanceStatus `json:"item,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RestoreInstanceResponse RestoreInstanceResponse
 
 // NewRestoreInstanceResponse instantiates a new RestoreInstanceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o RestoreInstanceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RestoreInstanceResponse) UnmarshalJSON(data []byte) (err error) {
+	varRestoreInstanceResponse := _RestoreInstanceResponse{}
+
+	err = json.Unmarshal(data, &varRestoreInstanceResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RestoreInstanceResponse(varRestoreInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRestoreInstanceResponse struct {

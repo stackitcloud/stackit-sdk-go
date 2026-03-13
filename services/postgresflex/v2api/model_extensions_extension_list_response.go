@@ -20,8 +20,11 @@ var _ MappedNullable = &ExtensionsExtensionListResponse{}
 
 // ExtensionsExtensionListResponse struct for ExtensionsExtensionListResponse
 type ExtensionsExtensionListResponse struct {
-	List []ApiExtensionList `json:"list,omitempty"`
+	List                 []ApiExtensionList `json:"list,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ExtensionsExtensionListResponse ExtensionsExtensionListResponse
 
 // NewExtensionsExtensionListResponse instantiates a new ExtensionsExtensionListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ExtensionsExtensionListResponse) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.List) {
 		toSerialize["list"] = o.List
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ExtensionsExtensionListResponse) UnmarshalJSON(data []byte) (err error) {
+	varExtensionsExtensionListResponse := _ExtensionsExtensionListResponse{}
+
+	err = json.Unmarshal(data, &varExtensionsExtensionListResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ExtensionsExtensionListResponse(varExtensionsExtensionListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "list")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableExtensionsExtensionListResponse struct {

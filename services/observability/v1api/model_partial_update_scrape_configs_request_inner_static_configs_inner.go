@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner struct {
 	// Labels assigned to all metrics scraped from the targets. `Additional Validators:` * should not contain more than 10 keys * each key and value should not be longer than 200 characters
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The targets specified by the static config.
-	Targets []string `json:"targets"`
+	Targets              []string `json:"targets"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner
@@ -118,6 +118,11 @@ func (o PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner) ToMap() (map[s
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["targets"] = o.Targets
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -145,15 +150,21 @@ func (o *PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner) UnmarshalJSON
 
 	varPartialUpdateScrapeConfigsRequestInnerStaticConfigsInner := _PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPartialUpdateScrapeConfigsRequestInnerStaticConfigsInner)
+	err = json.Unmarshal(data, &varPartialUpdateScrapeConfigsRequestInnerStaticConfigsInner)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PartialUpdateScrapeConfigsRequestInnerStaticConfigsInner(varPartialUpdateScrapeConfigsRequestInnerStaticConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "targets")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

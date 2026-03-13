@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type InstanceStorageRange struct {
 	// The maximum available amount of storage.
 	Max int32 `json:"max"`
 	// The minimum available amount of storage.
-	Min int32 `json:"min"`
+	Min                  int32 `json:"min"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceStorageRange InstanceStorageRange
@@ -109,6 +109,11 @@ func (o InstanceStorageRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["max"] = o.Max
 	toSerialize["min"] = o.Min
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *InstanceStorageRange) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceStorageRange := _InstanceStorageRange{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceStorageRange)
+	err = json.Unmarshal(data, &varInstanceStorageRange)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceStorageRange(varInstanceStorageRange)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "max")
+		delete(additionalProperties, "min")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

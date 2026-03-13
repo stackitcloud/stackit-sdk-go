@@ -23,8 +23,11 @@ type SlowQuery struct {
 	// The raw log line pertaining to the slow query.
 	Line *string `json:"line,omitempty"`
 	// The namespace in which the slow query ran.
-	Namespace *string `json:"namespace,omitempty"`
+	Namespace            *string `json:"namespace,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SlowQuery SlowQuery
 
 // NewSlowQuery instantiates a new SlowQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o SlowQuery) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Namespace) {
 		toSerialize["namespace"] = o.Namespace
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *SlowQuery) UnmarshalJSON(data []byte) (err error) {
+	varSlowQuery := _SlowQuery{}
+
+	err = json.Unmarshal(data, &varSlowQuery)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SlowQuery(varSlowQuery)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "line")
+		delete(additionalProperties, "namespace")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableSlowQuery struct {

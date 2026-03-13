@@ -11,7 +11,6 @@ API version: 1.4.3
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,7 +29,8 @@ type User struct {
 	// A auto generated username for logging in with the user.
 	Username string `json:"username"`
 	// Is true if the user has write access to the secrets engine. Is false for a read-only user.
-	Write bool `json:"write"`
+	Write                bool `json:"write"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _User User
@@ -192,6 +192,11 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize["password"] = o.Password
 	toSerialize["username"] = o.Username
 	toSerialize["write"] = o.Write
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -223,15 +228,24 @@ func (o *User) UnmarshalJSON(data []byte) (err error) {
 
 	varUser := _User{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUser)
+	err = json.Unmarshal(data, &varUser)
 
 	if err != nil {
 		return err
 	}
 
 	*o = User(varUser)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "write")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -23,14 +22,15 @@ var _ MappedNullable = &OrgManager{}
 
 // OrgManager struct for OrgManager
 type OrgManager struct {
-	CreatedAt  time.Time `json:"createdAt"`
-	Guid       string    `json:"guid"`
-	OrgId      string    `json:"orgId"`
-	PlatformId string    `json:"platformId"`
-	ProjectId  string    `json:"projectId"`
-	Region     string    `json:"region"`
-	UpdatedAt  time.Time `json:"updatedAt"`
-	Username   string    `json:"username"`
+	CreatedAt            time.Time `json:"createdAt"`
+	Guid                 string    `json:"guid"`
+	OrgId                string    `json:"orgId"`
+	PlatformId           string    `json:"platformId"`
+	ProjectId            string    `json:"projectId"`
+	Region               string    `json:"region"`
+	UpdatedAt            time.Time `json:"updatedAt"`
+	Username             string    `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrgManager OrgManager
@@ -270,6 +270,11 @@ func (o OrgManager) ToMap() (map[string]interface{}, error) {
 	toSerialize["region"] = o.Region
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -304,15 +309,27 @@ func (o *OrgManager) UnmarshalJSON(data []byte) (err error) {
 
 	varOrgManager := _OrgManager{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrgManager)
+	err = json.Unmarshal(data, &varOrgManager)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrgManager(varOrgManager)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

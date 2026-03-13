@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,12 +21,13 @@ var _ MappedNullable = &Platforms{}
 
 // Platforms struct for Platforms
 type Platforms struct {
-	ApiUrl      string  `json:"apiUrl"`
-	ConsoleUrl  *string `json:"consoleUrl,omitempty"`
-	DisplayName string  `json:"displayName"`
-	Guid        string  `json:"guid"`
-	Region      string  `json:"region"`
-	SystemId    string  `json:"systemId"`
+	ApiUrl               string  `json:"apiUrl"`
+	ConsoleUrl           *string `json:"consoleUrl,omitempty"`
+	DisplayName          string  `json:"displayName"`
+	Guid                 string  `json:"guid"`
+	Region               string  `json:"region"`
+	SystemId             string  `json:"systemId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Platforms Platforms
@@ -224,6 +224,11 @@ func (o Platforms) ToMap() (map[string]interface{}, error) {
 	toSerialize["guid"] = o.Guid
 	toSerialize["region"] = o.Region
 	toSerialize["systemId"] = o.SystemId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -255,15 +260,25 @@ func (o *Platforms) UnmarshalJSON(data []byte) (err error) {
 
 	varPlatforms := _Platforms{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPlatforms)
+	err = json.Unmarshal(data, &varPlatforms)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Platforms(varPlatforms)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apiUrl")
+		delete(additionalProperties, "consoleUrl")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "systemId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

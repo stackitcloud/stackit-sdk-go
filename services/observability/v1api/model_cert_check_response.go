@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &CertCheckResponse{}
 
 // CertCheckResponse struct for CertCheckResponse
 type CertCheckResponse struct {
-	CertCheck  *CertCheckChildResponse  `json:"certCheck,omitempty"`
-	CertChecks []CertCheckChildResponse `json:"certChecks"`
-	Message    string                   `json:"message"`
+	CertCheck            *CertCheckChildResponse  `json:"certCheck,omitempty"`
+	CertChecks           []CertCheckChildResponse `json:"certChecks"`
+	Message              string                   `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CertCheckResponse CertCheckResponse
@@ -143,6 +143,11 @@ func (o CertCheckResponse) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["certChecks"] = o.CertChecks
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *CertCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCertCheckResponse := _CertCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCertCheckResponse)
+	err = json.Unmarshal(data, &varCertCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CertCheckResponse(varCertCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certCheck")
+		delete(additionalProperties, "certChecks")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

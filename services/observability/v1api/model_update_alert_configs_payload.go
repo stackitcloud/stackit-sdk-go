@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,8 +24,9 @@ type UpdateAlertConfigsPayload struct {
 	Global       *UpdateAlertConfigsPayloadGlobal       `json:"global,omitempty"`
 	InhibitRules *UpdateAlertConfigsPayloadInhibitRules `json:"inhibitRules,omitempty"`
 	// A list of notification receivers.
-	Receivers []UpdateAlertConfigsPayloadReceiversInner `json:"receivers"`
-	Route     UpdateAlertConfigsPayloadRoute            `json:"route"`
+	Receivers            []UpdateAlertConfigsPayloadReceiversInner `json:"receivers"`
+	Route                UpdateAlertConfigsPayloadRoute            `json:"route"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateAlertConfigsPayload UpdateAlertConfigsPayload
@@ -180,6 +180,11 @@ func (o UpdateAlertConfigsPayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["receivers"] = o.Receivers
 	toSerialize["route"] = o.Route
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -208,15 +213,23 @@ func (o *UpdateAlertConfigsPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varUpdateAlertConfigsPayload := _UpdateAlertConfigsPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateAlertConfigsPayload)
+	err = json.Unmarshal(data, &varUpdateAlertConfigsPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateAlertConfigsPayload(varUpdateAlertConfigsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "global")
+		delete(additionalProperties, "inhibitRules")
+		delete(additionalProperties, "receivers")
+		delete(additionalProperties, "route")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

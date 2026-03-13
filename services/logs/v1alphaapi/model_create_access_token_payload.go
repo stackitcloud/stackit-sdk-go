@@ -11,7 +11,6 @@ API version: 1alpha.0.3
 package v1alphaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type CreateAccessTokenPayload struct {
 	// A lifetime period for an access token in days. If unset the token will not expire.
 	Lifetime *int32 `json:"lifetime,omitempty"`
 	// The access permissions granted to the access token.
-	Permissions []string `json:"permissions"`
+	Permissions          []string `json:"permissions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateAccessTokenPayload CreateAccessTokenPayload
@@ -182,6 +182,11 @@ func (o CreateAccessTokenPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["lifetime"] = o.Lifetime
 	}
 	toSerialize["permissions"] = o.Permissions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -210,15 +215,23 @@ func (o *CreateAccessTokenPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateAccessTokenPayload := _CreateAccessTokenPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAccessTokenPayload)
+	err = json.Unmarshal(data, &varCreateAccessTokenPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateAccessTokenPayload(varCreateAccessTokenPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "lifetime")
+		delete(additionalProperties, "permissions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

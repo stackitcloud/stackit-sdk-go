@@ -20,11 +20,14 @@ var _ MappedNullable = &Flavor{}
 
 // Flavor struct for Flavor
 type Flavor struct {
-	Cpu         *int64  `json:"cpu,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id          *string `json:"id,omitempty"`
-	Memory      *int64  `json:"memory,omitempty"`
+	Cpu                  *int64  `json:"cpu,omitempty"`
+	Description          *string `json:"description,omitempty"`
+	Id                   *string `json:"id,omitempty"`
+	Memory               *int64  `json:"memory,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Flavor Flavor
 
 // NewFlavor instantiates a new Flavor object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,36 @@ func (o Flavor) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Memory) {
 		toSerialize["memory"] = o.Memory
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Flavor) UnmarshalJSON(data []byte) (err error) {
+	varFlavor := _Flavor{}
+
+	err = json.Unmarshal(data, &varFlavor)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Flavor(varFlavor)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cpu")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "memory")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFlavor struct {

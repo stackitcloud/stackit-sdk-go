@@ -20,8 +20,11 @@ var _ MappedNullable = &HandlersInstancesGetInstanceResponse{}
 
 // HandlersInstancesGetInstanceResponse struct for HandlersInstancesGetInstanceResponse
 type HandlersInstancesGetInstanceResponse struct {
-	Item *Instance `json:"item,omitempty"`
+	Item                 *Instance `json:"item,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HandlersInstancesGetInstanceResponse HandlersInstancesGetInstanceResponse
 
 // NewHandlersInstancesGetInstanceResponse instantiates a new HandlersInstancesGetInstanceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o HandlersInstancesGetInstanceResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.Item) {
 		toSerialize["item"] = o.Item
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HandlersInstancesGetInstanceResponse) UnmarshalJSON(data []byte) (err error) {
+	varHandlersInstancesGetInstanceResponse := _HandlersInstancesGetInstanceResponse{}
+
+	err = json.Unmarshal(data, &varHandlersInstancesGetInstanceResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HandlersInstancesGetInstanceResponse(varHandlersInstancesGetInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "item")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHandlersInstancesGetInstanceResponse struct {

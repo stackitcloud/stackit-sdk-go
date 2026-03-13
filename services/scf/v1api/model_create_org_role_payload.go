@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &CreateOrgRolePayload{}
 
 // CreateOrgRolePayload struct for CreateOrgRolePayload
 type CreateOrgRolePayload struct {
-	Type     OrgRoleType `json:"type"`
-	UserGuid *string     `json:"userGuid,omitempty"`
-	UserName *string     `json:"userName,omitempty"`
+	Type                 OrgRoleType `json:"type"`
+	UserGuid             *string     `json:"userGuid,omitempty"`
+	UserName             *string     `json:"userName,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateOrgRolePayload CreateOrgRolePayload
@@ -152,6 +152,11 @@ func (o CreateOrgRolePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UserName) {
 		toSerialize["userName"] = o.UserName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -179,15 +184,22 @@ func (o *CreateOrgRolePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateOrgRolePayload := _CreateOrgRolePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateOrgRolePayload)
+	err = json.Unmarshal(data, &varCreateOrgRolePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateOrgRolePayload(varCreateOrgRolePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "userGuid")
+		delete(additionalProperties, "userName")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

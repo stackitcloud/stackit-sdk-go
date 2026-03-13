@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type DremioAuth struct {
 	// A Dremio personal access token for authentication
 	PersonalAccessToken string `json:"personalAccessToken"`
 	// The URL to the Dremio instance's OAuth 2.0 token endpoint
-	TokenEndpoint string `json:"tokenEndpoint"`
+	TokenEndpoint        string `json:"tokenEndpoint"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DremioAuth DremioAuth
@@ -108,6 +108,11 @@ func (o DremioAuth) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["personalAccessToken"] = o.PersonalAccessToken
 	toSerialize["tokenEndpoint"] = o.TokenEndpoint
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *DremioAuth) UnmarshalJSON(data []byte) (err error) {
 
 	varDremioAuth := _DremioAuth{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDremioAuth)
+	err = json.Unmarshal(data, &varDremioAuth)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DremioAuth(varDremioAuth)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "personalAccessToken")
+		delete(additionalProperties, "tokenEndpoint")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -23,8 +23,11 @@ type CloneInstancePayload struct {
 	Class *string `json:"class,omitempty"`
 	Size  *int64  `json:"size,omitempty"`
 	// The timestamp should be specified in UTC time following the format provided in the example.
-	Timestamp *string `json:"timestamp,omitempty"`
+	Timestamp            *string `json:"timestamp,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CloneInstancePayload CloneInstancePayload
 
 // NewCloneInstancePayload instantiates a new CloneInstancePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -158,7 +161,35 @@ func (o CloneInstancePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Timestamp) {
 		toSerialize["timestamp"] = o.Timestamp
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CloneInstancePayload) UnmarshalJSON(data []byte) (err error) {
+	varCloneInstancePayload := _CloneInstancePayload{}
+
+	err = json.Unmarshal(data, &varCloneInstancePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CloneInstancePayload(varCloneInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "class")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCloneInstancePayload struct {

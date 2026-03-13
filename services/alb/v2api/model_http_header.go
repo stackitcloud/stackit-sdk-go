@@ -22,8 +22,11 @@ type HttpHeader struct {
 	// Exact match for the header value.
 	ExactMatch *string `json:"exactMatch,omitempty"`
 	// Header name.
-	Name *string `json:"name,omitempty"`
+	Name                 *string `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HttpHeader HttpHeader
 
 // NewHttpHeader instantiates a new HttpHeader object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o HttpHeader) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HttpHeader) UnmarshalJSON(data []byte) (err error) {
+	varHttpHeader := _HttpHeader{}
+
+	err = json.Unmarshal(data, &varHttpHeader)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HttpHeader(varHttpHeader)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "exactMatch")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHttpHeader struct {

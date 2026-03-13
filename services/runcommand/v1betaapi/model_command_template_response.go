@@ -20,8 +20,11 @@ var _ MappedNullable = &CommandTemplateResponse{}
 
 // CommandTemplateResponse struct for CommandTemplateResponse
 type CommandTemplateResponse struct {
-	Items []CommandTemplate `json:"items,omitempty"`
+	Items                []CommandTemplate `json:"items,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CommandTemplateResponse CommandTemplateResponse
 
 // NewCommandTemplateResponse instantiates a new CommandTemplateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o CommandTemplateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CommandTemplateResponse) UnmarshalJSON(data []byte) (err error) {
+	varCommandTemplateResponse := _CommandTemplateResponse{}
+
+	err = json.Unmarshal(data, &varCommandTemplateResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CommandTemplateResponse(varCommandTemplateResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCommandTemplateResponse struct {

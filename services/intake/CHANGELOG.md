@@ -1,3 +1,7 @@
+## v0.7.0
+- **Bugfix:** Disable strict decoding of API responses
+- **Feature:** Add `AdditionalProperties` fields to model structs
+
 ## v0.6.0
 - Deprecated SDK layer in root of the module: 
   - **Breaking Change**: Switch from regional to global API server URL (`config.WithRegion(...)` must not be used anymore).

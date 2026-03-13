@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -26,6 +25,7 @@ type GetMetricsStorageRetentionResponse struct {
 	MetricsRetentionTime1h  string `json:"metricsRetentionTime1h"`
 	MetricsRetentionTime5m  string `json:"metricsRetentionTime5m"`
 	MetricsRetentionTimeRaw string `json:"metricsRetentionTimeRaw"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _GetMetricsStorageRetentionResponse GetMetricsStorageRetentionResponse
@@ -161,6 +161,11 @@ func (o GetMetricsStorageRetentionResponse) ToMap() (map[string]interface{}, err
 	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
 	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
 	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -191,15 +196,23 @@ func (o *GetMetricsStorageRetentionResponse) UnmarshalJSON(data []byte) (err err
 
 	varGetMetricsStorageRetentionResponse := _GetMetricsStorageRetentionResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetMetricsStorageRetentionResponse)
+	err = json.Unmarshal(data, &varGetMetricsStorageRetentionResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetMetricsStorageRetentionResponse(varGetMetricsStorageRetentionResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "metricsRetentionTime1h")
+		delete(additionalProperties, "metricsRetentionTime5m")
+		delete(additionalProperties, "metricsRetentionTimeRaw")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

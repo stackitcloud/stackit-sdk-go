@@ -26,7 +26,10 @@ type Commands struct {
 	Id                   *int32  `json:"id,omitempty"`
 	StartedAt            *string `json:"startedAt,omitempty"`
 	Status               *string `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Commands Commands
 
 // NewCommands instantiates a new Commands object
 // This constructor will assign default values to properties that have it defined,
@@ -265,7 +268,38 @@ func (o Commands) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Commands) UnmarshalJSON(data []byte) (err error) {
+	varCommands := _Commands{}
+
+	err = json.Unmarshal(data, &varCommands)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Commands(varCommands)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "commandTemplateName")
+		delete(additionalProperties, "commandTemplateTitle")
+		delete(additionalProperties, "finishedAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "startedAt")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCommands struct {

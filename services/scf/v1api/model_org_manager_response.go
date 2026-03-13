@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -23,15 +22,16 @@ var _ MappedNullable = &OrgManagerResponse{}
 
 // OrgManagerResponse struct for OrgManagerResponse
 type OrgManagerResponse struct {
-	CreatedAt  time.Time `json:"createdAt"`
-	Guid       string    `json:"guid"`
-	OrgId      string    `json:"orgId"`
-	Password   string    `json:"password"`
-	PlatformId string    `json:"platformId"`
-	ProjectId  string    `json:"projectId"`
-	Region     string    `json:"region"`
-	UpdatedAt  time.Time `json:"updatedAt"`
-	Username   string    `json:"username"`
+	CreatedAt            time.Time `json:"createdAt"`
+	Guid                 string    `json:"guid"`
+	OrgId                string    `json:"orgId"`
+	Password             string    `json:"password"`
+	PlatformId           string    `json:"platformId"`
+	ProjectId            string    `json:"projectId"`
+	Region               string    `json:"region"`
+	UpdatedAt            time.Time `json:"updatedAt"`
+	Username             string    `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrgManagerResponse OrgManagerResponse
@@ -297,6 +297,11 @@ func (o OrgManagerResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["region"] = o.Region
 	toSerialize["updatedAt"] = o.UpdatedAt
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -332,15 +337,28 @@ func (o *OrgManagerResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varOrgManagerResponse := _OrgManagerResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrgManagerResponse)
+	err = json.Unmarshal(data, &varOrgManagerResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrgManagerResponse(varOrgManagerResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "guid")
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "password")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "updatedAt")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

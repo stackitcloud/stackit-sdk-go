@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &NetworkCheckResponse{}
 
 // NetworkCheckResponse struct for NetworkCheckResponse
 type NetworkCheckResponse struct {
-	Message       string                      `json:"message"`
-	NetworkCheck  *NetworkCheckChildResponse  `json:"networkCheck,omitempty"`
-	NetworkChecks []NetworkCheckChildResponse `json:"networkChecks"`
+	Message              string                      `json:"message"`
+	NetworkCheck         *NetworkCheckChildResponse  `json:"networkCheck,omitempty"`
+	NetworkChecks        []NetworkCheckChildResponse `json:"networkChecks"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NetworkCheckResponse NetworkCheckResponse
@@ -143,6 +143,11 @@ func (o NetworkCheckResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["networkCheck"] = o.NetworkCheck
 	}
 	toSerialize["networkChecks"] = o.NetworkChecks
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *NetworkCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varNetworkCheckResponse := _NetworkCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetworkCheckResponse)
+	err = json.Unmarshal(data, &varNetworkCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NetworkCheckResponse(varNetworkCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "networkCheck")
+		delete(additionalProperties, "networkChecks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

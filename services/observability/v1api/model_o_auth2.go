@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &OAuth2{}
 
 // OAuth2 struct for OAuth2
 type OAuth2 struct {
-	ClientId     string     `json:"clientId"`
-	ClientSecret string     `json:"clientSecret"`
-	Scopes       []string   `json:"scopes,omitempty"`
-	TlsConfig    *TLSConfig `json:"tlsConfig,omitempty"`
-	TokenUrl     string     `json:"tokenUrl"`
+	ClientId             string     `json:"clientId"`
+	ClientSecret         string     `json:"clientSecret"`
+	Scopes               []string   `json:"scopes,omitempty"`
+	TlsConfig            *TLSConfig `json:"tlsConfig,omitempty"`
+	TokenUrl             string     `json:"tokenUrl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OAuth2 OAuth2
@@ -206,6 +206,11 @@ func (o OAuth2) ToMap() (map[string]interface{}, error) {
 		toSerialize["tlsConfig"] = o.TlsConfig
 	}
 	toSerialize["tokenUrl"] = o.TokenUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -235,15 +240,24 @@ func (o *OAuth2) UnmarshalJSON(data []byte) (err error) {
 
 	varOAuth2 := _OAuth2{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOAuth2)
+	err = json.Unmarshal(data, &varOAuth2)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OAuth2(varOAuth2)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "clientId")
+		delete(additionalProperties, "clientSecret")
+		delete(additionalProperties, "scopes")
+		delete(additionalProperties, "tlsConfig")
+		delete(additionalProperties, "tokenUrl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

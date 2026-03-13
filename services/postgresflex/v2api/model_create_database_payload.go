@@ -22,8 +22,11 @@ var _ MappedNullable = &CreateDatabasePayload{}
 type CreateDatabasePayload struct {
 	Name *string `json:"name,omitempty"`
 	// Database specific options
-	Options *map[string]string `json:"options,omitempty"`
+	Options              *map[string]string `json:"options,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CreateDatabasePayload CreateDatabasePayload
 
 // NewCreateDatabasePayload instantiates a new CreateDatabasePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o CreateDatabasePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CreateDatabasePayload) UnmarshalJSON(data []byte) (err error) {
+	varCreateDatabasePayload := _CreateDatabasePayload{}
+
+	err = json.Unmarshal(data, &varCreateDatabasePayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CreateDatabasePayload(varCreateDatabasePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCreateDatabasePayload struct {

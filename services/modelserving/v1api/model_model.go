@@ -12,7 +12,6 @@ Contact: model-serving@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -34,7 +33,8 @@ type Model struct {
 	Tags   []string `json:"tags,omitempty"`
 	Type   string   `json:"type"`
 	// url of the model
-	Url string `json:"url"`
+	Url                  string `json:"url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Model Model
@@ -335,6 +335,11 @@ func (o Model) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -370,15 +375,29 @@ func (o *Model) UnmarshalJSON(data []byte) (err error) {
 
 	varModel := _Model{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varModel)
+	err = json.Unmarshal(data, &varModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Model(varModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "category")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayedName")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "skus")
+		delete(additionalProperties, "tags")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

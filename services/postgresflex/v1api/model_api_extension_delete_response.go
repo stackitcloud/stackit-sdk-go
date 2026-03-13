@@ -20,8 +20,11 @@ var _ MappedNullable = &ApiExtensionDeleteResponse{}
 
 // ApiExtensionDeleteResponse struct for ApiExtensionDeleteResponse
 type ApiExtensionDeleteResponse struct {
-	IsSucceded *bool `json:"isSucceded,omitempty"`
+	IsSucceded           *bool `json:"isSucceded,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiExtensionDeleteResponse ApiExtensionDeleteResponse
 
 // NewApiExtensionDeleteResponse instantiates a new ApiExtensionDeleteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ApiExtensionDeleteResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsSucceded) {
 		toSerialize["isSucceded"] = o.IsSucceded
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ApiExtensionDeleteResponse) UnmarshalJSON(data []byte) (err error) {
+	varApiExtensionDeleteResponse := _ApiExtensionDeleteResponse{}
+
+	err = json.Unmarshal(data, &varApiExtensionDeleteResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ApiExtensionDeleteResponse(varApiExtensionDeleteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "isSucceded")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableApiExtensionDeleteResponse struct {

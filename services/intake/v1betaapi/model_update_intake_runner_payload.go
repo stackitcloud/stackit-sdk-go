@@ -28,8 +28,11 @@ type UpdateIntakeRunnerPayload struct {
 	// The maximum size of a message in kibibytes (1 KiB = 1024 bytes).
 	MaxMessageSizeKiB *int32 `json:"maxMessageSizeKiB,omitempty"`
 	// The maximum number of messages per hour.
-	MaxMessagesPerHour *int32 `json:"maxMessagesPerHour,omitempty"`
+	MaxMessagesPerHour   *int32 `json:"maxMessagesPerHour,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateIntakeRunnerPayload UpdateIntakeRunnerPayload
 
 // NewUpdateIntakeRunnerPayload instantiates a new UpdateIntakeRunnerPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -234,7 +237,37 @@ func (o UpdateIntakeRunnerPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MaxMessagesPerHour) {
 		toSerialize["maxMessagesPerHour"] = o.MaxMessagesPerHour
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateIntakeRunnerPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateIntakeRunnerPayload := _UpdateIntakeRunnerPayload{}
+
+	err = json.Unmarshal(data, &varUpdateIntakeRunnerPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateIntakeRunnerPayload(varUpdateIntakeRunnerPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "maxMessageSizeKiB")
+		delete(additionalProperties, "maxMessagesPerHour")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateIntakeRunnerPayload struct {

@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,9 +27,10 @@ type CreateWrappingKeyPayload struct {
 	// A user chosen description to distinguish multiple wrapping keys.
 	Description *string `json:"description,omitempty"`
 	// The display name to distinguish multiple wrapping keys. Valid characters: letters, digits, underscores and hyphens.
-	DisplayName string          `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
-	Protection  *Protection     `json:"protection,omitempty"`
-	Purpose     WrappingPurpose `json:"purpose"`
+	DisplayName          string          `json:"displayName" validate:"regexp=^[a-zA-Z0-9_-]+$"`
+	Protection           *Protection     `json:"protection,omitempty"`
+	Purpose              WrappingPurpose `json:"purpose"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateWrappingKeyPayload CreateWrappingKeyPayload
@@ -278,6 +278,11 @@ func (o CreateWrappingKeyPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["protection"] = o.Protection
 	}
 	toSerialize["purpose"] = o.Purpose
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -308,15 +313,26 @@ func (o *CreateWrappingKeyPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateWrappingKeyPayload := _CreateWrappingKeyPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateWrappingKeyPayload)
+	err = json.Unmarshal(data, &varCreateWrappingKeyPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateWrappingKeyPayload(varCreateWrappingKeyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access_scope")
+		delete(additionalProperties, "algorithm")
+		delete(additionalProperties, "backend")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "protection")
+		delete(additionalProperties, "purpose")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
