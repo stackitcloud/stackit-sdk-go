@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,10 +20,11 @@ var _ MappedNullable = &UserMembership{}
 
 // UserMembership struct for UserMembership
 type UserMembership struct {
-	ResourceId   string `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
-	ResourceType string `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
-	Role         string `json:"role" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
-	Subject      string `json:"subject"`
+	ResourceId           string `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
+	ResourceType         string `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	Role                 string `json:"role" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Subject              string `json:"subject"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserMembership UserMembership
@@ -160,6 +160,11 @@ func (o UserMembership) ToMap() (map[string]interface{}, error) {
 	toSerialize["resourceType"] = o.ResourceType
 	toSerialize["role"] = o.Role
 	toSerialize["subject"] = o.Subject
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -190,15 +195,23 @@ func (o *UserMembership) UnmarshalJSON(data []byte) (err error) {
 
 	varUserMembership := _UserMembership{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserMembership)
+	err = json.Unmarshal(data, &varUserMembership)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserMembership(varUserMembership)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "resourceId")
+		delete(additionalProperties, "resourceType")
+		delete(additionalProperties, "role")
+		delete(additionalProperties, "subject")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

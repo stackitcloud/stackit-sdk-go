@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &WrappingKeyList{}
 
 // WrappingKeyList struct for WrappingKeyList
 type WrappingKeyList struct {
-	WrappingKeys []WrappingKey `json:"wrappingKeys"`
+	WrappingKeys         []WrappingKey `json:"wrappingKeys"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WrappingKeyList WrappingKeyList
@@ -79,6 +79,11 @@ func (o WrappingKeyList) MarshalJSON() ([]byte, error) {
 func (o WrappingKeyList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["wrappingKeys"] = o.WrappingKeys
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *WrappingKeyList) UnmarshalJSON(data []byte) (err error) {
 
 	varWrappingKeyList := _WrappingKeyList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWrappingKeyList)
+	err = json.Unmarshal(data, &varWrappingKeyList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WrappingKeyList(varWrappingKeyList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "wrappingKeys")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

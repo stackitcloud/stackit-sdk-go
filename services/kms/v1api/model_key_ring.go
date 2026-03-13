@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type KeyRing struct {
 	// A auto generated unique id which identifies the key ring.
 	Id string `json:"id"`
 	// The current state of the key ring.
-	State string `json:"state"`
+	State                string `json:"state"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _KeyRing KeyRing
@@ -202,6 +202,11 @@ func (o KeyRing) ToMap() (map[string]interface{}, error) {
 	toSerialize["displayName"] = o.DisplayName
 	toSerialize["id"] = o.Id
 	toSerialize["state"] = o.State
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -232,15 +237,24 @@ func (o *KeyRing) UnmarshalJSON(data []byte) (err error) {
 
 	varKeyRing := _KeyRing{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKeyRing)
+	err = json.Unmarshal(data, &varKeyRing)
 
 	if err != nil {
 		return err
 	}
 
 	*o = KeyRing(varKeyRing)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

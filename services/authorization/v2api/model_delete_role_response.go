@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &DeleteRoleResponse{}
 
 // DeleteRoleResponse struct for DeleteRoleResponse
 type DeleteRoleResponse struct {
-	WrittenAt Zookie `json:"writtenAt"`
+	WrittenAt            Zookie `json:"writtenAt"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeleteRoleResponse DeleteRoleResponse
@@ -79,6 +79,11 @@ func (o DeleteRoleResponse) MarshalJSON() ([]byte, error) {
 func (o DeleteRoleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["writtenAt"] = o.WrittenAt
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *DeleteRoleResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varDeleteRoleResponse := _DeleteRoleResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeleteRoleResponse)
+	err = json.Unmarshal(data, &varDeleteRoleResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeleteRoleResponse(varDeleteRoleResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "writtenAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

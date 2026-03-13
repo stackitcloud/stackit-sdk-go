@@ -11,7 +11,6 @@ API version: 1.4.3
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -37,9 +36,10 @@ type Instance struct {
 	// The name of the secrets engine.
 	SecretsEngine string `json:"secretsEngine"`
 	// The current state of the Secrets Manager instance.
-	State              string  `json:"state"`
-	UpdateFinishedDate *string `json:"updateFinishedDate,omitempty"`
-	UpdateStartDate    *string `json:"updateStartDate,omitempty"`
+	State                string  `json:"state"`
+	UpdateFinishedDate   *string `json:"updateFinishedDate,omitempty"`
+	UpdateStartDate      *string `json:"updateStartDate,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Instance Instance
@@ -393,6 +393,11 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdateStartDate) {
 		toSerialize["updateStartDate"] = o.UpdateStartDate
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -426,15 +431,30 @@ func (o *Instance) UnmarshalJSON(data []byte) (err error) {
 
 	varInstance := _Instance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstance)
+	err = json.Unmarshal(data, &varInstance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Instance(varInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "apiUrl")
+		delete(additionalProperties, "creationFinishedDate")
+		delete(additionalProperties, "creationStartDate")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "kmsKey")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "secretCount")
+		delete(additionalProperties, "secretsEngine")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "updateFinishedDate")
+		delete(additionalProperties, "updateStartDate")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

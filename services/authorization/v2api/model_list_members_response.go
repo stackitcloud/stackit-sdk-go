@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,9 +20,10 @@ var _ MappedNullable = &ListMembersResponse{}
 
 // ListMembersResponse struct for ListMembersResponse
 type ListMembersResponse struct {
-	Members      []Member `json:"members"`
-	ResourceId   string   `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
-	ResourceType string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	Members              []Member `json:"members"`
+	ResourceId           string   `json:"resourceId" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+@.]{1,})$"`
+	ResourceType         string   `json:"resourceType" validate:"regexp=^[a-z](?:-?[a-z]){1,63}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListMembersResponse ListMembersResponse
@@ -133,6 +133,11 @@ func (o ListMembersResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["members"] = o.Members
 	toSerialize["resourceId"] = o.ResourceId
 	toSerialize["resourceType"] = o.ResourceType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -162,15 +167,22 @@ func (o *ListMembersResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListMembersResponse := _ListMembersResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListMembersResponse)
+	err = json.Unmarshal(data, &varListMembersResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListMembersResponse(varListMembersResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "resourceId")
+		delete(additionalProperties, "resourceType")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
