@@ -20,9 +20,12 @@ var _ MappedNullable = &Kubeconfig{}
 
 // Kubeconfig struct for Kubeconfig
 type Kubeconfig struct {
-	ExpirationTimestamp *time.Time `json:"expirationTimestamp,omitempty"`
-	Kubeconfig          *string    `json:"kubeconfig,omitempty"`
+	ExpirationTimestamp  *time.Time `json:"expirationTimestamp,omitempty"`
+	Kubeconfig           *string    `json:"kubeconfig,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Kubeconfig Kubeconfig
 
 // NewKubeconfig instantiates a new Kubeconfig object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o Kubeconfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Kubeconfig) {
 		toSerialize["kubeconfig"] = o.Kubeconfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Kubeconfig) UnmarshalJSON(data []byte) (err error) {
+	varKubeconfig := _Kubeconfig{}
+
+	err = json.Unmarshal(data, &varKubeconfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Kubeconfig(varKubeconfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "expirationTimestamp")
+		delete(additionalProperties, "kubeconfig")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableKubeconfig struct {

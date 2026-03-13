@@ -19,8 +19,11 @@ var _ MappedNullable = &IDPKubeconfig{}
 
 // IDPKubeconfig struct for IDPKubeconfig
 type IDPKubeconfig struct {
-	Kubeconfig *string `json:"kubeconfig,omitempty"`
+	Kubeconfig           *string `json:"kubeconfig,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IDPKubeconfig IDPKubeconfig
 
 // NewIDPKubeconfig instantiates a new IDPKubeconfig object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o IDPKubeconfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Kubeconfig) {
 		toSerialize["kubeconfig"] = o.Kubeconfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *IDPKubeconfig) UnmarshalJSON(data []byte) (err error) {
+	varIDPKubeconfig := _IDPKubeconfig{}
+
+	err = json.Unmarshal(data, &varIDPKubeconfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = IDPKubeconfig(varIDPKubeconfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kubeconfig")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableIDPKubeconfig struct {

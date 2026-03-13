@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &Image{}
 
 // Image For valid names and versions please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `machineImages`.
 type Image struct {
-	Name    string `json:"name"`
-	Version string `json:"version"`
+	Name                 string `json:"name"`
+	Version              string `json:"version"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Image Image
@@ -106,6 +106,11 @@ func (o Image) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *Image) UnmarshalJSON(data []byte) (err error) {
 
 	varImage := _Image{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImage)
+	err = json.Unmarshal(data, &varImage)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Image(varImage)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

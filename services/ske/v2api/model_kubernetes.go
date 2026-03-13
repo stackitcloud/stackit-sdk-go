@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,7 +20,8 @@ var _ MappedNullable = &Kubernetes{}
 
 // Kubernetes For valid versions please take a look at [provider-options](#tag/ProviderOptions/operation/SkeService_GetProviderOptions) `kubernetesVersions`.
 type Kubernetes struct {
-	Version string `json:"version" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	Version              string `json:"version" validate:"regexp=^\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Kubernetes Kubernetes
@@ -79,6 +79,11 @@ func (o Kubernetes) MarshalJSON() ([]byte, error) {
 func (o Kubernetes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["version"] = o.Version
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *Kubernetes) UnmarshalJSON(data []byte) (err error) {
 
 	varKubernetes := _Kubernetes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKubernetes)
+	err = json.Unmarshal(data, &varKubernetes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Kubernetes(varKubernetes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

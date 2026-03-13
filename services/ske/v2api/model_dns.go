@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type DNS struct {
 	// Enables the dns extension.
 	Enabled bool `json:"enabled"`
 	// Array of domain filters for externalDNS, e.g., *.runs.onstackit.cloud.
-	Zones []string `json:"zones,omitempty"`
+	Zones                []string `json:"zones,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DNS DNS
@@ -117,6 +117,11 @@ func (o DNS) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Zones) {
 		toSerialize["zones"] = o.Zones
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -144,15 +149,21 @@ func (o *DNS) UnmarshalJSON(data []byte) (err error) {
 
 	varDNS := _DNS{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDNS)
+	err = json.Unmarshal(data, &varDNS)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DNS(varDNS)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "zones")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

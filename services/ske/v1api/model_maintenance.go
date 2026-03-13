@@ -11,7 +11,6 @@ API version: 1.1
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,8 +20,9 @@ var _ MappedNullable = &Maintenance{}
 
 // Maintenance struct for Maintenance
 type Maintenance struct {
-	AutoUpdate MaintenanceAutoUpdate `json:"autoUpdate"`
-	TimeWindow TimeWindow            `json:"timeWindow"`
+	AutoUpdate           MaintenanceAutoUpdate `json:"autoUpdate"`
+	TimeWindow           TimeWindow            `json:"timeWindow"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Maintenance Maintenance
@@ -106,6 +106,11 @@ func (o Maintenance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["autoUpdate"] = o.AutoUpdate
 	toSerialize["timeWindow"] = o.TimeWindow
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -134,15 +139,21 @@ func (o *Maintenance) UnmarshalJSON(data []byte) (err error) {
 
 	varMaintenance := _Maintenance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMaintenance)
+	err = json.Unmarshal(data, &varMaintenance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Maintenance(varMaintenance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "autoUpdate")
+		delete(additionalProperties, "timeWindow")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -19,8 +19,11 @@ var _ MappedNullable = &LoginKubeconfig{}
 
 // LoginKubeconfig struct for LoginKubeconfig
 type LoginKubeconfig struct {
-	Kubeconfig *string `json:"kubeconfig,omitempty"`
+	Kubeconfig           *string `json:"kubeconfig,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoginKubeconfig LoginKubeconfig
 
 // NewLoginKubeconfig instantiates a new LoginKubeconfig object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o LoginKubeconfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Kubeconfig) {
 		toSerialize["kubeconfig"] = o.Kubeconfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoginKubeconfig) UnmarshalJSON(data []byte) (err error) {
+	varLoginKubeconfig := _LoginKubeconfig{}
+
+	err = json.Unmarshal(data, &varLoginKubeconfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoginKubeconfig(varLoginKubeconfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kubeconfig")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoginKubeconfig struct {

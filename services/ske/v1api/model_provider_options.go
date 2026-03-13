@@ -19,12 +19,15 @@ var _ MappedNullable = &ProviderOptions{}
 
 // ProviderOptions struct for ProviderOptions
 type ProviderOptions struct {
-	AvailabilityZones  []AvailabilityZone  `json:"availabilityZones,omitempty"`
-	KubernetesVersions []KubernetesVersion `json:"kubernetesVersions,omitempty"`
-	MachineImages      []MachineImage      `json:"machineImages,omitempty"`
-	MachineTypes       []MachineType       `json:"machineTypes,omitempty"`
-	VolumeTypes        []VolumeType        `json:"volumeTypes,omitempty"`
+	AvailabilityZones    []AvailabilityZone  `json:"availabilityZones,omitempty"`
+	KubernetesVersions   []KubernetesVersion `json:"kubernetesVersions,omitempty"`
+	MachineImages        []MachineImage      `json:"machineImages,omitempty"`
+	MachineTypes         []MachineType       `json:"machineTypes,omitempty"`
+	VolumeTypes          []VolumeType        `json:"volumeTypes,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProviderOptions ProviderOptions
 
 // NewProviderOptions instantiates a new ProviderOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -228,7 +231,37 @@ func (o ProviderOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.VolumeTypes) {
 		toSerialize["volumeTypes"] = o.VolumeTypes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProviderOptions) UnmarshalJSON(data []byte) (err error) {
+	varProviderOptions := _ProviderOptions{}
+
+	err = json.Unmarshal(data, &varProviderOptions)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProviderOptions(varProviderOptions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "availabilityZones")
+		delete(additionalProperties, "kubernetesVersions")
+		delete(additionalProperties, "machineImages")
+		delete(additionalProperties, "machineTypes")
+		delete(additionalProperties, "volumeTypes")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProviderOptions struct {

@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type Observability struct {
 	// Enables the Observability extension.
 	Enabled bool `json:"enabled"`
 	// Instance ID to choose which Observability instance is used.
-	InstanceId string `json:"instanceId"`
+	InstanceId           string `json:"instanceId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Observability Observability
@@ -108,6 +108,11 @@ func (o Observability) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["instanceId"] = o.InstanceId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *Observability) UnmarshalJSON(data []byte) (err error) {
 
 	varObservability := _Observability{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varObservability)
+	err = json.Unmarshal(data, &varObservability)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Observability(varObservability)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "instanceId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

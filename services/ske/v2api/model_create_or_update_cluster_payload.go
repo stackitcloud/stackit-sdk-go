@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,14 +20,15 @@ var _ MappedNullable = &CreateOrUpdateClusterPayload{}
 
 // CreateOrUpdateClusterPayload struct for CreateOrUpdateClusterPayload
 type CreateOrUpdateClusterPayload struct {
-	Access      *Access        `json:"access,omitempty"`
-	Extensions  *Extension     `json:"extensions,omitempty"`
-	Hibernation *Hibernation   `json:"hibernation,omitempty"`
-	Kubernetes  Kubernetes     `json:"kubernetes"`
-	Maintenance *Maintenance   `json:"maintenance,omitempty"`
-	Network     *Network       `json:"network,omitempty"`
-	Nodepools   []Nodepool     `json:"nodepools"`
-	Status      *ClusterStatus `json:"status,omitempty"`
+	Access               *Access        `json:"access,omitempty"`
+	Extensions           *Extension     `json:"extensions,omitempty"`
+	Hibernation          *Hibernation   `json:"hibernation,omitempty"`
+	Kubernetes           Kubernetes     `json:"kubernetes"`
+	Maintenance          *Maintenance   `json:"maintenance,omitempty"`
+	Network              *Network       `json:"network,omitempty"`
+	Nodepools            []Nodepool     `json:"nodepools"`
+	Status               *ClusterStatus `json:"status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateOrUpdateClusterPayload CreateOrUpdateClusterPayload
@@ -322,6 +322,11 @@ func (o CreateOrUpdateClusterPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -350,15 +355,27 @@ func (o *CreateOrUpdateClusterPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateOrUpdateClusterPayload := _CreateOrUpdateClusterPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateOrUpdateClusterPayload)
+	err = json.Unmarshal(data, &varCreateOrUpdateClusterPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateOrUpdateClusterPayload(varCreateOrUpdateClusterPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "access")
+		delete(additionalProperties, "extensions")
+		delete(additionalProperties, "hibernation")
+		delete(additionalProperties, "kubernetes")
+		delete(additionalProperties, "maintenance")
+		delete(additionalProperties, "network")
+		delete(additionalProperties, "nodepools")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

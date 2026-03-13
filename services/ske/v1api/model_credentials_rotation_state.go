@@ -25,8 +25,11 @@ type CredentialsRotationState struct {
 	// Format: `2024-02-15T11:06:29Z`
 	LastInitiationTime *time.Time `json:"lastInitiationTime,omitempty"`
 	// Phase of the credentials rotation. `NEVER` indicates that no credentials rotation has been performed using the new credentials rotation endpoints yet.
-	Phase *string `json:"phase,omitempty"`
+	Phase                *string `json:"phase,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CredentialsRotationState CredentialsRotationState
 
 // NewCredentialsRotationState instantiates a new CredentialsRotationState object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o CredentialsRotationState) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Phase) {
 		toSerialize["phase"] = o.Phase
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *CredentialsRotationState) UnmarshalJSON(data []byte) (err error) {
+	varCredentialsRotationState := _CredentialsRotationState{}
+
+	err = json.Unmarshal(data, &varCredentialsRotationState)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CredentialsRotationState(varCredentialsRotationState)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "lastCompletionTime")
+		delete(additionalProperties, "lastInitiationTime")
+		delete(additionalProperties, "phase")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableCredentialsRotationState struct {
