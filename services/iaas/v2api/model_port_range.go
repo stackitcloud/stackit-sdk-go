@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type PortRange struct {
 	// The maximum port number. Should be greater or equal to the minimum.
 	Max int64 `json:"max"`
 	// The minimum port number. Should be less or equal to the maximum.
-	Min int64 `json:"min"`
+	Min                  int64 `json:"min"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PortRange PortRange
@@ -109,6 +109,11 @@ func (o PortRange) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["max"] = o.Max
 	toSerialize["min"] = o.Min
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *PortRange) UnmarshalJSON(data []byte) (err error) {
 
 	varPortRange := _PortRange{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPortRange)
+	err = json.Unmarshal(data, &varPortRange)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PortRange(varPortRange)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "max")
+		delete(additionalProperties, "min")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

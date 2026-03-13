@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -40,7 +39,8 @@ type AddRoutingTableToAreaPayload struct {
 	// A config setting for a routing table which allows installation of automatic system routes for connectivity between projects in the same SNA.
 	SystemRoutes *bool `json:"systemRoutes,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AddRoutingTableToAreaPayload AddRoutingTableToAreaPayload
@@ -386,6 +386,11 @@ func (o AddRoutingTableToAreaPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -413,15 +418,28 @@ func (o *AddRoutingTableToAreaPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varAddRoutingTableToAreaPayload := _AddRoutingTableToAreaPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAddRoutingTableToAreaPayload)
+	err = json.Unmarshal(data, &varAddRoutingTableToAreaPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AddRoutingTableToAreaPayload(varAddRoutingTableToAreaPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "default")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "dynamicRoutes")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "systemRoutes")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type AffinityGroup struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
 	// The affinity group policy. `hard-affinity`: All servers in this group will be hosted on the same compute node. `soft-affinity`: All servers in this group will be hosted on as few compute nodes as possible. `hard-anti-affinity`: All servers in this group will be hosted on different compute nodes. `soft-anti-affinity`: All servers in this group will be hosted on as many compute nodes as possible. Possible values: `hard-anti-affinity`, `hard-affinity`, `soft-anti-affinity`, `soft-affinity`.
-	Policy string `json:"policy"`
+	Policy               string `json:"policy"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AffinityGroup AffinityGroup
@@ -183,6 +183,11 @@ func (o AffinityGroup) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["policy"] = o.Policy
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -211,15 +216,23 @@ func (o *AffinityGroup) UnmarshalJSON(data []byte) (err error) {
 
 	varAffinityGroup := _AffinityGroup{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAffinityGroup)
+	err = json.Unmarshal(data, &varAffinityGroup)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AffinityGroup(varAffinityGroup)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "members")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "policy")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -29,7 +28,8 @@ type ServerMaintenance struct {
 	// Start of the maintenance window.
 	StartsAt time.Time `json:"startsAt"`
 	// Possible values: `PLANNED`, `ONGOING`.
-	Status string `json:"status"`
+	Status               string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServerMaintenance ServerMaintenance
@@ -174,6 +174,11 @@ func (o ServerMaintenance) ToMap() (map[string]interface{}, error) {
 	toSerialize["endsAt"] = o.EndsAt
 	toSerialize["startsAt"] = o.StartsAt
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -203,15 +208,23 @@ func (o *ServerMaintenance) UnmarshalJSON(data []byte) (err error) {
 
 	varServerMaintenance := _ServerMaintenance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServerMaintenance)
+	err = json.Unmarshal(data, &varServerMaintenance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServerMaintenance(varServerMaintenance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "endsAt")
+		delete(additionalProperties, "startsAt")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

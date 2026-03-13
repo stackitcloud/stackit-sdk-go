@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -33,7 +32,8 @@ type CreateNetworkPayload struct {
 	// Shows if the network is routed and therefore accessible from other networks.
 	Routed *bool `json:"routed,omitempty"`
 	// Universally Unique Identifier (UUID).
-	RoutingTableId *string `json:"routingTableId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	RoutingTableId       *string `json:"routingTableId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateNetworkPayload CreateNetworkPayload
@@ -305,6 +305,11 @@ func (o CreateNetworkPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RoutingTableId) {
 		toSerialize["routingTableId"] = o.RoutingTableId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -332,15 +337,26 @@ func (o *CreateNetworkPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateNetworkPayload := _CreateNetworkPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateNetworkPayload)
+	err = json.Unmarshal(data, &varCreateNetworkPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateNetworkPayload(varCreateNetworkPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dhcp")
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "ipv6")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "routed")
+		delete(additionalProperties, "routingTableId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -25,8 +25,11 @@ type V2beta1UpdateSnapshotPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name                 *string `json:"name,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _V2beta1UpdateSnapshotPayload V2beta1UpdateSnapshotPayload
 
 // NewV2beta1UpdateSnapshotPayload instantiates a new V2beta1UpdateSnapshotPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -160,7 +163,35 @@ func (o V2beta1UpdateSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *V2beta1UpdateSnapshotPayload) UnmarshalJSON(data []byte) (err error) {
+	varV2beta1UpdateSnapshotPayload := _V2beta1UpdateSnapshotPayload{}
+
+	err = json.Unmarshal(data, &varV2beta1UpdateSnapshotPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = V2beta1UpdateSnapshotPayload(varV2beta1UpdateSnapshotPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableV2beta1UpdateSnapshotPayload struct {

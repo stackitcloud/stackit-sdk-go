@@ -21,8 +21,11 @@ var _ MappedNullable = &V2beta1UpdateRouteOfAreaPayload{}
 // V2beta1UpdateRouteOfAreaPayload Object that represents the request body for a route update.
 type V2beta1UpdateRouteOfAreaPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
-	Labels map[string]interface{} `json:"labels,omitempty"`
+	Labels               map[string]interface{} `json:"labels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _V2beta1UpdateRouteOfAreaPayload V2beta1UpdateRouteOfAreaPayload
 
 // NewV2beta1UpdateRouteOfAreaPayload instantiates a new V2beta1UpdateRouteOfAreaPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o V2beta1UpdateRouteOfAreaPayload) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *V2beta1UpdateRouteOfAreaPayload) UnmarshalJSON(data []byte) (err error) {
+	varV2beta1UpdateRouteOfAreaPayload := _V2beta1UpdateRouteOfAreaPayload{}
+
+	err = json.Unmarshal(data, &varV2beta1UpdateRouteOfAreaPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = V2beta1UpdateRouteOfAreaPayload(varV2beta1UpdateRouteOfAreaPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableV2beta1UpdateRouteOfAreaPayload struct {

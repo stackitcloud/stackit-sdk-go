@@ -28,8 +28,11 @@ type ImageShareConsumer struct {
 	// Universally Unique Identifier (UUID).
 	ImageId *string `json:"imageId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ImageShareConsumer ImageShareConsumer
 
 // NewImageShareConsumer instantiates a new ImageShareConsumer object
 // This constructor will assign default values to properties that have it defined,
@@ -198,7 +201,36 @@ func (o ImageShareConsumer) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ImageShareConsumer) UnmarshalJSON(data []byte) (err error) {
+	varImageShareConsumer := _ImageShareConsumer{}
+
+	err = json.Unmarshal(data, &varImageShareConsumer)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImageShareConsumer(varImageShareConsumer)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "consumerProjectId")
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "imageId")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableImageShareConsumer struct {

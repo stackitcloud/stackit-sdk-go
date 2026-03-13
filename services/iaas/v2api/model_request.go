@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -31,7 +30,8 @@ type Request struct {
 	RequestType string            `json:"requestType"`
 	Resources   []RequestResource `json:"resources"`
 	// The state of a resource object. Possible values: `CREATING`, `CREATED`, `DELETING`, `DELETED`, `FAILED`, `UPDATED`, `UPDATING`.
-	Status string `json:"status"`
+	Status               string `json:"status"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Request Request
@@ -228,6 +228,11 @@ func (o Request) ToMap() (map[string]interface{}, error) {
 	toSerialize["requestType"] = o.RequestType
 	toSerialize["resources"] = o.Resources
 	toSerialize["status"] = o.Status
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -259,15 +264,25 @@ func (o *Request) UnmarshalJSON(data []byte) (err error) {
 
 	varRequest := _Request{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRequest)
+	err = json.Unmarshal(data, &varRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Request(varRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "details")
+		delete(additionalProperties, "requestAction")
+		delete(additionalProperties, "requestId")
+		delete(additionalProperties, "requestType")
+		delete(additionalProperties, "resources")
+		delete(additionalProperties, "status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

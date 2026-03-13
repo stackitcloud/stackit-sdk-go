@@ -47,8 +47,11 @@ type NIC struct {
 	// Possible values: `ACTIVE`, `DOWN`.
 	Status *string `json:"status,omitempty"`
 	// Possible values: `server`, `metadata`, `gateway`, `none`.
-	Type *string `json:"type,omitempty"`
+	Type                 *string `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NIC NIC
 
 // NewNIC instantiates a new NIC object
 // This constructor will assign default values to properties that have it defined,
@@ -571,7 +574,46 @@ func (o NIC) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *NIC) UnmarshalJSON(data []byte) (err error) {
+	varNIC := _NIC{}
+
+	err = json.Unmarshal(data, &varNIC)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NIC(varNIC)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "allowedAddresses")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "device")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "ipv6")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "mac")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "networkId")
+		delete(additionalProperties, "nicSecurity")
+		delete(additionalProperties, "securityGroups")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableNIC struct {

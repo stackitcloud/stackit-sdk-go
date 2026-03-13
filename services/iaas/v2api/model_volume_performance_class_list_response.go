@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &VolumePerformanceClassListResponse{}
 // VolumePerformanceClassListResponse Volume performance class list response.
 type VolumePerformanceClassListResponse struct {
 	// A list containing Volume performance classes.
-	Items []VolumePerformanceClass `json:"items"`
+	Items                []VolumePerformanceClass `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _VolumePerformanceClassListResponse VolumePerformanceClassListResponse
@@ -81,6 +81,11 @@ func (o VolumePerformanceClassListResponse) MarshalJSON() ([]byte, error) {
 func (o VolumePerformanceClassListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *VolumePerformanceClassListResponse) UnmarshalJSON(data []byte) (err err
 
 	varVolumePerformanceClassListResponse := _VolumePerformanceClassListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varVolumePerformanceClassListResponse)
+	err = json.Unmarshal(data, &varVolumePerformanceClassListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = VolumePerformanceClassListResponse(varVolumePerformanceClassListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

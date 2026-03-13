@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type ImageChecksum struct {
 	// Algorithm for the checksum of the image data. Possible values: `md5`, `sha512`.
 	Algorithm string `json:"algorithm"`
 	// Hexdigest of the checksum of the image data.
-	Digest string `json:"digest" validate:"regexp=^[0-9a-f]+$"`
+	Digest               string `json:"digest" validate:"regexp=^[0-9a-f]+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImageChecksum ImageChecksum
@@ -109,6 +109,11 @@ func (o ImageChecksum) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["algorithm"] = o.Algorithm
 	toSerialize["digest"] = o.Digest
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *ImageChecksum) UnmarshalJSON(data []byte) (err error) {
 
 	varImageChecksum := _ImageChecksum{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImageChecksum)
+	err = json.Unmarshal(data, &varImageChecksum)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImageChecksum(varImageChecksum)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "algorithm")
+		delete(additionalProperties, "digest")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
