@@ -23,8 +23,11 @@ type ImageAgent struct {
 	// Default provioning of the STACKIT server agent for new servers. The default for new images is false. Can only be enabled when supported is also true.
 	ProvisionByDefault *bool `json:"provisionByDefault,omitempty"`
 	// Indicates the STACKIT server agent for the image. The default for new images is false.
-	Supported *bool `json:"supported,omitempty"`
+	Supported            *bool `json:"supported,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ImageAgent ImageAgent
 
 // NewImageAgent instantiates a new ImageAgent object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o ImageAgent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Supported) {
 		toSerialize["supported"] = o.Supported
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ImageAgent) UnmarshalJSON(data []byte) (err error) {
+	varImageAgent := _ImageAgent{}
+
+	err = json.Unmarshal(data, &varImageAgent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImageAgent(varImageAgent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "provisionByDefault")
+		delete(additionalProperties, "supported")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableImageAgent struct {

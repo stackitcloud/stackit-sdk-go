@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ var _ MappedNullable = &DestinationCIDRv4{}
 type DestinationCIDRv4 struct {
 	Type string `json:"type"`
 	// An CIDRv4 string.
-	Value string `json:"value" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	Value                string `json:"value" validate:"regexp=^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/(3[0-2]|2[0-9]|1[0-9]|[0-9]))$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DestinationCIDRv4 DestinationCIDRv4
@@ -108,6 +108,11 @@ func (o DestinationCIDRv4) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *DestinationCIDRv4) UnmarshalJSON(data []byte) (err error) {
 
 	varDestinationCIDRv4 := _DestinationCIDRv4{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDestinationCIDRv4)
+	err = json.Unmarshal(data, &varDestinationCIDRv4)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DestinationCIDRv4(varDestinationCIDRv4)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -23,8 +23,11 @@ type Protocol struct {
 	// The protocol name which the rule should match. Possible values: `ah`, `dccp`, `egp`, `esp`, `gre`, `icmp`, `igmp`, `ipip`, `ipv6-encap`, `ipv6-frag`, `ipv6-icmp`, `ipv6-nonxt`, `ipv6-opts`, `ipv6-route`, `ospf`, `pgm`, `rsvp`, `sctp`, `tcp`, `udp`, `udplite`, `vrrp`.
 	Name *string `json:"name,omitempty"`
 	// The protocol number which the rule should match.
-	Number *int64 `json:"number,omitempty"`
+	Number               *int64 `json:"number,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Protocol Protocol
 
 // NewProtocol instantiates a new Protocol object
 // This constructor will assign default values to properties that have it defined,
@@ -123,7 +126,34 @@ func (o Protocol) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Number) {
 		toSerialize["number"] = o.Number
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Protocol) UnmarshalJSON(data []byte) (err error) {
+	varProtocol := _Protocol{}
+
+	err = json.Unmarshal(data, &varProtocol)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Protocol(varProtocol)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "number")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProtocol struct {

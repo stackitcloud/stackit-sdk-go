@@ -21,8 +21,11 @@ var _ MappedNullable = &ServerAgent{}
 // ServerAgent STACKIT server agent options for a server.
 type ServerAgent struct {
 	// Configure the STACKIT server agent provisioning during the first boot of the server. Only works when booting from an images that supports the STACKIT server agent. When `false` the agent IS NOT installed. When `true` the agent IS installed. When its not set the result depend on the used image and its default provisioning setting.
-	Provisioned *bool `json:"provisioned,omitempty"`
+	Provisioned          *bool `json:"provisioned,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServerAgent ServerAgent
 
 // NewServerAgent instantiates a new ServerAgent object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o ServerAgent) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Provisioned) {
 		toSerialize["provisioned"] = o.Provisioned
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ServerAgent) UnmarshalJSON(data []byte) (err error) {
+	varServerAgent := _ServerAgent{}
+
+	err = json.Unmarshal(data, &varServerAgent)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ServerAgent(varServerAgent)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "provisioned")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableServerAgent struct {

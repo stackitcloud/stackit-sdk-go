@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -45,7 +44,8 @@ type QuotaList struct {
 	// Number of server cores.
 	Vcpu Quota `json:"vcpu"`
 	// Number of volumes.
-	Volumes Quota `json:"volumes"`
+	Volumes              Quota `json:"volumes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QuotaList QuotaList
@@ -389,6 +389,11 @@ func (o QuotaList) ToMap() (map[string]interface{}, error) {
 	toSerialize["snapshots"] = o.Snapshots
 	toSerialize["vcpu"] = o.Vcpu
 	toSerialize["volumes"] = o.Volumes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -427,15 +432,31 @@ func (o *QuotaList) UnmarshalJSON(data []byte) (err error) {
 
 	varQuotaList := _QuotaList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuotaList)
+	err = json.Unmarshal(data, &varQuotaList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = QuotaList(varQuotaList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backupGigabytes")
+		delete(additionalProperties, "backups")
+		delete(additionalProperties, "gigabytes")
+		delete(additionalProperties, "networks")
+		delete(additionalProperties, "nics")
+		delete(additionalProperties, "publicIps")
+		delete(additionalProperties, "ram")
+		delete(additionalProperties, "securityGroupRules")
+		delete(additionalProperties, "securityGroups")
+		delete(additionalProperties, "snapshots")
+		delete(additionalProperties, "vcpu")
+		delete(additionalProperties, "volumes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

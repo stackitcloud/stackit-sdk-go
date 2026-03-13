@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -33,7 +32,8 @@ type NetworkArea struct {
 	// The amount of projects currently referencing a specific area.
 	ProjectCount *int64 `json:"projectCount,omitempty"`
 	// Date-time when resource was last updated.
-	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+	UpdatedAt            *time.Time `json:"updatedAt,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _NetworkArea NetworkArea
@@ -266,6 +266,11 @@ func (o NetworkArea) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -293,15 +298,25 @@ func (o *NetworkArea) UnmarshalJSON(data []byte) (err error) {
 
 	varNetworkArea := _NetworkArea{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetworkArea)
+	err = json.Unmarshal(data, &varNetworkArea)
 
 	if err != nil {
 		return err
 	}
 
 	*o = NetworkArea(varNetworkArea)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "createdAt")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "projectCount")
+		delete(additionalProperties, "updatedAt")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

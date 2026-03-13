@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ServerListResponse{}
 // ServerListResponse Response object for server list request.
 type ServerListResponse struct {
 	// A list of servers.
-	Items []Server `json:"items"`
+	Items                []Server `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ServerListResponse ServerListResponse
@@ -81,6 +81,11 @@ func (o ServerListResponse) MarshalJSON() ([]byte, error) {
 func (o ServerListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ServerListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varServerListResponse := _ServerListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varServerListResponse)
+	err = json.Unmarshal(data, &varServerListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ServerListResponse(varServerListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

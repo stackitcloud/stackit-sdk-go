@@ -23,8 +23,11 @@ type UpdateNetworkIPv4Body struct {
 	// The IPv4 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway NullableString `json:"gateway,omitempty" validate:"regexp=^\\\\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\\\s*$"`
 	// A list containing DNS Servers/Nameservers for IPv4.
-	Nameservers []string `json:"nameservers,omitempty"`
+	Nameservers          []string `json:"nameservers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateNetworkIPv4Body UpdateNetworkIPv4Body
 
 // NewUpdateNetworkIPv4Body instantiates a new UpdateNetworkIPv4Body object
 // This constructor will assign default values to properties that have it defined,
@@ -134,7 +137,34 @@ func (o UpdateNetworkIPv4Body) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Nameservers) {
 		toSerialize["nameservers"] = o.Nameservers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateNetworkIPv4Body) UnmarshalJSON(data []byte) (err error) {
+	varUpdateNetworkIPv4Body := _UpdateNetworkIPv4Body{}
+
+	err = json.Unmarshal(data, &varUpdateNetworkIPv4Body)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateNetworkIPv4Body(varUpdateNetworkIPv4Body)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "nameservers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateNetworkIPv4Body struct {

@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &KeyPairListResponse{}
 // KeyPairListResponse SSH keypair list response.
 type KeyPairListResponse struct {
 	// A list of SSH keypairs.
-	Items []Keypair `json:"items"`
+	Items                []Keypair `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _KeyPairListResponse KeyPairListResponse
@@ -81,6 +81,11 @@ func (o KeyPairListResponse) MarshalJSON() ([]byte, error) {
 func (o KeyPairListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *KeyPairListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varKeyPairListResponse := _KeyPairListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varKeyPairListResponse)
+	err = json.Unmarshal(data, &varKeyPairListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = KeyPairListResponse(varKeyPairListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

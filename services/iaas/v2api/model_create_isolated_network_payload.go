@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type CreateIsolatedNetworkPayload struct {
 	// Object that represents the labels of an object. Regex for keys: `^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$`. Regex for values: `^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$`. Providing a `null` value for a key will remove that key. The `stackit-` prefix is reserved and cannot be used for Keys.
 	Labels map[string]interface{} `json:"labels,omitempty"`
 	// The name for a General Object. Matches Names and also UUIDs.
-	Name string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	Name                 string `json:"name" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateIsolatedNetworkPayload CreateIsolatedNetworkPayload
@@ -195,6 +195,11 @@ func (o CreateIsolatedNetworkPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["labels"] = o.Labels
 	}
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -222,15 +227,23 @@ func (o *CreateIsolatedNetworkPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateIsolatedNetworkPayload := _CreateIsolatedNetworkPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateIsolatedNetworkPayload)
+	err = json.Unmarshal(data, &varCreateIsolatedNetworkPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateIsolatedNetworkPayload(varCreateIsolatedNetworkPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "dhcp")
+		delete(additionalProperties, "ipv4")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

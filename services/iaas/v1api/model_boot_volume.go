@@ -27,9 +27,12 @@ type BootVolume struct {
 	// The name for a General Object. Matches Names and also UUIDs.
 	PerformanceClass *string `json:"performanceClass,omitempty" validate:"regexp=^[A-Za-z0-9]+([ \\/._-]*[A-Za-z0-9]+)*$"`
 	// Size in Gigabyte.
-	Size   *int64            `json:"size,omitempty"`
-	Source *BootVolumeSource `json:"source,omitempty"`
+	Size                 *int64            `json:"size,omitempty"`
+	Source               *BootVolumeSource `json:"source,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _BootVolume BootVolume
 
 // NewBootVolume instantiates a new BootVolume object
 // This constructor will assign default values to properties that have it defined,
@@ -233,7 +236,37 @@ func (o BootVolume) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Source) {
 		toSerialize["source"] = o.Source
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *BootVolume) UnmarshalJSON(data []byte) (err error) {
+	varBootVolume := _BootVolume{}
+
+	err = json.Unmarshal(data, &varBootVolume)
+
+	if err != nil {
+		return err
+	}
+
+	*o = BootVolume(varBootVolume)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "deleteOnTermination")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "performanceClass")
+		delete(additionalProperties, "size")
+		delete(additionalProperties, "source")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableBootVolume struct {

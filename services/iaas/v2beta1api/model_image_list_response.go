@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2beta1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ImageListResponse{}
 // ImageListResponse Image list response.
 type ImageListResponse struct {
 	// A list containing image objects.
-	Items []Image `json:"items"`
+	Items                []Image `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImageListResponse ImageListResponse
@@ -81,6 +81,11 @@ func (o ImageListResponse) MarshalJSON() ([]byte, error) {
 func (o ImageListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ImageListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varImageListResponse := _ImageListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImageListResponse)
+	err = json.Unmarshal(data, &varImageListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImageListResponse(varImageListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

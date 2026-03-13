@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &RoutingTableListResponse{}
 // RoutingTableListResponse Routing table response.
 type RoutingTableListResponse struct {
 	// A list of routing tables.
-	Items []RoutingTable `json:"items"`
+	Items                []RoutingTable `json:"items"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _RoutingTableListResponse RoutingTableListResponse
@@ -81,6 +81,11 @@ func (o RoutingTableListResponse) MarshalJSON() ([]byte, error) {
 func (o RoutingTableListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["items"] = o.Items
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *RoutingTableListResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varRoutingTableListResponse := _RoutingTableListResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRoutingTableListResponse)
+	err = json.Unmarshal(data, &varRoutingTableListResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = RoutingTableListResponse(varRoutingTableListResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

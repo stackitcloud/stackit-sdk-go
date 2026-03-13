@@ -23,8 +23,11 @@ type UpdateNetworkIPv6Body struct {
 	// The IPv6 gateway of a network. If not specified the first IP of the network will be assigned as the gateway. If 'null' is sent, then the network doesn't have a gateway.
 	Gateway NullableString `json:"gateway,omitempty" validate:"regexp=^\\\\s*((([0-9a-f]{1,4}:){7}([0-9a-f]{1,4}|:))|(([0-9a-f]{1,4}:){6}(:[0-9a-f]{1,4}|((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3})|:))|(([0-9a-f]{1,4}:){5}(((:[0-9a-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3})|:))|(([0-9a-f]{1,4}:){4}(((:[0-9a-f]{1,4}){1,3})|((:[0-9a-f]{1,4})?:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(([0-9a-f]{1,4}:){3}(((:[0-9a-f]{1,4}){1,4})|((:[0-9a-f]{1,4}){0,2}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(([0-9a-f]{1,4}:){2}(((:[0-9a-f]{1,4}){1,5})|((:[0-9a-f]{1,4}){0,3}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(([0-9a-f]{1,4}:){1}(((:[0-9a-f]{1,4}){1,6})|((:[0-9a-f]{1,4}){0,4}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:))|(:(((:[0-9a-f]{1,4}){1,7})|((:[0-9a-f]{1,4}){0,5}:((25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)(\\\\.(25[0-5]|2[0-4]\\\\d|1\\\\d\\\\d|[1-9]?\\\\d)){3}))|:)))(%.+)?\\\\s*$"`
 	// A list containing DNS Servers/Nameservers for IPv6.
-	Nameservers []string `json:"nameservers,omitempty"`
+	Nameservers          []string `json:"nameservers,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateNetworkIPv6Body UpdateNetworkIPv6Body
 
 // NewUpdateNetworkIPv6Body instantiates a new UpdateNetworkIPv6Body object
 // This constructor will assign default values to properties that have it defined,
@@ -134,7 +137,34 @@ func (o UpdateNetworkIPv6Body) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Nameservers) {
 		toSerialize["nameservers"] = o.Nameservers
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateNetworkIPv6Body) UnmarshalJSON(data []byte) (err error) {
+	varUpdateNetworkIPv6Body := _UpdateNetworkIPv6Body{}
+
+	err = json.Unmarshal(data, &varUpdateNetworkIPv6Body)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateNetworkIPv6Body(varUpdateNetworkIPv6Body)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "gateway")
+		delete(additionalProperties, "nameservers")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateNetworkIPv6Body struct {

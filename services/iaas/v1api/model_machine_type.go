@@ -12,7 +12,6 @@ Contact: stackit-iaas@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -33,7 +32,8 @@ type MachineType struct {
 	// Size in Megabyte.
 	Ram int64 `json:"ram"`
 	// The number of virtual CPUs of a server.
-	Vcpus int64 `json:"vcpus"`
+	Vcpus                int64 `json:"vcpus"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MachineType MachineType
@@ -239,6 +239,11 @@ func (o MachineType) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["ram"] = o.Ram
 	toSerialize["vcpus"] = o.Vcpus
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -269,15 +274,25 @@ func (o *MachineType) UnmarshalJSON(data []byte) (err error) {
 
 	varMachineType := _MachineType{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMachineType)
+	err = json.Unmarshal(data, &varMachineType)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MachineType(varMachineType)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "disk")
+		delete(additionalProperties, "extraSpecs")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "ram")
+		delete(additionalProperties, "vcpus")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
