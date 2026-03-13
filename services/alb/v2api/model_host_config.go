@@ -22,8 +22,11 @@ type HostConfig struct {
 	// Hostname to match. Supports wildcards (e.g. *.example.com).
 	Host *string `json:"host,omitempty"`
 	// Routing rules under the specified host, matched by path prefix.
-	Rules []Rule `json:"rules,omitempty"`
+	Rules                []Rule `json:"rules,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HostConfig HostConfig
 
 // NewHostConfig instantiates a new HostConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -122,7 +125,34 @@ func (o HostConfig) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Rules) {
 		toSerialize["rules"] = o.Rules
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *HostConfig) UnmarshalJSON(data []byte) (err error) {
+	varHostConfig := _HostConfig{}
+
+	err = json.Unmarshal(data, &varHostConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = HostConfig(varHostConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "rules")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableHostConfig struct {

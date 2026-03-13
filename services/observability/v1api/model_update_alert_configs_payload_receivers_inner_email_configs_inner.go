@@ -33,8 +33,11 @@ type UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner struct {
 	// The SMTP host through which emails are sent. `Additional Validators:` * should only include the characters: a-zA-Z0-9_./@&?:-
 	Smarthost *string `json:"smarthost,omitempty"`
 	// The email address to send notifications to. `Additional Validators:` * must be a syntactically valid email address
-	To *string `json:"to,omitempty"`
+	To                   *string `json:"to,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner
 
 // NewUpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner instantiates a new UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -312,7 +315,39 @@ func (o UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner) ToMap() (map[s
 	if !IsNil(o.To) {
 		toSerialize["to"] = o.To
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner := _UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner{}
+
+	err = json.Unmarshal(data, &varUpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner(varUpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "authIdentity")
+		delete(additionalProperties, "authPassword")
+		delete(additionalProperties, "authUsername")
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "smarthost")
+		delete(additionalProperties, "to")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAlertConfigsPayloadReceiversInnerEmailConfigsInner struct {

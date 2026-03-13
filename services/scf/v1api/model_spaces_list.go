@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &SpacesList{}
 
 // SpacesList struct for SpacesList
 type SpacesList struct {
-	Pagination Pagination `json:"pagination"`
-	Resources  []Space    `json:"resources"`
+	Pagination           Pagination `json:"pagination"`
+	Resources            []Space    `json:"resources"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpacesList SpacesList
@@ -107,6 +107,11 @@ func (o SpacesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["pagination"] = o.Pagination
 	toSerialize["resources"] = o.Resources
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *SpacesList) UnmarshalJSON(data []byte) (err error) {
 
 	varSpacesList := _SpacesList{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpacesList)
+	err = json.Unmarshal(data, &varSpacesList)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpacesList(varSpacesList)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "pagination")
+		delete(additionalProperties, "resources")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

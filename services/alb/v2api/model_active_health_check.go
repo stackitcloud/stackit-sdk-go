@@ -31,8 +31,11 @@ type ActiveHealthCheck struct {
 	// Active health checking timeout duration in seconds
 	Timeout *string `json:"timeout,omitempty" validate:"regexp=^-?(?:0|[1-9][0-9]{0,11})(?:\\\\.[0-9]{1,9})?s$"`
 	// Unhealthy threshold of the health checking
-	UnhealthyThreshold *int32 `json:"unhealthyThreshold,omitempty"`
+	UnhealthyThreshold   *int32 `json:"unhealthyThreshold,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ActiveHealthCheck ActiveHealthCheck
 
 // NewActiveHealthCheck instantiates a new ActiveHealthCheck object
 // This constructor will assign default values to properties that have it defined,
@@ -306,7 +309,39 @@ func (o ActiveHealthCheck) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UnhealthyThreshold) {
 		toSerialize["unhealthyThreshold"] = o.UnhealthyThreshold
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ActiveHealthCheck) UnmarshalJSON(data []byte) (err error) {
+	varActiveHealthCheck := _ActiveHealthCheck{}
+
+	err = json.Unmarshal(data, &varActiveHealthCheck)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ActiveHealthCheck(varActiveHealthCheck)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "altPort")
+		delete(additionalProperties, "healthyThreshold")
+		delete(additionalProperties, "httpHealthChecks")
+		delete(additionalProperties, "interval")
+		delete(additionalProperties, "intervalJitter")
+		delete(additionalProperties, "timeout")
+		delete(additionalProperties, "unhealthyThreshold")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableActiveHealthCheck struct {

@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &OrganizationCreateBffResponse{}
 
 // OrganizationCreateBffResponse struct for OrganizationCreateBffResponse
 type OrganizationCreateBffResponse struct {
-	Org   OrganizationCreateResponse `json:"org"`
-	Roles map[string]OrgRoleResponse `json:"roles"`
+	Org                  OrganizationCreateResponse `json:"org"`
+	Roles                map[string]OrgRoleResponse `json:"roles"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrganizationCreateBffResponse OrganizationCreateBffResponse
@@ -107,6 +107,11 @@ func (o OrganizationCreateBffResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["org"] = o.Org
 	toSerialize["roles"] = o.Roles
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *OrganizationCreateBffResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varOrganizationCreateBffResponse := _OrganizationCreateBffResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrganizationCreateBffResponse)
+	err = json.Unmarshal(data, &varOrganizationCreateBffResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrganizationCreateBffResponse(varOrganizationCreateBffResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "org")
+		delete(additionalProperties, "roles")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

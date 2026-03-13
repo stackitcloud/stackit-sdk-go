@@ -20,8 +20,11 @@ var _ MappedNullable = &ListRestoreJobsResponse{}
 
 // ListRestoreJobsResponse struct for ListRestoreJobsResponse
 type ListRestoreJobsResponse struct {
-	RunningRestores []RestoreRunningRestore `json:"runningRestores,omitempty"`
+	RunningRestores      []RestoreRunningRestore `json:"runningRestores,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListRestoreJobsResponse ListRestoreJobsResponse
 
 // NewListRestoreJobsResponse instantiates a new ListRestoreJobsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ListRestoreJobsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.RunningRestores) {
 		toSerialize["runningRestores"] = o.RunningRestores
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListRestoreJobsResponse) UnmarshalJSON(data []byte) (err error) {
+	varListRestoreJobsResponse := _ListRestoreJobsResponse{}
+
+	err = json.Unmarshal(data, &varListRestoreJobsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListRestoreJobsResponse(varListRestoreJobsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "runningRestores")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListRestoreJobsResponse struct {

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &PostgresqlCheckResponse{}
 
 // PostgresqlCheckResponse struct for PostgresqlCheckResponse
 type PostgresqlCheckResponse struct {
-	Message          string                         `json:"message"`
-	PostgresqlCheck  *PostgresqlCheckChildResponse  `json:"postgresqlCheck,omitempty"`
-	PostgresqlChecks []PostgresqlCheckChildResponse `json:"postgresqlChecks"`
+	Message              string                         `json:"message"`
+	PostgresqlCheck      *PostgresqlCheckChildResponse  `json:"postgresqlCheck,omitempty"`
+	PostgresqlChecks     []PostgresqlCheckChildResponse `json:"postgresqlChecks"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PostgresqlCheckResponse PostgresqlCheckResponse
@@ -143,6 +143,11 @@ func (o PostgresqlCheckResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["postgresqlCheck"] = o.PostgresqlCheck
 	}
 	toSerialize["postgresqlChecks"] = o.PostgresqlChecks
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -171,15 +176,22 @@ func (o *PostgresqlCheckResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varPostgresqlCheckResponse := _PostgresqlCheckResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPostgresqlCheckResponse)
+	err = json.Unmarshal(data, &varPostgresqlCheckResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PostgresqlCheckResponse(varPostgresqlCheckResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "postgresqlCheck")
+		delete(additionalProperties, "postgresqlChecks")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

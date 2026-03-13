@@ -27,8 +27,11 @@ type UpdateAlertConfigReceiverPayloadWebHookConfigsInner struct {
 	// Whether to notify about resolved alerts.
 	SendResolved *bool `json:"sendResolved,omitempty"`
 	// The endpoint to send HTTP POST requests to. `Additional Validators:` * must be a syntactically valid url address
-	Url *string `json:"url,omitempty"`
+	Url                  *string `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateAlertConfigReceiverPayloadWebHookConfigsInner UpdateAlertConfigReceiverPayloadWebHookConfigsInner
 
 // NewUpdateAlertConfigReceiverPayloadWebHookConfigsInner instantiates a new UpdateAlertConfigReceiverPayloadWebHookConfigsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -209,7 +212,36 @@ func (o UpdateAlertConfigReceiverPayloadWebHookConfigsInner) ToMap() (map[string
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateAlertConfigReceiverPayloadWebHookConfigsInner) UnmarshalJSON(data []byte) (err error) {
+	varUpdateAlertConfigReceiverPayloadWebHookConfigsInner := _UpdateAlertConfigReceiverPayloadWebHookConfigsInner{}
+
+	err = json.Unmarshal(data, &varUpdateAlertConfigReceiverPayloadWebHookConfigsInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateAlertConfigReceiverPayloadWebHookConfigsInner(varUpdateAlertConfigReceiverPayloadWebHookConfigsInner)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "googleChat")
+		delete(additionalProperties, "msTeams")
+		delete(additionalProperties, "sendResolved")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateAlertConfigReceiverPayloadWebHookConfigsInner struct {

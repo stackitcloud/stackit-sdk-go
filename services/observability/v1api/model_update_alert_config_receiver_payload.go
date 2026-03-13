@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +26,9 @@ type UpdateAlertConfigReceiverPayload struct {
 	// `Additional Validators:` * must be unique * should only include the characters: a-zA-Z0-9-
 	Name string `json:"name"`
 	// Configuration for ops genie.
-	OpsgenieConfigs []UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner `json:"opsgenieConfigs,omitempty"`
-	WebHookConfigs  []UpdateAlertConfigReceiverPayloadWebHookConfigsInner  `json:"webHookConfigs,omitempty"`
+	OpsgenieConfigs      []UpdateAlertConfigReceiverPayloadOpsgenieConfigsInner `json:"opsgenieConfigs,omitempty"`
+	WebHookConfigs       []UpdateAlertConfigReceiverPayloadWebHookConfigsInner  `json:"webHookConfigs,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UpdateAlertConfigReceiverPayload UpdateAlertConfigReceiverPayload
@@ -191,6 +191,11 @@ func (o UpdateAlertConfigReceiverPayload) ToMap() (map[string]interface{}, error
 	if !IsNil(o.WebHookConfigs) {
 		toSerialize["webHookConfigs"] = o.WebHookConfigs
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -218,15 +223,23 @@ func (o *UpdateAlertConfigReceiverPayload) UnmarshalJSON(data []byte) (err error
 
 	varUpdateAlertConfigReceiverPayload := _UpdateAlertConfigReceiverPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateAlertConfigReceiverPayload)
+	err = json.Unmarshal(data, &varUpdateAlertConfigReceiverPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateAlertConfigReceiverPayload(varUpdateAlertConfigReceiverPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "emailConfigs")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "opsgenieConfigs")
+		delete(additionalProperties, "webHookConfigs")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

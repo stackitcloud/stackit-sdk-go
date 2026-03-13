@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,11 +20,12 @@ var _ MappedNullable = &Restore{}
 
 // Restore struct for Restore
 type Restore struct {
-	BackupId    int32   `json:"backup_id"`
-	FinishedAt  string  `json:"finished_at"`
-	Id          int32   `json:"id"`
-	Status      string  `json:"status"`
-	TriggeredAt *string `json:"triggered_at,omitempty"`
+	BackupId             int32   `json:"backup_id"`
+	FinishedAt           string  `json:"finished_at"`
+	Id                   int32   `json:"id"`
+	Status               string  `json:"status"`
+	TriggeredAt          *string `json:"triggered_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Restore Restore
@@ -196,6 +196,11 @@ func (o Restore) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TriggeredAt) {
 		toSerialize["triggered_at"] = o.TriggeredAt
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -226,15 +231,24 @@ func (o *Restore) UnmarshalJSON(data []byte) (err error) {
 
 	varRestore := _Restore{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRestore)
+	err = json.Unmarshal(data, &varRestore)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Restore(varRestore)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backup_id")
+		delete(additionalProperties, "finished_at")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "triggered_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

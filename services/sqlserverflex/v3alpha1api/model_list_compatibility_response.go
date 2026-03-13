@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &ListCompatibilityResponse{}
 // ListCompatibilityResponse struct for ListCompatibilityResponse
 type ListCompatibilityResponse struct {
 	// List of compatibilities available for a d
-	Compatibilities []DatabaseGetcompatibility `json:"compatibilities"`
+	Compatibilities      []DatabaseGetcompatibility `json:"compatibilities"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ListCompatibilityResponse ListCompatibilityResponse
@@ -81,6 +81,11 @@ func (o ListCompatibilityResponse) MarshalJSON() ([]byte, error) {
 func (o ListCompatibilityResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["compatibilities"] = o.Compatibilities
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *ListCompatibilityResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varListCompatibilityResponse := _ListCompatibilityResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varListCompatibilityResponse)
+	err = json.Unmarshal(data, &varListCompatibilityResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ListCompatibilityResponse(varListCompatibilityResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "compatibilities")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

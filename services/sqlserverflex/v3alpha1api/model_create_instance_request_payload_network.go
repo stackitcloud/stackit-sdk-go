@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ var _ MappedNullable = &CreateInstanceRequestPayloadNetwork{}
 type CreateInstanceRequestPayloadNetwork struct {
 	AccessScope *InstanceNetworkAccessScope `json:"accessScope,omitempty"`
 	// List of IPV4 cidr.
-	Acl []string `json:"acl"`
+	Acl                  []string `json:"acl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstanceRequestPayloadNetwork CreateInstanceRequestPayloadNetwork
@@ -121,6 +121,11 @@ func (o CreateInstanceRequestPayloadNetwork) ToMap() (map[string]interface{}, er
 		toSerialize["accessScope"] = o.AccessScope
 	}
 	toSerialize["acl"] = o.Acl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -148,15 +153,21 @@ func (o *CreateInstanceRequestPayloadNetwork) UnmarshalJSON(data []byte) (err er
 
 	varCreateInstanceRequestPayloadNetwork := _CreateInstanceRequestPayloadNetwork{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstanceRequestPayloadNetwork)
+	err = json.Unmarshal(data, &varCreateInstanceRequestPayloadNetwork)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstanceRequestPayloadNetwork(varCreateInstanceRequestPayloadNetwork)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessScope")
+		delete(additionalProperties, "acl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

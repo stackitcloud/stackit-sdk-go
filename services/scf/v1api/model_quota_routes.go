@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type QuotaRoutes struct {
 	// The value `null` means `unlimited`.
 	TotalReservedPorts NullableInt64 `json:"totalReservedPorts"`
 	// The value `null` means `unlimited`.
-	TotalRoutes NullableInt64 `json:"totalRoutes"`
+	TotalRoutes          NullableInt64 `json:"totalRoutes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _QuotaRoutes QuotaRoutes
@@ -113,6 +113,11 @@ func (o QuotaRoutes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["totalReservedPorts"] = o.TotalReservedPorts.Get()
 	toSerialize["totalRoutes"] = o.TotalRoutes.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -141,15 +146,21 @@ func (o *QuotaRoutes) UnmarshalJSON(data []byte) (err error) {
 
 	varQuotaRoutes := _QuotaRoutes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varQuotaRoutes)
+	err = json.Unmarshal(data, &varQuotaRoutes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = QuotaRoutes(varQuotaRoutes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "totalReservedPorts")
+		delete(additionalProperties, "totalRoutes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

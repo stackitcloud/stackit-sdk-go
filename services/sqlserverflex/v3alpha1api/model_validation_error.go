@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -25,7 +24,8 @@ type ValidationError struct {
 	// the http error should be always 422 for validationError
 	Code int32 `json:"code"`
 	// errors for all fields where the error happened
-	Validation []ValidationErrorValidationInner `json:"validation"`
+	Validation           []ValidationErrorValidationInner `json:"validation"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidationError ValidationError
@@ -109,6 +109,11 @@ func (o ValidationError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["code"] = o.Code
 	toSerialize["validation"] = o.Validation
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -137,15 +142,21 @@ func (o *ValidationError) UnmarshalJSON(data []byte) (err error) {
 
 	varValidationError := _ValidationError{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidationError)
+	err = json.Unmarshal(data, &varValidationError)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidationError(varValidationError)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "validation")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

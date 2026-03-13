@@ -21,8 +21,11 @@ var _ MappedNullable = &ListRulesResponse{}
 type ListRulesResponse struct {
 	Items []GetRulesResponse `json:"items,omitempty"`
 	// Continue token from the ListRulesResponse with Limit option
-	NextPageId *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListRulesResponse ListRulesResponse
 
 // NewListRulesResponse instantiates a new ListRulesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -121,7 +124,34 @@ func (o ListRulesResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.NextPageId) {
 		toSerialize["nextPageId"] = o.NextPageId
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListRulesResponse) UnmarshalJSON(data []byte) (err error) {
+	varListRulesResponse := _ListRulesResponse{}
+
+	err = json.Unmarshal(data, &varListRulesResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListRulesResponse(varListRulesResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "nextPageId")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListRulesResponse struct {

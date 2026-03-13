@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -37,7 +36,8 @@ type CreateInstancePayload struct {
 	// Storage for the instance
 	Storage *InstanceDocumentationStorage `json:"storage,omitempty"`
 	// Version of the MSSQL Server
-	Version *string `json:"version,omitempty"`
+	Version              *string `json:"version,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstancePayload CreateInstancePayload
@@ -335,6 +335,11 @@ func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Version) {
 		toSerialize["version"] = o.Version
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -363,15 +368,27 @@ func (o *CreateInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstancePayload := _CreateInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstancePayload)
+	err = json.Unmarshal(data, &varCreateInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstancePayload(varCreateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "acl")
+		delete(additionalProperties, "backupSchedule")
+		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "options")
+		delete(additionalProperties, "storage")
+		delete(additionalProperties, "version")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,8 +21,9 @@ var _ MappedNullable = &MysqlCheckChildResponse{}
 
 // MysqlCheckChildResponse struct for MysqlCheckChildResponse
 type MysqlCheckChildResponse struct {
-	Id     string `json:"id"`
-	Server string `json:"server"`
+	Id                   string `json:"id"`
+	Server               string `json:"server"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MysqlCheckChildResponse MysqlCheckChildResponse
@@ -107,6 +107,11 @@ func (o MysqlCheckChildResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["server"] = o.Server
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *MysqlCheckChildResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varMysqlCheckChildResponse := _MysqlCheckChildResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMysqlCheckChildResponse)
+	err = json.Unmarshal(data, &varMysqlCheckChildResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MysqlCheckChildResponse(varMysqlCheckChildResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "server")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

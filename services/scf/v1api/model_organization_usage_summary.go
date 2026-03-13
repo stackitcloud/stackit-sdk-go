@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,11 +21,12 @@ var _ MappedNullable = &OrganizationUsageSummary{}
 
 // OrganizationUsageSummary struct for OrganizationUsageSummary
 type OrganizationUsageSummary struct {
-	OrgId        string       `json:"orgId"`
-	PlatformId   string       `json:"platformId"`
-	ProjectId    string       `json:"projectId"`
-	Region       string       `json:"region"`
-	UsageSummary UsageSummary `json:"usageSummary"`
+	OrgId                string       `json:"orgId"`
+	PlatformId           string       `json:"platformId"`
+	ProjectId            string       `json:"projectId"`
+	Region               string       `json:"region"`
+	UsageSummary         UsageSummary `json:"usageSummary"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OrganizationUsageSummary OrganizationUsageSummary
@@ -188,6 +188,11 @@ func (o OrganizationUsageSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize["projectId"] = o.ProjectId
 	toSerialize["region"] = o.Region
 	toSerialize["usageSummary"] = o.UsageSummary
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -219,15 +224,24 @@ func (o *OrganizationUsageSummary) UnmarshalJSON(data []byte) (err error) {
 
 	varOrganizationUsageSummary := _OrganizationUsageSummary{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOrganizationUsageSummary)
+	err = json.Unmarshal(data, &varOrganizationUsageSummary)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OrganizationUsageSummary(varOrganizationUsageSummary)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "orgId")
+		delete(additionalProperties, "platformId")
+		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "usageSummary")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

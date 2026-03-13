@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &InstanceResponse{}
 
 // InstanceResponse struct for InstanceResponse
 type InstanceResponse struct {
-	Message string `json:"message"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InstanceResponse InstanceResponse
@@ -80,6 +80,11 @@ func (o InstanceResponse) MarshalJSON() ([]byte, error) {
 func (o InstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *InstanceResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varInstanceResponse := _InstanceResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstanceResponse)
+	err = json.Unmarshal(data, &varInstanceResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InstanceResponse(varInstanceResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

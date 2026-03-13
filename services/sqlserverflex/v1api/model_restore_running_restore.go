@@ -25,7 +25,10 @@ type RestoreRunningRestore struct {
 	EstimatedCompletionTime *string `json:"estimated_completion_time,omitempty"`
 	PercentComplete         *int32  `json:"percent_complete,omitempty"`
 	StartTime               *string `json:"start_time,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
+
+type _RestoreRunningRestore RestoreRunningRestore
 
 // NewRestoreRunningRestore instantiates a new RestoreRunningRestore object
 // This constructor will assign default values to properties that have it defined,
@@ -229,7 +232,37 @@ func (o RestoreRunningRestore) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StartTime) {
 		toSerialize["start_time"] = o.StartTime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *RestoreRunningRestore) UnmarshalJSON(data []byte) (err error) {
+	varRestoreRunningRestore := _RestoreRunningRestore{}
+
+	err = json.Unmarshal(data, &varRestoreRunningRestore)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RestoreRunningRestore(varRestoreRunningRestore)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "command")
+		delete(additionalProperties, "database_name")
+		delete(additionalProperties, "estimated_completion_time")
+		delete(additionalProperties, "percent_complete")
+		delete(additionalProperties, "start_time")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableRestoreRunningRestore struct {

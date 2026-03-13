@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v3alpha1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -35,7 +34,8 @@ type GetUserResponse struct {
 	// The current status of the user.
 	Status string `json:"status"`
 	// The name of the user.
-	Username string `json:"username"`
+	Username             string `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GetUserResponse GetUserResponse
@@ -249,6 +249,11 @@ func (o GetUserResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["roles"] = o.Roles
 	toSerialize["status"] = o.Status
 	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -282,15 +287,26 @@ func (o *GetUserResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varGetUserResponse := _GetUserResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGetUserResponse)
+	err = json.Unmarshal(data, &varGetUserResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GetUserResponse(varGetUserResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "default_database")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "roles")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

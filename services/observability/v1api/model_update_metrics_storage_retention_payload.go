@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,6 +27,7 @@ type UpdateMetricsStorageRetentionPayload struct {
 	MetricsRetentionTime5m string `json:"metricsRetentionTime5m"`
 	// Retention time of longtime storage of raw data. After that time the raw data will be deleted permanently. All raw resolution metrics that are older than 40 hours are downsampled at a 5m resolution. The default value is 90 days. `Additional Validators:` * Should be a valid time string (e.g. '90d'). * Should be between '2d' and '780d'. * Note: For compatibility reasons, values between '0d' and '792d' are also accepted. However, these will be automatically adjusted in the backend to the recommended range of '2d' to '780d'.
 	MetricsRetentionTimeRaw string `json:"metricsRetentionTimeRaw"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _UpdateMetricsStorageRetentionPayload UpdateMetricsStorageRetentionPayload
@@ -137,6 +137,11 @@ func (o UpdateMetricsStorageRetentionPayload) ToMap() (map[string]interface{}, e
 	toSerialize["metricsRetentionTime1h"] = o.MetricsRetentionTime1h
 	toSerialize["metricsRetentionTime5m"] = o.MetricsRetentionTime5m
 	toSerialize["metricsRetentionTimeRaw"] = o.MetricsRetentionTimeRaw
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -166,15 +171,22 @@ func (o *UpdateMetricsStorageRetentionPayload) UnmarshalJSON(data []byte) (err e
 
 	varUpdateMetricsStorageRetentionPayload := _UpdateMetricsStorageRetentionPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUpdateMetricsStorageRetentionPayload)
+	err = json.Unmarshal(data, &varUpdateMetricsStorageRetentionPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UpdateMetricsStorageRetentionPayload(varUpdateMetricsStorageRetentionPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "metricsRetentionTime1h")
+		delete(additionalProperties, "metricsRetentionTime5m")
+		delete(additionalProperties, "metricsRetentionTimeRaw")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -19,8 +19,11 @@ var _ MappedNullable = &ProtocolOptionsHTTPS{}
 
 // ProtocolOptionsHTTPS Configuration for handling HTTPS traffic on this listener.
 type ProtocolOptionsHTTPS struct {
-	CertificateConfig *CertificateConfig `json:"certificateConfig,omitempty"`
+	CertificateConfig    *CertificateConfig `json:"certificateConfig,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProtocolOptionsHTTPS ProtocolOptionsHTTPS
 
 // NewProtocolOptionsHTTPS instantiates a new ProtocolOptionsHTTPS object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o ProtocolOptionsHTTPS) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CertificateConfig) {
 		toSerialize["certificateConfig"] = o.CertificateConfig
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ProtocolOptionsHTTPS) UnmarshalJSON(data []byte) (err error) {
+	varProtocolOptionsHTTPS := _ProtocolOptionsHTTPS{}
+
+	err = json.Unmarshal(data, &varProtocolOptionsHTTPS)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ProtocolOptionsHTTPS(varProtocolOptionsHTTPS)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "certificateConfig")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableProtocolOptionsHTTPS struct {

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -32,6 +31,7 @@ type Instance struct {
 	Name                    *string   `json:"name,omitempty"`
 	Plan                    PlanModel `json:"plan"`
 	State                   *string   `json:"state,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _Instance Instance
@@ -341,6 +341,11 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -375,15 +380,29 @@ func (o *Instance) UnmarshalJSON(data []byte) (err error) {
 
 	varInstance := _Instance{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInstance)
+	err = json.Unmarshal(data, &varInstance)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Instance(varInstance)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cluster")
+		delete(additionalProperties, "grafanaPublicReadAccess")
+		delete(additionalProperties, "grafanaUseStackitSso")
+		delete(additionalProperties, "instance")
+		delete(additionalProperties, "metricsRetentionTime1h")
+		delete(additionalProperties, "metricsRetentionTime5m")
+		delete(additionalProperties, "metricsRetentionTimeRaw")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "plan")
+		delete(additionalProperties, "state")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ Contact: stackit-argus@mail.schwarz
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,9 +21,10 @@ var _ MappedNullable = &CredentialsRemoteWriteConfig{}
 
 // CredentialsRemoteWriteConfig struct for CredentialsRemoteWriteConfig
 type CredentialsRemoteWriteConfig struct {
-	CredentialsMaxLimit int32  `json:"credentialsMaxLimit"`
-	MaxLimit            int32  `json:"maxLimit"`
-	Message             string `json:"message"`
+	CredentialsMaxLimit  int32  `json:"credentialsMaxLimit"`
+	MaxLimit             int32  `json:"maxLimit"`
+	Message              string `json:"message"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CredentialsRemoteWriteConfig CredentialsRemoteWriteConfig
@@ -134,6 +134,11 @@ func (o CredentialsRemoteWriteConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize["credentialsMaxLimit"] = o.CredentialsMaxLimit
 	toSerialize["maxLimit"] = o.MaxLimit
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -163,15 +168,22 @@ func (o *CredentialsRemoteWriteConfig) UnmarshalJSON(data []byte) (err error) {
 
 	varCredentialsRemoteWriteConfig := _CredentialsRemoteWriteConfig{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentialsRemoteWriteConfig)
+	err = json.Unmarshal(data, &varCredentialsRemoteWriteConfig)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CredentialsRemoteWriteConfig(varCredentialsRemoteWriteConfig)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "credentialsMaxLimit")
+		delete(additionalProperties, "maxLimit")
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

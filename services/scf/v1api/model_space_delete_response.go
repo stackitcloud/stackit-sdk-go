@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &SpaceDeleteResponse{}
 
 // SpaceDeleteResponse struct for SpaceDeleteResponse
 type SpaceDeleteResponse struct {
-	Message string `json:"message" validate:"regexp=^[a-zA-Z0-9\\/_]+$"`
+	Message              string `json:"message" validate:"regexp=^[a-zA-Z0-9\\/_]+$"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SpaceDeleteResponse SpaceDeleteResponse
@@ -80,6 +80,11 @@ func (o SpaceDeleteResponse) MarshalJSON() ([]byte, error) {
 func (o SpaceDeleteResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *SpaceDeleteResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varSpaceDeleteResponse := _SpaceDeleteResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSpaceDeleteResponse)
+	err = json.Unmarshal(data, &varSpaceDeleteResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SpaceDeleteResponse(varSpaceDeleteResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "message")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

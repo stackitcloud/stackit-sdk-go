@@ -12,7 +12,6 @@ Contact: support@stackit.cloud
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateSpacePayload{}
 // CreateSpacePayload struct for CreateSpacePayload
 type CreateSpacePayload struct {
 	// Name of the space
-	Name string `json:"name"`
+	Name                 string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateSpacePayload CreateSpacePayload
@@ -81,6 +81,11 @@ func (o CreateSpacePayload) MarshalJSON() ([]byte, error) {
 func (o CreateSpacePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -108,15 +113,20 @@ func (o *CreateSpacePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateSpacePayload := _CreateSpacePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateSpacePayload)
+	err = json.Unmarshal(data, &varCreateSpacePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateSpacePayload(varCreateSpacePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

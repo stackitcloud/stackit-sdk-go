@@ -21,8 +21,11 @@ var _ MappedNullable = &InstanceDocumentationACL{}
 // InstanceDocumentationACL struct for InstanceDocumentationACL
 type InstanceDocumentationACL struct {
 	// a simple list with IP addresses with CIDR.
-	Items []string `json:"items,omitempty"`
+	Items                []string `json:"items,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _InstanceDocumentationACL InstanceDocumentationACL
 
 // NewInstanceDocumentationACL instantiates a new InstanceDocumentationACL object
 // This constructor will assign default values to properties that have it defined,
@@ -86,7 +89,33 @@ func (o InstanceDocumentationACL) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *InstanceDocumentationACL) UnmarshalJSON(data []byte) (err error) {
+	varInstanceDocumentationACL := _InstanceDocumentationACL{}
+
+	err = json.Unmarshal(data, &varInstanceDocumentationACL)
+
+	if err != nil {
+		return err
+	}
+
+	*o = InstanceDocumentationACL(varInstanceDocumentationACL)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInstanceDocumentationACL struct {

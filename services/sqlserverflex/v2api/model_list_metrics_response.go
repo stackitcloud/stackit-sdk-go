@@ -20,8 +20,11 @@ var _ MappedNullable = &ListMetricsResponse{}
 
 // ListMetricsResponse struct for ListMetricsResponse
 type ListMetricsResponse struct {
-	Hosts []Host `json:"hosts,omitempty"`
+	Hosts                []Host `json:"hosts,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListMetricsResponse ListMetricsResponse
 
 // NewListMetricsResponse instantiates a new ListMetricsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +88,33 @@ func (o ListMetricsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Hosts) {
 		toSerialize["hosts"] = o.Hosts
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *ListMetricsResponse) UnmarshalJSON(data []byte) (err error) {
+	varListMetricsResponse := _ListMetricsResponse{}
+
+	err = json.Unmarshal(data, &varListMetricsResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ListMetricsResponse(varListMetricsResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "hosts")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableListMetricsResponse struct {

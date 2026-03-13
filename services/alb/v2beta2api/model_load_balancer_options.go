@@ -23,8 +23,11 @@ type LoadBalancerOptions struct {
 	EphemeralAddress *bool                            `json:"ephemeralAddress,omitempty"`
 	Observability    *LoadbalancerOptionObservability `json:"observability,omitempty"`
 	// Application Load Balancer is accessible only via a private network ip address. Not changeable after creation.
-	PrivateNetworkOnly *bool `json:"privateNetworkOnly,omitempty"`
+	PrivateNetworkOnly   *bool `json:"privateNetworkOnly,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LoadBalancerOptions LoadBalancerOptions
 
 // NewLoadBalancerOptions instantiates a new LoadBalancerOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -193,7 +196,36 @@ func (o LoadBalancerOptions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PrivateNetworkOnly) {
 		toSerialize["privateNetworkOnly"] = o.PrivateNetworkOnly
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *LoadBalancerOptions) UnmarshalJSON(data []byte) (err error) {
+	varLoadBalancerOptions := _LoadBalancerOptions{}
+
+	err = json.Unmarshal(data, &varLoadBalancerOptions)
+
+	if err != nil {
+		return err
+	}
+
+	*o = LoadBalancerOptions(varLoadBalancerOptions)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessControl")
+		delete(additionalProperties, "ephemeralAddress")
+		delete(additionalProperties, "observability")
+		delete(additionalProperties, "privateNetworkOnly")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableLoadBalancerOptions struct {
