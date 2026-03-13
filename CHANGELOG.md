@@ -338,12 +338,16 @@
   - [v1.7.0](services/mongodbflex/CHANGELOG.md#v170)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `objectstorage`: [v1.5.0](services/objectstorage/CHANGELOG.md#v150)
-  - **Feature:** Introduction of multi API version support for the objectstorage SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
-  - `v1api`: New package which can be used for communication with the objectstorage v1 API
-  - `v2api`: New package which can be used for communication with the objectstorage v2 API
-  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+- `objectstorage`: 
+  - [v1.5.0](services/objectstorage/CHANGELOG.md#v150)
+    - **Feature:** Introduction of multi API version support for the objectstorage SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+    - `v1api`: New package which can be used for communication with the objectstorage v1 API
+    - `v2api`: New package which can be used for communication with the objectstorage v2 API
+    - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new packages for the available API versions instead.
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.22.0`
+  - [v1.6.0](services/objectstorage/CHANGELOG.md#v160)
+    - **Bugfix:** Disable strict decoding of API responses
+    - **Feature:** Add `AdditionalProperties` fields to model structs
 - `observability`:
   - [v0.18.0](services/observability/CHANGELOG.md#v0180)
     - **Feature:** Introduction of multi API version support for the observability SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062

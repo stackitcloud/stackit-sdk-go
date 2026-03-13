@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type DeleteBucketResponse struct {
 	// Name of the bucket
 	Bucket string `json:"bucket"`
 	// Project ID
-	Project string `json:"project"`
+	Project              string `json:"project"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeleteBucketResponse DeleteBucketResponse
@@ -108,6 +108,11 @@ func (o DeleteBucketResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["bucket"] = o.Bucket
 	toSerialize["project"] = o.Project
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *DeleteBucketResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varDeleteBucketResponse := _DeleteBucketResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeleteBucketResponse)
+	err = json.Unmarshal(data, &varDeleteBucketResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeleteBucketResponse(varDeleteBucketResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bucket")
+		delete(additionalProperties, "project")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

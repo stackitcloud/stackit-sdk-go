@@ -11,7 +11,6 @@ API version: 1.1.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -32,7 +31,8 @@ type CreateAccessKeyResponse struct {
 	// Project ID
 	Project string `json:"project"`
 	// Secret access key
-	SecretAccessKey string `json:"secretAccessKey"`
+	SecretAccessKey      string `json:"secretAccessKey"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateAccessKeyResponse CreateAccessKeyResponse
@@ -220,6 +220,11 @@ func (o CreateAccessKeyResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["keyId"] = o.KeyId
 	toSerialize["project"] = o.Project
 	toSerialize["secretAccessKey"] = o.SecretAccessKey
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -252,15 +257,25 @@ func (o *CreateAccessKeyResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateAccessKeyResponse := _CreateAccessKeyResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateAccessKeyResponse)
+	err = json.Unmarshal(data, &varCreateAccessKeyResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateAccessKeyResponse(varCreateAccessKeyResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "accessKey")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "expires")
+		delete(additionalProperties, "keyId")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "secretAccessKey")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

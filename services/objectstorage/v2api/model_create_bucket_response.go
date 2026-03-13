@@ -11,7 +11,6 @@ API version: 2.0.1
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type CreateBucketResponse struct {
 	// Name of the bucket
 	Bucket string `json:"bucket"`
 	// Project ID
-	Project string `json:"project"`
+	Project              string `json:"project"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateBucketResponse CreateBucketResponse
@@ -108,6 +108,11 @@ func (o CreateBucketResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["bucket"] = o.Bucket
 	toSerialize["project"] = o.Project
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *CreateBucketResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateBucketResponse := _CreateBucketResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateBucketResponse)
+	err = json.Unmarshal(data, &varCreateBucketResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateBucketResponse(varCreateBucketResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "bucket")
+		delete(additionalProperties, "project")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
