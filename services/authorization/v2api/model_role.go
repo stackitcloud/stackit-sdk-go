@@ -11,7 +11,6 @@ API version: 2.0
 package v2api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -21,11 +20,12 @@ var _ MappedNullable = &Role{}
 
 // Role struct for Role
 type Role struct {
-	Description string       `json:"description"`
-	Etag        *string      `json:"etag,omitempty"`
-	Id          *string      `json:"id,omitempty" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+]{1,})$"`
-	Name        string       `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
-	Permissions []Permission `json:"permissions"`
+	Description          string       `json:"description"`
+	Etag                 *string      `json:"etag,omitempty"`
+	Id                   *string      `json:"id,omitempty" validate:"regexp=^([a-zA-Z0-9\\/_|\\\\-=+]{1,})$"`
+	Name                 string       `json:"name" validate:"regexp=^[a-z](?:[-.]?[a-z]){1,63}$"`
+	Permissions          []Permission `json:"permissions"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Role Role
@@ -205,6 +205,11 @@ func (o Role) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["permissions"] = o.Permissions
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -234,15 +239,24 @@ func (o *Role) UnmarshalJSON(data []byte) (err error) {
 
 	varRole := _Role{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varRole)
+	err = json.Unmarshal(data, &varRole)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Role(varRole)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "etag")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "permissions")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
