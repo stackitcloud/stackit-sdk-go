@@ -70,67 +70,58 @@ type APIClientInterface interface {
 }
 
 // CreateBarWaitHandler will wait for Bar creation
-func CreateBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, projectId string) *wait.AsyncActionHandler[foo.GetBarResponse] {
-	handler := wait.New(func() (waitFinished bool, response *foo.GetBarResponse, err error) {
-		s, err := a.GetBarExecute(ctx, BarId, projectId)
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Id == nil || s.Status == nil {
-			return false, nil, fmt.Errorf("could not get Bar id or status from response for project %s and Bar %s", projectId, BarId)
-		}
-		if *s.Id == BarId && *s.Status == CreateSuccess {
-			return true, s, nil
-		}
-		if *s.Id == BarId && *s.Status == CreateFail {
-			return true, s, fmt.Errorf("create failed for Bar with id %s", BarId)
-		}
-		return false, nil, nil
-	})
+func CreateBarWaitHandler(ctx context.Context, a APIClientInterface, projectId, barId string) *wait.AsyncActionHandler[foo.GetBarResponse] {
+    waitConfig := wait.WaiterHelper[foo.GetBarResponse, string]{
+      FetchInstance: a.GetBar(ctx, projectId, barId).Execute,
+      GetState: func(d *foo.GetBarResponse) (string, error) {
+        if d == nil {
+          return "", errors.New("could not get bar status from response")
+        }
+        return d.Status, nil
+      },
+      ActiveState: []string{CreateSuccess},
+      ErrorState:  []string{CreateFail},
+    }
+
+    handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // UpdateBarWaitHandler will wait for Bar update
 func UpdateBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, projectId string) *wait.AsyncActionHandler[foo.GetBarResponse] {
-	handler := wait.New(func() (waitFinished bool, response *foo.GetBarResponse, err error) {
-		s, err := a.GetBarExecute(ctx, BarId, projectId)
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Id == nil || s.Status == nil {
-			return false, nil, fmt.Errorf("could not get Bar id or status from response for project %s and Bar %s", projectId, BarId)
-		}
-		if *s.Id == BarId && (*s.Status == UpdateSuccess) {
-			return true, s, nil
-		}
-		if *s.Id == BarId && (*s.Status == UpdateFail) {
-			return true, s, fmt.Errorf("update failed for Bar with id %s", BarId)
-		}
-		return false, nil, nil
-	})
+    waitConfig := wait.WaiterHelper[foo.GetBarResponse, string]{
+      FetchInstance: a.GetBar(ctx, projectId, barId).Execute,
+      GetState: func(d *foo.GetBarResponse) (string, error) {
+        if d == nil {
+          return "", errors.New("could not get bar status from response")
+        }
+        return d.Status, nil
+      },
+      ActiveState: []string{UpdateSuccess},
+      ErrorState:  []string{UpdateFail},
+    }
+
+    handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
 // DeleteBarWaitHandler will wait for Bar deletion
 func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, projectId string) *wait.AsyncActionHandler[foo.GetBarResponse] {
-	handler := wait.New(func() (waitFinished bool, response *foo.GetBarResponse, err error) {
-		s, err := a.GetBarExecute(ctx, BarId, projectId)
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Id == nil || s.Status == nil {
-			return false, nil, fmt.Errorf("could not get Bar id or status from response for project %s and Bar %s", projectId, BarId)
-		}
-		if *s.Id == BarId && *s.Status == DeleteSuccess {
-			return true, s, nil
-		}
-		if *s.Id == BarId && *s.Status == DeleteFail {
-			return true, s, fmt.Errorf("delete failed for Bar with id %s", BarId)
-		}
-		return false, nil, nil
-	})
+    waitConfig := wait.WaiterHelper[foo.GetBarResponse, string]{
+      FetchInstance: a.GetBar(ctx, projectId, barId).Execute,
+      GetState: func(d *foo.GetBarResponse) (string, error) {
+        if d == nil {
+          return "", errors.New("could not get bar status from response")
+        }
+        return d.Status, nil
+      },
+      ActiveState: []string{DeleteSuccess},
+      ErrorState:  []string{DeleteFail},
+    }
+
+    handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
@@ -141,26 +132,29 @@ func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, BarId, proj
 - The success condition may vary from service to service. In the example above we wait for the field `Status` to match a successful or failed message, but other services may have different fields and/or values to represent the state of the create, update or delete operations
 - The `id` and the `state` might not be present on the root level of the API response, this also varies from service to service. You must always match the resource `id` and the resource `state` to what is expected
 - The timeout values included above are just for reference, each resource takes different amounts of time to finish the create, update or delete operations. You should account for some buffer, e.g. 15 minutes, on top of normal execution times
-- For some resources, after a successful delete operation the resource can't be found anymore, so a call to the `Get` method would result in an error. In those cases, the waiter can be implemented by calling the `List` method and check that the resource is not present, like in this example:
+- For some resources, after a successful delete operation the resource can't be found anymore, so a call to the `Get` method would result in an error. In those cases, the WaiterHelper should have no ActiveStates configured, like in this example:
 
   ```go
   // DeleteBarWaitHandler will wait for Bar deletion
   func DeleteBarWaitHandler(ctx context.Context, a APIClientInterface, barId, projectId string) *wait.AsyncActionHandler[foo.ListBarsResponse] {
-      handler := wait.New(func() (waitFinished bool, response *foo.ListBarsResponse, err error) {
-          s, err := a.ListBarsExecute(ctx, barId, projectId)
-          if err != nil {
-              return false, nil, err
+	  waitConfig := wait.WaiterHelper[foo.GetBarResponse, string]{
+        FetchInstance: a.GetBar(ctx, projectId, barId).Execute,
+        GetState: func(d *foo.GetBarResponse) (string, error) {
+          if d == nil {
+            return "", errors.New("could not get bar status from response")
           }
-          for i := range s {
-              if *s[i].Id == barId {
-                  return false, nil, nil
-              }
-          }
-          return true, s, nil
-      })
+          return d.Status, nil
+        },
+        ActiveState: nil,
+        ErrorState:  []string{DeleteFail},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
+	  }
+  
+      handler := wait.New(waitConfig.Wait())
       handler.SetTimeout(10 * time.Minute)
       return handler
   }
+
   ```
 
 - The main objective of the waiter functions is to make sure that the operation was successful, which means any other special cases such as intermediate error states should also be handled

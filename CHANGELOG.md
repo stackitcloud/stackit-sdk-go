@@ -1,7 +1,9 @@
 ## Release (2026-DD-MM)
-
-- `core`: [v0.22.0](core/CHANGELOG.md#v0220) 
-  - **Feature:** Support Azure DevOps OIDC adapter
+- `core`:
+  - [v0.23.0](core/CHANGELOG.md#v0230)
+    - **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration
+  - [v0.22.0](core/CHANGELOG.md#v0220) 
+    - **Feature:** Support Azure DevOps OIDC adapter
 - `alb`: 
   - [v0.10.0](services/alb/CHANGELOG.md#v0100)
     - **Feature:** Add new field `AltPort` to `ActiveHealthCheck`

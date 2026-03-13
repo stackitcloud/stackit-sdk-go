@@ -136,9 +136,9 @@ func TestCreateResourcePoolWaitHandler(t *testing.T) {
 			}
 			ctx := context.Background()
 			handler := CreateResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
+			handler.SetTimeout(500 * time.Millisecond)
+			handler.SetSleepBeforeWait(0)
+			handler.SetThrottle(1)
 			response, err := handler.WaitWithContext(ctx)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
@@ -225,9 +225,9 @@ func TestUpdateResourcePoolWaitHandler(t *testing.T) {
 			}
 			ctx := context.Background()
 			handler := UpdateResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
+			handler.SetTimeout(250 * time.Millisecond)
+			handler.SetSleepBeforeWait(0)
+			handler.SetThrottle(1)
 			response, err := handler.WaitWithContext(ctx)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
@@ -307,9 +307,9 @@ func TestDeleteResourcePoolWaitHandler(t *testing.T) {
 			}
 			ctx := context.Background()
 			handler := DeleteResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
+			handler.SetTimeout(250 * time.Millisecond)
+			handler.SetSleepBeforeWait(0)
+			handler.SetThrottle(1)
 			_, err := handler.WaitWithContext(ctx)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
@@ -389,9 +389,9 @@ func TestCreateShareWaitHandler(t *testing.T) {
 			}
 			ctx := context.Background()
 			handler := CreateShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
+			handler.SetTimeout(250 * time.Millisecond)
+			handler.SetSleepBeforeWait(0)
+			handler.SetThrottle(1)
 			response, err := handler.WaitWithContext(ctx)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
@@ -478,9 +478,9 @@ func TestUpdateShareWaitHandler(t *testing.T) {
 			}
 			ctx := context.Background()
 			handler := UpdateShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
+			handler.SetTimeout(250 * time.Millisecond)
+			handler.SetSleepBeforeWait(0)
+			handler.SetThrottle(1)
 			response, err := handler.WaitWithContext(ctx)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
@@ -582,9 +582,9 @@ func TestDeleteShareWaitHandler(t *testing.T) {
 			}
 			ctx := context.Background()
 			handler := DeleteShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
-			handler.SetTimeout(2 * time.Second)
-			handler.SetSleepBeforeWait(100 * time.Millisecond)
-			handler.SetThrottle(50 * time.Millisecond)
+			handler.SetTimeout(250 * time.Millisecond)
+			handler.SetSleepBeforeWait(0)
+			handler.SetThrottle(1)
 			_, err := handler.WaitWithContext(ctx)
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
