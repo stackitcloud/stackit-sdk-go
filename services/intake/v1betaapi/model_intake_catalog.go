@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -32,7 +31,8 @@ type IntakeCatalog struct {
 	// The URI to the Iceberg catalog endpoint
 	Uri string `json:"uri"`
 	// The Iceberg warehouse to connect to, required when the catalog has no default warehouse configured.
-	Warehouse string `json:"warehouse"`
+	Warehouse            string `json:"warehouse"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IntakeCatalog IntakeCatalog
@@ -300,6 +300,11 @@ func (o IntakeCatalog) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["uri"] = o.Uri
 	toSerialize["warehouse"] = o.Warehouse
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -328,15 +333,26 @@ func (o *IntakeCatalog) UnmarshalJSON(data []byte) (err error) {
 
 	varIntakeCatalog := _IntakeCatalog{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIntakeCatalog)
+	err = json.Unmarshal(data, &varIntakeCatalog)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IntakeCatalog(varIntakeCatalog)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "auth")
+		delete(additionalProperties, "namespace")
+		delete(additionalProperties, "partitionBy")
+		delete(additionalProperties, "partitioning")
+		delete(additionalProperties, "tableName")
+		delete(additionalProperties, "uri")
+		delete(additionalProperties, "warehouse")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

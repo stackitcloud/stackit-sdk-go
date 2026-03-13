@@ -11,7 +11,6 @@ API version: 1.0.0
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type ImportKeyPayload struct {
 	// The wrapped key material that has to be imported. Encoded in base64.
 	WrappedKey string `json:"wrappedKey"`
 	// The unique id of the wrapping key the key material has been wrapped with.
-	WrappingKeyId string `json:"wrappingKeyId"`
+	WrappingKeyId        string `json:"wrappingKeyId"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ImportKeyPayload ImportKeyPayload
@@ -108,6 +108,11 @@ func (o ImportKeyPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["wrappedKey"] = o.WrappedKey
 	toSerialize["wrappingKeyId"] = o.WrappingKeyId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *ImportKeyPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varImportKeyPayload := _ImportKeyPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varImportKeyPayload)
+	err = json.Unmarshal(data, &varImportKeyPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ImportKeyPayload(varImportKeyPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "wrappedKey")
+		delete(additionalProperties, "wrappingKeyId")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

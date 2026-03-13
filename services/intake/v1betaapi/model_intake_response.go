@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -46,7 +45,8 @@ type IntakeResponse struct {
 	// Number of messages that failed delivery and were sent to the Dead Letter Queue.
 	UndeliveredMessageCount *int64 `json:"undeliveredMessageCount,omitempty"`
 	// The URI for reaching the resource.
-	Uri string `json:"uri"`
+	Uri                  string `json:"uri"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IntakeResponse IntakeResponse
@@ -453,6 +453,11 @@ func (o IntakeResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["undeliveredMessageCount"] = o.UndeliveredMessageCount
 	}
 	toSerialize["uri"] = o.Uri
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -488,15 +493,32 @@ func (o *IntakeResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varIntakeResponse := _IntakeResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIntakeResponse)
+	err = json.Unmarshal(data, &varIntakeResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IntakeResponse(varIntakeResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "catalog")
+		delete(additionalProperties, "create_time")
+		delete(additionalProperties, "deadLetterTopic")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "failure_message")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "intakeRunnerId")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "topic")
+		delete(additionalProperties, "undeliveredMessageCount")
+		delete(additionalProperties, "uri")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

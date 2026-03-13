@@ -11,7 +11,6 @@ API version: 1beta.0.0
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -22,7 +21,8 @@ var _ MappedNullable = &DecryptPayload{}
 // DecryptPayload struct for DecryptPayload
 type DecryptPayload struct {
 	// The data that has to be decrypted. Encoded in base64.
-	Data string `json:"data"`
+	Data                 string `json:"data"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DecryptPayload DecryptPayload
@@ -80,6 +80,11 @@ func (o DecryptPayload) MarshalJSON() ([]byte, error) {
 func (o DecryptPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *DecryptPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varDecryptPayload := _DecryptPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDecryptPayload)
+	err = json.Unmarshal(data, &varDecryptPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DecryptPayload(varDecryptPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "data")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

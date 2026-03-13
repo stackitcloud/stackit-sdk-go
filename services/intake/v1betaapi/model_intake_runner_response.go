@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -39,7 +38,8 @@ type IntakeRunnerResponse struct {
 	// The current state of the resource.
 	State string `json:"state"`
 	// The URI for reaching the resource.
-	Uri string `json:"uri"`
+	Uri                  string `json:"uri"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _IntakeRunnerResponse IntakeRunnerResponse
@@ -324,6 +324,11 @@ func (o IntakeRunnerResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["maxMessagesPerHour"] = o.MaxMessagesPerHour
 	toSerialize["state"] = o.State
 	toSerialize["uri"] = o.Uri
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -357,15 +362,28 @@ func (o *IntakeRunnerResponse) UnmarshalJSON(data []byte) (err error) {
 
 	varIntakeRunnerResponse := _IntakeRunnerResponse{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varIntakeRunnerResponse)
+	err = json.Unmarshal(data, &varIntakeRunnerResponse)
 
 	if err != nil {
 		return err
 	}
 
 	*o = IntakeRunnerResponse(varIntakeRunnerResponse)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "create_time")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "maxMessageSizeKiB")
+		delete(additionalProperties, "maxMessagesPerHour")
+		delete(additionalProperties, "state")
+		delete(additionalProperties, "uri")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

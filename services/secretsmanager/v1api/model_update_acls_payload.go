@@ -19,8 +19,11 @@ var _ MappedNullable = &UpdateACLsPayload{}
 
 // UpdateACLsPayload struct for UpdateACLsPayload
 type UpdateACLsPayload struct {
-	Cidrs []UpdateACLPayload `json:"cidrs,omitempty"`
+	Cidrs                []UpdateACLPayload `json:"cidrs,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UpdateACLsPayload UpdateACLsPayload
 
 // NewUpdateACLsPayload instantiates a new UpdateACLsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +87,33 @@ func (o UpdateACLsPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cidrs) {
 		toSerialize["cidrs"] = o.Cidrs
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *UpdateACLsPayload) UnmarshalJSON(data []byte) (err error) {
+	varUpdateACLsPayload := _UpdateACLsPayload{}
+
+	err = json.Unmarshal(data, &varUpdateACLsPayload)
+
+	if err != nil {
+		return err
+	}
+
+	*o = UpdateACLsPayload(varUpdateACLsPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cidrs")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableUpdateACLsPayload struct {

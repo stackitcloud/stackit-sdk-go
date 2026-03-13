@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -30,7 +29,8 @@ type CreateIntakeRunnerPayload struct {
 	// The maximum size of a message in kibibytes (1 KiB = 1024 bytes).
 	MaxMessageSizeKiB int32 `json:"maxMessageSizeKiB"`
 	// The maximum number of messages per hour.
-	MaxMessagesPerHour int32 `json:"maxMessagesPerHour"`
+	MaxMessagesPerHour   int32 `json:"maxMessagesPerHour"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateIntakeRunnerPayload CreateIntakeRunnerPayload
@@ -211,6 +211,11 @@ func (o CreateIntakeRunnerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["maxMessageSizeKiB"] = o.MaxMessageSizeKiB
 	toSerialize["maxMessagesPerHour"] = o.MaxMessagesPerHour
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -240,15 +245,24 @@ func (o *CreateIntakeRunnerPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateIntakeRunnerPayload := _CreateIntakeRunnerPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateIntakeRunnerPayload)
+	err = json.Unmarshal(data, &varCreateIntakeRunnerPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateIntakeRunnerPayload(varCreateIntakeRunnerPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "labels")
+		delete(additionalProperties, "maxMessageSizeKiB")
+		delete(additionalProperties, "maxMessagesPerHour")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

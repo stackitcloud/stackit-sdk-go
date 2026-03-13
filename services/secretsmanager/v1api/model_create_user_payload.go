@@ -11,7 +11,6 @@ API version: 1.4.3
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -24,7 +23,8 @@ type CreateUserPayload struct {
 	// A user chosen description to differentiate between multiple users.
 	Description string `json:"description"`
 	// Is true if the user has write access to the secrets engine. Is false for a read-only user.
-	Write bool `json:"write"`
+	Write                bool `json:"write"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateUserPayload CreateUserPayload
@@ -108,6 +108,11 @@ func (o CreateUserPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["description"] = o.Description
 	toSerialize["write"] = o.Write
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -136,15 +141,21 @@ func (o *CreateUserPayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateUserPayload := _CreateUserPayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateUserPayload)
+	err = json.Unmarshal(data, &varCreateUserPayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateUserPayload(varCreateUserPayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "write")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

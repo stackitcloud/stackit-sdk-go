@@ -11,7 +11,6 @@ API version: 1beta.3.6
 package v1betaapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -29,7 +28,8 @@ type CreateIntakePayload struct {
 	// The unique id of the intake runner this intake should run on.
 	IntakeRunnerId string `json:"intakeRunnerId"`
 	// Labels are a set of key-value pairs assigned to resources.
-	Labels map[string]string `json:"labels,omitempty"`
+	Labels               map[string]string `json:"labels,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateIntakePayload CreateIntakePayload
@@ -210,6 +210,11 @@ func (o CreateIntakePayload) ToMap() (map[string]interface{}, error) {
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -239,15 +244,24 @@ func (o *CreateIntakePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateIntakePayload := _CreateIntakePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateIntakePayload)
+	err = json.Unmarshal(data, &varCreateIntakePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateIntakePayload(varCreateIntakePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "catalog")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "displayName")
+		delete(additionalProperties, "intakeRunnerId")
+		delete(additionalProperties, "labels")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
