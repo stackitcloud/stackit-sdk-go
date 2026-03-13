@@ -11,7 +11,6 @@ API version: 1.4.3
 package v1api
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -23,7 +22,8 @@ var _ MappedNullable = &CreateInstancePayload{}
 type CreateInstancePayload struct {
 	KmsKey *KmsKeyPayload `json:"kmsKey,omitempty"`
 	// A user chosen name to distinguish multiple secrets manager instances.
-	Name string `json:"name"`
+	Name                 string `json:"name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CreateInstancePayload CreateInstancePayload
@@ -116,6 +116,11 @@ func (o CreateInstancePayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["kmsKey"] = o.KmsKey
 	}
 	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -143,15 +148,21 @@ func (o *CreateInstancePayload) UnmarshalJSON(data []byte) (err error) {
 
 	varCreateInstancePayload := _CreateInstancePayload{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCreateInstancePayload)
+	err = json.Unmarshal(data, &varCreateInstancePayload)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CreateInstancePayload(varCreateInstancePayload)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "kmsKey")
+		delete(additionalProperties, "name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
