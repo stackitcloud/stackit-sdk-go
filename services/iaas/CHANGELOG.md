@@ -1,3 +1,6 @@
+## v1.7.0
+- **Dependencies:** Bump resourcemanager from `v0.19.0` to `v0.20.1`
+
 ## v1.6.0
 - **Bugfix:** Disable strict decoding of API responses
 - **Feature:** Add `AdditionalProperties` fields to model structs

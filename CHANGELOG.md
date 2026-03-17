@@ -30,6 +30,8 @@
   - [v1.6.0](services/iaas/CHANGELOG.md#v160)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
+  - [v1.7.0](services/iaas/CHANGELOG.md#v170)
+    - **Dependencies:** Bump resourcemanager from `v0.19.0` to `v0.20.1`
 - `intake`: [v0.7.1](services/intake/CHANGELOG.md#v071) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `kms`: [v1.5.1](services/kms/CHANGELOG.md#v151) 
