@@ -19,7 +19,7 @@ var _ MappedNullable = &PartialUpdateOrganizationPayload{}
 
 // PartialUpdateOrganizationPayload struct for PartialUpdateOrganizationPayload
 type PartialUpdateOrganizationPayload struct {
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
+	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - To create a project within a STACKIT Network Area, setting the label `\"networkArea\": \"<networkAreaID>\"` is required. This can not be changed after project creation.
 	Labels *map[string]string `json:"labels,omitempty"`
 	// The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	Name                 *string `json:"name,omitempty" validate:"regexp=^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$"`

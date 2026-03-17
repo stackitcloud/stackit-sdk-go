@@ -104,7 +104,7 @@ type PartialUpdateFolderPayloadGetNameRetType = string
 type PartialUpdateFolderPayload struct {
 	// New parent identifier for the resource container - containerId as well as UUID identifier is supported.
 	ContainerParentId PartialUpdateFolderPayloadGetContainerParentIdAttributeType `json:"containerParentId,omitempty"`
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
+	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - To create a project within a STACKIT Network Area, setting the label `\"networkArea\": \"<networkAreaID>\"` is required. This can not be changed after project creation.
 	Labels PartialUpdateFolderPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// New name for the resource container matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	Name PartialUpdateFolderPayloadGetNameAttributeType `json:"name,omitempty"`
