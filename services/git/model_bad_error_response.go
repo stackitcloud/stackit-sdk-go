@@ -15,25 +15,19 @@ import (
 	"encoding/json"
 )
 
-// checks if the GenericErrorResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GenericErrorResponse{}
+// checks if the BadErrorResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &BadErrorResponse{}
 
 /*
 	types and functions for details
 */
 
-// isArray
+// isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetDetailsAttributeType = *[]string
+type BadErrorResponseGetDetailsAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetDetailsArgType = []string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetDetailsRetType = []string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getGenericErrorResponseGetDetailsAttributeTypeOk(arg GenericErrorResponseGetDetailsAttributeType) (ret GenericErrorResponseGetDetailsRetType, ok bool) {
+func getBadErrorResponseGetDetailsAttributeTypeOk(arg BadErrorResponseGetDetailsAttributeType) (ret BadErrorResponseGetDetailsRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -41,20 +35,26 @@ func getGenericErrorResponseGetDetailsAttributeTypeOk(arg GenericErrorResponseGe
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setGenericErrorResponseGetDetailsAttributeType(arg *GenericErrorResponseGetDetailsAttributeType, val GenericErrorResponseGetDetailsRetType) {
+func setBadErrorResponseGetDetailsAttributeType(arg *BadErrorResponseGetDetailsAttributeType, val BadErrorResponseGetDetailsRetType) {
 	*arg = &val
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BadErrorResponseGetDetailsArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BadErrorResponseGetDetailsRetType = string
+
 /*
-	types and functions for message
+	types and functions for error
 */
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetMessageAttributeType = *string
+type BadErrorResponseGetErrorAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getGenericErrorResponseGetMessageAttributeTypeOk(arg GenericErrorResponseGetMessageAttributeType) (ret GenericErrorResponseGetMessageRetType, ok bool) {
+func getBadErrorResponseGetErrorAttributeTypeOk(arg BadErrorResponseGetErrorAttributeType) (ret BadErrorResponseGetErrorRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -62,50 +62,45 @@ func getGenericErrorResponseGetMessageAttributeTypeOk(arg GenericErrorResponseGe
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setGenericErrorResponseGetMessageAttributeType(arg *GenericErrorResponseGetMessageAttributeType, val GenericErrorResponseGetMessageRetType) {
+func setBadErrorResponseGetErrorAttributeType(arg *BadErrorResponseGetErrorAttributeType, val BadErrorResponseGetErrorRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetMessageArgType = string
+type BadErrorResponseGetErrorArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponseGetMessageRetType = string
+type BadErrorResponseGetErrorRetType = string
 
-// GenericErrorResponse Generic Error Response.
+// BadErrorResponse 400 Error Response.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type GenericErrorResponse struct {
-	Details GenericErrorResponseGetDetailsAttributeType `json:"details,omitempty"`
-	// REQUIRED
-	Message GenericErrorResponseGetMessageAttributeType `json:"message" required:"true"`
+type BadErrorResponse struct {
+	Details BadErrorResponseGetDetailsAttributeType `json:"details,omitempty"`
+	Error   BadErrorResponseGetErrorAttributeType   `json:"error,omitempty"`
 }
 
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type _GenericErrorResponse GenericErrorResponse
-
-// NewGenericErrorResponse instantiates a new GenericErrorResponse object
+// NewBadErrorResponse instantiates a new BadErrorResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewGenericErrorResponse(message GenericErrorResponseGetMessageArgType) *GenericErrorResponse {
-	this := GenericErrorResponse{}
-	setGenericErrorResponseGetMessageAttributeType(&this.Message, message)
+func NewBadErrorResponse() *BadErrorResponse {
+	this := BadErrorResponse{}
 	return &this
 }
 
-// NewGenericErrorResponseWithDefaults instantiates a new GenericErrorResponse object
+// NewBadErrorResponseWithDefaults instantiates a new BadErrorResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewGenericErrorResponseWithDefaults() *GenericErrorResponse {
-	this := GenericErrorResponse{}
+func NewBadErrorResponseWithDefaults() *BadErrorResponse {
+	this := BadErrorResponse{}
 	return &this
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetDetails() (res GenericErrorResponseGetDetailsRetType) {
+func (o *BadErrorResponse) GetDetails() (res BadErrorResponseGetDetailsRetType) {
 	res, _ = o.GetDetailsOk()
 	return
 }
@@ -113,95 +108,102 @@ func (o *GenericErrorResponse) GetDetails() (res GenericErrorResponseGetDetailsR
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetDetailsOk() (ret GenericErrorResponseGetDetailsRetType, ok bool) {
-	return getGenericErrorResponseGetDetailsAttributeTypeOk(o.Details)
+func (o *BadErrorResponse) GetDetailsOk() (ret BadErrorResponseGetDetailsRetType, ok bool) {
+	return getBadErrorResponseGetDetailsAttributeTypeOk(o.Details)
 }
 
 // HasDetails returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) HasDetails() bool {
+func (o *BadErrorResponse) HasDetails() bool {
 	_, ok := o.GetDetailsOk()
 	return ok
 }
 
-// SetDetails gets a reference to the given []string and assigns it to the Details field.
+// SetDetails gets a reference to the given string and assigns it to the Details field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) SetDetails(v GenericErrorResponseGetDetailsRetType) {
-	setGenericErrorResponseGetDetailsAttributeType(&o.Details, v)
+func (o *BadErrorResponse) SetDetails(v BadErrorResponseGetDetailsRetType) {
+	setBadErrorResponseGetDetailsAttributeType(&o.Details, v)
 }
 
-// GetMessage returns the Message field value
+// GetError returns the Error field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetMessage() (ret GenericErrorResponseGetMessageRetType) {
-	ret, _ = o.GetMessageOk()
-	return ret
+func (o *BadErrorResponse) GetError() (res BadErrorResponseGetErrorRetType) {
+	res, _ = o.GetErrorOk()
+	return
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) GetMessageOk() (ret GenericErrorResponseGetMessageRetType, ok bool) {
-	return getGenericErrorResponseGetMessageAttributeTypeOk(o.Message)
+func (o *BadErrorResponse) GetErrorOk() (ret BadErrorResponseGetErrorRetType, ok bool) {
+	return getBadErrorResponseGetErrorAttributeTypeOk(o.Error)
 }
 
-// SetMessage sets field value
+// HasError returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *GenericErrorResponse) SetMessage(v GenericErrorResponseGetMessageRetType) {
-	setGenericErrorResponseGetMessageAttributeType(&o.Message, v)
+func (o *BadErrorResponse) HasError() bool {
+	_, ok := o.GetErrorOk()
+	return ok
+}
+
+// SetError gets a reference to the given string and assigns it to the Error field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *BadErrorResponse) SetError(v BadErrorResponseGetErrorRetType) {
+	setBadErrorResponseGetErrorAttributeType(&o.Error, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o GenericErrorResponse) ToMap() (map[string]interface{}, error) {
+func (o BadErrorResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getGenericErrorResponseGetDetailsAttributeTypeOk(o.Details); ok {
+	if val, ok := getBadErrorResponseGetDetailsAttributeTypeOk(o.Details); ok {
 		toSerialize["Details"] = val
 	}
-	if val, ok := getGenericErrorResponseGetMessageAttributeTypeOk(o.Message); ok {
-		toSerialize["Message"] = val
+	if val, ok := getBadErrorResponseGetErrorAttributeTypeOk(o.Error); ok {
+		toSerialize["Error"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableGenericErrorResponse struct {
-	value *GenericErrorResponse
+type NullableBadErrorResponse struct {
+	value *BadErrorResponse
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableGenericErrorResponse) Get() *GenericErrorResponse {
+func (v NullableBadErrorResponse) Get() *BadErrorResponse {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableGenericErrorResponse) Set(val *GenericErrorResponse) {
+func (v *NullableBadErrorResponse) Set(val *BadErrorResponse) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableGenericErrorResponse) IsSet() bool {
+func (v NullableBadErrorResponse) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableGenericErrorResponse) Unset() {
+func (v *NullableBadErrorResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableGenericErrorResponse(val *GenericErrorResponse) *NullableGenericErrorResponse {
-	return &NullableGenericErrorResponse{value: val, isSet: true}
+func NewNullableBadErrorResponse(val *BadErrorResponse) *NullableBadErrorResponse {
+	return &NullableBadErrorResponse{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableGenericErrorResponse) MarshalJSON() ([]byte, error) {
+func (v NullableBadErrorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableGenericErrorResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableBadErrorResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
