@@ -220,7 +220,7 @@ type FolderResponse struct {
 	// Globally unique folder identifier.
 	// REQUIRED
 	FolderId FolderResponseGetFolderIdAttributeType `json:"folderId" required:"true"`
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
+	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - To create a project within a STACKIT Network Area, setting the label `\"networkArea\": \"<networkAreaID>\"` is required. This can not be changed after project creation.
 	Labels FolderResponseGetLabelsAttributeType `json:"labels,omitempty"`
 	// Folder name.
 	// REQUIRED

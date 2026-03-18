@@ -75,7 +75,7 @@ type PartialUpdateOrganizationPayloadGetNameRetType = string
 // PartialUpdateOrganizationPayload struct for PartialUpdateOrganizationPayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PartialUpdateOrganizationPayload struct {
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
+	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - To create a project within a STACKIT Network Area, setting the label `\"networkArea\": \"<networkAreaID>\"` is required. This can not be changed after project creation.
 	Labels PartialUpdateOrganizationPayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// The new name of the organization matching the regex `^[a-zA-ZäüöÄÜÖ0-9]( ?[a-zA-ZäüöÄÜÖß0-9_+&-]){0,39}$`.
 	Name PartialUpdateOrganizationPayloadGetNameAttributeType `json:"name,omitempty"`

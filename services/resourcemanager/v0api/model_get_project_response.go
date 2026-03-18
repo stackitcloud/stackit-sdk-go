@@ -25,7 +25,7 @@ type GetProjectResponse struct {
 	ContainerId string `json:"containerId"`
 	// Timestamp at which the project was created.
 	CreationTime time.Time `json:"creationTime"`
-	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`.
+	// Labels are key-value string pairs that can be attached to a resource container. Some labels may be enforced via policies.  - A label key must match the regex `[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - A label value must match the regex `^$|[A-ZÄÜÖa-zäüöß0-9_-]{1,64}`. - To create a project within a STACKIT Network Area, setting the label `\"networkArea\": \"<networkAreaID>\"` is required. This can not be changed after project creation.
 	Labels         *map[string]string `json:"labels,omitempty"`
 	LifecycleState LifecycleState     `json:"lifecycleState"`
 	// Project name.
