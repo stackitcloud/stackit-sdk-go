@@ -106,8 +106,11 @@
     - **Feature:** Add `AdditionalProperties` fields to model structs
 - `sqlserverflex`: [v1.6.1](services/sqlserverflex/CHANGELOG.md#v161) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `vpn`: [v0.3.1](services/vpn/CHANGELOG.md#v031) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `vpn`:
+  - [v0.4.0](services/vpn/CHANGELOG.md#v040) 
+    - `v1beta1api`: New package which can be used for communication with the STACKIT vpn v1 beta1 API
+  - [v0.3.1](services/vpn/CHANGELOG.md#v031) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 
 ## Release (2026-03-13)
 - `core`:
