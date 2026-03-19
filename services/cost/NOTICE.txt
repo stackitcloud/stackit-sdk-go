@@ -1,2 +1,2 @@
-STACKIT SDK for Go
-Copyright 2025 - 2026 Schwarz IT KG
+STACKIT cost SDK for Go
+Copyright 2026 Schwarz IT KG
