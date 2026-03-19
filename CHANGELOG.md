@@ -22,6 +22,8 @@
     - **Feature:** Add `AdditionalProperties` fields to model structs
 - `certificates`: [v1.4.1](services/certificates/CHANGELOG.md#v141) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010) 
+  - **New:** STACKIT Cost module can be used to retrieve STACKIT cost information
 - `edge`: [v0.6.1](services/edge/CHANGELOG.md#v061) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `iaas`:
