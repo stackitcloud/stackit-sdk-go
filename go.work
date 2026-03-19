@@ -41,6 +41,7 @@ use (
 	./services/authorization
 	./services/cdn
 	./services/certificates
+	./services/cost
 	./services/dns
 	./services/edge
 	./services/git
