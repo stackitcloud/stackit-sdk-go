@@ -7,6 +7,7 @@ use (
 	./examples/authorization
 	./examples/backgroundrefresh
 	./examples/configuration
+	./examples/cost
 	./examples/dns
 	./examples/edge
 	./examples/errorhandling
@@ -41,6 +42,7 @@ use (
 	./services/authorization
 	./services/cdn
 	./services/certificates
+	./services/cost
 	./services/dns
 	./services/edge
 	./services/git
