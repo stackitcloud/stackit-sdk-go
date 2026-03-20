@@ -1,3 +1,18 @@
+## v0.11.0
+- **Feature:** Introduction of multi API version support for the git SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+- `v1betaapi`: New package which should be used for communication with the STACKIT git API in the future
+- **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+- **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.23.0`
+- **Feature:** New API client methods for managing authentication: `CreateAuthentication`, `GetAuthentication`,  `ListAuthentication`, `PatchAuthentication`, `DeleteAuthentication`
+- **Feature:** New API client methods for managing runners: `CreateRunner`,  `GetRunner`, `DeleteRunner`, `ListRunnerRuntimes`
+- **Feature:** New model structs for managing authentication: `Authentication`, `AuthenticationList`, `CreateAuthenticationPayload`, `PatchAuthenticationPayload`
+- **Feature:** New model structs for managing runners: `CreateRunnerPayload`, `Runner`, `RunnerRuntime`, `RunnerRuntimeList`
+- **Feature:** New error model structs: `AlreadyExistsError`, `BadErrorResponse`, `NotFoundErrorResponse`, `UnauthorizedErrorResponse`, `ConflictErrorResponse`
+- **Feature:** New field `FeatureToggle `in Instance model struct
+- **Feature:** New fields `Acl` and `FeatureToggle` in struct `PatchInstancePayload`
+- **Breaking change:** Removal of type `InstanceFlavor`
+- **Breaking change:** Removal of structs: `ListRunnerLabels`, `RunnerLabel`, `UnauthorizedResponse`
+
 ## v0.10.3
 - Bump STACKIT SDK core module from `v0.21.0` to `v0.21.1`
 

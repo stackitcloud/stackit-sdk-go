@@ -22,10 +22,12 @@ const (
 )
 
 // APIClientInterface Interfaces needed for tests
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetInstanceExecute(ctx context.Context, projectId string, instanceId string) (*git.Instance, error)
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *git.Instance, err error) {
 		instance, err := a.GetInstanceExecute(ctx, projectId, instanceId)
@@ -47,6 +49,7 @@ func CreateGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, pro
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteGitInstanceWaitHandler(ctx context.Context, a APIClientInterface, projectId, instanceId string) *wait.AsyncActionHandler[git.Instance] {
 	handler := wait.New(func() (waitFinished bool, response *git.Instance, err error) {
 		_, err = a.GetInstanceExecute(ctx, projectId, instanceId)
