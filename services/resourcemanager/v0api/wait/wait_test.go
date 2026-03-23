@@ -75,7 +75,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 			getFails:     false,
 			projectState: resourcemanager.LifecycleState("ANOTHER STATE"),
 			wantErr:      true,
-			wantResp:     true,
+			wantResp:     false,
 		},
 	}
 	for _, tt := range tests {
@@ -121,6 +121,13 @@ func TestDeleteProjectWaitHandler(t *testing.T) {
 			getNotFound:  true,
 			projectState: resourcemanager.LifecycleState(""),
 			wantErr:      false,
+		},
+		{
+			desc:         "delete_pending",
+			getFails:     false,
+			getNotFound:  false,
+			projectState: resourcemanager.LIFECYCLESTATE_DELETING,
+			wantErr:      true,
 		},
 		{
 			desc:         "get_fails",
