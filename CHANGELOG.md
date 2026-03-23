@@ -24,8 +24,12 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010) 
   - **New:** STACKIT Cost module can be used to retrieve STACKIT cost information
-- `edge`: [v0.6.1](services/edge/CHANGELOG.md#v061) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `edge`:
+  - [v0.7.0](services/edge/CHANGELOG.md#v070) 
+    - `v1beta1api`: New field `MinEdgeHosts` in `Plan` model struct
+    - Deprecated SDK layer in root of the module: New field `MinEdgeHosts` in `Plan` model struct
+  - [v0.6.1](services/edge/CHANGELOG.md#v061) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `git`: [v0.11.0](services/git/CHANGELOG.md#v0110)
   - **Feature:** Introduction of multi API version support for the git SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
   - `v1betaapi`: New package which should be used for communication with the STACKIT git API in the future

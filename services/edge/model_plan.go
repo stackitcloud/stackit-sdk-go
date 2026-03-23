@@ -100,6 +100,33 @@ func setPlanGetMaxEdgeHostsAttributeType(arg *PlanGetMaxEdgeHostsAttributeType, 
 }
 
 /*
+	types and functions for minEdgeHosts
+*/
+
+// isInteger
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PlanGetMinEdgeHostsAttributeType = *int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PlanGetMinEdgeHostsArgType = int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type PlanGetMinEdgeHostsRetType = int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getPlanGetMinEdgeHostsAttributeTypeOk(arg PlanGetMinEdgeHostsAttributeType) (ret PlanGetMinEdgeHostsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setPlanGetMinEdgeHostsAttributeType(arg *PlanGetMinEdgeHostsAttributeType, val PlanGetMinEdgeHostsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -136,6 +163,9 @@ type Plan struct {
 	// Maximum number of EdgeHosts
 	// Can be cast to int32 without loss of precision.
 	MaxEdgeHosts PlanGetMaxEdgeHostsAttributeType `json:"maxEdgeHosts,omitempty"`
+	// Minimum number of EdgeHosts
+	// Can be cast to int32 without loss of precision.
+	MinEdgeHosts PlanGetMinEdgeHostsAttributeType `json:"minEdgeHosts,omitempty"`
 	// Service Plan Name
 	Name PlanGetNameAttributeType `json:"name,omitempty"`
 }
@@ -240,6 +270,33 @@ func (o *Plan) SetMaxEdgeHosts(v PlanGetMaxEdgeHostsRetType) {
 	setPlanGetMaxEdgeHostsAttributeType(&o.MaxEdgeHosts, v)
 }
 
+// GetMinEdgeHosts returns the MinEdgeHosts field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Plan) GetMinEdgeHosts() (res PlanGetMinEdgeHostsRetType) {
+	res, _ = o.GetMinEdgeHostsOk()
+	return
+}
+
+// GetMinEdgeHostsOk returns a tuple with the MinEdgeHosts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Plan) GetMinEdgeHostsOk() (ret PlanGetMinEdgeHostsRetType, ok bool) {
+	return getPlanGetMinEdgeHostsAttributeTypeOk(o.MinEdgeHosts)
+}
+
+// HasMinEdgeHosts returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Plan) HasMinEdgeHosts() bool {
+	_, ok := o.GetMinEdgeHostsOk()
+	return ok
+}
+
+// SetMinEdgeHosts gets a reference to the given int64 and assigns it to the MinEdgeHosts field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Plan) SetMinEdgeHosts(v PlanGetMinEdgeHostsRetType) {
+	setPlanGetMinEdgeHostsAttributeType(&o.MinEdgeHosts, v)
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Plan) GetName() (res PlanGetNameRetType) {
@@ -278,6 +335,9 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getPlanGetMaxEdgeHostsAttributeTypeOk(o.MaxEdgeHosts); ok {
 		toSerialize["MaxEdgeHosts"] = val
+	}
+	if val, ok := getPlanGetMinEdgeHostsAttributeTypeOk(o.MinEdgeHosts); ok {
+		toSerialize["MinEdgeHosts"] = val
 	}
 	if val, ok := getPlanGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val

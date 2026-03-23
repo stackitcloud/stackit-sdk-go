@@ -25,6 +25,8 @@ type Plan struct {
 	Id *string `json:"id,omitempty"`
 	// Maximum number of EdgeHosts
 	MaxEdgeHosts *int32 `json:"maxEdgeHosts,omitempty"`
+	// Minimum number of EdgeHosts
+	MinEdgeHosts *int32 `json:"minEdgeHosts,omitempty"`
 	// Service Plan Name
 	Name                 *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -145,6 +147,38 @@ func (o *Plan) SetMaxEdgeHosts(v int32) {
 	o.MaxEdgeHosts = &v
 }
 
+// GetMinEdgeHosts returns the MinEdgeHosts field value if set, zero value otherwise.
+func (o *Plan) GetMinEdgeHosts() int32 {
+	if o == nil || IsNil(o.MinEdgeHosts) {
+		var ret int32
+		return ret
+	}
+	return *o.MinEdgeHosts
+}
+
+// GetMinEdgeHostsOk returns a tuple with the MinEdgeHosts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Plan) GetMinEdgeHostsOk() (*int32, bool) {
+	if o == nil || IsNil(o.MinEdgeHosts) {
+		return nil, false
+	}
+	return o.MinEdgeHosts, true
+}
+
+// HasMinEdgeHosts returns a boolean if a field has been set.
+func (o *Plan) HasMinEdgeHosts() bool {
+	if o != nil && !IsNil(o.MinEdgeHosts) {
+		return true
+	}
+
+	return false
+}
+
+// SetMinEdgeHosts gets a reference to the given int32 and assigns it to the MinEdgeHosts field.
+func (o *Plan) SetMinEdgeHosts(v int32) {
+	o.MinEdgeHosts = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Plan) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -196,6 +230,9 @@ func (o Plan) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MaxEdgeHosts) {
 		toSerialize["maxEdgeHosts"] = o.MaxEdgeHosts
 	}
+	if !IsNil(o.MinEdgeHosts) {
+		toSerialize["minEdgeHosts"] = o.MinEdgeHosts
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -224,6 +261,7 @@ func (o *Plan) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "maxEdgeHosts")
+		delete(additionalProperties, "minEdgeHosts")
 		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
