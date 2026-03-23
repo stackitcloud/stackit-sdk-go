@@ -163,7 +163,7 @@ type Plan struct {
 	// Maximum number of EdgeHosts
 	// Can be cast to int32 without loss of precision.
 	MaxEdgeHosts PlanGetMaxEdgeHostsAttributeType `json:"maxEdgeHosts,omitempty"`
-	// Minimum number of EdgeHosts
+	// Minimum number of EdgeHosts charged
 	// Can be cast to int32 without loss of precision.
 	MinEdgeHosts PlanGetMinEdgeHostsAttributeType `json:"minEdgeHosts,omitempty"`
 	// Service Plan Name

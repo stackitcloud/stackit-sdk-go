@@ -25,7 +25,7 @@ type Plan struct {
 	Id *string `json:"id,omitempty"`
 	// Maximum number of EdgeHosts
 	MaxEdgeHosts *int32 `json:"maxEdgeHosts,omitempty"`
-	// Minimum number of EdgeHosts
+	// Minimum number of EdgeHosts charged
 	MinEdgeHosts *int32 `json:"minEdgeHosts,omitempty"`
 	// Service Plan Name
 	Name                 *string `json:"name,omitempty"`
