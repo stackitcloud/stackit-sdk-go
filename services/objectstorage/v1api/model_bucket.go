@@ -20,8 +20,10 @@ var _ MappedNullable = &Bucket{}
 
 // Bucket struct for Bucket
 type Bucket struct {
-	Name   string `json:"name"`
-	Region string `json:"region"`
+	Name string `json:"name"`
+	// Whether S3 Object Lock is enabled for this bucket
+	ObjectLockEnabled bool   `json:"objectLockEnabled"`
+	Region            string `json:"region"`
 	// URL in path style
 	UrlPathStyle string `json:"urlPathStyle"`
 	// URL in virtual hosted style
@@ -35,9 +37,10 @@ type _Bucket Bucket
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucket(name string, region string, urlPathStyle string, urlVirtualHostedStyle string) *Bucket {
+func NewBucket(name string, objectLockEnabled bool, region string, urlPathStyle string, urlVirtualHostedStyle string) *Bucket {
 	this := Bucket{}
 	this.Name = name
+	this.ObjectLockEnabled = objectLockEnabled
 	this.Region = region
 	this.UrlPathStyle = urlPathStyle
 	this.UrlVirtualHostedStyle = urlVirtualHostedStyle
@@ -74,6 +77,30 @@ func (o *Bucket) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *Bucket) SetName(v string) {
 	o.Name = v
+}
+
+// GetObjectLockEnabled returns the ObjectLockEnabled field value
+func (o *Bucket) GetObjectLockEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ObjectLockEnabled
+}
+
+// GetObjectLockEnabledOk returns a tuple with the ObjectLockEnabled field value
+// and a boolean to check if the value has been set.
+func (o *Bucket) GetObjectLockEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ObjectLockEnabled, true
+}
+
+// SetObjectLockEnabled sets field value
+func (o *Bucket) SetObjectLockEnabled(v bool) {
+	o.ObjectLockEnabled = v
 }
 
 // GetRegion returns the Region field value
@@ -159,6 +186,7 @@ func (o Bucket) MarshalJSON() ([]byte, error) {
 func (o Bucket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
+	toSerialize["objectLockEnabled"] = o.ObjectLockEnabled
 	toSerialize["region"] = o.Region
 	toSerialize["urlPathStyle"] = o.UrlPathStyle
 	toSerialize["urlVirtualHostedStyle"] = o.UrlVirtualHostedStyle
@@ -176,6 +204,7 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
+		"objectLockEnabled",
 		"region",
 		"urlPathStyle",
 		"urlVirtualHostedStyle",
@@ -209,6 +238,7 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "objectLockEnabled")
 		delete(additionalProperties, "region")
 		delete(additionalProperties, "urlPathStyle")
 		delete(additionalProperties, "urlVirtualHostedStyle")

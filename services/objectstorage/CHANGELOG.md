@@ -1,3 +1,23 @@
+## v1.7.0
+- `v1api`:
+  - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+  - **Feature:** New enum type `RetentionMode`
+  - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+  - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+  - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+- `v2api`:
+  - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+  - **Feature:** New enum type `RetentionMode`
+  - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+  - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+  - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+- Deprecated SDK layer in root of the module:
+  - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+  - **Feature:** New enum type `RetentionMode`
+  - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+  - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+  - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+
 ## v1.6.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 
