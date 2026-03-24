@@ -25,6 +25,9 @@
 - `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010) 
   - **New:** STACKIT Cost module can be used to retrieve STACKIT cost information
 - `edge`:
+  - [v0.8.0](services/edge/CHANGELOG.md#v080) 
+    - `v1beta1api`: Removal of deprecated API client method `ListPlansGlobal`
+    - Deprecated SDK layer in root of the module: Removal of deprecated API client method `ListPlansGlobal`
   - [v0.7.0](services/edge/CHANGELOG.md#v070) 
     - `v1beta1api`: New field `MinEdgeHosts` in `Plan` model struct
     - Deprecated SDK layer in root of the module: New field `MinEdgeHosts` in `Plan` model struct
