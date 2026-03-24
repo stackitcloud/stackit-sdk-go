@@ -32,11 +32,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiCreateCertificateRequest
+
+		Deprecated
 	*/
 	CreateCertificate(ctx context.Context, projectId string, region string) ApiCreateCertificateRequest
 
 	// CreateCertificateExecute executes the request
 	//  @return CreateCertificateResponse
+	// Deprecated
 	CreateCertificateExecute(r ApiCreateCertificateRequest) (*CreateCertificateResponse, error)
 
 	/*
@@ -49,11 +52,14 @@ type DefaultAPI interface {
 		@param region
 		@param id
 		@return ApiDeleteCertificateRequest
+
+		Deprecated
 	*/
 	DeleteCertificate(ctx context.Context, projectId string, region string, id string) ApiDeleteCertificateRequest
 
 	// DeleteCertificateExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteCertificateExecute(r ApiDeleteCertificateRequest) (map[string]interface{}, error)
 
 	/*
@@ -66,11 +72,14 @@ type DefaultAPI interface {
 		@param region
 		@param id
 		@return ApiGetCertificateRequest
+
+		Deprecated
 	*/
 	GetCertificate(ctx context.Context, projectId string, region string, id string) ApiGetCertificateRequest
 
 	// GetCertificateExecute executes the request
 	//  @return GetCertificateResponse
+	// Deprecated
 	GetCertificateExecute(r ApiGetCertificateRequest) (*GetCertificateResponse, error)
 
 	/*
@@ -82,11 +91,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@return ApiListCertificatesRequest
+
+		Deprecated
 	*/
 	ListCertificates(ctx context.Context, projectId string, region string) ApiListCertificatesRequest
 
 	// ListCertificatesExecute executes the request
 	//  @return ListCertificatesResponse
+	// Deprecated
 	ListCertificatesExecute(r ApiListCertificatesRequest) (*ListCertificatesResponse, error)
 }
 
@@ -119,6 +131,8 @@ CreateCertificate will store a TLS certificate in a project.
 	@param projectId
 	@param region
 	@return ApiCreateCertificateRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateCertificate(ctx context.Context, projectId string, region string) ApiCreateCertificateRequest {
 	return ApiCreateCertificateRequest{
@@ -132,6 +146,8 @@ func (a *DefaultAPIService) CreateCertificate(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return CreateCertificateResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateCertificateExecute(r ApiCreateCertificateRequest) (*CreateCertificateResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -266,6 +282,8 @@ DeleteCertificate will delete the stored TLS certificate.
 	@param region
 	@param id
 	@return ApiDeleteCertificateRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteCertificate(ctx context.Context, projectId string, region string, id string) ApiDeleteCertificateRequest {
 	return ApiDeleteCertificateRequest{
@@ -280,6 +298,8 @@ func (a *DefaultAPIService) DeleteCertificate(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteCertificateExecute(r ApiDeleteCertificateRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -410,6 +430,8 @@ GetCertificate will return the public parts of a stored TLS certificate.
 	@param region
 	@param id
 	@return ApiGetCertificateRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCertificate(ctx context.Context, projectId string, region string, id string) ApiGetCertificateRequest {
 	return ApiGetCertificateRequest{
@@ -424,6 +446,8 @@ func (a *DefaultAPIService) GetCertificate(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return GetCertificateResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCertificateExecute(r ApiGetCertificateRequest) (*GetCertificateResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -566,6 +590,8 @@ ListCertificates will return the list of TLS certificates in a project.
 	@param projectId
 	@param region
 	@return ApiListCertificatesRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCertificates(ctx context.Context, projectId string, region string) ApiListCertificatesRequest {
 	return ApiListCertificatesRequest{
@@ -579,6 +605,8 @@ func (a *DefaultAPIService) ListCertificates(ctx context.Context, projectId stri
 // Execute executes the request
 //
 //	@return ListCertificatesResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCertificatesExecute(r ApiListCertificatesRequest) (*ListCertificatesResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
