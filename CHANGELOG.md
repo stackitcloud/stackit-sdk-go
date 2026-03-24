@@ -93,8 +93,12 @@
       - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
       - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
       - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
-- `observability`: [v0.19.1](services/observability/CHANGELOG.md#v0191) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `observability`: 
+  - [v0.19.1](services/observability/CHANGELOG.md#v0191) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.20.0](services/observability/CHANGELOG.md#v0200) 
+    - `v1api`: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct
+    - Deprecated SDK layer in root of the module: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct
 - `opensearch`: [v0.26.1](services/opensearch/CHANGELOG.md#v0261) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `postgresflex`: [v1.6.1](services/postgresflex/CHANGELOG.md#v161) 
