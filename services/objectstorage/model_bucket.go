@@ -46,6 +46,33 @@ type BucketGetNameArgType = string
 type BucketGetNameRetType = string
 
 /*
+	types and functions for objectLockEnabled
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BucketgetObjectLockEnabledAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BucketgetObjectLockEnabledArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type BucketgetObjectLockEnabledRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getBucketgetObjectLockEnabledAttributeTypeOk(arg BucketgetObjectLockEnabledAttributeType) (ret BucketgetObjectLockEnabledRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setBucketgetObjectLockEnabledAttributeType(arg *BucketgetObjectLockEnabledAttributeType, val BucketgetObjectLockEnabledRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for region
 */
 
@@ -131,6 +158,9 @@ type BucketGetUrlVirtualHostedStyleRetType = string
 type Bucket struct {
 	// REQUIRED
 	Name BucketGetNameAttributeType `json:"name" required:"true"`
+	// Whether S3 Object Lock is enabled for this bucket
+	// REQUIRED
+	ObjectLockEnabled BucketgetObjectLockEnabledAttributeType `json:"objectLockEnabled" required:"true"`
 	// REQUIRED
 	Region BucketGetRegionAttributeType `json:"region" required:"true"`
 	// URL in path style
@@ -149,9 +179,10 @@ type _Bucket Bucket
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewBucket(name BucketGetNameArgType, region BucketGetRegionArgType, urlPathStyle BucketGetUrlPathStyleArgType, urlVirtualHostedStyle BucketGetUrlVirtualHostedStyleArgType) *Bucket {
+func NewBucket(name BucketGetNameArgType, objectLockEnabled BucketgetObjectLockEnabledArgType, region BucketGetRegionArgType, urlPathStyle BucketGetUrlPathStyleArgType, urlVirtualHostedStyle BucketGetUrlVirtualHostedStyleArgType) *Bucket {
 	this := Bucket{}
 	setBucketGetNameAttributeType(&this.Name, name)
+	setBucketgetObjectLockEnabledAttributeType(&this.ObjectLockEnabled, objectLockEnabled)
 	setBucketGetRegionAttributeType(&this.Region, region)
 	setBucketGetUrlPathStyleAttributeType(&this.UrlPathStyle, urlPathStyle)
 	setBucketGetUrlVirtualHostedStyleAttributeType(&this.UrlVirtualHostedStyle, urlVirtualHostedStyle)
@@ -185,6 +216,26 @@ func (o *Bucket) GetNameOk() (ret BucketGetNameRetType, ok bool) {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Bucket) SetName(v BucketGetNameRetType) {
 	setBucketGetNameAttributeType(&o.Name, v)
+}
+
+// GetObjectLockEnabled returns the ObjectLockEnabled field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Bucket) GetObjectLockEnabled() (ret BucketgetObjectLockEnabledRetType) {
+	ret, _ = o.GetObjectLockEnabledOk()
+	return ret
+}
+
+// GetObjectLockEnabledOk returns a tuple with the ObjectLockEnabled field value
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Bucket) GetObjectLockEnabledOk() (ret BucketgetObjectLockEnabledRetType, ok bool) {
+	return getBucketgetObjectLockEnabledAttributeTypeOk(o.ObjectLockEnabled)
+}
+
+// SetObjectLockEnabled sets field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Bucket) SetObjectLockEnabled(v BucketgetObjectLockEnabledRetType) {
+	setBucketgetObjectLockEnabledAttributeType(&o.ObjectLockEnabled, v)
 }
 
 // GetRegion returns the Region field value
@@ -252,6 +303,9 @@ func (o Bucket) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getBucketGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
+	}
+	if val, ok := getBucketgetObjectLockEnabledAttributeTypeOk(o.ObjectLockEnabled); ok {
+		toSerialize["ObjectLockEnabled"] = val
 	}
 	if val, ok := getBucketGetRegionAttributeTypeOk(o.Region); ok {
 		toSerialize["Region"] = val

@@ -24,20 +24,32 @@ type DefaultAPIServiceMock struct {
 	CreateAccessKeyExecuteMock *func(r ApiCreateAccessKeyRequest) (*CreateAccessKeyResponse, error)
 	// CreateBucketExecuteMock can be populated to implement the behavior of the CreateBucketExecute function of this mock
 	CreateBucketExecuteMock *func(r ApiCreateBucketRequest) (*CreateBucketResponse, error)
+	// CreateComplianceLockExecuteMock can be populated to implement the behavior of the CreateComplianceLockExecute function of this mock
+	CreateComplianceLockExecuteMock *func(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error)
 	// CreateCredentialsGroupExecuteMock can be populated to implement the behavior of the CreateCredentialsGroupExecute function of this mock
 	CreateCredentialsGroupExecuteMock *func(r ApiCreateCredentialsGroupRequest) (*CreateCredentialsGroupResponse, error)
 	// DeleteAccessKeyExecuteMock can be populated to implement the behavior of the DeleteAccessKeyExecute function of this mock
 	DeleteAccessKeyExecuteMock *func(r ApiDeleteAccessKeyRequest) (*DeleteAccessKeyResponse, error)
 	// DeleteBucketExecuteMock can be populated to implement the behavior of the DeleteBucketExecute function of this mock
 	DeleteBucketExecuteMock *func(r ApiDeleteBucketRequest) (*DeleteBucketResponse, error)
+	// DeleteComplianceLockExecuteMock can be populated to implement the behavior of the DeleteComplianceLockExecute function of this mock
+	DeleteComplianceLockExecuteMock *func(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error)
 	// DeleteCredentialsGroupExecuteMock can be populated to implement the behavior of the DeleteCredentialsGroupExecute function of this mock
 	DeleteCredentialsGroupExecuteMock *func(r ApiDeleteCredentialsGroupRequest) (*DeleteCredentialsGroupResponse, error)
+	// DeleteDefaultRetentionExecuteMock can be populated to implement the behavior of the DeleteDefaultRetentionExecute function of this mock
+	DeleteDefaultRetentionExecuteMock *func(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error)
 	// DisableServiceExecuteMock can be populated to implement the behavior of the DisableServiceExecute function of this mock
 	DisableServiceExecuteMock *func(r ApiDisableServiceRequest) (*ProjectStatus, error)
 	// EnableServiceExecuteMock can be populated to implement the behavior of the EnableServiceExecute function of this mock
 	EnableServiceExecuteMock *func(r ApiEnableServiceRequest) (*ProjectStatus, error)
 	// GetBucketExecuteMock can be populated to implement the behavior of the GetBucketExecute function of this mock
 	GetBucketExecuteMock *func(r ApiGetBucketRequest) (*GetBucketResponse, error)
+	// GetComplianceLockExecuteMock can be populated to implement the behavior of the GetComplianceLockExecute function of this mock
+	GetComplianceLockExecuteMock *func(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error)
+	// GetCredentialsGroupExecuteMock can be populated to implement the behavior of the GetCredentialsGroupExecute function of this mock
+	GetCredentialsGroupExecuteMock *func(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error)
+	// GetDefaultRetentionExecuteMock can be populated to implement the behavior of the GetDefaultRetentionExecute function of this mock
+	GetDefaultRetentionExecuteMock *func(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
 	// GetServiceStatusExecuteMock can be populated to implement the behavior of the GetServiceStatusExecute function of this mock
 	GetServiceStatusExecuteMock *func(r ApiGetServiceStatusRequest) (*ProjectStatus, error)
 	// ListAccessKeysExecuteMock can be populated to implement the behavior of the ListAccessKeysExecute function of this mock
@@ -46,6 +58,8 @@ type DefaultAPIServiceMock struct {
 	ListBucketsExecuteMock *func(r ApiListBucketsRequest) (*ListBucketsResponse, error)
 	// ListCredentialsGroupsExecuteMock can be populated to implement the behavior of the ListCredentialsGroupsExecute function of this mock
 	ListCredentialsGroupsExecuteMock *func(r ApiListCredentialsGroupsRequest) (*ListCredentialsGroupsResponse, error)
+	// SetDefaultRetentionExecuteMock can be populated to implement the behavior of the SetDefaultRetentionExecute function of this mock
+	SetDefaultRetentionExecuteMock *func(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
 }
 
 func (a DefaultAPIServiceMock) CreateAccessKey(ctx context.Context, projectId string) ApiCreateAccessKeyRequest {
@@ -83,6 +97,24 @@ func (a DefaultAPIServiceMock) CreateBucketExecute(r ApiCreateBucketRequest) (*C
 	}
 
 	return (*a.CreateBucketExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) CreateComplianceLock(ctx context.Context, projectId string) ApiCreateComplianceLockRequest {
+	return ApiCreateComplianceLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// CreateComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) CreateComplianceLockExecute(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error) {
+	if a.CreateComplianceLockExecuteMock == nil {
+		var localVarReturnValue *ComplianceLockResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.CreateComplianceLockExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) CreateCredentialsGroup(ctx context.Context, projectId string) ApiCreateCredentialsGroupRequest {
@@ -141,6 +173,24 @@ func (a DefaultAPIServiceMock) DeleteBucketExecute(r ApiDeleteBucketRequest) (*D
 	return (*a.DeleteBucketExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) DeleteComplianceLock(ctx context.Context, projectId string) ApiDeleteComplianceLockRequest {
+	return ApiDeleteComplianceLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// DeleteComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteComplianceLockExecute(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error) {
+	if a.DeleteComplianceLockExecuteMock == nil {
+		var localVarReturnValue *ComplianceLockResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.DeleteComplianceLockExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) DeleteCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiDeleteCredentialsGroupRequest {
 	return ApiDeleteCredentialsGroupRequest{
 		ApiService: a,
@@ -158,6 +208,25 @@ func (a DefaultAPIServiceMock) DeleteCredentialsGroupExecute(r ApiDeleteCredenti
 	}
 
 	return (*a.DeleteCredentialsGroupExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) DeleteDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiDeleteDefaultRetentionRequest {
+	return ApiDeleteDefaultRetentionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		bucketName: bucketName,
+	}
+}
+
+// DeleteDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DeleteDefaultRetentionExecute(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error) {
+	if a.DeleteDefaultRetentionExecuteMock == nil {
+		var localVarReturnValue *DeleteDefaultRetentionResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.DeleteDefaultRetentionExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) DisableService(ctx context.Context, projectId string) ApiDisableServiceRequest {
@@ -213,6 +282,62 @@ func (a DefaultAPIServiceMock) GetBucketExecute(r ApiGetBucketRequest) (*GetBuck
 	}
 
 	return (*a.GetBucketExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetComplianceLock(ctx context.Context, projectId string) ApiGetComplianceLockRequest {
+	return ApiGetComplianceLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// GetComplianceLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetComplianceLockExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetComplianceLockExecute(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error) {
+	if a.GetComplianceLockExecuteMock == nil {
+		var localVarReturnValue *ComplianceLockResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetComplianceLockExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetCredentialsGroup(ctx context.Context, projectId string, groupId string) ApiGetCredentialsGroupRequest {
+	return ApiGetCredentialsGroupRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		groupId:    groupId,
+	}
+}
+
+// GetCredentialsGroupExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCredentialsGroupExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetCredentialsGroupExecute(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error) {
+	if a.GetCredentialsGroupExecuteMock == nil {
+		var localVarReturnValue *GetCredentialsGroupResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetCredentialsGroupExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiGetDefaultRetentionRequest {
+	return ApiGetDefaultRetentionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		bucketName: bucketName,
+	}
+}
+
+// GetDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetDefaultRetentionExecute(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
+	if a.GetDefaultRetentionExecuteMock == nil {
+		var localVarReturnValue *DefaultRetentionResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetDefaultRetentionExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetServiceStatus(ctx context.Context, projectId string) ApiGetServiceStatusRequest {
@@ -285,4 +410,23 @@ func (a DefaultAPIServiceMock) ListCredentialsGroupsExecute(r ApiListCredentials
 	}
 
 	return (*a.ListCredentialsGroupsExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) SetDefaultRetention(ctx context.Context, projectId string, bucketName string) ApiSetDefaultRetentionRequest {
+	return ApiSetDefaultRetentionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		bucketName: bucketName,
+	}
+}
+
+// SetDefaultRetentionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the SetDefaultRetentionExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) SetDefaultRetentionExecute(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
+	if a.SetDefaultRetentionExecuteMock == nil {
+		var localVarReturnValue *DefaultRetentionResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.SetDefaultRetentionExecuteMock)(r)
 }
