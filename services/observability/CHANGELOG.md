@@ -1,3 +1,7 @@
+## v0.20.0
+- `v1api`: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct
+- Deprecated SDK layer in root of the module: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct
+
 ## v0.19.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 
