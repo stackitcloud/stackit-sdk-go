@@ -33,15 +33,12 @@ type CRIName string
 // List of Name
 const (
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	CRINAME_DOCKER CRIName = "docker"
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	CRINAME_CONTAINERD CRIName = "containerd"
 )
 
 // All allowed values of CRI enum
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 var AllowedCRINameEnumValues = []CRIName{
-	"docker",
 	"containerd",
 }
 
