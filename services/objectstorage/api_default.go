@@ -75,6 +75,29 @@ type DefaultApi interface {
 	*/
 	CreateBucketExecute(ctx context.Context, projectId string, region string, bucketName string) (*CreateBucketResponse, error)
 	/*
+		CreateComplianceLock Create Compliance Lock
+		Enable compliance lock for a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ApiCreateComplianceLockRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	CreateComplianceLock(ctx context.Context, projectId string, region string) ApiCreateComplianceLockRequest
+	/*
+		CreateComplianceLockExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ComplianceLockResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	CreateComplianceLockExecute(ctx context.Context, projectId string, region string) (*ComplianceLockResponse, error)
+	/*
 		CreateCredentialsGroup Create Credentials Group
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -147,6 +170,29 @@ type DefaultApi interface {
 	*/
 	DeleteBucketExecute(ctx context.Context, projectId string, region string, bucketName string) (*DeleteBucketResponse, error)
 	/*
+		DeleteComplianceLock Delete Compliance Lock
+		Remove compliance lock from a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ApiDeleteComplianceLockRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	DeleteComplianceLock(ctx context.Context, projectId string, region string) ApiDeleteComplianceLockRequest
+	/*
+		DeleteComplianceLockExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ComplianceLockResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	DeleteComplianceLockExecute(ctx context.Context, projectId string, region string) (*ComplianceLockResponse, error)
+	/*
 		DeleteCredentialsGroup Delete Credentials Group
 		Delete a credentials group inside a project if the project exists and no valid access keys are left in the group.
 
@@ -171,6 +217,31 @@ type DefaultApi interface {
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
 	DeleteCredentialsGroupExecute(ctx context.Context, projectId string, region string, groupId string) (*DeleteCredentialsGroupResponse, error)
+	/*
+		DeleteDefaultRetention Delete Default Retention
+		Remove the default retention from a bucket. Object Lock itself remains enabled.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return ApiDeleteDefaultRetentionRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	DeleteDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiDeleteDefaultRetentionRequest
+	/*
+		DeleteDefaultRetentionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return DeleteDefaultRetentionResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	DeleteDefaultRetentionExecute(ctx context.Context, projectId string, region string, bucketName string) (*DeleteDefaultRetentionResponse, error)
 	/*
 		DisableService Delete Project
 		Delete the given project
@@ -243,6 +314,79 @@ type DefaultApi interface {
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
 	GetBucketExecute(ctx context.Context, projectId string, region string, bucketName string) (*GetBucketResponse, error)
+	/*
+		GetComplianceLock Get Compliance Lock
+		Get the project-level compliance lock.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ApiGetComplianceLockRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetComplianceLock(ctx context.Context, projectId string, region string) ApiGetComplianceLockRequest
+	/*
+		GetComplianceLockExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ComplianceLockResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetComplianceLockExecute(ctx context.Context, projectId string, region string) (*ComplianceLockResponse, error)
+	/*
+		GetCredentialsGroup Get Credentials Group
+		Get the details of a single credentials group
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param groupId Id of the credentials group
+		@return ApiGetCredentialsGroupRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetCredentialsGroup(ctx context.Context, projectId string, region string, groupId string) ApiGetCredentialsGroupRequest
+	/*
+		GetCredentialsGroupExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param groupId Id of the credentials group
+		@return GetCredentialsGroupResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetCredentialsGroupExecute(ctx context.Context, projectId string, region string, groupId string) (*GetCredentialsGroupResponse, error)
+	/*
+		GetDefaultRetention Get Default Retention
+		Get the default retention configuration for a bucket.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return ApiGetDefaultRetentionRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiGetDefaultRetentionRequest
+	/*
+		GetDefaultRetentionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return DefaultRetentionResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetDefaultRetentionExecute(ctx context.Context, projectId string, region string, bucketName string) (*DefaultRetentionResponse, error)
 	/*
 		GetServiceStatus Get Project
 		Get project details.
@@ -335,6 +479,31 @@ type DefaultApi interface {
 		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	*/
 	ListCredentialsGroupsExecute(ctx context.Context, projectId string, region string) (*ListCredentialsGroupsResponse, error)
+	/*
+		SetDefaultRetention Update Default Retention
+		Set or update the default retention for a bucket.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return ApiSetDefaultRetentionRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	SetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiSetDefaultRetentionRequest
+	/*
+		SetDefaultRetentionExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return DefaultRetentionResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	SetDefaultRetentionExecute(ctx context.Context, projectId string, region string, bucketName string) (*DefaultRetentionResponse, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -349,8 +518,17 @@ type ApiCreateAccessKeyRequest interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiCreateBucketRequest interface {
+	// Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock.
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	ObjectLockEnabled(objectLockEnabled bool) ApiCreateBucketRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*CreateBucketResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiCreateComplianceLockRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*ComplianceLockResponse, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -376,9 +554,21 @@ type ApiDeleteBucketRequest interface {
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiDeleteComplianceLockRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*ComplianceLockResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiDeleteCredentialsGroupRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*DeleteCredentialsGroupResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiDeleteDefaultRetentionRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*DeleteDefaultRetentionResponse, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -397,6 +587,24 @@ type ApiEnableServiceRequest interface {
 type ApiGetBucketRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*GetBucketResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiGetComplianceLockRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*ComplianceLockResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiGetCredentialsGroupRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*GetCredentialsGroupResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiGetDefaultRetentionRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*DefaultRetentionResponse, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -423,6 +631,14 @@ type ApiListBucketsRequest interface {
 type ApiListCredentialsGroupsRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*ListCredentialsGroupsResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiSetDefaultRetentionRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	SetDefaultRetentionPayload(setDefaultRetentionPayload SetDefaultRetentionPayload) ApiSetDefaultRetentionRequest
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*DefaultRetentionResponse, error)
 }
 
 // DefaultApiService DefaultApi service
@@ -636,11 +852,19 @@ func (a *APIClient) CreateAccessKeyExecute(ctx context.Context, projectId string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateBucketRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-	projectId  string
-	region     string
-	bucketName string
+	ctx               context.Context
+	apiService        *DefaultApiService
+	projectId         string
+	region            string
+	bucketName        string
+	objectLockEnabled *bool
+}
+
+// Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r CreateBucketRequest) ObjectLockEnabled(objectLockEnabled bool) ApiCreateBucketRequest {
+	r.objectLockEnabled = &objectLockEnabled
+	return r
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -676,6 +900,9 @@ func (r CreateBucketRequest) Execute() (*CreateBucketResponse, error) {
 		return localVarReturnValue, fmt.Errorf("bucketName must have less than 63 elements")
 	}
 
+	if r.objectLockEnabled != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "objectLockEnabled", r.objectLockEnabled, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -824,6 +1051,167 @@ func (a *APIClient) CreateBucketExecute(ctx context.Context, projectId string, r
 		projectId:  projectId,
 		region:     region,
 		bucketName: bucketName,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateComplianceLockRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	region     string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r CreateComplianceLockRequest) Execute() (*ComplianceLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ComplianceLockResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.CreateComplianceLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/compliance-lock"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+CreateComplianceLock: Create Compliance Lock
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@return ApiCreateComplianceLockRequest
+*/
+func (a *APIClient) CreateComplianceLock(ctx context.Context, projectId string, region string) ApiCreateComplianceLockRequest {
+	return CreateComplianceLockRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) CreateComplianceLockExecute(ctx context.Context, projectId string, region string) (*ComplianceLockResponse, error) {
+	r := CreateComplianceLockRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
 	}
 	return r.Execute()
 }
@@ -1426,6 +1814,167 @@ func (a *APIClient) DeleteBucketExecute(ctx context.Context, projectId string, r
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DeleteComplianceLockRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	region     string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r DeleteComplianceLockRequest) Execute() (*ComplianceLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ComplianceLockResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteComplianceLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/compliance-lock"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+DeleteComplianceLock: Delete Compliance Lock
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@return ApiDeleteComplianceLockRequest
+*/
+func (a *APIClient) DeleteComplianceLock(ctx context.Context, projectId string, region string) ApiDeleteComplianceLockRequest {
+	return DeleteComplianceLockRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) DeleteComplianceLockExecute(ctx context.Context, projectId string, region string) (*ComplianceLockResponse, error) {
+	r := DeleteComplianceLockRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type DeleteCredentialsGroupRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -1603,6 +2152,178 @@ func (a *APIClient) DeleteCredentialsGroupExecute(ctx context.Context, projectId
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type DeleteDefaultRetentionRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	region     string
+	bucketName string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r DeleteDefaultRetentionRequest) Execute() (*DeleteDefaultRetentionResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeleteDefaultRetentionResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.DeleteDefaultRetention")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(r.bucketName, "bucketName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.bucketName) < 3 {
+		return localVarReturnValue, fmt.Errorf("bucketName must have at least 3 elements")
+	}
+	if strlen(r.bucketName) > 63 {
+		return localVarReturnValue, fmt.Errorf("bucketName must have less than 63 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+DeleteDefaultRetention: Delete Default Retention
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param bucketName The name has to be dns-conform.
+	@return ApiDeleteDefaultRetentionRequest
+*/
+func (a *APIClient) DeleteDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiDeleteDefaultRetentionRequest {
+	return DeleteDefaultRetentionRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) DeleteDefaultRetentionExecute(ctx context.Context, projectId string, region string, bucketName string) (*DeleteDefaultRetentionResponse, error) {
+	r := DeleteDefaultRetentionRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type DisableServiceRequest struct {
 	ctx        context.Context
 	apiService *DefaultApiService
@@ -1719,6 +2440,17 @@ func (r DisableServiceRequest) Execute() (*ProjectStatus, error) {
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorMessage
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2164,6 +2896,494 @@ func (a *APIClient) GetBucket(ctx context.Context, projectId string, region stri
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (a *APIClient) GetBucketExecute(ctx context.Context, projectId string, region string, bucketName string) (*GetBucketResponse, error) {
 	r := GetBucketRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetComplianceLockRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	region     string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r GetComplianceLockRequest) Execute() (*ComplianceLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ComplianceLockResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetComplianceLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/compliance-lock"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetComplianceLock: Get Compliance Lock
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@return ApiGetComplianceLockRequest
+*/
+func (a *APIClient) GetComplianceLock(ctx context.Context, projectId string, region string) ApiGetComplianceLockRequest {
+	return GetComplianceLockRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) GetComplianceLockExecute(ctx context.Context, projectId string, region string) (*ComplianceLockResponse, error) {
+	r := GetComplianceLockRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCredentialsGroupRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	region     string
+	groupId    string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r GetCredentialsGroupRequest) Execute() (*GetCredentialsGroupResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetCredentialsGroupResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetCredentialsGroup")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/credentials-group/{groupId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(ParameterValueToString(r.groupId, "groupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetCredentialsGroup: Get Credentials Group
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param groupId Id of the credentials group
+	@return ApiGetCredentialsGroupRequest
+*/
+func (a *APIClient) GetCredentialsGroup(ctx context.Context, projectId string, region string, groupId string) ApiGetCredentialsGroupRequest {
+	return GetCredentialsGroupRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		groupId:    groupId,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) GetCredentialsGroupExecute(ctx context.Context, projectId string, region string, groupId string) (*GetCredentialsGroupResponse, error) {
+	r := GetCredentialsGroupRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		groupId:    groupId,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetDefaultRetentionRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	region     string
+	bucketName string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r GetDefaultRetentionRequest) Execute() (*DefaultRetentionResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DefaultRetentionResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetDefaultRetention")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(r.bucketName, "bucketName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.bucketName) < 3 {
+		return localVarReturnValue, fmt.Errorf("bucketName must have at least 3 elements")
+	}
+	if strlen(r.bucketName) > 63 {
+		return localVarReturnValue, fmt.Errorf("bucketName must have less than 63 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetDefaultRetention: Get Default Retention
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param bucketName The name has to be dns-conform.
+	@return ApiGetDefaultRetentionRequest
+*/
+func (a *APIClient) GetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiGetDefaultRetentionRequest {
+	return GetDefaultRetentionRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) GetDefaultRetentionExecute(ctx context.Context, projectId string, region string, bucketName string) (*DefaultRetentionResponse, error) {
+	r := GetDefaultRetentionRequest{
 		apiService: a.defaultApi,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -2900,6 +4120,201 @@ func (a *APIClient) ListCredentialsGroupsExecute(ctx context.Context, projectId 
 		ctx:        ctx,
 		projectId:  projectId,
 		region:     region,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type SetDefaultRetentionRequest struct {
+	ctx                        context.Context
+	apiService                 *DefaultApiService
+	projectId                  string
+	region                     string
+	bucketName                 string
+	setDefaultRetentionPayload *SetDefaultRetentionPayload
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r SetDefaultRetentionRequest) SetDefaultRetentionPayload(setDefaultRetentionPayload SetDefaultRetentionPayload) ApiSetDefaultRetentionRequest {
+	r.setDefaultRetentionPayload = &setDefaultRetentionPayload
+	return r
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r SetDefaultRetentionRequest) Execute() (*DefaultRetentionResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DefaultRetentionResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.SetDefaultRetention")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketName"+"}", url.PathEscape(ParameterValueToString(r.bucketName, "bucketName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.bucketName) < 3 {
+		return localVarReturnValue, fmt.Errorf("bucketName must have at least 3 elements")
+	}
+	if strlen(r.bucketName) > 63 {
+		return localVarReturnValue, fmt.Errorf("bucketName must have less than 63 elements")
+	}
+	if r.setDefaultRetentionPayload == nil {
+		return localVarReturnValue, fmt.Errorf("setDefaultRetentionPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setDefaultRetentionPayload
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+SetDefaultRetention: Update Default Retention
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param bucketName The name has to be dns-conform.
+	@return ApiSetDefaultRetentionRequest
+*/
+func (a *APIClient) SetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiSetDefaultRetentionRequest {
+	return SetDefaultRetentionRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) SetDefaultRetentionExecute(ctx context.Context, projectId string, region string, bucketName string) (*DefaultRetentionResponse, error) {
+	r := SetDefaultRetentionRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
 	}
 	return r.Execute()
 }
