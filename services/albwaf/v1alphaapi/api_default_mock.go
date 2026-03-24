@@ -34,6 +34,8 @@ type DefaultAPIServiceMock struct {
 	DeleteWAFExecuteMock *func(r ApiDeleteWAFRequest) (map[string]interface{}, error)
 	// GetCoreRuleSetExecuteMock can be populated to implement the behavior of the GetCoreRuleSetExecute function of this mock
 	GetCoreRuleSetExecuteMock *func(r ApiGetCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
+	// GetQuotaExecuteMock can be populated to implement the behavior of the GetQuotaExecute function of this mock
+	GetQuotaExecuteMock *func(r ApiGetQuotaRequest) (*GetQuotaResponse, error)
 	// GetRulesExecuteMock can be populated to implement the behavior of the GetRulesExecute function of this mock
 	GetRulesExecuteMock *func(r ApiGetRulesRequest) (*GetRulesResponse, error)
 	// GetWAFExecuteMock can be populated to implement the behavior of the GetWAFExecute function of this mock
@@ -187,6 +189,25 @@ func (a DefaultAPIServiceMock) GetCoreRuleSetExecute(r ApiGetCoreRuleSetRequest)
 	}
 
 	return (*a.GetCoreRuleSetExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest {
+	return ApiGetQuotaRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// GetQuotaExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetQuotaExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error) {
+	if a.GetQuotaExecuteMock == nil {
+		var localVarReturnValue *GetQuotaResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetQuotaExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetRules(ctx context.Context, projectId string, region string, name string) ApiGetRulesRequest {
