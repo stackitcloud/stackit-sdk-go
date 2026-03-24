@@ -186,7 +186,7 @@ type GetQuotaResponse struct {
 	// The maximum number of observability credentials that can be stored in this project.
 	// Can be cast to int32 without loss of precision.
 	MaxCredentials GetQuotaResponseGetMaxCredentialsAttributeType `json:"maxCredentials,omitempty"`
-	// The maximum number of load balancing servers in this project. Unlimited if set to -1.
+	// The maximum number of load balancing servers in this project.
 	// Can be cast to int32 without loss of precision.
 	MaxLoadBalancers GetQuotaResponseGetMaxLoadBalancersAttributeType `json:"maxLoadBalancers,omitempty"`
 	// Project identifier
