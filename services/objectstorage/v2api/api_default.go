@@ -57,6 +57,22 @@ type DefaultAPI interface {
 	CreateBucketExecute(r ApiCreateBucketRequest) (*CreateBucketResponse, error)
 
 	/*
+		CreateComplianceLock Create Compliance Lock
+
+		Enable compliance lock for a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ApiCreateComplianceLockRequest
+	*/
+	CreateComplianceLock(ctx context.Context, projectId string, region string) ApiCreateComplianceLockRequest
+
+	// CreateComplianceLockExecute executes the request
+	//  @return ComplianceLockResponse
+	CreateComplianceLockExecute(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error)
+
+	/*
 		CreateCredentialsGroup Create Credentials Group
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -105,6 +121,22 @@ type DefaultAPI interface {
 	DeleteBucketExecute(r ApiDeleteBucketRequest) (*DeleteBucketResponse, error)
 
 	/*
+		DeleteComplianceLock Delete Compliance Lock
+
+		Remove compliance lock from a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ApiDeleteComplianceLockRequest
+	*/
+	DeleteComplianceLock(ctx context.Context, projectId string, region string) ApiDeleteComplianceLockRequest
+
+	// DeleteComplianceLockExecute executes the request
+	//  @return ComplianceLockResponse
+	DeleteComplianceLockExecute(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error)
+
+	/*
 		DeleteCredentialsGroup Delete Credentials Group
 
 		Delete a credentials group inside a project if the project exists and no valid access keys are left in the group.
@@ -120,6 +152,23 @@ type DefaultAPI interface {
 	// DeleteCredentialsGroupExecute executes the request
 	//  @return DeleteCredentialsGroupResponse
 	DeleteCredentialsGroupExecute(r ApiDeleteCredentialsGroupRequest) (*DeleteCredentialsGroupResponse, error)
+
+	/*
+		DeleteDefaultRetention Delete Default Retention
+
+		Remove the default retention from a bucket. Object Lock itself remains enabled.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return ApiDeleteDefaultRetentionRequest
+	*/
+	DeleteDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiDeleteDefaultRetentionRequest
+
+	// DeleteDefaultRetentionExecute executes the request
+	//  @return DeleteDefaultRetentionResponse
+	DeleteDefaultRetentionExecute(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error)
 
 	/*
 		DisableService Delete Project
@@ -170,6 +219,56 @@ type DefaultAPI interface {
 	// GetBucketExecute executes the request
 	//  @return GetBucketResponse
 	GetBucketExecute(r ApiGetBucketRequest) (*GetBucketResponse, error)
+
+	/*
+		GetComplianceLock Get Compliance Lock
+
+		Get the project-level compliance lock.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@return ApiGetComplianceLockRequest
+	*/
+	GetComplianceLock(ctx context.Context, projectId string, region string) ApiGetComplianceLockRequest
+
+	// GetComplianceLockExecute executes the request
+	//  @return ComplianceLockResponse
+	GetComplianceLockExecute(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error)
+
+	/*
+		GetCredentialsGroup Get Credentials Group
+
+		Get the details of a single credentials group
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param groupId Id of the credentials group
+		@return ApiGetCredentialsGroupRequest
+	*/
+	GetCredentialsGroup(ctx context.Context, projectId string, region string, groupId string) ApiGetCredentialsGroupRequest
+
+	// GetCredentialsGroupExecute executes the request
+	//  @return GetCredentialsGroupResponse
+	GetCredentialsGroupExecute(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error)
+
+	/*
+		GetDefaultRetention Get Default Retention
+
+		Get the default retention configuration for a bucket.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return ApiGetDefaultRetentionRequest
+	*/
+	GetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiGetDefaultRetentionRequest
+
+	// GetDefaultRetentionExecute executes the request
+	//  @return DefaultRetentionResponse
+	GetDefaultRetentionExecute(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
 
 	/*
 		GetServiceStatus Get Project
@@ -234,6 +333,23 @@ type DefaultAPI interface {
 	// ListCredentialsGroupsExecute executes the request
 	//  @return ListCredentialsGroupsResponse
 	ListCredentialsGroupsExecute(r ApiListCredentialsGroupsRequest) (*ListCredentialsGroupsResponse, error)
+
+	/*
+		SetDefaultRetention Update Default Retention
+
+		Set or update the default retention for a bucket.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId STACKIT project ID
+		@param region STACKIT Region
+		@param bucketName The name has to be dns-conform.
+		@return ApiSetDefaultRetentionRequest
+	*/
+	SetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiSetDefaultRetentionRequest
+
+	// SetDefaultRetentionExecute executes the request
+	//  @return DefaultRetentionResponse
+	SetDefaultRetentionExecute(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error)
 }
 
 // DefaultAPIService DefaultAPI service
@@ -438,11 +554,18 @@ func (a *DefaultAPIService) CreateAccessKeyExecute(r ApiCreateAccessKeyRequest) 
 }
 
 type ApiCreateBucketRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	projectId  string
-	region     string
-	bucketName string
+	ctx               context.Context
+	ApiService        DefaultAPI
+	projectId         string
+	region            string
+	bucketName        string
+	objectLockEnabled *bool
+}
+
+// Enable S3 Object Lock on this bucket. Can only be set at creation time. Requires an active project-level compliance lock.
+func (r ApiCreateBucketRequest) ObjectLockEnabled(objectLockEnabled bool) ApiCreateBucketRequest {
+	r.objectLockEnabled = &objectLockEnabled
+	return r
 }
 
 func (r ApiCreateBucketRequest) Execute() (*CreateBucketResponse, error) {
@@ -501,6 +624,13 @@ func (a *DefaultAPIService) CreateBucketExecute(r ApiCreateBucketRequest) (*Crea
 		return localVarReturnValue, reportError("bucketName must have less than 63 elements")
 	}
 
+	if r.objectLockEnabled != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "objectLockEnabled", r.objectLockEnabled, "form", "")
+	} else {
+		var defaultValue bool = false
+		parameterAddToHeaderOrQuery(localVarQueryParams, "objectLockEnabled", defaultValue, "form", "")
+		r.objectLockEnabled = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -587,6 +717,160 @@ func (a *DefaultAPIService) CreateBucketExecute(r ApiCreateBucketRequest) (*Crea
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiCreateComplianceLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+}
+
+func (r ApiCreateComplianceLockRequest) Execute() (*ComplianceLockResponse, error) {
+	return r.ApiService.CreateComplianceLockExecute(r)
+}
+
+/*
+CreateComplianceLock Create Compliance Lock
+
+Enable compliance lock for a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@return ApiCreateComplianceLockRequest
+*/
+func (a *DefaultAPIService) CreateComplianceLock(ctx context.Context, projectId string, region string) ApiCreateComplianceLockRequest {
+	return ApiCreateComplianceLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ComplianceLockResponse
+func (a *DefaultAPIService) CreateComplianceLockExecute(r ApiCreateComplianceLockRequest) (*ComplianceLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ComplianceLockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateComplianceLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/compliance-lock"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1203,6 +1487,160 @@ func (a *DefaultAPIService) DeleteBucketExecute(r ApiDeleteBucketRequest) (*Dele
 	return localVarReturnValue, nil
 }
 
+type ApiDeleteComplianceLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+}
+
+func (r ApiDeleteComplianceLockRequest) Execute() (*ComplianceLockResponse, error) {
+	return r.ApiService.DeleteComplianceLockExecute(r)
+}
+
+/*
+DeleteComplianceLock Delete Compliance Lock
+
+Remove compliance lock from a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@return ApiDeleteComplianceLockRequest
+*/
+func (a *DefaultAPIService) DeleteComplianceLock(ctx context.Context, projectId string, region string) ApiDeleteComplianceLockRequest {
+	return ApiDeleteComplianceLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ComplianceLockResponse
+func (a *DefaultAPIService) DeleteComplianceLockExecute(r ApiDeleteComplianceLockRequest) (*ComplianceLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ComplianceLockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteComplianceLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/compliance-lock"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiDeleteCredentialsGroupRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -1336,6 +1774,170 @@ func (a *DefaultAPIService) DeleteCredentialsGroupExecute(r ApiDeleteCredentials
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiDeleteDefaultRetentionRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	bucketName string
+}
+
+func (r ApiDeleteDefaultRetentionRequest) Execute() (*DeleteDefaultRetentionResponse, error) {
+	return r.ApiService.DeleteDefaultRetentionExecute(r)
+}
+
+/*
+DeleteDefaultRetention Delete Default Retention
+
+Remove the default retention from a bucket. Object Lock itself remains enabled.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param bucketName The name has to be dns-conform.
+	@return ApiDeleteDefaultRetentionRequest
+*/
+func (a *DefaultAPIService) DeleteDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiDeleteDefaultRetentionRequest {
+	return ApiDeleteDefaultRetentionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+}
+
+// Execute executes the request
+//
+//	@return DeleteDefaultRetentionResponse
+func (a *DefaultAPIService) DeleteDefaultRetentionExecute(r ApiDeleteDefaultRetentionRequest) (*DeleteDefaultRetentionResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeleteDefaultRetentionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteDefaultRetention")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketName"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.bucketName) < 3 {
+		return localVarReturnValue, reportError("bucketName must have at least 3 elements")
+	}
+	if strlen(r.bucketName) > 63 {
+		return localVarReturnValue, reportError("bucketName must have less than 63 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -1513,6 +2115,18 @@ func (a *DefaultAPIService) DisableServiceExecute(r ApiDisableServiceRequest) (*
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1893,6 +2507,470 @@ func (a *DefaultAPIService) GetBucketExecute(r ApiGetBucketRequest) (*GetBucketR
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetComplianceLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+}
+
+func (r ApiGetComplianceLockRequest) Execute() (*ComplianceLockResponse, error) {
+	return r.ApiService.GetComplianceLockExecute(r)
+}
+
+/*
+GetComplianceLock Get Compliance Lock
+
+Get the project-level compliance lock.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@return ApiGetComplianceLockRequest
+*/
+func (a *DefaultAPIService) GetComplianceLock(ctx context.Context, projectId string, region string) ApiGetComplianceLockRequest {
+	return ApiGetComplianceLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ComplianceLockResponse
+func (a *DefaultAPIService) GetComplianceLockExecute(r ApiGetComplianceLockRequest) (*ComplianceLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ComplianceLockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetComplianceLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/compliance-lock"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetCredentialsGroupRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	groupId    string
+}
+
+func (r ApiGetCredentialsGroupRequest) Execute() (*GetCredentialsGroupResponse, error) {
+	return r.ApiService.GetCredentialsGroupExecute(r)
+}
+
+/*
+GetCredentialsGroup Get Credentials Group
+
+Get the details of a single credentials group
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param groupId Id of the credentials group
+	@return ApiGetCredentialsGroupRequest
+*/
+func (a *DefaultAPIService) GetCredentialsGroup(ctx context.Context, projectId string, region string, groupId string) ApiGetCredentialsGroupRequest {
+	return ApiGetCredentialsGroupRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		groupId:    groupId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetCredentialsGroupResponse
+func (a *DefaultAPIService) GetCredentialsGroupExecute(r ApiGetCredentialsGroupRequest) (*GetCredentialsGroupResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetCredentialsGroupResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetCredentialsGroup")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/credentials-group/{groupId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", url.PathEscape(parameterValueToString(r.groupId, "groupId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetDefaultRetentionRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     string
+	bucketName string
+}
+
+func (r ApiGetDefaultRetentionRequest) Execute() (*DefaultRetentionResponse, error) {
+	return r.ApiService.GetDefaultRetentionExecute(r)
+}
+
+/*
+GetDefaultRetention Get Default Retention
+
+Get the default retention configuration for a bucket.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param bucketName The name has to be dns-conform.
+	@return ApiGetDefaultRetentionRequest
+*/
+func (a *DefaultAPIService) GetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiGetDefaultRetentionRequest {
+	return ApiGetDefaultRetentionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+}
+
+// Execute executes the request
+//
+//	@return DefaultRetentionResponse
+func (a *DefaultAPIService) GetDefaultRetentionExecute(r ApiGetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DefaultRetentionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetDefaultRetention")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketName"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.bucketName) < 3 {
+		return localVarReturnValue, reportError("bucketName must have at least 3 elements")
+	}
+	if strlen(r.bucketName) > 63 {
+		return localVarReturnValue, reportError("bucketName must have less than 63 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -2602,6 +3680,193 @@ func (a *DefaultAPIService) ListCredentialsGroupsExecute(r ApiListCredentialsGro
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v HTTPValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiSetDefaultRetentionRequest struct {
+	ctx                        context.Context
+	ApiService                 DefaultAPI
+	projectId                  string
+	region                     string
+	bucketName                 string
+	setDefaultRetentionPayload *SetDefaultRetentionPayload
+}
+
+func (r ApiSetDefaultRetentionRequest) SetDefaultRetentionPayload(setDefaultRetentionPayload SetDefaultRetentionPayload) ApiSetDefaultRetentionRequest {
+	r.setDefaultRetentionPayload = &setDefaultRetentionPayload
+	return r
+}
+
+func (r ApiSetDefaultRetentionRequest) Execute() (*DefaultRetentionResponse, error) {
+	return r.ApiService.SetDefaultRetentionExecute(r)
+}
+
+/*
+SetDefaultRetention Update Default Retention
+
+Set or update the default retention for a bucket.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId STACKIT project ID
+	@param region STACKIT Region
+	@param bucketName The name has to be dns-conform.
+	@return ApiSetDefaultRetentionRequest
+*/
+func (a *DefaultAPIService) SetDefaultRetention(ctx context.Context, projectId string, region string, bucketName string) ApiSetDefaultRetentionRequest {
+	return ApiSetDefaultRetentionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		bucketName: bucketName,
+	}
+}
+
+// Execute executes the request
+//
+//	@return DefaultRetentionResponse
+func (a *DefaultAPIService) SetDefaultRetentionExecute(r ApiSetDefaultRetentionRequest) (*DefaultRetentionResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DefaultRetentionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.SetDefaultRetention")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/project/{projectId}/regions/{region}/bucket/{bucketName}/default-retention"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"bucketName"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.bucketName) < 3 {
+		return localVarReturnValue, reportError("bucketName must have at least 3 elements")
+	}
+	if strlen(r.bucketName) > 63 {
+		return localVarReturnValue, reportError("bucketName must have less than 63 elements")
+	}
+	if r.setDefaultRetentionPayload == nil {
+		return localVarReturnValue, reportError("setDefaultRetentionPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setDefaultRetentionPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
