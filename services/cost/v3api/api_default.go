@@ -250,8 +250,8 @@ func (a *DefaultAPIService) GetCostsForProjectExecute(r ApiGetCostsForProjectReq
 			ErrorMessage: localVarHTTPResponse.Status,
 			StatusCode:   localVarHTTPResponse.StatusCode,
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v map[string]interface{}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -262,15 +262,41 @@ func (a *DefaultAPIService) GetCostsForProjectExecute(r ApiGetCostsForProjectReq
 			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
-		var v DefaultError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
-		return localVarReturnValue, newErr
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v AuthErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		return localVarReturnValue, newErr
 	}
 
@@ -460,8 +486,8 @@ func (a *DefaultAPIService) ListCostsForCustomerExecute(r ApiListCostsForCustome
 			ErrorMessage: localVarHTTPResponse.Status,
 			StatusCode:   localVarHTTPResponse.StatusCode,
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v map[string]interface{}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -472,15 +498,41 @@ func (a *DefaultAPIService) ListCostsForCustomerExecute(r ApiListCostsForCustome
 			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
-		var v DefaultError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
-		return localVarReturnValue, newErr
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v AuthErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		return localVarReturnValue, newErr
 	}
 
@@ -670,8 +722,8 @@ func (a *DefaultAPIService) ListCostsForResellerExecute(r ApiListCostsForReselle
 			ErrorMessage: localVarHTTPResponse.Status,
 			StatusCode:   localVarHTTPResponse.StatusCode,
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v map[string]interface{}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
@@ -682,15 +734,41 @@ func (a *DefaultAPIService) ListCostsForResellerExecute(r ApiListCostsForReselle
 			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
-		var v DefaultError
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
-		return localVarReturnValue, newErr
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v AuthErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
 		return localVarReturnValue, newErr
 	}
 
