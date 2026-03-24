@@ -261,25 +261,6 @@ type DefaultApi interface {
 	*/
 	ListInstancesExecute(ctx context.Context, projectId string, regionId string) (*InstanceList, error)
 	/*
-		ListPlansGlobal Method for ListPlansGlobal
-		Deprecated: DEPRECATED: Will be removed at the 28 of february 2026. Use list-plans-project instead.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiListPlansGlobalRequest
-
-		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	*/
-	ListPlansGlobal(ctx context.Context) ApiListPlansGlobalRequest
-	/*
-		ListPlansGlobalExecute executes the request
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return PlanList
-
-		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	*/
-	ListPlansGlobalExecute(ctx context.Context) (*PlanList, error)
-	/*
 		ListPlansProject Method for ListPlansProject
 		List all possible plans for the project.
 
@@ -412,12 +393,6 @@ type ApiGetTokenByInstanceNameRequest interface {
 type ApiListInstancesRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*InstanceList, error)
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ApiListPlansGlobalRequest interface {
-	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-	Execute() (*PlanList, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -2039,147 +2014,6 @@ func (a *APIClient) ListInstancesExecute(ctx context.Context, projectId string, 
 		ctx:        ctx,
 		projectId:  projectId,
 		regionId:   regionId,
-	}
-	return r.Execute()
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ListPlansGlobalRequest struct {
-	ctx        context.Context
-	apiService *DefaultApiService
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (r ListPlansGlobalRequest) Execute() (*PlanList, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PlanList
-	)
-	a := r.apiService
-	client, ok := a.client.(*APIClient)
-	if !ok {
-		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
-	}
-	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListPlansGlobal")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/plans"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v BadRequest
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v UnauthorizedRequest
-			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-/*
-ListPlansGlobal: Method for ListPlansGlobal
-
-Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListPlansGlobalRequest
-*/
-func (a *APIClient) ListPlansGlobal(ctx context.Context) ApiListPlansGlobalRequest {
-	return ListPlansGlobalRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
-	}
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (a *APIClient) ListPlansGlobalExecute(ctx context.Context) (*PlanList, error) {
-	r := ListPlansGlobalRequest{
-		apiService: a.defaultApi,
-		ctx:        ctx,
 	}
 	return r.Execute()
 }
