@@ -640,6 +640,33 @@ type InstanceSensitiveDataGetOtlpGrpcTracesUrlArgType = string
 type InstanceSensitiveDataGetOtlpGrpcTracesUrlRetType = string
 
 /*
+	types and functions for otlpHttpLogsUrl
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceSensitiveDataGetOtlpHttpLogsUrlAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getInstanceSensitiveDataGetOtlpHttpLogsUrlAttributeTypeOk(arg InstanceSensitiveDataGetOtlpHttpLogsUrlAttributeType) (ret InstanceSensitiveDataGetOtlpHttpLogsUrlRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setInstanceSensitiveDataGetOtlpHttpLogsUrlAttributeType(arg *InstanceSensitiveDataGetOtlpHttpLogsUrlAttributeType, val InstanceSensitiveDataGetOtlpHttpLogsUrlRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceSensitiveDataGetOtlpHttpLogsUrlArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type InstanceSensitiveDataGetOtlpHttpLogsUrlRetType = string
+
+/*
 	types and functions for otlpHttpTracesUrl
 */
 
@@ -852,6 +879,8 @@ type InstanceSensitiveData struct {
 	// REQUIRED
 	OtlpGrpcTracesUrl InstanceSensitiveDataGetOtlpGrpcTracesUrlAttributeType `json:"otlpGrpcTracesUrl" required:"true"`
 	// REQUIRED
+	OtlpHttpLogsUrl InstanceSensitiveDataGetOtlpHttpLogsUrlAttributeType `json:"otlpHttpLogsUrl" required:"true"`
+	// REQUIRED
 	OtlpHttpTracesUrl InstanceSensitiveDataGetOtlpHttpTracesUrlAttributeType `json:"otlpHttpTracesUrl" required:"true"`
 	// REQUIRED
 	OtlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlAttributeType `json:"otlpTracesUrl" required:"true"`
@@ -873,7 +902,7 @@ type _InstanceSensitiveData InstanceSensitiveData
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminEnabled InstanceSensitiveDatagetGrafanaAdminEnabledArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerHttpUrl InstanceSensitiveDataGetJaegerHttpUrlArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpGrpcTracesUrl InstanceSensitiveDataGetOtlpGrpcTracesUrlArgType, otlpHttpTracesUrl InstanceSensitiveDataGetOtlpHttpTracesUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
+func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArgType, cluster InstanceSensitiveDataGetClusterArgType, dashboardUrl InstanceSensitiveDataGetDashboardUrlArgType, grafanaAdminEnabled InstanceSensitiveDatagetGrafanaAdminEnabledArgType, grafanaAdminPassword InstanceSensitiveDataGetGrafanaAdminPasswordArgType, grafanaAdminUser InstanceSensitiveDataGetGrafanaAdminUserArgType, grafanaPublicReadAccess InstanceSensitiveDatagetGrafanaPublicReadAccessArgType, grafanaUrl InstanceSensitiveDataGetGrafanaUrlArgType, grafanaUseStackitSso InstanceSensitiveDatagetGrafanaUseStackitSsoArgType, instance InstanceSensitiveDataGetInstanceArgType, jaegerHttpUrl InstanceSensitiveDataGetJaegerHttpUrlArgType, jaegerTracesUrl InstanceSensitiveDataGetJaegerTracesUrlArgType, jaegerUiUrl InstanceSensitiveDataGetJaegerUiUrlArgType, logsPushUrl InstanceSensitiveDataGetLogsPushUrlArgType, logsUrl InstanceSensitiveDataGetLogsUrlArgType, metricsEndpointUrl InstanceSensitiveDataGetMetricsEndpointUrlArgType, metricsRetentionTime1h InstanceSensitiveDataGetMetricsRetentionTime1hArgType, metricsRetentionTime5m InstanceSensitiveDataGetMetricsRetentionTime5mArgType, metricsRetentionTimeRaw InstanceSensitiveDataGetMetricsRetentionTimeRawArgType, metricsUrl InstanceSensitiveDataGetMetricsUrlArgType, otlpGrpcTracesUrl InstanceSensitiveDataGetOtlpGrpcTracesUrlArgType, otlpHttpLogsUrl InstanceSensitiveDataGetOtlpHttpLogsUrlArgType, otlpHttpTracesUrl InstanceSensitiveDataGetOtlpHttpTracesUrlArgType, otlpTracesUrl InstanceSensitiveDataGetOtlpTracesUrlArgType, plan InstanceSensitiveDataGetPlanArgType, pushMetricsUrl InstanceSensitiveDataGetPushMetricsUrlArgType, targetsUrl InstanceSensitiveDataGetTargetsUrlArgType, zipkinSpansUrl InstanceSensitiveDataGetZipkinSpansUrlArgType) *InstanceSensitiveData {
 	this := InstanceSensitiveData{}
 	setInstanceSensitiveDataGetAlertingUrlAttributeType(&this.AlertingUrl, alertingUrl)
 	setInstanceSensitiveDataGetClusterAttributeType(&this.Cluster, cluster)
@@ -896,6 +925,7 @@ func NewInstanceSensitiveData(alertingUrl InstanceSensitiveDataGetAlertingUrlArg
 	setInstanceSensitiveDataGetMetricsRetentionTimeRawAttributeType(&this.MetricsRetentionTimeRaw, metricsRetentionTimeRaw)
 	setInstanceSensitiveDataGetMetricsUrlAttributeType(&this.MetricsUrl, metricsUrl)
 	setInstanceSensitiveDataGetOtlpGrpcTracesUrlAttributeType(&this.OtlpGrpcTracesUrl, otlpGrpcTracesUrl)
+	setInstanceSensitiveDataGetOtlpHttpLogsUrlAttributeType(&this.OtlpHttpLogsUrl, otlpHttpLogsUrl)
 	setInstanceSensitiveDataGetOtlpHttpTracesUrlAttributeType(&this.OtlpHttpTracesUrl, otlpHttpTracesUrl)
 	setInstanceSensitiveDataGetOtlpTracesUrlAttributeType(&this.OtlpTracesUrl, otlpTracesUrl)
 	setInstanceSensitiveDataGetPlanAttributeType(&this.Plan, plan)
@@ -1392,6 +1422,26 @@ func (o *InstanceSensitiveData) SetOtlpGrpcTracesUrl(v InstanceSensitiveDataGetO
 	setInstanceSensitiveDataGetOtlpGrpcTracesUrlAttributeType(&o.OtlpGrpcTracesUrl, v)
 }
 
+// GetOtlpHttpLogsUrl returns the OtlpHttpLogsUrl field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *InstanceSensitiveData) GetOtlpHttpLogsUrl() (ret InstanceSensitiveDataGetOtlpHttpLogsUrlRetType) {
+	ret, _ = o.GetOtlpHttpLogsUrlOk()
+	return ret
+}
+
+// GetOtlpHttpLogsUrlOk returns a tuple with the OtlpHttpLogsUrl field value
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *InstanceSensitiveData) GetOtlpHttpLogsUrlOk() (ret InstanceSensitiveDataGetOtlpHttpLogsUrlRetType, ok bool) {
+	return getInstanceSensitiveDataGetOtlpHttpLogsUrlAttributeTypeOk(o.OtlpHttpLogsUrl)
+}
+
+// SetOtlpHttpLogsUrl sets field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *InstanceSensitiveData) SetOtlpHttpLogsUrl(v InstanceSensitiveDataGetOtlpHttpLogsUrlRetType) {
+	setInstanceSensitiveDataGetOtlpHttpLogsUrlAttributeType(&o.OtlpHttpLogsUrl, v)
+}
+
 // GetOtlpHttpTracesUrl returns the OtlpHttpTracesUrl field value
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *InstanceSensitiveData) GetOtlpHttpTracesUrl() (ret InstanceSensitiveDataGetOtlpHttpTracesUrlRetType) {
@@ -1583,6 +1633,9 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getInstanceSensitiveDataGetOtlpGrpcTracesUrlAttributeTypeOk(o.OtlpGrpcTracesUrl); ok {
 		toSerialize["OtlpGrpcTracesUrl"] = val
+	}
+	if val, ok := getInstanceSensitiveDataGetOtlpHttpLogsUrlAttributeTypeOk(o.OtlpHttpLogsUrl); ok {
+		toSerialize["OtlpHttpLogsUrl"] = val
 	}
 	if val, ok := getInstanceSensitiveDataGetOtlpHttpTracesUrlAttributeTypeOk(o.OtlpHttpTracesUrl); ok {
 		toSerialize["OtlpHttpTracesUrl"] = val
