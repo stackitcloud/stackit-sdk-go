@@ -20,16 +20,17 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// CreateCertificateExecuteMock can be populated to implement the behavior of the CreateCertificateExecute function of this mock
+	// Deprecated: CreateCertificateExecuteMock can be populated to implement the behavior of the CreateCertificateExecute function of this mock
 	CreateCertificateExecuteMock *func(r ApiCreateCertificateRequest) (*CreateCertificateResponse, error)
-	// DeleteCertificateExecuteMock can be populated to implement the behavior of the DeleteCertificateExecute function of this mock
+	// Deprecated: DeleteCertificateExecuteMock can be populated to implement the behavior of the DeleteCertificateExecute function of this mock
 	DeleteCertificateExecuteMock *func(r ApiDeleteCertificateRequest) (map[string]interface{}, error)
-	// GetCertificateExecuteMock can be populated to implement the behavior of the GetCertificateExecute function of this mock
+	// Deprecated: GetCertificateExecuteMock can be populated to implement the behavior of the GetCertificateExecute function of this mock
 	GetCertificateExecuteMock *func(r ApiGetCertificateRequest) (*GetCertificateResponse, error)
-	// ListCertificatesExecuteMock can be populated to implement the behavior of the ListCertificatesExecute function of this mock
+	// Deprecated: ListCertificatesExecuteMock can be populated to implement the behavior of the ListCertificatesExecute function of this mock
 	ListCertificatesExecuteMock *func(r ApiListCertificatesRequest) (*ListCertificatesResponse, error)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateCertificate(ctx context.Context, projectId string, region string) ApiCreateCertificateRequest {
 	return ApiCreateCertificateRequest{
 		ApiService: a,
@@ -39,7 +40,7 @@ func (a DefaultAPIServiceMock) CreateCertificate(ctx context.Context, projectId 
 	}
 }
 
-// CreateCertificateExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCertificateExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateCertificateExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCertificateExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateCertificateExecute(r ApiCreateCertificateRequest) (*CreateCertificateResponse, error) {
 	if a.CreateCertificateExecuteMock == nil {
 		var localVarReturnValue *CreateCertificateResponse
@@ -49,6 +50,7 @@ func (a DefaultAPIServiceMock) CreateCertificateExecute(r ApiCreateCertificateRe
 	return (*a.CreateCertificateExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteCertificate(ctx context.Context, projectId string, region string, id string) ApiDeleteCertificateRequest {
 	return ApiDeleteCertificateRequest{
 		ApiService: a,
@@ -59,7 +61,7 @@ func (a DefaultAPIServiceMock) DeleteCertificate(ctx context.Context, projectId 
 	}
 }
 
-// DeleteCertificateExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCertificateExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteCertificateExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCertificateExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteCertificateExecute(r ApiDeleteCertificateRequest) (map[string]interface{}, error) {
 	if a.DeleteCertificateExecuteMock == nil {
 		var localVarReturnValue map[string]interface{}
@@ -69,6 +71,7 @@ func (a DefaultAPIServiceMock) DeleteCertificateExecute(r ApiDeleteCertificateRe
 	return (*a.DeleteCertificateExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetCertificate(ctx context.Context, projectId string, region string, id string) ApiGetCertificateRequest {
 	return ApiGetCertificateRequest{
 		ApiService: a,
@@ -79,7 +82,7 @@ func (a DefaultAPIServiceMock) GetCertificate(ctx context.Context, projectId str
 	}
 }
 
-// GetCertificateExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCertificateExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetCertificateExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCertificateExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetCertificateExecute(r ApiGetCertificateRequest) (*GetCertificateResponse, error) {
 	if a.GetCertificateExecuteMock == nil {
 		var localVarReturnValue *GetCertificateResponse
@@ -89,6 +92,7 @@ func (a DefaultAPIServiceMock) GetCertificateExecute(r ApiGetCertificateRequest)
 	return (*a.GetCertificateExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListCertificates(ctx context.Context, projectId string, region string) ApiListCertificatesRequest {
 	return ApiListCertificatesRequest{
 		ApiService: a,
@@ -98,7 +102,7 @@ func (a DefaultAPIServiceMock) ListCertificates(ctx context.Context, projectId s
 	}
 }
 
-// ListCertificatesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCertificatesExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListCertificatesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCertificatesExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListCertificatesExecute(r ApiListCertificatesRequest) (*ListCertificatesResponse, error) {
 	if a.ListCertificatesExecuteMock == nil {
 		var localVarReturnValue *ListCertificatesResponse

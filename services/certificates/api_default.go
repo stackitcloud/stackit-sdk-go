@@ -100,6 +100,29 @@ type DefaultApi interface {
 	*/
 	GetCertificateExecute(ctx context.Context, projectId string, region string, id string) (*GetCertificateResponse, error)
 	/*
+		GetQuota Get the quota for TLS certificates in a project.
+		Retrieves the configured TLS certificate quota for the project. Limit can be changed via service request.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiGetQuotaRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest
+	/*
+		GetQuotaExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return GetQuotaResponse
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetQuotaExecute(ctx context.Context, projectId string, region string) (*GetQuotaResponse, error)
+	/*
 		ListCertificates Retrieve the list of TLS certificate stored in a project.
 		ListCertificates will return the list of TLS certificates in a project.
 
@@ -142,6 +165,12 @@ type ApiDeleteCertificateRequest interface {
 type ApiGetCertificateRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*GetCertificateResponse, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiGetQuotaRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*GetQuotaResponse, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -622,6 +651,154 @@ func (a *APIClient) GetCertificateExecute(ctx context.Context, projectId string,
 		projectId:  projectId,
 		region:     region,
 		id:         id,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetQuotaRequest struct {
+	ctx        context.Context
+	apiService *DefaultApiService
+	projectId  string
+	region     string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r GetQuotaRequest) Execute() (*GetQuotaResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetQuotaResponse
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetQuota")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/regions/{region}/quotas"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(ParameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		var v Status
+		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetQuota: Get the quota for TLS certificates in a project.
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@return ApiGetQuotaRequest
+*/
+func (a *APIClient) GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest {
+	return GetQuotaRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) GetQuotaExecute(ctx context.Context, projectId string, region string) (*GetQuotaResponse, error) {
+	r := GetQuotaRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
 	}
 	return r.Execute()
 }
