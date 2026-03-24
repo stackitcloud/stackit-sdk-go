@@ -40,8 +40,6 @@ type DefaultAPIServiceMock struct {
 	GetTokenByInstanceNameExecuteMock *func(r ApiGetTokenByInstanceNameRequest) (*Token, error)
 	// ListInstancesExecuteMock can be populated to implement the behavior of the ListInstancesExecute function of this mock
 	ListInstancesExecuteMock *func(r ApiListInstancesRequest) (*InstanceList, error)
-	// Deprecated: ListPlansGlobalExecuteMock can be populated to implement the behavior of the ListPlansGlobalExecute function of this mock
-	ListPlansGlobalExecuteMock *func(r ApiListPlansGlobalRequest) (*PlanList, error)
 	// ListPlansProjectExecuteMock can be populated to implement the behavior of the ListPlansProjectExecute function of this mock
 	ListPlansProjectExecuteMock *func(r ApiListPlansProjectRequest) (*PlanList, error)
 	// UpdateInstanceExecuteMock can be populated to implement the behavior of the UpdateInstanceExecute function of this mock
@@ -244,24 +242,6 @@ func (a DefaultAPIServiceMock) ListInstancesExecute(r ApiListInstancesRequest) (
 	}
 
 	return (*a.ListInstancesExecuteMock)(r)
-}
-
-// Deprecated
-func (a DefaultAPIServiceMock) ListPlansGlobal(ctx context.Context) ApiListPlansGlobalRequest {
-	return ApiListPlansGlobalRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-// Deprecated: ListPlansGlobalExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListPlansGlobalExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) ListPlansGlobalExecute(r ApiListPlansGlobalRequest) (*PlanList, error) {
-	if a.ListPlansGlobalExecuteMock == nil {
-		var localVarReturnValue *PlanList
-		return localVarReturnValue, nil
-	}
-
-	return (*a.ListPlansGlobalExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListPlansProject(ctx context.Context, projectId string) ApiListPlansProjectRequest {
