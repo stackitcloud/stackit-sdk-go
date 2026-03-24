@@ -68,8 +68,28 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `mongodbflex`: [v1.7.1](services/mongodbflex/CHANGELOG.md#v171) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `objectstorage`: [v1.6.1](services/objectstorage/CHANGELOG.md#v161) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `objectstorage`:
+  - [v1.6.1](services/objectstorage/CHANGELOG.md#v161) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.7.0](services/objectstorage/CHANGELOG.md#v170) 
+    - `v1api`:
+      - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+      - **Feature:** New enum type `RetentionMode`
+      - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+      - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+      - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+    - `v2api`:
+      - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+      - **Feature:** New enum type `RetentionMode`
+      - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+      - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+      - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+      - **Feature:** New enum type `RetentionMode`
+      - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+      - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+      - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
 - `observability`: [v0.19.1](services/observability/CHANGELOG.md#v0191) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `opensearch`: [v0.26.1](services/opensearch/CHANGELOG.md#v0261) 
