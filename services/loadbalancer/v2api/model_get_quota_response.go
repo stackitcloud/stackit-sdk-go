@@ -21,7 +21,7 @@ var _ MappedNullable = &GetQuotaResponse{}
 type GetQuotaResponse struct {
 	// The maximum number of observability credentials that can be stored in this project.
 	MaxCredentials *int32 `json:"maxCredentials,omitempty"`
-	// The maximum number of load balancing servers in this project. Unlimited if set to -1.
+	// The maximum number of load balancing servers in this project.
 	MaxLoadBalancers *int32 `json:"maxLoadBalancers,omitempty"`
 	// Project identifier
 	ProjectId *string `json:"projectId,omitempty" validate:"regexp=^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"`
