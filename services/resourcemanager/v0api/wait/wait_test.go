@@ -18,23 +18,27 @@ type mockSettings struct {
 	projectState resourcemanager.LifecycleState
 }
 
-func newAPIMock(settings mockSettings) resourcemanager.DefaultAPI {
+func newAPIMock(settings []mockSettings) resourcemanager.DefaultAPI {
+	count := 0
 	return &resourcemanager.DefaultAPIServiceMock{
 		GetProjectExecuteMock: utils.Ptr(func(_ resourcemanager.ApiGetProjectRequest) (*resourcemanager.GetProjectResponse, error) {
-			if settings.getFails {
+			setting := settings[count%len(settings)]
+			count++
+
+			if setting.getFails {
 				return nil, &oapierror.GenericOpenAPIError{
 					StatusCode: http.StatusInternalServerError,
 				}
 			}
 
-			if settings.getNotFound {
+			if setting.getNotFound {
 				return nil, &oapierror.GenericOpenAPIError{
 					StatusCode: http.StatusNotFound,
 				}
 			}
 
 			return &resourcemanager.GetProjectResponse{
-				LifecycleState: settings.projectState,
+				LifecycleState: setting.projectState,
 				ContainerId:    "cid",
 			}, nil
 		}),
@@ -43,59 +47,81 @@ func newAPIMock(settings mockSettings) resourcemanager.DefaultAPI {
 
 func TestCreateProjectWaitHandler(t *testing.T) {
 	tests := []struct {
-		desc         string
-		getFails     bool
-		projectState resourcemanager.LifecycleState
-		wantErr      bool
-		wantResp     bool
+		desc             string
+		mockSettings     []mockSettings
+		wantProjectState resourcemanager.LifecycleState
+		wantErr          bool
+		wantResp         bool
 	}{
 		{
-			desc:         "create_succeeded",
-			getFails:     false,
-			projectState: resourcemanager.LIFECYCLESTATE_ACTIVE,
-			wantErr:      false,
-			wantResp:     true,
+			desc: "create_succeeded",
+			mockSettings: []mockSettings{
+				{projectState: resourcemanager.LIFECYCLESTATE_ACTIVE},
+			},
+			wantProjectState: resourcemanager.LIFECYCLESTATE_ACTIVE,
+			wantErr:          false,
+			wantResp:         true,
 		},
 		{
-			desc:         "creating",
-			getFails:     false,
-			projectState: resourcemanager.LIFECYCLESTATE_CREATING,
-			wantErr:      true,
-			wantResp:     false,
+			desc: "creating",
+			mockSettings: []mockSettings{
+				{
+					projectState: resourcemanager.LIFECYCLESTATE_CREATING,
+				},
+				{
+					projectState: resourcemanager.LIFECYCLESTATE_CREATING,
+				},
+				{
+					projectState: resourcemanager.LIFECYCLESTATE_ACTIVE,
+				},
+			},
+			wantProjectState: resourcemanager.LIFECYCLESTATE_ACTIVE,
+			wantErr:          false,
+			wantResp:         true,
 		},
 		{
-			desc:         "get_fails",
-			getFails:     true,
-			projectState: resourcemanager.LifecycleState(""),
-			wantErr:      true,
-			wantResp:     false,
+			desc: "get_fails",
+			mockSettings: []mockSettings{
+				{
+					projectState: resourcemanager.LIFECYCLESTATE_CREATING,
+				},
+				{
+					projectState: resourcemanager.LIFECYCLESTATE_CREATING,
+				},
+				{
+					getFails: true,
+				},
+			},
+			wantErr:  true,
+			wantResp: false,
 		},
 		{
-			desc:         "unknown_state",
-			getFails:     false,
-			projectState: resourcemanager.LifecycleState("ANOTHER STATE"),
-			wantErr:      true,
-			wantResp:     false,
+			desc: "unknown_state",
+			mockSettings: []mockSettings{
+				{
+					getFails:     false,
+					projectState: resourcemanager.LifecycleState("ANOTHER STATE"),
+				},
+			},
+			wantErr:  true,
+			wantResp: false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:     tt.getFails,
-				projectState: tt.projectState,
-			})
+			apiClient := newAPIMock(tt.mockSettings)
 
 			var wantRes *resourcemanager.GetProjectResponse
 			if tt.wantResp {
 				wantRes = &resourcemanager.GetProjectResponse{
-					LifecycleState: tt.projectState,
+					LifecycleState: tt.wantProjectState,
 					ContainerId:    "cid",
 				}
 			}
 
 			handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(10 * time.Millisecond).WaitWithContext(context.Background())
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).SetThrottle(1).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -110,49 +136,69 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 func TestDeleteProjectWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc         string
-		getFails     bool
-		getNotFound  bool
-		projectState resourcemanager.LifecycleState
+		mockSettings []mockSettings
 		wantErr      bool
 	}{
 		{
-			desc:         "delete_succeeded",
-			getFails:     false,
-			getNotFound:  true,
-			projectState: resourcemanager.LifecycleState(""),
-			wantErr:      false,
+			desc: "delete_succeeded",
+			mockSettings: []mockSettings{
+				{
+					projectState: resourcemanager.LifecycleState(""),
+					getFails:     false,
+					getNotFound:  true,
+				},
+			},
+			wantErr: false,
 		},
 		{
-			desc:         "delete_pending",
-			getFails:     false,
-			getNotFound:  false,
-			projectState: resourcemanager.LIFECYCLESTATE_DELETING,
-			wantErr:      true,
+			desc: "delete_pending",
+			mockSettings: []mockSettings{
+				{
+					getFails:     false,
+					getNotFound:  false,
+					projectState: resourcemanager.LIFECYCLESTATE_DELETING,
+				},
+				{
+					getFails:     false,
+					getNotFound:  false,
+					projectState: resourcemanager.LIFECYCLESTATE_DELETING,
+				},
+				{
+					getFails:     false,
+					getNotFound:  true,
+					projectState: resourcemanager.LifecycleState(""),
+				},
+			},
+			wantErr: false,
 		},
 		{
-			desc:         "get_fails",
-			getFails:     true,
-			projectState: "",
-			wantErr:      true,
+			desc: "get_fails",
+			mockSettings: []mockSettings{
+				{
+					projectState: resourcemanager.LifecycleState(""),
+					getFails:     true,
+				},
+			},
+			wantErr: true,
 		},
 		{
-			desc:         "timeout",
-			getFails:     false,
-			projectState: "ANOTHER STATE",
-			wantErr:      true,
+			desc: "timeout",
+			mockSettings: []mockSettings{
+				{
+					getFails:     false,
+					projectState: "ANOTHER STATE",
+				},
+			},
+			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:     tt.getFails,
-				getNotFound:  tt.getNotFound,
-				projectState: tt.projectState,
-			})
+			apiClient := newAPIMock(tt.mockSettings)
 
 			handler := DeleteProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			_, err := handler.SetTimeout(10 * time.Millisecond).SetThrottle(1).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
