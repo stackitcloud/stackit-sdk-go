@@ -1,3 +1,9 @@
+## v0.13.0
+- `v2beta2api`
+  - **Deprecation:** The `v2beta2` api is deprecated and will be removed in the future. Migrate to the `v2` api
+- `v2api`
+  - Update description of `GetQuota` method
+
 ## v0.12.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 
