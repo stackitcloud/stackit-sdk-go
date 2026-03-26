@@ -36,8 +36,11 @@
     - **Feature:** Add new method `GetQuota` to get the quota for TLS certificates in a project
     - `v2betaapi`:
       - **Deprecation:** The `v2beta2api` is deprecated and will be removed in the future. Migrate to `v2api`
-- `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010) 
-  - **New:** STACKIT Cost module can be used to retrieve STACKIT cost information
+- `cost`:
+  - [v0.1.0](services/cost/CHANGELOG.md#v010) 
+    - **New:** STACKIT Cost module can be used to retrieve STACKIT cost information
+  - [v0.2.0](services/cost/CHANGELOG.md#v020)
+    - **Improvement:** Introduce new more specific error models `AuthErrorResponse` and `ErrorResponse`
 - `edge`:
   - [v0.8.0](services/edge/CHANGELOG.md#v080) 
     - `v1beta1api`: Removal of deprecated API client method `ListPlansGlobal`
