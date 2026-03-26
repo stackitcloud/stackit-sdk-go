@@ -27,6 +27,7 @@ type Listener struct {
 	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
 	Protocol *string `json:"protocol,omitempty"`
 	// Server Name Indicators config for domains to be routed to the desired target pool for this listener.
+	// Deprecated
 	ServerNameIndicators []ServerNameIndicator `json:"serverNameIndicators,omitempty"`
 	// Reference target pool by target pool name.
 	TargetPool           *string     `json:"targetPool,omitempty"`
@@ -183,6 +184,7 @@ func (o *Listener) SetProtocol(v string) {
 }
 
 // GetServerNameIndicators returns the ServerNameIndicators field value if set, zero value otherwise.
+// Deprecated
 func (o *Listener) GetServerNameIndicators() []ServerNameIndicator {
 	if o == nil || IsNil(o.ServerNameIndicators) {
 		var ret []ServerNameIndicator
@@ -193,6 +195,7 @@ func (o *Listener) GetServerNameIndicators() []ServerNameIndicator {
 
 // GetServerNameIndicatorsOk returns a tuple with the ServerNameIndicators field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *Listener) GetServerNameIndicatorsOk() ([]ServerNameIndicator, bool) {
 	if o == nil || IsNil(o.ServerNameIndicators) {
 		return nil, false
@@ -210,6 +213,7 @@ func (o *Listener) HasServerNameIndicators() bool {
 }
 
 // SetServerNameIndicators gets a reference to the given []ServerNameIndicator and assigns it to the ServerNameIndicators field.
+// Deprecated
 func (o *Listener) SetServerNameIndicators(v []ServerNameIndicator) {
 	o.ServerNameIndicators = v
 }

@@ -76,8 +76,13 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `kms`: [v1.5.1](services/kms/CHANGELOG.md#v151) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `loadbalancer`: [v1.10.1](services/loadbalancer/CHANGELOG.md#v1101) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `loadbalancer`: 
+  - [v1.10.1](services/loadbalancer/CHANGELOG.md#v1101) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.11.0](services/loadbalancer/CHANGELOG.md#v1110)
+    - Update description of `GetQuota` method
+    - `v1api`
+      - **Deprecation:** The `v1api` is deprecated and will be removed in the future. Migrate to `v2api`
 - `logme`: [v0.27.1](services/logme/CHANGELOG.md#v0271) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `logs`: [v0.7.1](services/logs/CHANGELOG.md#v071) 

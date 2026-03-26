@@ -375,7 +375,7 @@ type Listener struct {
 	Port ListenerGetPortAttributeType `json:"port,omitempty"`
 	// Protocol is the highest network protocol we understand to load balance. Currently only PROTOCOL_TCP, PROTOCOL_TCP_PROXY and PROTOCOL_TLS_PASSTHROUGH are supported.
 	Protocol ListenerGetProtocolAttributeType `json:"protocol,omitempty"`
-	// Server Name Indicators config for domains to be routed to the desired target pool for this listener.
+	//  Deprecated: Server Name Indicators config for domains to be routed to the desired target pool for this listener.
 	ServerNameIndicators ListenerGetServerNameIndicatorsAttributeType `json:"serverNameIndicators,omitempty"`
 	// Reference target pool by target pool name.
 	TargetPool ListenerGetTargetPoolAttributeType `json:"targetPool,omitempty"`
