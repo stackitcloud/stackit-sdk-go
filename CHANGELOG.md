@@ -29,8 +29,13 @@
   - [v1.13.0](services/cdn/CHANGELOG.md#v1130)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `certificates`: [v1.4.1](services/certificates/CHANGELOG.md#v141) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `certificates`: 
+  - [v1.4.1](services/certificates/CHANGELOG.md#v141) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.5.0](services/certificates/CHANGELOG.md#v150)
+    - **Feature:** Add new method `GetQuota` to get the quota for TLS certificates in a project
+    - `v2betaapi`:
+      - **Deprecation:** The `v2beta2api` is deprecated and will be removed in the future. Migrate to `v2api`
 - `cost`: [v0.1.0](services/cost/CHANGELOG.md#v010) 
   - **New:** STACKIT Cost module can be used to retrieve STACKIT cost information
 - `edge`:
