@@ -7,8 +7,11 @@
       - **Deprecation:** The `v2beta2` api is deprecated and will be removed in the future. Migrate to the `v2` api
     - `v2api`
       - Update description of `GetQuota` method
-- `albwaf`: [v0.2.1](services/albwaf/CHANGELOG.md#v021) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `albwaf`: 
+  - [v0.2.1](services/albwaf/CHANGELOG.md#v021) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.3.0](services/albwaf/CHANGELOG.md#v030)
+    - **Feature:** Add new method `GetQuota` to get the quota for WAF resources in a project
 - `auditlog`: [v0.3.1](services/auditlog/CHANGELOG.md#v031) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `authorization`: [v0.14.1](services/authorization/CHANGELOG.md#v0141) 
