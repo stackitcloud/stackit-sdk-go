@@ -26,6 +26,8 @@ type DefaultAPIServiceMock struct {
 	DeleteCertificateExecuteMock *func(r ApiDeleteCertificateRequest) (map[string]interface{}, error)
 	// GetCertificateExecuteMock can be populated to implement the behavior of the GetCertificateExecute function of this mock
 	GetCertificateExecuteMock *func(r ApiGetCertificateRequest) (*GetCertificateResponse, error)
+	// GetQuotaExecuteMock can be populated to implement the behavior of the GetQuotaExecute function of this mock
+	GetQuotaExecuteMock *func(r ApiGetQuotaRequest) (*GetQuotaResponse, error)
 	// ListCertificatesExecuteMock can be populated to implement the behavior of the ListCertificatesExecute function of this mock
 	ListCertificatesExecuteMock *func(r ApiListCertificatesRequest) (*ListCertificatesResponse, error)
 }
@@ -87,6 +89,25 @@ func (a DefaultAPIServiceMock) GetCertificateExecute(r ApiGetCertificateRequest)
 	}
 
 	return (*a.GetCertificateExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest {
+	return ApiGetQuotaRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// GetQuotaExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetQuotaExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error) {
+	if a.GetQuotaExecuteMock == nil {
+		var localVarReturnValue *GetQuotaResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetQuotaExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListCertificates(ctx context.Context, projectId string, region string) ApiListCertificatesRequest {
