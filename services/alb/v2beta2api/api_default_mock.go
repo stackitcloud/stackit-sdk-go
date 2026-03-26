@@ -20,34 +20,35 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// CreateCredentialsExecuteMock can be populated to implement the behavior of the CreateCredentialsExecute function of this mock
+	// Deprecated: CreateCredentialsExecuteMock can be populated to implement the behavior of the CreateCredentialsExecute function of this mock
 	CreateCredentialsExecuteMock *func(r ApiCreateCredentialsRequest) (*CreateCredentialsResponse, error)
-	// CreateLoadBalancerExecuteMock can be populated to implement the behavior of the CreateLoadBalancerExecute function of this mock
+	// Deprecated: CreateLoadBalancerExecuteMock can be populated to implement the behavior of the CreateLoadBalancerExecute function of this mock
 	CreateLoadBalancerExecuteMock *func(r ApiCreateLoadBalancerRequest) (*LoadBalancer, error)
-	// DeleteCredentialsExecuteMock can be populated to implement the behavior of the DeleteCredentialsExecute function of this mock
+	// Deprecated: DeleteCredentialsExecuteMock can be populated to implement the behavior of the DeleteCredentialsExecute function of this mock
 	DeleteCredentialsExecuteMock *func(r ApiDeleteCredentialsRequest) (map[string]interface{}, error)
-	// DeleteLoadBalancerExecuteMock can be populated to implement the behavior of the DeleteLoadBalancerExecute function of this mock
+	// Deprecated: DeleteLoadBalancerExecuteMock can be populated to implement the behavior of the DeleteLoadBalancerExecute function of this mock
 	DeleteLoadBalancerExecuteMock *func(r ApiDeleteLoadBalancerRequest) (map[string]interface{}, error)
-	// GetCredentialsExecuteMock can be populated to implement the behavior of the GetCredentialsExecute function of this mock
+	// Deprecated: GetCredentialsExecuteMock can be populated to implement the behavior of the GetCredentialsExecute function of this mock
 	GetCredentialsExecuteMock *func(r ApiGetCredentialsRequest) (*GetCredentialsResponse, error)
-	// GetLoadBalancerExecuteMock can be populated to implement the behavior of the GetLoadBalancerExecute function of this mock
+	// Deprecated: GetLoadBalancerExecuteMock can be populated to implement the behavior of the GetLoadBalancerExecute function of this mock
 	GetLoadBalancerExecuteMock *func(r ApiGetLoadBalancerRequest) (*LoadBalancer, error)
-	// GetQuotaExecuteMock can be populated to implement the behavior of the GetQuotaExecute function of this mock
+	// Deprecated: GetQuotaExecuteMock can be populated to implement the behavior of the GetQuotaExecute function of this mock
 	GetQuotaExecuteMock *func(r ApiGetQuotaRequest) (*GetQuotaResponse, error)
-	// ListCredentialsExecuteMock can be populated to implement the behavior of the ListCredentialsExecute function of this mock
+	// Deprecated: ListCredentialsExecuteMock can be populated to implement the behavior of the ListCredentialsExecute function of this mock
 	ListCredentialsExecuteMock *func(r ApiListCredentialsRequest) (*ListCredentialsResponse, error)
-	// ListLoadBalancersExecuteMock can be populated to implement the behavior of the ListLoadBalancersExecute function of this mock
+	// Deprecated: ListLoadBalancersExecuteMock can be populated to implement the behavior of the ListLoadBalancersExecute function of this mock
 	ListLoadBalancersExecuteMock *func(r ApiListLoadBalancersRequest) (*ListLoadBalancersResponse, error)
-	// ListPlansExecuteMock can be populated to implement the behavior of the ListPlansExecute function of this mock
+	// Deprecated: ListPlansExecuteMock can be populated to implement the behavior of the ListPlansExecute function of this mock
 	ListPlansExecuteMock *func(r ApiListPlansRequest) (*ListPlansResponse, error)
-	// UpdateCredentialsExecuteMock can be populated to implement the behavior of the UpdateCredentialsExecute function of this mock
+	// Deprecated: UpdateCredentialsExecuteMock can be populated to implement the behavior of the UpdateCredentialsExecute function of this mock
 	UpdateCredentialsExecuteMock *func(r ApiUpdateCredentialsRequest) (*UpdateCredentialsResponse, error)
-	// UpdateLoadBalancerExecuteMock can be populated to implement the behavior of the UpdateLoadBalancerExecute function of this mock
+	// Deprecated: UpdateLoadBalancerExecuteMock can be populated to implement the behavior of the UpdateLoadBalancerExecute function of this mock
 	UpdateLoadBalancerExecuteMock *func(r ApiUpdateLoadBalancerRequest) (*LoadBalancer, error)
-	// UpdateTargetPoolExecuteMock can be populated to implement the behavior of the UpdateTargetPoolExecute function of this mock
+	// Deprecated: UpdateTargetPoolExecuteMock can be populated to implement the behavior of the UpdateTargetPoolExecute function of this mock
 	UpdateTargetPoolExecuteMock *func(r ApiUpdateTargetPoolRequest) (*TargetPool, error)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateCredentials(ctx context.Context, projectId string, region string) ApiCreateCredentialsRequest {
 	return ApiCreateCredentialsRequest{
 		ApiService: a,
@@ -57,7 +58,7 @@ func (a DefaultAPIServiceMock) CreateCredentials(ctx context.Context, projectId 
 	}
 }
 
-// CreateCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateCredentialsExecute(r ApiCreateCredentialsRequest) (*CreateCredentialsResponse, error) {
 	if a.CreateCredentialsExecuteMock == nil {
 		var localVarReturnValue *CreateCredentialsResponse
@@ -67,6 +68,7 @@ func (a DefaultAPIServiceMock) CreateCredentialsExecute(r ApiCreateCredentialsRe
 	return (*a.CreateCredentialsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateLoadBalancer(ctx context.Context, projectId string, region string) ApiCreateLoadBalancerRequest {
 	return ApiCreateLoadBalancerRequest{
 		ApiService: a,
@@ -76,7 +78,7 @@ func (a DefaultAPIServiceMock) CreateLoadBalancer(ctx context.Context, projectId
 	}
 }
 
-// CreateLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateLoadBalancerExecute(r ApiCreateLoadBalancerRequest) (*LoadBalancer, error) {
 	if a.CreateLoadBalancerExecuteMock == nil {
 		var localVarReturnValue *LoadBalancer
@@ -86,6 +88,7 @@ func (a DefaultAPIServiceMock) CreateLoadBalancerExecute(r ApiCreateLoadBalancer
 	return (*a.CreateLoadBalancerExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiDeleteCredentialsRequest {
 	return ApiDeleteCredentialsRequest{
 		ApiService:     a,
@@ -96,7 +99,7 @@ func (a DefaultAPIServiceMock) DeleteCredentials(ctx context.Context, projectId 
 	}
 }
 
-// DeleteCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteCredentialsExecute(r ApiDeleteCredentialsRequest) (map[string]interface{}, error) {
 	if a.DeleteCredentialsExecuteMock == nil {
 		var localVarReturnValue map[string]interface{}
@@ -106,6 +109,7 @@ func (a DefaultAPIServiceMock) DeleteCredentialsExecute(r ApiDeleteCredentialsRe
 	return (*a.DeleteCredentialsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiDeleteLoadBalancerRequest {
 	return ApiDeleteLoadBalancerRequest{
 		ApiService: a,
@@ -116,7 +120,7 @@ func (a DefaultAPIServiceMock) DeleteLoadBalancer(ctx context.Context, projectId
 	}
 }
 
-// DeleteLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteLoadBalancerExecute(r ApiDeleteLoadBalancerRequest) (map[string]interface{}, error) {
 	if a.DeleteLoadBalancerExecuteMock == nil {
 		var localVarReturnValue map[string]interface{}
@@ -126,6 +130,7 @@ func (a DefaultAPIServiceMock) DeleteLoadBalancerExecute(r ApiDeleteLoadBalancer
 	return (*a.DeleteLoadBalancerExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiGetCredentialsRequest {
 	return ApiGetCredentialsRequest{
 		ApiService:     a,
@@ -136,7 +141,7 @@ func (a DefaultAPIServiceMock) GetCredentials(ctx context.Context, projectId str
 	}
 }
 
-// GetCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetCredentialsExecute(r ApiGetCredentialsRequest) (*GetCredentialsResponse, error) {
 	if a.GetCredentialsExecuteMock == nil {
 		var localVarReturnValue *GetCredentialsResponse
@@ -146,6 +151,7 @@ func (a DefaultAPIServiceMock) GetCredentialsExecute(r ApiGetCredentialsRequest)
 	return (*a.GetCredentialsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiGetLoadBalancerRequest {
 	return ApiGetLoadBalancerRequest{
 		ApiService: a,
@@ -156,7 +162,7 @@ func (a DefaultAPIServiceMock) GetLoadBalancer(ctx context.Context, projectId st
 	}
 }
 
-// GetLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetLoadBalancerExecute(r ApiGetLoadBalancerRequest) (*LoadBalancer, error) {
 	if a.GetLoadBalancerExecuteMock == nil {
 		var localVarReturnValue *LoadBalancer
@@ -166,6 +172,7 @@ func (a DefaultAPIServiceMock) GetLoadBalancerExecute(r ApiGetLoadBalancerReques
 	return (*a.GetLoadBalancerExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetQuota(ctx context.Context, projectId string, region string) ApiGetQuotaRequest {
 	return ApiGetQuotaRequest{
 		ApiService: a,
@@ -175,7 +182,7 @@ func (a DefaultAPIServiceMock) GetQuota(ctx context.Context, projectId string, r
 	}
 }
 
-// GetQuotaExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetQuotaExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetQuotaExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetQuotaExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error) {
 	if a.GetQuotaExecuteMock == nil {
 		var localVarReturnValue *GetQuotaResponse
@@ -185,6 +192,7 @@ func (a DefaultAPIServiceMock) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaR
 	return (*a.GetQuotaExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListCredentials(ctx context.Context, projectId string, region string) ApiListCredentialsRequest {
 	return ApiListCredentialsRequest{
 		ApiService: a,
@@ -194,7 +202,7 @@ func (a DefaultAPIServiceMock) ListCredentials(ctx context.Context, projectId st
 	}
 }
 
-// ListCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListCredentialsExecute(r ApiListCredentialsRequest) (*ListCredentialsResponse, error) {
 	if a.ListCredentialsExecuteMock == nil {
 		var localVarReturnValue *ListCredentialsResponse
@@ -204,6 +212,7 @@ func (a DefaultAPIServiceMock) ListCredentialsExecute(r ApiListCredentialsReques
 	return (*a.ListCredentialsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListLoadBalancers(ctx context.Context, projectId string, region string) ApiListLoadBalancersRequest {
 	return ApiListLoadBalancersRequest{
 		ApiService: a,
@@ -213,7 +222,7 @@ func (a DefaultAPIServiceMock) ListLoadBalancers(ctx context.Context, projectId 
 	}
 }
 
-// ListLoadBalancersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListLoadBalancersExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListLoadBalancersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListLoadBalancersExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListLoadBalancersExecute(r ApiListLoadBalancersRequest) (*ListLoadBalancersResponse, error) {
 	if a.ListLoadBalancersExecuteMock == nil {
 		var localVarReturnValue *ListLoadBalancersResponse
@@ -223,6 +232,7 @@ func (a DefaultAPIServiceMock) ListLoadBalancersExecute(r ApiListLoadBalancersRe
 	return (*a.ListLoadBalancersExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListPlans(ctx context.Context, region string) ApiListPlansRequest {
 	return ApiListPlansRequest{
 		ApiService: a,
@@ -231,7 +241,7 @@ func (a DefaultAPIServiceMock) ListPlans(ctx context.Context, region string) Api
 	}
 }
 
-// ListPlansExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListPlansExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListPlansExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListPlansExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListPlansExecute(r ApiListPlansRequest) (*ListPlansResponse, error) {
 	if a.ListPlansExecuteMock == nil {
 		var localVarReturnValue *ListPlansResponse
@@ -241,6 +251,7 @@ func (a DefaultAPIServiceMock) ListPlansExecute(r ApiListPlansRequest) (*ListPla
 	return (*a.ListPlansExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateCredentials(ctx context.Context, projectId string, region string, credentialsRef string) ApiUpdateCredentialsRequest {
 	return ApiUpdateCredentialsRequest{
 		ApiService:     a,
@@ -251,7 +262,7 @@ func (a DefaultAPIServiceMock) UpdateCredentials(ctx context.Context, projectId 
 	}
 }
 
-// UpdateCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateCredentialsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateCredentialsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateCredentialsExecute(r ApiUpdateCredentialsRequest) (*UpdateCredentialsResponse, error) {
 	if a.UpdateCredentialsExecuteMock == nil {
 		var localVarReturnValue *UpdateCredentialsResponse
@@ -261,6 +272,7 @@ func (a DefaultAPIServiceMock) UpdateCredentialsExecute(r ApiUpdateCredentialsRe
 	return (*a.UpdateCredentialsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateLoadBalancer(ctx context.Context, projectId string, region string, name string) ApiUpdateLoadBalancerRequest {
 	return ApiUpdateLoadBalancerRequest{
 		ApiService: a,
@@ -271,7 +283,7 @@ func (a DefaultAPIServiceMock) UpdateLoadBalancer(ctx context.Context, projectId
 	}
 }
 
-// UpdateLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateLoadBalancerExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateLoadBalancerExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateLoadBalancerExecute(r ApiUpdateLoadBalancerRequest) (*LoadBalancer, error) {
 	if a.UpdateLoadBalancerExecuteMock == nil {
 		var localVarReturnValue *LoadBalancer
@@ -281,6 +293,7 @@ func (a DefaultAPIServiceMock) UpdateLoadBalancerExecute(r ApiUpdateLoadBalancer
 	return (*a.UpdateLoadBalancerExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) UpdateTargetPool(ctx context.Context, projectId string, region string, name string, targetPoolName string) ApiUpdateTargetPoolRequest {
 	return ApiUpdateTargetPoolRequest{
 		ApiService:     a,
@@ -292,7 +305,7 @@ func (a DefaultAPIServiceMock) UpdateTargetPool(ctx context.Context, projectId s
 	}
 }
 
-// UpdateTargetPoolExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateTargetPoolExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: UpdateTargetPoolExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateTargetPoolExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) UpdateTargetPoolExecute(r ApiUpdateTargetPoolRequest) (*TargetPool, error) {
 	if a.UpdateTargetPoolExecuteMock == nil {
 		var localVarReturnValue *TargetPool

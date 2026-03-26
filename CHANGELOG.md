@@ -1,6 +1,12 @@
 ## Release (2026-MM-DD)
-- `alb`: [v0.12.1](services/alb/CHANGELOG.md#v0121) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `alb`: 
+  - [v0.12.1](services/alb/CHANGELOG.md#v0121) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.13.0](services/alb/CHANGELOG.md#v0130)
+    - `v2beta2api`
+      - **Deprecation:** The `v2beta2` api is deprecated and will be removed in the future. Migrate to the `v2` api
+    - `v2api`
+      - Update description of `GetQuota` method
 - `albwaf`: [v0.2.1](services/albwaf/CHANGELOG.md#v021) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `auditlog`: [v0.3.1](services/auditlog/CHANGELOG.md#v031) 
