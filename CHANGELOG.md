@@ -1,4 +1,4 @@
-## Release (2026-MM-DD)
+## Release (2026-03-27)
 - `alb`: 
   - [v0.12.1](services/alb/CHANGELOG.md#v0121) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
