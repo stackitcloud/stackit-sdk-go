@@ -1,3 +1,7 @@
+## v0.24.0
+- **Feature:** Add `SetRetryHttpErrorStatusCodes` to waiter to be able to configure the errors to retry on
+- **New:** add missing StatusServiceUnavailable to list of retry codes
+
 ## v0.23.0
 - **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration 
 
