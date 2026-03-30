@@ -1,6 +1,17 @@
 ## Release (2026-MM-DD)
 - `iaas`: [v1.7.1](services/iaas/CHANGELOG.md#v171)
   - **Docs:** Extend description of `PortRange` struct
+- `ske`: [v1.11.0](services/ske/CHANGELOG.md#v1110)
+  - Package `v2api`:
+    - **Breaking change:** Remove `RuntimeError`
+    - **Docs:** Extend description of `AccessScope`
+  - Package `v1api`:
+    - **Breaking change:** Remove `RuntimeError`
+  - Deprecated SDK layer in root of the module:
+    - **Breaking change:** Remove enum `CRINAME_DOCKER`
+    - **Breaking change:** Remove `RuntimeError`
+    - **Docs:** Extend description of `AccessScope`
+
 
 ## Release (2026-03-27)
 - `alb`: 

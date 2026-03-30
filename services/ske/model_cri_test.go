@@ -28,13 +28,6 @@ func TestCRIName_UnmarshalJSON(t *testing.T) {
 		{
 			name: `success - possible enum value no. 1`,
 			args: args{
-				src: []byte(`"docker"`),
-			},
-			wantErr: false,
-		},
-		{
-			name: `success - possible enum value no. 2`,
-			args: args{
 				src: []byte(`"containerd"`),
 			},
 			wantErr: false,
