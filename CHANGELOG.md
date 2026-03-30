@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+- `core`: [v0.24.0](core/CHANGELOG.md#v0240) 
+  - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
 - `alb`: [v0.12.1](services/alb/CHANGELOG.md#v0121) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `albwaf`: [v0.2.1](services/albwaf/CHANGELOG.md#v021) 

@@ -1,3 +1,6 @@
+## v0.24.0
+- **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
+
 ## v0.23.0
 - **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration 
 
