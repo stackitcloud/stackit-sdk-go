@@ -129,8 +129,13 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `redis`: [v0.27.1](services/redis/CHANGELOG.md#v0271) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `resourcemanager`: [v0.20.1](services/resourcemanager/CHANGELOG.md#v0201) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `resourcemanager`: 
+  - [v0.20.1](services/resourcemanager/CHANGELOG.md#v0201) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.21.0](services/resourcemanager/CHANGELOG.md#v0210)
+    - `v0api`
+      - **Improvement**: Use new `WaiterHelper` struct in the DNS WaitHandler
+      - **Breaking change:** Change return type of `wait.DeleteProjectWaitHandler()` to `*wait.AsyncActionHandler[resourcemanager.GetProjectResponse]`
 - `runcommand`: [v1.6.1](services/runcommand/CHANGELOG.md#v161) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `scf`: [v0.6.1](services/scf/CHANGELOG.md#v061) 
