@@ -1,3 +1,11 @@
+## v0.8.0
+- `v1beta1api`: Removal of deprecated API client method `ListPlansGlobal`
+- Deprecated SDK layer in root of the module: Removal of deprecated API client method `ListPlansGlobal`
+
+## v0.7.0
+- `v1beta1api`: New field `MinEdgeHosts` in `Plan` model struct
+- Deprecated SDK layer in root of the module: New field `MinEdgeHosts` in `Plan` model struct
+
 ## v0.6.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 

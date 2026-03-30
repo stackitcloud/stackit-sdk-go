@@ -33,11 +33,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param projectId
 			@return ApiCreateCredentialsRequest
+
+			Deprecated
 	*/
 	CreateCredentials(ctx context.Context, projectId string) ApiCreateCredentialsRequest
 
 	// CreateCredentialsExecute executes the request
 	//  @return CreateCredentialsResponse
+	// Deprecated
 	CreateCredentialsExecute(r ApiCreateCredentialsRequest) (*CreateCredentialsResponse, error)
 
 	/*
@@ -49,11 +52,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param projectId
 			@return ApiCreateLoadBalancerRequest
+
+			Deprecated
 	*/
 	CreateLoadBalancer(ctx context.Context, projectId string) ApiCreateLoadBalancerRequest
 
 	// CreateLoadBalancerExecute executes the request
 	//  @return LoadBalancer
+	// Deprecated
 	CreateLoadBalancerExecute(r ApiCreateLoadBalancerRequest) (*LoadBalancer, error)
 
 	/*
@@ -65,11 +71,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param credentialsRef
 		@return ApiDeleteCredentialsRequest
+
+		Deprecated
 	*/
 	DeleteCredentials(ctx context.Context, projectId string, credentialsRef string) ApiDeleteCredentialsRequest
 
 	// DeleteCredentialsExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteCredentialsExecute(r ApiDeleteCredentialsRequest) (map[string]interface{}, error)
 
 	/*
@@ -81,11 +90,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param name
 		@return ApiDeleteLoadBalancerRequest
+
+		Deprecated
 	*/
 	DeleteLoadBalancer(ctx context.Context, projectId string, name string) ApiDeleteLoadBalancerRequest
 
 	// DeleteLoadBalancerExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	DeleteLoadBalancerExecute(r ApiDeleteLoadBalancerRequest) (map[string]interface{}, error)
 
 	/*
@@ -135,11 +147,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param credentialsRef
 		@return ApiGetCredentialsRequest
+
+		Deprecated
 	*/
 	GetCredentials(ctx context.Context, projectId string, credentialsRef string) ApiGetCredentialsRequest
 
 	// GetCredentialsExecute executes the request
 	//  @return GetCredentialsResponse
+	// Deprecated
 	GetCredentialsExecute(r ApiGetCredentialsRequest) (*GetCredentialsResponse, error)
 
 	/*
@@ -153,27 +168,32 @@ type DefaultAPI interface {
 			@param projectId
 			@param name
 			@return ApiGetLoadBalancerRequest
+
+			Deprecated
 	*/
 	GetLoadBalancer(ctx context.Context, projectId string, name string) ApiGetLoadBalancerRequest
 
 	// GetLoadBalancerExecute executes the request
 	//  @return LoadBalancer
+	// Deprecated
 	GetLoadBalancerExecute(r ApiGetLoadBalancerRequest) (*LoadBalancer, error)
 
 	/*
-			GetQuota Get the quota for Load Balancers in a project.
+		GetQuota Get the quota of Network Load Balancers in a project.
 
-			Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.
-		 There can be 3 times as many observability credentials as Load Balancers.
+		Retrieves the configured Network Load Balancer quota for the project. Limit can be changed via service request.
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param projectId
-			@return ApiGetQuotaRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiGetQuotaRequest
+
+		Deprecated
 	*/
 	GetQuota(ctx context.Context, projectId string) ApiGetQuotaRequest
 
 	// GetQuotaExecute executes the request
 	//  @return GetQuotaResponse
+	// Deprecated
 	GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error)
 
 	/*
@@ -203,11 +223,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId
 		@return ApiListCredentialsRequest
+
+		Deprecated
 	*/
 	ListCredentials(ctx context.Context, projectId string) ApiListCredentialsRequest
 
 	// ListCredentialsExecute executes the request
 	//  @return ListCredentialsResponse
+	// Deprecated
 	ListCredentialsExecute(r ApiListCredentialsRequest) (*ListCredentialsResponse, error)
 
 	/*
@@ -220,11 +243,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param projectId
 			@return ApiListLoadBalancersRequest
+
+			Deprecated
 	*/
 	ListLoadBalancers(ctx context.Context, projectId string) ApiListLoadBalancersRequest
 
 	// ListLoadBalancersExecute executes the request
 	//  @return ListLoadBalancersResponse
+	// Deprecated
 	ListLoadBalancersExecute(r ApiListLoadBalancersRequest) (*ListLoadBalancersResponse, error)
 
 	/*
@@ -234,11 +260,14 @@ type DefaultAPI interface {
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@return ApiListPlansRequest
+
+		Deprecated
 	*/
 	ListPlans(ctx context.Context) ApiListPlansRequest
 
 	// ListPlansExecute executes the request
 	//  @return ListPlansResponse
+	// Deprecated
 	ListPlansExecute(r ApiListPlansRequest) (*ListPlansResponse, error)
 
 	/*
@@ -250,11 +279,14 @@ type DefaultAPI interface {
 		@param projectId
 		@param credentialsRef
 		@return ApiUpdateCredentialsRequest
+
+		Deprecated
 	*/
 	UpdateCredentials(ctx context.Context, projectId string, credentialsRef string) ApiUpdateCredentialsRequest
 
 	// UpdateCredentialsExecute executes the request
 	//  @return UpdateCredentialsResponse
+	// Deprecated
 	UpdateCredentialsExecute(r ApiUpdateCredentialsRequest) (*UpdateCredentialsResponse, error)
 
 	/*
@@ -268,11 +300,14 @@ type DefaultAPI interface {
 			@param projectId
 			@param name
 			@return ApiUpdateLoadBalancerRequest
+
+			Deprecated
 	*/
 	UpdateLoadBalancer(ctx context.Context, projectId string, name string) ApiUpdateLoadBalancerRequest
 
 	// UpdateLoadBalancerExecute executes the request
 	//  @return LoadBalancer
+	// Deprecated
 	UpdateLoadBalancerExecute(r ApiUpdateLoadBalancerRequest) (*LoadBalancer, error)
 
 	/*
@@ -288,11 +323,14 @@ type DefaultAPI interface {
 			@param name
 			@param targetPoolName
 			@return ApiUpdateTargetPoolRequest
+
+			Deprecated
 	*/
 	UpdateTargetPool(ctx context.Context, projectId string, name string, targetPoolName string) ApiUpdateTargetPoolRequest
 
 	// UpdateTargetPoolExecute executes the request
 	//  @return TargetPool
+	// Deprecated
 	UpdateTargetPoolExecute(r ApiUpdateTargetPoolRequest) (*TargetPool, error)
 }
 
@@ -332,6 +370,8 @@ Create credentials can be used to store existing credentials, which are valid to
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiCreateCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateCredentials(ctx context.Context, projectId string) ApiCreateCredentialsRequest {
 	return ApiCreateCredentialsRequest{
@@ -344,6 +384,8 @@ func (a *DefaultAPIService) CreateCredentials(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return CreateCredentialsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsRequest) (*CreateCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -490,6 +532,8 @@ Create Load Balancer will create a load balancer.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiCreateLoadBalancerRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateLoadBalancer(ctx context.Context, projectId string) ApiCreateLoadBalancerRequest {
 	return ApiCreateLoadBalancerRequest{
@@ -502,6 +546,8 @@ func (a *DefaultAPIService) CreateLoadBalancer(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return LoadBalancer
+//
+// Deprecated
 func (a *DefaultAPIService) CreateLoadBalancerExecute(r ApiCreateLoadBalancerRequest) (*LoadBalancer, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -636,6 +682,8 @@ Delete Credential
 	@param projectId
 	@param credentialsRef
 	@return ApiDeleteCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteCredentials(ctx context.Context, projectId string, credentialsRef string) ApiDeleteCredentialsRequest {
 	return ApiDeleteCredentialsRequest{
@@ -649,6 +697,8 @@ func (a *DefaultAPIService) DeleteCredentials(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -776,6 +826,8 @@ DeleteLoadBalancer will delete a given load balancer.
 	@param projectId
 	@param name
 	@return ApiDeleteLoadBalancerRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteLoadBalancer(ctx context.Context, projectId string, name string) ApiDeleteLoadBalancerRequest {
 	return ApiDeleteLoadBalancerRequest{
@@ -789,6 +841,8 @@ func (a *DefaultAPIService) DeleteLoadBalancer(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteLoadBalancerExecute(r ApiDeleteLoadBalancerRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -1209,6 +1263,8 @@ Get Credentials
 	@param projectId
 	@param credentialsRef
 	@return ApiGetCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCredentials(ctx context.Context, projectId string, credentialsRef string) ApiGetCredentialsRequest {
 	return ApiGetCredentialsRequest{
@@ -1222,6 +1278,8 @@ func (a *DefaultAPIService) GetCredentials(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return GetCredentialsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCredentialsExecute(r ApiGetCredentialsRequest) (*GetCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1352,6 +1410,8 @@ Get Load Balancer will get a single load balancer of a project. This contains al
 	@param projectId
 	@param name
 	@return ApiGetLoadBalancerRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetLoadBalancer(ctx context.Context, projectId string, name string) ApiGetLoadBalancerRequest {
 	return ApiGetLoadBalancerRequest{
@@ -1365,6 +1425,8 @@ func (a *DefaultAPIService) GetLoadBalancer(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return LoadBalancer
+//
+// Deprecated
 func (a *DefaultAPIService) GetLoadBalancerExecute(r ApiGetLoadBalancerRequest) (*LoadBalancer, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1483,15 +1545,15 @@ func (r ApiGetQuotaRequest) Execute() (*GetQuotaResponse, error) {
 }
 
 /*
-GetQuota Get the quota for Load Balancers in a project.
+GetQuota Get the quota of Network Load Balancers in a project.
 
-Retrieves the configured Load Balancer quota for the project. Limit can be changed via service request.
-
-	There can be 3 times as many observability credentials as Load Balancers.
+Retrieves the configured Network Load Balancer quota for the project. Limit can be changed via service request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiGetQuotaRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetQuota(ctx context.Context, projectId string) ApiGetQuotaRequest {
 	return ApiGetQuotaRequest{
@@ -1504,6 +1566,8 @@ func (a *DefaultAPIService) GetQuota(ctx context.Context, projectId string) ApiG
 // Execute executes the request
 //
 //	@return GetQuotaResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1770,6 +1834,8 @@ List Credentials
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiListCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListCredentials(ctx context.Context, projectId string) ApiListCredentialsRequest {
 	return ApiListCredentialsRequest{
@@ -1782,6 +1848,8 @@ func (a *DefaultAPIService) ListCredentials(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return ListCredentialsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) (*ListCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1923,6 +1991,8 @@ ListLoadBalancer will list load balancers of a project. This contains informatio
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@return ApiListLoadBalancersRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListLoadBalancers(ctx context.Context, projectId string) ApiListLoadBalancersRequest {
 	return ApiListLoadBalancersRequest{
@@ -1935,6 +2005,8 @@ func (a *DefaultAPIService) ListLoadBalancers(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return ListLoadBalancersResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListLoadBalancersExecute(r ApiListLoadBalancersRequest) (*ListLoadBalancersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2063,6 +2135,8 @@ ListPlans returns for the configured service plans for a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListPlansRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListPlans(ctx context.Context) ApiListPlansRequest {
 	return ApiListPlansRequest{
@@ -2074,6 +2148,8 @@ func (a *DefaultAPIService) ListPlans(ctx context.Context) ApiListPlansRequest {
 // Execute executes the request
 //
 //	@return ListPlansResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListPlansExecute(r ApiListPlansRequest) (*ListPlansResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2205,6 +2281,8 @@ Update Credentials
 	@param projectId
 	@param credentialsRef
 	@return ApiUpdateCredentialsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateCredentials(ctx context.Context, projectId string, credentialsRef string) ApiUpdateCredentialsRequest {
 	return ApiUpdateCredentialsRequest{
@@ -2218,6 +2296,8 @@ func (a *DefaultAPIService) UpdateCredentials(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return UpdateCredentialsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateCredentialsExecute(r ApiUpdateCredentialsRequest) (*UpdateCredentialsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -2359,6 +2439,8 @@ Update Load Balancer allows the change of listeners and target pools of an exist
 	@param projectId
 	@param name
 	@return ApiUpdateLoadBalancerRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateLoadBalancer(ctx context.Context, projectId string, name string) ApiUpdateLoadBalancerRequest {
 	return ApiUpdateLoadBalancerRequest{
@@ -2372,6 +2454,8 @@ func (a *DefaultAPIService) UpdateLoadBalancer(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return LoadBalancer
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateLoadBalancerExecute(r ApiUpdateLoadBalancerRequest) (*LoadBalancer, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut
@@ -2516,6 +2600,8 @@ ReplaceTargetPool will replace a specific target pool of a load balancer with ne
 	@param name
 	@param targetPoolName
 	@return ApiUpdateTargetPoolRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) UpdateTargetPool(ctx context.Context, projectId string, name string, targetPoolName string) ApiUpdateTargetPoolRequest {
 	return ApiUpdateTargetPoolRequest{
@@ -2530,6 +2616,8 @@ func (a *DefaultAPIService) UpdateTargetPool(ctx context.Context, projectId stri
 // Execute executes the request
 //
 //	@return TargetPool
+//
+// Deprecated
 func (a *DefaultAPIService) UpdateTargetPoolExecute(r ApiUpdateTargetPoolRequest) (*TargetPool, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

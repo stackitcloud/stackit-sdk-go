@@ -1,10 +1,20 @@
-## Release (2026-MM-DD)
+
+## Release (2026-03-27)
 - `core`: [v0.24.0](core/CHANGELOG.md#v0240) 
   - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
-- `alb`: [v0.12.1](services/alb/CHANGELOG.md#v0121) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `albwaf`: [v0.2.1](services/albwaf/CHANGELOG.md#v021) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `alb`: 
+  - [v0.12.1](services/alb/CHANGELOG.md#v0121) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.13.0](services/alb/CHANGELOG.md#v0130)
+    - `v2beta2api`
+      - **Deprecation:** The `v2beta2` api is deprecated and will be removed in the future. Migrate to the `v2` api
+    - `v2api`
+      - Update description of `GetQuota` method
+- `albwaf`: 
+  - [v0.2.1](services/albwaf/CHANGELOG.md#v021) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.3.0](services/albwaf/CHANGELOG.md#v030)
+    - **Feature:** Add new method `GetQuota` to get the quota for WAF resources in a project
 - `auditlog`: [v0.3.1](services/auditlog/CHANGELOG.md#v031) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `authorization`: [v0.14.1](services/authorization/CHANGELOG.md#v0141) 
@@ -22,10 +32,41 @@
   - [v1.13.0](services/cdn/CHANGELOG.md#v1130)
     - **Bugfix:** Disable strict decoding of API responses
     - **Feature:** Add `AdditionalProperties` fields to model structs
-- `certificates`: [v1.4.1](services/certificates/CHANGELOG.md#v141) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `edge`: [v0.6.1](services/edge/CHANGELOG.md#v061) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `certificates`: 
+  - [v1.4.1](services/certificates/CHANGELOG.md#v141) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.5.0](services/certificates/CHANGELOG.md#v150)
+    - **Feature:** Add new method `GetQuota` to get the quota for TLS certificates in a project
+    - `v2betaapi`:
+      - **Deprecation:** The `v2beta2api` is deprecated and will be removed in the future. Migrate to `v2api`
+- `cost`:
+  - [v0.1.0](services/cost/CHANGELOG.md#v010) 
+    - **New:** STACKIT Cost module can be used to retrieve STACKIT cost information
+  - [v0.2.0](services/cost/CHANGELOG.md#v020)
+    - **Improvement:** Introduce new more specific error models `AuthErrorResponse` and `ErrorResponse`
+- `edge`:
+  - [v0.8.0](services/edge/CHANGELOG.md#v080) 
+    - `v1beta1api`: Removal of deprecated API client method `ListPlansGlobal`
+    - Deprecated SDK layer in root of the module: Removal of deprecated API client method `ListPlansGlobal`
+  - [v0.7.0](services/edge/CHANGELOG.md#v070) 
+    - `v1beta1api`: New field `MinEdgeHosts` in `Plan` model struct
+    - Deprecated SDK layer in root of the module: New field `MinEdgeHosts` in `Plan` model struct
+  - [v0.6.1](services/edge/CHANGELOG.md#v061) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `git`: [v0.11.0](services/git/CHANGELOG.md#v0110)
+  - **Feature:** Introduction of multi API version support for the git SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
+  - `v1betaapi`: New package which should be used for communication with the STACKIT git API in the future
+  - **Deprecation:** The contents in the root of this SDK module including the `wait` package are marked as deprecated and will be removed after 2026-09-30. Switch to the new `v1api` package instead.
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.23.0`
+  - **Feature:** New API client methods for managing authentication: `CreateAuthentication`, `GetAuthentication`,  `ListAuthentication`, `PatchAuthentication`, `DeleteAuthentication`
+  - **Feature:** New API client methods for managing runners: `CreateRunner`,  `GetRunner`, `DeleteRunner`, `ListRunnerRuntimes`
+  - **Feature:** New model structs for managing authentication: `Authentication`, `AuthenticationList`, `CreateAuthenticationPayload`, `PatchAuthenticationPayload`
+  - **Feature:** New model structs for managing runners: `CreateRunnerPayload`, `Runner`, `RunnerRuntime`, `RunnerRuntimeList`
+  - **Feature:** New error model structs: `AlreadyExistsError`, `BadErrorResponse`, `NotFoundErrorResponse`, `UnauthorizedErrorResponse`, `ConflictErrorResponse`
+  - **Feature:** New field `FeatureToggle `in Instance model struct
+  - **Feature:** New fields `Acl` and `FeatureToggle` in struct `PatchInstancePayload`
+  - **Breaking change:** Removal of type `InstanceFlavor`
+  - **Breaking change:** Removal of structs: `ListRunnerLabels`, `RunnerLabel`, `UnauthorizedResponse`
 - `iaas`:
   - [v1.5.1](services/iaas/CHANGELOG.md#v151) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
@@ -38,8 +79,13 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `kms`: [v1.5.1](services/kms/CHANGELOG.md#v151) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `loadbalancer`: [v1.10.1](services/loadbalancer/CHANGELOG.md#v1101) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `loadbalancer`: 
+  - [v1.10.1](services/loadbalancer/CHANGELOG.md#v1101) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.11.0](services/loadbalancer/CHANGELOG.md#v1110)
+    - Update description of `GetQuota` method
+    - `v1api`
+      - **Deprecation:** The `v1api` is deprecated and will be removed in the future. Migrate to `v2api`
 - `logme`: [v0.27.1](services/logme/CHANGELOG.md#v0271) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `logs`: [v0.7.1](services/logs/CHANGELOG.md#v071) 
@@ -50,10 +96,34 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `mongodbflex`: [v1.7.1](services/mongodbflex/CHANGELOG.md#v171) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `objectstorage`: [v1.6.1](services/objectstorage/CHANGELOG.md#v161) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `observability`: [v0.19.1](services/observability/CHANGELOG.md#v0191) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `objectstorage`:
+  - [v1.6.1](services/objectstorage/CHANGELOG.md#v161) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v1.7.0](services/objectstorage/CHANGELOG.md#v170) 
+    - `v1api`:
+      - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+      - **Feature:** New enum type `RetentionMode`
+      - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+      - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+      - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+    - `v2api`:
+      - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+      - **Feature:** New enum type `RetentionMode`
+      - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+      - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+      - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:** New model structs: `SetDefaultRetentionPayload`, `GetCredentialsGroupResponse`, `DeleteDefaultRetentionResponse`, `DefaultRetentionResponse`, `CredentialsGroupExtended`, `ComplianceLockResponse`
+      - **Feature:** New enum type `RetentionMode`
+      - **Feature:** New field `ObjectLockEnabled` in `Bucket` model struct
+      - **Feature:** New API client methods: `CreateComplianceLock`, `DeleteComplianceLock`, `DeleteDefaultRetention`, `GetComplianceLock`, `GetCredentialsGroup`, `GetDefaultRetention`, `SetDefaultRetention`
+      - **Feature:** New method on `ApiCreateBucketRequest` struct: `ObjectLockEnabled`
+- `observability`: 
+  - [v0.19.1](services/observability/CHANGELOG.md#v0191) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.20.0](services/observability/CHANGELOG.md#v0200) 
+    - `v1api`: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct
+    - Deprecated SDK layer in root of the module: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct
 - `opensearch`: [v0.26.1](services/opensearch/CHANGELOG.md#v0261) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `postgresflex`: [v1.6.1](services/postgresflex/CHANGELOG.md#v161) 
@@ -62,8 +132,13 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `redis`: [v0.27.1](services/redis/CHANGELOG.md#v0271) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `resourcemanager`: [v0.20.1](services/resourcemanager/CHANGELOG.md#v0201) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `resourcemanager`: 
+  - [v0.20.1](services/resourcemanager/CHANGELOG.md#v0201) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.21.0](services/resourcemanager/CHANGELOG.md#v0210)
+    - `v0api`
+      - **Improvement**: Use new `WaiterHelper` struct in the DNS WaitHandler
+      - **Breaking change:** Change return type of `wait.DeleteProjectWaitHandler()` to `*wait.AsyncActionHandler[resourcemanager.GetProjectResponse]`
 - `runcommand`: [v1.6.1](services/runcommand/CHANGELOG.md#v161) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `scf`: [v0.6.1](services/scf/CHANGELOG.md#v061) 
@@ -92,8 +167,11 @@
     - **Feature:** Add `AdditionalProperties` fields to model structs
 - `sqlserverflex`: [v1.6.1](services/sqlserverflex/CHANGELOG.md#v161) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `vpn`: [v0.3.1](services/vpn/CHANGELOG.md#v031) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `vpn`:
+  - [v0.4.0](services/vpn/CHANGELOG.md#v040) 
+    - `v1beta1api`: New package which can be used for communication with the STACKIT vpn v1 beta1 API
+  - [v0.3.1](services/vpn/CHANGELOG.md#v031) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 
 ## Release (2026-03-13)
 - `core`:

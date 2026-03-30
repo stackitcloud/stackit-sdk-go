@@ -47,6 +47,7 @@ type InstanceSensitiveData struct {
 	MetricsUrl              string    `json:"metricsUrl"`
 	Name                    *string   `json:"name,omitempty"`
 	OtlpGrpcTracesUrl       string    `json:"otlpGrpcTracesUrl"`
+	OtlpHttpLogsUrl         string    `json:"otlpHttpLogsUrl"`
 	OtlpHttpTracesUrl       string    `json:"otlpHttpTracesUrl"`
 	OtlpTracesUrl           string    `json:"otlpTracesUrl"`
 	Plan                    PlanModel `json:"plan"`
@@ -62,7 +63,7 @@ type _InstanceSensitiveData InstanceSensitiveData
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstanceSensitiveData(alertingUrl string, cluster string, dashboardUrl string, grafanaAdminEnabled bool, grafanaAdminPassword string, grafanaAdminUser string, grafanaPublicReadAccess bool, grafanaUrl string, grafanaUseStackitSso bool, instance string, jaegerHttpUrl string, jaegerTracesUrl string, jaegerUiUrl string, logsPushUrl string, logsUrl string, metricsEndpointUrl string, metricsRetentionTime1h int32, metricsRetentionTime5m int32, metricsRetentionTimeRaw int32, metricsUrl string, otlpGrpcTracesUrl string, otlpHttpTracesUrl string, otlpTracesUrl string, plan PlanModel, pushMetricsUrl string, targetsUrl string, zipkinSpansUrl string) *InstanceSensitiveData {
+func NewInstanceSensitiveData(alertingUrl string, cluster string, dashboardUrl string, grafanaAdminEnabled bool, grafanaAdminPassword string, grafanaAdminUser string, grafanaPublicReadAccess bool, grafanaUrl string, grafanaUseStackitSso bool, instance string, jaegerHttpUrl string, jaegerTracesUrl string, jaegerUiUrl string, logsPushUrl string, logsUrl string, metricsEndpointUrl string, metricsRetentionTime1h int32, metricsRetentionTime5m int32, metricsRetentionTimeRaw int32, metricsUrl string, otlpGrpcTracesUrl string, otlpHttpLogsUrl string, otlpHttpTracesUrl string, otlpTracesUrl string, plan PlanModel, pushMetricsUrl string, targetsUrl string, zipkinSpansUrl string) *InstanceSensitiveData {
 	this := InstanceSensitiveData{}
 	this.AlertingUrl = alertingUrl
 	this.Cluster = cluster
@@ -87,6 +88,7 @@ func NewInstanceSensitiveData(alertingUrl string, cluster string, dashboardUrl s
 	var name string = ""
 	this.Name = &name
 	this.OtlpGrpcTracesUrl = otlpGrpcTracesUrl
+	this.OtlpHttpLogsUrl = otlpHttpLogsUrl
 	this.OtlpHttpTracesUrl = otlpHttpTracesUrl
 	this.OtlpTracesUrl = otlpTracesUrl
 	this.Plan = plan
@@ -685,6 +687,30 @@ func (o *InstanceSensitiveData) SetOtlpGrpcTracesUrl(v string) {
 	o.OtlpGrpcTracesUrl = v
 }
 
+// GetOtlpHttpLogsUrl returns the OtlpHttpLogsUrl field value
+func (o *InstanceSensitiveData) GetOtlpHttpLogsUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OtlpHttpLogsUrl
+}
+
+// GetOtlpHttpLogsUrlOk returns a tuple with the OtlpHttpLogsUrl field value
+// and a boolean to check if the value has been set.
+func (o *InstanceSensitiveData) GetOtlpHttpLogsUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OtlpHttpLogsUrl, true
+}
+
+// SetOtlpHttpLogsUrl sets field value
+func (o *InstanceSensitiveData) SetOtlpHttpLogsUrl(v string) {
+	o.OtlpHttpLogsUrl = v
+}
+
 // GetOtlpHttpTracesUrl returns the OtlpHttpTracesUrl field value
 func (o *InstanceSensitiveData) GetOtlpHttpTracesUrl() string {
 	if o == nil {
@@ -866,6 +892,7 @@ func (o InstanceSensitiveData) ToMap() (map[string]interface{}, error) {
 		toSerialize["name"] = o.Name
 	}
 	toSerialize["otlpGrpcTracesUrl"] = o.OtlpGrpcTracesUrl
+	toSerialize["otlpHttpLogsUrl"] = o.OtlpHttpLogsUrl
 	toSerialize["otlpHttpTracesUrl"] = o.OtlpHttpTracesUrl
 	toSerialize["otlpTracesUrl"] = o.OtlpTracesUrl
 	toSerialize["plan"] = o.Plan
@@ -906,6 +933,7 @@ func (o *InstanceSensitiveData) UnmarshalJSON(data []byte) (err error) {
 		"metricsRetentionTimeRaw",
 		"metricsUrl",
 		"otlpGrpcTracesUrl",
+		"otlpHttpLogsUrl",
 		"otlpHttpTracesUrl",
 		"otlpTracesUrl",
 		"plan",
@@ -964,6 +992,7 @@ func (o *InstanceSensitiveData) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "metricsUrl")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "otlpGrpcTracesUrl")
+		delete(additionalProperties, "otlpHttpLogsUrl")
 		delete(additionalProperties, "otlpHttpTracesUrl")
 		delete(additionalProperties, "otlpTracesUrl")
 		delete(additionalProperties, "plan")

@@ -1,3 +1,8 @@
+## v1.5.0
+- **Feature:** Add new method `GetQuota` to get the quota for TLS certificates in a project
+- `v2betaapi`:
+  - **Deprecation:** The `v2beta2api` is deprecated and will be removed in the future. Migrate to `v2api`
+
 ## v1.4.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 
