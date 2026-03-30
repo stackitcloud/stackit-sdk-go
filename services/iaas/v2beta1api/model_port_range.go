@@ -19,7 +19,7 @@ import (
 // checks if the PortRange type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PortRange{}
 
-// PortRange Object that represents a range of ports.
+// PortRange Object that represents a range of ports (this will be omitted if it covers the full default range 0/1-65535).
 type PortRange struct {
 	// The maximum port number. Should be greater or equal to the minimum.
 	Max int64 `json:"max"`
