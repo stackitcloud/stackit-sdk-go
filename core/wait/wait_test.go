@@ -390,11 +390,12 @@ func TestWaitWithContext(t *testing.T) {
 				return false, nil, fmt.Errorf("something bad happened when checking if the async action was finished")
 			}
 			handler := AsyncActionHandler[respType]{
-				checkFn:           checkFn,
-				sleepBeforeWait:   tt.handlerSleepBeforeWait,
-				throttle:          tt.handlerThrottle,
-				timeout:           tt.handlerTimeout,
-				tempErrRetryLimit: tt.handlerTempErrRetryLimit,
+				checkFn:                   checkFn,
+				sleepBeforeWait:           tt.handlerSleepBeforeWait,
+				throttle:                  tt.handlerThrottle,
+				timeout:                   tt.handlerTimeout,
+				tempErrRetryLimit:         tt.handlerTempErrRetryLimit,
+				retryHttpErrorStatusCodes: RetryHttpErrorStatusCodes,
 			}
 			ctx, cancel := context.WithTimeout(context.Background(), tt.contextTimeout)
 			defer cancel()
