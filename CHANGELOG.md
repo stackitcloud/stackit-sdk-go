@@ -1,3 +1,7 @@
+## Release (2026-MM-DD)
+- `iaas`: [v1.7.1](services/iaas/CHANGELOG.md#v171)
+  - **Docs:** Extend description of `PortRange` struct
+
 ## Release (2026-03-27)
 - `alb`: 
   - [v0.12.1](services/alb/CHANGELOG.md#v0121) 

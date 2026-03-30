@@ -1,3 +1,6 @@
+## v1.7.1
+- **Docs:** Extend description of `PortRange` struct 
+
 ## v1.7.0
 - **Dependencies:** Bump resourcemanager from `v0.19.0` to `v0.20.1`
 
