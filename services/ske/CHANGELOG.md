@@ -1,3 +1,6 @@
+## v1.11.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v1.11.0
 - Package `v2api`:
   - **Breaking change:** Remove `RuntimeError`

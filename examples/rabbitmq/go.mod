@@ -6,7 +6,7 @@ go 1.21
 replace github.com/stackitcloud/stackit-sdk-go/services/rabbitmq => ../../services/rabbitmq
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.23.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.0
 	github.com/stackitcloud/stackit-sdk-go/services/rabbitmq v0.26.0
 )
 

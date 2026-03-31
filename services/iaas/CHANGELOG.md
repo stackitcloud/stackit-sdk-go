@@ -1,3 +1,6 @@
+## v1.8.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v1.8.0
 - **Dependencies:** Bump resourcemanager from `v0.20.1` to `v0.21.0`
 

@@ -10,5 +10,5 @@ require github.com/stackitcloud/stackit-sdk-go/services/postgresflex v1.3.5
 require (
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/stackitcloud/stackit-sdk-go/core v0.23.0 // indirect
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.0 // indirect
 )

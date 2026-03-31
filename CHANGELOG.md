@@ -1,24 +1,107 @@
 ## Release (2026-MM-DD)
-- `core`: [v0.24.0](core/CHANGELOG.md#v0240) 
-  - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
+- `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `albwaf`: [v0.3.1](services/albwaf/CHANGELOG.md#v031)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `archiving`: [v0.2.5](services/archiving/CHANGELOG.md#v025)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.24.0`
+- `auditlog`: [v0.3.2](services/auditlog/CHANGELOG.md#v032)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `authorization`: [v0.14.2](services/authorization/CHANGELOG.md#v0142)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `cdn`: [v1.13.1](services/cdn/CHANGELOG.md#v1131)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `certificates`: [v1.5.1](services/certificates/CHANGELOG.md#v151)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `cost`: [v0.2.1](services/cost/CHANGELOG.md#v021)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `dns`: [v0.19.2](services/dns/CHANGELOG.md#v0192)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `edge`: [v0.8.1](services/edge/CHANGELOG.md#v081)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `git`: [v0.11.1](services/git/CHANGELOG.md#v0111)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `iaas`:
+  - [v1.8.1](services/iaas/CHANGELOG.md#v181)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
   - [v1.8.0](services/iaas/CHANGELOG.md#v180)
     - **Dependencies:** Bump resourcemanager from `v0.20.1` to `v0.21.0`
   - [v1.7.1](services/iaas/CHANGELOG.md#v171)
     - **Docs:** Extend description of `PortRange` struct
-- `ske`: [v1.11.0](services/ske/CHANGELOG.md#v1110)
-  - Package `v2api`:
-    - **Breaking change:** Remove `RuntimeError`
-    - **Docs:** Extend description of `AccessScope`
-  - Package `v1api`:
-    - **Breaking change:** Remove `RuntimeError`
-  - Deprecated SDK layer in root of the module:
-    - **Breaking change:** Remove enum `CRINAME_DOCKER`
-    - **Breaking change:** Remove `RuntimeError`
-    - **Docs:** Extend description of `AccessScope`
-- `kms`: [v1.6.0](services/kms/CHANGELOG.md#v160)
-  - `v1api`: **Breaking change:** Change type of field `PublicKey` from `string` to `*string` in `WrappingKey` model struct
-  - Deprecated SDK layer in root of the module: The field `PublicKey` in the `WrappingKey` model struct is not marked as required anymore
+- `intake`: [v0.7.2](services/intake/CHANGELOG.md#v072)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `kms`:
+  - [v1.6.1](services/kms/CHANGELOG.md#v161)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+  - [v1.6.0](services/kms/CHANGELOG.md#v160)
+    - `v1api`: **Breaking change:** Change type of field `PublicKey` from `string` to `*string` in `WrappingKey` model struct
+    - Deprecated SDK layer in root of the module: The field `PublicKey` in the `WrappingKey` model struct is not marked as required anymore
+- `lbapplication`: [v0.5.6](services/lbapplication/CHANGELOG.md#v056)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.24.0`
+- `loadbalancer`: [v1.11.1](services/loadbalancer/CHANGELOG.md#v1111)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `logme`: [v0.27.2](services/logme/CHANGELOG.md#v0272)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `logs`: [v0.7.2](services/logs/CHANGELOG.md#v072)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `mariadb`: [v0.27.2](services/mariadb/CHANGELOG.md#v0272)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `modelserving`: [v0.8.2](services/modelserving/CHANGELOG.md#v082)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `mongodbflex`: [v1.7.2](services/mongodbflex/CHANGELOG.md#v172)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `objectstorage`: [v1.7.1](services/objectstorage/CHANGELOG.md#v171)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `observability`: [v0.20.1](services/observability/CHANGELOG.md#v0201)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `opensearch`: [v0.26.2](services/opensearch/CHANGELOG.md#v0262)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `postgresflex`: [v1.6.2](services/postgresflex/CHANGELOG.md#v162)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `rabbitmq`: [v0.28.2](services/rabbitmq/CHANGELOG.md#v0282)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `redis`: [v0.27.2](services/redis/CHANGELOG.md#v0272)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `resourcemanager`: [v0.21.1](services/resourcemanager/CHANGELOG.md#v0211)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `runcommand`: [v1.6.2](services/runcommand/CHANGELOG.md#v162)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `scf`: [v0.6.2](services/scf/CHANGELOG.md#v062)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `secretsmanager`: [v0.16.2](services/secretsmanager/CHANGELOG.md#v0162)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `serverbackup`: [v1.5.2](services/serverbackup/CHANGELOG.md#v152)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `serverupdate`: [v1.4.2](services/serverupdate/CHANGELOG.md#v142)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `serviceaccount`: [v0.15.1](services/serviceaccount/CHANGELOG.md#v0151)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `serviceenablement`: [v1.4.2](services/serviceenablement/CHANGELOG.md#v142)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `sfs`: [v0.6.2](services/sfs/CHANGELOG.md#v062)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `ske`:
+  - [v1.11.1](services/ske/CHANGELOG.md#v1111)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+  - [v1.11.0](services/ske/CHANGELOG.md#v1110)
+    - Package `v2api`:
+      - **Breaking change:** Remove `RuntimeError`
+      - **Docs:** Extend description of `AccessScope`
+    - Package `v1api`:
+      - **Breaking change:** Remove `RuntimeError`
+    - Deprecated SDK layer in root of the module:
+      - **Breaking change:** Remove enum `CRINAME_DOCKER`
+      - **Breaking change:** Remove `RuntimeError`
+      - **Docs:** Extend description of `AccessScope`
+- `sqlserverflex`: [v1.6.2](services/sqlserverflex/CHANGELOG.md#v162)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `stackitmarketplace`: [v1.17.4](services/stackitmarketplace/CHANGELOG.md#v1174)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.24.0`
+- `vpn`: [v0.4.1](services/vpn/CHANGELOG.md#v041)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
+- `core`: [v0.24.0](core/CHANGELOG.md#v0240) 
+  - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
 
 ## Release (2026-03-27)
 - `alb`: 

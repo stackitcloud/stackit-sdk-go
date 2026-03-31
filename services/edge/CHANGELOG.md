@@ -1,3 +1,6 @@
+## v0.8.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v0.8.0
 - `v1beta1api`: Removal of deprecated API client method `ListPlansGlobal`
 - Deprecated SDK layer in root of the module: Removal of deprecated API client method `ListPlansGlobal`

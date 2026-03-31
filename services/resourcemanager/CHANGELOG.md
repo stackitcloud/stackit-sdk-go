@@ -1,3 +1,6 @@
+## v0.21.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v0.21.0
 - `v0api`
   - **Improvement**: Use new `WaiterHelper` struct in the DNS WaitHandler
