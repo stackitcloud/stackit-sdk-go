@@ -1,8 +1,11 @@
 ## Release (2026-MM-DD)
 - `core`: [v0.24.0](core/CHANGELOG.md#v0240) 
   - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
-- `iaas`: [v1.7.1](services/iaas/CHANGELOG.md#v171)
-  - **Docs:** Extend description of `PortRange` struct
+- `iaas`:
+  - [v1.8.0](services/iaas/CHANGELOG.md#v180)
+    - **Dependencies:** Bump resourcemanager from `v0.20.1` to `v0.21.0`
+  - [v1.7.1](services/iaas/CHANGELOG.md#v171)
+    - **Docs:** Extend description of `PortRange` struct
 - `ske`: [v1.11.0](services/ske/CHANGELOG.md#v1110)
   - Package `v2api`:
     - **Breaking change:** Remove `RuntimeError`
