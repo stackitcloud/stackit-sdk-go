@@ -16,6 +16,9 @@
     - **Breaking change:** Remove enum `CRINAME_DOCKER`
     - **Breaking change:** Remove `RuntimeError`
     - **Docs:** Extend description of `AccessScope`
+- `kms`: [v1.6.0](services/kms/CHANGELOG.md#v160)
+  - `v1api`: **Breaking change:** Change type of field `PublicKey` from `string` to `*string` in `WrappingKey` model struct
+  - Deprecated SDK layer in root of the module: The field `PublicKey` in the `WrappingKey` model struct is not marked as required anymore
 
 ## Release (2026-03-27)
 - `alb`: 
@@ -93,12 +96,8 @@
     - **Dependencies:** Bump resourcemanager from `v0.19.0` to `v0.20.1`
 - `intake`: [v0.7.1](services/intake/CHANGELOG.md#v071) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `kms`:
-  - [v1.5.1](services/kms/CHANGELOG.md#v151)
-    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-  - [v1.6.0](services/kms/CHANGELOG.md#v160)
-    - `v1api`: **Breaking change:** Change type of field `PublicKey` from `string` to `*string` in `WrappingKey` model struct
-    - Deprecated SDK layer in root of the module: The field `PublicKey` in the `WrappingKey` model struct is not marked as required anymore
+- `kms`: [v1.5.1](services/kms/CHANGELOG.md#v151)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `loadbalancer`: 
   - [v1.10.1](services/loadbalancer/CHANGELOG.md#v1101) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
