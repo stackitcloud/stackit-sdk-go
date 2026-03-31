@@ -72,7 +72,7 @@ func setPortRangeGetMinAttributeType(arg *PortRangeGetMinAttributeType, val Port
 	*arg = &val
 }
 
-// PortRange Object that represents a range of ports.
+// PortRange Object that represents a range of ports (this will be omitted if it covers the full default range 0/1-65535).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PortRange struct {
 	// The maximum port number. Should be greater or equal to the minimum.

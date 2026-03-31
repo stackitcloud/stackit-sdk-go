@@ -1,3 +1,18 @@
+## Release (2026-MM-DD)
+- `iaas`: [v1.7.1](services/iaas/CHANGELOG.md#v171)
+  - **Docs:** Extend description of `PortRange` struct
+- `ske`: [v1.11.0](services/ske/CHANGELOG.md#v1110)
+  - Package `v2api`:
+    - **Breaking change:** Remove `RuntimeError`
+    - **Docs:** Extend description of `AccessScope`
+  - Package `v1api`:
+    - **Breaking change:** Remove `RuntimeError`
+  - Deprecated SDK layer in root of the module:
+    - **Breaking change:** Remove enum `CRINAME_DOCKER`
+    - **Breaking change:** Remove `RuntimeError`
+    - **Docs:** Extend description of `AccessScope`
+
+
 ## Release (2026-03-27)
 - `alb`: 
   - [v0.12.1](services/alb/CHANGELOG.md#v0121) 
@@ -129,8 +144,13 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `redis`: [v0.27.1](services/redis/CHANGELOG.md#v0271) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
-- `resourcemanager`: [v0.20.1](services/resourcemanager/CHANGELOG.md#v0201) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+- `resourcemanager`: 
+  - [v0.20.1](services/resourcemanager/CHANGELOG.md#v0201) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
+  - [v0.21.0](services/resourcemanager/CHANGELOG.md#v0210)
+    - `v0api`
+      - **Improvement**: Use new `WaiterHelper` struct in the DNS WaitHandler
+      - **Breaking change:** Change return type of `wait.DeleteProjectWaitHandler()` to `*wait.AsyncActionHandler[resourcemanager.GetProjectResponse]`
 - `runcommand`: [v1.6.1](services/runcommand/CHANGELOG.md#v161) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 - `scf`: [v0.6.1](services/scf/CHANGELOG.md#v061) 
