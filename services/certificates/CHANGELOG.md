@@ -1,3 +1,6 @@
+## v1.5.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v1.5.0
 - **Feature:** Add new method `GetQuota` to get the quota for TLS certificates in a project
 - `v2betaapi`:
