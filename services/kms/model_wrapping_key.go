@@ -500,7 +500,7 @@ type WrappingKey struct {
 	// REQUIRED
 	Protection WrappingKeyGetProtectionAttributeType `json:"protection" required:"true"`
 	// The public key of the wrapping key.
-	PublicKey WrappingKeyGetPublicKeyAttributeType `json:"publicKey,omitempty" required:"true"`
+	PublicKey WrappingKeyGetPublicKeyAttributeType `json:"publicKey,omitempty"`
 	// REQUIRED
 	Purpose WrappingKeyGetPurposeAttributeType `json:"purpose" required:"true"`
 	// The current state of the wrapping key.
@@ -516,7 +516,7 @@ type _WrappingKey WrappingKey
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewWrappingKey(accessScope WrappingKeyGetAccessScopeArgType, algorithm WrappingKeyGetAlgorithmArgType, createdAt WrappingKeyGetCreatedAtArgType, displayName WrappingKeyGetDisplayNameArgType, expiresAt WrappingKeyGetExpiresAtArgType, id WrappingKeyGetIdArgType, keyRingId WrappingKeyGetKeyRingIdArgType, protection WrappingKeyGetProtectionArgType, publicKey WrappingKeyGetPublicKeyArgType, purpose WrappingKeyGetPurposeArgType, state WrappingKeyGetStateArgType) *WrappingKey {
+func NewWrappingKey(accessScope WrappingKeyGetAccessScopeArgType, algorithm WrappingKeyGetAlgorithmArgType, createdAt WrappingKeyGetCreatedAtArgType, displayName WrappingKeyGetDisplayNameArgType, expiresAt WrappingKeyGetExpiresAtArgType, id WrappingKeyGetIdArgType, keyRingId WrappingKeyGetKeyRingIdArgType, protection WrappingKeyGetProtectionArgType, purpose WrappingKeyGetPurposeArgType, state WrappingKeyGetStateArgType) *WrappingKey {
 	this := WrappingKey{}
 	setWrappingKeyGetAccessScopeAttributeType(&this.AccessScope, accessScope)
 	setWrappingKeyGetAlgorithmAttributeType(&this.Algorithm, algorithm)
@@ -526,7 +526,6 @@ func NewWrappingKey(accessScope WrappingKeyGetAccessScopeArgType, algorithm Wrap
 	setWrappingKeyGetIdAttributeType(&this.Id, id)
 	setWrappingKeyGetKeyRingIdAttributeType(&this.KeyRingId, keyRingId)
 	setWrappingKeyGetProtectionAttributeType(&this.Protection, protection)
-	setWrappingKeyGetPublicKeyAttributeType(&this.PublicKey, publicKey)
 	setWrappingKeyGetPurposeAttributeType(&this.Purpose, purpose)
 	setWrappingKeyGetStateAttributeType(&this.State, state)
 	return &this
@@ -730,21 +729,28 @@ func (o *WrappingKey) SetProtection(v WrappingKeyGetProtectionRetType) {
 	setWrappingKeyGetProtectionAttributeType(&o.Protection, v)
 }
 
-// GetPublicKey returns the PublicKey field value
+// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *WrappingKey) GetPublicKey() (ret WrappingKeyGetPublicKeyRetType) {
-	ret, _ = o.GetPublicKeyOk()
-	return ret
+func (o *WrappingKey) GetPublicKey() (res WrappingKeyGetPublicKeyRetType) {
+	res, _ = o.GetPublicKeyOk()
+	return
 }
 
-// GetPublicKeyOk returns a tuple with the PublicKey field value
+// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *WrappingKey) GetPublicKeyOk() (ret WrappingKeyGetPublicKeyRetType, ok bool) {
 	return getWrappingKeyGetPublicKeyAttributeTypeOk(o.PublicKey)
 }
 
-// SetPublicKey sets field value
+// HasPublicKey returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *WrappingKey) HasPublicKey() bool {
+	_, ok := o.GetPublicKeyOk()
+	return ok
+}
+
+// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *WrappingKey) SetPublicKey(v WrappingKeyGetPublicKeyRetType) {
 	setWrappingKeyGetPublicKeyAttributeType(&o.PublicKey, v)

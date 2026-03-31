@@ -122,7 +122,7 @@ func fixtureWrappingKey(state string) *kms.WrappingKey {
 		Purpose:     kms.WRAPPINGPURPOSE_WRAP_SYMMETRIC_KEY,
 		State:       state,
 		ExpiresAt:   testDate,
-		PublicKey:   testPublicKey,
+		PublicKey:   utils.Ptr(testPublicKey),
 	}
 }
 
