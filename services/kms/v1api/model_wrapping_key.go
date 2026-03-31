@@ -37,7 +37,7 @@ type WrappingKey struct {
 	KeyRingId  string     `json:"keyRingId"`
 	Protection Protection `json:"protection"`
 	// The public key of the wrapping key.
-	PublicKey string          `json:"publicKey"`
+	PublicKey *string         `json:"publicKey,omitempty"`
 	Purpose   WrappingPurpose `json:"purpose"`
 	// The current state of the wrapping key.
 	State                string `json:"state"`
@@ -50,7 +50,7 @@ type _WrappingKey WrappingKey
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWrappingKey(accessScope AccessScope, algorithm WrappingAlgorithm, createdAt time.Time, displayName string, expiresAt time.Time, id string, keyRingId string, protection Protection, publicKey string, purpose WrappingPurpose, state string) *WrappingKey {
+func NewWrappingKey(accessScope AccessScope, algorithm WrappingAlgorithm, createdAt time.Time, displayName string, expiresAt time.Time, id string, keyRingId string, protection Protection, purpose WrappingPurpose, state string) *WrappingKey {
 	this := WrappingKey{}
 	this.AccessScope = accessScope
 	this.Algorithm = algorithm
@@ -60,7 +60,6 @@ func NewWrappingKey(accessScope AccessScope, algorithm WrappingAlgorithm, create
 	this.Id = id
 	this.KeyRingId = keyRingId
 	this.Protection = protection
-	this.PublicKey = publicKey
 	this.Purpose = purpose
 	this.State = state
 	return &this
@@ -300,28 +299,36 @@ func (o *WrappingKey) SetProtection(v Protection) {
 	o.Protection = v
 }
 
-// GetPublicKey returns the PublicKey field value
+// GetPublicKey returns the PublicKey field value if set, zero value otherwise.
 func (o *WrappingKey) GetPublicKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		var ret string
 		return ret
 	}
-
-	return o.PublicKey
+	return *o.PublicKey
 }
 
-// GetPublicKeyOk returns a tuple with the PublicKey field value
+// GetPublicKeyOk returns a tuple with the PublicKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WrappingKey) GetPublicKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PublicKey) {
 		return nil, false
 	}
-	return &o.PublicKey, true
+	return o.PublicKey, true
 }
 
-// SetPublicKey sets field value
+// HasPublicKey returns a boolean if a field has been set.
+func (o *WrappingKey) HasPublicKey() bool {
+	if o != nil && !IsNil(o.PublicKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicKey gets a reference to the given string and assigns it to the PublicKey field.
 func (o *WrappingKey) SetPublicKey(v string) {
-	o.PublicKey = v
+	o.PublicKey = &v
 }
 
 // GetPurpose returns the Purpose field value
@@ -393,7 +400,9 @@ func (o WrappingKey) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["keyRingId"] = o.KeyRingId
 	toSerialize["protection"] = o.Protection
-	toSerialize["publicKey"] = o.PublicKey
+	if !IsNil(o.PublicKey) {
+		toSerialize["publicKey"] = o.PublicKey
+	}
 	toSerialize["purpose"] = o.Purpose
 	toSerialize["state"] = o.State
 
@@ -417,7 +426,6 @@ func (o *WrappingKey) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"keyRingId",
 		"protection",
-		"publicKey",
 		"purpose",
 		"state",
 	}
