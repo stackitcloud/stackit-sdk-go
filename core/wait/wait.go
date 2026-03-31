@@ -46,9 +46,14 @@ func (h *AsyncActionHandler[T]) SetThrottle(d time.Duration) *AsyncActionHandler
 }
 
 // SetTimeout sets the duration for wait timeout.
+// This only has an effect, if there's no timeout/deadline set on the context.
 func (h *AsyncActionHandler[T]) SetTimeout(d time.Duration) *AsyncActionHandler[T] {
 	h.timeout = d
 	return h
+}
+
+func (h *AsyncActionHandler[T]) GetTimeout() time.Duration {
+	return h.timeout
 }
 
 // SetSleepBeforeWait sets the duration for sleep before wait.
@@ -70,8 +75,11 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 		return nil, fmt.Errorf("throttle can't be 0")
 	}
 
-	ctx, cancel := context.WithTimeout(ctx, h.timeout)
-	defer cancel()
+	if _, ok := ctx.Deadline(); !ok {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, h.timeout)
+		defer cancel()
+	}
 
 	// Wait some seconds for the API to process the request
 	if h.sleepBeforeWait > 0 {
@@ -101,7 +109,7 @@ func (h *AsyncActionHandler[T]) WaitWithContext(ctx context.Context) (res *T, er
 
 		select {
 		case <-ctx.Done():
-			return res, fmt.Errorf("WaitWithContext() has timed out")
+			return res, fmt.Errorf("WaitWithContext() has timed out: %w", ctx.Err())
 		case <-ticker.C:
 			continue
 		}
