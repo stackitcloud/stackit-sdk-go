@@ -52,6 +52,10 @@ func (h *AsyncActionHandler[T]) SetTimeout(d time.Duration) *AsyncActionHandler[
 	return h
 }
 
+func (h *AsyncActionHandler[T]) GetTimeout() time.Duration {
+	return h.timeout
+}
+
 // SetSleepBeforeWait sets the duration for sleep before wait.
 func (h *AsyncActionHandler[T]) SetSleepBeforeWait(d time.Duration) *AsyncActionHandler[T] {
 	h.sleepBeforeWait = d
