@@ -582,16 +582,7 @@ func (r CompleteCredentialsRotationRequest) Execute() (map[string]interface{}, e
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -769,16 +760,7 @@ func (r CreateKubeconfigRequest) Execute() (*Kubeconfig, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -956,16 +938,7 @@ func (r CreateOrUpdateClusterRequest) Execute() (*Cluster, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1131,16 +1104,7 @@ func (r DeleteClusterRequest) Execute() (map[string]interface{}, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1306,16 +1270,7 @@ func (r GetClusterRequest) Execute() (*Cluster, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1481,16 +1436,7 @@ func (r GetIDPKubeconfigRequest) Execute() (*IDPKubeconfig, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1656,16 +1602,7 @@ func (r GetLoginKubeconfigRequest) Execute() (*LoginKubeconfig, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1829,16 +1766,7 @@ func (r ListClustersRequest) Execute() (*ListClustersResponse, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -1976,7 +1904,7 @@ func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 			Body:         localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v map[string]interface{}
 			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1987,14 +1915,16 @@ func (r ListProviderOptionsRequest) Execute() (*ProviderOptions, error) {
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v map[string]interface{}
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
 		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -2154,16 +2084,7 @@ func (r StartCredentialsRotationRequest) Execute() (map[string]interface{}, erro
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -2329,16 +2250,7 @@ func (r TriggerHibernateRequest) Execute() (map[string]interface{}, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -2504,16 +2416,7 @@ func (r TriggerMaintenanceRequest) Execute() (map[string]interface{}, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -2679,16 +2582,7 @@ func (r TriggerReconcileRequest) Execute() (map[string]interface{}, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 
@@ -2854,16 +2748,7 @@ func (r TriggerWakeupRequest) Execute() (map[string]interface{}, error) {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
-		var v RuntimeError
-		err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.ErrorMessage = err.Error()
-			return localVarReturnValue, newErr
-		}
-		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-		newErr.Model = v
 		return localVarReturnValue, newErr
 	}
 

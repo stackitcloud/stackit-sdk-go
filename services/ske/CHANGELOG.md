@@ -1,3 +1,14 @@
+## v1.11.0
+- Package `v2api`:
+  - **Breaking change:** Remove `RuntimeError`
+  - **Docs:** Extend description of `AccessScope`
+- Package `v1api`:
+  - **Breaking change:** Remove `RuntimeError`
+- Deprecated SDK layer in root of the module:
+  - **Breaking change:** Remove enum `CRINAME_DOCKER`
+  - **Breaking change:** Remove `RuntimeError`
+  - **Docs:** Extend description of `AccessScope`
+
 ## 1.10.0
 - **Bugfix:** Disable strict decoding of API responses
 - **Feature:** Add `AdditionalProperties` fields to model structs
