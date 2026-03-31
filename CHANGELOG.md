@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+- `core`: [v0.24.0](core/CHANGELOG.md#v0240) 
+  - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
 - `iaas`: [v1.7.1](services/iaas/CHANGELOG.md#v171)
   - **Docs:** Extend description of `PortRange` struct
 - `ske`: [v1.11.0](services/ske/CHANGELOG.md#v1110)
@@ -11,7 +13,6 @@
     - **Breaking change:** Remove enum `CRINAME_DOCKER`
     - **Breaking change:** Remove `RuntimeError`
     - **Docs:** Extend description of `AccessScope`
-
 
 ## Release (2026-03-27)
 - `alb`: 
