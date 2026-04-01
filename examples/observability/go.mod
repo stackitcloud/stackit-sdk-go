@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/observability => ../../s
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.24.0
-	github.com/stackitcloud/stackit-sdk-go/services/observability v0.17.0
+	github.com/stackitcloud/stackit-sdk-go/services/observability v0.20.1
 )
 
 require (
