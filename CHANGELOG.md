@@ -22,6 +22,8 @@
 - `git`: [v0.11.1](services/git/CHANGELOG.md#v0111)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `iaas`:
+  - [v1.8.2](services/iaas/CHANGELOG.md#v182)
+    - **Dependencies:** Bump SDK resourcemanager module from `v0.21.0` to `v0.21.1`
   - [v1.8.1](services/iaas/CHANGELOG.md#v181)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
   - [v1.8.0](services/iaas/CHANGELOG.md#v180)
@@ -74,8 +76,11 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `serverupdate`: [v1.4.2](services/serverupdate/CHANGELOG.md#v142)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
-- `serviceaccount`: [v0.15.1](services/serviceaccount/CHANGELOG.md#v0151)
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `serviceaccount`:
+  - [v0.16.0](services/serviceaccount/CHANGELOG.md#v0160)
+    - **Feature:** Add `TokenEndpoint` field to `ServiceAccount` model
+  - [v0.15.1](services/serviceaccount/CHANGELOG.md#v0151)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `serviceenablement`: [v1.4.2](services/serviceenablement/CHANGELOG.md#v142)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `sfs`: [v0.6.2](services/sfs/CHANGELOG.md#v062)
@@ -99,9 +104,11 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.24.0`
 - `vpn`: [v0.4.1](services/vpn/CHANGELOG.md#v041)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
-
-- `core`: [v0.24.0](core/CHANGELOG.md#v0240) 
-  - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
+- `core`:
+  - [v0.24.1](core/CHANGELOG.md#v0241)
+    - **Improvement:** Fix misleading error messages in authentication setup and credentials parsing.
+  - [v0.24.0](core/CHANGELOG.md#v0240)
+    - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
 
 ## Release (2026-03-27)
 - `alb`: 
