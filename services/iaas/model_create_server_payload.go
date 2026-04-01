@@ -128,6 +128,33 @@ func setCreateServerPayloadGetBootVolumeAttributeType(arg *CreateServerPayloadGe
 }
 
 /*
+	types and functions for configDrive
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServerPayloadgetConfigDriveAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServerPayloadgetConfigDriveArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServerPayloadgetConfigDriveRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateServerPayloadgetConfigDriveAttributeTypeOk(arg CreateServerPayloadgetConfigDriveAttributeType) (ret CreateServerPayloadgetConfigDriveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateServerPayloadgetConfigDriveAttributeType(arg *CreateServerPayloadgetConfigDriveAttributeType, val CreateServerPayloadgetConfigDriveRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for createdAt
 */
 
@@ -676,6 +703,8 @@ type CreateServerPayload struct {
 	// Object that represents an availability zone.
 	AvailabilityZone CreateServerPayloadGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	BootVolume       CreateServerPayloadGetBootVolumeAttributeType       `json:"bootVolume,omitempty"`
+	// When true the server is created with a config drive.
+	ConfigDrive CreateServerPayloadgetConfigDriveAttributeType `json:"configDrive,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt CreateServerPayloadGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// An error message.
@@ -741,6 +770,8 @@ func NewCreateServerPayload(machineType CreateServerPayloadGetMachineTypeArgType
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func NewCreateServerPayloadWithDefaults() *CreateServerPayload {
 	this := CreateServerPayload{}
+	var configDrive bool = false
+	this.ConfigDrive = &configDrive
 	return &this
 }
 
@@ -850,6 +881,33 @@ func (o *CreateServerPayload) HasBootVolume() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateServerPayload) SetBootVolume(v CreateServerPayloadGetBootVolumeRetType) {
 	setCreateServerPayloadGetBootVolumeAttributeType(&o.BootVolume, v)
+}
+
+// GetConfigDrive returns the ConfigDrive field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) GetConfigDrive() (res CreateServerPayloadgetConfigDriveRetType) {
+	res, _ = o.GetConfigDriveOk()
+	return
+}
+
+// GetConfigDriveOk returns a tuple with the ConfigDrive field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) GetConfigDriveOk() (ret CreateServerPayloadgetConfigDriveRetType, ok bool) {
+	return getCreateServerPayloadgetConfigDriveAttributeTypeOk(o.ConfigDrive)
+}
+
+// HasConfigDrive returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) HasConfigDrive() bool {
+	_, ok := o.GetConfigDriveOk()
+	return ok
+}
+
+// SetConfigDrive gets a reference to the given bool and assigns it to the ConfigDrive field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServerPayload) SetConfigDrive(v CreateServerPayloadgetConfigDriveRetType) {
+	setCreateServerPayloadgetConfigDriveAttributeType(&o.ConfigDrive, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -1385,6 +1443,9 @@ func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateServerPayloadGetBootVolumeAttributeTypeOk(o.BootVolume); ok {
 		toSerialize["BootVolume"] = val
+	}
+	if val, ok := getCreateServerPayloadgetConfigDriveAttributeTypeOk(o.ConfigDrive); ok {
+		toSerialize["ConfigDrive"] = val
 	}
 	if val, ok := getCreateServerPayloadGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
