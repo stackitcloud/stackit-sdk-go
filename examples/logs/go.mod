@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/logs => ../../services/l
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.24.0
-	github.com/stackitcloud/stackit-sdk-go/services/logs v0.5.2
+	github.com/stackitcloud/stackit-sdk-go/services/logs v0.7.2
 )
 
 require (

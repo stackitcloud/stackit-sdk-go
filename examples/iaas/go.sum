@@ -6,5 +6,5 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/stackitcloud/stackit-sdk-go/core v0.24.0 h1:kHCcezCJ5OGSP7RRuGOxD5rF2wejpkEiRr/OdvNcuPQ=
 github.com/stackitcloud/stackit-sdk-go/core v0.24.0/go.mod h1:osMglDby4csGZ5sIfhNyYq1bS1TxIdPY88+skE/kkmI=
-github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.21.0 h1:ey0wPQLM9DjQPcpTFsJHYuNu1huCKBxi9Pc5XFdIWNA=
-github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.21.0/go.mod h1:yjrIuyp6+6RCYTiP77NGV1DniULFyhLTz9B5ebwvF40=
+github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.21.1 h1:P9KuN1n1KCokpHYN9xhuweCLPYJbrZYyJQobrYuM1nM=
+github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.21.1/go.mod h1:x1bUcSfqVt72hdrx1b5bmZlZ2SMoZtiZ/3POJ1tC6Ec=
