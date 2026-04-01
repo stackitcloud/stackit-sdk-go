@@ -22,8 +22,10 @@ type CreateResourcePoolSnapshotPayload struct {
 	// (optional) A comment to add more information about a snapshot
 	Comment NullableString `json:"comment,omitempty"`
 	// Name of the Resource Pool Snapshot
-	Name                 *string `json:"name,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Name *string `json:"name,omitempty"`
+	// (optional) Time in hours after which snaplock on the snapshot expires
+	SnaplockRetentionHours NullableInt32 `json:"snaplockRetentionHours,omitempty"`
+	AdditionalProperties   map[string]interface{}
 }
 
 type _CreateResourcePoolSnapshotPayload CreateResourcePoolSnapshotPayload
@@ -120,6 +122,49 @@ func (o *CreateResourcePoolSnapshotPayload) SetName(v string) {
 	o.Name = &v
 }
 
+// GetSnaplockRetentionHours returns the SnaplockRetentionHours field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateResourcePoolSnapshotPayload) GetSnaplockRetentionHours() int32 {
+	if o == nil || IsNil(o.SnaplockRetentionHours.Get()) {
+		var ret int32
+		return ret
+	}
+	return *o.SnaplockRetentionHours.Get()
+}
+
+// GetSnaplockRetentionHoursOk returns a tuple with the SnaplockRetentionHours field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CreateResourcePoolSnapshotPayload) GetSnaplockRetentionHoursOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SnaplockRetentionHours.Get(), o.SnaplockRetentionHours.IsSet()
+}
+
+// HasSnaplockRetentionHours returns a boolean if a field has been set.
+func (o *CreateResourcePoolSnapshotPayload) HasSnaplockRetentionHours() bool {
+	if o != nil && o.SnaplockRetentionHours.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSnaplockRetentionHours gets a reference to the given NullableInt32 and assigns it to the SnaplockRetentionHours field.
+func (o *CreateResourcePoolSnapshotPayload) SetSnaplockRetentionHours(v int32) {
+	o.SnaplockRetentionHours.Set(&v)
+}
+
+// SetSnaplockRetentionHoursNil sets the value for SnaplockRetentionHours to be an explicit nil
+func (o *CreateResourcePoolSnapshotPayload) SetSnaplockRetentionHoursNil() {
+	o.SnaplockRetentionHours.Set(nil)
+}
+
+// UnsetSnaplockRetentionHours ensures that no value is present for SnaplockRetentionHours, not even an explicit nil
+func (o *CreateResourcePoolSnapshotPayload) UnsetSnaplockRetentionHours() {
+	o.SnaplockRetentionHours.Unset()
+}
+
 func (o CreateResourcePoolSnapshotPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -135,6 +180,9 @@ func (o CreateResourcePoolSnapshotPayload) ToMap() (map[string]interface{}, erro
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if o.SnaplockRetentionHours.IsSet() {
+		toSerialize["snaplockRetentionHours"] = o.SnaplockRetentionHours.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -160,6 +208,7 @@ func (o *CreateResourcePoolSnapshotPayload) UnmarshalJSON(data []byte) (err erro
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "comment")
 		delete(additionalProperties, "name")
+		delete(additionalProperties, "snaplockRetentionHours")
 		o.AdditionalProperties = additionalProperties
 	}
 

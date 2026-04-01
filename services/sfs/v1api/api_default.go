@@ -24,6 +24,22 @@ import (
 type DefaultAPI interface {
 
 	/*
+		CreateLock Method for CreateLock
+
+		Create Lock
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@return ApiCreateLockRequest
+	*/
+	CreateLock(ctx context.Context, region string, projectId string) ApiCreateLockRequest
+
+	// CreateLockExecute executes the request
+	//  @return CreateLockResponse
+	CreateLockExecute(r ApiCreateLockRequest) (*CreateLockResponse, error)
+
+	/*
 		CreateResourcePool Create Resource Pool
 
 		Create a Resource Pool in a project.
@@ -88,6 +104,22 @@ type DefaultAPI interface {
 	// CreateShareExportPolicyExecute executes the request
 	//  @return CreateShareExportPolicyResponse
 	CreateShareExportPolicyExecute(r ApiCreateShareExportPolicyRequest) (*CreateShareExportPolicyResponse, error)
+
+	/*
+		DeleteLock Method for DeleteLock
+
+		Delete Lock
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@return ApiDeleteLockRequest
+	*/
+	DeleteLock(ctx context.Context, region string, projectId string) ApiDeleteLockRequest
+
+	// DeleteLockExecute executes the request
+	//  @return map[string]interface{}
+	DeleteLockExecute(r ApiDeleteLockRequest) (map[string]interface{}, error)
 
 	/*
 		DeleteResourcePool Delete Resource Pool
@@ -195,6 +227,22 @@ type DefaultAPI interface {
 	GetResourcePoolSnapshotExecute(r ApiGetResourcePoolSnapshotRequest) (*GetResourcePoolSnapshotResponse, error)
 
 	/*
+		GetSchedule Method for GetSchedule
+
+		Get Schedule
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param id
+		@return ApiGetScheduleRequest
+	*/
+	GetSchedule(ctx context.Context, projectId string, id string) ApiGetScheduleRequest
+
+	// GetScheduleExecute executes the request
+	//  @return GetScheduleResponse
+	GetScheduleExecute(r ApiGetScheduleRequest) (*GetScheduleResponse, error)
+
+	/*
 		GetShare Get Share
 
 		Retrieves a Shares in a Resource Pool in a project.
@@ -230,7 +278,23 @@ type DefaultAPI interface {
 	GetShareExportPolicyExecute(r ApiGetShareExportPolicyRequest) (*GetShareExportPolicyResponse, error)
 
 	/*
-		ListPerformanceClasses List Resource Pool Performance Classes
+		GetSnapshotPolicy Method for GetSnapshotPolicy
+
+		Get Snapshot Policy
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param id
+		@return ApiGetSnapshotPolicyRequest
+	*/
+	GetSnapshotPolicy(ctx context.Context, projectId string, id string) ApiGetSnapshotPolicyRequest
+
+	// GetSnapshotPolicyExecute executes the request
+	//  @return GetSnapshotPolicyResponse
+	GetSnapshotPolicyExecute(r ApiGetSnapshotPolicyRequest) (*GetSnapshotPolicyResponse, error)
+
+	/*
+		ListPerformanceClasses List Resource Performance Classes
 
 		Lists all performances classes available
 
@@ -277,6 +341,21 @@ type DefaultAPI interface {
 	ListResourcePoolsExecute(r ApiListResourcePoolsRequest) (*ListResourcePoolsResponse, error)
 
 	/*
+		ListSchedules Method for ListSchedules
+
+		List Schedules
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiListSchedulesRequest
+	*/
+	ListSchedules(ctx context.Context, projectId string) ApiListSchedulesRequest
+
+	// ListSchedulesExecute executes the request
+	//  @return ListSchedulesResponse
+	ListSchedulesExecute(r ApiListSchedulesRequest) (*ListSchedulesResponse, error)
+
+	/*
 		ListShareExportPolicies List Share Export Policies
 
 		Lists ShareExportPolicies in a Resource Pool in a project.
@@ -308,6 +387,21 @@ type DefaultAPI interface {
 	// ListSharesExecute executes the request
 	//  @return ListSharesResponse
 	ListSharesExecute(r ApiListSharesRequest) (*ListSharesResponse, error)
+
+	/*
+		ListSnapshotPolicies Method for ListSnapshotPolicies
+
+		List Snapshot Policies
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiListSnapshotPoliciesRequest
+	*/
+	ListSnapshotPolicies(ctx context.Context, projectId string) ApiListSnapshotPoliciesRequest
+
+	// ListSnapshotPoliciesExecute executes the request
+	//  @return ListSnapshotPoliciesResponse
+	ListSnapshotPoliciesExecute(r ApiListSnapshotPoliciesRequest) (*ListSnapshotPoliciesResponse, error)
 
 	/*
 		UpdateResourcePool Update Resource Pool
@@ -364,6 +458,134 @@ type DefaultAPI interface {
 
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
+
+type ApiCreateLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	region     string
+	projectId  string
+}
+
+func (r ApiCreateLockRequest) Execute() (*CreateLockResponse, error) {
+	return r.ApiService.CreateLockExecute(r)
+}
+
+/*
+CreateLock Method for CreateLock
+
+Create Lock
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param region
+	@param projectId
+	@return ApiCreateLockRequest
+*/
+func (a *DefaultAPIService) CreateLock(ctx context.Context, region string, projectId string) ApiCreateLockRequest {
+	return ApiCreateLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CreateLockResponse
+func (a *DefaultAPIService) CreateLockExecute(r ApiCreateLockRequest) (*CreateLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateLockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/regions/{region}/project/{projectId}/locks"
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
 
 type ApiCreateResourcePoolRequest struct {
 	ctx                       context.Context
@@ -1017,6 +1239,134 @@ func (a *DefaultAPIService) CreateShareExportPolicyExecute(r ApiCreateShareExpor
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiDeleteLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	region     string
+	projectId  string
+}
+
+func (r ApiDeleteLockRequest) Execute() (map[string]interface{}, error) {
+	return r.ApiService.DeleteLockExecute(r)
+}
+
+/*
+DeleteLock Method for DeleteLock
+
+Delete Lock
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param region
+	@param projectId
+	@return ApiDeleteLockRequest
+*/
+func (a *DefaultAPIService) DeleteLock(ctx context.Context, region string, projectId string) ApiDeleteLockRequest {
+	return ApiDeleteLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return map[string]interface{}
+func (a *DefaultAPIService) DeleteLockExecute(r ApiDeleteLockRequest) (map[string]interface{}, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/regions/{region}/project/{projectId}/locks"
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1993,6 +2343,134 @@ func (a *DefaultAPIService) GetResourcePoolSnapshotExecute(r ApiGetResourcePoolS
 	return localVarReturnValue, nil
 }
 
+type ApiGetScheduleRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	id         string
+}
+
+func (r ApiGetScheduleRequest) Execute() (*GetScheduleResponse, error) {
+	return r.ApiService.GetScheduleExecute(r)
+}
+
+/*
+GetSchedule Method for GetSchedule
+
+Get Schedule
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param id
+	@return ApiGetScheduleRequest
+*/
+func (a *DefaultAPIService) GetSchedule(ctx context.Context, projectId string, id string) ApiGetScheduleRequest {
+	return ApiGetScheduleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetScheduleResponse
+func (a *DefaultAPIService) GetScheduleExecute(r ApiGetScheduleRequest) (*GetScheduleResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetScheduleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSchedule")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/schedules/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiGetShareRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
@@ -2313,6 +2791,134 @@ func (a *DefaultAPIService) GetShareExportPolicyExecute(r ApiGetShareExportPolic
 	return localVarReturnValue, nil
 }
 
+type ApiGetSnapshotPolicyRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	id         string
+}
+
+func (r ApiGetSnapshotPolicyRequest) Execute() (*GetSnapshotPolicyResponse, error) {
+	return r.ApiService.GetSnapshotPolicyExecute(r)
+}
+
+/*
+GetSnapshotPolicy Method for GetSnapshotPolicy
+
+Get Snapshot Policy
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param id
+	@return ApiGetSnapshotPolicyRequest
+*/
+func (a *DefaultAPIService) GetSnapshotPolicy(ctx context.Context, projectId string, id string) ApiGetSnapshotPolicyRequest {
+	return ApiGetSnapshotPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetSnapshotPolicyResponse
+func (a *DefaultAPIService) GetSnapshotPolicyExecute(r ApiGetSnapshotPolicyRequest) (*GetSnapshotPolicyResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetSnapshotPolicyResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSnapshotPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/snapshotPolicies/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiListPerformanceClassesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -2323,7 +2929,7 @@ func (r ApiListPerformanceClassesRequest) Execute() (*ListPerformanceClassesResp
 }
 
 /*
-ListPerformanceClasses List Resource Pool Performance Classes
+ListPerformanceClasses List Resource Performance Classes
 
 Lists all performances classes available
 
@@ -2771,6 +3377,130 @@ func (a *DefaultAPIService) ListResourcePoolsExecute(r ApiListResourcePoolsReque
 	return localVarReturnValue, nil
 }
 
+type ApiListSchedulesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+}
+
+func (r ApiListSchedulesRequest) Execute() (*ListSchedulesResponse, error) {
+	return r.ApiService.ListSchedulesExecute(r)
+}
+
+/*
+ListSchedules Method for ListSchedules
+
+List Schedules
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@return ApiListSchedulesRequest
+*/
+func (a *DefaultAPIService) ListSchedules(ctx context.Context, projectId string) ApiListSchedulesRequest {
+	return ApiListSchedulesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListSchedulesResponse
+func (a *DefaultAPIService) ListSchedulesExecute(r ApiListSchedulesRequest) (*ListSchedulesResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListSchedulesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListSchedules")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/schedules"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiListShareExportPoliciesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -3067,6 +3797,139 @@ func (a *DefaultAPIService) ListSharesExecute(r ApiListSharesRequest) (*ListShar
 			newErr.Model = v
 			return localVarReturnValue, newErr
 		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiListSnapshotPoliciesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	immutable  *bool
+}
+
+func (r ApiListSnapshotPoliciesRequest) Immutable(immutable bool) ApiListSnapshotPoliciesRequest {
+	r.immutable = &immutable
+	return r
+}
+
+func (r ApiListSnapshotPoliciesRequest) Execute() (*ListSnapshotPoliciesResponse, error) {
+	return r.ApiService.ListSnapshotPoliciesExecute(r)
+}
+
+/*
+ListSnapshotPolicies Method for ListSnapshotPolicies
+
+List Snapshot Policies
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@return ApiListSnapshotPoliciesRequest
+*/
+func (a *DefaultAPIService) ListSnapshotPolicies(ctx context.Context, projectId string) ApiListSnapshotPoliciesRequest {
+	return ApiListSnapshotPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListSnapshotPoliciesResponse
+func (a *DefaultAPIService) ListSnapshotPoliciesExecute(r ApiListSnapshotPoliciesRequest) (*ListSnapshotPoliciesResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListSnapshotPoliciesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListSnapshotPolicies")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/snapshotPolicies"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.immutable != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "immutable", r.immutable, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
