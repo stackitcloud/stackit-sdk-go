@@ -76,6 +76,33 @@ type CreateResourcePoolSnapshotPayloadGetNameArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateResourcePoolSnapshotPayloadGetNameRetType = string
 
+/*
+	types and functions for snaplockRetentionHours
+*/
+
+// isInteger
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeType = *int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursArgType = *int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursRetType = *int64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeTypeOk(arg CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeType) (ret CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeType(arg *CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeType, val CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursRetType) {
+	*arg = val
+}
+
 // CreateResourcePoolSnapshotPayload struct for CreateResourcePoolSnapshotPayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateResourcePoolSnapshotPayload struct {
@@ -83,6 +110,8 @@ type CreateResourcePoolSnapshotPayload struct {
 	Comment CreateResourcePoolSnapshotPayloadGetCommentAttributeType `json:"comment,omitempty"`
 	// Name of the Resource Pool Snapshot
 	Name CreateResourcePoolSnapshotPayloadGetNameAttributeType `json:"name,omitempty"`
+	// (optional) Time in hours after which snaplock on the snapshot expires
+	SnaplockRetentionHours CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeType `json:"snaplockRetentionHours,omitempty"`
 }
 
 // NewCreateResourcePoolSnapshotPayload instantiates a new CreateResourcePoolSnapshotPayload object
@@ -171,6 +200,46 @@ func (o *CreateResourcePoolSnapshotPayload) SetName(v CreateResourcePoolSnapshot
 	setCreateResourcePoolSnapshotPayloadGetNameAttributeType(&o.Name, v)
 }
 
+// GetSnaplockRetentionHours returns the SnaplockRetentionHours field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotPayload) GetSnaplockRetentionHours() (res CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursRetType) {
+	res, _ = o.GetSnaplockRetentionHoursOk()
+	return
+}
+
+// GetSnaplockRetentionHoursOk returns a tuple with the SnaplockRetentionHours field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotPayload) GetSnaplockRetentionHoursOk() (ret CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursRetType, ok bool) {
+	return getCreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeTypeOk(o.SnaplockRetentionHours)
+}
+
+// HasSnaplockRetentionHours returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotPayload) HasSnaplockRetentionHours() bool {
+	_, ok := o.GetSnaplockRetentionHoursOk()
+	return ok
+}
+
+// SetSnaplockRetentionHours gets a reference to the given int64 and assigns it to the SnaplockRetentionHours field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotPayload) SetSnaplockRetentionHours(v CreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursRetType) {
+	setCreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeType(&o.SnaplockRetentionHours, v)
+}
+
+// SetSnaplockRetentionHoursNil sets the value for SnaplockRetentionHours to be an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotPayload) SetSnaplockRetentionHoursNil() {
+	o.SnaplockRetentionHours = nil
+}
+
+// UnsetSnaplockRetentionHours ensures that no value is present for SnaplockRetentionHours, not even an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotPayload) UnsetSnaplockRetentionHours() {
+	o.SnaplockRetentionHours = nil
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateResourcePoolSnapshotPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -179,6 +248,9 @@ func (o CreateResourcePoolSnapshotPayload) ToMap() (map[string]interface{}, erro
 	}
 	if val, ok := getCreateResourcePoolSnapshotPayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
+	}
+	if val, ok := getCreateResourcePoolSnapshotPayloadGetSnaplockRetentionHoursAttributeTypeOk(o.SnaplockRetentionHours); ok {
+		toSerialize["SnaplockRetentionHours"] = val
 	}
 	return toSerialize, nil
 }

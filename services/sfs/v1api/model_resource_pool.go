@@ -40,6 +40,8 @@ type ResourcePool struct {
 	PerformanceClassDowngradableAt *time.Time `json:"performanceClassDowngradableAt,omitempty"`
 	// Time when the size can be reduced again.
 	SizeReducibleAt *time.Time `json:"sizeReducibleAt,omitempty"`
+	// (optional) Snapshot Policy
+	SnapshotPolicy NullableResourcePoolSnapshotPolicy `json:"snapshotPolicy,omitempty"`
 	// Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.
 	SnapshotsAreVisible *bool `json:"snapshotsAreVisible,omitempty"`
 	// Space information
@@ -424,6 +426,49 @@ func (o *ResourcePool) SetSizeReducibleAt(v time.Time) {
 	o.SizeReducibleAt = &v
 }
 
+// GetSnapshotPolicy returns the SnapshotPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ResourcePool) GetSnapshotPolicy() ResourcePoolSnapshotPolicy {
+	if o == nil || IsNil(o.SnapshotPolicy.Get()) {
+		var ret ResourcePoolSnapshotPolicy
+		return ret
+	}
+	return *o.SnapshotPolicy.Get()
+}
+
+// GetSnapshotPolicyOk returns a tuple with the SnapshotPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ResourcePool) GetSnapshotPolicyOk() (*ResourcePoolSnapshotPolicy, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SnapshotPolicy.Get(), o.SnapshotPolicy.IsSet()
+}
+
+// HasSnapshotPolicy returns a boolean if a field has been set.
+func (o *ResourcePool) HasSnapshotPolicy() bool {
+	if o != nil && o.SnapshotPolicy.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSnapshotPolicy gets a reference to the given NullableResourcePoolSnapshotPolicy and assigns it to the SnapshotPolicy field.
+func (o *ResourcePool) SetSnapshotPolicy(v ResourcePoolSnapshotPolicy) {
+	o.SnapshotPolicy.Set(&v)
+}
+
+// SetSnapshotPolicyNil sets the value for SnapshotPolicy to be an explicit nil
+func (o *ResourcePool) SetSnapshotPolicyNil() {
+	o.SnapshotPolicy.Set(nil)
+}
+
+// UnsetSnapshotPolicy ensures that no value is present for SnapshotPolicy, not even an explicit nil
+func (o *ResourcePool) UnsetSnapshotPolicy() {
+	o.SnapshotPolicy.Unset()
+}
+
 // GetSnapshotsAreVisible returns the SnapshotsAreVisible field value if set, zero value otherwise.
 func (o *ResourcePool) GetSnapshotsAreVisible() bool {
 	if o == nil || IsNil(o.SnapshotsAreVisible) {
@@ -563,6 +608,9 @@ func (o ResourcePool) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SizeReducibleAt) {
 		toSerialize["sizeReducibleAt"] = o.SizeReducibleAt
 	}
+	if o.SnapshotPolicy.IsSet() {
+		toSerialize["snapshotPolicy"] = o.SnapshotPolicy.Get()
+	}
 	if !IsNil(o.SnapshotsAreVisible) {
 		toSerialize["snapshotsAreVisible"] = o.SnapshotsAreVisible
 	}
@@ -605,6 +653,7 @@ func (o *ResourcePool) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "performanceClass")
 		delete(additionalProperties, "performanceClassDowngradableAt")
 		delete(additionalProperties, "sizeReducibleAt")
+		delete(additionalProperties, "snapshotPolicy")
 		delete(additionalProperties, "snapshotsAreVisible")
 		delete(additionalProperties, "space")
 		delete(additionalProperties, "state")
