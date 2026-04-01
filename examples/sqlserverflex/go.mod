@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex => ../../s
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.24.0
-	github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.4.3
+	github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.6.2
 )
 
 require (

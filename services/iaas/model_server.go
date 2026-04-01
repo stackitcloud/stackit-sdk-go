@@ -128,6 +128,33 @@ func setServerGetBootVolumeAttributeType(arg *ServerGetBootVolumeAttributeType, 
 }
 
 /*
+	types and functions for configDrive
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServergetConfigDriveAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServergetConfigDriveArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ServergetConfigDriveRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getServergetConfigDriveAttributeTypeOk(arg ServergetConfigDriveAttributeType) (ret ServergetConfigDriveRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setServergetConfigDriveAttributeType(arg *ServergetConfigDriveAttributeType, val ServergetConfigDriveRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for createdAt
 */
 
@@ -676,6 +703,8 @@ type Server struct {
 	// Object that represents an availability zone.
 	AvailabilityZone ServerGetAvailabilityZoneAttributeType `json:"availabilityZone,omitempty"`
 	BootVolume       ServerGetBootVolumeAttributeType       `json:"bootVolume,omitempty"`
+	// When true the server is created with a config drive.
+	ConfigDrive ServergetConfigDriveAttributeType `json:"configDrive,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt ServerGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// An error message.
@@ -739,6 +768,8 @@ func NewServer(machineType ServerGetMachineTypeArgType, name ServerGetNameArgTyp
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func NewServerWithDefaults() *Server {
 	this := Server{}
+	var configDrive bool = false
+	this.ConfigDrive = &configDrive
 	return &this
 }
 
@@ -848,6 +879,33 @@ func (o *Server) HasBootVolume() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *Server) SetBootVolume(v ServerGetBootVolumeRetType) {
 	setServerGetBootVolumeAttributeType(&o.BootVolume, v)
+}
+
+// GetConfigDrive returns the ConfigDrive field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) GetConfigDrive() (res ServergetConfigDriveRetType) {
+	res, _ = o.GetConfigDriveOk()
+	return
+}
+
+// GetConfigDriveOk returns a tuple with the ConfigDrive field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) GetConfigDriveOk() (ret ServergetConfigDriveRetType, ok bool) {
+	return getServergetConfigDriveAttributeTypeOk(o.ConfigDrive)
+}
+
+// HasConfigDrive returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) HasConfigDrive() bool {
+	_, ok := o.GetConfigDriveOk()
+	return ok
+}
+
+// SetConfigDrive gets a reference to the given bool and assigns it to the ConfigDrive field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *Server) SetConfigDrive(v ServergetConfigDriveRetType) {
+	setServergetConfigDriveAttributeType(&o.ConfigDrive, v)
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -1390,6 +1448,9 @@ func (o Server) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getServerGetBootVolumeAttributeTypeOk(o.BootVolume); ok {
 		toSerialize["BootVolume"] = val
+	}
+	if val, ok := getServergetConfigDriveAttributeTypeOk(o.ConfigDrive); ok {
+		toSerialize["ConfigDrive"] = val
 	}
 	if val, ok := getServerGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
