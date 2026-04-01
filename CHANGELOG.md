@@ -74,8 +74,11 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `serverupdate`: [v1.4.2](services/serverupdate/CHANGELOG.md#v142)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
-- `serviceaccount`: [v0.15.1](services/serviceaccount/CHANGELOG.md#v0151)
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+- `serviceaccount`:
+  - [v0.16.0](services/serviceaccount/CHANGELOG.md#v0160)
+    - **Feature:** Add `TokenEndpoint` field to `ServiceAccount` model
+  - [v0.15.1](services/serviceaccount/CHANGELOG.md#v0151)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `serviceenablement`: [v1.4.2](services/serviceenablement/CHANGELOG.md#v142)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `sfs`: [v0.6.2](services/sfs/CHANGELOG.md#v062)
