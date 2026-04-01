@@ -1,3 +1,6 @@
+## v0.24.1
+- **Improvement:** Fix misleading error messages in authentication setup and credentials parsing.
+
 ## v0.24.0
 - **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
 

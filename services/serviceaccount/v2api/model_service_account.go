@@ -27,7 +27,9 @@ type ServiceAccount struct {
 	// Flag indicating internal service accounts
 	Internal bool `json:"internal"`
 	// ID of the related project
-	ProjectId            string `json:"projectId"`
+	ProjectId string `json:"projectId"`
+	// Endpoint used to obtain access tokens for the service account
+	TokenEndpoint        string `json:"tokenEndpoint"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -37,12 +39,13 @@ type _ServiceAccount ServiceAccount
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceAccount(email string, id string, internal bool, projectId string) *ServiceAccount {
+func NewServiceAccount(email string, id string, internal bool, projectId string, tokenEndpoint string) *ServiceAccount {
 	this := ServiceAccount{}
 	this.Email = email
 	this.Id = id
 	this.Internal = internal
 	this.ProjectId = projectId
+	this.TokenEndpoint = tokenEndpoint
 	return &this
 }
 
@@ -150,6 +153,30 @@ func (o *ServiceAccount) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
+// GetTokenEndpoint returns the TokenEndpoint field value
+func (o *ServiceAccount) GetTokenEndpoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TokenEndpoint
+}
+
+// GetTokenEndpointOk returns a tuple with the TokenEndpoint field value
+// and a boolean to check if the value has been set.
+func (o *ServiceAccount) GetTokenEndpointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TokenEndpoint, true
+}
+
+// SetTokenEndpoint sets field value
+func (o *ServiceAccount) SetTokenEndpoint(v string) {
+	o.TokenEndpoint = v
+}
+
 func (o ServiceAccount) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -164,6 +191,7 @@ func (o ServiceAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["internal"] = o.Internal
 	toSerialize["projectId"] = o.ProjectId
+	toSerialize["tokenEndpoint"] = o.TokenEndpoint
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -181,6 +209,7 @@ func (o *ServiceAccount) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"internal",
 		"projectId",
+		"tokenEndpoint",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -214,6 +243,7 @@ func (o *ServiceAccount) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "internal")
 		delete(additionalProperties, "projectId")
+		delete(additionalProperties, "tokenEndpoint")
 		o.AdditionalProperties = additionalProperties
 	}
 

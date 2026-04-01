@@ -28,6 +28,8 @@ type CreateServerPayload struct {
 	// This is the availability zone requested during server creation. If none is provided during the creation request and an existing volume will be used as boot volume it will be set to the same availability zone as the volume. For requests with no volumes involved it will be set to the metro availability zone.
 	AvailabilityZone *string     `json:"availabilityZone,omitempty"`
 	BootVolume       *BootVolume `json:"bootVolume,omitempty"`
+	// When true the server is created with a config drive.
+	ConfigDrive *bool `json:"configDrive,omitempty"`
 	// Date-time when resource was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// An error message.
@@ -77,6 +79,8 @@ type _CreateServerPayload CreateServerPayload
 // will change when the set of required properties is changed
 func NewCreateServerPayload(machineType string, name string) *CreateServerPayload {
 	this := CreateServerPayload{}
+	var configDrive bool = false
+	this.ConfigDrive = &configDrive
 	this.MachineType = machineType
 	this.Name = name
 	return &this
@@ -87,6 +91,8 @@ func NewCreateServerPayload(machineType string, name string) *CreateServerPayloa
 // but it doesn't guarantee that properties required by API are set
 func NewCreateServerPayloadWithDefaults() *CreateServerPayload {
 	this := CreateServerPayload{}
+	var configDrive bool = false
+	this.ConfigDrive = &configDrive
 	return &this
 }
 
@@ -216,6 +222,38 @@ func (o *CreateServerPayload) HasBootVolume() bool {
 // SetBootVolume gets a reference to the given BootVolume and assigns it to the BootVolume field.
 func (o *CreateServerPayload) SetBootVolume(v BootVolume) {
 	o.BootVolume = &v
+}
+
+// GetConfigDrive returns the ConfigDrive field value if set, zero value otherwise.
+func (o *CreateServerPayload) GetConfigDrive() bool {
+	if o == nil || IsNil(o.ConfigDrive) {
+		var ret bool
+		return ret
+	}
+	return *o.ConfigDrive
+}
+
+// GetConfigDriveOk returns a tuple with the ConfigDrive field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateServerPayload) GetConfigDriveOk() (*bool, bool) {
+	if o == nil || IsNil(o.ConfigDrive) {
+		return nil, false
+	}
+	return o.ConfigDrive, true
+}
+
+// HasConfigDrive returns a boolean if a field has been set.
+func (o *CreateServerPayload) HasConfigDrive() bool {
+	if o != nil && !IsNil(o.ConfigDrive) {
+		return true
+	}
+
+	return false
+}
+
+// SetConfigDrive gets a reference to the given bool and assigns it to the ConfigDrive field.
+func (o *CreateServerPayload) SetConfigDrive(v bool) {
+	o.ConfigDrive = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -864,6 +902,9 @@ func (o CreateServerPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BootVolume) {
 		toSerialize["bootVolume"] = o.BootVolume
 	}
+	if !IsNil(o.ConfigDrive) {
+		toSerialize["configDrive"] = o.ConfigDrive
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["createdAt"] = o.CreatedAt
 	}
@@ -968,6 +1009,7 @@ func (o *CreateServerPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "agent")
 		delete(additionalProperties, "availabilityZone")
 		delete(additionalProperties, "bootVolume")
+		delete(additionalProperties, "configDrive")
 		delete(additionalProperties, "createdAt")
 		delete(additionalProperties, "errorMessage")
 		delete(additionalProperties, "id")
