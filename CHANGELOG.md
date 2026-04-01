@@ -22,6 +22,8 @@
 - `git`: [v0.11.1](services/git/CHANGELOG.md#v0111)
   - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
 - `iaas`:
+  - [v1.8.2](services/iaas/CHANGELOG.md#v182)
+    - **Dependencies:** Bump SDK resourcemanager module from `v0.21.0` to `v0.21.1`
   - [v1.8.1](services/iaas/CHANGELOG.md#v181)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
   - [v1.8.0](services/iaas/CHANGELOG.md#v180)
