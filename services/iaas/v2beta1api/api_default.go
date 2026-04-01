@@ -10420,6 +10420,13 @@ type ApiDeleteVolumeRequest struct {
 	projectId  string
 	region     string
 	volumeId   string
+	cascade    *bool
+}
+
+// Cascade action.
+func (r ApiDeleteVolumeRequest) Cascade(cascade bool) ApiDeleteVolumeRequest {
+	r.cascade = &cascade
+	return r
 }
 
 func (r ApiDeleteVolumeRequest) Execute() error {
@@ -10481,6 +10488,13 @@ func (a *DefaultAPIService) DeleteVolumeExecute(r ApiDeleteVolumeRequest) error 
 		return reportError("volumeId must have less than 36 elements")
 	}
 
+	if r.cascade != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cascade", r.cascade, "form", "")
+	} else {
+		var defaultValue bool = false
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cascade", defaultValue, "form", "")
+		r.cascade = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
