@@ -3485,6 +3485,9 @@ type ApiDeleteSnapshotRequest interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiDeleteVolumeRequest interface {
+	// Cascade action.
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Cascade(cascade bool) ApiDeleteVolumeRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() error
 }
@@ -13414,6 +13417,14 @@ type DeleteVolumeRequest struct {
 	projectId  string
 	region     string
 	volumeId   string
+	cascade    *bool
+}
+
+// Cascade action.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r DeleteVolumeRequest) Cascade(cascade bool) ApiDeleteVolumeRequest {
+	r.cascade = &cascade
+	return r
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -13454,6 +13465,9 @@ func (r DeleteVolumeRequest) Execute() error {
 		return fmt.Errorf("volumeId must have less than 36 elements")
 	}
 
+	if r.cascade != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cascade", r.cascade, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
