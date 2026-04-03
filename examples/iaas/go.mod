@@ -6,8 +6,8 @@ go 1.21
 replace github.com/stackitcloud/stackit-sdk-go/services/iaas => ../../services/iaas
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.24.0
-	github.com/stackitcloud/stackit-sdk-go/services/iaas v1.8.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
+	github.com/stackitcloud/stackit-sdk-go/services/iaas v1.9.0
 )
 
 require (

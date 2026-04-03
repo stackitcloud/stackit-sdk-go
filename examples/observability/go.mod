@@ -6,7 +6,7 @@ go 1.21
 replace github.com/stackitcloud/stackit-sdk-go/services/observability => ../../services/observability
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.24.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
 	github.com/stackitcloud/stackit-sdk-go/services/observability v0.20.1
 )
 
