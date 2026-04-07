@@ -1,3 +1,6 @@
+## v1.9.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
 ## v1.9.0
 - **Feature:** Add `Cascade` field to `ApiDeleteVolumeRequest` model
 - **Feature:** Add `ConfigDrive` field to `CreateServerPayload` and `Server` model
