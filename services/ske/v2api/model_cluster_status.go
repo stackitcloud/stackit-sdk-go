@@ -25,11 +25,12 @@ type ClusterStatus struct {
 	CreationTime        *time.Time                `json:"creationTime,omitempty"`
 	CredentialsRotation *CredentialsRotationState `json:"credentialsRotation,omitempty"`
 	// The outgoing network ranges (in CIDR notation) of traffic originating from workload on the cluster.
-	EgressAddressRanges []string       `json:"egressAddressRanges,omitempty"`
-	Error               *RuntimeError  `json:"error,omitempty"`
-	Errors              []ClusterError `json:"errors,omitempty"`
-	Hibernated          *bool          `json:"hibernated,omitempty"`
-	Identity            *string        `json:"identity,omitempty"`
+	EgressAddressRanges []string            `json:"egressAddressRanges,omitempty"`
+	Error               *RuntimeError       `json:"error,omitempty"`
+	Errors              []ClusterError      `json:"errors,omitempty"`
+	Expiration          *ExpiratoaionStatus `json:"expiration,omitempty"`
+	Hibernated          *bool               `json:"hibernated,omitempty"`
+	Identity            *string             `json:"identity,omitempty"`
 	// The network ranges (in CIDR notation) used by pods of the cluster.
 	PodAddressRanges     []string `json:"podAddressRanges,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -246,6 +247,38 @@ func (o *ClusterStatus) SetErrors(v []ClusterError) {
 	o.Errors = v
 }
 
+// GetExpiration returns the Expiration field value if set, zero value otherwise.
+func (o *ClusterStatus) GetExpiration() ExpiratoaionStatus {
+	if o == nil || IsNil(o.Expiration) {
+		var ret ExpiratoaionStatus
+		return ret
+	}
+	return *o.Expiration
+}
+
+// GetExpirationOk returns a tuple with the Expiration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ClusterStatus) GetExpirationOk() (*ExpiratoaionStatus, bool) {
+	if o == nil || IsNil(o.Expiration) {
+		return nil, false
+	}
+	return o.Expiration, true
+}
+
+// HasExpiration returns a boolean if a field has been set.
+func (o *ClusterStatus) HasExpiration() bool {
+	if o != nil && !IsNil(o.Expiration) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiration gets a reference to the given ExpiratoaionStatus and assigns it to the Expiration field.
+func (o *ClusterStatus) SetExpiration(v ExpiratoaionStatus) {
+	o.Expiration = &v
+}
+
 // GetHibernated returns the Hibernated field value if set, zero value otherwise.
 func (o *ClusterStatus) GetHibernated() bool {
 	if o == nil || IsNil(o.Hibernated) {
@@ -370,6 +403,9 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
+	if !IsNil(o.Expiration) {
+		toSerialize["expiration"] = o.Expiration
+	}
 	if !IsNil(o.Hibernated) {
 		toSerialize["hibernated"] = o.Hibernated
 	}
@@ -407,6 +443,7 @@ func (o *ClusterStatus) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "egressAddressRanges")
 		delete(additionalProperties, "error")
 		delete(additionalProperties, "errors")
+		delete(additionalProperties, "expiration")
 		delete(additionalProperties, "hibernated")
 		delete(additionalProperties, "identity")
 		delete(additionalProperties, "podAddressRanges")
