@@ -1,0 +1,19 @@
+name: "Labeler"
+on:
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch:
+
+jobs:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    name: "Labeler"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Labeler action
+        uses: actions/labeler@v6
+        with:
+          sync-labels: false
