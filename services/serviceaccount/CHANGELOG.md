@@ -1,3 +1,6 @@
+## v0.16.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
 ## v0.16.0
 - **Feature:** Add `TokenEndpoint` field to `ServiceAccount` model
 

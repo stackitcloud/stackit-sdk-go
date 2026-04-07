@@ -6,7 +6,7 @@ go 1.21
 replace github.com/stackitcloud/stackit-sdk-go/services/dns => ../../services/dns
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.24.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
 	github.com/stackitcloud/stackit-sdk-go/services/dns v0.19.2
 )
 

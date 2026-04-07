@@ -1,3 +1,6 @@
+## v1.17.5
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
 ## v1.17.4
 - **Dependencies:** Bump STACKIT SDK core module from `v0.21.1` to `v0.24.0`
 
