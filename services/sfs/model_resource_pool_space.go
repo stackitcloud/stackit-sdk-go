@@ -73,6 +73,33 @@ func setResourcePoolSpaceGetSizeGigabytesAttributeType(arg *ResourcePoolSpaceGet
 }
 
 /*
+	types and functions for usedBySnapshotsGigabytes
+*/
+
+// isDouble
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeType = *float64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ResourcePoolSpaceGetUsedBySnapshotsGigabytesArgType = *float64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ResourcePoolSpaceGetUsedBySnapshotsGigabytesRetType = *float64
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeTypeOk(arg ResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeType) (ret ResourcePoolSpaceGetUsedBySnapshotsGigabytesRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeType(arg *ResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeType, val ResourcePoolSpaceGetUsedBySnapshotsGigabytesRetType) {
+	*arg = val
+}
+
+/*
 	types and functions for usedGigabytes
 */
 
@@ -107,6 +134,8 @@ type ResourcePoolSpace struct {
 	// Size of the Resource Pool in Gibibytes.
 	// Can be cast to int32 without loss of precision.
 	SizeGigabytes ResourcePoolSpaceGetSizeGigabytesAttributeType `json:"sizeGigabytes,omitempty"`
+	// Used space by snapshots   (only available when retrieving a single Resource Pool by ID)
+	UsedBySnapshotsGigabytes ResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeType `json:"usedBySnapshotsGigabytes,omitempty"`
 	// Used space of the Resource Pool   (only available when retrieving a single Resource Pool by ID)
 	UsedGigabytes ResourcePoolSpaceGetUsedGigabytesAttributeType `json:"usedGigabytes,omitempty"`
 }
@@ -197,6 +226,46 @@ func (o *ResourcePoolSpace) SetSizeGigabytes(v ResourcePoolSpaceGetSizeGigabytes
 	setResourcePoolSpaceGetSizeGigabytesAttributeType(&o.SizeGigabytes, v)
 }
 
+// GetUsedBySnapshotsGigabytes returns the UsedBySnapshotsGigabytes field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePoolSpace) GetUsedBySnapshotsGigabytes() (res ResourcePoolSpaceGetUsedBySnapshotsGigabytesRetType) {
+	res, _ = o.GetUsedBySnapshotsGigabytesOk()
+	return
+}
+
+// GetUsedBySnapshotsGigabytesOk returns a tuple with the UsedBySnapshotsGigabytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePoolSpace) GetUsedBySnapshotsGigabytesOk() (ret ResourcePoolSpaceGetUsedBySnapshotsGigabytesRetType, ok bool) {
+	return getResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeTypeOk(o.UsedBySnapshotsGigabytes)
+}
+
+// HasUsedBySnapshotsGigabytes returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePoolSpace) HasUsedBySnapshotsGigabytes() bool {
+	_, ok := o.GetUsedBySnapshotsGigabytesOk()
+	return ok
+}
+
+// SetUsedBySnapshotsGigabytes gets a reference to the given float64 and assigns it to the UsedBySnapshotsGigabytes field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePoolSpace) SetUsedBySnapshotsGigabytes(v ResourcePoolSpaceGetUsedBySnapshotsGigabytesRetType) {
+	setResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeType(&o.UsedBySnapshotsGigabytes, v)
+}
+
+// SetUsedBySnapshotsGigabytesNil sets the value for UsedBySnapshotsGigabytes to be an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePoolSpace) SetUsedBySnapshotsGigabytesNil() {
+	o.UsedBySnapshotsGigabytes = nil
+}
+
+// UnsetUsedBySnapshotsGigabytes ensures that no value is present for UsedBySnapshotsGigabytes, not even an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePoolSpace) UnsetUsedBySnapshotsGigabytes() {
+	o.UsedBySnapshotsGigabytes = nil
+}
+
 // GetUsedGigabytes returns the UsedGigabytes field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ResourcePoolSpace) GetUsedGigabytes() (res ResourcePoolSpaceGetUsedGigabytesRetType) {
@@ -245,6 +314,9 @@ func (o ResourcePoolSpace) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getResourcePoolSpaceGetSizeGigabytesAttributeTypeOk(o.SizeGigabytes); ok {
 		toSerialize["SizeGigabytes"] = val
+	}
+	if val, ok := getResourcePoolSpaceGetUsedBySnapshotsGigabytesAttributeTypeOk(o.UsedBySnapshotsGigabytes); ok {
+		toSerialize["UsedBySnapshotsGigabytes"] = val
 	}
 	if val, ok := getResourcePoolSpaceGetUsedGigabytesAttributeTypeOk(o.UsedGigabytes); ok {
 		toSerialize["UsedGigabytes"] = val
