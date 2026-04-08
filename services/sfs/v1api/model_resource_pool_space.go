@@ -23,6 +23,8 @@ type ResourcePoolSpace struct {
 	AvailableGigabytes NullableFloat64 `json:"availableGigabytes,omitempty"`
 	// Size of the Resource Pool in Gibibytes.
 	SizeGigabytes *int32 `json:"sizeGigabytes,omitempty"`
+	// Used space by snapshots   (only available when retrieving a single Resource Pool by ID)
+	UsedBySnapshotsGigabytes NullableFloat64 `json:"usedBySnapshotsGigabytes,omitempty"`
 	// Used space of the Resource Pool   (only available when retrieving a single Resource Pool by ID)
 	UsedGigabytes        NullableFloat64 `json:"usedGigabytes,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -122,6 +124,49 @@ func (o *ResourcePoolSpace) SetSizeGigabytes(v int32) {
 	o.SizeGigabytes = &v
 }
 
+// GetUsedBySnapshotsGigabytes returns the UsedBySnapshotsGigabytes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ResourcePoolSpace) GetUsedBySnapshotsGigabytes() float64 {
+	if o == nil || IsNil(o.UsedBySnapshotsGigabytes.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.UsedBySnapshotsGigabytes.Get()
+}
+
+// GetUsedBySnapshotsGigabytesOk returns a tuple with the UsedBySnapshotsGigabytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ResourcePoolSpace) GetUsedBySnapshotsGigabytesOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UsedBySnapshotsGigabytes.Get(), o.UsedBySnapshotsGigabytes.IsSet()
+}
+
+// HasUsedBySnapshotsGigabytes returns a boolean if a field has been set.
+func (o *ResourcePoolSpace) HasUsedBySnapshotsGigabytes() bool {
+	if o != nil && o.UsedBySnapshotsGigabytes.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUsedBySnapshotsGigabytes gets a reference to the given NullableFloat64 and assigns it to the UsedBySnapshotsGigabytes field.
+func (o *ResourcePoolSpace) SetUsedBySnapshotsGigabytes(v float64) {
+	o.UsedBySnapshotsGigabytes.Set(&v)
+}
+
+// SetUsedBySnapshotsGigabytesNil sets the value for UsedBySnapshotsGigabytes to be an explicit nil
+func (o *ResourcePoolSpace) SetUsedBySnapshotsGigabytesNil() {
+	o.UsedBySnapshotsGigabytes.Set(nil)
+}
+
+// UnsetUsedBySnapshotsGigabytes ensures that no value is present for UsedBySnapshotsGigabytes, not even an explicit nil
+func (o *ResourcePoolSpace) UnsetUsedBySnapshotsGigabytes() {
+	o.UsedBySnapshotsGigabytes.Unset()
+}
+
 // GetUsedGigabytes returns the UsedGigabytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ResourcePoolSpace) GetUsedGigabytes() float64 {
 	if o == nil || IsNil(o.UsedGigabytes.Get()) {
@@ -181,6 +226,9 @@ func (o ResourcePoolSpace) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SizeGigabytes) {
 		toSerialize["sizeGigabytes"] = o.SizeGigabytes
 	}
+	if o.UsedBySnapshotsGigabytes.IsSet() {
+		toSerialize["usedBySnapshotsGigabytes"] = o.UsedBySnapshotsGigabytes.Get()
+	}
 	if o.UsedGigabytes.IsSet() {
 		toSerialize["usedGigabytes"] = o.UsedGigabytes.Get()
 	}
@@ -208,6 +256,7 @@ func (o *ResourcePoolSpace) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "availableGigabytes")
 		delete(additionalProperties, "sizeGigabytes")
+		delete(additionalProperties, "usedBySnapshotsGigabytes")
 		delete(additionalProperties, "usedGigabytes")
 		o.AdditionalProperties = additionalProperties
 	}
