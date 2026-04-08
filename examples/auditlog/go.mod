@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/auditlog => ../../servic
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
-	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.3.2
+	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.3.3
 )
 
 require (

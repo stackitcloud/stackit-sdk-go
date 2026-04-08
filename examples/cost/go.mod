@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/cost => ../../services/c
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
-	github.com/stackitcloud/stackit-sdk-go/services/cost v0.2.1
+	github.com/stackitcloud/stackit-sdk-go/services/cost v0.2.2
 )
 
 require (

@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/intake => ../../services
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
-	github.com/stackitcloud/stackit-sdk-go/services/intake v0.7.2
+	github.com/stackitcloud/stackit-sdk-go/services/intake v0.7.3
 )
 
 require (

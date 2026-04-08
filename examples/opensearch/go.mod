@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/opensearch => ../../serv
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
-	github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.26.2
+	github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.26.3
 )
 
 require (
