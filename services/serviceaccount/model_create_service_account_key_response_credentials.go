@@ -153,6 +153,33 @@ type CreateServiceAccountKeyResponseCredentialsGetSubArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateServiceAccountKeyResponseCredentialsGetSubRetType = string
 
+/*
+	types and functions for tokenEndpoint
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeTypeOk(arg CreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeType) (ret CreateServiceAccountKeyResponseCredentialsGetTokenEndpointRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeType(arg *CreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeType, val CreateServiceAccountKeyResponseCredentialsGetTokenEndpointRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServiceAccountKeyResponseCredentialsGetTokenEndpointArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateServiceAccountKeyResponseCredentialsGetTokenEndpointRetType = string
+
 // CreateServiceAccountKeyResponseCredentials struct for CreateServiceAccountKeyResponseCredentials
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateServiceAccountKeyResponseCredentials struct {
@@ -170,6 +197,9 @@ type CreateServiceAccountKeyResponseCredentials struct {
 	// Service account id
 	// REQUIRED
 	Sub CreateServiceAccountKeyResponseCredentialsGetSubAttributeType `json:"sub" required:"true"`
+	// Endpoint used to obtain access tokens for the service account.
+	// REQUIRED
+	TokenEndpoint CreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeType `json:"tokenEndpoint" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -180,12 +210,13 @@ type _CreateServiceAccountKeyResponseCredentials CreateServiceAccountKeyResponse
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewCreateServiceAccountKeyResponseCredentials(aud CreateServiceAccountKeyResponseCredentialsGetAudArgType, iss CreateServiceAccountKeyResponseCredentialsGetIssArgType, kid CreateServiceAccountKeyResponseCredentialsGetKidArgType, sub CreateServiceAccountKeyResponseCredentialsGetSubArgType) *CreateServiceAccountKeyResponseCredentials {
+func NewCreateServiceAccountKeyResponseCredentials(aud CreateServiceAccountKeyResponseCredentialsGetAudArgType, iss CreateServiceAccountKeyResponseCredentialsGetIssArgType, kid CreateServiceAccountKeyResponseCredentialsGetKidArgType, sub CreateServiceAccountKeyResponseCredentialsGetSubArgType, tokenEndpoint CreateServiceAccountKeyResponseCredentialsGetTokenEndpointArgType) *CreateServiceAccountKeyResponseCredentials {
 	this := CreateServiceAccountKeyResponseCredentials{}
 	setCreateServiceAccountKeyResponseCredentialsGetAudAttributeType(&this.Aud, aud)
 	setCreateServiceAccountKeyResponseCredentialsGetIssAttributeType(&this.Iss, iss)
 	setCreateServiceAccountKeyResponseCredentialsGetKidAttributeType(&this.Kid, kid)
 	setCreateServiceAccountKeyResponseCredentialsGetSubAttributeType(&this.Sub, sub)
+	setCreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeType(&this.TokenEndpoint, tokenEndpoint)
 	return &this
 }
 
@@ -305,6 +336,26 @@ func (o *CreateServiceAccountKeyResponseCredentials) SetSub(v CreateServiceAccou
 	setCreateServiceAccountKeyResponseCredentialsGetSubAttributeType(&o.Sub, v)
 }
 
+// GetTokenEndpoint returns the TokenEndpoint field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServiceAccountKeyResponseCredentials) GetTokenEndpoint() (ret CreateServiceAccountKeyResponseCredentialsGetTokenEndpointRetType) {
+	ret, _ = o.GetTokenEndpointOk()
+	return ret
+}
+
+// GetTokenEndpointOk returns a tuple with the TokenEndpoint field value
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServiceAccountKeyResponseCredentials) GetTokenEndpointOk() (ret CreateServiceAccountKeyResponseCredentialsGetTokenEndpointRetType, ok bool) {
+	return getCreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeTypeOk(o.TokenEndpoint)
+}
+
+// SetTokenEndpoint sets field value
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateServiceAccountKeyResponseCredentials) SetTokenEndpoint(v CreateServiceAccountKeyResponseCredentialsGetTokenEndpointRetType) {
+	setCreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeType(&o.TokenEndpoint, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateServiceAccountKeyResponseCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -322,6 +373,9 @@ func (o CreateServiceAccountKeyResponseCredentials) ToMap() (map[string]interfac
 	}
 	if val, ok := getCreateServiceAccountKeyResponseCredentialsGetSubAttributeTypeOk(o.Sub); ok {
 		toSerialize["Sub"] = val
+	}
+	if val, ok := getCreateServiceAccountKeyResponseCredentialsGetTokenEndpointAttributeTypeOk(o.TokenEndpoint); ok {
+		toSerialize["TokenEndpoint"] = val
 	}
 	return toSerialize, nil
 }

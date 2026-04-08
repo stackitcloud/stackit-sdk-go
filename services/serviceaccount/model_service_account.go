@@ -126,33 +126,6 @@ type ServiceAccountGetProjectIdArgType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ServiceAccountGetProjectIdRetType = string
 
-/*
-	types and functions for tokenEndpoint
-*/
-
-// isNotNullableString
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ServiceAccountGetTokenEndpointAttributeType = *string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getServiceAccountGetTokenEndpointAttributeTypeOk(arg ServiceAccountGetTokenEndpointAttributeType) (ret ServiceAccountGetTokenEndpointRetType, ok bool) {
-	if arg == nil {
-		return ret, false
-	}
-	return *arg, true
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setServiceAccountGetTokenEndpointAttributeType(arg *ServiceAccountGetTokenEndpointAttributeType, val ServiceAccountGetTokenEndpointRetType) {
-	*arg = &val
-}
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ServiceAccountGetTokenEndpointArgType = string
-
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ServiceAccountGetTokenEndpointRetType = string
-
 // ServiceAccount struct for ServiceAccount
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ServiceAccount struct {
@@ -168,9 +141,6 @@ type ServiceAccount struct {
 	// ID of the related project
 	// REQUIRED
 	ProjectId ServiceAccountGetProjectIdAttributeType `json:"projectId" required:"true"`
-	// Endpoint used to obtain access tokens for the service account
-	// REQUIRED
-	TokenEndpoint ServiceAccountGetTokenEndpointAttributeType `json:"tokenEndpoint" required:"true"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -181,13 +151,12 @@ type _ServiceAccount ServiceAccount
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewServiceAccount(email ServiceAccountGetEmailArgType, id ServiceAccountGetIdArgType, internal ServiceAccountgetInternalArgType, projectId ServiceAccountGetProjectIdArgType, tokenEndpoint ServiceAccountGetTokenEndpointArgType) *ServiceAccount {
+func NewServiceAccount(email ServiceAccountGetEmailArgType, id ServiceAccountGetIdArgType, internal ServiceAccountgetInternalArgType, projectId ServiceAccountGetProjectIdArgType) *ServiceAccount {
 	this := ServiceAccount{}
 	setServiceAccountGetEmailAttributeType(&this.Email, email)
 	setServiceAccountGetIdAttributeType(&this.Id, id)
 	setServiceAccountgetInternalAttributeType(&this.Internal, internal)
 	setServiceAccountGetProjectIdAttributeType(&this.ProjectId, projectId)
-	setServiceAccountGetTokenEndpointAttributeType(&this.TokenEndpoint, tokenEndpoint)
 	return &this
 }
 
@@ -280,26 +249,6 @@ func (o *ServiceAccount) SetProjectId(v ServiceAccountGetProjectIdRetType) {
 	setServiceAccountGetProjectIdAttributeType(&o.ProjectId, v)
 }
 
-// GetTokenEndpoint returns the TokenEndpoint field value
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ServiceAccount) GetTokenEndpoint() (ret ServiceAccountGetTokenEndpointRetType) {
-	ret, _ = o.GetTokenEndpointOk()
-	return ret
-}
-
-// GetTokenEndpointOk returns a tuple with the TokenEndpoint field value
-// and a boolean to check if the value has been set.
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ServiceAccount) GetTokenEndpointOk() (ret ServiceAccountGetTokenEndpointRetType, ok bool) {
-	return getServiceAccountGetTokenEndpointAttributeTypeOk(o.TokenEndpoint)
-}
-
-// SetTokenEndpoint sets field value
-// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ServiceAccount) SetTokenEndpoint(v ServiceAccountGetTokenEndpointRetType) {
-	setServiceAccountGetTokenEndpointAttributeType(&o.TokenEndpoint, v)
-}
-
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o ServiceAccount) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -314,9 +263,6 @@ func (o ServiceAccount) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getServiceAccountGetProjectIdAttributeTypeOk(o.ProjectId); ok {
 		toSerialize["ProjectId"] = val
-	}
-	if val, ok := getServiceAccountGetTokenEndpointAttributeTypeOk(o.TokenEndpoint); ok {
-		toSerialize["TokenEndpoint"] = val
 	}
 	return toSerialize, nil
 }

@@ -29,7 +29,9 @@ type CreateServiceAccountKeyResponseCredentials struct {
 	// Private key. Only present, if the service account API was generating the key. Not recoverable later.
 	PrivateKey *string `json:"privateKey,omitempty"`
 	// Service account id
-	Sub                  string `json:"sub"`
+	Sub string `json:"sub"`
+	// Endpoint used to obtain access tokens for the service account.
+	TokenEndpoint        string `json:"tokenEndpoint"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -39,12 +41,13 @@ type _CreateServiceAccountKeyResponseCredentials CreateServiceAccountKeyResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateServiceAccountKeyResponseCredentials(aud string, iss string, kid string, sub string) *CreateServiceAccountKeyResponseCredentials {
+func NewCreateServiceAccountKeyResponseCredentials(aud string, iss string, kid string, sub string, tokenEndpoint string) *CreateServiceAccountKeyResponseCredentials {
 	this := CreateServiceAccountKeyResponseCredentials{}
 	this.Aud = aud
 	this.Iss = iss
 	this.Kid = kid
 	this.Sub = sub
+	this.TokenEndpoint = tokenEndpoint
 	return &this
 }
 
@@ -184,6 +187,30 @@ func (o *CreateServiceAccountKeyResponseCredentials) SetSub(v string) {
 	o.Sub = v
 }
 
+// GetTokenEndpoint returns the TokenEndpoint field value
+func (o *CreateServiceAccountKeyResponseCredentials) GetTokenEndpoint() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TokenEndpoint
+}
+
+// GetTokenEndpointOk returns a tuple with the TokenEndpoint field value
+// and a boolean to check if the value has been set.
+func (o *CreateServiceAccountKeyResponseCredentials) GetTokenEndpointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TokenEndpoint, true
+}
+
+// SetTokenEndpoint sets field value
+func (o *CreateServiceAccountKeyResponseCredentials) SetTokenEndpoint(v string) {
+	o.TokenEndpoint = v
+}
+
 func (o CreateServiceAccountKeyResponseCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -201,6 +228,7 @@ func (o CreateServiceAccountKeyResponseCredentials) ToMap() (map[string]interfac
 		toSerialize["privateKey"] = o.PrivateKey
 	}
 	toSerialize["sub"] = o.Sub
+	toSerialize["tokenEndpoint"] = o.TokenEndpoint
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -218,6 +246,7 @@ func (o *CreateServiceAccountKeyResponseCredentials) UnmarshalJSON(data []byte) 
 		"iss",
 		"kid",
 		"sub",
+		"tokenEndpoint",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -252,6 +281,7 @@ func (o *CreateServiceAccountKeyResponseCredentials) UnmarshalJSON(data []byte) 
 		delete(additionalProperties, "kid")
 		delete(additionalProperties, "privateKey")
 		delete(additionalProperties, "sub")
+		delete(additionalProperties, "tokenEndpoint")
 		o.AdditionalProperties = additionalProperties
 	}
 
