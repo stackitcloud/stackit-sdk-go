@@ -182,6 +182,33 @@ func setClusterStatusGetErrorsAttributeType(arg *ClusterStatusGetErrorsAttribute
 }
 
 /*
+	types and functions for expiration
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetExpirationAttributeType = *ExpiratoaionStatus
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetExpirationArgType = ExpiratoaionStatus
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ClusterStatusGetExpirationRetType = ExpiratoaionStatus
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getClusterStatusGetExpirationAttributeTypeOk(arg ClusterStatusGetExpirationAttributeType) (ret ClusterStatusGetExpirationRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setClusterStatusGetExpirationAttributeType(arg *ClusterStatusGetExpirationAttributeType, val ClusterStatusGetExpirationRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for hibernated
 */
 
@@ -273,6 +300,7 @@ type ClusterStatus struct {
 	EgressAddressRanges ClusterStatusGetEgressAddressRangesAttributeType `json:"egressAddressRanges,omitempty"`
 	Error               ClusterStatusGetErrorAttributeType               `json:"error,omitempty"`
 	Errors              ClusterStatusGetErrorsAttributeType              `json:"errors,omitempty"`
+	Expiration          ClusterStatusGetExpirationAttributeType          `json:"expiration,omitempty"`
 	Hibernated          ClusterStatusgetHibernatedAttributeType          `json:"hibernated,omitempty"`
 	Identity            ClusterStatusGetIdentityAttributeType            `json:"identity,omitempty"`
 	// The network ranges (in CIDR notation) used by pods of the cluster.
@@ -460,6 +488,33 @@ func (o *ClusterStatus) SetErrors(v ClusterStatusGetErrorsRetType) {
 	setClusterStatusGetErrorsAttributeType(&o.Errors, v)
 }
 
+// GetExpiration returns the Expiration field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) GetExpiration() (res ClusterStatusGetExpirationRetType) {
+	res, _ = o.GetExpirationOk()
+	return
+}
+
+// GetExpirationOk returns a tuple with the Expiration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) GetExpirationOk() (ret ClusterStatusGetExpirationRetType, ok bool) {
+	return getClusterStatusGetExpirationAttributeTypeOk(o.Expiration)
+}
+
+// HasExpiration returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) HasExpiration() bool {
+	_, ok := o.GetExpirationOk()
+	return ok
+}
+
+// SetExpiration gets a reference to the given ExpiratoaionStatus and assigns it to the Expiration field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ClusterStatus) SetExpiration(v ClusterStatusGetExpirationRetType) {
+	setClusterStatusGetExpirationAttributeType(&o.Expiration, v)
+}
+
 // GetHibernated returns the Hibernated field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ClusterStatus) GetHibernated() (res ClusterStatusgetHibernatedRetType) {
@@ -561,6 +616,9 @@ func (o ClusterStatus) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getClusterStatusGetErrorsAttributeTypeOk(o.Errors); ok {
 		toSerialize["Errors"] = val
+	}
+	if val, ok := getClusterStatusGetExpirationAttributeTypeOk(o.Expiration); ok {
+		toSerialize["Expiration"] = val
 	}
 	if val, ok := getClusterStatusgetHibernatedAttributeTypeOk(o.Hibernated); ok {
 		toSerialize["Hibernated"] = val
