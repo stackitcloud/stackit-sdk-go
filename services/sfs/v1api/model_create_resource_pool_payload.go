@@ -32,6 +32,8 @@ type CreateResourcePoolPayload struct {
 	PerformanceClass string `json:"performanceClass"`
 	// Size of the Resource Pool   (unit: gibibytes)
 	SizeGigabytes int32 `json:"sizeGigabytes"`
+	// (optional) Id of the Snapshot Policy to use
+	SnapshotPolicyId *string `json:"snapshotPolicyId,omitempty"`
 	// Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.
 	SnapshotsAreVisible  *bool `json:"snapshotsAreVisible,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -213,6 +215,38 @@ func (o *CreateResourcePoolPayload) SetSizeGigabytes(v int32) {
 	o.SizeGigabytes = v
 }
 
+// GetSnapshotPolicyId returns the SnapshotPolicyId field value if set, zero value otherwise.
+func (o *CreateResourcePoolPayload) GetSnapshotPolicyId() string {
+	if o == nil || IsNil(o.SnapshotPolicyId) {
+		var ret string
+		return ret
+	}
+	return *o.SnapshotPolicyId
+}
+
+// GetSnapshotPolicyIdOk returns a tuple with the SnapshotPolicyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateResourcePoolPayload) GetSnapshotPolicyIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SnapshotPolicyId) {
+		return nil, false
+	}
+	return o.SnapshotPolicyId, true
+}
+
+// HasSnapshotPolicyId returns a boolean if a field has been set.
+func (o *CreateResourcePoolPayload) HasSnapshotPolicyId() bool {
+	if o != nil && !IsNil(o.SnapshotPolicyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnapshotPolicyId gets a reference to the given string and assigns it to the SnapshotPolicyId field.
+func (o *CreateResourcePoolPayload) SetSnapshotPolicyId(v string) {
+	o.SnapshotPolicyId = &v
+}
+
 // GetSnapshotsAreVisible returns the SnapshotsAreVisible field value if set, zero value otherwise.
 func (o *CreateResourcePoolPayload) GetSnapshotsAreVisible() bool {
 	if o == nil || IsNil(o.SnapshotsAreVisible) {
@@ -263,6 +297,9 @@ func (o CreateResourcePoolPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["performanceClass"] = o.PerformanceClass
 	toSerialize["sizeGigabytes"] = o.SizeGigabytes
+	if !IsNil(o.SnapshotPolicyId) {
+		toSerialize["snapshotPolicyId"] = o.SnapshotPolicyId
+	}
 	if !IsNil(o.SnapshotsAreVisible) {
 		toSerialize["snapshotsAreVisible"] = o.SnapshotsAreVisible
 	}
@@ -319,6 +356,7 @@ func (o *CreateResourcePoolPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "performanceClass")
 		delete(additionalProperties, "sizeGigabytes")
+		delete(additionalProperties, "snapshotPolicyId")
 		delete(additionalProperties, "snapshotsAreVisible")
 		o.AdditionalProperties = additionalProperties
 	}
