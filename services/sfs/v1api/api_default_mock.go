@@ -36,6 +36,12 @@ type DefaultAPIServiceMock struct {
 	DeleteShareExecuteMock *func(r ApiDeleteShareRequest) (map[string]interface{}, error)
 	// DeleteShareExportPolicyExecuteMock can be populated to implement the behavior of the DeleteShareExportPolicyExecute function of this mock
 	DeleteShareExportPolicyExecuteMock *func(r ApiDeleteShareExportPolicyRequest) (map[string]interface{}, error)
+	// DisableLockExecuteMock can be populated to implement the behavior of the DisableLockExecute function of this mock
+	DisableLockExecuteMock *func(r ApiDisableLockRequest) (map[string]interface{}, error)
+	// EnableLockExecuteMock can be populated to implement the behavior of the EnableLockExecute function of this mock
+	EnableLockExecuteMock *func(r ApiEnableLockRequest) (*EnableLockResponse, error)
+	// GetLockExecuteMock can be populated to implement the behavior of the GetLockExecute function of this mock
+	GetLockExecuteMock *func(r ApiGetLockRequest) (*GetLockResponse, error)
 	// GetResourcePoolExecuteMock can be populated to implement the behavior of the GetResourcePoolExecute function of this mock
 	GetResourcePoolExecuteMock *func(r ApiGetResourcePoolRequest) (*GetResourcePoolResponse, error)
 	// GetResourcePoolSnapshotExecuteMock can be populated to implement the behavior of the GetResourcePoolSnapshotExecute function of this mock
@@ -44,6 +50,8 @@ type DefaultAPIServiceMock struct {
 	GetShareExecuteMock *func(r ApiGetShareRequest) (*GetShareResponse, error)
 	// GetShareExportPolicyExecuteMock can be populated to implement the behavior of the GetShareExportPolicyExecute function of this mock
 	GetShareExportPolicyExecuteMock *func(r ApiGetShareExportPolicyRequest) (*GetShareExportPolicyResponse, error)
+	// GetSnapshotPolicyExecuteMock can be populated to implement the behavior of the GetSnapshotPolicyExecute function of this mock
+	GetSnapshotPolicyExecuteMock *func(r ApiGetSnapshotPolicyRequest) (*GetSnapshotPolicyResponse, error)
 	// ListPerformanceClassesExecuteMock can be populated to implement the behavior of the ListPerformanceClassesExecute function of this mock
 	ListPerformanceClassesExecuteMock *func(r ApiListPerformanceClassesRequest) (*ListPerformanceClassesResponse, error)
 	// ListResourcePoolSnapshotsExecuteMock can be populated to implement the behavior of the ListResourcePoolSnapshotsExecute function of this mock
@@ -54,8 +62,12 @@ type DefaultAPIServiceMock struct {
 	ListShareExportPoliciesExecuteMock *func(r ApiListShareExportPoliciesRequest) (*ListShareExportPoliciesResponse, error)
 	// ListSharesExecuteMock can be populated to implement the behavior of the ListSharesExecute function of this mock
 	ListSharesExecuteMock *func(r ApiListSharesRequest) (*ListSharesResponse, error)
+	// ListSnapshotPoliciesExecuteMock can be populated to implement the behavior of the ListSnapshotPoliciesExecute function of this mock
+	ListSnapshotPoliciesExecuteMock *func(r ApiListSnapshotPoliciesRequest) (*ListSnapshotPoliciesResponse, error)
 	// UpdateResourcePoolExecuteMock can be populated to implement the behavior of the UpdateResourcePoolExecute function of this mock
 	UpdateResourcePoolExecuteMock *func(r ApiUpdateResourcePoolRequest) (*UpdateResourcePoolResponse, error)
+	// UpdateResourcePoolSnapshotExecuteMock can be populated to implement the behavior of the UpdateResourcePoolSnapshotExecute function of this mock
+	UpdateResourcePoolSnapshotExecuteMock *func(r ApiUpdateResourcePoolSnapshotRequest) (*UpdateResourcePoolSnapshotResponse, error)
 	// UpdateShareExecuteMock can be populated to implement the behavior of the UpdateShareExecute function of this mock
 	UpdateShareExecuteMock *func(r ApiUpdateShareRequest) (*UpdateShareResponse, error)
 	// UpdateShareExportPolicyExecuteMock can be populated to implement the behavior of the UpdateShareExportPolicyExecute function of this mock
@@ -222,6 +234,63 @@ func (a DefaultAPIServiceMock) DeleteShareExportPolicyExecute(r ApiDeleteShareEx
 	return (*a.DeleteShareExportPolicyExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) DisableLock(ctx context.Context, region string, projectId string) ApiDisableLockRequest {
+	return ApiDisableLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// DisableLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DisableLockExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) DisableLockExecute(r ApiDisableLockRequest) (map[string]interface{}, error) {
+	if a.DisableLockExecuteMock == nil {
+		var localVarReturnValue map[string]interface{}
+		return localVarReturnValue, nil
+	}
+
+	return (*a.DisableLockExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) EnableLock(ctx context.Context, region string, projectId string) ApiEnableLockRequest {
+	return ApiEnableLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// EnableLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the EnableLockExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) EnableLockExecute(r ApiEnableLockRequest) (*EnableLockResponse, error) {
+	if a.EnableLockExecuteMock == nil {
+		var localVarReturnValue *EnableLockResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.EnableLockExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetLock(ctx context.Context, region string, projectId string) ApiGetLockRequest {
+	return ApiGetLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// GetLockExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLockExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetLockExecute(r ApiGetLockRequest) (*GetLockResponse, error) {
+	if a.GetLockExecuteMock == nil {
+		var localVarReturnValue *GetLockResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetLockExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) GetResourcePool(ctx context.Context, projectId string, region string, resourcePoolId string) ApiGetResourcePoolRequest {
 	return ApiGetResourcePoolRequest{
 		ApiService:     a,
@@ -302,6 +371,25 @@ func (a DefaultAPIServiceMock) GetShareExportPolicyExecute(r ApiGetShareExportPo
 	}
 
 	return (*a.GetShareExportPolicyExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetSnapshotPolicy(ctx context.Context, projectId string, id string) ApiGetSnapshotPolicyRequest {
+	return ApiGetSnapshotPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		id:         id,
+	}
+}
+
+// GetSnapshotPolicyExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetSnapshotPolicyExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetSnapshotPolicyExecute(r ApiGetSnapshotPolicyRequest) (*GetSnapshotPolicyResponse, error) {
+	if a.GetSnapshotPolicyExecuteMock == nil {
+		var localVarReturnValue *GetSnapshotPolicyResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetSnapshotPolicyExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) ListPerformanceClasses(ctx context.Context) ApiListPerformanceClassesRequest {
@@ -399,6 +487,24 @@ func (a DefaultAPIServiceMock) ListSharesExecute(r ApiListSharesRequest) (*ListS
 	return (*a.ListSharesExecuteMock)(r)
 }
 
+func (a DefaultAPIServiceMock) ListSnapshotPolicies(ctx context.Context, projectId string) ApiListSnapshotPoliciesRequest {
+	return ApiListSnapshotPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// ListSnapshotPoliciesExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListSnapshotPoliciesExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) ListSnapshotPoliciesExecute(r ApiListSnapshotPoliciesRequest) (*ListSnapshotPoliciesResponse, error) {
+	if a.ListSnapshotPoliciesExecuteMock == nil {
+		var localVarReturnValue *ListSnapshotPoliciesResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.ListSnapshotPoliciesExecuteMock)(r)
+}
+
 func (a DefaultAPIServiceMock) UpdateResourcePool(ctx context.Context, projectId string, region string, resourcePoolId string) ApiUpdateResourcePoolRequest {
 	return ApiUpdateResourcePoolRequest{
 		ApiService:     a,
@@ -417,6 +523,27 @@ func (a DefaultAPIServiceMock) UpdateResourcePoolExecute(r ApiUpdateResourcePool
 	}
 
 	return (*a.UpdateResourcePoolExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) UpdateResourcePoolSnapshot(ctx context.Context, projectId string, region string, resourcePoolId string, snapshotName string) ApiUpdateResourcePoolSnapshotRequest {
+	return ApiUpdateResourcePoolSnapshotRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		region:         region,
+		resourcePoolId: resourcePoolId,
+		snapshotName:   snapshotName,
+	}
+}
+
+// UpdateResourcePoolSnapshotExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the UpdateResourcePoolSnapshotExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) UpdateResourcePoolSnapshotExecute(r ApiUpdateResourcePoolSnapshotRequest) (*UpdateResourcePoolSnapshotResponse, error) {
+	if a.UpdateResourcePoolSnapshotExecuteMock == nil {
+		var localVarReturnValue *UpdateResourcePoolSnapshotResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.UpdateResourcePoolSnapshotExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateShare(ctx context.Context, projectId string, region string, resourcePoolId string, shareId string) ApiUpdateShareRequest {

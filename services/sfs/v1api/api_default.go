@@ -160,6 +160,54 @@ type DefaultAPI interface {
 	DeleteShareExportPolicyExecute(r ApiDeleteShareExportPolicyRequest) (map[string]interface{}, error)
 
 	/*
+		DisableLock Method for DisableLock
+
+		Clean up locks for a project so that it can be deleted successfully.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@return ApiDisableLockRequest
+	*/
+	DisableLock(ctx context.Context, region string, projectId string) ApiDisableLockRequest
+
+	// DisableLockExecute executes the request
+	//  @return map[string]interface{}
+	DisableLockExecute(r ApiDisableLockRequest) (map[string]interface{}, error)
+
+	/*
+		EnableLock Method for EnableLock
+
+		Enable Lock for a project. Necessary for immutable snapshots and to prevent accidental deletion of resources.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@return ApiEnableLockRequest
+	*/
+	EnableLock(ctx context.Context, region string, projectId string) ApiEnableLockRequest
+
+	// EnableLockExecute executes the request
+	//  @return EnableLockResponse
+	EnableLockExecute(r ApiEnableLockRequest) (*EnableLockResponse, error)
+
+	/*
+		GetLock Method for GetLock
+
+		Get lock status for a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param region
+		@param projectId
+		@return ApiGetLockRequest
+	*/
+	GetLock(ctx context.Context, region string, projectId string) ApiGetLockRequest
+
+	// GetLockExecute executes the request
+	//  @return GetLockResponse
+	GetLockExecute(r ApiGetLockRequest) (*GetLockResponse, error)
+
+	/*
 		GetResourcePool Get Resource Pool
 
 		Retrieves a Resource Pool in a project.
@@ -230,7 +278,23 @@ type DefaultAPI interface {
 	GetShareExportPolicyExecute(r ApiGetShareExportPolicyRequest) (*GetShareExportPolicyResponse, error)
 
 	/*
-		ListPerformanceClasses List Resource Pool Performance Classes
+		GetSnapshotPolicy Method for GetSnapshotPolicy
+
+		Get Snapshot Policy
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param id
+		@return ApiGetSnapshotPolicyRequest
+	*/
+	GetSnapshotPolicy(ctx context.Context, projectId string, id string) ApiGetSnapshotPolicyRequest
+
+	// GetSnapshotPolicyExecute executes the request
+	//  @return GetSnapshotPolicyResponse
+	GetSnapshotPolicyExecute(r ApiGetSnapshotPolicyRequest) (*GetSnapshotPolicyResponse, error)
+
+	/*
+		ListPerformanceClasses List Resource Performance Classes
 
 		Lists all performances classes available
 
@@ -310,6 +374,21 @@ type DefaultAPI interface {
 	ListSharesExecute(r ApiListSharesRequest) (*ListSharesResponse, error)
 
 	/*
+		ListSnapshotPolicies Method for ListSnapshotPolicies
+
+		List Snapshot Policies
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@return ApiListSnapshotPoliciesRequest
+	*/
+	ListSnapshotPolicies(ctx context.Context, projectId string) ApiListSnapshotPoliciesRequest
+
+	// ListSnapshotPoliciesExecute executes the request
+	//  @return ListSnapshotPoliciesResponse
+	ListSnapshotPoliciesExecute(r ApiListSnapshotPoliciesRequest) (*ListSnapshotPoliciesResponse, error)
+
+	/*
 		UpdateResourcePool Update Resource Pool
 
 		Updates a Resource Pool in a project.
@@ -325,6 +404,24 @@ type DefaultAPI interface {
 	// UpdateResourcePoolExecute executes the request
 	//  @return UpdateResourcePoolResponse
 	UpdateResourcePoolExecute(r ApiUpdateResourcePoolRequest) (*UpdateResourcePoolResponse, error)
+
+	/*
+		UpdateResourcePoolSnapshot Update Resource Pool Snapshot
+
+		Updates a Snapshot from a Resource Pool in a project.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param resourcePoolId
+		@param snapshotName
+		@return ApiUpdateResourcePoolSnapshotRequest
+	*/
+	UpdateResourcePoolSnapshot(ctx context.Context, projectId string, region string, resourcePoolId string, snapshotName string) ApiUpdateResourcePoolSnapshotRequest
+
+	// UpdateResourcePoolSnapshotExecute executes the request
+	//  @return UpdateResourcePoolSnapshotResponse
+	UpdateResourcePoolSnapshotExecute(r ApiUpdateResourcePoolSnapshotRequest) (*UpdateResourcePoolSnapshotResponse, error)
 
 	/*
 		UpdateShare Update Share
@@ -1673,6 +1770,381 @@ func (a *DefaultAPIService) DeleteShareExportPolicyExecute(r ApiDeleteShareExpor
 	return localVarReturnValue, nil
 }
 
+type ApiDisableLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	region     string
+	projectId  string
+}
+
+func (r ApiDisableLockRequest) Execute() (map[string]interface{}, error) {
+	return r.ApiService.DisableLockExecute(r)
+}
+
+/*
+DisableLock Method for DisableLock
+
+Clean up locks for a project so that it can be deleted successfully.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param region
+	@param projectId
+	@return ApiDisableLockRequest
+*/
+func (a *DefaultAPIService) DisableLock(ctx context.Context, region string, projectId string) ApiDisableLockRequest {
+	return ApiDisableLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return map[string]interface{}
+func (a *DefaultAPIService) DisableLockExecute(r ApiDisableLockRequest) (map[string]interface{}, error) {
+	var (
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DisableLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/regions/{region}/project/{projectId}/locks"
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiEnableLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	region     string
+	projectId  string
+}
+
+func (r ApiEnableLockRequest) Execute() (*EnableLockResponse, error) {
+	return r.ApiService.EnableLockExecute(r)
+}
+
+/*
+EnableLock Method for EnableLock
+
+Enable Lock for a project. Necessary for immutable snapshots and to prevent accidental deletion of resources.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param region
+	@param projectId
+	@return ApiEnableLockRequest
+*/
+func (a *DefaultAPIService) EnableLock(ctx context.Context, region string, projectId string) ApiEnableLockRequest {
+	return ApiEnableLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return EnableLockResponse
+func (a *DefaultAPIService) EnableLockExecute(r ApiEnableLockRequest) (*EnableLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *EnableLockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.EnableLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/regions/{region}/project/{projectId}/locks"
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiGetLockRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	region     string
+	projectId  string
+}
+
+func (r ApiGetLockRequest) Execute() (*GetLockResponse, error) {
+	return r.ApiService.GetLockExecute(r)
+}
+
+/*
+GetLock Method for GetLock
+
+Get lock status for a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param region
+	@param projectId
+	@return ApiGetLockRequest
+*/
+func (a *DefaultAPIService) GetLock(ctx context.Context, region string, projectId string) ApiGetLockRequest {
+	return ApiGetLockRequest{
+		ApiService: a,
+		ctx:        ctx,
+		region:     region,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetLockResponse
+func (a *DefaultAPIService) GetLockExecute(r ApiGetLockRequest) (*GetLockResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetLockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetLock")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/regions/{region}/project/{projectId}/locks"
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiGetResourcePoolRequest struct {
 	ctx            context.Context
 	ApiService     DefaultAPI
@@ -2313,6 +2785,134 @@ func (a *DefaultAPIService) GetShareExportPolicyExecute(r ApiGetShareExportPolic
 	return localVarReturnValue, nil
 }
 
+type ApiGetSnapshotPolicyRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	id         string
+}
+
+func (r ApiGetSnapshotPolicyRequest) Execute() (*GetSnapshotPolicyResponse, error) {
+	return r.ApiService.GetSnapshotPolicyExecute(r)
+}
+
+/*
+GetSnapshotPolicy Method for GetSnapshotPolicy
+
+Get Snapshot Policy
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param id
+	@return ApiGetSnapshotPolicyRequest
+*/
+func (a *DefaultAPIService) GetSnapshotPolicy(ctx context.Context, projectId string, id string) ApiGetSnapshotPolicyRequest {
+	return ApiGetSnapshotPolicyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		id:         id,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetSnapshotPolicyResponse
+func (a *DefaultAPIService) GetSnapshotPolicyExecute(r ApiGetSnapshotPolicyRequest) (*GetSnapshotPolicyResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetSnapshotPolicyResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetSnapshotPolicy")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/snapshotPolicies/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiListPerformanceClassesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -2323,7 +2923,7 @@ func (r ApiListPerformanceClassesRequest) Execute() (*ListPerformanceClassesResp
 }
 
 /*
-ListPerformanceClasses List Resource Pool Performance Classes
+ListPerformanceClasses List Resource Performance Classes
 
 Lists all performances classes available
 
@@ -3083,6 +3683,139 @@ func (a *DefaultAPIService) ListSharesExecute(r ApiListSharesRequest) (*ListShar
 	return localVarReturnValue, nil
 }
 
+type ApiListSnapshotPoliciesRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	immutable  *bool
+}
+
+func (r ApiListSnapshotPoliciesRequest) Immutable(immutable bool) ApiListSnapshotPoliciesRequest {
+	r.immutable = &immutable
+	return r
+}
+
+func (r ApiListSnapshotPoliciesRequest) Execute() (*ListSnapshotPoliciesResponse, error) {
+	return r.ApiService.ListSnapshotPoliciesExecute(r)
+}
+
+/*
+ListSnapshotPolicies Method for ListSnapshotPolicies
+
+List Snapshot Policies
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@return ApiListSnapshotPoliciesRequest
+*/
+func (a *DefaultAPIService) ListSnapshotPolicies(ctx context.Context, projectId string) ApiListSnapshotPoliciesRequest {
+	return ApiListSnapshotPoliciesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ListSnapshotPoliciesResponse
+func (a *DefaultAPIService) ListSnapshotPoliciesExecute(r ApiListSnapshotPoliciesRequest) (*ListSnapshotPoliciesResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListSnapshotPoliciesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListSnapshotPolicies")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/snapshotPolicies"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.immutable != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "immutable", r.immutable, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.ErrorMessage = err.Error()
+			return localVarReturnValue, newErr
+		}
+		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+		newErr.Model = v
+		return localVarReturnValue, newErr
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiUpdateResourcePoolRequest struct {
 	ctx                       context.Context
 	ApiService                DefaultAPI
@@ -3169,6 +3902,179 @@ func (a *DefaultAPIService) UpdateResourcePoolExecute(r ApiUpdateResourcePoolReq
 	}
 	// body params
 	localVarPostBody = r.updateResourcePoolPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v string
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+type ApiUpdateResourcePoolSnapshotRequest struct {
+	ctx                               context.Context
+	ApiService                        DefaultAPI
+	projectId                         string
+	region                            string
+	resourcePoolId                    string
+	snapshotName                      string
+	updateResourcePoolSnapshotPayload *UpdateResourcePoolSnapshotPayload
+}
+
+func (r ApiUpdateResourcePoolSnapshotRequest) UpdateResourcePoolSnapshotPayload(updateResourcePoolSnapshotPayload UpdateResourcePoolSnapshotPayload) ApiUpdateResourcePoolSnapshotRequest {
+	r.updateResourcePoolSnapshotPayload = &updateResourcePoolSnapshotPayload
+	return r
+}
+
+func (r ApiUpdateResourcePoolSnapshotRequest) Execute() (*UpdateResourcePoolSnapshotResponse, error) {
+	return r.ApiService.UpdateResourcePoolSnapshotExecute(r)
+}
+
+/*
+UpdateResourcePoolSnapshot Update Resource Pool Snapshot
+
+Updates a Snapshot from a Resource Pool in a project.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@param resourcePoolId
+	@param snapshotName
+	@return ApiUpdateResourcePoolSnapshotRequest
+*/
+func (a *DefaultAPIService) UpdateResourcePoolSnapshot(ctx context.Context, projectId string, region string, resourcePoolId string, snapshotName string) ApiUpdateResourcePoolSnapshotRequest {
+	return ApiUpdateResourcePoolSnapshotRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		projectId:      projectId,
+		region:         region,
+		resourcePoolId: resourcePoolId,
+		snapshotName:   snapshotName,
+	}
+}
+
+// Execute executes the request
+//
+//	@return UpdateResourcePoolSnapshotResponse
+func (a *DefaultAPIService) UpdateResourcePoolSnapshotExecute(r ApiUpdateResourcePoolSnapshotRequest) (*UpdateResourcePoolSnapshotResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UpdateResourcePoolSnapshotResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateResourcePoolSnapshot")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/projects/{projectId}/regions/{region}/resourcePools/{resourcePoolId}/snapshots/{snapshotName}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resourcePoolId"+"}", url.PathEscape(parameterValueToString(r.resourcePoolId, "resourcePoolId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"snapshotName"+"}", url.PathEscape(parameterValueToString(r.snapshotName, "snapshotName")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.updateResourcePoolSnapshotPayload == nil {
+		return localVarReturnValue, reportError("updateResourcePoolSnapshotPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json", "text/plain"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateResourcePoolSnapshotPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
