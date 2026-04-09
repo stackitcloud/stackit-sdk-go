@@ -159,6 +159,33 @@ func setCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAt
 }
 
 /*
+	types and functions for snaplockExpiryTime
+*/
+
+// isDateTime
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeArgType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType = *time.Time
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(arg CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType) (ret CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType(arg *CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType, val CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
+	*arg = val
+}
+
+/*
 	types and functions for snapshotName
 */
 
@@ -199,6 +226,8 @@ type CreateResourcePoolSnapshotResponseResourcePoolSnapshot struct {
 	// Reflects the actual storage footprint in the backend at snapshot time in Gibibytes (e.g. how much storage from the Resource Pool  does it use).
 	// Can be cast to int32 without loss of precision.
 	SizeGigabytes CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType `json:"sizeGigabytes,omitempty"`
+	// Represents the snaplock expiry time if snaplock is enabled for the resource pool
+	SnaplockExpiryTime CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType `json:"snaplockExpiryTime,omitempty"`
 	// Name of the Resource Pool Snapshot
 	SnapshotName CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeType `json:"snapshotName,omitempty"`
 }
@@ -370,6 +399,46 @@ func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) SetSizeGigabyte
 	setCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType(&o.SizeGigabytes, v)
 }
 
+// GetSnaplockExpiryTime returns the SnaplockExpiryTime field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSnaplockExpiryTime() (res CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
+	res, _ = o.GetSnaplockExpiryTimeOk()
+	return
+}
+
+// GetSnaplockExpiryTimeOk returns a tuple with the SnaplockExpiryTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSnaplockExpiryTimeOk() (ret CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType, ok bool) {
+	return getCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(o.SnaplockExpiryTime)
+}
+
+// HasSnaplockExpiryTime returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) HasSnaplockExpiryTime() bool {
+	_, ok := o.GetSnaplockExpiryTimeOk()
+	return ok
+}
+
+// SetSnaplockExpiryTime gets a reference to the given time.Time and assigns it to the SnaplockExpiryTime field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) SetSnaplockExpiryTime(v CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
+	setCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType(&o.SnaplockExpiryTime, v)
+}
+
+// SetSnaplockExpiryTimeNil sets the value for SnaplockExpiryTime to be an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) SetSnaplockExpiryTimeNil() {
+	o.SnaplockExpiryTime = nil
+}
+
+// UnsetSnaplockExpiryTime ensures that no value is present for SnaplockExpiryTime, not even an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) UnsetSnaplockExpiryTime() {
+	o.SnaplockExpiryTime = nil
+}
+
 // GetSnapshotName returns the SnapshotName field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSnapshotName() (res CreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameRetType) {
@@ -414,6 +483,9 @@ func (o CreateResourcePoolSnapshotResponseResourcePoolSnapshot) ToMap() (map[str
 	}
 	if val, ok := getCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(o.SizeGigabytes); ok {
 		toSerialize["SizeGigabytes"] = val
+	}
+	if val, ok := getCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(o.SnaplockExpiryTime); ok {
+		toSerialize["SnaplockExpiryTime"] = val
 	}
 	if val, ok := getCreateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(o.SnapshotName); ok {
 		toSerialize["SnapshotName"] = val
