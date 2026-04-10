@@ -76,8 +76,11 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
 - `ske`: [v1.11.2](services/ske/CHANGELOG.md#v1112) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
-- `sqlserverflex`: [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+- `sqlserverflex`:
+  - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+  - [v1.7.0](services/sqlserverflex/CHANGELOG.md#v170)
+    - `v3beta1api`: Align package to latest API specification
 - `stackitmarketplace`: [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
 - `vpn`: [v0.4.2](services/vpn/CHANGELOG.md#v042) 
