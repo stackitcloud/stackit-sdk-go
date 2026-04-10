@@ -1,3 +1,11 @@
+## v0.17.0
+- `v2api`:
+  - Add `TokenEndpoint` field to `CreateServiceAccountKeyResponseCredentials` struct
+  - Remove `TokenEndpoint` field from `ServiceAccount` struct
+- Deprecated SDK layer in root of the module:
+  - Add `TokenEndpoint` field to `CreateServiceAccountKeyResponseCredentials` struct
+  - Remove `TokenEndpoint` field from `ServiceAccount` struct
+
 ## v0.16.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
 
