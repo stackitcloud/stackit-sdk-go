@@ -68,8 +68,16 @@
   - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
 - `serverupdate`: [v1.4.3](services/serverupdate/CHANGELOG.md#v143) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
-- `serviceaccount`: [v0.16.1](services/serviceaccount/CHANGELOG.md#v0161) 
-  - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+- `serviceaccount`:
+  - [v0.16.1](services/serviceaccount/CHANGELOG.md#v0161)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+  - [v0.17.0](services/serviceaccount/CHANGELOG.md#v0170)
+    - `v2api`:
+      - Add `TokenEndpoint` field to `CreateServiceAccountKeyResponseCredentials` struct
+      - Remove `TokenEndpoint` field from `ServiceAccount` struct
+    - Deprecated SDK layer in root of the module:
+      - Add `TokenEndpoint` field to `CreateServiceAccountKeyResponseCredentials` struct
+      - Remove `TokenEndpoint` field from `ServiceAccount` struct
 - `serviceenablement`: [v1.4.3](services/serviceenablement/CHANGELOG.md#v143) 
   - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
 - `sfs`: [v0.6.3](services/sfs/CHANGELOG.md#v063) 
