@@ -25,6 +25,8 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 		customTokenUrlEnv    bool
 		tokenExpiration      string
 		validAssertion       bool
+		federatedTokenAsEnv  bool
+		tokenFilePathEnv     string
 		tokenFilePathAsEnv   bool
 		missingTokenFilePath bool
 		wantErr              bool
@@ -52,6 +54,19 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 			customTokenUrlEnv:  true,
 			validAssertion:     true,
 			wantErr:            false,
+		},
+		{
+			name:                "ok using federated token from env",
+			clientID:            "test@stackit.cloud",
+			federatedTokenAsEnv: true,
+			wantErr:             false,
+		},
+		{
+			name:                "federated token env has priority over invalid token file",
+			clientID:            "test@stackit.cloud",
+			federatedTokenAsEnv: true,
+			tokenFilePathEnv:    "/tmp/not-existing-token-file",
+			wantErr:             false,
 		},
 		{
 			name:           "missing client id",
@@ -87,7 +102,19 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 				flowConfig.TokenExpiration = tt.tokenExpiration
 			}
 
-			if !tt.missingTokenFilePath {
+			if tt.federatedTokenAsEnv {
+				token, err := signTokenWithSubject("subject", time.Minute)
+				if err != nil {
+					t.Fatalf("failed to create token: %v", err)
+				}
+				t.Setenv("STACKIT_FEDERATED_TOKEN", token)
+			}
+
+			if tt.tokenFilePathEnv != "" {
+				t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", tt.tokenFilePathEnv)
+			}
+
+			if !tt.missingTokenFilePath && !tt.federatedTokenAsEnv {
 				file, err := os.CreateTemp("", "*.token")
 				if err != nil {
 					log.Fatal(err)
@@ -117,6 +144,17 @@ func TestWorkloadIdentityFlowInit(t *testing.T) {
 
 			if err := flow.Init(flowConfig); (err != nil) != tt.wantErr {
 				t.Errorf("KeyFlow.Init() error = %v, wantErr %v", err, tt.wantErr)
+			}
+
+			if tt.federatedTokenAsEnv && !tt.wantErr {
+				tokenFromConfig, err := flow.config.FederatedTokenFunction(context.Background())
+				if err != nil {
+					t.Fatalf("getting federated token from config: %v", err)
+				}
+				tokenFromEnv := os.Getenv("STACKIT_FEDERATED_TOKEN")
+				if tokenFromConfig != tokenFromEnv {
+					t.Errorf("federated token mismatch, want env token")
+				}
 			}
 			if flow.config == nil {
 				t.Error("config is nil")
@@ -156,6 +194,7 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 		clientID       string
 		validAssertion bool
 		injectToken    bool
+		tokenAsEnv     bool
 		wantErr        bool
 	}{
 		{
@@ -176,6 +215,13 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 			clientID:       "test@stackit.cloud",
 			validAssertion: false,
 			wantErr:        true,
+		},
+		{
+			name:           "token from env ok",
+			clientID:       "test@stackit.cloud",
+			validAssertion: true,
+			tokenAsEnv:     true,
+			wantErr:        false,
 		},
 	}
 	for _, tt := range tests {
@@ -268,6 +314,9 @@ func TestWorkloadIdentityFlowRoundTrip(t *testing.T) {
 				flowConfig.FederatedTokenFunction = func(context.Context) (string, error) {
 					return token, nil
 				}
+			} else if tt.tokenAsEnv {
+				t.Setenv("STACKIT_FEDERATED_TOKEN", token)
+				t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", "/tmp/not-existing-token-file")
 			} else {
 				file, err := os.CreateTemp("", "*.token")
 				if err != nil {

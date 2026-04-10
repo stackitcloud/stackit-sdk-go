@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -15,6 +16,7 @@ import (
 
 const (
 	clientIDEnv           = "STACKIT_SERVICE_ACCOUNT_EMAIL"
+	FederatedTokenEnv     = "STACKIT_FEDERATED_TOKEN"              //nolint:gosec // This is not a secret, just the env variable name
 	FederatedTokenFileEnv = "STACKIT_FEDERATED_TOKEN_FILE"         //nolint:gosec // This is not a secret, just the env variable name
 	wifTokenEndpointEnv   = "STACKIT_IDP_TOKEN_ENDPOINT"           //nolint:gosec // This is not a secret, just the env variable name
 	wifTokenExpirationEnv = "STACKIT_IDP_TOKEN_EXPIRATION_SECONDS" //nolint:gosec // This is not a secret, just the env variable name
@@ -134,7 +136,13 @@ func (c *WorkloadIdentityFederationFlow) Init(cfg *WorkloadIdentityFederationFlo
 	}
 
 	if c.config.FederatedTokenFunction == nil {
-		c.config.FederatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(utils.GetEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath))
+		if token, ok := os.LookupEnv(FederatedTokenEnv); ok {
+			c.config.FederatedTokenFunction = func(_ context.Context) (string, error) {
+				return token, nil
+			}
+		} else {
+			c.config.FederatedTokenFunction = oidcadapters.ReadJWTFromFileSystem(utils.GetEnvOrDefault(FederatedTokenFileEnv, defaultFederatedTokenPath))
+		}
 	}
 
 	c.tokenExpirationLeeway = defaultTokenExpirationLeeway

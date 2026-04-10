@@ -147,13 +147,18 @@ For each authentication method, the try order is:
 ```go
 // Using wokload identity federation flow
 config.WithWorkloadIdentityFederationAuth()
-// With the custom path for the external OIDC token
+// With the external OIDC token
+config.WithWorkloadIdentityFederationToken("OIDC Token")
+// OR With the custom path for the external OIDC token
 config.WithWorkloadIdentityFederationPath("/path/to/your/federated/token")
 // For the service account
 config.WithServiceAccountEmail("my-sa@sa-stackit.cloud")
 ```
 **B. Environment Variables**
 ```bash
+# Preferred: provide the external OIDC token directly
+# (has priority over STACKIT_FEDERATED_TOKEN_FILE)
+STACKIT_FEDERATED_TOKEN=<oidc-jwt-token>
 # With the custom path for the external OIDC token
 STACKIT_FEDERATED_TOKEN_FILE=/path/to/your/federated/token
 # For the service account
