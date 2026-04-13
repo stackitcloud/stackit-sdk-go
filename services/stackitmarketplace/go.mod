@@ -1,6 +1,6 @@
 module github.com/stackitcloud/stackit-sdk-go/services/stackitmarketplace
 
-go 1.21
+go 1.25
 
 require github.com/stackitcloud/stackit-sdk-go/core v0.24.1
 

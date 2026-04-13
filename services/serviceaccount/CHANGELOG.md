@@ -1,3 +1,6 @@
+## v0.18.0
+- Minimal go version is now Go 1.25
+
 ## v0.17.0
 - `v2api`:
   - Add `TokenEndpoint` field to `CreateServiceAccountKeyResponseCredentials` struct

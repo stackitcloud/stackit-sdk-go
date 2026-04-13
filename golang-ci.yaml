@@ -99,4 +99,4 @@ issues:
       linters:
         - staticcheck
       text: "SA1019:" 
-go: 1.21
+go: 1.25
