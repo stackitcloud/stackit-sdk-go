@@ -118,8 +118,8 @@ func (c *KeyFlow) GetToken() TokenResponseBody {
 	return *c.token
 }
 
-// GetCredentialsTokenEndpoint returns the token endpoint from credentials or a default fallback
-func (cfg *KeyFlowConfig) GetCredentialsTokenEndpoint() string {
+// getCredentialsTokenEndpoint returns the token endpoint from credentials or a default fallback
+func (cfg *KeyFlowConfig) getCredentialsTokenEndpoint() string {
 	if cfg.ServiceAccountKey == nil || cfg.ServiceAccountKey.Credentials == nil {
 		return tokenAPI
 	}
@@ -137,7 +137,7 @@ func (c *KeyFlow) Init(cfg *KeyFlowConfig) error {
 	c.config = cfg
 
 	if c.config.TokenUrl == "" {
-		c.config.TokenUrl = c.config.GetCredentialsTokenEndpoint()
+		c.config.TokenUrl = c.config.getCredentialsTokenEndpoint()
 	}
 
 	c.tokenExpirationLeeway = defaultTokenExpirationLeeway
