@@ -19,7 +19,7 @@
 - `auditlog`:
   - [v0.3.3](services/auditlog/CHANGELOG.md#v033) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
-  - `auditlog`: [v0.4.0](services/auditlog/CHANGELOG.md#v040) 
+  - [v0.4.0](services/auditlog/CHANGELOG.md#v040) 
     - Minimal go version is now Go 1.25
 - `authorization`:
   - [v0.14.3](services/authorization/CHANGELOG.md#v0143) 
