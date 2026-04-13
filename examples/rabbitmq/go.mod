@@ -1,6 +1,6 @@
 module github.com/stackitcloud/stackit-sdk-go/examples/rabbitmq
 
-go 1.21
+go 1.25
 
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/rabbitmq => ../../services/rabbitmq

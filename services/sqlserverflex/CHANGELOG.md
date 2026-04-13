@@ -1,3 +1,6 @@
+## v1.8.0
+- Minimal go version is now Go 1.25
+
 ## v1.7.0
 - `v3beta1api`: Align package to latest API specification
 

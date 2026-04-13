@@ -1,3 +1,6 @@
+## v0.25.0
+- Minimal go version is now Go 1.25
+
 ## v0.24.1
 - **Improvement:** Fix misleading error messages in authentication setup and credentials parsing.
 
