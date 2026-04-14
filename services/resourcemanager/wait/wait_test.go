@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -77,29 +78,31 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:     tt.getFails,
-				projectState: tt.projectState,
-			}
-
-			var wantRes *resourcemanager.GetProjectResponse
-			if tt.wantResp {
-				wantRes = &resourcemanager.GetProjectResponse{
-					LifecycleState: utils.Ptr(tt.projectState),
-					ContainerId:    utils.Ptr("cid"),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:     tt.getFails,
+					projectState: tt.projectState,
 				}
-			}
 
-			handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
+				var wantRes *resourcemanager.GetProjectResponse
+				if tt.wantResp {
+					wantRes = &resourcemanager.GetProjectResponse{
+						LifecycleState: utils.Ptr(tt.projectState),
+						ContainerId:    utils.Ptr("cid"),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetSleepBeforeWait(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -134,19 +137,21 @@ func TestDeleteProjectWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:     tt.getFails,
-				getNotFound:  tt.getNotFound,
-				projectState: tt.projectState,
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:     tt.getFails,
+					getNotFound:  tt.getNotFound,
+					projectState: tt.projectState,
+				}
 
-			handler := DeleteProjectWaitHandler(context.Background(), apiClient, "cid")
+				handler := DeleteProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				_, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }

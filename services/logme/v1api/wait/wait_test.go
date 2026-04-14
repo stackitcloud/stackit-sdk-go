@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -114,33 +115,35 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceGetFails:      tt.getFails,
-				instanceResourceId:    instanceId,
-				instanceResourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					instanceGetFails:      tt.getFails,
+					instanceResourceId:    instanceId,
+					instanceResourceState: tt.resourceState,
+				})
 
-			var wantRes *logme.Instance
-			if tt.wantResp {
-				wantRes = &logme.Instance{
-					InstanceId: &instanceId,
-					Status:     utils.Ptr(tt.resourceState),
+				var wantRes *logme.Instance
+				if tt.wantResp {
+					wantRes = &logme.Instance{
+						InstanceId: &instanceId,
+						Status:     utils.Ptr(tt.resourceState),
+					}
 				}
-			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "pid", instanceId)
+				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "pid", instanceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			diff := cmp.Diff(gotRes, wantRes)
-			if diff != "" {
-				t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				diff := cmp.Diff(gotRes, wantRes)
+				if diff != "" {
+					t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
+				}
+			})
 		})
 	}
 }
