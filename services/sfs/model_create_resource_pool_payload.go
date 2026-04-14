@@ -181,6 +181,33 @@ func setCreateResourcePoolPayloadGetSizeGigabytesAttributeType(arg *CreateResour
 }
 
 /*
+	types and functions for snapshotPolicyId
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolPayloadGetSnapshotPolicyIdAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateResourcePoolPayloadGetSnapshotPolicyIdAttributeTypeOk(arg CreateResourcePoolPayloadGetSnapshotPolicyIdAttributeType) (ret CreateResourcePoolPayloadGetSnapshotPolicyIdRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateResourcePoolPayloadGetSnapshotPolicyIdAttributeType(arg *CreateResourcePoolPayloadGetSnapshotPolicyIdAttributeType, val CreateResourcePoolPayloadGetSnapshotPolicyIdRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolPayloadGetSnapshotPolicyIdArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateResourcePoolPayloadGetSnapshotPolicyIdRetType = string
+
+/*
 	types and functions for snapshotsAreVisible
 */
 
@@ -228,6 +255,8 @@ type CreateResourcePoolPayload struct {
 	// Can be cast to int32 without loss of precision.
 	// REQUIRED
 	SizeGigabytes CreateResourcePoolPayloadGetSizeGigabytesAttributeType `json:"sizeGigabytes" required:"true"`
+	// (optional) Id of the Snapshot Policy to use
+	SnapshotPolicyId CreateResourcePoolPayloadGetSnapshotPolicyIdAttributeType `json:"snapshotPolicyId,omitempty"`
 	// Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.
 	SnapshotsAreVisible CreateResourcePoolPayloadgetSnapshotsAreVisibleAttributeType `json:"snapshotsAreVisible,omitempty"`
 }
@@ -386,6 +415,33 @@ func (o *CreateResourcePoolPayload) SetSizeGigabytes(v CreateResourcePoolPayload
 	setCreateResourcePoolPayloadGetSizeGigabytesAttributeType(&o.SizeGigabytes, v)
 }
 
+// GetSnapshotPolicyId returns the SnapshotPolicyId field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolPayload) GetSnapshotPolicyId() (res CreateResourcePoolPayloadGetSnapshotPolicyIdRetType) {
+	res, _ = o.GetSnapshotPolicyIdOk()
+	return
+}
+
+// GetSnapshotPolicyIdOk returns a tuple with the SnapshotPolicyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolPayload) GetSnapshotPolicyIdOk() (ret CreateResourcePoolPayloadGetSnapshotPolicyIdRetType, ok bool) {
+	return getCreateResourcePoolPayloadGetSnapshotPolicyIdAttributeTypeOk(o.SnapshotPolicyId)
+}
+
+// HasSnapshotPolicyId returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolPayload) HasSnapshotPolicyId() bool {
+	_, ok := o.GetSnapshotPolicyIdOk()
+	return ok
+}
+
+// SetSnapshotPolicyId gets a reference to the given string and assigns it to the SnapshotPolicyId field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateResourcePoolPayload) SetSnapshotPolicyId(v CreateResourcePoolPayloadGetSnapshotPolicyIdRetType) {
+	setCreateResourcePoolPayloadGetSnapshotPolicyIdAttributeType(&o.SnapshotPolicyId, v)
+}
+
 // GetSnapshotsAreVisible returns the SnapshotsAreVisible field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateResourcePoolPayload) GetSnapshotsAreVisible() (res CreateResourcePoolPayloadgetSnapshotsAreVisibleRetType) {
@@ -433,6 +489,9 @@ func (o CreateResourcePoolPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateResourcePoolPayloadGetSizeGigabytesAttributeTypeOk(o.SizeGigabytes); ok {
 		toSerialize["SizeGigabytes"] = val
+	}
+	if val, ok := getCreateResourcePoolPayloadGetSnapshotPolicyIdAttributeTypeOk(o.SnapshotPolicyId); ok {
+		toSerialize["SnapshotPolicyId"] = val
 	}
 	if val, ok := getCreateResourcePoolPayloadgetSnapshotsAreVisibleAttributeTypeOk(o.SnapshotsAreVisible); ok {
 		toSerialize["SnapshotsAreVisible"] = val
