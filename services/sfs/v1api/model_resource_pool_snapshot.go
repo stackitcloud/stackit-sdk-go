@@ -29,6 +29,8 @@ type ResourcePoolSnapshot struct {
 	ResourcePoolId *string `json:"resourcePoolId,omitempty"`
 	// Reflects the actual storage footprint in the backend at snapshot time in Gibibytes (e.g. how much storage from the Resource Pool  does it use).
 	SizeGigabytes *int32 `json:"sizeGigabytes,omitempty"`
+	// Represents the snaplock expiry time if snaplock is enabled for the resource pool
+	SnaplockExpiryTime NullableTime `json:"snaplockExpiryTime,omitempty"`
 	// Name of the Resource Pool Snapshot
 	SnapshotName         *string `json:"snapshotName,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -224,6 +226,49 @@ func (o *ResourcePoolSnapshot) SetSizeGigabytes(v int32) {
 	o.SizeGigabytes = &v
 }
 
+// GetSnaplockExpiryTime returns the SnaplockExpiryTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ResourcePoolSnapshot) GetSnaplockExpiryTime() time.Time {
+	if o == nil || IsNil(o.SnaplockExpiryTime.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.SnaplockExpiryTime.Get()
+}
+
+// GetSnaplockExpiryTimeOk returns a tuple with the SnaplockExpiryTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ResourcePoolSnapshot) GetSnaplockExpiryTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SnaplockExpiryTime.Get(), o.SnaplockExpiryTime.IsSet()
+}
+
+// HasSnaplockExpiryTime returns a boolean if a field has been set.
+func (o *ResourcePoolSnapshot) HasSnaplockExpiryTime() bool {
+	if o != nil && o.SnaplockExpiryTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSnaplockExpiryTime gets a reference to the given NullableTime and assigns it to the SnaplockExpiryTime field.
+func (o *ResourcePoolSnapshot) SetSnaplockExpiryTime(v time.Time) {
+	o.SnaplockExpiryTime.Set(&v)
+}
+
+// SetSnaplockExpiryTimeNil sets the value for SnaplockExpiryTime to be an explicit nil
+func (o *ResourcePoolSnapshot) SetSnaplockExpiryTimeNil() {
+	o.SnaplockExpiryTime.Set(nil)
+}
+
+// UnsetSnaplockExpiryTime ensures that no value is present for SnaplockExpiryTime, not even an explicit nil
+func (o *ResourcePoolSnapshot) UnsetSnaplockExpiryTime() {
+	o.SnaplockExpiryTime.Unset()
+}
+
 // GetSnapshotName returns the SnapshotName field value if set, zero value otherwise.
 func (o *ResourcePoolSnapshot) GetSnapshotName() string {
 	if o == nil || IsNil(o.SnapshotName) {
@@ -281,6 +326,9 @@ func (o ResourcePoolSnapshot) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SizeGigabytes) {
 		toSerialize["sizeGigabytes"] = o.SizeGigabytes
 	}
+	if o.SnaplockExpiryTime.IsSet() {
+		toSerialize["snaplockExpiryTime"] = o.SnaplockExpiryTime.Get()
+	}
 	if !IsNil(o.SnapshotName) {
 		toSerialize["snapshotName"] = o.SnapshotName
 	}
@@ -311,6 +359,7 @@ func (o *ResourcePoolSnapshot) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "logicalSizeGigabytes")
 		delete(additionalProperties, "resourcePoolId")
 		delete(additionalProperties, "sizeGigabytes")
+		delete(additionalProperties, "snaplockExpiryTime")
 		delete(additionalProperties, "snapshotName")
 		o.AdditionalProperties = additionalProperties
 	}

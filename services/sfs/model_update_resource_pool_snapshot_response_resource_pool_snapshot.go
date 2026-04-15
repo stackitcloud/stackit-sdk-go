@@ -16,8 +16,8 @@ import (
 	"time"
 )
 
-// checks if the ResourcePoolSnapshot type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ResourcePoolSnapshot{}
+// checks if the UpdateResourcePoolSnapshotResponseResourcePoolSnapshot type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateResourcePoolSnapshotResponseResourcePoolSnapshot{}
 
 /*
 	types and functions for comment
@@ -25,10 +25,10 @@ var _ MappedNullable = &ResourcePoolSnapshot{}
 
 // isNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetCommentAttributeType = *NullableString
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeType = *NullableString
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getResourcePoolSnapshotGetCommentAttributeTypeOk(arg ResourcePoolSnapshotGetCommentAttributeType) (ret ResourcePoolSnapshotGetCommentRetType, ok bool) {
+func getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeTypeOk(arg UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeType) (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentRetType, ok bool) {
 	if arg == nil {
 		return nil, false
 	}
@@ -36,7 +36,7 @@ func getResourcePoolSnapshotGetCommentAttributeTypeOk(arg ResourcePoolSnapshotGe
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setResourcePoolSnapshotGetCommentAttributeType(arg *ResourcePoolSnapshotGetCommentAttributeType, val ResourcePoolSnapshotGetCommentRetType) {
+func setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeType(arg *UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeType, val UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentRetType) {
 	if IsNil(*arg) {
 		*arg = NewNullableString(val)
 	} else {
@@ -45,10 +45,10 @@ func setResourcePoolSnapshotGetCommentAttributeType(arg *ResourcePoolSnapshotGet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetCommentArgType = *string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentArgType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetCommentRetType = *string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentRetType = *string
 
 /*
 	types and functions for createdAt
@@ -56,16 +56,16 @@ type ResourcePoolSnapshotGetCommentRetType = *string
 
 // isDateTime
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetCreatedAtAttributeType = *time.Time
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetCreatedAtArgType = time.Time
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtArgType = time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetCreatedAtRetType = time.Time
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtRetType = time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getResourcePoolSnapshotGetCreatedAtAttributeTypeOk(arg ResourcePoolSnapshotGetCreatedAtAttributeType) (ret ResourcePoolSnapshotGetCreatedAtRetType, ok bool) {
+func getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeTypeOk(arg UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeType) (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -73,7 +73,7 @@ func getResourcePoolSnapshotGetCreatedAtAttributeTypeOk(arg ResourcePoolSnapshot
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setResourcePoolSnapshotGetCreatedAtAttributeType(arg *ResourcePoolSnapshotGetCreatedAtAttributeType, val ResourcePoolSnapshotGetCreatedAtRetType) {
+func setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeType(arg *UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeType, val UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtRetType) {
 	*arg = &val
 }
 
@@ -83,16 +83,16 @@ func setResourcePoolSnapshotGetCreatedAtAttributeType(arg *ResourcePoolSnapshotG
 
 // isInteger
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType = *int64
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType = *int64
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetLogicalSizeGigabytesArgType = int64
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesArgType = int64
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetLogicalSizeGigabytesRetType = int64
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesRetType = int64
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getResourcePoolSnapshotGetLogicalSizeGigabytesAttributeTypeOk(arg ResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType) (ret ResourcePoolSnapshotGetLogicalSizeGigabytesRetType, ok bool) {
+func getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeTypeOk(arg UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType) (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -100,7 +100,7 @@ func getResourcePoolSnapshotGetLogicalSizeGigabytesAttributeTypeOk(arg ResourceP
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType(arg *ResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType, val ResourcePoolSnapshotGetLogicalSizeGigabytesRetType) {
+func setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType(arg *UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType, val UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesRetType) {
 	*arg = &val
 }
 
@@ -110,10 +110,10 @@ func setResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType(arg *ResourcePo
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetResourcePoolIdAttributeType = *string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getResourcePoolSnapshotGetResourcePoolIdAttributeTypeOk(arg ResourcePoolSnapshotGetResourcePoolIdAttributeType) (ret ResourcePoolSnapshotGetResourcePoolIdRetType, ok bool) {
+func getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeTypeOk(arg UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeType) (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -121,15 +121,15 @@ func getResourcePoolSnapshotGetResourcePoolIdAttributeTypeOk(arg ResourcePoolSna
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setResourcePoolSnapshotGetResourcePoolIdAttributeType(arg *ResourcePoolSnapshotGetResourcePoolIdAttributeType, val ResourcePoolSnapshotGetResourcePoolIdRetType) {
+func setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeType(arg *UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeType, val UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetResourcePoolIdArgType = string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetResourcePoolIdRetType = string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdRetType = string
 
 /*
 	types and functions for sizeGigabytes
@@ -137,16 +137,16 @@ type ResourcePoolSnapshotGetResourcePoolIdRetType = string
 
 // isInteger
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSizeGigabytesAttributeType = *int64
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType = *int64
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSizeGigabytesArgType = int64
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesArgType = int64
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSizeGigabytesRetType = int64
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesRetType = int64
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(arg ResourcePoolSnapshotGetSizeGigabytesAttributeType) (ret ResourcePoolSnapshotGetSizeGigabytesRetType, ok bool) {
+func getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(arg UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType) (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -154,7 +154,7 @@ func getResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(arg ResourcePoolSnap
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setResourcePoolSnapshotGetSizeGigabytesAttributeType(arg *ResourcePoolSnapshotGetSizeGigabytesAttributeType, val ResourcePoolSnapshotGetSizeGigabytesRetType) {
+func setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType(arg *UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType, val UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesRetType) {
 	*arg = &val
 }
 
@@ -164,16 +164,16 @@ func setResourcePoolSnapshotGetSizeGigabytesAttributeType(arg *ResourcePoolSnaps
 
 // isDateTime
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType = *time.Time
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSnaplockExpiryTimeArgType = *time.Time
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeArgType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSnaplockExpiryTimeRetType = *time.Time
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType = *time.Time
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(arg ResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType) (ret ResourcePoolSnapshotGetSnaplockExpiryTimeRetType, ok bool) {
+func getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(arg UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType) (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType, ok bool) {
 	if arg == nil {
 		return nil, false
 	}
@@ -181,7 +181,7 @@ func getResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(arg ResourcePoo
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType(arg *ResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType, val ResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
+func setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType(arg *UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType, val UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
 	*arg = val
 }
 
@@ -191,10 +191,10 @@ func setResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType(arg *ResourcePool
 
 // isNotNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSnapshotNameAttributeType = *string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func getResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(arg ResourcePoolSnapshotGetSnapshotNameAttributeType) (ret ResourcePoolSnapshotGetSnapshotNameRetType, ok bool) {
+func getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(arg UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeType) (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameRetType, ok bool) {
 	if arg == nil {
 		return ret, false
 	}
@@ -202,58 +202,58 @@ func getResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(arg ResourcePoolSnaps
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func setResourcePoolSnapshotGetSnapshotNameAttributeType(arg *ResourcePoolSnapshotGetSnapshotNameAttributeType, val ResourcePoolSnapshotGetSnapshotNameRetType) {
+func setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeType(arg *UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeType, val UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameRetType) {
 	*arg = &val
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSnapshotNameArgType = string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameArgType = string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshotGetSnapshotNameRetType = string
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameRetType = string
 
-// ResourcePoolSnapshot struct for ResourcePoolSnapshot
+// UpdateResourcePoolSnapshotResponseResourcePoolSnapshot Updated Resource Pool Snapshot
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type ResourcePoolSnapshot struct {
+type UpdateResourcePoolSnapshotResponseResourcePoolSnapshot struct {
 	// (optional) A comment to add more information about a snapshot
-	Comment   ResourcePoolSnapshotGetCommentAttributeType   `json:"comment,omitempty"`
-	CreatedAt ResourcePoolSnapshotGetCreatedAtAttributeType `json:"createdAt,omitempty"`
+	Comment   UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeType   `json:"comment,omitempty"`
+	CreatedAt UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeType `json:"createdAt,omitempty"`
 	// Represents the user-visible data size at the time of the snapshot in Gibibytes (e.g. what’s in the snapshot)
 	// Can be cast to int32 without loss of precision.
-	LogicalSizeGigabytes ResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType `json:"logicalSizeGigabytes,omitempty"`
+	LogicalSizeGigabytes UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType `json:"logicalSizeGigabytes,omitempty"`
 	// ID of the Resource Pool of the Snapshot
-	ResourcePoolId ResourcePoolSnapshotGetResourcePoolIdAttributeType `json:"resourcePoolId,omitempty"`
+	ResourcePoolId UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeType `json:"resourcePoolId,omitempty"`
 	// Reflects the actual storage footprint in the backend at snapshot time in Gibibytes (e.g. how much storage from the Resource Pool  does it use).
 	// Can be cast to int32 without loss of precision.
-	SizeGigabytes ResourcePoolSnapshotGetSizeGigabytesAttributeType `json:"sizeGigabytes,omitempty"`
+	SizeGigabytes UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType `json:"sizeGigabytes,omitempty"`
 	// Represents the snaplock expiry time if snaplock is enabled for the resource pool
-	SnaplockExpiryTime ResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType `json:"snaplockExpiryTime,omitempty"`
+	SnaplockExpiryTime UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType `json:"snaplockExpiryTime,omitempty"`
 	// Name of the Resource Pool Snapshot
-	SnapshotName ResourcePoolSnapshotGetSnapshotNameAttributeType `json:"snapshotName,omitempty"`
+	SnapshotName UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeType `json:"snapshotName,omitempty"`
 }
 
-// NewResourcePoolSnapshot instantiates a new ResourcePoolSnapshot object
+// NewUpdateResourcePoolSnapshotResponseResourcePoolSnapshot instantiates a new UpdateResourcePoolSnapshotResponseResourcePoolSnapshot object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewResourcePoolSnapshot() *ResourcePoolSnapshot {
-	this := ResourcePoolSnapshot{}
+func NewUpdateResourcePoolSnapshotResponseResourcePoolSnapshot() *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot {
+	this := UpdateResourcePoolSnapshotResponseResourcePoolSnapshot{}
 	return &this
 }
 
-// NewResourcePoolSnapshotWithDefaults instantiates a new ResourcePoolSnapshot object
+// NewUpdateResourcePoolSnapshotResponseResourcePoolSnapshotWithDefaults instantiates a new UpdateResourcePoolSnapshotResponseResourcePoolSnapshot object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewResourcePoolSnapshotWithDefaults() *ResourcePoolSnapshot {
-	this := ResourcePoolSnapshot{}
+func NewUpdateResourcePoolSnapshotResponseResourcePoolSnapshotWithDefaults() *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot {
+	this := UpdateResourcePoolSnapshotResponseResourcePoolSnapshot{}
 	return &this
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetComment() (res ResourcePoolSnapshotGetCommentRetType) {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetComment() (res UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentRetType) {
 	res, _ = o.GetCommentOk()
 	return
 }
@@ -262,38 +262,38 @@ func (o *ResourcePoolSnapshot) GetComment() (res ResourcePoolSnapshotGetCommentR
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetCommentOk() (ret ResourcePoolSnapshotGetCommentRetType, ok bool) {
-	return getResourcePoolSnapshotGetCommentAttributeTypeOk(o.Comment)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetCommentOk() (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentRetType, ok bool) {
+	return getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeTypeOk(o.Comment)
 }
 
 // HasComment returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) HasComment() bool {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) HasComment() bool {
 	_, ok := o.GetCommentOk()
 	return ok
 }
 
 // SetComment gets a reference to the given string and assigns it to the Comment field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetComment(v ResourcePoolSnapshotGetCommentRetType) {
-	setResourcePoolSnapshotGetCommentAttributeType(&o.Comment, v)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetComment(v UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentRetType) {
+	setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeType(&o.Comment, v)
 }
 
 // SetCommentNil sets the value for Comment to be an explicit nil
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetCommentNil() {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetCommentNil() {
 	o.Comment = nil
 }
 
 // UnsetComment ensures that no value is present for Comment, not even an explicit nil
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) UnsetComment() {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) UnsetComment() {
 	o.Comment = nil
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetCreatedAt() (res ResourcePoolSnapshotGetCreatedAtRetType) {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetCreatedAt() (res UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtRetType) {
 	res, _ = o.GetCreatedAtOk()
 	return
 }
@@ -301,26 +301,26 @@ func (o *ResourcePoolSnapshot) GetCreatedAt() (res ResourcePoolSnapshotGetCreate
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetCreatedAtOk() (ret ResourcePoolSnapshotGetCreatedAtRetType, ok bool) {
-	return getResourcePoolSnapshotGetCreatedAtAttributeTypeOk(o.CreatedAt)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetCreatedAtOk() (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtRetType, ok bool) {
+	return getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeTypeOk(o.CreatedAt)
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) HasCreatedAt() bool {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) HasCreatedAt() bool {
 	_, ok := o.GetCreatedAtOk()
 	return ok
 }
 
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetCreatedAt(v ResourcePoolSnapshotGetCreatedAtRetType) {
-	setResourcePoolSnapshotGetCreatedAtAttributeType(&o.CreatedAt, v)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetCreatedAt(v UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtRetType) {
+	setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeType(&o.CreatedAt, v)
 }
 
 // GetLogicalSizeGigabytes returns the LogicalSizeGigabytes field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetLogicalSizeGigabytes() (res ResourcePoolSnapshotGetLogicalSizeGigabytesRetType) {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetLogicalSizeGigabytes() (res UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesRetType) {
 	res, _ = o.GetLogicalSizeGigabytesOk()
 	return
 }
@@ -328,26 +328,26 @@ func (o *ResourcePoolSnapshot) GetLogicalSizeGigabytes() (res ResourcePoolSnapsh
 // GetLogicalSizeGigabytesOk returns a tuple with the LogicalSizeGigabytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetLogicalSizeGigabytesOk() (ret ResourcePoolSnapshotGetLogicalSizeGigabytesRetType, ok bool) {
-	return getResourcePoolSnapshotGetLogicalSizeGigabytesAttributeTypeOk(o.LogicalSizeGigabytes)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetLogicalSizeGigabytesOk() (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesRetType, ok bool) {
+	return getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeTypeOk(o.LogicalSizeGigabytes)
 }
 
 // HasLogicalSizeGigabytes returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) HasLogicalSizeGigabytes() bool {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) HasLogicalSizeGigabytes() bool {
 	_, ok := o.GetLogicalSizeGigabytesOk()
 	return ok
 }
 
 // SetLogicalSizeGigabytes gets a reference to the given int64 and assigns it to the LogicalSizeGigabytes field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetLogicalSizeGigabytes(v ResourcePoolSnapshotGetLogicalSizeGigabytesRetType) {
-	setResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType(&o.LogicalSizeGigabytes, v)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetLogicalSizeGigabytes(v UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesRetType) {
+	setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeType(&o.LogicalSizeGigabytes, v)
 }
 
 // GetResourcePoolId returns the ResourcePoolId field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetResourcePoolId() (res ResourcePoolSnapshotGetResourcePoolIdRetType) {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetResourcePoolId() (res UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdRetType) {
 	res, _ = o.GetResourcePoolIdOk()
 	return
 }
@@ -355,26 +355,26 @@ func (o *ResourcePoolSnapshot) GetResourcePoolId() (res ResourcePoolSnapshotGetR
 // GetResourcePoolIdOk returns a tuple with the ResourcePoolId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetResourcePoolIdOk() (ret ResourcePoolSnapshotGetResourcePoolIdRetType, ok bool) {
-	return getResourcePoolSnapshotGetResourcePoolIdAttributeTypeOk(o.ResourcePoolId)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetResourcePoolIdOk() (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdRetType, ok bool) {
+	return getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeTypeOk(o.ResourcePoolId)
 }
 
 // HasResourcePoolId returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) HasResourcePoolId() bool {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) HasResourcePoolId() bool {
 	_, ok := o.GetResourcePoolIdOk()
 	return ok
 }
 
 // SetResourcePoolId gets a reference to the given string and assigns it to the ResourcePoolId field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetResourcePoolId(v ResourcePoolSnapshotGetResourcePoolIdRetType) {
-	setResourcePoolSnapshotGetResourcePoolIdAttributeType(&o.ResourcePoolId, v)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetResourcePoolId(v UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdRetType) {
+	setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeType(&o.ResourcePoolId, v)
 }
 
 // GetSizeGigabytes returns the SizeGigabytes field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetSizeGigabytes() (res ResourcePoolSnapshotGetSizeGigabytesRetType) {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSizeGigabytes() (res UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesRetType) {
 	res, _ = o.GetSizeGigabytesOk()
 	return
 }
@@ -382,26 +382,26 @@ func (o *ResourcePoolSnapshot) GetSizeGigabytes() (res ResourcePoolSnapshotGetSi
 // GetSizeGigabytesOk returns a tuple with the SizeGigabytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetSizeGigabytesOk() (ret ResourcePoolSnapshotGetSizeGigabytesRetType, ok bool) {
-	return getResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(o.SizeGigabytes)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSizeGigabytesOk() (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesRetType, ok bool) {
+	return getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(o.SizeGigabytes)
 }
 
 // HasSizeGigabytes returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) HasSizeGigabytes() bool {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) HasSizeGigabytes() bool {
 	_, ok := o.GetSizeGigabytesOk()
 	return ok
 }
 
 // SetSizeGigabytes gets a reference to the given int64 and assigns it to the SizeGigabytes field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetSizeGigabytes(v ResourcePoolSnapshotGetSizeGigabytesRetType) {
-	setResourcePoolSnapshotGetSizeGigabytesAttributeType(&o.SizeGigabytes, v)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetSizeGigabytes(v UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesRetType) {
+	setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeType(&o.SizeGigabytes, v)
 }
 
 // GetSnaplockExpiryTime returns the SnaplockExpiryTime field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetSnaplockExpiryTime() (res ResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSnaplockExpiryTime() (res UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
 	res, _ = o.GetSnaplockExpiryTimeOk()
 	return
 }
@@ -410,38 +410,38 @@ func (o *ResourcePoolSnapshot) GetSnaplockExpiryTime() (res ResourcePoolSnapshot
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetSnaplockExpiryTimeOk() (ret ResourcePoolSnapshotGetSnaplockExpiryTimeRetType, ok bool) {
-	return getResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(o.SnaplockExpiryTime)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSnaplockExpiryTimeOk() (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType, ok bool) {
+	return getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(o.SnaplockExpiryTime)
 }
 
 // HasSnaplockExpiryTime returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) HasSnaplockExpiryTime() bool {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) HasSnaplockExpiryTime() bool {
 	_, ok := o.GetSnaplockExpiryTimeOk()
 	return ok
 }
 
 // SetSnaplockExpiryTime gets a reference to the given time.Time and assigns it to the SnaplockExpiryTime field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetSnaplockExpiryTime(v ResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
-	setResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType(&o.SnaplockExpiryTime, v)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetSnaplockExpiryTime(v UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeRetType) {
+	setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeType(&o.SnaplockExpiryTime, v)
 }
 
 // SetSnaplockExpiryTimeNil sets the value for SnaplockExpiryTime to be an explicit nil
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetSnaplockExpiryTimeNil() {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetSnaplockExpiryTimeNil() {
 	o.SnaplockExpiryTime = nil
 }
 
 // UnsetSnaplockExpiryTime ensures that no value is present for SnaplockExpiryTime, not even an explicit nil
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) UnsetSnaplockExpiryTime() {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) UnsetSnaplockExpiryTime() {
 	o.SnaplockExpiryTime = nil
 }
 
 // GetSnapshotName returns the SnapshotName field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetSnapshotName() (res ResourcePoolSnapshotGetSnapshotNameRetType) {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSnapshotName() (res UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameRetType) {
 	res, _ = o.GetSnapshotNameOk()
 	return
 }
@@ -449,90 +449,90 @@ func (o *ResourcePoolSnapshot) GetSnapshotName() (res ResourcePoolSnapshotGetSna
 // GetSnapshotNameOk returns a tuple with the SnapshotName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) GetSnapshotNameOk() (ret ResourcePoolSnapshotGetSnapshotNameRetType, ok bool) {
-	return getResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(o.SnapshotName)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) GetSnapshotNameOk() (ret UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameRetType, ok bool) {
+	return getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(o.SnapshotName)
 }
 
 // HasSnapshotName returns a boolean if a field has been set.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) HasSnapshotName() bool {
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) HasSnapshotName() bool {
 	_, ok := o.GetSnapshotNameOk()
 	return ok
 }
 
 // SetSnapshotName gets a reference to the given string and assigns it to the SnapshotName field.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o *ResourcePoolSnapshot) SetSnapshotName(v ResourcePoolSnapshotGetSnapshotNameRetType) {
-	setResourcePoolSnapshotGetSnapshotNameAttributeType(&o.SnapshotName, v)
+func (o *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) SetSnapshotName(v UpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameRetType) {
+	setUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeType(&o.SnapshotName, v)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (o ResourcePoolSnapshot) ToMap() (map[string]interface{}, error) {
+func (o UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if val, ok := getResourcePoolSnapshotGetCommentAttributeTypeOk(o.Comment); ok {
+	if val, ok := getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCommentAttributeTypeOk(o.Comment); ok {
 		toSerialize["Comment"] = val
 	}
-	if val, ok := getResourcePoolSnapshotGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
+	if val, ok := getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetCreatedAtAttributeTypeOk(o.CreatedAt); ok {
 		toSerialize["CreatedAt"] = val
 	}
-	if val, ok := getResourcePoolSnapshotGetLogicalSizeGigabytesAttributeTypeOk(o.LogicalSizeGigabytes); ok {
+	if val, ok := getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetLogicalSizeGigabytesAttributeTypeOk(o.LogicalSizeGigabytes); ok {
 		toSerialize["LogicalSizeGigabytes"] = val
 	}
-	if val, ok := getResourcePoolSnapshotGetResourcePoolIdAttributeTypeOk(o.ResourcePoolId); ok {
+	if val, ok := getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetResourcePoolIdAttributeTypeOk(o.ResourcePoolId); ok {
 		toSerialize["ResourcePoolId"] = val
 	}
-	if val, ok := getResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(o.SizeGigabytes); ok {
+	if val, ok := getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSizeGigabytesAttributeTypeOk(o.SizeGigabytes); ok {
 		toSerialize["SizeGigabytes"] = val
 	}
-	if val, ok := getResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(o.SnaplockExpiryTime); ok {
+	if val, ok := getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnaplockExpiryTimeAttributeTypeOk(o.SnaplockExpiryTime); ok {
 		toSerialize["SnaplockExpiryTime"] = val
 	}
-	if val, ok := getResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(o.SnapshotName); ok {
+	if val, ok := getUpdateResourcePoolSnapshotResponseResourcePoolSnapshotGetSnapshotNameAttributeTypeOk(o.SnapshotName); ok {
 		toSerialize["SnapshotName"] = val
 	}
 	return toSerialize, nil
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type NullableResourcePoolSnapshot struct {
-	value *ResourcePoolSnapshot
+type NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot struct {
+	value *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot
 	isSet bool
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableResourcePoolSnapshot) Get() *ResourcePoolSnapshot {
+func (v NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot) Get() *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot {
 	return v.value
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableResourcePoolSnapshot) Set(val *ResourcePoolSnapshot) {
+func (v *NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot) Set(val *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) {
 	v.value = val
 	v.isSet = true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableResourcePoolSnapshot) IsSet() bool {
+func (v NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot) IsSet() bool {
 	return v.isSet
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableResourcePoolSnapshot) Unset() {
+func (v *NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func NewNullableResourcePoolSnapshot(val *ResourcePoolSnapshot) *NullableResourcePoolSnapshot {
-	return &NullableResourcePoolSnapshot{value: val, isSet: true}
+func NewNullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot(val *UpdateResourcePoolSnapshotResponseResourcePoolSnapshot) *NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot {
+	return &NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot{value: val, isSet: true}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v NullableResourcePoolSnapshot) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-func (v *NullableResourcePoolSnapshot) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateResourcePoolSnapshotResponseResourcePoolSnapshot) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
