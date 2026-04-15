@@ -202,6 +202,9 @@
     - `v3beta1api`: Align package to latest API specification
   - [v1.8.0](services/sqlserverflex/CHANGELOG.md#v180) 
     - Minimal go version is now Go 1.25
+  - [v1.9.0](services/sqlserverflex/CHANGELOG.md#v190)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+    - `v3beta1api`: **Feature:** Support region eu02
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
