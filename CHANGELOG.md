@@ -98,6 +98,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.28.0](services/mariadb/CHANGELOG.md#v0280) 
     - Minimal go version is now Go 1.25
+  - [v0.28.1](services/mariadb/CHANGELOG.md#v281)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
