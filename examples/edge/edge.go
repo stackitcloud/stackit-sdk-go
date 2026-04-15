@@ -6,10 +6,11 @@ import (
 	"os"
 	"time"
 
+	"gopkg.in/yaml.v3"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	edge "github.com/stackitcloud/stackit-sdk-go/services/edge/v1beta1api"
 	"github.com/stackitcloud/stackit-sdk-go/services/edge/v1beta1api/wait"
-	"gopkg.in/yaml.v3"
 )
 
 func main() {

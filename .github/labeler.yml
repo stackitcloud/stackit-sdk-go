@@ -1,0 +1,58 @@
+# access
+"domain:Access":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/alb/*"
+    - "services/albwaf/*"
+    - "services/cdn/*"
+    - "services/loadbalancer/*"
+    - "services/vpn/*"
+# runtimes
+"domain:Runtimes":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/ske/*"
+# support
+# no support domain sdk modules available yet
+# central services
+"domain:CentralServices":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/dns/*"
+    - "services/git/*"
+    - "services/intake/*"
+    - "services/kms/*"
+    - "services/kms/*"
+    - "services/logs/*"
+    - "services/modelserving/*"
+    - "services/observability/*"
+    - "services/rabbitmq/*"
+    - "services/redis/*"
+    - "services/secretsmanager/*"
+# databases
+"domain:Databases":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/mongodbflex/*"
+    - "services/mariadb/*"
+    - "services/sqlserverflex/*"
+    - "services/postgresflex/*"
+# IaaS
+"domain:IaaS":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/iaas/*"
+    - "services/objectstorage/*"
+    - "services/runcommand/*"
+    - "services/serverbackup/*"
+    - "services/serverupdate/*"
+    - "services/sfs/*"
+# core platform
+"domain:CorePlatform":
+- changed-files:
+  - any-glob-to-any-file:
+    - "services/auditlog/*"
+    - "services/authorization/*"
+    - "services/resourcemanager/*"
+    - "services/serviceaccount/*"
+    - "services/serviceenablement/*"

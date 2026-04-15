@@ -1,3 +1,23 @@
+## v1.12.0
+- Minimal go version is now Go 1.25
+
+## v1.11.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v1.11.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
+## v1.11.0
+- Package `v2api`:
+  - **Breaking change:** Remove `RuntimeError`
+  - **Docs:** Extend description of `AccessScope`
+- Package `v1api`:
+  - **Breaking change:** Remove `RuntimeError`
+- Deprecated SDK layer in root of the module:
+  - **Breaking change:** Remove enum `CRINAME_DOCKER`
+  - **Breaking change:** Remove `RuntimeError`
+  - **Docs:** Extend description of `AccessScope`
+
 ## 1.10.0
 - **Bugfix:** Disable strict decoding of API responses
 - **Feature:** Add `AdditionalProperties` fields to model structs

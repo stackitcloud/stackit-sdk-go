@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 )
 
@@ -265,7 +266,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerThrottle:                40 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
 			handlerTempErrRetryLimit:       0,
-			contextTimeout:                 1000 * time.Millisecond,
+			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         3,
 			wantErr:                        true,
 		},
@@ -304,7 +305,7 @@ func TestWaitWithContext(t *testing.T) {
 			handlerThrottle:                40 * time.Millisecond,
 			handlerTimeout:                 100 * time.Millisecond,
 			handlerTempErrRetryLimit:       0,
-			contextTimeout:                 1000 * time.Millisecond,
+			contextTimeout:                 100 * time.Millisecond,
 			wantCheckFnNumberCalls:         0,
 			wantErr:                        true,
 		},

@@ -15,6 +15,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/clients"
 	"github.com/stackitcloud/stackit-sdk-go/core/config"
 )
@@ -364,6 +365,18 @@ func TestReadCredentials(t *testing.T) {
 				t.Fatalf("Token is not correct. Expected %s, got %s", test.expectedCredential, credential)
 			}
 		})
+	}
+}
+
+func TestReadCredentialsFileErrorMessage(t *testing.T) {
+	setTemporaryHome(t)
+
+	_, err := readCredentialsFile("test_resources/test_invalid_structure.json")
+	if err == nil {
+		t.Fatalf("error expected")
+	}
+	if !strings.Contains(err.Error(), "unmarshalling credentials") {
+		t.Fatalf("expected unmarshalling credentials error, got %s", err)
 	}
 }
 
@@ -765,6 +778,23 @@ func TestKeyAuthPemInsteadOfJsonKeyErrorHandling(t *testing.T) {
 	}
 	if !strings.HasSuffix(err.Error(), "Please provide it in JSON format.") {
 		t.Fatalf("expected to end with JSON format hint: %s", err)
+	}
+}
+
+func TestSetupAuthWorkloadIdentityErrorMessage(t *testing.T) {
+	setTemporaryHome(t)
+	t.Setenv("STACKIT_SERVICE_ACCOUNT_EMAIL", "")
+	t.Setenv("STACKIT_FEDERATED_TOKEN_FILE", "")
+
+	_, err := SetupAuth(&config.Configuration{WorkloadIdentityFederation: true})
+	if err == nil {
+		t.Fatalf("error expected")
+	}
+	if !strings.Contains(err.Error(), "configuring workload identity federation client") {
+		t.Fatalf("expected workload identity federation error, got %s", err)
+	}
+	if strings.Contains(err.Error(), "configuring no auth client") {
+		t.Fatalf("unexpected no auth error message: %s", err)
 	}
 }
 

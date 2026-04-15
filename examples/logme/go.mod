@@ -1,13 +1,13 @@
 module github.com/stackitcloud/stackit-sdk-go/examples/logme
 
-go 1.21
+go 1.25
 
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/logme => ../../services/logme
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.23.0
-	github.com/stackitcloud/stackit-sdk-go/services/logme v0.25.6
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
+	github.com/stackitcloud/stackit-sdk-go/services/logme v0.27.3
 )
 
 require (

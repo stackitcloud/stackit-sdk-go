@@ -1,3 +1,12 @@
+## v0.12.0
+- Minimal go version is now Go 1.25
+
+## v0.11.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v0.11.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v0.11.0
 - **Feature:** Introduction of multi API version support for the git SDK module. For more details please see the announcement on GitHub: https://github.com/stackitcloud/stackit-sdk-go/discussions/5062
 - `v1betaapi`: New package which should be used for communication with the STACKIT git API in the future

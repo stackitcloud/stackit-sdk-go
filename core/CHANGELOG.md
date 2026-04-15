@@ -1,6 +1,15 @@
-## v0.24.0
+## v0.26.0
 - **Feature:** Add `SetRetryHttpErrorStatusCodes` to waiter to be able to configure the errors to retry on
 - **New:** add missing StatusServiceUnavailable to list of retry codes
+
+## v0.25.0
+- Minimal go version is now Go 1.25
+
+## v0.24.1
+- **Improvement:** Fix misleading error messages in authentication setup and credentials parsing.
+
+## v0.24.0
+- **Bugfix:** Allow setting waiter timeouts via context, that are longer than the default timeout.
 
 ## v0.23.0
 - **New:** Add new `WaiterHelper` struct, which creates an `AsyncActionCheck` function based on the configuration 

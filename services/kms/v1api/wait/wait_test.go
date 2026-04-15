@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	kms "github.com/stackitcloud/stackit-sdk-go/services/kms/v1api"
@@ -122,7 +123,7 @@ func fixtureWrappingKey(state string) *kms.WrappingKey {
 		Purpose:     kms.WRAPPINGPURPOSE_WRAP_SYMMETRIC_KEY,
 		State:       state,
 		ExpiresAt:   testDate,
-		PublicKey:   testPublicKey,
+		PublicKey:   utils.Ptr(testPublicKey),
 	}
 }
 

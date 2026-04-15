@@ -1,11 +1,11 @@
 module github.com/stackitcloud/stackit-sdk-go/services/iaas
 
-go 1.21
+go 1.25
 
 require (
 	github.com/google/go-cmp v0.7.0
-	github.com/stackitcloud/stackit-sdk-go/core v0.23.0
-	github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.20.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
+	github.com/stackitcloud/stackit-sdk-go/services/resourcemanager v0.21.2
 )
 
 require (

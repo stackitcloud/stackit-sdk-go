@@ -1,3 +1,23 @@
+## v0.18.0
+- Minimal go version is now Go 1.25
+
+## v0.17.0
+- `v2api`:
+  - Add `TokenEndpoint` field to `CreateServiceAccountKeyResponseCredentials` struct
+  - Remove `TokenEndpoint` field from `ServiceAccount` struct
+- Deprecated SDK layer in root of the module:
+  - Add `TokenEndpoint` field to `CreateServiceAccountKeyResponseCredentials` struct
+  - Remove `TokenEndpoint` field from `ServiceAccount` struct
+
+## v0.16.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v0.16.0
+- **Feature:** Add `TokenEndpoint` field to `ServiceAccount` model
+
+## v0.15.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v0.15.0
 - **Bugfix:** Disable strict decoding of API responses
 - **Feature:** Add `AdditionalProperties` fields to model structs

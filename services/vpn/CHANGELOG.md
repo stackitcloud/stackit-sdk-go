@@ -1,3 +1,12 @@
+## v0.5.0
+- Minimal go version is now Go 1.25
+
+## v0.4.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v0.4.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v0.4.0
 - `v1beta1api`: New package which can be used for communication with the STACKIT vpn v1 beta1 API
 

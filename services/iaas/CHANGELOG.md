@@ -1,3 +1,28 @@
+## v1.10.0
+- Minimal go version is now Go 1.25
+
+## v1.9.2
+- **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.21.1` to `v0.21.2`
+
+## v1.9.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v1.9.0
+- **Feature:** Add `Cascade` field to `ApiDeleteVolumeRequest` model
+- **Feature:** Add `ConfigDrive` field to `CreateServerPayload` and `Server` model
+
+## v1.8.2
+- **Dependencies:** Bump SDK resourcemanager module from `v0.21.0` to `v0.21.1`
+
+## v1.8.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
+## v1.8.0
+- **Dependencies:** Bump resourcemanager from `v0.20.1` to `v0.21.0`
+
+## v1.7.1
+- **Docs:** Extend description of `PortRange` struct 
+
 ## v1.7.0
 - **Dependencies:** Bump resourcemanager from `v0.19.0` to `v0.20.1`
 

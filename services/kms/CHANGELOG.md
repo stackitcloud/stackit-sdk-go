@@ -1,3 +1,16 @@
+## v1.7.0
+- Minimal go version is now Go 1.25
+
+## v1.6.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v1.6.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
+## v1.6.0
+- `v1api`: **Breaking change:** Change type of field `PublicKey` from `string` to `*string` in `WrappingKey` model struct
+- Deprecated SDK layer in root of the module: The field `PublicKey` in the `WrappingKey` model struct is not marked as required anymore
+
 ## v1.5.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.22.0` to `v0.23.0`
 

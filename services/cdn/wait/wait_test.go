@@ -2,12 +2,14 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"strings"
 	"testing"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/services/cdn"
 )
@@ -115,7 +117,7 @@ func TestCreateDistributionWaitHandler(t *testing.T) {
 			distributionId:       distributionId,
 			expectedDistribution: nil,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -129,7 +131,7 @@ func TestCreateDistributionWaitHandler(t *testing.T) {
 			distributionId:       distributionId,
 			expectedDistribution: nil,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -219,7 +221,7 @@ func TestDeleteDistributionWaitHandler(t *testing.T) {
 			projectId:      projectId,
 			distributionId: distributionId,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -236,7 +238,7 @@ func TestDeleteDistributionWaitHandler(t *testing.T) {
 			projectId:      projectId,
 			distributionId: distributionId,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -253,7 +255,7 @@ func TestDeleteDistributionWaitHandler(t *testing.T) {
 			projectId:      projectId,
 			distributionId: distributionId,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -270,7 +272,7 @@ func TestDeleteDistributionWaitHandler(t *testing.T) {
 			projectId:      projectId,
 			distributionId: distributionId,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -287,7 +289,7 @@ func TestDeleteDistributionWaitHandler(t *testing.T) {
 			projectId:      projectId,
 			distributionId: distributionId,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -360,7 +362,7 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 			distributionId:       distributionId,
 			expectedDistribution: nil,
 			errCheck: func(t *testing.T, err error) {
-				if err.Error() == "WaitWithContext() has timed out" {
+				if errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -472,7 +474,7 @@ func TestCreateCustomDomainWaitHandler(t *testing.T) {
 			customDomain:         customDomain,
 			expectedCustomDomain: nil,
 			errCheck: func(t *testing.T, err error) {
-				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+				if err != nil && errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -580,7 +582,7 @@ func TestDeleteCustomDomainHandler(t *testing.T) {
 			distributionId: distributionId,
 			customDomain:   customDomain,
 			errCheck: func(t *testing.T, err error) {
-				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+				if err != nil && errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -597,7 +599,7 @@ func TestDeleteCustomDomainHandler(t *testing.T) {
 			distributionId: distributionId,
 			customDomain:   customDomain,
 			errCheck: func(t *testing.T, err error) {
-				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+				if err != nil && errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -614,7 +616,7 @@ func TestDeleteCustomDomainHandler(t *testing.T) {
 			distributionId: distributionId,
 			customDomain:   customDomain,
 			errCheck: func(t *testing.T, err error) {
-				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+				if err != nil && errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -631,7 +633,7 @@ func TestDeleteCustomDomainHandler(t *testing.T) {
 			distributionId: distributionId,
 			customDomain:   customDomain,
 			errCheck: func(t *testing.T, err error) {
-				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+				if err != nil && errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)
@@ -648,7 +650,7 @@ func TestDeleteCustomDomainHandler(t *testing.T) {
 			distributionId: distributionId,
 			customDomain:   customDomain,
 			errCheck: func(t *testing.T, err error) {
-				if err != nil && err.Error() == "WaitWithContext() has timed out" {
+				if err != nil && errors.Is(err, context.DeadlineExceeded) {
 					return
 				}
 				t.Fatalf("Unexpected error: %v", err)

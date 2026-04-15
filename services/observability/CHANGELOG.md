@@ -1,3 +1,12 @@
+## v0.21.0
+- Minimal go version is now Go 1.25
+
+## v0.20.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v0.20.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v0.20.0
 - `v1api`: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct
 - Deprecated SDK layer in root of the module: New field `OtlpHttpLogsUrl` in `InstanceSensitiveData` model struct

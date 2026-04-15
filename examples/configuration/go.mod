@@ -1,13 +1,13 @@
 module github.com/stackitcloud/stackit-sdk-go/examples/configuration
 
-go 1.21
+go 1.25
 
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/dns => ../../services/dns
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.23.0
-	github.com/stackitcloud/stackit-sdk-go/services/dns v0.17.6
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
+	github.com/stackitcloud/stackit-sdk-go/services/dns v0.19.3
 	github.com/stackitcloud/stackit-sdk-go/services/postgresql v0.12.1
 )
 

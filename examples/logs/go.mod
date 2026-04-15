@@ -1,13 +1,13 @@
 module github.com/stackitcloud/stackit-sdk-go/examples/logs
 
-go 1.21
+go 1.25
 
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/logs => ../../services/logs
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.23.0
-	github.com/stackitcloud/stackit-sdk-go/services/logs v0.5.2
+	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
+	github.com/stackitcloud/stackit-sdk-go/services/logs v0.7.3
 )
 
 require (

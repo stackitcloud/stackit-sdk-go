@@ -1,3 +1,12 @@
+## v1.14.0
+- Minimal go version is now Go 1.25
+
+## v1.13.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
+
+## v1.13.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.23.0` to `v0.24.0`
+
 ## v1.13.0
 - **Bugfix:** Disable strict decoding of API responses
 - **Feature:** Add `AdditionalProperties` fields to model structs
