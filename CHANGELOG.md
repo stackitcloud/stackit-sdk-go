@@ -108,6 +108,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.8.0](services/mongodbflex/CHANGELOG.md#v180) 
     - Minimal go version is now Go 1.25
+  - [v1.8.1](services/mongodbflex/CHANGELOG.md#v181)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `objectstorage`:
   - [v1.7.2](services/objectstorage/CHANGELOG.md#v172) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
