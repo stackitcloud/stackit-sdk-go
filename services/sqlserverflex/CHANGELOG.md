@@ -1,7 +1,3 @@
-## v1.9.0
-- **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
-- `v3beta1api`: **Feature:** Support region eu02
-
 ## v1.8.0
 - Minimal go version is now Go 1.25
 
