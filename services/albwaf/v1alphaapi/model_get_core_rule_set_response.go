@@ -20,11 +20,14 @@ var _ MappedNullable = &GetCoreRuleSetResponse{}
 // GetCoreRuleSetResponse GetCoreRuleSetResponse returns rule configuration name and it's rules.
 type GetCoreRuleSetResponse struct {
 	// Indicates if the OWASP core rule set is active.
-	Active *bool `json:"active,omitempty"`
+	Active *bool          `json:"active,omitempty"`
+	Groups []CRSRuleGroup `json:"groups,omitempty"`
 	// Core rule set configuration name.
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Region
-	Region               *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	Region *string `json:"region,omitempty" validate:"regexp=^[a-z]{2,4}[0-9]{2}$"`
+	// Core rule set version.
+	Version              *string `json:"version,omitempty" validate:"regexp=^v\\\\d+\\\\.\\\\d+\\\\.\\\\d+$"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -77,6 +80,38 @@ func (o *GetCoreRuleSetResponse) HasActive() bool {
 // SetActive gets a reference to the given bool and assigns it to the Active field.
 func (o *GetCoreRuleSetResponse) SetActive(v bool) {
 	o.Active = &v
+}
+
+// GetGroups returns the Groups field value if set, zero value otherwise.
+func (o *GetCoreRuleSetResponse) GetGroups() []CRSRuleGroup {
+	if o == nil || IsNil(o.Groups) {
+		var ret []CRSRuleGroup
+		return ret
+	}
+	return o.Groups
+}
+
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCoreRuleSetResponse) GetGroupsOk() ([]CRSRuleGroup, bool) {
+	if o == nil || IsNil(o.Groups) {
+		return nil, false
+	}
+	return o.Groups, true
+}
+
+// HasGroups returns a boolean if a field has been set.
+func (o *GetCoreRuleSetResponse) HasGroups() bool {
+	if o != nil && !IsNil(o.Groups) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroups gets a reference to the given []CRSRuleGroup and assigns it to the Groups field.
+func (o *GetCoreRuleSetResponse) SetGroups(v []CRSRuleGroup) {
+	o.Groups = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -143,6 +178,38 @@ func (o *GetCoreRuleSetResponse) SetRegion(v string) {
 	o.Region = &v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *GetCoreRuleSetResponse) GetVersion() string {
+	if o == nil || IsNil(o.Version) {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCoreRuleSetResponse) GetVersionOk() (*string, bool) {
+	if o == nil || IsNil(o.Version) {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *GetCoreRuleSetResponse) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *GetCoreRuleSetResponse) SetVersion(v string) {
+	o.Version = &v
+}
+
 func (o GetCoreRuleSetResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -156,11 +223,17 @@ func (o GetCoreRuleSetResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
+	if !IsNil(o.Groups) {
+		toSerialize["groups"] = o.Groups
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -185,8 +258,10 @@ func (o *GetCoreRuleSetResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "active")
+		delete(additionalProperties, "groups")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "region")
+		delete(additionalProperties, "version")
 		o.AdditionalProperties = additionalProperties
 	}
 
