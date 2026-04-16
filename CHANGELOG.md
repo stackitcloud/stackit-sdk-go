@@ -168,10 +168,13 @@
   - [v0.7.0](services/scf/CHANGELOG.md#v070) 
     - Minimal go version is now Go 1.25
 - `secretsmanager`:
-  - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163) 
+  - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
-  - [v0.17.0](services/secretsmanager/CHANGELOG.md#v0170) 
+  - [v0.17.0](services/secretsmanager/CHANGELOG.md#v0170)
     - Minimal go version is now Go 1.25
+  - [v0.18.0](services/secretsmanager/CHANGELOG.md#v0180)
+    - `v1alphaapi`: New package which can be used for communication with the STACKIT secretsmanager v1 alpha API
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `serverbackup`:
   - [v1.5.3](services/serverbackup/CHANGELOG.md#v153) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
