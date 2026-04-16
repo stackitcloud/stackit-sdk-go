@@ -75,5 +75,6 @@ use (
 	./services/ske
 	./services/sqlserverflex
 	./services/stackitmarketplace
+	./services/telemetrylink
 	./services/vpn
 )
