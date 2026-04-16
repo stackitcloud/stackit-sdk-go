@@ -5,6 +5,7 @@
     - "services/alb/*"
     - "services/albwaf/*"
     - "services/cdn/*"
+    - "services/certificates/*"
     - "services/loadbalancer/*"
     - "services/vpn/*"
 # runtimes
@@ -12,6 +13,7 @@
 - changed-files:
   - any-glob-to-any-file:
     - "services/ske/*"
+    - "services/scf/*"
 # support
 # no support domain sdk modules available yet
 # central services
@@ -28,6 +30,10 @@
     - "services/observability/*"
     - "services/rabbitmq/*"
     - "services/redis/*"
+    - "services/opensearch/*"
+    - "services/logme/*"
+    - "services/telemetryrouter/*"
+    - "services/telemetrylink/*"
     - "services/secretsmanager/*"
 # databases
 "domain:Databases":
