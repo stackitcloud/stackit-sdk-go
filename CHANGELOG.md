@@ -50,6 +50,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.20.0](services/dns/CHANGELOG.md#v0200) 
     - Minimal go version is now Go 1.25
+  - [v0.20.1](services/dns/CHANGELOG.md#v0201)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `edge`:
   - [v0.8.2](services/edge/CHANGELOG.md#v082) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -60,6 +62,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.12.0](services/git/CHANGELOG.md#v0120) 
     - Minimal go version is now Go 1.25
+  - [v0.12.1](services/git/CHANGELOG.md#v0121)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `iaas`:
   - [v1.9.1](services/iaas/CHANGELOG.md#v191)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -72,11 +76,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.8.0](services/intake/CHANGELOG.md#v080) 
     - Minimal go version is now Go 1.25
+  - [v0.8.1](services/intake/CHANGELOG.md#v081)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.7.0](services/kms/CHANGELOG.md#v170) 
     - Minimal go version is now Go 1.25
+  - [v1.7.1](services/kms/CHANGELOG.md#v171) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `lbapplication`: 
   - [v0.5.7](services/lbapplication/CHANGELOG.md#v057) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -97,6 +105,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.8.0](services/logs/CHANGELOG.md#v080) 
     - Minimal go version is now Go 1.25
+  - [v0.8.1](services/logs/CHANGELOG.md#v081)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `mariadb`:
   - [v0.27.3](services/mariadb/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -109,6 +119,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.9.0](services/modelserving/CHANGELOG.md#v090) 
     - Minimal go version is now Go 1.25
+  - [v0.9.1](services/modelserving/CHANGELOG.md#v091)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `mongodbflex`:
   - [v1.7.3](services/mongodbflex/CHANGELOG.md#v173) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -128,6 +140,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.21.0](services/observability/CHANGELOG.md#v0210) 
     - Minimal go version is now Go 1.25
+  - [v0.21.1](services/observability/CHANGELOG.md#v0211)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `opensearch`:
   - [v0.26.3](services/opensearch/CHANGELOG.md#v0263) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -145,11 +159,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.29.0](services/rabbitmq/CHANGELOG.md#v0290) 
     - Minimal go version is now Go 1.25
+  - [v0.29.1](services/rabbitmq/CHANGELOG.md#v0291)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `redis`:
   - [v0.27.3](services/redis/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.28.0](services/redis/CHANGELOG.md#v0280) 
     - Minimal go version is now Go 1.25
+  - [v0.28.1](services/redis/CHANGELOG.md#v0281)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `resourcemanager`:
   - [v0.21.2](services/resourcemanager/CHANGELOG.md#v0212) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
