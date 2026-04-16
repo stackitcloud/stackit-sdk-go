@@ -21,11 +21,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.4.0](services/auditlog/CHANGELOG.md#v040) 
     - Minimal go version is now Go 1.25
+  - [v0.4.1](services/auditlog/CHANGELOG.md#v041)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `authorization`:
   - [v0.14.3](services/authorization/CHANGELOG.md#v0143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.15.0](services/authorization/CHANGELOG.md#v0150) 
     - Minimal go version is now Go 1.25
+  - [v0.15.1](services/authorization/CHANGELOG.md#v0151)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `cdn`:
   - [v1.13.2](services/cdn/CHANGELOG.md#v1132) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -151,6 +155,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.22.0](services/resourcemanager/CHANGELOG.md#v0220) 
     - Minimal go version is now Go 1.25
+  - [v0.22.1](services/resourcemanager/CHANGELOG.md#v0221)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `runcommand`:
   - [v1.6.3](services/runcommand/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -188,11 +194,15 @@
       - Remove `TokenEndpoint` field from `ServiceAccount` struct
   - [v0.18.0](services/serviceaccount/CHANGELOG.md#v0180) 
     - Minimal go version is now Go 1.25
+  - [v0.18.1](services/serviceaccount/CHANGELOG.md#v0181)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `serviceenablement`:
   - [v1.4.3](services/serviceenablement/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.5.0](services/serviceenablement/CHANGELOG.md#v150) 
     - Minimal go version is now Go 1.25
+  - [v1.5.1](services/serviceenablement/CHANGELOG.md#v151)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `sfs`:
   - [v0.6.3](services/sfs/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
