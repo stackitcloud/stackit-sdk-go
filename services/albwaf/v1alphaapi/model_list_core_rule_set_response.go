@@ -19,7 +19,7 @@ var _ MappedNullable = &ListCoreRuleSetResponse{}
 
 // ListCoreRuleSetResponse ListCoreRuleSetResponse returns a list of rule configuration responses.
 type ListCoreRuleSetResponse struct {
-	Items []GetCoreRuleSetResponse `json:"items,omitempty"`
+	Items []GetLimitedCoreRuleSetResponse `json:"items,omitempty"`
 	// Continue token from the ListCoreRuleSetResponse with Limit option
 	NextPageId           *string `json:"nextPageId,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	AdditionalProperties map[string]interface{}
@@ -45,9 +45,9 @@ func NewListCoreRuleSetResponseWithDefaults() *ListCoreRuleSetResponse {
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
-func (o *ListCoreRuleSetResponse) GetItems() []GetCoreRuleSetResponse {
+func (o *ListCoreRuleSetResponse) GetItems() []GetLimitedCoreRuleSetResponse {
 	if o == nil || IsNil(o.Items) {
-		var ret []GetCoreRuleSetResponse
+		var ret []GetLimitedCoreRuleSetResponse
 		return ret
 	}
 	return o.Items
@@ -55,7 +55,7 @@ func (o *ListCoreRuleSetResponse) GetItems() []GetCoreRuleSetResponse {
 
 // GetItemsOk returns a tuple with the Items field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListCoreRuleSetResponse) GetItemsOk() ([]GetCoreRuleSetResponse, bool) {
+func (o *ListCoreRuleSetResponse) GetItemsOk() ([]GetLimitedCoreRuleSetResponse, bool) {
 	if o == nil || IsNil(o.Items) {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *ListCoreRuleSetResponse) HasItems() bool {
 	return false
 }
 
-// SetItems gets a reference to the given []GetCoreRuleSetResponse and assigns it to the Items field.
-func (o *ListCoreRuleSetResponse) SetItems(v []GetCoreRuleSetResponse) {
+// SetItems gets a reference to the given []GetLimitedCoreRuleSetResponse and assigns it to the Items field.
+func (o *ListCoreRuleSetResponse) SetItems(v []GetLimitedCoreRuleSetResponse) {
 	o.Items = v
 }
 
