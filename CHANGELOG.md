@@ -71,6 +71,9 @@
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.21.1` to `v0.21.2`
   - [v1.10.0](services/iaas/CHANGELOG.md#v1100) 
     - Minimal go version is now Go 1.25
+  - [v1.10.1](services/iaas/CHANGELOG.md#1101)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.21.2` to `v0.22.1`
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -135,6 +138,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.8.0](services/objectstorage/CHANGELOG.md#v180) 
     - Minimal go version is now Go 1.25
+  - [v1.8.1](services/objectstorage/CHANGELOG.md#v181)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `observability`:
   - [v0.20.2](services/observability/CHANGELOG.md#v0202) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -180,6 +185,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.7.0](services/runcommand/CHANGELOG.md#v170) 
     - Minimal go version is now Go 1.25
+  - [v1.7.1](services/runcommand/CHANGELOG.md#v171)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `scf`:
   - [v0.6.3](services/scf/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -198,11 +205,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.6.0](services/serverbackup/CHANGELOG.md#v160) 
     - Minimal go version is now Go 1.25
+  - [v1.6.1](services/serverbackup/CHANGELOG.md#v161)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `serverupdate`:
   - [v1.4.3](services/serverupdate/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.5.0](services/serverupdate/CHANGELOG.md#v150) 
     - Minimal go version is now Go 1.25
+  - [v1.5.1](services/serverupdate/CHANGELOG.md#v151)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `serviceaccount`:
   - [v0.16.1](services/serviceaccount/CHANGELOG.md#v0161)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

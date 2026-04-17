@@ -1,3 +1,7 @@
+## v1.10.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+- **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.21.2` to `v0.22.1`
+
 ## v1.10.0
 - Minimal go version is now Go 1.25
 
