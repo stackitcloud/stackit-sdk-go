@@ -28,7 +28,7 @@ type UpdateInstancePartiallyRequestPayload struct {
 	Name     *string             `json:"name,omitempty"`
 	Network  *InstanceNetworkOpt `json:"network,omitempty"`
 	Replicas *ReplicasOpt        `json:"replicas,omitempty"`
-	// How long backups are retained. The value can only be between 32 and 365 days.
+	// How long backups are retained. The value can only be between 32 and 90 days.
 	RetentionDays *int32         `json:"retentionDays,omitempty"`
 	Storage       *StorageUpdate `json:"storage,omitempty"`
 	// The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version) for supported version parameters.
