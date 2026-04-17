@@ -92,7 +92,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 
 			handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(10 * time.Millisecond).WaitWithContext(context.Background())
+			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).SetThrottle(1).WaitWithContext(context.Background())
 
 			if (err != nil) != tt.wantErr {
 				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
