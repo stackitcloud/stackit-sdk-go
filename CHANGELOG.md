@@ -103,6 +103,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.28.0](services/logme/CHANGELOG.md#v0280) 
     - Minimal go version is now Go 1.25
+  - [v0.28.1](services/logme/CHANGELOG.md#v0281)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -152,6 +154,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.27.0](services/opensearch/CHANGELOG.md#v0270) 
     - Minimal go version is now Go 1.25
+  - [v0.27.1](services/opensearch/CHANGELOG.md#v0271)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `postgresflex`:
   - [v1.6.3](services/postgresflex/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
