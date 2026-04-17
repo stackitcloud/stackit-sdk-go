@@ -14,6 +14,7 @@
   - any-glob-to-any-file:
     - "services/ske/*"
     - "services/scf/*"
+    - "services/edge/*"
 # support
 # no support domain sdk modules available yet
 # central services
@@ -35,6 +36,7 @@
     - "services/telemetryrouter/*"
     - "services/telemetrylink/*"
     - "services/secretsmanager/*"
+    - "services/dremio/*"
 # databases
 "domain:Databases":
 - changed-files:
@@ -62,3 +64,4 @@
     - "services/resourcemanager/*"
     - "services/serviceaccount/*"
     - "services/serviceenablement/*"
+    - "services/cost/*"
