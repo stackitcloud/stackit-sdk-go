@@ -57,6 +57,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.9.0](services/edge/CHANGELOG.md#v090) 
     - Minimal go version is now Go 1.25
+  - [v0.9.1](services/edge/CHANGELOG.md#v091) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `git`:
   - [v0.11.2](services/git/CHANGELOG.md#v0112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
