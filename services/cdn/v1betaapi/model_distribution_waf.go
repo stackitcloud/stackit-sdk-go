@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -18,7 +18,7 @@ import (
 // checks if the DistributionWaf type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DistributionWaf{}
 
-// DistributionWaf For this property to be present two pre-conditions must be met:   - the WAF was enabled at least once - the query parameter ?withWafStatus is truthy  This property contains the waf Status. At this point in time, this contains all resolved rules. Rules are split into 3 groups:  - enabledRules - logOnlyRules  - disabledRules  **Do note that the global waf mode (Disabled, LogOnly, Enabled) is *NOT* reflected in this list!**
+// DistributionWaf For this property to be present two pre-conditions must be met: - the WAF was enabled at least once - the query parameter ?withWafStatus is truthy  This property contains the waf Status. At this point in time, this contains all resolved rules. Rules are split into 3 groups: - enabledRules - logOnlyRules - disabledRules  **Do note that the global waf mode (Disabled, LogOnly, Enabled) is *NOT* reflected in this list!**
 type DistributionWaf struct {
 	DisabledRules        []WAFStatusRuleBlock `json:"disabledRules"`
 	EnabledRules         []WAFStatusRuleBlock `json:"enabledRules"`
