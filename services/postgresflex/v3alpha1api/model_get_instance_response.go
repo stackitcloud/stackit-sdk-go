@@ -37,7 +37,7 @@ type GetInstanceResponse struct {
 	Name     string          `json:"name"`
 	Network  InstanceNetwork `json:"network"`
 	Replicas Replicas        `json:"replicas"`
-	// How long backups are retained. The value can only be between 32 and 365 days.
+	// How long backups are retained. The value can only be between 32 and 90 days.
 	RetentionDays int32   `json:"retentionDays"`
 	Status        Status  `json:"status"`
 	Storage       Storage `json:"storage"`
