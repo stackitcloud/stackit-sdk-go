@@ -1,3 +1,7 @@
+## v0.26.0
+- **Feature:** Add `SetRetryHttpErrorStatusCodes` to waiter to be able to configure the errors to retry on
+- **New:** add missing StatusServiceUnavailable to list of retry codes
+
 ## v0.25.0
 - Minimal go version is now Go 1.25
 

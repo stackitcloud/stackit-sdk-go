@@ -10,7 +10,7 @@ import (
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 )
 
-var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayTimeout}
+var RetryHttpErrorStatusCodes = []int{http.StatusBadGateway, http.StatusGatewayTimeout, http.StatusServiceUnavailable}
 
 // AsyncActionCheck reports whether a specific async action has finished.
 //   - waitFinished == true if the async action is finished, false otherwise.
@@ -20,23 +20,31 @@ type AsyncActionCheck[T any] func() (waitFinished bool, response *T, err error)
 
 // AsyncActionHandler handles waiting for a specific async action to be finished.
 type AsyncActionHandler[T any] struct {
-	checkFn                  AsyncActionCheck[T]
-	sleepBeforeWait          time.Duration
-	throttle                 time.Duration
-	timeout                  time.Duration
-	tempErrRetryLimit        int
-	IntermediateStateReached bool
+	checkFn                   AsyncActionCheck[T]
+	sleepBeforeWait           time.Duration
+	throttle                  time.Duration
+	timeout                   time.Duration
+	tempErrRetryLimit         int
+	IntermediateStateReached  bool
+	retryHttpErrorStatusCodes []int
 }
 
 // New initializes an AsyncActionHandler
 func New[T any](f AsyncActionCheck[T]) *AsyncActionHandler[T] {
 	return &AsyncActionHandler[T]{
-		checkFn:           f,
-		sleepBeforeWait:   0 * time.Second,
-		throttle:          5 * time.Second,
-		timeout:           30 * time.Minute,
-		tempErrRetryLimit: 5,
+		checkFn:                   f,
+		sleepBeforeWait:           0 * time.Second,
+		throttle:                  5 * time.Second,
+		timeout:                   30 * time.Minute,
+		tempErrRetryLimit:         5,
+		retryHttpErrorStatusCodes: RetryHttpErrorStatusCodes,
 	}
+}
+
+// SetRetryHttpErrorStatusCodes sets the retry codes to use for retry.
+func (h *AsyncActionHandler[T]) SetRetryHttpErrorStatusCodes(c []int) *AsyncActionHandler[T] {
+	h.retryHttpErrorStatusCodes = c
+	return h
 }
 
 // SetThrottle sets the time interval between each check of the async action.
@@ -122,7 +130,7 @@ func (h *AsyncActionHandler[T]) handleError(retryTempErrorCounter int, err error
 		return retryTempErrorCounter, fmt.Errorf("found non-GenericOpenApiError: %w", err)
 	}
 	// Some APIs may return temporary errors and the request should be retried
-	if !utils.Contains(RetryHttpErrorStatusCodes, oapiErr.StatusCode) {
+	if !utils.Contains(h.retryHttpErrorStatusCodes, oapiErr.StatusCode) {
 		return retryTempErrorCounter, err
 	}
 	retryTempErrorCounter++

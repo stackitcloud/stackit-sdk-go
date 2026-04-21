@@ -23,11 +23,12 @@ func TestNew(t *testing.T) {
 	checkFn := func() (waitFinished bool, res *interface{}, err error) { return true, nil, nil }
 	got := New(checkFn)
 	want := &AsyncActionHandler[interface{}]{
-		checkFn:           checkFn,
-		sleepBeforeWait:   0 * time.Second,
-		throttle:          5 * time.Second,
-		timeout:           30 * time.Minute,
-		tempErrRetryLimit: 5,
+		checkFn:                   checkFn,
+		sleepBeforeWait:           0 * time.Second,
+		throttle:                  5 * time.Second,
+		timeout:                   30 * time.Minute,
+		tempErrRetryLimit:         5,
+		retryHttpErrorStatusCodes: RetryHttpErrorStatusCodes,
 	}
 
 	diff := cmp.Diff(got, want, cmpOpts...)
@@ -160,7 +161,41 @@ func TestSetTempErrRetryLimit(t *testing.T) {
 			got := New(checkFn)
 			got.SetTempErrRetryLimit(tt.tempErrRetryLimit)
 
-			diff := cmp.Diff(got, want, cmpOpts...)
+			diff := cmp.Diff(want, got, cmpOpts...)
+			if diff != "" {
+				t.Errorf("Data does not match: %s", diff)
+			}
+		})
+	}
+}
+
+func TestSetRetryHttpErrorStatusCodes(t *testing.T) {
+	checkFn := func() (waitFinished bool, res *interface{}, err error) { return true, nil, nil }
+
+	for _, tt := range []struct {
+		desc           string
+		setRetryCodes  []int
+		wantRetryCodes []int
+	}{
+		{
+			"default",
+			[]int{},
+			[]int{http.StatusBadGateway, http.StatusGatewayTimeout, http.StatusServiceUnavailable},
+		},
+		{
+			"base_3",
+			[]int{http.StatusTooManyRequests, http.StatusInternalServerError},
+			[]int{http.StatusTooManyRequests, http.StatusInternalServerError},
+		},
+	} {
+		t.Run(tt.desc, func(t *testing.T) {
+			want := New(checkFn)
+			want.retryHttpErrorStatusCodes = tt.wantRetryCodes
+			got := New(checkFn)
+			if len(tt.setRetryCodes) != 0 {
+				got.SetRetryHttpErrorStatusCodes(tt.setRetryCodes)
+			}
+			diff := cmp.Diff(want, got, cmpOpts...)
 			if diff != "" {
 				t.Errorf("Data does not match: %s", diff)
 			}
@@ -356,11 +391,12 @@ func TestWaitWithContext(t *testing.T) {
 				return false, nil, fmt.Errorf("something bad happened when checking if the async action was finished")
 			}
 			handler := AsyncActionHandler[respType]{
-				checkFn:           checkFn,
-				sleepBeforeWait:   tt.handlerSleepBeforeWait,
-				throttle:          tt.handlerThrottle,
-				timeout:           tt.handlerTimeout,
-				tempErrRetryLimit: tt.handlerTempErrRetryLimit,
+				checkFn:                   checkFn,
+				sleepBeforeWait:           tt.handlerSleepBeforeWait,
+				throttle:                  tt.handlerThrottle,
+				timeout:                   tt.handlerTimeout,
+				tempErrRetryLimit:         tt.handlerTempErrRetryLimit,
+				retryHttpErrorStatusCodes: RetryHttpErrorStatusCodes,
 			}
 			ctx, cancel := context.WithTimeout(context.Background(), tt.contextTimeout)
 			defer cancel()
