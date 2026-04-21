@@ -1,3 +1,7 @@
+## v0.18.0
+- `v1alphaapi`: New package which can be used for communication with the STACKIT secretsmanager v1 alpha API
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+
 ## v0.17.0
 - Minimal go version is now Go 1.25
 
