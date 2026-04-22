@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+- `core`: [v0.26.0](core/CHANGELOG.md#v0260)
+  - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
 - `core`: [v0.25.0](core/CHANGELOG.md#v0250)
   - Minimal go version is now Go 1.25
 - `alb`:
