@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -23,7 +23,7 @@ type WafConfig struct {
 	AllowedHttpMethods         []string `json:"allowedHttpMethods,omitempty"`
 	AllowedHttpVersions        []string `json:"allowedHttpVersions,omitempty"`
 	AllowedRequestContentTypes []string `json:"allowedRequestContentTypes,omitempty"`
-	// IDs of the WAF rules that are **explicitly** enabled for this distribution.  If this rule is in a disabled / log Only RuleGroup or Collection, it will be enabled regardless as `enabledRuleIds` overrides those in specificity.  Do note that rules can also be enabled because a Rulegroup or Collection is enabled.  **DO NOT** use this property to find all active rules. Instead, pass `?withWafStatus=true` as a query parameter to `GetDistribution` or `ListDistributions`. This will expose the `waf` Property on distribution Level.  From there you can `$.waf.enabledRules.map(e => e.id)` to get a list of all enabled rules.
+	// IDs of the WAF rules that are **explicitly** enabled for this distribution. If this rule is in a disabled / log Only RuleGroup or Collection, it will be enabled regardless as `enabledRuleIds` overrides those in specificity.  Do note that rules can also be enabled because a Rulegroup or Collection is enabled. **DO NOT** use this property to find all active rules. Instead, pass `?withWafStatus=true` as a query parameter to `GetDistribution` or `ListDistributions`. This will expose the `waf` Property on distribution Level.  From there you can `$.waf.enabledRules.map(e => e.id)` to get a list of all enabled rules.
 	EnabledRuleIds       []string          `json:"enabledRuleIds"`
 	Mode                 WafMode           `json:"mode"`
 	ParanoiaLevel        *WafParanoiaLevel `json:"paranoiaLevel,omitempty"`

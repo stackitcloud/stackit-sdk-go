@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// WafParanoiaLevel The paranoia level defines how aggressively the WAF should action on requests.   It ranges from `L1` (least strict, lowest chance of false positives) to `L4` (most strict, highest chance of false positives). A higher paranoia level is more effective at catching attacks but can also block legitimate traffic.
+// WafParanoiaLevel The paranoia level defines how aggressively the WAF should action on requests. It ranges from `L1` (least strict, lowest chance of false positives) to `L4` (most strict, highest chance of false positives). A higher paranoia level is more effective at catching attacks but can also block legitimate traffic.
 type WafParanoiaLevel string
 
 // List of WafParanoiaLevel

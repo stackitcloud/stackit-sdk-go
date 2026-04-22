@@ -127,6 +127,33 @@ type CreateDistributionPayloadGetDefaultCacheDurationArgType = string
 type CreateDistributionPayloadGetDefaultCacheDurationRetType = string
 
 /*
+	types and functions for forwardHostHeader
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadgetForwardHostHeaderAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadgetForwardHostHeaderArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadgetForwardHostHeaderRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateDistributionPayloadgetForwardHostHeaderAttributeTypeOk(arg CreateDistributionPayloadgetForwardHostHeaderAttributeType) (ret CreateDistributionPayloadgetForwardHostHeaderRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateDistributionPayloadgetForwardHostHeaderAttributeType(arg *CreateDistributionPayloadgetForwardHostHeaderAttributeType, val CreateDistributionPayloadgetForwardHostHeaderRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for intentId
 */
 
@@ -289,6 +316,60 @@ func setCreateDistributionPayloadGetRegionsAttributeType(arg *CreateDistribution
 }
 
 /*
+	types and functions for stripResponseCookies
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadgetStripResponseCookiesAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadgetStripResponseCookiesArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadgetStripResponseCookiesRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateDistributionPayloadgetStripResponseCookiesAttributeTypeOk(arg CreateDistributionPayloadgetStripResponseCookiesAttributeType) (ret CreateDistributionPayloadgetStripResponseCookiesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateDistributionPayloadgetStripResponseCookiesAttributeType(arg *CreateDistributionPayloadgetStripResponseCookiesAttributeType, val CreateDistributionPayloadgetStripResponseCookiesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tls
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetTlsAttributeType = *TlsConfig
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetTlsArgType = TlsConfig
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateDistributionPayloadGetTlsRetType = TlsConfig
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateDistributionPayloadGetTlsAttributeTypeOk(arg CreateDistributionPayloadGetTlsAttributeType) (ret CreateDistributionPayloadGetTlsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateDistributionPayloadGetTlsAttributeType(arg *CreateDistributionPayloadGetTlsAttributeType, val CreateDistributionPayloadGetTlsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for waf
 */
 
@@ -320,13 +401,15 @@ func setCreateDistributionPayloadGetWafAttributeType(arg *CreateDistributionPayl
 type CreateDistributionPayload struct {
 	// REQUIRED
 	Backend CreateDistributionPayloadGetBackendAttributeType `json:"backend" required:"true"`
-	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
+	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries CreateDistributionPayloadGetBlockedCountriesAttributeType `json:"blockedCountries,omitempty"`
-	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps CreateDistributionPayloadGetBlockedIpsAttributeType `json:"blockedIps,omitempty"`
-	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration CreateDistributionPayloadGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
-	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
+	// Enabling this allows the 'Host' header to be passed through to the origin.
+	ForwardHostHeader CreateDistributionPayloadgetForwardHostHeaderAttributeType `json:"forwardHostHeader,omitempty"`
+	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId CreateDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
 	LogSink  CreateDistributionPayloadGetLogSinkAttributeType  `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
@@ -336,7 +419,10 @@ type CreateDistributionPayload struct {
 	// Define in which regions you would like your content to be cached.
 	// REQUIRED
 	Regions CreateDistributionPayloadGetRegionsAttributeType `json:"regions" required:"true"`
-	Waf     CreateDistributionPayloadGetWafAttributeType     `json:"waf,omitempty"`
+	// Enable this to prevent origin-level cookies from being forwarded to the end user.
+	StripResponseCookies CreateDistributionPayloadgetStripResponseCookiesAttributeType `json:"stripResponseCookies,omitempty"`
+	Tls                  CreateDistributionPayloadGetTlsAttributeType                  `json:"tls,omitempty"`
+	Waf                  CreateDistributionPayloadGetWafAttributeType                  `json:"waf,omitempty"`
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -462,6 +548,33 @@ func (o *CreateDistributionPayload) HasDefaultCacheDuration() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateDistributionPayload) SetDefaultCacheDuration(v CreateDistributionPayloadGetDefaultCacheDurationRetType) {
 	setCreateDistributionPayloadGetDefaultCacheDurationAttributeType(&o.DefaultCacheDuration, v)
+}
+
+// GetForwardHostHeader returns the ForwardHostHeader field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetForwardHostHeader() (res CreateDistributionPayloadgetForwardHostHeaderRetType) {
+	res, _ = o.GetForwardHostHeaderOk()
+	return
+}
+
+// GetForwardHostHeaderOk returns a tuple with the ForwardHostHeader field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetForwardHostHeaderOk() (ret CreateDistributionPayloadgetForwardHostHeaderRetType, ok bool) {
+	return getCreateDistributionPayloadgetForwardHostHeaderAttributeTypeOk(o.ForwardHostHeader)
+}
+
+// HasForwardHostHeader returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) HasForwardHostHeader() bool {
+	_, ok := o.GetForwardHostHeaderOk()
+	return ok
+}
+
+// SetForwardHostHeader gets a reference to the given bool and assigns it to the ForwardHostHeader field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) SetForwardHostHeader(v CreateDistributionPayloadgetForwardHostHeaderRetType) {
+	setCreateDistributionPayloadgetForwardHostHeaderAttributeType(&o.ForwardHostHeader, v)
 }
 
 // GetIntentId returns the IntentId field value if set, zero value otherwise.
@@ -619,6 +732,60 @@ func (o *CreateDistributionPayload) SetRegions(v CreateDistributionPayloadGetReg
 	setCreateDistributionPayloadGetRegionsAttributeType(&o.Regions, v)
 }
 
+// GetStripResponseCookies returns the StripResponseCookies field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetStripResponseCookies() (res CreateDistributionPayloadgetStripResponseCookiesRetType) {
+	res, _ = o.GetStripResponseCookiesOk()
+	return
+}
+
+// GetStripResponseCookiesOk returns a tuple with the StripResponseCookies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetStripResponseCookiesOk() (ret CreateDistributionPayloadgetStripResponseCookiesRetType, ok bool) {
+	return getCreateDistributionPayloadgetStripResponseCookiesAttributeTypeOk(o.StripResponseCookies)
+}
+
+// HasStripResponseCookies returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) HasStripResponseCookies() bool {
+	_, ok := o.GetStripResponseCookiesOk()
+	return ok
+}
+
+// SetStripResponseCookies gets a reference to the given bool and assigns it to the StripResponseCookies field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) SetStripResponseCookies(v CreateDistributionPayloadgetStripResponseCookiesRetType) {
+	setCreateDistributionPayloadgetStripResponseCookiesAttributeType(&o.StripResponseCookies, v)
+}
+
+// GetTls returns the Tls field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetTls() (res CreateDistributionPayloadGetTlsRetType) {
+	res, _ = o.GetTlsOk()
+	return
+}
+
+// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) GetTlsOk() (ret CreateDistributionPayloadGetTlsRetType, ok bool) {
+	return getCreateDistributionPayloadGetTlsAttributeTypeOk(o.Tls)
+}
+
+// HasTls returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) HasTls() bool {
+	_, ok := o.GetTlsOk()
+	return ok
+}
+
+// SetTls gets a reference to the given TlsConfig and assigns it to the Tls field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateDistributionPayload) SetTls(v CreateDistributionPayloadGetTlsRetType) {
+	setCreateDistributionPayloadGetTlsAttributeType(&o.Tls, v)
+}
+
 // GetWaf returns the Waf field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *CreateDistributionPayload) GetWaf() (res CreateDistributionPayloadGetWafRetType) {
@@ -661,6 +828,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if val, ok := getCreateDistributionPayloadGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
 		toSerialize["DefaultCacheDuration"] = val
 	}
+	if val, ok := getCreateDistributionPayloadgetForwardHostHeaderAttributeTypeOk(o.ForwardHostHeader); ok {
+		toSerialize["ForwardHostHeader"] = val
+	}
 	if val, ok := getCreateDistributionPayloadGetIntentIdAttributeTypeOk(o.IntentId); ok {
 		toSerialize["IntentId"] = val
 	}
@@ -678,6 +848,12 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getCreateDistributionPayloadGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val
+	}
+	if val, ok := getCreateDistributionPayloadgetStripResponseCookiesAttributeTypeOk(o.StripResponseCookies); ok {
+		toSerialize["StripResponseCookies"] = val
+	}
+	if val, ok := getCreateDistributionPayloadGetTlsAttributeTypeOk(o.Tls); ok {
+		toSerialize["Tls"] = val
 	}
 	if val, ok := getCreateDistributionPayloadGetWafAttributeTypeOk(o.Waf); ok {
 		toSerialize["Waf"] = val
