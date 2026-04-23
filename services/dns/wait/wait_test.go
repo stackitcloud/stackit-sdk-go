@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -86,31 +87,33 @@ func TestCreateZoneWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:      tt.getFails,
-				resourceState: string(tt.resourceState),
-			}
-
-			var wantRes *dns.ZoneResponse
-			if tt.wantResp {
-				wantRes = &dns.ZoneResponse{
-					Zone: &dns.Zone{
-						State: utils.Ptr(tt.resourceState),
-						Id:    utils.Ptr("zid"),
-					},
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:      tt.getFails,
+					resourceState: string(tt.resourceState),
 				}
-			}
 
-			handler := CreateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
+				var wantRes *dns.ZoneResponse
+				if tt.wantResp {
+					wantRes = &dns.ZoneResponse{
+						Zone: &dns.Zone{
+							State: utils.Ptr(tt.resourceState),
+							Id:    utils.Ptr("zid"),
+						},
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -154,31 +157,33 @@ func TestUpdateZoneWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:      tt.getFails,
-				resourceState: string(tt.resourceState),
-			}
-
-			var wantRes *dns.ZoneResponse
-			if tt.wantResp {
-				wantRes = &dns.ZoneResponse{
-					Zone: &dns.Zone{
-						State: utils.Ptr(tt.resourceState),
-						Id:    utils.Ptr("zid"),
-					},
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:      tt.getFails,
+					resourceState: string(tt.resourceState),
 				}
-			}
 
-			handler := PartialUpdateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
+				var wantRes *dns.ZoneResponse
+				if tt.wantResp {
+					wantRes = &dns.ZoneResponse{
+						Zone: &dns.Zone{
+							State: utils.Ptr(tt.resourceState),
+							Id:    utils.Ptr("zid"),
+						},
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := PartialUpdateZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -222,33 +227,35 @@ func TestDeleteZoneWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:      tt.getFails,
-				resourceState: string(tt.resourceState),
-			}
-
-			var wantRes *dns.ZoneResponse
-			if tt.wantResp {
-				wantRes = &dns.ZoneResponse{
-					Zone: &dns.Zone{
-						State: utils.Ptr(tt.resourceState),
-						Id:    utils.Ptr("zid"),
-					},
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:      tt.getFails,
+					resourceState: string(tt.resourceState),
 				}
-			} else {
-				wantRes = nil
-			}
 
-			handler := DeleteZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
+				var wantRes *dns.ZoneResponse
+				if tt.wantResp {
+					wantRes = &dns.ZoneResponse{
+						Zone: &dns.Zone{
+							State: utils.Ptr(tt.resourceState),
+							Id:    utils.Ptr("zid"),
+						},
+					}
+				} else {
+					wantRes = nil
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteZoneWaitHandler(context.Background(), apiClient, "pid", "zid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -292,31 +299,33 @@ func TestCreateRecordSetWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:      tt.getFails,
-				resourceState: string(tt.resourceState),
-			}
-
-			var wantRes *dns.RecordSetResponse
-			if tt.wantResp {
-				wantRes = &dns.RecordSetResponse{
-					Rrset: &dns.RecordSet{
-						State: utils.Ptr(tt.resourceState),
-						Id:    utils.Ptr("rid"),
-					},
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:      tt.getFails,
+					resourceState: string(tt.resourceState),
 				}
-			}
 
-			handler := CreateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
+				var wantRes *dns.RecordSetResponse
+				if tt.wantResp {
+					wantRes = &dns.RecordSetResponse{
+						Rrset: &dns.RecordSet{
+							State: utils.Ptr(tt.resourceState),
+							Id:    utils.Ptr("rid"),
+						},
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -360,31 +369,33 @@ func TestUpdateRecordSetWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:      tt.getFails,
-				resourceState: string(tt.resourceState),
-			}
-
-			var wantRes *dns.RecordSetResponse
-			if tt.wantResp {
-				wantRes = &dns.RecordSetResponse{
-					Rrset: &dns.RecordSet{
-						State: utils.Ptr(tt.resourceState),
-						Id:    utils.Ptr("rid"),
-					},
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:      tt.getFails,
+					resourceState: string(tt.resourceState),
 				}
-			}
 
-			handler := PartialUpdateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
+				var wantRes *dns.RecordSetResponse
+				if tt.wantResp {
+					wantRes = &dns.RecordSetResponse{
+						Rrset: &dns.RecordSet{
+							State: utils.Ptr(tt.resourceState),
+							Id:    utils.Ptr("rid"),
+						},
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := PartialUpdateRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -428,36 +439,38 @@ func TestDeleteRecordSetWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getFails:      tt.getFails,
-				resourceState: string(tt.resourceState),
-			}
-
-			var wantRes *dns.RecordSetResponse
-			if tt.wantResp {
-				wantRes = &dns.RecordSetResponse{
-					Rrset: &dns.RecordSet{
-						State: utils.Ptr(tt.resourceState),
-						Id:    utils.Ptr("rid"),
-					},
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getFails:      tt.getFails,
+					resourceState: string(tt.resourceState),
 				}
-			} else {
-				wantRes = nil
-			}
 
-			handler := DeleteRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
+				var wantRes *dns.RecordSetResponse
+				if tt.wantResp {
+					wantRes = &dns.RecordSetResponse{
+						Rrset: &dns.RecordSet{
+							State: utils.Ptr(tt.resourceState),
+							Id:    utils.Ptr("rid"),
+						},
+					}
+				} else {
+					wantRes = nil
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteRecordSetWaitHandler(context.Background(), apiClient, "pid", "zid", "rid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if wantRes == nil && gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
-			if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if wantRes == nil && gotRes != nil {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+				if wantRes != nil && !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
