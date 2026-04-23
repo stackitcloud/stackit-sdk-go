@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+- `core`: [v0.26.0](core/CHANGELOG.md#v0260)
+  - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
 - `core`: [v0.25.0](core/CHANGELOG.md#v0250)
   - Minimal go version is now Go 1.25
 - `alb`:
@@ -37,11 +39,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.14.0](services/cdn/CHANGELOG.md#v1140) 
     - Minimal go version is now Go 1.25
+  - [v1.14.1](services/cdn/CHANGELOG.md#v1141) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.6.0](services/certificates/CHANGELOG.md#v160) 
     - Minimal go version is now Go 1.25
+  - [v1.6.1](services/certificates/CHANGELOG.md#v161) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `cost`:
   - [v0.2.2](services/cost/CHANGELOG.md#v022) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -200,6 +206,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.7.0](services/scf/CHANGELOG.md#v070) 
     - Minimal go version is now Go 1.25
+  - [v0.7.1](services/scf/CHANGELOG.md#v071) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `secretsmanager`:
   - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
