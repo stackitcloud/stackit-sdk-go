@@ -256,6 +256,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.7.0](services/sfs/CHANGELOG.md#v070) 
     - Minimal go version is now Go 1.25
+  - [v0.8.0](services/sfs/CHANGELOG.md#v080) 
+    - **Feature:** model `CreateResourcePoolPayload` now has an additional field `snapshotPolicyId`
+    - **Feature:** model `CreateResourcePoolSnapshotPayload` now has an additional field `snaplockRetentionHours`
+    - **Feature:** model `ResourcePool` now has an additional field `snapshotPolicy`
+    - **Feature:** model `ResourcePoolSnapshot` now has an additional field `snaplockExpiryTime`
+    - **Feature:** model `ResourcePoolSpace` now has an additional field `usedBySnapshotsGigabytes`
+    - **Feature:** model `UpdateResourcePoolPayload` now has an additional field `snapshotPolicyId`
+    - **Feature:** new models: `DisableLockResponse`, `EnableLockResponse`, `GetLockResponse`, `GetScheduleResponse`, `GetSnapshotPolicyResponse`, `ListSchedulesResponse`, `ListSnapshotPoliciesResponse`, `ResourcePoolSnapshotPolicy`, `Schedule`, `SnapshotPolicy`, `SnapshotPolicySchedule`, `UpdateResourcePoolSnapshotPayload`, `UpdateResourcePoolSnapshotResponse`
+    - **Feature:** new operations: `UpdateResourcePoolSnapshot`, `ListSchedules`, `GetSchedule`, `ListSnapshotPolicies`, `GetSnapshotPolicy`, `DisableLock`, `GetLock`, `EnableLock`,
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
