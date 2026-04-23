@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"testing"
 	"testing/synctest"
-	"time"
 
 	"github.com/google/go-cmp/cmp"
 
@@ -94,7 +93,7 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 
 				handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
 
-				gotRes, err := handler.SetSleepBeforeWait(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)

@@ -131,6 +131,33 @@ type ConfigPatchGetDefaultCacheDurationArgType = *string
 type ConfigPatchGetDefaultCacheDurationRetType = *string
 
 /*
+	types and functions for forwardHostHeader
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchgetForwardHostHeaderAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchgetForwardHostHeaderArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchgetForwardHostHeaderRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getConfigPatchgetForwardHostHeaderAttributeTypeOk(arg ConfigPatchgetForwardHostHeaderAttributeType) (ret ConfigPatchgetForwardHostHeaderRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setConfigPatchgetForwardHostHeaderAttributeType(arg *ConfigPatchgetForwardHostHeaderAttributeType, val ConfigPatchgetForwardHostHeaderRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for logSink
 */
 
@@ -266,6 +293,60 @@ func setConfigPatchGetRegionsAttributeType(arg *ConfigPatchGetRegionsAttributeTy
 }
 
 /*
+	types and functions for stripResponseCookies
+*/
+
+// isBoolean
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchgetStripResponseCookiesAttributeType = *bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchgetStripResponseCookiesArgType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchgetStripResponseCookiesRetType = bool
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getConfigPatchgetStripResponseCookiesAttributeTypeOk(arg ConfigPatchgetStripResponseCookiesAttributeType) (ret ConfigPatchgetStripResponseCookiesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setConfigPatchgetStripResponseCookiesAttributeType(arg *ConfigPatchgetStripResponseCookiesAttributeType, val ConfigPatchgetStripResponseCookiesRetType) {
+	*arg = &val
+}
+
+/*
+	types and functions for tls
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchGetTlsAttributeType = *TlsConfigPatch
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchGetTlsArgType = TlsConfigPatch
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ConfigPatchGetTlsRetType = TlsConfigPatch
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getConfigPatchGetTlsAttributeTypeOk(arg ConfigPatchGetTlsAttributeType) (ret ConfigPatchGetTlsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setConfigPatchGetTlsAttributeType(arg *ConfigPatchGetTlsAttributeType, val ConfigPatchGetTlsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for waf
 */
 
@@ -296,19 +377,24 @@ func setConfigPatchGetWafAttributeType(arg *ConfigPatchGetWafAttributeType, val 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ConfigPatch struct {
 	Backend ConfigPatchGetBackendAttributeType `json:"backend,omitempty"`
-	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
+	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries ConfigPatchGetBlockedCountriesAttributeType `json:"blockedCountries,omitempty"`
-	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps ConfigPatchGetBlockedIpsAttributeType `json:"blockedIps,omitempty"`
-	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration ConfigPatchGetDefaultCacheDurationAttributeType `json:"defaultCacheDuration,omitempty"`
-	LogSink              ConfigPatchGetLogSinkAttributeType              `json:"logSink,omitempty"`
+	// Enabling this allows the 'Host' header to be passed through to the origin.
+	ForwardHostHeader ConfigPatchgetForwardHostHeaderAttributeType `json:"forwardHostHeader,omitempty"`
+	LogSink           ConfigPatchGetLogSinkAttributeType           `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
 	MonthlyLimitBytes ConfigPatchGetMonthlyLimitBytesAttributeType `json:"monthlyLimitBytes,omitempty"`
 	Optimizer         ConfigPatchGetOptimizerAttributeType         `json:"optimizer,omitempty"`
 	Redirects         ConfigPatchGetRedirectsAttributeType         `json:"redirects,omitempty"`
 	Regions           ConfigPatchGetRegionsAttributeType           `json:"regions,omitempty"`
-	Waf               ConfigPatchGetWafAttributeType               `json:"waf,omitempty"`
+	// Enable this to prevent origin-level cookies from being forwarded to the end user.
+	StripResponseCookies ConfigPatchgetStripResponseCookiesAttributeType `json:"stripResponseCookies,omitempty"`
+	Tls                  ConfigPatchGetTlsAttributeType                  `json:"tls,omitempty"`
+	Waf                  ConfigPatchGetWafAttributeType                  `json:"waf,omitempty"`
 }
 
 // NewConfigPatch instantiates a new ConfigPatch object
@@ -449,6 +535,33 @@ func (o *ConfigPatch) SetDefaultCacheDurationNil() {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ConfigPatch) UnsetDefaultCacheDuration() {
 	o.DefaultCacheDuration = nil
+}
+
+// GetForwardHostHeader returns the ForwardHostHeader field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetForwardHostHeader() (res ConfigPatchgetForwardHostHeaderRetType) {
+	res, _ = o.GetForwardHostHeaderOk()
+	return
+}
+
+// GetForwardHostHeaderOk returns a tuple with the ForwardHostHeader field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetForwardHostHeaderOk() (ret ConfigPatchgetForwardHostHeaderRetType, ok bool) {
+	return getConfigPatchgetForwardHostHeaderAttributeTypeOk(o.ForwardHostHeader)
+}
+
+// HasForwardHostHeader returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) HasForwardHostHeader() bool {
+	_, ok := o.GetForwardHostHeaderOk()
+	return ok
+}
+
+// SetForwardHostHeader gets a reference to the given bool and assigns it to the ForwardHostHeader field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) SetForwardHostHeader(v ConfigPatchgetForwardHostHeaderRetType) {
+	setConfigPatchgetForwardHostHeaderAttributeType(&o.ForwardHostHeader, v)
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -612,6 +725,60 @@ func (o *ConfigPatch) SetRegions(v ConfigPatchGetRegionsRetType) {
 	setConfigPatchGetRegionsAttributeType(&o.Regions, v)
 }
 
+// GetStripResponseCookies returns the StripResponseCookies field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetStripResponseCookies() (res ConfigPatchgetStripResponseCookiesRetType) {
+	res, _ = o.GetStripResponseCookiesOk()
+	return
+}
+
+// GetStripResponseCookiesOk returns a tuple with the StripResponseCookies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetStripResponseCookiesOk() (ret ConfigPatchgetStripResponseCookiesRetType, ok bool) {
+	return getConfigPatchgetStripResponseCookiesAttributeTypeOk(o.StripResponseCookies)
+}
+
+// HasStripResponseCookies returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) HasStripResponseCookies() bool {
+	_, ok := o.GetStripResponseCookiesOk()
+	return ok
+}
+
+// SetStripResponseCookies gets a reference to the given bool and assigns it to the StripResponseCookies field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) SetStripResponseCookies(v ConfigPatchgetStripResponseCookiesRetType) {
+	setConfigPatchgetStripResponseCookiesAttributeType(&o.StripResponseCookies, v)
+}
+
+// GetTls returns the Tls field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetTls() (res ConfigPatchGetTlsRetType) {
+	res, _ = o.GetTlsOk()
+	return
+}
+
+// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) GetTlsOk() (ret ConfigPatchGetTlsRetType, ok bool) {
+	return getConfigPatchGetTlsAttributeTypeOk(o.Tls)
+}
+
+// HasTls returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) HasTls() bool {
+	_, ok := o.GetTlsOk()
+	return ok
+}
+
+// SetTls gets a reference to the given TlsConfigPatch and assigns it to the Tls field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ConfigPatch) SetTls(v ConfigPatchGetTlsRetType) {
+	setConfigPatchGetTlsAttributeType(&o.Tls, v)
+}
+
 // GetWaf returns the Waf field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ConfigPatch) GetWaf() (res ConfigPatchGetWafRetType) {
@@ -654,6 +821,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	if val, ok := getConfigPatchGetDefaultCacheDurationAttributeTypeOk(o.DefaultCacheDuration); ok {
 		toSerialize["DefaultCacheDuration"] = val
 	}
+	if val, ok := getConfigPatchgetForwardHostHeaderAttributeTypeOk(o.ForwardHostHeader); ok {
+		toSerialize["ForwardHostHeader"] = val
+	}
 	if val, ok := getConfigPatchGetLogSinkAttributeTypeOk(o.LogSink); ok {
 		toSerialize["LogSink"] = val
 	}
@@ -668,6 +838,12 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getConfigPatchGetRegionsAttributeTypeOk(o.Regions); ok {
 		toSerialize["Regions"] = val
+	}
+	if val, ok := getConfigPatchgetStripResponseCookiesAttributeTypeOk(o.StripResponseCookies); ok {
+		toSerialize["StripResponseCookies"] = val
+	}
+	if val, ok := getConfigPatchGetTlsAttributeTypeOk(o.Tls); ok {
+		toSerialize["Tls"] = val
 	}
 	if val, ok := getConfigPatchGetWafAttributeTypeOk(o.Waf); ok {
 		toSerialize["Waf"] = val

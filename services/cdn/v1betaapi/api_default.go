@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -32,11 +32,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Your STACKIT Project ID
 		@return ApiCreateDistributionRequest
+
+		Deprecated
 	*/
 	CreateDistribution(ctx context.Context, projectId string) ApiCreateDistributionRequest
 
 	// CreateDistributionExecute executes the request
 	//  @return CreateDistributionResponse
+	// Deprecated
 	CreateDistributionExecute(r ApiCreateDistributionRequest) (*CreateDistributionResponse, error)
 
 	/*
@@ -50,11 +53,14 @@ type DefaultAPI interface {
 		@param distributionId
 		@param domain
 		@return ApiDeleteCustomDomainRequest
+
+		Deprecated
 	*/
 	DeleteCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiDeleteCustomDomainRequest
 
 	// DeleteCustomDomainExecute executes the request
 	//  @return DeleteCustomDomainResponse
+	// Deprecated
 	DeleteCustomDomainExecute(r ApiDeleteCustomDomainRequest) (*DeleteCustomDomainResponse, error)
 
 	/*
@@ -67,11 +73,14 @@ type DefaultAPI interface {
 		@param projectId Your STACKIT Project ID
 		@param distributionId
 		@return ApiDeleteDistributionRequest
+
+		Deprecated
 	*/
 	DeleteDistribution(ctx context.Context, projectId string, distributionId string) ApiDeleteDistributionRequest
 
 	// DeleteDistributionExecute executes the request
 	//  @return DeleteDistributionResponse
+	// Deprecated
 	DeleteDistributionExecute(r ApiDeleteDistributionRequest) (*DeleteDistributionResponse, error)
 
 	/*
@@ -97,11 +106,14 @@ type DefaultAPI interface {
 			@param projectId Your STACKIT Project ID
 			@param distributionId
 			@return ApiFindCachePathsRequest
+
+			Deprecated
 	*/
 	FindCachePaths(ctx context.Context, projectId string, distributionId string) ApiFindCachePathsRequest
 
 	// FindCachePathsExecute executes the request
 	//  @return FindCachePathsResponse
+	// Deprecated
 	FindCachePathsExecute(r ApiFindCachePathsRequest) (*FindCachePathsResponse, error)
 
 	/*
@@ -117,11 +129,14 @@ type DefaultAPI interface {
 			@param projectId Your STACKIT Project ID
 			@param distributionId
 			@return ApiGetCacheInfoRequest
+
+			Deprecated
 	*/
 	GetCacheInfo(ctx context.Context, projectId string, distributionId string) ApiGetCacheInfoRequest
 
 	// GetCacheInfoExecute executes the request
 	//  @return GetCacheInfoResponse
+	// Deprecated
 	GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*GetCacheInfoResponse, error)
 
 	/*
@@ -135,11 +150,14 @@ type DefaultAPI interface {
 		@param distributionId
 		@param domain
 		@return ApiGetCustomDomainRequest
+
+		Deprecated
 	*/
 	GetCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiGetCustomDomainRequest
 
 	// GetCustomDomainExecute executes the request
 	//  @return GetCustomDomainResponse
+	// Deprecated
 	GetCustomDomainExecute(r ApiGetCustomDomainRequest) (*GetCustomDomainResponse, error)
 
 	/*
@@ -151,11 +169,14 @@ type DefaultAPI interface {
 		@param projectId Your STACKIT Project ID
 		@param distributionId
 		@return ApiGetDistributionRequest
+
+		Deprecated
 	*/
 	GetDistribution(ctx context.Context, projectId string, distributionId string) ApiGetDistributionRequest
 
 	// GetDistributionExecute executes the request
 	//  @return GetDistributionResponse
+	// Deprecated
 	GetDistributionExecute(r ApiGetDistributionRequest) (*GetDistributionResponse, error)
 
 	/*
@@ -165,11 +186,14 @@ type DefaultAPI interface {
 		@param projectId Your STACKIT Project ID
 		@param distributionId Your CDN distribution ID
 		@return ApiGetLogsRequest
+
+		Deprecated
 	*/
 	GetLogs(ctx context.Context, projectId string, distributionId string) ApiGetLogsRequest
 
 	// GetLogsExecute executes the request
 	//  @return GetLogsResponse
+	// Deprecated
 	GetLogsExecute(r ApiGetLogsRequest) (*GetLogsResponse, error)
 
 	/*
@@ -179,11 +203,14 @@ type DefaultAPI interface {
 		@param projectId Your STACKIT Project ID
 		@param distributionId Your CDN distribution ID
 		@return ApiGetLogsSearchFiltersRequest
+
+		Deprecated
 	*/
 	GetLogsSearchFilters(ctx context.Context, projectId string, distributionId string) ApiGetLogsSearchFiltersRequest
 
 	// GetLogsSearchFiltersExecute executes the request
 	//  @return GetLogsSearchFiltersResponse
+	// Deprecated
 	GetLogsSearchFiltersExecute(r ApiGetLogsSearchFiltersRequest) (*GetLogsSearchFiltersResponse, error)
 
 	/*
@@ -206,11 +233,14 @@ type DefaultAPI interface {
 			@param projectId Your STACKIT Project ID
 			@param distributionId
 			@return ApiGetStatisticsRequest
+
+			Deprecated
 	*/
 	GetStatistics(ctx context.Context, projectId string, distributionId string) ApiGetStatisticsRequest
 
 	// GetStatisticsExecute executes the request
 	//  @return GetStatisticsResponse
+	// Deprecated
 	GetStatisticsExecute(r ApiGetStatisticsRequest) (*GetStatisticsResponse, error)
 
 	/*
@@ -223,11 +253,14 @@ type DefaultAPI interface {
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param projectId Your STACKIT Project ID
 			@return ApiListDistributionsRequest
+
+			Deprecated
 	*/
 	ListDistributions(ctx context.Context, projectId string) ApiListDistributionsRequest
 
 	// ListDistributionsExecute executes the request
 	//  @return ListDistributionsResponse
+	// Deprecated
 	ListDistributionsExecute(r ApiListDistributionsRequest) (*ListDistributionsResponse, error)
 
 	/*
@@ -238,11 +271,14 @@ type DefaultAPI interface {
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 		@param projectId Your STACKIT Project ID
 		@return ApiListWAFCollectionsRequest
+
+		Deprecated
 	*/
 	ListWAFCollections(ctx context.Context, projectId string) ApiListWAFCollectionsRequest
 
 	// ListWAFCollectionsExecute executes the request
 	//  @return ListWAFCollectionsResponse
+	// Deprecated
 	ListWAFCollectionsExecute(r ApiListWAFCollectionsRequest) (*ListWAFCollectionsResponse, error)
 
 	/*
@@ -254,11 +290,14 @@ type DefaultAPI interface {
 		@param projectId Your STACKIT Project ID
 		@param distributionId
 		@return ApiPatchDistributionRequest
+
+		Deprecated
 	*/
 	PatchDistribution(ctx context.Context, projectId string, distributionId string) ApiPatchDistributionRequest
 
 	// PatchDistributionExecute executes the request
 	//  @return PatchDistributionResponse
+	// Deprecated
 	PatchDistributionExecute(r ApiPatchDistributionRequest) (*PatchDistributionResponse, error)
 
 	/*
@@ -272,11 +311,14 @@ type DefaultAPI interface {
 			@param projectId Your STACKIT Project ID
 			@param distributionId
 			@return ApiPurgeCacheRequest
+
+			Deprecated
 	*/
 	PurgeCache(ctx context.Context, projectId string, distributionId string) ApiPurgeCacheRequest
 
 	// PurgeCacheExecute executes the request
 	//  @return map[string]interface{}
+	// Deprecated
 	PurgeCacheExecute(r ApiPurgeCacheRequest) (map[string]interface{}, error)
 
 	/*
@@ -290,11 +332,14 @@ type DefaultAPI interface {
 		@param distributionId
 		@param domain
 		@return ApiPutCustomDomainRequest
+
+		Deprecated
 	*/
 	PutCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiPutCustomDomainRequest
 
 	// PutCustomDomainExecute executes the request
 	//  @return PutCustomDomainResponse
+	// Deprecated
 	PutCustomDomainExecute(r ApiPutCustomDomainRequest) (*PutCustomDomainResponse, error)
 }
 
@@ -325,6 +370,8 @@ CreateDistribution will create a new CDN distribution
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Your STACKIT Project ID
 	@return ApiCreateDistributionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) CreateDistribution(ctx context.Context, projectId string) ApiCreateDistributionRequest {
 	return ApiCreateDistributionRequest{
@@ -337,6 +384,8 @@ func (a *DefaultAPIService) CreateDistribution(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return CreateDistributionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) CreateDistributionExecute(r ApiCreateDistributionRequest) (*CreateDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -512,6 +561,8 @@ DeleteCustomDomain Delete a custom domain
 	@param distributionId
 	@param domain
 	@return ApiDeleteCustomDomainRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiDeleteCustomDomainRequest {
 	return ApiDeleteCustomDomainRequest{
@@ -526,6 +577,8 @@ func (a *DefaultAPIService) DeleteCustomDomain(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return DeleteCustomDomainResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteCustomDomainExecute(r ApiDeleteCustomDomainRequest) (*DeleteCustomDomainResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -672,7 +725,7 @@ type ApiDeleteDistributionRequest struct {
 	intentId       *string
 }
 
-// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
+// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;. This is used to deduplicate requests. If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
 func (r ApiDeleteDistributionRequest) IntentId(intentId string) ApiDeleteDistributionRequest {
 	r.intentId = &intentId
 	return r
@@ -691,6 +744,8 @@ DeleteDistribution accepts a project- and distribution-ID and will delete a dist
 	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiDeleteDistributionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) DeleteDistribution(ctx context.Context, projectId string, distributionId string) ApiDeleteDistributionRequest {
 	return ApiDeleteDistributionRequest{
@@ -704,6 +759,8 @@ func (a *DefaultAPIService) DeleteDistribution(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return DeleteDistributionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) DeleteDistributionExecute(r ApiDeleteDistributionRequest) (*DeleteDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodDelete
@@ -878,6 +935,8 @@ this would return the following paths, in the following order, assuming `/te` wa
 	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiFindCachePathsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) FindCachePaths(ctx context.Context, projectId string, distributionId string) ApiFindCachePathsRequest {
 	return ApiFindCachePathsRequest{
@@ -891,6 +950,8 @@ func (a *DefaultAPIService) FindCachePaths(ctx context.Context, projectId string
 // Execute executes the request
 //
 //	@return FindCachePathsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) FindCachePathsExecute(r ApiFindCachePathsRequest) (*FindCachePathsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1055,6 +1116,8 @@ The request will not fail if no data about a path is found.
 	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiGetCacheInfoRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCacheInfo(ctx context.Context, projectId string, distributionId string) ApiGetCacheInfoRequest {
 	return ApiGetCacheInfoRequest{
@@ -1068,6 +1131,8 @@ func (a *DefaultAPIService) GetCacheInfo(ctx context.Context, projectId string, 
 // Execute executes the request
 //
 //	@return GetCacheInfoResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*GetCacheInfoResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1224,6 +1289,8 @@ GetCustomDomain Retrieve a specific custom domain
 	@param distributionId
 	@param domain
 	@return ApiGetCustomDomainRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiGetCustomDomainRequest {
 	return ApiGetCustomDomainRequest{
@@ -1238,6 +1305,8 @@ func (a *DefaultAPIService) GetCustomDomain(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return GetCustomDomainResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetCustomDomainExecute(r ApiGetCustomDomainRequest) (*GetCustomDomainResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1412,6 +1481,8 @@ This returns a specific distribution by its ID. If no distribution with the give
 	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiGetDistributionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetDistribution(ctx context.Context, projectId string, distributionId string) ApiGetDistributionRequest {
 	return ApiGetDistributionRequest{
@@ -1425,6 +1496,8 @@ func (a *DefaultAPIService) GetDistribution(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return GetDistributionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetDistributionExecute(r ApiGetDistributionRequest) (*GetDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1599,25 +1672,25 @@ func (r ApiGetLogsRequest) From(from time.Time) ApiGetLogsRequest {
 	return r
 }
 
-// the end of the time range for which logs should be returned. If not specified,  \&quot;now\&quot; is used.
+// the end of the time range for which logs should be returned. If not specified, \&quot;now\&quot; is used.
 func (r ApiGetLogsRequest) To(to time.Time) ApiGetLogsRequest {
 	r.to = &to
 	return r
 }
 
-// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged  but the request not blocked
+// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged but the request not blocked
 func (r ApiGetLogsRequest) WafAction(wafAction WAFRuleAction) ApiGetLogsRequest {
 	r.wafAction = &wafAction
 	return r
 }
 
-// Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+// Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive)
 func (r ApiGetLogsRequest) PageSize(pageSize int32) ApiGetLogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 func (r ApiGetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsRequest {
 	r.pageIdentifier = &pageIdentifier
 	return r
@@ -1669,6 +1742,8 @@ GetLogs Retrieve distribution logs
 	@param projectId Your STACKIT Project ID
 	@param distributionId Your CDN distribution ID
 	@return ApiGetLogsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetLogs(ctx context.Context, projectId string, distributionId string) ApiGetLogsRequest {
 	return ApiGetLogsRequest{
@@ -1682,6 +1757,8 @@ func (a *DefaultAPIService) GetLogs(ctx context.Context, projectId string, distr
 // Execute executes the request
 //
 //	@return GetLogsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -1879,6 +1956,8 @@ GetLogsSearchFilters Get relevant search filters for this distribution based on 
 	@param projectId Your STACKIT Project ID
 	@param distributionId Your CDN distribution ID
 	@return ApiGetLogsSearchFiltersRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetLogsSearchFilters(ctx context.Context, projectId string, distributionId string) ApiGetLogsSearchFiltersRequest {
 	return ApiGetLogsSearchFiltersRequest{
@@ -1892,6 +1971,8 @@ func (a *DefaultAPIService) GetLogsSearchFilters(ctx context.Context, projectId 
 // Execute executes the request
 //
 //	@return GetLogsSearchFiltersResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFiltersRequest) (*GetLogsSearchFiltersResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2055,13 +2136,13 @@ func (r ApiGetStatisticsRequest) From(from time.Time) ApiGetStatisticsRequest {
 	return r
 }
 
-// the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+// the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on.
 func (r ApiGetStatisticsRequest) To(to time.Time) ApiGetStatisticsRequest {
 	r.to = &to
 	return r
 }
 
-// Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
+// Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
 func (r ApiGetStatisticsRequest) Interval(interval string) ApiGetStatisticsRequest {
 	r.interval = &interval
 	return r
@@ -2090,6 +2171,8 @@ Example: if `interval` is `hourly`, `from` would default to the start of the nex
 	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiGetStatisticsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) GetStatistics(ctx context.Context, projectId string, distributionId string) ApiGetStatisticsRequest {
 	return ApiGetStatisticsRequest{
@@ -2103,6 +2186,8 @@ func (a *DefaultAPIService) GetStatistics(ctx context.Context, projectId string,
 // Execute executes the request
 //
 //	@return GetStatisticsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) GetStatisticsExecute(r ApiGetStatisticsRequest) (*GetStatisticsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2255,7 +2340,7 @@ type ApiListDistributionsRequest struct {
 	sortOrder      *string
 }
 
-// Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+// Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
 func (r ApiListDistributionsRequest) PageSize(pageSize int32) ApiListDistributionsRequest {
 	r.pageSize = &pageSize
 	return r
@@ -2267,13 +2352,13 @@ func (r ApiListDistributionsRequest) WithWafStatus(withWafStatus bool) ApiListDi
 	return r
 }
 
-// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 func (r ApiListDistributionsRequest) PageIdentifier(pageIdentifier string) ApiListDistributionsRequest {
 	r.pageIdentifier = &pageIdentifier
 	return r
 }
 
-// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The origin URL is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
+// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution ID using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originURL using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The origin URL is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
 func (r ApiListDistributionsRequest) SortBy(sortBy string) ApiListDistributionsRequest {
 	r.sortBy = &sortBy
 	return r
@@ -2297,6 +2382,8 @@ a given project, ordered by their distribution ID.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Your STACKIT Project ID
 	@return ApiListDistributionsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListDistributions(ctx context.Context, projectId string) ApiListDistributionsRequest {
 	return ApiListDistributionsRequest{
@@ -2309,6 +2396,8 @@ func (a *DefaultAPIService) ListDistributions(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return ListDistributionsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListDistributionsExecute(r ApiListDistributionsRequest) (*ListDistributionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2484,6 +2573,8 @@ Returns all WAF rule collections available to the project
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId Your STACKIT Project ID
 	@return ApiListWAFCollectionsRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) ListWAFCollections(ctx context.Context, projectId string) ApiListWAFCollectionsRequest {
 	return ApiListWAFCollectionsRequest{
@@ -2496,6 +2587,8 @@ func (a *DefaultAPIService) ListWAFCollections(ctx context.Context, projectId st
 // Execute executes the request
 //
 //	@return ListWAFCollectionsResponse
+//
+// Deprecated
 func (a *DefaultAPIService) ListWAFCollectionsExecute(r ApiListWAFCollectionsRequest) (*ListWAFCollectionsResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
@@ -2652,6 +2745,8 @@ Modify a CDN distribution with a partial update. Only the fields specified in th
 	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiPatchDistributionRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PatchDistribution(ctx context.Context, projectId string, distributionId string) ApiPatchDistributionRequest {
 	return ApiPatchDistributionRequest{
@@ -2665,6 +2760,8 @@ func (a *DefaultAPIService) PatchDistribution(ctx context.Context, projectId str
 // Execute executes the request
 //
 //	@return PatchDistributionResponse
+//
+// Deprecated
 func (a *DefaultAPIService) PatchDistributionExecute(r ApiPatchDistributionRequest) (*PatchDistributionResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
@@ -2825,6 +2922,8 @@ All content, regardless of its staleness, will get refetched from the host.
 	@param projectId Your STACKIT Project ID
 	@param distributionId
 	@return ApiPurgeCacheRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PurgeCache(ctx context.Context, projectId string, distributionId string) ApiPurgeCacheRequest {
 	return ApiPurgeCacheRequest{
@@ -2838,6 +2937,8 @@ func (a *DefaultAPIService) PurgeCache(ctx context.Context, projectId string, di
 // Execute executes the request
 //
 //	@return map[string]interface{}
+//
+// Deprecated
 func (a *DefaultAPIService) PurgeCacheExecute(r ApiPurgeCacheRequest) (map[string]interface{}, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
@@ -2999,6 +3100,8 @@ Creates a new custom domain. If it already exists, this will overwrite the previ
 	@param distributionId
 	@param domain
 	@return ApiPutCustomDomainRequest
+
+Deprecated
 */
 func (a *DefaultAPIService) PutCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiPutCustomDomainRequest {
 	return ApiPutCustomDomainRequest{
@@ -3013,6 +3116,8 @@ func (a *DefaultAPIService) PutCustomDomain(ctx context.Context, projectId strin
 // Execute executes the request
 //
 //	@return PutCustomDomainResponse
+//
+// Deprecated
 func (a *DefaultAPIService) PutCustomDomainExecute(r ApiPutCustomDomainRequest) (*PutCustomDomainResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPut

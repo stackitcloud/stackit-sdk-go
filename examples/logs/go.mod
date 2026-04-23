@@ -6,7 +6,7 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/logs => ../../services/logs
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.24.1
+	github.com/stackitcloud/stackit-sdk-go/core v0.25.0
 	github.com/stackitcloud/stackit-sdk-go/services/logs v0.7.3
 )
 

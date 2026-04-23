@@ -4,5 +4,5 @@ github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/stackitcloud/stackit-sdk-go/core v0.24.1 h1:IrG0XBlJivUpXC4Y6TE+6FeSxNPs1JQXsero0ivwh0o=
-github.com/stackitcloud/stackit-sdk-go/core v0.24.1/go.mod h1:osMglDby4csGZ5sIfhNyYq1bS1TxIdPY88+skE/kkmI=
+github.com/stackitcloud/stackit-sdk-go/core v0.25.0 h1:ra3VEk684MNoq741g+xbZrKjZzhyztq5liUAwwew4DY=
+github.com/stackitcloud/stackit-sdk-go/core v0.25.0/go.mod h1:WU1hhxnjXw2EV7CYa1nlEvNpMiRY6CvmIOaHuL3pOaA=

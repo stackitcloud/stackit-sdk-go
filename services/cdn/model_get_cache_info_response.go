@@ -78,7 +78,7 @@ func setGetCacheInfoResponseGetLastPurgeTimeAttributeType(arg *GetCacheInfoRespo
 type GetCacheInfoResponse struct {
 	// REQUIRED
 	History GetCacheInfoResponseGetHistoryAttributeType `json:"history" required:"true"`
-	// Returns the last time the cache was purged by calling the PurgeCache endpoint.  Time represented as RFC3339 compliant string. If the cache was never purged, this returns `null`
+	// Returns the last time the cache was purged by calling the PurgeCache endpoint. Time represented as RFC3339 compliant string. If the cache was never purged, this returns `null`
 	// REQUIRED
 	LastPurgeTime GetCacheInfoResponseGetLastPurgeTimeAttributeType `json:"lastPurgeTime" required:"true"`
 }
