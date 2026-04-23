@@ -1,8 +1,9 @@
 ## Release (2026-MM-DD)
-- `core`: [v0.26.0](core/CHANGELOG.md#v0260)
-  - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
-- `core`: [v0.25.0](core/CHANGELOG.md#v0250)
-  - Minimal go version is now Go 1.25
+- `core`: 
+  - [v0.25.0](core/CHANGELOG.md#v0250)
+    - Minimal go version is now Go 1.25
+  - [v0.26.0](core/CHANGELOG.md#v0260)
+    - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
 - `alb`:
   - [v0.13.2](services/alb/CHANGELOG.md#v0132) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -84,6 +85,11 @@
   - [v1.10.1](services/iaas/CHANGELOG.md#1101)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.21.2` to `v0.22.1`
+  - [v1.11.0](services/iaas/CHANGELOG.md#v1110)
+    - Removal of deprecated WaitHandler: `CreateNetworkAreaWaitHandler`, `UpdateNetworkAreaWaitHandler` and `DeleteNetworkAreaWaitHandler`
+    - `v2api`
+      - **Improvement**: Use new `WaiterHandler` struct in the IaaS WaitHandler
+      - **Deprecation:** WaitHandler `AddVolumeToServerWaitHandler` and `RemoveVolumeFromServerWaitHandler` are deprecated and will be removed after October 2026. Please use instead `ProjectRequestWaitHandler`.
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

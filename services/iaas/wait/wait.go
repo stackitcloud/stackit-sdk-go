@@ -89,46 +89,6 @@ type ResourceManagerAPIClientInterface interface {
 	GetProjectExecute(ctx context.Context, id string) (*resourcemanager.GetProjectResponse, error)
 }
 
-// Deprecated: CreateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. CreateNetworkAreaWaitHandler will wait for network area creation
-func CreateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
-		if err != nil {
-			return false, area, err
-		}
-		if area.Id == nil {
-			return false, area, fmt.Errorf("create failed for network area with id %s, the response is not valid: the id is missing", areaId)
-		}
-		if *area.Id == areaId {
-			return true, area, nil
-		}
-		return false, area, nil
-	})
-	handler.SetTimeout(30 * time.Minute)
-	return handler
-}
-
-// Deprecated: UpdateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. UpdateNetworkAreaWaitHandler will wait for network area update
-func UpdateNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
-		if err != nil {
-			return false, area, err
-		}
-		if area.Id == nil {
-			return false, nil, fmt.Errorf("update failed for network area with id %s, the response is not valid: the id is missing", areaId)
-		}
-		// The state returns to "CREATED" after a successful update is completed
-		if *area.Id == areaId {
-			return true, area, nil
-		}
-		return false, area, nil
-	})
-	handler.SetSleepBeforeWait(2 * time.Second)
-	handler.SetTimeout(30 * time.Minute)
-	return handler
-}
-
 // CreateNetworkAreaRegionWaitHandler will wait for network area region creation
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
@@ -220,27 +180,6 @@ func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a APIClientInte
 		return true, projectList, nil
 	})
 	handler.SetTimeout(1 * time.Minute)
-	return handler
-}
-
-// Deprecated: DeleteNetworkAreaWaitHandler is no longer required and will be removed in April 2026. DeleteNetworkAreaWaitHandler will wait for network area deletion
-func DeleteNetworkAreaWaitHandler(ctx context.Context, a APIClientInterface, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkAreaExecute(ctx, organizationId, areaId)
-		if err == nil {
-			return false, nil, nil
-		}
-		var oapiErr *oapierror.GenericOpenAPIError
-		ok := errors.As(err, &oapiErr) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, area, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, area, err
-		}
-		return true, nil, nil
-	})
-	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 

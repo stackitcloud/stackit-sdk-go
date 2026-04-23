@@ -19,7 +19,8 @@ const (
 	VolumeAvailableStatus = "AVAILABLE"
 	DeleteSuccess         = "DELETED"
 
-	ErrorStatus = "ERROR"
+	FailedStatus = "FAILED"
+	ErrorStatus  = "ERROR"
 
 	ServerActiveStatus      = "ACTIVE"
 	ServerResizingStatus    = "RESIZING"
@@ -46,62 +47,24 @@ const (
 	SnapshotAvailableStatus = "AVAILABLE"
 )
 
-// Deprecated: CreateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. CreateNetworkAreaWaitHandler will wait for network area creation
-func CreateNetworkAreaWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkArea(ctx, organizationId, areaId).Execute()
-		if err != nil {
-			return false, area, err
-		}
-		if area.Id == nil {
-			return false, area, fmt.Errorf("create failed for network area with id %s, the response is not valid: the id is missing", areaId)
-		}
-		if *area.Id == areaId {
-			return true, area, nil
-		}
-		return false, area, nil
-	})
-	handler.SetTimeout(30 * time.Minute)
-	return handler
-}
-
-// Deprecated: UpdateNetworkAreaWaitHandler is no longer required and will be removed in April 2026. UpdateNetworkAreaWaitHandler will wait for network area update
-func UpdateNetworkAreaWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkArea(ctx, organizationId, areaId).Execute()
-		if err != nil {
-			return false, area, err
-		}
-		if area.Id == nil {
-			return false, nil, fmt.Errorf("update failed for network area with id %s, the response is not valid: the id is missing", areaId)
-		}
-		// The state returns to "CREATED" after a successful update is completed
-		if *area.Id == areaId {
-			return true, area, nil
-		}
-		return false, area, nil
-	})
-	handler.SetSleepBeforeWait(2 * time.Second)
-	handler.SetTimeout(30 * time.Minute)
-	return handler
-}
-
 // CreateNetworkAreaRegionWaitHandler will wait for network area region creation
 func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
-		area, err := a.GetNetworkAreaRegion(ctx, organizationId, areaId, region).Execute()
-		if err != nil {
-			return false, area, err
-		}
-		if area.Status == nil {
-			return false, nil, fmt.Errorf("configuring failed for network area with id %s, the response is not valid: the status are missing", areaId)
-		}
-		// The state returns to "CREATED" after a successful update is completed
-		if *area.Status == CreateSuccess {
-			return true, area, nil
-		}
-		return false, area, nil
-	})
+	waitConfig := wait.WaiterHelper[iaas.RegionalArea, string]{
+		FetchInstance: a.GetNetworkAreaRegion(ctx, organizationId, areaId, region).Execute,
+		GetState: func(i *iaas.RegionalArea) (string, error) {
+			if i == nil {
+				return "", errors.New("empty response")
+			}
+			if i.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *i.Status, nil
+		},
+		ActiveState: []string{CreateSuccess},
+		ErrorState:  []string{FailedStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(30 * time.Minute)
 	return handler
@@ -109,23 +72,26 @@ func CreateNetworkAreaRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, 
 
 // DeleteNetworkAreaRegionWaitHandler will wait for network area region deletion
 func DeleteNetworkAreaRegionWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId, region string) *wait.AsyncActionHandler[iaas.RegionalArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.RegionalArea, err error) {
-		area, err := a.GetNetworkAreaRegion(ctx, organizationId, areaId, region).Execute()
-		if err == nil {
-			return false, nil, nil
-		}
-		var oapiErr *oapierror.GenericOpenAPIError
-		ok := errors.As(err, &oapiErr)
-		if !ok {
-			return false, area, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
+	waitConfig := wait.WaiterHelper[iaas.RegionalArea, string]{
+		FetchInstance: a.GetNetworkAreaRegion(ctx, organizationId, areaId, region).Execute,
+		GetState: func(i *iaas.RegionalArea) (string, error) {
+			if i == nil {
+				return "", errors.New("empty response")
+			}
+			if i.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *i.Status, nil
+		},
+		ActiveState: []string{},
+		ErrorState:  []string{FailedStatus},
+
 		// The IaaS API response with a 400 if the regional network area configuration doesn't exist because of some compatible
-		// issue to v1. When v1 is deleted, they may, will respond with 404.
-		if oapiErr.StatusCode == http.StatusBadRequest || oapiErr.StatusCode == http.StatusNotFound {
-			return true, area, nil
-		}
-		return false, nil, err
-	})
+		// issues to v1. When v1 is deprecated, they may will respond with 404
+		DeleteHttpErrorStatusCodes: []int{http.StatusBadRequest, http.StatusNotFound},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(30 * time.Minute)
 	return handler
@@ -177,40 +143,21 @@ func ReadyForNetworkAreaDeletionWaitHandler(ctx context.Context, a iaas.DefaultA
 	return handler
 }
 
-// Deprecated: DeleteNetworkAreaWaitHandler is no longer required and will be removed in April 2026. DeleteNetworkAreaWaitHandler will wait for network area deletion
-func DeleteNetworkAreaWaitHandler(ctx context.Context, a iaas.DefaultAPI, organizationId, areaId string) *wait.AsyncActionHandler[iaas.NetworkArea] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.NetworkArea, err error) {
-		area, err := a.GetNetworkArea(ctx, organizationId, areaId).Execute()
-		if err == nil {
-			return false, nil, nil
-		}
-		var oapiErr *oapierror.GenericOpenAPIError
-		ok := errors.As(err, &oapiErr) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, area, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, area, err
-		}
-		return true, nil, nil
-	})
-	handler.SetTimeout(30 * time.Minute)
-	return handler
-}
-
 // CreateNetworkWaitHandler will wait for network creation using network id
 func CreateNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetwork(ctx, projectId, region, networkId).Execute()
-		if err != nil {
-			return false, network, err
-		}
-		// The state returns to "CREATED" after a successful creation is completed
-		if network.Id == networkId && network.Status == CreateSuccess {
-			return true, network, nil
-		}
-		return false, network, nil
-	})
+	waitConfig := wait.WaiterHelper[iaas.Network, string]{
+		FetchInstance: a.GetNetwork(ctx, projectId, region, networkId).Execute,
+		GetState: func(i *iaas.Network) (string, error) {
+			if i == nil {
+				return "", errors.New("empty response")
+			}
+			return i.Status, nil
+		},
+		ActiveState: []string{CreateSuccess},
+		ErrorState:  []string{FailedStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(30 * time.Minute)
 	return handler
@@ -218,17 +165,19 @@ func CreateNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId,
 
 // UpdateNetworkWaitHandler will wait for network update
 func UpdateNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetwork(ctx, projectId, region, networkId).Execute()
-		if err != nil {
-			return false, network, err
-		}
-		// The state returns to "CREATED" after a successful update is completed
-		if network.Id == networkId && network.Status == CreateSuccess {
-			return true, network, nil
-		}
-		return false, network, nil
-	})
+	waitConfig := wait.WaiterHelper[iaas.Network, string]{
+		FetchInstance: a.GetNetwork(ctx, projectId, region, networkId).Execute,
+		GetState: func(i *iaas.Network) (string, error) {
+			if i == nil {
+				return "", errors.New("empty response")
+			}
+			return i.Status, nil
+		},
+		ActiveState: []string{CreateSuccess},
+		ErrorState:  []string{FailedStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetSleepBeforeWait(2 * time.Second)
 	handler.SetTimeout(30 * time.Minute)
 	return handler
@@ -236,95 +185,74 @@ func UpdateNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId,
 
 // DeleteNetworkWaitHandler will wait for network deletion
 func DeleteNetworkWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, networkId string) *wait.AsyncActionHandler[iaas.Network] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Network, err error) {
-		network, err := a.GetNetwork(ctx, projectId, region, networkId).Execute()
-		if err == nil {
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, network, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, network, err
-		}
-		return true, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[iaas.Network, string]{
+		FetchInstance: a.GetNetwork(ctx, projectId, region, networkId).Execute,
+		GetState: func(i *iaas.Network) (string, error) {
+			if i == nil {
+				return "", errors.New("empty response")
+			}
+			return i.Status, nil
+		},
+		ErrorState: []string{FailedStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
 // CreateVolumeWaitHandler will wait for volume creation
 func CreateVolumeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
-		volume, err := a.GetVolume(ctx, projectId, region, volumeId).Execute()
-		if err != nil {
-			return false, volume, err
-		}
-		if volume.Id == nil || volume.Status == nil {
-			return false, volume, fmt.Errorf("create failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
-		}
-		if *volume.Id == volumeId && *volume.Status == VolumeAvailableStatus {
-			return true, volume, nil
-		}
-		if *volume.Id == volumeId && *volume.Status == ErrorStatus {
-			return true, volume, fmt.Errorf("create failed for volume with id %s", volumeId)
-		}
-		return false, volume, nil
-	})
+	waitConfig := wait.WaiterHelper[iaas.Volume, string]{
+		FetchInstance: a.GetVolume(ctx, projectId, region, volumeId).Execute,
+		GetState: func(i *iaas.Volume) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("create failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
+			}
+			return *i.Status, nil
+		},
+		ActiveState: []string{VolumeAvailableStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
 // DeleteVolumeWaitHandler will wait for volume deletion
 func DeleteVolumeWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, volumeId string) *wait.AsyncActionHandler[iaas.Volume] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Volume, err error) {
-		volume, err := a.GetVolume(ctx, projectId, region, volumeId).Execute()
-		if err == nil {
-			if volume != nil {
-				if volume.Id == nil || volume.Status == nil {
-					return false, volume, fmt.Errorf("delete failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
-				}
-				if *volume.Id == volumeId && *volume.Status == DeleteSuccess {
-					return true, volume, nil
-				}
+	waitConfig := wait.WaiterHelper[iaas.Volume, string]{
+		FetchInstance: a.GetVolume(ctx, projectId, region, volumeId).Execute,
+		GetState: func(i *iaas.Volume) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("create failed for volume with id %s, the response is not valid: the id or the status are missing", volumeId)
 			}
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, volume, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, volume, err
-		}
-		return true, nil, nil
-	})
+			return *i.Status, nil
+		},
+		ErrorState: []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(30 * time.Minute)
 	return handler
 }
 
 // CreateServerWaitHandler will wait for server creation
 func CreateServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
-		if err != nil {
-			return false, server, err
-		}
-		if server.Id == nil || server.Status == nil {
-			return false, server, fmt.Errorf("create failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
-		}
-		if *server.Id == serverId && *server.Status == ServerActiveStatus {
-			return true, server, nil
-		}
-		if *server.Id == serverId && *server.Status == ErrorStatus {
-			if server.ErrorMessage != nil {
-				return true, server, fmt.Errorf("create failed for server with id %s: %s", serverId, *server.ErrorMessage)
+	waitConfig := wait.WaiterHelper[iaas.Server, string]{
+		FetchInstance: a.GetServer(ctx, projectId, region, serverId).Execute,
+		GetState: func(i *iaas.Server) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("create failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 			}
-			return true, server, fmt.Errorf("create failed for server with id %s", serverId)
-		}
-		return false, server, nil
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{ServerActiveStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
@@ -369,153 +297,113 @@ func ResizeServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, 
 
 // DeleteServerWaitHandler will wait for volume deletion
 func DeleteServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
-		if err == nil {
-			if server != nil {
-				if server.Id == nil || server.Status == nil {
-					return false, server, fmt.Errorf("delete failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
-				}
-				if *server.Id == serverId && *server.Status == DeleteSuccess {
-					return true, server, nil
-				}
+	waitConfig := wait.WaiterHelper[iaas.Server, string]{
+		FetchInstance: a.GetServer(ctx, projectId, region, serverId).Execute,
+		GetState: func(i *iaas.Server) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("create failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 			}
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, server, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, server, err
-		}
-		return true, nil, nil
-	})
+			return *i.Status, nil
+		},
+		ErrorState: []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
 // StartServerWaitHandler will wait for server start
 func StartServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
-		if err != nil {
-			return false, server, err
-		}
-		if server.Id == nil || server.Status == nil {
-			return false, server, fmt.Errorf("start failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
-		}
-		if *server.Id == serverId && *server.Status == ServerActiveStatus {
-			return true, server, nil
-		}
-		if *server.Id == serverId && *server.Status == ErrorStatus {
-			if server.ErrorMessage != nil {
-				return true, server, fmt.Errorf("start failed for server with id %s: %s", serverId, *server.ErrorMessage)
+	waitConfig := wait.WaiterHelper[iaas.Server, string]{
+		FetchInstance: a.GetServer(ctx, projectId, region, serverId).Execute,
+		GetState: func(i *iaas.Server) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("start failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 			}
-			return true, server, fmt.Errorf("start failed for server with id %s", serverId)
-		}
-		return false, server, nil
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{ServerActiveStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
 // StopServerWaitHandler will wait for server stop
 func StopServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
-		if err != nil {
-			return false, server, err
-		}
-		if server.Id == nil || server.Status == nil {
-			return false, server, fmt.Errorf("stop failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
-		}
-		if *server.Id == serverId && *server.Status == ServerInactiveStatus {
-			return true, server, nil
-		}
-		if *server.Id == serverId && *server.Status == ErrorStatus {
-			if server.ErrorMessage != nil {
-				return true, server, fmt.Errorf("stop failed for server with id %s: %s", serverId, *server.ErrorMessage)
+	waitConfig := wait.WaiterHelper[iaas.Server, string]{
+		FetchInstance: a.GetServer(ctx, projectId, region, serverId).Execute,
+		GetState: func(i *iaas.Server) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("stop failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 			}
-			return true, server, fmt.Errorf("stop failed for server with id %s", serverId)
-		}
-		return false, server, nil
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{ServerInactiveStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
 // DeallocateServerWaitHandler will wait for server deallocation
 func DeallocateServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
-		if err != nil {
-			return false, server, err
-		}
-		if server.Id == nil || server.Status == nil {
-			return false, server, fmt.Errorf("deallocate failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
-		}
-		if *server.Id == serverId && *server.Status == ServerDeallocatedStatus {
-			return true, server, nil
-		}
-		if *server.Id == serverId && *server.Status == ErrorStatus {
-			if server.ErrorMessage != nil {
-				return true, server, fmt.Errorf("deallocate failed for server with id %s: %s", serverId, *server.ErrorMessage)
+	waitConfig := wait.WaiterHelper[iaas.Server, string]{
+		FetchInstance: a.GetServer(ctx, projectId, region, serverId).Execute,
+		GetState: func(i *iaas.Server) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("deallocate failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 			}
-			return true, server, fmt.Errorf("deallocate failed for server with id %s", serverId)
-		}
-		return false, server, nil
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{ServerDeallocatedStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
 // RescueServerWaitHandler will wait for server rescue
 func RescueServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
-		if err != nil {
-			return false, server, err
-		}
-		if server.Id == nil || server.Status == nil {
-			return false, server, fmt.Errorf("rescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
-		}
-		if *server.Id == serverId && *server.Status == ServerRescueStatus {
-			return true, server, nil
-		}
-		if *server.Id == serverId && *server.Status == ErrorStatus {
-			if server.ErrorMessage != nil {
-				return true, server, fmt.Errorf("rescue failed for server with id %s: %s", serverId, *server.ErrorMessage)
+	waitConfig := wait.WaiterHelper[iaas.Server, string]{
+		FetchInstance: a.GetServer(ctx, projectId, region, serverId).Execute,
+		GetState: func(i *iaas.Server) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("rescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 			}
-			return true, server, fmt.Errorf("rescue failed for server with id %s", serverId)
-		}
-		return false, server, nil
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{ServerRescueStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
 // UnrescueServerWaitHandler will wait for server unrescue
 func UnrescueServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId string) *wait.AsyncActionHandler[iaas.Server] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Server, err error) {
-		server, err := a.GetServer(ctx, projectId, region, serverId).Execute()
-		if err != nil {
-			return false, server, err
-		}
-		if server.Id == nil || server.Status == nil {
-			return false, server, fmt.Errorf("unrescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
-		}
-		if *server.Id == serverId && *server.Status == ServerActiveStatus {
-			return true, server, nil
-		}
-		if *server.Id == serverId && *server.Status == ErrorStatus {
-			if server.ErrorMessage != nil {
-				return true, server, fmt.Errorf("unrescue failed for server with id %s: %s", serverId, *server.ErrorMessage)
+	waitConfig := wait.WaiterHelper[iaas.Server, string]{
+		FetchInstance: a.GetServer(ctx, projectId, region, serverId).Execute,
+		GetState: func(i *iaas.Server) (string, error) {
+			if i.Id == nil || i.Status == nil {
+				return "", fmt.Errorf("unrescue failed for server with id %s, the response is not valid: the id or the status are missing", serverId)
 			}
-			return true, server, fmt.Errorf("unrescue failed for server with id %s", serverId)
-		}
-		return false, server, nil
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{ServerActiveStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
@@ -578,230 +466,171 @@ func ProjectRequestWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId
 }
 
 // AddVolumeToServerWaitHandler will wait for a volume to be attached to a server
+// Deprecated: AddVolumeToServerWaitHandler is deprecated and will be removed after October 2026. Please use instead ProjectRequestWaitHandler
 func AddVolumeToServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
-		volumeAttachment, err := a.GetAttachedVolume(ctx, projectId, region, serverId, volumeId).Execute()
-		if err == nil {
-			if volumeAttachment != nil {
-				if volumeAttachment.VolumeId == nil {
-					return false, volumeAttachment, fmt.Errorf("attachment failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
-				}
-				if *volumeAttachment.VolumeId == volumeId {
-					return true, volumeAttachment, nil
-				}
+	waitConfig := wait.WaiterHelper[iaas.VolumeAttachment, string]{
+		FetchInstance: a.GetAttachedVolume(ctx, projectId, region, serverId, volumeId).Execute,
+		GetState: func(i *iaas.VolumeAttachment) (string, error) {
+			if i.VolumeId == nil {
+				return "", fmt.Errorf("attachment failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
 			}
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, volumeAttachment, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, volumeAttachment, err
-		}
-		return false, nil, nil
-	})
+			return *i.VolumeId, nil
+		},
+		ActiveState: []string{volumeId},
+		ErrorState:  []string{},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
 // RemoveVolumeFromServerWaitHandler will wait for a volume to be attached to a server
+// Deprecated: RemoveVolumeFromServerWaitHandler is deprecated and will be removed after October 2026. Please use instead ProjectRequestWaitHandler
 func RemoveVolumeFromServerWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, serverId, volumeId string) *wait.AsyncActionHandler[iaas.VolumeAttachment] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.VolumeAttachment, err error) {
-		volumeAttachment, err := a.GetAttachedVolume(ctx, projectId, region, serverId, volumeId).Execute()
-		if err == nil {
-			if volumeAttachment != nil {
-				if volumeAttachment.VolumeId == nil {
-					return false, volumeAttachment, fmt.Errorf("remove volume failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
-				}
+	waitConfig := wait.WaiterHelper[iaas.VolumeAttachment, string]{
+		FetchInstance: a.GetAttachedVolume(ctx, projectId, region, serverId, volumeId).Execute,
+		GetState: func(i *iaas.VolumeAttachment) (string, error) {
+			if i.VolumeId == nil {
+				return "", fmt.Errorf("remove volume failed for server with id %s and volume with id %s, the response is not valid: the volume id is missing", serverId, volumeId)
 			}
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, volumeAttachment, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, volumeAttachment, err
-		}
-		return true, nil, nil
-	})
+			return *i.VolumeId, nil
+		},
+		ActiveState: []string{},
+		ErrorState:  []string{},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
 // UploadImageWaitHandler will wait for the status image to become AVAILABLE, which indicates the upload of the image has been completed successfully
 func UploadImageWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
-		image, err := a.GetImage(ctx, projectId, region, imageId).Execute()
-		if err != nil {
-			return false, image, err
-		}
-		if image.Id == nil || image.Status == nil {
-			return false, image, fmt.Errorf("upload failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
-		}
-		if *image.Id == imageId && *image.Status == ImageAvailableStatus {
-			return true, image, nil
-		}
-		if *image.Id == imageId && *image.Status == ErrorStatus {
-			return true, image, fmt.Errorf("upload failed for image with id %s", imageId)
-		}
-		return false, image, nil
-	})
+	waitConfig := wait.WaiterHelper[iaas.Image, string]{
+		FetchInstance: a.GetImage(ctx, projectId, region, imageId).Execute,
+		GetState: func(i *iaas.Image) (string, error) {
+			if i.Status == nil {
+				return "", fmt.Errorf("upload failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
+			}
+			return *i.Status, nil
+		},
+		ActiveState: []string{ImageAvailableStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // DeleteImageWaitHandler will wait for image deletion
 func DeleteImageWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, imageId string) *wait.AsyncActionHandler[iaas.Image] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Image, err error) {
-		image, err := a.GetImage(ctx, projectId, region, imageId).Execute()
-		if err == nil {
-			if image != nil {
-				if image.Id == nil || image.Status == nil {
-					return false, image, fmt.Errorf("delete failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
-				}
-				if *image.Id == imageId && *image.Status == DeleteSuccess {
-					return true, image, nil
-				}
+	waitConfig := wait.WaiterHelper[iaas.Image, string]{
+		FetchInstance: a.GetImage(ctx, projectId, region, imageId).Execute,
+		GetState: func(i *iaas.Image) (string, error) {
+			if i.Status == nil {
+				return "", fmt.Errorf("delete failed for image with id %s, the response is not valid: the id or the status are missing", imageId)
 			}
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, image, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError: %w", err)
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, image, err
-		}
-		return true, nil, nil
-	})
+			return *i.Status, nil
+		},
+		ErrorState: []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
 
 // CreateBackupWaitHandler will wait for backup creation
 func CreateBackupWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackup(ctx, projectId, region, backupId).Execute()
-		if err == nil {
-			if backup != nil {
-				if backup.Id == nil || backup.Status == nil {
-					return false, backup, fmt.Errorf("create failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
-				}
-				if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
-					return true, backup, nil
-				}
-				if *backup.Id == backupId && *backup.Status == ErrorStatus {
-					return true, backup, fmt.Errorf("create failed for backup with id %s", backupId)
-				}
+	waitConfig := wait.WaiterHelper[iaas.Backup, string]{
+		FetchInstance: a.GetBackup(ctx, projectId, region, backupId).Execute,
+		GetState: func(i *iaas.Backup) (string, error) {
+			if i.Status == nil {
+				return "", fmt.Errorf("create failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
 			}
-			return false, nil, nil
-		}
-		return false, nil, err
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{BackupAvailableStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // DeleteBackupWaitHandler will wait for backup deletion
 func DeleteBackupWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackup(ctx, projectId, region, backupId).Execute()
-		if err == nil {
-			if backup != nil {
-				if backup.Id == nil || backup.Status == nil {
-					return false, backup, fmt.Errorf("delete failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
-				}
-				if *backup.Id == backupId && *backup.Status == DeleteSuccess {
-					return true, backup, nil
-				}
+	waitConfig := wait.WaiterHelper[iaas.Backup, string]{
+		FetchInstance: a.GetBackup(ctx, projectId, region, backupId).Execute,
+		GetState: func(i *iaas.Backup) (string, error) {
+			if i.Status == nil {
+				return "", fmt.Errorf("delete failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
 			}
-			return false, nil, nil
-		}
-		var oapiError *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiError) {
-			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-				return true, nil, nil
-			}
-		}
-		return false, nil, err
-	})
+			return *i.Status, nil
+		},
+		ErrorState: []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
 
 // RestoreBackupWaitHandler will wait for backup restoration
 func RestoreBackupWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, backupId string) *wait.AsyncActionHandler[iaas.Backup] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Backup, err error) {
-		backup, err := a.GetBackup(ctx, projectId, region, backupId).Execute()
-		if err == nil {
-			if backup != nil {
-				if backup.Id == nil || backup.Status == nil {
-					return false, backup, fmt.Errorf("restore failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
-				}
-				if *backup.Id == backupId && *backup.Status == BackupAvailableStatus {
-					return true, backup, nil
-				}
-				if *backup.Id == backupId && *backup.Status == ErrorStatus {
-					return true, backup, fmt.Errorf("restore failed for backup with id %s", backupId)
-				}
+	waitConfig := wait.WaiterHelper[iaas.Backup, string]{
+		FetchInstance: a.GetBackup(ctx, projectId, region, backupId).Execute,
+		GetState: func(i *iaas.Backup) (string, error) {
+			if i.Status == nil {
+				return "", fmt.Errorf("delete failed for backup with id %s, the response is not valid: the id or the status are missing", backupId)
 			}
-			return false, nil, nil
-		}
-		return false, nil, err
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{BackupAvailableStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // CreateSnapshotWaitHandler will wait for snapshot creation
 func CreateSnapshotWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
-		snapshot, err := a.GetSnapshot(ctx, projectId, region, snapshotId).Execute()
-		if err == nil {
-			if snapshot != nil {
-				if snapshot.Id == nil || snapshot.Status == nil {
-					return false, snapshot, fmt.Errorf("create failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
-				}
-				if *snapshot.Id == snapshotId && *snapshot.Status == SnapshotAvailableStatus {
-					return true, snapshot, nil
-				}
-				if *snapshot.Id == snapshotId && *snapshot.Status == ErrorStatus {
-					return true, snapshot, fmt.Errorf("create failed for snapshot with id %s", snapshotId)
-				}
+	waitConfig := wait.WaiterHelper[iaas.Snapshot, string]{
+		FetchInstance: a.GetSnapshot(ctx, projectId, region, snapshotId).Execute,
+		GetState: func(i *iaas.Snapshot) (string, error) {
+			if i.Status == nil {
+				return "", fmt.Errorf("create failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
 			}
-			return false, nil, nil
-		}
-		return false, nil, err
-	})
+			return *i.Status, nil
+		},
+		ActiveState: []string{SnapshotAvailableStatus},
+		ErrorState:  []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // DeleteSnapshotWaitHandler will wait for snapshot deletion
 func DeleteSnapshotWaitHandler(ctx context.Context, a iaas.DefaultAPI, projectId, region, snapshotId string) *wait.AsyncActionHandler[iaas.Snapshot] {
-	handler := wait.New(func() (waitFinished bool, response *iaas.Snapshot, err error) {
-		snapshot, err := a.GetSnapshot(ctx, projectId, region, snapshotId).Execute()
-		if err == nil {
-			if snapshot != nil {
-				if snapshot.Id == nil || snapshot.Status == nil {
-					return false, snapshot, fmt.Errorf("delete failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
-				}
-				if *snapshot.Id == snapshotId && *snapshot.Status == DeleteSuccess {
-					return true, snapshot, nil
-				}
+	waitConfig := wait.WaiterHelper[iaas.Snapshot, string]{
+		FetchInstance: a.GetSnapshot(ctx, projectId, region, snapshotId).Execute,
+		GetState: func(i *iaas.Snapshot) (string, error) {
+			if i.Status == nil {
+				return "", fmt.Errorf("create failed for snapshot with id %s, the response is not valid: the id or the status are missing", snapshotId)
 			}
-			return false, nil, nil
-		}
-		var oapiError *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiError) {
-			if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-				return true, nil, nil
-			}
-		}
-		return false, nil, err
-	})
+			return *i.Status, nil
+		},
+		ErrorState: []string{ErrorStatus},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(20 * time.Minute)
 	return handler
 }
