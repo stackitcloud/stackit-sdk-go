@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -143,27 +144,29 @@ func TestCreateOrUpdateIntakeRunnerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getRunnerFails:       tt.getFails,
-				getErrorCode:         tt.getErrorCode,
-				returnRunner:         tt.returnRunner,
-				intakeRunnerResponse: tt.intakeRunnerResponse,
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getRunnerFails:       tt.getFails,
+					getErrorCode:         tt.getErrorCode,
+					returnRunner:         tt.returnRunner,
+					intakeRunnerResponse: tt.intakeRunnerResponse,
+				}
 
-			var wantResp *intake.IntakeRunnerResponse
-			if tt.wantResp {
-				wantResp = tt.intakeRunnerResponse
-			}
+				var wantResp *intake.IntakeRunnerResponse
+				if tt.wantResp {
+					wantResp = tt.intakeRunnerResponse
+				}
 
-			handler := CreateOrUpdateIntakeRunnerWaitHandler(context.Background(), apiClient, projectId, region, intakeRunnerId)
-			got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateOrUpdateIntakeRunnerWaitHandler(context.Background(), apiClient, projectId, region, intakeRunnerId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(got, wantResp) {
-				t.Fatalf("handler got = %v, want %v", got, wantResp)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
 		})
 	}
 }
@@ -199,20 +202,22 @@ func TestDeleteIntakeRunnerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getRunnerFails: tt.getFails,
-				getErrorCode:   tt.getErrorCode,
-				returnRunner:   tt.returnRunner,
-				intakeRunnerResponse: &intake.IntakeRunnerResponse{ // This is only used in the timeout case
-					Id: utils.Ptr(intakeRunnerId),
-				},
-			}
-			handler := DeleteIntakeRunnerWaitHandler(context.Background(), apiClient, projectId, region, intakeRunnerId)
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getRunnerFails: tt.getFails,
+					getErrorCode:   tt.getErrorCode,
+					returnRunner:   tt.returnRunner,
+					intakeRunnerResponse: &intake.IntakeRunnerResponse{ // This is only used in the timeout case
+						Id: utils.Ptr(intakeRunnerId),
+					},
+				}
+				handler := DeleteIntakeRunnerWaitHandler(context.Background(), apiClient, projectId, region, intakeRunnerId)
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }
@@ -298,27 +303,29 @@ func TestCreateOrUpdateIntakeWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getIntakeFails: tt.getFails,
-				getErrorCode:   tt.getErrorCode,
-				returnIntake:   tt.returnIntake,
-				intakeResponse: tt.intakeResponse,
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getIntakeFails: tt.getFails,
+					getErrorCode:   tt.getErrorCode,
+					returnIntake:   tt.returnIntake,
+					intakeResponse: tt.intakeResponse,
+				}
 
-			var wantResp *intake.IntakeResponse
-			if tt.wantResp {
-				wantResp = tt.intakeResponse
-			}
+				var wantResp *intake.IntakeResponse
+				if tt.wantResp {
+					wantResp = tt.intakeResponse
+				}
 
-			handler := CreateOrUpdateIntakeWaitHandler(context.Background(), apiClient, projectId, region, intakeId)
-			got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateOrUpdateIntakeWaitHandler(context.Background(), apiClient, projectId, region, intakeId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(got, wantResp) {
-				t.Fatalf("handler got = %v, want %v", got, wantResp)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
 		})
 	}
 }
@@ -354,20 +361,22 @@ func TestDeleteIntakeWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getIntakeFails: tt.getFails,
-				getErrorCode:   tt.getErrorCode,
-				returnIntake:   tt.returnIntake,
-				intakeResponse: &intake.IntakeResponse{
-					Id: utils.Ptr(intakeId),
-				},
-			}
-			handler := DeleteIntakeWaitHandler(context.Background(), apiClient, projectId, region, intakeId)
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getIntakeFails: tt.getFails,
+					getErrorCode:   tt.getErrorCode,
+					returnIntake:   tt.returnIntake,
+					intakeResponse: &intake.IntakeResponse{
+						Id: utils.Ptr(intakeId),
+					},
+				}
+				handler := DeleteIntakeWaitHandler(context.Background(), apiClient, projectId, region, intakeId)
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }
@@ -442,27 +451,29 @@ func TestCreateOrUpdateIntakeUserWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getUserFails:       tt.getFails,
-				getErrorCode:       tt.getErrorCode,
-				returnUser:         tt.returnUser,
-				intakeUserResponse: tt.intakeUserResponse,
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getUserFails:       tt.getFails,
+					getErrorCode:       tt.getErrorCode,
+					returnUser:         tt.returnUser,
+					intakeUserResponse: tt.intakeUserResponse,
+				}
 
-			var wantResp *intake.IntakeUserResponse
-			if tt.wantResp {
-				wantResp = tt.intakeUserResponse
-			}
+				var wantResp *intake.IntakeUserResponse
+				if tt.wantResp {
+					wantResp = tt.intakeUserResponse
+				}
 
-			handler := CreateOrUpdateIntakeUserWaitHandler(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
-			got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateOrUpdateIntakeUserWaitHandler(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(got, wantResp) {
-				t.Fatalf("handler got = %v, want %v", got, wantResp)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
 		})
 	}
 }
@@ -498,20 +509,22 @@ func TestDeleteIntakeUserWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getUserFails: tt.getFails,
-				getErrorCode: tt.getErrorCode,
-				returnUser:   tt.returnUser,
-				intakeUserResponse: &intake.IntakeUserResponse{
-					Id: utils.Ptr(intakeUserId),
-				},
-			}
-			handler := DeleteIntakeUserWaitHandler(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getUserFails: tt.getFails,
+					getErrorCode: tt.getErrorCode,
+					returnUser:   tt.returnUser,
+					intakeUserResponse: &intake.IntakeUserResponse{
+						Id: utils.Ptr(intakeUserId),
+					},
+				}
+				handler := DeleteIntakeUserWaitHandler(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }

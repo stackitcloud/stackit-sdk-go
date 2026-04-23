@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -120,43 +121,45 @@ func TestCreateOrUpdateClusterWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			name := "cluster"
+			synctest.Test(t, func(t *testing.T) {
+				name := "cluster"
 
-			apiClient := newAPIMock(mockSettings{
-				getFails:             tt.getFails,
-				name:                 name,
-				resourceState:        tt.resourceState,
-				invalidArgusInstance: tt.invalidArgusInstance,
-			})
+				apiClient := newAPIMock(mockSettings{
+					getFails:             tt.getFails,
+					name:                 name,
+					resourceState:        tt.resourceState,
+					invalidArgusInstance: tt.invalidArgusInstance,
+				})
 
-			var wantRes *ske.Cluster
-			rs := ske.ClusterStatusState(tt.resourceState)
-			if tt.wantResp {
-				wantRes = &ske.Cluster{
-					Name: &name,
-					Status: &ske.ClusterStatus{
-						Aggregated: &rs,
-					},
-				}
+				var wantRes *ske.Cluster
+				rs := ske.ClusterStatusState(tt.resourceState)
+				if tt.wantResp {
+					wantRes = &ske.Cluster{
+						Name: &name,
+						Status: &ske.ClusterStatus{
+							Aggregated: &rs,
+						},
+					}
 
-				if tt.invalidArgusInstance {
-					wantRes.Status.Error = &ske.RuntimeError{
-						Code:    utils.Ptr(RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
-						Message: utils.Ptr("invalid argus instance"),
+					if tt.invalidArgusInstance {
+						wantRes.Status.Error = &ske.RuntimeError{
+							Code:    utils.Ptr(RUNTIMEERRORCODE_OBSERVABILITY_INSTANCE_NOT_FOUND),
+							Message: utils.Ptr("invalid argus instance"),
+						}
 					}
 				}
-			}
 
-			handler := CreateOrUpdateClusterWaitHandler(context.Background(), apiClient, "", testRegion, name)
+				handler := CreateOrUpdateClusterWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -199,34 +202,36 @@ func TestTriggerClusterHibernationWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.description, func(t *testing.T) {
-			name := "cluster"
+			synctest.Test(t, func(t *testing.T) {
+				name := "cluster"
 
-			apiClient := newAPIMock(mockSettings{
-				getFails:      tt.getFails,
-				name:          name,
-				resourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					name:          name,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *ske.Cluster
-			if tt.wantResp {
-				wantRes = &ske.Cluster{
-					Name: &name,
-					Status: &ske.ClusterStatus{
-						Aggregated: utils.Ptr(tt.resourceState),
-					},
+				var wantRes *ske.Cluster
+				if tt.wantResp {
+					wantRes = &ske.Cluster{
+						Name: &name,
+						Status: &ske.ClusterStatus{
+							Aggregated: utils.Ptr(tt.resourceState),
+						},
+					}
 				}
-			}
 
-			handler := TriggerClusterHibernationWaitHandler(context.Background(), apiClient, "", testRegion, name)
+				handler := TriggerClusterHibernationWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -269,34 +274,36 @@ func TestTriggerClusterMaintenanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.description, func(t *testing.T) {
-			name := "cluster"
+			synctest.Test(t, func(t *testing.T) {
+				name := "cluster"
 
-			apiClient := newAPIMock(mockSettings{
-				getFails:      tt.getFails,
-				name:          name,
-				resourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					name:          name,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *ske.Cluster
-			if tt.wantResp {
-				wantRes = &ske.Cluster{
-					Name: &name,
-					Status: &ske.ClusterStatus{
-						Aggregated: utils.Ptr(tt.resourceState),
-					},
+				var wantRes *ske.Cluster
+				if tt.wantResp {
+					wantRes = &ske.Cluster{
+						Name: &name,
+						Status: &ske.ClusterStatus{
+							Aggregated: utils.Ptr(tt.resourceState),
+						},
+					}
 				}
-			}
 
-			handler := TriggerClusterMaintenanceWaitHandler(context.Background(), apiClient, "", testRegion, name)
+				handler := TriggerClusterMaintenanceWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -339,34 +346,36 @@ func TestTriggerClusterWakeupWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.description, func(t *testing.T) {
-			name := "cluster"
+			synctest.Test(t, func(t *testing.T) {
+				name := "cluster"
 
-			apiClient := newAPIMock(mockSettings{
-				getFails:      tt.getFails,
-				name:          name,
-				resourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					name:          name,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *ske.Cluster
-			if tt.wantResp {
-				wantRes = &ske.Cluster{
-					Name: &name,
-					Status: &ske.ClusterStatus{
-						Aggregated: utils.Ptr(tt.resourceState),
-					},
+				var wantRes *ske.Cluster
+				if tt.wantResp {
+					wantRes = &ske.Cluster{
+						Name: &name,
+						Status: &ske.ClusterStatus{
+							Aggregated: utils.Ptr(tt.resourceState),
+						},
+					}
 				}
-			}
 
-			handler := TriggerClusterWakeupWaitHandler(context.Background(), apiClient, "", testRegion, name)
+				handler := TriggerClusterWakeupWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -409,34 +418,36 @@ func TestTriggerClusterReconciliationWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.description, func(t *testing.T) {
-			name := "cluster"
+			synctest.Test(t, func(t *testing.T) {
+				name := "cluster"
 
-			apiClient := newAPIMock(mockSettings{
-				getFails:      tt.getFails,
-				name:          name,
-				resourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					name:          name,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *ske.Cluster
-			if tt.wantResp {
-				wantRes = &ske.Cluster{
-					Name: &name,
-					Status: &ske.ClusterStatus{
-						Aggregated: utils.Ptr(tt.resourceState),
-					},
+				var wantRes *ske.Cluster
+				if tt.wantResp {
+					wantRes = &ske.Cluster{
+						Name: &name,
+						Status: &ske.ClusterStatus{
+							Aggregated: utils.Ptr(tt.resourceState),
+						},
+					}
 				}
-			}
 
-			handler := TriggerClusterReconciliationWaitHandler(context.Background(), apiClient, "", testRegion, name)
+				handler := TriggerClusterReconciliationWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -479,34 +490,36 @@ func TestRotateCredentialsWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			name := "cluster"
+			synctest.Test(t, func(t *testing.T) {
+				name := "cluster"
 
-			apiClient := newAPIMock(mockSettings{
-				getFails:      tt.getFails,
-				name:          name,
-				resourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(mockSettings{
+					getFails:      tt.getFails,
+					name:          name,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *ske.Cluster
-			if tt.wantResp {
-				wantRes = &ske.Cluster{
-					Name: &name,
-					Status: &ske.ClusterStatus{
-						Aggregated: utils.Ptr(tt.resourceState),
-					},
+				var wantRes *ske.Cluster
+				if tt.wantResp {
+					wantRes = &ske.Cluster{
+						Name: &name,
+						Status: &ske.ClusterStatus{
+							Aggregated: utils.Ptr(tt.resourceState),
+						},
+					}
 				}
-			}
 
-			handler := RotateCredentialsWaitHandler(context.Background(), apiClient, "", testRegion, name)
+				handler := RotateCredentialsWaitHandler(context.Background(), apiClient, "", testRegion, name)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %+v, want %+v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }

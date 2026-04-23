@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -107,27 +108,29 @@ func TestCreateLogsInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.description, func(t *testing.T) {
-			client := newAPIMock(mockSettings{
-				getFails:        tt.getFails,
-				getLogsResponse: tt.getLogsResponse,
-				returnInstance:  tt.returnInstance,
+			synctest.Test(t, func(t *testing.T) {
+				client := newAPIMock(mockSettings{
+					getFails:        tt.getFails,
+					getLogsResponse: tt.getLogsResponse,
+					returnInstance:  tt.returnInstance,
+				})
+
+				var instanceWanted *logs.LogsInstance
+				if tt.wantResp {
+					instanceWanted = tt.getLogsResponse
+				}
+
+				handler := CreateLogsInstanceWaitHandler(context.Background(), client, projectId, region, instanceId)
+
+				response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(response, instanceWanted) {
+					t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
+				}
 			})
-
-			var instanceWanted *logs.LogsInstance
-			if tt.wantResp {
-				instanceWanted = tt.getLogsResponse
-			}
-
-			handler := CreateLogsInstanceWaitHandler(context.Background(), client, projectId, region, instanceId)
-
-			response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(response, instanceWanted) {
-				t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
-			}
 		})
 	}
 }
@@ -159,18 +162,20 @@ func TestDeleteLogsInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.description, func(t *testing.T) {
-			client := newAPIMock(mockSettings{
-				getFails:        tt.getFails,
-				returnInstance:  false,
-				statusCode:      tt.statusCode,
-				getLogsResponse: nil,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				client := newAPIMock(mockSettings{
+					getFails:        tt.getFails,
+					returnInstance:  false,
+					statusCode:      tt.statusCode,
+					getLogsResponse: nil,
+				})
 
-			handler := DeleteLogsInstanceWaitHandler(context.Background(), client, projectId, region, instanceId)
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
+				handler := DeleteLogsInstanceWaitHandler(context.Background(), client, projectId, region, instanceId)
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }
