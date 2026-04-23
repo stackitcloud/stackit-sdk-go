@@ -1,3 +1,11 @@
+## v1.13.0
+- `v2api`:
+  - New field `Expiration` in `ClusterStatus` model struct
+  - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
+- Deprecated SDK layer in root of the module:
+  - New field `Expiration` in `ClusterStatus` model struct
+  - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
+
 ## v1.12.0
 - Minimal go version is now Go 1.25
 

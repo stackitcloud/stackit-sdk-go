@@ -259,6 +259,13 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.12.0](services/ske/CHANGELOG.md#v1120) 
     - Minimal go version is now Go 1.25
+  - [v1.13.0](services/ske/CHANGELOG.md#v1130) 
+    - `v2api`:
+      - New field `Expiration` in `ClusterStatus` model struct
+      - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
+    - Deprecated SDK layer in root of the module:
+      - New field `Expiration` in `ClusterStatus` model struct
+      - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
