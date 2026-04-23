@@ -6,8 +6,8 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex => ../../services/sqlserverflex
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.25.0
-	github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.7.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
+	github.com/stackitcloud/stackit-sdk-go/services/sqlserverflex v1.9.0
 )
 
 require (
