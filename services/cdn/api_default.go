@@ -427,7 +427,7 @@ type ApiDeleteCustomDomainRequest interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiDeleteDistributionRequest interface {
-	// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
+	// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;. This is used to deduplicate requests. If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	IntentId(intentId string) ApiDeleteDistributionRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -471,13 +471,13 @@ type ApiGetLogsRequest interface {
 	// the start of the time range for which logs should be returned
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	From(from time.Time) ApiGetLogsRequest
-	// the end of the time range for which logs should be returned. If not specified,  \&quot;now\&quot; is used.
+	// the end of the time range for which logs should be returned. If not specified, \&quot;now\&quot; is used.
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	To(to time.Time) ApiGetLogsRequest
-	// Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+	// Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive)
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	PageSize(pageSize int32) ApiGetLogsRequest
-	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	PageIdentifier(pageIdentifier string) ApiGetLogsRequest
 	// Sorts the log messages by a specific field. Defaults to &#x60;timestamp&#x60;.  Supported sort options: - &#x60;timestamp&#x60; - &#x60;dataCenterRegion&#x60; - &#x60;requestCountryCode&#x60; - &#x60;statusCode&#x60; - &#x60;cacheHit&#x60; - &#x60;size&#x60; - &#x60;path&#x60; - &#x60;host&#x60;
@@ -485,7 +485,7 @@ type ApiGetLogsRequest interface {
 	SortBy(sortBy string) ApiGetLogsRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	SortOrder(sortOrder string) ApiGetLogsRequest
-	// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged  but the request not blocked
+	// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged but the request not blocked
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	WafAction(wafAction WAFRuleAction) ApiGetLogsRequest
 	// Filters by the CDN data center region that served the request. Can be combined with other filters
@@ -518,10 +518,10 @@ type ApiGetStatisticsRequest interface {
 	// the start of the time range for which statistics should be returned
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	From(from time.Time) ApiGetStatisticsRequest
-	// the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+	// the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on.
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	To(to time.Time) ApiGetStatisticsRequest
-	// Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
+	// Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Interval(interval string) ApiGetStatisticsRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -530,16 +530,16 @@ type ApiGetStatisticsRequest interface {
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type ApiListDistributionsRequest interface {
-	// Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+	// Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	PageSize(pageSize int32) ApiListDistributionsRequest
 	// If set, the top level of a distribution contains a &#x60;waf&#x60; property, which defines the status of the waf. This includes a list of all resolved rules.
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	WithWafStatus(withWafStatus bool) ApiListDistributionsRequest
-	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+	// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	PageIdentifier(pageIdentifier string) ApiListDistributionsRequest
-	// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution Id using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originUrl using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The originUrl is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
+	// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution Id using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originUrl using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The originUrl is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	SortBy(sortBy string) ApiListDistributionsRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -967,7 +967,7 @@ type DeleteDistributionRequest struct {
 	intentId       *string
 }
 
-// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
+// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;. This is used to deduplicate requests. If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r DeleteDistributionRequest) IntentId(intentId string) ApiDeleteDistributionRequest {
 	r.intentId = &intentId
@@ -1908,21 +1908,21 @@ func (r GetLogsRequest) From(from time.Time) ApiGetLogsRequest {
 	return r
 }
 
-// the end of the time range for which logs should be returned. If not specified,  \&quot;now\&quot; is used.
+// the end of the time range for which logs should be returned. If not specified, \&quot;now\&quot; is used.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r GetLogsRequest) To(to time.Time) ApiGetLogsRequest {
 	r.to = &to
 	return r
 }
 
-// Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+// Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive)
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r GetLogsRequest) PageSize(pageSize int32) ApiGetLogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r GetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsRequest {
 	r.pageIdentifier = &pageIdentifier
@@ -1942,7 +1942,7 @@ func (r GetLogsRequest) SortOrder(sortOrder string) ApiGetLogsRequest {
 	return r
 }
 
-// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged  but the request not blocked
+// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged but the request not blocked
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r GetLogsRequest) WafAction(wafAction WAFRuleAction) ApiGetLogsRequest {
 	r.wafAction = &wafAction
@@ -2380,14 +2380,14 @@ func (r GetStatisticsRequest) From(from time.Time) ApiGetStatisticsRequest {
 	return r
 }
 
-// the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+// the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r GetStatisticsRequest) To(to time.Time) ApiGetStatisticsRequest {
 	r.to = &to
 	return r
 }
 
-// Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
+// Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r GetStatisticsRequest) Interval(interval string) ApiGetStatisticsRequest {
 	r.interval = &interval
@@ -2578,7 +2578,7 @@ type ListDistributionsRequest struct {
 	sortOrder      *string
 }
 
-// Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+// Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r ListDistributionsRequest) PageSize(pageSize int32) ApiListDistributionsRequest {
 	r.pageSize = &pageSize
@@ -2592,14 +2592,14 @@ func (r ListDistributionsRequest) WithWafStatus(withWafStatus bool) ApiListDistr
 	return r
 }
 
-// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r ListDistributionsRequest) PageIdentifier(pageIdentifier string) ApiListDistributionsRequest {
 	r.pageIdentifier = &pageIdentifier
 	return r
 }
 
-// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution Id using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originUrl using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The originUrl is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
+// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution Id using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originUrl using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The originUrl is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (r ListDistributionsRequest) SortBy(sortBy string) ApiListDistributionsRequest {
 	r.sortBy = &sortBy

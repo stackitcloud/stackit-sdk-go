@@ -16,7 +16,7 @@ import (
 	"fmt"
 )
 
-// WafType Enable or disable the Premium WAF. Do note that enabling the Premium WAF will cause additional fees.   Some features are gated behind the Premium WAF, like additional, **premium-only rules** and the ability to create **custom rules** (not yet implemented)
+// WafType Enable or disable the Premium WAF. Do note that enabling the Premium WAF will cause additional fees.  Some features are gated behind the Premium WAF, like additional, **premium-only rules** and the ability to create **custom rules** (not yet implemented)
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type WafType string
 

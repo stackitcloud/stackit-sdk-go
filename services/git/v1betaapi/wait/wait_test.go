@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -142,30 +143,32 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails:       tt.getFails,
-				projectId:      tt.projectId,
-				instanceId:     tt.instanceId,
-				getGitResponse: tt.getGitResponse,
-				returnInstance: tt.returnInstance,
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:       tt.getFails,
+					projectId:      tt.projectId,
+					instanceId:     tt.instanceId,
+					getGitResponse: tt.getGitResponse,
+					returnInstance: tt.returnInstance,
+				})
+
+				var instanceWanted *git.Instance
+				if tt.wantResp {
+					instanceWanted = tt.getGitResponse
+				}
+
+				handler := CreateGitInstanceWaitHandler(context.Background(), apiClient, tt.projectId, tt.instanceId)
+
+				response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+
+				if !cmp.Equal(response, instanceWanted, cmp.AllowUnexported(git.NullableString{}, git.NullableBool{})) {
+					t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
+				}
 			})
-
-			var instanceWanted *git.Instance
-			if tt.wantResp {
-				instanceWanted = tt.getGitResponse
-			}
-
-			handler := CreateGitInstanceWaitHandler(context.Background(), apiClient, tt.projectId, tt.instanceId)
-
-			response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-
-			if !cmp.Equal(response, instanceWanted, cmp.AllowUnexported(git.NullableString{}, git.NullableBool{})) {
-				t.Fatalf("handler gotRes = %v, want %v", response, instanceWanted)
-			}
 		})
 	}
 }
@@ -212,27 +215,29 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			projectId := uuid.New().String()
-			instanceId := uuid.New().String()
+			synctest.Test(t, func(t *testing.T) {
+				projectId := uuid.New().String()
+				instanceId := uuid.New().String()
 
-			apiClient := newAPIMock(&mockSettings{
-				projectId:      projectId,
-				getFails:       tt.getFails,
-				errorCode:      tt.errorCode,
-				returnInstance: tt.returnInstance,
-				getGitResponse: tt.getGitResponse,
+				apiClient := newAPIMock(&mockSettings{
+					projectId:      projectId,
+					getFails:       tt.getFails,
+					errorCode:      tt.errorCode,
+					returnInstance: tt.returnInstance,
+					getGitResponse: tt.getGitResponse,
+				})
+
+				handler := DeleteGitInstanceWaitHandler(context.Background(), apiClient, projectId, instanceId)
+				response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+
+				if (response != nil) != tt.wantReturnedInstance {
+					t.Fatalf("handler gotRes = %v, want nil", response)
+				}
 			})
-
-			handler := DeleteGitInstanceWaitHandler(context.Background(), apiClient, projectId, instanceId)
-			response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-
-			if (response != nil) != tt.wantReturnedInstance {
-				t.Fatalf("handler gotRes = %v, want nil", response)
-			}
 		})
 	}
 }

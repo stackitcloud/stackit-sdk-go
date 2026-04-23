@@ -20,7 +20,7 @@ var _ MappedNullable = &PatchDistributionPayload{}
 // PatchDistributionPayload Defines a partial distribution. Set values
 type PatchDistributionPayload struct {
 	Config *ConfigPatch `json:"config,omitempty"`
-	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
+	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple modifying requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId             *string `json:"intentId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

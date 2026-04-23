@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -78,37 +79,39 @@ func TestEnableServiceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			serviceId := "serviceId"
+			synctest.Test(t, func(t *testing.T) {
+				serviceId := "serviceId"
 
-			apiClient := &apiClientServiceMocked{
-				serviceId:       serviceId,
-				serviceState:    tt.serviceState,
-				getServiceFails: tt.getServiceFails,
-			}
-
-			var wantRes *serviceenablement.ServiceStatus
-			if tt.wantResp {
-				wantRes = &serviceenablement.ServiceStatus{
-					ServiceId: &serviceId,
-					State:     utils.Ptr(tt.serviceState),
+				apiClient := &apiClientServiceMocked{
+					serviceId:       serviceId,
+					serviceState:    tt.serviceState,
+					getServiceFails: tt.getServiceFails,
 				}
-			}
 
-			ctx := context.Background()
-
-			handler := EnableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).WaitWithContext(ctx)
-
-			if err != nil {
-				if !tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				var wantRes *serviceenablement.ServiceStatus
+				if tt.wantResp {
+					wantRes = &serviceenablement.ServiceStatus{
+						ServiceId: &serviceId,
+						State:     utils.Ptr(tt.serviceState),
+					}
 				}
-				return
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+
+				ctx := context.Background()
+
+				handler := EnableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
+
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).WaitWithContext(ctx)
+
+				if err != nil {
+					if !tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					return
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		},
 		)
 	}
@@ -160,37 +163,39 @@ func TestDisableServiceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			serviceId := "serviceId"
+			synctest.Test(t, func(t *testing.T) {
+				serviceId := "serviceId"
 
-			apiClient := &apiClientServiceMocked{
-				serviceId:       serviceId,
-				serviceState:    tt.serviceState,
-				getServiceFails: tt.getServiceFails,
-			}
-
-			var wantRes *serviceenablement.ServiceStatus
-			if tt.wantResp {
-				wantRes = &serviceenablement.ServiceStatus{
-					ServiceId: &serviceId,
-					State:     utils.Ptr(tt.serviceState),
+				apiClient := &apiClientServiceMocked{
+					serviceId:       serviceId,
+					serviceState:    tt.serviceState,
+					getServiceFails: tt.getServiceFails,
 				}
-			}
 
-			ctx := context.Background()
-
-			handler := DisableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).WaitWithContext(ctx)
-
-			if err != nil {
-				if !tt.wantErr {
-					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				var wantRes *serviceenablement.ServiceStatus
+				if tt.wantResp {
+					wantRes = &serviceenablement.ServiceStatus{
+						ServiceId: &serviceId,
+						State:     utils.Ptr(tt.serviceState),
+					}
 				}
-				return
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+
+				ctx := context.Background()
+
+				handler := DisableServiceWaitHandler(ctx, apiClient, "eu01", "projectId", serviceId)
+
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).WaitWithContext(ctx)
+
+				if err != nil {
+					if !tt.wantErr {
+						t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+					}
+					return
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		},
 		)
 	}

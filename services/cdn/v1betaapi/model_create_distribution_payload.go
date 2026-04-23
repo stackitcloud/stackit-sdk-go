@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -20,15 +20,15 @@ var _ MappedNullable = &CreateDistributionPayload{}
 
 // CreateDistributionPayload struct for CreateDistributionPayload
 type CreateDistributionPayload struct {
-	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
+	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries,omitempty"`
-	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIPs []string `json:"blockedIPs,omitempty"`
-	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration *string `json:"defaultCacheDuration,omitempty"`
 	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You can not have a country be assigned to multiple alternative origins.
 	Geofencing *map[string][]string `json:"geofencing,omitempty"`
-	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
+	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId *string           `json:"intentId,omitempty"`
 	LogSink  *PatchLokiLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
@@ -36,7 +36,7 @@ type CreateDistributionPayload struct {
 	Optimizer         *Optimizer `json:"optimizer,omitempty"`
 	// Headers that will be sent with every request to the configured origin. WARNING: Do not store sensitive values in the headers. The data is stores as plain text.
 	OriginRequestHeaders *map[string]string `json:"originRequestHeaders,omitempty"`
-	// The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
+	// The origin of the content that should be made available through the CDN. Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed. So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
 	OriginUrl string `json:"originUrl"`
 	// Define in which regions you would like your content to be cached.
 	Regions              []Region   `json:"regions"`

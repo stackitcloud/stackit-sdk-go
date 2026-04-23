@@ -21,13 +21,15 @@ var _ MappedNullable = &CreateDistributionPayload{}
 // CreateDistributionPayload struct for CreateDistributionPayload
 type CreateDistributionPayload struct {
 	Backend CreateDistributionPayloadBackend `json:"backend"`
-	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
+	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries,omitempty"`
-	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps []string `json:"blockedIps,omitempty"`
-	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration *string `json:"defaultCacheDuration,omitempty"`
-	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
+	// Enabling this allows the 'Host' header to be passed through to the origin.
+	ForwardHostHeader *bool `json:"forwardHostHeader,omitempty"`
+	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple POST-Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId *string            `json:"intentId,omitempty"`
 	LogSink  *LokiLogSinkCreate `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
@@ -35,7 +37,10 @@ type CreateDistributionPayload struct {
 	Optimizer         *Optimizer      `json:"optimizer,omitempty"`
 	Redirects         *RedirectConfig `json:"redirects,omitempty"`
 	// Define in which regions you would like your content to be cached.
-	Regions              []Region   `json:"regions"`
+	Regions []Region `json:"regions"`
+	// Enable this to prevent origin-level cookies from being forwarded to the end user.
+	StripResponseCookies *bool      `json:"stripResponseCookies,omitempty"`
+	Tls                  *TlsConfig `json:"tls,omitempty"`
 	Waf                  *WafConfig `json:"waf,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -179,6 +184,38 @@ func (o *CreateDistributionPayload) HasDefaultCacheDuration() bool {
 // SetDefaultCacheDuration gets a reference to the given string and assigns it to the DefaultCacheDuration field.
 func (o *CreateDistributionPayload) SetDefaultCacheDuration(v string) {
 	o.DefaultCacheDuration = &v
+}
+
+// GetForwardHostHeader returns the ForwardHostHeader field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetForwardHostHeader() bool {
+	if o == nil || IsNil(o.ForwardHostHeader) {
+		var ret bool
+		return ret
+	}
+	return *o.ForwardHostHeader
+}
+
+// GetForwardHostHeaderOk returns a tuple with the ForwardHostHeader field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetForwardHostHeaderOk() (*bool, bool) {
+	if o == nil || IsNil(o.ForwardHostHeader) {
+		return nil, false
+	}
+	return o.ForwardHostHeader, true
+}
+
+// HasForwardHostHeader returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasForwardHostHeader() bool {
+	if o != nil && !IsNil(o.ForwardHostHeader) {
+		return true
+	}
+
+	return false
+}
+
+// SetForwardHostHeader gets a reference to the given bool and assigns it to the ForwardHostHeader field.
+func (o *CreateDistributionPayload) SetForwardHostHeader(v bool) {
+	o.ForwardHostHeader = &v
 }
 
 // GetIntentId returns the IntentId field value if set, zero value otherwise.
@@ -365,6 +402,70 @@ func (o *CreateDistributionPayload) SetRegions(v []Region) {
 	o.Regions = v
 }
 
+// GetStripResponseCookies returns the StripResponseCookies field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetStripResponseCookies() bool {
+	if o == nil || IsNil(o.StripResponseCookies) {
+		var ret bool
+		return ret
+	}
+	return *o.StripResponseCookies
+}
+
+// GetStripResponseCookiesOk returns a tuple with the StripResponseCookies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetStripResponseCookiesOk() (*bool, bool) {
+	if o == nil || IsNil(o.StripResponseCookies) {
+		return nil, false
+	}
+	return o.StripResponseCookies, true
+}
+
+// HasStripResponseCookies returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasStripResponseCookies() bool {
+	if o != nil && !IsNil(o.StripResponseCookies) {
+		return true
+	}
+
+	return false
+}
+
+// SetStripResponseCookies gets a reference to the given bool and assigns it to the StripResponseCookies field.
+func (o *CreateDistributionPayload) SetStripResponseCookies(v bool) {
+	o.StripResponseCookies = &v
+}
+
+// GetTls returns the Tls field value if set, zero value otherwise.
+func (o *CreateDistributionPayload) GetTls() TlsConfig {
+	if o == nil || IsNil(o.Tls) {
+		var ret TlsConfig
+		return ret
+	}
+	return *o.Tls
+}
+
+// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDistributionPayload) GetTlsOk() (*TlsConfig, bool) {
+	if o == nil || IsNil(o.Tls) {
+		return nil, false
+	}
+	return o.Tls, true
+}
+
+// HasTls returns a boolean if a field has been set.
+func (o *CreateDistributionPayload) HasTls() bool {
+	if o != nil && !IsNil(o.Tls) {
+		return true
+	}
+
+	return false
+}
+
+// SetTls gets a reference to the given TlsConfig and assigns it to the Tls field.
+func (o *CreateDistributionPayload) SetTls(v TlsConfig) {
+	o.Tls = &v
+}
+
 // GetWaf returns the Waf field value if set, zero value otherwise.
 func (o *CreateDistributionPayload) GetWaf() WafConfig {
 	if o == nil || IsNil(o.Waf) {
@@ -417,6 +518,9 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DefaultCacheDuration) {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration
 	}
+	if !IsNil(o.ForwardHostHeader) {
+		toSerialize["forwardHostHeader"] = o.ForwardHostHeader
+	}
 	if !IsNil(o.IntentId) {
 		toSerialize["intentId"] = o.IntentId
 	}
@@ -433,6 +537,12 @@ func (o CreateDistributionPayload) ToMap() (map[string]interface{}, error) {
 		toSerialize["redirects"] = o.Redirects
 	}
 	toSerialize["regions"] = o.Regions
+	if !IsNil(o.StripResponseCookies) {
+		toSerialize["stripResponseCookies"] = o.StripResponseCookies
+	}
+	if !IsNil(o.Tls) {
+		toSerialize["tls"] = o.Tls
+	}
 	if !IsNil(o.Waf) {
 		toSerialize["waf"] = o.Waf
 	}
@@ -484,12 +594,15 @@ func (o *CreateDistributionPayload) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
 		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "intentId")
 		delete(additionalProperties, "logSink")
 		delete(additionalProperties, "monthlyLimitBytes")
 		delete(additionalProperties, "optimizer")
 		delete(additionalProperties, "redirects")
 		delete(additionalProperties, "regions")
+		delete(additionalProperties, "stripResponseCookies")
+		delete(additionalProperties, "tls")
 		delete(additionalProperties, "waf")
 		o.AdditionalProperties = additionalProperties
 	}

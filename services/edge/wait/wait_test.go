@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 	"testing"
-	"time"
+	"testing/synctest"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -291,27 +291,26 @@ func checkError(t *testing.T, gotErr, wantErr error) {
 }
 
 func executeHandlerAndGetError[T any](handler *wait.AsyncActionHandler[T]) error {
-	_, err := handler.
-		SetTimeout(20 * time.Millisecond).
-		SetThrottle(1 * time.Millisecond).
-		WaitWithContext(context.Background())
+	_, err := handler.WaitWithContext(context.Background())
 	return err
 }
 
 func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 	for _, tc := range createOrUpdateInstanceTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				instanceStatus: tc.instanceStatus,
-			}
-			if tc.shouldFail {
-				apiClient.instanceError = &oapierror.GenericOpenAPIError{
-					StatusCode: http.StatusInternalServerError,
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					instanceStatus: tc.instanceStatus,
 				}
-			}
-			handler := CreateOrUpdateInstanceWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+				if tc.shouldFail {
+					apiClient.instanceError = &oapierror.GenericOpenAPIError{
+						StatusCode: http.StatusInternalServerError,
+					}
+				}
+				handler := CreateOrUpdateInstanceWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }
@@ -319,17 +318,19 @@ func TestCreateOrUpdateInstanceWaitHandler(t *testing.T) {
 func TestCreateOrUpdateInstanceByNameWaitHandler(t *testing.T) {
 	for _, tc := range createOrUpdateInstanceTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				instanceStatus: tc.instanceStatus,
-			}
-			if tc.shouldFail {
-				apiClient.instanceError = &oapierror.GenericOpenAPIError{
-					StatusCode: http.StatusInternalServerError,
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					instanceStatus: tc.instanceStatus,
 				}
-			}
-			handler := CreateOrUpdateInstanceByNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+				if tc.shouldFail {
+					apiClient.instanceError = &oapierror.GenericOpenAPIError{
+						StatusCode: http.StatusInternalServerError,
+					}
+				}
+				handler := CreateOrUpdateInstanceByNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }
@@ -337,12 +338,14 @@ func TestCreateOrUpdateInstanceByNameWaitHandler(t *testing.T) {
 func TestDeleteInstanceWaitHandler(t *testing.T) {
 	for _, tc := range deleteInstanceTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				deleteErrors: tc.errorsToReturn,
-			}
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					deleteErrors: tc.errorsToReturn,
+				}
+				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }
@@ -350,12 +353,14 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 func TestDeleteInstanceByNameWaitHandler(t *testing.T) {
 	for _, tc := range deleteInstanceTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				deleteErrors: tc.errorsToReturn,
-			}
-			handler := DeleteInstanceByNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					deleteErrors: tc.errorsToReturn,
+				}
+				handler := DeleteInstanceByNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }
@@ -363,15 +368,17 @@ func TestDeleteInstanceByNameWaitHandler(t *testing.T) {
 func TestKubeconfigWaitHandler(t *testing.T) {
 	for _, tc := range kubeconfigOrTokenTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				instanceStatus:    tc.instanceStatus,
-				instanceError:     tc.instanceError,
-				resourceErrors:    tc.errorsToReturn,
-				mockShouldTimeout: tc.mockShouldTimeout,
-			}
-			handler := KubeconfigWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId, nil)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					instanceStatus:    tc.instanceStatus,
+					instanceError:     tc.instanceError,
+					resourceErrors:    tc.errorsToReturn,
+					mockShouldTimeout: tc.mockShouldTimeout,
+				}
+				handler := KubeconfigWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId, nil)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }
@@ -379,15 +386,17 @@ func TestKubeconfigWaitHandler(t *testing.T) {
 func TestKubeconfigByInstanceNameWaitHandler(t *testing.T) {
 	for _, tc := range kubeconfigOrTokenTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				instanceStatus:    tc.instanceStatus,
-				instanceError:     tc.instanceError,
-				resourceErrors:    tc.errorsToReturn,
-				mockShouldTimeout: tc.mockShouldTimeout,
-			}
-			handler := KubeconfigByInstanceNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName, nil)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					instanceStatus:    tc.instanceStatus,
+					instanceError:     tc.instanceError,
+					resourceErrors:    tc.errorsToReturn,
+					mockShouldTimeout: tc.mockShouldTimeout,
+				}
+				handler := KubeconfigByInstanceNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName, nil)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }
@@ -395,15 +404,17 @@ func TestKubeconfigByInstanceNameWaitHandler(t *testing.T) {
 func TestTokenWaitHandler(t *testing.T) {
 	for _, tc := range kubeconfigOrTokenTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				instanceStatus:    tc.instanceStatus,
-				instanceError:     tc.instanceError,
-				resourceErrors:    tc.errorsToReturn,
-				mockShouldTimeout: tc.mockShouldTimeout,
-			}
-			handler := TokenWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId, nil)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					instanceStatus:    tc.instanceStatus,
+					instanceError:     tc.instanceError,
+					resourceErrors:    tc.errorsToReturn,
+					mockShouldTimeout: tc.mockShouldTimeout,
+				}
+				handler := TokenWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testInstanceId, nil)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }
@@ -411,15 +422,17 @@ func TestTokenWaitHandler(t *testing.T) {
 func TestTokenByInstanceNameWaitHandler(t *testing.T) {
 	for _, tc := range kubeconfigOrTokenTests {
 		t.Run(tc.desc, func(t *testing.T) {
-			apiClient := &mockApiClient{
-				instanceStatus:    tc.instanceStatus,
-				instanceError:     tc.instanceError,
-				resourceErrors:    tc.errorsToReturn,
-				mockShouldTimeout: tc.mockShouldTimeout,
-			}
-			handler := TokenByInstanceNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName, nil)
-			err := executeHandlerAndGetError(handler)
-			checkError(t, err, tc.wantErr)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &mockApiClient{
+					instanceStatus:    tc.instanceStatus,
+					instanceError:     tc.instanceError,
+					resourceErrors:    tc.errorsToReturn,
+					mockShouldTimeout: tc.mockShouldTimeout,
+				}
+				handler := TokenByInstanceNameWaitHandler(context.Background(), apiClient, testProjectId, testRegion, testName, nil)
+				err := executeHandlerAndGetError(handler)
+				checkError(t, err, tc.wantErr)
+			})
 		})
 	}
 }

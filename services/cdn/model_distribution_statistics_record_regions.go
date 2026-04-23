@@ -153,7 +153,7 @@ func setDistributionStatisticsRecordRegionsGetUSAttributeType(arg *DistributionS
 	*arg = &val
 }
 
-// DistributionStatisticsRecordRegions Mapping of regions to the metrics for this region for the defined time interval All regions are always present. If no traffic was reported for a region, it will  still contain 0-filled properties
+// DistributionStatisticsRecordRegions Mapping of regions to the metrics for this region for the defined time interval All regions are always present. If no traffic was reported for a region, it will still contain 0-filled properties
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type DistributionStatisticsRecordRegions struct {
 	// REQUIRED

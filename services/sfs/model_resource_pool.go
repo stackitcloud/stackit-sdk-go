@@ -317,6 +317,33 @@ func setResourcePoolGetSizeReducibleAtAttributeType(arg *ResourcePoolGetSizeRedu
 }
 
 /*
+	types and functions for snapshotPolicy
+*/
+
+// isModel
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ResourcePoolGetSnapshotPolicyAttributeType = *NullableResourcePoolSnapshotPolicy
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ResourcePoolGetSnapshotPolicyArgType = *NullableResourcePoolSnapshotPolicy
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ResourcePoolGetSnapshotPolicyRetType = *NullableResourcePoolSnapshotPolicy
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getResourcePoolGetSnapshotPolicyAttributeTypeOk(arg ResourcePoolGetSnapshotPolicyAttributeType) (ret ResourcePoolGetSnapshotPolicyRetType, ok bool) {
+	if arg == nil {
+		return nil, false
+	}
+	return arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setResourcePoolGetSnapshotPolicyAttributeType(arg *ResourcePoolGetSnapshotPolicyAttributeType, val ResourcePoolGetSnapshotPolicyRetType) {
+	*arg = val
+}
+
+/*
 	types and functions for snapshotsAreVisible
 */
 
@@ -420,6 +447,7 @@ type ResourcePool struct {
 	PerformanceClassDowngradableAt ResourcePoolGetPerformanceClassDowngradableAtAttributeType `json:"performanceClassDowngradableAt,omitempty"`
 	// Time when the size can be reduced again.
 	SizeReducibleAt ResourcePoolGetSizeReducibleAtAttributeType `json:"sizeReducibleAt,omitempty"`
+	SnapshotPolicy  ResourcePoolGetSnapshotPolicyAttributeType  `json:"snapshotPolicy,omitempty"`
 	// Whether the .snapshot directory is visible when mounting the resource pool.  Setting this value to false might prevent you from accessing the snapshots (e.g.  for security reasons). Additionally, the access to the snapshots is always controlled  by the export policy of the resource pool. That means, if snapshots are visible and  the export policy allows for reading the resource pool, then it also allows reading  the snapshot of all shares.
 	SnapshotsAreVisible ResourcePoolgetSnapshotsAreVisibleAttributeType `json:"snapshotsAreVisible,omitempty"`
 	Space               ResourcePoolGetSpaceAttributeType               `json:"space,omitempty"`
@@ -745,6 +773,46 @@ func (o *ResourcePool) SetSizeReducibleAt(v ResourcePoolGetSizeReducibleAtRetTyp
 	setResourcePoolGetSizeReducibleAtAttributeType(&o.SizeReducibleAt, v)
 }
 
+// GetSnapshotPolicy returns the SnapshotPolicy field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePool) GetSnapshotPolicy() (res ResourcePoolGetSnapshotPolicyRetType) {
+	res, _ = o.GetSnapshotPolicyOk()
+	return
+}
+
+// GetSnapshotPolicyOk returns a tuple with the SnapshotPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePool) GetSnapshotPolicyOk() (ret ResourcePoolGetSnapshotPolicyRetType, ok bool) {
+	return getResourcePoolGetSnapshotPolicyAttributeTypeOk(o.SnapshotPolicy)
+}
+
+// HasSnapshotPolicy returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePool) HasSnapshotPolicy() bool {
+	_, ok := o.GetSnapshotPolicyOk()
+	return ok
+}
+
+// SetSnapshotPolicy gets a reference to the given ResourcePoolSnapshotPolicy and assigns it to the SnapshotPolicy field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePool) SetSnapshotPolicy(v ResourcePoolGetSnapshotPolicyRetType) {
+	setResourcePoolGetSnapshotPolicyAttributeType(&o.SnapshotPolicy, v)
+}
+
+// SetSnapshotPolicyNil sets the value for SnapshotPolicy to be an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePool) SetSnapshotPolicyNil() {
+	o.SnapshotPolicy = nil
+}
+
+// UnsetSnapshotPolicy ensures that no value is present for SnapshotPolicy, not even an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *ResourcePool) UnsetSnapshotPolicy() {
+	o.SnapshotPolicy = nil
+}
+
 // GetSnapshotsAreVisible returns the SnapshotsAreVisible field value if set, zero value otherwise.
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *ResourcePool) GetSnapshotsAreVisible() (res ResourcePoolgetSnapshotsAreVisibleRetType) {
@@ -861,6 +929,9 @@ func (o ResourcePool) ToMap() (map[string]interface{}, error) {
 	}
 	if val, ok := getResourcePoolGetSizeReducibleAtAttributeTypeOk(o.SizeReducibleAt); ok {
 		toSerialize["SizeReducibleAt"] = val
+	}
+	if val, ok := getResourcePoolGetSnapshotPolicyAttributeTypeOk(o.SnapshotPolicy); ok {
+		toSerialize["SnapshotPolicy"] = val
 	}
 	if val, ok := getResourcePoolgetSnapshotsAreVisibleAttributeTypeOk(o.SnapshotsAreVisible); ok {
 		toSerialize["SnapshotsAreVisible"] = val

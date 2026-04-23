@@ -1,3 +1,6 @@
+## v0.26.0
+- **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
+
 ## v0.25.0
 - Minimal go version is now Go 1.25
 
