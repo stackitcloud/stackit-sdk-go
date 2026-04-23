@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"testing"
 	"testing/synctest"
-	"time"
 
 	"github.com/google/go-cmp/cmp"
 
