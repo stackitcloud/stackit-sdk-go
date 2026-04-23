@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strings"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -169,12 +170,14 @@ func TestCreateDistributionWaitHandler(t *testing.T) {
 
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
-			handler := CreateDistributionPoolWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
-			dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-			tc.errCheck(t, err)
-			if diff := cmp.Diff(tc.expectedDistribution, dist); diff != "" {
-				t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				handler := CreateDistributionPoolWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
+				dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				tc.errCheck(t, err)
+				if diff := cmp.Diff(tc.expectedDistribution, dist); diff != "" {
+					t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
+				}
+			})
 		})
 	}
 }
@@ -299,12 +302,14 @@ func TestDeleteDistributionWaitHandler(t *testing.T) {
 
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
-			handler := DeleteDistributionWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
-			dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-			tc.errCheck(t, err)
-			if dist != nil {
-				t.Fatalf("Distribution not deleted")
-			}
+			synctest.Test(t, func(t *testing.T) {
+				handler := DeleteDistributionWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
+				dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				tc.errCheck(t, err)
+				if dist != nil {
+					t.Fatalf("Distribution not deleted")
+				}
+			})
 		})
 	}
 }
@@ -414,12 +419,14 @@ func TestUpdateDistributionWaitHandler(t *testing.T) {
 
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
-			handler := UpdateDistributionWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
-			dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-			tc.errCheck(t, err)
-			if diff := cmp.Diff(tc.expectedDistribution, dist); diff != "" {
-				t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				handler := UpdateDistributionWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId)
+				dist, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				tc.errCheck(t, err)
+				if diff := cmp.Diff(tc.expectedDistribution, dist); diff != "" {
+					t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
+				}
+			})
 		})
 	}
 }
@@ -530,12 +537,14 @@ func TestCreateCustomDomainWaitHandler(t *testing.T) {
 
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
-			handler := CreateCDNCustomDomainWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId, tc.customDomain)
-			customDomain, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-			tc.errCheck(t, err)
-			if diff := cmp.Diff(tc.expectedCustomDomain, customDomain); diff != "" {
-				t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				handler := CreateCDNCustomDomainWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId, tc.customDomain)
+				customDomain, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				tc.errCheck(t, err)
+				if diff := cmp.Diff(tc.expectedCustomDomain, customDomain); diff != "" {
+					t.Fatalf("Unexpected response (-want, +got):\n%s", diff)
+				}
+			})
 		})
 	}
 }
@@ -660,12 +669,14 @@ func TestDeleteCustomDomainHandler(t *testing.T) {
 
 	for name, tc := range tests {
 		t.Run(name, func(t *testing.T) {
-			handler := DeleteCDNCustomDomainWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId, tc.customDomain)
-			customDomain, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-			tc.errCheck(t, err)
-			if customDomain != nil {
-				t.Fatalf("Custom domain not deleted")
-			}
+			synctest.Test(t, func(t *testing.T) {
+				handler := DeleteCDNCustomDomainWaitHandler(context.Background(), tc.apiClient, tc.projectId, tc.distributionId, tc.customDomain)
+				customDomain, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				tc.errCheck(t, err)
+				if customDomain != nil {
+					t.Fatalf("Custom domain not deleted")
+				}
+			})
 		})
 	}
 }

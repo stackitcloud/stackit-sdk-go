@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -59,25 +60,27 @@ func TestCreateBucketWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				bucketGetFails: tt.bucketGetFails,
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					bucketGetFails: tt.bucketGetFails,
+				})
+
+				var wantRes *objectstorage.GetBucketResponse
+				if tt.wantResp {
+					wantRes = &objectstorage.GetBucketResponse{}
+				}
+
+				handler := CreateBucketWaitHandler(context.Background(), apiClient, "", "", "")
+
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
 			})
-
-			var wantRes *objectstorage.GetBucketResponse
-			if tt.wantResp {
-				wantRes = &objectstorage.GetBucketResponse{}
-			}
-
-			handler := CreateBucketWaitHandler(context.Background(), apiClient, "", "", "")
-
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
 		})
 	}
 }
@@ -101,18 +104,20 @@ func TestDeleteBucketWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				bucketIsDeleted: true,
-				bucketGetFails:  tt.bucketGetFails,
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					bucketIsDeleted: true,
+					bucketGetFails:  tt.bucketGetFails,
+				})
+
+				handler := DeleteBucketWaitHandler(context.Background(), apiClient, "", "", "")
+
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
 			})
-
-			handler := DeleteBucketWaitHandler(context.Background(), apiClient, "", "", "")
-
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
 		})
 	}
 }

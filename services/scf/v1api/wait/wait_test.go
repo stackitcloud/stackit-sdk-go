@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/uuid"
@@ -81,24 +82,26 @@ func TestDeleteOrganizationWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				projectId:      PROJECT_ID,
-				instanceId:     INSTANCE_ID,
-				getFails:       tt.getFails,
-				errorCode:      tt.errorCode,
-				returnInstance: tt.returnInstance,
-				getSCFResponse: tt.getOrgResponse,
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					projectId:      PROJECT_ID,
+					instanceId:     INSTANCE_ID,
+					getFails:       tt.getFails,
+					errorCode:      tt.errorCode,
+					returnInstance: tt.returnInstance,
+					getSCFResponse: tt.getOrgResponse,
+				})
+
+				handler := DeleteOrganizationWaitHandler(context.Background(), apiClient, PROJECT_ID, REGION, INSTANCE_ID)
+				response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if (response != nil) != tt.wantReturnedInstance {
+					t.Fatalf("handler gotRes = %v, want nil", response)
+				}
 			})
-
-			handler := DeleteOrganizationWaitHandler(context.Background(), apiClient, PROJECT_ID, REGION, INSTANCE_ID)
-			response, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if (response != nil) != tt.wantReturnedInstance {
-				t.Fatalf("handler gotRes = %v, want nil", response)
-			}
 		})
 	}
 }

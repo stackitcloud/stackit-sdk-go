@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
-	"time"
+	"testing/synctest"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/services/sfs"
@@ -131,25 +131,24 @@ func TestCreateResourcePoolWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := CreateResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
-			handler.SetTimeout(500 * time.Millisecond)
-			handler.SetSleepBeforeWait(0)
-			handler.SetThrottle(1)
-			response, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
-			}
-			var actualState string
-			if response != nil {
-				actualState = *response.ResourcePool.State
-			}
-			if tt.wantState != actualState {
-				t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClientMock := apiClientMock{
+					responses: tt.fields.responses,
+				}
+				ctx := context.Background()
+				handler := CreateResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
+				response, err := handler.WaitWithContext(ctx)
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
+				}
+				var actualState string
+				if response != nil {
+					actualState = *response.ResourcePool.State
+				}
+				if tt.wantState != actualState {
+					t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
+				}
+			})
 		})
 	}
 }
@@ -220,25 +219,24 @@ func TestUpdateResourcePoolWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := UpdateResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
-			handler.SetTimeout(250 * time.Millisecond)
-			handler.SetSleepBeforeWait(0)
-			handler.SetThrottle(1)
-			response, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
-			}
-			var actualState string
-			if response != nil {
-				actualState = *response.ResourcePool.State
-			}
-			if tt.wantState != actualState {
-				t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClientMock := apiClientMock{
+					responses: tt.fields.responses,
+				}
+				ctx := context.Background()
+				handler := UpdateResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
+				response, err := handler.WaitWithContext(ctx)
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
+				}
+				var actualState string
+				if response != nil {
+					actualState = *response.ResourcePool.State
+				}
+				if tt.wantState != actualState {
+					t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
+				}
+			})
 		})
 	}
 }
@@ -302,18 +300,17 @@ func TestDeleteResourcePoolWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := DeleteResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
-			handler.SetTimeout(250 * time.Millisecond)
-			handler.SetSleepBeforeWait(0)
-			handler.SetThrottle(1)
-			_, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClientMock := apiClientMock{
+					responses: tt.fields.responses,
+				}
+				ctx := context.Background()
+				handler := DeleteResourcePoolWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId)
+				_, err := handler.WaitWithContext(ctx)
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }
@@ -384,25 +381,24 @@ func TestCreateShareWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := CreateShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
-			handler.SetTimeout(250 * time.Millisecond)
-			handler.SetSleepBeforeWait(0)
-			handler.SetThrottle(1)
-			response, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
-			}
-			var actualState string
-			if response != nil {
-				actualState = *response.Share.State
-			}
-			if tt.wantState != actualState {
-				t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClientMock := apiClientMock{
+					responses: tt.fields.responses,
+				}
+				ctx := context.Background()
+				handler := CreateShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
+				response, err := handler.WaitWithContext(ctx)
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
+				}
+				var actualState string
+				if response != nil {
+					actualState = *response.Share.State
+				}
+				if tt.wantState != actualState {
+					t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
+				}
+			})
 		})
 	}
 }
@@ -473,25 +469,24 @@ func TestUpdateShareWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := UpdateShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
-			handler.SetTimeout(250 * time.Millisecond)
-			handler.SetSleepBeforeWait(0)
-			handler.SetThrottle(1)
-			response, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
-			}
-			var actualState string
-			if response != nil {
-				actualState = *response.Share.State
-			}
-			if tt.wantState != actualState {
-				t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClientMock := apiClientMock{
+					responses: tt.fields.responses,
+				}
+				ctx := context.Background()
+				handler := UpdateShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
+				response, err := handler.WaitWithContext(ctx)
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
+				}
+				var actualState string
+				if response != nil {
+					actualState = *response.Share.State
+				}
+				if tt.wantState != actualState {
+					t.Errorf("wrong state want %q but got %q", tt.wantState, actualState)
+				}
+			})
 		})
 	}
 }
@@ -577,18 +572,17 @@ func TestDeleteShareWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			apiClientMock := apiClientMock{
-				responses: tt.fields.responses,
-			}
-			ctx := context.Background()
-			handler := DeleteShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
-			handler.SetTimeout(250 * time.Millisecond)
-			handler.SetSleepBeforeWait(0)
-			handler.SetThrottle(1)
-			_, err := handler.WaitWithContext(ctx)
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClientMock := apiClientMock{
+					responses: tt.fields.responses,
+				}
+				ctx := context.Background()
+				handler := DeleteShareWaitHandler(ctx, &apiClientMock, tt.args.projectId, tt.args.region, testResourcePoolId, testShareId)
+				_, err := handler.WaitWithContext(ctx)
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error %s, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }

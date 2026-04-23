@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -73,32 +74,34 @@ func TestCreateModelServingWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails:      tt.getFails,
-				statusCode:    tt.statusCode,
-				resourceState: tt.resourceState,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:      tt.getFails,
+					statusCode:    tt.statusCode,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *modelserving.GetTokenResponse
-			if tt.wantResp {
-				wantRes = &modelserving.GetTokenResponse{
-					Token: modelserving.Token{
-						State: tt.resourceState,
-						Id:    "tid",
-					},
+				var wantRes *modelserving.GetTokenResponse
+				if tt.wantResp {
+					wantRes = &modelserving.GetTokenResponse{
+						Token: modelserving.Token{
+							State: tt.resourceState,
+							Id:    "tid",
+						},
+					}
 				}
-			}
 
-			handler := CreateModelServingWaitHandler(context.Background(), apiClient, "region", "pid", "tid")
+				handler := CreateModelServingWaitHandler(context.Background(), apiClient, "region", "pid", "tid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -139,32 +142,34 @@ func TestUpdateModelServingWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails:      tt.getFails,
-				statusCode:    tt.statusCode,
-				resourceState: tt.resourceState,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:      tt.getFails,
+					statusCode:    tt.statusCode,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *modelserving.GetTokenResponse
-			if tt.wantResp {
-				wantRes = &modelserving.GetTokenResponse{
-					Token: modelserving.Token{
-						State: tt.resourceState,
-						Id:    "tid",
-					},
+				var wantRes *modelserving.GetTokenResponse
+				if tt.wantResp {
+					wantRes = &modelserving.GetTokenResponse{
+						Token: modelserving.Token{
+							State: tt.resourceState,
+							Id:    "tid",
+						},
+					}
 				}
-			}
 
-			handler := UpdateModelServingWaitHandler(context.Background(), apiClient, "region", "pid", "tid")
+				handler := UpdateModelServingWaitHandler(context.Background(), apiClient, "region", "pid", "tid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -205,32 +210,34 @@ func TestDeleteModelServingWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails:      tt.getFails,
-				statusCode:    tt.statusCode,
-				resourceState: tt.resourceState,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:      tt.getFails,
+					statusCode:    tt.statusCode,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *modelserving.GetTokenResponse
-			if tt.wantResp {
-				wantRes = &modelserving.GetTokenResponse{
-					Token: modelserving.Token{
-						State: tt.resourceState,
-						Id:    "tid",
-					},
+				var wantRes *modelserving.GetTokenResponse
+				if tt.wantResp {
+					wantRes = &modelserving.GetTokenResponse{
+						Token: modelserving.Token{
+							State: tt.resourceState,
+							Id:    "tid",
+						},
+					}
 				}
-			}
 
-			handler := DeleteModelServingWaitHandler(context.Background(), apiClient, "region", "pid", "tid")
+				handler := DeleteModelServingWaitHandler(context.Background(), apiClient, "region", "pid", "tid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
