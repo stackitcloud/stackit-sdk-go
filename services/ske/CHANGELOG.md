@@ -1,4 +1,5 @@
 ## v1.13.0
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `v2api`:
   - New field `Expiration` in `ClusterStatus` model struct
   - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
