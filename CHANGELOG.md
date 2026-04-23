@@ -39,6 +39,8 @@
     - Minimal go version is now Go 1.25
   - [v1.14.1](services/cdn/CHANGELOG.md#v1141) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+  - [v1.14.1](services/cdn/CHANGELOG.md#v1141) 
+    - **Deprecation:** The `v1betaapi` is deprecated and will be removed in the future. Migrate to `v1api`
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

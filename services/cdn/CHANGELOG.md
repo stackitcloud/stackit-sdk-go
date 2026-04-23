@@ -1,3 +1,6 @@
+## v1.14.2
+- **Deprecation:** The `v1betaapi` is deprecated and will be removed in the future. Migrate to `v1api`
+
 ## v1.14.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 
