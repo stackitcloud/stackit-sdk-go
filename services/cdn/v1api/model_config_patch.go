@@ -20,18 +20,23 @@ var _ MappedNullable = &ConfigPatch{}
 // ConfigPatch struct for ConfigPatch
 type ConfigPatch struct {
 	Backend *ConfigPatchBackend `json:"backend,omitempty"`
-	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB).  This setting blocks users from the specified countries.
+	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g., DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries,omitempty"`
-	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps []string `json:"blockedIps,omitempty"`
-	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
-	DefaultCacheDuration NullableString           `json:"defaultCacheDuration,omitempty"`
-	LogSink              NullableLokiLogSinkPatch `json:"logSink,omitempty"`
+	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
+	// Enabling this allows the 'Host' header to be passed through to the origin.
+	ForwardHostHeader *bool                    `json:"forwardHostHeader,omitempty"`
+	LogSink           NullableLokiLogSinkPatch `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
-	MonthlyLimitBytes    NullableInt64   `json:"monthlyLimitBytes,omitempty"`
-	Optimizer            *OptimizerPatch `json:"optimizer,omitempty"`
-	Redirects            *RedirectConfig `json:"redirects,omitempty"`
-	Regions              []Region        `json:"regions,omitempty"`
+	MonthlyLimitBytes NullableInt64   `json:"monthlyLimitBytes,omitempty"`
+	Optimizer         *OptimizerPatch `json:"optimizer,omitempty"`
+	Redirects         *RedirectConfig `json:"redirects,omitempty"`
+	Regions           []Region        `json:"regions,omitempty"`
+	// Enable this to prevent origin-level cookies from being forwarded to the end user.
+	StripResponseCookies *bool           `json:"stripResponseCookies,omitempty"`
+	Tls                  *TlsConfigPatch `json:"tls,omitempty"`
 	Waf                  *WafConfigPatch `json:"waf,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -192,6 +197,38 @@ func (o *ConfigPatch) SetDefaultCacheDurationNil() {
 // UnsetDefaultCacheDuration ensures that no value is present for DefaultCacheDuration, not even an explicit nil
 func (o *ConfigPatch) UnsetDefaultCacheDuration() {
 	o.DefaultCacheDuration.Unset()
+}
+
+// GetForwardHostHeader returns the ForwardHostHeader field value if set, zero value otherwise.
+func (o *ConfigPatch) GetForwardHostHeader() bool {
+	if o == nil || IsNil(o.ForwardHostHeader) {
+		var ret bool
+		return ret
+	}
+	return *o.ForwardHostHeader
+}
+
+// GetForwardHostHeaderOk returns a tuple with the ForwardHostHeader field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetForwardHostHeaderOk() (*bool, bool) {
+	if o == nil || IsNil(o.ForwardHostHeader) {
+		return nil, false
+	}
+	return o.ForwardHostHeader, true
+}
+
+// HasForwardHostHeader returns a boolean if a field has been set.
+func (o *ConfigPatch) HasForwardHostHeader() bool {
+	if o != nil && !IsNil(o.ForwardHostHeader) {
+		return true
+	}
+
+	return false
+}
+
+// SetForwardHostHeader gets a reference to the given bool and assigns it to the ForwardHostHeader field.
+func (o *ConfigPatch) SetForwardHostHeader(v bool) {
+	o.ForwardHostHeader = &v
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -376,6 +413,70 @@ func (o *ConfigPatch) SetRegions(v []Region) {
 	o.Regions = v
 }
 
+// GetStripResponseCookies returns the StripResponseCookies field value if set, zero value otherwise.
+func (o *ConfigPatch) GetStripResponseCookies() bool {
+	if o == nil || IsNil(o.StripResponseCookies) {
+		var ret bool
+		return ret
+	}
+	return *o.StripResponseCookies
+}
+
+// GetStripResponseCookiesOk returns a tuple with the StripResponseCookies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetStripResponseCookiesOk() (*bool, bool) {
+	if o == nil || IsNil(o.StripResponseCookies) {
+		return nil, false
+	}
+	return o.StripResponseCookies, true
+}
+
+// HasStripResponseCookies returns a boolean if a field has been set.
+func (o *ConfigPatch) HasStripResponseCookies() bool {
+	if o != nil && !IsNil(o.StripResponseCookies) {
+		return true
+	}
+
+	return false
+}
+
+// SetStripResponseCookies gets a reference to the given bool and assigns it to the StripResponseCookies field.
+func (o *ConfigPatch) SetStripResponseCookies(v bool) {
+	o.StripResponseCookies = &v
+}
+
+// GetTls returns the Tls field value if set, zero value otherwise.
+func (o *ConfigPatch) GetTls() TlsConfigPatch {
+	if o == nil || IsNil(o.Tls) {
+		var ret TlsConfigPatch
+		return ret
+	}
+	return *o.Tls
+}
+
+// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigPatch) GetTlsOk() (*TlsConfigPatch, bool) {
+	if o == nil || IsNil(o.Tls) {
+		return nil, false
+	}
+	return o.Tls, true
+}
+
+// HasTls returns a boolean if a field has been set.
+func (o *ConfigPatch) HasTls() bool {
+	if o != nil && !IsNil(o.Tls) {
+		return true
+	}
+
+	return false
+}
+
+// SetTls gets a reference to the given TlsConfigPatch and assigns it to the Tls field.
+func (o *ConfigPatch) SetTls(v TlsConfigPatch) {
+	o.Tls = &v
+}
+
 // GetWaf returns the Waf field value if set, zero value otherwise.
 func (o *ConfigPatch) GetWaf() WafConfigPatch {
 	if o == nil || IsNil(o.Waf) {
@@ -430,6 +531,9 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	if o.DefaultCacheDuration.IsSet() {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration.Get()
 	}
+	if !IsNil(o.ForwardHostHeader) {
+		toSerialize["forwardHostHeader"] = o.ForwardHostHeader
+	}
 	if o.LogSink.IsSet() {
 		toSerialize["logSink"] = o.LogSink.Get()
 	}
@@ -444,6 +548,12 @@ func (o ConfigPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Regions) {
 		toSerialize["regions"] = o.Regions
+	}
+	if !IsNil(o.StripResponseCookies) {
+		toSerialize["stripResponseCookies"] = o.StripResponseCookies
+	}
+	if !IsNil(o.Tls) {
+		toSerialize["tls"] = o.Tls
 	}
 	if !IsNil(o.Waf) {
 		toSerialize["waf"] = o.Waf
@@ -474,11 +584,14 @@ func (o *ConfigPatch) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
 		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "logSink")
 		delete(additionalProperties, "monthlyLimitBytes")
 		delete(additionalProperties, "optimizer")
 		delete(additionalProperties, "redirects")
 		delete(additionalProperties, "regions")
+		delete(additionalProperties, "stripResponseCookies")
+		delete(additionalProperties, "tls")
 		delete(additionalProperties, "waf")
 		o.AdditionalProperties = additionalProperties
 	}

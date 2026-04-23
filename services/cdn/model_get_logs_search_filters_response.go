@@ -133,7 +133,7 @@ type GetLogsSearchFiltersResponse struct {
 	Cache GetLogsSearchFiltersResponseGetCacheAttributeType `json:"cache" required:"true"`
 	// REQUIRED
 	DataCenter GetLogsSearchFiltersResponseGetDataCenterAttributeType `json:"dataCenter" required:"true"`
-	// List of ISO-3166 Alpha2 Country Codes matching the input filter. Response is ordered in ascending order.   For more Info about the country codes, see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+	// List of ISO-3166 Alpha2 Country Codes matching the input filter. Response is ordered in ascending order.  For more Info about the country codes, see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 	// REQUIRED
 	RemoteCountry GetLogsSearchFiltersResponseGetRemoteCountryAttributeType `json:"remoteCountry" required:"true"`
 	// List of Status Codes matching the input filter. Response is ordered in ascending order.

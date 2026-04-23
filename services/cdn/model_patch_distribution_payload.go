@@ -76,7 +76,7 @@ type PatchDistributionPayloadGetIntentIdRetType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PatchDistributionPayload struct {
 	Config PatchDistributionPayloadGetConfigAttributeType `json:"config,omitempty"`
-	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
+	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple modifying requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId PatchDistributionPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
 }
 

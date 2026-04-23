@@ -131,9 +131,9 @@ type HttpBackendCreateGetTypeRetType = string
 type HttpBackendCreate struct {
 	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins.
 	Geofencing HttpBackendCreateGetGeofencingAttributeType `json:"geofencing,omitempty"`
-	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
+	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers. The configuration is stored as plain text.
 	OriginRequestHeaders HttpBackendCreateGetOriginRequestHeadersAttributeType `json:"originRequestHeaders,omitempty"`
-	// The origin of the content that should be made available through the CDN.   Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed.   So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
+	// The origin of the content that should be made available through the CDN. Note that the path and query parameters are ignored. Ports are allowed. If no protocol is provided, `https` is assumed. So `www.example.com:1234/somePath?q=123` is normalized to `https://www.example.com:1234`
 	// REQUIRED
 	OriginUrl HttpBackendCreateGetOriginUrlAttributeType `json:"originUrl" required:"true"`
 	// REQUIRED

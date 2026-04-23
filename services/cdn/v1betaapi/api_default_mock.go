@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -20,38 +20,39 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // DefaultAPIServiceMock is meant to be used for testing only as a replacement for DefaultAPIService.
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
-	// CreateDistributionExecuteMock can be populated to implement the behavior of the CreateDistributionExecute function of this mock
+	// Deprecated: CreateDistributionExecuteMock can be populated to implement the behavior of the CreateDistributionExecute function of this mock
 	CreateDistributionExecuteMock *func(r ApiCreateDistributionRequest) (*CreateDistributionResponse, error)
-	// DeleteCustomDomainExecuteMock can be populated to implement the behavior of the DeleteCustomDomainExecute function of this mock
+	// Deprecated: DeleteCustomDomainExecuteMock can be populated to implement the behavior of the DeleteCustomDomainExecute function of this mock
 	DeleteCustomDomainExecuteMock *func(r ApiDeleteCustomDomainRequest) (*DeleteCustomDomainResponse, error)
-	// DeleteDistributionExecuteMock can be populated to implement the behavior of the DeleteDistributionExecute function of this mock
+	// Deprecated: DeleteDistributionExecuteMock can be populated to implement the behavior of the DeleteDistributionExecute function of this mock
 	DeleteDistributionExecuteMock *func(r ApiDeleteDistributionRequest) (*DeleteDistributionResponse, error)
-	// FindCachePathsExecuteMock can be populated to implement the behavior of the FindCachePathsExecute function of this mock
+	// Deprecated: FindCachePathsExecuteMock can be populated to implement the behavior of the FindCachePathsExecute function of this mock
 	FindCachePathsExecuteMock *func(r ApiFindCachePathsRequest) (*FindCachePathsResponse, error)
-	// GetCacheInfoExecuteMock can be populated to implement the behavior of the GetCacheInfoExecute function of this mock
+	// Deprecated: GetCacheInfoExecuteMock can be populated to implement the behavior of the GetCacheInfoExecute function of this mock
 	GetCacheInfoExecuteMock *func(r ApiGetCacheInfoRequest) (*GetCacheInfoResponse, error)
-	// GetCustomDomainExecuteMock can be populated to implement the behavior of the GetCustomDomainExecute function of this mock
+	// Deprecated: GetCustomDomainExecuteMock can be populated to implement the behavior of the GetCustomDomainExecute function of this mock
 	GetCustomDomainExecuteMock *func(r ApiGetCustomDomainRequest) (*GetCustomDomainResponse, error)
-	// GetDistributionExecuteMock can be populated to implement the behavior of the GetDistributionExecute function of this mock
+	// Deprecated: GetDistributionExecuteMock can be populated to implement the behavior of the GetDistributionExecute function of this mock
 	GetDistributionExecuteMock *func(r ApiGetDistributionRequest) (*GetDistributionResponse, error)
-	// GetLogsExecuteMock can be populated to implement the behavior of the GetLogsExecute function of this mock
+	// Deprecated: GetLogsExecuteMock can be populated to implement the behavior of the GetLogsExecute function of this mock
 	GetLogsExecuteMock *func(r ApiGetLogsRequest) (*GetLogsResponse, error)
-	// GetLogsSearchFiltersExecuteMock can be populated to implement the behavior of the GetLogsSearchFiltersExecute function of this mock
+	// Deprecated: GetLogsSearchFiltersExecuteMock can be populated to implement the behavior of the GetLogsSearchFiltersExecute function of this mock
 	GetLogsSearchFiltersExecuteMock *func(r ApiGetLogsSearchFiltersRequest) (*GetLogsSearchFiltersResponse, error)
-	// GetStatisticsExecuteMock can be populated to implement the behavior of the GetStatisticsExecute function of this mock
+	// Deprecated: GetStatisticsExecuteMock can be populated to implement the behavior of the GetStatisticsExecute function of this mock
 	GetStatisticsExecuteMock *func(r ApiGetStatisticsRequest) (*GetStatisticsResponse, error)
-	// ListDistributionsExecuteMock can be populated to implement the behavior of the ListDistributionsExecute function of this mock
+	// Deprecated: ListDistributionsExecuteMock can be populated to implement the behavior of the ListDistributionsExecute function of this mock
 	ListDistributionsExecuteMock *func(r ApiListDistributionsRequest) (*ListDistributionsResponse, error)
-	// ListWAFCollectionsExecuteMock can be populated to implement the behavior of the ListWAFCollectionsExecute function of this mock
+	// Deprecated: ListWAFCollectionsExecuteMock can be populated to implement the behavior of the ListWAFCollectionsExecute function of this mock
 	ListWAFCollectionsExecuteMock *func(r ApiListWAFCollectionsRequest) (*ListWAFCollectionsResponse, error)
-	// PatchDistributionExecuteMock can be populated to implement the behavior of the PatchDistributionExecute function of this mock
+	// Deprecated: PatchDistributionExecuteMock can be populated to implement the behavior of the PatchDistributionExecute function of this mock
 	PatchDistributionExecuteMock *func(r ApiPatchDistributionRequest) (*PatchDistributionResponse, error)
-	// PurgeCacheExecuteMock can be populated to implement the behavior of the PurgeCacheExecute function of this mock
+	// Deprecated: PurgeCacheExecuteMock can be populated to implement the behavior of the PurgeCacheExecute function of this mock
 	PurgeCacheExecuteMock *func(r ApiPurgeCacheRequest) (map[string]interface{}, error)
-	// PutCustomDomainExecuteMock can be populated to implement the behavior of the PutCustomDomainExecute function of this mock
+	// Deprecated: PutCustomDomainExecuteMock can be populated to implement the behavior of the PutCustomDomainExecute function of this mock
 	PutCustomDomainExecuteMock *func(r ApiPutCustomDomainRequest) (*PutCustomDomainResponse, error)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) CreateDistribution(ctx context.Context, projectId string) ApiCreateDistributionRequest {
 	return ApiCreateDistributionRequest{
 		ApiService: a,
@@ -60,7 +61,7 @@ func (a DefaultAPIServiceMock) CreateDistribution(ctx context.Context, projectId
 	}
 }
 
-// CreateDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateDistributionExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: CreateDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateDistributionExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) CreateDistributionExecute(r ApiCreateDistributionRequest) (*CreateDistributionResponse, error) {
 	if a.CreateDistributionExecuteMock == nil {
 		var localVarReturnValue *CreateDistributionResponse
@@ -70,6 +71,7 @@ func (a DefaultAPIServiceMock) CreateDistributionExecute(r ApiCreateDistribution
 	return (*a.CreateDistributionExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiDeleteCustomDomainRequest {
 	return ApiDeleteCustomDomainRequest{
 		ApiService:     a,
@@ -80,7 +82,7 @@ func (a DefaultAPIServiceMock) DeleteCustomDomain(ctx context.Context, projectId
 	}
 }
 
-// DeleteCustomDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCustomDomainExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteCustomDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteCustomDomainExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteCustomDomainExecute(r ApiDeleteCustomDomainRequest) (*DeleteCustomDomainResponse, error) {
 	if a.DeleteCustomDomainExecuteMock == nil {
 		var localVarReturnValue *DeleteCustomDomainResponse
@@ -90,6 +92,7 @@ func (a DefaultAPIServiceMock) DeleteCustomDomainExecute(r ApiDeleteCustomDomain
 	return (*a.DeleteCustomDomainExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) DeleteDistribution(ctx context.Context, projectId string, distributionId string) ApiDeleteDistributionRequest {
 	return ApiDeleteDistributionRequest{
 		ApiService:     a,
@@ -99,7 +102,7 @@ func (a DefaultAPIServiceMock) DeleteDistribution(ctx context.Context, projectId
 	}
 }
 
-// DeleteDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteDistributionExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: DeleteDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the DeleteDistributionExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) DeleteDistributionExecute(r ApiDeleteDistributionRequest) (*DeleteDistributionResponse, error) {
 	if a.DeleteDistributionExecuteMock == nil {
 		var localVarReturnValue *DeleteDistributionResponse
@@ -109,6 +112,7 @@ func (a DefaultAPIServiceMock) DeleteDistributionExecute(r ApiDeleteDistribution
 	return (*a.DeleteDistributionExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) FindCachePaths(ctx context.Context, projectId string, distributionId string) ApiFindCachePathsRequest {
 	return ApiFindCachePathsRequest{
 		ApiService:     a,
@@ -118,7 +122,7 @@ func (a DefaultAPIServiceMock) FindCachePaths(ctx context.Context, projectId str
 	}
 }
 
-// FindCachePathsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the FindCachePathsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: FindCachePathsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the FindCachePathsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) FindCachePathsExecute(r ApiFindCachePathsRequest) (*FindCachePathsResponse, error) {
 	if a.FindCachePathsExecuteMock == nil {
 		var localVarReturnValue *FindCachePathsResponse
@@ -128,6 +132,7 @@ func (a DefaultAPIServiceMock) FindCachePathsExecute(r ApiFindCachePathsRequest)
 	return (*a.FindCachePathsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetCacheInfo(ctx context.Context, projectId string, distributionId string) ApiGetCacheInfoRequest {
 	return ApiGetCacheInfoRequest{
 		ApiService:     a,
@@ -137,7 +142,7 @@ func (a DefaultAPIServiceMock) GetCacheInfo(ctx context.Context, projectId strin
 	}
 }
 
-// GetCacheInfoExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCacheInfoExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetCacheInfoExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCacheInfoExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*GetCacheInfoResponse, error) {
 	if a.GetCacheInfoExecuteMock == nil {
 		var localVarReturnValue *GetCacheInfoResponse
@@ -147,6 +152,7 @@ func (a DefaultAPIServiceMock) GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*G
 	return (*a.GetCacheInfoExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiGetCustomDomainRequest {
 	return ApiGetCustomDomainRequest{
 		ApiService:     a,
@@ -157,7 +163,7 @@ func (a DefaultAPIServiceMock) GetCustomDomain(ctx context.Context, projectId st
 	}
 }
 
-// GetCustomDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCustomDomainExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetCustomDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetCustomDomainExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetCustomDomainExecute(r ApiGetCustomDomainRequest) (*GetCustomDomainResponse, error) {
 	if a.GetCustomDomainExecuteMock == nil {
 		var localVarReturnValue *GetCustomDomainResponse
@@ -167,6 +173,7 @@ func (a DefaultAPIServiceMock) GetCustomDomainExecute(r ApiGetCustomDomainReques
 	return (*a.GetCustomDomainExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetDistribution(ctx context.Context, projectId string, distributionId string) ApiGetDistributionRequest {
 	return ApiGetDistributionRequest{
 		ApiService:     a,
@@ -176,7 +183,7 @@ func (a DefaultAPIServiceMock) GetDistribution(ctx context.Context, projectId st
 	}
 }
 
-// GetDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetDistributionExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetDistributionExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetDistributionExecute(r ApiGetDistributionRequest) (*GetDistributionResponse, error) {
 	if a.GetDistributionExecuteMock == nil {
 		var localVarReturnValue *GetDistributionResponse
@@ -186,6 +193,7 @@ func (a DefaultAPIServiceMock) GetDistributionExecute(r ApiGetDistributionReques
 	return (*a.GetDistributionExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetLogs(ctx context.Context, projectId string, distributionId string) ApiGetLogsRequest {
 	return ApiGetLogsRequest{
 		ApiService:     a,
@@ -195,7 +203,7 @@ func (a DefaultAPIServiceMock) GetLogs(ctx context.Context, projectId string, di
 	}
 }
 
-// GetLogsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLogsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetLogsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLogsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsResponse, error) {
 	if a.GetLogsExecuteMock == nil {
 		var localVarReturnValue *GetLogsResponse
@@ -205,6 +213,7 @@ func (a DefaultAPIServiceMock) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsResp
 	return (*a.GetLogsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetLogsSearchFilters(ctx context.Context, projectId string, distributionId string) ApiGetLogsSearchFiltersRequest {
 	return ApiGetLogsSearchFiltersRequest{
 		ApiService:     a,
@@ -214,7 +223,7 @@ func (a DefaultAPIServiceMock) GetLogsSearchFilters(ctx context.Context, project
 	}
 }
 
-// GetLogsSearchFiltersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLogsSearchFiltersExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetLogsSearchFiltersExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetLogsSearchFiltersExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFiltersRequest) (*GetLogsSearchFiltersResponse, error) {
 	if a.GetLogsSearchFiltersExecuteMock == nil {
 		var localVarReturnValue *GetLogsSearchFiltersResponse
@@ -224,6 +233,7 @@ func (a DefaultAPIServiceMock) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFil
 	return (*a.GetLogsSearchFiltersExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) GetStatistics(ctx context.Context, projectId string, distributionId string) ApiGetStatisticsRequest {
 	return ApiGetStatisticsRequest{
 		ApiService:     a,
@@ -233,7 +243,7 @@ func (a DefaultAPIServiceMock) GetStatistics(ctx context.Context, projectId stri
 	}
 }
 
-// GetStatisticsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetStatisticsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: GetStatisticsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetStatisticsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) GetStatisticsExecute(r ApiGetStatisticsRequest) (*GetStatisticsResponse, error) {
 	if a.GetStatisticsExecuteMock == nil {
 		var localVarReturnValue *GetStatisticsResponse
@@ -243,6 +253,7 @@ func (a DefaultAPIServiceMock) GetStatisticsExecute(r ApiGetStatisticsRequest) (
 	return (*a.GetStatisticsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListDistributions(ctx context.Context, projectId string) ApiListDistributionsRequest {
 	return ApiListDistributionsRequest{
 		ApiService: a,
@@ -251,7 +262,7 @@ func (a DefaultAPIServiceMock) ListDistributions(ctx context.Context, projectId 
 	}
 }
 
-// ListDistributionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListDistributionsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListDistributionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListDistributionsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListDistributionsExecute(r ApiListDistributionsRequest) (*ListDistributionsResponse, error) {
 	if a.ListDistributionsExecuteMock == nil {
 		var localVarReturnValue *ListDistributionsResponse
@@ -261,6 +272,7 @@ func (a DefaultAPIServiceMock) ListDistributionsExecute(r ApiListDistributionsRe
 	return (*a.ListDistributionsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) ListWAFCollections(ctx context.Context, projectId string) ApiListWAFCollectionsRequest {
 	return ApiListWAFCollectionsRequest{
 		ApiService: a,
@@ -269,7 +281,7 @@ func (a DefaultAPIServiceMock) ListWAFCollections(ctx context.Context, projectId
 	}
 }
 
-// ListWAFCollectionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListWAFCollectionsExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: ListWAFCollectionsExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the ListWAFCollectionsExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) ListWAFCollectionsExecute(r ApiListWAFCollectionsRequest) (*ListWAFCollectionsResponse, error) {
 	if a.ListWAFCollectionsExecuteMock == nil {
 		var localVarReturnValue *ListWAFCollectionsResponse
@@ -279,6 +291,7 @@ func (a DefaultAPIServiceMock) ListWAFCollectionsExecute(r ApiListWAFCollections
 	return (*a.ListWAFCollectionsExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) PatchDistribution(ctx context.Context, projectId string, distributionId string) ApiPatchDistributionRequest {
 	return ApiPatchDistributionRequest{
 		ApiService:     a,
@@ -288,7 +301,7 @@ func (a DefaultAPIServiceMock) PatchDistribution(ctx context.Context, projectId 
 	}
 }
 
-// PatchDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PatchDistributionExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: PatchDistributionExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PatchDistributionExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) PatchDistributionExecute(r ApiPatchDistributionRequest) (*PatchDistributionResponse, error) {
 	if a.PatchDistributionExecuteMock == nil {
 		var localVarReturnValue *PatchDistributionResponse
@@ -298,6 +311,7 @@ func (a DefaultAPIServiceMock) PatchDistributionExecute(r ApiPatchDistributionRe
 	return (*a.PatchDistributionExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) PurgeCache(ctx context.Context, projectId string, distributionId string) ApiPurgeCacheRequest {
 	return ApiPurgeCacheRequest{
 		ApiService:     a,
@@ -307,7 +321,7 @@ func (a DefaultAPIServiceMock) PurgeCache(ctx context.Context, projectId string,
 	}
 }
 
-// PurgeCacheExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PurgeCacheExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: PurgeCacheExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PurgeCacheExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) PurgeCacheExecute(r ApiPurgeCacheRequest) (map[string]interface{}, error) {
 	if a.PurgeCacheExecuteMock == nil {
 		var localVarReturnValue map[string]interface{}
@@ -317,6 +331,7 @@ func (a DefaultAPIServiceMock) PurgeCacheExecute(r ApiPurgeCacheRequest) (map[st
 	return (*a.PurgeCacheExecuteMock)(r)
 }
 
+// Deprecated
 func (a DefaultAPIServiceMock) PutCustomDomain(ctx context.Context, projectId string, distributionId string, domain string) ApiPutCustomDomainRequest {
 	return ApiPutCustomDomainRequest{
 		ApiService:     a,
@@ -327,7 +342,7 @@ func (a DefaultAPIServiceMock) PutCustomDomain(ctx context.Context, projectId st
 	}
 }
 
-// PutCustomDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PutCustomDomainExecuteMock field in the DefaultAPIServiceMock struct.
+// Deprecated: PutCustomDomainExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PutCustomDomainExecuteMock field in the DefaultAPIServiceMock struct.
 func (a DefaultAPIServiceMock) PutCustomDomainExecute(r ApiPutCustomDomainRequest) (*PutCustomDomainResponse, error) {
 	if a.PutCustomDomainExecuteMock == nil {
 		var localVarReturnValue *PutCustomDomainResponse

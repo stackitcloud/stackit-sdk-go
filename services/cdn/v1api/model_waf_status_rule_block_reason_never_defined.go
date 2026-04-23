@@ -18,7 +18,7 @@ import (
 // checks if the WafStatusRuleBlockReasonNeverDefined type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &WafStatusRuleBlockReasonNeverDefined{}
 
-// WafStatusRuleBlockReasonNeverDefined This object only ever shows up in the disabled rules section.  If rules are never defined (e.g. no collection, rule group, or the rule itself is ever mentioned), they are implicitly disabled
+// WafStatusRuleBlockReasonNeverDefined This object only ever shows up in the disabled rules section. If rules are never defined (e.g. no collection, rule group, or the rule itself is ever mentioned), they are implicitly disabled
 type WafStatusRuleBlockReasonNeverDefined struct {
 	// This is always `neverDefined`
 	Type                 string `json:"type"`

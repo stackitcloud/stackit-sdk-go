@@ -76,7 +76,7 @@ type PutCustomDomainPayloadGetIntentIdRetType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PutCustomDomainPayload struct {
 	Certificate PutCustomDomainPayloadGetCertificateAttributeType `json:"certificate,omitempty"`
-	// While optional, it is greatly encouraged to provide an `intentId`.  This is used to deduplicate requests.   If multiple modifying Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
+	// While optional, it is greatly encouraged to provide an `intentId`. This is used to deduplicate requests. If multiple modifying Requests with the same `intentId` for a given `projectId` are received, all but the first request are dropped.
 	IntentId PutCustomDomainPayloadGetIntentIdAttributeType `json:"intentId,omitempty"`
 }
 
