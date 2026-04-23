@@ -76,12 +76,14 @@ func TestKeyFlowInit(t *testing.T) {
 		genPrivateKey     bool
 		invalidPrivateKey bool
 		wantErr           bool
+		wantTokenUrl      string
 	}{
 		{
 			name:              "ok-provided-private-key",
 			serviceAccountKey: fixtureServiceAccountKey(),
 			genPrivateKey:     true,
 			wantErr:           false,
+			wantTokenUrl:      tokenAPI,
 		},
 		{
 			name:              "missing_private_key",
@@ -101,6 +103,15 @@ func TestKeyFlowInit(t *testing.T) {
 			genPrivateKey:     false,
 			invalidPrivateKey: true,
 			wantErr:           true,
+		},
+		{
+			name: "ok-custom-token-endpoint",
+			serviceAccountKey: fixtureServiceAccountKey(func(s *ServiceAccountKeyResponse) {
+				s.Credentials.TokenEndpoint = "https://custom.stackit.cloud/token"
+			}),
+			genPrivateKey: true,
+			wantErr:       false,
+			wantTokenUrl:  "https://custom.stackit.cloud/token",
 		},
 	}
 	for _, tt := range tests {
@@ -125,6 +136,12 @@ func TestKeyFlowInit(t *testing.T) {
 			}
 			if keyFlow.config == nil {
 				t.Error("config is nil")
+			}
+
+			if !tt.wantErr && tt.wantTokenUrl != "" {
+				if keyFlow.config.TokenUrl != tt.wantTokenUrl {
+					t.Errorf("KeyFlow.Init() TokenUrl = %v, wantTokenUrl %v", keyFlow.config.TokenUrl, tt.wantTokenUrl)
+				}
 			}
 		})
 	}

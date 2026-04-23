@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -93,29 +94,31 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails:      tt.getFails,
-				resourceState: tt.resourceState,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:      tt.getFails,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *observability.GetInstanceResponse
-			if tt.wantResp {
-				wantRes = &observability.GetInstanceResponse{
-					Id:     "iid",
-					Status: tt.resourceState,
+				var wantRes *observability.GetInstanceResponse
+				if tt.wantResp {
+					wantRes = &observability.GetInstanceResponse{
+						Id:     "iid",
+						Status: tt.resourceState,
+					}
 				}
-			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
+				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -159,29 +162,31 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails:      tt.getFails,
-				resourceState: tt.resourceState,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:      tt.getFails,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *observability.GetInstanceResponse
-			if tt.wantResp {
-				wantRes = &observability.GetInstanceResponse{
-					Status: tt.resourceState,
-					Id:     "iid",
+				var wantRes *observability.GetInstanceResponse
+				if tt.wantResp {
+					wantRes = &observability.GetInstanceResponse{
+						Status: tt.resourceState,
+						Id:     "iid",
+					}
 				}
-			}
 
-			handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
+				handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -225,29 +230,31 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails:      tt.getFails,
-				resourceState: tt.resourceState,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails:      tt.getFails,
+					resourceState: tt.resourceState,
+				})
 
-			var wantRes *observability.GetInstanceResponse
-			if tt.wantResp {
-				wantRes = &observability.GetInstanceResponse{
-					Status: tt.resourceState,
-					Id:     "iid",
+				var wantRes *observability.GetInstanceResponse
+				if tt.wantResp {
+					wantRes = &observability.GetInstanceResponse{
+						Status: tt.resourceState,
+						Id:     "iid",
+					}
 				}
-			}
 
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
+				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "iid", "pid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -295,28 +302,30 @@ func TestCreateScrapeConfigWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails: tt.getFails,
-				jobs:     tt.jobs,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails: tt.getFails,
+					jobs:     tt.jobs,
+				})
 
-			var wantRes *observability.ListScrapeConfigsResponse
-			if tt.wantResp {
-				wantRes = &observability.ListScrapeConfigsResponse{
-					Data: tt.jobs,
+				var wantRes *observability.ListScrapeConfigsResponse
+				if tt.wantResp {
+					wantRes = &observability.ListScrapeConfigsResponse{
+						Data: tt.jobs,
+					}
 				}
-			}
 
-			handler := CreateScrapeConfigWaitHandler(context.Background(), apiClient, "", "job", "")
+				handler := CreateScrapeConfigWaitHandler(context.Background(), apiClient, "", "job", "")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -361,28 +370,30 @@ func TestDeleteScrapeConfigWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(&mockSettings{
-				getFails: tt.getFails,
-				jobs:     tt.jobs,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getFails: tt.getFails,
+					jobs:     tt.jobs,
+				})
 
-			var wantRes *observability.ListScrapeConfigsResponse
-			if tt.wantResp {
-				wantRes = &observability.ListScrapeConfigsResponse{
-					Data: tt.jobs,
+				var wantRes *observability.ListScrapeConfigsResponse
+				if tt.wantResp {
+					wantRes = &observability.ListScrapeConfigsResponse{
+						Data: tt.jobs,
+					}
 				}
-			}
 
-			handler := DeleteScrapeConfigWaitHandler(context.Background(), apiClient, "", "job", "")
+				handler := DeleteScrapeConfigWaitHandler(context.Background(), apiClient, "", "job", "")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes, cmpopts.IgnoreUnexported(observability.NullableString{})) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
