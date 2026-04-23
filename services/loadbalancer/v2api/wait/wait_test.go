@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -89,32 +90,34 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceName := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceName := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceName:     instanceName,
-				instanceStatus:   tt.instanceStatus,
-				instanceGetFails: tt.instanceGetFails,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					instanceName:     instanceName,
+					instanceStatus:   tt.instanceStatus,
+					instanceGetFails: tt.instanceGetFails,
+				})
 
-			var wantRes *loadbalancer.LoadBalancer
-			if tt.wantResp {
-				wantRes = &loadbalancer.LoadBalancer{
-					Name:   &instanceName,
-					Status: tt.instanceStatus,
+				var wantRes *loadbalancer.LoadBalancer
+				if tt.wantResp {
+					wantRes = &loadbalancer.LoadBalancer{
+						Name:   &instanceName,
+						Status: tt.instanceStatus,
+					}
 				}
-			}
 
-			handler := CreateLoadBalancerWaitHandler(context.Background(), apiClient, "", testRegion, instanceName)
+				handler := CreateLoadBalancerWaitHandler(context.Background(), apiClient, "", testRegion, instanceName)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -146,21 +149,23 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceName := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceName := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceGetFails:  tt.instanceGetFails,
-				instanceName:      instanceName,
-				instanceIsDeleted: tt.instanceIsDeleted,
+				apiClient := newAPIMock(&mockSettings{
+					instanceGetFails:  tt.instanceGetFails,
+					instanceName:      instanceName,
+					instanceIsDeleted: tt.instanceIsDeleted,
+				})
+
+				handler := DeleteLoadBalancerWaitHandler(context.Background(), apiClient, "", testRegion, instanceName)
+
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
 			})
-
-			handler := DeleteLoadBalancerWaitHandler(context.Background(), apiClient, "", testRegion, instanceName)
-
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
 		})
 	}
 }
