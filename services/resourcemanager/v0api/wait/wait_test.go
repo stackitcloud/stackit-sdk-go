@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
-	"time"
+	"testing/synctest"
 
 	"github.com/google/go-cmp/cmp"
 
@@ -110,26 +110,28 @@ func TestCreateProjectWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(tt.mockSettings)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(tt.mockSettings)
 
-			var wantRes *resourcemanager.GetProjectResponse
-			if tt.wantResp {
-				wantRes = &resourcemanager.GetProjectResponse{
-					LifecycleState: tt.wantProjectState,
-					ContainerId:    "cid",
+				var wantRes *resourcemanager.GetProjectResponse
+				if tt.wantResp {
+					wantRes = &resourcemanager.GetProjectResponse{
+						LifecycleState: tt.wantProjectState,
+						ContainerId:    "cid",
+					}
 				}
-			}
 
-			handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
+				handler := CreateProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(0).SetThrottle(1).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -195,15 +197,17 @@ func TestDeleteProjectWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := newAPIMock(tt.mockSettings)
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(tt.mockSettings)
 
-			handler := DeleteProjectWaitHandler(context.Background(), apiClient, "cid")
+				handler := DeleteProjectWaitHandler(context.Background(), apiClient, "cid")
 
-			_, err := handler.SetTimeout(10 * time.Millisecond).SetThrottle(1).WaitWithContext(context.Background())
+				_, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }

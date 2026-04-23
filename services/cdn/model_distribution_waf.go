@@ -99,7 +99,7 @@ func setDistributionWafGetLogOnlyRulesAttributeType(arg *DistributionWafGetLogOn
 	*arg = &val
 }
 
-// DistributionWaf For this property to be present two pre-conditions must be met:   - the WAF was enabled at least once - the query parameter ?withWafStatus is truthy  This property contains the waf Status. At this point in time, this contains all resolved rules. Rules are split into 3 groups:  - enabledRules - logOnlyRules  - disabledRules  **Do note that the global waf mode (Disabled, LogOnly, Enabled) is *NOT* reflected in this list!**
+// DistributionWaf For this property to be present two pre-conditions must be met: - the WAF was enabled at least once - the query parameter ?withWafStatus is truthy  This property contains the waf Status. At this point in time, this contains all resolved rules. Rules are split into 3 groups: - enabledRules - logOnlyRules - disabledRules  **Do note that the global waf mode (Disabled, LogOnly, Enabled) is *NOT* reflected in this list!**
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type DistributionWaf struct {
 	// REQUIRED

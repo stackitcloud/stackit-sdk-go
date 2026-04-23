@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -19,7 +19,7 @@ var _ MappedNullable = &PurgeCachePayload{}
 
 // PurgeCachePayload struct for PurgeCachePayload
 type PurgeCachePayload struct {
-	// Defines an optional path. If this is set, a granular purge is done. If missing, the entire cache is invalidated.  During a granular cache purge, only the provided path is purged.   Please do not that for example `/some/path` and `/some/path.txt` are considered different paths.
+	// Defines an optional path. If this is set, a granular purge is done. If missing, the entire cache is invalidated. During a granular cache purge, only the provided path is purged.  Please do not that for example `/some/path` and `/some/path.txt` are considered different paths.
 	Path                 *string `json:"path,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

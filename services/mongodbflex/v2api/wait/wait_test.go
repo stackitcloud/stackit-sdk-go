@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -112,34 +113,36 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceId:       instanceId,
-				instanceState:    tt.instanceState,
-				instanceGetFails: tt.instanceGetFails,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					instanceId:       instanceId,
+					instanceState:    tt.instanceState,
+					instanceGetFails: tt.instanceGetFails,
+				})
 
-			var wantRes *mongodbflex.InstanceResponse
-			if tt.wantResp {
-				wantRes = &mongodbflex.InstanceResponse{
-					Item: &mongodbflex.Instance{
-						Id:     &instanceId,
-						Status: tt.instanceState,
-					},
+				var wantRes *mongodbflex.InstanceResponse
+				if tt.wantResp {
+					wantRes = &mongodbflex.InstanceResponse{
+						Item: &mongodbflex.Instance{
+							Id:     &instanceId,
+							Status: tt.instanceState,
+						},
+					}
 				}
-			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
+				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -189,34 +192,36 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceId:       instanceId,
-				instanceState:    tt.instanceState,
-				instanceGetFails: tt.instanceGetFails,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					instanceId:       instanceId,
+					instanceState:    tt.instanceState,
+					instanceGetFails: tt.instanceGetFails,
+				})
 
-			var wantRes *mongodbflex.InstanceResponse
-			if tt.wantResp {
-				wantRes = &mongodbflex.InstanceResponse{
-					Item: &mongodbflex.Instance{
-						Id:     &instanceId,
-						Status: tt.instanceState,
-					},
+				var wantRes *mongodbflex.InstanceResponse
+				if tt.wantResp {
+					wantRes = &mongodbflex.InstanceResponse{
+						Item: &mongodbflex.Instance{
+							Id:     &instanceId,
+							Status: tt.instanceState,
+						},
+					}
 				}
-			}
 
-			handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
+				handler := UpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -248,22 +253,24 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceGetFails:  tt.instanceGetFails,
-				instanceIsDeleted: tt.instanceState != nil && *tt.instanceState == INSTANCESTATUS_READY,
-				instanceId:        instanceId,
-				instanceState:     tt.instanceState,
+				apiClient := newAPIMock(&mockSettings{
+					instanceGetFails:  tt.instanceGetFails,
+					instanceIsDeleted: tt.instanceState != nil && *tt.instanceState == INSTANCESTATUS_READY,
+					instanceId:        instanceId,
+					instanceState:     tt.instanceState,
+				})
+
+				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
+
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
 			})
-
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId, testRegion)
-
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
 		})
 	}
 }
@@ -313,36 +320,38 @@ func TestRestoreInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			backupId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				backupId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				backupId:             backupId,
-				restoreState:         tt.restoreState,
-				listRestoreJobsFails: tt.listRestoreJobsFails,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					backupId:             backupId,
+					restoreState:         tt.restoreState,
+					listRestoreJobsFails: tt.listRestoreJobsFails,
+				})
 
-			var wantRes *mongodbflex.ListRestoreJobsResponse
-			if tt.wantResp {
-				wantRes = &mongodbflex.ListRestoreJobsResponse{
-					Items: []mongodbflex.RestoreInstanceStatus{
-						{
-							Status:   utils.Ptr(tt.restoreState),
-							BackupID: &backupId,
+				var wantRes *mongodbflex.ListRestoreJobsResponse
+				if tt.wantResp {
+					wantRes = &mongodbflex.ListRestoreJobsResponse{
+						Items: []mongodbflex.RestoreInstanceStatus{
+							{
+								Status:   utils.Ptr(tt.restoreState),
+								BackupID: &backupId,
+							},
 						},
-					},
+					}
 				}
-			}
 
-			handler := RestoreInstanceWaitHandler(context.Background(), apiClient, "", "", backupId, testRegion)
+				handler := RestoreInstanceWaitHandler(context.Background(), apiClient, "", "", backupId, testRegion)
 
-			gotRes, err := handler.SetSleepBeforeWait(0).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetSleepBeforeWait(0).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }

@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -113,33 +114,35 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceGetFails:      tt.getFails,
-				instanceResourceId:    instanceId,
-				instanceResourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					instanceGetFails:      tt.getFails,
+					instanceResourceId:    instanceId,
+					instanceResourceState: tt.resourceState,
+				})
 
-			var wantRes *rabbitmq.Instance
-			if tt.wantResp {
-				wantRes = &rabbitmq.Instance{
-					InstanceId: &instanceId,
-					Status:     tt.resourceState,
+				var wantRes *rabbitmq.Instance
+				if tt.wantResp {
+					wantRes = &rabbitmq.Instance{
+						InstanceId: &instanceId,
+						Status:     tt.resourceState,
+					}
 				}
-			}
 
-			handler := CreateInstanceWaitHandler(context.Background(), apiClient, "pid", instanceId)
+				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "pid", instanceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			diff := cmp.Diff(gotRes, wantRes)
-			if diff != "" {
-				t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				diff := cmp.Diff(gotRes, wantRes)
+				if diff != "" {
+					t.Fatalf("handler gotRes = %+v\n want %+v\n diff = %s", gotRes, wantRes, diff)
+				}
+			})
 		})
 	}
 }
@@ -182,32 +185,34 @@ func TestUpdateInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceGetFails:      tt.getFails,
-				instanceResourceId:    instanceId,
-				instanceResourceState: tt.resourceState,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					instanceGetFails:      tt.getFails,
+					instanceResourceId:    instanceId,
+					instanceResourceState: tt.resourceState,
+				})
 
-			var wantRes *rabbitmq.Instance
-			if tt.wantResp {
-				wantRes = &rabbitmq.Instance{
-					InstanceId: &instanceId,
-					Status:     tt.resourceState,
+				var wantRes *rabbitmq.Instance
+				if tt.wantResp {
+					wantRes = &rabbitmq.Instance{
+						InstanceId: &instanceId,
+						Status:     tt.resourceState,
+					}
 				}
-			}
 
-			handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+				handler := PartialUpdateInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -252,24 +257,26 @@ func TestDeleteInstanceWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			instanceId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				instanceId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				instanceGetFails:                   tt.getFails,
-				instanceDeletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
-				instanceResourceId:                 instanceId,
-				instanceResourceOperation:          INSTANCELASTOPERATIONTYPE_DELETE,
-				instanceResourceDescription:        tt.resourceDescription,
-				instanceResourceState:              tt.resourceState,
+				apiClient := newAPIMock(&mockSettings{
+					instanceGetFails:                   tt.getFails,
+					instanceDeletionSucceedsWithErrors: tt.deleteSucceeedsWithErrors,
+					instanceResourceId:                 instanceId,
+					instanceResourceOperation:          INSTANCELASTOPERATIONTYPE_DELETE,
+					instanceResourceDescription:        tt.resourceDescription,
+					instanceResourceState:              tt.resourceState,
+				})
+
+				handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
+
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
 			})
-
-			handler := DeleteInstanceWaitHandler(context.Background(), apiClient, "", instanceId)
-
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
 		})
 	}
 }
@@ -305,31 +312,33 @@ func TestCreateCredentialsWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			credentialsId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				credentialsId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				credentialGetFails:          tt.getFails,
-				credentialResourceId:        credentialsId,
-				credentialOperationSucceeds: tt.operationSucceeds,
-			})
+				apiClient := newAPIMock(&mockSettings{
+					credentialGetFails:          tt.getFails,
+					credentialResourceId:        credentialsId,
+					credentialOperationSucceeds: tt.operationSucceeds,
+				})
 
-			var wantRes *rabbitmq.CredentialsResponse
-			if tt.wantResp {
-				wantRes = &rabbitmq.CredentialsResponse{
-					Id: credentialsId,
+				var wantRes *rabbitmq.CredentialsResponse
+				if tt.wantResp {
+					wantRes = &rabbitmq.CredentialsResponse{
+						Id: credentialsId,
+					}
 				}
-			}
 
-			handler := CreateCredentialsWaitHandler(context.Background(), apiClient, "", "", credentialsId)
+				handler := CreateCredentialsWaitHandler(context.Background(), apiClient, "", "", credentialsId)
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -362,22 +371,24 @@ func TestDeleteCredentialsWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			credentialsId := "foo-bar"
+			synctest.Test(t, func(t *testing.T) {
+				credentialsId := "foo-bar"
 
-			apiClient := newAPIMock(&mockSettings{
-				credentialGetFails:          tt.getFails,
-				credentialResourceId:        credentialsId,
-				credentialOperationSucceeds: true,
-				credentialDeletionSucceeds:  tt.deletionSucceeds,
+				apiClient := newAPIMock(&mockSettings{
+					credentialGetFails:          tt.getFails,
+					credentialResourceId:        credentialsId,
+					credentialOperationSucceeds: true,
+					credentialDeletionSucceeds:  tt.deletionSucceeds,
+				})
+
+				handler := DeleteCredentialsWaitHandler(context.Background(), apiClient, "", "", credentialsId)
+
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
 			})
-
-			handler := DeleteCredentialsWaitHandler(context.Background(), apiClient, "", "", credentialsId)
-
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
 		})
 	}
 }

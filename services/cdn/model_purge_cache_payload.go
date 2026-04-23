@@ -48,7 +48,7 @@ type PurgeCachePayloadGetPathRetType = string
 // PurgeCachePayload struct for PurgeCachePayload
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type PurgeCachePayload struct {
-	// Defines an optional path. If this is set, a granular purge is done. If missing, the entire cache is invalidated.  During a granular cache purge, only the provided path is purged.   Please do not that for example `/some/path` and `/some/path.txt` are considered different paths.
+	// Defines an optional path. If this is set, a granular purge is done. If missing, the entire cache is invalidated. During a granular cache purge, only the provided path is purged.  Please do not that for example `/some/path` and `/some/path.txt` are considered different paths.
 	Path PurgeCachePayloadGetPathAttributeType `json:"path,omitempty"`
 }
 

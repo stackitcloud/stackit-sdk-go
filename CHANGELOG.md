@@ -1,4 +1,6 @@
 ## Release (2026-MM-DD)
+- `core`: [v0.26.0](core/CHANGELOG.md#v0260)
+  - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
 - `core`: [v0.25.0](core/CHANGELOG.md#v0250)
   - Minimal go version is now Go 1.25
 - `alb`:
@@ -39,6 +41,11 @@
     - Minimal go version is now Go 1.25
   - [v1.14.1](services/cdn/CHANGELOG.md#v1141) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+  - [v1.15.0](services/cdn/CHANGELOG.md#v1150) 
+    - `v1api`:
+      - **Feature:** Add fields `ForwardHostHeader`, `StripResponseCookies` and `Tls` to models: `Config`, `ConfigPatch`, `CreateDistributionPayload`
+      - **Feature:** new models `TlsConfig`, `TlsConfigPatch`
+    - `v1beta`: v1beta was deprecated please migrate to `v1api`
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -65,6 +72,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.9.0](services/edge/CHANGELOG.md#v090) 
     - Minimal go version is now Go 1.25
+  - [v0.9.1](services/edge/CHANGELOG.md#v091) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `git`:
   - [v0.11.2](services/git/CHANGELOG.md#v0112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -106,6 +115,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.12.0](services/loadbalancer/CHANGELOG.md#v1120) 
     - Minimal go version is now Go 1.25
+  - [v1.12.1](services/loadbalancer/CHANGELOG.md#v1121) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 - `logme`: 
   - [v0.27.3](services/logme/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -254,6 +265,15 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.7.0](services/sfs/CHANGELOG.md#v070) 
     - Minimal go version is now Go 1.25
+  - [v0.8.0](services/sfs/CHANGELOG.md#v080) 
+    - **Feature:** model `CreateResourcePoolPayload` now has an additional field `snapshotPolicyId`
+    - **Feature:** model `CreateResourcePoolSnapshotPayload` now has an additional field `snaplockRetentionHours`
+    - **Feature:** model `ResourcePool` now has an additional field `snapshotPolicy`
+    - **Feature:** model `ResourcePoolSnapshot` now has an additional field `snaplockExpiryTime`
+    - **Feature:** model `ResourcePoolSpace` now has an additional field `usedBySnapshotsGigabytes`
+    - **Feature:** model `UpdateResourcePoolPayload` now has an additional field `snapshotPolicyId`
+    - **Feature:** new models: `DisableLockResponse`, `EnableLockResponse`, `GetLockResponse`, `GetScheduleResponse`, `GetSnapshotPolicyResponse`, `ListSchedulesResponse`, `ListSnapshotPoliciesResponse`, `ResourcePoolSnapshotPolicy`, `Schedule`, `SnapshotPolicy`, `SnapshotPolicySchedule`, `UpdateResourcePoolSnapshotPayload`, `UpdateResourcePoolSnapshotResponse`
+    - **Feature:** new operations: `UpdateResourcePoolSnapshot`, `ListSchedules`, `GetSchedule`, `ListSnapshotPolicies`, `GetSnapshotPolicy`, `DisableLock`, `GetLock`, `EnableLock`,
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

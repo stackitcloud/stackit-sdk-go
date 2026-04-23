@@ -672,7 +672,7 @@ type ApiDeleteDistributionRequest struct {
 	intentId       *string
 }
 
-// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;.  This is used to deduplicate requests.   If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
+// While optional, it is greatly encouraged to provide an &#x60;intentId&#x60;. This is used to deduplicate requests. If multiple DELETE-Requests with the same &#x60;intentId&#x60; are received, all but the first request are dropped.
 func (r ApiDeleteDistributionRequest) IntentId(intentId string) ApiDeleteDistributionRequest {
 	r.intentId = &intentId
 	return r
@@ -1599,19 +1599,19 @@ func (r ApiGetLogsRequest) From(from time.Time) ApiGetLogsRequest {
 	return r
 }
 
-// the end of the time range for which logs should be returned. If not specified,  \&quot;now\&quot; is used.
+// the end of the time range for which logs should be returned. If not specified, \&quot;now\&quot; is used.
 func (r ApiGetLogsRequest) To(to time.Time) ApiGetLogsRequest {
 	r.to = &to
 	return r
 }
 
-// Quantifies how many log entries should be returned on this  page. Must be a natural number between 1 and 1000 (inclusive)
+// Quantifies how many log entries should be returned on this page. Must be a natural number between 1 and 1000 (inclusive)
 func (r ApiGetLogsRequest) PageSize(pageSize int32) ApiGetLogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 func (r ApiGetLogsRequest) PageIdentifier(pageIdentifier string) ApiGetLogsRequest {
 	r.pageIdentifier = &pageIdentifier
 	return r
@@ -1628,7 +1628,7 @@ func (r ApiGetLogsRequest) SortOrder(sortOrder string) ApiGetLogsRequest {
 	return r
 }
 
-// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged  but the request not blocked
+// If this is set then only log entries with the chosen WAF rule action/outcome are returned. Specifically, if &#x60;ALLOWED&#x60; then all requests with no violation are returned. If &#x60;BLOCKED&#x60; then those where a WAF rule blocked a request and if &#x60;LOGGED&#x60; then only those requests where the WAF violation was only logged but the request not blocked
 func (r ApiGetLogsRequest) WafAction(wafAction WAFRuleAction) ApiGetLogsRequest {
 	r.wafAction = &wafAction
 	return r
@@ -2054,13 +2054,13 @@ func (r ApiGetStatisticsRequest) From(from time.Time) ApiGetStatisticsRequest {
 	return r
 }
 
-// the end of the time range for which statistics should be returned. If not specified,  the end of the current time interval is used, e.g. next day for daily,  next month for monthly, and so on.
+// the end of the time range for which statistics should be returned. If not specified, the end of the current time interval is used, e.g. next day for daily, next month for monthly, and so on.
 func (r ApiGetStatisticsRequest) To(to time.Time) ApiGetStatisticsRequest {
 	r.to = &to
 	return r
 }
 
-// Over which interval should statistics be aggregated?  defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
+// Over which interval should statistics be aggregated? defaults to hourly resolution  **NOTE**: Intervals are grouped in buckets that start and end based on a day in UTC+0 time. So for the &#x60;daily&#x60; interval, the group starts (inclusive) and ends (exclusive) at &#x60;00:00Z&#x60;
 func (r ApiGetStatisticsRequest) Interval(interval string) ApiGetStatisticsRequest {
 	r.interval = &interval
 	return r
@@ -2254,7 +2254,7 @@ type ApiListDistributionsRequest struct {
 	sortOrder      *string
 }
 
-// Quantifies how many distributions should be returned on this  page. Must be a natural number between 1 and 100 (inclusive)
+// Quantifies how many distributions should be returned on this page. Must be a natural number between 1 and 100 (inclusive)
 func (r ApiListDistributionsRequest) PageSize(pageSize int32) ApiListDistributionsRequest {
 	r.pageSize = &pageSize
 	return r
@@ -2266,13 +2266,13 @@ func (r ApiListDistributionsRequest) WithWafStatus(withWafStatus bool) ApiListDi
 	return r
 }
 
-// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like:   - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could  occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
+// Identifier is returned by the previous response and is used to request the next page.  As the &#x60;pageIdentifier&#x60; encodes an element, inserts during pagination will *not* shift the result. So a scenario like: - Start listing first page - Insert new element - Start listing second page will *never* result in an element from the first page to get \&quot;pushed\&quot; to the second page, like it could occur with basic limit + offset pagination.  The identifier should be treated as an opaque string and never modified. Only pass values returned by the API.
 func (r ApiListDistributionsRequest) PageIdentifier(pageIdentifier string) ApiListDistributionsRequest {
 	r.pageIdentifier = &pageIdentifier
 	return r
 }
 
-// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution Id using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,    for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originUrl using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The originUrl is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
+// The following sort options exist. We default to &#x60;createdAt&#x60; - &#x60;id&#x60; - Sort by distribution Id using String comparison - &#x60;updatedAt&#x60; - Sort by when the distribution configuration was last modified,   for example by changing the regions or response headers - &#x60;createdAt&#x60; - Sort by when the distribution was initially created. - &#x60;originUrl&#x60; - Sort by originUrl using String comparison - &#x60;status&#x60; - Sort by distribution status, using String comparison - &#x60;originUrlRelated&#x60; - The originUrl is segmented and reversed before sorting. E.g. &#x60;www.example.com&#x60; is converted to &#x60;com.example.www&#x60; for sorting. This way, distributions pointing to the same domain trees are grouped next to each other.
 func (r ApiListDistributionsRequest) SortBy(sortBy string) ApiListDistributionsRequest {
 	r.sortBy = &sortBy
 	return r

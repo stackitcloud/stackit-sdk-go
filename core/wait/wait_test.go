@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -331,54 +332,56 @@ func TestWaitWithContext(t *testing.T) {
 		},
 	} {
 		t.Run(tt.desc, func(t *testing.T) {
-			type respType struct{}
+			synctest.Test(t, func(t *testing.T) {
+				type respType struct{}
 
-			numberCheckFnCalls := 0
-			checkFn := func() (waitFinished bool, response *respType, err error) {
-				numberCheckFnCalls++
-				if numberCheckFnCalls == tt.checkFnNumberCallsToFinishWait {
-					if tt.checkFnWaitSucceeds {
-						return true, &respType{}, nil
+				numberCheckFnCalls := 0
+				checkFn := func() (waitFinished bool, response *respType, err error) {
+					numberCheckFnCalls++
+					if numberCheckFnCalls == tt.checkFnNumberCallsToFinishWait {
+						if tt.checkFnWaitSucceeds {
+							return true, &respType{}, nil
+						}
+						return true, &respType{}, fmt.Errorf("the async action couldn't be done")
 					}
-					return true, &respType{}, fmt.Errorf("the async action couldn't be done")
-				}
 
-				if numberCheckFnCalls < tt.checkFnNumberCallsUntilErr {
-					return false, nil, nil
-				}
-
-				if tt.checkFnReturnsTempErr {
-					return false, nil, &oapierror.GenericOpenAPIError{
-						StatusCode:   RetryHttpErrorStatusCodes[0],
-						ErrorMessage: "something bad happened when checking if the async action was finished",
+					if numberCheckFnCalls < tt.checkFnNumberCallsUntilErr {
+						return false, nil, nil
 					}
+
+					if tt.checkFnReturnsTempErr {
+						return false, nil, &oapierror.GenericOpenAPIError{
+							StatusCode:   RetryHttpErrorStatusCodes[0],
+							ErrorMessage: "something bad happened when checking if the async action was finished",
+						}
+					}
+					return false, nil, fmt.Errorf("something bad happened when checking if the async action was finished")
 				}
-				return false, nil, fmt.Errorf("something bad happened when checking if the async action was finished")
-			}
-			handler := AsyncActionHandler[respType]{
-				checkFn:           checkFn,
-				sleepBeforeWait:   tt.handlerSleepBeforeWait,
-				throttle:          tt.handlerThrottle,
-				timeout:           tt.handlerTimeout,
-				tempErrRetryLimit: tt.handlerTempErrRetryLimit,
-			}
-			ctx, cancel := context.WithTimeout(context.Background(), tt.contextTimeout)
-			defer cancel()
+				handler := AsyncActionHandler[respType]{
+					checkFn:           checkFn,
+					sleepBeforeWait:   tt.handlerSleepBeforeWait,
+					throttle:          tt.handlerThrottle,
+					timeout:           tt.handlerTimeout,
+					tempErrRetryLimit: tt.handlerTempErrRetryLimit,
+				}
+				ctx, cancel := context.WithTimeout(context.Background(), tt.contextTimeout)
+				defer cancel()
 
-			resp, err := handler.WaitWithContext(ctx)
+				resp, err := handler.WaitWithContext(ctx)
 
-			if tt.wantErr && (err == nil) {
-				t.Errorf("expected error but got none")
-			}
-			if !tt.wantErr && (err != nil) {
-				t.Errorf("expected no error but got \"%v\"", err)
-			}
-			if (err == nil) && (resp == nil) {
-				t.Errorf("got nil err but nil resp")
-			}
-			if numberCheckFnCalls != tt.wantCheckFnNumberCalls {
-				t.Errorf("expected %d calls to checkFn but got %d instead", tt.wantCheckFnNumberCalls, numberCheckFnCalls)
-			}
+				if tt.wantErr && (err == nil) {
+					t.Errorf("expected error but got none")
+				}
+				if !tt.wantErr && (err != nil) {
+					t.Errorf("expected no error but got \"%v\"", err)
+				}
+				if (err == nil) && (resp == nil) {
+					t.Errorf("got nil err but nil resp")
+				}
+				if numberCheckFnCalls != tt.wantCheckFnNumberCalls {
+					t.Errorf("expected %d calls to checkFn but got %d instead", tt.wantCheckFnNumberCalls, numberCheckFnCalls)
+				}
+			})
 		})
 	}
 }
