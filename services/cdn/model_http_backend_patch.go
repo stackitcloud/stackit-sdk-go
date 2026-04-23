@@ -131,7 +131,7 @@ type HttpBackendPatchGetTypeRetType = string
 type HttpBackendPatch struct {
 	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins.
 	Geofencing HttpBackendPatchGetGeofencingAttributeType `json:"geofencing,omitempty"`
-	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
+	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers. The configuration is stored as plain text.
 	OriginRequestHeaders HttpBackendPatchGetOriginRequestHeadersAttributeType `json:"originRequestHeaders,omitempty"`
 	OriginUrl            HttpBackendPatchGetOriginUrlAttributeType            `json:"originUrl,omitempty"`
 	// This property is required to determine the used backend type.

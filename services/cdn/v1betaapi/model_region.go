@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */

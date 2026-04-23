@@ -21,19 +21,24 @@ var _ MappedNullable = &Config{}
 // Config struct for Config
 type Config struct {
 	Backend ConfigBackend `json:"backend"`
-	// Restricts access to your content based on country.  We use the ISO 3166-1 alpha-2 standard for country codes (e.g. DE, ES, GB).  This setting blocks users from the specified countries.
+	// Restricts access to your content based on country. We use the ISO 3166-1 alpha-2 standard for country codes (e.g. DE, ES, GB). This setting blocks users from the specified countries.
 	BlockedCountries []string `json:"blockedCountries"`
-	// Restricts access to your content by specifying a list of blocked IPv4 addresses.  This feature enhances security and privacy by preventing these addresses from accessing your distribution.
+	// Restricts access to your content by specifying a list of blocked IPv4 addresses. This feature enhances security and privacy by preventing these addresses from accessing your distribution.
 	BlockedIps []string `json:"blockedIps"`
-	// Sets the default cache duration for the distribution.  The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
+	// Sets the default cache duration for the distribution. The default cache duration is applied when a 'Cache-Control' header is not presented in the origin's response. We use ISO8601 duration format for cache duration (e.g. P1DT2H30M)
 	DefaultCacheDuration NullableString `json:"defaultCacheDuration,omitempty"`
-	LogSink              *LokiLogSink   `json:"logSink,omitempty"`
+	// Enabling this allows the 'Host' header to be passed through to the origin.
+	ForwardHostHeader bool         `json:"forwardHostHeader"`
+	LogSink           *LokiLogSink `json:"logSink,omitempty"`
 	// Sets the monthly limit of bandwidth in bytes that the pullzone is allowed to use.
-	MonthlyLimitBytes    NullableInt64   `json:"monthlyLimitBytes,omitempty"`
-	Optimizer            *Optimizer      `json:"optimizer,omitempty"`
-	Redirects            *RedirectConfig `json:"redirects,omitempty"`
-	Regions              []Region        `json:"regions"`
-	Waf                  WafConfig       `json:"waf"`
+	MonthlyLimitBytes NullableInt64   `json:"monthlyLimitBytes,omitempty"`
+	Optimizer         *Optimizer      `json:"optimizer,omitempty"`
+	Redirects         *RedirectConfig `json:"redirects,omitempty"`
+	Regions           []Region        `json:"regions"`
+	// Enable this to prevent origin-level cookies from being forwarded to the end user.
+	StripResponseCookies bool      `json:"stripResponseCookies"`
+	Tls                  TlsConfig `json:"tls"`
+	Waf                  WafConfig `json:"waf"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,12 +48,15 @@ type _Config Config
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConfig(backend ConfigBackend, blockedCountries []string, blockedIps []string, regions []Region, waf WafConfig) *Config {
+func NewConfig(backend ConfigBackend, blockedCountries []string, blockedIps []string, forwardHostHeader bool, regions []Region, stripResponseCookies bool, tls TlsConfig, waf WafConfig) *Config {
 	this := Config{}
 	this.Backend = backend
 	this.BlockedCountries = blockedCountries
 	this.BlockedIps = blockedIps
+	this.ForwardHostHeader = forwardHostHeader
 	this.Regions = regions
+	this.StripResponseCookies = stripResponseCookies
+	this.Tls = tls
 	this.Waf = waf
 	return &this
 }
@@ -174,6 +182,30 @@ func (o *Config) SetDefaultCacheDurationNil() {
 // UnsetDefaultCacheDuration ensures that no value is present for DefaultCacheDuration, not even an explicit nil
 func (o *Config) UnsetDefaultCacheDuration() {
 	o.DefaultCacheDuration.Unset()
+}
+
+// GetForwardHostHeader returns the ForwardHostHeader field value
+func (o *Config) GetForwardHostHeader() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ForwardHostHeader
+}
+
+// GetForwardHostHeaderOk returns a tuple with the ForwardHostHeader field value
+// and a boolean to check if the value has been set.
+func (o *Config) GetForwardHostHeaderOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ForwardHostHeader, true
+}
+
+// SetForwardHostHeader sets field value
+func (o *Config) SetForwardHostHeader(v bool) {
+	o.ForwardHostHeader = v
 }
 
 // GetLogSink returns the LogSink field value if set, zero value otherwise.
@@ -339,6 +371,54 @@ func (o *Config) SetRegions(v []Region) {
 	o.Regions = v
 }
 
+// GetStripResponseCookies returns the StripResponseCookies field value
+func (o *Config) GetStripResponseCookies() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.StripResponseCookies
+}
+
+// GetStripResponseCookiesOk returns a tuple with the StripResponseCookies field value
+// and a boolean to check if the value has been set.
+func (o *Config) GetStripResponseCookiesOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StripResponseCookies, true
+}
+
+// SetStripResponseCookies sets field value
+func (o *Config) SetStripResponseCookies(v bool) {
+	o.StripResponseCookies = v
+}
+
+// GetTls returns the Tls field value
+func (o *Config) GetTls() TlsConfig {
+	if o == nil {
+		var ret TlsConfig
+		return ret
+	}
+
+	return o.Tls
+}
+
+// GetTlsOk returns a tuple with the Tls field value
+// and a boolean to check if the value has been set.
+func (o *Config) GetTlsOk() (*TlsConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Tls, true
+}
+
+// SetTls sets field value
+func (o *Config) SetTls(v TlsConfig) {
+	o.Tls = v
+}
+
 // GetWaf returns the Waf field value
 func (o *Config) GetWaf() WafConfig {
 	if o == nil {
@@ -379,6 +459,7 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 	if o.DefaultCacheDuration.IsSet() {
 		toSerialize["defaultCacheDuration"] = o.DefaultCacheDuration.Get()
 	}
+	toSerialize["forwardHostHeader"] = o.ForwardHostHeader
 	if !IsNil(o.LogSink) {
 		toSerialize["logSink"] = o.LogSink
 	}
@@ -392,6 +473,8 @@ func (o Config) ToMap() (map[string]interface{}, error) {
 		toSerialize["redirects"] = o.Redirects
 	}
 	toSerialize["regions"] = o.Regions
+	toSerialize["stripResponseCookies"] = o.StripResponseCookies
+	toSerialize["tls"] = o.Tls
 	toSerialize["waf"] = o.Waf
 
 	for key, value := range o.AdditionalProperties {
@@ -409,7 +492,10 @@ func (o *Config) UnmarshalJSON(data []byte) (err error) {
 		"backend",
 		"blockedCountries",
 		"blockedIps",
+		"forwardHostHeader",
 		"regions",
+		"stripResponseCookies",
+		"tls",
 		"waf",
 	}
 
@@ -444,11 +530,14 @@ func (o *Config) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "blockedCountries")
 		delete(additionalProperties, "blockedIps")
 		delete(additionalProperties, "defaultCacheDuration")
+		delete(additionalProperties, "forwardHostHeader")
 		delete(additionalProperties, "logSink")
 		delete(additionalProperties, "monthlyLimitBytes")
 		delete(additionalProperties, "optimizer")
 		delete(additionalProperties, "redirects")
 		delete(additionalProperties, "regions")
+		delete(additionalProperties, "stripResponseCookies")
+		delete(additionalProperties, "tls")
 		delete(additionalProperties, "waf")
 		o.AdditionalProperties = additionalProperties
 	}

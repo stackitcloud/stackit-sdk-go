@@ -24,7 +24,7 @@ type PutCustomDomainCustomCertificate struct {
 	Certificate string `json:"certificate"`
 	// base64-encoded PEM encoded key
 	Key string `json:"key"`
-	// When adding a new custom domain, we do a check to verify that your Domain points to the managed domain via a CNAME or ALIAS. If this is not the case, the call would usually reject.   This additional property is an escape hatch to this functionality. It's useful for when you are migrating onto STACKIT CDN. It allows you to migrate without  downtime.  By providing a custom certificate with `skipDnsCheck` set to `true`, we will  not check the Record for correctness. Then, once the CDN is set up, you can change the CNAME Record on your DNS and update the Custom Domain entry to  disable this check, or switch to a managed certificate.  This field is optional. If not set, the check is **not** skipped.
+	// When adding a new custom domain, we do a check to verify that your Domain points to the managed domain via a CNAME or ALIAS. If this is not the case, the call would usually reject.  This additional property is an escape hatch to this functionality. It's useful for when you are migrating onto STACKIT CDN. It allows you to migrate without downtime.  By providing a custom certificate with `skipDnsCheck` set to `true`, we will not check the Record for correctness. Then, once the CDN is set up, you can change the CNAME Record on your DNS and update the Custom Domain entry to disable this check, or switch to a managed certificate.  This field is optional. If not set, the check is **not** skipped.
 	SkipDnsCheck         *bool  `json:"skipDnsCheck,omitempty"`
 	Type                 string `json:"type"`
 	AdditionalProperties map[string]interface{}

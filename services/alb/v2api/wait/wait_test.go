@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/http"
 	"testing"
-	"time"
+	"testing/synctest"
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/uuid"
@@ -109,23 +109,23 @@ func TestCreateOrUpdateLoadbalancerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				responses: tt.responses,
+			synctest.Test(t, func(t *testing.T) {
+				ctx := context.Background()
+				client := newAPIMock(&mockSettings{
+					responses: tt.responses,
+				})
+
+				handler := CreateOrUpdateLoadbalancerWaitHandler(ctx, client, testProject, testRegion, testName)
+				got, err := handler.WaitWithContext(ctx)
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("unexpected error response. want %v but got %qe ", tt.wantErr, err)
+				}
+
+				if diff := cmp.Diff(tt.want, got); diff != "" {
+					t.Errorf("differing loadbalancer %s", diff)
+				}
 			})
-
-			handler := CreateOrUpdateLoadbalancerWaitHandler(ctx, client, testProject, testRegion, testName)
-			got, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
-				WaitWithContext(ctx)
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("unexpected error response. want %v but got %qe ", tt.wantErr, err)
-			}
-
-			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing loadbalancer %s", diff)
-			}
 		})
 	}
 }
@@ -193,25 +193,25 @@ func TestDeleteLoadbalancerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				responses: tt.responses,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				ctx := context.Background()
+				client := newAPIMock(&mockSettings{
+					responses: tt.responses,
+				})
 
-			handler := DeleteLoadbalancerWaitHandler(ctx, client, testProject, testRegion, testName)
-			_, err := handler.SetTimeout(1 * time.Second).
-				SetThrottle(250 * time.Millisecond).
-				WaitWithContext(ctx)
+				handler := DeleteLoadbalancerWaitHandler(ctx, client, testProject, testRegion, testName)
+				_, err := handler.WaitWithContext(ctx)
 
-			if tt.wantErr != (err != nil) {
-				t.Fatalf("wrong error result. want err: %v got %v", tt.wantErr, err)
-			}
-			if tt.wantErr {
-				var apiErr *oapierror.GenericOpenAPIError
-				if !errors.As(err, &apiErr) {
-					t.Fatalf("expected openapi error, got %v", err)
+				if tt.wantErr != (err != nil) {
+					t.Fatalf("wrong error result. want err: %v got %v", tt.wantErr, err)
 				}
-			}
+				if tt.wantErr {
+					var apiErr *oapierror.GenericOpenAPIError
+					if !errors.As(err, &apiErr) {
+						t.Fatalf("expected openapi error, got %v", err)
+					}
+				}
+			})
 		})
 	}
 }

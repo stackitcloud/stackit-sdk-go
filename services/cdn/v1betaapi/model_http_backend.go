@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -22,7 +22,7 @@ var _ MappedNullable = &HttpBackend{}
 type HttpBackend struct {
 	// An object mapping multiple alternative origins to country codes.  Any request from one of those country codes will route to the alternative origin. Do note that country codes may only be used once. You cannot have a country be assigned to multiple alternative origins.
 	Geofencing map[string][]string `json:"geofencing"`
-	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers.  The configuration is stored as plain text.
+	// Headers that will be sent with every request to the configured origin.  **WARNING**: Do not store sensitive values in the headers. The configuration is stored as plain text.
 	OriginRequestHeaders map[string]string `json:"originRequestHeaders"`
 	OriginUrl            string            `json:"originUrl"`
 	Type                 string            `json:"type"`

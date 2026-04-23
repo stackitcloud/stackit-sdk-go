@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -69,29 +70,31 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkFails: tt.getFails,
-				resourceState:   tt.resourceState,
-			}
-
-			var wantRes *iaasalpha.Network
-			if tt.wantResp {
-				wantRes = &iaasalpha.Network{
-					Id:     utils.Ptr("nid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkFails: tt.getFails,
+					resourceState:   tt.resourceState,
 				}
-			}
 
-			handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "eu01", "nid")
+				var wantRes *iaasalpha.Network
+				if tt.wantResp {
+					wantRes = &iaasalpha.Network{
+						Id:     utils.Ptr("nid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "eu01", "nid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -128,29 +131,31 @@ func TestUpdateNetworkWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkFails: tt.getFails,
-				resourceState:   tt.resourceState,
-			}
-
-			var wantRes *iaasalpha.Network
-			if tt.wantResp {
-				wantRes = &iaasalpha.Network{
-					Id:     utils.Ptr("nid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkFails: tt.getFails,
+					resourceState:   tt.resourceState,
 				}
-			}
 
-			handler := UpdateNetworkWaitHandler(context.Background(), apiClient, "pid", "eu01", "nid")
+				var wantRes *iaasalpha.Network
+				if tt.wantResp {
+					wantRes = &iaasalpha.Network{
+						Id:     utils.Ptr("nid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+				handler := UpdateNetworkWaitHandler(context.Background(), apiClient, "pid", "eu01", "nid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -188,30 +193,32 @@ func TestDeleteNetworkWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkFails: tt.getFails,
-				isDeleted:       tt.isDeleted,
-				resourceState:   tt.resourceState,
-			}
-
-			var wantRes *iaasalpha.Network
-			if tt.wantResp {
-				wantRes = &iaasalpha.Network{
-					Id:     utils.Ptr("nid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkFails: tt.getFails,
+					isDeleted:       tt.isDeleted,
+					resourceState:   tt.resourceState,
 				}
-			}
 
-			handler := DeleteNetworkWaitHandler(context.Background(), apiClient, "pid", "eu01", "nid")
+				var wantRes *iaasalpha.Network
+				if tt.wantResp {
+					wantRes = &iaasalpha.Network{
+						Id:     utils.Ptr("nid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteNetworkWaitHandler(context.Background(), apiClient, "pid", "eu01", "nid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }

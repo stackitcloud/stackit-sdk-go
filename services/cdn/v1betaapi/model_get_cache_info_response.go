@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -22,7 +22,7 @@ var _ MappedNullable = &GetCacheInfoResponse{}
 // GetCacheInfoResponse struct for GetCacheInfoResponse
 type GetCacheInfoResponse struct {
 	History []GetCacheInfoResponseHistoryEntry `json:"history"`
-	// Returns the last time the cache was purged by calling the PurgeCache endpoint.  Time represented as RFC3339 compliant string. If the cache was never purged, this returns `null`
+	// Returns the last time the cache was purged by calling the PurgeCache endpoint. Time represented as RFC3339 compliant string. If the cache was never purged, this returns `null`
 	LastPurgeTime        NullableTime `json:"lastPurgeTime"`
 	AdditionalProperties map[string]interface{}
 }

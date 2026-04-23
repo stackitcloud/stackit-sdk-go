@@ -1,7 +1,7 @@
 /*
-STACKIT CDN API
+STACKIT CDN API (DEPRECATED)
 
-API used to create and manage your CDN distributions.
+**DEPRECATED:** This API version (1beta.0.0) is deprecated. Please migrate to the version (v1).  API used to create and manage your CDN distributions.
 
 API version: 1beta.0.0
 */
@@ -18,7 +18,7 @@ import (
 // checks if the DistributionStatisticsRecordRegions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DistributionStatisticsRecordRegions{}
 
-// DistributionStatisticsRecordRegions Mapping of regions to the metrics for this region for the defined time interval All regions are always present. If no traffic was reported for a region, it will  still contain 0-filled properties
+// DistributionStatisticsRecordRegions Mapping of regions to the metrics for this region for the defined time interval All regions are always present. If no traffic was reported for a region, it will still contain 0-filled properties
 type DistributionStatisticsRecordRegions struct {
 	AF                   DistributionStatisticsRecordEntry `json:"AF"`
 	ASIA                 DistributionStatisticsRecordEntry `json:"ASIA"`
