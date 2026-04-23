@@ -5,6 +5,7 @@ import (
 	"errors"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -196,23 +197,22 @@ func TestCreateKeyRingWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				keyRingResponses: tt.responses,
+			synctest.Test(t, func(t *testing.T) {
+				ctx := t.Context()
+				client := newAPIMock(&mockSettings{
+					keyRingResponses: tt.responses,
+				})
+
+				handler := CreateKeyRingWaitHandler(ctx, client, testProject, testRegion, testKeyRingId)
+				got, err := handler.WaitWithContext(ctx)
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
+				}
+
+				if diff := cmp.Diff(tt.want, got); diff != "" {
+					t.Errorf("differing key ring %s", diff)
+				}
 			})
-
-			handler := CreateKeyRingWaitHandler(ctx, client, testProject, testRegion, testKeyRingId)
-			got, err := handler.SetTimeout(250 * time.Millisecond).
-				SetThrottle(1).
-				WaitWithContext(ctx)
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
-			}
-
-			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing key ring %s", diff)
-			}
 		})
 	}
 }
@@ -274,23 +274,23 @@ func TestCreateOrUpdateKeyWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				keyResponses: tt.responses,
+			synctest.Test(t, func(t *testing.T) {
+				ctx := context.Background()
+				client := newAPIMock(&mockSettings{
+					keyResponses: tt.responses,
+				})
+
+				handler := CreateOrUpdateKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
+				got, err := handler.WaitWithContext(ctx)
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
+				}
+
+				if diff := cmp.Diff(tt.want, got); diff != "" {
+					t.Errorf("differing key %s", diff)
+				}
 			})
-
-			handler := CreateOrUpdateKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
-			got, err := handler.SetTimeout(250 * time.Millisecond).
-				SetThrottle(1).
-				WaitWithContext(ctx)
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
-			}
-
-			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing key %s", diff)
-			}
 		})
 	}
 }
@@ -359,25 +359,25 @@ func TestDeleteKeyWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				keyResponses: tt.responses,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				ctx := context.Background()
+				client := newAPIMock(&mockSettings{
+					keyResponses: tt.responses,
+				})
 
-			handler := DeleteKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
-			_, err := handler.SetTimeout(250 * time.Millisecond).
-				SetThrottle(1).
-				WaitWithContext(ctx)
+				handler := DeleteKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
+				_, err := handler.WaitWithContext(ctx)
 
-			if tt.wantErr != (err != nil) {
-				t.Fatalf("wrong error result. want err: %v got %v", tt.wantErr, err)
-			}
-			if tt.wantErr {
-				var apiErr *oapierror.GenericOpenAPIError
-				if !errors.As(err, &apiErr) {
-					t.Fatalf("expected openapi error, got %v", err)
+				if tt.wantErr != (err != nil) {
+					t.Fatalf("wrong error result. want err: %v got %v", tt.wantErr, err)
 				}
-			}
+				if tt.wantErr {
+					var apiErr *oapierror.GenericOpenAPIError
+					if !errors.As(err, &apiErr) {
+						t.Fatalf("expected openapi error, got %v", err)
+					}
+				}
+			})
 		})
 	}
 }
@@ -487,23 +487,23 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				versionResponses: tt.responses,
+			synctest.Test(t, func(t *testing.T) {
+				ctx := context.Background()
+				client := newAPIMock(&mockSettings{
+					versionResponses: tt.responses,
+				})
+
+				handler := EnableKeyVersionWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId, 1)
+				got, err := handler.WaitWithContext(ctx)
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
+				}
+
+				if diff := cmp.Diff(tt.want, got); diff != "" {
+					t.Errorf("differing version %s", diff)
+				}
 			})
-
-			handler := EnableKeyVersionWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId, 1)
-			got, err := handler.SetTimeout(250 * time.Millisecond).
-				SetThrottle(1).
-				WaitWithContext(ctx)
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
-			}
-
-			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing version %s", diff)
-			}
 		})
 	}
 }
@@ -595,23 +595,23 @@ func TestDisableKeyVersionWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				versionResponses: tt.responses,
+			synctest.Test(t, func(t *testing.T) {
+				ctx := context.Background()
+				client := newAPIMock(&mockSettings{
+					versionResponses: tt.responses,
+				})
+
+				handler := DisableKeyVersionWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId, 1)
+				got, err := handler.WaitWithContext(ctx)
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
+				}
+
+				if diff := cmp.Diff(tt.want, got); diff != "" {
+					t.Errorf("differing version %s", diff)
+				}
 			})
-
-			handler := DisableKeyVersionWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId, 1)
-			got, err := handler.SetTimeout(250 * time.Millisecond).
-				SetThrottle(1).
-				WaitWithContext(ctx)
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
-			}
-
-			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing version %s", diff)
-			}
 		})
 	}
 }
@@ -673,23 +673,23 @@ func TestCreateWrappingWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			ctx := context.Background()
-			client := newAPIMock(&mockSettings{
-				wrappingKeyResponses: tt.responses,
+			synctest.Test(t, func(t *testing.T) {
+				ctx := context.Background()
+				client := newAPIMock(&mockSettings{
+					wrappingKeyResponses: tt.responses,
+				})
+
+				handler := CreateWrappingKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
+				got, err := handler.WaitWithContext(ctx)
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
+				}
+
+				if diff := cmp.Diff(tt.want, got); diff != "" {
+					t.Errorf("differing wrapping key %s", diff)
+				}
 			})
-
-			handler := CreateWrappingKeyWaitHandler(ctx, client, testProject, testRegion, testKeyRingId, testKeyId)
-			got, err := handler.SetTimeout(250 * time.Millisecond).
-				SetThrottle(1).
-				WaitWithContext(ctx)
-
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("unexpected error response. want %v but got %v ", tt.wantErr, err)
-			}
-
-			if diff := cmp.Diff(tt.want, got); diff != "" {
-				t.Errorf("differing wrapping key %s", diff)
-			}
 		})
 	}
 }

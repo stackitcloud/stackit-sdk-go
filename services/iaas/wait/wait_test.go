@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"testing"
+	"testing/synctest"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
@@ -286,29 +287,31 @@ func TestCreateNetworkWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkFails: tt.getFails,
-				resourceState:   tt.resourceState,
-			}
-
-			var wantRes *iaas.Network
-			if tt.wantResp {
-				wantRes = &iaas.Network{
-					Id:     utils.Ptr("nid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkFails: tt.getFails,
+					resourceState:   tt.resourceState,
 				}
-			}
 
-			handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
+				var wantRes *iaas.Network
+				if tt.wantResp {
+					wantRes = &iaas.Network{
+						Id:     utils.Ptr("nid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -345,29 +348,31 @@ func TestUpdateNetworkWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkFails: tt.getFails,
-				resourceState:   tt.resourceState,
-			}
-
-			var wantRes *iaas.Network
-			if tt.wantResp {
-				wantRes = &iaas.Network{
-					Id:     utils.Ptr("nid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkFails: tt.getFails,
+					resourceState:   tt.resourceState,
 				}
-			}
 
-			handler := UpdateNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
+				var wantRes *iaas.Network
+				if tt.wantResp {
+					wantRes = &iaas.Network{
+						Id:     utils.Ptr("nid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+				handler := UpdateNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -405,30 +410,32 @@ func TestDeleteNetworkWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkFails: tt.getFails,
-				isDeleted:       tt.isDeleted,
-				resourceState:   tt.resourceState,
-			}
-
-			var wantRes *iaas.Network
-			if tt.wantResp {
-				wantRes = &iaas.Network{
-					Id:     utils.Ptr("nid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkFails: tt.getFails,
+					isDeleted:       tt.isDeleted,
+					resourceState:   tt.resourceState,
 				}
-			}
 
-			handler := DeleteNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
+				var wantRes *iaas.Network
+				if tt.wantResp {
+					wantRes = &iaas.Network{
+						Id:     utils.Ptr("nid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteNetworkWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -472,29 +479,31 @@ func TestCreateVolumeWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getVolumeFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Volume
-			if tt.wantResp {
-				wantRes = &iaas.Volume{
-					Id:     utils.Ptr("vid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getVolumeFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := CreateVolumeWaitHandler(context.Background(), apiClient, "pid", "region", "vid")
+				var wantRes *iaas.Volume
+				if tt.wantResp {
+					wantRes = &iaas.Volume{
+						Id:     utils.Ptr("vid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateVolumeWaitHandler(context.Background(), apiClient, "pid", "region", "vid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -532,30 +541,32 @@ func TestDeleteVolumeWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getVolumeFails: tt.getFails,
-				isDeleted:      tt.isDeleted,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Volume
-			if tt.wantResp {
-				wantRes = &iaas.Volume{
-					Id:     utils.Ptr("vid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getVolumeFails: tt.getFails,
+					isDeleted:      tt.isDeleted,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := DeleteVolumeWaitHandler(context.Background(), apiClient, "pid", "region", "vid")
+				var wantRes *iaas.Volume
+				if tt.wantResp {
+					wantRes = &iaas.Volume{
+						Id:     utils.Ptr("vid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteVolumeWaitHandler(context.Background(), apiClient, "pid", "region", "vid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -599,29 +610,31 @@ func TestCreateServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := CreateServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -659,30 +672,32 @@ func TestDeleteServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				isDeleted:      tt.isDeleted,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					isDeleted:      tt.isDeleted,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := DeleteServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -737,30 +752,32 @@ func TestResizeServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.finalResourceState,
-				returnResizing: tt.returnResizing,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.finalResourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					resourceState:  tt.finalResourceState,
+					returnResizing: tt.returnResizing,
 				}
-			}
 
-			handler := ResizeServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.finalResourceState),
+					}
+				}
 
-			gotRes, err := handler.SetThrottle(1 * time.Millisecond).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := ResizeServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -804,29 +821,31 @@ func TestStartServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := StartServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := StartServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -870,29 +889,31 @@ func TestStopServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := StopServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := StopServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -936,29 +957,31 @@ func TestDeallocateServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := DeallocateServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeallocateServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1002,29 +1025,31 @@ func TestRescueServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := RescueServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := RescueServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1068,29 +1093,31 @@ func TestUnrescueServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getServerFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Server
-			if tt.wantResp {
-				wantRes = &iaas.Server{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getServerFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := UnrescueServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				var wantRes *iaas.Server
+				if tt.wantResp {
+					wantRes = &iaas.Server{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := UnrescueServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1161,31 +1188,33 @@ func TestProjectRequestWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getProjectRequestFails: tt.getFails,
-				requestAction:          tt.requestAction,
-				resourceState:          tt.requestState,
-			}
-
-			var wantRes *iaas.Request
-			if tt.wantResp {
-				wantRes = &iaas.Request{
-					RequestId:     utils.Ptr("rid"),
-					RequestAction: utils.Ptr(tt.requestAction),
-					Status:        utils.Ptr(tt.requestState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getProjectRequestFails: tt.getFails,
+					requestAction:          tt.requestAction,
+					resourceState:          tt.requestState,
 				}
-			}
 
-			handler := ProjectRequestWaitHandler(context.Background(), apiClient, "pid", "region", "rid")
+				var wantRes *iaas.Request
+				if tt.wantResp {
+					wantRes = &iaas.Request{
+						RequestId:     utils.Ptr("rid"),
+						RequestAction: utils.Ptr(tt.requestAction),
+						Status:        utils.Ptr(tt.requestState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := ProjectRequestWaitHandler(context.Background(), apiClient, "pid", "region", "rid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1221,29 +1250,31 @@ func TestAddVolumeToServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getAttachedVolumeFails: tt.getFails,
-				isAttached:             tt.isAttached,
-			}
-
-			var wantRes *iaas.VolumeAttachment
-			if tt.wantResp {
-				wantRes = &iaas.VolumeAttachment{
-					ServerId: utils.Ptr("sid"),
-					VolumeId: utils.Ptr("vid"),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getAttachedVolumeFails: tt.getFails,
+					isAttached:             tt.isAttached,
 				}
-			}
 
-			handler := AddVolumeToServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid", "vid")
+				var wantRes *iaas.VolumeAttachment
+				if tt.wantResp {
+					wantRes = &iaas.VolumeAttachment{
+						ServerId: utils.Ptr("sid"),
+						VolumeId: utils.Ptr("vid"),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := AddVolumeToServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid", "vid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1279,29 +1310,31 @@ func TestRemoveVolumeFromServerWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getAttachedVolumeFails: tt.getFails,
-				isAttached:             tt.isAttached,
-			}
-
-			var wantRes *iaas.VolumeAttachment
-			if tt.wantResp {
-				wantRes = &iaas.VolumeAttachment{
-					ServerId: utils.Ptr("sid"),
-					VolumeId: utils.Ptr("vid"),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getAttachedVolumeFails: tt.getFails,
+					isAttached:             tt.isAttached,
 				}
-			}
 
-			handler := RemoveVolumeFromServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid", "vid")
+				var wantRes *iaas.VolumeAttachment
+				if tt.wantResp {
+					wantRes = &iaas.VolumeAttachment{
+						ServerId: utils.Ptr("sid"),
+						VolumeId: utils.Ptr("vid"),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := RemoveVolumeFromServerWaitHandler(context.Background(), apiClient, "pid", "region", "sid", "vid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1345,29 +1378,31 @@ func TestUploadImageWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getImageFails: tt.getFails,
-				resourceState: tt.resourceState,
-			}
-
-			var wantRes *iaas.Image
-			if tt.wantResp {
-				wantRes = &iaas.Image{
-					Id:     utils.Ptr("iid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getImageFails: tt.getFails,
+					resourceState: tt.resourceState,
 				}
-			}
 
-			handler := UploadImageWaitHandler(context.Background(), apiClient, "pid", "region", "iid")
+				var wantRes *iaas.Image
+				if tt.wantResp {
+					wantRes = &iaas.Image{
+						Id:     utils.Ptr("iid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := UploadImageWaitHandler(context.Background(), apiClient, "pid", "region", "iid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1401,19 +1436,21 @@ func TestDeleteImageWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getImageFails: tt.getFails,
-				isDeleted:     tt.isDeleted,
-				resourceState: tt.resourceState,
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getImageFails: tt.getFails,
+					isDeleted:     tt.isDeleted,
+					resourceState: tt.resourceState,
+				}
 
-			handler := DeleteImageWaitHandler(context.Background(), apiClient, "pid", "region", "iid")
+				handler := DeleteImageWaitHandler(context.Background(), apiClient, "pid", "region", "iid")
 
-			_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				_, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+			})
 		})
 	}
 }
@@ -1457,28 +1494,30 @@ func TestCreateBackupWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getBackupFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Backup
-			if tt.wantResp {
-				wantRes = &iaas.Backup{
-					Id:     utils.Ptr("bid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getBackupFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := CreateBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				var wantRes *iaas.Backup
+				if tt.wantResp {
+					wantRes = &iaas.Backup{
+						Id:     utils.Ptr("bid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				handler := CreateBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1516,21 +1555,23 @@ func TestDeleteBackupWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getBackupFails: tt.getFails,
-				isDeleted:      tt.isDeleted,
-				resourceState:  tt.resourceState,
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getBackupFails: tt.getFails,
+					isDeleted:      tt.isDeleted,
+					resourceState:  tt.resourceState,
+				}
 
-			handler := DeleteBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if gotRes != nil {
-				t.Fatalf("handler gotRes = %v, want nil", gotRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if gotRes != nil {
+					t.Fatalf("handler gotRes = %v, want nil", gotRes)
+				}
+			})
 		})
 	}
 }
@@ -1574,28 +1615,30 @@ func TestRestoreBackupWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getBackupFails: tt.getFails,
-				resourceState:  tt.resourceState,
-			}
-
-			var wantRes *iaas.Backup
-			if tt.wantResp {
-				wantRes = &iaas.Backup{
-					Id:     utils.Ptr("bid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getBackupFails: tt.getFails,
+					resourceState:  tt.resourceState,
 				}
-			}
 
-			handler := RestoreBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				var wantRes *iaas.Backup
+				if tt.wantResp {
+					wantRes = &iaas.Backup{
+						Id:     utils.Ptr("bid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				handler := RestoreBackupWaitHandler(context.Background(), apiClient, "pid", "region", "bid")
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1639,28 +1682,30 @@ func TestCreateSnapshotWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getSnapshotFails: tt.getFails,
-				resourceState:    tt.resourceState,
-			}
-
-			var wantRes *iaas.Snapshot
-			if tt.wantResp {
-				wantRes = &iaas.Snapshot{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getSnapshotFails: tt.getFails,
+					resourceState:    tt.resourceState,
 				}
-			}
 
-			handler := CreateSnapshotWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				var wantRes *iaas.Snapshot
+				if tt.wantResp {
+					wantRes = &iaas.Snapshot{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				handler := CreateSnapshotWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1704,28 +1749,30 @@ func TestDeleteSnapshotWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getSnapshotFails: tt.getFails,
-				resourceState:    tt.resourceState,
-			}
-
-			var wantRes *iaas.Snapshot
-			if tt.wantResp {
-				wantRes = &iaas.Snapshot{
-					Id:     utils.Ptr("sid"),
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getSnapshotFails: tt.getFails,
+					resourceState:    tt.resourceState,
 				}
-			}
 
-			handler := DeleteSnapshotWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				var wantRes *iaas.Snapshot
+				if tt.wantResp {
+					wantRes = &iaas.Snapshot{
+						Id:     utils.Ptr("sid"),
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				handler := DeleteSnapshotWaitHandler(context.Background(), apiClient, "pid", "region", "sid")
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1853,28 +1900,30 @@ func TestReadyForNetworkAreaDeletionWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				listProjectsResponses: tt.listProjectsResponses,
-			}
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					listProjectsResponses: tt.listProjectsResponses,
+				}
 
-			rmApiClient := &resourceManagerClientMocked{
-				getProjectResponses: tt.getProjectResponses,
-			}
+				rmApiClient := &resourceManagerClientMocked{
+					getProjectResponses: tt.getProjectResponses,
+				}
 
-			var wantRes *iaas.ProjectListResponse
-			if tt.wantResp {
-				wantRes = tt.listProjectsResponses[len(tt.listProjectsResponses)-1].resp
-			}
+				var wantRes *iaas.ProjectListResponse
+				if tt.wantResp {
+					wantRes = tt.listProjectsResponses[len(tt.listProjectsResponses)-1].resp
+				}
 
-			handler := ReadyForNetworkAreaDeletionWaitHandler(context.Background(), apiClient, rmApiClient, "oid", "aid")
-			gotRes, err := handler.SetTimeout(200 * time.Millisecond).SetThrottle(5 * time.Millisecond).WaitWithContext(context.Background())
+				handler := ReadyForNetworkAreaDeletionWaitHandler(context.Background(), apiClient, rmApiClient, "oid", "aid")
+				gotRes, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1911,28 +1960,30 @@ func TestCreateNetworkAreaRegionWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkAreaRegionFails: tt.getFails,
-				resourceState:             tt.resourceState,
-			}
-
-			var wantRes *iaas.RegionalArea
-			if tt.wantResp {
-				wantRes = &iaas.RegionalArea{
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkAreaRegionFails: tt.getFails,
+					resourceState:             tt.resourceState,
 				}
-			}
 
-			handler := CreateNetworkAreaRegionWaitHandler(context.Background(), apiClient, "pid", "aid", "region")
+				var wantRes *iaas.RegionalArea
+				if tt.wantResp {
+					wantRes = &iaas.RegionalArea{
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+				handler := CreateNetworkAreaRegionWaitHandler(context.Background(), apiClient, "pid", "aid", "region")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetTimeout(10 * time.Millisecond).SetSleepBeforeWait(1 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }
@@ -1970,29 +2021,31 @@ func TestDeleteNetworkAreaRegionWaitHandler(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
-			apiClient := &apiClientMocked{
-				getNetworkAreaRegionFails: tt.getFails,
-				isDeleted:                 tt.isDeleted,
-				resourceState:             tt.resourceState,
-			}
-
-			var wantRes *iaas.RegionalArea
-			if tt.wantResp {
-				wantRes = &iaas.RegionalArea{
-					Status: utils.Ptr(tt.resourceState),
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := &apiClientMocked{
+					getNetworkAreaRegionFails: tt.getFails,
+					isDeleted:                 tt.isDeleted,
+					resourceState:             tt.resourceState,
 				}
-			}
 
-			handler := DeleteNetworkAreaRegionWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
+				var wantRes *iaas.RegionalArea
+				if tt.wantResp {
+					wantRes = &iaas.RegionalArea{
+						Status: utils.Ptr(tt.resourceState),
+					}
+				}
 
-			gotRes, err := handler.SetSleepBeforeWait(0).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				handler := DeleteNetworkAreaRegionWaitHandler(context.Background(), apiClient, "pid", "region", "nid")
 
-			if (err != nil) != tt.wantErr {
-				t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
-			}
-			if !cmp.Equal(gotRes, wantRes) {
-				t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
-			}
+				gotRes, err := handler.SetSleepBeforeWait(0).SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
 		})
 	}
 }

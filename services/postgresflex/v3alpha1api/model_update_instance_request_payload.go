@@ -29,7 +29,7 @@ type UpdateInstanceRequestPayload struct {
 	Name     string                `json:"name"`
 	Network  InstanceNetworkUpdate `json:"network"`
 	Replicas Replicas              `json:"replicas"`
-	// How long backups are retained. The value can only be between 32 and 365 days.
+	// How long backups are retained. The value can only be between 32 and 90 days.
 	RetentionDays int32         `json:"retentionDays"`
 	Storage       StorageUpdate `json:"storage"`
 	// The Postgres version used for the instance. See [Versions Endpoint](/documentation/postgres-flex-service/version/v3alpha1#tag/Version) for supported version parameters.
