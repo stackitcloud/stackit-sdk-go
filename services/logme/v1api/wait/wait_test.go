@@ -4,10 +4,6 @@ import (
 	"context"
 	"testing"
 	"testing/synctest"
-<<<<<<< feat/STACKITSDK-425_synctest-2
-	"time"
-=======
->>>>>>> main
 
 	"github.com/google/go-cmp/cmp"
 
@@ -137,11 +133,7 @@ func TestCreateInstanceWaitHandler(t *testing.T) {
 
 				handler := CreateInstanceWaitHandler(context.Background(), apiClient, "pid", instanceId)
 
-<<<<<<< feat/STACKITSDK-425_synctest-2
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
-=======
 				gotRes, err := handler.WaitWithContext(context.Background())
->>>>>>> main
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
