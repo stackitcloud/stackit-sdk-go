@@ -60,6 +60,9 @@
     - Minimal go version is now Go 1.25
   - [v0.20.1](services/dns/CHANGELOG.md#v0201)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+- `dremio`:
+  - [v0.1.0](services/dremio/CHANGELOG.md#v010) 
+    - **New:** STACKIT Dremio service
 - `edge`:
   - [v0.8.2](services/edge/CHANGELOG.md#v082) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
