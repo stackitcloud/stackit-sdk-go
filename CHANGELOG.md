@@ -50,7 +50,7 @@
     - `v1api`:
       - **Feature:** Add fields `ForwardHostHeader`, `StripResponseCookies` and `Tls` to models: `Config`, `ConfigPatch`, `CreateDistributionPayload`
       - **Feature:** new models `TlsConfig`, `TlsConfigPatch`
-    - `v1beta`: v1beta was deprecated please migrate to `v1api`
+    - `v1betaapi`: v1betaapi was deprecated please migrate to `v1api`
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -284,6 +284,14 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.12.0](services/ske/CHANGELOG.md#v1120) 
     - Minimal go version is now Go 1.25
+  - [v1.13.0](services/ske/CHANGELOG.md#v1130)
+  - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+    - `v2api`:
+      - New field `Expiration` in `ClusterStatus` model struct
+      - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
+    - Deprecated SDK layer in root of the module:
+      - New field `Expiration` in `ClusterStatus` model struct
+      - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -299,6 +307,9 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.18.0](services/stackitmarketplace/CHANGELOG.md#v1180) 
     - Minimal go version is now Go 1.25
+- `telemetryrouter`:
+  - [v0.1.0](services/telemetryrouter/CHANGELOG.md#v010)
+    - **New**: API for STACKIT Telemetry Router
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
