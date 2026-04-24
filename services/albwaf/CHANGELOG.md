@@ -1,3 +1,9 @@
+## v0.5.0 
+- **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+- **Feature:** new models `CRSRule`, `CRSRuleGroup`, `GetLimitedCoreRuleSetResponse`
+- **Feature:** add fields `Groups` and `Version` to `GetCoreRuleSetResponse`
+- **Breaking change:** change type of `Items` field in `ListCoreRuleSetResponse` model from `GetCoreRuleSetResponse` to `GetLimitedCoreRuleSetResponse`
+
 ## v0.4.0
 - Minimal go version is now Go 1.25
 

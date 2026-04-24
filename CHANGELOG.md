@@ -15,6 +15,11 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v0.4.0](services/albwaf/CHANGELOG.md#v040) 
     - Minimal go version is now Go 1.25
+  - [v0.5.0](services/albwaf/CHANGELOG.md#v050) 
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+    - **Feature:** new models `CRSRule`, `CRSRuleGroup`, `GetLimitedCoreRuleSetResponse`
+    - **Feature:** add fields `Groups` and `Version` to `GetCoreRuleSetResponse`
+    - **Breaking change:** change type of `Items` field in `ListCoreRuleSetResponse` model from `GetCoreRuleSetResponse` to `GetLimitedCoreRuleSetResponse`
 - `archiving`:
   - [v0.2.6](services/archiving/CHANGELOG.md#v026) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
