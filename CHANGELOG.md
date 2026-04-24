@@ -302,6 +302,9 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
   - [v1.18.0](services/stackitmarketplace/CHANGELOG.md#v1180) 
     - Minimal go version is now Go 1.25
+- `telemetryrouter`:
+  - [v0.1.0](services/telemetryrouter/CHANGELOG.md#v010)
+    - **New**: API for STACKIT Telemetry Router
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
