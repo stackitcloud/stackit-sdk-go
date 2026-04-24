@@ -45,7 +45,7 @@
     - `v1api`:
       - **Feature:** Add fields `ForwardHostHeader`, `StripResponseCookies` and `Tls` to models: `Config`, `ConfigPatch`, `CreateDistributionPayload`
       - **Feature:** new models `TlsConfig`, `TlsConfigPatch`
-    - `v1beta`: v1beta was deprecated please migrate to `v1api`
+    - `v1betaapi`: v1betaapi was deprecated please migrate to `v1api`
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
