@@ -19,9 +19,15 @@ var _ MappedNullable = &SnapshotPolicySchedule{}
 
 // SnapshotPolicySchedule struct for SnapshotPolicySchedule
 type SnapshotPolicySchedule struct {
-	Count                *int32  `json:"count,omitempty"`
-	Prefix               *string `json:"prefix,omitempty"`
-	RetentionPeriod      *string `json:"retentionPeriod,omitempty"`
+	// Retention Count
+	Count *int32 `json:"count,omitempty"`
+	// Interval of the Schedule (follows the cron schedule expression in Unix-like systems)
+	Interval *string `json:"interval,omitempty"`
+	// Prefix used for the snapshots created by this policy
+	Prefix *string `json:"prefix,omitempty"`
+	// Retention Period (ISO 8601 format or \"infinite\")
+	RetentionPeriod *string `json:"retentionPeriod,omitempty"`
+	// ID of the Schedule
 	ScheduleId           *string `json:"scheduleId,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -75,6 +81,38 @@ func (o *SnapshotPolicySchedule) HasCount() bool {
 // SetCount gets a reference to the given int32 and assigns it to the Count field.
 func (o *SnapshotPolicySchedule) SetCount(v int32) {
 	o.Count = &v
+}
+
+// GetInterval returns the Interval field value if set, zero value otherwise.
+func (o *SnapshotPolicySchedule) GetInterval() string {
+	if o == nil || IsNil(o.Interval) {
+		var ret string
+		return ret
+	}
+	return *o.Interval
+}
+
+// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SnapshotPolicySchedule) GetIntervalOk() (*string, bool) {
+	if o == nil || IsNil(o.Interval) {
+		return nil, false
+	}
+	return o.Interval, true
+}
+
+// HasInterval returns a boolean if a field has been set.
+func (o *SnapshotPolicySchedule) HasInterval() bool {
+	if o != nil && !IsNil(o.Interval) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterval gets a reference to the given string and assigns it to the Interval field.
+func (o *SnapshotPolicySchedule) SetInterval(v string) {
+	o.Interval = &v
 }
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
@@ -186,6 +224,9 @@ func (o SnapshotPolicySchedule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
 	}
+	if !IsNil(o.Interval) {
+		toSerialize["interval"] = o.Interval
+	}
 	if !IsNil(o.Prefix) {
 		toSerialize["prefix"] = o.Prefix
 	}
@@ -218,6 +259,7 @@ func (o *SnapshotPolicySchedule) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "count")
+		delete(additionalProperties, "interval")
 		delete(additionalProperties, "prefix")
 		delete(additionalProperties, "retentionPeriod")
 		delete(additionalProperties, "scheduleId")

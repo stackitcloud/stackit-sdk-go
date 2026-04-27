@@ -1,3 +1,9 @@
+## v0.9.0
+- **Deprecation:** deprecated field `Schedules` in model `SnapshotPolicy`
+- **Feature:** new field `SnapshotSchedules` in model `SnapshotPolicy`
+- **Feature:** new field `Interval` in model `SnapshotPolicySchedule`
+- **Feature:** new model `SnapshotPolicySnapshotPolicySchedule`
+
 ## v0.8.0
 - **Feature:** model `CreateResourcePoolPayload` now has an additional field `snapshotPolicyId`
 - **Feature:** model `CreateResourcePoolSnapshotPayload` now has an additional field `snaplockRetentionHours`

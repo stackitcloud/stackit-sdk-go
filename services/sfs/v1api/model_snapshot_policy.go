@@ -30,8 +30,11 @@ type SnapshotPolicy struct {
 	Id *string `json:"id,omitempty"`
 	// Name of the Snapshot Policy
 	Name *string `json:"name,omitempty"`
+	// (deprecated) associated schedules
+	// Deprecated
+	Schedules []SnapshotPolicySchedule `json:"schedules,omitempty"`
 	// associated schedules
-	Schedules            []SnapshotPolicySchedule `json:"schedules,omitempty"`
+	SnapshotSchedules    []SnapshotPolicySnapshotPolicySchedule `json:"snapshotSchedules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -215,6 +218,7 @@ func (o *SnapshotPolicy) SetName(v string) {
 }
 
 // GetSchedules returns the Schedules field value if set, zero value otherwise.
+// Deprecated
 func (o *SnapshotPolicy) GetSchedules() []SnapshotPolicySchedule {
 	if o == nil || IsNil(o.Schedules) {
 		var ret []SnapshotPolicySchedule
@@ -225,6 +229,7 @@ func (o *SnapshotPolicy) GetSchedules() []SnapshotPolicySchedule {
 
 // GetSchedulesOk returns a tuple with the Schedules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *SnapshotPolicy) GetSchedulesOk() ([]SnapshotPolicySchedule, bool) {
 	if o == nil || IsNil(o.Schedules) {
 		return nil, false
@@ -242,8 +247,41 @@ func (o *SnapshotPolicy) HasSchedules() bool {
 }
 
 // SetSchedules gets a reference to the given []SnapshotPolicySchedule and assigns it to the Schedules field.
+// Deprecated
 func (o *SnapshotPolicy) SetSchedules(v []SnapshotPolicySchedule) {
 	o.Schedules = v
+}
+
+// GetSnapshotSchedules returns the SnapshotSchedules field value if set, zero value otherwise.
+func (o *SnapshotPolicy) GetSnapshotSchedules() []SnapshotPolicySnapshotPolicySchedule {
+	if o == nil || IsNil(o.SnapshotSchedules) {
+		var ret []SnapshotPolicySnapshotPolicySchedule
+		return ret
+	}
+	return o.SnapshotSchedules
+}
+
+// GetSnapshotSchedulesOk returns a tuple with the SnapshotSchedules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SnapshotPolicy) GetSnapshotSchedulesOk() ([]SnapshotPolicySnapshotPolicySchedule, bool) {
+	if o == nil || IsNil(o.SnapshotSchedules) {
+		return nil, false
+	}
+	return o.SnapshotSchedules, true
+}
+
+// HasSnapshotSchedules returns a boolean if a field has been set.
+func (o *SnapshotPolicy) HasSnapshotSchedules() bool {
+	if o != nil && !IsNil(o.SnapshotSchedules) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnapshotSchedules gets a reference to the given []SnapshotPolicySnapshotPolicySchedule and assigns it to the SnapshotSchedules field.
+func (o *SnapshotPolicy) SetSnapshotSchedules(v []SnapshotPolicySnapshotPolicySchedule) {
+	o.SnapshotSchedules = v
 }
 
 func (o SnapshotPolicy) MarshalJSON() ([]byte, error) {
@@ -274,6 +312,9 @@ func (o SnapshotPolicy) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Schedules) {
 		toSerialize["schedules"] = o.Schedules
 	}
+	if !IsNil(o.SnapshotSchedules) {
+		toSerialize["snapshotSchedules"] = o.SnapshotSchedules
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -302,6 +343,7 @@ func (o *SnapshotPolicy) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "schedules")
+		delete(additionalProperties, "snapshotSchedules")
 		o.AdditionalProperties = additionalProperties
 	}
 
