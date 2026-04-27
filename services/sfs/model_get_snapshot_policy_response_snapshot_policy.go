@@ -181,6 +181,33 @@ func setGetSnapshotPolicyResponseSnapshotPolicyGetSchedulesAttributeType(arg *Ge
 	*arg = &val
 }
 
+/*
+	types and functions for snapshotSchedules
+*/
+
+// isArray
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeType = *[]SnapshotPolicySnapshotPolicySchedule
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesArgType = []SnapshotPolicySnapshotPolicySchedule
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesRetType = []SnapshotPolicySnapshotPolicySchedule
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getGetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeTypeOk(arg GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeType) (ret GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setGetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeType(arg *GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeType, val GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesRetType) {
+	*arg = &val
+}
+
 // GetSnapshotPolicyResponseSnapshotPolicy Snapshot Policy
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type GetSnapshotPolicyResponseSnapshotPolicy struct {
@@ -194,8 +221,10 @@ type GetSnapshotPolicyResponseSnapshotPolicy struct {
 	Id GetSnapshotPolicyResponseSnapshotPolicyGetIdAttributeType `json:"id,omitempty"`
 	// Name of the Snapshot Policy
 	Name GetSnapshotPolicyResponseSnapshotPolicyGetNameAttributeType `json:"name,omitempty"`
-	// associated schedules
+	//  Deprecated: (deprecated) associated schedules
 	Schedules GetSnapshotPolicyResponseSnapshotPolicyGetSchedulesAttributeType `json:"schedules,omitempty"`
+	// associated schedules
+	SnapshotSchedules GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeType `json:"snapshotSchedules,omitempty"`
 }
 
 // NewGetSnapshotPolicyResponseSnapshotPolicy instantiates a new GetSnapshotPolicyResponseSnapshotPolicy object
@@ -379,6 +408,33 @@ func (o *GetSnapshotPolicyResponseSnapshotPolicy) SetSchedules(v GetSnapshotPoli
 	setGetSnapshotPolicyResponseSnapshotPolicyGetSchedulesAttributeType(&o.Schedules, v)
 }
 
+// GetSnapshotSchedules returns the SnapshotSchedules field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetSnapshotPolicyResponseSnapshotPolicy) GetSnapshotSchedules() (res GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesRetType) {
+	res, _ = o.GetSnapshotSchedulesOk()
+	return
+}
+
+// GetSnapshotSchedulesOk returns a tuple with the SnapshotSchedules field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetSnapshotPolicyResponseSnapshotPolicy) GetSnapshotSchedulesOk() (ret GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesRetType, ok bool) {
+	return getGetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeTypeOk(o.SnapshotSchedules)
+}
+
+// HasSnapshotSchedules returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetSnapshotPolicyResponseSnapshotPolicy) HasSnapshotSchedules() bool {
+	_, ok := o.GetSnapshotSchedulesOk()
+	return ok
+}
+
+// SetSnapshotSchedules gets a reference to the given []SnapshotPolicySnapshotPolicySchedule and assigns it to the SnapshotSchedules field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetSnapshotPolicyResponseSnapshotPolicy) SetSnapshotSchedules(v GetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesRetType) {
+	setGetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeType(&o.SnapshotSchedules, v)
+}
+
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o GetSnapshotPolicyResponseSnapshotPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
@@ -399,6 +455,9 @@ func (o GetSnapshotPolicyResponseSnapshotPolicy) ToMap() (map[string]interface{}
 	}
 	if val, ok := getGetSnapshotPolicyResponseSnapshotPolicyGetSchedulesAttributeTypeOk(o.Schedules); ok {
 		toSerialize["Schedules"] = val
+	}
+	if val, ok := getGetSnapshotPolicyResponseSnapshotPolicyGetSnapshotSchedulesAttributeTypeOk(o.SnapshotSchedules); ok {
+		toSerialize["SnapshotSchedules"] = val
 	}
 	return toSerialize, nil
 }
