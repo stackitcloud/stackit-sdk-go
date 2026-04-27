@@ -6,7 +6,7 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/opensearch => ../../services/opensearch
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.25.0
+	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
 	github.com/stackitcloud/stackit-sdk-go/services/opensearch v0.26.3
 )
 
