@@ -95,6 +95,8 @@
   - [v1.10.1](services/iaas/CHANGELOG.md#1101)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.21.2` to `v0.22.1`
+  - [v1.10.2](services/iaas/CHANGELOG.md#v1102)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
