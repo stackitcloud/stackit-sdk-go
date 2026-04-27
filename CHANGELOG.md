@@ -314,6 +314,11 @@
     - **Feature:** model `UpdateResourcePoolPayload` now has an additional field `snapshotPolicyId`
     - **Feature:** new models: `DisableLockResponse`, `EnableLockResponse`, `GetLockResponse`, `GetScheduleResponse`, `GetSnapshotPolicyResponse`, `ListSchedulesResponse`, `ListSnapshotPoliciesResponse`, `ResourcePoolSnapshotPolicy`, `Schedule`, `SnapshotPolicy`, `SnapshotPolicySchedule`, `UpdateResourcePoolSnapshotPayload`, `UpdateResourcePoolSnapshotResponse`
     - **Feature:** new operations: `UpdateResourcePoolSnapshot`, `ListSchedules`, `GetSchedule`, `ListSnapshotPolicies`, `GetSnapshotPolicy`, `DisableLock`, `GetLock`, `EnableLock`,
+  - [v0.9.0](services/sfs/CHANGELOG.md#v090)
+    - **Deprecation:** deprecated field `Schedules` in model `SnapshotPolicy`
+    - **Feature:** new field `SnapshotSchedules` in model `SnapshotPolicy`
+    - **Feature:** new field `Interval` in model `SnapshotPolicySchedule`
+    - **Feature:** new model `SnapshotPolicySnapshotPolicySchedule`
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
