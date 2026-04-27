@@ -2,7 +2,7 @@ module github.com/stackitcloud/stackit-sdk-go/services/vpn
 
 go 1.25
 
-require github.com/stackitcloud/stackit-sdk-go/core v0.25.0
+require github.com/stackitcloud/stackit-sdk-go/core v0.26.0
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
