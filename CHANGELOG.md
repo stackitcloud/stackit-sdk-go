@@ -152,6 +152,8 @@
     - Minimal go version is now Go 1.25
   - [v0.28.1](services/mariadb/CHANGELOG.md#v281)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+  - [v0.28.2](services/mariadb/CHANGELOG.md#v282)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -170,6 +172,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.8.2](services/mongodbflex/CHANGELOG.md#v182)
     - **Bugfix**: **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+  - [v1.8.3](services/mongodbflex/CHANGELOG.md#v183)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 - `objectstorage`:
   - [v1.7.2](services/objectstorage/CHANGELOG.md#v172) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -204,6 +208,8 @@
     - Minimal go version is now Go 1.25
   - [v1.7.1](services/postgresflex/CHANGELOG.md#v171)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+  - [v1.7.2](services/postgresflex/CHANGELOG.md#v172)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 - `rabbitmq`:
   - [v0.28.3](services/rabbitmq/CHANGELOG.md#v0283) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -331,6 +337,8 @@
   - [v1.9.0](services/sqlserverflex/CHANGELOG.md#v190)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
     - `v3beta1api`: **Feature:** Support region eu02
+  - [v1.9.1](services/sqlserverflex/CHANGELOG.md#v191)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
