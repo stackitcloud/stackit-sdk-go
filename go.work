@@ -44,6 +44,7 @@ use (
 	./services/certificates
 	./services/cost
 	./services/dns
+	./services/dremio
 	./services/edge
 	./services/git
 	./services/iaas
