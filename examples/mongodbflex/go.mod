@@ -5,7 +5,7 @@ go 1.25
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/mongodbflex => ../../services/mongodbflex
 
-require github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v1.7.3
+require github.com/stackitcloud/stackit-sdk-go/services/mongodbflex v1.8.3
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
