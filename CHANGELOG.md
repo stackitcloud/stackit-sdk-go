@@ -20,6 +20,8 @@
     - Minimal go version is now Go 1.25
   - [v0.4.1](services/albwaf/CHANGELOG.md#v041)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.5.0](services/albwaf/CHANGELOG.md#v050)
+    - `v1alphaapi`: Align package to latest API specification
 - `archiving`:
   - [v0.2.6](services/archiving/CHANGELOG.md#v026) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
