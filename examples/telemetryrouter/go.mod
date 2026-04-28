@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter => ../..
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter v0.1.0
+	github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter v0.1.2
 )
 
 require (
