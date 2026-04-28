@@ -46,6 +46,33 @@ func setSnapshotPolicyScheduleGetCountAttributeType(arg *SnapshotPolicyScheduleG
 }
 
 /*
+	types and functions for interval
+*/
+
+// isNotNullableString
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type SnapshotPolicyScheduleGetIntervalAttributeType = *string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getSnapshotPolicyScheduleGetIntervalAttributeTypeOk(arg SnapshotPolicyScheduleGetIntervalAttributeType) (ret SnapshotPolicyScheduleGetIntervalRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setSnapshotPolicyScheduleGetIntervalAttributeType(arg *SnapshotPolicyScheduleGetIntervalAttributeType, val SnapshotPolicyScheduleGetIntervalRetType) {
+	*arg = &val
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type SnapshotPolicyScheduleGetIntervalArgType = string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type SnapshotPolicyScheduleGetIntervalRetType = string
+
+/*
 	types and functions for prefix
 */
 
@@ -129,10 +156,16 @@ type SnapshotPolicyScheduleGetScheduleIdRetType = string
 // SnapshotPolicySchedule struct for SnapshotPolicySchedule
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type SnapshotPolicySchedule struct {
-	Count           SnapshotPolicyScheduleGetCountAttributeType           `json:"count,omitempty"`
-	Prefix          SnapshotPolicyScheduleGetPrefixAttributeType          `json:"prefix,omitempty"`
+	// Retention Count
+	Count SnapshotPolicyScheduleGetCountAttributeType `json:"count,omitempty"`
+	// Interval of the Schedule (follows the cron schedule expression in Unix-like systems)
+	Interval SnapshotPolicyScheduleGetIntervalAttributeType `json:"interval,omitempty"`
+	// Prefix used for the snapshots created by this policy
+	Prefix SnapshotPolicyScheduleGetPrefixAttributeType `json:"prefix,omitempty"`
+	// Retention Period (ISO 8601 format or \"infinite\")
 	RetentionPeriod SnapshotPolicyScheduleGetRetentionPeriodAttributeType `json:"retentionPeriod,omitempty"`
-	ScheduleId      SnapshotPolicyScheduleGetScheduleIdAttributeType      `json:"scheduleId,omitempty"`
+	// ID of the Schedule
+	ScheduleId SnapshotPolicyScheduleGetScheduleIdAttributeType `json:"scheduleId,omitempty"`
 }
 
 // NewSnapshotPolicySchedule instantiates a new SnapshotPolicySchedule object
@@ -179,6 +212,33 @@ func (o *SnapshotPolicySchedule) HasCount() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *SnapshotPolicySchedule) SetCount(v SnapshotPolicyScheduleGetCountRetType) {
 	setSnapshotPolicyScheduleGetCountAttributeType(&o.Count, v)
+}
+
+// GetInterval returns the Interval field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *SnapshotPolicySchedule) GetInterval() (res SnapshotPolicyScheduleGetIntervalRetType) {
+	res, _ = o.GetIntervalOk()
+	return
+}
+
+// GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *SnapshotPolicySchedule) GetIntervalOk() (ret SnapshotPolicyScheduleGetIntervalRetType, ok bool) {
+	return getSnapshotPolicyScheduleGetIntervalAttributeTypeOk(o.Interval)
+}
+
+// HasInterval returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *SnapshotPolicySchedule) HasInterval() bool {
+	_, ok := o.GetIntervalOk()
+	return ok
+}
+
+// SetInterval gets a reference to the given string and assigns it to the Interval field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *SnapshotPolicySchedule) SetInterval(v SnapshotPolicyScheduleGetIntervalRetType) {
+	setSnapshotPolicyScheduleGetIntervalAttributeType(&o.Interval, v)
 }
 
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
@@ -267,6 +327,9 @@ func (o SnapshotPolicySchedule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getSnapshotPolicyScheduleGetCountAttributeTypeOk(o.Count); ok {
 		toSerialize["Count"] = val
+	}
+	if val, ok := getSnapshotPolicyScheduleGetIntervalAttributeTypeOk(o.Interval); ok {
+		toSerialize["Interval"] = val
 	}
 	if val, ok := getSnapshotPolicyScheduleGetPrefixAttributeTypeOk(o.Prefix); ok {
 		toSerialize["Prefix"] = val
