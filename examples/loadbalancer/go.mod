@@ -6,8 +6,8 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/loadbalancer => ../../services/loadbalancer
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.25.0
-	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.11.2
+	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
+	github.com/stackitcloud/stackit-sdk-go/services/loadbalancer v1.12.1
 )
 
 require (
