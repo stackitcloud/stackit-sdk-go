@@ -6,8 +6,8 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/auditlog => ../../services/auditlog
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.25.0
-	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.3.3
+	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
+	github.com/stackitcloud/stackit-sdk-go/services/auditlog v0.4.1
 )
 
 require (

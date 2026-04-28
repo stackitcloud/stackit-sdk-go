@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/redis => ../../services/
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/redis v0.27.3
+	github.com/stackitcloud/stackit-sdk-go/services/redis v0.28.2
 )
 
 require (

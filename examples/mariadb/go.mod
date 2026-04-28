@@ -7,7 +7,7 @@ replace github.com/stackitcloud/stackit-sdk-go/services/mariadb => ../../service
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.27.3
+	github.com/stackitcloud/stackit-sdk-go/services/mariadb v0.28.2
 )
 
 require (
