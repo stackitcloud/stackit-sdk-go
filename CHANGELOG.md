@@ -10,6 +10,9 @@
     - Minimal go version is now Go 1.25
   - [v0.14.1](services/alb/CHANGELOG.md#v0141) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
+  - [v0.14.2](services/alb/CHANGELOG.md#v0142)
+    - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+    - `v2api`: **Improvement**: Use new `WaiterHandler` struct in the ALB WaitHandler
 - `albwaf`:
   - [v0.3.2](services/albwaf/CHANGELOG.md#v032) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
