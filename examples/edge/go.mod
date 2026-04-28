@@ -6,8 +6,8 @@ go 1.25
 replace github.com/stackitcloud/stackit-sdk-go/services/edge => ../../services/edge
 
 require (
-	github.com/stackitcloud/stackit-sdk-go/core v0.25.0
-	github.com/stackitcloud/stackit-sdk-go/services/edge v0.8.2
+	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
+	github.com/stackitcloud/stackit-sdk-go/services/edge v0.9.1
 	gopkg.in/yaml.v3 v3.0.1
 )
 

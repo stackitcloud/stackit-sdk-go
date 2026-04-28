@@ -5,7 +5,7 @@ go 1.25
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
 replace github.com/stackitcloud/stackit-sdk-go/services/postgresflex => ../../services/postgresflex
 
-require github.com/stackitcloud/stackit-sdk-go/services/postgresflex v1.6.3
+require github.com/stackitcloud/stackit-sdk-go/services/postgresflex v1.7.2
 
 require (
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect

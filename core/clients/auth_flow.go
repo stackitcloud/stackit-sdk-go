@@ -85,5 +85,5 @@ func tokenExpired(token string, tokenExpirationLeeway time.Duration) (bool, erro
 	// Pretend to be `tokenExpirationLeeway` into the future to avoid token expiring
 	// between retrieving the token and upstream systems validating it.
 	now := time.Now().Add(tokenExpirationLeeway)
-	return now.After(expirationTimestampNumeric.Time), nil
+	return now.After(expirationTimestampNumeric.Time) || now.Equal(expirationTimestampNumeric.Time), nil
 }
