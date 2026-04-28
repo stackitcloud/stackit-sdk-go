@@ -238,6 +238,24 @@ type DefaultApi interface {
 	*/
 	GetTokenByInstanceNameExecute(ctx context.Context, projectId string, regionId string, displayName string) (*Token, error)
 	/*
+		ListCompatibleKubernetesReleases Method for ListCompatibleKubernetesReleases
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListCompatibleKubernetesReleasesRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	ListCompatibleKubernetesReleases(ctx context.Context) ApiListCompatibleKubernetesReleasesRequest
+	/*
+		ListCompatibleKubernetesReleasesExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return KubernetesReleaseList
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	ListCompatibleKubernetesReleasesExecute(ctx context.Context) (*KubernetesReleaseList, error)
+	/*
 		ListInstances Method for ListInstances
 		Returns a list of all instances within the project.
 
@@ -387,6 +405,15 @@ type ApiGetTokenByInstanceNameRequest interface {
 	ExpirationSeconds(expirationSeconds int64) ApiGetTokenByInstanceNameRequest
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() (*Token, error)
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiListCompatibleKubernetesReleasesRequest interface {
+	// The name of the Talos release.
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	TalosVersion(talosVersion string) ApiListCompatibleKubernetesReleasesRequest
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*KubernetesReleaseList, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -1863,6 +1890,147 @@ func (a *APIClient) GetTokenByInstanceNameExecute(ctx context.Context, projectId
 		projectId:   projectId,
 		regionId:    regionId,
 		displayName: displayName,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ListCompatibleKubernetesReleasesRequest struct {
+	ctx          context.Context
+	apiService   *DefaultApiService
+	talosVersion *string
+}
+
+// The name of the Talos release.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r ListCompatibleKubernetesReleasesRequest) TalosVersion(talosVersion string) ApiListCompatibleKubernetesReleasesRequest {
+	r.talosVersion = &talosVersion
+	return r
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r ListCompatibleKubernetesReleasesRequest) Execute() (*KubernetesReleaseList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *KubernetesReleaseList
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.ListCompatibleKubernetesReleases")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/listcompatiblekubernetesreleases"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.talosVersion == nil {
+		return localVarReturnValue, fmt.Errorf("talosVersion is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "talosVersion", r.talosVersion, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v BadRequest
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+ListCompatibleKubernetesReleases: Method for ListCompatibleKubernetesReleases
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListCompatibleKubernetesReleasesRequest
+*/
+func (a *APIClient) ListCompatibleKubernetesReleases(ctx context.Context) ApiListCompatibleKubernetesReleasesRequest {
+	return ListCompatibleKubernetesReleasesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) ListCompatibleKubernetesReleasesExecute(ctx context.Context) (*KubernetesReleaseList, error) {
+	r := ListCompatibleKubernetesReleasesRequest{
+		apiService: a.defaultApi,
+		ctx:        ctx,
 	}
 	return r.Execute()
 }
