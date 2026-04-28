@@ -1,3 +1,6 @@
+## v1.15.1
+- **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+
 ## v1.15.0
 - `v1api`:
   - **Feature:** Add fields `ForwardHostHeader`, `StripResponseCookies` and `Tls` to model `Config`, `ConfigPatch`, `CreateDistributionPayload`
