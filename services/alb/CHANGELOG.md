@@ -1,3 +1,7 @@
+## v0.14.2
+- **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+- `v2api`: **Improvement**: Use new `WaiterHandler` struct in the ALB WaitHandler
+
 ## v0.14.1
 - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
 

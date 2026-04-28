@@ -102,8 +102,16 @@ func TestCreateOrUpdateLoadbalancerWaitHandler(t *testing.T) {
 			[]response{
 				{&alb.LoadBalancer{Status: utils.Ptr("bogus")}, nil},
 			},
-			&alb.LoadBalancer{Status: utils.Ptr("bogus")},
-			false,
+			nil,
+			true,
+		},
+		{
+			"no state",
+			[]response{
+				{&alb.LoadBalancer{Status: nil}, nil},
+			},
+			nil,
+			true,
 		},
 		// no special update tests needed as the states are the same
 	}
