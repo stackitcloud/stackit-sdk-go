@@ -20,9 +20,10 @@ type RoutingType string
 
 // List of RoutingType
 const (
-	ROUTINGTYPE_POLICY_BASED    RoutingType = "POLICY_BASED"
-	ROUTINGTYPE_ROUTE_BASED     RoutingType = "ROUTE_BASED"
-	ROUTINGTYPE_BGP_ROUTE_BASED RoutingType = "BGP_ROUTE_BASED"
+	ROUTINGTYPE_POLICY_BASED             RoutingType = "POLICY_BASED"
+	ROUTINGTYPE_ROUTE_BASED              RoutingType = "ROUTE_BASED"
+	ROUTINGTYPE_BGP_ROUTE_BASED          RoutingType = "BGP_ROUTE_BASED"
+	ROUTINGTYPE_UNKNOWN_DEFAULT_OPEN_API RoutingType = "unknown_default_open_api"
 )
 
 // All allowed values of RoutingType enum
@@ -30,6 +31,7 @@ var AllowedRoutingTypeEnumValues = []RoutingType{
 	"POLICY_BASED",
 	"ROUTE_BASED",
 	"BGP_ROUTE_BASED",
+	"unknown_default_open_api",
 }
 
 func (v *RoutingType) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *RoutingType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid RoutingType", value)
+	*v = ROUTINGTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewRoutingTypeFromValue returns a pointer to a valid RoutingType

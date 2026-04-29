@@ -20,10 +20,11 @@ type GatewayStatus string
 
 // List of GatewayStatus
 const (
-	GATEWAYSTATUS_PENDING  GatewayStatus = "PENDING"
-	GATEWAYSTATUS_READY    GatewayStatus = "READY"
-	GATEWAYSTATUS_ERROR    GatewayStatus = "ERROR"
-	GATEWAYSTATUS_DELETING GatewayStatus = "DELETING"
+	GATEWAYSTATUS_PENDING                  GatewayStatus = "PENDING"
+	GATEWAYSTATUS_READY                    GatewayStatus = "READY"
+	GATEWAYSTATUS_ERROR                    GatewayStatus = "ERROR"
+	GATEWAYSTATUS_DELETING                 GatewayStatus = "DELETING"
+	GATEWAYSTATUS_UNKNOWN_DEFAULT_OPEN_API GatewayStatus = "unknown_default_open_api"
 )
 
 // All allowed values of GatewayStatus enum
@@ -32,6 +33,7 @@ var AllowedGatewayStatusEnumValues = []GatewayStatus{
 	"READY",
 	"ERROR",
 	"DELETING",
+	"unknown_default_open_api",
 }
 
 func (v *GatewayStatus) UnmarshalJSON(src []byte) error {
@@ -48,7 +50,8 @@ func (v *GatewayStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid GatewayStatus", value)
+	*v = GATEWAYSTATUS_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewGatewayStatusFromValue returns a pointer to a valid GatewayStatus
