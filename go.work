@@ -76,5 +76,6 @@ use (
 	./services/sqlserverflex
 	./services/stackitmarketplace
 	./services/telemetryrouter
+	./services/ufw
 	./services/vpn
 )
