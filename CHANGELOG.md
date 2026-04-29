@@ -61,6 +61,8 @@
     - `v1betaapi`: v1betaapi was deprecated please migrate to `v1api`
   - [v1.15.1](services/cdn/CHANGELOG.md#v1151)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.16.0](services/cdn/CHANGELOG.md#v1160)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

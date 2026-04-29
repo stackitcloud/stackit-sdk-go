@@ -20,11 +20,12 @@ type DomainStatus string
 
 // List of DomainStatus
 const (
-	DOMAINSTATUS_CREATING DomainStatus = "CREATING"
-	DOMAINSTATUS_ACTIVE   DomainStatus = "ACTIVE"
-	DOMAINSTATUS_UPDATING DomainStatus = "UPDATING"
-	DOMAINSTATUS_DELETING DomainStatus = "DELETING"
-	DOMAINSTATUS_ERROR    DomainStatus = "ERROR"
+	DOMAINSTATUS_CREATING                 DomainStatus = "CREATING"
+	DOMAINSTATUS_ACTIVE                   DomainStatus = "ACTIVE"
+	DOMAINSTATUS_UPDATING                 DomainStatus = "UPDATING"
+	DOMAINSTATUS_DELETING                 DomainStatus = "DELETING"
+	DOMAINSTATUS_ERROR                    DomainStatus = "ERROR"
+	DOMAINSTATUS_UNKNOWN_DEFAULT_OPEN_API DomainStatus = "unknown_default_open_api"
 )
 
 // All allowed values of DomainStatus enum
@@ -34,6 +35,7 @@ var AllowedDomainStatusEnumValues = []DomainStatus{
 	"UPDATING",
 	"DELETING",
 	"ERROR",
+	"unknown_default_open_api",
 }
 
 func (v *DomainStatus) UnmarshalJSON(src []byte) error {
@@ -50,7 +52,8 @@ func (v *DomainStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid DomainStatus", value)
+	*v = DOMAINSTATUS_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewDomainStatusFromValue returns a pointer to a valid DomainStatus

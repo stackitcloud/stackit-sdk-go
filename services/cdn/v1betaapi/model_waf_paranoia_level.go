@@ -20,10 +20,11 @@ type WafParanoiaLevel string
 
 // List of WafParanoiaLevel
 const (
-	WAFPARANOIALEVEL_L1 WafParanoiaLevel = "L1"
-	WAFPARANOIALEVEL_L2 WafParanoiaLevel = "L2"
-	WAFPARANOIALEVEL_L3 WafParanoiaLevel = "L3"
-	WAFPARANOIALEVEL_L4 WafParanoiaLevel = "L4"
+	WAFPARANOIALEVEL_L1                       WafParanoiaLevel = "L1"
+	WAFPARANOIALEVEL_L2                       WafParanoiaLevel = "L2"
+	WAFPARANOIALEVEL_L3                       WafParanoiaLevel = "L3"
+	WAFPARANOIALEVEL_L4                       WafParanoiaLevel = "L4"
+	WAFPARANOIALEVEL_UNKNOWN_DEFAULT_OPEN_API WafParanoiaLevel = "unknown_default_open_api"
 )
 
 // All allowed values of WafParanoiaLevel enum
@@ -32,6 +33,7 @@ var AllowedWafParanoiaLevelEnumValues = []WafParanoiaLevel{
 	"L2",
 	"L3",
 	"L4",
+	"unknown_default_open_api",
 }
 
 func (v *WafParanoiaLevel) UnmarshalJSON(src []byte) error {
@@ -48,7 +50,8 @@ func (v *WafParanoiaLevel) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid WafParanoiaLevel", value)
+	*v = WAFPARANOIALEVEL_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewWafParanoiaLevelFromValue returns a pointer to a valid WafParanoiaLevel
