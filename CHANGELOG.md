@@ -415,6 +415,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.2.0](services/telemetryrouter/CHANGELOG.md#v020)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.2.1](services/telemetryrouter/CHANGELOG.md#v012)
+    - **Improvement**: Use new `WaiterHandler` struct in the DNS WaitHandler
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
