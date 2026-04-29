@@ -260,7 +260,6 @@ func (a *DefaultAPIService) GetCostsForProjectExecute(r ApiGetCostsForProjectReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthErrorResponse
@@ -271,7 +270,6 @@ func (a *DefaultAPIService) GetCostsForProjectExecute(r ApiGetCostsForProjectReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -284,7 +282,6 @@ func (a *DefaultAPIService) GetCostsForProjectExecute(r ApiGetCostsForProjectReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
@@ -295,7 +292,6 @@ func (a *DefaultAPIService) GetCostsForProjectExecute(r ApiGetCostsForProjectReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -496,7 +492,6 @@ func (a *DefaultAPIService) ListCostsForCustomerExecute(r ApiListCostsForCustome
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthErrorResponse
@@ -507,7 +502,6 @@ func (a *DefaultAPIService) ListCostsForCustomerExecute(r ApiListCostsForCustome
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -520,7 +514,6 @@ func (a *DefaultAPIService) ListCostsForCustomerExecute(r ApiListCostsForCustome
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
@@ -531,7 +524,6 @@ func (a *DefaultAPIService) ListCostsForCustomerExecute(r ApiListCostsForCustome
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -732,7 +724,6 @@ func (a *DefaultAPIService) ListCostsForResellerExecute(r ApiListCostsForReselle
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthErrorResponse
@@ -743,7 +734,6 @@ func (a *DefaultAPIService) ListCostsForResellerExecute(r ApiListCostsForReselle
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -756,7 +746,6 @@ func (a *DefaultAPIService) ListCostsForResellerExecute(r ApiListCostsForReselle
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
@@ -767,7 +756,6 @@ func (a *DefaultAPIService) ListCostsForResellerExecute(r ApiListCostsForReselle
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
