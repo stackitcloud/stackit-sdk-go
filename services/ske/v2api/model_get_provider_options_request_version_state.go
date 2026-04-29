@@ -20,12 +20,14 @@ type GetProviderOptionsRequestVersionState string
 
 // List of GetProviderOptionsRequestVersionState
 const (
-	GETPROVIDEROPTIONSREQUESTVERSIONSTATE_SUPPORTED GetProviderOptionsRequestVersionState = "SUPPORTED"
+	GETPROVIDEROPTIONSREQUESTVERSIONSTATE_SUPPORTED                GetProviderOptionsRequestVersionState = "SUPPORTED"
+	GETPROVIDEROPTIONSREQUESTVERSIONSTATE_UNKNOWN_DEFAULT_OPEN_API GetProviderOptionsRequestVersionState = "unknown_default_open_api"
 )
 
 // All allowed values of GetProviderOptionsRequestVersionState enum
 var AllowedGetProviderOptionsRequestVersionStateEnumValues = []GetProviderOptionsRequestVersionState{
 	"SUPPORTED",
+	"unknown_default_open_api",
 }
 
 func (v *GetProviderOptionsRequestVersionState) UnmarshalJSON(src []byte) error {
@@ -42,7 +44,8 @@ func (v *GetProviderOptionsRequestVersionState) UnmarshalJSON(src []byte) error 
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid GetProviderOptionsRequestVersionState", value)
+	*v = GETPROVIDEROPTIONSREQUESTVERSIONSTATE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewGetProviderOptionsRequestVersionStateFromValue returns a pointer to a valid GetProviderOptionsRequestVersionState
