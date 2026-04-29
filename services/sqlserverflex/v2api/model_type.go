@@ -21,12 +21,13 @@ type Type string
 
 // List of Type
 const (
-	TYPE_NOT_FOUND  Type = "NotFound"
-	TYPE_CREATE     Type = "Create"
-	TYPE_READ       Type = "Read"
-	TYPE_DELETE     Type = "Delete"
-	TYPE_UPDATE     Type = "Update"
-	TYPE_VALIDATION Type = "Validation"
+	TYPE_NOT_FOUND                Type = "NotFound"
+	TYPE_CREATE                   Type = "Create"
+	TYPE_READ                     Type = "Read"
+	TYPE_DELETE                   Type = "Delete"
+	TYPE_UPDATE                   Type = "Update"
+	TYPE_VALIDATION               Type = "Validation"
+	TYPE_UNKNOWN_DEFAULT_OPEN_API Type = "unknown_default_open_api"
 )
 
 // All allowed values of Type enum
@@ -37,6 +38,7 @@ var AllowedTypeEnumValues = []Type{
 	"Delete",
 	"Update",
 	"Validation",
+	"unknown_default_open_api",
 }
 
 func (v *Type) UnmarshalJSON(src []byte) error {
@@ -53,7 +55,8 @@ func (v *Type) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Type", value)
+	*v = TYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewTypeFromValue returns a pointer to a valid Type

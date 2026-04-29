@@ -21,12 +21,14 @@ type InstanceVersion string
 
 // List of instance.version
 const (
-	INSTANCEVERSION__2022 InstanceVersion = "2022"
+	INSTANCEVERSION__2022                    InstanceVersion = "2022"
+	INSTANCEVERSION_UNKNOWN_DEFAULT_OPEN_API InstanceVersion = "unknown_default_open_api"
 )
 
 // All allowed values of InstanceVersion enum
 var AllowedInstanceVersionEnumValues = []InstanceVersion{
 	"2022",
+	"unknown_default_open_api",
 }
 
 func (v *InstanceVersion) UnmarshalJSON(src []byte) error {
@@ -43,7 +45,8 @@ func (v *InstanceVersion) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InstanceVersion", value)
+	*v = INSTANCEVERSION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInstanceVersionFromValue returns a pointer to a valid InstanceVersion
