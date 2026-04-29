@@ -20,14 +20,16 @@ type WrappingPurpose string
 
 // List of wrappingPurpose
 const (
-	WRAPPINGPURPOSE_WRAP_SYMMETRIC_KEY  WrappingPurpose = "wrap_symmetric_key"
-	WRAPPINGPURPOSE_WRAP_ASYMMETRIC_KEY WrappingPurpose = "wrap_asymmetric_key"
+	WRAPPINGPURPOSE_WRAP_SYMMETRIC_KEY       WrappingPurpose = "wrap_symmetric_key"
+	WRAPPINGPURPOSE_WRAP_ASYMMETRIC_KEY      WrappingPurpose = "wrap_asymmetric_key"
+	WRAPPINGPURPOSE_UNKNOWN_DEFAULT_OPEN_API WrappingPurpose = "unknown_default_open_api"
 )
 
 // All allowed values of WrappingPurpose enum
 var AllowedWrappingPurposeEnumValues = []WrappingPurpose{
 	"wrap_symmetric_key",
 	"wrap_asymmetric_key",
+	"unknown_default_open_api",
 }
 
 func (v *WrappingPurpose) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *WrappingPurpose) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid WrappingPurpose", value)
+	*v = WRAPPINGPURPOSE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewWrappingPurposeFromValue returns a pointer to a valid WrappingPurpose

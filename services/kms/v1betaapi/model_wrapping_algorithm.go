@@ -28,6 +28,7 @@ const (
 	WRAPPINGALGORITHM_RSA_3072_OAEP_SHA256_AES_256_KEY_WRAP WrappingAlgorithm = "rsa_3072_oaep_sha256_aes_256_key_wrap"
 	WRAPPINGALGORITHM_RSA_4096_OAEP_SHA256_AES_256_KEY_WRAP WrappingAlgorithm = "rsa_4096_oaep_sha256_aes_256_key_wrap"
 	WRAPPINGALGORITHM_RSA_4096_OAEP_SHA512_AES_256_KEY_WRAP WrappingAlgorithm = "rsa_4096_oaep_sha512_aes_256_key_wrap"
+	WRAPPINGALGORITHM_UNKNOWN_DEFAULT_OPEN_API              WrappingAlgorithm = "unknown_default_open_api"
 )
 
 // All allowed values of WrappingAlgorithm enum
@@ -40,6 +41,7 @@ var AllowedWrappingAlgorithmEnumValues = []WrappingAlgorithm{
 	"rsa_3072_oaep_sha256_aes_256_key_wrap",
 	"rsa_4096_oaep_sha256_aes_256_key_wrap",
 	"rsa_4096_oaep_sha512_aes_256_key_wrap",
+	"unknown_default_open_api",
 }
 
 func (v *WrappingAlgorithm) UnmarshalJSON(src []byte) error {
@@ -56,7 +58,8 @@ func (v *WrappingAlgorithm) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid WrappingAlgorithm", value)
+	*v = WRAPPINGALGORITHM_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewWrappingAlgorithmFromValue returns a pointer to a valid WrappingAlgorithm

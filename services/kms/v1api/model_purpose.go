@@ -24,6 +24,7 @@ const (
 	PURPOSE_ASYMMETRIC_ENCRYPT_DECRYPT  Purpose = "asymmetric_encrypt_decrypt"
 	PURPOSE_MESSAGE_AUTHENTICATION_CODE Purpose = "message_authentication_code"
 	PURPOSE_ASYMMETRIC_SIGN_VERIFY      Purpose = "asymmetric_sign_verify"
+	PURPOSE_UNKNOWN_DEFAULT_OPEN_API    Purpose = "unknown_default_open_api"
 )
 
 // All allowed values of Purpose enum
@@ -32,6 +33,7 @@ var AllowedPurposeEnumValues = []Purpose{
 	"asymmetric_encrypt_decrypt",
 	"message_authentication_code",
 	"asymmetric_sign_verify",
+	"unknown_default_open_api",
 }
 
 func (v *Purpose) UnmarshalJSON(src []byte) error {
@@ -48,7 +50,8 @@ func (v *Purpose) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Purpose", value)
+	*v = PURPOSE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewPurposeFromValue returns a pointer to a valid Purpose
