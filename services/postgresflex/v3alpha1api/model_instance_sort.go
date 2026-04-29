@@ -21,14 +21,15 @@ type InstanceSort string
 
 // List of instance.sort
 const (
-	INSTANCESORT_ID_DESC           InstanceSort = "id.desc"
-	INSTANCESORT_ID_ASC            InstanceSort = "id.asc"
-	INSTANCESORT_IS_DELETABLE_DESC InstanceSort = "is_deletable.desc"
-	INSTANCESORT_IS_DELETABLE_ASC  InstanceSort = "is_deletable.asc"
-	INSTANCESORT_NAME_ASC          InstanceSort = "name.asc"
-	INSTANCESORT_NAME_DESC         InstanceSort = "name.desc"
-	INSTANCESORT_STATUS_ASC        InstanceSort = "status.asc"
-	INSTANCESORT_STATUS_DESC       InstanceSort = "status.desc"
+	INSTANCESORT_ID_DESC                  InstanceSort = "id.desc"
+	INSTANCESORT_ID_ASC                   InstanceSort = "id.asc"
+	INSTANCESORT_IS_DELETABLE_DESC        InstanceSort = "is_deletable.desc"
+	INSTANCESORT_IS_DELETABLE_ASC         InstanceSort = "is_deletable.asc"
+	INSTANCESORT_NAME_ASC                 InstanceSort = "name.asc"
+	INSTANCESORT_NAME_DESC                InstanceSort = "name.desc"
+	INSTANCESORT_STATUS_ASC               InstanceSort = "status.asc"
+	INSTANCESORT_STATUS_DESC              InstanceSort = "status.desc"
+	INSTANCESORT_UNKNOWN_DEFAULT_OPEN_API InstanceSort = "unknown_default_open_api"
 )
 
 // All allowed values of InstanceSort enum
@@ -41,6 +42,7 @@ var AllowedInstanceSortEnumValues = []InstanceSort{
 	"name.desc",
 	"status.asc",
 	"status.desc",
+	"unknown_default_open_api",
 }
 
 func (v *InstanceSort) UnmarshalJSON(src []byte) error {
@@ -57,7 +59,8 @@ func (v *InstanceSort) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InstanceSort", value)
+	*v = INSTANCESORT_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInstanceSortFromValue returns a pointer to a valid InstanceSort

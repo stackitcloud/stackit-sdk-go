@@ -247,6 +247,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.7.2](services/postgresflex/CHANGELOG.md#v172)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.8.0](services/postgresflex/CHANGELOG.md#v180)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `rabbitmq`:
   - [v0.28.3](services/rabbitmq/CHANGELOG.md#v0283) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
