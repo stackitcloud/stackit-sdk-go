@@ -117,9 +117,8 @@ func main() {
 	}
 	log.Printf("[Telemetry Router API] Retrieved %d Access Tokens.\n", len(listTokenResp.AccessTokens))
 
-	newDisplayName := "my-updated-acc-token"
 	newDisplayNameNS := telemetryrouter.NullableString{}
-	newDisplayNameNS.Set(&newDisplayName)
+	newDisplayNameNS.Set(utils.Ptr("my-updated-acc-token"))
 	updateTokenPayload := telemetryrouter.UpdateAccessTokenPayload{
 		DisplayName: newDisplayNameNS,
 	}
@@ -197,9 +196,8 @@ func main() {
 	log.Printf("[Telemetry Router API] Retrieved %d Destinations.\n", len(listDestinationResp.Destinations))
 
 	// Update S3 Destination
-	newS3DestinationDisplayName := "updated-s3-destination"
 	updateS3DestinationPayload := telemetryrouter.UpdateDestinationPayload{
-		DisplayName: &newS3DestinationDisplayName,
+		DisplayName: utils.Ptr("updated-s3-destination"),
 		Config: &telemetryrouter.DestinationConfig{
 			ConfigType: "S3",
 			S3: &telemetryrouter.DestinationConfigS3{
@@ -293,9 +291,8 @@ func main() {
 	log.Printf("[Telemetry Router API] Received %d Destinations.\n", len(listDestinationsResp.Destinations))
 
 	// Update S3 Destination
-	newOTLPDestinationDisplayName := "updated-otlp-destination"
 	updateOTLPDestinationPayload := telemetryrouter.UpdateDestinationPayload{
-		DisplayName: &newOTLPDestinationDisplayName,
+		DisplayName: utils.Ptr("updated-otlp-destination"),
 		Config: &telemetryrouter.DestinationConfig{
 			ConfigType: "OpenTelemetry",
 			OpenTelemetry: &telemetryrouter.DestinationConfigOpenTelemetry{
