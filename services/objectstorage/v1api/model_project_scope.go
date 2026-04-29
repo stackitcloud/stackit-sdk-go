@@ -20,14 +20,16 @@ type ProjectScope string
 
 // List of ProjectScope
 const (
-	PROJECTSCOPE_PUBLIC  ProjectScope = "PUBLIC"
-	PROJECTSCOPE_SCHWARZ ProjectScope = "SCHWARZ"
+	PROJECTSCOPE_PUBLIC                   ProjectScope = "PUBLIC"
+	PROJECTSCOPE_SCHWARZ                  ProjectScope = "SCHWARZ"
+	PROJECTSCOPE_UNKNOWN_DEFAULT_OPEN_API ProjectScope = "unknown_default_open_api"
 )
 
 // All allowed values of ProjectScope enum
 var AllowedProjectScopeEnumValues = []ProjectScope{
 	"PUBLIC",
 	"SCHWARZ",
+	"unknown_default_open_api",
 }
 
 func (v *ProjectScope) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *ProjectScope) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ProjectScope", value)
+	*v = PROJECTSCOPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewProjectScopeFromValue returns a pointer to a valid ProjectScope

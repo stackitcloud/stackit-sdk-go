@@ -20,14 +20,16 @@ type RetentionMode string
 
 // List of RetentionMode
 const (
-	RETENTIONMODE_COMPLIANCE RetentionMode = "COMPLIANCE"
-	RETENTIONMODE_GOVERNANCE RetentionMode = "GOVERNANCE"
+	RETENTIONMODE_COMPLIANCE               RetentionMode = "COMPLIANCE"
+	RETENTIONMODE_GOVERNANCE               RetentionMode = "GOVERNANCE"
+	RETENTIONMODE_UNKNOWN_DEFAULT_OPEN_API RetentionMode = "unknown_default_open_api"
 )
 
 // All allowed values of RetentionMode enum
 var AllowedRetentionModeEnumValues = []RetentionMode{
 	"COMPLIANCE",
 	"GOVERNANCE",
+	"unknown_default_open_api",
 }
 
 func (v *RetentionMode) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *RetentionMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid RetentionMode", value)
+	*v = RETENTIONMODE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewRetentionModeFromValue returns a pointer to a valid RetentionMode
