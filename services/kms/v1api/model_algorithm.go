@@ -20,17 +20,18 @@ type Algorithm string
 
 // List of algorithm
 const (
-	ALGORITHM_AES_256_GCM          Algorithm = "aes_256_gcm"
-	ALGORITHM_RSA_2048_OAEP_SHA256 Algorithm = "rsa_2048_oaep_sha256"
-	ALGORITHM_RSA_3072_OAEP_SHA256 Algorithm = "rsa_3072_oaep_sha256"
-	ALGORITHM_RSA_4096_OAEP_SHA256 Algorithm = "rsa_4096_oaep_sha256"
-	ALGORITHM_RSA_4096_OAEP_SHA512 Algorithm = "rsa_4096_oaep_sha512"
-	ALGORITHM_HMAC_SHA256          Algorithm = "hmac_sha256"
-	ALGORITHM_HMAC_SHA384          Algorithm = "hmac_sha384"
-	ALGORITHM_HMAC_SHA512          Algorithm = "hmac_sha512"
-	ALGORITHM_ECDSA_P256_SHA256    Algorithm = "ecdsa_p256_sha256"
-	ALGORITHM_ECDSA_P384_SHA384    Algorithm = "ecdsa_p384_sha384"
-	ALGORITHM_ECDSA_P521_SHA512    Algorithm = "ecdsa_p521_sha512"
+	ALGORITHM_AES_256_GCM              Algorithm = "aes_256_gcm"
+	ALGORITHM_RSA_2048_OAEP_SHA256     Algorithm = "rsa_2048_oaep_sha256"
+	ALGORITHM_RSA_3072_OAEP_SHA256     Algorithm = "rsa_3072_oaep_sha256"
+	ALGORITHM_RSA_4096_OAEP_SHA256     Algorithm = "rsa_4096_oaep_sha256"
+	ALGORITHM_RSA_4096_OAEP_SHA512     Algorithm = "rsa_4096_oaep_sha512"
+	ALGORITHM_HMAC_SHA256              Algorithm = "hmac_sha256"
+	ALGORITHM_HMAC_SHA384              Algorithm = "hmac_sha384"
+	ALGORITHM_HMAC_SHA512              Algorithm = "hmac_sha512"
+	ALGORITHM_ECDSA_P256_SHA256        Algorithm = "ecdsa_p256_sha256"
+	ALGORITHM_ECDSA_P384_SHA384        Algorithm = "ecdsa_p384_sha384"
+	ALGORITHM_ECDSA_P521_SHA512        Algorithm = "ecdsa_p521_sha512"
+	ALGORITHM_UNKNOWN_DEFAULT_OPEN_API Algorithm = "unknown_default_open_api"
 )
 
 // All allowed values of Algorithm enum
@@ -46,6 +47,7 @@ var AllowedAlgorithmEnumValues = []Algorithm{
 	"ecdsa_p256_sha256",
 	"ecdsa_p384_sha384",
 	"ecdsa_p521_sha512",
+	"unknown_default_open_api",
 }
 
 func (v *Algorithm) UnmarshalJSON(src []byte) error {
@@ -62,7 +64,8 @@ func (v *Algorithm) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Algorithm", value)
+	*v = ALGORITHM_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewAlgorithmFromValue returns a pointer to a valid Algorithm

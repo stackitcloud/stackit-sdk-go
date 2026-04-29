@@ -20,12 +20,14 @@ type Protection string
 
 // List of protection
 const (
-	PROTECTION_SOFTWARE Protection = "software"
+	PROTECTION_SOFTWARE                 Protection = "software"
+	PROTECTION_UNKNOWN_DEFAULT_OPEN_API Protection = "unknown_default_open_api"
 )
 
 // All allowed values of Protection enum
 var AllowedProtectionEnumValues = []Protection{
 	"software",
+	"unknown_default_open_api",
 }
 
 func (v *Protection) UnmarshalJSON(src []byte) error {
@@ -42,7 +44,8 @@ func (v *Protection) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Protection", value)
+	*v = PROTECTION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewProtectionFromValue returns a pointer to a valid Protection
