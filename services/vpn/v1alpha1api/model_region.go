@@ -20,14 +20,16 @@ type Region string
 
 // List of Region
 const (
-	REGION_EU01 Region = "eu01"
-	REGION_EU02 Region = "eu02"
+	REGION_EU01                     Region = "eu01"
+	REGION_EU02                     Region = "eu02"
+	REGION_UNKNOWN_DEFAULT_OPEN_API Region = "unknown_default_open_api"
 )
 
 // All allowed values of Region enum
 var AllowedRegionEnumValues = []Region{
 	"eu01",
 	"eu02",
+	"unknown_default_open_api",
 }
 
 func (v *Region) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *Region) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Region", value)
+	*v = REGION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewRegionFromValue returns a pointer to a valid Region
