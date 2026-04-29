@@ -21,9 +21,10 @@ type InstanceEdition string
 
 // List of instance.edition
 const (
-	INSTANCEEDITION_STANDARD        InstanceEdition = "Standard"
-	INSTANCEEDITION_ENTERPRISE_CORE InstanceEdition = "EnterpriseCore"
-	INSTANCEEDITION_DEVELOPER       InstanceEdition = "developer"
+	INSTANCEEDITION_STANDARD                 InstanceEdition = "Standard"
+	INSTANCEEDITION_ENTERPRISE_CORE          InstanceEdition = "EnterpriseCore"
+	INSTANCEEDITION_DEVELOPER                InstanceEdition = "developer"
+	INSTANCEEDITION_UNKNOWN_DEFAULT_OPEN_API InstanceEdition = "unknown_default_open_api"
 )
 
 // All allowed values of InstanceEdition enum
@@ -31,6 +32,7 @@ var AllowedInstanceEditionEnumValues = []InstanceEdition{
 	"Standard",
 	"EnterpriseCore",
 	"developer",
+	"unknown_default_open_api",
 }
 
 func (v *InstanceEdition) UnmarshalJSON(src []byte) error {
@@ -47,7 +49,8 @@ func (v *InstanceEdition) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InstanceEdition", value)
+	*v = INSTANCEEDITION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInstanceEditionFromValue returns a pointer to a valid InstanceEdition

@@ -21,16 +21,17 @@ type DatabaseSort string
 
 // List of database.sort
 const (
-	DATABASESORT_CREATED_AT_DESC     DatabaseSort = "created_at.desc"
-	DATABASESORT_CREATED_AT_ASC      DatabaseSort = "created_at.asc"
-	DATABASESORT_DATABASE_ID_DESC    DatabaseSort = "database_id.desc"
-	DATABASESORT_DATABASE_ID_ASC     DatabaseSort = "database_id.asc"
-	DATABASESORT_DATABASE_NAME_DESC  DatabaseSort = "database_name.desc"
-	DATABASESORT_DATABASE_NAME_ASC   DatabaseSort = "database_name.asc"
-	DATABASESORT_DATABASE_OWNER_DESC DatabaseSort = "database_owner.desc"
-	DATABASESORT_DATABASE_OWNER_ASC  DatabaseSort = "database_owner.asc"
-	DATABASESORT_INDEX_ASC           DatabaseSort = "index.asc"
-	DATABASESORT_INDEX_DESC          DatabaseSort = "index.desc"
+	DATABASESORT_CREATED_AT_DESC          DatabaseSort = "created_at.desc"
+	DATABASESORT_CREATED_AT_ASC           DatabaseSort = "created_at.asc"
+	DATABASESORT_DATABASE_ID_DESC         DatabaseSort = "database_id.desc"
+	DATABASESORT_DATABASE_ID_ASC          DatabaseSort = "database_id.asc"
+	DATABASESORT_DATABASE_NAME_DESC       DatabaseSort = "database_name.desc"
+	DATABASESORT_DATABASE_NAME_ASC        DatabaseSort = "database_name.asc"
+	DATABASESORT_DATABASE_OWNER_DESC      DatabaseSort = "database_owner.desc"
+	DATABASESORT_DATABASE_OWNER_ASC       DatabaseSort = "database_owner.asc"
+	DATABASESORT_INDEX_ASC                DatabaseSort = "index.asc"
+	DATABASESORT_INDEX_DESC               DatabaseSort = "index.desc"
+	DATABASESORT_UNKNOWN_DEFAULT_OPEN_API DatabaseSort = "unknown_default_open_api"
 )
 
 // All allowed values of DatabaseSort enum
@@ -45,6 +46,7 @@ var AllowedDatabaseSortEnumValues = []DatabaseSort{
 	"database_owner.asc",
 	"index.asc",
 	"index.desc",
+	"unknown_default_open_api",
 }
 
 func (v *DatabaseSort) UnmarshalJSON(src []byte) error {
@@ -61,7 +63,8 @@ func (v *DatabaseSort) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid DatabaseSort", value)
+	*v = DATABASESORT_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewDatabaseSortFromValue returns a pointer to a valid DatabaseSort

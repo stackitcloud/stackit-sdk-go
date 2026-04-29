@@ -21,14 +21,16 @@ type Replicas int32
 
 // List of replicas
 const (
-	REPLICAS__1 Replicas = 1
-	REPLICAS__3 Replicas = 3
+	REPLICAS__1                        Replicas = 1
+	REPLICAS__3                        Replicas = 3
+	REPLICAS__unknown_default_open_api Replicas = 11184809
 )
 
 // All allowed values of Replicas enum
 var AllowedReplicasEnumValues = []Replicas{
 	1,
 	3,
+	11184809,
 }
 
 func (v *Replicas) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *Replicas) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Replicas", value)
+	*v = REPLICAS__unknown_default_open_api
+	return nil
 }
 
 // NewReplicasFromValue returns a pointer to a valid Replicas
