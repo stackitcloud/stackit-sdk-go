@@ -296,6 +296,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.7.2](services/scf/CHANGELOG.md#v072)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.8.0](services/scf/CHANGELOG.md#v080)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `secretsmanager`:
   - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
