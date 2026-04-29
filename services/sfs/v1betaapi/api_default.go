@@ -504,7 +504,6 @@ func (a *DefaultAPIService) CreateResourcePoolExecute(r ApiCreateResourcePoolReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -516,7 +515,6 @@ func (a *DefaultAPIService) CreateResourcePoolExecute(r ApiCreateResourcePoolReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -527,7 +525,6 @@ func (a *DefaultAPIService) CreateResourcePoolExecute(r ApiCreateResourcePoolReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -673,7 +670,6 @@ func (a *DefaultAPIService) CreateResourcePoolSnapshotExecute(r ApiCreateResourc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -685,7 +681,6 @@ func (a *DefaultAPIService) CreateResourcePoolSnapshotExecute(r ApiCreateResourc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -696,7 +691,6 @@ func (a *DefaultAPIService) CreateResourcePoolSnapshotExecute(r ApiCreateResourc
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -842,7 +836,6 @@ func (a *DefaultAPIService) CreateShareExecute(r ApiCreateShareRequest) (*Create
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -854,7 +847,6 @@ func (a *DefaultAPIService) CreateShareExecute(r ApiCreateShareRequest) (*Create
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -865,7 +857,6 @@ func (a *DefaultAPIService) CreateShareExecute(r ApiCreateShareRequest) (*Create
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1007,7 +998,6 @@ func (a *DefaultAPIService) CreateShareExportPolicyExecute(r ApiCreateShareExpor
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1019,7 +1009,6 @@ func (a *DefaultAPIService) CreateShareExportPolicyExecute(r ApiCreateShareExpor
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1030,7 +1019,6 @@ func (a *DefaultAPIService) CreateShareExportPolicyExecute(r ApiCreateShareExpor
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1165,7 +1153,6 @@ func (a *DefaultAPIService) DeleteResourcePoolExecute(r ApiDeleteResourcePoolReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1177,7 +1164,6 @@ func (a *DefaultAPIService) DeleteResourcePoolExecute(r ApiDeleteResourcePoolReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1188,7 +1174,6 @@ func (a *DefaultAPIService) DeleteResourcePoolExecute(r ApiDeleteResourcePoolReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1327,7 +1312,6 @@ func (a *DefaultAPIService) DeleteResourcePoolSnapshotExecute(r ApiDeleteResourc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1339,7 +1323,6 @@ func (a *DefaultAPIService) DeleteResourcePoolSnapshotExecute(r ApiDeleteResourc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1350,7 +1333,6 @@ func (a *DefaultAPIService) DeleteResourcePoolSnapshotExecute(r ApiDeleteResourc
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1489,7 +1471,6 @@ func (a *DefaultAPIService) DeleteShareExecute(r ApiDeleteShareRequest) (map[str
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1501,7 +1482,6 @@ func (a *DefaultAPIService) DeleteShareExecute(r ApiDeleteShareRequest) (map[str
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1512,7 +1492,6 @@ func (a *DefaultAPIService) DeleteShareExecute(r ApiDeleteShareRequest) (map[str
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1647,7 +1626,6 @@ func (a *DefaultAPIService) DeleteShareExportPolicyExecute(r ApiDeleteShareExpor
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1659,7 +1637,6 @@ func (a *DefaultAPIService) DeleteShareExportPolicyExecute(r ApiDeleteShareExpor
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1670,7 +1647,6 @@ func (a *DefaultAPIService) DeleteShareExportPolicyExecute(r ApiDeleteShareExpor
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1805,7 +1781,6 @@ func (a *DefaultAPIService) GetResourcePoolExecute(r ApiGetResourcePoolRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1817,7 +1792,6 @@ func (a *DefaultAPIService) GetResourcePoolExecute(r ApiGetResourcePoolRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1828,7 +1802,6 @@ func (a *DefaultAPIService) GetResourcePoolExecute(r ApiGetResourcePoolRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1967,7 +1940,6 @@ func (a *DefaultAPIService) GetResourcePoolSnapshotExecute(r ApiGetResourcePoolS
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1979,7 +1951,6 @@ func (a *DefaultAPIService) GetResourcePoolSnapshotExecute(r ApiGetResourcePoolS
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1990,7 +1961,6 @@ func (a *DefaultAPIService) GetResourcePoolSnapshotExecute(r ApiGetResourcePoolS
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2129,7 +2099,6 @@ func (a *DefaultAPIService) GetShareExecute(r ApiGetShareRequest) (*GetShareResp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -2141,7 +2110,6 @@ func (a *DefaultAPIService) GetShareExecute(r ApiGetShareRequest) (*GetShareResp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2152,7 +2120,6 @@ func (a *DefaultAPIService) GetShareExecute(r ApiGetShareRequest) (*GetShareResp
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2287,7 +2254,6 @@ func (a *DefaultAPIService) GetShareExportPolicyExecute(r ApiGetShareExportPolic
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -2299,7 +2265,6 @@ func (a *DefaultAPIService) GetShareExportPolicyExecute(r ApiGetShareExportPolic
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2310,7 +2275,6 @@ func (a *DefaultAPIService) GetShareExportPolicyExecute(r ApiGetShareExportPolic
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2433,7 +2397,6 @@ func (a *DefaultAPIService) ListPerformanceClassesExecute(r ApiListPerformanceCl
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -2445,7 +2408,6 @@ func (a *DefaultAPIService) ListPerformanceClassesExecute(r ApiListPerformanceCl
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2456,7 +2418,6 @@ func (a *DefaultAPIService) ListPerformanceClassesExecute(r ApiListPerformanceCl
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2591,7 +2552,6 @@ func (a *DefaultAPIService) ListResourcePoolSnapshotsExecute(r ApiListResourcePo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -2603,7 +2563,6 @@ func (a *DefaultAPIService) ListResourcePoolSnapshotsExecute(r ApiListResourcePo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2614,7 +2573,6 @@ func (a *DefaultAPIService) ListResourcePoolSnapshotsExecute(r ApiListResourcePo
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2745,7 +2703,6 @@ func (a *DefaultAPIService) ListResourcePoolsExecute(r ApiListResourcePoolsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -2757,7 +2714,6 @@ func (a *DefaultAPIService) ListResourcePoolsExecute(r ApiListResourcePoolsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2768,7 +2724,6 @@ func (a *DefaultAPIService) ListResourcePoolsExecute(r ApiListResourcePoolsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2899,7 +2854,6 @@ func (a *DefaultAPIService) ListShareExportPoliciesExecute(r ApiListShareExportP
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -2911,7 +2865,6 @@ func (a *DefaultAPIService) ListShareExportPoliciesExecute(r ApiListShareExportP
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2922,7 +2875,6 @@ func (a *DefaultAPIService) ListShareExportPoliciesExecute(r ApiListShareExportP
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3057,7 +3009,6 @@ func (a *DefaultAPIService) ListSharesExecute(r ApiListSharesRequest) (*ListShar
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -3069,7 +3020,6 @@ func (a *DefaultAPIService) ListSharesExecute(r ApiListSharesRequest) (*ListShar
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -3080,7 +3030,6 @@ func (a *DefaultAPIService) ListSharesExecute(r ApiListSharesRequest) (*ListShar
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3207,7 +3156,6 @@ func (a *DefaultAPIService) ListSnapshotSchedulesExecute(r ApiListSnapshotSchedu
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -3219,7 +3167,6 @@ func (a *DefaultAPIService) ListSnapshotSchedulesExecute(r ApiListSnapshotSchedu
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -3230,7 +3177,6 @@ func (a *DefaultAPIService) ListSnapshotSchedulesExecute(r ApiListSnapshotSchedu
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3376,7 +3322,6 @@ func (a *DefaultAPIService) UpdateResourcePoolExecute(r ApiUpdateResourcePoolReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -3388,7 +3333,6 @@ func (a *DefaultAPIService) UpdateResourcePoolExecute(r ApiUpdateResourcePoolReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -3399,7 +3343,6 @@ func (a *DefaultAPIService) UpdateResourcePoolExecute(r ApiUpdateResourcePoolReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3549,7 +3492,6 @@ func (a *DefaultAPIService) UpdateShareExecute(r ApiUpdateShareRequest) (*Update
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -3561,7 +3503,6 @@ func (a *DefaultAPIService) UpdateShareExecute(r ApiUpdateShareRequest) (*Update
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -3572,7 +3513,6 @@ func (a *DefaultAPIService) UpdateShareExecute(r ApiUpdateShareRequest) (*Update
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3718,7 +3658,6 @@ func (a *DefaultAPIService) UpdateShareExportPolicyExecute(r ApiUpdateShareExpor
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -3730,7 +3669,6 @@ func (a *DefaultAPIService) UpdateShareExportPolicyExecute(r ApiUpdateShareExpor
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -3741,7 +3679,6 @@ func (a *DefaultAPIService) UpdateShareExportPolicyExecute(r ApiUpdateShareExpor
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
