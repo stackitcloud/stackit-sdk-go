@@ -20,14 +20,16 @@ type DestinationConfigType string
 
 // List of destinationConfigType
 const (
-	DESTINATIONCONFIGTYPE_OPEN_TELEMETRY DestinationConfigType = "OpenTelemetry"
-	DESTINATIONCONFIGTYPE_S3             DestinationConfigType = "S3"
+	DESTINATIONCONFIGTYPE_OPEN_TELEMETRY           DestinationConfigType = "OpenTelemetry"
+	DESTINATIONCONFIGTYPE_S3                       DestinationConfigType = "S3"
+	DESTINATIONCONFIGTYPE_UNKNOWN_DEFAULT_OPEN_API DestinationConfigType = "unknown_default_open_api"
 )
 
 // All allowed values of DestinationConfigType enum
 var AllowedDestinationConfigTypeEnumValues = []DestinationConfigType{
 	"OpenTelemetry",
 	"S3",
+	"unknown_default_open_api",
 }
 
 func (v *DestinationConfigType) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *DestinationConfigType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid DestinationConfigType", value)
+	*v = DESTINATIONCONFIGTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewDestinationConfigTypeFromValue returns a pointer to a valid DestinationConfigType
