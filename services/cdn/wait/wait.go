@@ -33,7 +33,6 @@ func CreateDistributionPoolWaitHandler(ctx context.Context, api APIClientInterfa
 				return "", errors.New("empty status")
 			}
 			return *response.Distribution.Status, nil
-
 		},
 		ActiveState: []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ACTIVE},
 		ErrorState:  []cdn.DistributionStatus{cdn.DISTRIBUTIONSTATUS_ERROR, cdn.DISTRIBUTIONSTATUS_DELETING},
