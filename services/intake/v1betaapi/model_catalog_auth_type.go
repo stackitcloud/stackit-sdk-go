@@ -20,14 +20,16 @@ type CatalogAuthType string
 
 // List of catalogAuthType
 const (
-	CATALOGAUTHTYPE_NONE   CatalogAuthType = "none"
-	CATALOGAUTHTYPE_DREMIO CatalogAuthType = "dremio"
+	CATALOGAUTHTYPE_NONE                     CatalogAuthType = "none"
+	CATALOGAUTHTYPE_DREMIO                   CatalogAuthType = "dremio"
+	CATALOGAUTHTYPE_UNKNOWN_DEFAULT_OPEN_API CatalogAuthType = "unknown_default_open_api"
 )
 
 // All allowed values of CatalogAuthType enum
 var AllowedCatalogAuthTypeEnumValues = []CatalogAuthType{
 	"none",
 	"dremio",
+	"unknown_default_open_api",
 }
 
 func (v *CatalogAuthType) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *CatalogAuthType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid CatalogAuthType", value)
+	*v = CATALOGAUTHTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewCatalogAuthTypeFromValue returns a pointer to a valid CatalogAuthType

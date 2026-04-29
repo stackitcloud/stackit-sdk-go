@@ -1,8 +1,9 @@
 ## Release (2026-MM-DD)
-- `core`: [v0.26.0](core/CHANGELOG.md#v0260)
-  - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
-- `core`: [v0.25.0](core/CHANGELOG.md#v0250)
-  - Minimal go version is now Go 1.25
+- `core`: 
+  - [v0.25.0](core/CHANGELOG.md#v0250)
+    - Minimal go version is now Go 1.25
+  - [v0.26.0](core/CHANGELOG.md#v0260)
+    - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
 - `alb`:
   - [v0.13.2](services/alb/CHANGELOG.md#v0132) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -132,6 +133,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.8.2](services/intake/CHANGELOG.md#v082)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.9.0](services/intake/CHANGELOG.md#v090)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

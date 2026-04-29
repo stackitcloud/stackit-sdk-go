@@ -20,14 +20,16 @@ type UserType string
 
 // List of userType
 const (
-	USERTYPE_INTAKE      UserType = "intake"
-	USERTYPE_DEAD_LETTER UserType = "dead-letter"
+	USERTYPE_INTAKE                   UserType = "intake"
+	USERTYPE_DEAD_LETTER              UserType = "dead-letter"
+	USERTYPE_UNKNOWN_DEFAULT_OPEN_API UserType = "unknown_default_open_api"
 )
 
 // All allowed values of UserType enum
 var AllowedUserTypeEnumValues = []UserType{
 	"intake",
 	"dead-letter",
+	"unknown_default_open_api",
 }
 
 func (v *UserType) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *UserType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid UserType", value)
+	*v = USERTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewUserTypeFromValue returns a pointer to a valid UserType
