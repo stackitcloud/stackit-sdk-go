@@ -21,10 +21,11 @@ type SpaceRoleType string
 
 // List of SpaceRoleType
 const (
-	SPACEROLETYPE_SPACE_AUDITOR   SpaceRoleType = "space_auditor"
-	SPACEROLETYPE_SPACE_DEVELOPER SpaceRoleType = "space_developer"
-	SPACEROLETYPE_SPACE_MANAGER   SpaceRoleType = "space_manager"
-	SPACEROLETYPE_SPACE_SUPPORTER SpaceRoleType = "space_supporter"
+	SPACEROLETYPE_SPACE_AUDITOR            SpaceRoleType = "space_auditor"
+	SPACEROLETYPE_SPACE_DEVELOPER          SpaceRoleType = "space_developer"
+	SPACEROLETYPE_SPACE_MANAGER            SpaceRoleType = "space_manager"
+	SPACEROLETYPE_SPACE_SUPPORTER          SpaceRoleType = "space_supporter"
+	SPACEROLETYPE_UNKNOWN_DEFAULT_OPEN_API SpaceRoleType = "unknown_default_open_api"
 )
 
 // All allowed values of SpaceRoleType enum
@@ -33,6 +34,7 @@ var AllowedSpaceRoleTypeEnumValues = []SpaceRoleType{
 	"space_developer",
 	"space_manager",
 	"space_supporter",
+	"unknown_default_open_api",
 }
 
 func (v *SpaceRoleType) UnmarshalJSON(src []byte) error {
@@ -49,7 +51,8 @@ func (v *SpaceRoleType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SpaceRoleType", value)
+	*v = SPACEROLETYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewSpaceRoleTypeFromValue returns a pointer to a valid SpaceRoleType
