@@ -20,9 +20,10 @@ type PartitioningType string
 
 // List of partitioningType
 const (
-	PARTITIONINGTYPE_NONE        PartitioningType = "none"
-	PARTITIONINGTYPE_INTAKE_TIME PartitioningType = "intake-time"
-	PARTITIONINGTYPE_MANUAL      PartitioningType = "manual"
+	PARTITIONINGTYPE_NONE                     PartitioningType = "none"
+	PARTITIONINGTYPE_INTAKE_TIME              PartitioningType = "intake-time"
+	PARTITIONINGTYPE_MANUAL                   PartitioningType = "manual"
+	PARTITIONINGTYPE_UNKNOWN_DEFAULT_OPEN_API PartitioningType = "unknown_default_open_api"
 )
 
 // All allowed values of PartitioningType enum
@@ -30,6 +31,7 @@ var AllowedPartitioningTypeEnumValues = []PartitioningType{
 	"none",
 	"intake-time",
 	"manual",
+	"unknown_default_open_api",
 }
 
 func (v *PartitioningType) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *PartitioningType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid PartitioningType", value)
+	*v = PARTITIONINGTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewPartitioningTypeFromValue returns a pointer to a valid PartitioningType
