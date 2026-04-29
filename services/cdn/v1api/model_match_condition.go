@@ -20,9 +20,10 @@ type MatchCondition string
 
 // List of MatchCondition
 const (
-	MATCHCONDITION_ANY  MatchCondition = "ANY"
-	MATCHCONDITION_ALL  MatchCondition = "ALL"
-	MATCHCONDITION_NONE MatchCondition = "NONE"
+	MATCHCONDITION_ANY                      MatchCondition = "ANY"
+	MATCHCONDITION_ALL                      MatchCondition = "ALL"
+	MATCHCONDITION_NONE                     MatchCondition = "NONE"
+	MATCHCONDITION_UNKNOWN_DEFAULT_OPEN_API MatchCondition = "unknown_default_open_api"
 )
 
 // All allowed values of MatchCondition enum
@@ -30,6 +31,7 @@ var AllowedMatchConditionEnumValues = []MatchCondition{
 	"ANY",
 	"ALL",
 	"NONE",
+	"unknown_default_open_api",
 }
 
 func (v *MatchCondition) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *MatchCondition) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MatchCondition", value)
+	*v = MATCHCONDITION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewMatchConditionFromValue returns a pointer to a valid MatchCondition
