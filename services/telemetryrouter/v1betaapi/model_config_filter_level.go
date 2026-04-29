@@ -20,9 +20,10 @@ type ConfigFilterLevel string
 
 // List of configFilterLevel
 const (
-	CONFIGFILTERLEVEL_RESOURCE   ConfigFilterLevel = "resource"
-	CONFIGFILTERLEVEL_SCOPE      ConfigFilterLevel = "scope"
-	CONFIGFILTERLEVEL_LOG_RECORD ConfigFilterLevel = "logRecord"
+	CONFIGFILTERLEVEL_RESOURCE                 ConfigFilterLevel = "resource"
+	CONFIGFILTERLEVEL_SCOPE                    ConfigFilterLevel = "scope"
+	CONFIGFILTERLEVEL_LOG_RECORD               ConfigFilterLevel = "logRecord"
+	CONFIGFILTERLEVEL_UNKNOWN_DEFAULT_OPEN_API ConfigFilterLevel = "unknown_default_open_api"
 )
 
 // All allowed values of ConfigFilterLevel enum
@@ -30,6 +31,7 @@ var AllowedConfigFilterLevelEnumValues = []ConfigFilterLevel{
 	"resource",
 	"scope",
 	"logRecord",
+	"unknown_default_open_api",
 }
 
 func (v *ConfigFilterLevel) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *ConfigFilterLevel) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ConfigFilterLevel", value)
+	*v = CONFIGFILTERLEVEL_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewConfigFilterLevelFromValue returns a pointer to a valid ConfigFilterLevel
