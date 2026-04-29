@@ -21,14 +21,16 @@ type InstanceNetworkAccessScope string
 
 // List of instance.network.accessScope
 const (
-	INSTANCENETWORKACCESSSCOPE_PUBLIC InstanceNetworkAccessScope = "PUBLIC"
-	INSTANCENETWORKACCESSSCOPE_SNA    InstanceNetworkAccessScope = "SNA"
+	INSTANCENETWORKACCESSSCOPE_PUBLIC                   InstanceNetworkAccessScope = "PUBLIC"
+	INSTANCENETWORKACCESSSCOPE_SNA                      InstanceNetworkAccessScope = "SNA"
+	INSTANCENETWORKACCESSSCOPE_UNKNOWN_DEFAULT_OPEN_API InstanceNetworkAccessScope = "unknown_default_open_api"
 )
 
 // All allowed values of InstanceNetworkAccessScope enum
 var AllowedInstanceNetworkAccessScopeEnumValues = []InstanceNetworkAccessScope{
 	"PUBLIC",
 	"SNA",
+	"unknown_default_open_api",
 }
 
 func (v *InstanceNetworkAccessScope) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *InstanceNetworkAccessScope) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InstanceNetworkAccessScope", value)
+	*v = INSTANCENETWORKACCESSSCOPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInstanceNetworkAccessScopeFromValue returns a pointer to a valid InstanceNetworkAccessScope

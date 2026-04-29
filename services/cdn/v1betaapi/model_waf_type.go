@@ -20,14 +20,16 @@ type WafType string
 
 // List of WafType
 const (
-	WAFTYPE_FREE    WafType = "FREE"
-	WAFTYPE_PREMIUM WafType = "PREMIUM"
+	WAFTYPE_FREE                     WafType = "FREE"
+	WAFTYPE_PREMIUM                  WafType = "PREMIUM"
+	WAFTYPE_UNKNOWN_DEFAULT_OPEN_API WafType = "unknown_default_open_api"
 )
 
 // All allowed values of WafType enum
 var AllowedWafTypeEnumValues = []WafType{
 	"FREE",
 	"PREMIUM",
+	"unknown_default_open_api",
 }
 
 func (v *WafType) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *WafType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid WafType", value)
+	*v = WAFTYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewWafTypeFromValue returns a pointer to a valid WafType

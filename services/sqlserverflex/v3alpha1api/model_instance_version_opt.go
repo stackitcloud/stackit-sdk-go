@@ -21,12 +21,14 @@ type InstanceVersionOpt string
 
 // List of instance.version.opt
 const (
-	INSTANCEVERSIONOPT__2022 InstanceVersionOpt = "2022"
+	INSTANCEVERSIONOPT__2022                    InstanceVersionOpt = "2022"
+	INSTANCEVERSIONOPT_UNKNOWN_DEFAULT_OPEN_API InstanceVersionOpt = "unknown_default_open_api"
 )
 
 // All allowed values of InstanceVersionOpt enum
 var AllowedInstanceVersionOptEnumValues = []InstanceVersionOpt{
 	"2022",
+	"unknown_default_open_api",
 }
 
 func (v *InstanceVersionOpt) UnmarshalJSON(src []byte) error {
@@ -43,7 +45,8 @@ func (v *InstanceVersionOpt) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InstanceVersionOpt", value)
+	*v = INSTANCEVERSIONOPT_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewInstanceVersionOptFromValue returns a pointer to a valid InstanceVersionOpt

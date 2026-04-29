@@ -21,14 +21,15 @@ type UserSort string
 
 // List of user.sort
 const (
-	USERSORT_ID_ASC      UserSort = "id.asc"
-	USERSORT_ID_DESC     UserSort = "id.desc"
-	USERSORT_INDEX_DESC  UserSort = "index.desc"
-	USERSORT_INDEX_ASC   UserSort = "index.asc"
-	USERSORT_NAME_DESC   UserSort = "name.desc"
-	USERSORT_NAME_ASC    UserSort = "name.asc"
-	USERSORT_STATUS_DESC UserSort = "status.desc"
-	USERSORT_STATUS_ASC  UserSort = "status.asc"
+	USERSORT_ID_ASC                   UserSort = "id.asc"
+	USERSORT_ID_DESC                  UserSort = "id.desc"
+	USERSORT_INDEX_DESC               UserSort = "index.desc"
+	USERSORT_INDEX_ASC                UserSort = "index.asc"
+	USERSORT_NAME_DESC                UserSort = "name.desc"
+	USERSORT_NAME_ASC                 UserSort = "name.asc"
+	USERSORT_STATUS_DESC              UserSort = "status.desc"
+	USERSORT_STATUS_ASC               UserSort = "status.asc"
+	USERSORT_UNKNOWN_DEFAULT_OPEN_API UserSort = "unknown_default_open_api"
 )
 
 // All allowed values of UserSort enum
@@ -41,6 +42,7 @@ var AllowedUserSortEnumValues = []UserSort{
 	"name.asc",
 	"status.desc",
 	"status.asc",
+	"unknown_default_open_api",
 }
 
 func (v *UserSort) UnmarshalJSON(src []byte) error {
@@ -57,7 +59,8 @@ func (v *UserSort) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid UserSort", value)
+	*v = USERSORT_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewUserSortFromValue returns a pointer to a valid UserSort

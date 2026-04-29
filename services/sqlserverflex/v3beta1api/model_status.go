@@ -21,12 +21,13 @@ type Status string
 
 // List of status
 const (
-	STATUS_READY       Status = "READY"
-	STATUS_PENDING     Status = "PENDING"
-	STATUS_PROGRESSING Status = "PROGRESSING"
-	STATUS_FAILURE     Status = "FAILURE"
-	STATUS_UNKNOWN     Status = "UNKNOWN"
-	STATUS_TERMINATING Status = "TERMINATING"
+	STATUS_READY                    Status = "READY"
+	STATUS_PENDING                  Status = "PENDING"
+	STATUS_PROGRESSING              Status = "PROGRESSING"
+	STATUS_FAILURE                  Status = "FAILURE"
+	STATUS_UNKNOWN                  Status = "UNKNOWN"
+	STATUS_TERMINATING              Status = "TERMINATING"
+	STATUS_UNKNOWN_DEFAULT_OPEN_API Status = "unknown_default_open_api"
 )
 
 // All allowed values of Status enum
@@ -37,6 +38,7 @@ var AllowedStatusEnumValues = []Status{
 	"FAILURE",
 	"UNKNOWN",
 	"TERMINATING",
+	"unknown_default_open_api",
 }
 
 func (v *Status) UnmarshalJSON(src []byte) error {
@@ -53,7 +55,8 @@ func (v *Status) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Status", value)
+	*v = STATUS_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewStatusFromValue returns a pointer to a valid Status

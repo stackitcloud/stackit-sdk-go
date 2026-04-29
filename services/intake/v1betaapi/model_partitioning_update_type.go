@@ -20,9 +20,10 @@ type PartitioningUpdateType string
 
 // List of partitioningUpdateType
 const (
-	PARTITIONINGUPDATETYPE_NONE        PartitioningUpdateType = "none"
-	PARTITIONINGUPDATETYPE_INTAKE_TIME PartitioningUpdateType = "intake-time"
-	PARTITIONINGUPDATETYPE_MANUAL      PartitioningUpdateType = "manual"
+	PARTITIONINGUPDATETYPE_NONE                     PartitioningUpdateType = "none"
+	PARTITIONINGUPDATETYPE_INTAKE_TIME              PartitioningUpdateType = "intake-time"
+	PARTITIONINGUPDATETYPE_MANUAL                   PartitioningUpdateType = "manual"
+	PARTITIONINGUPDATETYPE_UNKNOWN_DEFAULT_OPEN_API PartitioningUpdateType = "unknown_default_open_api"
 )
 
 // All allowed values of PartitioningUpdateType enum
@@ -30,6 +31,7 @@ var AllowedPartitioningUpdateTypeEnumValues = []PartitioningUpdateType{
 	"none",
 	"intake-time",
 	"manual",
+	"unknown_default_open_api",
 }
 
 func (v *PartitioningUpdateType) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *PartitioningUpdateType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid PartitioningUpdateType", value)
+	*v = PARTITIONINGUPDATETYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewPartitioningUpdateTypeFromValue returns a pointer to a valid PartitioningUpdateType

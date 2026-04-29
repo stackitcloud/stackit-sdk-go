@@ -20,14 +20,15 @@ type ClusterStatusState string
 
 // List of ClusterStatusState
 const (
-	CLUSTERSTATUSSTATE_STATE_HEALTHY     ClusterStatusState = "STATE_HEALTHY"
-	CLUSTERSTATUSSTATE_STATE_CREATING    ClusterStatusState = "STATE_CREATING"
-	CLUSTERSTATUSSTATE_STATE_DELETING    ClusterStatusState = "STATE_DELETING"
-	CLUSTERSTATUSSTATE_STATE_UNHEALTHY   ClusterStatusState = "STATE_UNHEALTHY"
-	CLUSTERSTATUSSTATE_STATE_RECONCILING ClusterStatusState = "STATE_RECONCILING"
-	CLUSTERSTATUSSTATE_STATE_HIBERNATED  ClusterStatusState = "STATE_HIBERNATED"
-	CLUSTERSTATUSSTATE_STATE_HIBERNATING ClusterStatusState = "STATE_HIBERNATING"
-	CLUSTERSTATUSSTATE_STATE_WAKINGUP    ClusterStatusState = "STATE_WAKINGUP"
+	CLUSTERSTATUSSTATE_STATE_HEALTHY            ClusterStatusState = "STATE_HEALTHY"
+	CLUSTERSTATUSSTATE_STATE_CREATING           ClusterStatusState = "STATE_CREATING"
+	CLUSTERSTATUSSTATE_STATE_DELETING           ClusterStatusState = "STATE_DELETING"
+	CLUSTERSTATUSSTATE_STATE_UNHEALTHY          ClusterStatusState = "STATE_UNHEALTHY"
+	CLUSTERSTATUSSTATE_STATE_RECONCILING        ClusterStatusState = "STATE_RECONCILING"
+	CLUSTERSTATUSSTATE_STATE_HIBERNATED         ClusterStatusState = "STATE_HIBERNATED"
+	CLUSTERSTATUSSTATE_STATE_HIBERNATING        ClusterStatusState = "STATE_HIBERNATING"
+	CLUSTERSTATUSSTATE_STATE_WAKINGUP           ClusterStatusState = "STATE_WAKINGUP"
+	CLUSTERSTATUSSTATE_UNKNOWN_DEFAULT_OPEN_API ClusterStatusState = "unknown_default_open_api"
 )
 
 // All allowed values of ClusterStatusState enum
@@ -40,6 +41,7 @@ var AllowedClusterStatusStateEnumValues = []ClusterStatusState{
 	"STATE_HIBERNATED",
 	"STATE_HIBERNATING",
 	"STATE_WAKINGUP",
+	"unknown_default_open_api",
 }
 
 func (v *ClusterStatusState) UnmarshalJSON(src []byte) error {
@@ -56,7 +58,8 @@ func (v *ClusterStatusState) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ClusterStatusState", value)
+	*v = CLUSTERSTATUSSTATE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewClusterStatusStateFromValue returns a pointer to a valid ClusterStatusState

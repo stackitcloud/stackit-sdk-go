@@ -20,9 +20,10 @@ type WafMode string
 
 // List of WafMode
 const (
-	WAFMODE_DISABLED WafMode = "DISABLED"
-	WAFMODE_ENABLED  WafMode = "ENABLED"
-	WAFMODE_LOG_ONLY WafMode = "LOG_ONLY"
+	WAFMODE_DISABLED                 WafMode = "DISABLED"
+	WAFMODE_ENABLED                  WafMode = "ENABLED"
+	WAFMODE_LOG_ONLY                 WafMode = "LOG_ONLY"
+	WAFMODE_UNKNOWN_DEFAULT_OPEN_API WafMode = "unknown_default_open_api"
 )
 
 // All allowed values of WafMode enum
@@ -30,6 +31,7 @@ var AllowedWafModeEnumValues = []WafMode{
 	"DISABLED",
 	"ENABLED",
 	"LOG_ONLY",
+	"unknown_default_open_api",
 }
 
 func (v *WafMode) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *WafMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid WafMode", value)
+	*v = WAFMODE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewWafModeFromValue returns a pointer to a valid WafMode

@@ -20,9 +20,10 @@ type WAFRuleAction string
 
 // List of WAFRuleAction
 const (
-	WAFRULEACTION_BLOCKED WAFRuleAction = "BLOCKED"
-	WAFRULEACTION_LOGGED  WAFRuleAction = "LOGGED"
-	WAFRULEACTION_ALLOWED WAFRuleAction = "ALLOWED"
+	WAFRULEACTION_BLOCKED                  WAFRuleAction = "BLOCKED"
+	WAFRULEACTION_LOGGED                   WAFRuleAction = "LOGGED"
+	WAFRULEACTION_ALLOWED                  WAFRuleAction = "ALLOWED"
+	WAFRULEACTION_UNKNOWN_DEFAULT_OPEN_API WAFRuleAction = "unknown_default_open_api"
 )
 
 // All allowed values of WAFRuleAction enum
@@ -30,6 +31,7 @@ var AllowedWAFRuleActionEnumValues = []WAFRuleAction{
 	"BLOCKED",
 	"LOGGED",
 	"ALLOWED",
+	"unknown_default_open_api",
 }
 
 func (v *WAFRuleAction) UnmarshalJSON(src []byte) error {
@@ -46,7 +48,8 @@ func (v *WAFRuleAction) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid WAFRuleAction", value)
+	*v = WAFRULEACTION_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewWAFRuleActionFromValue returns a pointer to a valid WAFRuleAction

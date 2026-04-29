@@ -20,10 +20,11 @@ type LifecycleState string
 
 // List of LifecycleState
 const (
-	LIFECYCLESTATE_CREATING LifecycleState = "CREATING"
-	LIFECYCLESTATE_ACTIVE   LifecycleState = "ACTIVE"
-	LIFECYCLESTATE_DELETING LifecycleState = "DELETING"
-	LIFECYCLESTATE_INACTIVE LifecycleState = "INACTIVE"
+	LIFECYCLESTATE_CREATING                 LifecycleState = "CREATING"
+	LIFECYCLESTATE_ACTIVE                   LifecycleState = "ACTIVE"
+	LIFECYCLESTATE_DELETING                 LifecycleState = "DELETING"
+	LIFECYCLESTATE_INACTIVE                 LifecycleState = "INACTIVE"
+	LIFECYCLESTATE_UNKNOWN_DEFAULT_OPEN_API LifecycleState = "unknown_default_open_api"
 )
 
 // All allowed values of LifecycleState enum
@@ -32,6 +33,7 @@ var AllowedLifecycleStateEnumValues = []LifecycleState{
 	"ACTIVE",
 	"DELETING",
 	"INACTIVE",
+	"unknown_default_open_api",
 }
 
 func (v *LifecycleState) UnmarshalJSON(src []byte) error {
@@ -48,7 +50,8 @@ func (v *LifecycleState) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid LifecycleState", value)
+	*v = LIFECYCLESTATE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewLifecycleStateFromValue returns a pointer to a valid LifecycleState

@@ -1,8 +1,9 @@
 ## Release (2026-MM-DD)
-- `core`: [v0.26.0](core/CHANGELOG.md#v0260)
-  - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
-- `core`: [v0.25.0](core/CHANGELOG.md#v0250)
-  - Minimal go version is now Go 1.25
+- `core`: 
+  - [v0.25.0](core/CHANGELOG.md#v0250)
+    - Minimal go version is now Go 1.25
+  - [v0.26.0](core/CHANGELOG.md#v0260)
+    - **Feature:** Added support for custom `TokenEndpoint` in service account credentials.
 - `alb`:
   - [v0.13.2](services/alb/CHANGELOG.md#v0132) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -61,6 +62,8 @@
     - `v1betaapi`: v1betaapi was deprecated please migrate to `v1api`
   - [v1.15.1](services/cdn/CHANGELOG.md#v1151)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.16.0](services/cdn/CHANGELOG.md#v1160)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `certificates`:
   - [v1.5.2](services/certificates/CHANGELOG.md#v152) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -118,6 +121,9 @@
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.21.2` to `v0.22.1`
   - [v1.10.2](services/iaas/CHANGELOG.md#v1102)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.11.0](services/iaas/CHANGELOG.md#v1110)
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.1` to `v0.22.2`
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -127,6 +133,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.8.2](services/intake/CHANGELOG.md#v082)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.9.0](services/intake/CHANGELOG.md#v090)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -136,6 +144,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.7.2](services/kms/CHANGELOG.md#v172)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.8.0](services/kms/CHANGELOG.md#v180)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `lbapplication`: 
   - [v0.5.7](services/lbapplication/CHANGELOG.md#v057) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -208,6 +218,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.8.2](services/objectstorage/CHANGELOG.md#v182)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.9.0](services/objectstorage/CHANGELOG.md#v190)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `observability`:
   - [v0.20.2](services/observability/CHANGELOG.md#v0202) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -235,6 +247,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.7.2](services/postgresflex/CHANGELOG.md#v172)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.8.0](services/postgresflex/CHANGELOG.md#v180)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `rabbitmq`:
   - [v0.28.3](services/rabbitmq/CHANGELOG.md#v0283) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -262,6 +276,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.22.2](services/resourcemanager/CHANGELOG.md#v0222)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.23.0](services/resourcemanager/CHANGELOG.md#v0230)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `runcommand`:
   - [v1.6.3](services/runcommand/CHANGELOG.md#v163) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -280,6 +296,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.7.2](services/scf/CHANGELOG.md#v072)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.8.0](services/scf/CHANGELOG.md#v080)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `secretsmanager`:
   - [v0.16.3](services/secretsmanager/CHANGELOG.md#v0163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -367,6 +385,8 @@
       - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
   - [v1.13.1](services/ske/CHANGELOG.md#v1131)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.14.0](services/ske/CHANGELOG.md#v1140)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.`
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -379,6 +399,8 @@
     - `v3beta1api`: **Feature:** Support region eu02
   - [v1.9.1](services/sqlserverflex/CHANGELOG.md#v191)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.10.0](services/sqlserverflex/CHANGELOG.md#v1100)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `stackitmarketplace`:
   - [v1.17.5](services/stackitmarketplace/CHANGELOG.md#v1175) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -391,7 +413,9 @@
     - **New**: API for STACKIT Telemetry Router
   - [v0.1.1](services/telemetryrouter/CHANGELOG.md#v011)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
-  - [v0.1.2](services/telemetryrouter/CHANGELOG.md#v012)
+  - [v0.2.0](services/telemetryrouter/CHANGELOG.md#v020)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.2.1](services/telemetryrouter/CHANGELOG.md#v012)
     - **Improvement**: Use new `WaiterHandler` struct in the DNS WaitHandler
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 

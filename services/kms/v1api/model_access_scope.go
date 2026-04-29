@@ -20,14 +20,16 @@ type AccessScope string
 
 // List of access_scope
 const (
-	ACCESSSCOPE_PUBLIC AccessScope = "PUBLIC"
-	ACCESSSCOPE_SNA    AccessScope = "SNA"
+	ACCESSSCOPE_PUBLIC                   AccessScope = "PUBLIC"
+	ACCESSSCOPE_SNA                      AccessScope = "SNA"
+	ACCESSSCOPE_UNKNOWN_DEFAULT_OPEN_API AccessScope = "unknown_default_open_api"
 )
 
 // All allowed values of AccessScope enum
 var AllowedAccessScopeEnumValues = []AccessScope{
 	"PUBLIC",
 	"SNA",
+	"unknown_default_open_api",
 }
 
 func (v *AccessScope) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *AccessScope) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid AccessScope", value)
+	*v = ACCESSSCOPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewAccessScopeFromValue returns a pointer to a valid AccessScope

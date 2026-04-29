@@ -20,14 +20,16 @@ type ConfigFilterMatcher string
 
 // List of configFilterMatcher
 const (
-	CONFIGFILTERMATCHER_EQUAL     ConfigFilterMatcher = "="
-	CONFIGFILTERMATCHER_NOT_EQUAL ConfigFilterMatcher = "!="
+	CONFIGFILTERMATCHER_EQUAL                    ConfigFilterMatcher = "="
+	CONFIGFILTERMATCHER_NOT_EQUAL                ConfigFilterMatcher = "!="
+	CONFIGFILTERMATCHER_UNKNOWN_DEFAULT_OPEN_API ConfigFilterMatcher = "unknown_default_open_api"
 )
 
 // All allowed values of ConfigFilterMatcher enum
 var AllowedConfigFilterMatcherEnumValues = []ConfigFilterMatcher{
 	"=",
 	"!=",
+	"unknown_default_open_api",
 }
 
 func (v *ConfigFilterMatcher) UnmarshalJSON(src []byte) error {
@@ -44,7 +46,8 @@ func (v *ConfigFilterMatcher) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ConfigFilterMatcher", value)
+	*v = CONFIGFILTERMATCHER_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewConfigFilterMatcherFromValue returns a pointer to a valid ConfigFilterMatcher

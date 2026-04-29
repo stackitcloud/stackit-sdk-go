@@ -21,14 +21,16 @@ type StaticAreaID string
 
 // List of StaticAreaID
 const (
-	STATICAREAID_PUBLIC  StaticAreaID = "PUBLIC"
-	STATICAREAID_SCHWARZ StaticAreaID = "SCHWARZ"
+	STATICAREAID_PUBLIC                   StaticAreaID = "PUBLIC"
+	STATICAREAID_SCHWARZ                  StaticAreaID = "SCHWARZ"
+	STATICAREAID_UNKNOWN_DEFAULT_OPEN_API StaticAreaID = "unknown_default_open_api"
 )
 
 // All allowed values of StaticAreaID enum
 var AllowedStaticAreaIDEnumValues = []StaticAreaID{
 	"PUBLIC",
 	"SCHWARZ",
+	"unknown_default_open_api",
 }
 
 func (v *StaticAreaID) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *StaticAreaID) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid StaticAreaID", value)
+	*v = STATICAREAID_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewStaticAreaIDFromValue returns a pointer to a valid StaticAreaID

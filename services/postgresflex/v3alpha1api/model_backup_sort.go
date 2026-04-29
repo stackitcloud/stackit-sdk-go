@@ -21,18 +21,19 @@ type BackupSort string
 
 // List of backup.sort
 const (
-	BACKUPSORT_COMPLETION_TIME_DESC BackupSort = "completion_time.desc"
-	BACKUPSORT_COMPLETION_TIME_ASC  BackupSort = "completion_time.asc"
-	BACKUPSORT_END_TIME_DESC        BackupSort = "end_time.desc"
-	BACKUPSORT_END_TIME_ASC         BackupSort = "end_time.asc"
-	BACKUPSORT_NAME_DESC            BackupSort = "name.desc"
-	BACKUPSORT_NAME_ASC             BackupSort = "name.asc"
-	BACKUPSORT_RETAINED_UNTIL_DESC  BackupSort = "retained_until.desc"
-	BACKUPSORT_RETAINED_UNTIL_ASC   BackupSort = "retained_until.asc"
-	BACKUPSORT_SIZE_DESC            BackupSort = "size.desc"
-	BACKUPSORT_SIZE_ASC             BackupSort = "size.asc"
-	BACKUPSORT_TYPE_DESC            BackupSort = "type.desc"
-	BACKUPSORT_TYPE_ASC             BackupSort = "type.asc"
+	BACKUPSORT_COMPLETION_TIME_DESC     BackupSort = "completion_time.desc"
+	BACKUPSORT_COMPLETION_TIME_ASC      BackupSort = "completion_time.asc"
+	BACKUPSORT_END_TIME_DESC            BackupSort = "end_time.desc"
+	BACKUPSORT_END_TIME_ASC             BackupSort = "end_time.asc"
+	BACKUPSORT_NAME_DESC                BackupSort = "name.desc"
+	BACKUPSORT_NAME_ASC                 BackupSort = "name.asc"
+	BACKUPSORT_RETAINED_UNTIL_DESC      BackupSort = "retained_until.desc"
+	BACKUPSORT_RETAINED_UNTIL_ASC       BackupSort = "retained_until.asc"
+	BACKUPSORT_SIZE_DESC                BackupSort = "size.desc"
+	BACKUPSORT_SIZE_ASC                 BackupSort = "size.asc"
+	BACKUPSORT_TYPE_DESC                BackupSort = "type.desc"
+	BACKUPSORT_TYPE_ASC                 BackupSort = "type.asc"
+	BACKUPSORT_UNKNOWN_DEFAULT_OPEN_API BackupSort = "unknown_default_open_api"
 )
 
 // All allowed values of BackupSort enum
@@ -49,6 +50,7 @@ var AllowedBackupSortEnumValues = []BackupSort{
 	"size.asc",
 	"type.desc",
 	"type.asc",
+	"unknown_default_open_api",
 }
 
 func (v *BackupSort) UnmarshalJSON(src []byte) error {
@@ -65,7 +67,8 @@ func (v *BackupSort) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid BackupSort", value)
+	*v = BACKUPSORT_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewBackupSortFromValue returns a pointer to a valid BackupSort

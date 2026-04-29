@@ -20,12 +20,14 @@ type Backend string
 
 // List of backend
 const (
-	BACKEND_SOFTWARE Backend = "software"
+	BACKEND_SOFTWARE                 Backend = "software"
+	BACKEND_UNKNOWN_DEFAULT_OPEN_API Backend = "unknown_default_open_api"
 )
 
 // All allowed values of Backend enum
 var AllowedBackendEnumValues = []Backend{
 	"software",
+	"unknown_default_open_api",
 }
 
 func (v *Backend) UnmarshalJSON(src []byte) error {
@@ -42,7 +44,8 @@ func (v *Backend) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid Backend", value)
+	*v = BACKEND_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewBackendFromValue returns a pointer to a valid Backend

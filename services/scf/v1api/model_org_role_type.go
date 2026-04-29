@@ -25,6 +25,7 @@ const (
 	ORGROLETYPE_ORGANIZATION_AUDITOR         OrgRoleType = "organization_auditor"
 	ORGROLETYPE_ORGANIZATION_MANAGER         OrgRoleType = "organization_manager"
 	ORGROLETYPE_ORGANIZATION_BILLING_MANAGER OrgRoleType = "organization_billing_manager"
+	ORGROLETYPE_UNKNOWN_DEFAULT_OPEN_API     OrgRoleType = "unknown_default_open_api"
 )
 
 // All allowed values of OrgRoleType enum
@@ -33,6 +34,7 @@ var AllowedOrgRoleTypeEnumValues = []OrgRoleType{
 	"organization_auditor",
 	"organization_manager",
 	"organization_billing_manager",
+	"unknown_default_open_api",
 }
 
 func (v *OrgRoleType) UnmarshalJSON(src []byte) error {
@@ -49,7 +51,8 @@ func (v *OrgRoleType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid OrgRoleType", value)
+	*v = ORGROLETYPE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewOrgRoleTypeFromValue returns a pointer to a valid OrgRoleType
