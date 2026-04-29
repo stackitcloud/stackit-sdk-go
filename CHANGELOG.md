@@ -218,6 +218,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.8.2](services/objectstorage/CHANGELOG.md#v182)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v1.9.0](services/objectstorage/CHANGELOG.md#v190)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 - `observability`:
   - [v0.20.2](services/observability/CHANGELOG.md#v0202) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
