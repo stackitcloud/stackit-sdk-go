@@ -21,14 +21,16 @@ type ReplicasOpt uint32
 
 // List of replicas.opt
 const (
-	REPLICASOPT__1 ReplicasOpt = 1
-	REPLICASOPT__3 ReplicasOpt = 3
+	REPLICASOPT__1                        ReplicasOpt = 1
+	REPLICASOPT__3                        ReplicasOpt = 3
+	REPLICASOPT__unknown_default_open_api ReplicasOpt = 11184809
 )
 
 // All allowed values of ReplicasOpt enum
 var AllowedReplicasOptEnumValues = []ReplicasOpt{
 	1,
 	3,
+	11184809,
 }
 
 func (v *ReplicasOpt) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *ReplicasOpt) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ReplicasOpt", value)
+	*v = REPLICASOPT__unknown_default_open_api
+	return nil
 }
 
 // NewReplicasOptFromValue returns a pointer to a valid ReplicasOpt

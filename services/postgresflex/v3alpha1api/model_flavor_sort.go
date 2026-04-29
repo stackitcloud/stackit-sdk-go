@@ -21,22 +21,23 @@ type FlavorSort string
 
 // List of flavor.sort
 const (
-	FLAVORSORT_CPU_DESC                FlavorSort = "cpu.desc"
-	FLAVORSORT_CPU_ASC                 FlavorSort = "cpu.asc"
-	FLAVORSORT_FLAVOR_DESCRIPTION_ASC  FlavorSort = "flavor_description.asc"
-	FLAVORSORT_FLAVOR_DESCRIPTION_DESC FlavorSort = "flavor_description.desc"
-	FLAVORSORT_ID_DESC                 FlavorSort = "id.desc"
-	FLAVORSORT_ID_ASC                  FlavorSort = "id.asc"
-	FLAVORSORT_SIZE_MAX_DESC           FlavorSort = "size_max.desc"
-	FLAVORSORT_SIZE_MAX_ASC            FlavorSort = "size_max.asc"
-	FLAVORSORT_RAM_DESC                FlavorSort = "ram.desc"
-	FLAVORSORT_RAM_ASC                 FlavorSort = "ram.asc"
-	FLAVORSORT_SIZE_MIN_DESC           FlavorSort = "size_min.desc"
-	FLAVORSORT_SIZE_MIN_ASC            FlavorSort = "size_min.asc"
-	FLAVORSORT_STORAGE_CLASS_ASC       FlavorSort = "storage_class.asc"
-	FLAVORSORT_STORAGE_CLASS_DESC      FlavorSort = "storage_class.desc"
-	FLAVORSORT_NODE_TYPE_ASC           FlavorSort = "node_type.asc"
-	FLAVORSORT_NODE_TYPE_DESC          FlavorSort = "node_type.desc"
+	FLAVORSORT_CPU_DESC                 FlavorSort = "cpu.desc"
+	FLAVORSORT_CPU_ASC                  FlavorSort = "cpu.asc"
+	FLAVORSORT_FLAVOR_DESCRIPTION_ASC   FlavorSort = "flavor_description.asc"
+	FLAVORSORT_FLAVOR_DESCRIPTION_DESC  FlavorSort = "flavor_description.desc"
+	FLAVORSORT_ID_DESC                  FlavorSort = "id.desc"
+	FLAVORSORT_ID_ASC                   FlavorSort = "id.asc"
+	FLAVORSORT_SIZE_MAX_DESC            FlavorSort = "size_max.desc"
+	FLAVORSORT_SIZE_MAX_ASC             FlavorSort = "size_max.asc"
+	FLAVORSORT_RAM_DESC                 FlavorSort = "ram.desc"
+	FLAVORSORT_RAM_ASC                  FlavorSort = "ram.asc"
+	FLAVORSORT_SIZE_MIN_DESC            FlavorSort = "size_min.desc"
+	FLAVORSORT_SIZE_MIN_ASC             FlavorSort = "size_min.asc"
+	FLAVORSORT_STORAGE_CLASS_ASC        FlavorSort = "storage_class.asc"
+	FLAVORSORT_STORAGE_CLASS_DESC       FlavorSort = "storage_class.desc"
+	FLAVORSORT_NODE_TYPE_ASC            FlavorSort = "node_type.asc"
+	FLAVORSORT_NODE_TYPE_DESC           FlavorSort = "node_type.desc"
+	FLAVORSORT_UNKNOWN_DEFAULT_OPEN_API FlavorSort = "unknown_default_open_api"
 )
 
 // All allowed values of FlavorSort enum
@@ -57,6 +58,7 @@ var AllowedFlavorSortEnumValues = []FlavorSort{
 	"storage_class.desc",
 	"node_type.asc",
 	"node_type.desc",
+	"unknown_default_open_api",
 }
 
 func (v *FlavorSort) UnmarshalJSON(src []byte) error {
@@ -73,7 +75,8 @@ func (v *FlavorSort) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid FlavorSort", value)
+	*v = FLAVORSORT_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewFlavorSortFromValue returns a pointer to a valid FlavorSort

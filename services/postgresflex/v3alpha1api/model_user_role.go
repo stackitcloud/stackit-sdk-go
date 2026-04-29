@@ -21,14 +21,16 @@ type UserRole string
 
 // List of user.role
 const (
-	USERROLE_CREATEDB UserRole = "createdb"
-	USERROLE_LOGIN    UserRole = "login"
+	USERROLE_CREATEDB                 UserRole = "createdb"
+	USERROLE_LOGIN                    UserRole = "login"
+	USERROLE_UNKNOWN_DEFAULT_OPEN_API UserRole = "unknown_default_open_api"
 )
 
 // All allowed values of UserRole enum
 var AllowedUserRoleEnumValues = []UserRole{
 	"createdb",
 	"login",
+	"unknown_default_open_api",
 }
 
 func (v *UserRole) UnmarshalJSON(src []byte) error {
@@ -45,7 +47,8 @@ func (v *UserRole) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid UserRole", value)
+	*v = USERROLE_UNKNOWN_DEFAULT_OPEN_API
+	return nil
 }
 
 // NewUserRoleFromValue returns a pointer to a valid UserRole
