@@ -11,17 +11,9 @@ import (
 )
 
 const (
-	TELEMETRYROUTER_ACTIVE  = "active"
-	TELEMETRYROUTER_DELETED = "deleted"
-	TELEMETRYROUTER_FAILED  = "failed"
-
-	DESTINATION_ACTIVE  = "active"
-	DESTINATION_DELETED = "deleted"
-	DESTINATION_FAILED  = "failed"
-
-	ACCESSTOKEN_ACTIVE  = "active"
-	ACCESSTOKEN_DELETED = "deleted"
-	ACCESSTOKEN_FAILED  = "failed"
+	TELEMETRYROUTER_ACTIVE = "active"
+	DESTINATION_ACTIVE     = "active"
+	ACCESSTOKEN_ACTIVE     = "active"
 )
 
 // CreateTelemetryRouterWaitHandler will wait for TelemetryRouter creation
@@ -35,7 +27,6 @@ func CreateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 			return d.Status, nil
 		},
 		ActiveState: []string{TELEMETRYROUTER_ACTIVE},
-		ErrorState:  []string{TELEMETRYROUTER_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -54,7 +45,6 @@ func UpdateTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 			return d.Status, nil
 		},
 		ActiveState: []string{TELEMETRYROUTER_ACTIVE},
-		ErrorState:  []string{TELEMETRYROUTER_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -72,8 +62,6 @@ func DeleteTelemetryRouterWaitHandler(ctx context.Context, a telemetryrouter.Def
 			}
 			return d.Status, nil
 		},
-		ActiveState:                []string{TELEMETRYROUTER_DELETED},
-		ErrorState:                 []string{TELEMETRYROUTER_FAILED},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
 	}
 
@@ -93,7 +81,6 @@ func CreateDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 			return d.Status, nil
 		},
 		ActiveState: []string{DESTINATION_ACTIVE},
-		ErrorState:  []string{DESTINATION_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -112,7 +99,6 @@ func UpdateDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 			return d.Status, nil
 		},
 		ActiveState: []string{DESTINATION_ACTIVE},
-		ErrorState:  []string{DESTINATION_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -130,8 +116,6 @@ func DeleteDestinationWaitHandler(ctx context.Context, a telemetryrouter.Default
 			}
 			return d.Status, nil
 		},
-		ActiveState:                []string{DESTINATION_DELETED},
-		ErrorState:                 []string{DESTINATION_FAILED},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
 	}
 
@@ -151,7 +135,6 @@ func CreateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 			return d.Status, nil
 		},
 		ActiveState: []string{ACCESSTOKEN_ACTIVE},
-		ErrorState:  []string{ACCESSTOKEN_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -170,7 +153,6 @@ func UpdateAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 			return d.Status, nil
 		},
 		ActiveState: []string{ACCESSTOKEN_ACTIVE},
-		ErrorState:  []string{ACCESSTOKEN_FAILED},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -188,8 +170,6 @@ func DeleteAccessTokenWaitHandler(ctx context.Context, a telemetryrouter.Default
 			}
 			return d.Status, nil
 		},
-		ActiveState:                []string{ACCESSTOKEN_DELETED},
-		ErrorState:                 []string{ACCESSTOKEN_FAILED},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
 	}
 

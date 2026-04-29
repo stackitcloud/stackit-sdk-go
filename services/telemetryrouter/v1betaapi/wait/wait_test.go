@@ -76,13 +76,6 @@ func TestCreateTelemetryRouterWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
-			desc:          "create_failed",
-			getFails:      false,
-			resourceState: TELEMETRYROUTER_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
@@ -144,13 +137,6 @@ func TestUpdateTelemetryRouterWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
-			desc:          "update_failed",
-			getFails:      false,
-			resourceState: TELEMETRYROUTER_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
@@ -204,20 +190,6 @@ func TestDeleteTelemetryRouterWaitHandler(t *testing.T) {
 		wantErr       bool
 		wantResp      bool
 	}{
-		{
-			desc:          "delete_succeeded",
-			getFails:      false,
-			resourceState: TELEMETRYROUTER_DELETED,
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "delete_failed",
-			getFails:      false,
-			resourceState: TELEMETRYROUTER_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
@@ -285,13 +257,6 @@ func TestCreateDestinationWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
-			desc:          "create_failed",
-			getFails:      false,
-			resourceState: DESTINATION_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
@@ -353,13 +318,6 @@ func TestUpdateDestinationWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
-			desc:          "update_failed",
-			getFails:      false,
-			resourceState: DESTINATION_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
@@ -413,20 +371,6 @@ func TestDeleteDestinationWaitHandler(t *testing.T) {
 		wantErr       bool
 		wantResp      bool
 	}{
-		{
-			desc:          "delete_succeeded",
-			getFails:      false,
-			resourceState: DESTINATION_DELETED,
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "delete_failed",
-			getFails:      false,
-			resourceState: DESTINATION_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
 		{
 			desc:          "get_fails",
 			getFails:      true,
@@ -494,13 +438,6 @@ func TestCreateAccessTokenWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
-			desc:          "create_failed",
-			getFails:      false,
-			resourceState: ACCESSTOKEN_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
@@ -562,13 +499,6 @@ func TestUpdateAccessTokenWaitHandler(t *testing.T) {
 			wantResp:      true,
 		},
 		{
-			desc:          "update_failed",
-			getFails:      false,
-			resourceState: ACCESSTOKEN_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
-		{
 			desc:          "get_fails",
 			getFails:      true,
 			resourceState: "",
@@ -622,20 +552,6 @@ func TestDeleteAccessTokenWaitHandler(t *testing.T) {
 		wantErr       bool
 		wantResp      bool
 	}{
-		{
-			desc:          "delete_succeeded",
-			getFails:      false,
-			resourceState: ACCESSTOKEN_DELETED,
-			wantErr:       false,
-			wantResp:      true,
-		},
-		{
-			desc:          "delete_failed",
-			getFails:      false,
-			resourceState: ACCESSTOKEN_FAILED,
-			wantErr:       true,
-			wantResp:      true,
-		},
 		{
 			desc:          "get_fails",
 			getFails:      true,

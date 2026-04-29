@@ -6,6 +6,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	telemetryrouter "github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1betaapi"
+	"github.com/stackitcloud/stackit-sdk-go/services/telemetryrouter/v1betaapi/wait"
 )
 
 func main() {
@@ -32,6 +33,13 @@ func main() {
 	}
 	log.Printf("[TelemetryRouter API] Created TelemetryRouter Instance with ID \"%s\".\n", createResp.Id)
 	createdInstance = createResp.Id
+
+	// Wait for the Telemetry Router Instance to be ready
+	_, err = wait.CreateTelemetryRouterWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[TelemetryRouter API] Error when waiting for creation: %v\n", err)
+	}
+	log.Printf("[TelemetryRouter API] TelemetryRouter Instance %q has been successfully created.\n", createdInstance)
 
 	// List Telemetry Router Instances
 	listResp, err := client.DefaultAPI.ListTelemetryRouters(ctx, projectId, regionId).Execute()
@@ -69,6 +77,13 @@ func main() {
 	}
 	log.Printf("[Telemetry Router API] Updated Telemetry Router Instance with ID \"%s\" to Display Name \"%s\".\n", updateResp.Id, updateResp.DisplayName)
 
+	// Wait for the Telemetry Router Instance to be updated
+	_, err = wait.UpdateTelemetryRouterWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for update: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] TelemetryRouter Instance %q has been successfully updated.\n", createdInstance)
+
 	// Create an Access Token
 	createTokenPayload := telemetryrouter.CreateAccessTokenPayload{
 		DisplayName: "my-access-token",
@@ -80,6 +95,27 @@ func main() {
 		log.Fatalf("[Telemetry Router API] Error when calling `CreateAccessToken`: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Created Access Token with ID \"%s\".\n", createTokenResp.Id)
+
+	// Wait for the Access Token to be created
+	_, err = wait.CreateAccessTokenWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, createTokenResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for creation: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Access Token %q has been successfully created.\n", createTokenResp.Id)
+
+	// Get the created Access Token
+	getTokenResp, err := client.DefaultAPI.GetAccessToken(ctx, projectId, regionId, createdInstance, createTokenResp.Id).Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `GetAccessToken`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Retrieved Access Token with ID \"%s\" and Display Name \"%s\".\n", getTokenResp.Id, getTokenResp.DisplayName)
+
+	// List Access Tokens
+	listTokenResp, err := client.DefaultAPI.ListAccessTokens(ctx, projectId, regionId, createdInstance).Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `ListAccessTokens`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Retrieved %d Access Tokens.\n", len(listTokenResp.AccessTokens))
 
 	newDisplayName := "my-updated-acc-token"
 	newDisplayNameNS := telemetryrouter.NullableString{}
@@ -96,12 +132,26 @@ func main() {
 	}
 	log.Printf("[Telemetry Router API] Updated Access Token with ID \"%s\" to Display Name \"%s\".\n.\n", updateTokenResp.Id, updateTokenResp.DisplayName)
 
+	// Wait for the Access Token to be updated
+	_, err = wait.UpdateAccessTokenWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, updateTokenResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for update: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Access Token %q has been successfully updated.\n", updateTokenResp.Id)
+
 	// Delete Access Token
 	err = client.DefaultAPI.DeleteAccessToken(ctx, projectId, regionId, createdInstance, updateTokenResp.Id).Execute()
 	if err != nil {
 		log.Fatalf("[Telemetry Router API] Error when calling `DeleteAccessToken`: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Deleted Access Tokens.\n")
+
+	// Wait for the Access Token to be deleted
+	_, err = wait.DeleteAccessTokenWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, updateTokenResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for deletion: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Access Token %q has been successfully deleted.\n", updateTokenResp.Id)
 
 	// Create S3 Destination
 	createS3DestinationPayload := telemetryrouter.CreateDestinationPayload{
@@ -124,6 +174,27 @@ func main() {
 		log.Fatalf("[Telemetry Router API] Error when calling `CreateDestination`: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Created Destination with ID \"%s\".\n", createS3DestinationResp.Id)
+
+	// Wait for the S3 Destination to be created
+	_, err = wait.CreateDestinationWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, createS3DestinationResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for creation: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Destination %q has been successfully created.\n", createS3DestinationResp.Id)
+
+	// Get the created S3 Destination
+	getS3DestinationResp, err := client.DefaultAPI.GetDestination(ctx, projectId, regionId, createdInstance, createS3DestinationResp.Id).Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `GetDestination`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Retrieved Destination with ID \"%s\" and Display Name \"%s\".\n", getS3DestinationResp.Id, getS3DestinationResp.DisplayName)
+
+	// List Destinations
+	listDestinationResp, err := client.DefaultAPI.ListDestinations(ctx, projectId, regionId, createdInstance).Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `ListDestinations`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Retrieved %d Destinations.\n", len(listDestinationResp.Destinations))
 
 	// Update S3 Destination
 	newS3DestinationDisplayName := "updated-s3-destination"
@@ -158,12 +229,26 @@ func main() {
 	}
 	log.Printf("[Telemetry Router API] Updated Destination with ID \"%s\".\n", updateS3DestinationResp.Id)
 
+	// Wait for the S3 Destination to be updated
+	_, err = wait.UpdateDestinationWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, updateS3DestinationResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for update: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Destination %q has been successfully updated.\n", updateS3DestinationResp.Id)
+
 	// Delete S3 Destination
 	err = client.DefaultAPI.DeleteDestination(ctx, projectId, regionId, createdInstance, updateS3DestinationResp.Id).Execute()
 	if err != nil {
 		log.Fatalf("[Telemetry Router API] Error when calling `DeleteDestination`: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Deleted Destination with ID \"%s\".\n", updateS3DestinationResp.Id)
+
+	// Wait for the S3 Destination to be deleted
+	_, err = wait.DeleteDestinationWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, updateS3DestinationResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for deletion: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Destination %q has been successfully deleted.\n", updateS3DestinationResp.Id)
 
 	// Create OpenTelemetry Destination
 	createOpenTelemetryDestinationPayload := telemetryrouter.CreateDestinationPayload{
@@ -185,6 +270,27 @@ func main() {
 		log.Fatalf("[Telemetry Router API] Error when calling `CreateDestination`: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Created Destination with ID \"%s\".\n", createOpenTelemetryDestinationResp.Id)
+
+	// Wait for the OpenTelemetry Destination to be created
+	_, err = wait.CreateDestinationWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, createOpenTelemetryDestinationResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for creation: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Destination %q has been successfully created.\n", createOpenTelemetryDestinationResp.Id)
+
+	// Get the created OpenTelemetry Destination
+	getOpenTelemetryDestinationResp, err := client.DefaultAPI.GetDestination(ctx, projectId, regionId, createdInstance, createOpenTelemetryDestinationResp.Id).Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `GetDestination`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Received Destination with ID \"%s\".\n", getOpenTelemetryDestinationResp.Id)
+
+	// List Destinations
+	listDestinationsResp, err := client.DefaultAPI.ListDestinations(ctx, projectId, regionId, createdInstance).Execute()
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when calling `ListDestinations`: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Received %d Destinations.\n", len(listDestinationsResp.Destinations))
 
 	// Update S3 Destination
 	newOTLPDestinationDisplayName := "updated-otlp-destination"
@@ -218,6 +324,13 @@ func main() {
 	}
 	log.Printf("[Telemetry Router API] Updated Destination with ID \"%s\".\n", updateOTLPDestinationResp.Id)
 
+	// Wait for the OpenTelemetry Destination to be updated
+	_, err = wait.UpdateDestinationWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, updateOTLPDestinationResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for update: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Destination %q has been successfully updated.\n", updateOTLPDestinationResp.Id)
+
 	// Delete OpenTelemetry Destination
 	err = client.DefaultAPI.DeleteDestination(ctx, projectId, regionId, createdInstance, updateOTLPDestinationResp.Id).Execute()
 	if err != nil {
@@ -225,10 +338,24 @@ func main() {
 	}
 	log.Printf("[Telemetry Router API] Deleted Destination with ID \"%s\".\n", updateOTLPDestinationResp.Id)
 
+	// Wait for the OpenTelemetry Destination to be deleted
+	_, err = wait.DeleteDestinationWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance, updateOTLPDestinationResp.Id).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for deletion: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Destination %q has been successfully deleted.\n", updateOTLPDestinationResp.Id)
+
 	// Delete the created TelemetryRouter Instance
 	err = client.DefaultAPI.DeleteTelemetryRouter(ctx, projectId, regionId, createdInstance).Execute()
 	if err != nil {
 		log.Fatalf("[Telemetry Router API] Error when calling `DeleteTelemetryRouter`: %v\n", err)
 	}
 	log.Printf("[Telemetry Router API] Deleted Telemetry Router Instance with ID \"%s\".\n", createdInstance)
+
+	// Wait for the TelemetryRouter Instance to be deleted
+	_, err = wait.DeleteTelemetryRouterWaitHandler(ctx, client.DefaultAPI, projectId, regionId, createdInstance).WaitWithContext(context.Background())
+	if err != nil {
+		log.Fatalf("[Telemetry Router API] Error when waiting for deletion: %v\n", err)
+	}
+	log.Printf("[Telemetry Router API] Telemetry Router Instance %q has been successfully deleted.\n", createdInstance)
 }
