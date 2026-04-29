@@ -385,6 +385,8 @@
       - New model structs `ExpirationStatus`, `ExpirationStatusKubernetes`, `ExpirationStatusNodepool`
   - [v1.13.1](services/ske/CHANGELOG.md#v1131)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.14.0](services/ske/CHANGELOG.md#v1140)
+    - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.`
 - `sqlserverflex`:
   - [v1.6.3](services/sqlserverflex/CHANGELOG.md#v163)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
