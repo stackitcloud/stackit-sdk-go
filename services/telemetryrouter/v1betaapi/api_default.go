@@ -411,7 +411,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -423,7 +422,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -434,7 +432,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -581,7 +578,6 @@ func (a *DefaultAPIService) CreateDestinationExecute(r ApiCreateDestinationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -593,7 +589,6 @@ func (a *DefaultAPIService) CreateDestinationExecute(r ApiCreateDestinationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -604,7 +599,6 @@ func (a *DefaultAPIService) CreateDestinationExecute(r ApiCreateDestinationReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -747,7 +741,6 @@ func (a *DefaultAPIService) CreateTelemetryRouterExecute(r ApiCreateTelemetryRou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -759,7 +752,6 @@ func (a *DefaultAPIService) CreateTelemetryRouterExecute(r ApiCreateTelemetryRou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -770,7 +762,6 @@ func (a *DefaultAPIService) CreateTelemetryRouterExecute(r ApiCreateTelemetryRou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -907,7 +898,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -919,7 +909,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -930,7 +919,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -1057,7 +1045,6 @@ func (a *DefaultAPIService) DeleteDestinationExecute(r ApiDeleteDestinationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -1069,7 +1056,6 @@ func (a *DefaultAPIService) DeleteDestinationExecute(r ApiDeleteDestinationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -1080,7 +1066,6 @@ func (a *DefaultAPIService) DeleteDestinationExecute(r ApiDeleteDestinationReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -1217,7 +1202,6 @@ func (a *DefaultAPIService) DeleteTelemetryRouterExecute(r ApiDeleteTelemetryRou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -1229,7 +1213,6 @@ func (a *DefaultAPIService) DeleteTelemetryRouterExecute(r ApiDeleteTelemetryRou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -1240,7 +1223,6 @@ func (a *DefaultAPIService) DeleteTelemetryRouterExecute(r ApiDeleteTelemetryRou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -1370,7 +1352,6 @@ func (a *DefaultAPIService) GetAccessTokenExecute(r ApiGetAccessTokenRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -1382,7 +1363,6 @@ func (a *DefaultAPIService) GetAccessTokenExecute(r ApiGetAccessTokenRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -1393,7 +1373,6 @@ func (a *DefaultAPIService) GetAccessTokenExecute(r ApiGetAccessTokenRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1533,7 +1512,6 @@ func (a *DefaultAPIService) GetDestinationExecute(r ApiGetDestinationRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -1544,7 +1522,6 @@ func (a *DefaultAPIService) GetDestinationExecute(r ApiGetDestinationRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1680,7 +1657,6 @@ func (a *DefaultAPIService) GetTelemetryRouterExecute(r ApiGetTelemetryRouterReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -1692,7 +1668,6 @@ func (a *DefaultAPIService) GetTelemetryRouterExecute(r ApiGetTelemetryRouterReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -1703,7 +1678,6 @@ func (a *DefaultAPIService) GetTelemetryRouterExecute(r ApiGetTelemetryRouterReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1863,7 +1837,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -1875,7 +1848,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -1886,7 +1858,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2046,7 +2017,6 @@ func (a *DefaultAPIService) ListDestinationsExecute(r ApiListDestinationsRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -2057,7 +2027,6 @@ func (a *DefaultAPIService) ListDestinationsExecute(r ApiListDestinationsRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2213,7 +2182,6 @@ func (a *DefaultAPIService) ListTelemetryRoutersExecute(r ApiListTelemetryRouter
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -2224,7 +2192,6 @@ func (a *DefaultAPIService) ListTelemetryRoutersExecute(r ApiListTelemetryRouter
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2375,7 +2342,6 @@ func (a *DefaultAPIService) UpdateAccessTokenExecute(r ApiUpdateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -2387,7 +2353,6 @@ func (a *DefaultAPIService) UpdateAccessTokenExecute(r ApiUpdateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -2398,7 +2363,6 @@ func (a *DefaultAPIService) UpdateAccessTokenExecute(r ApiUpdateAccessTokenReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2549,7 +2513,6 @@ func (a *DefaultAPIService) UpdateDestinationExecute(r ApiUpdateDestinationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -2561,7 +2524,6 @@ func (a *DefaultAPIService) UpdateDestinationExecute(r ApiUpdateDestinationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -2572,7 +2534,6 @@ func (a *DefaultAPIService) UpdateDestinationExecute(r ApiUpdateDestinationReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2719,7 +2680,6 @@ func (a *DefaultAPIService) UpdateTelemetryRouterExecute(r ApiUpdateTelemetryRou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v Response4xx
@@ -2731,7 +2691,6 @@ func (a *DefaultAPIService) UpdateTelemetryRouterExecute(r ApiUpdateTelemetryRou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Response4xx
@@ -2742,7 +2701,6 @@ func (a *DefaultAPIService) UpdateTelemetryRouterExecute(r ApiUpdateTelemetryRou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
