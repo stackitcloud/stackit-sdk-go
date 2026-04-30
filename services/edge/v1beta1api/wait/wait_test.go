@@ -129,7 +129,7 @@ var createOrUpdateInstanceTests = []struct {
 		desc:           "failed creation",
 		shouldFail:     false,
 		instanceStatus: INSTANCESTATUS_ERROR,
-		wantErr:        errors.New("instance creation failed"),
+		wantErr:        errors.New("state is error"),
 	},
 	{
 		desc:       "API fails",
