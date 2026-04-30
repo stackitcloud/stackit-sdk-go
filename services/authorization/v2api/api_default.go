@@ -321,7 +321,6 @@ func (a *DefaultAPIService) AddMembersExecute(r ApiAddMembersRequest) (*MembersR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -333,7 +332,6 @@ func (a *DefaultAPIService) AddMembersExecute(r ApiAddMembersRequest) (*MembersR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -344,7 +342,6 @@ func (a *DefaultAPIService) AddMembersExecute(r ApiAddMembersRequest) (*MembersR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -486,7 +483,6 @@ func (a *DefaultAPIService) AddRoleExecute(r ApiAddRoleRequest) (*AddCustomRoleR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -498,7 +494,6 @@ func (a *DefaultAPIService) AddRoleExecute(r ApiAddRoleRequest) (*AddCustomRoleR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -509,7 +504,6 @@ func (a *DefaultAPIService) AddRoleExecute(r ApiAddRoleRequest) (*AddCustomRoleR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -653,7 +647,6 @@ func (a *DefaultAPIService) DeleteRoleExecute(r ApiDeleteRoleRequest) (*DeleteRo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -665,7 +658,6 @@ func (a *DefaultAPIService) DeleteRoleExecute(r ApiDeleteRoleRequest) (*DeleteRo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -676,7 +668,6 @@ func (a *DefaultAPIService) DeleteRoleExecute(r ApiDeleteRoleRequest) (*DeleteRo
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -811,7 +802,6 @@ func (a *DefaultAPIService) GetRoleExecute(r ApiGetRoleRequest) (*GetRoleRespons
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -823,7 +813,6 @@ func (a *DefaultAPIService) GetRoleExecute(r ApiGetRoleRequest) (*GetRoleRespons
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -834,7 +823,6 @@ func (a *DefaultAPIService) GetRoleExecute(r ApiGetRoleRequest) (*GetRoleRespons
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -974,7 +962,6 @@ func (a *DefaultAPIService) ListMembersExecute(r ApiListMembersRequest) (*ListMe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -986,7 +973,6 @@ func (a *DefaultAPIService) ListMembersExecute(r ApiListMembersRequest) (*ListMe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -997,7 +983,6 @@ func (a *DefaultAPIService) ListMembersExecute(r ApiListMembersRequest) (*ListMe
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1129,7 +1114,6 @@ func (a *DefaultAPIService) ListPermissionsExecute(r ApiListPermissionsRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1141,7 +1125,6 @@ func (a *DefaultAPIService) ListPermissionsExecute(r ApiListPermissionsRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1152,7 +1135,6 @@ func (a *DefaultAPIService) ListPermissionsExecute(r ApiListPermissionsRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1283,7 +1265,6 @@ func (a *DefaultAPIService) ListRolesExecute(r ApiListRolesRequest) (*RolesRespo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1295,7 +1276,6 @@ func (a *DefaultAPIService) ListRolesExecute(r ApiListRolesRequest) (*RolesRespo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1306,7 +1286,6 @@ func (a *DefaultAPIService) ListRolesExecute(r ApiListRolesRequest) (*RolesRespo
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1460,7 +1439,6 @@ func (a *DefaultAPIService) ListUserMembershipsExecute(r ApiListUserMembershipsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1472,7 +1450,6 @@ func (a *DefaultAPIService) ListUserMembershipsExecute(r ApiListUserMembershipsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1483,7 +1460,6 @@ func (a *DefaultAPIService) ListUserMembershipsExecute(r ApiListUserMembershipsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1645,7 +1621,6 @@ func (a *DefaultAPIService) ListUserPermissionsExecute(r ApiListUserPermissionsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1657,7 +1632,6 @@ func (a *DefaultAPIService) ListUserPermissionsExecute(r ApiListUserPermissionsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1668,7 +1642,6 @@ func (a *DefaultAPIService) ListUserPermissionsExecute(r ApiListUserPermissionsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1806,7 +1779,6 @@ func (a *DefaultAPIService) RemoveMembersExecute(r ApiRemoveMembersRequest) (*Me
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1818,7 +1790,6 @@ func (a *DefaultAPIService) RemoveMembersExecute(r ApiRemoveMembersRequest) (*Me
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1829,7 +1800,6 @@ func (a *DefaultAPIService) RemoveMembersExecute(r ApiRemoveMembersRequest) (*Me
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1975,7 +1945,6 @@ func (a *DefaultAPIService) UpdateRoleExecute(r ApiUpdateRoleRequest) (*UpdateRo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1987,7 +1956,6 @@ func (a *DefaultAPIService) UpdateRoleExecute(r ApiUpdateRoleRequest) (*UpdateRo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1998,7 +1966,6 @@ func (a *DefaultAPIService) UpdateRoleExecute(r ApiUpdateRoleRequest) (*UpdateRo
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
