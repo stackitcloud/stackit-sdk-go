@@ -235,7 +235,6 @@ func (a *DefaultAPIService) ListFolderAuditLogEntriesExecute(r ApiListFolderAudi
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -246,7 +245,6 @@ func (a *DefaultAPIService) ListFolderAuditLogEntriesExecute(r ApiListFolderAudi
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -259,7 +257,6 @@ func (a *DefaultAPIService) ListFolderAuditLogEntriesExecute(r ApiListFolderAudi
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v GatewayErrorResponse
@@ -270,7 +267,6 @@ func (a *DefaultAPIService) ListFolderAuditLogEntriesExecute(r ApiListFolderAudi
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -444,7 +440,6 @@ func (a *DefaultAPIService) ListOrganizationAuditLogEntriesExecute(r ApiListOrga
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -455,7 +450,6 @@ func (a *DefaultAPIService) ListOrganizationAuditLogEntriesExecute(r ApiListOrga
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -468,7 +462,6 @@ func (a *DefaultAPIService) ListOrganizationAuditLogEntriesExecute(r ApiListOrga
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v GatewayErrorResponse
@@ -479,7 +472,6 @@ func (a *DefaultAPIService) ListOrganizationAuditLogEntriesExecute(r ApiListOrga
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -653,7 +645,6 @@ func (a *DefaultAPIService) ListProjectAuditLogEntriesExecute(r ApiListProjectAu
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -664,7 +655,6 @@ func (a *DefaultAPIService) ListProjectAuditLogEntriesExecute(r ApiListProjectAu
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -677,7 +667,6 @@ func (a *DefaultAPIService) ListProjectAuditLogEntriesExecute(r ApiListProjectAu
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v GatewayErrorResponse
@@ -688,7 +677,6 @@ func (a *DefaultAPIService) ListProjectAuditLogEntriesExecute(r ApiListProjectAu
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
