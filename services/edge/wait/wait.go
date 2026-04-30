@@ -71,7 +71,7 @@ func deleteInstanceWaitHandler(ctx context.Context, getInstance func(ctx context
 		FetchInstance: func() (*edge.Instance, error) {
 			return getInstance(ctx)
 		},
-		GetState: func(i *edge.Instance) (edge.InstanceStatus, error) {
+		GetState: func(_ *edge.Instance) (edge.InstanceStatus, error) {
 			return "", nil
 		},
 	}
