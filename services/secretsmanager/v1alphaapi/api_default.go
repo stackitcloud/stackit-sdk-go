@@ -309,7 +309,6 @@ func (a *DefaultAPIService) AddInstanceRoleBindingsExecute(r ApiAddInstanceRoleB
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -321,7 +320,6 @@ func (a *DefaultAPIService) AddInstanceRoleBindingsExecute(r ApiAddInstanceRoleB
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -332,7 +330,6 @@ func (a *DefaultAPIService) AddInstanceRoleBindingsExecute(r ApiAddInstanceRoleB
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -474,7 +471,6 @@ func (a *DefaultAPIService) AddSecretGroupRoleBindingsExecute(r ApiAddSecretGrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -486,7 +482,6 @@ func (a *DefaultAPIService) AddSecretGroupRoleBindingsExecute(r ApiAddSecretGrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -497,7 +492,6 @@ func (a *DefaultAPIService) AddSecretGroupRoleBindingsExecute(r ApiAddSecretGrou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -639,7 +633,6 @@ func (a *DefaultAPIService) EditInstanceRoleBindingsExecute(r ApiEditInstanceRol
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -651,7 +644,6 @@ func (a *DefaultAPIService) EditInstanceRoleBindingsExecute(r ApiEditInstanceRol
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -662,7 +654,6 @@ func (a *DefaultAPIService) EditInstanceRoleBindingsExecute(r ApiEditInstanceRol
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -804,7 +795,6 @@ func (a *DefaultAPIService) EditSecretGroupRoleBindingsExecute(r ApiEditSecretGr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -816,7 +806,6 @@ func (a *DefaultAPIService) EditSecretGroupRoleBindingsExecute(r ApiEditSecretGr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -827,7 +816,6 @@ func (a *DefaultAPIService) EditSecretGroupRoleBindingsExecute(r ApiEditSecretGr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -969,7 +957,6 @@ func (a *DefaultAPIService) GetInstanceRoleBindingsExecute(r ApiGetInstanceRoleB
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -981,7 +968,6 @@ func (a *DefaultAPIService) GetInstanceRoleBindingsExecute(r ApiGetInstanceRoleB
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -992,7 +978,6 @@ func (a *DefaultAPIService) GetInstanceRoleBindingsExecute(r ApiGetInstanceRoleB
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1134,7 +1119,6 @@ func (a *DefaultAPIService) GetSecretGroupRoleBindingsExecute(r ApiGetSecretGrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1146,7 +1130,6 @@ func (a *DefaultAPIService) GetSecretGroupRoleBindingsExecute(r ApiGetSecretGrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1157,7 +1140,6 @@ func (a *DefaultAPIService) GetSecretGroupRoleBindingsExecute(r ApiGetSecretGrou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1288,7 +1270,6 @@ func (a *DefaultAPIService) ListInstanceRoleBindingsExecute(r ApiListInstanceRol
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1300,7 +1281,6 @@ func (a *DefaultAPIService) ListInstanceRoleBindingsExecute(r ApiListInstanceRol
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1311,7 +1291,6 @@ func (a *DefaultAPIService) ListInstanceRoleBindingsExecute(r ApiListInstanceRol
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1442,7 +1421,6 @@ func (a *DefaultAPIService) ListSecretGroupRoleBindingsExecute(r ApiListSecretGr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1454,7 +1432,6 @@ func (a *DefaultAPIService) ListSecretGroupRoleBindingsExecute(r ApiListSecretGr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1465,7 +1442,6 @@ func (a *DefaultAPIService) ListSecretGroupRoleBindingsExecute(r ApiListSecretGr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1604,7 +1580,6 @@ func (a *DefaultAPIService) RemoveInstanceRoleBindingsExecute(r ApiRemoveInstanc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1616,7 +1591,6 @@ func (a *DefaultAPIService) RemoveInstanceRoleBindingsExecute(r ApiRemoveInstanc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1627,7 +1601,6 @@ func (a *DefaultAPIService) RemoveInstanceRoleBindingsExecute(r ApiRemoveInstanc
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1756,7 +1729,6 @@ func (a *DefaultAPIService) RemoveSecretGroupRoleBindingsExecute(r ApiRemoveSecr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponse
@@ -1768,7 +1740,6 @@ func (a *DefaultAPIService) RemoveSecretGroupRoleBindingsExecute(r ApiRemoveSecr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1779,7 +1750,6 @@ func (a *DefaultAPIService) RemoveSecretGroupRoleBindingsExecute(r ApiRemoveSecr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
