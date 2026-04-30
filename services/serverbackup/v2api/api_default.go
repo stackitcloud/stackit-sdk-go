@@ -392,7 +392,6 @@ func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) (*Back
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -532,7 +531,6 @@ func (a *DefaultAPIService) CreateBackupScheduleExecute(r ApiCreateBackupSchedul
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -677,7 +675,6 @@ func (a *DefaultAPIService) DeleteBackupExecute(r ApiDeleteBackupRequest) error 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -800,7 +797,6 @@ func (a *DefaultAPIService) DeleteBackupScheduleExecute(r ApiDeleteBackupSchedul
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -939,7 +935,6 @@ func (a *DefaultAPIService) DeleteVolumeBackupExecute(r ApiDeleteVolumeBackupReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -1058,7 +1053,6 @@ func (a *DefaultAPIService) DisableServiceResourceExecute(r ApiDisableServiceRes
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -1187,7 +1181,6 @@ func (a *DefaultAPIService) EnableServiceResourceExecute(r ApiEnableServiceResou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -1313,7 +1306,6 @@ func (a *DefaultAPIService) GetBackupExecute(r ApiGetBackupRequest) (*Backup, er
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1451,7 +1443,6 @@ func (a *DefaultAPIService) GetBackupScheduleExecute(r ApiGetBackupScheduleReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1584,7 +1575,6 @@ func (a *DefaultAPIService) GetServiceResourceExecute(r ApiGetServiceResourceReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1708,7 +1698,6 @@ func (a *DefaultAPIService) ListBackupPoliciesExecute(r ApiListBackupPoliciesReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1842,7 +1831,6 @@ func (a *DefaultAPIService) ListBackupSchedulesExecute(r ApiListBackupSchedulesR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1974,7 +1962,6 @@ func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*GetBac
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2117,7 +2104,6 @@ func (a *DefaultAPIService) RestoreBackupExecute(r ApiRestoreBackupRequest) erro
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -2253,7 +2239,6 @@ func (a *DefaultAPIService) RestoreVolumeBackupExecute(r ApiRestoreVolumeBackupR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -2387,7 +2372,6 @@ func (a *DefaultAPIService) UpdateBackupScheduleExecute(r ApiUpdateBackupSchedul
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
