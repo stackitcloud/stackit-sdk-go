@@ -1895,7 +1895,6 @@ func (a *DefaultAPIService) CreateAlertConfigReceiverExecute(r ApiCreateAlertCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -1906,7 +1905,6 @@ func (a *DefaultAPIService) CreateAlertConfigReceiverExecute(r ApiCreateAlertCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2048,7 +2046,6 @@ func (a *DefaultAPIService) CreateAlertConfigRouteExecute(r ApiCreateAlertConfig
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -2059,7 +2056,6 @@ func (a *DefaultAPIService) CreateAlertConfigRouteExecute(r ApiCreateAlertConfig
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2205,7 +2201,6 @@ func (a *DefaultAPIService) CreateAlertRecordExecute(r ApiCreateAlertRecordReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -2216,7 +2211,6 @@ func (a *DefaultAPIService) CreateAlertRecordExecute(r ApiCreateAlertRecordReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2358,7 +2352,6 @@ func (a *DefaultAPIService) CreateAlertgroupsExecute(r ApiCreateAlertgroupsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -2369,7 +2362,6 @@ func (a *DefaultAPIService) CreateAlertgroupsExecute(r ApiCreateAlertgroupsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2515,7 +2507,6 @@ func (a *DefaultAPIService) CreateAlertrulesExecute(r ApiCreateAlertrulesRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -2526,7 +2517,6 @@ func (a *DefaultAPIService) CreateAlertrulesExecute(r ApiCreateAlertrulesRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2667,7 +2657,6 @@ func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) (*Mess
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -2678,7 +2667,6 @@ func (a *DefaultAPIService) CreateBackupExecute(r ApiCreateBackupRequest) (*Mess
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2830,7 +2818,6 @@ func (a *DefaultAPIService) CreateBackupScheduleExecute(r ApiCreateBackupSchedul
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -2841,7 +2828,6 @@ func (a *DefaultAPIService) CreateBackupScheduleExecute(r ApiCreateBackupSchedul
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2983,7 +2969,6 @@ func (a *DefaultAPIService) CreateCertCheckExecute(r ApiCreateCertCheckRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -2994,7 +2979,6 @@ func (a *DefaultAPIService) CreateCertCheckExecute(r ApiCreateCertCheckRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3133,7 +3117,6 @@ func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -3144,7 +3127,6 @@ func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3286,7 +3268,6 @@ func (a *DefaultAPIService) CreateElasticsearchCheckExecute(r ApiCreateElasticse
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -3297,7 +3278,6 @@ func (a *DefaultAPIService) CreateElasticsearchCheckExecute(r ApiCreateElasticse
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3439,7 +3419,6 @@ func (a *DefaultAPIService) CreateHttpCheckExecute(r ApiCreateHttpCheckRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -3450,7 +3429,6 @@ func (a *DefaultAPIService) CreateHttpCheckExecute(r ApiCreateHttpCheckRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3588,7 +3566,6 @@ func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -3599,7 +3576,6 @@ func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3741,7 +3717,6 @@ func (a *DefaultAPIService) CreateLogsAlertgroupsExecute(r ApiCreateLogsAlertgro
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -3752,7 +3727,6 @@ func (a *DefaultAPIService) CreateLogsAlertgroupsExecute(r ApiCreateLogsAlertgro
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3894,7 +3868,6 @@ func (a *DefaultAPIService) CreateMongodbCheckExecute(r ApiCreateMongodbCheckReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -3905,7 +3878,6 @@ func (a *DefaultAPIService) CreateMongodbCheckExecute(r ApiCreateMongodbCheckReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -4047,7 +4019,6 @@ func (a *DefaultAPIService) CreateMysqlCheckExecute(r ApiCreateMysqlCheckRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4058,7 +4029,6 @@ func (a *DefaultAPIService) CreateMysqlCheckExecute(r ApiCreateMysqlCheckRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -4200,7 +4170,6 @@ func (a *DefaultAPIService) CreateNetworkCheckExecute(r ApiCreateNetworkCheckReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4211,7 +4180,6 @@ func (a *DefaultAPIService) CreateNetworkCheckExecute(r ApiCreateNetworkCheckReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -4353,7 +4321,6 @@ func (a *DefaultAPIService) CreatePingCheckExecute(r ApiCreatePingCheckRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4364,7 +4331,6 @@ func (a *DefaultAPIService) CreatePingCheckExecute(r ApiCreatePingCheckRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -4506,7 +4472,6 @@ func (a *DefaultAPIService) CreatePostgresqlCheckExecute(r ApiCreatePostgresqlCh
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4517,7 +4482,6 @@ func (a *DefaultAPIService) CreatePostgresqlCheckExecute(r ApiCreatePostgresqlCh
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -4659,7 +4623,6 @@ func (a *DefaultAPIService) CreateRabbitmqCheckExecute(r ApiCreateRabbitmqCheckR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4670,7 +4633,6 @@ func (a *DefaultAPIService) CreateRabbitmqCheckExecute(r ApiCreateRabbitmqCheckR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -4812,7 +4774,6 @@ func (a *DefaultAPIService) CreateRedisCheckExecute(r ApiCreateRedisCheckRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4823,7 +4784,6 @@ func (a *DefaultAPIService) CreateRedisCheckExecute(r ApiCreateRedisCheckRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -4965,7 +4925,6 @@ func (a *DefaultAPIService) CreateScrapeConfigExecute(r ApiCreateScrapeConfigReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -4976,7 +4935,6 @@ func (a *DefaultAPIService) CreateScrapeConfigExecute(r ApiCreateScrapeConfigReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -5111,7 +5069,6 @@ func (a *DefaultAPIService) DeleteAlertConfigReceiverExecute(r ApiDeleteAlertCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -5122,7 +5079,6 @@ func (a *DefaultAPIService) DeleteAlertConfigReceiverExecute(r ApiDeleteAlertCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -5257,7 +5213,6 @@ func (a *DefaultAPIService) DeleteAlertConfigRouteExecute(r ApiDeleteAlertConfig
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -5268,7 +5223,6 @@ func (a *DefaultAPIService) DeleteAlertConfigRouteExecute(r ApiDeleteAlertConfig
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -5407,7 +5361,6 @@ func (a *DefaultAPIService) DeleteAlertRecordExecute(r ApiDeleteAlertRecordReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -5418,7 +5371,6 @@ func (a *DefaultAPIService) DeleteAlertRecordExecute(r ApiDeleteAlertRecordReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -5563,7 +5515,6 @@ func (a *DefaultAPIService) DeleteAlertRecordsExecute(r ApiDeleteAlertRecordsReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -5698,7 +5649,6 @@ func (a *DefaultAPIService) DeleteAlertgroupExecute(r ApiDeleteAlertgroupRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -5710,7 +5660,6 @@ func (a *DefaultAPIService) DeleteAlertgroupExecute(r ApiDeleteAlertgroupRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -5721,7 +5670,6 @@ func (a *DefaultAPIService) DeleteAlertgroupExecute(r ApiDeleteAlertgroupRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -5862,7 +5810,6 @@ func (a *DefaultAPIService) DeleteAlertgroupsExecute(r ApiDeleteAlertgroupsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -6001,7 +5948,6 @@ func (a *DefaultAPIService) DeleteAlertruleExecute(r ApiDeleteAlertruleRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -6013,7 +5959,6 @@ func (a *DefaultAPIService) DeleteAlertruleExecute(r ApiDeleteAlertruleRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -6024,7 +5969,6 @@ func (a *DefaultAPIService) DeleteAlertruleExecute(r ApiDeleteAlertruleRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -6169,7 +6113,6 @@ func (a *DefaultAPIService) DeleteAlertrulesExecute(r ApiDeleteAlertrulesRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -6304,7 +6247,6 @@ func (a *DefaultAPIService) DeleteCertCheckExecute(r ApiDeleteCertCheckRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -6315,7 +6257,6 @@ func (a *DefaultAPIService) DeleteCertCheckExecute(r ApiDeleteCertCheckRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -6450,7 +6391,6 @@ func (a *DefaultAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -6462,7 +6402,6 @@ func (a *DefaultAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Message
@@ -6473,7 +6412,6 @@ func (a *DefaultAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -6608,7 +6546,6 @@ func (a *DefaultAPIService) DeleteCredentialsRemoteWriteConfigExecute(r ApiDelet
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -6619,7 +6556,6 @@ func (a *DefaultAPIService) DeleteCredentialsRemoteWriteConfigExecute(r ApiDelet
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -6632,7 +6568,6 @@ func (a *DefaultAPIService) DeleteCredentialsRemoteWriteConfigExecute(r ApiDelet
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
@@ -6643,7 +6578,6 @@ func (a *DefaultAPIService) DeleteCredentialsRemoteWriteConfigExecute(r ApiDelet
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -6778,7 +6712,6 @@ func (a *DefaultAPIService) DeleteElasticsearchCheckExecute(r ApiDeleteElasticse
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -6789,7 +6722,6 @@ func (a *DefaultAPIService) DeleteElasticsearchCheckExecute(r ApiDeleteElasticse
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -6924,7 +6856,6 @@ func (a *DefaultAPIService) DeleteHttpCheckExecute(r ApiDeleteHttpCheckRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -6935,7 +6866,6 @@ func (a *DefaultAPIService) DeleteHttpCheckExecute(r ApiDeleteHttpCheckRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -7065,7 +6995,6 @@ func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -7200,7 +7129,6 @@ func (a *DefaultAPIService) DeleteLogsAlertgroupExecute(r ApiDeleteLogsAlertgrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -7212,7 +7140,6 @@ func (a *DefaultAPIService) DeleteLogsAlertgroupExecute(r ApiDeleteLogsAlertgrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -7223,7 +7150,6 @@ func (a *DefaultAPIService) DeleteLogsAlertgroupExecute(r ApiDeleteLogsAlertgrou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -7358,7 +7284,6 @@ func (a *DefaultAPIService) DeleteMongodbCheckExecute(r ApiDeleteMongodbCheckReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -7369,7 +7294,6 @@ func (a *DefaultAPIService) DeleteMongodbCheckExecute(r ApiDeleteMongodbCheckReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -7504,7 +7428,6 @@ func (a *DefaultAPIService) DeleteMysqlCheckExecute(r ApiDeleteMysqlCheckRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -7515,7 +7438,6 @@ func (a *DefaultAPIService) DeleteMysqlCheckExecute(r ApiDeleteMysqlCheckRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -7650,7 +7572,6 @@ func (a *DefaultAPIService) DeleteNetworkCheckExecute(r ApiDeleteNetworkCheckReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -7661,7 +7582,6 @@ func (a *DefaultAPIService) DeleteNetworkCheckExecute(r ApiDeleteNetworkCheckReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -7796,7 +7716,6 @@ func (a *DefaultAPIService) DeletePingCheckExecute(r ApiDeletePingCheckRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -7807,7 +7726,6 @@ func (a *DefaultAPIService) DeletePingCheckExecute(r ApiDeletePingCheckRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -7942,7 +7860,6 @@ func (a *DefaultAPIService) DeletePostgresqlCheckExecute(r ApiDeletePostgresqlCh
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -7953,7 +7870,6 @@ func (a *DefaultAPIService) DeletePostgresqlCheckExecute(r ApiDeletePostgresqlCh
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -8088,7 +8004,6 @@ func (a *DefaultAPIService) DeleteRabbitmqCheckExecute(r ApiDeleteRabbitmqCheckR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -8099,7 +8014,6 @@ func (a *DefaultAPIService) DeleteRabbitmqCheckExecute(r ApiDeleteRabbitmqCheckR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -8234,7 +8148,6 @@ func (a *DefaultAPIService) DeleteRedisCheckExecute(r ApiDeleteRedisCheckRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -8245,7 +8158,6 @@ func (a *DefaultAPIService) DeleteRedisCheckExecute(r ApiDeleteRedisCheckRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -8380,7 +8292,6 @@ func (a *DefaultAPIService) DeleteScrapeConfigExecute(r ApiDeleteScrapeConfigReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -8391,7 +8302,6 @@ func (a *DefaultAPIService) DeleteScrapeConfigExecute(r ApiDeleteScrapeConfigReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -8532,7 +8442,6 @@ func (a *DefaultAPIService) DeleteScrapeConfigsExecute(r ApiDeleteScrapeConfigsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -8667,7 +8576,6 @@ func (a *DefaultAPIService) GetAlertConfigReceiverExecute(r ApiGetAlertConfigRec
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -8678,7 +8586,6 @@ func (a *DefaultAPIService) GetAlertConfigReceiverExecute(r ApiGetAlertConfigRec
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -8812,7 +8719,6 @@ func (a *DefaultAPIService) GetAlertConfigRouteExecute(r ApiGetAlertConfigRouteR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -8942,7 +8848,6 @@ func (a *DefaultAPIService) GetAlertConfigsExecute(r ApiGetAlertConfigsRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -9081,7 +8986,6 @@ func (a *DefaultAPIService) GetAlertRecordExecute(r ApiGetAlertRecordRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -9093,7 +8997,6 @@ func (a *DefaultAPIService) GetAlertRecordExecute(r ApiGetAlertRecordRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -9104,7 +9007,6 @@ func (a *DefaultAPIService) GetAlertRecordExecute(r ApiGetAlertRecordRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -9239,7 +9141,6 @@ func (a *DefaultAPIService) GetAlertgroupExecute(r ApiGetAlertgroupRequest) (*Al
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -9251,7 +9152,6 @@ func (a *DefaultAPIService) GetAlertgroupExecute(r ApiGetAlertgroupRequest) (*Al
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -9262,7 +9162,6 @@ func (a *DefaultAPIService) GetAlertgroupExecute(r ApiGetAlertgroupRequest) (*Al
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -9401,7 +9300,6 @@ func (a *DefaultAPIService) GetAlertruleExecute(r ApiGetAlertruleRequest) (*Aler
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -9412,7 +9310,6 @@ func (a *DefaultAPIService) GetAlertruleExecute(r ApiGetAlertruleRequest) (*Aler
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -9547,7 +9444,6 @@ func (a *DefaultAPIService) GetCredentialsExecute(r ApiGetCredentialsRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -9558,7 +9454,6 @@ func (a *DefaultAPIService) GetCredentialsExecute(r ApiGetCredentialsRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -9693,7 +9588,6 @@ func (a *DefaultAPIService) GetCredentialsRemoteWriteConfigExecute(r ApiGetCrede
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -9705,7 +9599,6 @@ func (a *DefaultAPIService) GetCredentialsRemoteWriteConfigExecute(r ApiGetCrede
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
@@ -9716,7 +9609,6 @@ func (a *DefaultAPIService) GetCredentialsRemoteWriteConfigExecute(r ApiGetCrede
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -9846,7 +9738,6 @@ func (a *DefaultAPIService) GetGrafanaConfigsExecute(r ApiGetGrafanaConfigsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -9976,7 +9867,6 @@ func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*GetIns
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -10111,7 +10001,6 @@ func (a *DefaultAPIService) GetLogsAlertgroupExecute(r ApiGetLogsAlertgroupReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -10123,7 +10012,6 @@ func (a *DefaultAPIService) GetLogsAlertgroupExecute(r ApiGetLogsAlertgroupReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -10134,7 +10022,6 @@ func (a *DefaultAPIService) GetLogsAlertgroupExecute(r ApiGetLogsAlertgroupReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -10264,7 +10151,6 @@ func (a *DefaultAPIService) GetLogsConfigsExecute(r ApiGetLogsConfigsRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -10394,7 +10280,6 @@ func (a *DefaultAPIService) GetMetricsStorageRetentionExecute(r ApiGetMetricsSto
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -10528,7 +10413,6 @@ func (a *DefaultAPIService) GetScrapeConfigExecute(r ApiGetScrapeConfigRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -10658,7 +10542,6 @@ func (a *DefaultAPIService) GetTracesConfigsExecute(r ApiGetTracesConfigsRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -10788,7 +10671,6 @@ func (a *DefaultAPIService) ListACLExecute(r ApiListACLRequest) (*ListACLRespons
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -10918,7 +10800,6 @@ func (a *DefaultAPIService) ListAlertConfigReceiversExecute(r ApiListAlertConfig
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -11048,7 +10929,6 @@ func (a *DefaultAPIService) ListAlertConfigRoutesExecute(r ApiListAlertConfigRou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -11182,7 +11062,6 @@ func (a *DefaultAPIService) ListAlertRecordsExecute(r ApiListAlertRecordsRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -11313,7 +11192,6 @@ func (a *DefaultAPIService) ListAlertgroupsExecute(r ApiListAlertgroupsRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -11324,7 +11202,6 @@ func (a *DefaultAPIService) ListAlertgroupsExecute(r ApiListAlertgroupsRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -11458,7 +11335,6 @@ func (a *DefaultAPIService) ListAlertrulesExecute(r ApiListAlertrulesRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -11588,7 +11464,6 @@ func (a *DefaultAPIService) ListBackupRetentionsExecute(r ApiListBackupRetention
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -11728,7 +11603,6 @@ func (a *DefaultAPIService) ListBackupSchedulesExecute(r ApiListBackupSchedulesR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -11869,7 +11743,6 @@ func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*Backup
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
@@ -11880,7 +11753,6 @@ func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*Backup
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12011,7 +11883,6 @@ func (a *DefaultAPIService) ListCertChecksExecute(r ApiListCertChecksRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -12022,7 +11893,6 @@ func (a *DefaultAPIService) ListCertChecksExecute(r ApiListCertChecksRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12152,7 +12022,6 @@ func (a *DefaultAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12283,7 +12152,6 @@ func (a *DefaultAPIService) ListElasticsearchChecksExecute(r ApiListElasticsearc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -12294,7 +12162,6 @@ func (a *DefaultAPIService) ListElasticsearchChecksExecute(r ApiListElasticsearc
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12425,7 +12292,6 @@ func (a *DefaultAPIService) ListHttpChecksExecute(r ApiListHttpChecksRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -12436,7 +12302,6 @@ func (a *DefaultAPIService) ListHttpChecksExecute(r ApiListHttpChecksRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12562,7 +12427,6 @@ func (a *DefaultAPIService) ListInstancesExecute(r ApiListInstancesRequest) (*Li
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12693,7 +12557,6 @@ func (a *DefaultAPIService) ListLogsAlertgroupsExecute(r ApiListLogsAlertgroupsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -12704,7 +12567,6 @@ func (a *DefaultAPIService) ListLogsAlertgroupsExecute(r ApiListLogsAlertgroupsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12835,7 +12697,6 @@ func (a *DefaultAPIService) ListMongodbChecksExecute(r ApiListMongodbChecksReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -12846,7 +12707,6 @@ func (a *DefaultAPIService) ListMongodbChecksExecute(r ApiListMongodbChecksReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -12977,7 +12837,6 @@ func (a *DefaultAPIService) ListMysqlChecksExecute(r ApiListMysqlChecksRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -12988,7 +12847,6 @@ func (a *DefaultAPIService) ListMysqlChecksExecute(r ApiListMysqlChecksRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -13119,7 +12977,6 @@ func (a *DefaultAPIService) ListNetworkChecksExecute(r ApiListNetworkChecksReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -13130,7 +12987,6 @@ func (a *DefaultAPIService) ListNetworkChecksExecute(r ApiListNetworkChecksReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -13256,7 +13112,6 @@ func (a *DefaultAPIService) ListOfferingsExecute(r ApiListOfferingsRequest) (*Of
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -13387,7 +13242,6 @@ func (a *DefaultAPIService) ListPingChecksExecute(r ApiListPingChecksRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -13398,7 +13252,6 @@ func (a *DefaultAPIService) ListPingChecksExecute(r ApiListPingChecksRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -13524,7 +13377,6 @@ func (a *DefaultAPIService) ListPlansExecute(r ApiListPlansRequest) (*PlansRespo
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -13655,7 +13507,6 @@ func (a *DefaultAPIService) ListPostgresqlChecksExecute(r ApiListPostgresqlCheck
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -13666,7 +13517,6 @@ func (a *DefaultAPIService) ListPostgresqlChecksExecute(r ApiListPostgresqlCheck
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -13797,7 +13647,6 @@ func (a *DefaultAPIService) ListRabbitmqChecksExecute(r ApiListRabbitmqChecksReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -13808,7 +13657,6 @@ func (a *DefaultAPIService) ListRabbitmqChecksExecute(r ApiListRabbitmqChecksReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -13939,7 +13787,6 @@ func (a *DefaultAPIService) ListRedisChecksExecute(r ApiListRedisChecksRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -13950,7 +13797,6 @@ func (a *DefaultAPIService) ListRedisChecksExecute(r ApiListRedisChecksRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -14080,7 +13926,6 @@ func (a *DefaultAPIService) ListScrapeConfigsExecute(r ApiListScrapeConfigsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -14226,7 +14071,6 @@ func (a *DefaultAPIService) PartialUpdateAlertRecordsExecute(r ApiPartialUpdateA
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -14237,7 +14081,6 @@ func (a *DefaultAPIService) PartialUpdateAlertRecordsExecute(r ApiPartialUpdateA
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -14379,7 +14222,6 @@ func (a *DefaultAPIService) PartialUpdateAlertgroupsExecute(r ApiPartialUpdateAl
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -14390,7 +14232,6 @@ func (a *DefaultAPIService) PartialUpdateAlertgroupsExecute(r ApiPartialUpdateAl
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -14536,7 +14377,6 @@ func (a *DefaultAPIService) PartialUpdateAlertrulesExecute(r ApiPartialUpdateAle
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -14547,7 +14387,6 @@ func (a *DefaultAPIService) PartialUpdateAlertrulesExecute(r ApiPartialUpdateAle
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -14689,7 +14528,6 @@ func (a *DefaultAPIService) PartialUpdateScrapeConfigsExecute(r ApiPartialUpdate
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -14700,7 +14538,6 @@ func (a *DefaultAPIService) PartialUpdateScrapeConfigsExecute(r ApiPartialUpdate
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -14846,7 +14683,6 @@ func (a *DefaultAPIService) RestoreBackupExecute(r ApiRestoreBackupRequest) (*Me
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -14857,7 +14693,6 @@ func (a *DefaultAPIService) RestoreBackupExecute(r ApiRestoreBackupRequest) (*Me
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -14996,7 +14831,6 @@ func (a *DefaultAPIService) UpdateACLExecute(r ApiUpdateACLRequest) (*Message, e
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -15007,7 +14841,6 @@ func (a *DefaultAPIService) UpdateACLExecute(r ApiUpdateACLRequest) (*Message, e
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -15153,7 +14986,6 @@ func (a *DefaultAPIService) UpdateAlertConfigReceiverExecute(r ApiUpdateAlertCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -15165,7 +14997,6 @@ func (a *DefaultAPIService) UpdateAlertConfigReceiverExecute(r ApiUpdateAlertCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -15176,7 +15007,6 @@ func (a *DefaultAPIService) UpdateAlertConfigReceiverExecute(r ApiUpdateAlertCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -15322,7 +15152,6 @@ func (a *DefaultAPIService) UpdateAlertConfigRouteExecute(r ApiUpdateAlertConfig
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -15334,7 +15163,6 @@ func (a *DefaultAPIService) UpdateAlertConfigRouteExecute(r ApiUpdateAlertConfig
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -15345,7 +15173,6 @@ func (a *DefaultAPIService) UpdateAlertConfigRouteExecute(r ApiUpdateAlertConfig
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -15487,7 +15314,6 @@ func (a *DefaultAPIService) UpdateAlertConfigsExecute(r ApiUpdateAlertConfigsReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -15498,7 +15324,6 @@ func (a *DefaultAPIService) UpdateAlertConfigsExecute(r ApiUpdateAlertConfigsReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -15648,7 +15473,6 @@ func (a *DefaultAPIService) UpdateAlertRecordExecute(r ApiUpdateAlertRecordReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -15660,7 +15484,6 @@ func (a *DefaultAPIService) UpdateAlertRecordExecute(r ApiUpdateAlertRecordReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -15671,7 +15494,6 @@ func (a *DefaultAPIService) UpdateAlertRecordExecute(r ApiUpdateAlertRecordReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -15817,7 +15639,6 @@ func (a *DefaultAPIService) UpdateAlertgroupExecute(r ApiUpdateAlertgroupRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -15829,7 +15650,6 @@ func (a *DefaultAPIService) UpdateAlertgroupExecute(r ApiUpdateAlertgroupRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -15840,7 +15660,6 @@ func (a *DefaultAPIService) UpdateAlertgroupExecute(r ApiUpdateAlertgroupRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -15982,7 +15801,6 @@ func (a *DefaultAPIService) UpdateAlertgroupsExecute(r ApiUpdateAlertgroupsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -15993,7 +15811,6 @@ func (a *DefaultAPIService) UpdateAlertgroupsExecute(r ApiUpdateAlertgroupsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -16143,7 +15960,6 @@ func (a *DefaultAPIService) UpdateAlertruleExecute(r ApiUpdateAlertruleRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -16155,7 +15971,6 @@ func (a *DefaultAPIService) UpdateAlertruleExecute(r ApiUpdateAlertruleRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -16166,7 +15981,6 @@ func (a *DefaultAPIService) UpdateAlertruleExecute(r ApiUpdateAlertruleRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -16312,7 +16126,6 @@ func (a *DefaultAPIService) UpdateCredentialsRemoteWriteConfigExecute(r ApiUpdat
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -16323,7 +16136,6 @@ func (a *DefaultAPIService) UpdateCredentialsRemoteWriteConfigExecute(r ApiUpdat
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -16336,7 +16148,6 @@ func (a *DefaultAPIService) UpdateCredentialsRemoteWriteConfigExecute(r ApiUpdat
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 502 {
 			var v Message
@@ -16347,7 +16158,6 @@ func (a *DefaultAPIService) UpdateCredentialsRemoteWriteConfigExecute(r ApiUpdat
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -16489,7 +16299,6 @@ func (a *DefaultAPIService) UpdateGrafanaConfigsExecute(r ApiUpdateGrafanaConfig
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -16500,7 +16309,6 @@ func (a *DefaultAPIService) UpdateGrafanaConfigsExecute(r ApiUpdateGrafanaConfig
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -16642,7 +16450,6 @@ func (a *DefaultAPIService) UpdateInstanceExecute(r ApiUpdateInstanceRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -16653,7 +16460,6 @@ func (a *DefaultAPIService) UpdateInstanceExecute(r ApiUpdateInstanceRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -16799,7 +16605,6 @@ func (a *DefaultAPIService) UpdateLogsAlertgroupExecute(r ApiUpdateLogsAlertgrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -16811,7 +16616,6 @@ func (a *DefaultAPIService) UpdateLogsAlertgroupExecute(r ApiUpdateLogsAlertgrou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -16822,7 +16626,6 @@ func (a *DefaultAPIService) UpdateLogsAlertgroupExecute(r ApiUpdateLogsAlertgrou
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -16964,7 +16767,6 @@ func (a *DefaultAPIService) UpdateLogsConfigsExecute(r ApiUpdateLogsConfigsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -16975,7 +16777,6 @@ func (a *DefaultAPIService) UpdateLogsConfigsExecute(r ApiUpdateLogsConfigsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -17117,7 +16918,6 @@ func (a *DefaultAPIService) UpdateMetricsStorageRetentionExecute(r ApiUpdateMetr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -17128,7 +16928,6 @@ func (a *DefaultAPIService) UpdateMetricsStorageRetentionExecute(r ApiUpdateMetr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -17274,7 +17073,6 @@ func (a *DefaultAPIService) UpdateScrapeConfigExecute(r ApiUpdateScrapeConfigReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -17286,7 +17084,6 @@ func (a *DefaultAPIService) UpdateScrapeConfigExecute(r ApiUpdateScrapeConfigReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Message
@@ -17297,7 +17094,6 @@ func (a *DefaultAPIService) UpdateScrapeConfigExecute(r ApiUpdateScrapeConfigReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -17439,7 +17235,6 @@ func (a *DefaultAPIService) UpdateTracesConfigsExecute(r ApiUpdateTracesConfigsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v PermissionDenied
@@ -17450,7 +17245,6 @@ func (a *DefaultAPIService) UpdateTracesConfigsExecute(r ApiUpdateTracesConfigsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
