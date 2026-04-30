@@ -387,7 +387,6 @@ func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -397,7 +396,6 @@ func (a *DefaultAPIService) CreateCredentialsExecute(r ApiCreateCredentialsReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -549,7 +547,6 @@ func (a *DefaultAPIService) CreateLoadBalancerExecute(r ApiCreateLoadBalancerReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -559,7 +556,6 @@ func (a *DefaultAPIService) CreateLoadBalancerExecute(r ApiCreateLoadBalancerReq
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -693,7 +689,6 @@ func (a *DefaultAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -703,7 +698,6 @@ func (a *DefaultAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -837,7 +831,6 @@ func (a *DefaultAPIService) DeleteLoadBalancerExecute(r ApiDeleteLoadBalancerReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -847,7 +840,6 @@ func (a *DefaultAPIService) DeleteLoadBalancerExecute(r ApiDeleteLoadBalancerReq
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -981,7 +973,6 @@ func (a *DefaultAPIService) GetCredentialsExecute(r ApiGetCredentialsRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -991,7 +982,6 @@ func (a *DefaultAPIService) GetCredentialsExecute(r ApiGetCredentialsRequest) (*
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1127,7 +1117,6 @@ func (a *DefaultAPIService) GetLoadBalancerExecute(r ApiGetLoadBalancerRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1137,7 +1126,6 @@ func (a *DefaultAPIService) GetLoadBalancerExecute(r ApiGetLoadBalancerRequest) 
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1267,7 +1255,6 @@ func (a *DefaultAPIService) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1277,7 +1264,6 @@ func (a *DefaultAPIService) GetQuotaExecute(r ApiGetQuotaRequest) (*GetQuotaResp
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1407,7 +1393,6 @@ func (a *DefaultAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1417,7 +1402,6 @@ func (a *DefaultAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) 
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1569,7 +1553,6 @@ func (a *DefaultAPIService) ListLoadBalancersExecute(r ApiListLoadBalancersReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1579,7 +1562,6 @@ func (a *DefaultAPIService) ListLoadBalancersExecute(r ApiListLoadBalancersReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1705,7 +1687,6 @@ func (a *DefaultAPIService) ListPlansExecute(r ApiListPlansRequest) (*ListPlansR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1715,7 +1696,6 @@ func (a *DefaultAPIService) ListPlansExecute(r ApiListPlansRequest) (*ListPlansR
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1860,7 +1840,6 @@ func (a *DefaultAPIService) UpdateCredentialsExecute(r ApiUpdateCredentialsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1870,7 +1849,6 @@ func (a *DefaultAPIService) UpdateCredentialsExecute(r ApiUpdateCredentialsReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2018,7 +1996,6 @@ func (a *DefaultAPIService) UpdateLoadBalancerExecute(r ApiUpdateLoadBalancerReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2028,7 +2005,6 @@ func (a *DefaultAPIService) UpdateLoadBalancerExecute(r ApiUpdateLoadBalancerReq
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2180,7 +2156,6 @@ func (a *DefaultAPIService) UpdateTargetPoolExecute(r ApiUpdateTargetPoolRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2190,7 +2165,6 @@ func (a *DefaultAPIService) UpdateTargetPoolExecute(r ApiUpdateTargetPoolRequest
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
