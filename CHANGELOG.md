@@ -351,6 +351,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.5.2](services/serviceenablement/CHANGELOG.md#v152)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.5.3](services/serviceenablement/CHANGELOG.md#v153)
+    - `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
 - `sfs`:
   - [v0.6.3](services/sfs/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
