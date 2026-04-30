@@ -1,3 +1,6 @@
+## v1.5.3
+- `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
+
 ## v1.5.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 

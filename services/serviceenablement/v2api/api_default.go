@@ -206,7 +206,6 @@ func (a *DefaultAPIService) DisableServiceRegionalExecute(r ApiDisableServiceReg
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -217,7 +216,6 @@ func (a *DefaultAPIService) DisableServiceRegionalExecute(r ApiDisableServiceReg
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -340,7 +338,6 @@ func (a *DefaultAPIService) EnableServiceRegionalExecute(r ApiEnableServiceRegio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -351,7 +348,6 @@ func (a *DefaultAPIService) EnableServiceRegionalExecute(r ApiEnableServiceRegio
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -477,7 +473,6 @@ func (a *DefaultAPIService) GetServiceStatusRegionalExecute(r ApiGetServiceStatu
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -488,7 +483,6 @@ func (a *DefaultAPIService) GetServiceStatusRegionalExecute(r ApiGetServiceStatu
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -629,7 +623,6 @@ func (a *DefaultAPIService) ListServiceStatusRegionalExecute(r ApiListServiceSta
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -640,7 +633,6 @@ func (a *DefaultAPIService) ListServiceStatusRegionalExecute(r ApiListServiceSta
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
