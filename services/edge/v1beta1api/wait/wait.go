@@ -104,7 +104,8 @@ func kubeconfigWaitHandlerHelper(ctx context.Context, checkInstance func(ctx con
 			}
 			config, err := getKubeconfig(ctx)
 			if err != nil {
-				if apiErr, ok := errors.AsType[*oapierror.GenericOpenAPIError](err); ok && apiErr.StatusCode == http.StatusNotFound {
+				var apiErr *oapierror.GenericOpenAPIError
+				if ok := errors.As(err, &apiErr); ok && apiErr.StatusCode == http.StatusNotFound {
 					return nil, nil
 				}
 			}
@@ -165,7 +166,8 @@ func tokenWaitHandlerHelper(ctx context.Context, checkInstance func(ctx context.
 			}
 			token, err := getToken(ctx)
 			if err != nil {
-				if apiErr, ok := errors.AsType[*oapierror.GenericOpenAPIError](err); ok && apiErr.StatusCode == http.StatusNotFound {
+				var apiErr *oapierror.GenericOpenAPIError
+				if ok := errors.As(err, &apiErr); ok && apiErr.StatusCode == http.StatusNotFound {
 					return nil, nil
 				}
 			}
