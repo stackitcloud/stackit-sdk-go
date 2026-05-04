@@ -124,6 +124,8 @@
   - [v1.11.0](services/iaas/CHANGELOG.md#v1110)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.1` to `v0.22.2`
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.11.1](services/iaas/CHANGELOG.md#v1111)
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.2` to `v0.23.0`
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
