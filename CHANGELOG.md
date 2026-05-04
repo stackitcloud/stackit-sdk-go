@@ -342,6 +342,11 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.18.2](services/serviceaccount/CHANGELOG.md#v0182)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.19.0](services/serviceaccount/CHANGELOG.md#v0190)
+    - `v2api`:
+      - **Feature:**: New API client method `GetFederatedIdentityProvider`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:**: New API client method `GetFederatedIdentityProvider`
 - `serviceenablement`:
   - [v1.4.3](services/serviceenablement/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
