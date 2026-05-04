@@ -413,7 +413,6 @@ func (a *DefaultAPIService) CreateAuthenticationExecute(r ApiCreateAuthenticatio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedErrorResponse
@@ -424,7 +423,6 @@ func (a *DefaultAPIService) CreateAuthenticationExecute(r ApiCreateAuthenticatio
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -437,7 +435,6 @@ func (a *DefaultAPIService) CreateAuthenticationExecute(r ApiCreateAuthenticatio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ConflictErrorResponse
@@ -449,7 +446,6 @@ func (a *DefaultAPIService) CreateAuthenticationExecute(r ApiCreateAuthenticatio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
@@ -460,7 +456,6 @@ func (a *DefaultAPIService) CreateAuthenticationExecute(r ApiCreateAuthenticatio
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -605,7 +600,6 @@ func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v GenericErrorResponse
@@ -617,7 +611,6 @@ func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -628,7 +621,6 @@ func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -783,7 +775,6 @@ func (a *DefaultAPIService) CreateRunnerExecute(r ApiCreateRunnerRequest) (*Runn
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v AlreadyExistsError
@@ -795,7 +786,6 @@ func (a *DefaultAPIService) CreateRunnerExecute(r ApiCreateRunnerRequest) (*Runn
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -806,7 +796,6 @@ func (a *DefaultAPIService) CreateRunnerExecute(r ApiCreateRunnerRequest) (*Runn
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -956,7 +945,6 @@ func (a *DefaultAPIService) DeleteAuthenticationExecute(r ApiDeleteAuthenticatio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedErrorResponse
@@ -967,7 +955,6 @@ func (a *DefaultAPIService) DeleteAuthenticationExecute(r ApiDeleteAuthenticatio
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -980,7 +967,6 @@ func (a *DefaultAPIService) DeleteAuthenticationExecute(r ApiDeleteAuthenticatio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v GenericErrorResponse
@@ -992,7 +978,6 @@ func (a *DefaultAPIService) DeleteAuthenticationExecute(r ApiDeleteAuthenticatio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -1003,7 +988,6 @@ func (a *DefaultAPIService) DeleteAuthenticationExecute(r ApiDeleteAuthenticatio
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1133,7 +1117,6 @@ func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) er
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v GenericErrorResponse
@@ -1144,7 +1127,6 @@ func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) er
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -1157,7 +1139,6 @@ func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) er
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -1168,7 +1149,6 @@ func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) er
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1298,7 +1278,6 @@ func (a *DefaultAPIService) DeleteRunnerExecute(r ApiDeleteRunnerRequest) error 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -1309,7 +1288,6 @@ func (a *DefaultAPIService) DeleteRunnerExecute(r ApiDeleteRunnerRequest) error 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1452,7 +1430,6 @@ func (a *DefaultAPIService) GetAuthenticationExecute(r ApiGetAuthenticationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedErrorResponse
@@ -1464,7 +1441,6 @@ func (a *DefaultAPIService) GetAuthenticationExecute(r ApiGetAuthenticationReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
@@ -1475,7 +1451,6 @@ func (a *DefaultAPIService) GetAuthenticationExecute(r ApiGetAuthenticationReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1618,7 +1593,6 @@ func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*Instan
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v GenericErrorResponse
@@ -1630,7 +1604,6 @@ func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*Instan
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -1641,7 +1614,6 @@ func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*Instan
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1784,7 +1756,6 @@ func (a *DefaultAPIService) GetRunnerExecute(r ApiGetRunnerRequest) (*Runner, er
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -1795,7 +1766,6 @@ func (a *DefaultAPIService) GetRunnerExecute(r ApiGetRunnerRequest) (*Runner, er
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1938,7 +1908,6 @@ func (a *DefaultAPIService) ListAuthenticationExecute(r ApiListAuthenticationReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedErrorResponse
@@ -1950,7 +1919,6 @@ func (a *DefaultAPIService) ListAuthenticationExecute(r ApiListAuthenticationReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
@@ -1961,7 +1929,6 @@ func (a *DefaultAPIService) ListAuthenticationExecute(r ApiListAuthenticationReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2094,7 +2061,6 @@ func (a *DefaultAPIService) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFl
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -2105,7 +2071,6 @@ func (a *DefaultAPIService) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFl
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2238,7 +2203,6 @@ func (a *DefaultAPIService) ListInstancesExecute(r ApiListInstancesRequest) (*Li
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -2249,7 +2213,6 @@ func (a *DefaultAPIService) ListInstancesExecute(r ApiListInstancesRequest) (*Li
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2382,7 +2345,6 @@ func (a *DefaultAPIService) ListRunnerRuntimesExecute(r ApiListRunnerRuntimesReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v GenericErrorResponse
@@ -2394,7 +2356,6 @@ func (a *DefaultAPIService) ListRunnerRuntimesExecute(r ApiListRunnerRuntimesReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -2405,7 +2366,6 @@ func (a *DefaultAPIService) ListRunnerRuntimesExecute(r ApiListRunnerRuntimesReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2570,7 +2530,6 @@ func (a *DefaultAPIService) PatchAuthenticationExecute(r ApiPatchAuthenticationR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v UnauthorizedErrorResponse
@@ -2581,7 +2540,6 @@ func (a *DefaultAPIService) PatchAuthenticationExecute(r ApiPatchAuthenticationR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2594,7 +2552,6 @@ func (a *DefaultAPIService) PatchAuthenticationExecute(r ApiPatchAuthenticationR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InternalServerErrorResponse
@@ -2605,7 +2562,6 @@ func (a *DefaultAPIService) PatchAuthenticationExecute(r ApiPatchAuthenticationR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2759,7 +2715,6 @@ func (a *DefaultAPIService) PatchInstanceExecute(r ApiPatchInstanceRequest) (*In
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericErrorResponse
@@ -2770,7 +2725,6 @@ func (a *DefaultAPIService) PatchInstanceExecute(r ApiPatchInstanceRequest) (*In
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
