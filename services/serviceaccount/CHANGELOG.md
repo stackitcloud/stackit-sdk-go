@@ -1,3 +1,7 @@
+## v0.19.0
+- `v2api`:
+  - **Feature:**: New method `GetFederatedIdentityProvider`
+
 ## v0.18.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 
