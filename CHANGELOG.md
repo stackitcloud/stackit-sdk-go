@@ -435,6 +435,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v0.6.0](services/vpn/CHANGELOG.md#v060)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.7.0](services/vpn/CHANGELOG.md#v070)
+    - **Feature:** Add new wait handlers for gateway creation, update (`CreateOrUpdateGatewayWaitHandler`), and gateway deletion (`DeleteGatewayWaitHandler`)
 
 
 ## Release (2026-04-07)
