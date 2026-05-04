@@ -357,7 +357,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -499,7 +498,6 @@ func (a *DefaultAPIService) CreateLogsInstanceExecute(r ApiCreateLogsInstanceReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -635,7 +633,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -759,7 +756,6 @@ func (a *DefaultAPIService) DeleteAllAccessTokensExecute(r ApiDeleteAllAccessTok
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -895,7 +891,6 @@ func (a *DefaultAPIService) DeleteAllExpiredAccessTokensExecute(r ApiDeleteAllEx
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1027,7 +1022,6 @@ func (a *DefaultAPIService) DeleteLogsInstanceExecute(r ApiDeleteLogsInstanceReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -1155,7 +1149,6 @@ func (a *DefaultAPIService) GetAccessTokenExecute(r ApiGetAccessTokenRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1291,7 +1284,6 @@ func (a *DefaultAPIService) GetLogsInstanceExecute(r ApiGetLogsInstanceRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1426,7 +1418,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1556,7 +1547,6 @@ func (a *DefaultAPIService) ListLogsInstancesExecute(r ApiListLogsInstancesReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1704,7 +1694,6 @@ func (a *DefaultAPIService) UpdateAccessTokenExecute(r ApiUpdateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -1839,7 +1828,6 @@ func (a *DefaultAPIService) UpdateLogsInstanceExecute(r ApiUpdateLogsInstanceReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
