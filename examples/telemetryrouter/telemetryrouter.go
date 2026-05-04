@@ -163,7 +163,7 @@ func main() {
 					Secret: "secret",
 				},
 				Bucket:   "bucket",
-				Endpoint: "https://bucket.endpoint.com",
+				Endpoint: "https://portal.stackit.cloud/",
 			},
 		},
 	}
@@ -206,7 +206,7 @@ func main() {
 					Secret: "secret",
 				},
 				Bucket:   "bucket",
-				Endpoint: "https://bucket.endpoint.com",
+				Endpoint: "https://portal.stackit.cloud/",
 			},
 			Filter: &telemetryrouter.ConfigFilter{
 				Attributes: []telemetryrouter.ConfigFilterAttributes{
@@ -258,7 +258,7 @@ func main() {
 					Password: "password",
 					Username: "user",
 				},
-				Uri: "https://otlp.endpoint.com/v1/logs",
+				Uri: "https://portal.stackit.cloud/v1/logs",
 			},
 		},
 	}
@@ -300,7 +300,7 @@ func main() {
 					Username: "user1",
 					Password: "pass",
 				},
-				Uri: "https://otlp.endpoint.com/v1/logs",
+				Uri: "https://portal.stackit.cloud/v1/logs",
 			},
 			Filter: &telemetryrouter.ConfigFilter{
 				Attributes: []telemetryrouter.ConfigFilterAttributes{
