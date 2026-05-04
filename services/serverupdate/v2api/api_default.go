@@ -330,7 +330,6 @@ func (a *DefaultAPIService) CreateUpdateExecute(r ApiCreateUpdateRequest) (*Upda
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -471,7 +470,6 @@ func (a *DefaultAPIService) CreateUpdateScheduleExecute(r ApiCreateUpdateSchedul
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -605,7 +603,6 @@ func (a *DefaultAPIService) DeleteUpdateScheduleExecute(r ApiDeleteUpdateSchedul
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -724,7 +721,6 @@ func (a *DefaultAPIService) DisableServiceResourceExecute(r ApiDisableServiceRes
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -853,7 +849,6 @@ func (a *DefaultAPIService) EnableServiceResourceExecute(r ApiEnableServiceResou
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -975,7 +970,6 @@ func (a *DefaultAPIService) GetServiceResourceExecute(r ApiGetServiceResourceReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1113,7 +1107,6 @@ func (a *DefaultAPIService) GetUpdateExecute(r ApiGetUpdateRequest) (*Update, er
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1250,7 +1243,6 @@ func (a *DefaultAPIService) GetUpdateScheduleExecute(r ApiGetUpdateScheduleReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1374,7 +1366,6 @@ func (a *DefaultAPIService) ListUpdatePoliciesExecute(r ApiListUpdatePoliciesReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1508,7 +1499,6 @@ func (a *DefaultAPIService) ListUpdateSchedulesExecute(r ApiListUpdateSchedulesR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1640,7 +1630,6 @@ func (a *DefaultAPIService) ListUpdatesExecute(r ApiListUpdatesRequest) (*GetUpd
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1785,7 +1774,6 @@ func (a *DefaultAPIService) UpdateUpdateScheduleExecute(r ApiUpdateUpdateSchedul
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr

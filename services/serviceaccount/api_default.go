@@ -212,6 +212,31 @@ type DefaultApi interface {
 	*/
 	DeleteServiceFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) error
 	/*
+		GetFederatedIdentityProvider Get a service account Federated Identity Provider
+		Get a Federated Identity Provider of the service account by its ID.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param federationId ID of the Federated Identity Provider.
+		@return ApiGetFederatedIdentityProviderRequest
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiGetFederatedIdentityProviderRequest
+	/*
+		GetFederatedIdentityProviderExecute executes the request
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param federationId ID of the Federated Identity Provider.
+		@return FederatedIdentityProvider
+
+		// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	*/
+	GetFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*FederatedIdentityProvider, error)
+	/*
 		GetJWKS Get JSON Web Key set of the service account
 		Get JSON Web Key set of the service account
 
@@ -472,6 +497,12 @@ type ApiDeleteServiceAccountKeyRequest interface {
 type ApiDeleteServiceFederatedIdentityProviderRequest interface {
 	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 	Execute() error
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type ApiGetFederatedIdentityProviderRequest interface {
+	// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+	Execute() (*FederatedIdentityProvider, error)
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
@@ -2093,6 +2124,194 @@ func (a *APIClient) DeleteServiceFederatedIdentityProvider(ctx context.Context, 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (a *APIClient) DeleteServiceFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) error {
 	r := DeleteServiceFederatedIdentityProviderRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
+	}
+	return r.Execute()
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetFederatedIdentityProviderRequest struct {
+	ctx                 context.Context
+	apiService          *DefaultApiService
+	projectId           string
+	serviceAccountEmail string
+	federationId        string
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (r GetFederatedIdentityProviderRequest) Execute() (*FederatedIdentityProvider, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FederatedIdentityProvider
+	)
+	a := r.apiService
+	client, ok := a.client.(*APIClient)
+	if !ok {
+		return localVarReturnValue, fmt.Errorf("could not parse client to type APIClient")
+	}
+	localBasePath, err := client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.GetFederatedIdentityProvider")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/federations/{federationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(ParameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(ParameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"federationId"+"}", url.PathEscape(ParameterValueToString(r.federationId, "federationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v AuthError
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
+/*
+GetFederatedIdentityProvider: Get a service account Federated Identity Provider
+
+Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The ID of the project.
+	@param serviceAccountEmail The email of the service account.
+	@param federationId ID of the Federated Identity Provider.
+	@return ApiGetFederatedIdentityProviderRequest
+*/
+func (a *APIClient) GetFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiGetFederatedIdentityProviderRequest {
+	return GetFederatedIdentityProviderRequest{
+		apiService:          a.defaultApi,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
+	}
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (a *APIClient) GetFederatedIdentityProviderExecute(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) (*FederatedIdentityProvider, error) {
+	r := GetFederatedIdentityProviderRequest{
 		apiService:          a.defaultApi,
 		ctx:                 ctx,
 		projectId:           projectId,

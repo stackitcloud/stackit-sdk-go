@@ -591,7 +591,6 @@ func (a *DefaultAPIService) CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -729,7 +728,6 @@ func (a *DefaultAPIService) CreateInstanceExecute(r ApiCreateInstanceRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -873,7 +871,6 @@ func (a *DefaultAPIService) CreateUserExecute(r ApiCreateUserRequest) (*CreateUs
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1005,7 +1002,6 @@ func (a *DefaultAPIService) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) er
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		return newErr
 	}
@@ -1122,7 +1118,6 @@ func (a *DefaultAPIService) DeleteInstanceExecute(r ApiDeleteInstanceRequest) er
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -1244,7 +1239,6 @@ func (a *DefaultAPIService) DeleteUserExecute(r ApiDeleteUserRequest) error {
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		return newErr
@@ -1369,7 +1363,6 @@ func (a *DefaultAPIService) GetBackupExecute(r ApiGetBackupRequest) (*GetBackupR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1505,7 +1498,6 @@ func (a *DefaultAPIService) GetDatabaseExecute(r ApiGetDatabaseRequest) (*GetDat
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1635,7 +1627,6 @@ func (a *DefaultAPIService) GetInstanceExecute(r ApiGetInstanceRequest) (*GetIns
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -1771,7 +1762,6 @@ func (a *DefaultAPIService) GetUserExecute(r ApiGetUserRequest) (*GetUserRespons
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v InstanceError
@@ -1783,7 +1773,6 @@ func (a *DefaultAPIService) GetUserExecute(r ApiGetUserRequest) (*GetUserRespons
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InstanceError
@@ -1794,7 +1783,6 @@ func (a *DefaultAPIService) GetUserExecute(r ApiGetUserRequest) (*GetUserRespons
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1924,7 +1912,6 @@ func (a *DefaultAPIService) ListBackupsExecute(r ApiListBackupsRequest) (*ListBa
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2056,7 +2043,6 @@ func (a *DefaultAPIService) ListCollationsExecute(r ApiListCollationsRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
 			var v InstanceError
@@ -2068,7 +2054,6 @@ func (a *DefaultAPIService) ListCollationsExecute(r ApiListCollationsRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InstanceError
@@ -2079,7 +2064,6 @@ func (a *DefaultAPIService) ListCollationsExecute(r ApiListCollationsRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2210,7 +2194,6 @@ func (a *DefaultAPIService) ListCompatibilityExecute(r ApiListCompatibilityReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
 			var v InstanceError
@@ -2222,7 +2205,6 @@ func (a *DefaultAPIService) ListCompatibilityExecute(r ApiListCompatibilityReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InstanceError
@@ -2233,7 +2215,6 @@ func (a *DefaultAPIService) ListCompatibilityExecute(r ApiListCompatibilityReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2364,7 +2345,6 @@ func (a *DefaultAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*Li
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2491,7 +2471,6 @@ func (a *DefaultAPIService) ListFlavorsExecute(r ApiListFlavorsRequest) (*ListFl
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2617,7 +2596,6 @@ func (a *DefaultAPIService) ListInstancesExecute(r ApiListInstancesRequest) (*Li
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -2794,7 +2772,6 @@ func (a *DefaultAPIService) ListMetricsExecute(r ApiListMetricsRequest) (*ListMe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
 			var v InstanceError
@@ -2806,7 +2783,6 @@ func (a *DefaultAPIService) ListMetricsExecute(r ApiListMetricsRequest) (*ListMe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InstanceError
@@ -2817,7 +2793,6 @@ func (a *DefaultAPIService) ListMetricsExecute(r ApiListMetricsRequest) (*ListMe
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2947,7 +2922,6 @@ func (a *DefaultAPIService) ListRestoreJobsExecute(r ApiListRestoreJobsRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -3079,7 +3053,6 @@ func (a *DefaultAPIService) ListRolesExecute(r ApiListRolesRequest) (*ListRolesR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3210,7 +3183,6 @@ func (a *DefaultAPIService) ListStoragesExecute(r ApiListStoragesRequest) (*List
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3340,7 +3312,6 @@ func (a *DefaultAPIService) ListUsersExecute(r ApiListUsersRequest) (*ListUsersR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -3477,7 +3448,6 @@ func (a *DefaultAPIService) ListVersionsExecute(r ApiListVersionsRequest) (*List
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
@@ -3623,7 +3593,6 @@ func (a *DefaultAPIService) PartialUpdateInstanceExecute(r ApiPartialUpdateInsta
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3758,7 +3727,6 @@ func (a *DefaultAPIService) ResetUserExecute(r ApiResetUserRequest) (*ResetUserR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v InstanceError
@@ -3770,7 +3738,6 @@ func (a *DefaultAPIService) ResetUserExecute(r ApiResetUserRequest) (*ResetUserR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InstanceError
@@ -3781,7 +3748,6 @@ func (a *DefaultAPIService) ResetUserExecute(r ApiResetUserRequest) (*ResetUserR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3913,7 +3879,6 @@ func (a *DefaultAPIService) TriggerDatabaseBackupExecute(r ApiTriggerDatabaseBac
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v InstanceError
@@ -3925,7 +3890,6 @@ func (a *DefaultAPIService) TriggerDatabaseBackupExecute(r ApiTriggerDatabaseBac
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InstanceError
@@ -3936,7 +3900,6 @@ func (a *DefaultAPIService) TriggerDatabaseBackupExecute(r ApiTriggerDatabaseBac
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -4070,7 +4033,6 @@ func (a *DefaultAPIService) TriggerDatabaseRestoreExecute(r ApiTriggerDatabaseRe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v InstanceError
@@ -4082,7 +4044,6 @@ func (a *DefaultAPIService) TriggerDatabaseRestoreExecute(r ApiTriggerDatabaseRe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v InstanceError
@@ -4093,7 +4054,6 @@ func (a *DefaultAPIService) TriggerDatabaseRestoreExecute(r ApiTriggerDatabaseRe
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -4227,7 +4187,6 @@ func (a *DefaultAPIService) UpdateInstanceExecute(r ApiUpdateInstanceRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
