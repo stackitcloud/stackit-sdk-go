@@ -279,7 +279,6 @@ func (a *DefaultAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*Create
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -290,7 +289,6 @@ func (a *DefaultAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*Create
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
@@ -303,7 +301,6 @@ func (a *DefaultAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*Create
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -314,7 +311,6 @@ func (a *DefaultAPIService) CreateTokenExecute(r ApiCreateTokenRequest) (*Create
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -449,7 +445,6 @@ func (a *DefaultAPIService) DeleteTokenExecute(r ApiDeleteTokenRequest) (*Messag
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -460,7 +455,6 @@ func (a *DefaultAPIService) DeleteTokenExecute(r ApiDeleteTokenRequest) (*Messag
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -473,7 +467,6 @@ func (a *DefaultAPIService) DeleteTokenExecute(r ApiDeleteTokenRequest) (*Messag
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -484,7 +477,6 @@ func (a *DefaultAPIService) DeleteTokenExecute(r ApiDeleteTokenRequest) (*Messag
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -615,7 +607,6 @@ func (a *DefaultAPIService) GetChatModelExecute(r ApiGetChatModelRequest) (*GetC
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -627,7 +618,6 @@ func (a *DefaultAPIService) GetChatModelExecute(r ApiGetChatModelRequest) (*GetC
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -638,7 +628,6 @@ func (a *DefaultAPIService) GetChatModelExecute(r ApiGetChatModelRequest) (*GetC
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -769,7 +758,6 @@ func (a *DefaultAPIService) GetEmbeddingModelExecute(r ApiGetEmbeddingModelReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -781,7 +769,6 @@ func (a *DefaultAPIService) GetEmbeddingModelExecute(r ApiGetEmbeddingModelReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -792,7 +779,6 @@ func (a *DefaultAPIService) GetEmbeddingModelExecute(r ApiGetEmbeddingModelReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -927,7 +913,6 @@ func (a *DefaultAPIService) GetTokenExecute(r ApiGetTokenRequest) (*GetTokenResp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -938,7 +923,6 @@ func (a *DefaultAPIService) GetTokenExecute(r ApiGetTokenRequest) (*GetTokenResp
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -951,7 +935,6 @@ func (a *DefaultAPIService) GetTokenExecute(r ApiGetTokenRequest) (*GetTokenResp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -962,7 +945,6 @@ func (a *DefaultAPIService) GetTokenExecute(r ApiGetTokenRequest) (*GetTokenResp
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1089,7 +1071,6 @@ func (a *DefaultAPIService) ListModelsExecute(r ApiListModelsRequest) (*ListMode
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -1101,7 +1082,6 @@ func (a *DefaultAPIService) ListModelsExecute(r ApiListModelsRequest) (*ListMode
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -1112,7 +1092,6 @@ func (a *DefaultAPIService) ListModelsExecute(r ApiListModelsRequest) (*ListMode
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1243,7 +1222,6 @@ func (a *DefaultAPIService) ListTokensExecute(r ApiListTokensRequest) (*ListToke
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -1255,7 +1233,6 @@ func (a *DefaultAPIService) ListTokensExecute(r ApiListTokensRequest) (*ListToke
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -1266,7 +1243,6 @@ func (a *DefaultAPIService) ListTokensExecute(r ApiListTokensRequest) (*ListToke
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1409,7 +1385,6 @@ func (a *DefaultAPIService) PartialUpdateTokenExecute(r ApiPartialUpdateTokenReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorMessageResponse
@@ -1420,7 +1395,6 @@ func (a *DefaultAPIService) PartialUpdateTokenExecute(r ApiPartialUpdateTokenReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1433,7 +1407,6 @@ func (a *DefaultAPIService) PartialUpdateTokenExecute(r ApiPartialUpdateTokenReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorMessageResponse
@@ -1444,7 +1417,6 @@ func (a *DefaultAPIService) PartialUpdateTokenExecute(r ApiPartialUpdateTokenReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
