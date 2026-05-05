@@ -34,6 +34,7 @@ use (
 	./examples/sfs
 	./examples/ske
 	./examples/sqlserverflex
+	./examples/telemetryrouter
 	./examples/waiter
 	./services/alb
 	./services/albwaf
