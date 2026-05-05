@@ -1,3 +1,9 @@
+## v0.19.0
+- `v2api`:
+  - **Feature:**: New API client method `GetFederatedIdentityProvider`
+- Deprecated SDK layer in root of the module:
+  - **Feature:**: New API client method `GetFederatedIdentityProvider`
+
 ## v0.18.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 
