@@ -314,7 +314,7 @@ func main() {
 			},
 		},
 	}
-	updateOTLPDestinationResp, err := client.DefaultAPI.UpdateDestination(ctx, projectId, regionId, createdInstance, createS3DestinationResp.Id).
+	updateOTLPDestinationResp, err := client.DefaultAPI.UpdateDestination(ctx, projectId, regionId, createdInstance, createOpenTelemetryDestinationResp.Id).
 		UpdateDestinationPayload(updateOTLPDestinationPayload).Execute()
 	if err != nil {
 		log.Fatalf("[Telemetry Router API] Error when calling `UpdateDestination`: %v\n", err)
