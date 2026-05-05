@@ -46,7 +46,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("[Telemetry Router API] Error when calling `ListTelemetryRouters`: %v\n", err)
 	}
-	log.Printf("[Telemetry Router API] Retrieved %d Logs Instances.\n", len(listResp.TelemetryRouters))
+	log.Printf("[Telemetry Router API] Retrieved %d Telemetry Router Instances.\n", len(listResp.TelemetryRouters))
 
 	// Get the created Telemetry Router Instance
 	getResp, err := client.DefaultAPI.GetTelemetryRouter(ctx, projectId, regionId, createdInstance).Execute()
