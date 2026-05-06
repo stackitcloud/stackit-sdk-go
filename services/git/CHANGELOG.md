@@ -1,4 +1,4 @@
-## v0.12.3
+## v0.13.0
 - `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Git WaitHandler
 
 ## v0.12.2
