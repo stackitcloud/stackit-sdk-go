@@ -1,4 +1,4 @@
-## v0.9.1
+## v0.10.0
 - `v1betaapi`: **Improvement**: Use new `WaiterHandler` struct in the Intake WaitHandler
 
 ## v0.9.0
