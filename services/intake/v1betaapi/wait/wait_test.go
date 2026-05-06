@@ -133,6 +133,17 @@ func TestCreateOrUpdateIntakeRunnerWaitHandler(t *testing.T) {
 			},
 		},
 		{
+			desc:         "wrong state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id:    intakeRunnerId,
+				State: "wrong state",
+			},
+		},
+		{
 			desc:         "nil state in response",
 			getFails:     false,
 			wantErr:      true,
@@ -293,6 +304,17 @@ func TestCreateOrUpdateIntakeWaitHandler(t *testing.T) {
 			},
 		},
 		{
+			desc:         "wrong state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: "wrong state",
+			},
+		},
+		{
 			desc:         "nil state in response",
 			getFails:     false,
 			wantErr:      true,
@@ -439,6 +461,17 @@ func TestCreateOrUpdateIntakeUserWaitHandler(t *testing.T) {
 			returnUser: true,
 			intakeUserResponse: &intake.IntakeUserResponse{
 				State: INTAKEUSERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:       "wrong state in response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id:    intakeUserId,
+				State: "wrong state",
 			},
 		},
 		{
