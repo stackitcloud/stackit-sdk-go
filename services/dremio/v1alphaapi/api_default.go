@@ -90,7 +90,7 @@ type DefaultAPI interface {
 	DeleteDremioUserExecute(r ApiDeleteDremioUserRequest) error
 
 	/*
-		GetDremio Method for GetDremio
+		GetDremioInstance Method for GetDremioInstance
 
 		Returns the details for the given Dremio instance.
 
@@ -98,13 +98,13 @@ type DefaultAPI interface {
 		@param projectId The STACKIT portal project UUID the resource is located in.
 		@param regionId The STACKIT region name the resource is located in.
 		@param dremioId The Dremio instance UUID.
-		@return ApiGetDremioRequest
+		@return ApiGetDremioInstanceRequest
 	*/
-	GetDremio(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioRequest
+	GetDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioInstanceRequest
 
-	// GetDremioExecute executes the request
+	// GetDremioInstanceExecute executes the request
 	//  @return DremioResponse
-	GetDremioExecute(r ApiGetDremioRequest) (*DremioResponse, error)
+	GetDremioInstanceExecute(r ApiGetDremioInstanceRequest) (*DremioResponse, error)
 
 	/*
 		GetDremioUser Method for GetDremioUser
@@ -666,7 +666,7 @@ func (a *DefaultAPIService) DeleteDremioUserExecute(r ApiDeleteDremioUserRequest
 	return nil
 }
 
-type ApiGetDremioRequest struct {
+type ApiGetDremioInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
@@ -674,12 +674,12 @@ type ApiGetDremioRequest struct {
 	dremioId   string
 }
 
-func (r ApiGetDremioRequest) Execute() (*DremioResponse, error) {
-	return r.ApiService.GetDremioExecute(r)
+func (r ApiGetDremioInstanceRequest) Execute() (*DremioResponse, error) {
+	return r.ApiService.GetDremioInstanceExecute(r)
 }
 
 /*
-GetDremio Method for GetDremio
+GetDremioInstance Method for GetDremioInstance
 
 Returns the details for the given Dremio instance.
 
@@ -687,10 +687,10 @@ Returns the details for the given Dremio instance.
 	@param projectId The STACKIT portal project UUID the resource is located in.
 	@param regionId The STACKIT region name the resource is located in.
 	@param dremioId The Dremio instance UUID.
-	@return ApiGetDremioRequest
+	@return ApiGetDremioInstanceRequest
 */
-func (a *DefaultAPIService) GetDremio(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioRequest {
-	return ApiGetDremioRequest{
+func (a *DefaultAPIService) GetDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioInstanceRequest {
+	return ApiGetDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -702,7 +702,7 @@ func (a *DefaultAPIService) GetDremio(ctx context.Context, projectId string, reg
 // Execute executes the request
 //
 //	@return DremioResponse
-func (a *DefaultAPIService) GetDremioExecute(r ApiGetDremioRequest) (*DremioResponse, error) {
+func (a *DefaultAPIService) GetDremioInstanceExecute(r ApiGetDremioInstanceRequest) (*DremioResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -710,7 +710,7 @@ func (a *DefaultAPIService) GetDremioExecute(r ApiGetDremioRequest) (*DremioResp
 		localVarReturnValue *DremioResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetDremio")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetDremioInstance")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

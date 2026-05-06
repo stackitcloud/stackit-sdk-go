@@ -28,8 +28,8 @@ type DefaultAPIServiceMock struct {
 	DeleteDremioInstanceExecuteMock *func(r ApiDeleteDremioInstanceRequest) error
 	// DeleteDremioUserExecuteMock can be populated to implement the behavior of the DeleteDremioUserExecute function of this mock
 	DeleteDremioUserExecuteMock *func(r ApiDeleteDremioUserRequest) error
-	// GetDremioExecuteMock can be populated to implement the behavior of the GetDremioExecute function of this mock
-	GetDremioExecuteMock *func(r ApiGetDremioRequest) (*DremioResponse, error)
+	// GetDremioInstanceExecuteMock can be populated to implement the behavior of the GetDremioInstanceExecute function of this mock
+	GetDremioInstanceExecuteMock *func(r ApiGetDremioInstanceRequest) (*DremioResponse, error)
 	// GetDremioUserExecuteMock can be populated to implement the behavior of the GetDremioUserExecute function of this mock
 	GetDremioUserExecuteMock *func(r ApiGetDremioUserRequest) (*DremioUserResponse, error)
 	// ListDremioInstancesExecuteMock can be populated to implement the behavior of the ListDremioInstancesExecute function of this mock
@@ -118,8 +118,8 @@ func (a DefaultAPIServiceMock) DeleteDremioUserExecute(r ApiDeleteDremioUserRequ
 	return (*a.DeleteDremioUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetDremio(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioRequest {
-	return ApiGetDremioRequest{
+func (a DefaultAPIServiceMock) GetDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioInstanceRequest {
+	return ApiGetDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -128,14 +128,14 @@ func (a DefaultAPIServiceMock) GetDremio(ctx context.Context, projectId string, 
 	}
 }
 
-// GetDremioExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetDremioExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) GetDremioExecute(r ApiGetDremioRequest) (*DremioResponse, error) {
-	if a.GetDremioExecuteMock == nil {
+// GetDremioInstanceExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetDremioInstanceExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetDremioInstanceExecute(r ApiGetDremioInstanceRequest) (*DremioResponse, error) {
+	if a.GetDremioInstanceExecuteMock == nil {
 		var localVarReturnValue *DremioResponse
 		return localVarReturnValue, nil
 	}
 
-	return (*a.GetDremioExecuteMock)(r)
+	return (*a.GetDremioInstanceExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetDremioUser(ctx context.Context, projectId string, regionId string, dremioId string, dremioUserId string) ApiGetDremioUserRequest {
