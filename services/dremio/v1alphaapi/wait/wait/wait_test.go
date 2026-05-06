@@ -21,8 +21,8 @@ type mockSettings struct {
 
 func newAPIMock(settings mockSettings) dremio.DefaultAPI {
 	return &dremio.DefaultAPIServiceMock{
-		GetDremioExecuteMock: utils.Ptr(
-			func(_ dremio.ApiGetDremioRequest) (*dremio.DremioResponse, error) {
+		GetDremioInstanceExecuteMock: utils.Ptr(
+			func(_ dremio.ApiGetDremioInstanceRequest) (*dremio.DremioResponse, error) {
 				if settings.isDeleted {
 					return nil, &oapierror.GenericOpenAPIError{
 						StatusCode: http.StatusNotFound,

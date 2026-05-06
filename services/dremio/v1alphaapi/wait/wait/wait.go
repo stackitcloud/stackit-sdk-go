@@ -21,7 +21,7 @@ const (
 // CreateDremioWaitHandler will wait for the creation of a Dremio instance
 func CreateDremioWaitHandler(ctx context.Context, a dremio.DefaultAPI, projectId, regionId, dremioId string) *wait.AsyncActionHandler[dremio.DremioResponse] {
 	waitConfig := wait.WaiterHelper[dremio.DremioResponse, string]{
-		FetchInstance: a.GetDremio(ctx, projectId, regionId, dremioId).Execute,
+		FetchInstance: a.GetDremioInstance(ctx, projectId, regionId, dremioId).Execute,
 		GetState: func(dremio *dremio.DremioResponse) (string, error) {
 			if dremio == nil {
 				return "", errors.New("empty response")
@@ -40,7 +40,7 @@ func CreateDremioWaitHandler(ctx context.Context, a dremio.DefaultAPI, projectId
 // UpdateDremioWaitHandler will wait an update of a Dremio instance
 func UpdateDremioWaitHandler(ctx context.Context, a dremio.DefaultAPI, projectId, regionId, dremioId string) *wait.AsyncActionHandler[dremio.DremioResponse] {
 	waitConfig := wait.WaiterHelper[dremio.DremioResponse, string]{
-		FetchInstance: a.GetDremio(ctx, projectId, regionId, dremioId).Execute,
+		FetchInstance: a.GetDremioInstance(ctx, projectId, regionId, dremioId).Execute,
 		GetState: func(dremio *dremio.DremioResponse) (string, error) {
 			if dremio == nil {
 				return "", errors.New("empty response")
@@ -59,7 +59,7 @@ func UpdateDremioWaitHandler(ctx context.Context, a dremio.DefaultAPI, projectId
 // DeleteDremioWaitHandler will wait for the deletion of a Dremio instance
 func DeleteDremioWaitHandler(ctx context.Context, a dremio.DefaultAPI, projectId, regionId, dremioId string) *wait.AsyncActionHandler[dremio.DremioResponse] {
 	waitConfig := wait.WaiterHelper[dremio.DremioResponse, string]{
-		FetchInstance: a.GetDremio(ctx, projectId, regionId, dremioId).Execute,
+		FetchInstance: a.GetDremioInstance(ctx, projectId, regionId, dremioId).Execute,
 		GetState: func(dremio *dremio.DremioResponse) (string, error) {
 			if dremio == nil {
 				return "", errors.New("empty response")
