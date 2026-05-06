@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
 	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi"
@@ -21,7 +22,7 @@ type mockSettings struct {
 func newAPIMock(settings mockSettings) dremio.DefaultAPI {
 	return &dremio.DefaultAPIServiceMock{
 		GetDremioExecuteMock: utils.Ptr(
-			func(r dremio.ApiGetDremioRequest) (*dremio.DremioResponse, error) {
+			func(_ dremio.ApiGetDremioRequest) (*dremio.DremioResponse, error) {
 				if settings.isDeleted {
 					return nil, &oapierror.GenericOpenAPIError{
 						StatusCode: http.StatusNotFound,
@@ -39,7 +40,7 @@ func newAPIMock(settings mockSettings) dremio.DefaultAPI {
 			},
 		),
 		GetDremioUserExecuteMock: utils.Ptr(
-			func(r dremio.ApiGetDremioUserRequest) (*dremio.DremioUserResponse, error) {
+			func(_ dremio.ApiGetDremioUserRequest) (*dremio.DremioUserResponse, error) {
 				if settings.isDeleted {
 					return nil, &oapierror.GenericOpenAPIError{
 						StatusCode: http.StatusNotFound,
