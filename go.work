@@ -9,6 +9,7 @@ use (
 	./examples/configuration
 	./examples/cost
 	./examples/dns
+	./examples/dremio
 	./examples/edge
 	./examples/errorhandling
 	./examples/iaas
