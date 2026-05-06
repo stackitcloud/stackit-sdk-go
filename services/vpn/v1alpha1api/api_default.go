@@ -396,7 +396,6 @@ func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -407,7 +406,6 @@ func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -420,7 +418,6 @@ func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -432,7 +429,6 @@ func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -443,7 +439,6 @@ func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -585,7 +580,6 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -596,7 +590,6 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -609,7 +602,6 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
@@ -621,7 +613,6 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -632,7 +623,6 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -768,7 +758,6 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -779,7 +768,6 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -792,7 +780,6 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -804,7 +791,6 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -815,7 +801,6 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -938,7 +923,6 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -949,7 +933,6 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -962,7 +945,6 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -973,7 +955,6 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1102,7 +1083,6 @@ func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -1113,7 +1093,6 @@ func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectio
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1126,7 +1105,6 @@ func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -1138,7 +1116,6 @@ func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectio
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -1149,7 +1126,6 @@ func (a *DefaultAPIService) GetGatewayConnectionExecute(r ApiGetGatewayConnectio
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1288,7 +1264,6 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -1299,7 +1274,6 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1312,7 +1286,6 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -1324,7 +1297,6 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -1335,7 +1307,6 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1470,7 +1441,6 @@ func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*Ga
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -1481,7 +1451,6 @@ func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*Ga
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1494,7 +1463,6 @@ func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*Ga
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -1506,7 +1474,6 @@ func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*Ga
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -1517,7 +1484,6 @@ func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*Ga
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1652,7 +1618,6 @@ func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -1663,7 +1628,6 @@ func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1676,7 +1640,6 @@ func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -1688,7 +1651,6 @@ func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -1699,7 +1661,6 @@ func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1844,7 +1805,6 @@ func (a *DefaultAPIService) ListGatewayConnectionsExecute(r ApiListGatewayConnec
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -1855,7 +1815,6 @@ func (a *DefaultAPIService) ListGatewayConnectionsExecute(r ApiListGatewayConnec
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1868,7 +1827,6 @@ func (a *DefaultAPIService) ListGatewayConnectionsExecute(r ApiListGatewayConnec
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -1880,7 +1838,6 @@ func (a *DefaultAPIService) ListGatewayConnectionsExecute(r ApiListGatewayConnec
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -1891,7 +1848,6 @@ func (a *DefaultAPIService) ListGatewayConnectionsExecute(r ApiListGatewayConnec
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2019,7 +1975,6 @@ func (a *DefaultAPIService) ListPlansExecute(r ApiListPlansRequest) (*PlanList, 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -2030,7 +1985,6 @@ func (a *DefaultAPIService) ListPlansExecute(r ApiListPlansRequest) (*PlanList, 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2161,7 +2115,6 @@ func (a *DefaultAPIService) ListQuotasExecute(r ApiListQuotasRequest) (*QuotaLis
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -2172,7 +2125,6 @@ func (a *DefaultAPIService) ListQuotasExecute(r ApiListQuotasRequest) (*QuotaLis
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2314,7 +2266,6 @@ func (a *DefaultAPIService) ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -2325,7 +2276,6 @@ func (a *DefaultAPIService) ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2338,7 +2288,6 @@ func (a *DefaultAPIService) ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -2349,7 +2298,6 @@ func (a *DefaultAPIService) ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2496,7 +2444,6 @@ func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -2507,7 +2454,6 @@ func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2520,7 +2466,6 @@ func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v APIErrorResponse
@@ -2532,7 +2477,6 @@ func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayCon
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -2543,7 +2487,6 @@ func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayCon
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2690,7 +2633,6 @@ func (a *DefaultAPIService) UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
@@ -2701,7 +2643,6 @@ func (a *DefaultAPIService) UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2714,7 +2655,6 @@ func (a *DefaultAPIService) UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
@@ -2726,7 +2666,6 @@ func (a *DefaultAPIService) UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
@@ -2737,7 +2676,6 @@ func (a *DefaultAPIService) UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
