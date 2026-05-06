@@ -91,6 +91,9 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.20.2](services/dns/CHANGELOG.md#v0202)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+- `dremio`
+  - [v0.1.0](services/dremio/CHANGELOG.md#v010
+    - **New:** API for dremio
 - `edge`:
   - [v0.8.2](services/edge/CHANGELOG.md#v082) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
