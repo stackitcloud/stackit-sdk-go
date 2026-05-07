@@ -99,29 +99,31 @@ func TestCreateDremioWaitHandler(t *testing.T) {
 	}
 	for _, currentTest := range tests {
 		t.Run(currentTest.description, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:      currentTest.getFails,
-				resourceState: currentTest.resourceState,
-				isDeleted:     false,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      currentTest.getFails,
+					resourceState: currentTest.resourceState,
+					isDeleted:     false,
+				})
 
-			var expectedResponse *dremio.DremioResponse
-			if currentTest.wantResponse {
-				expectedResponse = &dremio.DremioResponse{
-					State: currentTest.resourceState,
+				var expectedResponse *dremio.DremioResponse
+				if currentTest.wantResponse {
+					expectedResponse = &dremio.DremioResponse{
+						State: currentTest.resourceState,
+					}
 				}
-			}
 
-			handler := CreateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
+				handler := CreateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
 
-			gotResponse, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotResponse, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != currentTest.wantError {
-				t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
-			}
-			if !cmp.Equal(gotResponse, expectedResponse) {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
+				if (err != nil) != currentTest.wantError {
+					t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
+				}
+				if !cmp.Equal(gotResponse, expectedResponse) {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+			})
 		})
 	}
 }
@@ -165,29 +167,31 @@ func TestUpdateDremioWaitHandler(t *testing.T) {
 	}
 	for _, currentTest := range tests {
 		t.Run(currentTest.description, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:      currentTest.getFails,
-				resourceState: currentTest.resourceState,
-				isDeleted:     false,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      currentTest.getFails,
+					resourceState: currentTest.resourceState,
+					isDeleted:     false,
+				})
 
-			var expectedResponse *dremio.DremioResponse
-			if currentTest.wantResponse {
-				expectedResponse = &dremio.DremioResponse{
-					State: currentTest.resourceState,
+				var expectedResponse *dremio.DremioResponse
+				if currentTest.wantResponse {
+					expectedResponse = &dremio.DremioResponse{
+						State: currentTest.resourceState,
+					}
 				}
-			}
 
-			handler := UpdateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
+				handler := UpdateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
 
-			gotResponse, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotResponse, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != currentTest.wantError {
-				t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
-			}
-			if !cmp.Equal(gotResponse, expectedResponse) {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
+				if (err != nil) != currentTest.wantError {
+					t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
+				}
+				if !cmp.Equal(gotResponse, expectedResponse) {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+			})
 		})
 	}
 }
@@ -236,33 +240,35 @@ func TestDeleteDremioWaitHandler(t *testing.T) {
 	}
 	for _, currentTest := range tests {
 		t.Run(currentTest.description, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:      currentTest.getFails,
-				resourceState: currentTest.resourceState,
-				isDeleted:     currentTest.isDeleted,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      currentTest.getFails,
+					resourceState: currentTest.resourceState,
+					isDeleted:     currentTest.isDeleted,
+				})
 
-			var expectedResponse *dremio.DremioResponse
-			if currentTest.wantResponse {
-				expectedResponse = &dremio.DremioResponse{
-					State: currentTest.resourceState,
+				var expectedResponse *dremio.DremioResponse
+				if currentTest.wantResponse {
+					expectedResponse = &dremio.DremioResponse{
+						State: currentTest.resourceState,
+					}
 				}
-			}
 
-			handler := DeleteDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
+				handler := DeleteDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
 
-			gotResponse, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotResponse, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != currentTest.wantError {
-				t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
-			}
+				if (err != nil) != currentTest.wantError {
+					t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
+				}
 
-			if !currentTest.wantResponse && gotResponse != nil {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
-			if currentTest.wantResponse && !cmp.Equal(gotResponse, expectedResponse) {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
+				if !currentTest.wantResponse && gotResponse != nil {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+				if currentTest.wantResponse && !cmp.Equal(gotResponse, expectedResponse) {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+			})
 		})
 	}
 }
@@ -306,29 +312,31 @@ func TestCreateDremioUserWaitHandler(t *testing.T) {
 	}
 	for _, currentTest := range tests {
 		t.Run(currentTest.description, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:      currentTest.getFails,
-				resourceState: currentTest.resourceState,
-				isDeleted:     false,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      currentTest.getFails,
+					resourceState: currentTest.resourceState,
+					isDeleted:     false,
+				})
 
-			var expectedResponse *dremio.DremioUserResponse
-			if currentTest.wantResponse {
-				expectedResponse = &dremio.DremioUserResponse{
-					State: currentTest.resourceState,
+				var expectedResponse *dremio.DremioUserResponse
+				if currentTest.wantResponse {
+					expectedResponse = &dremio.DremioUserResponse{
+						State: currentTest.resourceState,
+					}
 				}
-			}
 
-			handler := CreateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
+				handler := CreateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
 
-			gotResponse, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotResponse, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != currentTest.wantError {
-				t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
-			}
-			if !cmp.Equal(gotResponse, expectedResponse) {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
+				if (err != nil) != currentTest.wantError {
+					t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
+				}
+				if !cmp.Equal(gotResponse, expectedResponse) {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+			})
 		})
 	}
 }
@@ -372,29 +380,31 @@ func TestUpdateDremioUserWaitHandler(t *testing.T) {
 	}
 	for _, currentTest := range tests {
 		t.Run(currentTest.description, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:      currentTest.getFails,
-				resourceState: currentTest.resourceState,
-				isDeleted:     false,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      currentTest.getFails,
+					resourceState: currentTest.resourceState,
+					isDeleted:     false,
+				})
 
-			var expectedResponse *dremio.DremioUserResponse
-			if currentTest.wantResponse {
-				expectedResponse = &dremio.DremioUserResponse{
-					State: currentTest.resourceState,
+				var expectedResponse *dremio.DremioUserResponse
+				if currentTest.wantResponse {
+					expectedResponse = &dremio.DremioUserResponse{
+						State: currentTest.resourceState,
+					}
 				}
-			}
 
-			handler := UpdateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
+				handler := UpdateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
 
-			gotResponse, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotResponse, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != currentTest.wantError {
-				t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
-			}
-			if !cmp.Equal(gotResponse, expectedResponse) {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
+				if (err != nil) != currentTest.wantError {
+					t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
+				}
+				if !cmp.Equal(gotResponse, expectedResponse) {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+			})
 		})
 	}
 }
@@ -443,33 +453,35 @@ func TestDeleteDremioUserWaitHandler(t *testing.T) {
 	}
 	for _, currentTest := range tests {
 		t.Run(currentTest.description, func(t *testing.T) {
-			apiClient := newAPIMock(mockSettings{
-				getFails:      currentTest.getFails,
-				resourceState: currentTest.resourceState,
-				isDeleted:     currentTest.isDeleted,
-			})
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(mockSettings{
+					getFails:      currentTest.getFails,
+					resourceState: currentTest.resourceState,
+					isDeleted:     currentTest.isDeleted,
+				})
 
-			var expectedResponse *dremio.DremioUserResponse
-			if currentTest.wantResponse {
-				expectedResponse = &dremio.DremioUserResponse{
-					State: currentTest.resourceState,
+				var expectedResponse *dremio.DremioUserResponse
+				if currentTest.wantResponse {
+					expectedResponse = &dremio.DremioUserResponse{
+						State: currentTest.resourceState,
+					}
 				}
-			}
 
-			handler := DeleteDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
+				handler := DeleteDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
 
-			gotResponse, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotResponse, err := handler.WaitWithContext(context.Background())
 
-			if (err != nil) != currentTest.wantError {
-				t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
-			}
+				if (err != nil) != currentTest.wantError {
+					t.Fatalf("handler error = %v, wantErr %v", err, currentTest.wantError)
+				}
 
-			if !currentTest.wantResponse && gotResponse != nil {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
-			if currentTest.wantResponse && !cmp.Equal(gotResponse, expectedResponse) {
-				t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
-			}
+				if !currentTest.wantResponse && gotResponse != nil {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+				if currentTest.wantResponse && !cmp.Equal(gotResponse, expectedResponse) {
+					t.Fatalf("handler gotResponse = %v, expectedResponse = %v", gotResponse, expectedResponse)
+				}
+			})
 		})
 	}
 }
