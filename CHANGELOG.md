@@ -100,6 +100,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.9.2](services/edge/CHANGELOG.md#v092)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.10.0](services/edge/CHANGELOG.md#v0100)
+    - Align package to latest API specification
 - `git`:
   - [v0.11.2](services/git/CHANGELOG.md#v0112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
