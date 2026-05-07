@@ -101,12 +101,10 @@
   - [v0.9.2](services/edge/CHANGELOG.md#v092)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v0.10.0](services/edge/CHANGELOG.md#v0100)
-<<<<<<< feat/STACKITSDK-372_edge-wait-helper
+    - Align package to latest API specification
+  - [v0.11.0](services/edge/CHANGELOG.md#v0110)
     - **Improvement:** Use new `WaiterHandler` struct in the Edge WaitHandler
     - **Deprecation:** Deprecated `ErrInstanceCreationFailed` and `ErrInstanceIsBeingDeleted` in `wait` package
-=======
-    - Align package to latest API specification
->>>>>>> main
 - `git`:
   - [v0.11.2](services/git/CHANGELOG.md#v0112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
