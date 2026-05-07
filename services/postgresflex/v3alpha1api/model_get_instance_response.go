@@ -33,6 +33,8 @@ type GetInstanceResponse struct {
 	Id string `json:"id"`
 	// Whether the instance can be deleted or not.
 	IsDeletable bool `json:"isDeletable"`
+	// Key-value pairs, 63 characters max, begin and end with an alphanumerical character, may contain dashes (-), underscores (_), dots (.), and alphanumerics between. Key MUST be at least 1 character. Max 64 labels Regex for keys: ^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$ Regex for values: ^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$ The stackit- prefix is reserved and cannot be used for Keys.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
 	Name     string          `json:"name"`
 	Network  InstanceNetwork `json:"network"`
@@ -261,6 +263,38 @@ func (o *GetInstanceResponse) SetIsDeletable(v bool) {
 	o.IsDeletable = v
 }
 
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *GetInstanceResponse) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetInstanceResponse) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *GetInstanceResponse) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *GetInstanceResponse) SetLabels(v map[string]string) {
+	o.Labels = &v
+}
+
 // GetName returns the Name field value
 func (o *GetInstanceResponse) GetName() string {
 	if o == nil {
@@ -450,6 +484,9 @@ func (o GetInstanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["flavorId"] = o.FlavorId
 	toSerialize["id"] = o.Id
 	toSerialize["isDeletable"] = o.IsDeletable
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["network"] = o.Network
 	toSerialize["replicas"] = o.Replicas
@@ -518,6 +555,7 @@ func (o *GetInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "flavorId")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "isDeletable")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "replicas")
