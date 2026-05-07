@@ -38,6 +38,8 @@ type DefaultAPIServiceMock struct {
 	DeleteServiceAccountKeyExecuteMock *func(r ApiDeleteServiceAccountKeyRequest) error
 	// DeleteServiceFederatedIdentityProviderExecuteMock can be populated to implement the behavior of the DeleteServiceFederatedIdentityProviderExecute function of this mock
 	DeleteServiceFederatedIdentityProviderExecuteMock *func(r ApiDeleteServiceFederatedIdentityProviderRequest) error
+	// GetFederatedIdentityProviderExecuteMock can be populated to implement the behavior of the GetFederatedIdentityProviderExecute function of this mock
+	GetFederatedIdentityProviderExecuteMock *func(r ApiGetFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
 	// GetJWKSExecuteMock can be populated to implement the behavior of the GetJWKSExecute function of this mock
 	GetJWKSExecuteMock *func(r ApiGetJWKSRequest) (*JWKS, error)
 	// GetServiceAccountKeyExecuteMock can be populated to implement the behavior of the GetServiceAccountKeyExecute function of this mock
@@ -221,6 +223,26 @@ func (a DefaultAPIServiceMock) DeleteServiceFederatedIdentityProviderExecute(r A
 	}
 
 	return (*a.DeleteServiceFederatedIdentityProviderExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) GetFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiGetFederatedIdentityProviderRequest {
+	return ApiGetFederatedIdentityProviderRequest{
+		ApiService:          a,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
+	}
+}
+
+// GetFederatedIdentityProviderExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the GetFederatedIdentityProviderExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) GetFederatedIdentityProviderExecute(r ApiGetFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error) {
+	if a.GetFederatedIdentityProviderExecuteMock == nil {
+		var localVarReturnValue *FederatedIdentityProvider
+		return localVarReturnValue, nil
+	}
+
+	return (*a.GetFederatedIdentityProviderExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) GetJWKS(ctx context.Context, serviceAccountEmail string) ApiGetJWKSRequest {

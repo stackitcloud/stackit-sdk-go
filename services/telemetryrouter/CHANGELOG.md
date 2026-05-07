@@ -1,3 +1,6 @@
+## v0.2.1
+- **Improvement**: Use new `WaiterHandler` struct in the DNS WaitHandler
+
 ## v0.2.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

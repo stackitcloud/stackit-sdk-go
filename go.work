@@ -34,6 +34,7 @@ use (
 	./examples/sfs
 	./examples/ske
 	./examples/sqlserverflex
+	./examples/telemetryrouter
 	./examples/waiter
 	./services/alb
 	./services/albwaf
@@ -75,6 +76,7 @@ use (
 	./services/ske
 	./services/sqlserverflex
 	./services/stackitmarketplace
+	./services/telemetrylink
 	./services/telemetryrouter
 	./services/vpn
 )

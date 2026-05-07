@@ -1,3 +1,6 @@
+## v1.11.1
+- **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.2` to `v0.23.0`
+
 ## v1.11.0
 - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.1` to `v0.22.2`
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.

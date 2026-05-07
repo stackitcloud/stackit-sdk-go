@@ -165,6 +165,23 @@ type DefaultAPI interface {
 	DeleteServiceFederatedIdentityProviderExecute(r ApiDeleteServiceFederatedIdentityProviderRequest) error
 
 	/*
+		GetFederatedIdentityProvider Get a service account Federated Identity Provider
+
+		Get a Federated Identity Provider of the service account by its ID.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId The ID of the project.
+		@param serviceAccountEmail The email of the service account.
+		@param federationId ID of the Federated Identity Provider.
+		@return ApiGetFederatedIdentityProviderRequest
+	*/
+	GetFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiGetFederatedIdentityProviderRequest
+
+	// GetFederatedIdentityProviderExecute executes the request
+	//  @return FederatedIdentityProvider
+	GetFederatedIdentityProviderExecute(r ApiGetFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error)
+
+	/*
 		GetJWKS Get JSON Web Key set of the service account
 
 		Get JSON Web Key set of the service account
@@ -419,7 +436,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -430,7 +446,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -443,7 +458,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
@@ -454,7 +468,6 @@ func (a *DefaultAPIService) CreateAccessTokenExecute(r ApiCreateAccessTokenReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -594,7 +607,6 @@ func (a *DefaultAPIService) CreateFederatedIdentityProviderExecute(r ApiCreateFe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -605,7 +617,6 @@ func (a *DefaultAPIService) CreateFederatedIdentityProviderExecute(r ApiCreateFe
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -618,7 +629,6 @@ func (a *DefaultAPIService) CreateFederatedIdentityProviderExecute(r ApiCreateFe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
@@ -630,7 +640,6 @@ func (a *DefaultAPIService) CreateFederatedIdentityProviderExecute(r ApiCreateFe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -641,7 +650,6 @@ func (a *DefaultAPIService) CreateFederatedIdentityProviderExecute(r ApiCreateFe
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -777,7 +785,6 @@ func (a *DefaultAPIService) CreateServiceAccountExecute(r ApiCreateServiceAccoun
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -788,7 +795,6 @@ func (a *DefaultAPIService) CreateServiceAccountExecute(r ApiCreateServiceAccoun
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -801,7 +807,6 @@ func (a *DefaultAPIService) CreateServiceAccountExecute(r ApiCreateServiceAccoun
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
@@ -812,7 +817,6 @@ func (a *DefaultAPIService) CreateServiceAccountExecute(r ApiCreateServiceAccoun
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -952,7 +956,6 @@ func (a *DefaultAPIService) CreateServiceAccountKeyExecute(r ApiCreateServiceAcc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -963,7 +966,6 @@ func (a *DefaultAPIService) CreateServiceAccountKeyExecute(r ApiCreateServiceAcc
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -976,7 +978,6 @@ func (a *DefaultAPIService) CreateServiceAccountKeyExecute(r ApiCreateServiceAcc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
@@ -987,7 +988,6 @@ func (a *DefaultAPIService) CreateServiceAccountKeyExecute(r ApiCreateServiceAcc
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1142,7 +1142,6 @@ func (a *DefaultAPIService) CreateShortLivedAccessTokenExecute(r ApiCreateShortL
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
@@ -1153,7 +1152,6 @@ func (a *DefaultAPIService) CreateShortLivedAccessTokenExecute(r ApiCreateShortL
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1285,7 +1283,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -1296,7 +1293,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1309,7 +1305,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
@@ -1321,7 +1316,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
@@ -1332,7 +1326,6 @@ func (a *DefaultAPIService) DeleteAccessTokenExecute(r ApiDeleteAccessTokenReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1450,7 +1443,6 @@ func (a *DefaultAPIService) DeleteServiceAccountExecute(r ApiDeleteServiceAccoun
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -1461,7 +1453,6 @@ func (a *DefaultAPIService) DeleteServiceAccountExecute(r ApiDeleteServiceAccoun
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1474,7 +1465,6 @@ func (a *DefaultAPIService) DeleteServiceAccountExecute(r ApiDeleteServiceAccoun
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
@@ -1485,7 +1475,6 @@ func (a *DefaultAPIService) DeleteServiceAccountExecute(r ApiDeleteServiceAccoun
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1607,7 +1596,6 @@ func (a *DefaultAPIService) DeleteServiceAccountKeyExecute(r ApiDeleteServiceAcc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -1619,7 +1607,6 @@ func (a *DefaultAPIService) DeleteServiceAccountKeyExecute(r ApiDeleteServiceAcc
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
@@ -1630,7 +1617,6 @@ func (a *DefaultAPIService) DeleteServiceAccountKeyExecute(r ApiDeleteServiceAcc
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1752,7 +1738,6 @@ func (a *DefaultAPIService) DeleteServiceFederatedIdentityProviderExecute(r ApiD
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -1763,7 +1748,6 @@ func (a *DefaultAPIService) DeleteServiceFederatedIdentityProviderExecute(r ApiD
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1776,7 +1760,6 @@ func (a *DefaultAPIService) DeleteServiceFederatedIdentityProviderExecute(r ApiD
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -1787,12 +1770,188 @@ func (a *DefaultAPIService) DeleteServiceFederatedIdentityProviderExecute(r ApiD
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
 
 	return nil
+}
+
+type ApiGetFederatedIdentityProviderRequest struct {
+	ctx                 context.Context
+	ApiService          DefaultAPI
+	projectId           string
+	serviceAccountEmail string
+	federationId        string
+}
+
+func (r ApiGetFederatedIdentityProviderRequest) Execute() (*FederatedIdentityProvider, error) {
+	return r.ApiService.GetFederatedIdentityProviderExecute(r)
+}
+
+/*
+GetFederatedIdentityProvider Get a service account Federated Identity Provider
+
+Get a Federated Identity Provider of the service account by its ID.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId The ID of the project.
+	@param serviceAccountEmail The email of the service account.
+	@param federationId ID of the Federated Identity Provider.
+	@return ApiGetFederatedIdentityProviderRequest
+*/
+func (a *DefaultAPIService) GetFederatedIdentityProvider(ctx context.Context, projectId string, serviceAccountEmail string, federationId string) ApiGetFederatedIdentityProviderRequest {
+	return ApiGetFederatedIdentityProviderRequest{
+		ApiService:          a,
+		ctx:                 ctx,
+		projectId:           projectId,
+		serviceAccountEmail: serviceAccountEmail,
+		federationId:        federationId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return FederatedIdentityProvider
+func (a *DefaultAPIService) GetFederatedIdentityProviderExecute(r ApiGetFederatedIdentityProviderRequest) (*FederatedIdentityProvider, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FederatedIdentityProvider
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetFederatedIdentityProvider")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/projects/{projectId}/service-accounts/{serviceAccountEmail}/federations/{federationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceAccountEmail"+"}", url.PathEscape(parameterValueToString(r.serviceAccountEmail, "serviceAccountEmail")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"federationId"+"}", url.PathEscape(parameterValueToString(r.federationId, "federationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v AuthError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
 }
 
 type ApiGetJWKSRequest struct {
@@ -2041,7 +2200,6 @@ func (a *DefaultAPIService) GetServiceAccountKeyExecute(r ApiGetServiceAccountKe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -2053,7 +2211,6 @@ func (a *DefaultAPIService) GetServiceAccountKeyExecute(r ApiGetServiceAccountKe
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
@@ -2064,7 +2221,6 @@ func (a *DefaultAPIService) GetServiceAccountKeyExecute(r ApiGetServiceAccountKe
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2195,7 +2351,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -2206,7 +2361,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2219,7 +2373,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v Error
@@ -2230,7 +2383,6 @@ func (a *DefaultAPIService) ListAccessTokensExecute(r ApiListAccessTokensRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2361,7 +2513,6 @@ func (a *DefaultAPIService) ListFederatedIdentityProvidersExecute(r ApiListFeder
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -2372,7 +2523,6 @@ func (a *DefaultAPIService) ListFederatedIdentityProvidersExecute(r ApiListFeder
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2385,7 +2535,6 @@ func (a *DefaultAPIService) ListFederatedIdentityProvidersExecute(r ApiListFeder
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2396,7 +2545,6 @@ func (a *DefaultAPIService) ListFederatedIdentityProvidersExecute(r ApiListFeder
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2527,7 +2675,6 @@ func (a *DefaultAPIService) ListServiceAccountKeysExecute(r ApiListServiceAccoun
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -2539,7 +2686,6 @@ func (a *DefaultAPIService) ListServiceAccountKeysExecute(r ApiListServiceAccoun
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
@@ -2550,7 +2696,6 @@ func (a *DefaultAPIService) ListServiceAccountKeysExecute(r ApiListServiceAccoun
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2677,7 +2822,6 @@ func (a *DefaultAPIService) ListServiceAccountsExecute(r ApiListServiceAccountsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -2689,7 +2833,6 @@ func (a *DefaultAPIService) ListServiceAccountsExecute(r ApiListServiceAccountsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v AuthError
@@ -2700,7 +2843,6 @@ func (a *DefaultAPIService) ListServiceAccountsExecute(r ApiListServiceAccountsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2844,7 +2986,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProvider
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -2855,7 +2996,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProvider
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2868,7 +3008,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProvider
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
@@ -2880,7 +3019,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProvider
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v Error
@@ -2891,7 +3029,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountFederatedIdentityProvider
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -3035,7 +3172,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountKeyExecute(r ApiPartialUp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v AuthError
@@ -3046,7 +3182,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountKeyExecute(r ApiPartialUp
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3059,7 +3194,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountKeyExecute(r ApiPartialUp
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v Error
@@ -3070,7 +3204,6 @@ func (a *DefaultAPIService) PartialUpdateServiceAccountKeyExecute(r ApiPartialUp
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
