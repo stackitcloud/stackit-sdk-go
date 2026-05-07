@@ -22,10 +22,13 @@ const (
 )
 
 var (
-	ErrInstanceNotFound        = errors.New("instance not found")
+	ErrInstanceNotFound = errors.New("instance not found")
+	// Deprecated: ErrInstanceStatusUndefined is no longer used and will be removed after 2026-11-07
 	ErrInstanceStatusUndefined = errors.New("instance status undefined")
-	ErrInstanceCreationFailed  = errors.New("instance creation failed")
-	ErrInstanceIsBeingDeleted  = errors.New("instance is being deleted")
+	// Deprecated: ErrInstanceCreationFailed is no longer used and will be removed after 2026-11-07
+	ErrInstanceCreationFailed = errors.New("instance creation failed")
+	// Deprecated: ErrInstanceIsBeingDeleted is no longer used and will be removed after 2026-11-07
+	ErrInstanceIsBeingDeleted = errors.New("instance is being deleted")
 )
 
 // createOrUpdateInstanceWaitHandler contains the shared logic for waiting on instance creation or updates.

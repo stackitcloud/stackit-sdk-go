@@ -17,8 +17,10 @@ const timeoutMinutes time.Duration = 10
 var (
 	ErrInstanceNotFound        = errors.New("instance not found")
 	ErrInstanceStatusUndefined = errors.New("instance status undefined")
-	ErrInstanceCreationFailed  = errors.New("instance creation failed")
-	ErrInstanceIsBeingDeleted  = errors.New("instance is being deleted")
+	// Deprecated: ErrInstanceCreationFailed is no longer used and will be removed after 2026-11-07
+	ErrInstanceCreationFailed = errors.New("instance creation failed")
+	// Deprecated: ErrInstanceIsBeingDeleted is no longer used and will be removed after 2026-11-07
+	ErrInstanceIsBeingDeleted = errors.New("instance is being deleted")
 )
 
 // EdgeCloudApiClient is the interface for Edge Cloud API calls which require a waiter.
