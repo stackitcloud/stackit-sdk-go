@@ -124,6 +124,8 @@
   - [v1.11.0](services/iaas/CHANGELOG.md#v1110)
     - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.1` to `v0.22.2`
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v1.11.1](services/iaas/CHANGELOG.md#v1111)
+    - **Dependencies:** Bump STACKIT SDK resourcemanager module from `v0.22.2` to `v0.23.0`
 - `intake`:
   - [v0.7.3](services/intake/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -342,6 +344,11 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.18.2](services/serviceaccount/CHANGELOG.md#v0182)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.19.0](services/serviceaccount/CHANGELOG.md#v0190)
+    - `v2api`:
+      - **Feature:**: New API client method `GetFederatedIdentityProvider`
+    - Deprecated SDK layer in root of the module:
+      - **Feature:**: New API client method `GetFederatedIdentityProvider`
 - `serviceenablement`:
   - [v1.4.3](services/serviceenablement/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -351,6 +358,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.5.2](services/serviceenablement/CHANGELOG.md#v152)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.5.3](services/serviceenablement/CHANGELOG.md#v153)
+    - `v2api`: Removal of duplicated return statements in `DefaultAPIService` implementations
 - `sfs`:
   - [v0.6.3](services/sfs/CHANGELOG.md#v063) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -415,6 +424,11 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.2.0](services/telemetryrouter/CHANGELOG.md#v020)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.2.1](services/telemetryrouter/CHANGELOG.md#v021)
+    - **Improvement**: Use new `WaiterHandler` struct in the DNS WaitHandler
+- `telemetrylink`:
+  - [v0.1.0](services/telemetrylink/CHANGELOG.md#v010)
+    - **New**: API for STACKIT Telemetry Link
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

@@ -416,7 +416,6 @@ func (a *DefaultAPIService) CreateFolderExecute(r ApiCreateFolderRequest) (*Fold
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -428,7 +427,6 @@ func (a *DefaultAPIService) CreateFolderExecute(r ApiCreateFolderRequest) (*Fold
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
@@ -439,7 +437,6 @@ func (a *DefaultAPIService) CreateFolderExecute(r ApiCreateFolderRequest) (*Fold
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -572,7 +569,6 @@ func (a *DefaultAPIService) CreateProjectExecute(r ApiCreateProjectRequest) (*Pr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -584,7 +580,6 @@ func (a *DefaultAPIService) CreateProjectExecute(r ApiCreateProjectRequest) (*Pr
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
@@ -595,7 +590,6 @@ func (a *DefaultAPIService) CreateProjectExecute(r ApiCreateProjectRequest) (*Pr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -735,7 +729,6 @@ func (a *DefaultAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) error 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return newErr
-			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
@@ -746,7 +739,6 @@ func (a *DefaultAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) error 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -879,7 +871,6 @@ func (a *DefaultAPIService) DeleteFolderLabelsExecute(r ApiDeleteFolderLabelsReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1012,7 +1003,6 @@ func (a *DefaultAPIService) DeleteOrganizationLabelsExecute(r ApiDeleteOrganizat
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1127,7 +1117,6 @@ func (a *DefaultAPIService) DeleteProjectExecute(r ApiDeleteProjectRequest) erro
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1260,7 +1249,6 @@ func (a *DefaultAPIService) DeleteProjectLabelsExecute(r ApiDeleteProjectLabelsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
 		}
 		return newErr
 	}
@@ -1390,7 +1378,6 @@ func (a *DefaultAPIService) GetFolderDetailsExecute(r ApiGetFolderDetailsRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
@@ -1401,7 +1388,6 @@ func (a *DefaultAPIService) GetFolderDetailsExecute(r ApiGetFolderDetailsRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1527,7 +1513,6 @@ func (a *DefaultAPIService) GetOrganizationExecute(r ApiGetOrganizationRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1667,7 +1652,6 @@ func (a *DefaultAPIService) GetProjectExecute(r ApiGetProjectRequest) (*GetProje
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
@@ -1678,7 +1662,6 @@ func (a *DefaultAPIService) GetProjectExecute(r ApiGetProjectRequest) (*GetProje
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1886,7 +1869,6 @@ func (a *DefaultAPIService) ListFoldersExecute(r ApiListFoldersRequest) (*ListFo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -1898,7 +1880,6 @@ func (a *DefaultAPIService) ListFoldersExecute(r ApiListFoldersRequest) (*ListFo
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
@@ -1909,7 +1890,6 @@ func (a *DefaultAPIService) ListFoldersExecute(r ApiListFoldersRequest) (*ListFo
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2102,7 +2082,6 @@ func (a *DefaultAPIService) ListOrganizationsExecute(r ApiListOrganizationsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -2113,7 +2092,6 @@ func (a *DefaultAPIService) ListOrganizationsExecute(r ApiListOrganizationsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2321,7 +2299,6 @@ func (a *DefaultAPIService) ListProjectsExecute(r ApiListProjectsRequest) (*List
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ErrorResponse
@@ -2332,7 +2309,6 @@ func (a *DefaultAPIService) ListProjectsExecute(r ApiListProjectsRequest) (*List
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2470,7 +2446,6 @@ func (a *DefaultAPIService) PartialUpdateFolderExecute(r ApiPartialUpdateFolderR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
@@ -2482,7 +2457,6 @@ func (a *DefaultAPIService) PartialUpdateFolderExecute(r ApiPartialUpdateFolderR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
@@ -2493,7 +2467,6 @@ func (a *DefaultAPIService) PartialUpdateFolderExecute(r ApiPartialUpdateFolderR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2630,7 +2603,6 @@ func (a *DefaultAPIService) PartialUpdateOrganizationExecute(r ApiPartialUpdateO
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
@@ -2641,7 +2613,6 @@ func (a *DefaultAPIService) PartialUpdateOrganizationExecute(r ApiPartialUpdateO
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2779,7 +2750,6 @@ func (a *DefaultAPIService) PartialUpdateProjectExecute(r ApiPartialUpdateProjec
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorResponse
@@ -2791,7 +2761,6 @@ func (a *DefaultAPIService) PartialUpdateProjectExecute(r ApiPartialUpdateProjec
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorResponse
@@ -2802,7 +2771,6 @@ func (a *DefaultAPIService) PartialUpdateProjectExecute(r ApiPartialUpdateProjec
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
