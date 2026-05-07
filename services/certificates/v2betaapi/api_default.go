@@ -233,7 +233,6 @@ func (a *DefaultAPIService) CreateCertificateExecute(r ApiCreateCertificateReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -243,7 +242,6 @@ func (a *DefaultAPIService) CreateCertificateExecute(r ApiCreateCertificateReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -381,7 +379,6 @@ func (a *DefaultAPIService) DeleteCertificateExecute(r ApiDeleteCertificateReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -391,7 +388,6 @@ func (a *DefaultAPIService) DeleteCertificateExecute(r ApiDeleteCertificateReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -529,7 +525,6 @@ func (a *DefaultAPIService) GetCertificateExecute(r ApiGetCertificateRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -539,7 +534,6 @@ func (a *DefaultAPIService) GetCertificateExecute(r ApiGetCertificateRequest) (*
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -693,7 +687,6 @@ func (a *DefaultAPIService) ListCertificatesExecute(r ApiListCertificatesRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -703,7 +696,6 @@ func (a *DefaultAPIService) ListCertificatesExecute(r ApiListCertificatesRequest
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
