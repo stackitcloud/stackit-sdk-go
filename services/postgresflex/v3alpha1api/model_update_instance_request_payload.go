@@ -25,6 +25,8 @@ type UpdateInstanceRequestPayload struct {
 	BackupSchedule string `json:"backupSchedule"`
 	// The id of the instance flavor.
 	FlavorId string `json:"flavorId"`
+	// Key-value pairs, 63 characters max, begin and end with an alphanumerical character, may contain dashes (-), underscores (_), dots (.), and alphanumerics between. Key MUST be at least 1 character. Max 64 labels Regex for keys: ^(?=.{1,63}$)([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]$ Regex for values: ^(?=.{0,63}$)(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])*$ The stackit- prefix is reserved and cannot be used for Keys.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// The name of the instance.
 	Name     string                `json:"name"`
 	Network  InstanceNetworkUpdate `json:"network"`
@@ -110,6 +112,38 @@ func (o *UpdateInstanceRequestPayload) GetFlavorIdOk() (*string, bool) {
 // SetFlavorId sets field value
 func (o *UpdateInstanceRequestPayload) SetFlavorId(v string) {
 	o.FlavorId = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *UpdateInstanceRequestPayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateInstanceRequestPayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *UpdateInstanceRequestPayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *UpdateInstanceRequestPayload) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value
@@ -268,6 +302,9 @@ func (o UpdateInstanceRequestPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["backupSchedule"] = o.BackupSchedule
 	toSerialize["flavorId"] = o.FlavorId
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["network"] = o.Network
 	toSerialize["replicas"] = o.Replicas
@@ -326,6 +363,7 @@ func (o *UpdateInstanceRequestPayload) UnmarshalJSON(data []byte) (err error) {
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "backupSchedule")
 		delete(additionalProperties, "flavorId")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "network")
 		delete(additionalProperties, "replicas")
