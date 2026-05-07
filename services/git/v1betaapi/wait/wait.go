@@ -3,6 +3,7 @@ package wait
 import (
 	"context"
 	"errors"
+	"net/http"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -44,8 +45,9 @@ func DeleteGitInstanceWaitHandler(ctx context.Context, client git.DefaultAPI, pr
 			}
 			return instance.State, nil
 		},
-		ActiveState: []string{},
-		ErrorState:  []string{INSTANCESTATE_ERROR},
+		ActiveState:                []string{},
+		ErrorState:                 []string{INSTANCESTATE_ERROR},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
