@@ -439,7 +439,7 @@
 - `telemetrylink`:
   - [v0.1.0](services/telemetrylink/CHANGELOG.md#v010)
     - **New**: API for STACKIT Telemetry Link
-  - [v0.1.1](services/telemetryrouter/CHANGELOG.md#v021)
+  - [v0.1.1](services/telemetrylink/CHANGELOG.md#v011)
     - **Improvement**: Use new `WaiterHandler` struct in the TelemetryLink WaitHandler
 - `vpn`:
   - [v0.4.2](services/vpn/CHANGELOG.md#v042) 

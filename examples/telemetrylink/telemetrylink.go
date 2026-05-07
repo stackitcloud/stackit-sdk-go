@@ -40,7 +40,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `CreateOrUpdateOrganizationTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Created TelemetryLink with ID \"%s\".\n", createResp.Id)
 	createdOrgLink = createResp.Id
 
 	// Wait for the TelemetryLink to be ready
@@ -72,7 +71,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `CreateOrUpdateOrganizationTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Updated organization TelemetryLink.\n")
 
 	// Wait for the organization TelemetryLink to be updated
 	log.Printf("[TelemetryLink API] Waiting for organization TelemetryLink to be updated.\n")
@@ -93,7 +91,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `PartialUpdateOrganizationTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Partially updated organization TelemetryLink.\n")
 
 	// Wait for the organization TelemetryLink to be partiallyupdated
 	log.Printf("[TelemetryLink API] Waiting for organization TelemetryLink to be partially updated.\n")
@@ -109,7 +106,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `DeleteOrganizationTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Organization TelemetryLink \"%s\" has been successfully deleted.\n", createdOrgLink)
 
 	// Wait for the organization TelemetryLink to be deleted
 	log.Printf("[TelemetryLink API] Waiting for organization TelemetryLink to be deleted.\n")
@@ -135,7 +131,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `CreateOrUpdateFolderTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Created Folder TelemetryLink with ID \"%s\".\n", createFolderResp.Id)
 	createdFolderLink = createFolderResp.Id
 
 	// Wait for the Folder TelemetryLink to be ready
@@ -167,7 +162,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `CreateOrUpdateFolderTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Updated folder TelemetryLink.\n")
 
 	// Wait for the folder TelemetryLink to be updated
 	log.Printf("[TelemetryLink API] Waiting for folder TelemetryLink to be updated.\n")
@@ -188,7 +182,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `PartialUpdateFolderTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Partially updated folder TelemetryLink.\n")
 
 	// Wait for the folder TelemetryLink to be partially updated
 	log.Printf("[TelemetryLink API] Waiting for folder TelemetryLink to be partially updated.\n")
@@ -204,7 +197,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `DeleteFolderTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Folder TelemetryLink \"%s\" has been successfully deleted.\n", createdFolderLink)
 
 	// Wait for the folder TelemetryLink to be deleted
 	log.Printf("[TelemetryLink API] Waiting for folder TelemetryLink to be deleted.\n")
@@ -230,7 +222,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `CreateOrUpdateProjectTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Created Project TelemetryLink with ID \"%s\".\n", createProjectResp.Id)
 	createdProjectLink = createProjectResp.Id
 
 	// Wait for the Project TelemetryLink to be ready
@@ -262,7 +253,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `CreateOrUpdateProjectTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Updated project TelemetryLink.\n")
 
 	// Wait for the project TelemetryLink to be updated
 	log.Printf("[TelemetryLink API] Waiting for project TelemetryLink to be updated.\n")
@@ -283,7 +273,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `PartialUpdateProjectTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Partially updated project TelemetryLink.\n")
 
 	// Wait for the project TelemetryLink to be partially updated
 	log.Printf("[TelemetryLink API] Waiting for project TelemetryLink to be partially updated.\n")
@@ -299,7 +288,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("[TelemetryLink API] Error when calling `DeleteProjectTelemetryLink`: %v\n", err)
 	}
-	log.Printf("[TelemetryLink API] Project TelemetryLink \"%s\" has been successfully deleted.\n", createdProjectLink)
 
 	// Wait for the project TelemetryLink to be deleted
 	log.Printf("[TelemetryLink API] Waiting for project TelemetryLink to be deleted.\n")
