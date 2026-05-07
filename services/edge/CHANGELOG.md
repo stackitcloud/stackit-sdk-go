@@ -1,3 +1,6 @@
+## v0.10.0
+- Align package to latest API specification
+
 ## v0.9.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 
