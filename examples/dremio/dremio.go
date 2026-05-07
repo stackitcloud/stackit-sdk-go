@@ -5,16 +5,17 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/stackitcloud/stackit-sdk-go/core/config"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
+	"github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi/wait/wait"
+
 	dremio "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi"
-    "github.com/stackitcloud/stackit-sdk-go/services/dremio/v1alphaapi/wait/wait"
 )
 
 func main() {
-	region := "eu01"          // Region where the resources will be created
-	projectId := "PROJECT_ID" // Your STACKIT project ID
+	region := "eu01"                            // Region where the resources will be created
+	projectId := "PROJECT_ID"                   // Your STACKIT project ID
 	serviceAccountKeyPath := "sa-key-path.json" // Path to your STACKIT service account json
-
 
 	ctx := context.Background()
 
@@ -32,12 +33,12 @@ func main() {
 		DisplayName: "myExampleDremioInstance",
 		Description: utils.Ptr("This is a Dremio instance."),
 	}
-	createDremioInstanceResponse, err := dremioClient.DefaultAPI.CreateDremioInstance(ctx, projectId, region).CreateDremioInstancePayload(createDremioInstancePayload).Execute()
+	createDremioInstanceResp, err := dremioClient.DefaultAPI.CreateDremioInstance(ctx, projectId, region).CreateDremioInstancePayload(createDremioInstancePayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Dremio] Error when creating Dremio instance: %v\n", err)
 		os.Exit(1)
 	}
-	dremioId := createDremioInstanceResponse.Id
+	dremioId := createDremioInstanceResp.Id
 	fmt.Printf("[Dremio] Triggered creation of Dremio with ID: %s. Waiting for it to become active... \n", dremioId)
 
 	_, err = wait.CreateDremioWaitHandler(ctx, dremioClient.DefaultAPI, projectId, region, dremioId).WaitWithContext(ctx)
@@ -67,11 +68,11 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println("Dremio instances:")
-	for _, instance := range listResp.Dremios {
+	for i := range listResp.Dremios {
+		instance := listResp.Dremios[i]
 		fmt.Printf("%s - %s\n", instance.Id, instance.DisplayName)
 	}
 	fmt.Println()
-
 
 	// Creating a Dremio user
 	createDremioUserPayload := dremio.CreateDremioUserPayload{
@@ -82,12 +83,12 @@ func main() {
 		Name:        "newUser",
 		Password:    "aV3ryS4feP4ssw0rd6",
 	}
-	createDremioUserResponse, err := dremioClient.DefaultAPI.CreateDremioUser(ctx, projectId, region, dremioId).CreateDremioUserPayload(createDremioUserPayload).Execute()
+	createDremioUserResp, err := dremioClient.DefaultAPI.CreateDremioUser(ctx, projectId, region, dremioId).CreateDremioUserPayload(createDremioUserPayload).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Dremio] Error when creating Dremio user: %v\n", err)
 		os.Exit(1)
 	}
-	dremioUserId := createDremioUserResponse.Id
+	dremioUserId := createDremioUserResp.Id
 	fmt.Printf("[Dremio] Created Dremio User with ID: %s\n", dremioUserId)
 
 	_, err = wait.CreateDremioUserWaitHandler(ctx, dremioClient.DefaultAPI, projectId, region, dremioId, dremioUserId).WaitWithContext(ctx)
@@ -103,7 +104,8 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println("Dremio users:")
-	for _, user := range listUsersResp.DremioUsers {
+	for i := range listUsersResp.DremioUsers {
+		user := &listUsersResp.DremioUsers[i]
 		fmt.Printf("%s - %s\n", user.Id, user.Name)
 	}
 	fmt.Println()
@@ -131,6 +133,4 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[Dremio] Error when waiting for deletion: %v\n", err)
 		os.Exit(1)
 	}
-
-
 }
