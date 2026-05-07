@@ -421,7 +421,6 @@ func (a *DefaultAPIService) CreateDistributionExecute(r ApiCreateDistributionReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -432,7 +431,6 @@ func (a *DefaultAPIService) CreateDistributionExecute(r ApiCreateDistributionReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -445,7 +443,6 @@ func (a *DefaultAPIService) CreateDistributionExecute(r ApiCreateDistributionReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJsonResponse
@@ -457,7 +454,6 @@ func (a *DefaultAPIService) CreateDistributionExecute(r ApiCreateDistributionReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -467,7 +463,6 @@ func (a *DefaultAPIService) CreateDistributionExecute(r ApiCreateDistributionReq
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -613,7 +608,6 @@ func (a *DefaultAPIService) DeleteCustomDomainExecute(r ApiDeleteCustomDomainReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -624,7 +618,6 @@ func (a *DefaultAPIService) DeleteCustomDomainExecute(r ApiDeleteCustomDomainReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -637,7 +630,6 @@ func (a *DefaultAPIService) DeleteCustomDomainExecute(r ApiDeleteCustomDomainReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -647,7 +639,6 @@ func (a *DefaultAPIService) DeleteCustomDomainExecute(r ApiDeleteCustomDomainReq
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -787,7 +778,6 @@ func (a *DefaultAPIService) DeleteDistributionExecute(r ApiDeleteDistributionReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -798,7 +788,6 @@ func (a *DefaultAPIService) DeleteDistributionExecute(r ApiDeleteDistributionReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -811,7 +800,6 @@ func (a *DefaultAPIService) DeleteDistributionExecute(r ApiDeleteDistributionReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -821,7 +809,6 @@ func (a *DefaultAPIService) DeleteDistributionExecute(r ApiDeleteDistributionReq
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -975,7 +962,6 @@ func (a *DefaultAPIService) FindCachePathsExecute(r ApiFindCachePathsRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -986,7 +972,6 @@ func (a *DefaultAPIService) FindCachePathsExecute(r ApiFindCachePathsRequest) (*
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -999,7 +984,6 @@ func (a *DefaultAPIService) FindCachePathsExecute(r ApiFindCachePathsRequest) (*
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1009,7 +993,6 @@ func (a *DefaultAPIService) FindCachePathsExecute(r ApiFindCachePathsRequest) (*
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1151,7 +1134,6 @@ func (a *DefaultAPIService) GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*GetC
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -1162,7 +1144,6 @@ func (a *DefaultAPIService) GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*GetC
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1175,7 +1156,6 @@ func (a *DefaultAPIService) GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*GetC
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1185,7 +1165,6 @@ func (a *DefaultAPIService) GetCacheInfoExecute(r ApiGetCacheInfoRequest) (*GetC
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1322,7 +1301,6 @@ func (a *DefaultAPIService) GetCustomDomainExecute(r ApiGetCustomDomainRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v GenericJsonResponse
@@ -1333,7 +1311,6 @@ func (a *DefaultAPIService) GetCustomDomainExecute(r ApiGetCustomDomainRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1346,7 +1323,6 @@ func (a *DefaultAPIService) GetCustomDomainExecute(r ApiGetCustomDomainRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJsonResponse
@@ -1358,7 +1334,6 @@ func (a *DefaultAPIService) GetCustomDomainExecute(r ApiGetCustomDomainRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1368,7 +1343,6 @@ func (a *DefaultAPIService) GetCustomDomainExecute(r ApiGetCustomDomainRequest) 
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1512,7 +1486,6 @@ func (a *DefaultAPIService) GetDistributionExecute(r ApiGetDistributionRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v GenericJsonResponse
@@ -1523,7 +1496,6 @@ func (a *DefaultAPIService) GetDistributionExecute(r ApiGetDistributionRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1536,7 +1508,6 @@ func (a *DefaultAPIService) GetDistributionExecute(r ApiGetDistributionRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJsonResponse
@@ -1548,7 +1519,6 @@ func (a *DefaultAPIService) GetDistributionExecute(r ApiGetDistributionRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1558,7 +1528,6 @@ func (a *DefaultAPIService) GetDistributionExecute(r ApiGetDistributionRequest) 
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1803,7 +1772,6 @@ func (a *DefaultAPIService) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsRespons
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -1814,7 +1782,6 @@ func (a *DefaultAPIService) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsRespons
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -1827,7 +1794,6 @@ func (a *DefaultAPIService) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsRespons
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1837,7 +1803,6 @@ func (a *DefaultAPIService) GetLogsExecute(r ApiGetLogsRequest) (*GetLogsRespons
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -1975,7 +1940,6 @@ func (a *DefaultAPIService) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFilter
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v string
@@ -1986,7 +1950,6 @@ func (a *DefaultAPIService) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFilter
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1999,7 +1962,6 @@ func (a *DefaultAPIService) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFilter
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v GenericJsonResponse
@@ -2011,7 +1973,6 @@ func (a *DefaultAPIService) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFilter
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2021,7 +1982,6 @@ func (a *DefaultAPIService) GetLogsSearchFiltersExecute(r ApiGetLogsSearchFilter
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2192,7 +2152,6 @@ func (a *DefaultAPIService) GetStatisticsExecute(r ApiGetStatisticsRequest) (*Ge
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -2203,7 +2162,6 @@ func (a *DefaultAPIService) GetStatisticsExecute(r ApiGetStatisticsRequest) (*Ge
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2216,7 +2174,6 @@ func (a *DefaultAPIService) GetStatisticsExecute(r ApiGetStatisticsRequest) (*Ge
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2226,7 +2183,6 @@ func (a *DefaultAPIService) GetStatisticsExecute(r ApiGetStatisticsRequest) (*Ge
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2414,7 +2370,6 @@ func (a *DefaultAPIService) ListDistributionsExecute(r ApiListDistributionsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -2425,7 +2380,6 @@ func (a *DefaultAPIService) ListDistributionsExecute(r ApiListDistributionsReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2438,7 +2392,6 @@ func (a *DefaultAPIService) ListDistributionsExecute(r ApiListDistributionsReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2448,7 +2401,6 @@ func (a *DefaultAPIService) ListDistributionsExecute(r ApiListDistributionsReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2574,7 +2526,6 @@ func (a *DefaultAPIService) ListWafCollectionsExecute(r ApiListWafCollectionsReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -2585,7 +2536,6 @@ func (a *DefaultAPIService) ListWafCollectionsExecute(r ApiListWafCollectionsReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2598,7 +2548,6 @@ func (a *DefaultAPIService) ListWafCollectionsExecute(r ApiListWafCollectionsReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2608,7 +2557,6 @@ func (a *DefaultAPIService) ListWafCollectionsExecute(r ApiListWafCollectionsReq
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2746,7 +2694,6 @@ func (a *DefaultAPIService) PatchDistributionExecute(r ApiPatchDistributionReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -2757,7 +2704,6 @@ func (a *DefaultAPIService) PatchDistributionExecute(r ApiPatchDistributionReque
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2770,7 +2716,6 @@ func (a *DefaultAPIService) PatchDistributionExecute(r ApiPatchDistributionReque
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2780,7 +2725,6 @@ func (a *DefaultAPIService) PatchDistributionExecute(r ApiPatchDistributionReque
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -2919,7 +2863,6 @@ func (a *DefaultAPIService) PurgeCacheExecute(r ApiPurgeCacheRequest) (map[strin
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -2930,7 +2873,6 @@ func (a *DefaultAPIService) PurgeCacheExecute(r ApiPurgeCacheRequest) (map[strin
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -2943,7 +2885,6 @@ func (a *DefaultAPIService) PurgeCacheExecute(r ApiPurgeCacheRequest) (map[strin
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2953,7 +2894,6 @@ func (a *DefaultAPIService) PurgeCacheExecute(r ApiPurgeCacheRequest) (map[strin
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
@@ -3098,7 +3038,6 @@ func (a *DefaultAPIService) PutCustomDomainExecute(r ApiPutCustomDomainRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v GenericJsonResponse
@@ -3109,7 +3048,6 @@ func (a *DefaultAPIService) PutCustomDomainExecute(r ApiPutCustomDomainRequest) 
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
@@ -3122,7 +3060,6 @@ func (a *DefaultAPIService) PutCustomDomainExecute(r ApiPutCustomDomainRequest) 
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		var v GenericJsonResponse
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3132,7 +3069,6 @@ func (a *DefaultAPIService) PutCustomDomainExecute(r ApiPutCustomDomainRequest) 
 		}
 		newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 		newErr.Model = v
-		return localVarReturnValue, newErr
 		return localVarReturnValue, newErr
 	}
 
