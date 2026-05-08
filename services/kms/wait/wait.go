@@ -95,7 +95,7 @@ func DeleteKeyWaitHandler(ctx context.Context, client ApiKmsClient, projectId, r
 		FetchInstance: func() (*kms.Key, error) {
 			return client.GetKeyExecute(ctx, projectId, region, keyRingId, keyId)
 		},
-		GetState: func(d *kms.Key) (kms.KeyState, error) {
+		GetState: func(_ *kms.Key) (kms.KeyState, error) {
 			return "", nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound, http.StatusGone},

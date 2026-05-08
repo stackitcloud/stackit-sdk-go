@@ -71,7 +71,7 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, pr
 func DeleteKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
 	waitConfig := wait.WaiterHelper[kms.Key, string]{
 		FetchInstance: client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute,
-		GetState: func(d *kms.Key) (string, error) {
+		GetState: func(_ *kms.Key) (string, error) {
 			return "", nil
 		},
 		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound, http.StatusGone},
