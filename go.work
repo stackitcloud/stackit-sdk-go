@@ -9,6 +9,7 @@ use (
 	./examples/configuration
 	./examples/cost
 	./examples/dns
+	./examples/dremio
 	./examples/edge
 	./examples/errorhandling
 	./examples/iaas
@@ -34,6 +35,7 @@ use (
 	./examples/sfs
 	./examples/ske
 	./examples/sqlserverflex
+	./examples/telemetrylink
 	./examples/telemetryrouter
 	./examples/waiter
 	./services/alb
@@ -45,6 +47,7 @@ use (
 	./services/certificates
 	./services/cost
 	./services/dns
+	./services/dremio
 	./services/edge
 	./services/git
 	./services/iaas
