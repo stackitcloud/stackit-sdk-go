@@ -4,7 +4,6 @@ import (
 	"context"
 	"testing"
 	"testing/synctest"
-	"time"
 
 	"github.com/google/go-cmp/cmp"
 
@@ -122,7 +121,7 @@ func TestCreateOrUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := CreateOrUpdateOrganizationTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -182,7 +181,7 @@ func TestPartialUpdateOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := PartialUpdateOrganizationTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -246,7 +245,7 @@ func TestDeleteOrganizationTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := DeleteOrganizationTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -309,7 +308,7 @@ func TestCreateOrUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := CreateOrUpdateFolderTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -369,7 +368,7 @@ func TestPartialUpdateFolderTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := PartialUpdateFolderTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -433,7 +432,7 @@ func TestDeleteFolderTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := DeleteFolderTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -496,7 +495,7 @@ func TestCreateOrUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := CreateOrUpdateProjectTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -556,7 +555,7 @@ func TestPartialUpdateProjectTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := PartialUpdateProjectTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
@@ -620,7 +619,7 @@ func TestDeleteProjectTelemetryLinkWaitHandler(t *testing.T) {
 
 				handler := DeleteProjectTelemetryLinkWaitHandler(context.Background(), apiClient, "pid", "eu01")
 
-				gotRes, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+				gotRes, err := handler.WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {
 					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
