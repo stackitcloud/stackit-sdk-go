@@ -9,6 +9,7 @@ use (
 	./examples/configuration
 	./examples/cost
 	./examples/dns
+	./examples/dremio
 	./examples/edge
 	./examples/errorhandling
 	./examples/iaas
@@ -45,6 +46,7 @@ use (
 	./services/certificates
 	./services/cost
 	./services/dns
+	./services/dremio
 	./services/edge
 	./services/git
 	./services/iaas
