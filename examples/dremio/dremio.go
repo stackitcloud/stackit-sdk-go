@@ -89,7 +89,7 @@ func main() {
 		os.Exit(1)
 	}
 	dremioUserId := createDremioUserResp.Id
-	fmt.Printf("[Dremio] Created Dremio User with ID: %s\n", dremioUserId)
+	fmt.Printf("[Dremio] Created Dremio user with ID: %s\n", dremioUserId)
 
 	_, err = wait.CreateDremioUserWaitHandler(ctx, dremioClient.DefaultAPI, projectId, region, dremioId, dremioUserId).WaitWithContext(ctx)
 	if err != nil {
@@ -121,6 +121,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[Dremio] Error when waiting for user deletion: %v\n", err)
 		os.Exit(1)
 	}
+	fmt.Printf("[Dremio] Deleted Dremio user with ID: %s\n", dremioUserId)
 
 	// Delete a Dremio instance
 	err = dremioClient.DefaultAPI.DeleteDremioInstance(ctx, projectId, region, dremioId).Execute()
@@ -133,4 +134,5 @@ func main() {
 		fmt.Fprintf(os.Stderr, "[Dremio] Error when waiting for deletion: %v\n", err)
 		os.Exit(1)
 	}
+	fmt.Printf("[Dremio] Deleted Dremio instance with ID: %s\n", dremioId)
 }
