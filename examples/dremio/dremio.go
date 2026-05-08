@@ -13,15 +13,13 @@ import (
 )
 
 func main() {
-	region := "eu01"                            // Region where the resources will be created
-	projectId := "PROJECT_ID"                   // Your STACKIT project ID
-	serviceAccountKeyPath := "sa-key-path.json" // Path to your STACKIT service account json
+	region := "eu01"          // Region where the resources will be created
+	projectId := "PROJECT_ID" // Your STACKIT project ID
 
 	ctx := context.Background()
 
 	dremioClient, err := dremio.NewAPIClient(
 		config.WithRegion(region),
-		config.WithServiceAccountKeyPath(serviceAccountKeyPath),
 	)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "[Dremio] Creating API client: %v\n", err)
