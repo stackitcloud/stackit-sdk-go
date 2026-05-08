@@ -3,11 +3,9 @@ package wait
 import (
 	"context"
 	"errors"
-	"fmt"
 	"net/http"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	kms "github.com/stackitcloud/stackit-sdk-go/services/kms/v1api"
 )
@@ -39,149 +37,96 @@ const (
 )
 
 func CreateKeyRingWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId string) *wait.AsyncActionHandler[kms.KeyRing] {
-	handler := wait.New(func() (bool, *kms.KeyRing, error) {
-		response, err := client.GetKeyRing(ctx, projectId, region, keyRingId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case KEYRINGSTATE_CREATING:
-				return false, nil, nil
-			default:
-				return true, response, nil
+	waitConfig := wait.WaiterHelper[kms.KeyRing, string]{
+		FetchInstance: client.GetKeyRing(ctx, projectId, region, keyRingId).Execute,
+		GetState: func(d *kms.KeyRing) (string, error) {
+			if d == nil || d.State == "" {
+				return "", errors.New("keyring or state is nil")
 			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []string{KEYRINGSTATE_ACTIVE, KEYRINGSTATE_DELETED},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func CreateOrUpdateKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
-	handler := wait.New(func() (bool, *kms.Key, error) {
-		response, err := client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case KEYSTATE_CREATING:
-				return false, nil, nil
-			default:
-				return true, response, nil
+	waitConfig := wait.WaiterHelper[kms.Key, string]{
+		FetchInstance: client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute,
+		GetState: func(d *kms.Key) (string, error) {
+			if d == nil || d.State == "" {
+				return "", errors.New("key or state is nil")
 			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []string{KEYSTATE_ACTIVE, KEYSTATE_DELETED},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func DeleteKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string) *wait.AsyncActionHandler[kms.Key] {
-	handler := wait.New(func() (bool, *kms.Key, error) {
-		_, err := client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute()
-		if err != nil {
-			var apiErr *oapierror.GenericOpenAPIError
-			if errors.As(err, &apiErr) {
-				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, nil
-				}
-			}
-			return true, nil, err
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[kms.Key, string]{
+		FetchInstance: client.GetKey(ctx, projectId, region, keyRingId, keyId).Execute,
+		GetState: func(d *kms.Key) (string, error) {
+			return "", nil
+		},
+		DeleteHttpErrorStatusCodes: []int{http.StatusNotFound, http.StatusGone},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func EnableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
-	handler := wait.New(func() (bool, *kms.Version, error) {
-		response, err := client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute()
-		if err != nil {
-			var apiErr *oapierror.GenericOpenAPIError
-			if errors.As(err, &apiErr) {
-				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, fmt.Errorf("enabling failed for key %s version %d: version or key not found", keyId, version)
-				}
+	waitConfig := wait.WaiterHelper[kms.Version, string]{
+		FetchInstance: client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute,
+		GetState: func(d *kms.Version) (string, error) {
+			if d == nil || d.State == "" {
+				return "", errors.New("version or state is nil")
 			}
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case VERSIONSTATE_ACTIVE:
-				return true, response, nil
-			case VERSIONSTATE_CREATING:
-				return false, nil, nil
-			case VERSIONSTATE_DESTROYED, VERSIONSTATE_KEY_MATERIAL_INVALID:
-				return true, response, fmt.Errorf("enabling failed for key %s version %d: state %s", keyId, version, response.State)
-			default:
-				return true, response, fmt.Errorf("key version %d for key %s has unexpected state %s", version, keyId, response.State)
-			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []string{VERSIONSTATE_ACTIVE},
+		ErrorState:  []string{VERSIONSTATE_DESTROYED, VERSIONSTATE_KEY_MATERIAL_INVALID, VERSIONSTATE_DISABLED, VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func DisableKeyVersionWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, keyId string, version int64) *wait.AsyncActionHandler[kms.Version] {
-	handler := wait.New(func() (bool, *kms.Version, error) {
-		response, err := client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute()
-		if err != nil {
-			var apiErr *oapierror.GenericOpenAPIError
-			if errors.As(err, &apiErr) {
-				if statusCode := apiErr.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, nil, fmt.Errorf("disabling failed for key %s version %d: version or key not found", keyId, version)
-				}
+	waitConfig := wait.WaiterHelper[kms.Version, string]{
+		FetchInstance: client.GetVersion(ctx, projectId, region, keyRingId, keyId, version).Execute,
+		GetState: func(d *kms.Version) (string, error) {
+			if d == nil || d.State == "" {
+				return "", errors.New("version or state is nil")
 			}
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case VERSIONSTATE_DISABLED:
-				return true, response, nil
-			case VERSIONSTATE_ACTIVE, VERSIONSTATE_CREATING, VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE:
-				return false, nil, nil
-			case VERSIONSTATE_DESTROYED, VERSIONSTATE_KEY_MATERIAL_INVALID:
-				return true, response, fmt.Errorf("disabling failed for key %s version %d: state %s", keyId, version, response.State)
-			default:
-				return true, response, fmt.Errorf("key version %d for key %s has unexpected state %s", version, keyId, response.State)
-			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []string{VERSIONSTATE_DISABLED},
+		ErrorState:  []string{VERSIONSTATE_DESTROYED, VERSIONSTATE_KEY_MATERIAL_INVALID},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func CreateWrappingKeyWaitHandler(ctx context.Context, client kms.DefaultAPI, projectId, region, keyRingId, wrappingKeyId string) *wait.AsyncActionHandler[kms.WrappingKey] {
-	handler := wait.New(func() (bool, *kms.WrappingKey, error) {
-		response, err := client.GetWrappingKey(ctx, projectId, region, keyRingId, wrappingKeyId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-
-		if response != nil {
-			switch response.State {
-			case WRAPPINGKEYSTATE_CREATING:
-				return false, nil, nil
-			default:
-				return true, response, nil
+	waitConfig := wait.WaiterHelper[kms.WrappingKey, string]{
+		FetchInstance: client.GetWrappingKey(ctx, projectId, region, keyRingId, wrappingKeyId).Execute,
+		GetState: func(d *kms.WrappingKey) (string, error) {
+			if d == nil || d.State == "" {
+				return "", errors.New("wrappingkey or state is nil")
 			}
-		}
-
-		return false, nil, nil
-	})
+			return d.State, nil
+		},
+		ActiveState: []string{WRAPPINGKEYSTATE_ACTIVE, WRAPPINGKEYSTATE_DELETED},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
