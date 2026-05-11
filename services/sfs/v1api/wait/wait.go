@@ -30,77 +30,58 @@ const (
 )
 
 func CreateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
-	handler := wait.New(func() (waitFinished bool, resourcePool *sfs.GetResourcePoolResponse, err error) {
-		resourcePool, err = api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute()
-		if err != nil {
-			return false, resourcePool, err
-		}
-		if resourcePool == nil ||
-			resourcePool.ResourcePool == nil ||
-			resourcePool.ResourcePool.Id == nil ||
-			resourcePool.ResourcePool.State == nil {
-			return false, resourcePool, fmt.Errorf("create failed for resourcepool with id %s, the response is not valid (state missing)", resourcePoolId)
-		}
-		if *resourcePool.ResourcePool.Id == resourcePoolId {
-			switch *resourcePool.ResourcePool.State {
-			case ResourcePoolStateCreated:
-				return true, resourcePool, err
-			default:
-				return false, resourcePool, err
-			}
-		}
+	waitConfig := wait.WaiterHelper[sfs.GetResourcePoolResponse, string]{
+		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
+		GetState:      GetStateResourcePool,
+		ActiveState:   []string{ResourcePoolStateCreated},
+		ErrorState:    []string{},
+	}
 
-		return false, nil, nil
-	})
+	handler := wait.New(waitConfig.Wait())
 
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func UpdateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
-	handler := wait.New(func() (waitFinished bool, resourcePool *sfs.GetResourcePoolResponse, err error) {
-		resourcePool, err = api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute()
-		if err != nil {
-			return false, resourcePool, err
-		}
-		if resourcePool == nil ||
-			resourcePool.ResourcePool == nil ||
-			resourcePool.ResourcePool.Id == nil ||
-			resourcePool.ResourcePool.State == nil {
-			return false, resourcePool, fmt.Errorf("update failed for resourcepool with id %s, the response is not valid (state missing)", resourcePoolId)
-		}
-		if *resourcePool.ResourcePool.Id == resourcePoolId {
-			switch *resourcePool.ResourcePool.State {
-			case ResourcePoolStateCreated:
-				return true, resourcePool, err
-			default:
-				return false, resourcePool, err
-			}
-		}
+	waitConfig := wait.WaiterHelper[sfs.GetResourcePoolResponse, string]{
+		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
+		GetState:      GetStateResourcePool,
+		ActiveState:   []string{ResourcePoolStateCreated},
+		ErrorState:    []string{},
+	}
 
-		return false, nil, nil
-	})
+	handler := wait.New(waitConfig.Wait())
 
 	handler.SetTimeout(10 * time.Minute)
 	return handler
 }
 
 func DeleteResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
-	handler := wait.New(func() (waitFinished bool, resourcePool *sfs.GetResourcePoolResponse, err error) {
-		resourcePool, err = api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute()
-		if err != nil {
-			var oapiError *oapierror.GenericOpenAPIError
-			if errors.As(err, &oapiError) {
-				if statusCode := oapiError.StatusCode; statusCode == http.StatusNotFound || statusCode == http.StatusGone {
-					return true, resourcePool, nil
-				}
-			}
-		}
-		return false, nil, nil
-	})
+	waitConfig := wait.WaiterHelper[sfs.GetResourcePoolResponse, string]{
+		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
+		GetState:      GetStateResourcePool,
+		ActiveState:   []string{},
+		ErrorState:    []string{},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 
 	handler.SetTimeout(10 * time.Minute)
 	return handler
+}
+
+func GetStateResourcePool(response *sfs.GetResourcePoolResponse) (string, error) {
+	if response == nil {
+		return "", errors.New("empty response")
+	}
+	if response.ResourcePool == nil {
+		return "", errors.New("resource pool is nil")
+	}
+	if response.ResourcePool.State == nil {
+		return "", errors.New("resource pool state is nil")
+	}
+	return *response.ResourcePool.State, nil
 }
 
 func CreateShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId, shareId string) *wait.AsyncActionHandler[sfs.GetShareResponse] {
