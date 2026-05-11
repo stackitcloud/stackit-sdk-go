@@ -15,11 +15,11 @@ import (
 	"fmt"
 )
 
-// checks if the UpdateVPNGatewayPayloadAvailabilityZones type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateVPNGatewayPayloadAvailabilityZones{}
+// checks if the UpdateGatewayPayloadAvailabilityZones type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateGatewayPayloadAvailabilityZones{}
 
-// UpdateVPNGatewayPayloadAvailabilityZones struct for UpdateVPNGatewayPayloadAvailabilityZones
-type UpdateVPNGatewayPayloadAvailabilityZones struct {
+// UpdateGatewayPayloadAvailabilityZones struct for UpdateGatewayPayloadAvailabilityZones
+type UpdateGatewayPayloadAvailabilityZones struct {
 	// Object that represents an availability zone.
 	Tunnel1 string `json:"tunnel1"`
 	// Object that represents an availability zone.
@@ -27,29 +27,29 @@ type UpdateVPNGatewayPayloadAvailabilityZones struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateVPNGatewayPayloadAvailabilityZones UpdateVPNGatewayPayloadAvailabilityZones
+type _UpdateGatewayPayloadAvailabilityZones UpdateGatewayPayloadAvailabilityZones
 
-// NewUpdateVPNGatewayPayloadAvailabilityZones instantiates a new UpdateVPNGatewayPayloadAvailabilityZones object
+// NewUpdateGatewayPayloadAvailabilityZones instantiates a new UpdateGatewayPayloadAvailabilityZones object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateVPNGatewayPayloadAvailabilityZones(tunnel1 string, tunnel2 string) *UpdateVPNGatewayPayloadAvailabilityZones {
-	this := UpdateVPNGatewayPayloadAvailabilityZones{}
+func NewUpdateGatewayPayloadAvailabilityZones(tunnel1 string, tunnel2 string) *UpdateGatewayPayloadAvailabilityZones {
+	this := UpdateGatewayPayloadAvailabilityZones{}
 	this.Tunnel1 = tunnel1
 	this.Tunnel2 = tunnel2
 	return &this
 }
 
-// NewUpdateVPNGatewayPayloadAvailabilityZonesWithDefaults instantiates a new UpdateVPNGatewayPayloadAvailabilityZones object
+// NewUpdateGatewayPayloadAvailabilityZonesWithDefaults instantiates a new UpdateGatewayPayloadAvailabilityZones object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateVPNGatewayPayloadAvailabilityZonesWithDefaults() *UpdateVPNGatewayPayloadAvailabilityZones {
-	this := UpdateVPNGatewayPayloadAvailabilityZones{}
+func NewUpdateGatewayPayloadAvailabilityZonesWithDefaults() *UpdateGatewayPayloadAvailabilityZones {
+	this := UpdateGatewayPayloadAvailabilityZones{}
 	return &this
 }
 
 // GetTunnel1 returns the Tunnel1 field value
-func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel1() string {
+func (o *UpdateGatewayPayloadAvailabilityZones) GetTunnel1() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -60,7 +60,7 @@ func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel1() string {
 
 // GetTunnel1Ok returns a tuple with the Tunnel1 field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel1Ok() (*string, bool) {
+func (o *UpdateGatewayPayloadAvailabilityZones) GetTunnel1Ok() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel1Ok() (*string, bool
 }
 
 // SetTunnel1 sets field value
-func (o *UpdateVPNGatewayPayloadAvailabilityZones) SetTunnel1(v string) {
+func (o *UpdateGatewayPayloadAvailabilityZones) SetTunnel1(v string) {
 	o.Tunnel1 = v
 }
 
 // GetTunnel2 returns the Tunnel2 field value
-func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel2() string {
+func (o *UpdateGatewayPayloadAvailabilityZones) GetTunnel2() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel2() string {
 
 // GetTunnel2Ok returns a tuple with the Tunnel2 field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel2Ok() (*string, bool) {
+func (o *UpdateGatewayPayloadAvailabilityZones) GetTunnel2Ok() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,11 +92,11 @@ func (o *UpdateVPNGatewayPayloadAvailabilityZones) GetTunnel2Ok() (*string, bool
 }
 
 // SetTunnel2 sets field value
-func (o *UpdateVPNGatewayPayloadAvailabilityZones) SetTunnel2(v string) {
+func (o *UpdateGatewayPayloadAvailabilityZones) SetTunnel2(v string) {
 	o.Tunnel2 = v
 }
 
-func (o UpdateVPNGatewayPayloadAvailabilityZones) MarshalJSON() ([]byte, error) {
+func (o UpdateGatewayPayloadAvailabilityZones) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,7 +104,7 @@ func (o UpdateVPNGatewayPayloadAvailabilityZones) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateVPNGatewayPayloadAvailabilityZones) ToMap() (map[string]interface{}, error) {
+func (o UpdateGatewayPayloadAvailabilityZones) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["tunnel1"] = o.Tunnel1
 	toSerialize["tunnel2"] = o.Tunnel2
@@ -116,7 +116,7 @@ func (o UpdateVPNGatewayPayloadAvailabilityZones) ToMap() (map[string]interface{
 	return toSerialize, nil
 }
 
-func (o *UpdateVPNGatewayPayloadAvailabilityZones) UnmarshalJSON(data []byte) (err error) {
+func (o *UpdateGatewayPayloadAvailabilityZones) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -139,15 +139,15 @@ func (o *UpdateVPNGatewayPayloadAvailabilityZones) UnmarshalJSON(data []byte) (e
 		}
 	}
 
-	varUpdateVPNGatewayPayloadAvailabilityZones := _UpdateVPNGatewayPayloadAvailabilityZones{}
+	varUpdateGatewayPayloadAvailabilityZones := _UpdateGatewayPayloadAvailabilityZones{}
 
-	err = json.Unmarshal(data, &varUpdateVPNGatewayPayloadAvailabilityZones)
+	err = json.Unmarshal(data, &varUpdateGatewayPayloadAvailabilityZones)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateVPNGatewayPayloadAvailabilityZones(varUpdateVPNGatewayPayloadAvailabilityZones)
+	*o = UpdateGatewayPayloadAvailabilityZones(varUpdateGatewayPayloadAvailabilityZones)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -160,38 +160,38 @@ func (o *UpdateVPNGatewayPayloadAvailabilityZones) UnmarshalJSON(data []byte) (e
 	return err
 }
 
-type NullableUpdateVPNGatewayPayloadAvailabilityZones struct {
-	value *UpdateVPNGatewayPayloadAvailabilityZones
+type NullableUpdateGatewayPayloadAvailabilityZones struct {
+	value *UpdateGatewayPayloadAvailabilityZones
 	isSet bool
 }
 
-func (v NullableUpdateVPNGatewayPayloadAvailabilityZones) Get() *UpdateVPNGatewayPayloadAvailabilityZones {
+func (v NullableUpdateGatewayPayloadAvailabilityZones) Get() *UpdateGatewayPayloadAvailabilityZones {
 	return v.value
 }
 
-func (v *NullableUpdateVPNGatewayPayloadAvailabilityZones) Set(val *UpdateVPNGatewayPayloadAvailabilityZones) {
+func (v *NullableUpdateGatewayPayloadAvailabilityZones) Set(val *UpdateGatewayPayloadAvailabilityZones) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateVPNGatewayPayloadAvailabilityZones) IsSet() bool {
+func (v NullableUpdateGatewayPayloadAvailabilityZones) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateVPNGatewayPayloadAvailabilityZones) Unset() {
+func (v *NullableUpdateGatewayPayloadAvailabilityZones) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateVPNGatewayPayloadAvailabilityZones(val *UpdateVPNGatewayPayloadAvailabilityZones) *NullableUpdateVPNGatewayPayloadAvailabilityZones {
-	return &NullableUpdateVPNGatewayPayloadAvailabilityZones{value: val, isSet: true}
+func NewNullableUpdateGatewayPayloadAvailabilityZones(val *UpdateGatewayPayloadAvailabilityZones) *NullableUpdateGatewayPayloadAvailabilityZones {
+	return &NullableUpdateGatewayPayloadAvailabilityZones{value: val, isSet: true}
 }
 
-func (v NullableUpdateVPNGatewayPayloadAvailabilityZones) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateGatewayPayloadAvailabilityZones) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateVPNGatewayPayloadAvailabilityZones) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateGatewayPayloadAvailabilityZones) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
