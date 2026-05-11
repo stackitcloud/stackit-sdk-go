@@ -39,7 +39,9 @@ type Authentication struct {
 	// Scopes defines the OIDC scopes to request.
 	Scopes string `json:"scopes"`
 	// The current status of the authentication definition.
-	Status               string `json:"status"`
+	Status string `json:"status"`
+	// Provides additional information or error details when the status is 'Error'.
+	StatusMessage        *string `json:"status_message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -287,6 +289,38 @@ func (o *Authentication) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetStatusMessage returns the StatusMessage field value if set, zero value otherwise.
+func (o *Authentication) GetStatusMessage() string {
+	if o == nil || IsNil(o.StatusMessage) {
+		var ret string
+		return ret
+	}
+	return *o.StatusMessage
+}
+
+// GetStatusMessageOk returns a tuple with the StatusMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Authentication) GetStatusMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.StatusMessage) {
+		return nil, false
+	}
+	return o.StatusMessage, true
+}
+
+// HasStatusMessage returns a boolean if a field has been set.
+func (o *Authentication) HasStatusMessage() bool {
+	if o != nil && !IsNil(o.StatusMessage) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusMessage gets a reference to the given string and assigns it to the StatusMessage field.
+func (o *Authentication) SetStatusMessage(v string) {
+	o.StatusMessage = &v
+}
+
 func (o Authentication) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -306,6 +340,9 @@ func (o Authentication) ToMap() (map[string]interface{}, error) {
 	toSerialize["provider"] = o.Provider
 	toSerialize["scopes"] = o.Scopes
 	toSerialize["status"] = o.Status
+	if !IsNil(o.StatusMessage) {
+		toSerialize["status_message"] = o.StatusMessage
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -366,6 +403,7 @@ func (o *Authentication) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "provider")
 		delete(additionalProperties, "scopes")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "status_message")
 		o.AdditionalProperties = additionalProperties
 	}
 
