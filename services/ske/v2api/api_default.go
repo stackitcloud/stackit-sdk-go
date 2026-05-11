@@ -379,7 +379,6 @@ func (a *DefaultAPIService) CompleteCredentialsRotationExecute(r ApiCompleteCred
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -391,7 +390,6 @@ func (a *DefaultAPIService) CompleteCredentialsRotationExecute(r ApiCompleteCred
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -402,7 +400,6 @@ func (a *DefaultAPIService) CompleteCredentialsRotationExecute(r ApiCompleteCred
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -548,7 +545,6 @@ func (a *DefaultAPIService) CreateKubeconfigExecute(r ApiCreateKubeconfigRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -560,7 +556,6 @@ func (a *DefaultAPIService) CreateKubeconfigExecute(r ApiCreateKubeconfigRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -571,7 +566,6 @@ func (a *DefaultAPIService) CreateKubeconfigExecute(r ApiCreateKubeconfigRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -717,7 +711,6 @@ func (a *DefaultAPIService) CreateOrUpdateClusterExecute(r ApiCreateOrUpdateClus
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -729,7 +722,6 @@ func (a *DefaultAPIService) CreateOrUpdateClusterExecute(r ApiCreateOrUpdateClus
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -740,7 +732,6 @@ func (a *DefaultAPIService) CreateOrUpdateClusterExecute(r ApiCreateOrUpdateClus
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -875,7 +866,6 @@ func (a *DefaultAPIService) DeleteClusterExecute(r ApiDeleteClusterRequest) (map
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -887,7 +877,6 @@ func (a *DefaultAPIService) DeleteClusterExecute(r ApiDeleteClusterRequest) (map
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -898,7 +887,6 @@ func (a *DefaultAPIService) DeleteClusterExecute(r ApiDeleteClusterRequest) (map
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1033,7 +1021,6 @@ func (a *DefaultAPIService) GetClusterExecute(r ApiGetClusterRequest) (*Cluster,
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -1045,7 +1032,6 @@ func (a *DefaultAPIService) GetClusterExecute(r ApiGetClusterRequest) (*Cluster,
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -1056,7 +1042,6 @@ func (a *DefaultAPIService) GetClusterExecute(r ApiGetClusterRequest) (*Cluster,
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1191,7 +1176,6 @@ func (a *DefaultAPIService) GetIDPKubeconfigExecute(r ApiGetIDPKubeconfigRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -1203,7 +1187,6 @@ func (a *DefaultAPIService) GetIDPKubeconfigExecute(r ApiGetIDPKubeconfigRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -1214,7 +1197,6 @@ func (a *DefaultAPIService) GetIDPKubeconfigExecute(r ApiGetIDPKubeconfigRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1349,7 +1331,6 @@ func (a *DefaultAPIService) GetLoginKubeconfigExecute(r ApiGetLoginKubeconfigReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -1361,7 +1342,6 @@ func (a *DefaultAPIService) GetLoginKubeconfigExecute(r ApiGetLoginKubeconfigReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -1372,7 +1352,6 @@ func (a *DefaultAPIService) GetLoginKubeconfigExecute(r ApiGetLoginKubeconfigReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1503,7 +1482,6 @@ func (a *DefaultAPIService) ListClustersExecute(r ApiListClustersRequest) (*List
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -1515,7 +1493,6 @@ func (a *DefaultAPIService) ListClustersExecute(r ApiListClustersRequest) (*List
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -1526,7 +1503,6 @@ func (a *DefaultAPIService) ListClustersExecute(r ApiListClustersRequest) (*List
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1662,7 +1638,6 @@ func (a *DefaultAPIService) ListProviderOptionsExecute(r ApiListProviderOptionsR
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -1673,7 +1648,6 @@ func (a *DefaultAPIService) ListProviderOptionsExecute(r ApiListProviderOptionsR
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1808,7 +1782,6 @@ func (a *DefaultAPIService) StartCredentialsRotationExecute(r ApiStartCredential
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -1820,7 +1793,6 @@ func (a *DefaultAPIService) StartCredentialsRotationExecute(r ApiStartCredential
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -1831,7 +1803,6 @@ func (a *DefaultAPIService) StartCredentialsRotationExecute(r ApiStartCredential
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -1966,7 +1937,6 @@ func (a *DefaultAPIService) TriggerHibernateExecute(r ApiTriggerHibernateRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -1978,7 +1948,6 @@ func (a *DefaultAPIService) TriggerHibernateExecute(r ApiTriggerHibernateRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -1989,7 +1958,6 @@ func (a *DefaultAPIService) TriggerHibernateExecute(r ApiTriggerHibernateRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2124,7 +2092,6 @@ func (a *DefaultAPIService) TriggerMaintenanceExecute(r ApiTriggerMaintenanceReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -2136,7 +2103,6 @@ func (a *DefaultAPIService) TriggerMaintenanceExecute(r ApiTriggerMaintenanceReq
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -2147,7 +2113,6 @@ func (a *DefaultAPIService) TriggerMaintenanceExecute(r ApiTriggerMaintenanceReq
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2282,7 +2247,6 @@ func (a *DefaultAPIService) TriggerReconcileExecute(r ApiTriggerReconcileRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -2294,7 +2258,6 @@ func (a *DefaultAPIService) TriggerReconcileExecute(r ApiTriggerReconcileRequest
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -2305,7 +2268,6 @@ func (a *DefaultAPIService) TriggerReconcileExecute(r ApiTriggerReconcileRequest
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}
@@ -2440,7 +2402,6 @@ func (a *DefaultAPIService) TriggerWakeupExecute(r ApiTriggerWakeupRequest) (map
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v map[string]interface{}
@@ -2452,7 +2413,6 @@ func (a *DefaultAPIService) TriggerWakeupExecute(r ApiTriggerWakeupRequest) (map
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 			return localVarReturnValue, newErr
-			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v map[string]interface{}
@@ -2463,7 +2423,6 @@ func (a *DefaultAPIService) TriggerWakeupExecute(r ApiTriggerWakeupRequest) (map
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
 		}
 		return localVarReturnValue, newErr
 	}

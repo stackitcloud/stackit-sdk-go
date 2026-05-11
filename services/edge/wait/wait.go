@@ -17,8 +17,10 @@ const timeoutMinutes time.Duration = 10
 var (
 	ErrInstanceNotFound        = errors.New("instance not found")
 	ErrInstanceStatusUndefined = errors.New("instance status undefined")
-	ErrInstanceCreationFailed  = errors.New("instance creation failed")
-	ErrInstanceIsBeingDeleted  = errors.New("instance is being deleted")
+	// Deprecated: ErrInstanceCreationFailed is no longer used and will be removed after 2026-11-07
+	ErrInstanceCreationFailed = errors.New("instance creation failed")
+	// Deprecated: ErrInstanceIsBeingDeleted is no longer used and will be removed after 2026-11-07
+	ErrInstanceIsBeingDeleted = errors.New("instance is being deleted")
 )
 
 // EdgeCloudApiClient is the interface for Edge Cloud API calls which require a waiter.
@@ -33,33 +35,20 @@ type EdgeCloudApiClient interface {
 
 // createOrUpdateInstanceWaitHandler contains the shared logic for waiting on instance creation or updates.
 func createOrUpdateInstanceWaitHandler(ctx context.Context, getInstance func(ctx context.Context) (*edge.Instance, error)) *wait.AsyncActionHandler[edge.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Instance, err error) {
-		instance, err := getInstance(ctx)
-		if err != nil {
-			return false, nil, err
-		}
-
-		if instance == nil || instance.Status == nil {
-			return false, nil, ErrInstanceNotFound
-		}
-		if instance == nil || instance.Status == nil {
-			return false, nil, ErrInstanceStatusUndefined
-		}
-
-		status := *instance.Status
-		switch status {
-		case edge.INSTANCESTATUS_ACTIVE:
-			return true, instance, nil
-		case edge.INSTANCESTATUS_ERROR:
-			return true, instance, ErrInstanceCreationFailed
-		case edge.INSTANCESTATUS_RECONCILING:
-			return false, nil, nil
-		case edge.INSTANCESTATUS_DELETING:
-			return true, instance, ErrInstanceIsBeingDeleted
-		default:
-			return false, nil, nil
-		}
-	})
+	waitConfig := wait.WaiterHelper[edge.Instance, edge.InstanceStatus]{
+		FetchInstance: func() (*edge.Instance, error) {
+			return getInstance(ctx)
+		},
+		GetState: func(instance *edge.Instance) (edge.InstanceStatus, error) {
+			if instance == nil || instance.Status == nil {
+				return "", ErrInstanceNotFound
+			}
+			return *instance.Status, nil
+		},
+		ActiveState: []edge.InstanceStatus{edge.INSTANCESTATUS_ACTIVE},
+		ErrorState:  []edge.InstanceStatus{edge.INSTANCESTATUS_ERROR, edge.INSTANCESTATUS_DELETING},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
@@ -80,17 +69,15 @@ func CreateOrUpdateInstanceByNameWaitHandler(ctx context.Context, a EdgeCloudApi
 
 // deleteInstanceWaitHandler contains the shared logic for waiting on instance deletion.
 func deleteInstanceWaitHandler(ctx context.Context, getInstance func(ctx context.Context) (*edge.Instance, error)) *wait.AsyncActionHandler[edge.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Instance, err error) {
-		_, err = getInstance(ctx)
-		if err == nil {
-			return false, nil, nil
-		}
-		var oapiErr *oapierror.GenericOpenAPIError
-		if errors.As(err, &oapiErr) && oapiErr.StatusCode == http.StatusNotFound {
-			return true, nil, nil
-		}
-		return false, nil, err
-	})
+	waitConfig := wait.WaiterHelper[edge.Instance, edge.InstanceStatus]{
+		FetchInstance: func() (*edge.Instance, error) {
+			return getInstance(ctx)
+		},
+		GetState: func(_ *edge.Instance) (edge.InstanceStatus, error) {
+			return "", nil
+		},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
@@ -111,21 +98,30 @@ func DeleteInstanceByNameWaitHandler(ctx context.Context, a EdgeCloudApiClient, 
 
 // kubeconfigWaitHandlerHelper contains the shared logic for waiting for the instance to become ready before retrieving the kubeconfig.
 func kubeconfigWaitHandlerHelper(ctx context.Context, checkInstance func(ctx context.Context) error, getKubeconfig func(ctx context.Context) (*edge.Kubeconfig, error)) *wait.AsyncActionHandler[edge.Kubeconfig] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Kubeconfig, err error) {
-		err = checkInstance(ctx)
-		if err != nil {
-			return false, nil, err
-		}
-		kubeconfig, err := getKubeconfig(ctx)
-		var oapiErr *oapierror.GenericOpenAPIError
-		if err != nil {
-			if errors.As(err, &oapiErr) && oapiErr.StatusCode == http.StatusNotFound {
-				return false, nil, nil
+	waitConfig := wait.WaiterHelper[edge.Kubeconfig, string]{
+		FetchInstance: func() (*edge.Kubeconfig, error) {
+			err := checkInstance(ctx)
+			if err != nil {
+				return nil, err
 			}
-			return false, nil, err
-		}
-		return true, kubeconfig, nil
-	})
+			config, err := getKubeconfig(ctx)
+			if err != nil {
+				var apiErr *oapierror.GenericOpenAPIError
+				if ok := errors.As(err, &apiErr); ok && apiErr.StatusCode == http.StatusNotFound {
+					return nil, nil
+				}
+			}
+			return config, err
+		},
+		GetState: func(k *edge.Kubeconfig) (string, error) {
+			if k == nil {
+				return "NOT_READY", nil
+			}
+			return "READY", nil
+		},
+		ActiveState: []string{"READY"},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
@@ -164,21 +160,30 @@ func KubeconfigByInstanceNameWaitHandler(ctx context.Context, a EdgeCloudApiClie
 
 // tokenWaitHandlerHelper contains the shared logic for waiting for the instance to become ready before retrieving the service token.
 func tokenWaitHandlerHelper(ctx context.Context, checkInstance func(ctx context.Context) error, getToken func(ctx context.Context) (*edge.Token, error)) *wait.AsyncActionHandler[edge.Token] {
-	handler := wait.New(func() (waitFinished bool, response *edge.Token, err error) {
-		err = checkInstance(ctx)
-		if err != nil {
-			return false, nil, err
-		}
-		token, err := getToken(ctx)
-		var oapiErr *oapierror.GenericOpenAPIError
-		if err != nil {
-			if errors.As(err, &oapiErr) && oapiErr.StatusCode == http.StatusNotFound {
-				return false, nil, nil
+	waitConfig := wait.WaiterHelper[edge.Token, string]{
+		FetchInstance: func() (*edge.Token, error) {
+			err := checkInstance(ctx)
+			if err != nil {
+				return nil, err
 			}
-			return false, nil, err
-		}
-		return true, token, nil
-	})
+			token, err := getToken(ctx)
+			if err != nil {
+				var apiErr *oapierror.GenericOpenAPIError
+				if ok := errors.As(err, &apiErr); ok && apiErr.StatusCode == http.StatusNotFound {
+					return nil, nil
+				}
+			}
+			return token, err
+		},
+		GetState: func(t *edge.Token) (string, error) {
+			if t == nil {
+				return "NOT_READY", nil
+			}
+			return "READY", nil
+		},
+		ActiveState: []string{"READY"},
+	}
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(timeoutMinutes * time.Minute)
 	return handler
 }
