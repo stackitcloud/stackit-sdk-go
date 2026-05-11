@@ -1,4 +1,4 @@
-module github.com/stackitcloud/stackit-sdk-go/services/telemetrylink
+module github.com/stackitcloud/stackit-sdk-go/services/dremio
 
 go 1.25
 
