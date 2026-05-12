@@ -69,7 +69,7 @@ func DeleteLoadBalancerWaitHandler(ctx context.Context, a APIClientInterface, pr
 			_, err := a.GetLoadBalancerExecute(ctx, projectId, region, instanceId)
 			return &struct{}{}, err
 		},
-		GetState: func(r *struct{}) (loadbalancer.LoadBalancerStatus, error) {
+		GetState: func(_ *struct{}) (loadbalancer.LoadBalancerStatus, error) {
 			return "", nil
 		},
 	}

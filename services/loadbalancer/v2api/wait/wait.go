@@ -29,7 +29,7 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAP
 				return "", errors.New("response or status is nil")
 			}
 			var sb strings.Builder
-			if r.Errors != nil && len(r.Errors) > 0 {
+			if r.Errors != nil {
 				for _, err := range r.Errors {
 					sb.WriteString(fmt.Sprintf("%s: %s; ", *err.Type, *err.Description))
 				}
@@ -52,7 +52,7 @@ func DeleteLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAP
 			_, err := a.GetLoadBalancer(ctx, projectId, region, instanceId).Execute()
 			return &struct{}{}, err
 		},
-		GetState: func(r *struct{}) (string, error) {
+		GetState: func(_ *struct{}) (string, error) {
 			return "", nil
 		},
 	}
