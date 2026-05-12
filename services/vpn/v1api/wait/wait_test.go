@@ -10,7 +10,7 @@ import (
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/utils"
-	vpn "github.com/stackitcloud/stackit-sdk-go/services/vpn/v1beta1api"
+	vpn "github.com/stackitcloud/stackit-sdk-go/services/vpn/v1api"
 )
 
 type mockSettings struct {
@@ -25,7 +25,7 @@ type mockSettings struct {
 func newAPIMock(settings []mockSettings) vpn.DefaultAPI {
 	count := 0
 	return &vpn.DefaultAPIServiceMock{
-		GetVPNGatewayExecuteMock: utils.Ptr(func(_ vpn.ApiGetVPNGatewayRequest) (*vpn.GatewayResponse, error) {
+		GetGatewayExecuteMock: utils.Ptr(func(_ vpn.ApiGetGatewayRequest) (*vpn.GatewayResponse, error) {
 			setting := settings[count%len(settings)]
 			count++
 

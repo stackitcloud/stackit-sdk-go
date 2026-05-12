@@ -7,12 +7,12 @@ import (
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
-	vpn "github.com/stackitcloud/stackit-sdk-go/services/vpn/v1beta1api"
+	vpn "github.com/stackitcloud/stackit-sdk-go/services/vpn/v1api"
 )
 
 func CreateOrUpdateGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId string, region vpn.Region, gatewayId string) *wait.AsyncActionHandler[vpn.GatewayResponse] {
 	waitConfig := wait.WaiterHelper[vpn.GatewayResponse, vpn.GatewayStatus]{
-		FetchInstance: a.GetVPNGateway(ctx, projectId, region, gatewayId).Execute,
+		FetchInstance: a.GetGateway(ctx, projectId, region, gatewayId).Execute,
 		GetState: func(resp *vpn.GatewayResponse) (vpn.GatewayStatus, error) {
 			if resp == nil {
 				return "", errors.New("could not get gateway status: response is nil")
@@ -33,7 +33,7 @@ func CreateOrUpdateGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, pro
 
 func DeleteGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId string, region vpn.Region, gatewayId string) *wait.AsyncActionHandler[vpn.GatewayResponse] {
 	waitConfig := wait.WaiterHelper[vpn.GatewayResponse, vpn.GatewayStatus]{
-		FetchInstance: a.GetVPNGateway(ctx, projectId, region, gatewayId).Execute,
+		FetchInstance: a.GetGateway(ctx, projectId, region, gatewayId).Execute,
 		GetState: func(resp *vpn.GatewayResponse) (vpn.GatewayStatus, error) {
 			if resp == nil {
 				return "", errors.New("could not get gateway status: response is nil")
