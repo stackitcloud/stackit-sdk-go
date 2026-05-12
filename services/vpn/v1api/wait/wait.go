@@ -9,7 +9,7 @@ import (
 	vpn "github.com/stackitcloud/stackit-sdk-go/services/vpn/v1api"
 )
 
-func CreateOrUpdateGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId string, region vpn.Region, gatewayId string) *wait.AsyncActionHandler[vpn.GatewayResponse] {
+func createOrUpdateGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId string, region vpn.Region, gatewayId string) *wait.AsyncActionHandler[vpn.GatewayResponse] {
 	waitConfig := wait.WaiterHelper[vpn.GatewayResponse, vpn.GatewayStatus]{
 		FetchInstance: a.GetGateway(ctx, projectId, region, gatewayId).Execute,
 		GetState: func(resp *vpn.GatewayResponse) (vpn.GatewayStatus, error) {
@@ -28,6 +28,14 @@ func CreateOrUpdateGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, pro
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
+}
+
+func CreateGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId string, region vpn.Region, gatewayId string) *wait.AsyncActionHandler[vpn.GatewayResponse] {
+	return createOrUpdateGatewayWaitHandler(ctx, a, projectId, region, gatewayId)
+}
+
+func UpdateGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId string, region vpn.Region, gatewayId string) *wait.AsyncActionHandler[vpn.GatewayResponse] {
+	return createOrUpdateGatewayWaitHandler(ctx, a, projectId, region, gatewayId)
 }
 
 func DeleteGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId string, region vpn.Region, gatewayId string) *wait.AsyncActionHandler[vpn.GatewayResponse] {

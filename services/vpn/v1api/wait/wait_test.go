@@ -61,7 +61,7 @@ func newAPIMock(settings []mockSettings) vpn.DefaultAPI {
 	}
 }
 
-func TestCreateOrUpdateGatewayWaitHandler(t *testing.T) {
+func TestCreateGatewayWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc             string
 		mockSettings     []mockSettings
@@ -171,7 +171,132 @@ func TestCreateOrUpdateGatewayWaitHandler(t *testing.T) {
 					}
 				}
 
-				handler := CreateOrUpdateGatewayWaitHandler(context.Background(), apiClient, "pid", vpn.REGION_EU01, "gw-1")
+				handler := CreateGatewayWaitHandler(context.Background(), apiClient, "pid", vpn.REGION_EU01, "gw-1")
+
+				gotRes, err := handler.WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !tt.wantErr && !cmp.Equal(gotRes, wantRes) {
+					t.Fatalf("handler gotRes = %v, want %v", gotRes, wantRes)
+				}
+			})
+		})
+	}
+}
+
+func TestUpdateGatewayWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc             string
+		mockSettings     []mockSettings
+		wantGatewayState vpn.GatewayStatus
+		wantErr          bool
+		wantResp         bool
+	}{
+		{
+			desc: "update_succeeded",
+			mockSettings: []mockSettings{
+				{gatewayState: vpn.GATEWAYSTATUS_READY, gatewayId: "gw-1"},
+			},
+			wantGatewayState: vpn.GATEWAYSTATUS_READY,
+			wantErr:          false,
+			wantResp:         true,
+		},
+		{
+			desc: "pending_multiple_times",
+			mockSettings: []mockSettings{
+				{
+					gatewayState: vpn.GATEWAYSTATUS_PENDING,
+					gatewayId:    "gw-1",
+				},
+				{
+					gatewayState: vpn.GATEWAYSTATUS_PENDING,
+					gatewayId:    "gw-1",
+				},
+				{
+					gatewayState: vpn.GATEWAYSTATUS_READY,
+					gatewayId:    "gw-1",
+				},
+			},
+			wantGatewayState: vpn.GATEWAYSTATUS_READY,
+			wantErr:          false,
+			wantResp:         true,
+		},
+		{
+			desc: "error_state",
+			mockSettings: []mockSettings{
+				{
+					gatewayState: vpn.GATEWAYSTATUS_PENDING,
+					gatewayId:    "gw-1",
+				},
+				{
+					gatewayState: vpn.GATEWAYSTATUS_ERROR,
+					gatewayId:    "gw-1",
+				},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc: "deleting_state",
+			mockSettings: []mockSettings{
+				{
+					gatewayState: vpn.GATEWAYSTATUS_PENDING,
+					gatewayId:    "gw-1",
+				},
+				{
+					gatewayState: vpn.GATEWAYSTATUS_DELETING,
+					gatewayId:    "gw-1",
+				},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc: "get_fails",
+			mockSettings: []mockSettings{
+				{
+					gatewayState: vpn.GATEWAYSTATUS_PENDING,
+					gatewayId:    "gw-1",
+				},
+				{
+					gatewayState: vpn.GATEWAYSTATUS_PENDING,
+					gatewayId:    "gw-1",
+				},
+				{
+					getFails: true,
+				},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+		{
+			desc: "unknown_state",
+			mockSettings: []mockSettings{
+				{
+					gatewayState: vpn.GatewayStatus("UNKNOWN_STATE"),
+					gatewayId:    "gw-1",
+				},
+			},
+			wantErr:  true,
+			wantResp: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(tt.mockSettings)
+
+				var wantRes *vpn.GatewayResponse
+				if tt.wantResp {
+					wantRes = &vpn.GatewayResponse{
+						Id:    utils.Ptr("gw-1"),
+						State: utils.Ptr(tt.wantGatewayState),
+					}
+				}
+
+				handler := UpdateGatewayWaitHandler(context.Background(), apiClient, "pid", vpn.REGION_EU01, "gw-1")
 
 				gotRes, err := handler.WaitWithContext(context.Background())
 
