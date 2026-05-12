@@ -174,6 +174,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.12.2](services/loadbalancer/CHANGELOG.md#v1122)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.13.0](services/loadbalancer/CHANGELOG.md#v1130)
+    - **Improvement:** Use new WaiterHelper for LoadBalancer waiters
 - `logme`: 
   - [v0.27.3](services/logme/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

@@ -1,3 +1,6 @@
+## v1.13.0
+- **Improvement:** Use new WaiterHelper for LoadBalancer waiters
+
 ## v1.12.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 
