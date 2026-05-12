@@ -94,5 +94,4 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf("Deleted VPN Gateway with id \"%s\".\n", *gatewayResp.Id)
-
 }
