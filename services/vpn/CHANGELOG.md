@@ -1,3 +1,7 @@
+## v0.8.0
+- `v1api`:
+  - **Feature:** Add new wait handlers for gateway creation, update (`CreateOrUpdateGatewayWaitHandler`), and gateway deletion (`DeleteGatewayWaitHandler`)
+
 ## v0.7.0
 - `v1api`: New package which can be used for communication with the STACKIT vpn v1 API
 - `v1beta1api`:  Align package to latest API specification

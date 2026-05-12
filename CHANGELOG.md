@@ -460,6 +460,9 @@
     - `v1api`: New package which can be used for communication with the STACKIT vpn v1 API
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
+  - [v0.8.0](services/vpn/CHANGELOG.md#v080)
+    - `v1api`:
+      - **Feature:** Add new wait handlers for gateway creation, update (`CreateOrUpdateGatewayWaitHandler`), and gateway deletion (`DeleteGatewayWaitHandler`)
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
