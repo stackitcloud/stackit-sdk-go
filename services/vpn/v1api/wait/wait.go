@@ -3,7 +3,6 @@ package wait
 import (
 	"context"
 	"errors"
-	"net/http"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
@@ -44,8 +43,6 @@ func DeleteGatewayWaitHandler(ctx context.Context, a vpn.DefaultAPI, projectId s
 			return *resp.State, nil
 		},
 		ErrorState: []vpn.GatewayStatus{vpn.GATEWAYSTATUS_ERROR},
-		// used default so technically not needed to be set:
-		DeleteHttpErrorStatusCodes: []int{http.StatusForbidden, http.StatusNotFound, http.StatusGone},
 	}
 
 	handler := wait.New(waitConfig.Wait())
