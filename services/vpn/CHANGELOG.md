@@ -1,16 +1,7 @@
 ## v0.7.0
 - `v1api`: New package which can be used for communication with the STACKIT vpn v1 API
-- `v1beta1api` & `v1alpha1api`:
-  - **Bugfix:** Use int64 for ASN fields
-  - **Breaking Change:** Renamed gateway methods and model structs to remove the `VPN` prefix:
-    - `CreateVPNGateway` --> `CreateGateway`
-    - `CreateVPNGatewayPayload` --> `CreateGatewayPayload`
-    - `DeleteVPNGateway` --> `DeleteGateway`
-    - `GetVPNGateway` --> `GetGateway`
-    - `GetVPNGatewayStatus` --> `GetGatewayStatus`
-    - `ListVPNGateways` --> `ListGateways`
-    - `UpdateVPNGateway` --> `UpdateGateway`
-    - `UpdateVPNGatewayPayload` --> `UpdateGatewayPayload`
+- `v1beta1api`:  Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
 
 ## v0.6.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
