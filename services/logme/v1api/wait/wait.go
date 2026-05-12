@@ -2,9 +2,9 @@ package wait
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
@@ -22,77 +22,68 @@ const (
 )
 
 // CreateInstanceWaitHandler will wait for instance creation
-func CreateInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *logme.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("create failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func CreateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
+	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *logme.Instance) (string, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []string{INSTANCESTATUS_ACTIVE},
+		ErrorState:  []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // PartialUpdateInstanceWaitHandler will wait for instance update
-func PartialUpdateInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	handler := wait.New(func() (waitFinished bool, response *logme.Instance, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s.Status == nil {
-			return false, nil, fmt.Errorf("update failed for instance with id %s. The response is not valid: the status is missing", instanceId)
-		}
-		switch *s.Status {
-		case INSTANCESTATUS_ACTIVE:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s: %s", instanceId, s.LastOperation.Description)
-		}
-		return false, nil, nil
-	})
+func PartialUpdateInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
+	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *logme.Instance) (string, error) {
+			if response == nil {
+				return "", errors.New("empty response")
+			}
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
+			}
+			return *response.Status, nil
+		},
+		ActiveState: []string{INSTANCESTATUS_ACTIVE},
+		ErrorState:  []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
-	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
-		if err == nil {
-			if s.Status == nil {
-				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
+func DeleteInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
+	waitConfig := wait.WaiterHelper[logme.Instance, string]{
+		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
+		GetState: func(response *logme.Instance) (string, error) {
+			if response == nil {
+				return "", errors.New("empty response")
 			}
-			if *s.Status != INSTANCESTATUS_DELETING {
-				return false, nil, nil
+			if response.Status == nil {
+				return "", errors.New("status is missing in response")
 			}
-			if *s.Status == INSTANCESTATUS_ACTIVE {
-				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
-					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
-				}
-				return true, nil, nil
-			}
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
-		}
-		if oapiErr.StatusCode != http.StatusGone {
-			return false, nil, err
-		}
-		return true, nil, nil
-	})
+			return *response.Status, nil
+		},
+		ActiveState:                []string{},
+		ErrorState:                 []string{},
+		DeleteHttpErrorStatusCodes: []int{http.StatusGone},
+	}
+
+	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
