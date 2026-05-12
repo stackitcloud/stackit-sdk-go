@@ -193,8 +193,8 @@ func TestCreateKeyRingWaitHandler(t *testing.T) {
 			responses: []keyRingResponse{
 				{fixtureKeyRing("bogus"), nil},
 			},
-			want:    fixtureKeyRing("bogus"),
-			wantErr: false,
+			want:    nil,
+			wantErr: true,
 		},
 	}
 	for _, tt := range tests {
@@ -270,8 +270,8 @@ func TestCreateOrUpdateKeyWaitHandler(t *testing.T) {
 			[]keyResponse{
 				{fixtureKey("bogus"), nil},
 			},
-			fixtureKey("bogus"),
-			false,
+			nil,
+			true,
 		},
 		// no special update tests needed as the states are the same
 	}
@@ -434,7 +434,7 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			[]versionResponse{
 				{fixtureVersion(1, false, "bogus"), nil},
 			},
-			fixtureVersion(1, false, "bogus"),
+			nil,
 			true,
 		},
 		{
@@ -450,7 +450,7 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			[]versionResponse{
 				{fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED), nil},
 			},
-			fixtureVersion(1, true, kms.VERSIONSTATE_DISABLED),
+			nil,
 			true,
 		},
 		{
@@ -458,7 +458,7 @@ func TestEnableKeyVersionWaitHandler(t *testing.T) {
 			[]versionResponse{
 				{fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE), nil},
 			},
-			fixtureVersion(1, false, kms.VERSIONSTATE_KEY_MATERIAL_UNAVAILABLE),
+			nil,
 			true,
 		},
 		{
@@ -667,8 +667,8 @@ func TestCreateWrappingWaitHandler(t *testing.T) {
 			[]wrappingKeyResponse{
 				{fixtureWrappingKey("bogus"), nil},
 			},
-			fixtureWrappingKey("bogus"),
-			false,
+			nil,
+			true,
 		},
 		// no special update tests needed as the states are the same
 	}

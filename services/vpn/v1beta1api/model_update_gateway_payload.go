@@ -15,13 +15,13 @@ import (
 	"fmt"
 )
 
-// checks if the UpdateVPNGatewayPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateVPNGatewayPayload{}
+// checks if the UpdateGatewayPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateGatewayPayload{}
 
-// UpdateVPNGatewayPayload struct for UpdateVPNGatewayPayload
-type UpdateVPNGatewayPayload struct {
-	AvailabilityZones UpdateVPNGatewayPayloadAvailabilityZones `json:"availabilityZones"`
-	Bgp               *BGPGatewayConfig                        `json:"bgp,omitempty"`
+// UpdateGatewayPayload struct for UpdateGatewayPayload
+type UpdateGatewayPayload struct {
+	AvailabilityZones UpdateGatewayPayloadAvailabilityZones `json:"availabilityZones"`
+	Bgp               *BGPGatewayConfig                     `json:"bgp,omitempty"`
 	// A user-friendly name for the VPN gateway.
 	DisplayName string `json:"displayName" validate:"regexp=^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$"`
 	// Map of custom labels. Key and values must be a string with max 63 chars, start/end with alphanumeric. The key of a label follows the same rules as the `LabelValue` except that it cannot be empty.
@@ -32,14 +32,14 @@ type UpdateVPNGatewayPayload struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateVPNGatewayPayload UpdateVPNGatewayPayload
+type _UpdateGatewayPayload UpdateGatewayPayload
 
-// NewUpdateVPNGatewayPayload instantiates a new UpdateVPNGatewayPayload object
+// NewUpdateGatewayPayload instantiates a new UpdateGatewayPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateVPNGatewayPayload(availabilityZones UpdateVPNGatewayPayloadAvailabilityZones, displayName string, planId string, routingType RoutingType) *UpdateVPNGatewayPayload {
-	this := UpdateVPNGatewayPayload{}
+func NewUpdateGatewayPayload(availabilityZones UpdateGatewayPayloadAvailabilityZones, displayName string, planId string, routingType RoutingType) *UpdateGatewayPayload {
+	this := UpdateGatewayPayload{}
 	this.AvailabilityZones = availabilityZones
 	this.DisplayName = displayName
 	this.PlanId = planId
@@ -47,18 +47,18 @@ func NewUpdateVPNGatewayPayload(availabilityZones UpdateVPNGatewayPayloadAvailab
 	return &this
 }
 
-// NewUpdateVPNGatewayPayloadWithDefaults instantiates a new UpdateVPNGatewayPayload object
+// NewUpdateGatewayPayloadWithDefaults instantiates a new UpdateGatewayPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateVPNGatewayPayloadWithDefaults() *UpdateVPNGatewayPayload {
-	this := UpdateVPNGatewayPayload{}
+func NewUpdateGatewayPayloadWithDefaults() *UpdateGatewayPayload {
+	this := UpdateGatewayPayload{}
 	return &this
 }
 
 // GetAvailabilityZones returns the AvailabilityZones field value
-func (o *UpdateVPNGatewayPayload) GetAvailabilityZones() UpdateVPNGatewayPayloadAvailabilityZones {
+func (o *UpdateGatewayPayload) GetAvailabilityZones() UpdateGatewayPayloadAvailabilityZones {
 	if o == nil {
-		var ret UpdateVPNGatewayPayloadAvailabilityZones
+		var ret UpdateGatewayPayloadAvailabilityZones
 		return ret
 	}
 
@@ -67,7 +67,7 @@ func (o *UpdateVPNGatewayPayload) GetAvailabilityZones() UpdateVPNGatewayPayload
 
 // GetAvailabilityZonesOk returns a tuple with the AvailabilityZones field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayload) GetAvailabilityZonesOk() (*UpdateVPNGatewayPayloadAvailabilityZones, bool) {
+func (o *UpdateGatewayPayload) GetAvailabilityZonesOk() (*UpdateGatewayPayloadAvailabilityZones, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,12 +75,12 @@ func (o *UpdateVPNGatewayPayload) GetAvailabilityZonesOk() (*UpdateVPNGatewayPay
 }
 
 // SetAvailabilityZones sets field value
-func (o *UpdateVPNGatewayPayload) SetAvailabilityZones(v UpdateVPNGatewayPayloadAvailabilityZones) {
+func (o *UpdateGatewayPayload) SetAvailabilityZones(v UpdateGatewayPayloadAvailabilityZones) {
 	o.AvailabilityZones = v
 }
 
 // GetBgp returns the Bgp field value if set, zero value otherwise.
-func (o *UpdateVPNGatewayPayload) GetBgp() BGPGatewayConfig {
+func (o *UpdateGatewayPayload) GetBgp() BGPGatewayConfig {
 	if o == nil || IsNil(o.Bgp) {
 		var ret BGPGatewayConfig
 		return ret
@@ -90,7 +90,7 @@ func (o *UpdateVPNGatewayPayload) GetBgp() BGPGatewayConfig {
 
 // GetBgpOk returns a tuple with the Bgp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayload) GetBgpOk() (*BGPGatewayConfig, bool) {
+func (o *UpdateGatewayPayload) GetBgpOk() (*BGPGatewayConfig, bool) {
 	if o == nil || IsNil(o.Bgp) {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *UpdateVPNGatewayPayload) GetBgpOk() (*BGPGatewayConfig, bool) {
 }
 
 // HasBgp returns a boolean if a field has been set.
-func (o *UpdateVPNGatewayPayload) HasBgp() bool {
+func (o *UpdateGatewayPayload) HasBgp() bool {
 	if o != nil && !IsNil(o.Bgp) {
 		return true
 	}
@@ -107,12 +107,12 @@ func (o *UpdateVPNGatewayPayload) HasBgp() bool {
 }
 
 // SetBgp gets a reference to the given BGPGatewayConfig and assigns it to the Bgp field.
-func (o *UpdateVPNGatewayPayload) SetBgp(v BGPGatewayConfig) {
+func (o *UpdateGatewayPayload) SetBgp(v BGPGatewayConfig) {
 	o.Bgp = &v
 }
 
 // GetDisplayName returns the DisplayName field value
-func (o *UpdateVPNGatewayPayload) GetDisplayName() string {
+func (o *UpdateGatewayPayload) GetDisplayName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -123,7 +123,7 @@ func (o *UpdateVPNGatewayPayload) GetDisplayName() string {
 
 // GetDisplayNameOk returns a tuple with the DisplayName field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayload) GetDisplayNameOk() (*string, bool) {
+func (o *UpdateGatewayPayload) GetDisplayNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -131,12 +131,12 @@ func (o *UpdateVPNGatewayPayload) GetDisplayNameOk() (*string, bool) {
 }
 
 // SetDisplayName sets field value
-func (o *UpdateVPNGatewayPayload) SetDisplayName(v string) {
+func (o *UpdateGatewayPayload) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *UpdateVPNGatewayPayload) GetLabels() map[string]string {
+func (o *UpdateGatewayPayload) GetLabels() map[string]string {
 	if o == nil || IsNil(o.Labels) {
 		var ret map[string]string
 		return ret
@@ -146,7 +146,7 @@ func (o *UpdateVPNGatewayPayload) GetLabels() map[string]string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayload) GetLabelsOk() (*map[string]string, bool) {
+func (o *UpdateGatewayPayload) GetLabelsOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -154,7 +154,7 @@ func (o *UpdateVPNGatewayPayload) GetLabelsOk() (*map[string]string, bool) {
 }
 
 // HasLabels returns a boolean if a field has been set.
-func (o *UpdateVPNGatewayPayload) HasLabels() bool {
+func (o *UpdateGatewayPayload) HasLabels() bool {
 	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
@@ -163,12 +163,12 @@ func (o *UpdateVPNGatewayPayload) HasLabels() bool {
 }
 
 // SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
-func (o *UpdateVPNGatewayPayload) SetLabels(v map[string]string) {
+func (o *UpdateGatewayPayload) SetLabels(v map[string]string) {
 	o.Labels = &v
 }
 
 // GetPlanId returns the PlanId field value
-func (o *UpdateVPNGatewayPayload) GetPlanId() string {
+func (o *UpdateGatewayPayload) GetPlanId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -179,7 +179,7 @@ func (o *UpdateVPNGatewayPayload) GetPlanId() string {
 
 // GetPlanIdOk returns a tuple with the PlanId field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayload) GetPlanIdOk() (*string, bool) {
+func (o *UpdateGatewayPayload) GetPlanIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -187,12 +187,12 @@ func (o *UpdateVPNGatewayPayload) GetPlanIdOk() (*string, bool) {
 }
 
 // SetPlanId sets field value
-func (o *UpdateVPNGatewayPayload) SetPlanId(v string) {
+func (o *UpdateGatewayPayload) SetPlanId(v string) {
 	o.PlanId = v
 }
 
 // GetRoutingType returns the RoutingType field value
-func (o *UpdateVPNGatewayPayload) GetRoutingType() RoutingType {
+func (o *UpdateGatewayPayload) GetRoutingType() RoutingType {
 	if o == nil {
 		var ret RoutingType
 		return ret
@@ -203,7 +203,7 @@ func (o *UpdateVPNGatewayPayload) GetRoutingType() RoutingType {
 
 // GetRoutingTypeOk returns a tuple with the RoutingType field value
 // and a boolean to check if the value has been set.
-func (o *UpdateVPNGatewayPayload) GetRoutingTypeOk() (*RoutingType, bool) {
+func (o *UpdateGatewayPayload) GetRoutingTypeOk() (*RoutingType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -211,11 +211,11 @@ func (o *UpdateVPNGatewayPayload) GetRoutingTypeOk() (*RoutingType, bool) {
 }
 
 // SetRoutingType sets field value
-func (o *UpdateVPNGatewayPayload) SetRoutingType(v RoutingType) {
+func (o *UpdateGatewayPayload) SetRoutingType(v RoutingType) {
 	o.RoutingType = v
 }
 
-func (o UpdateVPNGatewayPayload) MarshalJSON() ([]byte, error) {
+func (o UpdateGatewayPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -223,7 +223,7 @@ func (o UpdateVPNGatewayPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateVPNGatewayPayload) ToMap() (map[string]interface{}, error) {
+func (o UpdateGatewayPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["availabilityZones"] = o.AvailabilityZones
 	if !IsNil(o.Bgp) {
@@ -243,7 +243,7 @@ func (o UpdateVPNGatewayPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UpdateVPNGatewayPayload) UnmarshalJSON(data []byte) (err error) {
+func (o *UpdateGatewayPayload) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -268,15 +268,15 @@ func (o *UpdateVPNGatewayPayload) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varUpdateVPNGatewayPayload := _UpdateVPNGatewayPayload{}
+	varUpdateGatewayPayload := _UpdateGatewayPayload{}
 
-	err = json.Unmarshal(data, &varUpdateVPNGatewayPayload)
+	err = json.Unmarshal(data, &varUpdateGatewayPayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateVPNGatewayPayload(varUpdateVPNGatewayPayload)
+	*o = UpdateGatewayPayload(varUpdateGatewayPayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -293,38 +293,38 @@ func (o *UpdateVPNGatewayPayload) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableUpdateVPNGatewayPayload struct {
-	value *UpdateVPNGatewayPayload
+type NullableUpdateGatewayPayload struct {
+	value *UpdateGatewayPayload
 	isSet bool
 }
 
-func (v NullableUpdateVPNGatewayPayload) Get() *UpdateVPNGatewayPayload {
+func (v NullableUpdateGatewayPayload) Get() *UpdateGatewayPayload {
 	return v.value
 }
 
-func (v *NullableUpdateVPNGatewayPayload) Set(val *UpdateVPNGatewayPayload) {
+func (v *NullableUpdateGatewayPayload) Set(val *UpdateGatewayPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateVPNGatewayPayload) IsSet() bool {
+func (v NullableUpdateGatewayPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateVPNGatewayPayload) Unset() {
+func (v *NullableUpdateGatewayPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateVPNGatewayPayload(val *UpdateVPNGatewayPayload) *NullableUpdateVPNGatewayPayload {
-	return &NullableUpdateVPNGatewayPayload{value: val, isSet: true}
+func NewNullableUpdateGatewayPayload(val *UpdateGatewayPayload) *NullableUpdateGatewayPayload {
+	return &NullableUpdateGatewayPayload{value: val, isSet: true}
 }
 
-func (v NullableUpdateVPNGatewayPayload) MarshalJSON() ([]byte, error) {
+func (v NullableUpdateGatewayPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateVPNGatewayPayload) UnmarshalJSON(src []byte) error {
+func (v *NullableUpdateGatewayPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
