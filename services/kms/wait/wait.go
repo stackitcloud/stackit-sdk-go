@@ -82,7 +82,7 @@ func CreateOrUpdateKeyWaitHandler(ctx context.Context, client ApiKmsClient, proj
 			}
 			return *d.State, nil
 		},
-		ActiveState: []kms.KeyState{kms.KEYSTATE_ACTIVE, kms.KEYSTATE_DELETED},
+		ActiveState: []kms.KeyState{kms.KEYSTATE_ACTIVE, kms.KEYSTATE_DELETED, kms.KEYSTATE_NO_VERSION, kms.KEYSTATE_ERRORS_EXIST, kms.KEYSTATE_NOT_AVAILABLE},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
