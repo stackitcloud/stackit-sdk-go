@@ -21,7 +21,7 @@ var _ MappedNullable = &BGPTunnelConfig{}
 // BGPTunnelConfig struct for BGPTunnelConfig
 type BGPTunnelConfig struct {
 	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
-	RemoteAsn            int32 `json:"remoteAsn"`
+	RemoteAsn            int64 `json:"remoteAsn"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -31,7 +31,7 @@ type _BGPTunnelConfig BGPTunnelConfig
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBGPTunnelConfig(remoteAsn int32) *BGPTunnelConfig {
+func NewBGPTunnelConfig(remoteAsn int64) *BGPTunnelConfig {
 	this := BGPTunnelConfig{}
 	this.RemoteAsn = remoteAsn
 	return &this
@@ -46,9 +46,9 @@ func NewBGPTunnelConfigWithDefaults() *BGPTunnelConfig {
 }
 
 // GetRemoteAsn returns the RemoteAsn field value
-func (o *BGPTunnelConfig) GetRemoteAsn() int32 {
+func (o *BGPTunnelConfig) GetRemoteAsn() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -57,7 +57,7 @@ func (o *BGPTunnelConfig) GetRemoteAsn() int32 {
 
 // GetRemoteAsnOk returns a tuple with the RemoteAsn field value
 // and a boolean to check if the value has been set.
-func (o *BGPTunnelConfig) GetRemoteAsnOk() (*int32, bool) {
+func (o *BGPTunnelConfig) GetRemoteAsnOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *BGPTunnelConfig) GetRemoteAsnOk() (*int32, bool) {
 }
 
 // SetRemoteAsn sets field value
-func (o *BGPTunnelConfig) SetRemoteAsn(v int32) {
+func (o *BGPTunnelConfig) SetRemoteAsn(v int64) {
 	o.RemoteAsn = v
 }
 
