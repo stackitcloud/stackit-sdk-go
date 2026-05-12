@@ -1,6 +1,3 @@
-## v0.7.0
-- **Feature:** Add new wait handlers for gateway creation, update (`CreateOrUpdateGatewayWaitHandler`), and gateway deletion (`DeleteGatewayWaitHandler`)
-
 ## v0.6.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 

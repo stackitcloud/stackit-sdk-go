@@ -15,6 +15,3 @@ bin/
 *.vscode/
 
 go.work.sum
-
-# OS generated files
-.DS_Store
