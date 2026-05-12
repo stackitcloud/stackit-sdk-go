@@ -20,7 +20,7 @@ var _ MappedNullable = &BGPGatewayConfig{}
 // BGPGatewayConfig BGP configuration effects all connections. (only for routingMode=BGP_ROUTE_BASED)
 type BGPGatewayConfig struct {
 	// ASN for private use (reserved by IANA), both 16Bit and 32Bit ranges are valid (RFC 6996).
-	LocalAsn *int32 `json:"localAsn,omitempty"`
+	LocalAsn *int64 `json:"localAsn,omitempty"`
 	// A list of IPv4 Prefixes to advertise via BGP.  If omitted, the SNA network ranges will be advertised.
 	OverrideAdvertisedRoutes []string `json:"overrideAdvertisedRoutes,omitempty"`
 	AdditionalProperties     map[string]interface{}
@@ -46,9 +46,9 @@ func NewBGPGatewayConfigWithDefaults() *BGPGatewayConfig {
 }
 
 // GetLocalAsn returns the LocalAsn field value if set, zero value otherwise.
-func (o *BGPGatewayConfig) GetLocalAsn() int32 {
+func (o *BGPGatewayConfig) GetLocalAsn() int64 {
 	if o == nil || IsNil(o.LocalAsn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LocalAsn
@@ -56,7 +56,7 @@ func (o *BGPGatewayConfig) GetLocalAsn() int32 {
 
 // GetLocalAsnOk returns a tuple with the LocalAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BGPGatewayConfig) GetLocalAsnOk() (*int32, bool) {
+func (o *BGPGatewayConfig) GetLocalAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.LocalAsn) {
 		return nil, false
 	}
@@ -72,8 +72,8 @@ func (o *BGPGatewayConfig) HasLocalAsn() bool {
 	return false
 }
 
-// SetLocalAsn gets a reference to the given int32 and assigns it to the LocalAsn field.
-func (o *BGPGatewayConfig) SetLocalAsn(v int32) {
+// SetLocalAsn gets a reference to the given int64 and assigns it to the LocalAsn field.
+func (o *BGPGatewayConfig) SetLocalAsn(v int64) {
 	o.LocalAsn = &v
 }
 
