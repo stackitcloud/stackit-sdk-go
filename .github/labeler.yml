@@ -37,6 +37,8 @@
     - "services/telemetrylink/*"
     - "services/secretsmanager/*"
     - "services/dremio/*"
+    - "services/modelexperiments/*"
+    - "services/ufw/*"
 # databases
 "domain:Databases":
 - changed-files:

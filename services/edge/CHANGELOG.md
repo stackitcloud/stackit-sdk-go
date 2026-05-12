@@ -1,3 +1,10 @@
+## v0.11.0
+- **Improvement:** Use new `WaiterHandler` struct in the Edge WaitHandler
+- **Deprecation:** Deprecated `ErrInstanceCreationFailed` and `ErrInstanceIsBeingDeleted` in `wait` package
+
+## v0.10.0
+- Align package to latest API specification
+
 ## v0.9.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 

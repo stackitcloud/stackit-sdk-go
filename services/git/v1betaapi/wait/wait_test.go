@@ -115,15 +115,25 @@ func TestCreateGitInstanceWaitHandler(t *testing.T) {
 			projectId:      PROJECT_ID,
 			instanceId:     INSTANCE_ID,
 			returnInstance: true,
+			getGitResponse: nil,
+		},
+		{
+			desc:           "Creation of an instance with a wrong state on the response",
+			getFails:       false,
+			wantErr:        true,
+			wantResp:       false,
+			projectId:      PROJECT_ID,
+			instanceId:     INSTANCE_ID,
+			returnInstance: true,
 			getGitResponse: &git.Instance{
 				Created: time.Now(),
+				Id:      INSTANCE_ID,
 				Name:    "instance-test",
-				State:   INSTANCESTATE_ERROR,
+				State:   "wrong-state",
 				Url:     "https://testing.git.onstackit.cloud",
 				Version: "v1.6.0",
 			},
 		},
-
 		{
 			desc:           "Creation of an instance without state on the response",
 			getFails:       false,
@@ -189,10 +199,9 @@ func TestDeleteGitInstanceWaitHandler(t *testing.T) {
 			getFails: true,
 		},
 		{
-			desc:     "Instance deletion failed returning existing instance",
-			wantErr:  true,
-			getFails: false,
-
+			desc:                 "Instance deletion failed returning existing instance",
+			wantErr:              true,
+			getFails:             false,
 			wantReturnedInstance: false,
 			returnInstance:       true,
 			getGitResponse: &git.Instance{
