@@ -1,3 +1,6 @@
+## v1.9.0
+- **Improvement:** Use new WaitHandler struct for all wait handlers
+
 ## v1.8.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 
