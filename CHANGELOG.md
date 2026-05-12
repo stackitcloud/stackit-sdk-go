@@ -199,6 +199,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.8.2](services/logs/CHANGELOG.md#v082)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.9.0](services/logs/CHANGELOG.md#v090)
+    - **Improvement:** Use new WaiterHelper for Logs waiters
 - `mariadb`:
   - [v0.27.3](services/mariadb/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
