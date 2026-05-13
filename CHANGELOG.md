@@ -484,12 +484,12 @@
     - **Feature:** new field `SnapshotSchedules` in model `SnapshotPolicy`
     - **Feature:** new field `Interval` in model `SnapshotPolicySchedule`
     - **Feature:** new model `SnapshotPolicySnapshotPolicySchedule`
-  - [v0.11.0](services/sfs/CHANGELOG.md#v0100)
-    - - **Improvement:** Use new WaiterHelper for SFS waiters
   - [v0.10.0](services/sfs/CHANGELOG.md#v0100)
     - **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
   - [v0.10.1](services/sfs/CHANGELOG.md#v0101)
     - **Docs:** Extend docs of `SnaplockRetentionHours`, `Count`, `RetentionCount`
+  - [v0.11.0](services/sfs/CHANGELOG.md#v0100)
+    - **Improvement:** Use new WaiterHelper for SFS waiters
 - `ske`:
   - [v1.11.2](services/ske/CHANGELOG.md#v1112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
