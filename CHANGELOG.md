@@ -219,6 +219,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.9.2](services/modelserving/CHANGELOG.md#v092)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.10.0](services/modelserving/CHANGELOG.md#v0100)
+    - **Improvement:** Use new WaiterHelper for modelserving waiters
 - `mongodbflex`:
   - [v1.7.3](services/mongodbflex/CHANGELOG.md#v173) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
