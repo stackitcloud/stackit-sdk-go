@@ -29,7 +29,7 @@ const (
 func CreateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
 	waitConfig := wait.WaiterHelper[sfs.GetResourcePoolResponse, string]{
 		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
-		GetState:      GetStateResourcePool,
+		GetState:      getStateResourcePool,
 		ActiveState:   []string{ResourcePoolStateCreated},
 		ErrorState:    []string{},
 	}
@@ -43,7 +43,7 @@ func CreateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 func UpdateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
 	waitConfig := wait.WaiterHelper[sfs.GetResourcePoolResponse, string]{
 		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
-		GetState:      GetStateResourcePool,
+		GetState:      getStateResourcePool,
 		ActiveState:   []string{ResourcePoolStateCreated},
 		ErrorState:    []string{},
 	}
@@ -57,7 +57,7 @@ func UpdateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 func DeleteResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId string) *wait.AsyncActionHandler[sfs.GetResourcePoolResponse] {
 	waitConfig := wait.WaiterHelper[sfs.GetResourcePoolResponse, string]{
 		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
-		GetState:      GetStateResourcePool,
+		GetState:      getStateResourcePool,
 		ActiveState:   []string{},
 		ErrorState:    []string{},
 	}
@@ -71,7 +71,7 @@ func DeleteResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 func CreateShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId, shareId string) *wait.AsyncActionHandler[sfs.GetShareResponse] {
 	waitConfig := wait.WaiterHelper[sfs.GetShareResponse, string]{
 		FetchInstance: api.GetShare(ctx, projectId, region, resourcePoolId, shareId).Execute,
-		GetState:      GetStateShare,
+		GetState:      getStateShare,
 		ActiveState:   []string{ShareStateCreated},
 		ErrorState:    []string{},
 	}
@@ -85,7 +85,7 @@ func CreateShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, 
 func UpdateShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId, shareId string) *wait.AsyncActionHandler[sfs.GetShareResponse] {
 	waitConfig := wait.WaiterHelper[sfs.GetShareResponse, string]{
 		FetchInstance: api.GetShare(ctx, projectId, region, resourcePoolId, shareId).Execute,
-		GetState:      GetStateShare,
+		GetState:      getStateShare,
 		ActiveState:   []string{ShareStateCreated},
 		ErrorState:    []string{},
 	}
@@ -99,7 +99,7 @@ func UpdateShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, 
 func DeleteShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, region, resourcePoolId, shareId string) *wait.AsyncActionHandler[sfs.GetShareResponse] {
 	waitConfig := wait.WaiterHelper[sfs.GetShareResponse, string]{
 		FetchInstance: api.GetShare(ctx, projectId, region, resourcePoolId, shareId).Execute,
-		GetState:      GetStateShare,
+		GetState:      getStateShare,
 		ActiveState:   []string{},
 		ErrorState:    []string{},
 	}
@@ -110,7 +110,7 @@ func DeleteShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, 
 	return handler
 }
 
-func GetStateResourcePool(response *sfs.GetResourcePoolResponse) (string, error) {
+func getStateResourcePool(response *sfs.GetResourcePoolResponse) (string, error) {
 	if response == nil {
 		return "", errors.New("empty response")
 	}
@@ -126,7 +126,7 @@ func GetStateResourcePool(response *sfs.GetResourcePoolResponse) (string, error)
 	return *response.ResourcePool.State, nil
 }
 
-func GetStateShare(response *sfs.GetShareResponse) (string, error) {
+func getStateShare(response *sfs.GetShareResponse) (string, error) {
 	if response == nil {
 		return "", errors.New("empty response")
 	}
