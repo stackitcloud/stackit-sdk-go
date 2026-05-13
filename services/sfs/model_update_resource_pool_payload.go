@@ -130,28 +130,32 @@ func setUpdateResourcePoolPayloadGetSizeGigabytesAttributeType(arg *UpdateResour
 	types and functions for snapshotPolicyId
 */
 
-// isNotNullableString
+// isNullableString
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeType = *string
+type UpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeType = *NullableString
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func getUpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeTypeOk(arg UpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeType) (ret UpdateResourcePoolPayloadGetSnapshotPolicyIdRetType, ok bool) {
 	if arg == nil {
-		return ret, false
+		return nil, false
 	}
-	return *arg, true
+	return arg.Get(), true
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func setUpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeType(arg *UpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeType, val UpdateResourcePoolPayloadGetSnapshotPolicyIdRetType) {
-	*arg = &val
+	if IsNil(*arg) {
+		*arg = NewNullableString(val)
+	} else {
+		(*arg).Set(val)
+	}
 }
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UpdateResourcePoolPayloadGetSnapshotPolicyIdArgType = string
+type UpdateResourcePoolPayloadGetSnapshotPolicyIdArgType = *string
 
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
-type UpdateResourcePoolPayloadGetSnapshotPolicyIdRetType = string
+type UpdateResourcePoolPayloadGetSnapshotPolicyIdRetType = *string
 
 /*
 	types and functions for snapshotsAreVisible
@@ -338,7 +342,7 @@ func (o *UpdateResourcePoolPayload) UnsetSizeGigabytes() {
 	o.SizeGigabytes = nil
 }
 
-// GetSnapshotPolicyId returns the SnapshotPolicyId field value if set, zero value otherwise.
+// GetSnapshotPolicyId returns the SnapshotPolicyId field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *UpdateResourcePoolPayload) GetSnapshotPolicyId() (res UpdateResourcePoolPayloadGetSnapshotPolicyIdRetType) {
 	res, _ = o.GetSnapshotPolicyIdOk()
@@ -347,6 +351,7 @@ func (o *UpdateResourcePoolPayload) GetSnapshotPolicyId() (res UpdateResourcePoo
 
 // GetSnapshotPolicyIdOk returns a tuple with the SnapshotPolicyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *UpdateResourcePoolPayload) GetSnapshotPolicyIdOk() (ret UpdateResourcePoolPayloadGetSnapshotPolicyIdRetType, ok bool) {
 	return getUpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeTypeOk(o.SnapshotPolicyId)
@@ -363,6 +368,18 @@ func (o *UpdateResourcePoolPayload) HasSnapshotPolicyId() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *UpdateResourcePoolPayload) SetSnapshotPolicyId(v UpdateResourcePoolPayloadGetSnapshotPolicyIdRetType) {
 	setUpdateResourcePoolPayloadGetSnapshotPolicyIdAttributeType(&o.SnapshotPolicyId, v)
+}
+
+// SetSnapshotPolicyIdNil sets the value for SnapshotPolicyId to be an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateResourcePoolPayload) SetSnapshotPolicyIdNil() {
+	o.SnapshotPolicyId = nil
+}
+
+// UnsetSnapshotPolicyId ensures that no value is present for SnapshotPolicyId, not even an explicit nil
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *UpdateResourcePoolPayload) UnsetSnapshotPolicyId() {
+	o.SnapshotPolicyId = nil
 }
 
 // GetSnapshotsAreVisible returns the SnapshotsAreVisible field value if set, zero value otherwise.
