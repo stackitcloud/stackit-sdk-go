@@ -46,15 +46,16 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAP
 }
 
 // DeleteLoadBalancerWaitHandler will wait for load balancer deletion
-func DeleteLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[struct{}] {
-	waitConfig := wait.WaiterHelper[struct{}, string]{
-		FetchInstance: func() (*struct{}, error) {
-			_, err := a.GetLoadBalancer(ctx, projectId, region, instanceId).Execute()
-			return &struct{}{}, err
+func DeleteLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAPI, projectId, region, instanceId string) *wait.AsyncActionHandler[loadbalancer.LoadBalancer] {
+	waitConfig := wait.WaiterHelper[loadbalancer.LoadBalancer, string]{
+		FetchInstance: a.GetLoadBalancer(ctx, projectId, region, instanceId).Execute,
+		GetState: func(l *loadbalancer.LoadBalancer) (string, error) {
+			if l == nil || l.Status == nil {
+				return "", errors.New("response or status is nil")
+			}
+			return *l.Status, nil
 		},
-		GetState: func(_ *struct{}) (string, error) {
-			return "", nil
-		},
+		ErrorState: []string{LOADBALANCERSTATUS_ERROR},
 	}
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
