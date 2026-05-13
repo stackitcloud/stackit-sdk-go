@@ -1,3 +1,6 @@
+## v0.10.0
+- **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
+
 ## v0.9.0
 - **Deprecation:** deprecated field `Schedules` in model `SnapshotPolicy`
 - **Feature:** new field `SnapshotSchedules` in model `SnapshotPolicy`
