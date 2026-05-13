@@ -378,7 +378,7 @@ func TestCreateShareWaitHandler(t *testing.T) {
 					{ShareStateCreating, 0},
 				},
 			},
-			ShareStateCreating,
+			"",
 			true,
 		},
 	}
@@ -467,7 +467,7 @@ func TestUpdateShareWaitHandler(t *testing.T) {
 					{ShareStateCreating, 0},
 				},
 			},
-			ShareStateCreating,
+			"",
 			true,
 		},
 	}
