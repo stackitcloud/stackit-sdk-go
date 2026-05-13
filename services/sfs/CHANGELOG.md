@@ -1,3 +1,6 @@
+## v0.11.0
+- **Improvement:** Use new WaiterHelper for SFS waiters
+
 ## v0.10.0
 - **Breaking change:** Change type from `*string` to `NullableString` of field `SnapshotPolicyId` in model `UpdateResourcePoolPayload`
 
