@@ -24,6 +24,22 @@ import (
 type DefaultAPI interface {
 
 	/*
+		CreateGateway Create a VPN gateway in a project.
+
+		Provision a new VPN gateway.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@return ApiCreateGatewayRequest
+	*/
+	CreateGateway(ctx context.Context, projectId string, region Region) ApiCreateGatewayRequest
+
+	// CreateGatewayExecute executes the request
+	//  @return GatewayResponse
+	CreateGatewayExecute(r ApiCreateGatewayRequest) (*GatewayResponse, error)
+
+	/*
 		CreateGatewayConnection Create a new connection on an existing VPN gateway.
 
 		Create a new connection on an existing VPN gateway.
@@ -41,20 +57,22 @@ type DefaultAPI interface {
 	CreateGatewayConnectionExecute(r ApiCreateGatewayConnectionRequest) (*ConnectionResponse, error)
 
 	/*
-		CreateVPNGateway Create a VPN gateway in a project.
+			DeleteGateway Delete a existing VPN gateway in a project.
 
-		Provision a new VPN gateway.
+			Permanently remove a VPN gateway and all its associated connections.
+		This operation is irreversible.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId
-		@param region
-		@return ApiCreateVPNGatewayRequest
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId
+			@param region
+			@param gatewayId
+			@return ApiDeleteGatewayRequest
 	*/
-	CreateVPNGateway(ctx context.Context, projectId string, region Region) ApiCreateVPNGatewayRequest
+	DeleteGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteGatewayRequest
 
-	// CreateVPNGatewayExecute executes the request
-	//  @return GatewayResponse
-	CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest) (*GatewayResponse, error)
+	// DeleteGatewayExecute executes the request
+	DeleteGatewayExecute(r ApiDeleteGatewayRequest) error
 
 	/*
 		DeleteGatewayConnection Delete a certain connection from an existing VPN gateway.
@@ -74,22 +92,21 @@ type DefaultAPI interface {
 	DeleteGatewayConnectionExecute(r ApiDeleteGatewayConnectionRequest) error
 
 	/*
-			DeleteVPNGateway Delete a existing VPN gateway in a project.
+		GetGateway Get details of a VPN Gateway in a project.
 
-			Permanently remove a VPN gateway and all its associated connections.
-		This operation is irreversible.
+		Get details of a VPN Gateway in a project.
 
-
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param projectId
-			@param region
-			@param gatewayId
-			@return ApiDeleteVPNGatewayRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param projectId
+		@param region
+		@param gatewayId
+		@return ApiGetGatewayRequest
 	*/
-	DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteVPNGatewayRequest
+	GetGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayRequest
 
-	// DeleteVPNGatewayExecute executes the request
-	DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest) error
+	// GetGatewayExecute executes the request
+	//  @return GatewayResponse
+	GetGatewayExecute(r ApiGetGatewayRequest) (*GatewayResponse, error)
 
 	/*
 		GetGatewayConnection Get a certain connection for an existing VPN gateway.
@@ -128,24 +145,7 @@ type DefaultAPI interface {
 	GetGatewayConnectionStatusExecute(r ApiGetGatewayConnectionStatusRequest) (*ConnectionStatusResponse, error)
 
 	/*
-		GetVPNGateway Get details of a VPN Gateway in a project.
-
-		Get details of a VPN Gateway in a project.
-
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param projectId
-		@param region
-		@param gatewayId
-		@return ApiGetVPNGatewayRequest
-	*/
-	GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayRequest
-
-	// GetVPNGatewayExecute executes the request
-	//  @return GatewayResponse
-	GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*GatewayResponse, error)
-
-	/*
-		GetVPNGatewayStatus Get the status of a VPN gateway in a project.
+		GetGatewayStatus Get the status of a VPN gateway in a project.
 
 		Get the status of a VPN gateway in a project.
 
@@ -153,13 +153,13 @@ type DefaultAPI interface {
 		@param projectId
 		@param region
 		@param gatewayId
-		@return ApiGetVPNGatewayStatusRequest
+		@return ApiGetGatewayStatusRequest
 	*/
-	GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayStatusRequest
+	GetGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayStatusRequest
 
-	// GetVPNGatewayStatusExecute executes the request
+	// GetGatewayStatusExecute executes the request
 	//  @return GatewayStatusResponse
-	GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusRequest) (*GatewayStatusResponse, error)
+	GetGatewayStatusExecute(r ApiGetGatewayStatusRequest) (*GatewayStatusResponse, error)
 
 	/*
 		ListGatewayConnections List connections for an existing VPN gateway.
@@ -177,6 +177,24 @@ type DefaultAPI interface {
 	// ListGatewayConnectionsExecute executes the request
 	//  @return ConnectionList
 	ListGatewayConnectionsExecute(r ApiListGatewayConnectionsRequest) (*ConnectionList, error)
+
+	/*
+			ListGateways List VPN gateways in a project with label filtering
+
+			Retrieve a list of all VPN gateways in a project.
+		Filter the results using the `label_selector` query parameter.
+
+
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param projectId
+			@param region
+			@return ApiListGatewaysRequest
+	*/
+	ListGateways(ctx context.Context, projectId string, region Region) ApiListGatewaysRequest
+
+	// ListGatewaysExecute executes the request
+	//  @return GatewayList
+	ListGatewaysExecute(r ApiListGatewaysRequest) (*GatewayList, error)
 
 	/*
 			ListPlans List available service plans for a project.
@@ -213,22 +231,23 @@ type DefaultAPI interface {
 	ListQuotasExecute(r ApiListQuotasRequest) (*QuotaListResponse, error)
 
 	/*
-			ListVPNGateways List VPN gateways in a project with label filtering
+			UpdateGateway Update a VPN gateway in a project.
 
-			Retrieve a list of all VPN gateways in a project.
-		Filter the results using the `label_selector` query parameter.
+			Modify the configuration of an existing VPN gateway.
+		Certain changes may trigger infrastructure updates or temporary connection re-negotiations.
 
 
 			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 			@param projectId
 			@param region
-			@return ApiListVPNGatewaysRequest
+			@param gatewayId
+			@return ApiUpdateGatewayRequest
 	*/
-	ListVPNGateways(ctx context.Context, projectId string, region Region) ApiListVPNGatewaysRequest
+	UpdateGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateGatewayRequest
 
-	// ListVPNGatewaysExecute executes the request
-	//  @return GatewayList
-	ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) (*GatewayList, error)
+	// UpdateGatewayExecute executes the request
+	//  @return GatewayResponse
+	UpdateGatewayExecute(r ApiUpdateGatewayRequest) (*GatewayResponse, error)
 
 	/*
 		UpdateGatewayConnection Update a connection on an existing VPN gateway.
@@ -247,29 +266,194 @@ type DefaultAPI interface {
 	// UpdateGatewayConnectionExecute executes the request
 	//  @return ConnectionResponse
 	UpdateGatewayConnectionExecute(r ApiUpdateGatewayConnectionRequest) (*ConnectionResponse, error)
-
-	/*
-			UpdateVPNGateway Update a VPN gateway in a project.
-
-			Modify the configuration of an existing VPN gateway.
-		Certain changes may trigger infrastructure updates or temporary connection re-negotiations.
-
-
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param projectId
-			@param region
-			@param gatewayId
-			@return ApiUpdateVPNGatewayRequest
-	*/
-	UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateVPNGatewayRequest
-
-	// UpdateVPNGatewayExecute executes the request
-	//  @return GatewayResponse
-	UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest) (*GatewayResponse, error)
 }
 
 // DefaultAPIService DefaultAPI service
 type DefaultAPIService service
+
+type ApiCreateGatewayRequest struct {
+	ctx                  context.Context
+	ApiService           DefaultAPI
+	projectId            string
+	region               Region
+	createGatewayPayload *CreateGatewayPayload
+}
+
+func (r ApiCreateGatewayRequest) CreateGatewayPayload(createGatewayPayload CreateGatewayPayload) ApiCreateGatewayRequest {
+	r.createGatewayPayload = &createGatewayPayload
+	return r
+}
+
+func (r ApiCreateGatewayRequest) Execute() (*GatewayResponse, error) {
+	return r.ApiService.CreateGatewayExecute(r)
+}
+
+/*
+CreateGateway Create a VPN gateway in a project.
+
+Provision a new VPN gateway.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@return ApiCreateGatewayRequest
+*/
+func (a *DefaultAPIService) CreateGateway(ctx context.Context, projectId string, region Region) ApiCreateGatewayRequest {
+	return ApiCreateGatewayRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GatewayResponse
+func (a *DefaultAPIService) CreateGatewayExecute(r ApiCreateGatewayRequest) (*GatewayResponse, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GatewayResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateGateway")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.createGatewayPayload == nil {
+		return localVarReturnValue, reportError("createGatewayPayload is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.createGatewayPayload
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
 
 type ApiCreateGatewayConnectionRequest struct {
 	ctx                            context.Context
@@ -456,71 +640,64 @@ func (a *DefaultAPIService) CreateGatewayConnectionExecute(r ApiCreateGatewayCon
 	return localVarReturnValue, nil
 }
 
-type ApiCreateVPNGatewayRequest struct {
-	ctx                     context.Context
-	ApiService              DefaultAPI
-	projectId               string
-	region                  Region
-	createVPNGatewayPayload *CreateVPNGatewayPayload
+type ApiDeleteGatewayRequest struct {
+	ctx        context.Context
+	ApiService DefaultAPI
+	projectId  string
+	region     Region
+	gatewayId  string
 }
 
-func (r ApiCreateVPNGatewayRequest) CreateVPNGatewayPayload(createVPNGatewayPayload CreateVPNGatewayPayload) ApiCreateVPNGatewayRequest {
-	r.createVPNGatewayPayload = &createVPNGatewayPayload
-	return r
-}
-
-func (r ApiCreateVPNGatewayRequest) Execute() (*GatewayResponse, error) {
-	return r.ApiService.CreateVPNGatewayExecute(r)
+func (r ApiDeleteGatewayRequest) Execute() error {
+	return r.ApiService.DeleteGatewayExecute(r)
 }
 
 /*
-CreateVPNGateway Create a VPN gateway in a project.
+DeleteGateway Delete a existing VPN gateway in a project.
 
-Provision a new VPN gateway.
+Permanently remove a VPN gateway and all its associated connections.
+This operation is irreversible.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@return ApiCreateVPNGatewayRequest
+	@param gatewayId
+	@return ApiDeleteGatewayRequest
 */
-func (a *DefaultAPIService) CreateVPNGateway(ctx context.Context, projectId string, region Region) ApiCreateVPNGatewayRequest {
-	return ApiCreateVPNGatewayRequest{
+func (a *DefaultAPIService) DeleteGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteGatewayRequest {
+	return ApiDeleteGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
 		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GatewayResponse
-func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest) (*GatewayResponse, error) {
+func (a *DefaultAPIService) DeleteGatewayExecute(r ApiDeleteGatewayRequest) error {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GatewayResponse
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateVPNGateway")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteGateway")
 	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways"
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.createVPNGatewayPayload == nil {
-		return localVarReturnValue, reportError("createVPNGatewayPayload is required and must be specified")
-	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -536,11 +713,9 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.createVPNGatewayPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, err
+		return err
 	}
 
 	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
@@ -554,14 +729,14 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 		*contextHTTPResponse = localVarHTTPResponse
 	}
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
+		return err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, err
+		return err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -575,69 +750,48 @@ func (a *DefaultAPIService) CreateVPNGatewayExecute(r ApiCreateVPNGatewayRequest
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
+			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
+			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
+			return newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
+				return newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
-		return localVarReturnValue, newErr
+		return newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
+	return nil
 }
 
 type ApiDeleteGatewayConnectionRequest struct {
@@ -808,7 +962,7 @@ func (a *DefaultAPIService) DeleteGatewayConnectionExecute(r ApiDeleteGatewayCon
 	return nil
 }
 
-type ApiDeleteVPNGatewayRequest struct {
+type ApiGetGatewayRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
@@ -816,24 +970,23 @@ type ApiDeleteVPNGatewayRequest struct {
 	gatewayId  string
 }
 
-func (r ApiDeleteVPNGatewayRequest) Execute() error {
-	return r.ApiService.DeleteVPNGatewayExecute(r)
+func (r ApiGetGatewayRequest) Execute() (*GatewayResponse, error) {
+	return r.ApiService.GetGatewayExecute(r)
 }
 
 /*
-DeleteVPNGateway Delete a existing VPN gateway in a project.
+GetGateway Get details of a VPN Gateway in a project.
 
-Permanently remove a VPN gateway and all its associated connections.
-This operation is irreversible.
+Get details of a VPN Gateway in a project.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
 	@param gatewayId
-	@return ApiDeleteVPNGatewayRequest
+	@return ApiGetGatewayRequest
 */
-func (a *DefaultAPIService) DeleteVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiDeleteVPNGatewayRequest {
-	return ApiDeleteVPNGatewayRequest{
+func (a *DefaultAPIService) GetGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayRequest {
+	return ApiGetGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -843,16 +996,19 @@ func (a *DefaultAPIService) DeleteVPNGateway(ctx context.Context, projectId stri
 }
 
 // Execute executes the request
-func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest) error {
+//
+//	@return GatewayResponse
+func (a *DefaultAPIService) GetGatewayExecute(r ApiGetGatewayRequest) (*GatewayResponse, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GatewayResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.DeleteVPNGateway")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetGateway")
 	if err != nil {
-		return &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
@@ -883,7 +1039,7 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return err
+		return localVarReturnValue, err
 	}
 
 	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
@@ -897,14 +1053,14 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 		*contextHTTPResponse = localVarHTTPResponse
 	}
 	if err != nil || localVarHTTPResponse == nil {
-		return err
+		return localVarReturnValue, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return err
+		return localVarReturnValue, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -918,48 +1074,69 @@ func (a *DefaultAPIService) DeleteVPNGatewayExecute(r ApiDeleteVPNGatewayRequest
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
-			return newErr
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.ErrorMessage = err.Error()
-				return newErr
+				return localVarReturnValue, newErr
 			}
 			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.Model = v
 		}
-		return newErr
+		return localVarReturnValue, newErr
 	}
 
-	return nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
 }
 
 type ApiGetGatewayConnectionRequest struct {
@@ -1324,7 +1501,7 @@ func (a *DefaultAPIService) GetGatewayConnectionStatusExecute(r ApiGetGatewayCon
 	return localVarReturnValue, nil
 }
 
-type ApiGetVPNGatewayRequest struct {
+type ApiGetGatewayStatusRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
@@ -1332,189 +1509,12 @@ type ApiGetVPNGatewayRequest struct {
 	gatewayId  string
 }
 
-func (r ApiGetVPNGatewayRequest) Execute() (*GatewayResponse, error) {
-	return r.ApiService.GetVPNGatewayExecute(r)
+func (r ApiGetGatewayStatusRequest) Execute() (*GatewayStatusResponse, error) {
+	return r.ApiService.GetGatewayStatusExecute(r)
 }
 
 /*
-GetVPNGateway Get details of a VPN Gateway in a project.
-
-Get details of a VPN Gateway in a project.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId
-	@param region
-	@param gatewayId
-	@return ApiGetVPNGatewayRequest
-*/
-func (a *DefaultAPIService) GetVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayRequest {
-	return ApiGetVPNGatewayRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		gatewayId:  gatewayId,
-	}
-}
-
-// Execute executes the request
-//
-//	@return GatewayResponse
-func (a *DefaultAPIService) GetVPNGatewayExecute(r ApiGetVPNGatewayRequest) (*GatewayResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GatewayResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetVPNGateway")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-			StatusCode:   localVarHTTPResponse.StatusCode,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-type ApiGetVPNGatewayStatusRequest struct {
-	ctx        context.Context
-	ApiService DefaultAPI
-	projectId  string
-	region     Region
-	gatewayId  string
-}
-
-func (r ApiGetVPNGatewayStatusRequest) Execute() (*GatewayStatusResponse, error) {
-	return r.ApiService.GetVPNGatewayStatusExecute(r)
-}
-
-/*
-GetVPNGatewayStatus Get the status of a VPN gateway in a project.
+GetGatewayStatus Get the status of a VPN gateway in a project.
 
 Get the status of a VPN gateway in a project.
 
@@ -1522,10 +1522,10 @@ Get the status of a VPN gateway in a project.
 	@param projectId
 	@param region
 	@param gatewayId
-	@return ApiGetVPNGatewayStatusRequest
+	@return ApiGetGatewayStatusRequest
 */
-func (a *DefaultAPIService) GetVPNGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetVPNGatewayStatusRequest {
-	return ApiGetVPNGatewayStatusRequest{
+func (a *DefaultAPIService) GetGatewayStatus(ctx context.Context, projectId string, region Region, gatewayId string) ApiGetGatewayStatusRequest {
+	return ApiGetGatewayStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
@@ -1537,7 +1537,7 @@ func (a *DefaultAPIService) GetVPNGatewayStatus(ctx context.Context, projectId s
 // Execute executes the request
 //
 //	@return GatewayStatusResponse
-func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusRequest) (*GatewayStatusResponse, error) {
+func (a *DefaultAPIService) GetGatewayStatusExecute(r ApiGetGatewayStatusRequest) (*GatewayStatusResponse, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1545,7 +1545,7 @@ func (a *DefaultAPIService) GetVPNGatewayStatusExecute(r ApiGetVPNGatewayStatusR
 		localVarReturnValue *GatewayStatusResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetVPNGatewayStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.GetGatewayStatus")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1865,6 +1865,179 @@ func (a *DefaultAPIService) ListGatewayConnectionsExecute(r ApiListGatewayConnec
 	return localVarReturnValue, nil
 }
 
+type ApiListGatewaysRequest struct {
+	ctx           context.Context
+	ApiService    DefaultAPI
+	projectId     string
+	region        Region
+	labelSelector *map[string]string
+}
+
+// Filter resources by labels.
+func (r ApiListGatewaysRequest) LabelSelector(labelSelector map[string]string) ApiListGatewaysRequest {
+	r.labelSelector = &labelSelector
+	return r
+}
+
+func (r ApiListGatewaysRequest) Execute() (*GatewayList, error) {
+	return r.ApiService.ListGatewaysExecute(r)
+}
+
+/*
+ListGateways List VPN gateways in a project with label filtering
+
+Retrieve a list of all VPN gateways in a project.
+Filter the results using the `label_selector` query parameter.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param projectId
+	@param region
+	@return ApiListGatewaysRequest
+*/
+func (a *DefaultAPIService) ListGateways(ctx context.Context, projectId string, region Region) ApiListGatewaysRequest {
+	return ApiListGatewaysRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GatewayList
+func (a *DefaultAPIService) ListGatewaysExecute(r ApiListGatewaysRequest) (*GatewayList, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GatewayList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListGateways")
+	if err != nil {
+		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways"
+	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.labelSelector != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "deepObject", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
+	if ok {
+		*contextHTTPRequest = req
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
+	if ok {
+		*contextHTTPResponse = localVarHTTPResponse
+	}
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &oapierror.GenericOpenAPIError{
+			Body:         localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+			StatusCode:   localVarHTTPResponse.StatusCode,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+		}
+		return localVarReturnValue, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &oapierror.GenericOpenAPIError{
+			StatusCode:   localVarHTTPResponse.StatusCode,
+			Body:         localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, newErr
+	}
+
+	return localVarReturnValue, nil
+}
+
 type ApiListPlansRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
@@ -2142,73 +2315,76 @@ func (a *DefaultAPIService) ListQuotasExecute(r ApiListQuotasRequest) (*QuotaLis
 	return localVarReturnValue, nil
 }
 
-type ApiListVPNGatewaysRequest struct {
-	ctx           context.Context
-	ApiService    DefaultAPI
-	projectId     string
-	region        Region
-	labelSelector *map[string]string
+type ApiUpdateGatewayRequest struct {
+	ctx                  context.Context
+	ApiService           DefaultAPI
+	projectId            string
+	region               Region
+	gatewayId            string
+	updateGatewayPayload *UpdateGatewayPayload
 }
 
-// Filter resources by labels.
-func (r ApiListVPNGatewaysRequest) LabelSelector(labelSelector map[string]string) ApiListVPNGatewaysRequest {
-	r.labelSelector = &labelSelector
+func (r ApiUpdateGatewayRequest) UpdateGatewayPayload(updateGatewayPayload UpdateGatewayPayload) ApiUpdateGatewayRequest {
+	r.updateGatewayPayload = &updateGatewayPayload
 	return r
 }
 
-func (r ApiListVPNGatewaysRequest) Execute() (*GatewayList, error) {
-	return r.ApiService.ListVPNGatewaysExecute(r)
+func (r ApiUpdateGatewayRequest) Execute() (*GatewayResponse, error) {
+	return r.ApiService.UpdateGatewayExecute(r)
 }
 
 /*
-ListVPNGateways List VPN gateways in a project with label filtering
+UpdateGateway Update a VPN gateway in a project.
 
-Retrieve a list of all VPN gateways in a project.
-Filter the results using the `label_selector` query parameter.
+Modify the configuration of an existing VPN gateway.
+Certain changes may trigger infrastructure updates or temporary connection re-negotiations.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param projectId
 	@param region
-	@return ApiListVPNGatewaysRequest
+	@param gatewayId
+	@return ApiUpdateGatewayRequest
 */
-func (a *DefaultAPIService) ListVPNGateways(ctx context.Context, projectId string, region Region) ApiListVPNGatewaysRequest {
-	return ApiListVPNGatewaysRequest{
+func (a *DefaultAPIService) UpdateGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateGatewayRequest {
+	return ApiUpdateGatewayRequest{
 		ApiService: a,
 		ctx:        ctx,
 		projectId:  projectId,
 		region:     region,
+		gatewayId:  gatewayId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return GatewayList
-func (a *DefaultAPIService) ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) (*GatewayList, error) {
+//	@return GatewayResponse
+func (a *DefaultAPIService) UpdateGatewayExecute(r ApiUpdateGatewayRequest) (*GatewayResponse, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
+		localVarHTTPMethod  = http.MethodPut
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GatewayList
+		localVarReturnValue *GatewayResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.ListVPNGateways")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateGateway")
 	if err != nil {
 		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways"
+	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-
-	if r.labelSelector != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "label_selector", r.labelSelector, "deepObject", "")
+	if r.updateGatewayPayload == nil {
+		return localVarReturnValue, reportError("updateGatewayPayload is required and must be specified")
 	}
+
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -2224,6 +2400,8 @@ func (a *DefaultAPIService) ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.updateGatewayPayload
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, err
@@ -2279,6 +2457,17 @@ func (a *DefaultAPIService) ListVPNGatewaysExecute(r ApiListVPNGatewaysRequest) 
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.ErrorMessage = err.Error()
+				return localVarReturnValue, newErr
+			}
+			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.Model = v
+			return localVarReturnValue, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2468,195 +2657,6 @@ func (a *DefaultAPIService) UpdateGatewayConnectionExecute(r ApiUpdateGatewayCon
 			return localVarReturnValue, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-		}
-		return localVarReturnValue, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &oapierror.GenericOpenAPIError{
-			StatusCode:   localVarHTTPResponse.StatusCode,
-			Body:         localVarBody,
-			ErrorMessage: err.Error(),
-		}
-		return localVarReturnValue, newErr
-	}
-
-	return localVarReturnValue, nil
-}
-
-type ApiUpdateVPNGatewayRequest struct {
-	ctx                     context.Context
-	ApiService              DefaultAPI
-	projectId               string
-	region                  Region
-	gatewayId               string
-	updateVPNGatewayPayload *UpdateVPNGatewayPayload
-}
-
-func (r ApiUpdateVPNGatewayRequest) UpdateVPNGatewayPayload(updateVPNGatewayPayload UpdateVPNGatewayPayload) ApiUpdateVPNGatewayRequest {
-	r.updateVPNGatewayPayload = &updateVPNGatewayPayload
-	return r
-}
-
-func (r ApiUpdateVPNGatewayRequest) Execute() (*GatewayResponse, error) {
-	return r.ApiService.UpdateVPNGatewayExecute(r)
-}
-
-/*
-UpdateVPNGateway Update a VPN gateway in a project.
-
-Modify the configuration of an existing VPN gateway.
-Certain changes may trigger infrastructure updates or temporary connection re-negotiations.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param projectId
-	@param region
-	@param gatewayId
-	@return ApiUpdateVPNGatewayRequest
-*/
-func (a *DefaultAPIService) UpdateVPNGateway(ctx context.Context, projectId string, region Region, gatewayId string) ApiUpdateVPNGatewayRequest {
-	return ApiUpdateVPNGatewayRequest{
-		ApiService: a,
-		ctx:        ctx,
-		projectId:  projectId,
-		region:     region,
-		gatewayId:  gatewayId,
-	}
-}
-
-// Execute executes the request
-//
-//	@return GatewayResponse
-func (a *DefaultAPIService) UpdateVPNGatewayExecute(r ApiUpdateVPNGatewayRequest) (*GatewayResponse, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GatewayResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.UpdateVPNGateway")
-	if err != nil {
-		return localVarReturnValue, &oapierror.GenericOpenAPIError{ErrorMessage: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1beta1/projects/{projectId}/regions/{region}/gateways/{gatewayId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"projectId"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"region"+"}", url.PathEscape(parameterValueToString(r.region, "region")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"gatewayId"+"}", url.PathEscape(parameterValueToString(r.gatewayId, "gatewayId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.updateVPNGatewayPayload == nil {
-		return localVarReturnValue, reportError("updateVPNGatewayPayload is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.updateVPNGatewayPayload
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	contextHTTPRequest, ok := r.ctx.Value(config.ContextHTTPRequest).(**http.Request)
-	if ok {
-		*contextHTTPRequest = req
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	contextHTTPResponse, ok := r.ctx.Value(config.ContextHTTPResponse).(**http.Response)
-	if ok {
-		*contextHTTPResponse = localVarHTTPResponse
-	}
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &oapierror.GenericOpenAPIError{
-			Body:         localVarBody,
-			ErrorMessage: localVarHTTPResponse.Status,
-			StatusCode:   localVarHTTPResponse.StatusCode,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.ErrorMessage = err.Error()
-				return localVarReturnValue, newErr
-			}
-			newErr.ErrorMessage = oapierror.FormatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.Model = v
-			return localVarReturnValue, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
