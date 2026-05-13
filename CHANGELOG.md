@@ -464,7 +464,7 @@
     - `v1alpha1api`: Align package to latest API specification
   - [v0.8.0](services/vpn/CHANGELOG.md#v080)
     - `v1api`:
-      - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and gateway (`DeleteGatewayWaitHandler`)
+      - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
