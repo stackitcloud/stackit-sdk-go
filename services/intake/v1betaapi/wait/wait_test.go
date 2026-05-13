@@ -183,6 +183,222 @@ func TestCreateOrUpdateIntakeRunnerWaitHandler(t *testing.T) {
 	}
 }
 
+func TestCreateIntakeRunnerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc                 string
+		getFails             bool
+		getErrorCode         int
+		wantErr              bool
+		wantResp             bool
+		returnRunner         bool
+		intakeRunnerResponse *intake.IntakeRunnerResponse
+	}{
+		{
+			desc:         "succeeded",
+			getFails:     false,
+			wantErr:      false,
+			wantResp:     true,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id:    intakeRunnerId,
+				State: INTAKERUNNERRESPONSESTATE_ACTIVE,
+			},
+		},
+		{
+			desc:         "get fails",
+			getFails:     true,
+			getErrorCode: http.StatusInternalServerError,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: false,
+		},
+		{
+			desc:         "timeout",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id:    intakeRunnerId,
+				State: INTAKERUNNERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "nil response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: false,
+		},
+		{
+			desc:         "nil id in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				State: INTAKERUNNERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "wrong state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id:    intakeRunnerId,
+				State: "wrong state",
+			},
+		},
+		{
+			desc:         "nil state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id: intakeRunnerId,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getRunnerFails:       tt.getFails,
+					getErrorCode:         tt.getErrorCode,
+					returnRunner:         tt.returnRunner,
+					intakeRunnerResponse: tt.intakeRunnerResponse,
+				})
+
+				var wantResp *intake.IntakeRunnerResponse
+				if tt.wantResp {
+					wantResp = tt.intakeRunnerResponse
+				}
+
+				handler := CreateIntakeRunnerWaitHandler(context.Background(), apiClient, projectId, region, intakeRunnerId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
+		})
+	}
+}
+
+func TestUpdateIntakeRunnerWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc                 string
+		getFails             bool
+		getErrorCode         int
+		wantErr              bool
+		wantResp             bool
+		returnRunner         bool
+		intakeRunnerResponse *intake.IntakeRunnerResponse
+	}{
+		{
+			desc:         "succeeded",
+			getFails:     false,
+			wantErr:      false,
+			wantResp:     true,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id:    intakeRunnerId,
+				State: INTAKERUNNERRESPONSESTATE_ACTIVE,
+			},
+		},
+		{
+			desc:         "get fails",
+			getFails:     true,
+			getErrorCode: http.StatusInternalServerError,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: false,
+		},
+		{
+			desc:         "timeout",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id:    intakeRunnerId,
+				State: INTAKERUNNERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "nil response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: false,
+		},
+		{
+			desc:         "nil id in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				State: INTAKERUNNERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "wrong state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id:    intakeRunnerId,
+				State: "wrong state",
+			},
+		},
+		{
+			desc:         "nil state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnRunner: true,
+			intakeRunnerResponse: &intake.IntakeRunnerResponse{
+				Id: intakeRunnerId,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getRunnerFails:       tt.getFails,
+					getErrorCode:         tt.getErrorCode,
+					returnRunner:         tt.returnRunner,
+					intakeRunnerResponse: tt.intakeRunnerResponse,
+				})
+
+				var wantResp *intake.IntakeRunnerResponse
+				if tt.wantResp {
+					wantResp = tt.intakeRunnerResponse
+				}
+
+				handler := UpdateIntakeRunnerWaitHandler(context.Background(), apiClient, projectId, region, intakeRunnerId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
+		})
+	}
+}
+
 func TestDeleteIntakeRunnerWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc         string
@@ -354,6 +570,244 @@ func TestCreateOrUpdateIntakeWaitHandler(t *testing.T) {
 	}
 }
 
+func TestCreateIntakeWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc           string
+		getFails       bool
+		getErrorCode   int
+		wantErr        bool
+		wantResp       bool
+		returnIntake   bool
+		intakeResponse *intake.IntakeResponse
+	}{
+		{
+			desc:         "succeeded",
+			getFails:     false,
+			wantErr:      false,
+			wantResp:     true,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: INTAKERESPONSESTATE_ACTIVE,
+			},
+		},
+		{
+			desc:         "failed state",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     true,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: INTAKERESPONSESTATE_FAILED,
+			},
+		},
+		{
+			desc:         "get fails",
+			getFails:     true,
+			getErrorCode: http.StatusInternalServerError,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: false,
+		},
+		{
+			desc:         "timeout",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: INTAKERESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "nil response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: false,
+		},
+		{
+			desc:         "nil id in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				State: INTAKERESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "wrong state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: "wrong state",
+			},
+		},
+		{
+			desc:         "nil state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id: intakeId,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getIntakeFails: tt.getFails,
+					getErrorCode:   tt.getErrorCode,
+					returnIntake:   tt.returnIntake,
+					intakeResponse: tt.intakeResponse,
+				})
+
+				var wantResp *intake.IntakeResponse
+				if tt.wantResp {
+					wantResp = tt.intakeResponse
+				}
+
+				handler := CreateIntakeWaitHandler(context.Background(), apiClient, projectId, region, intakeId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
+		})
+	}
+}
+
+func TestUpdateIntakeWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc           string
+		getFails       bool
+		getErrorCode   int
+		wantErr        bool
+		wantResp       bool
+		returnIntake   bool
+		intakeResponse *intake.IntakeResponse
+	}{
+		{
+			desc:         "succeeded",
+			getFails:     false,
+			wantErr:      false,
+			wantResp:     true,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: INTAKERESPONSESTATE_ACTIVE,
+			},
+		},
+		{
+			desc:         "failed state",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     true,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: INTAKERESPONSESTATE_FAILED,
+			},
+		},
+		{
+			desc:         "get fails",
+			getFails:     true,
+			getErrorCode: http.StatusInternalServerError,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: false,
+		},
+		{
+			desc:         "timeout",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: INTAKERESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "nil response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: false,
+		},
+		{
+			desc:         "nil id in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				State: INTAKERESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:         "wrong state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id:    intakeId,
+				State: "wrong state",
+			},
+		},
+		{
+			desc:         "nil state in response",
+			getFails:     false,
+			wantErr:      true,
+			wantResp:     false,
+			returnIntake: true,
+			intakeResponse: &intake.IntakeResponse{
+				Id: intakeId,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getIntakeFails: tt.getFails,
+					getErrorCode:   tt.getErrorCode,
+					returnIntake:   tt.returnIntake,
+					intakeResponse: tt.intakeResponse,
+				})
+
+				var wantResp *intake.IntakeResponse
+				if tt.wantResp {
+					wantResp = tt.intakeResponse
+				}
+
+				handler := UpdateIntakeWaitHandler(context.Background(), apiClient, projectId, region, intakeId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
+		})
+	}
+}
+
 func TestDeleteIntakeWaitHandler(t *testing.T) {
 	tests := []struct {
 		desc         string
@@ -501,6 +955,222 @@ func TestCreateOrUpdateIntakeUserWaitHandler(t *testing.T) {
 				}
 
 				handler := CreateOrUpdateIntakeUserWaitHandler(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
+		})
+	}
+}
+
+func TestCreateIntakeUserWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc               string
+		getFails           bool
+		getErrorCode       int
+		wantErr            bool
+		wantResp           bool
+		returnUser         bool
+		intakeUserResponse *intake.IntakeUserResponse
+	}{
+		{
+			desc:       "succeeded",
+			getFails:   false,
+			wantErr:    false,
+			wantResp:   true,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id:    intakeUserId,
+				State: INTAKEUSERRESPONSESTATE_ACTIVE,
+			},
+		},
+		{
+			desc:         "get fails",
+			getFails:     true,
+			getErrorCode: http.StatusInternalServerError,
+			wantErr:      true,
+			wantResp:     false,
+			returnUser:   false,
+		},
+		{
+			desc:       "timeout",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id:    intakeUserId,
+				State: INTAKEUSERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:       "nil response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: false,
+		},
+		{
+			desc:       "nil id in response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				State: INTAKEUSERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:       "wrong state in response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id:    intakeUserId,
+				State: "wrong state",
+			},
+		},
+		{
+			desc:       "nil state in response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id: intakeUserId,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getUserFails:       tt.getFails,
+					getErrorCode:       tt.getErrorCode,
+					returnUser:         tt.returnUser,
+					intakeUserResponse: tt.intakeUserResponse,
+				})
+
+				var wantResp *intake.IntakeUserResponse
+				if tt.wantResp {
+					wantResp = tt.intakeUserResponse
+				}
+
+				handler := CreateIntakeUserWaitHandler(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
+				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
+
+				if (err != nil) != tt.wantErr {
+					t.Fatalf("handler error = %v, wantErr %v", err, tt.wantErr)
+				}
+				if !cmp.Equal(got, wantResp) {
+					t.Fatalf("handler got = %v, want %v", got, wantResp)
+				}
+			})
+		})
+	}
+}
+
+func TestUpdateIntakeUserWaitHandler(t *testing.T) {
+	tests := []struct {
+		desc               string
+		getFails           bool
+		getErrorCode       int
+		wantErr            bool
+		wantResp           bool
+		returnUser         bool
+		intakeUserResponse *intake.IntakeUserResponse
+	}{
+		{
+			desc:       "succeeded",
+			getFails:   false,
+			wantErr:    false,
+			wantResp:   true,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id:    intakeUserId,
+				State: INTAKEUSERRESPONSESTATE_ACTIVE,
+			},
+		},
+		{
+			desc:         "get fails",
+			getFails:     true,
+			getErrorCode: http.StatusInternalServerError,
+			wantErr:      true,
+			wantResp:     false,
+			returnUser:   false,
+		},
+		{
+			desc:       "timeout",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id:    intakeUserId,
+				State: INTAKEUSERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:       "nil response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: false,
+		},
+		{
+			desc:       "nil id in response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				State: INTAKEUSERRESPONSESTATE_RECONCILING,
+			},
+		},
+		{
+			desc:       "wrong state in response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id:    intakeUserId,
+				State: "wrong state",
+			},
+		},
+		{
+			desc:       "nil state in response",
+			getFails:   false,
+			wantErr:    true,
+			wantResp:   false,
+			returnUser: true,
+			intakeUserResponse: &intake.IntakeUserResponse{
+				Id: intakeUserId,
+			},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			synctest.Test(t, func(t *testing.T) {
+				apiClient := newAPIMock(&mockSettings{
+					getUserFails:       tt.getFails,
+					getErrorCode:       tt.getErrorCode,
+					returnUser:         tt.returnUser,
+					intakeUserResponse: tt.intakeUserResponse,
+				})
+
+				var wantResp *intake.IntakeUserResponse
+				if tt.wantResp {
+					wantResp = tt.intakeUserResponse
+				}
+
+				handler := UpdateIntakeUserWaitHandler(context.Background(), apiClient, projectId, region, intakeId, intakeUserId)
 				got, err := handler.SetTimeout(10 * time.Millisecond).WaitWithContext(context.Background())
 
 				if (err != nil) != tt.wantErr {

@@ -25,7 +25,9 @@ const (
 	INTAKEUSERRESPONSESTATE_DELETING    = "deleting"
 )
 
+// Deprecated: Will be removed after 2026-11-13. Use the CreateIntakeRunnerWaitHandler or UpdateIntakeRunnerWaitHandler instead
 func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+	// TODO: mark function as private after deprecation period
 	waitConfig := wait.WaiterHelper[intake.IntakeRunnerResponse, string]{
 		FetchInstance: client.GetIntakeRunner(ctx, projectId, region, intakeRunnerId).Execute,
 		GetState: func(response *intake.IntakeRunnerResponse) (string, error) {
@@ -43,6 +45,14 @@ func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, client intake.De
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(15 * time.Minute)
 	return handler
+}
+
+func CreateIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+	return CreateOrUpdateIntakeRunnerWaitHandler(ctx, client, projectId, region, intakeRunnerId)
+}
+
+func UpdateIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+	return CreateOrUpdateIntakeRunnerWaitHandler(ctx, client, projectId, region, intakeRunnerId)
 }
 
 func DeleteIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
@@ -64,7 +74,9 @@ func DeleteIntakeRunnerWaitHandler(ctx context.Context, client intake.DefaultAPI
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-11-13. Use the CreateIntakeWaitHandler or UpdateIntakeWaitHandler instead
 func CreateOrUpdateIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+	// TODO: mark function as private after deprecation period
 	waitConfig := wait.WaiterHelper[intake.IntakeResponse, string]{
 		FetchInstance: client.GetIntake(ctx, projectId, region, intakeId).Execute,
 		GetState: func(response *intake.IntakeResponse) (string, error) {
@@ -80,6 +92,14 @@ func CreateOrUpdateIntakeWaitHandler(ctx context.Context, client intake.DefaultA
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(10 * time.Minute)
 	return handler
+}
+
+func CreateIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+	return CreateOrUpdateIntakeWaitHandler(ctx, client, projectId, region, intakeId)
+}
+
+func UpdateIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+	return CreateOrUpdateIntakeWaitHandler(ctx, client, projectId, region, intakeId)
 }
 
 func DeleteIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
@@ -101,7 +121,9 @@ func DeleteIntakeWaitHandler(ctx context.Context, client intake.DefaultAPI, proj
 	return handler
 }
 
+// Deprecated: Will be removed after 2026-11-13. Use the CreateIntakeUserWaitHandler or UpdateIntakeUserWaitHandler instead
 func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+	// TODO: mark function as private after deprecation period
 	waitConfig := wait.WaiterHelper[intake.IntakeUserResponse, string]{
 		FetchInstance: client.GetIntakeUser(ctx, projectId, region, intakeId, intakeUserId).Execute,
 		GetState: func(response *intake.IntakeUserResponse) (string, error) {
@@ -119,6 +141,14 @@ func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, client intake.Defa
 	handler := wait.New(waitConfig.Wait())
 	handler.SetTimeout(5 * time.Minute)
 	return handler
+}
+
+func CreateIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+	return CreateOrUpdateIntakeUserWaitHandler(ctx, client, projectId, region, intakeId, intakeUserId)
+}
+
+func UpdateIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+	return CreateOrUpdateIntakeUserWaitHandler(ctx, client, projectId, region, intakeId, intakeUserId)
 }
 
 func DeleteIntakeUserWaitHandler(ctx context.Context, client intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
