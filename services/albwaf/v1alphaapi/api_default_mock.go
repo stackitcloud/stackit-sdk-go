@@ -21,7 +21,7 @@ var _ DefaultAPI = &DefaultAPIServiceMock{}
 // By default all FooExecute() implementations are a no-op. Behavior of the mock can be customized by populating the callbacks in this struct.
 type DefaultAPIServiceMock struct {
 	// CreateCoreRuleSetExecuteMock can be populated to implement the behavior of the CreateCoreRuleSetExecute function of this mock
-	CreateCoreRuleSetExecuteMock *func(r ApiCreateCoreRuleSetRequest) (*CreateCoreRuleSetResponse, error)
+	CreateCoreRuleSetExecuteMock *func(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
 	// CreateRulesExecuteMock can be populated to implement the behavior of the CreateRulesExecute function of this mock
 	CreateRulesExecuteMock *func(r ApiCreateRulesRequest) (*CreateRulesResponse, error)
 	// CreateWAFExecuteMock can be populated to implement the behavior of the CreateWAFExecute function of this mock
@@ -46,6 +46,8 @@ type DefaultAPIServiceMock struct {
 	ListRulesExecuteMock *func(r ApiListRulesRequest) (*ListRulesResponse, error)
 	// ListWAFExecuteMock can be populated to implement the behavior of the ListWAFExecute function of this mock
 	ListWAFExecuteMock *func(r ApiListWAFRequest) (*ListWAFResponse, error)
+	// PatchCoreRuleSetExecuteMock can be populated to implement the behavior of the PatchCoreRuleSetExecute function of this mock
+	PatchCoreRuleSetExecuteMock *func(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error)
 	// UpdateCoreRuleSetExecuteMock can be populated to implement the behavior of the UpdateCoreRuleSetExecute function of this mock
 	UpdateCoreRuleSetExecuteMock *func(r ApiUpdateCoreRuleSetRequest) (*UpdateCoreRuleSetResponse, error)
 	// UpdateRulesExecuteMock can be populated to implement the behavior of the UpdateRulesExecute function of this mock
@@ -64,9 +66,9 @@ func (a DefaultAPIServiceMock) CreateCoreRuleSet(ctx context.Context, projectId 
 }
 
 // CreateCoreRuleSetExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the CreateCoreRuleSetExecuteMock field in the DefaultAPIServiceMock struct.
-func (a DefaultAPIServiceMock) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*CreateCoreRuleSetResponse, error) {
+func (a DefaultAPIServiceMock) CreateCoreRuleSetExecute(r ApiCreateCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
 	if a.CreateCoreRuleSetExecuteMock == nil {
-		var localVarReturnValue *CreateCoreRuleSetResponse
+		var localVarReturnValue *GetCoreRuleSetResponse
 		return localVarReturnValue, nil
 	}
 
@@ -305,6 +307,26 @@ func (a DefaultAPIServiceMock) ListWAFExecute(r ApiListWAFRequest) (*ListWAFResp
 	}
 
 	return (*a.ListWAFExecuteMock)(r)
+}
+
+func (a DefaultAPIServiceMock) PatchCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiPatchCoreRuleSetRequest {
+	return ApiPatchCoreRuleSetRequest{
+		ApiService: a,
+		ctx:        ctx,
+		projectId:  projectId,
+		region:     region,
+		name:       name,
+	}
+}
+
+// PatchCoreRuleSetExecute is a no-op by default and will return only return nil values. Behavior can be controlled by populating the PatchCoreRuleSetExecuteMock field in the DefaultAPIServiceMock struct.
+func (a DefaultAPIServiceMock) PatchCoreRuleSetExecute(r ApiPatchCoreRuleSetRequest) (*GetCoreRuleSetResponse, error) {
+	if a.PatchCoreRuleSetExecuteMock == nil {
+		var localVarReturnValue *GetCoreRuleSetResponse
+		return localVarReturnValue, nil
+	}
+
+	return (*a.PatchCoreRuleSetExecuteMock)(r)
 }
 
 func (a DefaultAPIServiceMock) UpdateCoreRuleSet(ctx context.Context, projectId string, region string, name string) ApiUpdateCoreRuleSetRequest {
