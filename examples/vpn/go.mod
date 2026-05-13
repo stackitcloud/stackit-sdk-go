@@ -1,13 +1,13 @@
-module github.com/stackitcloud/stackit-sdk-go/examples/kms
+module github.com/stackitcloud/stackit-sdk-go/examples/vpn
 
 go 1.25
 
 // This is not needed in production. This is only here to point the golangci linter to the local version instead of the last release on GitHub.
-replace github.com/stackitcloud/stackit-sdk-go/services/kms => ../../services/kms
+replace github.com/stackitcloud/stackit-sdk-go/services/vpn => ../../services/vpn
 
 require (
 	github.com/stackitcloud/stackit-sdk-go/core v0.26.0
-	github.com/stackitcloud/stackit-sdk-go/services/kms v1.9.0
+	github.com/stackitcloud/stackit-sdk-go/services/vpn v0.8.0
 )
 
 require (

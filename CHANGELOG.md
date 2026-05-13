@@ -180,6 +180,9 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.12.2](services/loadbalancer/CHANGELOG.md#v1122)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.13.0](services/loadbalancer/CHANGELOG.md#v1130)
+    - **Improvement:** Use new WaiterHelper for LoadBalancer waiters
+    - **Breaking Change:** `v2api/wait/DeleteLoadBalancerWaitHandler` now returns a `LoadBalancer` instead of `struct{}`
 - `logme`: 
   - [v0.27.3](services/logme/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -198,6 +201,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.8.2](services/logs/CHANGELOG.md#v082)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.9.0](services/logs/CHANGELOG.md#v090)
+    - **Improvement:** Use new WaiterHelper for Logs waiters
 - `mariadb`:
   - [v0.27.3](services/mariadb/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -464,6 +469,9 @@
     - `v1api`: New package which can be used for communication with the STACKIT vpn v1 API
     - `v1beta1api`:  Align package to latest API specification
     - `v1alpha1api`: Align package to latest API specification
+  - [v0.8.0](services/vpn/CHANGELOG.md#v080)
+    - `v1api`:
+      - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
