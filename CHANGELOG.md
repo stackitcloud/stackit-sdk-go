@@ -92,6 +92,8 @@
   - [v0.20.2](services/dns/CHANGELOG.md#v0202)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 - `dremio`
+  - [v0.2.0](services/dremio/CHANGELOG.md#v020)
+    - **Breaking change**: move waiters from `v1alphaapi/wait/wait` to `v1alphaapi/wait`
   - [v0.1.0](services/dremio/CHANGELOG.md#v010)
     - Manage your STACKIT Dremio resources: `DremioInstance`, `DremioUser`
     - Waiters for async operations: `CreateDremioInstanceWaitHandler`, `UpdateDremioInstanceWaitHandler`, `DeleteDremioInstanceWaitHandler`, `CreateDremioUserWaitHandler`, `UpdateDremioUserWaitHandler`, `DeleteDremioUserWaitHandler`
