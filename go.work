@@ -37,6 +37,7 @@ use (
 	./examples/sqlserverflex
 	./examples/telemetrylink
 	./examples/telemetryrouter
+	./examples/vpn
 	./examples/waiter
 	./services/alb
 	./services/albwaf
