@@ -17,7 +17,7 @@ import (
 // checks if the UpdateCoreRuleSetResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &UpdateCoreRuleSetResponse{}
 
-// UpdateCoreRuleSetResponse UpdateCoreRuleSetResponse returns rule configuration name and it's rules.
+// UpdateCoreRuleSetResponse DEPRECATED use PatchCoreRuleSet
 type UpdateCoreRuleSetResponse struct {
 	// Indicates if the OWASP core rule set is active.
 	Active *bool `json:"active,omitempty"`
