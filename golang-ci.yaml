@@ -9,6 +9,10 @@ run:
   # timeout for analysis, e.g. 30s, 5m, default is 1m
   timeout: 5m
 linters-settings:
+  custom:
+    pkgstutter:
+      type: module
+      description: "A custom local linter"
   goimports:
     # put imports beginning with prefix after 3rd-party packages;
     # it's a comma-separated list of prefixes
@@ -64,6 +68,7 @@ linters-settings:
       - dupImport # https://github.com/go-critic/go-critic/issues/845
 linters:
   enable:
+    - pkgstutter # custom local linter
     # https://golangci-lint.run/usage/linters/
     # default linters
     - gosimple

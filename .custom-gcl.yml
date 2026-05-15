@@ -1,0 +1,5 @@
+version: v1.62.0 
+plugins:
+  - module: 'github.com/stackitcloud/stackit-sdk-go/tools'
+    import: 'github.com/stackitcloud/stackit-sdk-go/tools/linters/pkgstutter'
+    path: ./tools
