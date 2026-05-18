@@ -75,6 +75,11 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.6.2](services/certificates/CHANGELOG.md#v162)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.7.0](services/certificates/CHANGELOG.md#v170)
+    - `v2api`:
+      - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+    - Deprecated SDK layer in root of the module:
+      - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
 - `cost`:
   - [v0.2.2](services/cost/CHANGELOG.md#v022) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
