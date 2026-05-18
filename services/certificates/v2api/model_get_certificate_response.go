@@ -21,6 +21,8 @@ var _ MappedNullable = &GetCertificateResponse{}
 type GetCertificateResponse struct {
 	// The certificates resource id
 	Id *string `json:"id,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// TLS certificate name
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,251}[0-9a-z])?$"`
 	// The PEM encoded public key part
@@ -79,6 +81,38 @@ func (o *GetCertificateResponse) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *GetCertificateResponse) SetId(v string) {
 	o.Id = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *GetCertificateResponse) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetCertificateResponse) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *GetCertificateResponse) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *GetCertificateResponse) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -190,6 +224,9 @@ func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -222,6 +259,7 @@ func (o *GetCertificateResponse) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "publicKey")
 		delete(additionalProperties, "region")
