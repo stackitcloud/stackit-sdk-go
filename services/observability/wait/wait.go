@@ -25,6 +25,7 @@ const (
 )
 
 // APIClientInterface Interfaces needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientInterface interface {
 	GetInstanceExecute(ctx context.Context, instanceId, projectId string) (*observability.GetInstanceResponse, error)
@@ -32,6 +33,7 @@ type APIClientInterface interface {
 }
 
 // CreateInstanceWaitHandler will wait for instance creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[observability.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *observability.GetInstanceResponse, err error) {
@@ -58,6 +60,7 @@ func CreateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 }
 
 // UpdateInstanceWaitHandler will wait for instance update
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[observability.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *observability.GetInstanceResponse, err error) {
@@ -85,6 +88,7 @@ func UpdateInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instanceId, projectId string) *wait.AsyncActionHandler[observability.GetInstanceResponse] {
 	handler := wait.New(func() (waitFinished bool, response *observability.GetInstanceResponse, err error) {
@@ -111,6 +115,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a APIClientInterface, instan
 }
 
 // CreateScrapeConfigWaitHandler will wait for scrape config creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[observability.ListScrapeConfigsResponse] {
 	handler := wait.New(func() (waitFinished bool, response *observability.ListScrapeConfigsResponse, err error) {
@@ -131,6 +136,7 @@ func CreateScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, in
 }
 
 // DeleteScrapeConfigWaitHandler will wait for scrape config deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteScrapeConfigWaitHandler(ctx context.Context, a APIClientInterface, instanceId, jobName, projectId string) *wait.AsyncActionHandler[observability.ListScrapeConfigsResponse] {
 	handler := wait.New(func() (waitFinished bool, response *observability.ListScrapeConfigsResponse, err error) {
