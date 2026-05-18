@@ -41,8 +41,8 @@ type CreateLoadBalancerPayload struct {
 	// Transient private Application Load Balancer IP address that can change any time.
 	PrivateAddress *string `json:"privateAddress,omitempty"`
 	// Region of the LoadBalancer.
-	Region *string `json:"region,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Region *string                          `json:"region,omitempty"`
+	Status *CreateLoadBalancerPayloadStatus `json:"status,omitempty"`
 	// List of all target pools which will be used in the Application Load Balancer. Limited to 20.
 	TargetPools []TargetPool `json:"targetPools,omitempty"`
 	// Security Group that allows the targets to receive traffic from the LoadBalancer. Useful when disableTargetSecurityGroupAssignment=true to manually assign target security groups to targets.
@@ -456,9 +456,9 @@ func (o *CreateLoadBalancerPayload) SetRegion(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CreateLoadBalancerPayload) GetStatus() string {
+func (o *CreateLoadBalancerPayload) GetStatus() CreateLoadBalancerPayloadStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret CreateLoadBalancerPayloadStatus
 		return ret
 	}
 	return *o.Status
@@ -466,7 +466,7 @@ func (o *CreateLoadBalancerPayload) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateLoadBalancerPayload) GetStatusOk() (*string, bool) {
+func (o *CreateLoadBalancerPayload) GetStatusOk() (*CreateLoadBalancerPayloadStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -482,8 +482,8 @@ func (o *CreateLoadBalancerPayload) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *CreateLoadBalancerPayload) SetStatus(v string) {
+// SetStatus gets a reference to the given CreateLoadBalancerPayloadStatus and assigns it to the Status field.
+func (o *CreateLoadBalancerPayload) SetStatus(v CreateLoadBalancerPayloadStatus) {
 	o.Status = &v
 }
 

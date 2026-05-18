@@ -14,6 +14,8 @@
   - [v0.14.2](services/alb/CHANGELOG.md#v0142)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
     - `v2api`: **Improvement**: Use new `WaiterHandler` struct in the ALB WaitHandler
+  - [v0.15.0](services/alb/CHANGELOG.md#v0150)
+    - **Feature:** Introduce enums for various attributes
 - `albwaf`:
   - [v0.3.2](services/albwaf/CHANGELOG.md#v032) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
