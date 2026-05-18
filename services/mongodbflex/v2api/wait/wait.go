@@ -70,6 +70,8 @@ func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, p
 			}
 			return status, nil
 		},
+		ActiveState: []string{RestoreJobFinished},
+		ErrorState:  []string{RestoreJobKilled, RestoreJobBroken},
 	}
 
 	handler := wait.New(waitConfig.Wait())
