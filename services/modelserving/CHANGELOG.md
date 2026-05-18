@@ -1,3 +1,6 @@
+## v0.10.0
+- **Improvement:** Use new WaiterHelper for modelserving waiters
+
 ## v0.9.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 
