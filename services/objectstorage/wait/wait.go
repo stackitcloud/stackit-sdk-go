@@ -12,12 +12,14 @@ import (
 )
 
 // Interface needed for tests
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type APIClientBucketInterface interface {
 	GetBucketExecute(ctx context.Context, projectId string, region, bucketName string) (*objectstorage.GetBucketResponse, error)
 }
 
 // CreateBucketWaitHandler will wait for bucket creation
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, region, bucketName string) *wait.AsyncActionHandler[objectstorage.GetBucketResponse] {
 	handler := wait.New(func() (waitFinished bool, response *objectstorage.GetBucketResponse, err error) {
@@ -32,6 +34,7 @@ func CreateBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, pr
 }
 
 // DeleteBucketWaitHandler will wait for bucket deletion
+//
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func DeleteBucketWaitHandler(ctx context.Context, a APIClientBucketInterface, projectId, region, bucketName string) *wait.AsyncActionHandler[struct{}] {
 	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {

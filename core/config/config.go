@@ -430,9 +430,9 @@ func (sc ServerConfigurations) URL(index int, variables map[string]string) (stri
 			if !found {
 				return "", fmt.Errorf("the variable %s in the server URL has invalid value %v. Must be %v", name, value, variable.EnumValues)
 			}
-			serverUrl = strings.Replace(serverUrl, "{"+name+"}", value, -1)
+			serverUrl = strings.ReplaceAll(serverUrl, "{"+name+"}", value)
 		} else {
-			serverUrl = strings.Replace(serverUrl, "{"+name+"}", variable.DefaultValue, -1)
+			serverUrl = strings.ReplaceAll(serverUrl, "{"+name+"}", variable.DefaultValue)
 		}
 	}
 	return serverUrl, nil
@@ -554,7 +554,7 @@ func ConfigureRegion(cfg *Configuration) error {
 		}
 		// API is regional (not global)
 		if containsCaseSensitive(availableRegions, cfg.Region) {
-			cfgUrl := strings.Replace(servers[0].URL, "{region}", fmt.Sprintf("%s.", cfg.Region), -1)
+			cfgUrl := strings.ReplaceAll(servers[0].URL, "{region}", fmt.Sprintf("%s.", cfg.Region))
 			cfg.Servers = ServerConfigurations{
 				{
 					URL:         cfgUrl,
@@ -574,7 +574,7 @@ func ConfigureRegion(cfg *Configuration) error {
 	}
 	// If the url is a template, generated using deprecated config.json, the region variable is replaced
 	// If the url is already configured, there is no region variable and it remains the same
-	cfgUrl := strings.Replace(servers[0].URL, "{region}", "", -1)
+	cfgUrl := strings.ReplaceAll(servers[0].URL, "{region}", "")
 	cfg.Servers = ServerConfigurations{
 		{
 			URL:         cfgUrl,

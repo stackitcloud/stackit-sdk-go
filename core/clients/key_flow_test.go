@@ -104,6 +104,7 @@ func TestKeyFlowInit(t *testing.T) {
 			invalidPrivateKey: true,
 			wantErr:           true,
 		},
+		//nolint:gosec // G101: These are only test values
 		{
 			name: "ok-custom-token-endpoint",
 			serviceAccountKey: fixtureServiceAccountKey(func(s *ServiceAccountKeyResponse) {
@@ -462,7 +463,7 @@ func TestKeyFlow_Do(t *testing.T) {
 								TokenType:   "Bearer",
 							}
 
-							if err := json.NewEncoder(res.Body).Encode(token); err != nil {
+							if err := json.NewEncoder(res.Body).Encode(token); err != nil { //nolint:gosec // G117: access_token is a standard field name
 								t.Logf("no error is expected, but got %v", err)
 							}
 

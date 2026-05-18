@@ -212,7 +212,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 						AccessToken:  newAccessToken,
 						RefreshToken: refreshToken,
 					}
-					responseBody, err := json.Marshal(responseBodyStruct)
+					responseBody, err := json.Marshal(responseBodyStruct) //nolint:gosec // G117: access_token is a standard field name
 					if err != nil {
 						t.Fatalf("Do call: failed to marshal additional response: %v", err)
 					}
@@ -259,7 +259,7 @@ func TestContinuousRefreshTokenConcurrency(t *testing.T) {
 					AccessToken:  accessTokenSecond,
 					RefreshToken: refreshToken,
 				}
-				responseBody, err := json.Marshal(responseBodyStruct)
+				responseBody, err := json.Marshal(responseBodyStruct) //nolint:gosec // G117: access_token is a standard field name
 				if err != nil {
 					t.Fatalf("Do call: failed request to refresh token: marshal access token response: %v", err)
 				}

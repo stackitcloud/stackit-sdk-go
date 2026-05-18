@@ -31,7 +31,7 @@ func CreateLoadBalancerWaitHandler(ctx context.Context, a loadbalancer.DefaultAP
 			var sb strings.Builder
 			if r.Errors != nil {
 				for _, err := range r.Errors {
-					sb.WriteString(fmt.Sprintf("%s: %s; ", *err.Type, *err.Description))
+					fmt.Fprintf(&sb, "%s: %s; ", *err.Type, *err.Description)
 				}
 				return "", fmt.Errorf("create failed for instance with name %s, got status %s and errors: %s", instanceName, *r.Status, sb.String())
 			}
