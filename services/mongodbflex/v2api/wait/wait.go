@@ -132,13 +132,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 	genericCheck := w.Wait()
 	adaptedCheck := func() (waitFinished bool, response *struct{}, err error) {
 		finished, _, err := genericCheck()
-		if err != nil {
-			return finished, nil, err
-		}
-		if finished {
-			return true, nil, nil
-		}
-		return false, nil, nil
+		return finished, nil, err
 	}
 
 	handler := wait.New(adaptedCheck)
