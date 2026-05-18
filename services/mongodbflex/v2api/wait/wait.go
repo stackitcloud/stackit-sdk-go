@@ -137,13 +137,13 @@ func getStateInstance(response *mongodbflex.InstanceResponse) (string, error) {
 		return "", errors.New("empty response")
 	}
 	if response.Item == nil {
-		return "", errors.New("emtpy items")
+		return "", errors.New("empty items")
 	}
 	if response.Item.Id == nil {
-		return "", errors.New("emtpy item id")
+		return "", errors.New("empty item id")
 	}
 	if response.Item.Status == nil {
-		return "", errors.New("emtpy item status")
+		return "", errors.New("empty item status")
 	}
 	return *response.Item.Status, nil
 }
