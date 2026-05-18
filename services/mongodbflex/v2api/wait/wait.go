@@ -3,7 +3,6 @@ package wait
 import (
 	"context"
 	"errors"
-	"fmt"
 	"sort"
 	"time"
 
@@ -56,44 +55,35 @@ func CloneInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pro
 }
 
 func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, backupId, region string) *wait.AsyncActionHandler[mongodbflex.ListRestoreJobsResponse] {
-	handler := wait.New(func() (waitFinished bool, response *mongodbflex.ListRestoreJobsResponse, err error) {
-		s, err := a.ListRestoreJobs(ctx, projectId, instanceId, region).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s == nil || s.Items == nil {
-			return false, nil, nil
-		}
-
-		restoreJobsSlice := s.Items
-
-		// sort array by descending date
-		sort.Slice(restoreJobsSlice, func(i, j int) bool {
-			// swap elements to sort by descending order
-			return *restoreJobsSlice[i].Date > *restoreJobsSlice[j].Date
-		})
-
-		var status string
-		for _, restoreJob := range restoreJobsSlice {
-			if *restoreJob.BackupID == backupId {
-				status = *restoreJob.Status
-				break
+	waitConfig := wait.WaiterHelper[mongodbflex.ListRestoreJobsResponse, string]{
+		FetchInstance: a.ListRestoreJobs(ctx, projectId, instanceId, region).Execute,
+		GetState: func(response *mongodbflex.ListRestoreJobsResponse) (string, error) {
+			if response == nil {
+				return "", errors.New("response is nil")
 			}
-		}
+			if len(response.Items) == 0 {
+				return "", errors.New("response items is empty")
+			}
+			restoreJobsSlice := response.Items
+			// sort array by descending date
+			sort.Slice(restoreJobsSlice, func(i, j int) bool {
+				// swap elements to sort by descending order
+				return *restoreJobsSlice[i].Date > *restoreJobsSlice[j].Date
+			})
 
-		switch status {
-		default:
-			return true, s, fmt.Errorf("restore job for backup with id %s has unexpected status %s", backupId, status)
-		case RestoreJobProcessing:
-			return false, nil, nil
-		case RestoreJobFinished:
-			return true, s, nil
-		case RestoreJobBroken:
-			return true, s, fmt.Errorf("restore job for backup with id %s is broken", backupId)
-		case RestoreJobKilled:
-			return true, s, fmt.Errorf("restore job for backup with id %s was killed", backupId)
-		}
-	})
+			var status string
+			for _, restoreJob := range restoreJobsSlice {
+				if *restoreJob.BackupID == backupId {
+					status = *restoreJob.Status
+					break
+				}
+			}
+			return status, nil
+		},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+
 	handler.SetTimeout(45 * time.Minute)
 	handler.SetSleepBeforeWait(5 * time.Second)
 	return handler
