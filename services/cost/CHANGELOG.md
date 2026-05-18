@@ -1,3 +1,6 @@
+## v0.4.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.3.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 

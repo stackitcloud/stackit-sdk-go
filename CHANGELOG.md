@@ -95,6 +95,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.3.2](services/cost/CHANGELOG.md#v032)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.4.0](services/cost/CHANGELOG.md#v040)
+    - **Feature:** Introduce enums for various attributes
 - `dns`:
   - [v0.19.3](services/dns/CHANGELOG.md#v0193) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
