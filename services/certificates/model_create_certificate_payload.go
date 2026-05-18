@@ -19,6 +19,33 @@ import (
 var _ MappedNullable = &CreateCertificatePayload{}
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateCertificatePayloadGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateCertificatePayloadGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type CreateCertificatePayloadGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getCreateCertificatePayloadGetLabelsAttributeTypeOk(arg CreateCertificatePayloadGetLabelsAttributeType) (ret CreateCertificatePayloadGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setCreateCertificatePayloadGetLabelsAttributeType(arg *CreateCertificatePayloadGetLabelsAttributeType, val CreateCertificatePayloadGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -156,6 +183,8 @@ type CreateCertificatePayloadGetRegionRetType = string
 // CreateCertificatePayload Uploads a PEM encoded X509 public/private key pair
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type CreateCertificatePayload struct {
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels CreateCertificatePayloadGetLabelsAttributeType `json:"labels,omitempty"`
 	// TLS certificate name
 	Name CreateCertificatePayloadGetNameAttributeType `json:"name,omitempty"`
 	// The PEM encoded private key part
@@ -185,6 +214,33 @@ func NewCreateCertificatePayload() *CreateCertificatePayload {
 func NewCreateCertificatePayloadWithDefaults() *CreateCertificatePayload {
 	this := CreateCertificatePayload{}
 	return &this
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateCertificatePayload) GetLabels() (res CreateCertificatePayloadGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateCertificatePayload) GetLabelsOk() (ret CreateCertificatePayloadGetLabelsRetType, ok bool) {
+	return getCreateCertificatePayloadGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateCertificatePayload) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *CreateCertificatePayload) SetLabels(v CreateCertificatePayloadGetLabelsRetType) {
+	setCreateCertificatePayloadGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -325,6 +381,9 @@ func (o *CreateCertificatePayload) SetRegion(v CreateCertificatePayloadGetRegion
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o CreateCertificatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if val, ok := getCreateCertificatePayloadGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
+	}
 	if val, ok := getCreateCertificatePayloadGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val
 	}

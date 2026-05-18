@@ -20,8 +20,9 @@ var _ MappedNullable = &GetCoreRuleSetResponse{}
 // GetCoreRuleSetResponse GetCoreRuleSetResponse returns rule configuration name and it's rules.
 type GetCoreRuleSetResponse struct {
 	// Indicates if the OWASP core rule set is active.
-	Active *bool          `json:"active,omitempty"`
-	Groups []CRSRuleGroup `json:"groups,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	// Inventory of all available Core Rule Set groups and their current configuration. The key is the unique Group ID.
+	Groups *map[string]CRSRuleGroup `json:"groups,omitempty"`
 	// Core rule set configuration name.
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// Region
@@ -83,17 +84,17 @@ func (o *GetCoreRuleSetResponse) SetActive(v bool) {
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *GetCoreRuleSetResponse) GetGroups() []CRSRuleGroup {
+func (o *GetCoreRuleSetResponse) GetGroups() map[string]CRSRuleGroup {
 	if o == nil || IsNil(o.Groups) {
-		var ret []CRSRuleGroup
+		var ret map[string]CRSRuleGroup
 		return ret
 	}
-	return o.Groups
+	return *o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetCoreRuleSetResponse) GetGroupsOk() ([]CRSRuleGroup, bool) {
+func (o *GetCoreRuleSetResponse) GetGroupsOk() (*map[string]CRSRuleGroup, bool) {
 	if o == nil || IsNil(o.Groups) {
 		return nil, false
 	}
@@ -109,9 +110,9 @@ func (o *GetCoreRuleSetResponse) HasGroups() bool {
 	return false
 }
 
-// SetGroups gets a reference to the given []CRSRuleGroup and assigns it to the Groups field.
-func (o *GetCoreRuleSetResponse) SetGroups(v []CRSRuleGroup) {
-	o.Groups = v
+// SetGroups gets a reference to the given map[string]CRSRuleGroup and assigns it to the Groups field.
+func (o *GetCoreRuleSetResponse) SetGroups(v map[string]CRSRuleGroup) {
+	o.Groups = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
