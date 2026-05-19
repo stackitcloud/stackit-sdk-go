@@ -22,10 +22,9 @@ var _ MappedNullable = &FeatureToggle{}
 type FeatureToggle struct {
 	// Default email notifications.
 	DefaultEmailNotifications NullableString `json:"default_email_notifications,omitempty"`
-	// Enable commit signatures.
-	EnableCommitSignatures NullableBool `json:"enable_commit_signatures,omitempty"`
 	// Enable local login.
 	EnableLocalLogin     NullableBool `json:"enable_local_login,omitempty"`
+	Pipelines            *Pipelines   `json:"pipelines,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -91,49 +90,6 @@ func (o *FeatureToggle) UnsetDefaultEmailNotifications() {
 	o.DefaultEmailNotifications.Unset()
 }
 
-// GetEnableCommitSignatures returns the EnableCommitSignatures field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FeatureToggle) GetEnableCommitSignatures() bool {
-	if o == nil || IsNil(o.EnableCommitSignatures.Get()) {
-		var ret bool
-		return ret
-	}
-	return *o.EnableCommitSignatures.Get()
-}
-
-// GetEnableCommitSignaturesOk returns a tuple with the EnableCommitSignatures field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureToggle) GetEnableCommitSignaturesOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EnableCommitSignatures.Get(), o.EnableCommitSignatures.IsSet()
-}
-
-// HasEnableCommitSignatures returns a boolean if a field has been set.
-func (o *FeatureToggle) HasEnableCommitSignatures() bool {
-	if o != nil && o.EnableCommitSignatures.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEnableCommitSignatures gets a reference to the given NullableBool and assigns it to the EnableCommitSignatures field.
-func (o *FeatureToggle) SetEnableCommitSignatures(v bool) {
-	o.EnableCommitSignatures.Set(&v)
-}
-
-// SetEnableCommitSignaturesNil sets the value for EnableCommitSignatures to be an explicit nil
-func (o *FeatureToggle) SetEnableCommitSignaturesNil() {
-	o.EnableCommitSignatures.Set(nil)
-}
-
-// UnsetEnableCommitSignatures ensures that no value is present for EnableCommitSignatures, not even an explicit nil
-func (o *FeatureToggle) UnsetEnableCommitSignatures() {
-	o.EnableCommitSignatures.Unset()
-}
-
 // GetEnableLocalLogin returns the EnableLocalLogin field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FeatureToggle) GetEnableLocalLogin() bool {
 	if o == nil || IsNil(o.EnableLocalLogin.Get()) {
@@ -177,6 +133,38 @@ func (o *FeatureToggle) UnsetEnableLocalLogin() {
 	o.EnableLocalLogin.Unset()
 }
 
+// GetPipelines returns the Pipelines field value if set, zero value otherwise.
+func (o *FeatureToggle) GetPipelines() Pipelines {
+	if o == nil || IsNil(o.Pipelines) {
+		var ret Pipelines
+		return ret
+	}
+	return *o.Pipelines
+}
+
+// GetPipelinesOk returns a tuple with the Pipelines field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureToggle) GetPipelinesOk() (*Pipelines, bool) {
+	if o == nil || IsNil(o.Pipelines) {
+		return nil, false
+	}
+	return o.Pipelines, true
+}
+
+// HasPipelines returns a boolean if a field has been set.
+func (o *FeatureToggle) HasPipelines() bool {
+	if o != nil && !IsNil(o.Pipelines) {
+		return true
+	}
+
+	return false
+}
+
+// SetPipelines gets a reference to the given Pipelines and assigns it to the Pipelines field.
+func (o *FeatureToggle) SetPipelines(v Pipelines) {
+	o.Pipelines = &v
+}
+
 func (o FeatureToggle) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -190,11 +178,11 @@ func (o FeatureToggle) ToMap() (map[string]interface{}, error) {
 	if o.DefaultEmailNotifications.IsSet() {
 		toSerialize["default_email_notifications"] = o.DefaultEmailNotifications.Get()
 	}
-	if o.EnableCommitSignatures.IsSet() {
-		toSerialize["enable_commit_signatures"] = o.EnableCommitSignatures.Get()
-	}
 	if o.EnableLocalLogin.IsSet() {
 		toSerialize["enable_local_login"] = o.EnableLocalLogin.Get()
+	}
+	if !IsNil(o.Pipelines) {
+		toSerialize["pipelines"] = o.Pipelines
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -219,8 +207,8 @@ func (o *FeatureToggle) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "default_email_notifications")
-		delete(additionalProperties, "enable_commit_signatures")
 		delete(additionalProperties, "enable_local_login")
+		delete(additionalProperties, "pipelines")
 		o.AdditionalProperties = additionalProperties
 	}
 
