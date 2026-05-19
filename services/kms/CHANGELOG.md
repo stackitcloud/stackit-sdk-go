@@ -1,3 +1,6 @@
+## v1.10.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.9.0
 - **Improvement:** Use new WaitHandler struct for all wait handlers
 
