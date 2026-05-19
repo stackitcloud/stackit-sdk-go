@@ -170,6 +170,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.9.0](services/intake/CHANGELOG.md#v090)
     - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
+  - [v0.10.0](services/intake/CHANGELOG.md#v0100)
+    - **Feature:** Introduce enums for various attributes
 - `kms`:
   - [v1.6.2](services/kms/CHANGELOG.md#v162) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
