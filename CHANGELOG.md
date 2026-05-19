@@ -481,6 +481,11 @@
   - [v0.8.0](services/vpn/CHANGELOG.md#v080)
     - `v1api`:
       - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
+  - [v0.9.0](services/vpn/CHANGELOG.md#v090)
+    - `v1api`:
+      - **Breaking change:** The VPN API endpoint is now global. The base URL no longer contains a region segment (`https://vpn.api.stackit.cloud` instead of `https://vpn.api.{region}stackit.cloud`). Remove `config.WithRegion(region)` from your client initialization: `vpnClient, err := vpn.NewAPIClient()`.
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)
