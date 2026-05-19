@@ -1,6 +1,6 @@
 ## v0.9.0
 - `v1api`:
-  - **Breaking change:** The VPN API endpoint is now global. The base URL no longer contains a region segment (`https://vpn.api.stackit.cloud` instead of `https://vpn.api.{region}stackit.cloud`). Remove `config.WithRegion(region)` from your client initialization: `vpnClient, err := vpn.NewAPIClient()`.
+  - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
 - `v1beta1api`: Align package to latest API specification
 - `v1alpha1api`: Align package to latest API specification
 
