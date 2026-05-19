@@ -206,6 +206,8 @@
   - [v1.13.0](services/loadbalancer/CHANGELOG.md#v1130)
     - **Improvement:** Use new WaiterHelper for LoadBalancer waiters
     - **Breaking Change:** `v2api/wait/DeleteLoadBalancerWaitHandler` now returns a `LoadBalancer` instead of `struct{}`
+  - [v1.14.0](services/loadbalancer/CHANGELOG.md#v1140)
+    - **Feature:** Introduce enums for various attributes
 - `logme`: 
   - [v0.27.3](services/logme/CHANGELOG.md#v0273) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

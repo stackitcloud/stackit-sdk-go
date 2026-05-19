@@ -1,3 +1,6 @@
+## v1.14.0
+- **Feature:** Introduce enums for various attributes
+
 ## v1.13.0
 - **Improvement:** Use new WaiterHelper for LoadBalancer waiters
 - **Breaking Change:** `v2api/wait/DeleteLoadBalancerWaitHandler` now returns a `LoadBalancer` instead of `struct{}`
