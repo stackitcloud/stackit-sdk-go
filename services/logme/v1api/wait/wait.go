@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
@@ -66,24 +67,33 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, client logme.DefaultA
 }
 
 // DeleteInstanceWaitHandler will wait for instance deletion
-func DeleteInstanceWaitHandler(ctx context.Context, client logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[logme.Instance] {
-	waitConfig := wait.WaiterHelper[logme.Instance, string]{
-		FetchInstance: client.GetInstance(ctx, projectId, instanceId).Execute,
-		GetState: func(response *logme.Instance) (string, error) {
-			if response == nil {
-				return "", errors.New("empty response")
+func DeleteInstanceWaitHandler(ctx context.Context, a logme.DefaultAPI, projectId, instanceId string) *wait.AsyncActionHandler[struct{}] {
+	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
+		s, err := a.GetInstance(ctx, projectId, instanceId).Execute()
+		if err == nil {
+			if s.Status == nil {
+				return false, nil, fmt.Errorf("delete failed for instance with id %s. The response is not valid: The status is missing", instanceId)
 			}
-			if response.Status == nil {
-				return "", errors.New("status is missing in response")
+			if *s.Status != INSTANCESTATUS_DELETING {
+				return false, nil, nil
 			}
-			return *response.Status, nil
-		},
-		ActiveState:                []string{},
-		ErrorState:                 []string{},
-		DeleteHttpErrorStatusCodes: []int{http.StatusGone},
-	}
-
-	handler := wait.New(waitConfig.Wait())
+			if *s.Status == INSTANCESTATUS_ACTIVE {
+				if strings.Contains(s.LastOperation.Description, "DeleteFailed") || strings.Contains(s.LastOperation.Description, "failed") {
+					return true, nil, fmt.Errorf("instance was deleted successfully but has errors: %s", s.LastOperation.Description)
+				}
+				return true, nil, nil
+			}
+			return false, nil, nil
+		}
+		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
+		if !ok {
+			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
+		}
+		if oapiErr.StatusCode != http.StatusGone {
+			return false, nil, err
+		}
+		return true, nil, nil
+	})
 	handler.SetTimeout(15 * time.Minute)
 	return handler
 }
