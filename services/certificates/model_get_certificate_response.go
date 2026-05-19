@@ -46,6 +46,33 @@ type GetCertificateResponseGetIdArgType = string
 type GetCertificateResponseGetIdRetType = string
 
 /*
+	types and functions for labels
+*/
+
+// isContainer
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetLabelsAttributeType = *map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetLabelsArgType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+type GetCertificateResponseGetLabelsRetType = map[string]string
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func getGetCertificateResponseGetLabelsAttributeTypeOk(arg GetCertificateResponseGetLabelsAttributeType) (ret GetCertificateResponseGetLabelsRetType, ok bool) {
+	if arg == nil {
+		return ret, false
+	}
+	return *arg, true
+}
+
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func setGetCertificateResponseGetLabelsAttributeType(arg *GetCertificateResponseGetLabelsAttributeType, val GetCertificateResponseGetLabelsRetType) {
+	*arg = &val
+}
+
+/*
 	types and functions for name
 */
 
@@ -131,6 +158,8 @@ type GetCertificateResponseGetRegionRetType = string
 type GetCertificateResponse struct {
 	// The certificates resource id
 	Id GetCertificateResponseGetIdAttributeType `json:"id,omitempty"`
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels GetCertificateResponseGetLabelsAttributeType `json:"labels,omitempty"`
 	// TLS certificate name
 	Name GetCertificateResponseGetNameAttributeType `json:"name,omitempty"`
 	// The PEM encoded public key part
@@ -183,6 +212,33 @@ func (o *GetCertificateResponse) HasId() bool {
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 func (o *GetCertificateResponse) SetId(v GetCertificateResponseGetIdRetType) {
 	setGetCertificateResponseGetIdAttributeType(&o.Id, v)
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetLabels() (res GetCertificateResponseGetLabelsRetType) {
+	res, _ = o.GetLabelsOk()
+	return
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) GetLabelsOk() (ret GetCertificateResponseGetLabelsRetType, ok bool) {
+	return getGetCertificateResponseGetLabelsAttributeTypeOk(o.Labels)
+}
+
+// HasLabels returns a boolean if a field has been set.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) HasLabels() bool {
+	_, ok := o.GetLabelsOk()
+	return ok
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+// Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
+func (o *GetCertificateResponse) SetLabels(v GetCertificateResponseGetLabelsRetType) {
+	setGetCertificateResponseGetLabelsAttributeType(&o.Labels, v)
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -271,6 +327,9 @@ func (o GetCertificateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if val, ok := getGetCertificateResponseGetIdAttributeTypeOk(o.Id); ok {
 		toSerialize["Id"] = val
+	}
+	if val, ok := getGetCertificateResponseGetLabelsAttributeTypeOk(o.Labels); ok {
+		toSerialize["Labels"] = val
 	}
 	if val, ok := getGetCertificateResponseGetNameAttributeTypeOk(o.Name); ok {
 		toSerialize["Name"] = val

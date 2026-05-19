@@ -19,11 +19,11 @@ var _ MappedNullable = &CRSRule{}
 
 // CRSRule Rule represents an individual security or validation rule.
 type CRSRule struct {
-	// Description of the specific rule.
+	// SQL Injection Attack Detected via libinjection
 	Description *string `json:"description,omitempty"`
-	// The unique numeric ID of the rule.
-	Id *int32 `json:"id,omitempty"`
-	// The impact level of the rule trigger.
+	// The current mode of the rule.
+	Mode *string `json:"mode,omitempty" validate:"regexp=^(MODE_ENABLED|MODE_DISABLED|MODE_LOG_ONLY)$"`
+	// Impact level.
 	Severity             *string `json:"severity,omitempty" validate:"regexp=^(CRITICAL|ERROR|WARNING|INFO)$"`
 	AdditionalProperties map[string]interface{}
 }
@@ -79,36 +79,36 @@ func (o *CRSRule) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *CRSRule) GetId() int32 {
-	if o == nil || IsNil(o.Id) {
-		var ret int32
+// GetMode returns the Mode field value if set, zero value otherwise.
+func (o *CRSRule) GetMode() string {
+	if o == nil || IsNil(o.Mode) {
+		var ret string
 		return ret
 	}
-	return *o.Id
+	return *o.Mode
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CRSRule) GetIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.Id) {
+func (o *CRSRule) GetModeOk() (*string, bool) {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
-	return o.Id, true
+	return o.Mode, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *CRSRule) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+// HasMode returns a boolean if a field has been set.
+func (o *CRSRule) HasMode() bool {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *CRSRule) SetId(v int32) {
-	o.Id = &v
+// SetMode gets a reference to the given string and assigns it to the Mode field.
+func (o *CRSRule) SetMode(v string) {
+	o.Mode = &v
 }
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
@@ -156,8 +156,8 @@ func (o CRSRule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
 	}
 	if !IsNil(o.Severity) {
 		toSerialize["severity"] = o.Severity
@@ -185,7 +185,7 @@ func (o *CRSRule) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "description")
-		delete(additionalProperties, "id")
+		delete(additionalProperties, "mode")
 		delete(additionalProperties, "severity")
 		o.AdditionalProperties = additionalProperties
 	}
