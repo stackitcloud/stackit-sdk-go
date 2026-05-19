@@ -197,6 +197,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/logme/CHANGELOG.md#v0282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.29.0](services/logme/CHANGELOG.md#v0290)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
