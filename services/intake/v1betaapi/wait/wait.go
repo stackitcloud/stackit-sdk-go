@@ -27,7 +27,7 @@ const (
 	INTAKEUSERRESPONSESTATE_DELETING    = "deleting"
 )
 
-func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId string, region intake.ListIntakeRunnersRegionIdParameter, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeRunnerResponse, err error) {
 		runner, err := a.GetIntakeRunner(ctx, projectId, region, intakeRunnerId).Execute()
 		if err != nil {
@@ -38,7 +38,7 @@ func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a intake.Default
 			return false, nil, fmt.Errorf("API returned a nil response for Intake Runner %s", intakeRunnerId)
 		}
 
-		if runner.Id == intakeRunnerId && runner.State == INTAKERUNNERRESPONSESTATE_ACTIVE {
+		if runner.Id == intakeRunnerId && runner.State == intake.INTAKERUNNERRESPONSESTATE_ACTIVE {
 			return true, runner, nil
 		}
 
@@ -50,7 +50,7 @@ func CreateOrUpdateIntakeRunnerWaitHandler(ctx context.Context, a intake.Default
 	return handler
 }
 
-func DeleteIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
+func DeleteIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId string, region intake.ListIntakeRunnersRegionIdParameter, intakeRunnerId string) *wait.AsyncActionHandler[intake.IntakeRunnerResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeRunnerResponse, err error) {
 		_, err = a.GetIntakeRunner(ctx, projectId, region, intakeRunnerId).Execute()
 		if err == nil {
@@ -72,7 +72,7 @@ func DeleteIntakeRunnerWaitHandler(ctx context.Context, a intake.DefaultAPI, pro
 	return handler
 }
 
-func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId string, region intake.ListIntakeRunnersRegionIdParameter, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeResponse, err error) {
 		ik, err := a.GetIntake(ctx, projectId, region, intakeId).Execute()
 		if err != nil {
@@ -83,11 +83,11 @@ func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, p
 			return false, nil, fmt.Errorf("API returned a nil response for Intake %s", intakeId)
 		}
 
-		if ik.Id == intakeId && ik.State == INTAKERESPONSESTATE_ACTIVE {
+		if ik.Id == intakeId && ik.State == intake.INTAKERESPONSESTATE_ACTIVE {
 			return true, ik, nil
 		}
 
-		if ik.Id == intakeId && ik.State == INTAKERESPONSESTATE_FAILED {
+		if ik.Id == intakeId && ik.State == intake.INTAKERESPONSESTATE_FAILED {
 			return true, ik, fmt.Errorf("create/update failed for Intake %s", intakeId)
 		}
 
@@ -97,7 +97,7 @@ func CreateOrUpdateIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, p
 	return handler
 }
 
-func DeleteIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
+func DeleteIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId string, region intake.ListIntakeRunnersRegionIdParameter, intakeId string) *wait.AsyncActionHandler[intake.IntakeResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeResponse, err error) {
 		_, err = a.GetIntake(ctx, projectId, region, intakeId).Execute()
 		if err == nil {
@@ -116,7 +116,7 @@ func DeleteIntakeWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId
 	return handler
 }
 
-func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId string, region intake.ListIntakeRunnersRegionIdParameter, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeUserResponse, err error) {
 		user, err := a.GetIntakeUser(ctx, projectId, region, intakeId, intakeUserId).Execute()
 		if err != nil {
@@ -127,7 +127,7 @@ func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAP
 			return false, nil, fmt.Errorf("API returned a nil response for Intake User %s", intakeUserId)
 		}
 
-		if user.Id == intakeUserId && user.State == INTAKEUSERRESPONSESTATE_ACTIVE {
+		if user.Id == intakeUserId && user.State == intake.INTAKEUSERRESPONSESTATE_ACTIVE {
 			return true, user, nil
 		}
 
@@ -139,7 +139,7 @@ func CreateOrUpdateIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAP
 	return handler
 }
 
-func DeleteIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId, region, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
+func DeleteIntakeUserWaitHandler(ctx context.Context, a intake.DefaultAPI, projectId string, region intake.ListIntakeRunnersRegionIdParameter, intakeId, intakeUserId string) *wait.AsyncActionHandler[intake.IntakeUserResponse] {
 	handler := wait.New(func() (waitFinished bool, response *intake.IntakeUserResponse, err error) {
 		_, err = a.GetIntakeUser(ctx, projectId, region, intakeId, intakeUserId).Execute()
 		if err == nil {
