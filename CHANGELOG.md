@@ -485,6 +485,11 @@
   - [v0.8.0](services/vpn/CHANGELOG.md#v080)
     - `v1api`:
       - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
+  - [v0.9.0](services/vpn/CHANGELOG.md#v090)
+    - `v1api`:
+      - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
+    - `v1beta1api`:  Align package to latest API specification
+    - `v1alpha1api`: Align package to latest API specification
 
 ## Release (2026-04-07)
 - `alb`: [v0.13.1](services/alb/CHANGELOG.md#v0131)

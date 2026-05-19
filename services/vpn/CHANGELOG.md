@@ -1,3 +1,9 @@
+## v0.9.0
+- `v1api`:
+  - **Breaking change:** Switch from regional to global API server URL. `config.WithRegion(...)` should not be used during client initialization anymore.
+- `v1beta1api`: Align package to latest API specification
+- `v1alpha1api`: Align package to latest API specification
+
 ## v0.8.0
 - `v1api`:
   - **Feature:** Add new wait handlers for gateway creation (`CreateGatewayWaitHandler`), update (`UpdateGatewayWaitHandler`), and deletion (`DeleteGatewayWaitHandler`)
