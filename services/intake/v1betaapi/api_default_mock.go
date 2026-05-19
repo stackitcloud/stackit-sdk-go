@@ -52,7 +52,7 @@ type DefaultAPIServiceMock struct {
 	UpdateIntakeUserExecuteMock *func(r ApiUpdateIntakeUserRequest) (*IntakeUserResponse, error)
 }
 
-func (a DefaultAPIServiceMock) CreateIntake(ctx context.Context, projectId string, regionId string) ApiCreateIntakeRequest {
+func (a DefaultAPIServiceMock) CreateIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiCreateIntakeRequest {
 	return ApiCreateIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -71,7 +71,7 @@ func (a DefaultAPIServiceMock) CreateIntakeExecute(r ApiCreateIntakeRequest) (*I
 	return (*a.CreateIntakeExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateIntakeRunner(ctx context.Context, projectId string, regionId string) ApiCreateIntakeRunnerRequest {
+func (a DefaultAPIServiceMock) CreateIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiCreateIntakeRunnerRequest {
 	return ApiCreateIntakeRunnerRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -90,7 +90,7 @@ func (a DefaultAPIServiceMock) CreateIntakeRunnerExecute(r ApiCreateIntakeRunner
 	return (*a.CreateIntakeRunnerExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) CreateIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string) ApiCreateIntakeUserRequest {
+func (a DefaultAPIServiceMock) CreateIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiCreateIntakeUserRequest {
 	return ApiCreateIntakeUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -110,7 +110,7 @@ func (a DefaultAPIServiceMock) CreateIntakeUserExecute(r ApiCreateIntakeUserRequ
 	return (*a.CreateIntakeUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiDeleteIntakeRequest {
+func (a DefaultAPIServiceMock) DeleteIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiDeleteIntakeRequest {
 	return ApiDeleteIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -129,7 +129,7 @@ func (a DefaultAPIServiceMock) DeleteIntakeExecute(r ApiDeleteIntakeRequest) err
 	return (*a.DeleteIntakeExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiDeleteIntakeRunnerRequest {
+func (a DefaultAPIServiceMock) DeleteIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiDeleteIntakeRunnerRequest {
 	return ApiDeleteIntakeRunnerRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -148,7 +148,7 @@ func (a DefaultAPIServiceMock) DeleteIntakeRunnerExecute(r ApiDeleteIntakeRunner
 	return (*a.DeleteIntakeRunnerExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) DeleteIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiDeleteIntakeUserRequest {
+func (a DefaultAPIServiceMock) DeleteIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiDeleteIntakeUserRequest {
 	return ApiDeleteIntakeUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -168,7 +168,7 @@ func (a DefaultAPIServiceMock) DeleteIntakeUserExecute(r ApiDeleteIntakeUserRequ
 	return (*a.DeleteIntakeUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiGetIntakeRequest {
+func (a DefaultAPIServiceMock) GetIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiGetIntakeRequest {
 	return ApiGetIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -188,7 +188,7 @@ func (a DefaultAPIServiceMock) GetIntakeExecute(r ApiGetIntakeRequest) (*IntakeR
 	return (*a.GetIntakeExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiGetIntakeRunnerRequest {
+func (a DefaultAPIServiceMock) GetIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiGetIntakeRunnerRequest {
 	return ApiGetIntakeRunnerRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -208,7 +208,7 @@ func (a DefaultAPIServiceMock) GetIntakeRunnerExecute(r ApiGetIntakeRunnerReques
 	return (*a.GetIntakeRunnerExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) GetIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiGetIntakeUserRequest {
+func (a DefaultAPIServiceMock) GetIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiGetIntakeUserRequest {
 	return ApiGetIntakeUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -229,7 +229,7 @@ func (a DefaultAPIServiceMock) GetIntakeUserExecute(r ApiGetIntakeUserRequest) (
 	return (*a.GetIntakeUserExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListIntakeRunners(ctx context.Context, projectId string, regionId string) ApiListIntakeRunnersRequest {
+func (a DefaultAPIServiceMock) ListIntakeRunners(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiListIntakeRunnersRequest {
 	return ApiListIntakeRunnersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -248,7 +248,7 @@ func (a DefaultAPIServiceMock) ListIntakeRunnersExecute(r ApiListIntakeRunnersRe
 	return (*a.ListIntakeRunnersExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListIntakeUsers(ctx context.Context, projectId string, regionId string, intakeId string) ApiListIntakeUsersRequest {
+func (a DefaultAPIServiceMock) ListIntakeUsers(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiListIntakeUsersRequest {
 	return ApiListIntakeUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -268,7 +268,7 @@ func (a DefaultAPIServiceMock) ListIntakeUsersExecute(r ApiListIntakeUsersReques
 	return (*a.ListIntakeUsersExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) ListIntakes(ctx context.Context, projectId string, regionId string) ApiListIntakesRequest {
+func (a DefaultAPIServiceMock) ListIntakes(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter) ApiListIntakesRequest {
 	return ApiListIntakesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -287,7 +287,7 @@ func (a DefaultAPIServiceMock) ListIntakesExecute(r ApiListIntakesRequest) (*Lis
 	return (*a.ListIntakesExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateIntake(ctx context.Context, projectId string, regionId string, intakeId string) ApiUpdateIntakeRequest {
+func (a DefaultAPIServiceMock) UpdateIntake(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string) ApiUpdateIntakeRequest {
 	return ApiUpdateIntakeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -307,7 +307,7 @@ func (a DefaultAPIServiceMock) UpdateIntakeExecute(r ApiUpdateIntakeRequest) (*I
 	return (*a.UpdateIntakeExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateIntakeRunner(ctx context.Context, projectId string, regionId string, intakeRunnerId string) ApiUpdateIntakeRunnerRequest {
+func (a DefaultAPIServiceMock) UpdateIntakeRunner(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeRunnerId string) ApiUpdateIntakeRunnerRequest {
 	return ApiUpdateIntakeRunnerRequest{
 		ApiService:     a,
 		ctx:            ctx,
@@ -327,7 +327,7 @@ func (a DefaultAPIServiceMock) UpdateIntakeRunnerExecute(r ApiUpdateIntakeRunner
 	return (*a.UpdateIntakeRunnerExecuteMock)(r)
 }
 
-func (a DefaultAPIServiceMock) UpdateIntakeUser(ctx context.Context, projectId string, regionId string, intakeId string, intakeUserId string) ApiUpdateIntakeUserRequest {
+func (a DefaultAPIServiceMock) UpdateIntakeUser(ctx context.Context, projectId string, regionId ListIntakeRunnersRegionIdParameter, intakeId string, intakeUserId string) ApiUpdateIntakeUserRequest {
 	return ApiUpdateIntakeUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
