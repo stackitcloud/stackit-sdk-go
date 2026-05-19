@@ -35,7 +35,7 @@ func newAPIMock(settings mockSettings) dremio.DefaultAPI {
 				}
 
 				return &dremio.DremioResponse{
-					State: settings.resourceState,
+					State: dremio.DremioResponseState(settings.resourceState),
 				}, nil
 			},
 		),
@@ -53,7 +53,7 @@ func newAPIMock(settings mockSettings) dremio.DefaultAPI {
 				}
 
 				return &dremio.DremioUserResponse{
-					State: settings.resourceState,
+					State: dremio.DremioUserResponseState(settings.resourceState),
 				}, nil
 			},
 		),
@@ -71,14 +71,14 @@ func TestCreateDremioWaitHandler(t *testing.T) {
 		{
 			description:   "create_succeeded",
 			getFails:      false,
-			resourceState: DREMIOSTATE_ACTIVE,
+			resourceState: string(dremio.DREMIORESPONSESTATE_ACTIVE),
 			wantError:     false,
 			wantResponse:  true,
 		},
 		{
 			description:   "create_failed",
 			getFails:      false,
-			resourceState: DREMIOSTATE_ERROR,
+			resourceState: string(dremio.DREMIORESPONSESTATE_ERROR),
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -109,11 +109,11 @@ func TestCreateDremioWaitHandler(t *testing.T) {
 				var expectedResponse *dremio.DremioResponse
 				if currentTest.wantResponse {
 					expectedResponse = &dremio.DremioResponse{
-						State: currentTest.resourceState,
+						State: dremio.DremioResponseState(currentTest.resourceState),
 					}
 				}
 
-				handler := CreateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
+				handler := CreateDremioWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -139,14 +139,14 @@ func TestUpdateDremioWaitHandler(t *testing.T) {
 		{
 			description:   "update_succeeded",
 			getFails:      false,
-			resourceState: DREMIOSTATE_ACTIVE,
+			resourceState: string(dremio.DREMIORESPONSESTATE_ACTIVE),
 			wantError:     false,
 			wantResponse:  true,
 		},
 		{
 			description:   "update_failed",
 			getFails:      false,
-			resourceState: DREMIOSTATE_ERROR,
+			resourceState: string(dremio.DREMIORESPONSESTATE_ERROR),
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -177,11 +177,11 @@ func TestUpdateDremioWaitHandler(t *testing.T) {
 				var expectedResponse *dremio.DremioResponse
 				if currentTest.wantResponse {
 					expectedResponse = &dremio.DremioResponse{
-						State: currentTest.resourceState,
+						State: dremio.DremioResponseState(currentTest.resourceState),
 					}
 				}
 
-				handler := UpdateDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
+				handler := UpdateDremioWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -217,7 +217,7 @@ func TestDeleteDremioWaitHandler(t *testing.T) {
 			description:   "delete_failed",
 			isDeleted:     false,
 			getFails:      false,
-			resourceState: DREMIOSTATE_ERROR,
+			resourceState: string(dremio.DREMIORESPONSESTATE_ERROR),
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -250,11 +250,11 @@ func TestDeleteDremioWaitHandler(t *testing.T) {
 				var expectedResponse *dremio.DremioResponse
 				if currentTest.wantResponse {
 					expectedResponse = &dremio.DremioResponse{
-						State: currentTest.resourceState,
+						State: dremio.DremioResponseState(currentTest.resourceState),
 					}
 				}
 
-				handler := DeleteDremioWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId")
+				handler := DeleteDremioWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -284,14 +284,14 @@ func TestCreateDremioUserWaitHandler(t *testing.T) {
 		{
 			description:   "create_succeeded",
 			getFails:      false,
-			resourceState: DREMIOUSERSTATE_ACTIVE,
+			resourceState: string(dremio.DREMIOUSERRESPONSESTATE_ACTIVE),
 			wantError:     false,
 			wantResponse:  true,
 		},
 		{
 			description:   "create_failed",
 			getFails:      false,
-			resourceState: DREMIOUSERSTATE_ERROR,
+			resourceState: string(dremio.DREMIOUSERRESPONSESTATE_ERROR),
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -322,11 +322,11 @@ func TestCreateDremioUserWaitHandler(t *testing.T) {
 				var expectedResponse *dremio.DremioUserResponse
 				if currentTest.wantResponse {
 					expectedResponse = &dremio.DremioUserResponse{
-						State: currentTest.resourceState,
+						State: dremio.DremioUserResponseState(currentTest.resourceState),
 					}
 				}
 
-				handler := CreateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
+				handler := CreateDremioUserWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId", "userId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -352,14 +352,14 @@ func TestUpdateDremioUserWaitHandler(t *testing.T) {
 		{
 			description:   "update_succeeded",
 			getFails:      false,
-			resourceState: DREMIOUSERSTATE_ACTIVE,
+			resourceState: string(dremio.DREMIOUSERRESPONSESTATE_ACTIVE),
 			wantError:     false,
 			wantResponse:  true,
 		},
 		{
 			description:   "update_failed",
 			getFails:      false,
-			resourceState: DREMIOUSERSTATE_ERROR,
+			resourceState: string(dremio.DREMIOUSERRESPONSESTATE_ERROR),
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -390,11 +390,11 @@ func TestUpdateDremioUserWaitHandler(t *testing.T) {
 				var expectedResponse *dremio.DremioUserResponse
 				if currentTest.wantResponse {
 					expectedResponse = &dremio.DremioUserResponse{
-						State: currentTest.resourceState,
+						State: dremio.DremioUserResponseState(currentTest.resourceState),
 					}
 				}
 
-				handler := UpdateDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
+				handler := UpdateDremioUserWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId", "userId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 
@@ -430,7 +430,7 @@ func TestDeleteDremioUserWaitHandler(t *testing.T) {
 			description:   "delete_failed",
 			isDeleted:     false,
 			getFails:      false,
-			resourceState: DREMIOUSERSTATE_ERROR,
+			resourceState: string(dremio.DREMIOUSERRESPONSESTATE_ERROR),
 			wantError:     true,
 			wantResponse:  true,
 		},
@@ -463,11 +463,11 @@ func TestDeleteDremioUserWaitHandler(t *testing.T) {
 				var expectedResponse *dremio.DremioUserResponse
 				if currentTest.wantResponse {
 					expectedResponse = &dremio.DremioUserResponse{
-						State: currentTest.resourceState,
+						State: dremio.DremioUserResponseState(currentTest.resourceState),
 					}
 				}
 
-				handler := DeleteDremioUserWaitHandler(context.Background(), apiClient, "pid", "zid", "dremioId", "userId")
+				handler := DeleteDremioUserWaitHandler(context.Background(), apiClient, "pid", dremio.ListDremioInstancesRegionIdParameter("zid"), "dremioId", "userId")
 
 				gotResponse, err := handler.WaitWithContext(context.Background())
 

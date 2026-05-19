@@ -113,6 +113,8 @@
     - Manage your STACKIT Dremio resources: `DremioInstance`, `DremioUser`
     - Waiters for async operations: `CreateDremioInstanceWaitHandler`, `UpdateDremioInstanceWaitHandler`, `DeleteDremioInstanceWaitHandler`, `CreateDremioUserWaitHandler`, `UpdateDremioUserWaitHandler`, `DeleteDremioUserWaitHandler`
     - [Usage example](https://github.com/stackitcloud/stackit-sdk-go/tree/main/examples/dremio)
+  - [v0.2.0](services/dremio/CHANGELOG.md#v020)
+    - **Feature:** Introduce enums for various attributes
 - `edge`:
   - [v0.8.2](services/edge/CHANGELOG.md#v082) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
