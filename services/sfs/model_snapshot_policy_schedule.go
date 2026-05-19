@@ -157,6 +157,7 @@ type SnapshotPolicyScheduleGetScheduleIdRetType = string
 // Deprecated: Will be removed after 2026-09-30. Move to the packages generated for each available API version instead
 type SnapshotPolicySchedule struct {
 	// Retention Count
+	// Can be cast to int32 without loss of precision.
 	Count SnapshotPolicyScheduleGetCountAttributeType `json:"count,omitempty"`
 	// Interval of the Schedule (follows the cron schedule expression in Unix-like systems)
 	Interval SnapshotPolicyScheduleGetIntervalAttributeType `json:"interval,omitempty"`
