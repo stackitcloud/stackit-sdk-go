@@ -33,8 +33,8 @@ type LoadBalancer struct {
 	// Service Plan configures the size of the Load Balancer. Currently supported plans are p10, p50, p250 and p750. This list can change in the future where plan ids will be removed and new plans by added. That is the reason this is not an enum.
 	PlanId *string `json:"planId,omitempty"`
 	// Transient private load balancer IP address that can change any time.
-	PrivateAddress *string `json:"privateAddress,omitempty"`
-	Status         *string `json:"status,omitempty"`
+	PrivateAddress *string             `json:"privateAddress,omitempty"`
+	Status         *LoadBalancerStatus `json:"status,omitempty"`
 	// List of all target pools which will be used in the load balancer. Limited to 20.
 	TargetPools []TargetPool `json:"targetPools,omitempty"`
 	// Load balancer resource version. Must be empty or unset for creating load balancers, non-empty for updating load balancers. Semantics: While retrieving load balancers, this is the current version of this load balancer resource that changes during updates of the load balancers. On updates this field specified the load balancer version you calculated your update for instead of the future version to enable concurrency safe updates. Update calls will then report the new version in their result as you would see with a load balancer retrieval call later. There exist no total order of the version, so you can only compare it for equality, but not for less/greater than another version. Since the creation of load balancer is always intended to create the first version of it, there should be no existing version. That's why this field must by empty of not present in that case.
@@ -318,9 +318,9 @@ func (o *LoadBalancer) SetPrivateAddress(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *LoadBalancer) GetStatus() string {
+func (o *LoadBalancer) GetStatus() LoadBalancerStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret LoadBalancerStatus
 		return ret
 	}
 	return *o.Status
@@ -328,7 +328,7 @@ func (o *LoadBalancer) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoadBalancer) GetStatusOk() (*string, bool) {
+func (o *LoadBalancer) GetStatusOk() (*LoadBalancerStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -344,8 +344,8 @@ func (o *LoadBalancer) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *LoadBalancer) SetStatus(v string) {
+// SetStatus gets a reference to the given LoadBalancerStatus and assigns it to the Status field.
+func (o *LoadBalancer) SetStatus(v LoadBalancerStatus) {
 	o.Status = &v
 }
 
