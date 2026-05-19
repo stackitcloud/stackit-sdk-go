@@ -33,7 +33,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiCreateDremioInstanceRequest
 	*/
-	CreateDremioInstance(ctx context.Context, projectId string, regionId string) ApiCreateDremioInstanceRequest
+	CreateDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter) ApiCreateDremioInstanceRequest
 
 	// CreateDremioInstanceExecute executes the request
 	//  @return DremioResponse
@@ -50,7 +50,7 @@ type DefaultAPI interface {
 		@param dremioId The Dremio instance UUID.
 		@return ApiCreateDremioUserRequest
 	*/
-	CreateDremioUser(ctx context.Context, projectId string, regionId string, dremioId string) ApiCreateDremioUserRequest
+	CreateDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiCreateDremioUserRequest
 
 	// CreateDremioUserExecute executes the request
 	//  @return DremioUserResponse
@@ -67,7 +67,7 @@ type DefaultAPI interface {
 		@param dremioId The Dremio instance UUID.
 		@return ApiDeleteDremioInstanceRequest
 	*/
-	DeleteDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiDeleteDremioInstanceRequest
+	DeleteDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiDeleteDremioInstanceRequest
 
 	// DeleteDremioInstanceExecute executes the request
 	DeleteDremioInstanceExecute(r ApiDeleteDremioInstanceRequest) error
@@ -84,7 +84,7 @@ type DefaultAPI interface {
 		@param dremioUserId The Dremio user UUID.
 		@return ApiDeleteDremioUserRequest
 	*/
-	DeleteDremioUser(ctx context.Context, projectId string, regionId string, dremioId string, dremioUserId string) ApiDeleteDremioUserRequest
+	DeleteDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string, dremioUserId string) ApiDeleteDremioUserRequest
 
 	// DeleteDremioUserExecute executes the request
 	DeleteDremioUserExecute(r ApiDeleteDremioUserRequest) error
@@ -100,7 +100,7 @@ type DefaultAPI interface {
 		@param dremioId The Dremio instance UUID.
 		@return ApiGetDremioInstanceRequest
 	*/
-	GetDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioInstanceRequest
+	GetDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiGetDremioInstanceRequest
 
 	// GetDremioInstanceExecute executes the request
 	//  @return DremioResponse
@@ -118,7 +118,7 @@ type DefaultAPI interface {
 		@param dremioUserId The Dremio user UUID.
 		@return ApiGetDremioUserRequest
 	*/
-	GetDremioUser(ctx context.Context, projectId string, regionId string, dremioId string, dremioUserId string) ApiGetDremioUserRequest
+	GetDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string, dremioUserId string) ApiGetDremioUserRequest
 
 	// GetDremioUserExecute executes the request
 	//  @return DremioUserResponse
@@ -134,7 +134,7 @@ type DefaultAPI interface {
 		@param regionId The STACKIT region name the resource is located in.
 		@return ApiListDremioInstancesRequest
 	*/
-	ListDremioInstances(ctx context.Context, projectId string, regionId string) ApiListDremioInstancesRequest
+	ListDremioInstances(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter) ApiListDremioInstancesRequest
 
 	// ListDremioInstancesExecute executes the request
 	//  @return ListDremiosResponse
@@ -151,7 +151,7 @@ type DefaultAPI interface {
 		@param dremioId The Dremio instance UUID.
 		@return ApiListDremioUsersRequest
 	*/
-	ListDremioUsers(ctx context.Context, projectId string, regionId string, dremioId string) ApiListDremioUsersRequest
+	ListDremioUsers(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiListDremioUsersRequest
 
 	// ListDremioUsersExecute executes the request
 	//  @return ListDremioUsersResponse
@@ -168,7 +168,7 @@ type DefaultAPI interface {
 		@param dremioId The Dremio instance UUID.
 		@return ApiUpdateDremioInstanceRequest
 	*/
-	UpdateDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiUpdateDremioInstanceRequest
+	UpdateDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiUpdateDremioInstanceRequest
 
 	// UpdateDremioInstanceExecute executes the request
 	//  @return DremioResponse
@@ -182,7 +182,7 @@ type ApiCreateDremioInstanceRequest struct {
 	ctx                         context.Context
 	ApiService                  DefaultAPI
 	projectId                   string
-	regionId                    string
+	regionId                    ListDremioInstancesRegionIdParameter
 	createDremioInstancePayload *CreateDremioInstancePayload
 }
 
@@ -205,7 +205,7 @@ Creates a new Dremio instance within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiCreateDremioInstanceRequest
 */
-func (a *DefaultAPIService) CreateDremioInstance(ctx context.Context, projectId string, regionId string) ApiCreateDremioInstanceRequest {
+func (a *DefaultAPIService) CreateDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter) ApiCreateDremioInstanceRequest {
 	return ApiCreateDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -312,7 +312,7 @@ type ApiCreateDremioUserRequest struct {
 	ctx                     context.Context
 	ApiService              DefaultAPI
 	projectId               string
-	regionId                string
+	regionId                ListDremioInstancesRegionIdParameter
 	dremioId                string
 	createDremioUserPayload *CreateDremioUserPayload
 }
@@ -337,7 +337,7 @@ Creates a new Dremio admin user for the given Dremio instance.
 	@param dremioId The Dremio instance UUID.
 	@return ApiCreateDremioUserRequest
 */
-func (a *DefaultAPIService) CreateDremioUser(ctx context.Context, projectId string, regionId string, dremioId string) ApiCreateDremioUserRequest {
+func (a *DefaultAPIService) CreateDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiCreateDremioUserRequest {
 	return ApiCreateDremioUserRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -446,7 +446,7 @@ type ApiDeleteDremioInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   string
+	regionId   ListDremioInstancesRegionIdParameter
 	dremioId   string
 }
 
@@ -465,7 +465,7 @@ Deletes the given Dremio instance.
 	@param dremioId The Dremio instance UUID.
 	@return ApiDeleteDremioInstanceRequest
 */
-func (a *DefaultAPIService) DeleteDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiDeleteDremioInstanceRequest {
+func (a *DefaultAPIService) DeleteDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiDeleteDremioInstanceRequest {
 	return ApiDeleteDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -556,7 +556,7 @@ type ApiDeleteDremioUserRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	projectId    string
-	regionId     string
+	regionId     ListDremioInstancesRegionIdParameter
 	dremioId     string
 	dremioUserId string
 }
@@ -577,7 +577,7 @@ Deletes the given dremio admin user.
 	@param dremioUserId The Dremio user UUID.
 	@return ApiDeleteDremioUserRequest
 */
-func (a *DefaultAPIService) DeleteDremioUser(ctx context.Context, projectId string, regionId string, dremioId string, dremioUserId string) ApiDeleteDremioUserRequest {
+func (a *DefaultAPIService) DeleteDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string, dremioUserId string) ApiDeleteDremioUserRequest {
 	return ApiDeleteDremioUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -670,7 +670,7 @@ type ApiGetDremioInstanceRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   string
+	regionId   ListDremioInstancesRegionIdParameter
 	dremioId   string
 }
 
@@ -689,7 +689,7 @@ Returns the details for the given Dremio instance.
 	@param dremioId The Dremio instance UUID.
 	@return ApiGetDremioInstanceRequest
 */
-func (a *DefaultAPIService) GetDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiGetDremioInstanceRequest {
+func (a *DefaultAPIService) GetDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiGetDremioInstanceRequest {
 	return ApiGetDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -793,7 +793,7 @@ type ApiGetDremioUserRequest struct {
 	ctx          context.Context
 	ApiService   DefaultAPI
 	projectId    string
-	regionId     string
+	regionId     ListDremioInstancesRegionIdParameter
 	dremioId     string
 	dremioUserId string
 }
@@ -814,7 +814,7 @@ Returns the details for the given dremio admin user
 	@param dremioUserId The Dremio user UUID.
 	@return ApiGetDremioUserRequest
 */
-func (a *DefaultAPIService) GetDremioUser(ctx context.Context, projectId string, regionId string, dremioId string, dremioUserId string) ApiGetDremioUserRequest {
+func (a *DefaultAPIService) GetDremioUser(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string, dremioUserId string) ApiGetDremioUserRequest {
 	return ApiGetDremioUserRequest{
 		ApiService:   a,
 		ctx:          ctx,
@@ -920,7 +920,7 @@ type ApiListDremioInstancesRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   string
+	regionId   ListDremioInstancesRegionIdParameter
 	pageToken  *string
 	pageSize   *int32
 }
@@ -951,7 +951,7 @@ Returns a list of all Dremio instances within the project.
 	@param regionId The STACKIT region name the resource is located in.
 	@return ApiListDremioInstancesRequest
 */
-func (a *DefaultAPIService) ListDremioInstances(ctx context.Context, projectId string, regionId string) ApiListDremioInstancesRequest {
+func (a *DefaultAPIService) ListDremioInstances(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter) ApiListDremioInstancesRequest {
 	return ApiListDremioInstancesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1063,7 +1063,7 @@ type ApiListDremioUsersRequest struct {
 	ctx        context.Context
 	ApiService DefaultAPI
 	projectId  string
-	regionId   string
+	regionId   ListDremioInstancesRegionIdParameter
 	dremioId   string
 	pageToken  *string
 	pageSize   *int32
@@ -1096,7 +1096,7 @@ Returns a list of all Dremio admin users for the given dremio instance.
 	@param dremioId The Dremio instance UUID.
 	@return ApiListDremioUsersRequest
 */
-func (a *DefaultAPIService) ListDremioUsers(ctx context.Context, projectId string, regionId string, dremioId string) ApiListDremioUsersRequest {
+func (a *DefaultAPIService) ListDremioUsers(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiListDremioUsersRequest {
 	return ApiListDremioUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1210,7 +1210,7 @@ type ApiUpdateDremioInstanceRequest struct {
 	ctx                         context.Context
 	ApiService                  DefaultAPI
 	projectId                   string
-	regionId                    string
+	regionId                    ListDremioInstancesRegionIdParameter
 	dremioId                    string
 	updateDremioInstancePayload *UpdateDremioInstancePayload
 }
@@ -1235,7 +1235,7 @@ Updates the given Dremio instance. Please note that changing certain fields will
 	@param dremioId The Dremio instance UUID.
 	@return ApiUpdateDremioInstanceRequest
 */
-func (a *DefaultAPIService) UpdateDremioInstance(ctx context.Context, projectId string, regionId string, dremioId string) ApiUpdateDremioInstanceRequest {
+func (a *DefaultAPIService) UpdateDremioInstance(ctx context.Context, projectId string, regionId ListDremioInstancesRegionIdParameter, dremioId string) ApiUpdateDremioInstanceRequest {
 	return ApiUpdateDremioInstanceRequest{
 		ApiService: a,
 		ctx:        ctx,
