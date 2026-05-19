@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateCoreRuleSetPayload type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateCoreRuleSetPayload{}
+// checks if the PatchCoreRuleSetPayload type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchCoreRuleSetPayload{}
 
-// UpdateCoreRuleSetPayload UpdateCoreRuleSetRequest updates a rules configuration, but only if it changed.  DEPRECATED use PatchCoreRuleSet
-type UpdateCoreRuleSetPayload struct {
+// PatchCoreRuleSetPayload PatchCoreRuleSetRequest updates a rules configuration.
+type PatchCoreRuleSetPayload struct {
 	// To activate the OWASP core rule set, set this boolean to true.
 	Active *bool `json:"active,omitempty"`
 	// Map of Core Rule Set groups to be patched. The key is the Group ID (e.g., 942 for SQL Injection). Only provided rules within the group will be updated; others remain unchanged.
@@ -32,27 +32,27 @@ type UpdateCoreRuleSetPayload struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UpdateCoreRuleSetPayload UpdateCoreRuleSetPayload
+type _PatchCoreRuleSetPayload PatchCoreRuleSetPayload
 
-// NewUpdateCoreRuleSetPayload instantiates a new UpdateCoreRuleSetPayload object
+// NewPatchCoreRuleSetPayload instantiates a new PatchCoreRuleSetPayload object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateCoreRuleSetPayload() *UpdateCoreRuleSetPayload {
-	this := UpdateCoreRuleSetPayload{}
+func NewPatchCoreRuleSetPayload() *PatchCoreRuleSetPayload {
+	this := PatchCoreRuleSetPayload{}
 	return &this
 }
 
-// NewUpdateCoreRuleSetPayloadWithDefaults instantiates a new UpdateCoreRuleSetPayload object
+// NewPatchCoreRuleSetPayloadWithDefaults instantiates a new PatchCoreRuleSetPayload object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateCoreRuleSetPayloadWithDefaults() *UpdateCoreRuleSetPayload {
-	this := UpdateCoreRuleSetPayload{}
+func NewPatchCoreRuleSetPayloadWithDefaults() *PatchCoreRuleSetPayload {
+	this := PatchCoreRuleSetPayload{}
 	return &this
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *UpdateCoreRuleSetPayload) GetActive() bool {
+func (o *PatchCoreRuleSetPayload) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
@@ -62,7 +62,7 @@ func (o *UpdateCoreRuleSetPayload) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCoreRuleSetPayload) GetActiveOk() (*bool, bool) {
+func (o *PatchCoreRuleSetPayload) GetActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *UpdateCoreRuleSetPayload) GetActiveOk() (*bool, bool) {
 }
 
 // HasActive returns a boolean if a field has been set.
-func (o *UpdateCoreRuleSetPayload) HasActive() bool {
+func (o *PatchCoreRuleSetPayload) HasActive() bool {
 	if o != nil && !IsNil(o.Active) {
 		return true
 	}
@@ -79,12 +79,12 @@ func (o *UpdateCoreRuleSetPayload) HasActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *UpdateCoreRuleSetPayload) SetActive(v bool) {
+func (o *PatchCoreRuleSetPayload) SetActive(v bool) {
 	o.Active = &v
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *UpdateCoreRuleSetPayload) GetGroups() map[string]PatchCRSRuleGroup {
+func (o *PatchCoreRuleSetPayload) GetGroups() map[string]PatchCRSRuleGroup {
 	if o == nil || IsNil(o.Groups) {
 		var ret map[string]PatchCRSRuleGroup
 		return ret
@@ -94,7 +94,7 @@ func (o *UpdateCoreRuleSetPayload) GetGroups() map[string]PatchCRSRuleGroup {
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCoreRuleSetPayload) GetGroupsOk() (*map[string]PatchCRSRuleGroup, bool) {
+func (o *PatchCoreRuleSetPayload) GetGroupsOk() (*map[string]PatchCRSRuleGroup, bool) {
 	if o == nil || IsNil(o.Groups) {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *UpdateCoreRuleSetPayload) GetGroupsOk() (*map[string]PatchCRSRuleGroup,
 }
 
 // HasGroups returns a boolean if a field has been set.
-func (o *UpdateCoreRuleSetPayload) HasGroups() bool {
+func (o *PatchCoreRuleSetPayload) HasGroups() bool {
 	if o != nil && !IsNil(o.Groups) {
 		return true
 	}
@@ -111,12 +111,12 @@ func (o *UpdateCoreRuleSetPayload) HasGroups() bool {
 }
 
 // SetGroups gets a reference to the given map[string]PatchCRSRuleGroup and assigns it to the Groups field.
-func (o *UpdateCoreRuleSetPayload) SetGroups(v map[string]PatchCRSRuleGroup) {
+func (o *PatchCoreRuleSetPayload) SetGroups(v map[string]PatchCRSRuleGroup) {
 	o.Groups = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *UpdateCoreRuleSetPayload) GetName() string {
+func (o *PatchCoreRuleSetPayload) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -126,7 +126,7 @@ func (o *UpdateCoreRuleSetPayload) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCoreRuleSetPayload) GetNameOk() (*string, bool) {
+func (o *PatchCoreRuleSetPayload) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *UpdateCoreRuleSetPayload) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *UpdateCoreRuleSetPayload) HasName() bool {
+func (o *PatchCoreRuleSetPayload) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -143,12 +143,12 @@ func (o *UpdateCoreRuleSetPayload) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *UpdateCoreRuleSetPayload) SetName(v string) {
+func (o *PatchCoreRuleSetPayload) SetName(v string) {
 	o.Name = &v
 }
 
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *UpdateCoreRuleSetPayload) GetProjectId() string {
+func (o *PatchCoreRuleSetPayload) GetProjectId() string {
 	if o == nil || IsNil(o.ProjectId) {
 		var ret string
 		return ret
@@ -158,7 +158,7 @@ func (o *UpdateCoreRuleSetPayload) GetProjectId() string {
 
 // GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCoreRuleSetPayload) GetProjectIdOk() (*string, bool) {
+func (o *PatchCoreRuleSetPayload) GetProjectIdOk() (*string, bool) {
 	if o == nil || IsNil(o.ProjectId) {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *UpdateCoreRuleSetPayload) GetProjectIdOk() (*string, bool) {
 }
 
 // HasProjectId returns a boolean if a field has been set.
-func (o *UpdateCoreRuleSetPayload) HasProjectId() bool {
+func (o *PatchCoreRuleSetPayload) HasProjectId() bool {
 	if o != nil && !IsNil(o.ProjectId) {
 		return true
 	}
@@ -175,12 +175,12 @@ func (o *UpdateCoreRuleSetPayload) HasProjectId() bool {
 }
 
 // SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *UpdateCoreRuleSetPayload) SetProjectId(v string) {
+func (o *PatchCoreRuleSetPayload) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *UpdateCoreRuleSetPayload) GetRegion() string {
+func (o *PatchCoreRuleSetPayload) GetRegion() string {
 	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
@@ -190,7 +190,7 @@ func (o *UpdateCoreRuleSetPayload) GetRegion() string {
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCoreRuleSetPayload) GetRegionOk() (*string, bool) {
+func (o *PatchCoreRuleSetPayload) GetRegionOk() (*string, bool) {
 	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
@@ -198,7 +198,7 @@ func (o *UpdateCoreRuleSetPayload) GetRegionOk() (*string, bool) {
 }
 
 // HasRegion returns a boolean if a field has been set.
-func (o *UpdateCoreRuleSetPayload) HasRegion() bool {
+func (o *PatchCoreRuleSetPayload) HasRegion() bool {
 	if o != nil && !IsNil(o.Region) {
 		return true
 	}
@@ -207,11 +207,11 @@ func (o *UpdateCoreRuleSetPayload) HasRegion() bool {
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *UpdateCoreRuleSetPayload) SetRegion(v string) {
+func (o *PatchCoreRuleSetPayload) SetRegion(v string) {
 	o.Region = &v
 }
 
-func (o UpdateCoreRuleSetPayload) MarshalJSON() ([]byte, error) {
+func (o PatchCoreRuleSetPayload) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -219,7 +219,7 @@ func (o UpdateCoreRuleSetPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateCoreRuleSetPayload) ToMap() (map[string]interface{}, error) {
+func (o PatchCoreRuleSetPayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
@@ -244,16 +244,16 @@ func (o UpdateCoreRuleSetPayload) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *UpdateCoreRuleSetPayload) UnmarshalJSON(data []byte) (err error) {
-	varUpdateCoreRuleSetPayload := _UpdateCoreRuleSetPayload{}
+func (o *PatchCoreRuleSetPayload) UnmarshalJSON(data []byte) (err error) {
+	varPatchCoreRuleSetPayload := _PatchCoreRuleSetPayload{}
 
-	err = json.Unmarshal(data, &varUpdateCoreRuleSetPayload)
+	err = json.Unmarshal(data, &varPatchCoreRuleSetPayload)
 
 	if err != nil {
 		return err
 	}
 
-	*o = UpdateCoreRuleSetPayload(varUpdateCoreRuleSetPayload)
+	*o = PatchCoreRuleSetPayload(varPatchCoreRuleSetPayload)
 
 	additionalProperties := make(map[string]interface{})
 
@@ -269,38 +269,38 @@ func (o *UpdateCoreRuleSetPayload) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
-type NullableUpdateCoreRuleSetPayload struct {
-	value *UpdateCoreRuleSetPayload
+type NullablePatchCoreRuleSetPayload struct {
+	value *PatchCoreRuleSetPayload
 	isSet bool
 }
 
-func (v NullableUpdateCoreRuleSetPayload) Get() *UpdateCoreRuleSetPayload {
+func (v NullablePatchCoreRuleSetPayload) Get() *PatchCoreRuleSetPayload {
 	return v.value
 }
 
-func (v *NullableUpdateCoreRuleSetPayload) Set(val *UpdateCoreRuleSetPayload) {
+func (v *NullablePatchCoreRuleSetPayload) Set(val *PatchCoreRuleSetPayload) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateCoreRuleSetPayload) IsSet() bool {
+func (v NullablePatchCoreRuleSetPayload) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateCoreRuleSetPayload) Unset() {
+func (v *NullablePatchCoreRuleSetPayload) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateCoreRuleSetPayload(val *UpdateCoreRuleSetPayload) *NullableUpdateCoreRuleSetPayload {
-	return &NullableUpdateCoreRuleSetPayload{value: val, isSet: true}
+func NewNullablePatchCoreRuleSetPayload(val *PatchCoreRuleSetPayload) *NullablePatchCoreRuleSetPayload {
+	return &NullablePatchCoreRuleSetPayload{value: val, isSet: true}
 }
 
-func (v NullableUpdateCoreRuleSetPayload) MarshalJSON() ([]byte, error) {
+func (v NullablePatchCoreRuleSetPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateCoreRuleSetPayload) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchCoreRuleSetPayload) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

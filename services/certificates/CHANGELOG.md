@@ -1,3 +1,9 @@
+## v1.7.0
+- `v2api`:
+  - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+- Deprecated SDK layer in root of the module:
+  - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+
 ## v1.6.2
 - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
 
