@@ -23,6 +23,8 @@
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
   - [v0.5.0](services/albwaf/CHANGELOG.md#v050)
     - `v1alphaapi`: Align package to latest API specification
+  - [v0.6.0](services/albwaf/CHANGELOG.md#v060)
+    - `v1alphaapi`: Align package to latest API specification
 - `archiving`:
   - [v0.2.6](services/archiving/CHANGELOG.md#v026) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -73,6 +75,11 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v1.6.2](services/certificates/CHANGELOG.md#v162)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v1.7.0](services/certificates/CHANGELOG.md#v170)
+    - `v2api`:
+      - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
+    - Deprecated SDK layer in root of the module:
+      - Add field `Labels` (type `*map[string]string`) to structs `CreateCertificatePayload` and `GetCertificateResponse`
 - `cost`:
   - [v0.2.2](services/cost/CHANGELOG.md#v022) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -192,6 +199,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/logme/CHANGELOG.md#v0282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.29.0](services/logme/CHANGELOG.md#v0290)
+    - `v1api`: **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
 - `logs`: 
   - [v0.7.3](services/logs/CHANGELOG.md#v073) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -212,6 +221,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.28.2](services/mariadb/CHANGELOG.md#v282)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.29.0](services/mariadb/CHANGELOG.md#v290)
+    - **Improvement:** Use new WaiterHelper for Logs waiters
 - `modelserving`:
   - [v0.8.3](services/modelserving/CHANGELOG.md#v083) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
@@ -221,6 +232,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.9.2](services/modelserving/CHANGELOG.md#v092)
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
+  - [v0.10.0](services/modelserving/CHANGELOG.md#v0100)
+    - **Improvement:** Use new WaiterHelper for modelserving waiters
 - `mongodbflex`:
   - [v1.7.3](services/mongodbflex/CHANGELOG.md#v173) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
