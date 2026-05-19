@@ -22,9 +22,8 @@ type CRSRuleGroup struct {
 	// A description of what this group covers.
 	Description *string `json:"description,omitempty"`
 	// The name for the rule group.
-	GroupName *string `json:"groupName,omitempty" validate:"regexp=^[a-zA-Z\\\\(\\\\) ]+$"`
-	// The list of individual rules contained within this group.
-	Rules                []CRSRule `json:"rules,omitempty"`
+	GroupName            *string             `json:"groupName,omitempty" validate:"regexp=^[a-zA-Z\\\\(\\\\) ]+$"`
+	Rules                *map[string]CRSRule `json:"rules,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -112,17 +111,17 @@ func (o *CRSRuleGroup) SetGroupName(v string) {
 }
 
 // GetRules returns the Rules field value if set, zero value otherwise.
-func (o *CRSRuleGroup) GetRules() []CRSRule {
+func (o *CRSRuleGroup) GetRules() map[string]CRSRule {
 	if o == nil || IsNil(o.Rules) {
-		var ret []CRSRule
+		var ret map[string]CRSRule
 		return ret
 	}
-	return o.Rules
+	return *o.Rules
 }
 
 // GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CRSRuleGroup) GetRulesOk() ([]CRSRule, bool) {
+func (o *CRSRuleGroup) GetRulesOk() (*map[string]CRSRule, bool) {
 	if o == nil || IsNil(o.Rules) {
 		return nil, false
 	}
@@ -138,9 +137,9 @@ func (o *CRSRuleGroup) HasRules() bool {
 	return false
 }
 
-// SetRules gets a reference to the given []CRSRule and assigns it to the Rules field.
-func (o *CRSRuleGroup) SetRules(v []CRSRule) {
-	o.Rules = v
+// SetRules gets a reference to the given map[string]CRSRule and assigns it to the Rules field.
+func (o *CRSRuleGroup) SetRules(v map[string]CRSRule) {
+	o.Rules = &v
 }
 
 func (o CRSRuleGroup) MarshalJSON() ([]byte, error) {

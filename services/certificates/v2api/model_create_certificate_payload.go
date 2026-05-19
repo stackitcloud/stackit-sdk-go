@@ -19,6 +19,8 @@ var _ MappedNullable = &CreateCertificatePayload{}
 
 // CreateCertificatePayload Uploads a PEM encoded X509 public/private key pair
 type CreateCertificatePayload struct {
+	// Labels represent user-defined metadata as key-value pairs. Label count should not exceed 64 per Certificate. **Key Formatting Rules:** Length: 1-63 characters. Characters: Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between. Keys starting with 'stackit-' are system-reserved; users MUST NOT manage them.  **Value Formatting Rules:** Length: 0-63 characters (empty string explicitly allowed). Characters (for non-empty values): Must begin and end with [a-zA-Z0-9]. May contain dashes (-), underscores (_), dots (.), and alphanumerics in between.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// TLS certificate name
 	Name *string `json:"name,omitempty" validate:"regexp=^[0-9a-z](?:(?:[0-9a-z]|-){0,61}[0-9a-z])?$"`
 	// The PEM encoded private key part
@@ -49,6 +51,38 @@ func NewCreateCertificatePayload() *CreateCertificatePayload {
 func NewCreateCertificatePayloadWithDefaults() *CreateCertificatePayload {
 	this := CreateCertificatePayload{}
 	return &this
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateCertificatePayload) GetLabels() map[string]string {
+	if o == nil || IsNil(o.Labels) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCertificatePayload) GetLabelsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *CreateCertificatePayload) HasLabels() bool {
+	if o != nil && !IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateCertificatePayload) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -221,6 +255,9 @@ func (o CreateCertificatePayload) MarshalJSON() ([]byte, error) {
 
 func (o CreateCertificatePayload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -258,6 +295,7 @@ func (o *CreateCertificatePayload) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "labels")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "privateKey")
 		delete(additionalProperties, "projectId")
