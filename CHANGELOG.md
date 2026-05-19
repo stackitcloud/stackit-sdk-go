@@ -129,6 +129,8 @@
   - [v0.11.0](services/edge/CHANGELOG.md#v0110)
     - **Improvement:** Use new `WaiterHandler` struct in the Edge WaitHandler
     - **Deprecation:** Deprecated `ErrInstanceCreationFailed` and `ErrInstanceIsBeingDeleted` in `wait` package
+  - [v0.12.0](services/edge/CHANGELOG.md#v0120)
+    - **Feature:** Introduce enums for various attributes
 - `git`:
   - [v0.11.2](services/git/CHANGELOG.md#v0112) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
