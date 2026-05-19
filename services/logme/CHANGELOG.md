@@ -1,3 +1,7 @@
+## v0.29.0
+- `v1api`
+  - **Improvement**: Use new `WaiterHandler` struct in the LogMe WaitHandler
+
 ## v0.28.2
 - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
 
