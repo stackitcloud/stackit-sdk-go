@@ -117,7 +117,7 @@ func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pr
 		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
 		GetState:      getStateInstance,
 		ActiveState:   []string{},
-		ErrorState:    []string{},
+		ErrorState:    []string{INSTANCESTATUS_FAILED},
 	}
 
 	// adapter for adhering to the wait helper type schema
