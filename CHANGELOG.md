@@ -423,6 +423,8 @@
       - **Feature:**: New API client method `GetFederatedIdentityProvider`
     - Deprecated SDK layer in root of the module:
       - **Feature:**: New API client method `GetFederatedIdentityProvider`
+  - [v0.20.0](services/serviceaccount/CHANGELOG.md#v0200)
+    - **Feature:** Introduce enums for various attributes
 - `serviceenablement`:
   - [v1.4.3](services/serviceenablement/CHANGELOG.md#v143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
