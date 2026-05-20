@@ -45,6 +45,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.1` to `v0.25.0`
   - [v0.4.2](services/auditlog/CHANGELOG.md#v042)
     - **Dependencies:** Bump STACKIT SDK core module to `v0.26.0`
+  - [v0.5.0](services/auditlog/CHANGELOG.md#v050)
+    - **Feature:** Introduce enums for various attributes
 - `authorization`:
   - [v0.14.3](services/authorization/CHANGELOG.md#v0143) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`
