@@ -254,6 +254,8 @@
     - **Dependencies:** Bump STACKIT SDK core module from `v0.25.0` to `v0.26.0`
   - [v0.10.0](services/modelserving/CHANGELOG.md#v0100)
     - **Improvement:** Use new WaiterHelper for modelserving waiters
+  - [v0.11.0](services/modelserving/CHANGELOG.md#v0110)
+    - **Feature:** Introduce enums for various attributes
 - `mongodbflex`:
   - [v1.7.3](services/mongodbflex/CHANGELOG.md#v173) 
     - **Dependencies:** Bump STACKIT SDK core module from `v0.24.0` to `v0.24.1`

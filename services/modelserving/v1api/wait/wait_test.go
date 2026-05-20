@@ -15,7 +15,7 @@ import (
 
 type mockSettings struct {
 	getFails      bool
-	resourceState string
+	resourceState modelserving.TokenState
 	statusCode    int
 }
 
@@ -43,7 +43,7 @@ func TestCreateModelServingWaitHandler(t *testing.T) {
 		desc          string
 		getFails      bool
 		statusCode    int
-		resourceState string
+		resourceState modelserving.TokenState
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -51,7 +51,7 @@ func TestCreateModelServingWaitHandler(t *testing.T) {
 			desc:          "create_succeeded",
 			getFails:      false,
 			statusCode:    200,
-			resourceState: TOKENSTATE_ACTIVE,
+			resourceState: modelserving.TOKENSTATE_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -111,7 +111,7 @@ func TestUpdateModelServingWaitHandler(t *testing.T) {
 		desc          string
 		getFails      bool
 		statusCode    int
-		resourceState string
+		resourceState modelserving.TokenState
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -119,7 +119,7 @@ func TestUpdateModelServingWaitHandler(t *testing.T) {
 			desc:          "update_succeeded",
 			getFails:      false,
 			statusCode:    200,
-			resourceState: TOKENSTATE_ACTIVE,
+			resourceState: modelserving.TOKENSTATE_ACTIVE,
 			wantErr:       false,
 			wantResp:      true,
 		},
@@ -179,7 +179,7 @@ func TestDeleteModelServingWaitHandler(t *testing.T) {
 		desc          string
 		getFails      bool
 		statusCode    int
-		resourceState string
+		resourceState modelserving.TokenState
 		wantErr       bool
 		wantResp      bool
 	}{
@@ -195,7 +195,7 @@ func TestDeleteModelServingWaitHandler(t *testing.T) {
 			desc:          "delete_in_progress",
 			getFails:      false,
 			statusCode:    200,
-			resourceState: TOKENSTATE_DELETING,
+			resourceState: modelserving.TOKENSTATE_DELETING,
 			wantErr:       true, // Should timeout since delete is not complete
 			wantResp:      false,
 		},
