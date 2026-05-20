@@ -2,12 +2,10 @@ package wait
 
 import (
 	"context"
-	"fmt"
-	"net/http"
+	"errors"
 	"sort"
 	"time"
 
-	"github.com/stackitcloud/stackit-sdk-go/core/oapierror"
 	"github.com/stackitcloud/stackit-sdk-go/core/wait"
 	mongodbflex "github.com/stackitcloud/stackit-sdk-go/services/mongodbflex/v2api"
 )
@@ -27,29 +25,15 @@ const (
 
 // CreateInstanceWaitHandler will wait for instance creation
 func CreateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId, region).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-			return false, nil, nil
-		}
-		switch *s.Item.Status {
-		default:
-			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
-		case "":
-			return false, nil, nil
-		case INSTANCESTATUS_PROCESSING:
-			return false, nil, nil
-		case INSTANCESTATUS_UNKNOWN:
-			return false, nil, nil
-		case INSTANCESTATUS_READY:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("create failed for instance with id %s", instanceId)
-		}
-	})
+	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, string]{
+		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
+		GetState:      getStateInstance,
+		ActiveState:   []string{INSTANCESTATUS_READY},
+		ErrorState:    []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+
 	handler.SetTimeout(45 * time.Minute)
 	handler.SetSleepBeforeWait(5 * time.Second)
 	return handler
@@ -61,44 +45,37 @@ func CloneInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, pro
 }
 
 func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, backupId, region string) *wait.AsyncActionHandler[mongodbflex.ListRestoreJobsResponse] {
-	handler := wait.New(func() (waitFinished bool, response *mongodbflex.ListRestoreJobsResponse, err error) {
-		s, err := a.ListRestoreJobs(ctx, projectId, instanceId, region).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s == nil || s.Items == nil {
-			return false, nil, nil
-		}
-
-		restoreJobsSlice := s.Items
-
-		// sort array by descending date
-		sort.Slice(restoreJobsSlice, func(i, j int) bool {
-			// swap elements to sort by descending order
-			return *restoreJobsSlice[i].Date > *restoreJobsSlice[j].Date
-		})
-
-		var status string
-		for _, restoreJob := range restoreJobsSlice {
-			if *restoreJob.BackupID == backupId {
-				status = *restoreJob.Status
-				break
+	waitConfig := wait.WaiterHelper[mongodbflex.ListRestoreJobsResponse, string]{
+		FetchInstance: a.ListRestoreJobs(ctx, projectId, instanceId, region).Execute,
+		GetState: func(response *mongodbflex.ListRestoreJobsResponse) (string, error) {
+			if response == nil {
+				return "", errors.New("response is nil")
 			}
-		}
+			if len(response.Items) == 0 {
+				return "", errors.New("response items is empty")
+			}
+			restoreJobsSlice := response.Items
+			// sort array by descending date
+			sort.Slice(restoreJobsSlice, func(i, j int) bool {
+				// swap elements to sort by descending order
+				return *restoreJobsSlice[i].Date > *restoreJobsSlice[j].Date
+			})
 
-		switch status {
-		default:
-			return true, s, fmt.Errorf("restore job for backup with id %s has unexpected status %s", backupId, status)
-		case RestoreJobProcessing:
-			return false, nil, nil
-		case RestoreJobFinished:
-			return true, s, nil
-		case RestoreJobBroken:
-			return true, s, fmt.Errorf("restore job for backup with id %s is broken", backupId)
-		case RestoreJobKilled:
-			return true, s, fmt.Errorf("restore job for backup with id %s was killed", backupId)
-		}
-	})
+			var status string
+			for _, restoreJob := range restoreJobsSlice {
+				if *restoreJob.BackupID == backupId {
+					status = *restoreJob.Status
+					break
+				}
+			}
+			return status, nil
+		},
+		ActiveState: []string{RestoreJobFinished},
+		ErrorState:  []string{RestoreJobKilled, RestoreJobBroken},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+
 	handler.SetTimeout(45 * time.Minute)
 	handler.SetSleepBeforeWait(5 * time.Second)
 	return handler
@@ -106,29 +83,15 @@ func RestoreInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, p
 
 // UpdateInstanceWaitHandler will wait for instance update
 func UpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[mongodbflex.InstanceResponse] {
-	handler := wait.New(func() (waitFinished bool, response *mongodbflex.InstanceResponse, err error) {
-		s, err := a.GetInstance(ctx, projectId, instanceId, region).Execute()
-		if err != nil {
-			return false, nil, err
-		}
-		if s == nil || s.Item == nil || s.Item.Id == nil || *s.Item.Id != instanceId || s.Item.Status == nil {
-			return false, nil, nil
-		}
-		switch *s.Item.Status {
-		default:
-			return true, s, fmt.Errorf("instance with id %s has unexpected status %s", instanceId, *s.Item.Status)
-		case "":
-			return false, nil, nil
-		case INSTANCESTATUS_PROCESSING:
-			return false, nil, nil
-		case INSTANCESTATUS_UNKNOWN:
-			return false, nil, nil
-		case INSTANCESTATUS_READY:
-			return true, s, nil
-		case INSTANCESTATUS_FAILED:
-			return true, s, fmt.Errorf("update failed for instance with id %s", instanceId)
-		}
-	})
+	waitConfig := wait.WaiterHelper[mongodbflex.InstanceResponse, string]{
+		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
+		GetState:      getStateInstance,
+		ActiveState:   []string{INSTANCESTATUS_READY},
+		ErrorState:    []string{INSTANCESTATUS_FAILED},
+	}
+
+	handler := wait.New(waitConfig.Wait())
+
 	handler.SetTimeout(45 * time.Minute)
 	return handler
 }
@@ -140,20 +103,37 @@ func PartialUpdateInstanceWaitHandler(ctx context.Context, a mongodbflex.Default
 
 // DeleteInstanceWaitHandler will wait for instance deletion
 func DeleteInstanceWaitHandler(ctx context.Context, a mongodbflex.DefaultAPI, projectId, instanceId, region string) *wait.AsyncActionHandler[struct{}] {
-	handler := wait.New(func() (waitFinished bool, response *struct{}, err error) {
-		_, err = a.GetInstance(ctx, projectId, instanceId, region).Execute()
-		if err == nil {
-			return false, nil, nil
-		}
-		oapiErr, ok := err.(*oapierror.GenericOpenAPIError) //nolint:errorlint //complaining that error.As should be used to catch wrapped errors, but this error should not be wrapped
-		if !ok {
-			return false, nil, fmt.Errorf("could not convert error to oapierror.GenericOpenAPIError")
-		}
-		if oapiErr.StatusCode != http.StatusNotFound {
-			return false, nil, err
-		}
-		return true, nil, nil
-	})
+	w := wait.WaiterHelper[mongodbflex.InstanceResponse, string]{
+		FetchInstance: a.GetInstance(ctx, projectId, instanceId, region).Execute,
+		GetState:      getStateInstance,
+		ActiveState:   []string{},
+		ErrorState:    []string{INSTANCESTATUS_FAILED},
+	}
+
+	// adapter for adhering to the wait helper type schema
+	genericCheck := w.Wait()
+	adaptedCheck := func() (waitFinished bool, response *struct{}, err error) {
+		finished, _, err := genericCheck()
+		return finished, nil, err
+	}
+
+	handler := wait.New(adaptedCheck)
 	handler.SetTimeout(15 * time.Minute)
 	return handler
+}
+
+func getStateInstance(response *mongodbflex.InstanceResponse) (string, error) {
+	if response == nil {
+		return "", errors.New("empty response")
+	}
+	if response.Item == nil {
+		return "", errors.New("empty items")
+	}
+	if response.Item.Id == nil {
+		return "", errors.New("empty item id")
+	}
+	if response.Item.Status == nil {
+		return "", errors.New("empty item status")
+	}
+	return *response.Item.Status, nil
 }
