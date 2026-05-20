@@ -1,7 +1,7 @@
 /*
 STACKIT MSSQL Service API
 
-This is the documentation for the STACKIT MSSQL service
+## ⚠️ WARNING: THIS API IS DEPRECATED  Use V3Beta1
 
 API version: 3alpha1
 Contact: support@stackit.cloud
