@@ -31,7 +31,7 @@ func CreateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
 		GetState:      getStateResourcePool,
 		ActiveState:   []string{ResourcePoolStateCreated},
-		ErrorState:    []string{},
+		ErrorState:    []string{ResourcePoolStateError},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -45,7 +45,7 @@ func UpdateResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
 		GetState:      getStateResourcePool,
 		ActiveState:   []string{ResourcePoolStateCreated},
-		ErrorState:    []string{},
+		ErrorState:    []string{ResourcePoolStateError},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -59,7 +59,7 @@ func DeleteResourcePoolWaitHandler(ctx context.Context, api sfs.DefaultAPI, proj
 		FetchInstance: api.GetResourcePool(ctx, projectId, region, resourcePoolId).Execute,
 		GetState:      getStateResourcePool,
 		ActiveState:   []string{},
-		ErrorState:    []string{},
+		ErrorState:    []string{ResourcePoolStateError},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -73,7 +73,7 @@ func CreateShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, 
 		FetchInstance: api.GetShare(ctx, projectId, region, resourcePoolId, shareId).Execute,
 		GetState:      getStateShare,
 		ActiveState:   []string{ShareStateCreated},
-		ErrorState:    []string{},
+		ErrorState:    []string{ShareStateError},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -87,7 +87,7 @@ func UpdateShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, 
 		FetchInstance: api.GetShare(ctx, projectId, region, resourcePoolId, shareId).Execute,
 		GetState:      getStateShare,
 		ActiveState:   []string{ShareStateCreated},
-		ErrorState:    []string{},
+		ErrorState:    []string{ShareStateError},
 	}
 
 	handler := wait.New(waitConfig.Wait())
@@ -101,7 +101,7 @@ func DeleteShareWaitHandler(ctx context.Context, api sfs.DefaultAPI, projectId, 
 		FetchInstance: api.GetShare(ctx, projectId, region, resourcePoolId, shareId).Execute,
 		GetState:      getStateShare,
 		ActiveState:   []string{},
-		ErrorState:    []string{},
+		ErrorState:    []string{ShareStateError},
 	}
 
 	handler := wait.New(waitConfig.Wait())
