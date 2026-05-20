@@ -1,3 +1,6 @@
+## v0.24.0
+- **Feature:** Introduce enums for various attributes
+
 ## v0.23.0
 - **Feature:** Added `_UNKNOWN_DEFAULT_OPEN_API` fallback value to all enums to handle unknown API values gracefully.
 
